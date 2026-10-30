@@ -1,10 +1,10 @@
 {
   "paperId": "2025-12-l2",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-12-l2"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
@@ -20,6 +20,12 @@
     }
   },
   "questions": [
+    {
+      "questionId": 10,
+      "issue": "审计低分：官方文本层Q10区域串入相邻题代码块（Q8/Q9代码），探针匹配失败",
+      "fix": "定性为假阴性，无需修改——渲染p.3-4确认官方Q10题面/主代码/四个while选项与题库完全一致，答案B一致",
+      "evidence": "官方单选答案串 BBA BB DAD CBB BBB BC(程序化提取) 题库15/15对；判断题答案表(p.6底部300dpi) ×√×√√×√×√× 题库10/10对"
+    },
     {
       "id": 1,
       "type": "single",
@@ -95,7 +101,20 @@
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q11 explanation 升级；答案未改"
     },
     {
       "id": 12,
@@ -196,10 +215,20 @@
       "modified": false
     },
     {
-      "questionId": 10,
-      "issue": "审计低分：官方文本层Q10区域串入相邻题代码块（Q8/Q9代码），探针匹配失败",
-      "fix": "定性为假阴性，无需修改——渲染p.3-4确认官方Q10题面/主代码/四个while选项与题库完全一致，答案B一致",
-      "evidence": "官方单选答案串 BBA BB DAD CBB BBB BC(程序化提取) 题库15/15对；判断题答案表(p.6底部300dpi) ×√×√√×√×√× 题库10/10对"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
     }
   ],
   "notes": [
