@@ -1,0 +1,40 @@
+{
+  "paperId": "2023-12-l6",
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": "AI对照官方PDF复核",
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/",
+    "localCache": "tmp/pdfs/2023-12-l6.pdf",
+    "shaVerified": false,
+    "note": "镜像仓库官方PDF，答案表文本层+渲染双重提取"
+  },
+  "answerTable": {
+    "location": "单选答案表p.1顶部（文本层提取）；判断答案表矢量记号，按「答案」文字坐标400dpi裁图逐格读取",
+    "content": {
+      "single": "DCCDBBBDBDAABCB",
+      "judge": "√√√√√××√√√"
+    }
+  },
+  "verification": {
+    "singleChoice": "15/15与官方答案表一致（数字索引0-3语义转换后比对）",
+    "judge": "10/10与官方答案表一致；10题逐题逻辑复核一致（delete悬空指针×、哈夫曼WPL唯一√、BST平均×、满表哈希/链表冒泡等）",
+    "method": "答案串程序化正则提取（tmp/audit5-official.json），零手工拼串"
+  },
+  "fixes": [
+    {
+      "id": 20,
+      "question": "哈夫曼编码具有唯一性，因此有确定的压缩率",
+      "oldAnswer": "×",
+      "newAnswer": "√",
+      "reason": "官方判√：WPL唯一→压缩率确定。题库原把「编码不唯一」混同于「压缩率不确定」。解析已按官方口径重写"
+    },
+    {
+      "id": 22,
+      "question": "二叉搜索树查找的平均时间复杂度为O(log N)",
+      "oldAnswer": "√",
+      "newAnswer": "×",
+      "reason": "官方判×：BST无自平衡保证，退化情形O(N)，平均O(log N)需随机形态前提，官方按不严谨判错。解析已重写"
+    }
+  ],
+  "resolved": true
+}

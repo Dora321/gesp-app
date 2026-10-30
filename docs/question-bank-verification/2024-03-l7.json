@@ -1,0 +1,25 @@
+{
+  "paperId": "2024-03-l7",
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": "AI对照官方PDF复核",
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/",
+    "localCache": "tmp/pdfs/2024-03-l7.pdf",
+    "shaVerified": false,
+    "note": "镜像仓库官方PDF，答案表文本层+渲染双重提取"
+  },
+  "answerTable": {
+    "location": "单选答案表p.1顶部（文本层提取）；判断答案表矢量记号，按「答案」文字坐标400dpi裁图逐格读取",
+    "content": {
+      "single": "BCDCDBABACCBCAB",
+      "judge": "√×√××√×√√√"
+    }
+  },
+  "verification": {
+    "singleChoice": "15/15与官方答案表一致（数字索引0-3语义转换后比对）",
+    "judge": "10/10与官方答案表一致；10题逐题逻辑复核一致（祖冲之√、2^3异或=1×、⌊log2N⌋+1√、sin(30)弧度×、满表哈希×、抽象类√）。注意：整页缩略图初读答案表整体错位（√读成×），按坐标400dpi高清重读后确认，首读不可信教训入库",
+    "method": "答案串程序化正则提取（tmp/audit5-official.json），零手工拼串"
+  },
+  "fixes": [],
+  "resolved": true
+}

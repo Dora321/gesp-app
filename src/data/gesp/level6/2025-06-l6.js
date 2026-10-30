@@ -802,16 +802,18 @@ Parent 中的 value 是 private 成员，私有成员只对类自身（及其友
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+tree = {1, 2, 3, 4, -1, 6, 7}，按层序还原：节点 1 的孩子是 2、3；节点 2 的孩子是 4 和空（-1）；节点 3 的孩子是 6、7。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+完全二叉树要求**空节点只能出现在层序序列的末尾**——一旦某个位置为空，其后不允许再有任何节点。本题中 -1 出现在下标 4，其后还有 6、7 两个节点，说明第 3 层「左缺右有」，不满足完全二叉树的定义。
 
-            **考点：** 树与二叉树
+**判定技巧：** 层序数组扫描时，遇到第一个空位（-1）之后必须全为空；只要空位后面还出现非空节点，就不是完全二叉树。
+
+**考点：** 树与二叉树、完全二叉树
             `,
             tags: [
                 "客观题",
@@ -847,23 +849,43 @@ Parent 中的 value 是 private 成员，私有成员只对类自身（及其友
         {
             id: 25,
             type: "judge",
-            question: `下面代码采用动态规划求解零钱兑换问题：给定 种硬币，第 𝑖 种硬币的面值为 𝑐𝑜𝑖𝑛𝑠[𝑖 − 1] ，目标金额为 𝑎𝑚𝑡 ，每种硬币可以重复选取，求能够凑出目标金额的最少硬币数量；如果不能凑出目标金额，返回 -1 。 class Dog { public: std::string name; Dog(std::string str) : name(str) {} }; int main() { Dog my_dog("Buddy"); my_dog.name = "Charlie"; return 0; } 1 2 3 4 5 6 7 8 9 10 11 class Parent { private: int value = 100; }; class Child : public Parent { public: int get_private_val() { return value; // 尝试访问父类的私有成员 } }; 1 2 3 4 5 6 7 8 9 10 #include <vector> std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7}; 1 2 int coinChangeDPComp(vector<int> &coins, int amt) { int n = coins.size(); int MAX = amt+1; vector<int> dp(amt+1, MAX); dp[0] = 0; for (int i = 1; i <= n; i++) { for (int a = 1; a <= amt; a++) { if (coins[i-1] > a) dp[a] = dp[a]; else dp[a] = min(dp[a], dp[a-coins[i-1]]+1); } } return dp[amt] != MAX ? dp[amt] : -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17`,
+            question: `下面代码采用动态规划求解零钱兑换问题：给定 n 种硬币，第 i 种硬币的面值为 coins[i - 1]，目标金额为 amt，每种硬币可以重复选取，求能够凑出目标金额的最少硬币数量；如果不能凑出目标金额，返回 -1 。
+
+\`\`\`cpp
+int coinChangeDPComp(vector<int> &coins, int amt) {
+    int n = coins.size();
+    int MAX = amt + 1;
+    vector<int> dp(amt + 1, MAX);
+    dp[0] = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int a = 1; a <= amt; a++) {
+            if (coins[i - 1] > a)
+                dp[a] = dp[a];
+            else
+                dp[a] = min(dp[a], dp[a - coins[i - 1]] + 1);
+        }
+    }
+    return dp[amt] != MAX ? dp[amt] : -1;
+}
+\`\`\``,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 1,
+            answer: 0,
             score: 2,
-            explanation: `**答案：错误**
+            explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+这是一维完全背包求最少件数的标准写法，逐项检查：
+- **状态定义：** dp[a] 表示凑出金额 a 所需的最少硬币数，dp[0] = 0（边界正确）；
+- **初值：** dp 数组初始化为 MAX = amt + 1。由于每枚硬币面值至少为 1，最多需要 amt 枚，amt + 1 即「不可达」的无穷大占位，避免溢出；
+- **转移：** 对每种硬币 i（外层）遍历金额 a（内层），coins[i-1] ≤ a 时尝试 dp[a - coins[i-1]] + 1 取 min。外层物品内层金额的顺序允许同一硬币重复选取，符合「每种硬币可重复」的完全背包语义；
+- **返回：** dp[amt] 仍为 MAX 说明凑不出，返回 -1，否则返回 dp[amt]。
 
-            **纠错：** 原命题说法有误。本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+整段代码逻辑完整正确，题干描述成立。
 
-            **易混概念：** DP 三要素：状态定义、转移方程、边界初始化。注意 INF 初值的选择、下标从 0 还是 1、以及空间优化（滚动数组）时的覆盖顺序。
-
-            **考点：** 动态规划
+**考点：** 动态规划、完全背包
             `,
             tags: [
                 "客观题",
