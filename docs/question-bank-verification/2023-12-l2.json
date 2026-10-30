@@ -1,529 +1,561 @@
 {
- "paperId": "2023-12-l2",
- "reviewedAt": "2026-10-26",
- "reviewedBy": {
-  "type": "AI",
-  "executor": "WorkBuddy 子代理",
-  "session": "codex/question-bank-verification"
- },
- "source": {
-  "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
-  "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
-  "shaVerified": true,
-  "fetchedAt": "2026-10-26",
-  "note": "本地 PDF 的 git hash-object 结果与镜像记录完全一致。本卷 PDF 的代码块全部是图片，文本层极薄（15 道单选所在 4 页合计不足 1800 字符），必须逐页渲染读图。"
- },
- "answerTable": {
-  "location": "单选答案表 p.1 顶部；判断答案表 p.5「2 判断题」标题下方",
-  "content": {
-   "single": "CADDDADCDBCDCBB",
-   "judge": "√×√××××√×√"
+  "paperId": "2023-12-l2",
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-12-l2"
   },
-  "note": "判断题表为矢量图形，需 5 倍放大裁剪读图逐位抄写。"
- },
- "questions": [
-  {
-   "id": 1,
-   "type": "single",
-   "official": "C",
-   "answerTableValue": "C",
-   "bank": "C",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "题库原题是「以下哪个变量命名是错误的」（选项 my_var/_var1/123var/var_123），官方是 FiveStar/fiveStar/5Star/Star5；两者答案都落在 C，属字母巧合。已按官方重录。"
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-26",
+    "note": "本地 PDF 的 git hash-object 结果与镜像记录完全一致。本卷 PDF 的代码块全部是图片，文本层极薄（15 道单选所在 4 页合计不足 1800 字符），必须逐页渲染读图。"
   },
-  {
-   "id": 2,
-   "type": "single",
-   "official": "A",
-   "answerTableValue": "A",
-   "bank": "A",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "题面与选项按官方文本层逐字比对",
-    "单选答案表逐位核对"
-   ],
-   "note": "题面与四个选项（含 D「以上均不对」）与官方一致；答案 A"
+  "answerTable": {
+    "location": "单选答案表 p.1 顶部；判断答案表 p.5「2 判断题」标题下方",
+    "content": {
+      "single": "CADDDADCDBCDCBB",
+      "judge": "√×√××××√×√"
+    },
+    "note": "判断题表为矢量图形，需 5 倍放大裁剪读图逐位抄写。"
   },
-  {
-   "id": 3,
-   "type": "single",
-   "official": "D",
-   "answerTableValue": "D",
-   "bank": "D",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "题库代码块缺首行 cin>>N 且把无花括号的 if 写成带花括号；已按官方 `cin >> N; for(...) if (N % i == 0) cout << i << \" \";` 重录，四个选项原样保留，答案 D 不变。"
+  "questions": [
+    {
+      "id": 1,
+      "type": "single",
+      "official": "C",
+      "answerTableValue": "C",
+      "bank": "C",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "题库原题是「以下哪个变量命名是错误的」（选项 my_var/_var1/123var/var_123），官方是 FiveStar/fiveStar/5Star/Star5；两者答案都落在 C，属字母巧合。已按官方重录。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "题面与选项按官方文本层逐字比对",
+        "单选答案表逐位核对"
+      ],
+      "note": "题面与四个选项（含 D「以上均不对」）与官方一致；答案 A"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "题库代码块缺首行 cin>>N 且把无花括号的 if 写成带花括号；已按官方 `cin >> N; for(...) if (N % i == 0) cout << i << \" \";` 重录，四个选项原样保留，答案 D 不变。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "选项 D 被换掉：官方为「代码没有语法错误，但不能达到预期目标，因为循环结束N总为0。」，题库写成「代码逻辑正确，temp 用于保存原值参与比较」（自编）。A/B/C 也是压缩表述。已全部按官方重录。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "选项 D 被换掉：官方为「代码存在漏洞，边界存在问题，应将第2行和第7行的 N/2 改为 N/2 + 1。」，题库写成「代码存在漏洞，当 N=4 时会判为质数」（自编，只是现象不是修法）。已按官方重录。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "题库代码块删掉了第 6 行 `continue;`——而这句正是本题的设计核心（位于外层循环体末尾，属无害空操作，用来诱导误判）。已按官方补回，并重写解析。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "四个选项全部与官方不符：官方为 0 / 8#8 / 4 / 4#4，题库为 5# / 8# / 9# / 4#。已按官方重录代码与选项，答案 D 不变。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "official": "C",
+      "answerTableValue": "C",
+      "bank": "C",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "选项 B/D 与官方不符：官方为 100/95/55/0，题库为 100/80/55/40。已按官方重录，答案 C(55) 不变。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "四个选项全部与官方不符：官方为 1 / 1,3 / 15,17 / 1,10,12，题库为 1,3, / 1,3,10, / 1,7, / 1,10,；且题库漏了循环外那句 cout<<x（末尾的 12）。已按官方重录。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "选项 C/D 与官方不符：官方为 5/10/20/30，题库为 5/10/15/20。已按官方重录，答案 B(10) 不变。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "official": "C",
+      "answerTableValue": "C",
+      "bank": "C",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "题面与选项按官方文本层逐字比对",
+        "单选答案表逐位核对"
+      ],
+      "note": "题面与四个选项与官方一致；答案 C（int(sqrt(i))*int(sqrt(i))==i）"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "题库把题干改写成「输出特定字符矩阵」并换成 cout<<nowNum / cout<<\" \" / cout<<0 / cout<<endl 四个自编选项。官方是「左图效果 + 右图代码，问在哪一行下插入什么」，选项 A-D 各指向不同行号。已按官方重录（含左图字符三角形的文字还原）。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "official": "C",
+      "answerTableValue": "C",
+      "bank": "C",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "题面与选项按官方文本层逐字比对",
+        "单选答案表逐位核对"
+      ],
+      "note": "题面与四个选项与官方一致；答案 C（油量表不是选路所必需）"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "题面与选项按官方文本层逐字比对",
+        "单选答案表逐位核对"
+      ],
+      "note": "题面与四个选项与官方一致；答案 B（冯·诺依曼）"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按原卷 PDF 渲染读图逐字重录题面与选项",
+        "单选答案表逐位核对"
+      ],
+      "note": "整题被换：题库是「幸运数/超级幸运数」，官方是「找相邻因数对，哪段代码找不到全部」。官方答案 B、题库答案也是 B，属字母巧合。已按官方重录。"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "√",
+      "answerTableValue": "√",
+      "bank": "√",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "×",
+      "answerTableValue": "×",
+      "bank": "×",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "√",
+      "answerTableValue": "√",
+      "bank": "√",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "×",
+      "answerTableValue": "×",
+      "bank": "×",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "×",
+      "answerTableValue": "×",
+      "bank": "×",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "×",
+      "answerTableValue": "×",
+      "bank": "×",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "×",
+      "answerTableValue": "×",
+      "bank": "×",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "√",
+      "answerTableValue": "√",
+      "bank": "√",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "×",
+      "answerTableValue": "×",
+      "bank": "×",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "√",
+      "answerTableValue": "√",
+      "bank": "√",
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "题面按官方文本层逐字比对",
+        "判断题答案表逐位核对"
+      ],
+      "note": "题面与官方一致，判定与答案表一致"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
+    }
+  ],
+  "unresolved": [],
+  "summary": {
+    "singleTotal": 15,
+    "judgeTotal": 10,
+    "changed": 11
   },
-  {
-   "id": 4,
-   "type": "single",
-   "official": "D",
-   "answerTableValue": "D",
-   "bank": "D",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "选项 D 被换掉：官方为「代码没有语法错误，但不能达到预期目标，因为循环结束N总为0。」，题库写成「代码逻辑正确，temp 用于保存原值参与比较」（自编）。A/B/C 也是压缩表述。已全部按官方重录。"
-  },
-  {
-   "id": 5,
-   "type": "single",
-   "official": "D",
-   "answerTableValue": "D",
-   "bank": "D",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "选项 D 被换掉：官方为「代码存在漏洞，边界存在问题，应将第2行和第7行的 N/2 改为 N/2 + 1。」，题库写成「代码存在漏洞，当 N=4 时会判为质数」（自编，只是现象不是修法）。已按官方重录。"
-  },
-  {
-   "id": 6,
-   "type": "single",
-   "official": "A",
-   "answerTableValue": "A",
-   "bank": "A",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "题库代码块删掉了第 6 行 `continue;`——而这句正是本题的设计核心（位于外层循环体末尾，属无害空操作，用来诱导误判）。已按官方补回，并重写解析。"
-  },
-  {
-   "id": 7,
-   "type": "single",
-   "official": "D",
-   "answerTableValue": "D",
-   "bank": "D",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "四个选项全部与官方不符：官方为 0 / 8#8 / 4 / 4#4，题库为 5# / 8# / 9# / 4#。已按官方重录代码与选项，答案 D 不变。"
-  },
-  {
-   "id": 8,
-   "type": "single",
-   "official": "C",
-   "answerTableValue": "C",
-   "bank": "C",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "选项 B/D 与官方不符：官方为 100/95/55/0，题库为 100/80/55/40。已按官方重录，答案 C(55) 不变。"
-  },
-  {
-   "id": 9,
-   "type": "single",
-   "official": "D",
-   "answerTableValue": "D",
-   "bank": "D",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "四个选项全部与官方不符：官方为 1 / 1,3 / 15,17 / 1,10,12，题库为 1,3, / 1,3,10, / 1,7, / 1,10,；且题库漏了循环外那句 cout<<x（末尾的 12）。已按官方重录。"
-  },
-  {
-   "id": 10,
-   "type": "single",
-   "official": "B",
-   "answerTableValue": "B",
-   "bank": "B",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "选项 C/D 与官方不符：官方为 5/10/20/30，题库为 5/10/15/20。已按官方重录，答案 B(10) 不变。"
-  },
-  {
-   "id": 11,
-   "type": "single",
-   "official": "C",
-   "answerTableValue": "C",
-   "bank": "C",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "题面与选项按官方文本层逐字比对",
-    "单选答案表逐位核对"
-   ],
-   "note": "题面与四个选项与官方一致；答案 C（int(sqrt(i))*int(sqrt(i))==i）"
-  },
-  {
-   "id": 12,
-   "type": "single",
-   "official": "D",
-   "answerTableValue": "D",
-   "bank": "D",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "题库把题干改写成「输出特定字符矩阵」并换成 cout<<nowNum / cout<<\" \" / cout<<0 / cout<<endl 四个自编选项。官方是「左图效果 + 右图代码，问在哪一行下插入什么」，选项 A-D 各指向不同行号。已按官方重录（含左图字符三角形的文字还原）。"
-  },
-  {
-   "id": 13,
-   "type": "single",
-   "official": "C",
-   "answerTableValue": "C",
-   "bank": "C",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "题面与选项按官方文本层逐字比对",
-    "单选答案表逐位核对"
-   ],
-   "note": "题面与四个选项与官方一致；答案 C（油量表不是选路所必需）"
-  },
-  {
-   "id": 14,
-   "type": "single",
-   "official": "B",
-   "answerTableValue": "B",
-   "bank": "B",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "题面与选项按官方文本层逐字比对",
-    "单选答案表逐位核对"
-   ],
-   "note": "题面与四个选项与官方一致；答案 B（冯·诺依曼）"
-  },
-  {
-   "id": 15,
-   "type": "single",
-   "official": "B",
-   "answerTableValue": "B",
-   "bank": "B",
-   "changed": true,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "options",
-    "answer"
-   ],
-   "method": [
-    "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
-   ],
-   "note": "整题被换：题库是「幸运数/超级幸运数」，官方是「找相邻因数对，哪段代码找不到全部」。官方答案 B、题库答案也是 B，属字母巧合。已按官方重录。"
-  },
-  {
-   "id": 16,
-   "type": "judge",
-   "official": "√",
-   "answerTableValue": "√",
-   "bank": "√",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 17,
-   "type": "judge",
-   "official": "×",
-   "answerTableValue": "×",
-   "bank": "×",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 18,
-   "type": "judge",
-   "official": "√",
-   "answerTableValue": "√",
-   "bank": "√",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 19,
-   "type": "judge",
-   "official": "×",
-   "answerTableValue": "×",
-   "bank": "×",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 20,
-   "type": "judge",
-   "official": "×",
-   "answerTableValue": "×",
-   "bank": "×",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 21,
-   "type": "judge",
-   "official": "×",
-   "answerTableValue": "×",
-   "bank": "×",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 22,
-   "type": "judge",
-   "official": "×",
-   "answerTableValue": "×",
-   "bank": "×",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 23,
-   "type": "judge",
-   "official": "√",
-   "answerTableValue": "√",
-   "bank": "√",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 24,
-   "type": "judge",
-   "official": "×",
-   "answerTableValue": "×",
-   "bank": "×",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
-  },
-  {
-   "id": 25,
-   "type": "judge",
-   "official": "√",
-   "answerTableValue": "√",
-   "bank": "√",
-   "changed": false,
-   "resolved": true,
-   "textMatch": true,
-   "dimensions": [
-    "statement",
-    "answer"
-   ],
-   "method": [
-    "题面按官方文本层逐字比对",
-    "判断题答案表逐位核对"
-   ],
-   "note": "题面与官方一致，判定与答案表一致"
+  "rebuild": true,
+  "rebuildNote": "2026-10-26 按官方 PDF 重建 11 道单选：Q1/Q15 是整题替换（Q1 换成变量命名题、Q15 换成幸运数题），Q3/Q6 是代码块被删改（Q3 缺 cin>>N；Q6 删掉了作为本题核心的 continue），Q4/Q5/Q7/Q8/Q9/Q10 是选项被改写（其中 Q4/Q5 各有一个选项被换成自编表述，Q7/Q9 四个选项全错），Q12 题干与选项整体自编（官方是「左图效果 + 右图代码，问在哪一行插入什么」）。判断题 10 道与官方完全一致，未改动。",
+  "methodologyNote": "本卷的教训是「代码块在 PDF 里是图片」时，文本层比对会几乎全部失效：本卷 4 页单选区文本合计不足 1800 字符（代码块、选项格式全丢），任何基于文本层的自动比对都拿不到有效证据，只能逐页渲染读图。",
+  "priorReviewCorrection": {
+    "foundAt": "2026-10-26",
+    "note": "本文件此前记录 summary 为 {\"singleMatch\": true, \"judgeModified\": 0}，声称整卷与官方一致。实际复核发现 11 道单选有问题：2 道整题替换、2 道代码块被删改、6 道选项被改写、1 道题面整体自编。误判根源：只比对了答案字母（且 Q1/Q15 的替换题答案字母与官方相同），没有比对选项文本与代码块。"
   }
- ],
- "unresolved": [],
- "summary": {
-  "singleTotal": 15,
-  "judgeTotal": 10,
-  "changed": 11
- },
- "rebuild": true,
- "rebuildNote": "2026-10-26 按官方 PDF 重建 11 道单选：Q1/Q15 是整题替换（Q1 换成变量命名题、Q15 换成幸运数题），Q3/Q6 是代码块被删改（Q3 缺 cin>>N；Q6 删掉了作为本题核心的 continue），Q4/Q5/Q7/Q8/Q9/Q10 是选项被改写（其中 Q4/Q5 各有一个选项被换成自编表述，Q7/Q9 四个选项全错），Q12 题干与选项整体自编（官方是「左图效果 + 右图代码，问在哪一行插入什么」）。判断题 10 道与官方完全一致，未改动。",
- "methodologyNote": "本卷的教训是「代码块在 PDF 里是图片」时，文本层比对会几乎全部失效：本卷 4 页单选区文本合计不足 1800 字符（代码块、选项格式全丢），任何基于文本层的自动比对都拿不到有效证据，只能逐页渲染读图。",
- "priorReviewCorrection": {
-  "foundAt": "2026-10-26",
-  "note": "本文件此前记录 summary 为 {\"singleMatch\": true, \"judgeModified\": 0}，声称整卷与官方一致。实际复核发现 11 道单选有问题：2 道整题替换、2 道代码块被删改、6 道选项被改写、1 道题面整体自编。误判根源：只比对了答案字母（且 Q1/Q15 的替换题答案字母与官方相同），没有比对选项文本与代码块。"
- }
 }

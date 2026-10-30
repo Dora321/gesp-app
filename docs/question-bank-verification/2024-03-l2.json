@@ -1,10 +1,10 @@
 {
   "paperId": "2024-03-l2",
-  "reviewedAt": "2026-10-26",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-03-l2"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
@@ -22,6 +22,12 @@
     "note": "判断题 √/× 为矢量图形，文本层只有「题号 1..10 / 答案」表头，需定位后 6 倍放大裁剪读图逐位抄写。"
   },
   "questions": [
+    {
+      "questionId": 1,
+      "issue": "审计低分：官方Q1为流程图题（图片），pdftotext文本层只有题干文字无流程图内容",
+      "fix": "定性为假阴性，无需修改——题库已用文字描述重建流程图（cj=75→cj>=60?→cj>=90?→输出），与官方答案一致",
+      "evidence": "官方单选答案表程序化提取 BBB CBCDB CACC（15位）题库15/15对；判断题答案表（p.5下部300dpi渲染）×√×××√××√√ 题库10/10对"
+    },
     {
       "id": 1,
       "type": "single",
@@ -74,13 +80,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "题面与选项按官方文本层/渲染图逐字比对",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "题面、四个选项与官方第 3 题一致，答案表逐位核对一致"
+      "note": "题面、四个选项与官方第 3 题一致，答案表逐位核对一致",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 4,
@@ -94,13 +107,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按原卷 PDF 渲染读图逐字重录题面与选项",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "题库四个选项是缩略版（A、D 被压缩成短句）。已按官方原文恢复完整表述，答案仍为 C。"
+      "note": "题库四个选项是缩略版（A、D 被压缩成短句）。已按官方原文恢复完整表述，答案仍为 C。",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 5,
@@ -154,13 +174,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "题面与选项按官方文本层/渲染图逐字比对",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "题面、四个选项与官方第 7 题一致，答案表逐位核对一致"
+      "note": "题面、四个选项与官方第 7 题一致，答案表逐位核对一致",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 8,
@@ -513,10 +540,36 @@
       "note": "题面与官方第 10 道判断题一致"
     },
     {
-      "questionId": 1,
-      "issue": "审计低分：官方Q1为流程图题（图片），pdftotext文本层只有题干文字无流程图内容",
-      "fix": "定性为假阴性，无需修改——题库已用文字描述重建流程图（cj=75→cj>=60?→cj>=90?→输出），与官方答案一致",
-      "evidence": "官方单选答案表程序化提取 BBB CBCDB CACC（15位）题库15/15对；判断题答案表（p.5下部300dpi渲染）×√×××√××√√ 题库10/10对"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
