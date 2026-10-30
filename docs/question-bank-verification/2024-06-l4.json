@@ -2,8 +2,9 @@
   "paperId": "2024-06-l4",
   "executedAt": "2026-10-25",
   "reviewedBy": {
-    "type": "整卷重建",
-    "executor": "官方 PDF 逐页转写 + 答案表比对"
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-06-l4"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
@@ -53,13 +54,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p2 第2题：四个函数定义方案，B 因调用先于声明而编译失败"
+      "note": "官方 p2 第2题：四个函数定义方案，B 因调用先于声明而编译失败",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 3,
@@ -129,13 +137,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p4 第6题：绝对路径与相对路径辨析，D 说法错误"
+      "note": "官方 p4 第6题：绝对路径与相对路径辨析，D 说法错误",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 7,
@@ -148,13 +163,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p4 第7题：插入排序空间复杂度应为 O(1)，D 说法错误"
+      "note": "官方 p4 第7题：插入排序空间复杂度应为 O(1)，D 说法错误",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 8,
@@ -186,13 +208,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p5 第9题：递推与递归的概念区别，A（自己调用自己）是递归特征"
+      "note": "官方 p5 第9题：递推与递归的概念区别，A（自己调用自己）是递归特征",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 10,
@@ -205,13 +234,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p5 第10题：冒泡排序稳定，B 说法错误"
+      "note": "官方 p5 第10题：冒泡排序稳定，B 说法错误",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 11,
@@ -477,9 +513,42 @@
         "判断题答案表逐位核对"
       ],
       "note": "官方 p9 判断第10题：插入排序平均 O(n²)、逆序取最坏"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
   "rebuild": true,
-  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。"
+  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。",
+  "reviewedAt": "2026-10-30"
 }
