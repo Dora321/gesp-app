@@ -36,5 +36,8 @@
       "reason": "官方判×：BST无自平衡保证，退化情形O(N)，平均O(log N)需随机形态前提，官方按不严谨判错。解析已重写"
     }
   ],
-  "resolved": true
+  "resolved": true,
+  "reverifiedAt": "2026-10-30",
+  "reverifyNote": "解析升级批次中发现并修复重大结构错位：原题库把官方第5题拆成两道（幽灵Q5含不明选项组），导致Q8-Q15的答案整体错位一位（哈夫曼题存了fibo题的答案等7处错误），且官方第15题（排序分类）在题库中缺失。已删除幽灵题、重编号Q6-Q15→Q5-Q14、修正7处错位答案、补录官方Q15。修复后单选 DCCDBBBDBDAABCB 与官方答案表逐位一致（官方600dpi复核），并经题目内容逻辑闭环验证（哈夫曼WPL=32、fiboA效率低=错误说法、通讯卫星=信号中继等）。",
+  "structuralFix": "ghost-question-removed; answer-misalignment-fixed(7); missing-official-q15-added"
 }
