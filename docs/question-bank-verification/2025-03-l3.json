@@ -1,10 +1,10 @@
 {
   "paperId": "2025-03-l3",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-03-l3"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
@@ -28,6 +28,12 @@
     }
   },
   "questions": [
+    {
+      "questionId": 24,
+      "issue": "审计低分：官方判断题第9题「k进制，逢k进第二位，k²进百位，k³进千位」中 k²/k³ 为上标公式，pdftotext 文本层丢失",
+      "fix": "定性为假阴性，无需修改——渲染 p.6 @200/300dpi 确认官方原文与题库题面一致",
+      "evidence": "官方判断题答案表（p.6顶部，300dpi渲染）：×√√√√√√√××，题库Q16-Q25全对（10/10）；单选答案表程序化提取 DBAABACACDDDBDC，题库15/15全对"
+    },
     {
       "id": 16,
       "type": "judge",
@@ -100,10 +106,36 @@
       "modified": false
     },
     {
-      "questionId": 24,
-      "issue": "审计低分：官方判断题第9题「k进制，逢k进第二位，k²进百位，k³进千位」中 k²/k³ 为上标公式，pdftotext 文本层丢失",
-      "fix": "定性为假阴性，无需修改——渲染 p.6 @200/300dpi 确认官方原文与题库题面一致",
-      "evidence": "官方判断题答案表（p.6顶部，300dpi渲染）：×√√√√√√√××，题库Q16-Q25全对（10/10）；单选答案表程序化提取 DBAABACACDDDBDC，题库15/15全对"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "secondaryCheck": {
