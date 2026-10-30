@@ -3,8 +3,8 @@
   "executedAt": "2026-10-25",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-06-l4"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
@@ -22,6 +22,60 @@
     "singleChoice": "本卷 PDF 未附单选答案表"
   },
   "questions": [
+    {
+      "questionId": 11,
+      "issue": "题库改写题：官方原题外层循环为 for (int i = 0; i < n; i++)（O(n²)，选项 O(n)/O(n²)/O(n³)/O(2ⁿ)，官方答案B），题库被改写为 i < (1 << n) 并配自编选项 O(n·2ⁿ)，答案语义偏离官方",
+      "fix": "按官方原卷恢复Q11：题干去掉「当输入n=10时」，代码改回 i < n，选项改为 O(n)/O(n²)/O(n³)/O(2ⁿ)，答案B=O(n²)，重写解析",
+      "evidence": "300dpi渲染p.3确认官方代码第2行为 i < n、选项A O(n) B O(n²) C O(n³) D O(2ⁿ)；官方答案表程序化提取 Q11=B；全卷复核：单选15/15对、判断表√××√××√√×√ 题库10/10对"
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q15 explanation 升级；答案未改"
+    },
     {
       "id": 16,
       "official": "√",
@@ -90,10 +144,36 @@
       "changed": false
     },
     {
-      "questionId": 11,
-      "issue": "题库改写题：官方原题外层循环为 for (int i = 0; i < n; i++)（O(n²)，选项 O(n)/O(n²)/O(n³)/O(2ⁿ)，官方答案B），题库被改写为 i < (1 << n) 并配自编选项 O(n·2ⁿ)，答案语义偏离官方",
-      "fix": "按官方原卷恢复Q11：题干去掉「当输入n=10时」，代码改回 i < n，选项改为 O(n)/O(n²)/O(n³)/O(2ⁿ)，答案B=O(n²)，重写解析",
-      "evidence": "300dpi渲染p.3确认官方代码第2行为 i < n、选项A O(n) B O(n²) C O(n³) D O(2ⁿ)；官方答案表程序化提取 Q11=B；全卷复核：单选15/15对、判断表√××√××√√×√ 题库10/10对"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "summary": {
@@ -125,6 +205,6 @@
     "method": "判断题答案表在 PDF 里是矢量图形，文本层只有「题号 1..10 / 答案」表头；用 pypdfium2 的 get_charbox 定位「题号」二字坐标后按 6 倍放大裁剪读图逐位核对。题面取自官方文本层，公式或图缺失处渲染整页读图补全。",
     "reason": "原题库第 16-25 题是打散改写的题（如把官方「下面 C++ 代码正确声明了…」改写成「函数声明 int add(int, int); 是合法的」），与官方判断题逐题不符；官方第 1 题即函数声明题，第 2 题是值传递输出题。"
   },
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "lastReviewedAt": "2026-10-28"
 }
