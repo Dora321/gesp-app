@@ -1,19 +1,53 @@
 {
   "paperId": "2026-03-l1",
-  "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2026-03-l1"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "total": 10, "note": "官方卷式：单选答案表在 p1 顶部（裁剪放大核对），判断答案表在 p6 判断题节首，编程题解析 pp.7-10" }
+    "pages": {
+      "total": 10,
+      "note": "官方卷式：单选答案表在 p1 顶部（裁剪放大核对），判断答案表在 p6 判断题节首，编程题解析 pp.7-10"
+    }
   },
   "answerTable": {
     "location": "单选：p1 顶部答案表；判断：p6 判断题节首答案表",
     "content": {
-      "single": ["B", "A", "D", "D", "A", "A", "B", "D", "D", "B", "B", "B", "D", "B", "A"],
-      "judge": ["√", "√", "×", "×", "√", "√", "√", "×", "√", "×"]
+      "single": [
+        "B",
+        "A",
+        "D",
+        "D",
+        "A",
+        "A",
+        "B",
+        "D",
+        "D",
+        "B",
+        "B",
+        "B",
+        "D",
+        "B",
+        "A"
+      ],
+      "judge": [
+        "√",
+        "√",
+        "×",
+        "×",
+        "√",
+        "√",
+        "√",
+        "×",
+        "√",
+        "×"
+      ]
     }
   },
   "questions": [
@@ -22,6 +56,54 @@
       "action": "无需修改。",
       "programmingCheck": "编程题两道与官方一致：Q26 交朋友（样例 150/165/135/133→135，与原卷 p8 一致）；Q27 数字替换（8459045→8859085），无需修改。",
       "resolved": true
+    },
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q1 explanation 升级；答案未改"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
