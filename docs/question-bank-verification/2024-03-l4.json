@@ -3,7 +3,8 @@
   "executedAt": "2026-10-25",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-03-l4"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
@@ -22,6 +23,41 @@
     "single": "C C D D C C D A C B C C B C C（p1 表，与题库 1-15 题一致）"
   },
   "questions": [
+    {
+      "id": 11,
+      "dimensions": [
+        "statement",
+        "options",
+        "code"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "题库把官方 3 行文件内容（50 2024 3.16 I / love / GESP!）内嵌为一行文本；官方代码循环体含 cout << line << endl、输出行带 //#### 注释；选项 A 官方为 5，题库误写为 50。",
+      "fix": "按官方 p.4 渲染图恢复：题干「如果文件 1.txt 中的内容如下…注释了 #### 那行代码所输出的 x 的值」+ 文件内容代码块 + 完整代码（含 cout line 与 //####）+ 选项 A=5。语义验证：两次 fin>>line 消耗 50/2024，fin>>x 读 3.16 整数前缀 3 → C。官方答案行 Q11=C 一致。",
+      "evidence": "tmp/verify/2024-03-l4/pg-4.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 12,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方文本层把第 10 题的 struct 代码乱序排到了第 12 题题干之后，导致探针窗口对不上。p.5 渲染图确认官方 Q12 与题库完全一致（char *s[] = {\"2024\",\"3.16\",\"GESP\"}，cout << *s+i，选项 2024/3.16/024/3）。",
+      "fix": "无需修复。官方答案行 Q12=C，题库 ans=2 一致（*s+i 为 s[0]+i 地址偏移：第 2 行输出 024）。",
+      "evidence": "tmp/verify/2024-03-l4/pg5-5.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
     {
       "id": 16,
       "official": "√",
@@ -93,43 +129,41 @@
       "note": "for 与 while 等价互转"
     },
     {
-      "id": 11,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement",
-        "options",
-        "code"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题库把官方 3 行文件内容（50 2024 3.16 I / love / GESP!）内嵌为一行文本；官方代码循环体含 cout << line << endl、输出行带 //#### 注释；选项 A 官方为 5，题库误写为 50。",
-      "fix": "按官方 p.4 渲染图恢复：题干「如果文件 1.txt 中的内容如下…注释了 #### 那行代码所输出的 x 的值」+ 文件内容代码块 + 完整代码（含 cout line 与 //####）+ 选项 A=5。语义验证：两次 fin>>line 消耗 50/2024，fin>>x 读 3.16 整数前缀 3 → C。官方答案行 Q11=C 一致。",
-      "evidence": "tmp/verify/2024-03-l4/pg-4.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
     },
     {
-      "id": 12,
+      "id": 27,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "假阴性说明：官方文本层把第 10 题的 struct 代码乱序排到了第 12 题题干之后，导致探针窗口对不上。p.5 渲染图确认官方 Q12 与题库完全一致（char *s[] = {\"2024\",\"3.16\",\"GESP\"}，cout << *s+i，选项 2024/3.16/024/3）。",
-      "fix": "无需修复。官方答案行 Q12=C，题库 ans=2 一致（*s+i 为 s[0]+i 地址偏移：第 2 行输出 024）。",
-      "evidence": "tmp/verify/2024-03-l4/pg5-5.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [
     "第6题（题库21）官方答案为×，但若把『修改该参数的值』理解为修改形参指针副本本身，C++ 语法上是允许的，官方措辞存在歧义；已按官方口径（按值传副本、能改的是指向内容而非参数本身）撰写解析，答案以官方答案表为准。"
   ],
-  "answerKey": "单选答案串 C C D D C C D A C B C C B C C，题库 15/15 一致（含重建的 Q11）；判断题答案表（矢量图，300dpi 渲染读图）√ √ × √ × × × × √ √ 与题库 10/10 一致。"
+  "answerKey": "单选答案串 C C D D C C D A C B C C B C C，题库 15/15 一致（含重建的 Q11）；判断题答案表（矢量图，300dpi 渲染读图）√ √ × √ × × × × √ √ 与题库 10/10 一致。",
+  "reviewedAt": "2026-10-30"
 }
