@@ -1,10 +1,10 @@
 {
   "paperId": "2024-09-l1",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-09-l1"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
@@ -30,6 +30,70 @@
     }
   },
   "questions": [
+    {
+      "id": 2,
+      "dimensions": [
+        "statement",
+        "options"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干多一个「时」字（官方「C++程序执行出现错误，不太常见的调试手段是」）；选项 D 官方为「跟踪汇编码」，题库写「跟踪汇编代码」。",
+      "fix": "按官方措辞对齐题干与选项 D。官方答案行 Q2=D，题库 ans=3 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
+    },
+    {
+      "id": 15,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "题库为简化表述（无官方 for 循环代码块）。官方代码：for(int i=0; i<=N; i++) if(____) 输出兄弟数；候选 i) N==i*(i+1) ii) N==i*(i-1) iii) N/(i+1)==i iv) N/(i-1)==i。",
+      "fix": "按官方 p.5 渲染图补全题干与代码块。逻辑验证：i) i=X 时命中；ii) i=X+1 时 X(X+1)=(X+1)X 命中；iii) 整除截断误判（N=13: 13/4==3 成立但非兄弟数）；iv) i=1 时除零崩溃。共 2 个能完成 → B。官方答案行 Q15=B 一致。",
+      "evidence": "tmp/verify/2024-09-l1/pg5-5.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
     {
       "id": 16,
       "paperJudgeNo": 1,
@@ -111,36 +175,36 @@
       "changed": false
     },
     {
-      "id": 2,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement",
-        "options"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题干多一个「时」字（官方「C++程序执行出现错误，不太常见的调试手段是」）；选项 D 官方为「跟踪汇编码」，题库写「跟踪汇编代码」。",
-      "fix": "按官方措辞对齐题干与选项 D。官方答案行 Q2=D，题库 ans=3 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
     },
     {
-      "id": 15,
+      "id": 27,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题库为简化表述（无官方 for 循环代码块）。官方代码：for(int i=0; i<=N; i++) if(____) 输出兄弟数；候选 i) N==i*(i+1) ii) N==i*(i-1) iii) N/(i+1)==i iv) N/(i-1)==i。",
-      "fix": "按官方 p.5 渲染图补全题干与代码块。逻辑验证：i) i=X 时命中；ii) i=X+1 时 X(X+1)=(X+1)X 命中；iii) 整除截断误判（N=13: 13/4==3 成立但非兄弟数）；iv) i=1 时除零崩溃。共 2 个能完成 → B。官方答案行 Q15=B 一致。",
-      "evidence": "tmp/verify/2024-09-l1/pg5-5.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
