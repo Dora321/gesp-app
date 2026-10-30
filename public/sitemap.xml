@@ -1306,6 +1306,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/1/2026-06-l1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/2/2023-03-l2</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1367,6 +1372,11 @@
   </url>
   <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/2/2026-03-l2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/2/2026-06-l2</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1436,6 +1446,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/3/2026-06-l3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/4/2023-06-l4</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1496,6 +1511,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/4/2026-06-l4</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/5/2023-09-l5</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1547,6 +1567,11 @@
   </url>
   <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/5/2026-03-l5</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/5/2026-06-l5</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1606,6 +1631,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/6/2026-06-l6</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/7/2023-12-l7</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1656,6 +1686,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/7/2026-06-l7</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/8/2023-12-l8</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1702,6 +1737,11 @@
   </url>
   <url>
     <loc>https://Dora321.github.io/gesp-app/question-bank/8/2026-03-l8</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/question-bank/8/2026-06-l8</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
