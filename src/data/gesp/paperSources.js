@@ -106,6 +106,13 @@ export const paperSources = {
     mirrorSha: '2687c10f481ebe55cd14bc61dec494cc3cd189c7',
     mirrorBytes: 1071789,
   },
+  '2026-06-l1': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++1级.pdf',
+    mirrorSha: 'e771e576ce589f0c1c56efd0da05d815fe35c62a',
+    mirrorBytes: 928657,
+  },
   '2023-03-l2': {
     officialUrl: null,
     mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf',
@@ -197,6 +204,13 @@ export const paperSources = {
     mirrorSha: '24589cb322fcd8388ef3269c1709455411c3289d',
     mirrorBytes: 1076213,
   },
+  '2026-06-l2': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++2级.pdf',
+    mirrorSha: '46f343b77f0d32bf68cf4557bca15b8ee4cc94e8',
+    mirrorBytes: 983895,
+  },
   '2023-03-l3': { unofficial: true, officialUrl: null, mirrorUrl: null, mirrorSha: null },
   '2023-06-l3': {
     officialUrl: 'https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf',
@@ -282,6 +296,13 @@ export const paperSources = {
     mirrorSha: 'd71b439c4f46b746b3b20e36f11193714f802416',
     mirrorBytes: 852508,
   },
+  '2026-06-l3': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++3级.pdf',
+    mirrorSha: '015d4a7d322082d8fba5c018c963f9efa9100e02',
+    mirrorBytes: 811368,
+  },
   '2023-06-l4': {
     officialUrl: null,
     mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf',
@@ -366,6 +387,13 @@ export const paperSources = {
     mirrorSha: 'a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b',
     mirrorBytes: 1093637,
   },
+  '2026-06-l4': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++4级.pdf',
+    mirrorSha: '92f0e546aea43cbc24d2b390373ad724df46c7d0',
+    mirrorBytes: 917216,
+  },
   '2023-09-l5': {
     officialUrl: 'https://gesp.ccf.org.cn/101/attach/1570611325304864.pdf',
     mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf',
@@ -442,6 +470,13 @@ export const paperSources = {
     mirrorFile: '2026年3月-C++5级.pdf',
     mirrorSha: '0484a47a6bc80be1119ff30e778a48bb89830e6c',
     mirrorBytes: 1270117,
+  },
+  '2026-06-l5': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295343321120.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++5级.pdf',
+    mirrorSha: 'e64d12799f503490593d16332cef72b2b776c894',
+    mirrorBytes: 1025170,
   },
   '2023-09-l6': {
     officialUrl: 'https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf',
@@ -520,6 +555,13 @@ export const paperSources = {
     mirrorSha: '440d30834c0e6bdec700375405ca7f7094c60505',
     mirrorBytes: 1111135,
   },
+  '2026-06-l6': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295364292640.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++6级.pdf',
+    mirrorSha: 'a238fdd9c8f763863bdd56dfc598d98bd420b682',
+    mirrorBytes: 988448,
+  },
   '2023-12-l7': {
     officialUrl: null,
     mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf',
@@ -590,6 +632,13 @@ export const paperSources = {
     mirrorSha: '66260d17f4abfaae63c5c86e27f2a429b760168f',
     mirrorBytes: 990501,
   },
+  '2026-06-l7': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295385264160.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++7级.pdf',
+    mirrorSha: 'd71be838c5fd77cc0ba60b281307c79286abbd0f',
+    mirrorBytes: 753580,
+  },
   '2023-12-l8': {
     officialUrl: null,
     mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf',
@@ -659,6 +708,13 @@ export const paperSources = {
     mirrorFile: '2026年3月-C++8级.pdf',
     mirrorSha: 'd8f9823da8c6bd363e900a039a9f0baa05b88add',
     mirrorBytes: 970894,
+  },
+  '2026-06-l8': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1753295410429984.pdf',
+    mirrorUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf',
+    mirrorFile: '2026年6月-C++8级.pdf',
+    mirrorSha: '482ae7e0ade568f5c71076b7c719a291c72cb05c',
+    mirrorBytes: 811835,
   },
 };
 
