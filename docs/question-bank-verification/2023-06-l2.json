@@ -3,10 +3,8 @@
   "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "Grok CLI",
-    "session": "verify/explanations-2023-06-l2",
-    "draftModel": "gemini-3.8-flash-medium",
-    "draftCli": "agy"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-06-l2"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
@@ -184,12 +182,14 @@
         "官方答案对照",
         "解析质量审校",
         "Gemini草稿+Grok校对落地",
-        "程序执行"
+        "程序执行",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "reviewedBy": "AI · Grok CLI",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
       "reviewedAt": "2026-10-30",
       "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
-      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q9-draft.md"
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q9-draft.md",
+      "note": "Q9 explanation 升级；答案未改"
     },
     {
       "id": 10,
