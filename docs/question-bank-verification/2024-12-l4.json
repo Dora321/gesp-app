@@ -2,8 +2,9 @@
   "paperId": "2024-12-l4",
   "executedAt": "2026-10-25",
   "reviewedBy": {
-    "type": "整卷重建",
-    "executor": "官方 PDF 逐页转写 + 答案表比对"
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-12-l4"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
@@ -129,13 +130,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p3 第6题：Student students = new Student[20] 类型不匹配"
+      "note": "官方 p3 第6题：Student students = new Student[20] 类型不匹配",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 7,
@@ -205,13 +213,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p5 第10题：带 flag 优化的冒泡最优为 O(n)，C 说法错误"
+      "note": "官方 p5 第10题：带 flag 优化的冒泡最优为 O(n)，C 说法错误",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 11,
@@ -281,13 +296,20 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
       "method": [
         "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-        "单选答案表逐位核对"
+        "单选答案表逐位核对",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "note": "官方 p6 第14题：仅打开 ofstream 而不写入，无法实现重定向"
+      "note": "官方 p6 第14题：仅打开 ofstream 而不写入，无法实现重定向",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改"
     },
     {
       "id": 15,
@@ -484,10 +506,43 @@
         "判断题答案表逐位核对"
       ],
       "note": "官方 p7 判断第10题：异常函数不必一定在 try 中调用"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
   "rebuild": true,
   "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。",
-  "answerKey": "单选答案串 A B B B D D D D A C B B A C A，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× × × × √ √ √ √ × × 与题库 10/10 一致。"
+  "answerKey": "单选答案串 A B B B D D D D A C B B A C A，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× × × × √ √ √ √ × × 与题库 10/10 一致。",
+  "reviewedAt": "2026-10-30"
 }
