@@ -53,14 +53,14 @@ const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replac
     assert.equal(await page.evaluate(() => sessionStorage.getItem('deepseek_api_key')), null);
     await page.reload();
     await page.getByRole('button', { name: '打开 AI 问答助手', exact: true }).filter({ visible: true }).click();
-    await page.getByPlaceholder('输入你的问题...').fill('循环输出为什么少一项？');
-    await page.getByPlaceholder('输入你的问题...').press('Enter');
+    await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').fill('循环输出为什么少一项？');
+    await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').press('Enter');
     await page.getByText('先观察循环变量。', { exact: true }).waitFor();
     assert.ok(requests[0].messages[0].content.includes('/python/f3'));
     assert.ok(requests[0].messages[0].content.includes('一个提示'));
     await page.getByLabel('附带当前页面标题与路径').uncheck();
-    await page.getByPlaceholder('输入你的问题...').fill('再给一个提示');
-    await page.getByPlaceholder('输入你的问题...').press('Enter');
+    await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').fill('再给一个提示');
+    await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').press('Enter');
     await page.waitForFunction(() => document.body.innerText.split('先观察循环变量。').length >= 3);
     assert.ok(!requests[1].messages[0].content.includes('/python/f3'));
     await page.getByRole('button', { name: '打开 AI 设置', exact: true }).click();
