@@ -461,7 +461,7 @@ TreeNode* op(TreeNode* root, int x) {
         {
             id: 11,
             type: "single",
-            question: `下列代码实现了树的深度优先遍历，则横线处应填入（ ）。`,
+            question: `下列代码实现了树的深度优先遍历，则横线处应填入（ ）。\n\n\`\`\`cpp\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n};\n\nvoid dfs(TreeNode* root) {\n    if (!root) return;\n    stack<TreeNode*> st;\n    st.push(root);\n    while (!st.empty()) {\n        TreeNode* node = st.top(); st.pop();\n        cout << node->val << " ";\n        if (node->right) st.push(node->right);\n        __________________ // 在此处填入代码\n    }\n}\n\`\`\`\n`,
             options: [
                 "if (node->left) st.push(node->left);",
                 "if (node->left) st.pop(node->left);",
@@ -470,18 +470,28 @@ TreeNode* op(TreeNode* root, int x) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+非递归 DFS 用**栈**实现：弹栈访问节点后，为让**左子树先被访问**（符合先序惯例），应**先压右孩子、再压左孩子**（栈后进先出，后压的左孩子先出栈）。
 
-            - **A if (node->left) st.push(node->left);**：正确答案。
-            - **B if (node->left) st.pop(node->left);**：错误。
-            - **C if (node->left) st.front(node->left);**：错误。
-            - **D if (node->left) st.push(node->right);**：错误。
+代码中横线之前已 \`if (node->right) st.push(node->right);\`，横线处补上压左孩子：
 
-            **考点：** C++基础
-            `,
+\`\`\`cpp
+if (node->left) st.push(node->left);
+\`\`\`
+
+逐项分析：
+- **A push 左孩子**：正确，与先压右配合，实现根→左→右的先序访问。
+- **B \`st.pop(node->left)\`**：错误，pop 不接受参数且会误删栈顶。
+- **C \`st.front(...)\`**：错误，stack 没有 front 接口（那是 queue 的）。
+- **D push 右孩子**：错误，与横线前一句重复，左子树永远不被访问。
+
+**易错点：** 先压右再压左的顺序不能反——若先压左后压右，出栈顺序变成先右后左，遍历变成「根→右→左」。
+
+**考点：** 非递归深度优先遍历（栈实现）
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -491,7 +501,7 @@ TreeNode* op(TreeNode* root, int x) {
         {
             id: 12,
             type: "single",
-            question: `给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。`,
+            question: `给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。\n\n\`\`\`cpp\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n};\n\nTreeNode* bfsFind(TreeNode* root, int x) {\n    if (!root) return nullptr;\n\n    queue<TreeNode*> q;\n    q.push(root);\n\n    while (!q.empty()) {\n        TreeNode* cur = q.front(); q.pop();\n        if (cur->val == x) return cur;\n        _________________ // 在此处填入代码\n    }\n    return nullptr;\n}\n\`\`\`\n`,
             options: [
                 "q.push(cur);",
                 "if (cur->right) q.push(cur->right);",
@@ -500,18 +510,27 @@ TreeNode* op(TreeNode* root, int x) {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+普通二叉树没有大小规律，查找必须**遍历所有节点**：BFS 用队列，出队 cur 并比较后，把它的**左右孩子（判空后）依次入队**，保证每个节点都被检查到。
 
-            - **A q.push(cur);**：错误。
-            - **B if (cur->right) q.push(cur->right);**：错误。
-            - **C 选项C**：正确答案。
-            - **D 选项D**：错误。
+\`\`\`cpp
+if (cur->left)  q.push(cur->left);
+if (cur->right) q.push(cur->right);
+\`\`\`
 
-            **考点：** C++基础
-            `,
+逐项分析：
+- **A \`q.push(cur);\`**：错误，把 cur 自己再入队会无限循环（cur 出队后又被压回）。
+- **B 只入右孩子**：错误，左子树中的 x 会被漏掉。
+- **C 左右孩子判空后入队**：正确，完整遍历。
+- **D 不判空直接入队**：错误，对空孩子入队后 \`cur->val\` 解引用空指针崩溃。
+
+**易错点：** 入队前判空是 BFS 的铁律；这题是**普通二叉树**，不能像 BST 那样只走一个分支——若值无规律，两个子树都得搜。
+
+**考点：** BFS 在普通二叉树中的查找
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -757,15 +776,21 @@ int countLeaf(TreeNode* root) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `
+**答案：√**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+函数调用正是用**栈**（调用栈，call stack）管理的：
 
-            **易混概念：** 栈是后进先出（LIFO）。注意栈空时 pop 会出错，需先判空；递归/函数调用依赖调用栈，过深会栈溢出；单调栈用于找左右第一个更大/更小元素。
+- 每次调用函数，就把该函数的**活动记录**（参数、局部变量、返回地址）压栈；
+- 函数返回时，其活动记录**弹栈**，控制权回到调用者。
 
-            **考点：** 栈
-            `,
+后调用的先返回（嵌套调用 f() 里调 g()，g 先结束）——这正是栈的 LIFO 特性。递归的深度限制（栈溢出）也源于此。
+
+**易错点：** 递归调用太深会「爆栈」，指的就是这个栈的内存耗尽，不是数据结构课上的抽象栈。
+
+**考点：** 函数调用与栈
+        `,
             tags: [
                 "客观题",
                 "判断题",
@@ -857,16 +882,17 @@ bool isBST(TreeNode* root, int minVal, int maxVal) {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
+            explanation: `
+**答案：×**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+说法**正好相反**。格雷码的核心性质是：**相邻两个编码之间有且只有一位不同**——不是「多位不同」。
 
-            **纠错：** 原命题说法有误。本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+正是这个「只变一位」的性质让格雷码在数据传输/编码器读数中占优：状态切换时每次只有一位可能出错，误码影响最小（如旋转编码器避免多比特同时翻转的瞬态错误）。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+**易错点：** 普通二进制递增时（如 0111→1000）有多位同时变化，容易产生瞬态毛刺；格雷码为避免的正是这一点，所以相邻编码**只差一位**。
 
-            **考点：** 格雷编码
+**考点：** 格雷码的性质
         `,
             tags: [
                 "客观题",
@@ -921,15 +947,23 @@ bool isBST(TreeNode* root, int minVal, int maxVal) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `
+**答案：√**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+完全二叉树深度公式：**⌊log₂n⌋ + 1**（约定单节点树深度为 1）。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+验证：
+- n=1：⌊log₂1⌋+1 = 0+1 = 1 ✓
+- n=2、3：⌊log₂2⌋+1 = 2（两层）✓
+- n=4~7：⌊log₂4⌋+1 = 3（三层）✓
 
-            **考点：** 树与二叉树
-            `,
+原理：前 k 层最多容纳 2^k − 1 个节点；n 个节点的完全二叉树层数就是满足 2^(k−1) ≤ n ≤ 2^k − 1 的最小 k，即 k = ⌊log₂n⌋ + 1。
+
+**易错点：** 该公式**只对完全二叉树/满二叉树成立**——普通二叉树同样 n 个节点可以拉成一条链，深度达 n。
+
+**考点：** 完全二叉树的深度公式
+        `,
             tags: [
                 "客观题",
                 "判断题",
