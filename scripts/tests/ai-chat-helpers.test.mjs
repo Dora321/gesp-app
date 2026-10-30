@@ -7,6 +7,11 @@ import {
   mapHttpErrorMessage,
   MAX_HISTORY_MESSAGES,
   HISTORY_WARN_MESSAGES,
+  sheetHeightPx,
+  resolveSheetDragEnd,
+  sheetBottomOffsetPx,
+  AI_CHAT_SHEET_BREAKPOINT,
+  AI_CHAT_SHEET_CLOSE_DRAG_PX,
 } from '../../src/utils/aiChatHelpers.js';
 
 test('truncateChatHistory keeps the most recent messages within the cap', () => {
@@ -50,4 +55,18 @@ test('mapHttpErrorMessage maps common status codes', async () => {
   assert.match(await mapHttpErrorMessage(fake(429)), /太频繁/);
   assert.match(await mapHttpErrorMessage(fake(503)), /服务暂时异常/);
   assert.match(await mapHttpErrorMessage(fake(418, '{"error":{"message":"teapot"}}')), /418/);
+});
+
+test('sheet helpers use md breakpoint and snap/close thresholds', () => {
+  assert.equal(AI_CHAT_SHEET_BREAKPOINT, 768);
+  const vh = 800;
+  const def = sheetHeightPx(vh, false);
+  const exp = sheetHeightPx(vh, true);
+  assert.ok(def > vh * 0.5 && def < vh * 0.75);
+  assert.ok(exp > def && exp <= vh);
+  assert.deepEqual(resolveSheetDragEnd(def - AI_CHAT_SHEET_CLOSE_DRAG_PX - 1, vh), { action: 'close' });
+  assert.deepEqual(resolveSheetDragEnd(def, vh), { action: 'snap', expanded: false });
+  assert.deepEqual(resolveSheetDragEnd(exp, vh), { action: 'snap', expanded: true });
+  assert.equal(sheetBottomOffsetPx(900, 700, 50), 150);
+  assert.equal(sheetBottomOffsetPx(700, 700, 0), 0);
 });

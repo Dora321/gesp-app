@@ -229,3 +229,29 @@
     .mw-course-shell main { min-width: 0; }
     .mw-course-shell main > div { max-width: 100%; }
 }
+
+/* AI chat: narrow-screen bottom sheet */
+.mw-chat-sheet {
+    animation: mw-chat-sheet-up 200ms ease-out;
+}
+
+.mw-chat-sheet-backdrop {
+    animation: mw-chat-sheet-fade 160ms ease-out;
+}
+
+@keyframes mw-chat-sheet-up {
+    from { transform: translateY(12%); opacity: 0.92; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes mw-chat-sheet-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mw-chat-sheet,
+    .mw-chat-sheet-backdrop {
+        animation: none;
+    }
+}

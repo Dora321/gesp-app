@@ -2,7 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square, Copy, Check } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { ASSISTANT_KEY, assistantStorage, loadAssistantKey, saveAssistantKey, buildClassroomPrompt } from '../utils/classroomAssistant';
-import { truncateChatHistory, isHistoryNearLimit, mapHttpErrorMessage, mapCatchErrorMessage } from '../utils/aiChatHelpers';
+import {
+    truncateChatHistory,
+    isHistoryNearLimit,
+    mapHttpErrorMessage,
+    mapCatchErrorMessage,
+    AI_CHAT_SHEET_BREAKPOINT,
+    sheetHeightPx,
+    resolveSheetDragEnd,
+    sheetBottomOffsetPx,
+} from '../utils/aiChatHelpers';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -182,6 +191,23 @@ const AIChatWidget = ({ onClose }) => {
     const shouldAutoScrollRef = useRef(true);
     const abortControllerRef = useRef(null);
     const inputRef = useRef(null);
+    const [isSheet, setIsSheet] = useState(() => {
+        if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return false;
+        return window.matchMedia(`(max-width: ${AI_CHAT_SHEET_BREAKPOINT - 1}px)`).matches;
+    });
+    const [sheetExpanded, setSheetExpanded] = useState(false);
+    const [dragHeight, setDragHeight] = useState(null);
+    const [viewportMetrics, setViewportMetrics] = useState(() => {
+        if (typeof window === 'undefined') return { height: 800, innerHeight: 800, offsetTop: 0 };
+        const vv = window.visualViewport;
+        return {
+            height: vv?.height ?? window.innerHeight,
+            innerHeight: window.innerHeight,
+            offsetTop: vv?.offsetTop ?? 0,
+        };
+    });
+    const sheetDragRef = useRef({ active: false, pointerId: null, startY: 0, startHeight: 0 });
+
 
     // Initial resize handler
     const startResize = () => {
@@ -213,6 +239,99 @@ const AIChatWidget = ({ onClose }) => {
         isResizing.current = false;
         document.removeEventListener('mousemove', handleResize);
         document.removeEventListener('mouseup', stopResize);
+    };
+
+    // Narrow screens: bottom sheet. Wide screens: keep the floating side panel.
+    useEffect(() => {
+        if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return undefined;
+        const query = window.matchMedia(`(max-width: ${AI_CHAT_SHEET_BREAKPOINT - 1}px)`);
+        const sync = () => {
+            const next = query.matches;
+            setIsSheet(next);
+            if (!next) {
+                setSheetExpanded(false);
+                setDragHeight(null);
+            }
+        };
+        sync();
+        query.addEventListener('change', sync);
+        return () => query.removeEventListener('change', sync);
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return undefined;
+        const syncViewport = () => {
+            const vv = window.visualViewport;
+            setViewportMetrics({
+                height: vv?.height ?? window.innerHeight,
+                innerHeight: window.innerHeight,
+                offsetTop: vv?.offsetTop ?? 0,
+            });
+        };
+        syncViewport();
+        window.addEventListener('resize', syncViewport);
+        const vv = window.visualViewport;
+        vv?.addEventListener('resize', syncViewport);
+        vv?.addEventListener('scroll', syncViewport);
+        return () => {
+            window.removeEventListener('resize', syncViewport);
+            vv?.removeEventListener('resize', syncViewport);
+            vv?.removeEventListener('scroll', syncViewport);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!isSheet) return undefined;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [isSheet]);
+
+    const snapSheetHeight = sheetHeightPx(viewportMetrics.height, sheetExpanded);
+    const activeSheetHeight = dragHeight ?? snapSheetHeight;
+    const sheetBottom = sheetBottomOffsetPx(
+        viewportMetrics.innerHeight,
+        viewportMetrics.height,
+        viewportMetrics.offsetTop,
+    );
+
+    const onSheetPointerDown = (event) => {
+        if (!isSheet) return;
+        event.preventDefault();
+        const target = event.currentTarget;
+        target.setPointerCapture?.(event.pointerId);
+        sheetDragRef.current = {
+            active: true,
+            pointerId: event.pointerId,
+            startY: event.clientY,
+            startHeight: activeSheetHeight,
+            currentHeight: activeSheetHeight,
+        };
+    };
+
+    const onSheetPointerMove = (event) => {
+        const drag = sheetDragRef.current;
+        if (!drag.active || drag.pointerId !== event.pointerId) return;
+        const delta = drag.startY - event.clientY; // drag up → taller
+        const next = Math.max(180, Math.min(viewportMetrics.height, drag.startHeight + delta));
+        sheetDragRef.current.currentHeight = next;
+        setDragHeight(next);
+    };
+
+    const finishSheetDrag = (event) => {
+        const drag = sheetDragRef.current;
+        if (!drag.active || (event && drag.pointerId !== event.pointerId)) return;
+        const height = drag.currentHeight ?? drag.startHeight;
+        sheetDragRef.current = { ...drag, active: false, pointerId: null };
+        setDragHeight(null);
+        const result = resolveSheetDragEnd(height, viewportMetrics.height);
+        if (result.action === 'close') {
+            onClose?.();
+            return;
+        }
+        setSheetExpanded(Boolean(result.expanded));
     };
 
     // Keep the existing one-time entry and automatic local persistence behavior.
@@ -493,20 +612,51 @@ const AIChatWidget = ({ onClose }) => {
         ? customPersona
         : AI_PERSONAS.find(p => p.id === selectedPersona);
 
+    const panelClassName = isSheet
+        ? 'mw-surface mw-line-bank mw-chat-panel mw-chat-sheet fixed inset-x-0 z-[100] bg-white rounded-t-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 border-b-0'
+        : 'mw-surface mw-line-bank mw-chat-panel fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200';
+
+    const panelStyle = isSheet
+        ? {
+            height: `${Math.min(activeSheetHeight, viewportMetrics.height)}px`,
+            maxHeight: `${viewportMetrics.height}px`,
+            bottom: `${sheetBottom}px`,
+            paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+            transition: dragHeight == null ? 'height 180ms ease-out' : 'none',
+        }
+        : {
+            width: `${size.width}px`,
+            height: `${size.height}px`,
+            maxWidth: 'calc(100vw - 48px)',
+            maxHeight: 'calc(100vh - 120px)',
+        };
+
     // Chat window when open
-    return (
+    const panel = (
         <div
-            className="mw-surface mw-line-bank mw-chat-panel fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200"
+            className={panelClassName}
             role="dialog"
             aria-modal="true"
             aria-label="AI 问答助手"
-            style={{
-                width: `${size.width}px`,
-                height: `${size.height}px`,
-                maxWidth: 'calc(100vw - 48px)',
-                maxHeight: 'calc(100vh - 120px)'
-            }}
+            style={panelStyle}
         >
+            {isSheet && (
+                <div
+                    className="flex shrink-0 touch-none flex-col items-center pt-2 pb-1 cursor-grab active:cursor-grabbing select-none"
+                    onPointerDown={onSheetPointerDown}
+                    onPointerMove={onSheetPointerMove}
+                    onPointerUp={finishSheetDrag}
+                    onPointerCancel={finishSheetDrag}
+                    onDoubleClick={() => setSheetExpanded((value) => !value)}
+                    role="separator"
+                    aria-orientation="horizontal"
+                    aria-label="拖动调整聊天面板高度，双击切换半屏/更高"
+                    title="上拉加高，下滑关闭；双击切换半屏/更高"
+                >
+                    <div className="h-1.5 w-12 rounded-full bg-slate-300" />
+                    <span className="sr-only">拖动手柄</span>
+                </div>
+            )}
             {/* Header */}
             <header
                 className="mw-panel-heading flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0"
@@ -867,18 +1017,36 @@ const AIChatWidget = ({ onClose }) => {
                     </button>
                 </div>
             </div>
-            {/* Resize Handle */}
-            <div
-                className="absolute left-0 top-0 w-6 h-6 cursor-nwse-resize z-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
-                onMouseDown={startResize}
-                title="拖动调整大小"
-            >
-                <div className="w-full h-full relative">
-                    <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-slate-400 rounded-tl-sm"></div>
+            {/* Resize Handle — desktop floating panel only */}
+            {!isSheet && (
+                <div
+                    className="absolute left-0 top-0 w-6 h-6 cursor-nwse-resize z-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
+                    onMouseDown={startResize}
+                    title="拖动调整大小"
+                >
+                    <div className="w-full h-full relative">
+                        <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-slate-400 rounded-tl-sm"></div>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
+
+    if (isSheet) {
+        return (
+            <>
+                <button
+                    type="button"
+                    className="mw-chat-sheet-backdrop fixed inset-0 z-[99] border-0 bg-slate-900/45 p-0 cursor-default"
+                    aria-label="关闭 AI 问答助手"
+                    onClick={() => onClose?.()}
+                />
+                {panel}
+            </>
+        );
+    }
+
+    return panel;
 };
 
 export default AIChatWidget;

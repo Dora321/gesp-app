@@ -14,12 +14,19 @@ const getMessageCount = () => {
 };
 
 const PanelFallback = () => (
-    <div className="fixed bottom-20 right-4 z-[100] w-[360px] max-w-[calc(100vw-32px)] h-[500px] max-h-[calc(100vh-104px)] bg-white rounded-2xl shadow-2xl border border-slate-200 flex items-center justify-center sm:bottom-24 sm:right-6 sm:max-w-[calc(100vw-48px)] sm:max-h-[calc(100vh-120px)]">
-        <div className="flex items-center gap-2 text-slate-400 text-sm">
-            <span className="w-4 h-4 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" />
-            正在加载助手…
+    <>
+        <div className="fixed inset-0 z-[99] bg-slate-900/45 md:hidden" aria-hidden="true" />
+        <div
+            className="fixed inset-x-0 bottom-0 z-[100] flex h-[62vh] max-h-[100dvh] items-center justify-center rounded-t-2xl border border-b-0 border-slate-200 bg-white shadow-2xl md:inset-x-auto md:bottom-24 md:right-6 md:h-[500px] md:w-[360px] md:max-h-[calc(100vh-120px)] md:max-w-[calc(100vw-48px)] md:rounded-2xl md:border"
+            role="status"
+            aria-label="正在加载 AI 问答助手"
+        >
+            <div className="flex items-center gap-2 text-slate-400 text-sm">
+                <span className="w-4 h-4 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" />
+                正在加载助手…
+            </div>
         </div>
-    </div>
+    </>
 );
 
 const AIChat = ({ mobileDocked = false, mobileInline = false }) => {
