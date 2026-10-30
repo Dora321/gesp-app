@@ -1,14 +1,22 @@
 {
   "paperId": "2024-03-l1",
-  "reviewedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-03-l1"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
     "shaVerified": true,
     "localFile": "tmp/official-2024-03-l1.pdf",
     "fetchedAt": "2026-10-25",
-    "pages": { "单选答案表": "p.1", "判断答案表+判断题1-8": "p.4", "判断题9-10": "p.5" }
+    "pages": {
+      "单选答案表": "p.1",
+      "判断答案表+判断题1-8": "p.4",
+      "判断题9-10": "p.5"
+    }
   },
   "answerTable": {
     "single": {
@@ -23,16 +31,214 @@
     }
   },
   "questions": [
-    { "id": 16, "paperJudgeNo": 1, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 17, "paperJudgeNo": 2, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 18, "paperJudgeNo": 3, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 19, "paperJudgeNo": 4, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 20, "paperJudgeNo": 5, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 21, "paperJudgeNo": 6, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 23, "paperJudgeNo": 8, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 24, "paperJudgeNo": 9, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 25, "paperJudgeNo": 10, "official": "√", "bank": "√", "textMatch": true, "changed": false }
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q1 explanation 升级；答案未改"
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
+    },
+    {
+      "id": 4,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q4 explanation 升级；答案未改"
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q5 explanation 升级；答案未改"
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q6 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q11 explanation 升级；答案未改"
+    },
+    {
+      "id": 16,
+      "paperJudgeNo": 1,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 17,
+      "paperJudgeNo": 2,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 18,
+      "paperJudgeNo": 3,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 19,
+      "paperJudgeNo": 4,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 20,
+      "paperJudgeNo": 5,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 21,
+      "paperJudgeNo": 6,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 22,
+      "paperJudgeNo": 7,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 23,
+      "paperJudgeNo": 8,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 24,
+      "paperJudgeNo": 9,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 25,
+      "paperJudgeNo": 10,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    }
   ],
   "programmingSampleAudit": [
     {
@@ -46,19 +252,55 @@
         "g++ -O2 编译运行参考代码逐样例比对"
       ],
       "officialSamples": [
-        { "index": 1, "input": "1", "output": "1" },
-        { "index": 2, "input": "6", "output": "1\n2\n3\n6" },
-        { "index": 3, "input": "10", "output": "1\n2\n5\n10" }
+        {
+          "index": 1,
+          "input": "1",
+          "output": "1"
+        },
+        {
+          "index": 2,
+          "input": "6",
+          "output": "1\n2\n3\n6"
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "1\n2\n5\n10"
+        }
       ],
       "luoguSamples": [
-        { "index": 1, "input": "1", "output": "1" },
-        { "index": 2, "input": "6", "output": "1\n2\n3\n6" },
-        { "index": 3, "input": "10", "output": "1\n2\n5\n10" }
+        {
+          "index": 1,
+          "input": "1",
+          "output": "1"
+        },
+        {
+          "index": 2,
+          "input": "6",
+          "output": "1\n2\n3\n6"
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "1\n2\n5\n10"
+        }
       ],
       "bankSamplesBefore": [
-        { "index": 1, "input": "11", "output": "1\n11" },
-        { "index": 2, "input": "6", "output": "1\n2\n3\n6" },
-        { "index": 3, "input": "10", "output": "1\n2\n5\n10" }
+        {
+          "index": 1,
+          "input": "11",
+          "output": "1\n11"
+        },
+        {
+          "index": 2,
+          "input": "6",
+          "output": "1\n2\n3\n6"
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "1\n2\n5\n10"
+        }
       ],
       "verdict": "官方与洛谷完全一致：样例 1 的输入是 1、输出是 1（a=1 的因数只有 1）。题库把输入误录成 11（并顺手补了输出 11），属题库录入错误，而非洛谷 OCR 丢字。",
       "decision": "按官方 PDF 修正题库",
