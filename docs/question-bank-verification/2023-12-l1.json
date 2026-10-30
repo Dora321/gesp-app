@@ -1,10 +1,10 @@
 {
   "paperId": "2023-12-l1",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-12-l1"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
@@ -29,6 +29,173 @@
     }
   },
   "questions": [
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q1 explanation 升级；答案未改"
+    },
+    {
+      "id": 3,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "整题错位：题库为仿写单空题（(10+N)%24），官方是双空题（第几天几时：dayX=(10+N)/24, hourX=(10+N)%24），代码图含 if(dayX==0) 今天 / else 第(dayX+1)天。",
+      "fix": "按官方 p.1 渲染图整题重建（题干+代码+四选项）。验证：N=20 → dayX=1, hourX=6 → 「第2天6点」✓；N=4 → 「今天14点」✓。官方答案 B。",
+      "evidence": "tmp/verify/2023-12-l1/pg-1.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 4,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "题库为无代码仿写版，选项 B/C 与官方不符（官方 B=N%2=0 赋值陷阱、C=N%2 非0即真反向）。官方有 if(____) 偶数/奇数 代码图。",
+      "fix": "按官方 p.2 渲染图重建（题干+代码+官方四选项 N%2==0 / N%2=0 / N%2 / N%2!=0）。官方答案 A。",
+      "evidence": "tmp/verify/2023-12-l1/pg-2.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 5,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "整题错位：题库为 sqrt(9.0) 表达式题，官方是 for 循环计数题（cnt 从 0，i=1..N-1 共 N-1 次，第5行输出 cnt）。",
+      "fix": "按官方 p.2 渲染图整题重建。验证：N≥2 时输出 N-1（N=2→1✓, N=3→2✓）；A 错在 N=2 输出 1 非 0。官方答案 B。",
+      "evidence": "tmp/verify/2023-12-l1/pg-2.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q6 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q12 explanation 升级；答案未改"
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
+    },
+    {
+      "id": 15,
+      "dimensions": [
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干「典型的计算机体系结构采用的是」应为官方「现代计算机是指电子计算机，它所基于的是（ ）体系结构」；选项应为人物名（艾伦·图灵/冯·诺依曼/阿塔纳索夫/埃克特-莫克利），题库误用了架构名。",
+      "fix": "恢复官方题干与选项，解析按官方选项重写（区分理论奠基人/硬件先驱/体系结构奠基人）。官方答案 B 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
     {
       "id": 16,
       "paperJudgeNo": 1,
@@ -130,75 +297,36 @@
       "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（while/for 等价转换）"
     },
     {
-      "id": 3,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement",
-        "options",
         "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "整题错位：题库为仿写单空题（(10+N)%24），官方是双空题（第几天几时：dayX=(10+N)/24, hourX=(10+N)%24），代码图含 if(dayX==0) 今天 / else 第(dayX+1)天。",
-      "fix": "按官方 p.1 渲染图整题重建（题干+代码+四选项）。验证：N=20 → dayX=1, hourX=6 → 「第2天6点」✓；N=4 → 「今天14点」✓。官方答案 B。",
-      "evidence": "tmp/verify/2023-12-l1/pg-1.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
     },
     {
-      "id": 4,
+      "id": 27,
+      "resolved": true,
       "dimensions": [
-        "statement",
-        "options",
         "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题库为无代码仿写版，选项 B/C 与官方不符（官方 B=N%2=0 赋值陷阱、C=N%2 非0即真反向）。官方有 if(____) 偶数/奇数 代码图。",
-      "fix": "按官方 p.2 渲染图重建（题干+代码+官方四选项 N%2==0 / N%2=0 / N%2 / N%2!=0）。官方答案 A。",
-      "evidence": "tmp/verify/2023-12-l1/pg-2.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
-    },
-    {
-      "id": 5,
-      "dimensions": [
-        "statement",
-        "options",
-        "explanation"
-      ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "整题错位：题库为 sqrt(9.0) 表达式题，官方是 for 循环计数题（cnt 从 0，i=1..N-1 共 N-1 次，第5行输出 cnt）。",
-      "fix": "按官方 p.2 渲染图整题重建。验证：N≥2 时输出 N-1（N=2→1✓, N=3→2✓）；A 错在 N=2 输出 1 非 0。官方答案 B。",
-      "evidence": "tmp/verify/2023-12-l1/pg-2.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "options",
-        "explanation"
-      ],
-      "method": [
-        "官方PDF对照"
-      ],
-      "findings": "题干「典型的计算机体系结构采用的是」应为官方「现代计算机是指电子计算机，它所基于的是（ ）体系结构」；选项应为人物名（艾伦·图灵/冯·诺依曼/阿塔纳索夫/埃克特-莫克利），题库误用了架构名。",
-      "fix": "恢复官方题干与选项，解析按官方选项重写（区分理论奠基人/硬件先驱/体系结构奠基人）。官方答案 B 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],

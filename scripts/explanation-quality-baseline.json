@@ -4,7 +4,7 @@
   "limits": {
     "template": 0,
     "fabricated-verdict": 0,
-    "short": 57,
+    "short": 54,
     "truncated": 9,
     "contradictory": 0,
     "filler": 0,
@@ -16,9 +16,6 @@
     "short": [
       "2023-09-l6:Q5",
       "2023-09-l6:Q7",
-      "2023-12-l1:Q1",
-      "2023-12-l1:Q12",
-      "2023-12-l1:Q14",
       "2023-12-l5:Q5",
       "2024-03-l1:Q10",
       "2024-03-l1:Q12",
