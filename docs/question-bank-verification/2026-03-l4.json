@@ -3,8 +3,8 @@
  "executedAt": "2026-10-25",
  "reviewedBy": {
   "type": "AI",
-  "executor": "WorkBuddy 子代理",
-  "session": "codex/question-bank-verification"
+  "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+  "session": "verify/explanations-2026-03-l4"
  },
  "source": {
   "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
@@ -486,6 +486,38 @@
     "判断题答案表逐位核对"
    ],
    "note": "官方 p.7 判断第10题：官方原文是「递推方式」，题库误作「递归方式」，已按官方更正；答案仍为×（单层循环是 O(n)）"
+  },
+  {
+   "id": 26,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q26 explanation 升级；答案未改"
+  },
+  {
+   "id": 27,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q27 explanation 升级；答案未改"
   }
  ],
  "summary": {
@@ -533,5 +565,6 @@
   "reason": "Q4-Q10、Q13-Q15 与官方卷逐题不符：官方 Q4 是三路传参、Q5 是全局变量遮蔽、Q6 是结构体初始化、Q7 是结构体值/引用传参、Q8 是递推定义、Q9 是 climb(6)、Q10 是排序稳定性、Q13 是输出重定向、Q14 是异常捕获、Q15 是排行榜前移条件；题库对应位置分别是指针算术、char* 字符串、delete 运算符、阶乘递归、递归说法、插入排序第一轮、折半查找、O(n log n) 算法、选择排序比较次数、vector push_back。",
   "method": "公式与代码块在 PDF 中为图片，文本层顺序错乱（代码块被甩到页尾），逐页渲染读图转录。",
   "note": "Q3 题目本身一致，只是选项 C 由 9 被误抄成 7，属勘误而非换题。"
- }
+ },
+ "reviewedAt": "2026-10-30"
 }
