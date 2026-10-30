@@ -1,10 +1,12 @@
 {
   "paperId": "2023-06-l2",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "Grok CLI",
+    "session": "verify/explanations-2023-06-l2",
+    "draftModel": "gemini-3.8-flash-medium",
+    "draftCli": "agy"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
@@ -25,84 +27,224 @@
       "type": "single",
       "official": "D",
       "bank": 3,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 2,
       "type": "single",
       "official": "D",
       "bank": 3,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 3,
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 4,
       "type": "single",
       "official": "C",
       "bank": 2,
-      "modified": false
+      "modified": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini草稿+Grok校对落地"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q4-draft.md"
     },
     {
       "id": 5,
       "type": "single",
       "official": "C",
       "bank": 2,
-      "modified": false
+      "modified": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini草稿+Grok校对落地"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q5-draft.md"
     },
     {
       "id": 6,
       "type": "single",
       "official": "D",
       "bank": 3,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 7,
       "type": "single",
       "official": "D",
       "bank": 3,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 8,
       "type": "single",
       "official": "A",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 9,
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini草稿+Grok校对落地",
+        "程序执行"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q9-draft.md"
     },
     {
       "id": 10,
       "type": "single",
       "official": "D",
       "bank": 3,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "程序执行"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 11,
       "type": "single",
       "official": "A",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 12,
       "type": "single",
       "official": "A",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 13,
@@ -112,7 +254,18 @@
       "modified": false,
       "changed": true,
       "resolved": true,
-      "note": "题干与代码对齐官方解析版 p.7（官方完整程序含头文件与注释「// 在此处填入代码」）；四个选项与官方逐字一致，原已正确。"
+      "note": "题干与代码对齐官方解析版 p.7（官方完整程序含头文件与注释「// 在此处填入代码」）；四个选项与官方逐字一致，原已正确。",
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "程序执行"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 14,
@@ -122,7 +275,20 @@
       "modified": true,
       "changed": true,
       "resolved": true,
-      "note": "关键修复：题库把官方代码 i <= 20 改成 i <= 10、输出声明 42 改成 22（内部自洽但非官方原题）。已按官方 p.7-8 渲染还原：sum 从 1 累加到 20，20 的因数和 1+2+4+5+10+20=42，答案 B 不变。解析按官方「63/42/36/57」重写。"
+      "note": "关键修复：题库把官方代码 i <= 20 改成 i <= 10、输出声明 42 改成 22（内部自洽但非官方原题）。已按官方 p.7-8 渲染还原：sum 从 1 累加到 20，20 的因数和 1+2+4+5+10+20=42，答案 B 不变。解析按官方「63/42/36/57」重写。",
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini草稿+Grok校对落地",
+        "程序执行"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q14-draft.md"
     },
     {
       "id": 15,
@@ -132,83 +298,245 @@
       "modified": true,
       "changed": true,
       "resolved": true,
-      "note": "答案修正+整题重建：官方 Q15 是 for(char x=A..D) 四布尔条件之和==3 的题（p.8 渲染读图），答案 C；题库原是一段 a=5,b=2 的交换程序（自答 B=22），与官方毫无关系。选项为 A./B./C./D. 四个字母。这是本卷唯一答案不一致处（官方表第15位 C、题库原 B）。"
+      "note": "答案修正+整题重建：官方 Q15 是 for(char x=A..D) 四布尔条件之和==3 的题（p.8 渲染读图），答案 C；题库原是一段 a=5,b=2 的交换程序（自答 B=22），与官方毫无关系。选项为 A./B./C./D. 四个字母。这是本卷唯一答案不一致处（官方表第15位 C、题库原 B）。",
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "程序执行"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 16,
       "type": "judge",
       "official": "×",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 17,
       "type": "judge",
       "official": "×",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 18,
       "type": "judge",
       "official": "√",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 19,
       "type": "judge",
       "official": "×",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 20,
       "type": "judge",
       "official": "×",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 21,
       "type": "judge",
       "official": "√",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 22,
       "type": "judge",
       "official": "√",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 23,
       "type": "judge",
       "official": "×",
       "bank": 1,
-      "modified": false
+      "modified": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini草稿+Grok校对落地"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q23-draft.md"
     },
     {
       "id": 24,
       "type": "judge",
       "official": "√",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
     },
     {
       "id": 25,
       "type": "judge",
       "official": "×",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表 + 解析审校；compile-results 见 explain-verify/compile-results.txt（适用代码题）"
+    },
+    {
+      "id": 26,
+      "type": "programming",
+      "official": null,
+      "bank": null,
+      "modified": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini草稿+Grok校对落地",
+        "程序执行"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q26-draft.md"
+    },
+    {
+      "id": 27,
+      "type": "programming",
+      "official": null,
+      "bank": null,
+      "modified": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini草稿+Grok校对落地",
+        "程序执行"
+      ],
+      "reviewedBy": "AI · Grok CLI",
+      "reviewedAt": "2026-10-30",
+      "fix": "2026-10-30 按 issue-list 用 gemini-3.8-flash-medium 草稿经 Grok 校对替换 explanation",
+      "evidence": "/workspace/gesp-app/2026-10-30/explain-verify/drafts/q27-draft.md"
     }
   ],
-  "notes": [
-    "官方卷为「试卷解析」版，答案逐题内嵌；题库 25 题与原卷一一对应。修改：Q13/Q14 题干代码按原卷 p.7-8 还原（答案不变，Q14 题库曾把 i <= 20 改成 i <= 10）；Q15 整题按原卷重建，答案由 B 改为 C（官方答案行第 15 位为 C）。其余 22 题题面与答案均无修改。",
-    "2026-10-27 复核：本卷官方 PDF 是「真题解析」版（N. 题干 +【答案】格式），无「第 N 题」标记与标准答案表，audit-pdf-stem-diff 的 0.190 属结构性假阳性。经解析版文本层提取 25 个答案逐位比对：24/25 一致，唯一不一致 Q15（官方 C、题库 B）已修复；Q13/Q14/Q15 代码块经 p.7-8 渲染读图核对。其余 22 题答案维度全部一致。"
-  ],
+  "notes": "官方卷为「试卷解析」版，答案逐题内嵌；题库 25 题与原卷一一对应。修改：Q13/Q14 题干代码按原卷 p.7-8 还原（答案不变，Q14 题库曾把 i <= 20 改成 i <= 10）；Q15 整题按原卷重建，答案由 B 改为 C（官方答案行第 15 位为 C）。其余 22 题题面与答案均无修改。,2026-10-27 复核：本卷官方 PDF 是「真题解析」版（N. 题干 +【答案】格式），无「第 N 题」标记与标准答案表，audit-pdf-stem-diff 的 0.190 属结构性假阳性。经解析版文本层提取 25 个答案逐位比对：24/25 一致，唯一不一致 Q15（官方 C、题库 B）已修复；Q13/Q14/Q15 代码块经 p.7-8 渲染读图核对。其余 22 题答案维度全部一致。\n[2026-10-30] explanation 升级：Q4/5/9/14/23/26/27 经 agy gemini-3.8-flash-medium 草稿 + Grok CLI 校对落地；答案未改，与官方一致。",
   "programmingSampleAudit": [
     {
       "questionId": 27,
