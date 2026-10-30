@@ -544,7 +544,7 @@ int main() {
             sourcePage: 7,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ['客观题', '单选题', 'GESP2级']
+            tags: ['字符与ASCII', '运算符']
         },
         {
             id: 14,
@@ -588,7 +588,7 @@ int main() {
             sourcePage: 7,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ['客观题', '单选题', 'GESP2级']
+            tags: ['循环', '条件判断']
         },
         {
             id: 15,
@@ -643,7 +643,7 @@ int main() {
             sourcePage: 8,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ['客观题', '单选题', 'GESP2级']
+            tags: ['循环', '字符与ASCII', '运算符']
         },
         {
             id: 16,
