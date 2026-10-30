@@ -1,8 +1,12 @@
 {
   "paperId": "2025-09-l3",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-30",
   "executedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-09-l3"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
@@ -18,31 +22,252 @@
     }
   },
   "questions": [
-    { "id": 1,  "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 2,  "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 3,  "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 4,  "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 5,  "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 6,  "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 7,  "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 8,  "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 9,  "type": "single", "official": "A", "bank": "A", "changed": false },
-    { "id": 10, "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 11, "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 12, "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 13, "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 14, "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 15, "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 16, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 17, "type": "judge", "official": "√", "bank": "√", "changed": false },
-    { "id": 18, "type": "judge", "official": "√", "bank": "√", "changed": false },
-    { "id": 19, "type": "judge", "official": "√", "bank": "√", "changed": false },
-    { "id": 20, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 21, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 22, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 23, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 24, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 25, "type": "judge", "official": "×", "bank": "×", "changed": false }
+    {
+      "id": 1,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "official": "A",
+      "bank": "A",
+      "changed": false
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q15 explanation 升级；答案未改"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
+    }
   ],
   "notes": "题库 judge 约定 answer 0=√、1=×，比对时已换算（题库 1,0,0,0,1,1,1,1,1,1 = ×√√√××××××）。判断第 1 题（sizeof('a')==1）在 C++ 中确实为 1，官方 × 有误读风险，已放大复核答案表确认第 1 题为 ×，与题库一致——官方答案表如此（考纲以 C 语言视角判定 sizeof('a') 为 int 大小），题库与答案表一致，不改动。",
   "unresolved": []
