@@ -301,26 +301,7 @@ tree_node* constructBST(const int arr[], int size) {
         root = insert(root, arr[i]);
     }
     return root;
-}`, {
-        question: '二叉搜索树中的每个结点，其左子树的所有结点值都小于该结点值，右子树的所有结点值都大于该结点值。以下代码对给定的整数数组（假设数组中没有数值相等的元素）构造二叉搜索树，横线处应填写（ ）。',
-        options: [
-          'if (val < root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val);',
-          'if (val > root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val);',
-          'if (val < root->val) root->left = insert(root, val); else root->right = insert(root, val);',
-          'if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val);',
-        ],
-        answer: 0,
-        explanation: `**答案：A**
-
-**解析：**
-二叉搜索树插入时，待插入值比当前结点小就递归进入左子树，否则进入右子树；递归返回的新子树根结点必须重新接回当前结点。
-
-- A：左右方向和递归参数都正确。
-- B：把较大的值插入左子树，破坏二叉搜索树性质。
-- C、D：递归时仍传入当前根结点，无法向子树推进，会造成无限递归。
-
-**考点：** 二叉搜索树的递归插入。`,
-      }),
+}`),
       13: q(7, `#include <iostream>
 using namespace std;
 
@@ -330,22 +311,7 @@ void traversal(tree_node* root) {
     traversal(root->left);
     cout << root->val << " ";
     traversal(root->right);
-}`, {
-        question: '对上题中的二叉搜索树，当输入数组为 [5, 3, 7, 2, 4, 6, 8] 时，构建二叉搜索树并采用如下遍历方式，得到的输出是（ ）。',
-        options: [
-          '5 3 7 2 4 6 8',
-          '2 3 4 5 6 7 8',
-          '2 4 3 6 8 7 5',
-          '2 4 3 5 6 7 8',
-        ],
-        answer: 1,
-        explanation: `**答案：B**
-
-**解析：**
-代码按照“左子树 → 根结点 → 右子树”的顺序遍历，这是二叉搜索树的中序遍历。二叉搜索树的中序遍历结果按结点值递增，因此输出为 \`2 3 4 5 6 7 8\`。
-
-**考点：** 二叉搜索树的中序遍历。`,
-      }),
+}`),
     },
   },
 '2026-03-l6': {
