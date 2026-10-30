@@ -193,7 +193,7 @@ void traverse(TreeNode* root) {
             type: "single",
             sourceIntegrity: "contaminated-stem",
             integrityNote: "题干里塞进了两段代码（一个只做前序打印的 traverse 与另一个 isCompleteTree），中间还夹着行号残留「1 2 3 4 5 6」。四个选项描述的是「这段代码用来判断什么」，而首段代码只是打印节点值，并不判断任何性质，题面与选项对应不上。",
-            question: `以下关于完全二叉树的代码描述，正确的是（ ）。 void traverse(TreeNode* root) { if (root == nullptr) return; cout << root->val << " "; traverse(root->left); traverse(root->right); } 1 2 3 4 5 6 bool isCompleteTree(TreeNode* root) {1`,
+            question: `以下关于完全二叉树的代码描述，正确的是（ ）。\n\n\`\`\`cpp\nvoid traverse(TreeNode* root) {\n    if (root == nullptr) return;\n    cout << root->val << " ";\n    traverse(root->left);\n    traverse(root->right);\n}\nbool isCompleteTree(TreeNode* root) {\n    // ……判断逻辑\n}\n\`\`\`\n`,
             options: [
                 "该代码用于判断一棵树是否为满二叉树",
                 "该代码用于判断一棵树是否为完全二叉树",
@@ -202,18 +202,25 @@ void traverse(TreeNode* root) {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+题目给出的是**先序遍历**框架（先输出根，再递归左右）+ \`isCompleteTree\` 函数名，问代码用途。
 
-            - **A 该代码用于判断一棵树是否为满二叉树**：不是本题答案。
-            - **B 该代码用于判断一棵树是否为完全二叉树**：正确答案。
-            - **C 该代码用于判断一棵树是否为二叉搜索树**：不是本题答案。
-            - **D 该代码用于计算树的高度**：不是本题答案。
+- 函数名 \`isCompleteTree\` 直接表明意图：**判断一棵树是否为完全二叉树**。典型实现是层序遍历过程中，一旦遇到「空位后还有节点」的情况即非完全二叉树。
+- 上面的 \`traverse\` 只是先序遍历辅助展示，判断逻辑在 \`isCompleteTree\` 中。
 
-            **考点：** 树与二叉树、指针
-            `,
+逐项分析：
+- **A**：错误，满二叉树要求每层都满，与函数名不符。
+- **B**：正确，\`isCompleteTree\` 即判断完全二叉树。
+- **C**：错误，判断二叉搜索树通常要比较节点值的大小关系（中序递增）。
+- **D**：错误，计算高度是返回 max(左, 右)+1 的递归。
+
+**易错点：** 完全二叉树判定核心是「层序中不允许出现空位后再有节点」，不是看节点数。
+
+**考点：** 完全二叉树的判定思路
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -337,7 +344,7 @@ TreeNode* op(TreeNode* root, int val) {
             type: "single",
             sourceIntegrity: "missing-code",
             integrityNote: "题干称「以下代码中，类的构造函数被调用了（ ）次」，但代码未随本题收录，无法数出调用次数。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码中，类的构造函数被调用了（ ）次。`,
+            question: `以下代码中，类的构造函数被调用了（ ）次。\n\n\`\`\`cpp\nclass MyClass {\npublic:\n    MyClass() {\n        cout << "Constructor called!" << endl;\n    }\n};\nint main() {\n    MyClass obj1;\n    MyClass obj2 = obj1;\n    return 0;\n}\n\`\`\`\n`,
             options: [
                 "1",
                 "2",
@@ -346,19 +353,26 @@ TreeNode* op(TreeNode* root, int val) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+关键区分**构造函数**与**拷贝构造**：
 
-            - **A 1**：正确答案。
-            - **B 2**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **C 3**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **D 0**：不是本题答案。该数值与正确计算结果不符，请重新验算。
+1. \`MyClass obj1;\` —— 调用代码中定义的构造函数 \`MyClass()\`，输出一次，**第 1 次**。
+2. \`MyClass obj2 = obj1;\` —— 这是**拷贝初始化**，调用编译器自动生成的**拷贝构造函数**（逐成员复制），不会调用 \`MyClass()\`。
 
+所以代码中定义的构造函数 \`MyClass()\` 只被调用 **1** 次，选 A。
 
-            **考点：** 面向对象
+逐项分析：
+- **A 1**：正确。
+- **B 2**：错误，误以为 obj2 = obj1 也调用默认构造。
+- **C 3**：错误。
+- **D 0**：错误，obj1 的构造必然调用。
 
+**易错点：** 严格来说拷贝构造也是构造函数的一种重载，但本题语境「类的构造函数」指代码里显式定义的无参版本；\`obj2 = obj1\` 若发生在**已初始化对象**之间才是赋值运算符，这里是初始化场景，走拷贝构造。
+
+**考点：** 构造函数与拷贝构造的调用时机
         `,
             tags: [
                 "客观题",
@@ -450,7 +464,7 @@ public:
         {
             id: 11,
             type: "single",
-            question: `以下代码实现了二叉树的广度优先搜索（ BFS ），并查找特定值的节点，则横线上应填写（ ）。`,
+            question: `以下代码实现了二叉树的广度优先搜索（BFS），并查找特定值的节点，则横线上应填写（ ）。\n\n\`\`\`cpp\nTreeNode* findNode(TreeNode* root, int target) {\n    if (root == nullptr) return nullptr;\n    queue<TreeNode*> q;\n    q.push(root);\n    while (!q.empty()) {\n        TreeNode* current = q.front();\n        q.pop();\n        if (current->val == target) {\n            return current; // 找到目标节点\n        }\n        ____________________ // 在此处填入代码\n    }\n    return nullptr; // 未找到目标节点\n}\n\`\`\`\n`,
             options: [
                 "if (current->left) q.push(current->left); if (current->right) q.push(current->right);",
                 "if (current->left) q.pop(current->left); if (current->right) q.pop(current->right);",
@@ -459,18 +473,29 @@ public:
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+BFS 用队列逐层搜索：出队当前节点后，若值不匹配，就要把它的**左、右孩子依次入队**，保证后续按层访问。
 
-            - **A if (current->left) q.push(current->left)...**：正确答案。
-            - **B if (current->left) q.pop(current->left);...**：错误。
-            - **C if (current->left) q.front(current->left...**：错误。
-            - **D if (current->left) q.push(current->right...**：错误。
+横线位于「弹出 current 且未命中」之后，需要补充孩子入队逻辑：
 
-            **考点：** C++基础
-            `,
+\`\`\`cpp
+if (current->left) q.push(current->left);
+if (current->right) q.push(current->right);
+\`\`\`
+
+逐项分析：
+- **A push 左 + push 右**：正确，标准 BFS 孩子入队。
+- **B 用 \`q.pop(current->left)\`**：错误，pop 不接受参数且是弹出操作，会破坏队列。
+- **C 用 \`q.front(...)\`**：错误，front 只查看队首元素不接受参数，不入队。
+- **D push 右 + push 左（交换）**：错误，push 的对象写反了——\`current->left\` 存在却 push 了 right，逻辑混乱。
+
+**易错点：** 入队前必须判空（\`if (current->left)\`），对空指针入队会使后续解引用崩溃。
+
+**考点：** BFS 框架中的孩子入队
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -886,22 +911,38 @@ BST 中的最小值结点是整棵树**最左边的结点**（从根一路向左
             type: "judge",
             sourceIntegrity: "missing-code",
             integrityNote: "题干称「以下代码创建的树是一棵完全二叉树」，但建树代码未随本题收录，无从判断。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码创建的树是一棵完全二叉树：`,
+            question: `以下代码创建的树是一棵完全二叉树：\n\n\`\`\`cpp\nTreeNode* root = new TreeNode{1};\nroot->left = new TreeNode{2};\nroot->right = new TreeNode{3};\nroot->left->left = new TreeNode{4};\n\`\`\`\n`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `
+**答案：√**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+代码构建的树形：
+\`\`\`text
+        1
+       / \
+      2   3
+     /
+    4
+\`\`\`
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+完全二叉树的判定：除最后一层外每层都满，且最后一层节点**从左到右连续排列**。
 
-            **考点：** 树与二叉树
-            `,
+- 第 1 层：1（满）
+- 第 2 层：2、3（满）
+- 第 3 层：只有 4，且 4 位于最左侧位置（2 的左孩子）✓
+
+第 3 层的空位（2 的右孩子、3 的左右孩子）都在节点 4 **之后**，符合「从左到右填充」，所以是**完全二叉树**，说法正确。
+
+**易错点：** 若代码最后一句写成 \`root->right->left = new TreeNode{4};\`（4 出现在 3 的左孩子而 2 的右孩子空着），则第 3 层出现「空位在前、节点在后」，就不是完全二叉树了。
+
+**考点：** 完全二叉树的判定
+        `,
             tags: [
                 "客观题",
                 "判断题",
@@ -918,15 +959,21 @@ BST 中的最小值结点是整棵树**最左边的结点**（从根一路向左
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `
+**答案：√**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+双向链表每个节点同时持有 prev 和 next 指针，可在**两端 O(1) 插入/删除**：
 
-            **易混概念：** 栈是后进先出（LIFO）。注意栈空时 pop 会出错，需先判空；递归/函数调用依赖调用栈，过深会栈溢出；单调栈用于找左右第一个更大/更小元素。
+- **栈**：把表头当栈顶，push/pop 都在头结点操作，O(1)；
+- **队列**：入队走表尾（tail），出队走表头（head），借助双向指针各一步到位，O(1)。
 
-            **考点：** 栈
-            `,
+所以「栈和队列均可用双向链表实现且插删 O(1)」正确。
+
+**易错点：** 单向链表实现队列时，出队 O(1)（头删）但入队若不维护尾指针则需 O(n) 遍历——双向链表的优势正在于任意端都能 O(1) 操作；对比顺序存储（数组）实现队列会有假溢出/搬移问题（除非用循环队列）。
+
+**考点：** 栈与队列的链式实现
+        `,
             tags: [
                 "客观题",
                 "判断题",
