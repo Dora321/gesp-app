@@ -8,7 +8,7 @@
     "truncated": 9,
     "contradictory": 0,
     "filler": 0,
-    "overlong": 3
+    "overlong": 1
   },
   "issues": {
     "template": [],
@@ -82,8 +82,6 @@
     "contradictory": [],
     "filler": [],
     "overlong": [
-      "2024-06-l3:Q15",
-      "2024-06-l3:Q4",
       "2025-03-l4:Q14"
     ]
   }
