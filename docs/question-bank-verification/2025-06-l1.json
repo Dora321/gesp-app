@@ -1,10 +1,10 @@
 {
   "paperId": "2025-06-l1",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-06-l1"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
@@ -31,6 +31,91 @@
     }
   },
   "questions": [
+    {
+      "id": 2,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "findings": "题干为改写版（「关于计算机编程环境及断点调试」），官方为「在某集成开发环境中调试下面代码段时尝试设置断点和检查局部变量」。",
+      "fix": "恢复官方题干。答案 A 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 3,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干「对于下列C++的代码」应为「对下列C++的代码」。",
+      "fix": "恢复官方措辞。答案 D 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
+      "id": 10,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "整题错位：题库为仿写题「判断 N 是否为偶数」，官方 Q10 是「求 M 天后是星期几」（两处横线）。题库答案 B 恰与官方字母撞车。",
+      "fix": "按官方 p.3 渲染图整题重建：官方题干+代码（星期日是0，D=____，if(____)）+四个选项（(N+M)/7 或 %7 组合 D==0 或 D<=0）。逻辑验证：D=(N+M)%7、D==0 为星期日 → B。官方答案行 Q10=B 一致。解析按新题重写，D 选项注明 D<=0 碰巧等价但语义不严谨。",
+      "evidence": "tmp/verify/2025-06-l1/pg-3.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q13 explanation 升级；答案未改"
+    },
     {
       "id": 16,
       "paperJudgeNo": 1,
@@ -142,51 +227,36 @@
       "fix": "question 按原卷逐字转写，answer 不变（×），解析重写（关系运算符结合性与 bool 取值）"
     },
     {
-      "id": 2,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题干为改写版（「关于计算机编程环境及断点调试」），官方为「在某集成开发环境中调试下面代码段时尝试设置断点和检查局部变量」。",
-      "fix": "恢复官方题干。答案 A 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
     },
     {
-      "id": 3,
+      "id": 27,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题干「对于下列C++的代码」应为「对下列C++的代码」。",
-      "fix": "恢复官方措辞。答案 D 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer"
-      ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "整题错位：题库为仿写题「判断 N 是否为偶数」，官方 Q10 是「求 M 天后是星期几」（两处横线）。题库答案 B 恰与官方字母撞车。",
-      "fix": "按官方 p.3 渲染图整题重建：官方题干+代码（星期日是0，D=____，if(____)）+四个选项（(N+M)/7 或 %7 组合 D==0 或 D<=0）。逻辑验证：D=(N+M)%7、D==0 为星期日 → B。官方答案行 Q10=B 一致。解析按新题重写，D 选项注明 D<=0 碰巧等价但语义不严谨。",
-      "evidence": "tmp/verify/2025-06-l1/pg-3.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
