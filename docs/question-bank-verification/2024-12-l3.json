@@ -1,10 +1,10 @@
 {
   "paperId": "2024-12-l3",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-12-l3"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
@@ -16,6 +16,22 @@
     }
   },
   "questions": [
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
+    },
     {
       "id": 12,
       "dimensions": [
@@ -32,6 +48,54 @@
       "fix": "按原卷 pp.3-4 逐字转写 A/B/C/D 四段完整程序，替换四个选项（fenced cpp 块 + \\n 转义写法，与全库题面代码写法一致）；删除 sourceIntegrity/integrityNote。题干、answer(2/C)、解析未改动——解析中的概括描述与恢复后的代码逐项对应且一致。",
       "evidence": "独立计数：1~100 中数字 1 出现 21 次（python 复核同为 21）。g++ 编译运行选项 C，输入 1 100 1 输出 21，正确；选项 A 编译通过但 res 未初始化，同输入输出垃圾值 32779；选项 B 编译报错「lvalue required as left operand of assignment」；选项 D 编译报错「'temp' was not declared in this scope」。四项验证与 answer 2（C）一致。tmp/verify/2024-12-l3/q12a-d.cpp",
       "resolved": true
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
