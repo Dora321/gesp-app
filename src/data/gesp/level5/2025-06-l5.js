@@ -110,18 +110,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+链表的结点通过指针链接，插入/删除只需修改相邻结点的指针（已定位到位置时 O(1)）；而数组插入/删除要把后面的元素整体搬移（O(n)）。所以链表在**已知位置插入或删除节点**上效率更高。
 
-            - **A 随机访问元素**：不是本题答案。
-            - **B 查找指定元素**：不是本题答案。
-            - **C 在已知位置插入或删除节点**：正确答案。
-            - **D 遍历所有元素**：不是本题答案。
+- **A** 随机访问是数组的强项（下标直达 O(1)），链表要 O(n) 遍历；
+- **B** 无序数据查找两者都只能逐个比较 O(n)；
+- **D** 遍历所有元素两者都是 O(n)，没有优势。
 
-            **考点：** 链表
-            `,
+**考点：** 链表、数组
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -131,7 +131,43 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `下面 C++ 代码实现双向链表。函数 is_empty() 判断链表是否为空，如链表为空返回 true，否则返回 false。横线处不能填写的是（ ）。`,
+            question: `下面 C++ 代码实现双向链表。函数 is_empty() 判断链表是否为空，如链表为空返回 true，否则返回 false。横线处不能填写的是（ ）。
+
+\`\`\`cpp
+// 节点结构体
+struct Node {
+    int data;
+    Node* prev;
+    Node* next;
+};
+
+// 双向链表结构体
+struct DoubleLink {
+    Node* head;
+    Node* tail;
+    int size;
+
+    DoubleLink() {
+        head = nullptr;
+        tail = nullptr;
+        size = 0;
+    }
+
+    ~DoubleLink() {
+        Node* curr = head;
+        while (curr) {
+            Node* next = curr->next;
+            delete curr;
+            curr = next;
+        }
+    }
+
+    // 判断链表是否为空
+    bool is_empty() const {
+        _______________________
+    }
+};
+\`\`\``,
             options: [
                 "return head == nullptr;",
                 "return tail == nullptr;",
@@ -140,18 +176,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+判断双向链表为空，等价写法有三个：head == nullptr（A）、tail == nullptr（B）、size == 0（D）——构造函数把三者一起初始化，任何一条成立链表就是空的。
 
-            - **A return head == nullptr;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **B return tail == nullptr;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C return head.data == 0;**：正确答案。
-            - **D return size == 0;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
+**C 不能填**：head 是 Node* 指针，访问成员要用箭头 head->data，写 head.data 是编译错误；而且就算改成 head->data == 0，它判断的是「头结点数据是否为 0」——data 为 0 的合法结点可以让非空链表误判为空，逻辑也不对。
 
-            **考点：** 链表
-            `,
+**易错点：** 指针访问成员用 ->，点号只用于对象/结构体变量。
+
+**考点：** 双向链表、指针
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -161,27 +197,45 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `基于上题代码正确的前提下，填入相应代码完善 append() ，用于在双向链表尾部增加新节点，横线上应填 写（ ）。`,
+            question: `基于上题代码正确的前提下，填入相应代码完善 append() ，用于在双向链表尾部增加新节点，横线上应填写（ ）。
+
+\`\`\`cpp
+void append(int data) {
+    Node* newNode = new Node{data, nullptr, nullptr};
+
+    if (is_empty()) {
+        head = tail = newNode;
+    } else {
+        ______________________
+    }
+    ++size;
+}
+\`\`\``,
             options: [
-                "list->head->prev = list->head; list->tail->prev = list->head;",
-                "list->head->next = list->tail; list->tail->prev = list->head;",
-                "list->head->next = list->tail; list->tail->next = list->head;",
-                "list->head->next = list->tail; list->tail->next = nullptr;",
+                "tail->next = newNode;",
+                "newNode->prev = tail; tail = newNode;",
+                "tail = newNode; newNode->prev = tail; tail->next = newNode;",
+                "tail->next = newNode; newNode->prev = tail; tail = newNode;",
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+非空时把新结点接到尾部，三步缺一不可：
+1. tail->next = newNode —— 原尾结点的 next 指向新结点；
+2. newNode->prev = tail —— 新结点的 prev 回指原尾结点；
+3. tail = newNode —— 更新尾指针。
 
-            - **A list->head->prev = list->head; list->tai...**：不是本题答案。
-            - **B list->head->next = list->tail; list->tai...**：不是本题答案。
-            - **C list->head->next = list->tail; list->tai...**：不是本题答案。
-            - **D list->head->next = list->tail; list->tai...**：正确答案。
+- **A** 只挂接不更新 tail，tail 仍指向旧尾，链表尾部丢失；
+- **B** 先执行 tail = newNode 再 newNode->prev = tail，prev 指向了自己；
+- **C** 先 tail = newNode，再 tail->next = newNode 变成自环，旧尾也脱钩。
 
-            **考点：** 链表
-            `,
+**易错点：** 指针语句的**顺序**很重要——先用旧值建立连接，最后再移动 tail。
+
+**考点：** 双向链表、插入操作
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -191,27 +245,68 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: `下列 C++ 代码用循环链表解决约瑟夫问题。假设 n 个人围成一圈，从第一个人开始数，每次数到第 k 个人的人就出圈，输出最后留下的那个人的编号。横线上应填写的是（ ）。`,
+            question: `下列 C++ 代码用循环链表解决约瑟夫问题。假设 n 个人围成一圈，从第一个人开始数，每次数到第 k 个人的人就出圈，输出最后留下的那个人的编号。横线上应填写的是（ ）。
+
+\`\`\`cpp
+struct Node {
+    int data;
+    Node* next;
+};
+
+Node* createCircularList(int n) {
+    Node* head = new Node{1, nullptr};
+    Node* prev = head;
+    for (int i = 2; i <= n; ++i) {
+        Node* node = new Node{i, nullptr};
+        prev->next = node;
+        prev = node;
+    }
+    prev->next = head;
+    return head;
+}
+
+int fingLastSurvival(int n, int k) {
+    Node* head = createCircularList(n);
+    Node* p = head;
+    Node* prev = nullptr;
+
+    while (p->next != p) {
+        for (int count = 1; count < k; ++count) {
+            prev = p;
+            p = p->next;
+        }
+        ______________________
+    }
+
+    cout << "最后留下的人编号是: " << p->data << endl;
+    delete p;
+    return 0;
+}
+\`\`\``,
             options: [
-                "tail->next = newNode; newNode->prev = tail; tail = newNode;",
-                "tail->next = newNode; tail = newNode; newNode->prev = tail;",
-                "tail = newNode; newNode->prev = tail; tail->next = newNode;",
-                "newNode->prev = tail; tail = newNode; tail->next = newNode;",
+                "prev->next = p->next; delete p; p = prev->next;",
+                "delete p; prev->next = p->next; p = prev->next;",
+                "delete p; p = prev->next; prev->next = p->next;",
+                "prev->next = p->next; p = prev->next; delete p;",
 ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+数到第 k 个人出圈，单链表删除当前结点 p 的正确顺序：
+1. prev->next = p->next —— 前驱绕过 p（必须趁 p 还没释放时做）；
+2. delete p —— 释放内存；
+3. p = prev->next —— p 移到下一位继续数。
 
-            - **A tail->next = newNode; newNode->prev = tail; tail = newNode;**：正确答案。
-            - **B tail->next = newNode; tail = newNode; newNode->prev = tail;**：不是本题答案。
-            - **C tail = newNode; newNode->prev = tail; tail->next = newNode;**：不是本题答案。
-            - **D newNode->prev = tail; tail = newNode; tail->next = newNode;**：不是本题答案。
+- **B/C** 先 delete p 再访问 p->next，属于**悬空指针解引用**（use-after-free），未定义行为；
+- **D** 先 p = prev->next 再 delete p，删掉的是**下一个无辜结点**，该出圈的人还在圈里。
 
-            **考点：** 链表
-            `,
+**易错点：** 删除链表结点时，「改指针 → delete → 移动 p」的顺序不能乱。
+
+**考点：** 循环链表、约瑟夫问题
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -221,7 +316,30 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: `下列 C++ 代码判断一个正整数是否是质数，说法正确的是（ ）。`,
+            question: `下列 C++ 代码判断一个正整数是否是质数，说法正确的是（ ）。
+
+\`\`\`cpp
+bool is_prime(int n) {
+    if (n <= 1)
+        return false;
+    if (n == 2 || n == 3 || n == 5)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0 || n % 5 == 0)
+        return false;
+
+    int i = 7;
+    int step = 4;
+    int finish_number = sqrt(n) + 1;
+
+    while (i <= finish_number) {
+        if (n % i == 0)
+            return false;
+        i += step;
+        step = 6 - step;
+    }
+    return true;
+}
+\`\`\``,
             options: [
                 "代码存在错误，比如 5 是质数，但因为5 % 5 余数是 0 返回了false",
                 "finish_number 的值应该是n / 2 ，当前写法将导致错误",
@@ -230,18 +348,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+代码用 6k±1 试除：大于 3 的质数一定落在 6k−1 或 6k+1 的位置（因为 6k、6k+2、6k+4 是偶数，6k+3 是 3 的倍数），step 在 4 和 2 之间交替（7→11→13→17…）恰好遍历所有 6k±1 候选——**C 正确**。
 
-            - **A 代码存在错误，比如 5 是质数，但因为5 % 5 余数是 0 返回了false**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **B finish_number 的值应该是n / 2 ，当前写法将导致错误**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C 当前while 循环正确的前提是：所有大于 3 的质数都符合6k±1 形式**：正确答案。
-            - **D while 循环修改如下，其执行效果和执行时间相同。**：不是本题答案。
+- **A 错**：5 已经在 n == 2 || n == 3 || n == 5 特判中返回 true，走不到循环；
+- **B 错**：finish_number = sqrt(n) + 1 边界正确；改成 n/2 只是更慢，不「导致错误」；
+- **D 错**：改成逐个试除 2..finish_number 效果相同，但试除了大量 6k/6k±2/6k+3 的无用候选，执行时间明显更长，并非「相同」。
 
-            **考点：** 筛法
-            `,
+**考点：** 质数判定、6k±1 优化
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -251,27 +369,53 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `下列 C++ 代码用两种方式求解两个正整数的最大公约数，说法错误的是 ( ) 。`,
+            question: `下列 C++ 代码用两种方式求解两个正整数的最大公约数，说法错误的是 ( ) 。
+
+\`\`\`cpp
+int gcd0(int big, int small) {
+    if (big < small) {
+        swap(big, small);
+    }
+    if (big % small == 0) {
+        return small;
+    }
+    return gcd0(small, big % small);
+}
+
+int gcd1(int big, int small) {
+    if (big < small) {
+        swap(big, small);
+    }
+    for (int i = small; i >= 1; --i) {
+        if (big % i == 0 && small % i == 0)
+            return i;
+    }
+    return 1;
+}
+\`\`\``,
             options: [
-                "gcd0() 函数的时间复杂度较高，通常为 O(min(a,b)) 量级。",
-                "gcd1()（欧几里得算法）通常比枚举因子的做法更高效。",
+                "gcd0() 函数的时间复杂度为 O(log n)",
+                "gcd1() 函数的时间复杂度为 O(n)",
                 "一般说来，gcd0() 的效率高于gcd1()",
                 "gcd1() 中的代码for (int i = small; i >= 1; --i) 应该修改为for (int i = small; i > 1; --i)",
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+gcd0 是欧几里得算法（辗转相除、递归），时间复杂度 O(log min(a,b))；gcd1 从 small 往下枚举公因数，时间复杂度 O(min(a,b))。
 
-            - **A gcd0() 函数的时间复杂度较高，通常为 O(min(a,b)) 量级。**：错误。数论计算有误，请重新验算质因数分解或 gcd 过程。
-            - **B gcd1()（欧几里得算法）通常比枚举因子的做法更高效。**：错误。数论计算有误，请重新验算质因数分解或 gcd 过程。
-            - **C 一般说来，gcd0() 的效率高于gcd1()**：错误。数论计算有误，请重新验算质因数分解或 gcd 过程。
-            - **D gcd1() 中的代码for (int i = small; i >= 1; -...**：正确答案。
+- **A 对**：gcd0 每次递归让参数至少减半，O(log n) 量级；
+- **B 对**：gcd1 逐个试除，O(n) 量级，欧几里得算法明显更快；
+- **C 对**：大规模输入下 O(log n) 远优于 O(n)；
+- **D 错**：把 i >= 1 改成 i > 1 **没有必要**——原代码当 i = 1 时必然满足 big%1==0 && small%1==0 返回 1，这与函数末尾的 return 1 兜底完全等价；改掉后结果虽然碰巧相同，但「应该修改」的说法不成立：既无正确性收益，也无性能收益，反而破坏了「从 small 枚举到 1」的完整语义。
 
-            **考点：** 数论
-            `,
+**易错点：** 判断这类「代码应该改成…」的说法，先看修改前后是否真的有行为差异、差异是否有意义。
+
+**考点：** 最大公约数、欧几里得算法、时间复杂度
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -281,7 +425,20 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: `下面的代码用于判断整数是否是质数，错误的说法是（ ）。`,
+            question: `下面的代码用于判断整数是否是质数，错误的说法是（ ）。
+
+\`\`\`cpp
+bool is_prime(int n) {
+    if (n <= 1) return false;
+
+    int finish_number = static_cast<int>(sqrt(n)) + 1;
+    for (int i = 2; i < finish_number; ++i) {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+\`\`\``,
             options: [
                 "埃氏筛算法相对于上面的代码效率更高",
                 "线性筛算法相对于上面的代码效率更高",
@@ -290,18 +447,18 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+代码是逐个试除的 O(√n) 判质数。批量判断连续整数时：
+- **A 对**：埃氏筛 O(n log log n) 一次性筛出所有质数，比逐个试除快；
+- **B 对**：线性筛 O(n)，每个合数只被最小质因数筛一次，比埃氏筛更快；
+- **C 对**：逐个判断时每个数都要独立试除，大量重复计算，效率不如筛法；
+- **D 错**：线性筛是三者中最优的，埃氏筛不可能「比线性筛效率高」。
 
-            - **A 埃氏筛算法相对于上面的代码效率更高**：不是本题答案。
-            - **B 线性筛算法相对于上面的代码效率更高**：不是本题答案。
-            - **C 上面的代码有很多重复计算，因为不是判断单个数是否为质数，故而导致筛选出连续数中质...**：不是本题答案。
-            - **D 相对而言，埃氏筛算法比上面代码以及线性筛算法效率都高**：正确答案。
-
-            **考点：** 筛法
-            `,
+**考点：** 质数、埃氏筛、线性筛
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -320,18 +477,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+唯一分解定理（算术基本定理）：任何**大于 1 的合数**都可以**唯一**分解为有限个质数的乘积（不计顺序），如 12 = 2² × 3。
 
-            - **A 任何正整数都可以表示为两个素数的和。**：不是本题答案。筛法标记范围或起点有误，请逐步推演标记过程。
-            - **B 任何大于 1 的合数都可以唯一分解为有限个质数的乘积。**：正确答案。
-            - **C 两个正整数的最大公约数总是等于它们的最小公倍数除以它们的乘积。**：不是本题答案。数论计算有误，请重新验算质因数分解或 gcd 过程。
-            - **D 所有素数都是奇数。**：不是本题答案。筛法标记范围或起点有误，请逐步推演标记过程。
+- **A** 是哥德巴赫猜想（「大于 2 的偶数 = 两素数之和」），至今未证明，且不是唯一分解定理的内容；
+- **C** 公式写反了：正确关系是 gcd(a,b) × lcm(a,b) = a × b，「最小公倍数除以乘积」得到的是 1/gcd，不成立；
+- **D** 错：2 是素数但不是奇数。
 
-            **考点：** 质数判定、数论
-            `,
+**考点：** 唯一分解定理
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -341,7 +498,27 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: `下面的 C++ 代码，用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。`,
+            question: `下面的 C++ 代码，用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。
+
+\`\`\`cpp
+int find_max_recursive(const vector<int>& nums, int left, int right) {
+    if (left == right)
+        return nums[left];
+
+    int mid = left + (right - left) / 2;
+    int left_max = find_max_recursive(nums, left, mid);
+    int right_max = find_max_recursive(nums, mid + 1, right);
+
+    return max(left_max, right_max);
+}
+
+int find_max(const vector<int>& nums) {
+    if (nums.empty()) {
+        throw invalid_argument("输入数组不能为空");
+    }
+    return find_max_recursive(nums, 0, nums.size() - 1);
+}
+\`\`\``,
             options: [
                 "该算法采用分治算法",
                 "该算法是递归实现",
@@ -350,18 +527,16 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+find_max_recursive 把区间从中间分成两半，分别递归求最大值，再用 max 合并——这是典型的**分治 + 递归实现**（A、B 正确），整个过程中「大问题的解由子问题的解构造」，不是递推（D 正确）。
 
-            - **A 该算法采用分治算法**：不是本题答案。
-            - **B 该算法是递归实现**：不是本题答案。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
-            - **C 该算法采用贪心算法**：正确答案。
-            - **D 该算法不是递推算法**：不是本题答案。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
+**C 错误**：贪心的特征是每一步做出当前最优选择且不回头；本题是「分半 → 递归 → 合并」的结构，没有贪心选择过程。
 
-            **考点：** STL容器、异常处理
-            `,
+**考点：** 分治、递归
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -414,27 +589,52 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: `下面的 C++ 代码用于在升序数组 lst 中查找目标值 target 最后一次出现的位置。相关说法，正确的是（ ）。`,
+            question: `下面的 C++ 代码用于在升序数组 lst 中查找目标值 target 最后一次出现的位置。相关说法，正确的是（ ）。
+
+\`\`\`cpp
+int binary_search_last_occurrence(const vector<int>& lst, int target) {
+    if (lst.empty()) return -1;
+
+    int low = 0, high = lst.size() - 1;
+
+    while (low < high) {
+        int mid = (low + high + 1) / 2;
+        if (lst[mid] <= target) {
+            low = mid;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    if (lst[low] == target)
+        return low;
+    else
+        return -1;
+}
+\`\`\``,
             options: [
                 "当 lst 中存在重复的 target 时，该函数总能返回最后一个 target 的位置，即便 lst 全由相同元素组成",
                 "当 target 小于 lst 中所有元素时，该函数会返回 0",
                 "循环条件改为 while (low <= high) 程序执行效果相同，且能提高准确性",
-                "若 target 不存在，该函数返回 -1。",
+                "将代码中 (low + high + 1) / 2 修改为 (low + high) / 2 效果相同",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+查找「最后一次出现位置」的二分变体：lst[mid] <= target 时 low = mid（向右收缩但保留 mid），mid 取 (low + high + 1) / 2 **向上取整**防止 low = mid 时死循环。
 
-            - **A 当 lst 中存在重复的 target 时，该函数总能返回最后一个 target...**：正确答案。
-            - **B 当 target 小于 lst 中所有元素时，该函数会返回 0**：不是本题答案。
-            - **C 循环条件改为 while (low <= high) 程序执行效果相同，且能提高...**：不是本题答案。
-            - **D 若 target 不存在，该函数返回 -1。**：不是本题答案。
+- **A 对**：即使数组全由相同元素组成，循环始终把 low 往右推（每次至少 +1），最终收敛到 low == high 即最后一个 target 的位置；
+- **B 错**：target 小于所有元素时，high 不断左移直到 low == high = 0，lst[0] != target，返回 -1 而不是 0；
+- **C 错**：改成 low <= high 后，low == high 时仍进入循环，low = mid 不再推进，死循环；
+- **D 错**：改成 (low + high) / 2 后，当 low + 1 == high 时 mid = low，若 lst[mid] <= target 则 low = mid 原地踏步，死循环。
 
-            **考点：** 数组
-            `,
+**易错点：** 向右收缩（low = mid）的二分必须上取整 mid，这是这类题最经典的坑。
+
+**考点：** 二分查找、边界处理
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -510,18 +710,18 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+代码分两阶段求 n 的平方根：
+- **A 对**：阶段 1 用整数二分在 [1, n] 中找最大的 k 使 k² <= n，即寻找正完全平方根；
+- **B 对**：若 n 不是完全平方数，阶段 2 在 [k, k+1] 区间做浮点二分，逼近小数部分的平方根；
+- **C 对**：check_int = (long long)(result + 0.5) 对浮点结果四舍五入，再验证 check_int² 是否恰好等于 n——正是为消除浮点误差；
+- **D 错**：high_d - low_d >= epsilon 正是浮点二分的标准循环条件——浮点数不能判相等，但可以判断「区间宽度足够小」，按 epsilon 停止不会死循环。
 
-            - **A “阶段 1”的目标是先判断正整数 n 是否有整数平方根**：不是本题答案。
-            - **B “阶段 2”的目标是当 n 不是完全平方数时，在相邻整数平方根之间继续二分逼近**：不是本题答案。二分查找的边界或 mid 更新有误，请验证循环条件和指针移动。
-            - **C 代码 check_int = (long long)(result+0.5) 用...**：不是本题答案。
-            - **D 阶段 2 中用 high_d-low_d >= epsilon 作为停止条件完全...**：正确答案。
-
-            **考点：** 二分查找
-            `,
+**考点：** 二分查找、浮点数处理
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -531,7 +731,33 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
         {
             id: 13,
             type: "single",
-            question: `硬币找零问题中要求找给客户最少的硬币。coins 存储可用硬币面额，amount 为待找零金额。下面是其实现代码，相关说法正确的是（ ）。`,
+            question: `硬币找零问题中要求找给客户最少的硬币。coins 存储可用硬币面额，amount 为待找零金额。下面是其实现代码，相关说法正确的是（ ）。
+
+\`\`\`cpp
+const int MAX_COINS = 10;
+int result[MAX_COINS] = {0};  // 假设最多10种面额
+
+int find_coins(const vector<int>& coins, int amount) {
+    sort(coins.begin(), coins.end(), greater<int>());
+
+    int n = coins.size();
+
+    for (int i = 0; i < n; ++i) {
+        int coin = coins[i];
+        int num = amount / coin;
+        result[i] = num;
+        amount -= num * coin;
+        if (amount == 0) break;
+    }
+
+    cout << "找零方案如下：" << endl;
+    for (int i = 0; i < n; ++i) {
+        cout << sorted_coins[i] << "角需要" << result[i] << "枚" << endl;
+    }
+
+    return 0;
+}
+\`\`\``,
             options: [
                 "上述代码采用贪心算法实现",
                 "针对任意面额系统，上述代码总能找到最优解",
@@ -540,18 +766,18 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+代码先把面额从大到小排序，然后对每种面额尽可能多地取（num = amount / coin），余款交给更小面额——每一步都拿当前能拿的最多，这是**贪心算法**（A 对），不是枚举/分治（C、D 错）。
 
-            - **A 上述代码采用贪心算法实现**：正确答案。
-            - **B 针对任意面额系统，上述代码总能找到最优解**：不是本题答案。
-            - **C 上述代码采用枚举算法**：不是本题答案。
-            - **D 上述代码采用分治算法**：不是本题答案。
+**B 错**：「任意面额系统总能找到最优解」不成立。经典反例：面额 {1, 3, 4} 找 6 元，贪心拿 4+1+1 共 3 枚，最优是 3+3 共 2 枚。只有本题的特殊设定（有 1 角规格、金额为 1 角整数倍、规格都小于 10 角）才保证贪心结果正确；更严格说，能被更大面额组合出的系统贪心就会出错。
 
-            **考点：** STL容器
-            `,
+**易错点：** 贪心找零只在「面额系统特殊」时保证最优，通用最优解要用完全背包 DP。
+
+**考点：** 贪心算法、硬币找零
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -561,7 +787,35 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
         {
             id: 14,
             type: "single",
-            question: `关于下述 C++ 代码的快速排序算法，说法错误的是（ ）。`,
+            question: `关于下述 C++ 代码的快速排序算法，说法错误的是（ ）。
+
+\`\`\`cpp
+int randomPartition(std::vector<int>& arr, int low, int high) {
+    int random = low + rand() % (high - low + 1);
+    std::swap(arr[random], arr[high]);
+
+    int pivot = arr[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+    std::swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = randomPartition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+\`\`\``,
             options: [
                 "在 randomPartition 函数中，变量 i 的作用是记录不大于基准值元素区间的右边界",
                 "randomPartition 随机选择基准值，可以降低遇到最坏情况 $O(N^2)$ 的概率",
@@ -570,18 +824,17 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+- **A 对**：i 是「不大于 pivot 元素区间」的右边界，arr[low..i] 都 <= pivot，循环结束后 pivot 换到 i+1；
+- **B 对**：固定取 arr[high] 作基准时，有序输入会让划分极度失衡退化成 O(n²)；随机选基准使任何特定输入都难以稳定触发最坏情况；
+- **C 对**：快排平均时间复杂度 O(n log n)；
+- **D 错**：partition 中 swap(arr[i], arr[j]) 会把基准附近的元素**远距离交换**，相等元素的相对顺序可能被打乱——快速排序是**不稳定**排序（例：[3ₐ, 3ᵦ, 1] 排序后 3 的顺序可能颠倒）。
 
-            - **A 在 randomPartition 函数中，变量 i 的作用是记录不大于基准值元...**：不是本题答案。
-            - **B randomPartition 随机选择基准值，可以降低遇到最坏情况 $O(N^...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C 快速排序的平均时间复杂度是 $O(n log n)$**：不是本题答案。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **D 快速排序是稳定排序算法**：正确答案。
-
-            **考点：** 快速排序
-            `,
+**考点：** 快速排序、随机化、稳定性
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -591,7 +844,90 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
         {
             id: 15,
             type: "single",
-            question: `小杨编写了一个如下的高精度除法函数，则在把下一位加入余数时，横线上应填写的代码为（ ）。`,
+            question: `小杨编写了一个如下的高精度除法函数，则在把下一位加入余数时，横线上应填写的代码为（ ）。
+
+\`\`\`cpp
+const int MAXN = 1005;  // 最大位数
+struct BigInt {
+    int d[MAXN];  // 存储数字，d[0]是个位，d[1]是十位，...
+    int len;      // 数字长度
+
+    BigInt() {
+        memset(d, 0, sizeof(d));
+        len = 0;
+    }
+};
+
+// 比较两个高精度数的大小
+int compare(BigInt a, BigInt b) {
+    if(a.len != b.len) return a.len > b.len ? 1 : -1;
+    for(int i = a.len - 1; i >= 0; i--) {
+        if(a.d[i] != b.d[i]) return a.d[i] > b.d[i] ? 1 : -1;
+    }
+    return 0;
+}
+
+// 高精度减法
+BigInt sub(BigInt a, BigInt b) {
+    BigInt c;
+    for(int i = 0; i < a.len; i++) {
+        c.d[i] += a.d[i] - b.d[i];
+        if(c.d[i] < 0) {
+            c.d[i] += 10;
+            c.d[i+1]--;
+        }
+    }
+    c.len = a.len;
+    while(c.len > 1 && c.d[c.len-1] == 0) c.len--;
+    return c;
+}
+
+// 高精度除法 (a/b，返回商和余数)
+pair<BigInt, BigInt> div(BigInt a, BigInt b) {
+    BigInt q, r;  // q是商，r是余数
+
+    if(compare(a, b) < 0) {  // 如果a<b，商为0，余数为a
+        q.len = 1;
+        q.d[0] = 0;
+        r = a;
+        return make_pair(q, r);
+    }
+
+    // 初始化余数r为a的前b.len位
+    r.len = b.len;
+    for(int i = a.len - 1; i >= a.len - b.len; i--) {
+        r.d[i - (a.len - b.len)] = a.d[i];
+    }
+
+    // 逐位计算商
+    for(int i = a.len - b.len; i >= 0; i--) {
+        // 把下一位加入余数
+        if(r.len > 1 || r.d[0] != 0) {
+            for(int j = r.len; j > 0; j--)
+                r.d[j] = r.d[j-1];
+            ______________________________
+        } else {
+            r.d[0] = a.d[i];
+            r.len = 1;
+        }
+
+        // 计算当前位的商
+        while(compare(r, b) >= 0) {
+            r = sub(r, b);
+            q.d[i]++;
+        }
+    }
+
+    // 确定商的长度
+    q.len = a.len - b.len + 1;
+    while(q.len > 1 && q.d[q.len-1] == 0) q.len--;
+
+    // 处理余数前导零
+    while(r.len > 1 && r.d[r.len-1] == 0) r.len--;
+
+    return make_pair(q, r);
+}
+\`\`\``,
             options: [
                 "r.d[0] = a.d[i]; r.len++;",
                 "r.d[i] = a.d[i]; r.len++;",
@@ -600,18 +936,20 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+把 a 的下一位加入余数时分两种情况：
+- **r 非零**（r.len > 1 || r.d[0] != 0）：先把 r 的所有数字整体右移一位腾出 d[0]，再把 a.d[i] 放进 d[0]，同时 r.len++（位数加一）——即选项 **A**；
+- **r 为零**（else 分支）：直接 r.d[0] = a.d[i]; r.len = 1，题目代码已给出。
 
-            - **A r.d[0] = a.d[i]; r.len++;**：正确答案。
-            - **B r.d[i] = a.d[i]; r.len++;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C r.d[i] = a.d[i]; r.len = 1;**：不是本题答案。
-            - **D r.d[0] = a.d[i]; r.len = 1;**：不是本题答案。
+- **B** 用下标 i 写 r.d[i]：i 是 a 中的位置，r 的存储位置应从 d[0] 开始，两者含义不同；
+- **C** 同样错在下标，且 r.len = 1 会丢掉 r 原有的高位数字；
+- **D** r.len = 1 在 r 非零时直接抹掉高位数字——那是 else（r==0）分支才该做的事。
 
-            **考点：** 高精度
-            `,
+**考点：** 高精度除法、逐位处理
+        `,
             tags: [
                 "客观题",
                 "单选题",
