@@ -87,3 +87,37 @@ export const mapCatchErrorMessage = (error) => {
     }
     return `出错了：${message}`;
 };
+
+/** 窄屏用底部抽屉；与 Tailwind `md`（768px）对齐。 */
+export const AI_CHAT_SHEET_BREAKPOINT = 768;
+export const AI_CHAT_SHEET_DEFAULT_RATIO = 0.62;
+export const AI_CHAT_SHEET_EXPANDED_RATIO = 0.92;
+/** 相对默认高度再往下拖这么多像素 → 关闭 */
+export const AI_CHAT_SHEET_CLOSE_DRAG_PX = 96;
+
+export const sheetHeightPx = (viewportHeight, expanded = false) => {
+    const vh = Number(viewportHeight);
+    if (!Number.isFinite(vh) || vh <= 0) return 0;
+    const ratio = expanded ? AI_CHAT_SHEET_EXPANDED_RATIO : AI_CHAT_SHEET_DEFAULT_RATIO;
+    return Math.round(Math.min(vh, Math.max(200, vh * ratio)));
+};
+
+/** 松手后：过矮则关闭，否则吸附到默认或展开。 */
+export const resolveSheetDragEnd = (heightPx, viewportHeight) => {
+    const defaultH = sheetHeightPx(viewportHeight, false);
+    const expandedH = sheetHeightPx(viewportHeight, true);
+    if (heightPx < defaultH - AI_CHAT_SHEET_CLOSE_DRAG_PX) {
+        return { action: 'close' };
+    }
+    const mid = (defaultH + expandedH) / 2;
+    return { action: 'snap', expanded: heightPx >= mid };
+};
+
+/** fixed 抽屉贴在 visualViewport 底边，键盘弹出时输入区仍可见。 */
+export const sheetBottomOffsetPx = (windowInnerHeight, visualViewportHeight, visualViewportOffsetTop = 0) => {
+    const inner = Number(windowInnerHeight);
+    const vvH = Number(visualViewportHeight);
+    const vvTop = Number(visualViewportOffsetTop) || 0;
+    if (!Number.isFinite(inner) || !Number.isFinite(vvH)) return 0;
+    return Math.max(0, Math.round(inner - vvH - vvTop));
+};
