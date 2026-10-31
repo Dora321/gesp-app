@@ -829,8 +829,168 @@ export const l8ProgrammingByPaper = {
 因此，答案可直接化简为 \`P * (2 * (n - 1)) % MOD\`。参考代码采用的前后缀积方案是无需依赖这一特定化简的普适算法结构，二者结果完全等价。`, tags: ['编程题', '树计数', '排列'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const int N=100000+5,MOD=1000000000; int deg[N],fac[N],pre[N],suf[N]; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n; fac[0]=1; for(int i=1;i<=n;i++) fac[i]=1LL*fac[i-1]*i%MOD; for(int i=1,u,v;i<n;i++){cin>>u>>v; deg[u]++; deg[v]++;} pre[0]=1; for(int i=1;i<=n;i++) pre[i]=1LL*pre[i-1]*fac[deg[i]-1]%MOD; suf[n+1]=1; for(int i=n;i>=1;i--) suf[i]=1LL*suf[i+1]*fac[deg[i]-1]%MOD; long long ans=0; for(int i=1;i<=n;i++) ans=(ans+1LL*pre[i-1]*fac[deg[i]]%MOD*suf[i+1])%MOD; cout<<ans<<"\\n"; return 0;}' }
   ],
   '2025-09-l8': [
-    { type: 'programming', id: 26, score: 25, title: '最短距离', problemNumber: '2025-09-l8-Q26', description: '构造一张完全图，边权只由两点编号是否互质决定：互质权 p，否则权 q。给出多组询问，求两点最短距离。', inputDescription: '第一行三个正整数 n、p、q，其中 n 为询问组数。接下来 n 行每行两个正整数 a、b。', outputDescription: '输出 n 行。', samples: [{ input: '4 4 3\n1 2\n2 3\n4 2\n3 5', output: '4\n4\n3\n4' }, { input: '5 2 6\n1 2\n2 3\n4 2\n3 5\n6 6', output: '2\n2\n4\n2\n0' }], explanation: '最优路径最多只需两条边：直接连边，或经中转点（尤其是 1 号点）中转。', tags: ['编程题', '图论', '最短路'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,p,q;cin>>n>>p>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; int gcd2(int a,int b){return b?gcd2(b,a%b):a;} int main(){ios::sync_with_stdio(false);cin.tie(nullptr); int n,p,q;cin>>n>>p>>q; while(n--){int a,b;cin>>a>>b; int ans; if(a==b) ans=0; else if(a==1||b==1) ans=p; else {ans=min(2*p,2*q); if(gcd2(a,b)==1) ans=min(ans,p); else ans=min(ans,q);} cout<<ans<<"\\n";} return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '最小生成树', problemNumber: '2025-09-l8-Q27', description: '给定一个连通无向带权图。对于每条边，删除它之后分别求剩余图的最小生成树权值和；若最小生成树不存在则输出 -1。', inputDescription: '第一行两个正整数 n、m。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出 m 行。', samples: [{ input: '5 5\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '14\n15\n-1\n-1\n10' }, { input: '6 10\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '15\n16\n17\n-1\n15\n17\n18\n15\n15\n15' }], explanation: '先求原图 MST。非树边被删除不影响答案；树边被删除时，需要找到穿过该割的最小替换边。', tags: ['编程题', '最小生成树', 'Kruskal'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct DSU {\n    vector<int> f;\n    explicit DSU(int n) : f(n + 1) { for (int i = 0; i <= n; ++i) f[i] = i; }\n    int find(int x) { return f[x] == x ? x : f[x] = find(f[x]); }\n    bool merge(int a, int b) {\n        a = find(a); b = find(b);\n        if (a == b) return false;\n        f[a] = b;\n        return true;\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<array<long long, 3>> e(m);\n    for (int i = 0; i < m; ++i) cin >> e[i][0] >> e[i][1] >> e[i][2];\n\n    // 直接对每条被删边重跑一次 Kruskal（数据规模允许）\n    vector<int> order(m);\n    iota(order.begin(), order.end(), 0);\n    sort(order.begin(), order.end(), [&](int a, int b) { return e[a][2] < e[b][2]; });\n\n    for (int skip = 0; skip < m; ++skip) {\n        DSU dsu(n);\n        long long total = 0;\n        int used = 0;\n        for (int idx : order) {\n            if (idx == skip) continue;\n            if (dsu.merge((int)e[idx][0], (int)e[idx][1])) {\n                total += e[idx][2];\n                if (++used == n - 1) break;\n            }\n        }\n        cout << (used == n - 1 ? total : -1) << '\\n';\n    }\n    return 0;\n}" }
+    { type: 'programming', id: 26, score: 25, title: '最短距离', problemNumber: '2025-09-l8-Q26', description: '构造一张完全图，边权只由两点编号是否互质决定：互质权 p，否则权 q。给出多组询问，求两点最短距离。', inputDescription: '第一行三个正整数 n、p、q，其中 n 为询问组数。接下来 n 行每行两个正整数 a、b。', outputDescription: '输出 n 行。', samples: [{ input: '4 4 3\n1 2\n2 3\n4 2\n3 5', output: '4\n4\n3\n4' }, { input: '5 2 6\n1 2\n2 3\n4 2\n3 5\n6 6', output: '2\n2\n4\n2\n0' }], explanation: `**解析：**
+
+### 1. 题意概述
+在无向图中，任意两个不同的正整数节点之间按是否互质连边：
+- 若两数互质（即 \`gcd(u, v) == 1\`），两点间存在一条权值为 \`p\` 的边；
+- 若两数不互质（即 \`gcd(u, v) > 1\`），两点间存在一条权值为 \`q\` 的边。
+
+现给出 \`n\` 次询问，每次给出起点 \`a\` 和终点 \`b\`，要求计算从 \`a\` 到 \`b\` 的最短路径长度。
+
+---
+
+### 2. 核心思路与性质分析
+求解两点间的最短距离，可以从步数（边数）的角度进行分类讨论：
+
+1. **同一点（\`a == b\`）**：
+   起点与终点相同，不需要走任何边，最短距离为 \`0\`。
+
+2. **包含节点 1（\`a == 1\` 或 \`b == 1\`）**：
+   因为正整数 \`1\` 与任意大于 \`1\` 的整数均互质（\`gcd(1, x) == 1\`），所以节点 \`1\` 与其他点之间仅存在权值为 \`p\` 的边，不存在权值为 \`q\` 的边。因此从 \`1\` 出发的第一步至少耗费 \`p\`，直接沿直达边移动即为最优解，最短距离为 \`p\`。
+
+3. **一般情况（\`a != b\` 且 \`a, b > 1\`）**：
+   两个大于 \`1\` 的不同节点之间，最优路径至多只需经过 2 条边：
+   - **走 1 步（直达）**：
+     - 若 \`gcd(a, b) == 1\`，存在互质边，代价为 \`p\`；
+     - 若 \`gcd(a, b) > 1\`，存在非互质边，代价为 \`q\`。
+   - **走 2 步（中转）**：
+     - **经由 1 号点中转（\`a -> 1 -> b\`）**：因为 \`1\` 与任意数互质，两条边均为互质边，总代价为 \`p + p = 2*p\`；
+     - **经由公倍数中转（\`a -> (a*b) -> b\`）**：公倍数与 \`a\` 和 \`b\` 均不互质，两条边均为非互质边，总代价为 \`q + q = 2*q\`；
+     - 一条 \`p\` 边加一条 \`q\` 边的代价是 \`p+q\`。令 \`t = min(p, q)\`，则 \`p+q >= t+t = min(2*p, 2*q)\`，混合中转不会比两步都走 \`p\` 或两步都走 \`q\` 更短。
+   - **走 3 步及以上**：
+     每条边权只能是 \`p\` 或 \`q\`。当 \`p\`、\`q\` 都为正时，3 步及以上至少是 \`3*min(p, q)\`，大于 \`min(2*p, 2*q)\`，不会更优。
+
+因此，当 \`a != b\` 且 \`a, b > 1\` 时：
+先将两步中转的最小值 \`min(2*p, 2*q)\` 作为基础候选答案；再求出 \`gcd(a, b)\`：若互质则尝试与直达边 \`p\` 取最小值；若不互质则尝试与直达边 \`q\` 取最小值。
+
+---
+
+### 3. 完整算法步骤
+1. **输入处理**：读入询问次数 \`n\` 以及两种边的权值 \`p\` 和 \`q\`。
+2. **多组询问处理**：循环 \`n\` 次，每次读入起点 \`a\` 和终点 \`b\`：
+   - 第一层判断：若 \`a == b\`，最短距离为 \`0\`；
+   - 第二层判断：若 \`a == 1\` 或 \`b == 1\`，最短距离固定为 \`p\`；
+   - 第三层判断（一般情况）：
+     - 初始化候选答案为两步中转代价：\`ans = min(2*p, 2*q)\`；
+     - 调用欧几里得算法计算 \`gcd(a, b)\`；
+     - 若 \`gcd(a, b) == 1\`（互质），则可走权值为 \`p\` 的直达边，更新 \`ans = min(ans, p)\`；
+     - 若 \`gcd(a, b) > 1\`（不互质），则可走权值为 \`q\` 的直达边，更新 \`ans = min(ans, q)\`；
+   - 输出当前询问计算得到的 \`ans\` 并换行。
+
+---
+
+### 4. 样例走查
+
+#### 样例 1 走查（\`n = 4, p = 4, q = 3\`）
+- **第 1 组询问：\`1 2\`**
+  满足 \`a == 1\`，直达边权为 \`p\`，输出 \`4\`。
+- **第 2 组询问：\`2 3\`**
+  \`a, b > 1\`，中转基础代价为 \`min(2*4, 2*3) = min(8, 6) = 6\`。计算 \`gcd(2, 3) = 1\`（两数互质），可直达，直达代价为 \`p = 4\`。取 \`min(6, 4) = 4\`，输出 \`4\`。
+- **第 3 组询问：\`4 2\`**
+  \`a, b > 1\`，中转基础代价为 \`min(8, 6) = 6\`。计算 \`gcd(4, 2) = 2 > 1\`（不互质），直达代价为 \`q = 3\`。取 \`min(6, 3) = 3\`，输出 \`3\`。
+- **第 4 组询问：\`3 5\`**
+  \`a, b > 1\`，中转基础代价为 \`6\`。计算 \`gcd(3, 5) = 1\`（互质），直达代价为 \`p = 4\`。取 \`min(6, 4) = 4\`，输出 \`4\`。
+- 最终输出为：\`4\`、\`4\`、\`3\`、\`4\`，与样例完全一致。
+
+#### 样例 2 走查（\`n = 5, p = 2, q = 6\`）
+- **第 1 组询问：\`1 2\`**：\`a == 1\`，输出 \`p = 2\`。
+- **第 2 组询问：\`2 3\`**：中转基础代价为 \`min(2*2, 2*6) = 4\`；\`gcd(2, 3) = 1\`，直达代价为 \`p = 2\`，取 \`min(4, 2) = 2\`，输出 \`2\`。
+- **第 3 组询问：\`4 2\`**：中转基础代价为 \`min(4, 12) = 4\`；\`gcd(4, 2) = 2 > 1\`，直达代价为 \`q = 6\`。此时直达代价 \`6\` 大于经 1 号点中转的代价（\`4 -> 1 -> 2\` 耗费 \`2 + 2 = 4\`），取 \`min(4, 6) = 4\`，输出 \`4\`。
+- **第 4 组询问：\`3 5\`**：中转代价为 \`4\`；\`gcd(3, 5) = 1\`，直达代价为 \`2\`，取 \`min(4, 2) = 2\`，输出 \`2\`。
+- **第 5 组询问：\`6 6\`**：\`a == b\`，距离为 \`0\`，输出 \`0\`。
+- 最终输出为：\`2\`、\`2\`、\`4\`、\`2\`、\`0\`，与样例完全一致。
+
+---
+
+### 5. 复杂度分析
+- **时间复杂度**：对于每组询问，主要耗时在辗转相除法计算一次最大公约数 \`gcd(a, b)\`，单次复杂度为 \`O(log(min(a, b)))\`。总时间复杂度为 \`O(n * log(max(a, b)))\`。
+- **空间复杂度**：仅需常数级别的局部变量保存状态，空间复杂度为 \`O(1)\`。`, tags: ['编程题', '图论', '最短路'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,p,q;cin>>n>>p>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; int gcd2(int a,int b){return b?gcd2(b,a%b):a;} int main(){ios::sync_with_stdio(false);cin.tie(nullptr); int n,p,q;cin>>n>>p>>q; while(n--){int a,b;cin>>a>>b; int ans; if(a==b) ans=0; else if(a==1||b==1) ans=p; else {ans=min(2*p,2*q); if(gcd2(a,b)==1) ans=min(ans,p); else ans=min(ans,q);} cout<<ans<<"\\n";} return 0;}' },
+    { type: 'programming', id: 27, score: 25, title: '最小生成树', problemNumber: '2025-09-l8-Q27', description: '给定一个连通无向带权图。对于每条边，删除它之后分别求剩余图的最小生成树权值和；若最小生成树不存在则输出 -1。', inputDescription: '第一行两个正整数 n、m。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出 m 行。', samples: [{ input: '5 5\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '14\n15\n-1\n-1\n10' }, { input: '6 10\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '15\n16\n17\n-1\n15\n17\n18\n15\n15\n15' }], explanation: `**解析：**
+
+### 题目大意
+给定一个包含 \`n\` 个顶点、\`m\` 条带权无向边的图。要求依次求解 \`m\` 次独立询问：若将输入的第 \`i\` 条边（\`0 <= i < m\`）从图中删除，剩余的边能否使所有顶点连通并构成一棵生成树？如果能，输出该生成树的最小边权之和；若图不再连通，输出 \`-1\`。
+
+### 算法思路与完整流程
+1. **算法选型（Kruskal 算法与并查集）：**
+   求无向图的最小生成树（MST），常用基于贪心思想的 Kruskal 算法配合并查集（DSU）：
+   - 将所有备选边按权值从小到大排序；
+   - 依次扫描排好序的边，利用并查集查询该边的两个端点是否属于同一连通块；
+   - 若未连通，则调用并查集的合并操作将两块合并，将该边边权累加进总权重，并将已选边数计数器 \`used\` 加 1；
+   - 若已连通，则跳过该边以避免成环；
+   - 当加入的边数达到 \`n - 1\` 时，所有顶点连通，最小生成树构建完成。若遍历完剩余的所有边后 \`used\` 仍小于 \`n - 1\`，说明图不连通。
+
+2. **完整算法步骤：**
+   - **预排序所有边：**
+     由于题目需要分别求删除每条边后的 MST，多次对边排序会浪费时间。我们可以预先建立边索引数组 \`order = [0, 1, ..., m - 1]\`，仅按边权对 \`order\` 进行一次升序排序，时间复杂度为 \`O(m log m)\`。
+   - **枚举被删除的边（\`skip\` 从 0 到 \`m - 1\`）：**
+     针对每一次删除操作：
+     1. 重新初始化一个大小为 \`n\` 的并查集（每个顶点的父节点设为自身），重置总权重 \`total = 0\`，计数器 \`used = 0\`；
+     2. 按照预排好的升序数组 \`order\` 依次遍历边编号 \`idx\`：
+        - 若 \`idx == skip\`，说明该边已被删除，直接跳过；
+        - 若当前边的两端点在并查集中未连通，执行合并，边权加入 \`total\`，且 \`used\` 加 1；
+        - 当 \`used == n - 1\` 时提前结束遍历（贪心剪枝）；
+     3. 遍历结束后，检查 \`used == n - 1\`：若满足则输出 \`total\`，否则输出 \`-1\`。
+
+---
+
+### 样例走查
+以样例 1 为例：\`n = 5\` 个顶点，\`m = 5\` 条边。
+输入的 5 条边（下标 0 到 4）如下：
+- 边 0: \`(1, 2)\`，权值 4
+- 边 1: \`(2, 3)\`，权值 3
+- 边 2: \`(3, 4)\`，权值 1
+- 边 3: \`(2, 5)\`，权值 2
+- 边 4: \`(3, 1)\`，权值 8
+
+按权值从小到大排序后的边编号顺序为：
+边 2 (权值 1) -> 边 3 (权值 2) -> 边 1 (权值 3) -> 边 0 (权值 4) -> 边 4 (权值 8)。
+要连接 5 个顶点，必须选出恰好 \`5 - 1 = 4\` 条无环边。
+
+依次走查删除各边的情况：
+
+1. **删除边 0（权值 4）：**
+   - 考虑边 2 (3-4, 权值 1)：连通 3 和 4，\`used = 1\`，\`total = 1\`；
+   - 考虑边 3 (2-5, 权值 2)：连通 2 和 5，\`used = 2\`，\`total = 1 + 2 = 3\`；
+   - 考虑边 1 (2-3, 权值 3)：连通 \`{2, 5}\` 与 \`{3, 4}\`，\`used = 3\`，\`total = 3 + 3 = 6\`；
+   - 边 0 被跳过；
+   - 考虑边 4 (3-1, 权值 8)：连通 3 和 1，将顶点 1 并入，\`used = 4\`，\`total = 6 + 8 = 14\`；
+   - 已选满 4 条边，输出 \`14\`。
+
+2. **删除边 1（权值 3）：**
+   - 考虑边 2 (3-4, 权值 1)：\`used = 1\`，\`total = 1\`；
+   - 考虑边 3 (2-5, 权值 2)：\`used = 2\`，\`total = 3\`；
+   - 边 1 被跳过；
+   - 考虑边 0 (1-2, 权值 4)：连通 1 和 2，\`used = 3\`，\`total = 3 + 4 = 7\`；
+   - 考虑边 4 (3-1, 权值 8)：连通 3 和 1，使全部点连通，\`used = 4\`，\`total = 7 + 8 = 15\`；
+   - 已选满 4 条边，输出 \`15\`。
+
+3. **删除边 2（权值 1）：**
+   - 原图中与顶点 4 相连的只有边 2（度数为 1）。
+   - 删除边 2 后，顶点 4 变为孤立点，无论如何选取剩余边，顶点 4 都无法与其它点连通，最终 \`used < 4\`，输出 \`-1\`。
+
+4. **删除边 3（权值 2）：**
+   - 顶点 5 仅有边 3 与外部相连。
+   - 删除边 3 后，顶点 5 成为孤立点，图不连通，最终 \`used < 4\`，输出 \`-1\`。
+
+5. **删除边 4（权值 8）：**
+   - 考虑边 2 (3-4, 权值 1)：\`used = 1\`，\`total = 1\`；
+   - 考虑边 3 (2-5, 权值 2)：\`used = 2\`，\`total = 3\`；
+   - 考虑边 1 (2-3, 权值 3)：\`used = 3\`，\`total = 6\`；
+   - 考虑边 0 (1-2, 权值 4)：连通 1 和 2，\`used = 4\`，\`total = 6 + 4 = 10\`；
+   - 已选满 4 条边，提前结束，输出 \`10\`。
+
+输出结果依次为：\`14\`、\`15\`、\`-1\`、\`-1\`、\`10\`，与样例完全吻合。
+
+---
+
+**易错提醒：**
+- **连通性检验：** 删去一条边后，图可能被割裂成多个连通块。绝不能直接累加满足条件的边权后输出，必须严格依据 \`used == n - 1\` 确认是否真正生成了连通树，不满足时必须输出 \`-1\`。
+- **并查集重置：** 每次枚举新的被删边 \`skip\` 时，并查集数组必须彻底重新初始化，不可沿用上次合并后的状态。
+- **数值溢出：** 边权累加和可能超过 32 位整型（\`int\`）的最大范围，累计变量 \`total\` 必须使用 \`long long\` 避免溢出。
+
+**知识延伸：**
+- 数据规模较大时，对每条被删边各跑一次 Kruskal，复杂度约为 \`O(m*m*alpha(n))\`，可能超时。更快的做法是：先求出原图的一棵最小生成树，删非树边不改变权值和；删树边时树分成两块，再在非树边里找跨越这个割的最小边替换，可用树链剖分或树上倍增把单次询问降到对数级。`, tags: ['编程题', '最小生成树', 'Kruskal'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct DSU {\n    vector<int> f;\n    explicit DSU(int n) : f(n + 1) { for (int i = 0; i <= n; ++i) f[i] = i; }\n    int find(int x) { return f[x] == x ? x : f[x] = find(f[x]); }\n    bool merge(int a, int b) {\n        a = find(a); b = find(b);\n        if (a == b) return false;\n        f[a] = b;\n        return true;\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<array<long long, 3>> e(m);\n    for (int i = 0; i < m; ++i) cin >> e[i][0] >> e[i][1] >> e[i][2];\n\n    // 直接对每条被删边重跑一次 Kruskal（数据规模允许）\n    vector<int> order(m);\n    iota(order.begin(), order.end(), 0);\n    sort(order.begin(), order.end(), [&](int a, int b) { return e[a][2] < e[b][2]; });\n\n    for (int skip = 0; skip < m; ++skip) {\n        DSU dsu(n);\n        long long total = 0;\n        int used = 0;\n        for (int idx : order) {\n            if (idx == skip) continue;\n            if (dsu.merge((int)e[idx][0], (int)e[idx][1])) {\n                total += e[idx][2];\n                if (++used == n - 1) break;\n            }\n        }\n        cout << (used == n - 1 ? total : -1) << '\\n';\n    }\n    return 0;\n}" }
   ],
   '2025-12-l8': [
     { type: 'programming', id: 26, score: 25, title: '猫和老鼠', problemNumber: '2025-12-l8-Q26', description: '庄园是一张带权无向连通图，猫从结点 a 出发，老鼠洞在结点 b。若某结点到老鼠洞的最短路长度严格小于猫窝到老鼠洞的最短路长度，则老鼠可安全取得该结点奶酪。求安全结点奶酪总价值。', inputDescription: '第一行两个正整数 n、m。第二行两个正整数 a、b。第三行 n 个正整数 c_i。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出一个整数。', samples: [{ input: '5 5\n1 2\n1 2 4 8 16\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '22' }, { input: '6 10\n3 4\n1 1 1 1 1 1\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '3' }], explanation: '从老鼠洞出发做最短路，若某点到洞的最短时间小于猫窝到洞的最短时间，则该点安全。', tags: ['编程题', '最短路', '图论'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,a,b;cin>>n>>m>>a>>b; vector<int> c(n+1); for(int i=1;i<=n;i++) cin>>c[i]; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[b]=0; pq.push({0,b}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} long long ans=0; for(int i=1;i<=n;i++) if(d[i]<d[a]) ans+=c[i]; cout<<ans<<"\\n"; return 0;}' },
