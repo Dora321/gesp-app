@@ -893,7 +893,7 @@ const AIChatWidget = ({ onClose }) => {
                 <button
                     type="button"
                     className="mw-chat-sheet-backdrop fixed inset-0 z-[99] border-0 bg-slate-900/45 p-0 cursor-default"
-                    aria-label="关闭 AI 问答助手"
+                    aria-label="点击遮罩关闭 AI 问答助手"
                     onClick={() => onClose?.()}
                 />
                 {panel}
