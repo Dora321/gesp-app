@@ -1,7 +1,11 @@
 {
   "paperId": "2025-06-l5",
   "executedAt": "2026-10-28",
-  "reviewedBy": "本站校订",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-06-l5"
+  },
   "source": "官方真题PDF逐卷复核（渲染200/300dpi + 程序化答案提取）",
   "answerTable": {
     "single": "CCDACDDBCDADADA",
@@ -21,8 +25,153 @@
       "issue": "审计低分：官方文本层J2区域串入相邻题代码片段（r.d[0]），探针匹配失败",
       "fix": "定性为假阴性，无需修改——渲染p.10确认官方J2题面（gcd/lcm）与题库Q17语义一致，答案√一致",
       "evidence": "官方判断答案表√√××√√√××√ 题库10/10对；单选15/15对；J1-J10与Q16-Q25逐位对齐"
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 4,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q4 explanation 升级；答案未改"
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q6 explanation 升级；答案未改"
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q9 explanation 升级；答案未改"
+    },
+    {
+      "id": 10,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q10 explanation 升级；答案未改"
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q12 explanation 升级；答案未改"
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "summary": "单选15/15对、判断10/10对；Q12补代码块+选项对齐官方，Q17定性假阴性",
-  "lastReviewedAt": "2026-10-28"
+  "lastReviewedAt": "2026-10-28",
+  "reviewedAt": "2026-10-31"
 }
