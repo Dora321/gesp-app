@@ -1,10 +1,10 @@
 {
   "paperId": "2024-12-l6",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-31",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-12-l6"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
@@ -28,12 +28,18 @@
       ],
       "method": [
         "原卷对照（页面渲染人工查看）",
-        "程序执行"
+        "程序执行",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题面缺失 MyClass/NULL 空指针代码（原卷为图片，共 16 行）；录入时该代码被整段串入了选项 A 文本，并夹带行号残留「1 2 3 … 16」，原卷选项 A 仅为「NULL 在 C++ 中无法用于指针初始化，应使用 nullptr。」。解析为占位模板。官方答案页 p.1 题号 3 对应 C，与所录答案一致。",
       "fix": "按原卷 pp.1-2 逐行转写代码（保持 2 空格缩进与字符串字面量），以 fenced cpp 块回填题面；选项 A 恢复为原卷原文；移除 sourceIntegrity/integrityNote；解析重写为逐选项理由。",
       "evidence": "g++ 编译运行转写代码：实际输出 Display function called! 且正常退出——因 display() 非虚函数且不访问成员变量，空指针调用在多数实现中可执行，但按 C++ 标准属未定义行为，官方答案 C「存在空指针访问错误」在概念层面成立；选项 D「没有输出任何内容」被运行结果直接否定。不构成答案冲突。tmp/verify/2024-l6/q3_nullptr.cpp",
-      "resolved": true
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "note": "Q3 explanation 升级；答案未改"
     },
     {
       "id": 4,
@@ -66,6 +72,38 @@
       "fix": "按原卷 p.7 逐行转写 preorder 代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析重写为前序遍历定义（根→左→右）与代码的逐步对应。",
       "evidence": "独立推导：代码先输出当前结点（根），再递归左子树、右子树，root==NULL 时返回，恰为前序遍历定义，且递归+打印与题干描述一致，判断「正确」成立，与所录答案一致。",
       "resolved": true
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
