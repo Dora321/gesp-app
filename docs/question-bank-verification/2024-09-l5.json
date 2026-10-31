@@ -1,10 +1,10 @@
 {
  "paperId": "2024-09-l5",
- "reviewedAt": "2026-10-26",
+ "reviewedAt": "2026-10-31",
  "reviewedBy": {
   "type": "AI",
-  "executor": "WorkBuddy 子代理",
-  "session": "codex/question-bank-verification"
+  "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+  "session": "verify/explanations-2024-09-l5"
  },
  "source": {
   "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
@@ -40,13 +40,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "题面与选项按官方文本层/渲染图逐字比对",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "题面与四个选项与官方一致；答案 C（相同数目整数，数组比链表内存少，故 C 说「数组更多」错误）"
+   "note": "题面与四个选项与官方一致；答案 C（相同数目整数，数组比链表内存少，故 C 说「数组更多」错误）",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 2,
@@ -60,13 +67,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "题面与选项按官方文本层/渲染图逐字比对",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "题面与四个选项与官方一致；答案 D"
+   "note": "题面与四个选项与官方一致；答案 D",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 3,
@@ -80,13 +94,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "题面与选项按官方文本层/渲染图逐字比对",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "题面与选项与官方一致；答案 C"
+   "note": "题面与选项与官方一致；答案 C",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 4,
@@ -180,13 +201,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "题面与选项按官方文本层/渲染图逐字比对",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "题面与四个选项（O(n)/O(n²)/O(log n)/O(n log n)）与官方一致；答案为 A（两次递归调用 n/2，T(n)=2T(n/2)+O(1)=O(n)）。注：audit-pdf-stem-diff 因题面含 LaTeX 记为未命中，属该工具的误报，已人工核对。"
+   "note": "题面与四个选项（O(n)/O(n²)/O(log n)/O(n log n)）与官方一致；答案为 A（两次递归调用 n/2，T(n)=2T(n/2)+O(1)=O(n)）。注：audit-pdf-stem-diff 因题面含 LaTeX 记为未命中，属该工具的误报，已人工核对。",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 9,
@@ -220,13 +248,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "题面与选项按官方文本层/渲染图逐字比对",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "题面与选项与官方一致；答案 B"
+   "note": "题面与选项与官方一致；答案 B",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 11,
@@ -260,13 +295,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "题面与选项按官方文本层/渲染图逐字比对",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "题面与选项与官方一致；答案 A"
+   "note": "题面与选项与官方一致；答案 A",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 13,
@@ -300,13 +342,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "按原卷 PDF 渲染读图逐字重录题面与选项",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "题库原题是「关于双向链表的说法」，与官方「高精度运算说法错误的是」无关；答案同为 C。已按官方四个选项重录。"
+   "note": "题库原题是「关于双向链表的说法」，与官方「高精度运算说法错误的是」无关；答案同为 C。已按官方四个选项重录。",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 15,
@@ -517,6 +566,38 @@
     "判断题答案表逐位核对"
    ],
    "note": "题面与官方一致；答案「错误」——sin(sin(x)) 是函数嵌套调用，不是递归"
+  },
+  {
+   "id": 26,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q26 explanation 升级；答案未改"
+  },
+  {
+   "id": 27,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q27 explanation 升级；答案未改"
   }
  ],
  "unresolved": [],
