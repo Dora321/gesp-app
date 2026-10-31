@@ -1,10 +1,10 @@
 {
   "paperId": "2025-09-l7",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-31",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-09-l7"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
@@ -18,6 +18,86 @@
   },
   "questions": [
     {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q5 explanation 升级；答案未改"
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q6 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
+    },
+    {
+      "id": 10,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q10 explanation 升级；答案未改"
+    },
+    {
       "id": 11,
       "dimensions": [
         "statement",
@@ -26,12 +106,18 @@
       ],
       "method": [
         "原卷对照（页面渲染人工查看）",
-        "程序执行"
+        "程序执行",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题面缺失程序代码（原卷为图片，pp.2-3 跨页，题干在 p.2 末行、代码在 p.3）。原卷代码 fib 仅含 n==0 终止分支，fib(6) 将对负数无限递归。",
       "fix": "按原卷转写 11 行代码回填题面；移除 sourceIntegrity/integrityNote。解析（无法正常结束）与原卷一致，保留。",
       "evidence": "g++ 编译运行转写代码，timeout 5 秒内未终止（无限递归），验证答案 D（无法正常结束）一致。tmp/verify/2025-09-l7/q11.cpp",
-      "resolved": true
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "note": "Q11 explanation 升级；答案未改"
     },
     {
       "id": 12,
@@ -44,12 +130,130 @@
       "method": [
         "原卷对照（页面渲染人工查看）",
         "程序执行",
-        "独立推导"
+        "独立推导",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题面缺失 rec_fib 代码（原卷为图片，p.3）。原录入 options（O(n²)/O(n)/O(n log n)/O(2ⁿ)）与原卷选项（A. O(φⁿ) φ=(√5+1)/2、B. O(2ⁿ)、C. O(n²)、D. O(n)）完全不符。关键陷阱：原卷代码第 7 行 return fib(n-1)+fib(n-2) 没有把结果写入 rec_fib[n]，记忆化失效，复杂度为 O(φⁿ) 而非 O(n)；原 explanation 结论「O(n)，每个 n 只算一次并存入 rec_fib」与代码矛盾（代码从未存入）。",
       "fix": "按原卷 p.3 转写 8 行代码回填题面；options 按原卷修复；移除 sourceIntegrity/integrityNote；explanation 重写为 O(φⁿ) 推导 + 调用次数实测 + 逐选项理由。answer 字段未改动。",
       "evidence": "g++ -O0 统计调用次数：n=20→21891、n=25→242785、n=30→2692537，每 5 层约 ×11.09 = φ⁵，与 φⁿ 同阶，确认正确答案为原卷选项 A（O(φⁿ)）。修复 options 后 answer=0（即 A）与原卷官方答案一致，无需改动 answer。tmp/verify/2025-09-l7/q12_calls.cpp",
-      "resolved": true
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "note": "Q12 explanation 升级；答案未改"
+    },
+    {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q13 explanation 升级；答案未改"
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q15 explanation 升级；答案未改"
+    },
+    {
+      "id": 16,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q16 explanation 升级；答案未改"
+    },
+    {
+      "id": 23,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q23 explanation 升级；答案未改"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [
