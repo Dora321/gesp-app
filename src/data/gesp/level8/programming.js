@@ -435,8 +435,205 @@ export const l8ProgrammingByPaper = {
 - **全排列与取模运算**：计算 \`(n - merged)!\` 连乘时，累乘变量必须使用 \`long long\` 类型，且每步都执行模 \`1000000007\` 操作，防止数值溢出。`, tags: ['编程题', '排列计数', '链与环'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1000000007;\n\nint find(vector<int> &f, int x) { return f[x] == x ? x : f[x] = find(f, f[x]); }\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    set<pair<int, int>> constraints;\n    for (int i = 0; i < m; ++i) {\n        int a, b;\n        cin >> a >> b;\n        constraints.insert({a, b});\n    }\n    // a 必须紧挨 b 前面：出度/入度都不能超过 1，且不能成环。\n    vector<int> out(n + 1, 0), in(n + 1, 0), f(n + 1);\n    for (int i = 1; i <= n; ++i) f[i] = i;\n    bool ok = true;\n    int merged = 0;\n    for (auto [a, b] : constraints) {\n        if (++out[a] > 1 || ++in[b] > 1) { ok = false; break; }\n        int ra = find(f, a), rb = find(f, b);\n        if (ra == rb) { ok = false; break; } // 成环\n        f[ra] = rb;\n        merged++;\n    }\n    if (!ok) { cout << 0 << '\\n'; return 0; }\n    // 合法时链和散点共 n - merged 个单元，任意排列\n    long long ans = 1;\n    for (long long i = 2; i <= n - merged; ++i) ans = ans * i % MOD;\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2025-03-l8': [
-    { type: 'programming', id: 26, score: 25, title: '上学', problemNumber: '2025-03-l8-Q26', description: 'C 城是一张无向带权连通图，学校位于固定结点 s。给出 q 位同学家的结点位置，每位同学每秒走 1 米，问每位同学从家到学校的最短时间。', inputDescription: '第一行四个正整数 n、m、s、q。接下来 m 行每行三个正整数 u、v、l。接下来 q 行每行一个正整数 p。', outputDescription: '输出 q 行。', samples: [{ input: '5 5 3 3\n1 2 3\n2 3 2\n3 4 1\n4 5 3\n1 4 2\n5\n1\n4', output: '4\n3\n1' }], explanation: '从学校结点 s 出发做一次 Dijkstra，随后每个询问直接输出对应结点的最短路。', tags: ['编程题', '最短路', 'Dijkstra'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[s]=0; pq.push({0,s}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} while(q--){int p;cin>>p; cout<<d[p]<<"\\n";} return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '割裂', problemNumber: '2025-03-l8-Q27', description: '给定一棵树、k 个好点对和 1 个坏点对。删除某节点后，若所有好点对仍连通而坏点对不连通，则该节点可删除。求可删除节点数。', inputDescription: '第一行两个正整数 n、k。接下来 n-1 行树边；再接 k 行好点对；最后一行一个坏点对。', outputDescription: '输出一个正整数。', samples: [{ input: '6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6', output: '1' }], explanation: '对好点对路径做一类树上差分，对坏点对路径做另一类差分，后序汇总后统计满足 g[u]=0 且 h[u]>0 的节点。', tags: ['编程题', '树上差分', 'LCA'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // BFS 求以 root 为根的父指针，再回溯得到路径\n    auto pathBetween = [&](int a, int b) {\n        vector<int> par(n + 1, 0);\n        queue<int> q;\n        q.push(a);\n        par[a] = a;\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (!par[v]) { par[v] = u; q.push(v); }\n        }\n        vector<int> path;\n        for (int u = b; u != a; u = par[u]) path.push_back(u);\n        path.push_back(a);\n        return path;\n    };\n\n    // goodInner[v]：v 是某个好点对路径的中间节点（删掉会断开这对好点）\n    vector<bool> goodInner(n + 1, false);\n    for (int i = 0; i < k; ++i) {\n        int a, b;\n        cin >> a >> b;\n        auto path = pathBetween(a, b);\n        for (size_t j = 1; j + 1 < path.size(); ++j) goodInner[path[j]] = true;\n    }\n    int ba, bb;\n    cin >> ba >> bb;\n    auto badPath = pathBetween(ba, bb);\n    int ans = 0;\n    for (size_t j = 1; j + 1 < badPath.size(); ++j) {\n        if (!goodInner[badPath[j]]) ans++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
+    { type: 'programming', id: 26, score: 25, title: '上学', problemNumber: '2025-03-l8-Q26', description: 'C 城是一张无向带权连通图，学校位于固定结点 s。给出 q 位同学家的结点位置，每位同学每秒走 1 米，问每位同学从家到学校的最短时间。', inputDescription: '第一行四个正整数 n、m、s、q。接下来 m 行每行三个正整数 u、v、l。接下来 q 行每行一个正整数 p。', outputDescription: '输出 q 行。', samples: [{ input: '5 5 3 3\n1 2 3\n2 3 2\n3 4 1\n4 5 3\n1 4 2\n5\n1\n4', output: '4\n3\n1' }], explanation: `**解析：**
+
+本题属于经典的**单源最短路径（SSSP）**问题。
+
+题目给出一个包含 \`n\` 个结点、\`m\` 条边的无向带权图，所有边权均为非负整数。指定起点为 \`s\`（学校），随后有 \`q\` 次独立询问，每次询问从起点 \`s\` 到某个结点 \`p\` 的最短路长度。
+
+由于起点 \`s\` 在所有询问中是固定不变的，且边权非负，若对每个询问都重新搜索一次，会造成大量重复计算导致超时。因此最优解题策略为：
+1. **预处理**：以结点 \`s\` 为源点，运行一次堆优化的 **Dijkstra 算法**，预先计算出从 \`s\` 到图中所有结点的最短距离，保存在距离数组 \`d\` 中；
+2. **快速回答**：面对 \`q\` 次询问，直接在 \`O(1)\` 时间内输出对应结点的预计算距离 \`d[p]\` 即可。
+
+### 算法完整流程
+
+1. **图的存储**：
+   使用邻接表 \`vector<vector<pair<int, int>>> g(n + 1)\` 存储无向图。对于每条输入的无向边 \`(u, v, w)\`，同时将 \`(v, w)\` 加入 \`g[u]\`，将 \`(u, w)\` 加入 \`g[v]\`。
+
+2. **初始化**：
+   - 建立距离数组 \`d\`，长度为 \`n + 1\`，全部赋初值为极大值 \`INF\`（权值累加可能超出 32 位整型范围，需使用 \`long long\` 类型，设 \`INF = 4e18\`）。
+   - 将起点的最短距离置零：\`d[s] = 0\`。
+   - 建立小根堆（优先队列）\`priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<...>> pq\`，存储二元组 \`(当前距离, 结点编号)\`，并将 \`(0, s)\` 压入堆中。
+
+3. **Dijkstra 松弛过程**：
+   - 当小根堆不为空时，取出堆顶二元组 \`(du, u)\` 并弹出。
+   - **冗余检查**：若 \`du != d[u]\`，说明堆中该状态已被更优路径更新过，属于过期无效记录，直接 \`continue\` 跳过。
+   - **遍历邻居**：枚举 \`u\` 的所有出边 \`(v, w)\`，若通过当前结点 \`u\` 前往 \`v\` 的距离更短（即满足松弛条件 \`d[v] > du + w\`），则更新 \`d[v] = du + w\`，并将新状态 \`(d[v], v)\` 压入堆中。
+   - 重复上述过程，直到堆为空，此时 \`d\` 数组已存储从 \`s\` 到各点的最短距离。
+
+4. **回答询问**：
+   循环读取 \`q\` 次询问的目标结点编号 \`p\`，每次直接输出 \`d[p]\`。
+
+---
+
+**样例走查：**
+
+**输入数据：**
+结点数 \`n = 5\`，边数 \`m = 5\`，起点 \`s = 3\`，询问数 \`q = 3\`。
+无向边连接关系与边权：
+- \`1 - 2\`（权值 \`3\`）
+- \`2 - 3\`（权值 \`2\`）
+- \`3 - 4\`（权值 \`1\`）
+- \`4 - 5\`（权值 \`3\`）
+- \`1 - 4\`（权值 \`2\`）
+询问结点依次为：\`5\`、\`1\`、\`4\`。
+
+**算法执行全流程：**
+
+1. **初始化**：
+   \`d[3] = 0\`，其余结点 \`d[1] = d[2] = d[4] = d[5] = INF\`。
+   堆中元素：\`[(0, 3)]\`。
+
+2. **第 1 轮**：
+   弹出 \`(0, 3)\`，当前处理结点 \`3\`，\`d[3] = 0\`。
+   - 检查邻居 \`2\`（边权 \`2\`）：\`0 + 2 = 2 < d[2]\`，更新 \`d[2] = 2\`，压入 \`(2, 2)\`。
+   - 检查邻居 \`4\`（边权 \`1\`）：\`0 + 1 = 1 < d[4]\`，更新 \`d[4] = 1\`，压入 \`(1, 4)\`。
+   当前堆中元素（小根堆按距离从小到大排序）：\`[(1, 4), (2, 2)]\`。
+
+3. **第 2 轮**：
+   弹出堆顶 \`(1, 4)\`，当前处理结点 \`4\`，\`d[4] = 1\`。
+   - 检查邻居 \`3\`（边权 \`1\`）：\`1 + 1 = 2 >= d[3](0)\`，不更新。
+   - 检查邻居 \`5\`（边权 \`3\`）：\`1 + 3 = 4 < d[5]\`，更新 \`d[5] = 4\`，压入 \`(4, 5)\`。
+   - 检查邻居 \`1\`（边权 \`2\`）：\`1 + 2 = 3 < d[1]\`，更新 \`d[1] = 3\`，压入 \`(3, 1)\`。
+   当前堆中元素：\`[(2, 2), (3, 1), (4, 5)]\`。
+
+4. **第 3 轮**：
+   弹出堆顶 \`(2, 2)\`，当前处理结点 \`2\`，\`d[2] = 2\`。
+   - 检查邻居 \`1\`（边权 \`3\`）：\`2 + 3 = 5 >= d[1](3)\`，不更新。
+   - 检查邻居 \`3\`（边权 \`2\`）：\`2 + 2 = 4 >= d[3](0)\`，不更新。
+   当前堆中元素：\`[(3, 1), (4, 5)]\`。
+
+5. **第 4 轮**：
+   弹出堆顶 \`(3, 1)\`，当前处理结点 \`1\`，\`d[1] = 3\`。
+   - 检查邻居 \`2\`（边权 \`3\`）：\`3 + 3 = 6 >= d[2](2)\`，不更新。
+   - 检查邻居 \`4\`（边权 \`2\`）：\`3 + 2 = 5 >= d[4](1)\`，不更新。
+   当前堆中元素：\`[(4, 5)]\`。
+
+6. **第 5 轮**：
+   弹出堆顶 \`(4, 5)\`，当前处理结点 \`5\`，\`d[5] = 4\`。
+   - 检查邻居 \`4\`（边权 \`3\`）：\`4 + 3 = 7 >= d[4](1)\`，不更新。
+   堆为空，Dijkstra 算法结束。
+
+**最终最短路结果数组：**
+\`d[1] = 3\`，\`d[2] = 2\`，\`d[3] = 0\`，\`d[4] = 1\`，\`d[5] = 4\`。
+
+**响应询问：**
+- 询问 1：目标为结点 \`5\`，直接输出 \`d[5] = 4\`；
+- 询问 2：目标为结点 \`1\`，直接输出 \`d[1] = 3\`；
+- 询问 3：目标为结点 \`4\`，直接输出 \`d[4] = 1\`。
+输出结果与样例输出完全一致。
+
+---
+
+**易错提醒：**
+- **数据类型防溢出**：最短路径累加可能超出 32 位整型（\`int\`）的最大表示范围，距离数组 \`d\` 以及优先队列中存储的距离值需使用 \`long long\` 类型，且初始无穷大值 \`INF\` 应设为足够大的数（如 \`4e18\`）。
+- **无向图双向建边**：题目中的道路为双向连通，每读入一条边 \`(u, v, w)\` 时，必须同时在 \`g[u]\` 中加入 \`(v, w)\`，在 \`g[v]\` 中加入 \`(u, w)\`。
+- **堆优化的过期状态跳过**：同一个结点可能因多次松弛而多次入堆。当取出堆顶时，若满足 \`du != d[u]\`，说明该记录已被后续更短的路径取代，必须直接 \`continue\` 跳过，避免重复遍历邻边增加常数开销。
+- **避免多余计算**：所有询问的源点均为同一个结点 \`s\`，只需在读入全部图信息后预处理运行一次 Dijkstra 即可，切勿在每次询问时重复调用搜索。
+
+---
+
+**知识延伸：**
+- **复杂度分析**：堆优化的 Dijkstra 算法时间复杂度为 \`O((n + m) log n)\`，回答 \`q\` 次询问的耗时为 \`O(q)\`，总时间复杂度为 \`O((n + m) log n + q)\`，空间复杂度为 \`O(n + m)\`，能够高效应对较大规模的图与多询问场景。`, tags: ['编程题', '最短路', 'Dijkstra'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[s]=0; pq.push({0,s}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} while(q--){int p;cin>>p; cout<<d[p]<<"\\n";} return 0;}' },
+    { type: 'programming', id: 27, score: 25, title: '割裂', problemNumber: '2025-03-l8-Q27', description: '给定一棵树、k 个好点对和 1 个坏点对。删除某节点后，若所有好点对仍连通而坏点对不连通，则该节点可删除。求可删除节点数。', inputDescription: '第一行两个正整数 n、k。接下来 n-1 行树边；再接 k 行好点对；最后一行一个坏点对。', outputDescription: '输出一个正整数。', samples: [{ input: '6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6', output: '1' }], explanation: `**解析：**
+
+本题考查树上最近公共祖先（LCA）与树上点差分的综合应用。
+
+### 一、题目分析与转化
+在一棵树中，任意两个结点之间存在且仅存在一条简单路径。如果删去某一个结点 \`u\`：
+1. **坏点对必须断开**：说明结点 \`u\` 必须落在坏点对之间的简单路径上（包括端点本身，删去端点也视为不连通）。
+2. **好点对必须连通**：说明结点 \`u\` 不能落在任何一个好点对之间的简单路径上。
+
+因此，问题转化为：
+- 统计树上每个结点被坏点对路径覆盖的次数 \`bad[u]\`；
+- 统计树上每个结点被所有好点对路径覆盖的总次数 \`good[u]\`；
+- 满足条件的合法删点 \`u\` 必须同时满足：\`bad[u] > 0\` 且 \`good[u] == 0\`。最终求出满足条件的结点个数。
+
+---
+
+### 二、完整算法步骤
+
+1. **建树与预处理（DFS 遍历）**
+   - 建立无向图邻接表。以结点 \`1\` 为根结点，遍历整棵树，求出每个结点的深度 \`dep[u]\` 和父结点 \`par[u]\`。
+   - 为了应对大规模数据（\`n\` 较大时）防止递归爆栈，用显式栈做迭代 DFS，把结点按先序记入 \`order\`。逆序扫描时，子结点先于父结点。
+
+2. **倍增法预处理 LCA**
+   - 定义倍增数组 \`up[j][i]\`，表示结点 \`i\` 向上走 \`1<<j\` 步到达的祖先。
+   - 状态转移方程为：\`up[j][i] = up[j - 1][up[j - 1][i]]\`。
+   - 结合深度数组 \`dep\`，可在 \`O(log n)\` 的时间内查询任意两点的最近公共祖先 \`lca(u, v)\`。
+
+3. **树上点差分标记**
+   - 在树上对一条由 \`u\` 到 \`v\` 的路径进行点覆盖计数，属于经典的点差分问题。
+   - 设 \`l = lca(u, v)\`，其父结点为 \`fa = par[l]\`。
+   - 差分更新规则：
+     - \`d[u] += 1\`
+     - \`d[v] += 1\`
+     - \`d[l] -= 1\`
+     - 若 \`fa\` 存在（即 \`fa > 0\`），则 \`d[fa] -= 1\`。
+   - 分别对所有的好点对路径（累加在 \`good\` 差分数组）与坏点对路径（累加在 \`bad\` 差分数组）执行上述打标记操作。
+
+4. **自底向上累加差分（子树和求原值）**
+   - 按照 DFS 逆序（从叶子到根节点的顺序，即反向遍历 \`order\`），将子结点的差分值累加给父结点：
+     - \`good[par[u]] += good[u]\`
+     - \`bad[par[u]] += bad[u]\`
+   - 累加完成后，\`good[u]\` 和 \`bad[u]\` 即为结点 \`u\` 分别被好路径、坏路径覆盖的真实次数。
+
+5. **统计并输出答案**
+   - 遍历结点 \`1\` 到 \`n\`，判断若 \`bad[u] > 0\` 且 \`good[u] == 0\`，则将答案累加 \`1\`，最后输出统计结果。
+
+---
+
+### 三、样例走查
+
+**样例输入：**
+\`\`\`text
+6 2
+1 3
+1 5
+3 6
+3 2
+5 4
+5 4
+5 3
+2 6
+\`\`\`
+
+**1. 构树结构与深度：**
+以 \`1\` 为根，树的连接关系如下：
+- \`1\` 的子结点为 \`3\` 和 \`5\`
+- \`3\` 的子结点为 \`2\` 和 \`6\`
+- \`5\` 的子结点为 \`4\`
+各点深度分别为：\`dep[1] = 0\`，\`dep[3] = 1, dep[5] = 1\`，\`dep[2] = 2, dep[6] = 2, dep[4] = 2\`。
+
+**2. 路径覆盖分析：**
+- **好点对 1（5 与 4）：**
+  - 路径为 \`5 - 4\`，覆盖结点集合为 \`{5, 4}\`。
+- **好点对 2（5 与 3）：**
+  - \`lca(5, 3) = 1\`，路径为 \`5 - 1 - 3\`，覆盖结点集合为 \`{5, 1, 3}\`。
+- **好点对综合覆盖结果：**
+  - 结点 \`1\` 被覆盖 \`1\` 次（\`good[1] = 1\`）；
+  - 结点 \`3\` 被覆盖 \`1\` 次（\`good[3] = 1\`）；
+  - 结点 \`4\` 被覆盖 \`1\` 次（\`good[4] = 1\`）；
+  - 结点 \`5\` 被覆盖 \`2\` 次（\`good[5] = 2\`）；
+  - 结点 \`2, 6\` 未被覆盖（\`good[2] = 0, good[6] = 0\`）。
+- **坏点对（2 与 6）：**
+  - \`lca(2, 6) = 3\`，路径为 \`2 - 3 - 6\`，覆盖结点集合为 \`{2, 3, 6}\`。
+  - 即 \`bad[2] = 1, bad[3] = 1, bad[6] = 1\`，其余结点的 \`bad\` 值为 \`0\`。
+
+**3. 条件检验：**
+需要从坏点对路径 \`{2, 3, 6}\` 中选出 \`good == 0\` 的点：
+- **结点 2**：\`bad[2] = 1 > 0\` 且 \`good[2] = 0\`，满足条件（删掉点 2，坏点对切断，所有好点对依然连通）；
+- **结点 3**：\`bad[3] = 1 > 0\` 但 \`good[3] = 1 != 0\`，不满足条件（删掉点 3 会导致好点对 \`5 与 3\` 断开）；
+- **结点 6**：\`bad[6] = 1 > 0\` 且 \`good[6] = 0\`，满足条件（删掉点 6，坏点对切断，所有好点对依然连通）。
+
+因此，符合要求的结点为结点 \`2\` 和结点 \`6\`，共 \`2\` 个，输出 \`2\`。
+
+---
+
+### 四、易错提醒
+1. **点差分与边差分的区别**：本题删去的是树上的“点”，因此必须使用树上点差分公式（\`d[u]++, d[v]++, d[lca]--, d[par[lca]]--\`），千万不能漏减 \`par[lca]\`，否则祖先结点的差分前缀和会统计错误。
+2. **根节点祖先越界**：当 \`lca\` 为整棵树的根节点时，\`par[lca]\` 不存在（编号为 \`0\`），在执行 \`--d[par[lca]]\` 时必须加上 \`if (par[lca])\` 的越界防护判断。
+3. **递归栈溢出风险**：树的规模较大时，深层递归 DFS 极易导致运行时栈溢出（Segmentation Fault），建议使用循环配合栈的非递归方式进行树的遍历。`, tags: ['编程题', '树上差分', 'LCA'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // BFS 求以 root 为根的父指针，再回溯得到路径\n    auto pathBetween = [&](int a, int b) {\n        vector<int> par(n + 1, 0);\n        queue<int> q;\n        q.push(a);\n        par[a] = a;\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (!par[v]) { par[v] = u; q.push(v); }\n        }\n        vector<int> path;\n        for (int u = b; u != a; u = par[u]) path.push_back(u);\n        path.push_back(a);\n        return path;\n    };\n\n    // goodInner[v]：v 是某个好点对路径的中间节点（删掉会断开这对好点）\n    vector<bool> goodInner(n + 1, false);\n    for (int i = 0; i < k; ++i) {\n        int a, b;\n        cin >> a >> b;\n        auto path = pathBetween(a, b);\n        for (size_t j = 1; j + 1 < path.size(); ++j) goodInner[path[j]] = true;\n    }\n    int ba, bb;\n    cin >> ba >> bb;\n    auto badPath = pathBetween(ba, bb);\n    int ans = 0;\n    for (size_t j = 1; j + 1 < badPath.size(); ++j) {\n        if (!goodInner[badPath[j]]) ans++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2025-06-l8': [
     { type: 'programming', id: 26, score: 25, title: '树上旅行', problemNumber: '2025-06-l8-Q26', description: '给定一棵以 1 为根的有根树。正数操作表示向父亲走若干步，负数操作表示反复走向当前节点编号最小的儿子；若无法继续则停在原点。求每次旅行结束所在的节点。', inputDescription: '第一行两个正整数 n、q。第二行给出 2..n 号节点的父节点。接下来 q 组询问：先给起点 s 和序列长度 k，下一行给出 k 个非零整数表示操作。', outputDescription: '输出 q 行。', samples: [{ input: '5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1', output: '4\n1\n4\n2' }], explanation: '分别预处理向父亲跳和向最小儿子跳的倍增表，每个操作做按位跳跃即可。', tags: ['编程题', '倍增', '树上跳跃'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, q;\n    cin >> n >> q;\n    vector<int> par(n + 1, 0);\n    vector<vector<int>> children(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        cin >> par[i];\n        children[par[i]].push_back(i);\n    }\n    // 负数操作：反复走向编号最小的儿子，直到叶子\n    vector<int> minChild(n + 1, 0);\n    for (int i = 1; i <= n; ++i) {\n        if (!children[i].empty()) {\n            minChild[i] = *min_element(children[i].begin(), children[i].end());\n        }\n    }\n    while (q--) {\n        int s, k;\n        cin >> s >> k;\n        int cur = s;\n        for (int i = 0; i < k; ++i) {\n            long long op;\n            cin >> op;\n            if (op > 0) {\n                for (long long step = 0; step < op; ++step) {\n                    if (par[cur] == 0) break; // 已在根，停在原点\n                    cur = par[cur];\n                }\n            } else {\n                for (long long step = 0; step < -op; ++step) {\n                    if (minChild[cur] == 0) break; // 已是叶子\n                    cur = minChild[cur];\n                }\n            }\n        }\n        cout << cur << '\\n';\n    }\n    return 0;\n}" },
