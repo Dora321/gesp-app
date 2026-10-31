@@ -5,10 +5,10 @@
     "template": 0,
     "fabricated-verdict": 0,
     "short": 50,
-    "truncated": 3,
+    "truncated": 2,
     "contradictory": 0,
     "filler": 0,
-    "overlong": 1
+    "overlong": 2
   },
   "issues": {
     "template": [],
@@ -66,14 +66,14 @@
       "2026-03-l7:Q5"
     ],
     "truncated": [
-      "2024-03-l6:Q12",
       "2024-12-l5:Q7",
       "2026-06-l3:Q10"
     ],
     "contradictory": [],
     "filler": [],
     "overlong": [
-      "2023-12-l6:Q1"
+      "2023-09-l6:Q15",
+      "2024-03-l6:Q12"
     ]
   }
 }
