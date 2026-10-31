@@ -1,7 +1,11 @@
 {
   "paperId": "2026-06-l6",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": "AI收录时同步核验",
+  "reviewedAt": "2026-10-31",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2026-06-l6"
+  },
   "session": 14,
   "answerTable": {
     "content": {
@@ -17,5 +21,55 @@
     "programming": "条形蛋糕（切割DP，1≤n≤10³,p_i≤10⁵）、满二叉树（DFS判定，40%:n≤500全部n≤10⁵）"
   },
   "note": "Q9哈夫曼WPL=119、Q10 2n-1=63渲染确认",
-  "resolved": true
+  "resolved": true,
+  "questions": [
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
+    },
+    {
+      "id": 19,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q19 explanation 升级；答案未改"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    }
+  ]
 }
