@@ -176,8 +176,139 @@ export const l8ProgrammingByPaper = {
     }
   ],
   '2024-09-l8': [
-    { type: 'programming', id: 26, score: 25, title: '手套配对', problemNumber: '2024-09-l8-Q26', description: '有 n 对不同的手套，每对由左手和右手各一只组成。现在恰好取出 m 只手套，要求其中恰好包含 k 对完整配对。问不同取法有多少种。答案对 1e9+7 取模。', inputDescription: '第一行一个正整数 T。接下来 T 组数据，每组一行三个正整数 n、m、k。', outputDescription: '每组数据输出一个整数。', samples: [{ input: '2\n5 6 2\n5 1 5', output: '120\n0' }], explanation: '方案数为 C(n,k)×C(n-k,m-2k)×2^(m-2k)。', tags: ['编程题', '组合数学', '计数'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){}return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const int N=2005,MOD=1000000007; long long C[N][N],pw[N]; int main(){ios::sync_with_stdio(false);cin.tie(nullptr); pw[0]=1; for(int i=1;i<N;i++) pw[i]=pw[i-1]*2%MOD; for(int i=0;i<N;i++){ C[i][0]=1; for(int j=1;j<=i;j++) C[i][j]=(C[i-1][j]+C[i-1][j-1])%MOD; } int T;cin>>T; while(T--){int n,m,k;cin>>n>>m>>k; if(m<2*k||m-2*k>n-k){cout<<0<<"\\n"; continue;} cout<<C[n][k]*C[n-k][m-2*k]%MOD*pw[m-2*k]%MOD<<"\\n";} return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '美丽路径', problemNumber: '2024-09-l8-Q27', description: '给定一棵 n 个节点的树，每个节点颜色为黑/白。若一条简单路径上任意相邻两个节点颜色都不同，则称这条路径为美丽路径。求最长美丽路径的长度。', inputDescription: '第一行一个正整数 n。第二行 n 个整数 c_i，其中 0 表示白色、1 表示黑色。接下来 n-1 行每行两个正整数 u、v，表示树边。', outputDescription: '输出一个整数。', samples: [{ input: '5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3', output: '4' }, { input: '5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5', output: '1' }], explanation: '删去所有同色端点的边后，合法路径就变成森林中的普通简单路径。对每个连通块求直径，取最大值。', tags: ['编程题', '树形DP', '直径'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n;\nvector<vector<int>> g;\nint farNode, farDist;\n\nvoid dfs(int u, int fa, int d) {\n    if (d > farDist) { farDist = d; farNode = u; }\n    for (int v : g[u]) if (v != fa) dfs(v, u, d + 1);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    g.assign(n + 1, {});\n    vector<pair<int, int>> edges;\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        if (c[u] != c[v]) { // 只保留异色边，美丽路径只能走这些边\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n    }\n    // 森林里逐棵树求直径（按节点数计）\n    vector<bool> vis(n + 1, false);\n    int ans = 1;\n    function<void(int)> mark = [&](int u) {\n        vis[u] = true;\n        for (int v : g[u]) if (!vis[v]) mark(v);\n    };\n    for (int i = 1; i <= n; ++i) {\n        if (vis[i]) continue;\n        mark(i);\n        farDist = -1; dfs(i, 0, 0);\n        int a = farNode;\n        farDist = -1; dfs(a, 0, 0);\n        ans = max(ans, farDist + 1);\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
+    { type: 'programming', id: 26, score: 25, title: '手套配对', problemNumber: '2024-09-l8-Q26', description: '有 n 对不同的手套，每对由左手和右手各一只组成。现在恰好取出 m 只手套，要求其中恰好包含 k 对完整配对。问不同取法有多少种。答案对 1e9+7 取模。', inputDescription: '第一行一个正整数 T。接下来 T 组数据，每组一行三个正整数 n、m、k。', outputDescription: '每组数据输出一个整数。', samples: [{ input: '2\n5 6 2\n5 1 5', output: '120\n0' }], explanation: `**解析：**
+
+**题意分析：**
+一共有 \`n\` 双各不相同的手套（共 \`2*n\` 只，每双均包含一只左手手套和一只右手手套）。从中任意选出 \`m\` 只单只手套，要求选出的手套恰好能配成 \`k\` 双完整手套。我们需要求出合法的挑选方案数，并对 \`1000000007\` 取模。
+
+**数学推导与计数原理：**
+这是一个典型的组合数学与乘法原理应用题。要保证选出的 \`m\` 只手套中「恰好有 \`k\` 双」，整个选取过程可以拆分为以下 3 个相互独立的步骤：
+
+1. **选出成双的手套种类：**
+   从全部 \`n\` 种不同的手套中，选出 \`k\` 种作为成双配对的手套。这 \`k\` 种手套的左、右手套都要被选出，共占用 \`2*k\` 只手套。从 \`n\` 种中选取 \`k\` 种的组合方案数为 \`C(n, k)\`。
+
+2. **选出只取单只的手套种类：**
+   为了确保「恰好」只有 \`k\` 双，剩余需要选出的手套绝不能再配成对。
+   - 剩余还需要选出的单只手套数量为：\`m - 2*k\` 只；
+   - 剩余可供选择的手套种类数为：\`n - k\` 种；
+   - 剩余的每种手套最多只能选 1 只。因此，需要从 \`n - k\` 种手套中挑选出 \`m - 2*k\` 种手套作为单只手套。方案数为 \`C(n - k, m - 2*k)\`。
+
+3. **确定单只手套是左手还是右手：**
+   被选为单只的 \`m - 2*k\` 种手套中，每一种手套都可以选择拿「左手」或「右手」，各有两种选择。根据乘法原理，共有 2 的 \`m - 2*k\` 次方种选法。
+
+综上所述，由乘法原理可得总方案数计算公式为：
+\`方案数 = C[n][k] * C[n - k][m - 2*k] % MOD * pw[m - 2*k] % MOD\`，其中 \`pw[t]\` 是 2 的 \`t\` 次方对 \`MOD\` 取模。
+
+**边界与不合法情况判定：**
+在进行组合数计算前，必须判断是否存在方案：
+- 若 \`m < 2*k\`：选出的手套总数少于配出 \`k\` 双所需的 \`2*k\` 只，不可能实现；
+- 若 \`m - 2*k > n - k\`：配完 \`k\` 双后，剩余待选单只数量超过了剩余手套的总种类数，根据抽屉原理必然会出现新的成对配对手套，无法做到「恰好 \`k\` 双」。
+满足上述任一条件时，方案数均为 \`0\`。
+
+**完整算法流程：**
+1. **预处理组合数与 2 的幂次**：
+   - 题目数据规模 \`N = 2005\`，多组测试数据如果每次重复计算会超时。
+   - 利用杨辉三角递推关系 \`C[i][j] = (C[i - 1][j] + C[i - 1][j - 1]) % MOD\`，在 \`O(N*N)\` 时间内预处理出所有组合数。
+   - 递推预处理 \`pw[i] = pw[i - 1] * 2 % MOD\`，保存 2 的 \`i\` 次方取模后的结果。
+2. **多组数据快速查询**：
+   - 读入测试组数 \`T\`。
+   - 对每组数据 \`(n, m, k)\`，首先检查边界条件 \`m < 2*k || m - 2*k > n - k\`，若满足则直接输出 \`0\`。
+   - 若合法，直接调用预处理数组计算 \`C[n][k] * C[n - k][m - 2*k] % MOD * pw[m - 2*k] % MOD\` 并输出，单次查询时间复杂度为 \`O(1)\`。
+
+---
+
+**样例走查：**
+
+**样例数据 1：\`5 6 2\`**
+- 输入含义：共有 \`n = 5\` 双手套，要选出 \`m = 6\` 只手套，恰好凑成 \`k = 2\` 双。
+- 步骤 1：合法性检验。\`6 >= 2*2\` 且 \`6 - 4 <= 5 - 2\`（即 \`2 <= 3\`），状态合法。
+- 步骤 2：从 5 种手套中挑选 2 种成对，方案数为 \`C(5, 2) = 10\`。
+- 步骤 3：还需要选 \`6 - 2*2 = 2\` 只不成对的手套，从剩下的 \`5 - 2 = 3\` 种中挑 2 种，方案数为 \`C(3, 2) = 3\`。
+- 步骤 4：这 2 种不成对的手套分别选左手或右手，方案数为 \`2 * 2 = 4\`。
+- 步骤 5：综合方案数为 \`10 * 3 * 4 = 120\`。输出 \`120\`，与样例输出一致。
+
+**样例数据 2：\`5 1 5\`**
+- 输入含义：共有 \`n = 5\` 双手套，总共只抽取 \`m = 1\` 只单只手套，要求凑成 \`k = 5\` 双。
+- 步骤 1：合法性检验。凑成 5 双手套至少需要 \`2 * 5 = 10\` 只手套，而总抽取数量 \`m = 1\`，满足 \`m < 2*k\`（\`1 < 10\`）。
+- 步骤 2：无法凑出 5 双，直接输出 \`0\`。输出 \`0\`，与样例输出一致。
+
+---
+
+**易错提醒：**
+- **乘法溢出问题**：计算 \`C[n][k] * C[n - k][m - 2*k] * pw[m - 2*k]\` 时，虽然每个数都已模 \`MOD\`，但三者连续相乘会超过 32 位整型（\`int\`）的表示上限，必须使用 \`long long\` 并在每一次相乘后及时取模。
+- **边界防越界**：务必先判断 \`m < 2*k\` 与 \`m - 2*k > n - k\`，避免因第二维参数出现负数或超过第一维而导致数组越界访问。`, tags: ['编程题', '组合数学', '计数'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){}return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const int N=2005,MOD=1000000007; long long C[N][N],pw[N]; int main(){ios::sync_with_stdio(false);cin.tie(nullptr); pw[0]=1; for(int i=1;i<N;i++) pw[i]=pw[i-1]*2%MOD; for(int i=0;i<N;i++){ C[i][0]=1; for(int j=1;j<=i;j++) C[i][j]=(C[i-1][j]+C[i-1][j-1])%MOD; } int T;cin>>T; while(T--){int n,m,k;cin>>n>>m>>k; if(m<2*k||m-2*k>n-k){cout<<0<<"\\n"; continue;} cout<<C[n][k]*C[n-k][m-2*k]%MOD*pw[m-2*k]%MOD<<"\\n";} return 0;}' },
+    { type: 'programming', id: 27, score: 25, title: '美丽路径', problemNumber: '2024-09-l8-Q27', description: '给定一棵 n 个节点的树，每个节点颜色为黑/白。若一条简单路径上任意相邻两个节点颜色都不同，则称这条路径为美丽路径。求最长美丽路径的长度。', inputDescription: '第一行一个正整数 n。第二行 n 个整数 c_i，其中 0 表示白色、1 表示黑色。接下来 n-1 行每行两个正整数 u、v，表示树边。', outputDescription: '输出一个整数。', samples: [{ input: '5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3', output: '4' }, { input: '5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5', output: '1' }], explanation: `**解析：**
+
+**题目大意与核心转化：**
+给定一棵包含 \`n\` 个节点的树，每个节点有一个颜色（\`0\` 或 \`1\`）。定义一条“美丽路径”为：路径上相邻两节点的颜色均不相同（即颜色严格交错）。求美丽路径最多能包含多少个节点。
+
+由于美丽路径要求相邻两点颜色互异，路径上所经过的每一条树边，其两端节点的颜色必须不同（即异色边）。
+如果我们直接删去原树中所有连接同色节点的边，只保留连接异色节点的边，那么原树就会分裂成一个“森林”（包含若干个互不连通的树/单点）。
+在这些保留下来的连通块中，任意两个相邻节点的颜色都不同。因为原图是一棵树，删边后得到的每个连通块依然是一棵树（无环）。在每一个连通块内，两点之间的唯一简单路径必然全部由异色边构成，因而是天然合法的“美丽路径”。
+于是，原问题转化为：**在删去同色边后得到的森林中，找出所有连通块中包含节点数最多的简单路径，即求各个树的“树的直径”（以节点数衡量）的最大值。**
+
+---
+
+**完整算法步骤：**
+1. **建图过滤**：
+   - 读取节点数 \`n\` 以及每个节点的颜色数组 \`c[1...n]\`。
+   - 读取 \`n - 1\` 条边。对于每条边 \`(u, v)\`，检查两端颜色 \`c[u]\` 与 \`c[v]\` 是否不同：
+     - 若 \`c[u] != c[v]\`，则将无向边 \`(u, v)\` 加入邻接表 \`g\` 中；
+     - 若 \`c[u] == c[v]\`，则直接舍弃该边。
+2. **初始化答案**：
+   - 单个节点也是合法路径，答案至少为 1，故 \`ans\` 初值设为 1。
+   - 使用布尔数组 \`vis\` 记录每个节点是否已经被遍历访问过。
+3. **遍历连通块并求树的直径**：
+   - 依次遍历节点 \`i\` 从 \`1\` 到 \`n\`。若 \`vis[i] == true\`，说明该节点所在连通块已经处理过，直接跳过。
+   - 若 \`vis[i] == false\`，执行以下操作：
+     - **标记连通块**：从节点 \`i\` 出发进行一次遍历（DFS/BFS），将该连通块内的所有节点标记为 \`vis = true\`。
+     - **两遍 DFS 求树的直径**：
+       - 第一遍 DFS：从当前连通块的任意节点（如 \`i\`）出发，记录距离起点的最远节点 \`a\`（距离为边数）；
+       - 第二遍 DFS：以节点 \`a\` 为起点再次进行 DFS，找到距离节点 \`a\` 最远的节点，此时记录的最大边数为 \`farDist\`；
+       - 该连通块内的最长路径包含的边数为 \`farDist\`，对应的节点数为 \`farDist + 1\`；
+     - 用 \`farDist + 1\` 更新全局最大值：\`ans = max(ans, farDist + 1)\`。
+4. **输出结果**：遍历完所有节点后，输出 \`ans\`。
+
+---
+
+**样例走查：**
+
+### 样例 1
+- **输入数据**：
+  \`n = 5\`，节点颜色序列为 \`c = [1, 0, 0, 1, 0]\`（下标 1 到 5 分别为：节点 1 为 1，节点 2 为 0，节点 3 为 0，节点 4 为 1，节点 5 为 0）。
+  边集为：\`(1, 2)\`, \`(3, 5)\`, \`(4, 3)\`, \`(1, 3)\`。
+- **边筛选过程**：
+  - 边 \`(1, 2)\`：\`c[1] = 1, c[2] = 0\`，颜色不同，保留边 \`(1, 2)\`。
+  - 边 \`(3, 5)\`：\`c[3] = 0, c[5] = 0\`，颜色相同，丢弃。
+  - 边 \`(4, 3)\`：\`c[4] = 1, c[3] = 0\`，颜色不同，保留边 \`(4, 3)\`。
+  - 边 \`(1, 3)\`：\`c[1] = 1, c[3] = 0\`，颜色不同，保留边 \`(1, 3)\`。
+- **连通块分析**：
+  保留的边为 \`(1, 2)\`, \`(1, 3)\`, \`(3, 4)\`。
+  - **连通块 1**：包含节点 \`{1, 2, 3, 4}\`。
+    - 树的形态为一条链：\`2 - 1 - 3 - 4\`。
+    - 从节点 1 做第一遍 DFS：到 2 的边数是 1，到 4 的边数是 2，最远点是 4。
+    - 从 4 做第二遍 DFS：沿 \`4 - 3 - 1 - 2\` 走到 2，边数是 3，节点数为 \`3 + 1 = 4\`。
+    - 这条直径写成 \`2 -> 1 -> 3 -> 4\` 时，颜色为 \`0 -> 1 -> 0 -> 1\`。
+  - **连通块 2**：包含孤立节点 \`{5}\`，没有边，最长路径包含节点数为 1。
+- **最终答案**：\`max(1, 4) = 4\`，输出 \`4\`。
+
+### 样例 2
+- **输入数据**：
+  \`n = 5\`，节点颜色序列为 \`c = [0, 0, 0, 0, 0]\`。
+  边集为：\`(1, 2)\`, \`(2, 3)\`, \`(3, 4)\`, \`(4, 5)\`。
+- **边筛选过程**：
+  所有节点的颜色全为 \`0\`，给定的 4 条边两端颜色均相同，全部被过滤丢弃。
+- **连通块分析**：
+  图中有 5 个互不连通的孤立节点（每个连通块大小均为 1）。
+  单个节点自成一条合法美丽路径，包含节点数为 1。
+- **最终答案**：输出 \`1\`。
+
+---
+
+**易错提醒：**
+- **路径长度定义**：题目要求的是路径上的“节点数”而非“边数”。两遍 DFS 求出的直径长度是边数 \`farDist\`，换算成节点数时务必加 1（即 \`farDist + 1\`）。
+- **全同色特判/边界值**：如果整棵树所有节点颜色都相同，保留边数为 0，此时任何单独的一个节点都是一条合法美丽路径，因此答案下界为 1，初始值应设为 \`ans = 1\`，不能输出 0。
+- **时间复杂度**：每个节点和每条异色边在标记与两遍 DFS 中最多被常数次遍历，整体时间复杂度为 \`O(n)\`，空间复杂度为 \`O(n)\`，可以高效通过全部测试数据。`, tags: ['编程题', '树形DP', '直径'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n;\nvector<vector<int>> g;\nint farNode, farDist;\n\nvoid dfs(int u, int fa, int d) {\n    if (d > farDist) { farDist = d; farNode = u; }\n    for (int v : g[u]) if (v != fa) dfs(v, u, d + 1);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    g.assign(n + 1, {});\n    vector<pair<int, int>> edges;\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        if (c[u] != c[v]) { // 只保留异色边，美丽路径只能走这些边\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n    }\n    // 森林里逐棵树求直径（按节点数计）\n    vector<bool> vis(n + 1, false);\n    int ans = 1;\n    function<void(int)> mark = [&](int u) {\n        vis[u] = true;\n        for (int v : g[u]) if (!vis[v]) mark(v);\n    };\n    for (int i = 1; i <= n; ++i) {\n        if (vis[i]) continue;\n        mark(i);\n        farDist = -1; dfs(i, 0, 0);\n        int a = farNode;\n        farDist = -1; dfs(a, 0, 0);\n        ans = max(ans, farDist + 1);\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2024-12-l8': [
     { type: 'programming', id: 26, score: 25, title: '树上移动', problemNumber: '2024-12-l8-Q26', description: '给定一棵 n 个节点的树，每个节点颜色为 0/1，其中 1 表示黑色。任选起点和终点，沿简单路径移动，要求路径上经过的黑色节点数不超过 k。求最多能经过多少个节点。', inputDescription: '第一行两个正整数 n、k。第二行 n 个整数表示各节点颜色。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个正整数。', samples: [{ input: '5 1\n0 0 1 1 1\n1 2\n2 3\n2 5\n1 4', output: '3' }], explanation: '等价于在树上找一条点权和（黑点记 1）不超过 k 的最长简单路径。', tags: ['编程题', '树', 'DFS'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // 从每个点出发 DFS，维护路径上的黑点数（O(n^2)）\n    int ans = 0;\n    function<void(int, int, int, int)> dfs = [&](int u, int fa, int black, int nodes) {\n        black += c[u];\n        if (black > k) return;\n        ans = max(ans, nodes + 1);\n        for (int v : g[u]) if (v != fa) dfs(v, u, black, nodes + 1);\n    };\n    for (int i = 1; i <= n; ++i) dfs(i, 0, 0, 0);\n    cout << ans << '\\n';\n    return 0;\n}" },
