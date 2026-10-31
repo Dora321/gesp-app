@@ -636,8 +636,197 @@ export const l8ProgrammingByPaper = {
 3. **递归栈溢出风险**：树的规模较大时，深层递归 DFS 极易导致运行时栈溢出（Segmentation Fault），建议使用循环配合栈的非递归方式进行树的遍历。`, tags: ['编程题', '树上差分', 'LCA'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // BFS 求以 root 为根的父指针，再回溯得到路径\n    auto pathBetween = [&](int a, int b) {\n        vector<int> par(n + 1, 0);\n        queue<int> q;\n        q.push(a);\n        par[a] = a;\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (!par[v]) { par[v] = u; q.push(v); }\n        }\n        vector<int> path;\n        for (int u = b; u != a; u = par[u]) path.push_back(u);\n        path.push_back(a);\n        return path;\n    };\n\n    // goodInner[v]：v 是某个好点对路径的中间节点（删掉会断开这对好点）\n    vector<bool> goodInner(n + 1, false);\n    for (int i = 0; i < k; ++i) {\n        int a, b;\n        cin >> a >> b;\n        auto path = pathBetween(a, b);\n        for (size_t j = 1; j + 1 < path.size(); ++j) goodInner[path[j]] = true;\n    }\n    int ba, bb;\n    cin >> ba >> bb;\n    auto badPath = pathBetween(ba, bb);\n    int ans = 0;\n    for (size_t j = 1; j + 1 < badPath.size(); ++j) {\n        if (!goodInner[badPath[j]]) ans++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2025-06-l8': [
-    { type: 'programming', id: 26, score: 25, title: '树上旅行', problemNumber: '2025-06-l8-Q26', description: '给定一棵以 1 为根的有根树。正数操作表示向父亲走若干步，负数操作表示反复走向当前节点编号最小的儿子；若无法继续则停在原点。求每次旅行结束所在的节点。', inputDescription: '第一行两个正整数 n、q。第二行给出 2..n 号节点的父节点。接下来 q 组询问：先给起点 s 和序列长度 k，下一行给出 k 个非零整数表示操作。', outputDescription: '输出 q 行。', samples: [{ input: '5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1', output: '4\n1\n4\n2' }], explanation: '分别预处理向父亲跳和向最小儿子跳的倍增表，每个操作做按位跳跃即可。', tags: ['编程题', '倍增', '树上跳跃'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, q;\n    cin >> n >> q;\n    vector<int> par(n + 1, 0);\n    vector<vector<int>> children(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        cin >> par[i];\n        children[par[i]].push_back(i);\n    }\n    // 负数操作：反复走向编号最小的儿子，直到叶子\n    vector<int> minChild(n + 1, 0);\n    for (int i = 1; i <= n; ++i) {\n        if (!children[i].empty()) {\n            minChild[i] = *min_element(children[i].begin(), children[i].end());\n        }\n    }\n    while (q--) {\n        int s, k;\n        cin >> s >> k;\n        int cur = s;\n        for (int i = 0; i < k; ++i) {\n            long long op;\n            cin >> op;\n            if (op > 0) {\n                for (long long step = 0; step < op; ++step) {\n                    if (par[cur] == 0) break; // 已在根，停在原点\n                    cur = par[cur];\n                }\n            } else {\n                for (long long step = 0; step < -op; ++step) {\n                    if (minChild[cur] == 0) break; // 已是叶子\n                    cur = minChild[cur];\n                }\n            }\n        }\n        cout << cur << '\\n';\n    }\n    return 0;\n}" },
-    { type: 'programming', id: 27, score: 25, title: '遍历计数', problemNumber: '2025-06-l8-Q27', description: '给定一棵树。深度优先遍历的起点可以任意选，访问相邻未访问结点的顺序也可以任意。问可能得到多少种不同 DFS 序列，答案对 1e9 取模。', inputDescription: '第一行一个整数 n。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个整数。', samples: [{ input: '4\n1 2\n2 3\n3 4', output: '6' }, { input: '8\n1 2\n1 3\n1 4\n2 5\n2 6\n3 7\n3 8', output: '112' }], explanation: '固定根后方案数为 deg(root)! × ∏_{u≠root}(deg(u)-1)!。枚举根并用前后缀积即可在线性时间求总和。', tags: ['编程题', '树计数', '排列'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const int N=100000+5,MOD=1000000000; int deg[N],fac[N],pre[N],suf[N]; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n; fac[0]=1; for(int i=1;i<=n;i++) fac[i]=1LL*fac[i-1]*i%MOD; for(int i=1,u,v;i<n;i++){cin>>u>>v; deg[u]++; deg[v]++;} pre[0]=1; for(int i=1;i<=n;i++) pre[i]=1LL*pre[i-1]*fac[deg[i]-1]%MOD; suf[n+1]=1; for(int i=n;i>=1;i--) suf[i]=1LL*suf[i+1]*fac[deg[i]-1]%MOD; long long ans=0; for(int i=1;i<=n;i++) ans=(ans+1LL*pre[i-1]*fac[deg[i]]%MOD*suf[i+1])%MOD; cout<<ans<<"\\n"; return 0;}' }
+    { type: 'programming', id: 26, score: 25, title: '树上旅行', problemNumber: '2025-06-l8-Q26', description: '给定一棵以 1 为根的有根树。正数操作表示向父亲走若干步，负数操作表示反复走向当前节点编号最小的儿子；若无法继续则停在原点。求每次旅行结束所在的节点。', inputDescription: '第一行两个正整数 n、q。第二行给出 2..n 号节点的父节点。接下来 q 组询问：先给起点 s 和序列长度 k，下一行给出 k 个非零整数表示操作。', outputDescription: '输出 q 行。', samples: [{ input: '5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1', output: '4\n1\n4\n2' }], explanation: `**解析：**
+
+### 1. 题意理解与模型转化
+题目要求在一棵以节点 1 为根的有根树上模拟移动过程。从指定起点出发，根据给定的步数指令进行两类游走：
+1. **向上走（\`op > 0\`）**：沿着树向根节点方向移动 \`op\` 步。如果在走满步数前已到达根节点（节点 1），则停留在根节点不再移动。
+2. **向下走（\`op < 0\`）**：沿着树向下移动 \`-op\` 步，且规定每一步必须走向当前节点编号最小的子节点。如果在走满步数前已到达叶子节点（没有子节点），则停留在叶子节点不再移动。
+
+### 2. 完整算法流程
+- **步骤一：建树与预处理最小子节点**
+  - 使用数组 \`par[i]\` 存储每个节点 \`i\` 的父节点编号（根节点 \`par[1] = 0\`）。
+  - 用邻接表 \`children[u]\` 存节点 \`u\` 的所有子节点。
+  - 遍历每个节点 \`u\`：若 \`children[u]\` 非空，取其中的最小值存入 \`minChild[u]\`；若为空，则置 \`minChild[u] = 0\`，代表该节点为叶子节点。
+- **步骤二：单次查询的移动处理**
+  - **基础模拟实现**：
+    从起点 \`cur = s\` 开始，依次读入每次操作 \`op\`：
+    - 若 \`op > 0\`：循环执行 \`cur = par[cur]\`，若 \`par[cur] == 0\` 说明已在根节点，立即终止当前操作；
+    - 若 \`op < 0\`：循环执行 \`cur = minChild[cur]\`，若 \`minChild[cur] == 0\` 说明已到叶子节点，立即终止当前操作。
+  - **倍增优化实现（满分进阶）**：
+    每个节点的父节点唯一，沿最小儿子向下的后继也唯一。
+    可以预处理两个倍增数组：
+    - \`up[i][j]\`：表示从节点 \`i\` 向上跳 2 的 j 次方步到达的祖先；
+    - \`down[i][j]\`：表示从节点 \`i\` 沿最小儿子向下跳 2 的 j 次方步到达的子孙。
+    状态转移方程分别为：
+    \`up[i][j] = up[up[i][j - 1]][j - 1]\`
+    \`down[i][j] = down[down[i][j - 1]][j - 1]\`
+    处理查询时把步数按二进制拆开。走到根或叶子最多 n-1 步，单次操作是 \`O(log n)\`，避免在长链上逐步空转。
+
+---
+
+### 3. 样例走查
+以**样例 1** 为例演示算法执行过程：
+共有 \`n = 5\` 个节点，父节点关系：\`par[2] = 1\`，\`par[3] = 1\`，\`par[4] = 2\`，\`par[5] = 2\`。
+预处理 \`minChild\` 数组：
+- 节点 1 的子节点为 \`{2, 3}\`，最小值是 2，故 \`minChild[1] = 2\`；
+- 节点 2 的子节点为 \`{4, 5}\`，最小值是 4，故 \`minChild[2] = 4\`；
+- 节点 3、4、5 均无子节点，\`minChild\` 均为 0。
+
+依次处理 4 组查询：
+1. **第 1 组查询：起点 \`s = 3\`，操作序列为 \`[1, -1, -1]\`**
+   - 当前位于节点 3；
+   - 第 1 次操作 \`op = 1\`：向上跳 1 步，\`cur = par[3] = 1\`；
+   - 第 2 次操作 \`op = -1\`：向下跳 1 步，\`cur = minChild[1] = 2\`；
+   - 第 3 次操作 \`op = -1\`：向下跳 1 步，\`cur = minChild[2] = 4\`；
+   - 最终停在节点 **4**。
+
+2. **第 2 组查询：起点 \`s = 2\`，操作序列为 \`[1, -1, 1, -1, 1]\`**
+   - 当前位于节点 2；
+   - \`+1\` 向上：\`cur = par[2] = 1\`；
+   - \`-1\` 向下：\`cur = minChild[1] = 2\`；
+   - \`+1\` 向上：\`cur = par[2] = 1\`；
+   - \`-1\` 向下：\`cur = minChild[1] = 2\`；
+   - \`+1\` 向上：\`cur = par[2] = 1\`；
+   - 最终停在节点 **1**。
+
+3. **第 3 组查询：起点 \`s = 5\`，操作序列为 \`[1, 1, 1, -1, -1, -1, -1, -1]\`**
+   - 当前位于节点 5；
+   - 连续向上 3 步：第 1 步到达节点 2，第 2 步到达节点 1（根节点）；第 3 步因 \`par[1] == 0\`，停留在节点 1；
+   - 连续向下 5 步：第 1 步到达节点 2，第 2 步到达节点 4（叶子节点）；后续 3 步因 \`minChild[4] == 0\`，均停留在节点 4；
+   - 最终停在节点 **4**。
+
+4. **第 4 组查询：起点 \`s = 5\`，操作序列为 \`[-1, -1, 1]\`**
+   - 当前位于节点 5（叶子节点）；
+   - 前 2 步向下跳，因 \`minChild[5] == 0\` 保持在节点 5；
+   - 第 3 步向上跳 1 步，\`cur = par[5] = 2\`；
+   - 最终停在节点 **2**。
+
+四次查询结果分别为 \`4\`、\`1\`、\`4\`、\`2\`，与样例输出完全相符。
+
+---
+
+**易错提醒：**
+- **边界越界保护**：在根节点处不能继续访问 \`par[1]\` 对应的内存；在叶子节点处不能继续向下访问 \`minChild[u] == 0\`，必须在到达极值点时提前 \`break\` 截断。
+- **步数范围**：输入中 \`op\` 的绝对值可能较大，变量需使用 \`long long\` 接收，且在到达根节点或叶子节点后必须及时跳出循环，避免无效的大次数空转。
+
+**知识延伸：**
+- 该模型是**树上倍增（Binary Lifting）**思想的典型变体。向父节点跳和向最小子节点跳均具备“每个节点有且仅有一个唯一转移目标”的性质。利用类似 LCA（最近公共祖先）的二进制倍增思想，可以在 \`O(n log n)\` 预处理后，将单次移动复杂度降低至 \`O(log n)\`。`, tags: ['编程题', '倍增', '树上跳跃'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, q;\n    cin >> n >> q;\n    vector<int> par(n + 1, 0);\n    vector<vector<int>> children(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        cin >> par[i];\n        children[par[i]].push_back(i);\n    }\n    // 负数操作：反复走向编号最小的儿子，直到叶子\n    vector<int> minChild(n + 1, 0);\n    for (int i = 1; i <= n; ++i) {\n        if (!children[i].empty()) {\n            minChild[i] = *min_element(children[i].begin(), children[i].end());\n        }\n    }\n    while (q--) {\n        int s, k;\n        cin >> s >> k;\n        int cur = s;\n        for (int i = 0; i < k; ++i) {\n            long long op;\n            cin >> op;\n            if (op > 0) {\n                for (long long step = 0; step < op; ++step) {\n                    if (par[cur] == 0) break; // 已在根，停在原点\n                    cur = par[cur];\n                }\n            } else {\n                for (long long step = 0; step < -op; ++step) {\n                    if (minChild[cur] == 0) break; // 已是叶子\n                    cur = minChild[cur];\n                }\n            }\n        }\n        cout << cur << '\\n';\n    }\n    return 0;\n}" },
+    { type: 'programming', id: 27, score: 25, title: '遍历计数', problemNumber: '2025-06-l8-Q27', description: '给定一棵树。深度优先遍历的起点可以任意选，访问相邻未访问结点的顺序也可以任意。问可能得到多少种不同 DFS 序列，答案对 1e9 取模。', inputDescription: '第一行一个整数 n。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个整数。', samples: [{ input: '4\n1 2\n2 3\n3 4', output: '6' }, { input: '8\n1 2\n1 3\n1 4\n2 5\n2 6\n3 7\n3 8', output: '112' }], explanation: `**解析：**
+
+### 1. 题目大意与数学模型转化
+本题给定一棵包含 \`n\` 个节点的无向树，要求计算以每个节点为根进行树遍历（如深度优先搜索 DFS）时，所有可能遍历顺序的方案数之和，并对 \`1000000000\`（10 的 9 次方）取模。
+
+**固定根节点后的方案数分析：**
+设选择节点 \`r\` 作为整棵树的根节点：
+1. **根节点自身的排列**：根节点 \`r\` 连有 \`deg[r]\` 条边，即有 \`deg[r]\` 个子节点。遍历时可以按任意先后顺序访问它的子树，因此访问子节点的顺序有 \`deg[r]!\` 种排列。
+2. **非根节点的排列**：对于除根以外的任意节点 \`u\`（\`u ≠ r\`），其 \`deg[u]\` 条相连的边中，恰有 1 条边连接父节点，其余 \`deg[u] - 1\` 条边连接其各个子节点。当遍历到节点 \`u\` 时，访问其各个子节点的顺序共有 \`(deg[u] - 1)!\` 种排列。
+3. **独立性与乘法原理**：由于每个节点内部选择遍历子节点的顺序是相互独立的，根据乘法原理，以 \`r\` 为根时的总遍历方案数为：
+   \`ways(r) = deg[r]! * ∏_{u ≠ r} (deg[u] - 1)!\`。
+
+**总目标**：把每个根的 \`ways(r)\` 相加，再对 \`MOD\` 取余。
+
+---
+
+### 2. 完整算法流程与优化策略
+
+#### 难点分析：为什么不能用除法求逆元？
+我们发现，\`ways(r)\` 的结构是「除 \`r\` 之外所有节点的 \`(deg[u]-1)!\` 乘积」再乘上 \`deg[r]!\`。
+通常情况下，我们会先求出所有节点 \`(deg[u]-1)!\` 的总乘积，再除以 \`(deg[r]-1)!\`。然而，本题的模数 \`MOD = 1000000000\`（10 的 9 次方）**不是质数**（它含有质因数 2 和 5）。当除数与 \`MOD\` 不互质时，乘法逆元不存在，无法直接进行模意义下的除法。
+
+#### 核心算法步骤：
+1. **阶乘预处理**：
+   - 线性递推预处理 \`0\` 到 \`n\` 的阶乘数组 \`fac[]\`，满足 \`fac[k] = k! % MOD\`，注意边界 \`fac[0] = 1\`。
+2. **度数统计**：
+   - 读入 \`n-1\` 条树边，统计每个节点 \`i\` 的度数 \`deg[i]\`。
+3. **维护前后缀乘积**：
+   - 为在 \`O(1)\` 时间内求出「除了第 \`i\` 个节点以外所有节点的 \`(deg[u]-1)!\` 乘积」，预处理前缀积与后缀积：
+     - 前缀积：\`pre[i] = pre[i-1] * fac[deg[i]-1] % MOD\`，初始化 \`pre[0] = 1\`。
+     - 后缀积：\`suf[i] = suf[i+1] * fac[deg[i]-1] % MOD\`，初始化 \`suf[n+1] = 1\`。
+4. **枚举根节点累加答案**：
+   - 遍历 \`i\` 从 1 到 \`n\`：以节点 \`i\` 为根时，除 \`i\` 以外所有节点的积为 \`pre[i-1] * suf[i+1] % MOD\`。
+   - 乘上节点 \`i\` 自身的贡献 \`fac[deg[i]]\`，得到以 \`i\` 为根的方案数：
+     \`cur = pre[i-1] * fac[deg[i]] % MOD * suf[i+1] % MOD\`。
+   - 将 \`cur\` 累加到最终答案 \`ans\` 中并取模。
+5. **复杂度**：
+   - 预处理和遍历均为单层循环，时间复杂度为 \`O(n)\`，空间复杂度为 \`O(n)\`，能在规定时限内完美通过 \`n = 100000\` 的数据。
+
+---
+
+### 3. 样例走查
+
+#### 样例 1 走查
+**输入：**
+\`\`\`text
+4
+1 2
+2 3
+3 4
+\`\`\`
+- **建树与度数**：
+  这是一条链 \`1 - 2 - 3 - 4\`。
+  度数分别为：\`deg[1]=1, deg[2]=2, deg[3]=2, deg[4]=1\`。
+- **计算每个节点的基准项 \`fac[deg[i]-1]\`**：
+  - \`i=1\`：\`fac[0] = 1\`
+  - \`i=2\`：\`fac[1] = 1\`
+  - \`i=3\`：\`fac[1] = 1\`
+  - \`i=4\`：\`fac[0] = 1\`
+- **前后缀积**：
+  - \`pre = [1, 1, 1, 1, 1]\`
+  - \`suf = [1, 1, 1, 1, 1]\`（其中 \`suf[1..4]=1, suf[5]=1\`）
+- **枚举每个节点作为根的贡献**：
+  - 根 \`r = 1\`：\`pre[0] * fac[deg[1]] * suf[2] = 1 * fac[1] * 1 = 1 * 1 * 1 = 1\`
+  - 根 \`r = 2\`：\`pre[1] * fac[deg[2]] * suf[3] = 1 * fac[2] * 1 = 1 * 2 * 1 = 2\`
+  - 根 \`r = 3\`：\`pre[2] * fac[deg[3]] * suf[4] = 1 * fac[2] * 1 = 1 * 2 * 1 = 2\`
+  - 根 \`r = 4\`：\`pre[3] * fac[deg[4]] * suf[5] = 1 * fac[1] * 1 = 1 * 1 * 1 = 1\`
+- **累加答案**：
+  \`ans = 1 + 2 + 2 + 1 = 6\`。输出 \`6\`，与样例输出完全吻合。
+
+#### 样例 2 走查
+**输入：**
+\`\`\`text
+8
+1 2
+1 3
+1 4
+2 5
+2 6
+3 7
+3 8
+\`\`\`
+- **度数统计**：
+  - 节点 1 连接 2, 3, 4，\`deg[1] = 3\`
+  - 节点 2 连接 1, 5, 6，\`deg[2] = 3\`
+  - 节点 3 连接 1, 7, 8，\`deg[3] = 3\`
+  - 节点 4, 5, 6, 7, 8 为叶子节点，度数均为 1
+- **计算基准项 \`(deg[i]-1)!\`**：
+  - \`i = 1, 2, 3\`：\`(3-1)! = 2! = 2\`
+  - \`i = 4, 5, 6, 7, 8\`：\`(1-1)! = 0! = 1\`
+  - 所有 8 个节点的 \`(deg[i]-1)!\` 乘积为 \`2 * 2 * 2 * 1 * 1 * 1 * 1 * 1 = 8\`。
+- **枚举各节点为根**：
+  - 根 \`r = 1\`：排除自身的 \`(3-1)! = 2\`，乘上自身作为根的 \`3! = 6\`，结果为 \`(8 / 2) * 6 = 24\`。
+  - 根 \`r = 2\`：同理，贡献为 \`(8 / 2) * 6 = 24\`。
+  - 根 \`r = 3\`：同理，贡献为 \`(8 / 2) * 6 = 24\`。
+  - 根 \`r = 4, 5, 6, 7, 8\`（5 个叶子）：排除自身的 \`0! = 1\`，乘上 \`1! = 1\`，每个叶子贡献为 \`8 * 1 = 8\`，合计 \`5 * 8 = 40\`。
+- **累加答案**：
+  \`ans = 24 + 24 + 24 + 40 = 112\`。输出 \`112\`，与样例输出完全一致。
+
+---
+
+### 4. 易错提醒
+- **模数非质数禁止使用逆元**：模数为 10 的 9 次方时，若使用费马小定理求逆元会导致除法错误。前后缀积技巧是处理“不包含当前元素的全局积”的标准做法，适用性极广。
+- **边界条件 \`0! = 1\`**：树中度数为 1 的节点（叶子），其 \`deg[i] - 1 = 0\`。预处理阶乘时务必设置 \`fac[0] = 1\`，且前后缀数组边界也需设置 \`pre[0] = 1\` 与 \`suf[n+1] = 1\`。
+- **整型溢出防范**：两个不超过 10 的 9 次方的数相乘，最大接近 10 的 18 次方，会超出 32 位有符号整型 \`int\` 的上限，计算乘积时必须转换为 \`long long\`（如代码中的 \`1LL * a * b % MOD\`）。
+
+---
+
+### 5. 知识延伸
+注意到代数关系 \`deg[r]! = deg[r] * (deg[r]-1)!\`，代入单个根的公式可得：
+\`ways(r) = deg[r] * P\`，其中 \`P\` 是全体 \`(deg[u]-1)!\` 的乘积。
+\`P\` 对所有根都相同，提取公因式后：
+\`ans = P * (所有节点度数之和) % MOD\`。
+由树的性质可知，树中所有节点的度数之和等于边数的两倍，即所有节点度数之和 = \`2 * (n - 1)\`。
+因此，答案可直接化简为 \`P * (2 * (n - 1)) % MOD\`。参考代码采用的前后缀积方案是无需依赖这一特定化简的普适算法结构，二者结果完全等价。`, tags: ['编程题', '树计数', '排列'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const int N=100000+5,MOD=1000000000; int deg[N],fac[N],pre[N],suf[N]; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n; fac[0]=1; for(int i=1;i<=n;i++) fac[i]=1LL*fac[i-1]*i%MOD; for(int i=1,u,v;i<n;i++){cin>>u>>v; deg[u]++; deg[v]++;} pre[0]=1; for(int i=1;i<=n;i++) pre[i]=1LL*pre[i-1]*fac[deg[i]-1]%MOD; suf[n+1]=1; for(int i=n;i>=1;i--) suf[i]=1LL*suf[i+1]*fac[deg[i]-1]%MOD; long long ans=0; for(int i=1;i<=n;i++) ans=(ans+1LL*pre[i-1]*fac[deg[i]]%MOD*suf[i+1])%MOD; cout<<ans<<"\\n"; return 0;}' }
   ],
   '2025-09-l8': [
     { type: 'programming', id: 26, score: 25, title: '最短距离', problemNumber: '2025-09-l8-Q26', description: '构造一张完全图，边权只由两点编号是否互质决定：互质权 p，否则权 q。给出多组询问，求两点最短距离。', inputDescription: '第一行三个正整数 n、p、q，其中 n 为询问组数。接下来 n 行每行两个正整数 a、b。', outputDescription: '输出 n 行。', samples: [{ input: '4 4 3\n1 2\n2 3\n4 2\n3 5', output: '4\n4\n3\n4' }, { input: '5 2 6\n1 2\n2 3\n4 2\n3 5\n6 6', output: '2\n2\n4\n2\n0' }], explanation: '最优路径最多只需两条边：直接连边，或经中转点（尤其是 1 号点）中转。', tags: ['编程题', '图论', '最短路'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,p,q;cin>>n>>p>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; int gcd2(int a,int b){return b?gcd2(b,a%b):a;} int main(){ios::sync_with_stdio(false);cin.tie(nullptr); int n,p,q;cin>>n>>p>>q; while(n--){int a,b;cin>>a>>b; int ans; if(a==b) ans=0; else if(a==1||b==1) ans=p; else {ans=min(2*p,2*q); if(gcd2(a,b)==1) ans=min(ans,p); else ans=min(ans,q);} cout<<ans<<"\\n";} return 0;}' },
