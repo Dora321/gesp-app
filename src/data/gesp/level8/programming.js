@@ -993,8 +993,144 @@ export const l8ProgrammingByPaper = {
 - 数据规模较大时，对每条被删边各跑一次 Kruskal，复杂度约为 \`O(m*m*alpha(n))\`，可能超时。更快的做法是：先求出原图的一棵最小生成树，删非树边不改变权值和；删树边时树分成两块，再在非树边里找跨越这个割的最小边替换，可用树链剖分或树上倍增把单次询问降到对数级。`, tags: ['编程题', '最小生成树', 'Kruskal'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct DSU {\n    vector<int> f;\n    explicit DSU(int n) : f(n + 1) { for (int i = 0; i <= n; ++i) f[i] = i; }\n    int find(int x) { return f[x] == x ? x : f[x] = find(f[x]); }\n    bool merge(int a, int b) {\n        a = find(a); b = find(b);\n        if (a == b) return false;\n        f[a] = b;\n        return true;\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<array<long long, 3>> e(m);\n    for (int i = 0; i < m; ++i) cin >> e[i][0] >> e[i][1] >> e[i][2];\n\n    // 直接对每条被删边重跑一次 Kruskal（数据规模允许）\n    vector<int> order(m);\n    iota(order.begin(), order.end(), 0);\n    sort(order.begin(), order.end(), [&](int a, int b) { return e[a][2] < e[b][2]; });\n\n    for (int skip = 0; skip < m; ++skip) {\n        DSU dsu(n);\n        long long total = 0;\n        int used = 0;\n        for (int idx : order) {\n            if (idx == skip) continue;\n            if (dsu.merge((int)e[idx][0], (int)e[idx][1])) {\n                total += e[idx][2];\n                if (++used == n - 1) break;\n            }\n        }\n        cout << (used == n - 1 ? total : -1) << '\\n';\n    }\n    return 0;\n}" }
   ],
   '2025-12-l8': [
-    { type: 'programming', id: 26, score: 25, title: '猫和老鼠', problemNumber: '2025-12-l8-Q26', description: '庄园是一张带权无向连通图，猫从结点 a 出发，老鼠洞在结点 b。若某结点到老鼠洞的最短路长度严格小于猫窝到老鼠洞的最短路长度，则老鼠可安全取得该结点奶酪。求安全结点奶酪总价值。', inputDescription: '第一行两个正整数 n、m。第二行两个正整数 a、b。第三行 n 个正整数 c_i。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出一个整数。', samples: [{ input: '5 5\n1 2\n1 2 4 8 16\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '22' }, { input: '6 10\n3 4\n1 1 1 1 1 1\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '3' }], explanation: '从老鼠洞出发做最短路，若某点到洞的最短时间小于猫窝到洞的最短时间，则该点安全。', tags: ['编程题', '最短路', '图论'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,a,b;cin>>n>>m>>a>>b; vector<int> c(n+1); for(int i=1;i<=n;i++) cin>>c[i]; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[b]=0; pq.push({0,b}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} long long ans=0; for(int i=1;i<=n;i++) if(d[i]<d[a]) ans+=c[i]; cout<<ans<<"\\n"; return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '宝石项链', problemNumber: '2025-12-l8-Q27', description: '有一条长度为 n 的项链，宝石种类共有 m 种。需要把项链划分成若干连续段，且每一段都包含全部 m 种宝石。求最多能划分多少段。', inputDescription: '第一行两个正整数 n、m。第二行 n 个正整数 t_i。', outputDescription: '输出一个整数。', samples: [{ input: '6 2\n1 2 1 2 1 2', output: '3' }, { input: '7 3\n3 1 3 1 2 1 2', output: '2' }], explanation: '先对每个起点求出包含全部种类的最短段长，再在环上倍增连续跳段。', tags: ['编程题', '双指针', '倍增'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<int> t(n);\n    for (int i = 0; i < n; ++i) cin >> t[i];\n\n    // 项链是环形的：划分必须绕环一周正好闭合，每段都含全部 m 种宝石。\n    // 对固定起点，贪心地取「含齐 m 种的最短段」最优；枚举全部起点取最大段数。\n    int best = 0;\n    for (int s = 0; s < n; ++s) {\n        int pos = 0, segments = 0;\n        bool ok = true;\n        while (pos < n) {\n            vector<int> cnt(m + 1, 0);\n            int kinds = 0, len = 0;\n            while (pos + len < n && kinds < m) {\n                int v = t[(s + pos + len) % n];\n                if (v >= 1 && v <= m && cnt[v]++ == 0) kinds++;\n                len++;\n            }\n            if (kinds < m) { ok = false; break; } // 剩余部分凑不齐，起点 s 无效\n            pos += len;\n            segments++;\n        }\n        if (ok && pos == n) best = max(best, segments);\n    }\n    cout << best << '\\n';\n    return 0;\n}" }
+    { type: 'programming', id: 26, score: 25, title: '猫和老鼠', problemNumber: '2025-12-l8-Q26', description: '庄园是一张带权无向连通图，猫从结点 a 出发，老鼠洞在结点 b。若某结点到老鼠洞的最短路长度严格小于猫窝到老鼠洞的最短路长度，则老鼠可安全取得该结点奶酪。求安全结点奶酪总价值。', inputDescription: '第一行两个正整数 n、m。第二行两个正整数 a、b。第三行 n 个正整数 c_i。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出一个整数。', samples: [{ input: '5 5\n1 2\n1 2 4 8 16\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '22' }, { input: '6 10\n3 4\n1 1 1 1 1 1\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '3' }], explanation: `**解析：**
+
+### 题目大意
+在一个由 \`n\` 个节点、\`m\` 条无向边组成的正权图中，猫初始在节点 \`a\`，老鼠洞位于节点 \`b\`。每个节点 \`i\` 都存放着价值为 \`c[i]\` 的奶酪。
+若某个节点 \`i\` 到老鼠洞 \`b\` 的最短距离（即老鼠逃跑用时）严格小于猫到老鼠洞 \`b\` 的最短距离，即 \`d[i] < d[a]\`，则该节点是安全的，可以获取其中的奶酪。
+题目要求计算所有安全节点的奶酪价值之和。
+
+### 算法步骤
+由于图中边权均为正数，且所有点到老鼠洞 \`b\` 的距离可以通过单源最短路径统一求解，推荐使用堆优化的 Dijkstra 算法：
+
+1. **建图与存储**：
+   使用邻接表（如 \`vector<vector<pair<int, int>>>\`）存储无向图。对于每条连接 \`u\` 和 \`v\`、权值为 \`w\` 的边，双向存入边 \`(u, v, w)\` 和 \`(v, u, w)\`。
+
+2. **单源最短路（Dijkstra 算法）**：
+   - 目标是求出所有节点到老鼠洞 \`b\` 的最短距离 \`d[i]\`。无向图具有对称性，从 \`b\` 到任意点 \`i\` 的最短距离，与从点 \`i\` 到 \`b\` 的最短距离完全相同。因此只需以 \`b\` 为唯一起点运行一次 Dijkstra。
+   - 初始化距离数组 \`d\` 为无穷大（如 \`INF = 4e18\`），令起点 \`d[b] = 0\`。
+   - 使用小顶堆（优先队列 \`priority_queue\`）维护 \`(当前距离, 节点编号)\`。
+   - 每次取出堆顶距离最小的节点 \`u\`，若当前距离 \`du != d[u]\` 则说明该状态已失效，直接跳过；否则遍历其所有邻居节点 \`v\` 进行松弛：若 \`d[v] > du + w\`，则更新 \`d[v] = du + w\` 并将 \`(d[v], v)\` 压入堆中。
+
+3. **统计答案**：
+   - 最短路运行完成后，猫到达老鼠洞的最短时间为 \`d[a]\`。
+   - 遍历节点 \`1\` 到 \`n\`：若满足 \`d[i] < d[a]\`，说明该节点安全，将 \`c[i]\` 累加到最终答案 \`ans\` 中。
+   - 输出累加和 \`ans\`。
+
+### 样例走查（以样例 1 为例）
+**输入数据**：
+- \`n = 5, m = 5, a = 1, b = 2\`
+- 奶酪价值：\`c[1]=1, c[2]=2, c[3]=4, c[4]=8, c[5]=16\`
+- 5 条双向边：\`(1, 2, 4), (2, 3, 3), (3, 4, 1), (2, 5, 2), (3, 1, 8)\`
+
+**执行流程**：
+1. **Dijkstra 计算（以 \`b = 2\` 为起点）**：
+   - 初始时 \`d[2] = 0\`，其余点距离均为 \`INF\`。
+   - 访问节点 \`2\`：
+     - 到节点 \`1\` 更新为 \`0 + 4 = 4\`，\`d[1] = 4\`；
+     - 到节点 \`3\` 更新为 \`0 + 3 = 3\`，\`d[3] = 3\`；
+     - 到节点 \`5\` 更新为 \`0 + 2 = 2\`，\`d[5] = 2\`。
+   - 堆顶取出距离最小的节点 \`5\`（距离为 2），其相连邻居无法进一步松弛。
+   - 堆顶取出节点 \`3\`（距离为 3）：
+     - 到节点 \`4\` 更新为 \`3 + 1 = 4\`，\`d[4] = 4\`；
+     - 到节点 \`1\` 经由边权 8 为 \`3 + 8 = 11 > 4\`，不更新。
+   - 依次处理节点 \`1\` 和节点 \`4\`（距离均为 4），均无法更新其他节点。
+   - 最终各点到 \`b = 2\` 的最短距离为：\`d[1] = 4\`，\`d[2] = 0\`，\`d[3] = 3\`，\`d[4] = 4\`，\`d[5] = 2\`。
+
+2. **安全判定与求和**：
+   - 猫窝在 \`a = 1\`，猫到洞的时间为 \`d[a] = d[1] = 4\`。
+   - 逐一判定每个节点是否满足 \`d[i] < 4\`：
+     - 节点 1：\`d[1] = 4\`，不满足 \`4 < 4\`，跳过；
+     - 节点 2：\`d[2] = 0 < 4\`，满足，累加 \`c[2] = 2\`；
+     - 节点 3：\`d[3] = 3 < 4\`，满足，累加 \`c[3] = 4\`；
+     - 节点 4：\`d[4] = 4\`，不满足 \`4 < 4\`，跳过；
+     - 节点 5：\`d[5] = 2 < 4\`，满足，累加 \`c[5] = 16\`。
+   - 总和 \`ans = 2 + 4 + 16 = 22\`，与样例输出一致。
+
+**易错提醒：**
+- **数据范围与类型**：奶酪价值累加和与最短路径长度可能超过 32 位带符号整型的上限，距离数组 \`d\` 与答案变量 \`ans\` 必须使用 \`long long\`，\`INF\` 也应设为足够大的值（如 \`4e18\`）。
+- **多对一转化为单源**：若分别对每个节点运行一次最短路，整体复杂度为 \`O(n * (n + m) log n)\`，会导致运行超时。利用无向图对称性，以 \`b\` 为源点仅需执行一次 Dijkstra，复杂度降为 \`O((n + m) log n)\`。
+- **严格小于条件**：题目要求老鼠比猫严格先到老鼠洞，比较条件必须是 \`d[i] < d[a]\`，切勿误写为 \`<=\`。
+
+**知识延伸：**
+本题核心考查**堆优化的 Dijkstra 最短路算法**与**反向思维（多源向汇转化为单源汇向全图）**。在处理“多个点前往同一个目标点”的问题时，只要在无向图（或有向图的反向图）中以该目标点作为唯一起点做一次单源最短路，就能在单次遍历中高效得到全部节点的最优解。`, tags: ['编程题', '最短路', '图论'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,a,b;cin>>n>>m>>a>>b; vector<int> c(n+1); for(int i=1;i<=n;i++) cin>>c[i]; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[b]=0; pq.push({0,b}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} long long ans=0; for(int i=1;i<=n;i++) if(d[i]<d[a]) ans+=c[i]; cout<<ans<<"\\n"; return 0;}' },
+    { type: 'programming', id: 27, score: 25, title: '宝石项链', problemNumber: '2025-12-l8-Q27', description: '有一条长度为 n 的项链，宝石种类共有 m 种。需要把项链划分成若干连续段，且每一段都包含全部 m 种宝石。求最多能划分多少段。', inputDescription: '第一行两个正整数 n、m。第二行 n 个正整数 t_i。', outputDescription: '输出一个整数。', samples: [{ input: '6 2\n1 2 1 2 1 2', output: '3' }, { input: '7 3\n3 1 3 1 2 1 2', output: '2' }], explanation: `**解析：**
+
+### 1. 题目大意与切入点
+题目要求处理一条由 \`n\` 颗宝石首尾相接组成的环形项链。每颗宝石具有一个编号（在 \`1\` 到 \`m\` 范围内）。我们需要将这条项链完整划分成若干个互不重叠且首尾相接的连续段，使得：
+1. 每一段中都必须**包含全部 \`m\` 种宝石**（每种至少出现一次）；
+2. 所有段拼合后正好**不重不漏地覆盖整条项链**（划分绕环一周正好闭合）。
+
+目标是求出最多可以划分出的合法段数。
+
+---
+
+### 2. 算法步骤
+
+#### 步骤一：破环成链与起点枚举
+因为项链是环形的，划分的第一段可以从环上的任意一颗宝石作为起点开始。
+- 环上共有 \`n\` 个可能的第一段起点，编号记为 \`s\`（\`0 <= s < n\`）。
+- 固定起点 \`s\` 后，项链可以看作从 \`s\` 开始顺时针延伸的一条长度为 \`n\` 的线性序列，第 \`k\` 颗宝石在原数组中的下标对应为 \`(s + k) % n\`。
+
+#### 步骤二：固定起点下的贪心划分
+固定切点 \`s\` 后，问题转化为在线性序列上划分尽可能多的段：
+- **贪心策略**：为了让总段数最大，每一段应当尽可能短，从而给后续的段“留出”更多的宝石。因此，从当前未划分的起始偏移 \`pos\` 开始，向后逐个扫描宝石，**只要刚刚凑齐了全部 \`m\` 种宝石，就立刻在此处截断作为一段**。
+- **种类维护**：维护一个桶数组 \`cnt\` 记录当前段内各宝石的出现次数，以及变量 \`kinds\` 记录当前段已包含的不同宝石种类数。每次遇到新种类（\`cnt[v] == 0\`）时，\`kinds\` 加 1。当 \`kinds == m\` 时达到合法条件，立即结束当前段的扩展。
+
+#### 步骤三：整环闭合与合法性判定
+- 设当前段扩展的长度为 \`len\`，当前段结束后更新 \`pos = pos + len\`，已划分段数 \`segments\` 加 1。
+- 如果在某一段扫描到项链末尾时，宝石种类数仍小于 \`m\`（\`kinds < m\`），说明剩余宝石无法凑成合法的一段，这意味着以 \`s\` 为开头的划分方案无法恰好闭合，该方案无效。
+- 只有当成功划分且刚好遍历完所有 \`n\` 颗宝石（\`ok && pos == n\`）时，此方案才是合法的，此时用 \`segments\` 更新全局最大段数 \`best = max(best, segments)\`。
+
+---
+
+### 3. 样例走查
+
+#### 样例 1 走查
+- **输入**：\`n = 6, m = 2\`，宝石序列为 \`[1, 2, 1, 2, 1, 2]\`。
+- **考察起点 \`s = 0\`**：
+  - 从 \`pos = 0\` 出发，依次扫描：
+    - 读取 \`t[0] = 1\`，种类数 \`kinds = 1\`；
+    - 读取 \`t[1] = 2\`，种类数 \`kinds = 2\`（已集齐 \`m = 2\` 种），立即截断。
+    - **第 1 段**：包含宝石 \`[1, 2]\`，长度为 2，更新 \`pos = 2\`，\`segments = 1\`。
+  - 从 \`pos = 2\` 出发：
+    - 读取 \`t[2] = 1\`，\`t[3] = 2\`，集齐 2 种。
+    - **第 2 段**：包含宝石 \`[1, 2]\`，长度为 2，更新 \`pos = 4\`，\`segments = 2\`。
+  - 从 \`pos = 4\` 出发：
+    - 读取 \`t[4] = 1\`，\`t[5] = 2\`，集齐 2 种。
+    - **第 3 段**：包含宝石 \`[1, 2]\`，长度为 2，更新 \`pos = 6\`，\`segments = 3\`。
+  - 此时 \`pos == 6 == n\`，整条项链刚好被完整闭合划分，得到合法段数 3，更新 \`best = 3\`。
+- **输出结果**：\`3\`。
+
+#### 样例 2 走查
+- **输入**：\`n = 7, m = 3\`，宝石序列为 \`[3, 1, 3, 1, 2, 1, 2]\`（下标 \`0 ~ 6\`）。
+- **尝试起点 \`s = 0\`**（顺时针序列为 \`3, 1, 3, 1, 2, 1, 2\`）：
+  - 第 1 段扫描到 \`3, 1, 3, 1, 2\`（下标 0 到 4）时才集齐 3 种，段长 5；
+  - 剩余未划分宝石仅有 \`t[5] = 1, t[6] = 2\`，无法凑齐 3 种宝石，故 \`s = 0\` 方案无法完整划分。
+- **尝试起点 \`s = 1\`**（从下标 1 展开，宝石序列对应 \`t[1]\` 到 \`t[0]\`，即 \`[1, 3, 1, 2, 1, 2, 3]\`）：
+  - 从 \`pos = 0\` 开始扫描：
+    - 依次读取 \`t[1]=1, t[2]=3, t[3]=1, t[4]=2\`。此时已集齐宝石 1、2、3（\`kinds = 3\`），立即截断。
+    - **第 1 段**：包含 \`[1, 3, 1, 2]\`，长度为 4，更新 \`pos = 4\`，\`segments = 1\`。
+  - 从 \`pos = 4\` 开始扫描：
+    - 依次读取 \`t[5]=1, t[6]=2, t[0]=3\`。包含宝石 1、2、3（\`kinds = 3\`），立即截断。
+    - **第 2 段**：包含 \`[1, 2, 3]\`，长度为 3，更新 \`pos = 4 + 3 = 7 = n\`，\`segments = 2\`。
+  - 此时 \`pos == 7 == n\`，所有宝石恰好分完，方案合法，段数为 2。
+- 遍历所有起点后，最大合法段数仍为 2。
+- **输出结果**：\`2\`。
+
+---
+
+### 4. 复杂度分析
+- **时间复杂度**：外层枚举 \`n\` 个起点 \`s\`；每个起点里 \`pos\` 只增不减，至多扫描 \`n\` 颗宝石，单次检验为 \`O(n)\`。总时间复杂度为 \`O(n*n)\`。
+- **空间复杂度**：存储宝石序列需要 \`O(n)\` 空间，统计种类所用的桶数组大小为 \`O(m)\`，整体空间复杂度为 \`O(n + m)\`。
+
+**易错提醒：**
+- **环形下标越界**：由于首尾相连，展开项链时取宝石必须使用 \`(s + pos + len) % n\` 进行取模，不可直接按下标递增访问。
+- **每段计数必须独立**：在进入新的一段划分时，必须将统计种类的桶数组 \`cnt\` 和种类计数器 \`kinds\` 彻底重置为 0，不能累加前一段的数据。
+- **不能遗留剩余宝石**：环形项链要求严丝合缝地闭合，如果最后剩余的一小段凑不齐 \`m\` 种宝石，该起点划分不合法，必须舍弃，绝不能将不完整的剩余部分直接拼入上一段中强行结算。
+
+**知识延伸：**
+- 若 \`n\` 大到十万，\`O(n*n)\` 会超时。可以把数组倍长为 \`2n\`，预处理每个位置向后凑齐 \`m\` 种宝石的最短结束位置，再用倍增记录连续跳若干段后的位置。`, tags: ['编程题', '双指针', '倍增'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<int> t(n);\n    for (int i = 0; i < n; ++i) cin >> t[i];\n\n    // 项链是环形的：划分必须绕环一周正好闭合，每段都含全部 m 种宝石。\n    // 对固定起点，贪心地取「含齐 m 种的最短段」最优；枚举全部起点取最大段数。\n    int best = 0;\n    for (int s = 0; s < n; ++s) {\n        int pos = 0, segments = 0;\n        bool ok = true;\n        while (pos < n) {\n            vector<int> cnt(m + 1, 0);\n            int kinds = 0, len = 0;\n            while (pos + len < n && kinds < m) {\n                int v = t[(s + pos + len) % n];\n                if (v >= 1 && v <= m && cnt[v]++ == 0) kinds++;\n                len++;\n            }\n            if (kinds < m) { ok = false; break; } // 剩余部分凑不齐，起点 s 无效\n            pos += len;\n            segments++;\n        }\n        if (ok && pos == n) best = max(best, segments);\n    }\n    cout << best << '\\n';\n    return 0;\n}" }
   ]
 ,
   '2026-03-l8': [
