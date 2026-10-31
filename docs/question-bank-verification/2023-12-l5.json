@@ -1,10 +1,10 @@
 {
   "paperId": "2023-12-l5",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-31",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-12-l5"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
@@ -25,12 +25,66 @@
       "method": [
         "原卷对照（页面渲染人工查看）",
         "程序执行",
-        "独立推导"
+        "独立推导",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题面缺失 fiboA/fiboB 斐波那契代码（原卷 p.1 为图片）。原卷选项文字与录入略有出入（录入为节选），不在本次修复范围。",
       "fix": "按原卷 p.1 逐行转写 fiboA（递归）/fiboB（循环）代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote。",
       "evidence": "g++ 编译运行转写代码，fiboA/fiboB 在 n=1,2,3,5,10,20 时输出完全一致（1 1 2 5 55 6765），fiboA 为指数级重复计算的递归、fiboB 为 O(N) 循环，选项 C 称 fiboA 效率更高为错误说法，与答案 C 一致。tmp/verify/2023-12-l5/q1.cpp",
-      "resolved": true
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "note": "Q1 explanation 升级；答案未改"
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q5 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
     },
     {
       "id": 11,
@@ -45,6 +99,38 @@
       "findings": "题库题面为改写版（「数组模拟整数加法处理超出大整数范围的运算」），且缺少官方代码块。官方代码为图片，文本层无代码。",
       "fix": "按官方 p.5 渲染图逐行转写 operator+ 大整数加法代码回填题面，题干恢复官方原文；解析选项分析从套话改为逐项具体分析（t%10 取位、t/10 留进位）。官方答案 D 与 if(t) c.push_back(t) 逻辑吻合。",
       "evidence": "tmp/verify/2023-12-l5/single-05.png（官方代码图）",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q15 explanation 升级；答案未改"
+    },
+    {
+      "id": 16,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方 PDF 中 O(NlogN) 公式为图片，文本层丢失，审计探针 14 字窗无法命中。题库题面 (n log n)$ 语义正确（渲染图确认公式为 O(NlogN)，记法差异不影响）。",
+      "fix": "无需修复，保留记录。",
+      "evidence": "tmp/verify/2023-12-l5/pg-07.png",
       "resolved": true,
       "reviewedAt": "2026-10-27",
       "reviewedBy": "AI对照官方PDF校订"
@@ -110,20 +196,36 @@
       "reviewedBy": "AI对照官方PDF校订"
     },
     {
-      "id": 16,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "假阴性说明：官方 PDF 中 O(NlogN) 公式为图片，文本层丢失，审计探针 14 字窗无法命中。题库题面 (n log n)$ 语义正确（渲染图确认公式为 O(NlogN)，记法差异不影响）。",
-      "fix": "无需修复，保留记录。",
-      "evidence": "tmp/verify/2023-12-l5/pg-07.png",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
       "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
