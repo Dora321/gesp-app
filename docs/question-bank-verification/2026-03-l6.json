@@ -1,10 +1,10 @@
 {
   "paperId": "2026-03-l6",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-31",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2026-03-l6"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
@@ -53,8 +53,19 @@
       "method": [
         "原卷转写",
         "答案表核对（p.1）",
-        "独立推导一致（类外访问 private 成员编译错误）"
-      ]
+        "独立推导一致（类外访问 private 成员编译错误）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
     },
     {
       "id": 4,
@@ -64,8 +75,19 @@
       "method": [
         "原卷转写",
         "答案表核对（p.1）",
-        "独立推导一致（循环队列手动模拟：满，rear=1）"
-      ]
+        "独立推导一致（循环队列手动模拟：满，rear=1）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q4 explanation 升级；答案未改"
     },
     {
       "id": 5,
@@ -119,8 +141,19 @@
       "method": [
         "原卷转写",
         "答案表核对（p.1）",
-        "独立推导一致（合并权值和 5+7+11+15+26=64）"
-      ]
+        "独立推导一致（合并权值和 5+7+11+15+26=64）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q9 explanation 升级；答案未改"
     },
     {
       "id": 10,
@@ -128,16 +161,22 @@
       "answer": "B",
       "sourcePage": 4,
       "method": [
-        "官方PDF对照"
+        "官方PDF对照",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "dimensions": [
-        "statement"
+        "statement",
+        "explanation"
       ],
       "findings": "假阴性说明：官方题干「对 个不同符号的符号进行哈夫曼编码。若生成的哈夫曼树共有 个结点，则 的值是」中 n、115 均为公式/数字字符，文本层丢失。题库语义正确（哈夫曼树 2n-1=115 → n=58）。",
       "fix": "无需修复。官方答案行 Q10=B，题库 ans=1 一致。",
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedAt": "2026-10-31",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q10 explanation 升级；答案未改"
     },
     {
       "id": 11,
@@ -147,8 +186,19 @@
       "method": [
         "原卷转写",
         "答案表核对（p.1）",
-        "独立推导一致（格雷码相邻码距为 1）"
-      ]
+        "独立推导一致（格雷码相邻码距为 1）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q11 explanation 升级；答案未改"
     },
     {
       "id": 12,
@@ -158,8 +208,19 @@
       "method": [
         "原卷转写（代码 p.5）",
         "答案表核对（p.1）",
-        "独立推导一致（子结点深度 depth+1，循环含 max_depth）"
-      ]
+        "独立推导一致（子结点深度 depth+1，循环含 max_depth）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q12 explanation 升级；答案未改"
     },
     {
       "id": 13,
@@ -180,8 +241,19 @@
       "method": [
         "原卷转写",
         "答案表核对（p.1）",
-        "独立推导一致（打家劫舍转移方程）"
-      ]
+        "独立推导一致（打家劫舍转移方程）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
     },
     {
       "id": 15,
@@ -321,8 +393,19 @@
       "method": [
         "原卷转写题面/输入输出/数据范围/样例",
         "官方参考程序（p.10）逐字转写",
-        "g++ 编译运行通过全部样例（7、11）"
-      ]
+        "g++ 编译运行通过全部样例（7、11）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
     },
     {
       "id": 27,
