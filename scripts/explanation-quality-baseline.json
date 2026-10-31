@@ -8,7 +8,7 @@
     "truncated": 2,
     "contradictory": 0,
     "filler": 0,
-    "overlong": 7
+    "overlong": 8
   },
   "issues": {
     "template": [],
@@ -78,7 +78,8 @@
       "2024-09-l6:Q12",
       "2024-09-l6:Q2",
       "2024-09-l6:Q3",
-      "2024-12-l6:Q3"
+      "2024-12-l6:Q3",
+      "2025-03-l6:Q12"
     ]
   }
 }
