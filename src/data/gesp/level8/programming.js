@@ -311,8 +311,128 @@ export const l8ProgrammingByPaper = {
 - **时间复杂度**：每个节点和每条异色边在标记与两遍 DFS 中最多被常数次遍历，整体时间复杂度为 \`O(n)\`，空间复杂度为 \`O(n)\`，可以高效通过全部测试数据。`, tags: ['编程题', '树形DP', '直径'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n;\nvector<vector<int>> g;\nint farNode, farDist;\n\nvoid dfs(int u, int fa, int d) {\n    if (d > farDist) { farDist = d; farNode = u; }\n    for (int v : g[u]) if (v != fa) dfs(v, u, d + 1);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    g.assign(n + 1, {});\n    vector<pair<int, int>> edges;\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        if (c[u] != c[v]) { // 只保留异色边，美丽路径只能走这些边\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n    }\n    // 森林里逐棵树求直径（按节点数计）\n    vector<bool> vis(n + 1, false);\n    int ans = 1;\n    function<void(int)> mark = [&](int u) {\n        vis[u] = true;\n        for (int v : g[u]) if (!vis[v]) mark(v);\n    };\n    for (int i = 1; i <= n; ++i) {\n        if (vis[i]) continue;\n        mark(i);\n        farDist = -1; dfs(i, 0, 0);\n        int a = farNode;\n        farDist = -1; dfs(a, 0, 0);\n        ans = max(ans, farDist + 1);\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2024-12-l8': [
-    { type: 'programming', id: 26, score: 25, title: '树上移动', problemNumber: '2024-12-l8-Q26', description: '给定一棵 n 个节点的树，每个节点颜色为 0/1，其中 1 表示黑色。任选起点和终点，沿简单路径移动，要求路径上经过的黑色节点数不超过 k。求最多能经过多少个节点。', inputDescription: '第一行两个正整数 n、k。第二行 n 个整数表示各节点颜色。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个正整数。', samples: [{ input: '5 1\n0 0 1 1 1\n1 2\n2 3\n2 5\n1 4', output: '3' }], explanation: '等价于在树上找一条点权和（黑点记 1）不超过 k 的最长简单路径。', tags: ['编程题', '树', 'DFS'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // 从每个点出发 DFS，维护路径上的黑点数（O(n^2)）\n    int ans = 0;\n    function<void(int, int, int, int)> dfs = [&](int u, int fa, int black, int nodes) {\n        black += c[u];\n        if (black > k) return;\n        ans = max(ans, nodes + 1);\n        for (int v : g[u]) if (v != fa) dfs(v, u, black, nodes + 1);\n    };\n    for (int i = 1; i <= n; ++i) dfs(i, 0, 0, 0);\n    cout << ans << '\\n';\n    return 0;\n}" },
-    { type: 'programming', id: 27, score: 25, title: '排队', problemNumber: '2024-12-l8-Q27', description: '有 n 位同学要排成一列。给出 m 条相邻约束，每条约束要求 a 必须紧挨在 b 前面。问满足全部约束的排队方案数，答案对 1e9+7 取模。', inputDescription: '第一行两个整数 n、m。接下来 m 行每行两个整数 a、b。', outputDescription: '输出一个整数。', samples: [{ input: '4 2\n1 3\n2 4', output: '2' }, { input: '3 0', output: '6' }, { input: '3 2\n1 2\n2 1', output: '0' }], explanation: '约束会把若干同学压缩成有向链。若出现环、某点入度或出度超过 1，则无解；否则把每条链视为一个整体再排列。', tags: ['编程题', '排列计数', '链与环'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1000000007;\n\nint find(vector<int> &f, int x) { return f[x] == x ? x : f[x] = find(f, f[x]); }\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    set<pair<int, int>> constraints;\n    for (int i = 0; i < m; ++i) {\n        int a, b;\n        cin >> a >> b;\n        constraints.insert({a, b});\n    }\n    // a 必须紧挨 b 前面：出度/入度都不能超过 1，且不能成环。\n    vector<int> out(n + 1, 0), in(n + 1, 0), f(n + 1);\n    for (int i = 1; i <= n; ++i) f[i] = i;\n    bool ok = true;\n    int merged = 0;\n    for (auto [a, b] : constraints) {\n        if (++out[a] > 1 || ++in[b] > 1) { ok = false; break; }\n        int ra = find(f, a), rb = find(f, b);\n        if (ra == rb) { ok = false; break; } // 成环\n        f[ra] = rb;\n        merged++;\n    }\n    if (!ok) { cout << 0 << '\\n'; return 0; }\n    // 合法时链和散点共 n - merged 个单元，任意排列\n    long long ans = 1;\n    for (long long i = 2; i <= n - merged; ++i) ans = ans * i % MOD;\n    cout << ans << '\\n';\n    return 0;\n}" }
+    { type: 'programming', id: 26, score: 25, title: '树上移动', problemNumber: '2024-12-l8-Q26', description: '给定一棵 n 个节点的树，每个节点颜色为 0/1，其中 1 表示黑色。任选起点和终点，沿简单路径移动，要求路径上经过的黑色节点数不超过 k。求最多能经过多少个节点。', inputDescription: '第一行两个正整数 n、k。第二行 n 个整数表示各节点颜色。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个正整数。', samples: [{ input: '5 1\n0 0 1 1 1\n1 2\n2 3\n2 5\n1 4', output: '3' }], explanation: `**解析：**
+
+**题目大意与模型转化**
+本题给出一棵包含 \`n\` 个节点的树，每个节点有对应的颜色属性（\`0\` 表示白点，\`1\` 表示黑点）。要求在树上寻找一条简单路径，使得该路径上包含的黑点总数不超过 \`k\`，并求出该路径最多可以包含多少个节点（即最长合法路径上的节点数）。
+
+因为树上任意两点之间有且仅有一条简单路径，问题等价于：在所有满足「黑点数量 \`<= k\`」的树上简单路径中，求包含节点数量的最大值。
+
+**完整算法步骤**
+由于题目数据规模适用于 \`O(n^2)\` 的遍历策略，我们可以通过枚举路径的起点，结合深度优先搜索（DFS）探索所有延伸路径：
+
+1. **建图与初始化**：
+   - 使用邻接表 \`g\` 存储无向树，读入 \`n - 1\` 条边，对于每条边 \`(u, v)\` 分别添加双向邻接关系：\`g[u].push_back(v)\` 与 \`g[v].push_back(u)\`。
+   - 用数组 \`c\` 记录每个节点的颜色（\`c[i] = 1\` 为黑点，\`c[i] = 0\` 为白点）。
+   - 初始化全局答案变量 \`ans = 0\`。
+2. **设计 DFS 递归状态**：
+   - 定义递归函数 \`dfs(u, fa, black, nodes)\`：
+     - \`u\`：当前访问的节点编号；
+     - \`fa\`：当前节点的父节点编号（防止沿无向边走回头路）；
+     - \`black\`：到达当前点前路径上累积的黑点数；
+     - \`nodes\`：到达当前点前路径上已包含的节点数。
+3. **黑点计数与剪枝**：
+   - 进入节点 \`u\` 后，累加当前节点颜色：\`black += c[u]\`。
+   - 若 \`black > k\`，说明当前路径的黑点数已超过上限，由于继续向下延伸黑点数只增不减，不可能再产生合法路径，直接 \`return\` 剪枝。
+   - 若未超限，说明当前路径合法，更新最大节点数：\`ans = max(ans, nodes + 1)\`。
+4. **递归扩展邻居节点**：
+   - 遍历节点 \`u\` 的所有相邻节点 \`v\`，若 \`v != fa\`，则递归调用 \`dfs(v, u, black, nodes + 1)\`。
+5. **外层循环遍历所有起点**：
+   - 循环让节点 \`i\` 从 \`1\` 到 \`n\` 分别作为路径起点，调用 \`dfs(i, 0, 0, 0)\`。
+   - 循环结束后，输出最大节点数 \`ans\`。
+
+**样例走查**
+以输入样例进行模拟：
+输入：
+\`5 1\`（共 5 个节点，路径最多包含 1 个黑点）
+节点颜色：\`c[1]=0, c[2]=0, c[3]=1, c[4]=1, c[5]=1\`（黑点为 3、4、5，白点为 1、2）
+树的连边：\`1-2, 2-3, 2-5, 1-4\`。
+
+- **树的形态分析**：
+  - 节点 1 与 4、2 相连；
+  - 节点 2 与 1、3、5 相连。
+  整棵树以白点链 \`1 - 2\` 为中心，节点 4（黑）连接节点 1，节点 3（黑）和节点 5（黑）分别连接节点 2。
+
+- **各路径黑点统计与长度走查**：
+  - **长度为 1 的路径**：
+    - 单独选择任何一个节点（如节点 1 或节点 3），黑点数最多为 1，均 \`<= 1\`，最大长度至少为 1。
+  - **长度为 2 的路径**：
+    - 路径 \`1 - 2\`：黑点数为 \`c[1] + c[2] = 0 + 0 = 0 <= 1\`，合法；
+    - 路径 \`1 - 4\`：黑点数为 \`c[1] + c[4] = 0 + 1 = 1 <= 1\`，合法。
+  - **长度为 3 的路径**：
+    - 路径 \`4 - 1 - 2\`：包含节点 4、1、2，黑点数为 \`c[4] + c[1] + c[2] = 1 + 0 + 0 = 1 <= 1\`，合法，节点数为 3。
+    - 路径 \`3 - 2 - 1\`：包含节点 3、2、1，黑点数为 \`c[3] + c[2] + c[1] = 1 + 0 + 0 = 1 <= 1\`，合法，节点数为 3。
+    - 路径 \`5 - 2 - 1\`：包含节点 5、2、1，黑点数为 \`c[5] + c[2] + c[1] = 1 + 0 + 0 = 1 <= 1\`，合法，节点数为 3。
+    - 路径 \`3 - 2 - 5\`：包含节点 3、2、5，黑点数为 \`c[3] + c[2] + c[5] = 1 + 0 + 1 = 2\`。由于 \`2 > 1\`，超出限制，不合法。
+  - **长度为 4 及以上的路径**：
+    - 树中长度为 4 的简单路径必须连接两端的叶子节点，例如 \`4 - 1 - 2 - 3\` 或 \`4 - 1 - 2 - 5\`。
+    - 对于路径 \`4 - 1 - 2 - 3\`，黑点为 4 和 3，总黑点数为 2，超限；
+    - 对于路径 \`4 - 1 - 2 - 5\`，黑点为 4 和 5，总黑点数为 2，超限。
+    - 因此不存在长度 \`>= 4\` 且黑点数 \`<= 1\` 的合法路径。
+
+- **最终结论**：
+  满足条件的最长简单路径包含 3 个节点（如 \`4 - 1 - 2\`），算法最终输出 \`3\`，与样例输出一致。
+
+**复杂度分析**
+- **时间复杂度**：以每个节点作为起点各执行一次 DFS。树中有 \`n\` 个节点，单次 DFS 最多访问 \`n\` 个节点，耗时 \`O(n)\`。总时间复杂度为 \`O(n * n) = O(n^2)\`，能够高效通过本题评测。
+- **空间复杂度**：邻接表存储 \`n\` 个点与 \`n - 1\` 条无向边，占用 \`O(n)\` 空间；递归栈的最大深度为树高，最坏情况下为 \`O(n)\`。整体额外空间复杂度为 \`O(n)\`。
+
+**易错提醒**
+- **无向边防止死循环**：在无向图上进行 DFS 时，必须传入父节点参数 \`fa\`，并在扩展邻居时跳过 \`v == fa\` 的情况，避免在父子节点间来回往返陷入死循环。
+- **超限及时剪枝**：一旦累加黑点数 \`black > k\`，必须立即返回不再继续向下搜索，避免无效遍历并保证路径合法性。
+- **路径节点计数**：题目求的是简单路径上的节点个数。起点自身占 1 个节点（进入当前点时长度更新为 \`nodes + 1\`），注意不要把节点个数与边的条数混淆。`, tags: ['编程题', '树', 'DFS'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // 从每个点出发 DFS，维护路径上的黑点数（O(n^2)）\n    int ans = 0;\n    function<void(int, int, int, int)> dfs = [&](int u, int fa, int black, int nodes) {\n        black += c[u];\n        if (black > k) return;\n        ans = max(ans, nodes + 1);\n        for (int v : g[u]) if (v != fa) dfs(v, u, black, nodes + 1);\n    };\n    for (int i = 1; i <= n; ++i) dfs(i, 0, 0, 0);\n    cout << ans << '\\n';\n    return 0;\n}" },
+    { type: 'programming', id: 27, score: 25, title: '排队', problemNumber: '2024-12-l8-Q27', description: '有 n 位同学要排成一列。给出 m 条相邻约束，每条约束要求 a 必须紧挨在 b 前面。问满足全部约束的排队方案数，答案对 1e9+7 取模。', inputDescription: '第一行两个整数 n、m。接下来 m 行每行两个整数 a、b。', outputDescription: '输出一个整数。', samples: [{ input: '4 2\n1 3\n2 4', output: '2' }, { input: '3 0', output: '6' }, { input: '3 2\n1 2\n2 1', output: '0' }], explanation: `**解析：**
+
+**题目大意：**
+有 \`n\` 名同学排成一列纵队，给出 \`m\` 个条件，每个条件包含两个整数 \`a\` 和 \`b\`，表示同学 \`a\` 必须紧挨着站在同学 \`b\` 的正前方。求满足所有条件的不同排队方案总数。如果无法排成合法队伍则输出 \`0\`，结果对 \`1000000007\` 取模。
+
+**核心算法与完整步骤：**
+
+1. **图模型转化与合法性分析**
+   - 约束“\`a\` 紧挨着站在 \`b\` 的正前方”，可以看作在图中从 \`a\` 向 \`b\` 连一条有向边 \`a -> b\`。
+   - 每个同学的正前方最多只有一人，因此每个点的入度不能超过 1（\`in[b] <= 1\`）。
+   - 每个同学的正后方最多只有一人，因此每个点的出度不能超过 1（\`out[a] <= 1\`）。
+   - 排队是一条单向的直线队列，不能出现环（包括自环或长环）。例如若出现 \`a -> b -> a\`，两人互在对方正前方，显然无法排队；此时方案数必然为 \`0\`。
+
+2. **去重与判环检测**
+   - **去重处理**：同一对 \`(a, b)\` 可能会多次给出，使用 \`std::set\` 对所有边去重，避免重复统计出入度与合并次数。
+   - **出入度检查**：遍历每条边 \`(a, b)\`，更新 \`out[a]\` 和 \`in[b]\`，一旦 \`out[a] > 1\` 或 \`in[b] > 1\`，立即判定无解，返回 \`0\`。
+   - **并查集检测环**：初始时每个同学的并查集父节点指向自己。处理边 \`(a, b)\` 时，先查找 \`a\` 与 \`b\` 的根节点 \`find(a)\` 和 \`find(b)\`。
+     - 若 \`find(a) == find(b)\`，说明二者此前已处于同一条链中，再连一条边必会形成环，立即判定无解，返回 \`0\`。
+     - 若 \`find(a) != find(b)\`，则将 \`find(a)\` 的父节点指向 \`find(b)\`，合并两个集合，并将有效合并边数 \`merged\` 加 1。
+
+3. **捆绑法排列计数**
+   - 只要没有出现分支（出入度超标）且没有出现环，所有有向边将整个人群组合成了若干条不相交的“单向长链”和未连边的“独立单点”。
+   - 每一条长链内部同学的相对先后顺序已经完全被固定（链首到链尾依次紧邻），不可颠倒改变。因此可以运用组合数学中的“捆绑法”，把整条链当作一个不可分割的“复合单元”。
+   - 初始有 \`n\` 个独立的个体，每加入一条合法边就会将两个链首尾相接，使得独立单元的总数量减少 1。因此最终剩余的独立单元总数为 \`n - merged\`。
+   - 这 \`n - merged\` 个独立单元之间没有任何顺序约束，可以任意全排列。总方案数即为 \`(n - merged)! % 1000000007\`。
+
+---
+
+**样例走查：**
+
+- **样例 1**：\`n = 4, m = 2\`，约束为 \`1 3\`、\`2 4\`
+  1. 读取边 \`(1, 3)\`：\`out[1]=1 <= 1\`，\`in[3]=1 <= 1\`；\`find(1)=1 != find(3)=3\`，合并集合，\`merged = 1\`。
+  2. 读取边 \`(2, 4)\`：\`out[2]=1 <= 1\`，\`in[4]=1 <= 1\`；\`find(2)=2 != find(4)=4\`，合并集合，\`merged = 2\`。
+  3. 检验全部合法，共有 \`4 - 2 = 2\` 个独立单元，分别是链 \`[1, 3]\` 和链 \`[2, 4]\`。
+  4. 计算 \`2! = 2 * 1 = 2\`。最终方案为 \`[1, 3, 2, 4]\` 和 \`[2, 4, 1, 3]\` 两种，输出 \`2\`。
+
+- **样例 2**：\`n = 3, m = 0\`，没有约束
+  1. 约束边集合为空，\`merged = 0\`。
+  2. 独立单元数量为 \`3 - 0 = 3\`（3 名同学彼此独立）。
+  3. 方案数为 \`3! = 3 * 2 * 1 = 6\`，输出 \`6\`。
+
+- **样例 3**：\`n = 3, m = 2\`，约束为 \`1 2\`、\`2 1\`
+  1. 读取边 \`(1, 2)\`：\`out[1]=1\`, \`in[2]=1\`，合并集合 \`1\` 和 \`2\`，\`merged = 1\`。
+  2. 读取边 \`(2, 1)\`：检查并查集发现 \`find(2) == find(1)\`，说明加入该边会闭合一个环（同学 1 和同学 2 互为正前方）。
+  3. 检测到环，判定无解，输出 \`0\`。
+
+---
+
+**易错提醒：**
+- **重复条件去重**：若输入多次给出相同的 \`a b\`，如果不进行去重，会导致入度/出度被重复累加误判为无解，必须提前去重。
+- **成环判断**：只检查入度和出度不能杜绝成环（例如 \`1->2\`、\`2->3\`、\`3->1\` 每个点入度出度均为 1，但整体成环），必须借助并查集或有向图拓扑排序检测环。
+- **全排列与取模运算**：计算 \`(n - merged)!\` 连乘时，累乘变量必须使用 \`long long\` 类型，且每步都执行模 \`1000000007\` 操作，防止数值溢出。`, tags: ['编程题', '排列计数', '链与环'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1000000007;\n\nint find(vector<int> &f, int x) { return f[x] == x ? x : f[x] = find(f, f[x]); }\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    set<pair<int, int>> constraints;\n    for (int i = 0; i < m; ++i) {\n        int a, b;\n        cin >> a >> b;\n        constraints.insert({a, b});\n    }\n    // a 必须紧挨 b 前面：出度/入度都不能超过 1，且不能成环。\n    vector<int> out(n + 1, 0), in(n + 1, 0), f(n + 1);\n    for (int i = 1; i <= n; ++i) f[i] = i;\n    bool ok = true;\n    int merged = 0;\n    for (auto [a, b] : constraints) {\n        if (++out[a] > 1 || ++in[b] > 1) { ok = false; break; }\n        int ra = find(f, a), rb = find(f, b);\n        if (ra == rb) { ok = false; break; } // 成环\n        f[ra] = rb;\n        merged++;\n    }\n    if (!ok) { cout << 0 << '\\n'; return 0; }\n    // 合法时链和散点共 n - merged 个单元，任意排列\n    long long ans = 1;\n    for (long long i = 2; i <= n - merged; ++i) ans = ans * i % MOD;\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2025-03-l8': [
     { type: 'programming', id: 26, score: 25, title: '上学', problemNumber: '2025-03-l8-Q26', description: 'C 城是一张无向带权连通图，学校位于固定结点 s。给出 q 位同学家的结点位置，每位同学每秒走 1 米，问每位同学从家到学校的最短时间。', inputDescription: '第一行四个正整数 n、m、s、q。接下来 m 行每行三个正整数 u、v、l。接下来 q 行每行一个正整数 p。', outputDescription: '输出 q 行。', samples: [{ input: '5 5 3 3\n1 2 3\n2 3 2\n3 4 1\n4 5 3\n1 4 2\n5\n1\n4', output: '4\n3\n1' }], explanation: '从学校结点 s 出发做一次 Dijkstra，随后每个询问直接输出对应结点的最短路。', tags: ['编程题', '最短路', 'Dijkstra'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[s]=0; pq.push({0,s}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} while(q--){int p;cin>>p; cout<<d[p]<<"\\n";} return 0;}' },
