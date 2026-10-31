@@ -1,10 +1,10 @@
 {
   "paperId": "2024-03-l5",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-31",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-03-l5"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
@@ -17,6 +17,29 @@
     }
   },
   "questions": [
+    {
+      "questionId": 22,
+      "issue": "题库改写题面：官方J7为「埃氏筛法和线性筛法的时间复杂度都是O(N log log N)」（答案×，因线性筛是O(N)），题库被改写为「都是O(N log N)」并保留答案×——答案碰巧一致但题面偏离官方",
+      "fix": "按官方原卷恢复Q22题面为O(N log log N)，重写解析（错因：线性筛是O(N)不是O(N log log N)）",
+      "evidence": "200dpi渲染p.6确认官方J7公式为O(N log log N)；官方判断答案表（p.5底部300dpi）√×√×√√××√√ 题库10/10对；单选15/15对（程序化提取）",
+      "related": "Q17(J2 插入排序O(N log N))官方题面与题库一致、答案×一致，定性无需修改（公式在官方文本层丢失导致审计假阴性）"
+    },
+    {
+      "id": 4,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q4 explanation 升级；答案未改"
+    },
     {
       "id": 6,
       "dimensions": [
@@ -49,11 +72,36 @@
       "resolved": true
     },
     {
-      "questionId": 22,
-      "issue": "题库改写题面：官方J7为「埃氏筛法和线性筛法的时间复杂度都是O(N log log N)」（答案×，因线性筛是O(N)），题库被改写为「都是O(N log N)」并保留答案×——答案碰巧一致但题面偏离官方",
-      "fix": "按官方原卷恢复Q22题面为O(N log log N)，重写解析（错因：线性筛是O(N)不是O(N log log N)）",
-      "evidence": "200dpi渲染p.6确认官方J7公式为O(N log log N)；官方判断答案表（p.5底部300dpi）√×√×√√××√√ 题库10/10对；单选15/15对（程序化提取）",
-      "related": "Q17(J2 插入排序O(N log N))官方题面与题库一致、答案×一致，定性无需修改（公式在官方文本层丢失导致审计假阴性）"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [
