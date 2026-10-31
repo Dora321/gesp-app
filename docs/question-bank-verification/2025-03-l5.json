@@ -3,8 +3,8 @@
   "executedAt": "2026-10-25",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-03-l5"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
@@ -22,6 +22,108 @@
     "singleChoice": "本卷 PDF 未附单选答案表"
   },
   "questions": [
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 3,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "题干为改写版（「双向链表」应为「双向循环链表」，指针域描述顺序不同），且缺少官方 InitLinkedList 代码块（模板结构图文本层乱序）。解析为占位模板。",
+      "fix": "恢复官方题干，按官方 p.2-3 渲染图转写代码块（ListNode 模板 + InitLinkedList 空表初始化），选项改为官方两行代码形式（\n 换行）；解析从占位模板重写为逐项具体分析。官方答案 B。",
+      "evidence": "tmp/verify/2025-03-l5/q8-04.png 同页方法",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 4,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干为改写版（「第二步计算的是哪一对数」官方为「第二步计算的数是」，官方有「用以下辗转相除法」提示代码图）。解析为占位模板。",
+      "fix": "恢复官方题干，解析重写为三步推演（84÷60余24 → 60与24 → 24与12 → 12和0）。官方答案 B 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
+      "id": 8,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "findings": "题干「对下面两个求阶乘的函数」官方为「对下面两个函数」，且缺少官方双函数代码图。解析为占位模板。",
+      "fix": "恢复官方题干，按官方 p.4 渲染图转写 factorialA（递归）/factorialB（循环）代码，解析重写（factorialB 未调用自身，D 说法错误）。官方答案 D 一致。",
+      "evidence": "tmp/verify/2025-03-l5/q8-04.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-31",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "note": "Q8 explanation 升级；答案未改"
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q11 explanation 升级；答案未改"
+    },
     {
       "id": 16,
       "official": "×",
@@ -130,54 +232,36 @@
       "note": "对应官方判断第 10 题（归并体现分治），答案一致；移除 suspect 标志并补写正式解析。"
     },
     {
-      "id": 3,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement",
         "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题干为改写版（「双向链表」应为「双向循环链表」，指针域描述顺序不同），且缺少官方 InitLinkedList 代码块（模板结构图文本层乱序）。解析为占位模板。",
-      "fix": "恢复官方题干，按官方 p.2-3 渲染图转写代码块（ListNode 模板 + InitLinkedList 空表初始化），选项改为官方两行代码形式（\n 换行）；解析从占位模板重写为逐项具体分析。官方答案 B。",
-      "evidence": "tmp/verify/2025-03-l5/q8-04.png 同页方法",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
     },
     {
-      "id": 4,
+      "id": 27,
+      "resolved": true,
       "dimensions": [
-        "statement",
         "explanation"
       ],
       "method": [
-        "官方PDF对照"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题干为改写版（「第二步计算的是哪一对数」官方为「第二步计算的数是」，官方有「用以下辗转相除法」提示代码图）。解析为占位模板。",
-      "fix": "恢复官方题干，解析重写为三步推演（84÷60余24 → 60与24 → 24与12 → 12和0）。官方答案 B 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
-    },
-    {
-      "id": 8,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "题干「对下面两个求阶乘的函数」官方为「对下面两个函数」，且缺少官方双函数代码图。解析为占位模板。",
-      "fix": "恢复官方题干，按官方 p.4 渲染图转写 factorialA（递归）/factorialB（循环）代码，解析重写（factorialB 未调用自身，D 说法错误）。官方答案 D 一致。",
-      "evidence": "tmp/verify/2025-03-l5/q8-04.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "summary": {
@@ -186,5 +270,6 @@
     "note": "本卷 10 道判断题此前整卷带 answer-key-suspect 标志（答案全 √、解析占位）。现已逐题对照官方原卷核验，答案修正后移除全部 suspect 标志并补齐解析。"
   },
   "unresolved": [],
-  "answerKey": "单选答案串 A A B B D C A D A B C A A D B，题库比对全部一致；判断题答案表 √ × √ × × × √ × × √ 与题库（轮转后）10/10 一致。"
+  "answerKey": "单选答案串 A A B B D C A D A B C A A D B，题库比对全部一致；判断题答案表 √ × √ × × × √ × × √ 与题库（轮转后）10/10 一致。",
+  "reviewedAt": "2026-10-31"
 }
