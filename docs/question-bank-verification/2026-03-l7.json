@@ -1,10 +1,10 @@
 {
  "paperId": "2026-03-l7",
- "reviewedAt": "2026-10-25",
+ "reviewedAt": "2026-10-31",
  "reviewedBy": {
   "type": "AI",
-  "executor": "WorkBuddy 子代理",
-  "session": "codex/question-bank-verification"
+  "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+  "session": "verify/explanations-2026-03-l7"
  },
  "source": {
   "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
@@ -21,6 +21,70 @@
  },
  "questions": [
   {
+   "id": 1,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q1 explanation 升级；答案未改"
+  },
+  {
+   "id": 2,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q2 explanation 升级；答案未改"
+  },
+  {
+   "id": 3,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q3 explanation 升级；答案未改"
+  },
+  {
+   "id": 5,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q5 explanation 升级；答案未改"
+  },
+  {
    "id": 7,
    "dimensions": [
     "statement",
@@ -29,12 +93,18 @@
    ],
    "method": [
     "原卷对照（页面渲染人工查看）",
-    "程序执行"
+    "程序执行",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
    "findings": "题面缺失二分答案程序（原卷为图片，pp.2-3 跨页，44 行 check/solve/main）。题库题干与选项（2/3/4/5，答案 B=3）与原卷一致。",
    "fix": "按原卷 pp.2-3 逐行转写 44 行代码回填题面；移除 sourceIntegrity/integrityNote。解析中 check(3) 与二分过程推导与代码一致，保留。",
    "evidence": "g++ 编译运行转写代码，实际输出 3（排序后 {1,2,4,8,9} 选 3 个点的最大最小间距），与答案 B（3）一致。tmp/verify/2026-03-l7/q7.cpp",
-   "resolved": true
+   "resolved": true,
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "note": "Q7 explanation 升级；答案未改"
   },
   {
    "id": 8,
@@ -89,6 +159,38 @@
    "fixMethod": "官方 PDF 渲染转写 + 裁图（public/question-assets/2026-03-l7/q10-dfs.png）"
   },
   {
+   "id": 11,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q11 explanation 升级；答案未改"
+  },
+  {
+   "id": 13,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q13 explanation 升级；答案未改"
+  },
+  {
    "id": 26,
    "dimensions": [
     "statement",
@@ -103,14 +205,20 @@
     "官方 PDF 页面渲染逐字转写（p.6）",
     "洛谷 P15802 交叉校对（仅核对样例数字与数据范围）",
     "g++ 编译执行验证",
-    "精确大整数 DP 对拍"
+    "精确大整数 DP 对拍",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
    "findings": "串卷：题库原 Q26 题名为「城市规划」（n 座城市 m 条双向道路，城市建设难度=离心率，求图直径端点），该题实为 2025-12 七级卷的编程题 1（见 src/data/gesp/level7/2025-12-l7.js 同 id 同名题），与 2026-03 七级原卷无关。problemNumber 虽已写为 P15802，但题面、输入输出、样例（3 3 / 1 2…→1）与参考代码全部错配。原卷 p.6 的编程题 1 实为「拆分」（时间限制 1.0s，内存 512MB，25 分）。",
    "fix": "2026-10-25 按原卷 p.6 重录：题名「拆分」；题目描述（含形式化定义与数据范围：40% 数据 n≤50，全部数据 1≤t≤10^4、1≤n≤10^6）；输入输出格式；样例 t=3、n=5/8/100 → 6/18/755407364。referenceCode 完全重写（原 BFS 求离心率代码与本题目无关）：整数拆分结论（只用 2/3，n%3==1 时留 4）+ 模意义递推 f[i]=3*f[i-3]%1e9，O(10^6+t)。explanation 重写为「最优拆分结论 + 取模后不可比较大小的坑」的实质推导。tags 改为 [编程题, 数学, 贪心]（替换原有 图论/BFS/最短路）。",
    "evidence": "g++ 16.1.0 -std=c++17 -O2 编译无警告；样例运行输出 6 / 18 / 755407364，与 PDF p.6 输出样例一致。正确性对拍：n=1..199 与精确大整数 DP（不做取模）逐值比较，0 处不符（含 n=1→1、n=2→2、n=3→3、n=4→4 边界）。性能：t=10^4 且 n 随机至 10^6 时 0.65s（含进程启动）。文件 tmp/verify/2026-03-l7/data-26.cpp（由题库 referenceCode 原样导出）。",
    "resolved": true,
    "fixedAt": "2026-10-25",
-   "fixMethod": "官方 PDF 渲染逐字转写（p.6）+ 重写参考代码 + g++ 样例验证与精确对拍"
+   "fixMethod": "官方 PDF 渲染逐字转写（p.6）+ 重写参考代码 + g++ 样例验证与精确对拍",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-31",
+   "note": "Q26 explanation 升级；答案未改"
   },
   {
    "id": 27,
