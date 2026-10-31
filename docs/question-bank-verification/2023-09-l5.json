@@ -1,10 +1,10 @@
 {
   "paperId": "2023-09-l5",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-31",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy (GLM)",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-09-l5"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
@@ -18,6 +18,60 @@
     }
   },
   "questions": [
+    {
+      "questionId": 13,
+      "issue": "题干简化：官方题干含具体代码引用「mergeSort(listData, start, middle); 和 mergeSort(listData, middle + 1, end);」，题库省略了该引用",
+      "fix": "按官方原卷恢复完整题干；答案B不变",
+      "evidence": "官方文本层第13题题干比对；官方答案表程序化提取 ADC CABACCDCBCBAC，全卷单选15/15对"
+    },
+    {
+      "id": 4,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q4 explanation 升级；答案未改"
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q5 explanation 升级；答案未改"
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q6 explanation 升级；答案未改"
+    },
     {
       "id": 8,
       "dimensions": [
@@ -34,6 +88,22 @@
       "fix": "按原卷 pp.4-5 逐行转写 checkNum/isEven 代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析中参数 8 修正为 10，并补充逐选项理由。",
       "evidence": "g++ 编译运行转写代码，实际输出 1，与答案 C（执行后输出1）一致。tmp/verify/2023-09-l5/q8.cpp",
       "resolved": true
+    },
+    {
+      "id": 10,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q10 explanation 升级；答案未改"
     },
     {
       "id": 11,
@@ -72,10 +142,36 @@
       "resolved": true
     },
     {
-      "questionId": 13,
-      "issue": "题干简化：官方题干含具体代码引用「mergeSort(listData, start, middle); 和 mergeSort(listData, middle + 1, end);」，题库省略了该引用",
-      "fix": "按官方原卷恢复完整题干；答案B不变",
-      "evidence": "官方文本层第13题题干比对；官方答案表程序化提取 ADC CABACCDCBCBAC，全卷单选15/15对"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "judgeAnswerAudit": {
