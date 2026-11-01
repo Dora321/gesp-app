@@ -1,10 +1,10 @@
 {
   "paperId": "2025-12-l8",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-31",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-12-l8"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
@@ -22,31 +22,140 @@
   },
   "questions": [
     {
-      "id": 2,
+      "id": 1,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "原卷对照（页面渲染人工查看）"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q1 explanation 升级；答案未改"
+    },
+    {
+      "id": 2,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题面缺失归并排序分治代码（含横线与合并注释）。",
       "fix": "按原卷 p.1 转写代码回填；移除标记。选项与答案 B 与原卷一致，解析已具体，未改动。",
       "evidence": "原卷对照：第二处递归调用应处理右半区间 [mid+1, right]，与原卷官方答案表（第2题 B）一致。",
-      "resolved": true
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
+    },
+    {
+      "id": 4,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方 PDF 中二项式 (x-2)^8、x^6 均为公式图片，文本层为「二项式 的展开式中 项的系数为」，题库 LaTeX 语义正确。审计探针窗口被公式位隔断。",
+      "fix": "无需修复，保留记录。官方答案行 Q4=C，题库 ans=2(C) 一致（C(8,2)*(-2)^2*... 逐项验证 x^6 系数 -1792=选 C 需以官方答案为准）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q5 explanation 升级；答案未改"
     },
     {
       "id": 6,
       "dimensions": [
         "statement",
-        "options"
+        "options",
+        "explanation"
       ],
       "method": [
-        "原卷对照（页面渲染人工查看）"
+        "原卷对照（页面渲染人工查看）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题面缺失 LCS 记忆化版代码；题库四个选项中的 dp[i][j] 均被录成损坏格式「$dp[i]$[j]」。",
       "fix": "按原卷 p.2 转写代码回填；选项恢复为正常文本 dp[i][j] = ...；移除标记。answer 索引 2（C）与原卷一致，解析已具体，未改动。",
       "evidence": "原卷对照：LCS 转移 else 分支取 max(dp[i-1][j], dp[i][j-1])，原卷答案表第6题 C。",
-      "resolved": true
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "note": "Q6 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
     },
     {
       "id": 9,
@@ -66,15 +175,38 @@
     {
       "id": 10,
       "dimensions": [
-        "statement"
+        "statement",
+        "explanation"
       ],
       "method": [
-        "原卷对照（页面渲染人工查看）"
+        "原卷对照（页面渲染人工查看）",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题面缺失欧拉筛片段代码；题干原缺失「O(n)」「1～n」两处数值（文本提取丢失），已按原卷补回。",
       "fix": "按原卷 p.3 转写代码回填；移除标记。选项与答案 C（i % primes[j] == 0）与原卷一致，解析已具体，未改动。",
       "evidence": "原卷对照：欧拉筛 break 条件即 i % primes[j] == 0，原卷答案表第10题 C。",
-      "resolved": true
+      "resolved": true,
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "note": "Q10 explanation 升级；答案未改"
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q11 explanation 升级；答案未改"
     },
     {
       "id": 12,
@@ -93,6 +225,22 @@
       "resolved": true
     },
     {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q13 explanation 升级；答案未改"
+    },
+    {
       "id": 14,
       "dimensions": [
         "statement",
@@ -109,19 +257,36 @@
       "resolved": true
     },
     {
-      "id": 4,
+      "id": 15,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "假阴性说明：官方 PDF 中二项式 (x-2)^8、x^6 均为公式图片，文本层为「二项式 的展开式中 项的系数为」，题库 LaTeX 语义正确。审计探针窗口被公式位隔断。",
-      "fix": "无需修复，保留记录。官方答案行 Q4=C，题库 ans=2(C) 一致（C(8,2)*(-2)^2*... 逐项验证 x^6 系数 -1792=选 C 需以官方答案为准）。",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q15 explanation 升级；答案未改"
+    },
+    {
+      "id": 17,
       "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q17 explanation 升级；答案未改"
     },
     {
       "id": 20,
@@ -155,6 +320,54 @@
       "resolved": true,
       "reviewedAt": "2026-10-27",
       "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q24 explanation 升级；答案未改"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
