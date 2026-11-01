@@ -87,6 +87,6 @@ test('previously missed audit records appear without pretending all five dimensi
   const rebuilt = resolveVerification(paperMeta['2026-03-l8']);
   assert.equal(rebuilt.dimensions.statement, 'verified');
   assert.equal(rebuilt.dimensions.answer, 'verified');
-  assert.equal(rebuilt.dimensions.explanation, 'unverified');
+  assert.equal(rebuilt.dimensions.explanation, 'partial');
   assert.equal(rebuilt.status, 'partial');
 });
