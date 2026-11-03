@@ -867,6 +867,9 @@ if (int(sqrt(N)) == abs(M))
     {
       id: 26,
       type: 'programming',
+      samples: [
+        { input: "3.0\n4.0\n10.0", output: "6" },
+      ],
       question: `## 直角三角形
 
 **题目描述**
@@ -933,6 +936,9 @@ if (int(sqrt(N)) == abs(M))
     {
       id: 27,
       type: 'programming',
+      samples: [
+        { input: "48\n65\n97", output: "****************\n****************\n***************0\n****************\nA***************\n****************\na***************\n****************" },
+      ],
       question: `## 字符变换
 
 **题目描述**

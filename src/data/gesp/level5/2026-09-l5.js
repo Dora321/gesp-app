@@ -760,6 +760,7 @@ for (int i = 0; i < len; ++i) {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['筛法', '数论'],
+      referenceCode: "#include <cstdio>\nconst int N = 1000005;\nbool not_prime[N];\nint primes[500000], pcnt;\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    for (int i = 2; i <= n; ++i) {\n        if (!not_prime[i]) {\n            primes[pcnt++] = i;\n            for (long long j = (long long)i * i; j <= n; j += i)\n                not_prime[j] = true;\n        }\n    }\n    int ans = 0;\n    for (int i = 0; i < pcnt && primes[i] <= n / 2; ++i)\n        if (!not_prime[n - primes[i]])\n            ans++;\n    printf(\"%d\\n\", ans);\n    return 0;\n}\n",
       explanation: `**解题思路：**
 
 1. **筛质数**：n 最大到 10^6，用埃氏筛（官方参考程序即埃氏筛）预先把 2..n 内的所有质数筛出。注意 4 = 2 + 2 说明两个质数允许相同，只需"方案与方案之间"不重复。
@@ -818,6 +819,7 @@ int main() {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['贪心'],
+      referenceCode: "#include <cstdio>\n#include <algorithm>\n#include <vector>\n#include <cmath>\nusing namespace std;\nstruct Node { double v, s; };\ndouble scan(vector<Node> a, double t) {\n    double sv = 0, ss = 0, ans = 0;\n    for (auto [v, s] : a) {\n        if (sv > 1e-12 && (ss / sv - t) * (s - t) < -1e-12) {\n            double k = (t * sv - ss) / (s - t);\n            if (k >= -1e-12 && k <= v + 1e-12)\n                ans = max(ans, sv + k);\n            break;\n        }\n        sv += v;\n        ss += s * v;\n        if (sv > 1e-12 && fabs(ss / sv - t) < 1e-9)\n            ans = max(ans, sv);\n    }\n    return ans;\n}\nint main() {\n    int n;\n    double t;\n    scanf(\"%d%lf\", &n, &t);\n    vector<Node> a(n);\n    for (int i = 0; i < n; i++) scanf(\"%lf%lf\", &a[i].v, &a[i].s);\n    sort(a.begin(), a.end(), [](const Node& x, const Node& y) { return x.s < y.s; });\n    double ans = scan(a, t);\n    reverse(a.begin(), a.end());\n    ans = max(ans, scan(a, t));\n    printf(\"%.3f\\n\", ans);\n    return 0;\n}\n",
       explanation: `**解题思路：**
 
 1. **问题转化**：要体积最大且混合甜度恰为 t。若某原料 s_i = t，它自身就是"恰到好处"，全部 v_i 升可直接计入答案。

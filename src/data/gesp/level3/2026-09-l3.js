@@ -770,6 +770,9 @@ int main() {
     {
       id: 26,
       type: 'programming',
+      samples: [
+        { input: "3\n13 7 15", output: "2" },
+      ],
       question: `## 公共二进制位
 
 **题目描述**
@@ -832,6 +835,10 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      samples: [
+        { input: "sdfd 55 55   99312", output: "sdfd\n55 55\n 99312" },
+        { input: "AbCd   999", output: "AbCd\n\n999" },
+      ],
       question: `## 分割字符串
 
 **题目描述**

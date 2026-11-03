@@ -767,6 +767,10 @@ cout << ans;
     {
       id: 26,
       type: 'programming',
+      samples: [
+        { input: "20.0\n100.0\n11.0", output: "turtle\n21.00" },
+        { input: "20.0\n100.0\n9.0", output: "rabbit\n19.00" },
+      ],
       question: `## 新龟兔赛跑
 
 **题目描述**
@@ -852,6 +856,10 @@ rabbit
     {
       id: 27,
       type: 'programming',
+      samples: [
+        { input: "3", output: "7" },
+        { input: "10", output: "1023" },
+      ],
       question: `## 棋盘上的奖赏
 
 **题目描述**

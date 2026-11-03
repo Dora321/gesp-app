@@ -753,6 +753,7 @@ int fib(int n) {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['动态规划', '前缀和'],
+      referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 2005;\nconst long long oo = 1e18;\nint n;\nint a[N], pre[N];\nlong long f[N];\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) {\n        scanf(\"%d\", &a[i]);\n        pre[i] = pre[i - 1] + a[i];\n    }\n    for (int i = 1; i <= n; i++) {\n        f[i] = oo;\n        for (int j = 0; j < i; j++)\n            f[i] = min(f[i], f[j] + 1ll * (pre[i] - pre[j]) * (pre[i] - pre[j]));\n    }\n    printf(\"%lld\\n\", f[n]);\n    return 0;\n}\n",
       explanation: `**解题思路：**
 
 1. **状态设计**：f[i] 表示把前 i 个数划分后偏差值之和的最小值。设 pre[i] 为前缀和，把前 i 个数的最后一段切在 j 之后（即第 j+1..i 为一段），该段的偏差值为 (pre[i] − pre[j])²。
@@ -813,6 +814,7 @@ int main() {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['树与二叉树', 'DFS'],
+      referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 2e4 + 5;\nconst int E = N << 1;\nint n;\nint h[N], to[E], nx[E], et;\nint ans;\nvoid ae(int u, int v) {\n    et++;\n    to[et] = v;\n    nx[et] = h[u];\n    h[u] = et;\n}\nint dfs(int u, int p = 0) {\n    int sz = 1;\n    for (int i = h[u]; i; i = nx[i])\n        if (to[i] != p)\n            sz += dfs(to[i], u);\n    ans = min(ans, abs(n - 2 * sz));\n    return sz;\n}\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i < n; i++) {\n        int u, v;\n        scanf(\"%d%d\", &u, &v);\n        ae(u, v);\n        ae(v, u);\n    }\n    ans = n;\n    dfs(1);\n    printf(\"%d\\n\", ans);\n    return 0;\n}\n",
       explanation: `**解题思路：**
 
 1. **核心观察**：删去边 (u, v) 后，树被分成两块，其中一块恰好是以 v 为根的子树（在以 1 为根的有根树中）。若该子树大小为 sz，两块大小分别为 sz 与 n − sz，差为 |n − 2·sz|。

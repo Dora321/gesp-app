@@ -826,6 +826,10 @@ int main() {
     {
       id: 26,
       type: 'programming',
+      samples: [
+        { input: "2", output: "7" },
+        { input: "3", output: "21" },
+      ],
       question: `## 新汉诺塔
 
 **题目描述**
@@ -917,6 +921,10 @@ g[1]=2?（1 个盘 A→C 需 A→B、B→C 共 2 步）、f[1]=1；f[2]=2*g[1]+1
     {
       id: 27,
       type: 'programming',
+      samples: [
+        { input: "3 2\n6 5\n4 3\n2 1", output: "1 2\n3 4\n5 6" },
+        { input: "3 4\n1 3 2 5\n6 2 4 4\n5 4 1 3", output: "1 2 3 5\n1 3 4 5\n2 4 4 6" },
+      ],
       question: `## 有序网格
 
 **题目描述**
