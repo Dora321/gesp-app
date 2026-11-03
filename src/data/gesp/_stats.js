@@ -4,15 +4,15 @@
 // paperCount/questionCount count official past papers only; papers flagged
 // unofficial (historical placeholders) are counted separately as practice.
 export const paperStats = {
-  paperCount: 104,
-  questionCount: 2808,
+  paperCount: 105,
+  questionCount: 2835,
   practicePaperCount: 1,
   practiceQuestionCount: 25,
   reviewPaperCount: 0,
   verifiedPaperCount: 2,
-  partialPaperCount: 102,
+  partialPaperCount: 103,
   unverifiedPaperCount: 0,
-  verificationDimensions: {"statement":{"verified":9,"partial":68,"unverified":27},"options":{"verified":19,"partial":30,"unverified":55},"answer":{"verified":40,"partial":57,"unverified":7},"explanation":{"verified":3,"partial":85,"unverified":16},"referenceCode":{"verified":11,"partial":1,"unverified":92}},
+  verificationDimensions: {"statement":{"verified":9,"partial":68,"unverified":28},"options":{"verified":19,"partial":30,"unverified":56},"answer":{"verified":40,"partial":58,"unverified":7},"explanation":{"verified":3,"partial":85,"unverified":17},"referenceCode":{"verified":11,"partial":1,"unverified":93}},
   integrityFlaggedQuestionCount: 80,
   levelCount: 8,
   firstYear: 2023,
