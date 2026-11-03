@@ -58,6 +58,14 @@ test('authored explanations are shown instead of the generic hint', () => {
   };
   assert.equal(selectAnalysisView(fullSingle, 1).mode, 'structured');
 
+  const structured = selectAnalysisView(fullSingle, 1);
+  assert.equal(structured.analysis.extension, '', 'no template 知识延伸 when author omitted it');
+  const withExt = {
+    ...fullSingle,
+    explanation: fullSingle.explanation + '\n\n**知识延伸：**\ncout 属于 iostream。',
+  };
+  assert.match(selectAnalysisView(withExt, 1).analysis.extension, /iostream/);
+
   const partialSingle = { ...fullSingle, explanation: '**答案：B**\n\ncout 是标准输出流对象。' };
   const partialView = selectAnalysisView(partialSingle, 1);
   assert.equal(partialView.mode, 'authored');

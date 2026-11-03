@@ -362,9 +362,9 @@ export const buildRichAnalysis = (q, level) => {
         pitfalls.push('选项看起来相近时，优先比较限定词、边界和输出格式。');
     }
 
-    const extension = authoredExtension
-        ? authoredExtension
-        : (primaryTopic?.extension || `该知识点在 GESP L${level} 中反复出现，建议把错因归类到“概念、边界、格式、推演”之一，方便复盘。`);
+    // Only show 知识延伸 when the authored explanation has that section.
+    // Never invent template extension text for structured/authored views.
+    const extension = authoredExtension || '';
 
     return {
         summary: basis || explanation,
