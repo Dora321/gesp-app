@@ -744,6 +744,10 @@ export const paperSources = {
     officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258748452800.pdf',
     mirrorUrl: null,
   },
+  '2026-09-l8': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258921631776.pdf',
+    mirrorUrl: null,
+  },
 };
 
 export function getPaperSource(paperId) {

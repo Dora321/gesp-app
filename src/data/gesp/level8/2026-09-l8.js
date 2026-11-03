@@ -562,6 +562,7 @@ int main() {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['图论', 'DFS', '生成树'],
+      referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 1e5 + 5;\nconst int E = N << 1;\nconst int mod = 998244353;\nint n, m;\nint h[N], to[E], nx[E], et;\nint d[N];\nint ans;\nvoid ae(int u, int v) {\n    to[++et] = v;\n    nx[et] = h[u];\n    h[u] = et;\n}\nvoid dfs(int u, int p = 0) {\n    d[u] = d[p] + 1;\n    for (int i = h[u]; i; i = nx[i]) {\n        int v = to[i];\n        if (v == p)\n            continue;\n        if (!d[v])\n            dfs(v, u);\n        if (d[v] < d[u])\n            ans = 1ll * ans * (d[u] - d[v] + 1) % mod;\n    }\n}\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    for (int i = 1; i <= m; i++) {\n        int u, v;\n        scanf(\"%d%d\", &u, &v);\n        ae(u, v);\n        ae(v, u);\n    }\n    ans = 1;\n    dfs(1);\n    printf(\"%d\\n\", ans);\n    return 0;\n}\n",
       explanation: `**解题思路：**
 
 1. **结构性质**：每条边至多属于一个简单环 ⟹ G 是"仙人掌图"（边仙人掌），环与环之间最多通过桥（不在任何环上的边）相连。
@@ -653,6 +654,7 @@ int main() {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['最短路', 'Dijkstra', '图论'],
+      referenceCode: "#include <cstdio>\n#include <algorithm>\n#include <queue>\nusing namespace std;\nconst int N = 505;\nconst int E = 1005;\nconst int oo = 1e9;\nint n, m;\nint h[N], to[E], nx[E], l[E], t[E];\nint d[N][N];\npriority_queue<pair<int, int> > q;\nvoid calc(int u, int d[]) {\n    for (int i = 1; i <= n; i++)\n        d[i] = -oo;\n    d[u] = oo;\n    q.push(make_pair(d[u], u));\n    while (!q.empty()) {\n        pair<int, int> p = q.top();\n        q.pop();\n        if (d[p.second] != p.first)\n            continue;\n        int u = p.second;\n        for (int i = h[u]; i; i = nx[i]) {\n            int v = to[i];\n            int w = min(d[u] - t[i], l[i]);\n            if (w < 0)\n                continue;\n            if (w > d[v]) {\n                d[v] = w;\n                q.push(make_pair(d[v], v));\n            }\n        }\n    }\n}\nint main() {\n    int q;\n    scanf(\"%d%d%d\", &n, &m, &q);\n    for (int i = 1; i <= m; i++) {\n        int u, v;\n        scanf(\"%d%d%d%d\", &u, &v, &l[i], &t[i]);\n        to[i] = u;          // 反向存边：到达 v 后可查\"从哪来\"\n        nx[i] = h[v];\n        h[v] = i;\n    }\n    for (int i = 1; i <= n; i++)\n        calc(i, d[i]);\n    while (q--) {\n        int u, v, s;\n        scanf(\"%d%d%d\", &u, &v, &s);\n        if (s <= d[v][u])\n            printf(\"Yes\\n\");\n        else\n            printf(\"No\\n\");\n    }\n    return 0;\n}\n",
       explanation: `**解题思路：**
 
 1. **关键转化**：询问多达 5×10⁵ 次而站点只有 500 个——对每个可能的终点预处理。定义 best[y][x] = "从 x 出发能到达 y 的最晚出发时刻"。询问 (x, y, s) 的答案就是 s ≤ best[y][x]。
