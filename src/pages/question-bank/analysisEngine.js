@@ -377,9 +377,36 @@ export const buildRichAnalysis = (q, level) => {
             hasExplanation: Boolean(explanation),
             hasExamPoint: Boolean(examPoint),
             hasOptionReasons: optionAnalysis.filter((item) => Boolean(findOptionReason(explanation, item.label))).length,
-            inferred: !explanation || optionAnalysis.some((item) => !findOptionReason(explanation, item.label)),
+            // Judge questions have no per-option lines in authored explanations: both
+            // options are derived from the authored 判定依据, so they are not inferred.
+            inferred: !explanation || (!isJudge && optionAnalysis.some((item) => !findOptionReason(explanation, item.label))),
         },
     };
+};
+
+/**
+ * Decide which analysis view to show for an objective question.
+ *
+ * - 'structured': the authored explanation parses into per-option reasons
+ *   (or is a judge question), so buildRichAnalysis renders it.
+ * - 'authored': an authored explanation exists but some option lines are
+ *   missing; show the explanation verbatim instead of inventing reasons.
+ * - 'generic': no authored explanation at all; only then fall back to the
+ *   topic-template study hint.
+ *
+ * Verification status is deliberately NOT an input: it only changes the trust
+ * notice, never replaces the authored explanation with a generic template.
+ */
+export const selectAnalysisView = (q, level) => {
+    const explanation = q?.explanation?.trim() || '';
+    const richAnalysis = buildRichAnalysis(q, level);
+    if (!explanation || !richAnalysis) {
+        return { mode: 'generic', analysis: buildGenericStudyHint(q, level), explanation };
+    }
+    if (!richAnalysis.qualityFlags.inferred) {
+        return { mode: 'structured', analysis: richAnalysis, explanation };
+    }
+    return { mode: 'authored', analysis: null, explanation };
 };
 
 export const buildGenericStudyHint = (q, level) => {

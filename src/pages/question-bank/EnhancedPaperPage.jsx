@@ -18,7 +18,7 @@ import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
 import { getLuoguProblemUrl, loadLuoguPool, needsSynthesizedCoding, withSynthesizedCoding } from '../../data/gesp/codingQuestions';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
-import { buildGenericStudyHint, buildQuestionInsight, buildRichAnalysis } from './analysisEngine';
+import { buildQuestionInsight, selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
@@ -308,15 +308,15 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const isRevealed = !!revealed[currentQ.id];
     const tags = inferKnowledgeTags(currentQ, paperData.level);
     const codingGuide = (currentQ?.type === 'coding' || currentQ?.type === 'programming') ? buildCodingGuide(currentQ) : null;
-    const richAnalysis = buildRichAnalysis(currentQ, paperData.level);
     // Answer and explanation are verified independently — see verificationModel.
     const verification = resolveVerification(paperData);
     const answerVerified = verification.dimensions.answer === 'verified';
     const explanationVerified = verification.dimensions.explanation === 'verified';
-    const useGenericHint = !answerVerified || !richAnalysis || richAnalysis.qualityFlags.inferred;
-    const displayedAnalysis = useGenericHint
-        ? buildGenericStudyHint(currentQ, paperData.level)
-        : richAnalysis;
+    // Show the authored explanation whenever one exists; verification status only
+    // drives the trust notice. The generic hint is for questions with no explanation.
+    const analysisView = selectAnalysisView(currentQ, paperData.level);
+    const useGenericHint = analysisView.mode === 'generic';
+    const displayedAnalysis = analysisView.analysis;
     const isReformed = (currentQ.type === 'coding' || currentQ.type === 'programming') && getQuestionContent(currentQ).trim().startsWith('# ');
     const programmingPracticeMarkdown = (currentQ.type === 'coding' || currentQ.type === 'programming') ? buildProgrammingMarkdown(currentQ) : '';
     const programmingAnalysisMarkdown = (currentQ?.type === 'coding' || currentQ?.type === 'programming')
@@ -584,6 +584,14 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                     )}
                                                 </div>
 
+                                                {/* 题库原解析：存在解析但无法拆成逐项理由时原文展示，不用通用模板替换 */}
+                                                {analysisView.mode === 'authored' && (
+                                                    <div className="bg-white border border-blue-100 rounded-lg p-3" data-testid="authored-explanation">
+                                                        <div className="text-sm font-semibold text-slate-800 mb-2">📝 题库解析</div>
+                                                        <MarkdownRenderer content={analysisView.explanation} className="text-sm text-slate-700 leading-relaxed" />
+                                                    </div>
+                                                )}
+
                                                 {/* 选项逐项分析 */}
                                                 {displayedAnalysis?.optionAnalysis?.length > 0 && (
                                                     <div className="bg-white border border-blue-100 rounded-lg p-3">
@@ -607,10 +615,12 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                 )}
 
                                                 {/* 核心知识点 */}
-                                                <div className="bg-white border border-violet-100 rounded-lg p-3">
-                                                    <div className="text-sm font-semibold text-violet-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
-                                                    <MarkdownRenderer content={displayedAnalysis?.keyPoint || buildQuestionInsight(currentQ, paperData.level)} className="text-sm text-slate-700 leading-relaxed" />
-                                                </div>
+                                                {displayedAnalysis && (
+                                                    <div className="bg-white border border-violet-100 rounded-lg p-3">
+                                                        <div className="text-sm font-semibold text-violet-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
+                                                        <MarkdownRenderer content={displayedAnalysis?.keyPoint || buildQuestionInsight(currentQ, paperData.level)} className="text-sm text-slate-700 leading-relaxed" />
+                                                    </div>
+                                                )}
 
                                                 {/* 易错点 */}
                                                 {displayedAnalysis?.pitfalls?.length > 0 && (

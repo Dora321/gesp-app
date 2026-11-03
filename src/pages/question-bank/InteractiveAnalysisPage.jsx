@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, RefreshCw, BookOpen, CheckCircle2, Lightbulb, RotateCcw, Tags } from 'lucide-react';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
-import { buildGenericStudyHint, buildRichAnalysis } from './analysisEngine';
+import { selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
@@ -99,16 +99,16 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
 
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
-    const richAnalysis = buildRichAnalysis(currentQ, paperData.level);
     // Answer and explanation are verified independently — a checked answer key
     // does not make the site-written explanation a verified one.
     const verification = resolveVerification(paperData);
     const answerVerified = verification.dimensions.answer === 'verified';
     const explanationVerified = verification.dimensions.explanation === 'verified';
-    const useGenericHint = !answerVerified || !richAnalysis || richAnalysis.qualityFlags.inferred;
-    const displayedAnalysis = useGenericHint
-        ? buildGenericStudyHint(currentQ, paperData.level)
-        : richAnalysis;
+    // Show the authored explanation whenever one exists; verification status only
+    // drives the trust notice. The generic hint is for questions with no explanation.
+    const analysisView = selectAnalysisView(currentQ, paperData.level);
+    const useGenericHint = analysisView.mode === 'generic';
+    const displayedAnalysis = analysisView.analysis;
 
     return (
         <div className="mw-surface mw-line-bank min-h-screen bg-slate-100">
@@ -261,6 +261,14 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                             )}
                                         </div>
 
+                                        {/* 题库原解析：存在解析但无法拆成逐项理由时原文展示，不用通用模板替换 */}
+                                        {analysisView.mode === 'authored' && (
+                                            <div className="bg-white border border-blue-100 rounded-lg p-3" data-testid="authored-explanation">
+                                                <div className="text-sm font-semibold text-slate-800 mb-2">📝 题库解析</div>
+                                                <MarkdownRenderer content={analysisView.explanation} className="text-sm text-slate-700 leading-relaxed" />
+                                            </div>
+                                        )}
+
                                         {/* 选项逐项分析 */}
                                         {displayedAnalysis?.optionAnalysis?.length > 0 && (
                                             <div className="bg-white border border-blue-100 rounded-lg p-3">
@@ -284,10 +292,12 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                         )}
 
                                         {/* 核心知识点 */}
-                                        <div className="bg-white border border-violet-100 rounded-lg p-3">
-                                            <div className="text-sm font-semibold text-violet-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
-                                            <MarkdownRenderer content={displayedAnalysis?.keyPoint || '暂无解析'} className="text-sm text-slate-700 leading-relaxed" />
-                                        </div>
+                                        {displayedAnalysis && (
+                                            <div className="bg-white border border-violet-100 rounded-lg p-3">
+                                                <div className="text-sm font-semibold text-violet-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
+                                                <MarkdownRenderer content={displayedAnalysis?.keyPoint || '暂无解析'} className="text-sm text-slate-700 leading-relaxed" />
+                                            </div>
+                                        )}
 
                                         {/* 易错点 */}
                                         {displayedAnalysis?.pitfalls?.length > 0 && (

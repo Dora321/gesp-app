@@ -6,6 +6,14 @@
     "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
     "session": "verify/explanations-2026-06-l3"
   },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "fetchedAt": "2026-11-03",
+    "note": "2026-11-03 重新下载镜像 PDF，git hash-object 复算 blob sha 与字节数，均与 src/data/gesp/paperSources.js 登记一致。"
+  },
   "session": 14,
   "answerTable": {
     "content": {

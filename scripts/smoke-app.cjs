@@ -43,7 +43,7 @@ async function pickUnverifiedPaper() {
   const path = require('path');
   const { pathToFileURL } = require('url');
   const load = (rel) => import(pathToFileURL(path.resolve(__dirname, rel)).href);
-  const [{ paperMeta }, { resolveVerification }] = await Promise.all([
+  const [{ paperMeta, getPaper }, { resolveVerification }] = await Promise.all([
     load('../src/data/gesp/index.js'),
     load('../src/data/gesp/verificationModel.js'),
   ]);
@@ -55,9 +55,11 @@ async function pickUnverifiedPaper() {
     .sort((a, b) => a.id.localeCompare(b.id))[0];
 
   if (!candidate) {
-    throw new Error('No unverified paper left; update the generic-hint assertions in this smoke test.');
+    throw new Error('No unverified paper left; update the unverified-notice assertions in this smoke test.');
   }
-  return candidate;
+  const paper = await getPaper(candidate.id);
+  const firstQuestion = [...(paper?.questions || [])].sort((a, b) => a.id - b.id)[0];
+  return { ...candidate, firstHasExplanation: Boolean(firstQuestion?.explanation?.trim()) };
 }
 
 function stopServer() {
@@ -190,10 +192,16 @@ async function run() {
   await page.getByRole('button', { name: /解析模式/ }).click();
   await page.locator('.question-option').first().waitFor({ timeout: 10000 });
   await page.locator('.question-option').first().click();
-  await page.getByText('通用解题提示', { exact: true }).first().waitFor({ timeout: 10000 });
   await page.getByText(/题库答案（尚未完成核验）/).waitFor({ timeout: 10000 });
-  if (await page.getByText('选项逐项分析', { exact: false }).count()) {
-    throw new Error(`Unverified paper ${unverifiedPaper.id} must not render inferred option-by-option analysis.`);
+  if (unverifiedPaper.firstHasExplanation) {
+    // An authored explanation must be shown (with the unverified notice), never
+    // replaced by the generic study hint.
+    await page.getByText('本卷尚未完成核验 · 以下为题库自带解析', { exact: true }).waitFor({ timeout: 10000 });
+    if (await page.getByText('通用解题提示', { exact: true }).count()) {
+      throw new Error(`Unverified paper ${unverifiedPaper.id} replaced its authored explanation with the generic hint.`);
+    }
+  } else {
+    await page.getByText('通用解题提示', { exact: true }).first().waitFor({ timeout: 10000 });
   }
 
   await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
