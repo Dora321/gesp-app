@@ -716,6 +716,34 @@ export const paperSources = {
     mirrorSha: '482ae7e0ade568f5c71076b7c719a291c72cb05c',
     mirrorBytes: 811835,
   },
+  '2026-09-l1': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258592378912.pdf',
+    mirrorUrl: null,
+  },
+  '2026-09-l2': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258655293472.pdf',
+    mirrorUrl: null,
+  },
+  '2026-09-l3': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258728693792.pdf',
+    mirrorUrl: null,
+  },
+  '2026-09-l4': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258770636832.pdf',
+    mirrorUrl: null,
+  },
+  '2026-09-l5': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258748452800.pdf',
+    mirrorUrl: null,
+  },
+  '2026-09-l6': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258748452800.pdf',
+    mirrorUrl: null,
+  },
+  '2026-09-l7': {
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258748452800.pdf',
+    mirrorUrl: null,
+  },
 };
 
 export function getPaperSource(paperId) {
