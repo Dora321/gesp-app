@@ -60,6 +60,7 @@ test('authored explanations are shown instead of the generic hint', () => {
 
   const structured = selectAnalysisView(fullSingle, 1);
   assert.equal(structured.analysis.extension, '', 'no template 知识延伸 when author omitted it');
+  assert.deepEqual(structured.analysis.pitfalls, [], 'no template 易错提醒 when author omitted it');
   const withExt = {
     ...fullSingle,
     explanation: fullSingle.explanation + '\n\n**知识延伸：**\ncout 属于 iostream。',

@@ -348,19 +348,9 @@ export const buildRichAnalysis = (q, level) => {
     }
 
     const keyPoint = examPoint || basis || primaryTopic?.keyPoint || `该题考查 GESP L${level} 核心知识点，建议结合题干关键词和选项差异完成推导。`;
-    const pitfalls = authoredPitfalls.length > 0
-        ? authoredPitfalls.slice(0, 4)
-        : Array.from(new Set([
-            ...(primaryTopic?.pitfalls || []),
-            ...(topics[1]?.pitfalls?.slice(0, 1) || []),
-            ...(/不正确|错误|不能/.test(questionText) ? ['反向提问时要选“错误项”，不要被正确表述带偏'] : []),
-            ...(/整数|int|double|float|\/|%/.test(merged) ? ['数值题要区分整数除法、浮点除法和取模运算'] : []),
-        ])).slice(0, 4);
-
-    if (pitfalls.length === 0) {
-        pitfalls.push('不要只凭印象选答案，至少用一个最小样例或规则定义验证。');
-        pitfalls.push('选项看起来相近时，优先比较限定词、边界和输出格式。');
-    }
+    // Only show 易错提醒 when the authored explanation has that section.
+    // Never invent topic-template pitfalls for structured views.
+    const pitfalls = authoredPitfalls.slice(0, 4);
 
     // Only show 知识延伸 when the authored explanation has that section.
     // Never invent template extension text for structured/authored views.
