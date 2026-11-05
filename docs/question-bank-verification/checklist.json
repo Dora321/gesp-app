@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T23:17:06.848Z",
+  "generatedAt": "2026-11-05T23:31:41.197Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -676,25 +676,32 @@
       },
       "dimensions": {
         "statement": "partial",
-        "options": "verified",
-        "answer": "verified",
+        "options": "partial",
+        "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "unverified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · Grok Bot executor + Grok CLI 校对编排",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 2,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "1": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "16": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"
@@ -716,26 +723,33 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "verified",
-        "explanation": "verified",
-        "referenceCode": "unverified"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 2,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "9": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "18": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"

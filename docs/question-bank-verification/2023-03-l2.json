@@ -1,19 +1,18 @@
 {
   "paperId": "2023-03-l2",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "Grok Bot executor + Grok CLI 校对编排",
-    "session": "verify/explanations-2023-03-l2",
-    "draftModel": "gemini-3.8-flash-medium",
-    "draftCli": "agy",
-    "note": "未标已人工核验"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
     "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
     "shaVerified": true,
-    "fetchedAt": "2026-10-24"
+    "fetchedAt": "2026-10-24",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-03-l2/source.pdf",
+    "verifiedAt": "2026-11-06",
+    "pages": {
+      "total": 15,
+      "note": "全部文本和渲染逐页核对，图像与代码以渲染为准。"
+    }
   },
   "answerTable": {
     "location": "解析版 PDF，无集中答案表；每题题干后内嵌红色【答案】行（pp.1-11）",
@@ -53,553 +52,1182 @@
   "questions": [
     {
       "id": 1,
-      "official": "D",
-      "answerTableValue": "D",
-      "bank": "D",
-      "changed": false,
-      "resolved": true,
-      "textMatch": true,
+      "type": "single",
+      "resolved": false,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1
       ],
-      "note": "官方第1题：以下存储器中不受强磁场干扰的是光盘（D）",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方解析版 PDF + 解析审校；答案未改"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "ANSWER-DOUBT。登记解析版给 D，光盘用光学记录信息。但 U 盘采用闪存，不能把磁性介质的机理直接套用到闪存。厂商资料列有可承受 15000 高斯磁场的 USB 闪存产品，足以质疑题目没有条件限定时排除 B 的依据。原解析还把强磁场一概说成产生感应电流，缺少磁通变化等条件。保留原答案并暂停计分，等待来源澄清。[厂商资料](https://www.samsung.com/au/memory-storage/usb-flash-drive/usb-flash-drivetype-c-128gb-muf-128da-apc/)"
     },
     {
       "id": 2,
-      "official": "C",
-      "answerTableValue": "C",
-      "bank": "C",
-      "changed": false,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1,
+        2
       ],
-      "note": "官方第2题：流程图按是否按下空格键分成两支，属分支结构（C）",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方解析版 PDF + 解析审校；答案未改"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "原卷图中先判断是否按下空格键，是则让小猫移动100步，否则让小猫的颜色特效增加25。两条路径随后汇合到结束，没有返回前面步骤的箭头，所以是分支结构，选 C。顺序结构按步骤依次执行，循环结构会重复某段流程，数据结构描述数据的组织方式。判断框的存在应结合箭头走向一起分析。"
     },
     {
       "id": 3,
-      "official": "A",
-      "answerTableValue": "A",
-      "bank": "A",
-      "changed": false,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2,
+        3
       ],
-      "note": "官方第3题：double 类型占用内存大小是浮动的，说法错误（A）",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方解析版 PDF + 解析审校；答案未改"
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "浮点类型的“浮点”描述数值表示方式，不表示一个 double 变量的存储大小会随数值变化。给定实现中 sizeof(double) 是固定的，故 A 不正确。按本题采用的常见8位字节环境，bool 通常1字节，char 有256种表示，int 范围有限。不同实现的类型宽度可能不同，不能把这些常见宽度说成所有 C++ 实现的强制规定。"
     },
     {
       "id": 4,
-      "official": "D",
-      "answerTableValue": "D",
-      "bank": "D",
-      "changed": false,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        3
       ],
-      "note": "官方第4题：合法标识符不可以以数字开始，故 D 不正确",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方解析版 PDF + 解析审校；答案未改"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "普通变量声明需要类型及合法名称，合法标识符不能以数字开头，因此 D 不正确。名称中可以含数字，但首字符不能是数字。A 按题目普通可修改变量的情境理解，赋值可以改变值。B 的类型可以通过显式类型说明或 auto 推导提供。标识符还须遵守关键字与实现保留名称的限制。"
     },
     {
       "id": 5,
-      "official": "B",
-      "answerTableValue": "B",
-      "bank": "B",
-      "changed": false,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        3
       ],
-      "note": "官方第5题：max 是库函数不是关键字（B）"
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "return、else、case 都是 C++ 关键字，分别用于返回、条件分支和 switch 分支标签。max 可作为标准库函数名称使用，本身没有被语言保留为关键字，所以选 B。函数名称与语言关键字的身份不同，调用标准库函数时还应包含所需头文件并正确使用命名空间。"
     },
     {
       "id": 6,
-      "official": "A",
-      "answerTableValue": "A",
-      "bank": "A",
-      "changed": true,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        3,
+        4
       ],
-      "note": "官方第6题：选项为 A.\\=  B./=  C.-=  D.!=，答案 A。原题库把选项集换成了 =、==、/=、\\=，虽指向同一运算符，但干扰项失真，已按官方恢复"
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "选项 A 的反斜杠加等号不是 C++ 运算符。/= 是除后赋值，-= 是减后赋值，!= 是不等于比较，因此选 A。对于简单变量，a/=b 把 a/b 的结果赋回 a，a-=b 把 a-b 的结果赋回 a。要区分求余使用的 % 与反斜杠，比较不等于也不能写成赋值。"
     },
     {
       "id": 7,
-      "official": "C",
-      "answerTableValue": "C",
-      "bank": "C",
-      "changed": false,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        4
       ],
-      "note": "官方第7题：'a'++ 对常量自增，不符合 C++ 语法（C）"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "后置自增需要可修改的左值。C 把自增用于字符字面量，不能修改该常量，因此语法不成立。A、B 中 char 参与算术会先进行整型提升，计算后赋给 b 时转换回 char，语法允许。D 中 a 是变量，可以自增，b 得到自增前的值。数值是否超出 char 范围是另外的转换问题。"
     },
     {
       "id": 8,
-      "official": "C",
-      "answerTableValue": "C",
-      "bank": "C",
-      "changed": true,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        5
       ],
-      "note": "官方第8题：求四数平均值须用 (a+b+c+d)/4.0（C）。原题库是「a=1 执行 a+1 后 cout<<a」自编题，整题重录"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "平均值应保留小数，选 C。整数和与4.0进行除法时使用浮点运算。A 的两侧都是整数，除法向零截断，不能表示一般平均值，B 求的是余数，D 用浮点数参与内建求余，不能编译。C 的括号内仍先进行整数相加，因此通常还应确保四数之和没有超出 int 表示范围。"
     },
     {
       "id": 9,
-      "official": "B",
-      "answerTableValue": "B",
-      "bank": "B",
-      "changed": true,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        5
       ],
-      "note": "官方第9题：char a 值为 '2' 时，仅 a+1; 不会改变 a（B）。原题库占位的是官方第10题（a-=3），整题重录"
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "a+1 只计算表达式，结果被丢弃，没有赋值或自增，a 仍为字符2，所以 B 符合题意。A、C 把加1后的字符编码赋回 a，D 直接自增，都会得到字符3。十进制数字字符在执行字符集中连续排列，字符2与整数2是不同的值，不能把引号忽略。"
     },
     {
       "id": 10,
-      "official": "B",
-      "answerTableValue": "B",
-      "bank": "B",
-      "changed": true,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        5,
+        6
       ],
-      "note": "官方第10题：a=9 执行 a-=3 后为 6（B）。原题库是「小写字母 a 到 z 的 ASCII 码范围」，整题重录"
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "对简单整数变量，a-=3 等价于把 a-3 的结果赋回 a。初值为9，减3后为6，所以选 B。复合赋值会更新左侧变量，不是只计算一个表达式后丢弃结果，也不是把 a 直接赋成右侧的3。这里的减法没有超出 int 可表示范围。"
     },
     {
       "id": 11,
-      "official": "A",
-      "answerTableValue": "A",
-      "bank": "A",
-      "changed": false,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        6
       ],
-      "note": "官方第11题：判断 a 等于 0 或 b 等于 0 应为 (!a)||(!b)（A）"
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "!a 在 a=0 时为真，!b 在 b=0 时为真，逻辑或表示至少一个条件成立，故选 A。B 按左结合先算 a==b，再与0比较。C 要求两者同时为0，D 要求两个比较的真假相同，会把两者都非零的情形也接受。可用 a=0,b=1 以及 a=1,b=1 检查各干扰项。"
     },
     {
       "id": 12,
-      "official": "D",
-      "answerTableValue": "D",
-      "bank": "D",
-      "changed": true,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        6,
+        7
       ],
-      "note": "官方第12题：判断小写字母应为 a >= 'a' && a <= 'z'（D）。原题库是「执行 100 次循环的 for 头部」，整题重录"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "在题目采用的 ASCII 环境中，小写字母位于字符a到字符z之间，必须同时检查下界和上界，故 D 正确。B 只有上界，会把字符A等值也接受。C 的连续比较先产生 bool，再与字符z比较，不能当成数学不等式。A 还使用了未加引号的 z，题目没有声明这个变量。"
     },
     {
       "id": 13,
-      "official": "C",
-      "answerTableValue": "C",
-      "bank": "C",
-      "changed": true,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
       ],
-      "note": "官方第13题：填空使输出 50 10，应填 a = b - a（C）。原题库是「判断 a 是否大于 b 并交换」，整题重录"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "填入 a=b-a 后，a 从10变为40。接着 b-=a 使 b=10，a+=b 使 a=50，最终输出50 10，对应 C。其余选项代入后分别输出50 90、50 -10、50 0，均不符合要求。每条语句都使用前一条执行后的新值，不能同时按最初的 a、b 计算所有语句。"
     },
     {
       "id": 14,
-      "official": "D",
-      "answerTableValue": "D",
-      "bank": "D",
-      "changed": true,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        8
       ],
-      "note": "官方第14题：统计 '1'-'9' 中 ASCII 码为奇数的字符，应填 ch % 2 == 1（D）。原题库是 for 循环输出题，整题重录"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "循环遍历字符1至9。在 ASCII 环境下，其编码49至57中有5个奇数，ch%2==1 可计数得到5，故选 D。A 接受字符1至4，共4个。B 的5没有引号，是整数5，9个数字字符编码都大于它。C 接受字符4至9，共6个。字符比较应区分数字值与编码值。"
     },
     {
       "id": 15,
-      "official": "C",
-      "answerTableValue": "C",
-      "bank": "C",
-      "changed": false,
+      "type": "single",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        8,
+        9
       ],
-      "note": "官方第15题：isprime 循环到 i=n 必被自身整除置 false，bool 输出为 0（C）"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "循环条件 i<=n 包含 i=17，17%17 为0，使 isprime 被赋为 false。此后循环结束，cout 在默认未启用 boolalpha 的状态下把 bool 输出为0，所以选 C。17本身是质数，但代码把自身也作为候选因子，算法存在边界错误，不能按变量名或实际质数性质推断输出。"
     },
     {
       "id": 16,
-      "official": "×",
-      "answerTableValue": "×",
-      "bank": "×",
-      "changed": true,
-      "resolved": true,
-      "textMatch": true,
+      "type": "judge",
+      "resolved": false,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        9
       ],
-      "note": "官方判断第1题：4GB 与 4096MB 容量相同，故「容量大的是笑笑的」错误（×）。原题库改写为「容量大小一样」并答√，答案被改反，已按原文还原"
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "ANSWER-DOUBT。登记解析版判错误，按其1024换算口径两者相等。但 NIST 区分十进制 GB、MB 与二进制 GiB、MiB，1GB=10^9字节、1MB=10^6字节，按该定义4096MB比4GB多96000000字节，命题成立。题目没有声明换算口径，因此保留原答案并暂停计分，等待澄清。[单位定义](https://physics.nist.gov/cuu/Units/binary.html)"
     },
     {
       "id": 17,
-      "official": "×",
-      "answerTableValue": "×",
-      "bank": "×",
-      "changed": true,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        9
       ],
-      "note": "官方判断第2题：IPv4 点分十进制每段范围是 0~255，题干写 1~255 故错误（×）。原题库改写为「0 到 255」并答√，答案被改反，已按原文还原"
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "IPv4 点分十进制把32位地址分成4组，每组8位，对应0至255的十进制整数。原题把下界写成1，遗漏0，例如地址中可以出现0这一段，所以判断错误。具体地址是否可分配还受网络号、广播等规则约束，但这不改变每个八位组的表示范围。"
     },
     {
       "id": 18,
-      "official": "√",
-      "answerTableValue": "√",
-      "bank": "√",
-      "changed": false,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        10
       ],
-      "note": "官方判断第3题：一个程序不能有多个 main 函数（√）"
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "对于题目讨论的通常宿主 C++ 程序，全局 main 是程序入口，只允许一个 main 定义，不能通过重载创建多个入口，因此判断正确。一个项目可以有多个源文件，但链接成同一个程序时仍须遵守入口与定义规则。多个相互独立的程序各有自己的 main，是不同的情境。"
     },
     {
       "id": 19,
-      "official": "×",
-      "answerTableValue": "×",
-      "bank": "×",
-      "changed": false,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        10
       ],
-      "note": "官方判断第4题：标识符可以下划线开头，题干说不能故错误（×）"
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "下划线可以作为标识符的首字符，因此“不能以下划线开头”过于绝对，判断错误。例如函数内部的 _value 可以用作普通局部变量名。还必须遵守实现保留规则，双下划线、下划线紧接大写字母等名称有保留限制，以下划线开头的全局名称也有额外限制。"
     },
     {
       "id": 20,
-      "official": "×",
-      "answerTableValue": "×",
-      "bank": "×",
-      "changed": true,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        10
       ],
-      "note": "官方判断第5题：'a' 是字符常量，与 int 变量 a 无关（×）。题面已按官方原文对齐"
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "加上单引号的字符a是字符字面量，与变量 a 中保存的整数1没有关系。字符a和字符1表示不同字符，所以原判断错误。在 ASCII 环境中它们的编码分别是97和49。只有没有引号的 a 才会读取题目定义的变量，不能把字符名称与变量名混为一谈。"
     },
     {
       "id": 21,
-      "official": "×",
-      "answerTableValue": "×",
-      "bank": "×",
-      "changed": true,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        10
       ],
-      "note": "官方判断第6题：if 子句同样可以嵌套 if...else（×）。题面已按官方原文对齐"
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "if 分支和 else 分支都可以嵌套另一个 if/else，原判断错误。没有花括号时，else 按语言规则匹配最近尚未配对的 if，含义由语法规则确定。若程序员需要不同分组，应使用花括号形成复合语句。所谓悬空else问题不意味着禁止在 if 分支中嵌套条件。"
     },
     {
       "id": 22,
-      "official": "×",
-      "answerTableValue": "×",
-      "bank": "×",
-      "changed": false,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        11
       ],
-      "note": "官方判断第7题：while 循环体可能一次都不执行（×）"
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "while 先检查条件，再决定是否执行循环体。若进入时条件就是假，循环体执行0次，例如 int i=0 后执行 while(i>0) 就不会进入，因此判断错误。do/while 才是先执行一次循环体再检查条件，不能把两种循环的执行顺序与最少次数混淆。"
     },
     {
       "id": 23,
-      "official": "√",
-      "answerTableValue": "√",
-      "bank": "√",
-      "changed": false,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        11
       ],
-      "note": "官方判断第8题：>= 是运算符，=> 不是（√）"
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "大于号后接等号组成 >=，是大于等于关系运算符。反过来的 => 不是 C++ 的一个运算符，不能用来表示大于等于，因此判断正确。书写多字符运算符时顺序由语言规定，例如 <=、==、!= 也都必须准确使用相应字符次序。"
     },
     {
       "id": 24,
-      "official": "√",
-      "answerTableValue": "√",
-      "bank": "√",
-      "changed": true,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        11
       ],
-      "note": "官方判断第9题：a = a - 'a' + 'A' 可把小写转大写（√）。题面已按官方原文对齐"
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在题目采用的 ASCII 编码环境中，a减去字符a得到该小写字母的0至25偏移，再加字符A得到对应大写字母，所以判断正确。例如字符c减字符a为2，加字符A得到字符C。结论基于大小写字母各自连续排列的编码约定，通用跨字符集程序可使用标准字符转换函数。"
     },
     {
       "id": 25,
-      "official": "√",
-      "answerTableValue": "√",
-      "bank": "√",
-      "changed": true,
+      "type": "judge",
       "resolved": true,
-      "textMatch": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "按官方解析版 PDF 逐题对照，题干逐字录入",
-        "每题内嵌的【答案】行逐条核对"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        11
       ],
-      "note": "官方判断第10题：(10.0 / 2) 结果为 5.0 且类型为 double（√）。题面已按官方原文对齐"
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "字面量10.0的类型是 double，2是 int，通常算术转换将2转换为 double 后再相除，结果是 double 类型的5.0，因此判断正确。表达式类型与 cout 默认是否显示小数点是两回事。若写成10/2，两个操作数均为整数，结果类型才会是整数。"
     },
     {
       "id": 26,
       "type": "programming",
-      "title": "字母金字塔",
-      "modified": false,
-      "dimensions": [
-        "explanation"
-      ],
       "resolved": true,
-      "method": [
-        "样例编译对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "compile-results: Q26 n=3→A/BC/DEF；Q27 5 3 3 100 100→4；答案/参考代码未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        12,
+        13
+      ],
+      "evidence": "外层循环控制第1至n行，内层在第i行输出i个字符。字符ch在所有行间连续保存，输出后自增，超过Z就回到A。因此n=7时第7行是VWXYZAB，覆盖跨行与行内回绕。原实现与解析版按序号模26输出的算法等价。n不超过40，最多输出820个字母，时间O(n²)、额外空间O(1)，每行直接换行而不附空格。"
     },
     {
       "id": 27,
       "type": "programming",
-      "title": "扩展百鸡问题",
-      "modified": false,
-      "dimensions": [
-        "explanation"
-      ],
       "resolved": true,
-      "method": [
-        "样例编译对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "compile-results: Q26 n=3→A/BC/DEF；Q27 5 3 3 100 100→4；答案/参考代码未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        13,
+        14,
+        15
+      ],
+      "evidence": "枚举公鸡i和母鸡j后，小鸡k=m-i-j唯一确定。用整数等式z*x*i+z*y*j+k=z*n检验钱数，避免k/z的整数截断。该等式也保证k能被z整除，因此允许某类鸡为0且不会漏解。经典样例有4解，所有单价均1且n=m=100时有(101*102)/2=5151解。范围1<=x,y,z<=10、1<=n,m<=1000时整式和计数都在int内，时间O(m²)、空间O(1)。"
     }
   ],
-  "notes": [
-    "官方卷为「试卷解析」版，答案逐题内嵌；单选官方答案与题库完全一致（Q1-Q15）。",
-    "Q6：官方选项为 A.\\= B./= C.-= D.!=（答案 A 即 \\=）；题库选项集不同（=,==,/=,\\=），答案指向同一运算符 \\=，内容一致，未修改。",
-    "Q8-Q10、Q12-Q14：题库题面与原卷不同（原卷依次为：四数平均值表达式答C、char a 值为 2 哪条语句执行后 a 不会变为 3 答B、a-=3 后值为 6 答B、判断小写字母表达式答D、填空使输出 50 10 答C、统计数字字符 cnt 答D），题库为自编替换题，答案经独立推导均自洽正确，未修改。",
-    "判断 J1/J2/J6 题库为改写表述（如「4GB 和 4096MB 容量一样」答√，对应原卷「容量大的是笑笑的」答×），判定值与官方答案表一致。",
-    "Q15 题库题面 for 循环为 i<=n，与原卷 i<n 不同；两种写法下 17 均会被自身整除置 false，输出 0，答案不受影响。",
-    "2026-10-30：重写 Q1/Q2/Q3/Q4/Q26/Q27 explanation（agy gemini-3.8-flash-medium 草稿 + 校对落地）；答案字段未改；不标已人工核验。"
+  "unresolved": [
+    {
+      "id": 1,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。登记解析版p1给D，但题目未限定磁场强度、静态或变化条件。闪存U盘也有抗强磁场产品，不能由光盘非磁存储便排除B。保留answer=3并暂停计分，待来源澄清单选唯一性。"
+    },
+    {
+      "id": 16,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。登记解析版p9判×，解析采用1GB=1024MB。题目没有约定该口径，按十进制GB/MB定义，4096MB大于4GB，命题为真。保留answer=1并暂停计分，待来源澄清容量单位口径。"
+    }
   ],
-  "unresolved": [],
-  "rebuild": true,
-  "rebuildNote": "2026-10-25 按官方解析版 PDF 重建：Q6 恢复官方选项集（\\=、/=、-=、!=），Q8-Q10 与 Q12-Q14 共 6 道错位/自编题按原文重录，Q16/Q17 两判断题按原文还原，Q20/Q21/Q24/Q25 题面对齐官方措辞。",
-  "priorReviewCorrection": {
-    "foundAt": "2026-10-25",
-    "note": "本文件 2026-10-24 的 notes 曾写明「判断 J1/J2/J6 题库为改写表述…判定值与官方答案表一致」，该判断有误：官方 J1「容量大的是笑笑的」答案为×，题库改写为「容量大小一样」后答√，语义已反转；官方 J2「每段 1~255」答案为×，题库改写为「0 到 255」后答√，同样反了。本轮已按原文还原题干并改正答案。教训：改写式题面不能只比对答案字母，必须比对题面语义方向。"
-  },
+  "supplementarySources": [
+    {
+      "questionId": 1,
+      "url": "https://www.samsung.com/au/memory-storage/usb-flash-drive/usb-flash-drivetype-c-128gb-muf-128da-apc/",
+      "accessedAt": "2026-11-06",
+      "note": "厂商列有USB闪存15000高斯磁场防护指标。用于质疑排除U盘的前提，不把该特定产品的耐受指标泛化为所有U盘。"
+    },
+    {
+      "questionId": 16,
+      "url": "https://physics.nist.gov/cuu/Units/binary.html",
+      "accessedAt": "2026-11-06",
+      "note": "NIST区分GB=10^9 B、MB=10^6 B和GiB/MiB的二进制前缀。按十进制定义4096MB>4GB。"
+    }
+  ],
+  "notes": "AI-Codex对照登记mirror第三方解析版PDF全部15页文本与渲染，Git blob SHA 10fcac8bd8af9d36a17f8f14ae5a4d48821b801d一致。25题answer保持。Q1磁场条件及Q16容量单位口径有疑点并隔离。两参考程序与模板另行GNU C++17编译运行。",
+  "history": [
+    {
+      "paperId": "2023-03-l2",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "Grok Bot executor + Grok CLI 校对编排",
+        "session": "verify/explanations-2023-03-l2",
+        "draftModel": "gemini-3.8-flash-medium",
+        "draftCli": "agy",
+        "note": "未标已人工核验"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+        "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-24"
+      },
+      "answerTable": {
+        "location": "解析版 PDF，无集中答案表；每题题干后内嵌红色【答案】行（pp.1-11）",
+        "content": {
+          "single": [
+            "D",
+            "C",
+            "A",
+            "D",
+            "B",
+            "A",
+            "C",
+            "C",
+            "B",
+            "B",
+            "A",
+            "D",
+            "C",
+            "D",
+            "C"
+          ],
+          "judge": [
+            "×",
+            "×",
+            "√",
+            "×",
+            "×",
+            "×",
+            "×",
+            "√",
+            "√",
+            "√"
+          ]
+        },
+        "note": "本题库不是标准试卷版，而是「2023 年 3 月 GESP C++ 二级试卷解析」，答案与解析逐题内嵌。"
+      },
+      "questions": [
+        {
+          "id": 1,
+          "official": "D",
+          "answerTableValue": "D",
+          "bank": "D",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer",
+            "explanation"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对",
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "note": "官方第1题：以下存储器中不受强磁场干扰的是光盘（D）",
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方解析版 PDF + 解析审校；答案未改"
+        },
+        {
+          "id": 2,
+          "official": "C",
+          "answerTableValue": "C",
+          "bank": "C",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer",
+            "explanation"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对",
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "note": "官方第2题：流程图按是否按下空格键分成两支，属分支结构（C）",
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方解析版 PDF + 解析审校；答案未改"
+        },
+        {
+          "id": 3,
+          "official": "A",
+          "answerTableValue": "A",
+          "bank": "A",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer",
+            "explanation"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对",
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "note": "官方第3题：double 类型占用内存大小是浮动的，说法错误（A）",
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方解析版 PDF + 解析审校；答案未改"
+        },
+        {
+          "id": 4,
+          "official": "D",
+          "answerTableValue": "D",
+          "bank": "D",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer",
+            "explanation"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对",
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "note": "官方第4题：合法标识符不可以以数字开始，故 D 不正确",
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方解析版 PDF + 解析审校；答案未改"
+        },
+        {
+          "id": 5,
+          "official": "B",
+          "answerTableValue": "B",
+          "bank": "B",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第5题：max 是库函数不是关键字（B）"
+        },
+        {
+          "id": 6,
+          "official": "A",
+          "answerTableValue": "A",
+          "bank": "A",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第6题：选项为 A.\\=  B./=  C.-=  D.!=，答案 A。原题库把选项集换成了 =、==、/=、\\=，虽指向同一运算符，但干扰项失真，已按官方恢复"
+        },
+        {
+          "id": 7,
+          "official": "C",
+          "answerTableValue": "C",
+          "bank": "C",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第7题：'a'++ 对常量自增，不符合 C++ 语法（C）"
+        },
+        {
+          "id": 8,
+          "official": "C",
+          "answerTableValue": "C",
+          "bank": "C",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第8题：求四数平均值须用 (a+b+c+d)/4.0（C）。原题库是「a=1 执行 a+1 后 cout<<a」自编题，整题重录"
+        },
+        {
+          "id": 9,
+          "official": "B",
+          "answerTableValue": "B",
+          "bank": "B",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第9题：char a 值为 '2' 时，仅 a+1; 不会改变 a（B）。原题库占位的是官方第10题（a-=3），整题重录"
+        },
+        {
+          "id": 10,
+          "official": "B",
+          "answerTableValue": "B",
+          "bank": "B",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第10题：a=9 执行 a-=3 后为 6（B）。原题库是「小写字母 a 到 z 的 ASCII 码范围」，整题重录"
+        },
+        {
+          "id": 11,
+          "official": "A",
+          "answerTableValue": "A",
+          "bank": "A",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第11题：判断 a 等于 0 或 b 等于 0 应为 (!a)||(!b)（A）"
+        },
+        {
+          "id": 12,
+          "official": "D",
+          "answerTableValue": "D",
+          "bank": "D",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第12题：判断小写字母应为 a >= 'a' && a <= 'z'（D）。原题库是「执行 100 次循环的 for 头部」，整题重录"
+        },
+        {
+          "id": 13,
+          "official": "C",
+          "answerTableValue": "C",
+          "bank": "C",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第13题：填空使输出 50 10，应填 a = b - a（C）。原题库是「判断 a 是否大于 b 并交换」，整题重录"
+        },
+        {
+          "id": 14,
+          "official": "D",
+          "answerTableValue": "D",
+          "bank": "D",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第14题：统计 '1'-'9' 中 ASCII 码为奇数的字符，应填 ch % 2 == 1（D）。原题库是 for 循环输出题，整题重录"
+        },
+        {
+          "id": 15,
+          "official": "C",
+          "answerTableValue": "C",
+          "bank": "C",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "options",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方第15题：isprime 循环到 i=n 必被自身整除置 false，bool 输出为 0（C）"
+        },
+        {
+          "id": 16,
+          "official": "×",
+          "answerTableValue": "×",
+          "bank": "×",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第1题：4GB 与 4096MB 容量相同，故「容量大的是笑笑的」错误（×）。原题库改写为「容量大小一样」并答√，答案被改反，已按原文还原"
+        },
+        {
+          "id": 17,
+          "official": "×",
+          "answerTableValue": "×",
+          "bank": "×",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第2题：IPv4 点分十进制每段范围是 0~255，题干写 1~255 故错误（×）。原题库改写为「0 到 255」并答√，答案被改反，已按原文还原"
+        },
+        {
+          "id": 18,
+          "official": "√",
+          "answerTableValue": "√",
+          "bank": "√",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第3题：一个程序不能有多个 main 函数（√）"
+        },
+        {
+          "id": 19,
+          "official": "×",
+          "answerTableValue": "×",
+          "bank": "×",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第4题：标识符可以下划线开头，题干说不能故错误（×）"
+        },
+        {
+          "id": 20,
+          "official": "×",
+          "answerTableValue": "×",
+          "bank": "×",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第5题：'a' 是字符常量，与 int 变量 a 无关（×）。题面已按官方原文对齐"
+        },
+        {
+          "id": 21,
+          "official": "×",
+          "answerTableValue": "×",
+          "bank": "×",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第6题：if 子句同样可以嵌套 if...else（×）。题面已按官方原文对齐"
+        },
+        {
+          "id": 22,
+          "official": "×",
+          "answerTableValue": "×",
+          "bank": "×",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第7题：while 循环体可能一次都不执行（×）"
+        },
+        {
+          "id": 23,
+          "official": "√",
+          "answerTableValue": "√",
+          "bank": "√",
+          "changed": false,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第8题：>= 是运算符，=> 不是（√）"
+        },
+        {
+          "id": 24,
+          "official": "√",
+          "answerTableValue": "√",
+          "bank": "√",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第9题：a = a - 'a' + 'A' 可把小写转大写（√）。题面已按官方原文对齐"
+        },
+        {
+          "id": 25,
+          "official": "√",
+          "answerTableValue": "√",
+          "bank": "√",
+          "changed": true,
+          "resolved": true,
+          "textMatch": true,
+          "dimensions": [
+            "statement",
+            "answer"
+          ],
+          "method": [
+            "按官方解析版 PDF 逐题对照，题干逐字录入",
+            "每题内嵌的【答案】行逐条核对"
+          ],
+          "note": "官方判断第10题：(10.0 / 2) 结果为 5.0 且类型为 double（√）。题面已按官方原文对齐"
+        },
+        {
+          "id": 26,
+          "type": "programming",
+          "title": "字母金字塔",
+          "modified": false,
+          "dimensions": [
+            "explanation"
+          ],
+          "resolved": true,
+          "method": [
+            "样例编译对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "compile-results: Q26 n=3→A/BC/DEF；Q27 5 3 3 100 100→4；答案/参考代码未改"
+        },
+        {
+          "id": 27,
+          "type": "programming",
+          "title": "扩展百鸡问题",
+          "modified": false,
+          "dimensions": [
+            "explanation"
+          ],
+          "resolved": true,
+          "method": [
+            "样例编译对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "compile-results: Q26 n=3→A/BC/DEF；Q27 5 3 3 100 100→4；答案/参考代码未改"
+        }
+      ],
+      "notes": [
+        "官方卷为「试卷解析」版，答案逐题内嵌；单选官方答案与题库完全一致（Q1-Q15）。",
+        "Q6：官方选项为 A.\\= B./= C.-= D.!=（答案 A 即 \\=）；题库选项集不同（=,==,/=,\\=），答案指向同一运算符 \\=，内容一致，未修改。",
+        "Q8-Q10、Q12-Q14：题库题面与原卷不同（原卷依次为：四数平均值表达式答C、char a 值为 2 哪条语句执行后 a 不会变为 3 答B、a-=3 后值为 6 答B、判断小写字母表达式答D、填空使输出 50 10 答C、统计数字字符 cnt 答D），题库为自编替换题，答案经独立推导均自洽正确，未修改。",
+        "判断 J1/J2/J6 题库为改写表述（如「4GB 和 4096MB 容量一样」答√，对应原卷「容量大的是笑笑的」答×），判定值与官方答案表一致。",
+        "Q15 题库题面 for 循环为 i<=n，与原卷 i<n 不同；两种写法下 17 均会被自身整除置 false，输出 0，答案不受影响。",
+        "2026-10-30：重写 Q1/Q2/Q3/Q4/Q26/Q27 explanation（agy gemini-3.8-flash-medium 草稿 + 校对落地）；答案字段未改；不标已人工核验。"
+      ],
+      "unresolved": [],
+      "rebuild": true,
+      "rebuildNote": "2026-10-25 按官方解析版 PDF 重建：Q6 恢复官方选项集（\\=、/=、-=、!=），Q8-Q10 与 Q12-Q14 共 6 道错位/自编题按原文重录，Q16/Q17 两判断题按原文还原，Q20/Q21/Q24/Q25 题面对齐官方措辞。",
+      "priorReviewCorrection": {
+        "foundAt": "2026-10-25",
+        "note": "本文件 2026-10-24 的 notes 曾写明「判断 J1/J2/J6 题库为改写表述…判定值与官方答案表一致」，该判断有误：官方 J1「容量大的是笑笑的」答案为×，题库改写为「容量大小一样」后答√，语义已反转；官方 J2「每段 1~255」答案为×，题库改写为「0 到 255」后答√，同样反了。本轮已按原文还原题干并改正答案。教训：改写式题面不能只比对答案字母，必须比对题面语义方向。"
+      },
+      "programmingSampleAudit": {
+        "Q26": "n=3 → A/BC/DEF MATCH",
+        "Q27": "5 3 3 100 100 → 4 MATCH",
+        "compiledAt": "2026-10-30 Asia/Taipei",
+        "toolchain": "Mac c++ -std=c++14 -O2"
+      }
+    }
+  ],
   "programmingSampleAudit": {
-    "Q26": "n=3 → A/BC/DEF MATCH",
-    "Q27": "5 3 3 100 100 → 4 MATCH",
-    "compiledAt": "2026-10-30 Asia/Taipei",
-    "toolchain": "Mac c++ -std=c++14 -O2"
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 481,
+    "objectiveCaseCount": 12,
+    "templateCompileCount": 2,
+    "diagnosticCount": 2,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-03-l2/programming-run.json"
   }
 }
