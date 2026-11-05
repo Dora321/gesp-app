@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T10:58:27.920Z",
+  "generatedAt": "2026-11-05T18:10:24.779Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -18,15 +18,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
+        "statement": "verified",
+        "options": "verified",
         "answer": "verified",
-        "explanation": "unverified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-10-24",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -61,13 +61,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -80,7 +80,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -100,15 +100,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -121,7 +121,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -141,15 +141,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -162,7 +162,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -185,12 +185,12 @@
         "statement": "verified",
         "options": "verified",
         "answer": "verified",
-        "explanation": "unverified",
-        "referenceCode": "verified"
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-04",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -226,27 +226,23 @@
         "statement": "verified",
         "options": "verified",
         "answer": "verified",
-        "explanation": "unverified",
-        "referenceCode": "verified"
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-04",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "8": [
-            "sourceIntegrity:options-reconstructed"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -268,15 +264,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -311,15 +307,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
+        "statement": "verified",
+        "options": "verified",
         "answer": "verified",
-        "explanation": "unverified",
-        "referenceCode": "unverified"
+        "explanation": "partial",
+        "referenceCode": "verified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-10-25",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -352,15 +348,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -373,7 +369,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -393,15 +389,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -440,15 +436,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -488,59 +484,28 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 10,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -562,13 +527,95 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "partial",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l1",
+      "level": 1,
+      "title": "2026年6月 GESP C++ 一级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
+        "statement": "unverified",
+        "options": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l1",
+      "level": 1,
+      "title": "2026年9月 GESP C++ 一级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258592378912.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-05",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -601,32 +648,28 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · Grok Bot executor + Grok CLI 校对编排",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "14": [
-            "sourceIntegrity:options-reconstructed"
-          ]
-        }
+        "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -648,13 +691,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "verified",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -667,7 +710,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -687,15 +730,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -708,7 +751,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -719,7 +762,7 @@
       "composition": {
         "single": 15,
         "judge": 10,
-        "programming": 0
+        "programming": 2
       },
       "official": true,
       "sourceRegistry": {
@@ -728,15 +771,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -771,15 +814,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -792,7 +835,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -812,15 +855,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -855,15 +898,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "verified",
-        "options": "verified",
-        "answer": "verified",
-        "explanation": "verified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "verified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-27",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -903,15 +946,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "verified",
-        "options": "verified",
-        "answer": "verified",
-        "explanation": "verified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "verified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-27",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -948,15 +991,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "verified",
+        "statement": "partial",
         "options": "verified",
         "answer": "verified",
-        "explanation": "verified",
-        "referenceCode": "verified"
+        "explanation": "partial",
+        "referenceCode": "partial"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-27",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -989,15 +1032,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "verified",
-        "options": "verified",
-        "answer": "verified",
-        "explanation": "verified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "verified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-27",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1037,15 +1080,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "verified",
-        "options": "verified",
-        "answer": "verified",
-        "explanation": "verified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "verified"
       },
-      "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-27",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1095,8 +1138,8 @@
         "referenceCode": "verified"
       },
       "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-27",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1136,8 +1179,90 @@
         "referenceCode": "verified"
       },
       "overallStatus": "verified",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-27",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l2",
+      "level": 2,
+      "title": "2026年6月 GESP C++ 二级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
+        "statement": "unverified",
+        "options": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l2",
+      "level": 2,
+      "title": "2026年9月 GESP C++ 二级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258655293472.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
+      "reviewedBy": "",
+      "reviewedAt": "",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1213,13 +1338,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1232,7 +1357,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1252,15 +1377,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1293,15 +1418,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1314,7 +1439,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1336,13 +1461,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1355,7 +1480,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1375,15 +1500,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -1418,15 +1543,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1460,14 +1585,14 @@
       },
       "dimensions": {
         "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1480,7 +1605,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1502,13 +1627,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1521,7 +1646,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1543,13 +1668,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1562,7 +1687,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1584,13 +1709,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1603,7 +1728,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1623,15 +1748,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -1668,13 +1793,95 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "partial",
-        "explanation": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l3",
+      "level": 3,
+      "title": "2026年6月 GESP C++ 三级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
+        "statement": "unverified",
+        "options": "unverified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l3",
+      "level": 3,
+      "title": "2026年9月 GESP C++ 三级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258728693792.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
+      "reviewedBy": "",
+      "reviewedAt": "",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1709,13 +1916,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1728,7 +1935,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1748,30 +1955,26 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "17": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -1793,33 +1996,26 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "partial",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 2,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "11": [
-            "sourceIntegrity:missing-code"
-          ],
-          "17": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -1841,15 +2037,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1862,7 +2058,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -1882,15 +2078,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -1926,15 +2122,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -1974,15 +2170,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2020,13 +2216,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -2039,7 +2235,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -2059,15 +2255,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2104,13 +2300,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -2123,7 +2319,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -2145,13 +2341,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -2164,7 +2360,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -2184,6 +2380,47 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l4",
+      "level": 4,
+      "title": "2026年6月 GESP C++ 四级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
         "statement": "unverified",
         "options": "unverified",
         "answer": "partial",
@@ -2192,7 +2429,48 @@
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l4",
+      "level": 4,
+      "title": "2026年9月 GESP C++ 四级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258770636832.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
+      "reviewedBy": "",
+      "reviewedAt": "",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -2225,15 +2503,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -2274,15 +2552,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -2299,11 +2577,15 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "5": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"
@@ -2325,15 +2607,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -2371,15 +2653,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2414,15 +2696,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2431,15 +2713,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "9": [
-            "sourceIntegrity:options-reconstructed"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -2463,13 +2741,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -2482,7 +2760,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -2502,15 +2780,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2547,15 +2825,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "unverified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedAt": "2026-07-06",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -2604,15 +2882,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -2624,27 +2902,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 5,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -2666,15 +2928,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "verified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -2713,15 +2975,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "unverified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedAt": "2026-07-06",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2729,6 +2991,88 @@
           4,
           5
         ]
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l5",
+      "level": 5,
+      "title": "2026年6月 GESP C++ 五级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295343321120.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
+        "statement": "unverified",
+        "options": "unverified",
+        "answer": "partial",
+        "explanation": "unverified",
+        "referenceCode": "unverified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "本站校订",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l5",
+      "level": 5,
+      "title": "2026年9月 GESP C++ 五级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258833551392.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
+      "reviewedBy": "",
+      "reviewedAt": "",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
       },
       "gaps": {
         "integrityFlagged": 0,
@@ -2757,15 +3101,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "unverified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedAt": "2026-07-06",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -2776,11 +3120,15 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "5": [
+            "sourceIntegrity:answer-key-conflict"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"
@@ -2802,15 +3150,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "unverified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedAt": "2026-07-06",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2851,15 +3199,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -2869,28 +3217,13 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 6,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
           "23": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
+            "sourceIntegrity:answer-key-conflict"
           ]
         }
       },
@@ -2914,15 +3247,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "unverified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedAt": "2026-07-06",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -2959,15 +3292,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -2983,36 +3316,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 8,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
-        "boilerplate": 1,
-        "perQuestion": {
-          "5": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "9": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "boilerplate": 0,
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3034,15 +3342,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3051,33 +3359,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 7,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
-        "boilerplate": 1,
-        "perQuestion": {
-          "9": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "15": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "boilerplate": 0,
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3099,15 +3385,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -3120,21 +3406,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 3,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
-        "boilerplate": 1,
-        "perQuestion": {
-          "4": [
-            "sourceIntegrity:contaminated-stem"
-          ],
-          "8": [
-            "sourceIntegrity:missing-code"
-          ],
-          "24": [
-            "sourceIntegrity:missing-code"
-          ]
-        }
+        "boilerplate": 0,
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3156,15 +3432,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
         "answer": "unverified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedAt": "2026-07-06",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -3176,28 +3452,13 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 6,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
-          "2": [
-            "sourceIntegrity:contaminated-stem"
-          ],
-          "7": [
-            "sourceIntegrity:options-reconstructed"
-          ],
-          "10": [
-            "sourceIntegrity:contaminated-stem"
-          ],
           "11": [
-            "sourceIntegrity:contaminated-stem"
-          ],
-          "12": [
-            "sourceIntegrity:options-reconstructed"
-          ],
-          "13": [
-            "sourceIntegrity:options-reconstructed"
+            "sourceIntegrity:official-source-defect"
           ]
         }
       },
@@ -3221,15 +3482,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3241,18 +3502,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 2,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "8": [
-            "sourceIntegrity:options-reconstructed"
-          ],
-          "21": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3274,15 +3528,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -3322,15 +3576,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "verified",
+        "options": "partial",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "verified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -3340,6 +3594,88 @@
           8,
           11
         ]
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l6",
+      "level": 6,
+      "title": "2026年6月 GESP C++ 六级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295364292640.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
+        "statement": "unverified",
+        "options": "unverified",
+        "answer": "partial",
+        "explanation": "unverified",
+        "referenceCode": "unverified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "本站校订",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l6",
+      "level": 6,
+      "title": "2026年9月 GESP C++ 六级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258862911520.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
+      "reviewedBy": "",
+      "reviewedAt": "",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
       },
       "gaps": {
         "integrityFlagged": 0,
@@ -3371,12 +3707,12 @@
         "statement": "partial",
         "options": "partial",
         "answer": "partial",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-04",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -3413,7 +3749,7 @@
         "options": "partial",
         "answer": "partial",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
       "reviewedBy": "本站校订",
@@ -3450,15 +3786,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3467,15 +3803,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "23": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3497,15 +3829,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3514,15 +3846,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "21": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3544,15 +3872,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3561,15 +3889,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "18": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3591,15 +3915,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3610,15 +3934,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "21": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3640,15 +3960,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3663,7 +3983,7 @@
         "boilerplate": 0,
         "perQuestion": {
           "18": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ]
         }
       },
@@ -3687,15 +4007,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -3704,15 +4024,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "15": [
-            "sourceIntegrity:missing-figure"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3734,44 +4050,28 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 5,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "3": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "4": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "13": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "22": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "24": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -3791,13 +4091,95 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l7",
+      "level": 7,
+      "title": "2026年6月 GESP C++ 七级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295385264160.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
+        "answer": "partial",
         "explanation": "unverified",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
+      "overallStatus": "partial",
+      "reviewedBy": "本站校订",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l7",
+      "level": 7,
+      "title": "2026年9月 GESP C++ 七级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258888077344.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
       "reviewedBy": "",
       "reviewedAt": "",
       "correctionsOverlay": {
@@ -3806,17 +4188,13 @@
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "5": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -3836,41 +4214,35 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 4,
+        "integrityFlagged": 2,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
-          "15": [
-            "sourceIntegrity:contaminated-stem"
-          ],
           "19": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ],
           "24": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "25": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ]
         }
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -3890,44 +4262,35 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 5,
+        "integrityFlagged": 2,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
-          "8": [
-            "sourceIntegrity:options-reconstructed"
-          ],
           "19": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ],
           "21": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "24": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "25": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ]
         }
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -3947,32 +4310,28 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "20": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -3992,15 +4351,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -4009,21 +4368,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 3,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "2": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "22": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "24": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -4045,15 +4394,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-10",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-10",
@@ -4092,15 +4441,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-14",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-07-14",
@@ -4115,10 +4464,10 @@
         "boilerplate": 0,
         "perQuestion": {
           "22": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ],
           "25": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ]
         }
       },
@@ -4142,41 +4491,32 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 4,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
-          "18": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "22": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "24": [
-            "sourceIntegrity:missing-formula"
-          ],
           "25": [
-            "sourceIntegrity:missing-formula"
+            "sourceIntegrity:answer-key-conflict"
           ]
         }
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -4196,15 +4536,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
-        "referenceCode": "partial"
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
+        "referenceCode": "unverified"
       },
       "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-07-06",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": null,
@@ -4213,21 +4553,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 3,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "18": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "24": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "25": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -4249,32 +4579,28 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "unverified",
-        "explanation": "unverified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
+        "explanation": "partial",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 1,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "4": [
-            "sourceIntegrity:official-source-defect"
-          ]
-        }
+        "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
@@ -4294,13 +4620,95 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "partial",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "partial",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
+      "reviewedAt": "2026-10-31",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-06-l8",
+      "level": 8,
+      "title": "2026年6月 GESP C++ 八级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295410429984.pdf",
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+        "mirrorShaVerified": "registered"
+      },
+      "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
+        "answer": "partial",
         "explanation": "unverified",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
+      "overallStatus": "partial",
+      "reviewedBy": "本站校订",
+      "reviewedAt": "2026-10-30",
+      "correctionsOverlay": {
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
+      },
+      "gaps": {
+        "integrityFlagged": 0,
+        "explanationPlaceholder": 0,
+        "referenceCodePlaceholder": 0,
+        "boilerplate": 0,
+        "perQuestion": {}
+      },
+      "priority": "P2",
+      "processingState": "pending"
+    },
+    {
+      "paperId": "2026-09-l8",
+      "level": 8,
+      "title": "2026年9月 GESP C++ 八级真题",
+      "questionCount": 27,
+      "composition": {
+        "single": 15,
+        "judge": 10,
+        "programming": 2
+      },
+      "official": true,
+      "sourceRegistry": {
+        "officialUrl": "https://gesp.ccf.org.cn/101/attach/1767258921631776.pdf",
+        "mirrorUrl": null,
+        "mirrorShaVerified": "absent"
+      },
+      "dimensions": {
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
+      },
+      "overallStatus": "verified",
       "reviewedBy": "",
       "reviewedAt": "",
       "correctionsOverlay": {
@@ -4315,7 +4723,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     }
   ]

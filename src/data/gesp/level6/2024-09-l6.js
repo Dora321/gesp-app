@@ -418,9 +418,16 @@ top = st.top(); st.pop();
         },
         {
             id: 5,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第2,3页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 2,
+            sourcePages: [2, 3],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
+
+
             question: `下面代码判断队列的第一个元素是否等于 a，并删除该元素，横线上应填写（ ）。\n\n\`\`\`cpp\n#include <iostream>\n#include <queue>\nusing namespace std;\nbool is_front_equal(std::queue<int>& q, int a) {\n    bool is_equal = false;\n    if (!q.empty()) {\n        ______________________ // 在此处填入代码\n    }\n    return is_equal;\n}\n\`\`\`\n`,
             options: [
                 "is_equal = (q.front() == a);",
@@ -582,9 +589,16 @@ graycode_list[j] = "0" + graycode_list[j];
         },
         {
             id: 9,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第4页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
+
+
             question: `一棵有 n 个结点的完全二叉树用数组进行存储与表示，已知根结点存储在数组的第 1 个位置。若存储在数组第 9 个位置的结点存在兄弟结点和两个子结点，则它的兄弟结点和右子结点的位置分别是（ ）。`,
             options: [
                 "8, 18",
@@ -594,28 +608,11 @@ graycode_list[j] = "0" + graycode_list[j];
             ],
             answer: 2,
             score: 2,
-            explanation: `
-**答案：C**
+            explanation: `**答案为C。**
 
-**解析：**
-完全二叉树数组存储、**从 1 开始编号**：节点 i 的父节点是 ⌊i/2⌋，孩子是 2i（左）、2i+1（右）。
+根下标从1开始时，结点i的父亲为floor(i/2)，左孩子为2i，右孩子为2i+1。结点9是奇数下标，对应父亲4的右孩子，兄弟为父亲的左孩子8。它自己的右孩子为2*9+1=19。
 
-节点 9：
-- **兄弟结点**：父节点 = ⌊9/2⌋ = 4；9 是偶数（右孩子），兄弟是同一父节点的另一个孩子 = 2×4 = **8**。
-- **右子结点**：2×9+1 = **19**。
-
-所以兄弟 8、右孩子 19，选 C。
-
-逐项分析：
-- **A 8, 18**：错误，18=2×9 是**左**孩子。
-- **B 10, 18**：错误，10 不是 9 的兄弟（10 的父节点是 5）。
-- **C 8, 19**：正确。
-- **D 10, 19**：错误，兄弟错了。
-
-**易错点：** 兄弟结点的找法：先求父节点 ⌊i/2⌋，兄弟就是父节点的另一个孩子——i 为偶数（左孩子）时兄弟是 i+1，i 为奇数（右孩子）时兄弟是 i−1。9 是奇数 → 9 是父节点的右孩子，兄弟 = 8 ✓。
-
-**考点：** 完全二叉树数组索引关系
-        `,
+18是它的左孩子，10的父亲为5，二者都不是所问的位置。题目已保证兄弟与两个孩子存在，不需要另外处理缺少结点的边界。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -897,9 +894,16 @@ int knapsack(int W, const vector<int>& weights,
         },
         {
             id: 16,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第8,9页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8, 9],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `C++ 、 Python 和 JAVA 等都是面向对象的编程语言。`,
             options: [
                 "正确",
@@ -1013,9 +1017,16 @@ int main() {
         },
         {
             id: 19,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第8,9页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8, 9],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `运行以下 C++ 代码，屏幕将输出 \"derived class\"。\n\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nclass base {\npublic:\n    virtual void show() {\n        cout << \"base class\" << endl;\n    }\n};\nclass derived : public base {\npublic:\n    void show() override {\n        cout << \"derived class\" << endl;\n    }\n};\nint main() {\n    base* b;\n    derived d;\n    b = &d;\n    b->show();\n    return 0;\n}\n\`\`\`\n`,
             options: [
                 "正确",
@@ -1097,9 +1108,16 @@ public:
         },
         {
             id: 21,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第8,9页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8, 9],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `哈夫曼编码本质上是一种贪心策略。`,
             options: [
                 "正确",
@@ -1127,30 +1145,26 @@ public:
         },
         {
             id: 22,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第8,9页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8, 9],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `如果根结点的深度记为 ，则一棵恰有 个叶结点的二叉树的深度最少是 。`,
+            question: `如果根结点的深度记为 1，则一棵恰有2024个叶结点的二叉树的深度最少是12。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `
-**答案：√**
+            explanation: `**答案为正确。**
 
-**解析：**
-设根深度为 1，二叉树有 n 个叶结点时，**深度最少是 ⌈log₂n⌉ + 1**。
+根深度记为1时，深度为h的二叉树最多有2^(h-1)个叶结点。h=11时最多1024个，不足2024。h=12时最多2048个，足以容纳2024个叶结点。
 
-原因：深度为 h 的二叉树最多有 2^(h−1) 个叶结点（第 h 层全满）。要容纳 n 个叶子，需 2^(h−1) ≥ n，即 h ≥ log₂n + 1，最少 h = ⌈log₂n⌉（当 n 恰为 2 的幂时 h = log₂n + 1，一般写 ⌈log₂n⌉ + 1 的约定差异源于「恰有」与层的定义）。
-
-按官方口径（根深度记 1）：n 个叶子的最少深度 h 满足第 h 层至少 n 个位置可放叶子，h = ⌈log₂n⌉ + 1 与 ⌈log₂(n+1)⌉ 在 n 为 2 的幂时一致。结论：叶结点越多，树的最少深度越大，命题成立。
-
-**易错点：** 「最少深度」对应**完全/满**的形态；「最多深度」是 n−1（退化成链，此时叶子只有 1 个，注意约束对象是叶子数）。
-
-**考点：** 二叉树叶子数与深度的关系
-        `,
+这个下界可以达到。例如从深度12的满二叉树出发，将最底层24对兄弟叶子各折叠为其父叶子，叶子数从2048减少到2024，仍保留深度12。因此最少深度恰为12。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -1193,9 +1207,16 @@ public:
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第8,9页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8, 9],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `状态转移方程是动态规划的核心，可以通过递推方式表示问题状态的变化。`,
             options: [
                 "正确",
@@ -1223,9 +1244,16 @@ public:
         },
         {
             id: 25,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第8,9页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8, 9],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `应用动态规划算法时，识别并存储重叠子问题的解是必须的。`,
             options: [
                 "正确",

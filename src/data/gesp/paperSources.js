@@ -733,15 +733,15 @@ export const paperSources = {
     mirrorUrl: null,
   },
   '2026-09-l5': {
-    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258748452800.pdf',
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258833551392.pdf',
     mirrorUrl: null,
   },
   '2026-09-l6': {
-    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258748452800.pdf',
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258862911520.pdf',
     mirrorUrl: null,
   },
   '2026-09-l7': {
-    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258748452800.pdf',
+    officialUrl: 'https://gesp.ccf.org.cn/101/attach/1767258888077344.pdf',
     mirrorUrl: null,
   },
   '2026-09-l8': {

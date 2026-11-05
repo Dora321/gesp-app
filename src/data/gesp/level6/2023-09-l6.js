@@ -407,6 +407,11 @@ C++ 类在定义成员变量时有严格的类型限制，不能包含「任意�
         },
         {
             id: 5,
+            verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            integrityNote: `ANSWER-DOUBT：原卷表为A，但A描述的编译错误确实存在，D对private成员的访问才是不成立的说法。保留原answer=0并停止计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "single",
             question: `有关下面C++代码的说法，错误的是（ ）。\n\n\`\`\`cpp\n#include <iostream>\n#include <string>\nusing namespace std;\n\nclass MyStr {\n    string data;\npublic:\n    MyStr(string _data): data(_data) {}\n};\n\nint main() {\n    MyStr st("ABC");\n    cout << st << endl;\n    return 0;\n}\n\`\`\``,
             options: [

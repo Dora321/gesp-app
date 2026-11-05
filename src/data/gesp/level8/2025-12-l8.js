@@ -122,10 +122,15 @@ void merge_sort(int a[], int left, int right) {
         },
         {
             id: 4,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第1,2页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 1,
+            sourcePages: [1, 2],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "official-source-defect",
-            integrityNote: "题干问 $(x-2)^8$ 展开式中 $x^6$ 项的系数，按二项式定理该值为 C(8,2)·(-2)^2 = 112，但四个选项为 ±1792、±7168，均不含 112。所录答案 -1792 对应的是 $x^3$ 项（C(8,5)·(-2)^5），说明题干中的指数在提取时出错。本题已排除出计分与考点练习，待对照原卷更正。",
-            question: `二项式 $(x-2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。`,
+            question: `二项式 (2x-y)^8 的展开式中 x^5y^3 项的系数为（ ）。`,
             options: [
                 "-7168",
                 "7168",
@@ -134,15 +139,9 @@ void merge_sort(int a[], int left, int right) {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `答案为C，即-1792。
 
-**解析：**
-根据题面所给算式/展开式的计算，正确结果为 −1792，对应选项 C。该题四个选项在数值上互为符号与数量级的易错变体（分别为 C、−C、4C、−4C，其中 C=−1792），需严格按照题面代入与符号规则逐项计算才能避免误选。
-
-- **A −7168**：错误。−7168 = 4×(−1792)，是正确结果数量级扩大 4 倍后的错误值。
-- **B 7168**：错误。7168 为正值且数量级偏大，属于符号与计算均出错。
-- **C −1792**：正确。按题面正确计算得到 −1792。
-- **D 1792**：错误。1792 与正确结果仅差一个负号，是漏掉负号导致的常见错误。`,
+展开式中要得到x^5y^3，应从8个因式里选3个贡献-y，其余5个贡献2x。系数为C(8,3)×2^5×(-1)^3=56×32×(-1)=-1792。符号由三个负号决定。原卷的二元式与幂次均已对照图像恢复，不能将其误读为(x-2)^8的x^6项。`,
             tags: [
                 "C++综合",
             ],

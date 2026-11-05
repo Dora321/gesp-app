@@ -718,38 +718,39 @@ int main() {
         },
         {
             id: 15,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第5,6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "contaminated-stem",
-            integrityNote: "选项 C 末尾串入了原卷的答案表碎片（「题号 1 2 3 4 …答案」），说明抓取跨页时混入了其他内容，选项文本已不可信。本题已排除出计分与考点练习。",
-            question: `下面的程序中，二维数组h和v分别代表如下图所示的网格中的水平边的时间消耗和垂直边的时间消耗。 程序使用动态规划计算从左下角到右上角的最小时间消耗，则横线处应该填写下列哪个选项的代码？（ ）。`,
-            options: [
-                "dis[i][j] = min(dis[i-1][j]+v[i-1][j], dis[i][j-1]+h[i][j-1]);",
-                "dis[i][j] = min(dis[i-1][j]+h[i-1][j], dis[i][j-1]+v[i][j-1]);",
-                "dis[i+1][j+1] = min(dis[i][j+1]+v[i][j+1], dis[i+1][j]+h[i+1][j]); 题号 1 2 3 4 5 6 7 8 9 10 答案",
-                "dis[i+1][j+1] = min(dis[i][j+1]+h[i][j+1], dis[i+1][j]+v[i+1][j]);",
-            ],
+            question: `下面的程序中，二维数组h和v分别代表如下图所示网格中水平边与垂直边的时间消耗。程序使用动态规划计算从左下角到右上角的最小时间消耗，横线处应填写哪个选项？
+
+![官方网格及水平、垂直边下标](/question-assets/2023-12-l8/q15-grid.png)
+\`\`\`cpp
+int dis[MAXY][MAXX];
+int shortest_path(int x, int y) {
+    dis[0][0] = 0;
+    for (int i = 0; i < y; i++)
+        dis[i + 1][0] = dis[i][0] + v[i][0];
+    for (int j = 0; j < x; j++)
+        dis[0][j + 1] = dis[0][j] + h[0][j];
+    for (int i = 0; i < y; i++)
+        for (int j = 0; j < x; j++)
+            ________; // 在此处填写代码
+    return dis[y][x];
+}
+\`\`\``,
+            options: ["dis[i][j] = min(dis[i-1][j]+v[i-1][j], dis[i][j-1]+h[i][j-1]);", "dis[i][j] = min(dis[i-1][j]+h[i-1][j], dis[i][j-1]+v[i][j-1]);", "dis[i+1][j+1] = min(dis[i][j+1]+v[i][j+1], dis[i+1][j]+h[i+1][j]);", "dis[i+1][j+1] = min(dis[i][j+1]+h[i][j+1], dis[i+1][j]+v[i+1][j]);"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C（\`dis[i+1][j+1] = min(dis[i][j+1]+v[i][j+1], dis[i+1][j]+h[i+1][j]);\`）**
+            explanation: `答案为C。
 
-**核心解析：**
-\`h\` 是水平边耗时，\`v\` 是垂直边耗时。起点是左下角 \`dis[0][0]\`，要填到右上角 \`dis[y][x]\`。程序先处理两条边界：左边一列往上走，\`dis[i+1][0] = dis[i][0] + v[i][0]\`；下边一行往右走，\`dis[0][j+1] = dis[0][j] + h[0][j]\`。二重循环里 \`i\` 从 \`0\` 到 \`y-1\`、\`j\` 从 \`0\` 到 \`x-1\`，所以横线必须写出 \`dis[i+1][j+1]\`，循环结束才能得到 \`dis[y][x]\`。
+循环从i=j=0开始，目标格必须是dis[i+1][j+1]。从下方进入时增加垂直边v[i][j+1]，从左方进入时增加水平边h[i+1][j]，两种耗时取最小值。
 
-到达 \`(i+1, j+1)\` 只有两条来路：
-- 从正下方 \`(i, j+1)\` 向上（第一维加 1），经过垂直边，加 \`v[i][j+1]\`；
-- 从左侧 \`(i+1, j)\` 向右（第二维加 1），经过水平边，加 \`h[i+1][j]\`。
-
-因此 \`dis[i+1][j+1] = min(dis[i][j+1] + v[i][j+1], dis[i+1][j] + h[i+1][j])\`。选项 C 末尾的“题号 1 2 3 … 答案”是答题卡文字串进来的，代码本身就是这一式。
-
-**选项逐项分析：**
-- **A**：❌ 上移加 \`v\`、右移加 \`h\` 的对应关系是对的，但目标写成 \`dis[i][j]\`。\`i\`、\`j\` 从 0 开始时会读到 \`i-1\`、\`j-1\`，而且这个循环写不到返回值 \`dis[y][x]\`。
-- **B**：❌ 下标和 A 一样对不上，并且上移误加 \`h\`、右移误加 \`v\`。
-- **C**：✅ 目标是 \`dis[i+1][j+1]\`，向上加 \`v[i][j+1]\`，向右加 \`h[i+1][j]\`，与两条边界一致。
-- **D**：❌ 目标下标对，但向上加了 \`h\`、向右加了 \`v\`。
-
-**易错提醒：**
-- 先看循环上界和返回的 \`dis[y][x]\`，再决定写 \`dis[i+1][j+1]\` 还是 \`dis[i][j]\`。
-- 第一维变化对齐左边那条用 \`v\` 的边界，第二维变化对齐下边那条用 \`h\` 的边界。`,
+A、B的目标下标使第一次迭代访问负下标，且无法填到返回的dis[y][x]。D虽然目标下标正确，却颠倒了水平边与垂直边。边界行列已在前两段循环中初始化。`,
             tags: [
                 "动态规划",
             ],
@@ -813,20 +814,26 @@ int main() {
         },
         {
             id: 19,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `个顶点的有向完全图（不带自环）有 条边。`,
+            question: `N个顶点的有向完全图（不带自环）有 N×(N-1)/2 条边。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案表为错误。有向完全图的每个顶点都向其余N-1个顶点连边，共N(N-1)条有向边。相反方向是不同的边，不能除以2。除以2对应无向完全图的无序顶点对计数。
 
-**解析：**
-n 个顶点的有向完全图（不含自环）中，任意两个不同的有序顶点对 (u, v) 之间都存在一条有向边 u→v。有序顶点对的数量为 n(n−1)，因此总边数为 n(n−1)。该命题符合图论标准结论，故判断为正确。`,
+题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
             tags: [
                 "C++综合",
             ],
@@ -909,42 +916,41 @@ n 个顶点的有向完全图（不含自环）中，任意两个不同的有序
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `在 个元素的二叉排序树中查找一个元素，最好情况的时间复杂度是 。`,
+            question: `在N个元素的二叉排序树中查找一个元素，最好情况的时间复杂度是 O(log N)。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案表为错误。待查元素恰好是根时，只需一次比较，最好情况是O(1)。O(log N)描述平衡树高度对应的最坏量级或某些分布假设下的平均量级，不能替代最好情况。
 
-**判定依据：**
-在二叉排序树（BST）中查找目标元素时，检索过程始终从根结点开始：
-1. **最好情况**：目标元素恰好存储在根结点上，只需进行 1 次比对即可判定查找成功，执行时间与树中结点的总数 \`N\` 无关，因此最好情况时间复杂度为 \`O(1)\`。
-2. **平均情况**：当二叉排序树形态较为均衡时，树的高度为 \`log N\` 级别，平均查找时间复杂度为 \`O(log N)\`。
-3. **最坏情况**：当插入序列单调递增或递减时，二叉排序树会退化成一条单支链表，查找叶子结点或不存在的元素需要遍历整棵树，最坏情况时间复杂度为 \`O(N)\`。
-
-题干考查的是“最好情况”，结论完全正确。
-
-**选项逐项分析：**
-- **A 正确**：✅ 目标元素位于根结点时只需比较 1 次，耗时为常数级，时间复杂度为 \`O(1)\`。
-- **B 错误**：❌ 混淆了不同场景下的复杂度，误将平均情况 \`O(log N)\` 或最坏情况 \`O(N)\` 视作二叉排序树查找的固有最低代价。
-
-**易错提醒：**
-- 审题时务必看清是“最好情况”、“平均情况”还是“最坏情况”。很多同学一看到二叉排序树就联想到折半查找的 \`O(log N)\`，从而忽略了在根结点一次命中的最优情形。`,
+题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
             tags: [
                 "排列组合",
             ],
         },
         {
             id: 25,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `给定double类型的变量x，且其值大于等于 ，我们可以通过二分法求出 的近似值。`,
+            question: `给定double类型的变量x，且其值大于等于0，我们可以通过二分法求出 √x 的近似值。`,
             options: [
                 "正确",
                 "错误",

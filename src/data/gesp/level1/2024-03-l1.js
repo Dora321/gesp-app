@@ -338,26 +338,44 @@ cout << "a+1=" << a+1 << endl;`,
     },
     {
       id: 9,
+      verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf 第3页文本及渲染图核对。`,
+      sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf`,
+      sourcePage: 3,
+      sourcePages: [3],
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
+      sourceVerified: true,
       type: 'single',
       question: `下面 C++ 代码执行后的输出是（ ）。\n\n\`\`\`cpp\nint N = 10;\nwhile(N){\n    N -= 1;\n    if(N%3 == 0)\n        cout << N << "#";\n}\n\`\`\``,
       options: ['9#6#3#', '9#6#3#0#', '8#7#5#4#2#1#', '10#8#7#5#4#2#1#'],
       answer: 1,
       score: 2,
-      explanation: `**答案：B**
+      explanation: `答案为B。
 
-循环中先让 \`N -= 1\`，再判断是否能被 3 整除。依次输出 \`9#\`、\`6#\`、\`3#\`、\`0#\`。`,
+每次先用当前N判断while条件，进入循环后才执行N-=1，因此第一次检查的是9。后续满足N%3==0的数依次是6、3和0，输出为9#6#3#0#。
+
+N从1减到0的这一轮仍在循环体内，会打印0#。直到下一次检查while(0)时才结束，不能提前遗漏最后的0。`,
       tags: [TAGS.loop, TAGS.condition],
     },
     {
       id: 10,
+      verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf 第3页文本及渲染图核对。`,
+      sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf`,
+      sourcePage: 3,
+      sourcePages: [3],
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
+      sourceVerified: true,
       type: 'single',
       question: `下面 C++ 代码用于判断键盘输入的整数是否为质数。质数是只能被 1 和它本身整除的数。在横线处应填入代码是（ ）。\n\n\`\`\`cpp\nint N;\ncin >> N;\nint cnt = 0; // 记录N被整除的次数\nfor(int i=1; i<N+1; i++)\n    if(________________)\n        cnt += 1;\nif(cnt == 2)\n    cout << N << "是质数";\nelse\n    cout << N << "不是质数";\n\`\`\``,
       options: ['N % i', 'N % i == 0', 'N / i == 0', 'N / i'],
       answer: 1,
       score: 2,
-      explanation: `**答案：B**
+      explanation: `答案为B。
 
-要统计能整除 \`N\` 的数，条件应为 \`N % i == 0\`。`,
+取模运算N%i得到N除以i的余数，余数为0才表示i是N的约数。因此应填N%i==0，令cnt统计1到N之间所有正约数的数量。
+
+质数恰好有1与自身两个正约数，所以最终判断cnt==2。选项A直接把余数当条件，会在余数非0时计数，逻辑与整除要求相反。N=1只有一个正约数，会被正确排除。`,
       tags: [TAGS.loop, TAGS.condition, TAGS.operator],
     },
     {
@@ -396,170 +414,184 @@ cout << "a+1=" << a+1 << endl;`,
     },
     {
       id: 12,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `C++ 语言中下面可以完成数据输入的语句是（ ）。`,
       options: ['printf语句', 'scanf语句', 'default语句', 'cout语句'],
       answer: 1,
       score: 2,
-      explanation: `**答案：B**
-
-\`scanf\` 是 C/C++ 中常见的格式化输入函数。`,
+      explanation: `答案为B。scanf按格式字符串从标准输入读取数据，例如scanf("%d", &n)将整数保存到n。printf与cout用于输出，无法完成本题要求的读取。default是switch分支中的标签关键字，也没有输入功能。使用scanf时，格式符应与变量类型对应，普通数值变量通常还需要传入地址。`,
       tags: [TAGS.io],
     },
     {
       id: 13,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `在 Dev C++ 中对一个写好的 C++ 源文件要生成一个可执行程序需要执行下面哪个处理步骤？（ ）`,
       options: ['创建', '编辑', '编译', '调试'],
       answer: 2,
       score: 2,
-      explanation: `**答案：C**
-
-源代码需要经过编译，才能生成可执行程序。`,
+      explanation: `答案为C。编译过程将源代码翻译为目标代码，开发环境通常将编译与链接连在一起执行，最终生成可执行文件。创建只建立文件，编辑只修改源码，均不能直接产生机器可执行程序。调试是在运行过程中检查状态与查找错误，也需要先具备可执行程序。题目在这些步骤中应选择编译。`,
       tags: [TAGS.system],
     },
     {
       id: 14,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是？（ ）`,
       options: ['小程序', '计时器', '操作系统', '神话人物'],
       answer: 2,
       score: 2,
-      explanation: `**答案：C**
-
-鸿蒙通常指华为的 HarmonyOS，是操作系统。`,
+      explanation: `答案为C。题目中的鸿蒙指手表运行的操作系统，承担管理处理器、存储和设备等资源，以及支持上层应用运行的职责。计时器属于具体功能，小程序属于应用层，均不足以概括整个系统。题面用了“手表上跑的是鸿蒙”这一运行环境描述，因此应按操作系统这一计算机概念理解。`,
       tags: [TAGS.system],
     },
     {
       id: 15,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `中国计算机学会（CCF）在 2024 年 1 月 27 日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（ ）。`,
       options: ['制造自动驾驶汽车', '创立培训学校', '发明汉字激光照排系统', '成立方正公司'],
       answer: 2,
       score: 2,
-      explanation: `**答案：C**
-
-王选先生的重要贡献是主持研制汉字激光照排系统。`,
+      explanation: `答案为C。王选主持研制的汉字激光照排系统将汉字信息处理、计算机排版与激光输出结合起来，推动中文出版印刷从传统铅字排版转向电子排版。题目考查的是这一技术贡献。自动驾驶和培训学校与该成果无关，企业的成立也没有直接表述题目要求识别的技术发明。`,
       tags: [TAGS.system],
     },
     {
       id: 16,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++ 代码中变量 \`n\` 被赋值为 \`27\`，则 \`cout << n%10\` 执行后输出的是 \`7\`。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-\`27 % 10\` 取个位，结果为 7。`,
+      explanation: `答案为正确。取模运算%求整数除法的余数，27除以10商为2、余数为7，因此n%10得到7。cout输出这个表达式的值，不会改变n本身。对非负整数，模10常用于提取个位，整除10则用于去掉个位，两个操作的用途与结果需要区分。`,
       tags: [TAGS.operator],
     },
     {
       id: 17,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `C++ 语句 \`printf("%d#%d&",2,3)\` 执行后输出的是 \`2#3&\`。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-两个 \`%d\` 分别被 2 和 3 替换，普通字符 \`#\`、\`&\` 原样输出。`,
+      explanation: `答案为正确。printf从左到右处理格式字符串，两个%d依次使用参数2与3。格式字符串中的#与&没有特殊转换含义，会原样写出，最终得到2#3&。引号仅用于界定字符串字面量，不会成为输出内容。原格式里也没有换行符，因此这条调用本身不会换行。`,
       tags: [TAGS.io],
     },
     {
       id: 18,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `C++ 函数 \`scanf()\` 必须含有参数，且其参数为字符串型字面量，其功能是提示输入。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`scanf\` 的功能是读取输入，不是提示输入。提示信息通常应使用 \`printf\` 或 \`cout\` 输出。`,
+      explanation: `答案为错误。scanf负责按照格式从输入流读取数据，格式参数可以来自字符串字面量，也可以来自合适的字符数组或指针。它不会把格式字符串当提示语输出。常见的scanf("%d", &n)还要提供用于保存结果的变量地址。需要提示时应先用printf或cout输出文字。`,
       tags: [TAGS.io],
     },
     {
       id: 19,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `C++ 表达式 \`"10"*2\` 执行时将报错，因为 \`"10"\` 是字符串类型而 \`2\` 是整数类型，它们数据类型不同，不能在一起运算。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不能直接与整数相乘。`,
+      explanation: `原卷答案为正确。表达式"10"*2确实不能通过C++类型检查，字符串字面量在该表达式中转换为指针，乘法运算符没有“指针乘整数”的定义。不能把它理解成数值10乘2，也不能直接得到重复两次的文本。题干关于“不同类型不能运算”的解释过于宽泛，例如int与double可以通过常规转换共同参与算术运算。`,
       tags: ['数据类型'],
     },
     {
       id: 20,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++ 中，\`while\` 可能是死循环，而 \`for\` 循环不可能是死循环。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`for(;;)\` 就是典型的无限循环，因此 \`for\` 也可能写成死循环。`,
+      explanation: `答案为错误。for也会在循环条件始终成立且没有退出路径时无限执行，例如for(;;){}。while(true){}同样如此。循环能否结束取决于条件变化与break等控制语句，不能单凭关键字判断。即使for写出了更新表达式，若更新不能使条件变为假，也仍可能形成死循环。`,
       tags: [TAGS.loop],
     },
     {
       id: 21,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++，\`break\` 语句用于提前终止当前层次循环，适用于 \`while\` 循环，但不适用于 \`for\` 循环。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`break\` 可以用于 \`for\`、\`while\`、\`do-while\` 循环，也可以用于 \`switch\`。`,
+      explanation: `答案为错误。break适用于for、while和do-while循环，也能结束switch语句。位于循环中时，它跳出最内层包含它的循环，随后执行该循环之后的语句。嵌套两层for时，内层break不会自动终止外层。因此“只适用于while而不适用于for”的限制不存在。`,
       tags: [TAGS.loop],
     },
     {
       id: 22,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `C++ 语言中 \`3.0\` 和 \`3\` 的值相等，所以它们占用的存储空间也相同。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`3.0\` 默认是浮点类型 \`double\`，\`3\` 是整型字面量。数值相等不代表类型和存储空间相同。`,
+      explanation: `答案为错误。3.0默认是double类型的浮点字面量，3默认是int类型的整数字面量，两者数值相等仍可能采用不同编码与字节数。常见环境中sizeof(double)为8，sizeof(int)为4，具体大小由实现规定。存储空间应依据类型和实现判断，不能从两个值相等直接推断。`,
       tags: ['数据类型'],
     },
     {
       id: 23,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++ 的程序中，\`cin\` 是一个合法的变量名。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-\`cin\` 不是 C++ 关键字，语法上可以作为标识符。不过实际编程中不建议这样命名，容易与标准输入流混淆。`,
+      explanation: `答案为正确。cin是标准库中输入流对象的名称，属于普通标识符，未被C++保留为关键字。程序可在适当作用域声明同名变量，但这样会遮蔽名字或使不带限定的引用发生歧义。需要标准输入流时仍可用std::cin明确指明。合法命名与是否便于阅读是两个不同问题。`,
       tags: ['变量与标识符'],
     },
     {
       id: 24,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `小杨今年春节回奶奶家了，奶奶家的数字电视可以通过遥控器输入电视剧名称来找到想播放的电视剧，所以可以推知里面有交互式程序在运行。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-用户通过遥控器输入，系统处理并返回搜索结果，符合交互式程序“输入、处理、输出”的特征。`,
+      explanation: `答案为正确。遥控器提供电视剧名称作为输入，系统按名称执行检索，再把匹配结果反馈到电视屏幕。用户可以根据结果继续选择播放，形成输入、处理、输出及再次操作的过程。该行为符合交互式程序的特征，不要求输入设备一定是电脑键盘，遥控器也可以承担交互输入。`,
       tags: [TAGS.system],
     },
     {
       id: 25,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `任何一个 \`for\` 循环都可以转化为等价的 \`while\` 循环。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-\`for\` 循环的初始化、条件、更新部分都可以改写到 \`while\` 循环前、条件中和循环体末尾。`,
+      explanation: `答案为正确。一般for(init;cond;step)可以把init放在循环前，使用while(cond)重复，并在每轮末尾执行step。转换还需保持变量作用域与continue行为，for中的continue会先执行step，再检查cond。因此存在continue时，应同步调整控制流，才能保证执行顺序和原程序等价。`,
       tags: [TAGS.loop],
     },
     {

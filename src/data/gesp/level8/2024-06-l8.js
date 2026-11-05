@@ -649,21 +649,26 @@ int main() {
         },
         {
             id: 20,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第4页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `在一个包含v个顶点、e条边的带权连通简单有向图上使用 Dijkstra 算法求最短路径，时间复杂度为 ， 可进一步优化至 。`,
+            question: `在一个包含v个顶点、e条边的带权连通简单有向图上使用Dijkstra算法求最短路径，时间复杂度为 O(v²)，可进一步优化至 O(e+v log v)。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案为正确。
 
-**解析：** 在带权连通简单有向图上，朴素 Dijkstra（邻接矩阵、线性找最小）时间复杂度为 O(V²)；改用优先队列（堆）后降为 O((V+E) log V)（稀疏图约为 O(E log V)）。题干所述“可进一步优化”正确。
+朴素实现每轮线性扫描未确定顶点并选择最短距离，总计O(v²)。采用支持摊还O(1)减小键值操作的Fibonacci堆时，e次松弛和v次取最小值合计O(e+v log v)。
 
-**考点**：Dijkstra 算法复杂度。`,
+普通二叉堆通常给出O((v+e) log v)，不能直接用于证明原卷更紧的上界。Dijkstra的适用前提是边权非负，题目的复杂度按这一算法使用前提分析。`,
             tags: [
                 "最短路",
             ],

@@ -783,20 +783,26 @@ int main() {
         },
         {
             id: 22,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第7,8页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 7,
+            sourcePages: [7, 8],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `在 个节点的平衡二叉树中查找指定元素的最差时间复杂度为 。`,
+            question: `在N个节点的平衡二叉树中查找指定元素的最差时间复杂度为 O(N)。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案表为错误。平衡二叉搜索树的查找路径最多经过O(log N)层。原题写平衡二叉树，没有明确搜索树性质，普通仅高度平衡的二叉树找任意值可能遍历全部节点。O(N)还可作为宽松上界。因此保留原文并记录命题口径及既有答案争议。
 
-**解析：**
-平衡二叉树（如 AVL 树、红黑树）通过旋转保持树高始终为 O(log n)。在其上查找指定元素时沿一条从根到叶的路径进行，最多比较 O(log n) 次，因此最差时间复杂度为 O(log n)，命题正确。`,
+题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
             tags: [
                 "树与二叉树",
             ],
@@ -840,38 +846,26 @@ int main() {
         },
         {
             id: 25,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第7,8页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 7,
+            sourcePages: [7, 8],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `从 32 名学生中选出 4 人分别担任班长、副班长、学习委员和组织委员，共有 种不同的选法。`,
+            question: `从32名学生中选出4人分别担任班长、副班长、学习委员和组织委员，共有 C(32,4) 种不同的选法。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案表为错误。四个职务不同，先选出4人后还要分配4个职务，方案数为C(32,4)×4!=32×31×30×29。组合数C(32,4)只计算选人，没有计算不同职务的分配。
 
-**判定依据：**
-选出的 4 名学生分别担任班长、副班长、学习委员和组织委员，职务各不相同，意味着选人不仅要确定人选，还要分配具体职位，属于顺序相关的无重复**排列问题**。计算方案数应使用排列数公式 \`A(32, 4) = 32 * 31 * 30 * 29\`，题干结论符合排列原理，因此命题正确。
-
-**核心解析：**
-1. **分步乘法计数原理**：
-   - 选班长：从 32 名学生中任选 1 人，有 32 种选法；
-   - 选副班长：从剩余 31 人中任选 1 人，有 31 种选法；
-   - 选学习委员：从剩余 30 人中任选 1 人，有 30 种选法；
-   - 选组织委员：从剩余 29 人中任选 1 人，有 29 种选法。
-   由分步乘法原理可知，总方案数为 \`32 * 31 * 30 * 29 = A(32, 4)\` 种。
-2. **排列与组合的本质区别**：
-   - **排列（与顺序有关）**：职务不同时，交换两人的职务属于不同方案。例如“小明任班长、小红任副班长”与“小红任班长、小明任副班长”是两种不同选法。
-   - **组合（与顺序无关）**：若题干改为“从 32 人中选出 4 人参加活动（职务无区别）”，此时选出的 4 人地位平等，方案数才为组合数 \`C(32, 4)\`。
-
-**选项分析：**
-- **A（正确）**：选人分配不同职务是有序排列问题，对应排列数 \`A(32, 4)\`，判断正确。
-- **B（错误）**：若判定为错误，往往是混淆了排列与组合，误认为职位无差异而套用了组合数。
-
-**易错提醒：**
-- 区分排列与组合的关键在于**“顺序/身份是否有差异”**：有具体职位分工、编号、排队或座次安排的属于排列；仅抽取集合、选代表、组队且无身份差别的属于组合。`,
+题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
             tags: [
                 "排列组合",
             ],

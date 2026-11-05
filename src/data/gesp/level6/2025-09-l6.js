@@ -482,9 +482,16 @@ export const paperData = {
         },
         {
             id: 8,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第3页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 3,
+            sourcePages: [3],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "options-reconstructed",
-            integrityNote: "选项 A 与 D 都是「左孩子位于 2i，右孩子位于 2i+1」，只差一个空格；正确答案记为 A，选 D 的学生会被判错，但两者是同一句话。本题已排除出计分与考点练习，待对照原卷确认选项原文后恢复。",
+
+
             question: `完全二叉树可以用数组连续高效存储，如果节点从1开始编号，则对有两个孩子节点的节点i，（ ）。`,
             options: [
                 "左孩子位于2i，右孩子位于2i+1",
@@ -966,9 +973,16 @@ rear  = (rear  + 1) % N;   // 入队
         },
         {
             id: 21,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
+
+
             question: `一棵有 n 个节点的二叉树一定有 n-1 条边。`,
             options: [
                 "正确",

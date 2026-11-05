@@ -806,10 +806,15 @@ C++ 支持分离编译：函数可以在一个源文件（.cpp）中定义，在
         },
         {
             id: 18,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第4页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `在 个元素中进行二分查找，平均时间复杂度是 ，但须要事先进行排序。`,
+            question: `在 n 个元素中进行二分查找，平均时间复杂度是 O(log n)，但须要事先进行排序。`,
             options: [
                 "正确",
                 "错误",

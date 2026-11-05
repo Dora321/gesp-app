@@ -578,20 +578,26 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
         },
         {
             id: 18,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `对 个元素的数组进行排序，最差情况的时间复杂度为 。`,
+            question: `对n个元素的数组进行排序，最差情况的时间复杂度为 O(n²)。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
+            explanation: `原卷答案为错误。
 
-**解析：**
-“对 n 个元素数组排序，最差情况时间复杂度为 O(n log n)”这一说法不成立。比较排序的最坏情况下界为 Ω(n log n)，但并非所有排序算法都能达到该界：快速排序、插入排序的最坏情况均为 O(n²)；而非比较排序（如基数排序）最坏情况可为 O(n)。因此不能笼统地说排序的最坏时间复杂度就是 O(n log n)。`,
+原题未指定排序算法，不能把O(n²)作为所有排序算法统一的最坏紧确量级。归并排序与堆排序的最坏量级为Θ(n log n)，冒泡排序的最坏量级为Θ(n²)，算法不同，界限不同。
+
+严格的大O允许宽松上界，Θ(n log n)也属于O(n²)。因此原卷以考试中常用的紧确复杂度口径判×，理解时应保留这一口径区别。`,
             tags: [
                 "排列组合",
             ],
@@ -695,10 +701,15 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第7页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `Dijkstra 算法的时间复杂度为 ，其中 为图中顶点的数量。`,
+            question: `Dijkstra算法的时间复杂度为 O(V²)，其中V为图中顶点的数量。`,
             options: [
                 "正确",
                 "错误",
@@ -715,21 +726,26 @@ addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1
         },
         {
             id: 25,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第7页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `从 32 名学生中选出 2 人分别担任男生班长和女生班长（男生班长必须是男生，女生班长必须是女生），则共 有 种不同的选法。`,
+            question: `从32名学生中选出2人分别担任男生班长和女生班长（男生班长必须是男生，女生班长必须是女生），则共有 C(32,2)/2 种不同的选法。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
+            explanation: `答案为错误。
 
-**解析：** 男生班长必须是男生、女生班长必须是女生，二者是性别不同的两个不同角色（有序）。正确选法数应为“男生人数 × 女生人数”，而题述写作 C(32,2)（从 32 人中任取 2 人，且不区分性别与角色），显然错误：① 未利用男女比例，C(32,2) 假设任意两人即可；② 两个班长角色有序且性别受限，不能等同于无序组合数。
+设男生有m人，女生有32-m人，男生班长有m种选择，女生班长有32-m种选择，乘法原理得到m(32-m)种。总人数不足以确定这个数值，还需要男女人数。
 
-**考点**：排列组合（带约束的有序选取）。`,
+原式C(32,2)/2=248既计入同性组合，也不能通过除以2排除这些组合。例如男女各16人时，实际共有16×16=256种，已经构成反例。`,
             tags: [
                 "排列组合",
             ],

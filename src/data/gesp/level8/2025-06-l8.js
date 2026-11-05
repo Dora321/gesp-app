@@ -577,10 +577,15 @@ int weight[4][4] = {
         },
         {
             id: 18,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `对 个元素的数组进行归并排序，最差情况的时间复杂度为 。`,
+            question: `对n个元素的数组进行归并排序，最差情况的时间复杂度为 O(n log n)。`,
             options: [
                 "正确",
                 "错误",
@@ -663,10 +668,15 @@ int weight[4][4] = {
         },
         {
             id: 22,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `个顶点的无向完全图，有 棵生成树。`,
+            question: `n个顶点的无向完全图，有 n^(n-2) 棵生成树。`,
             options: [
                 "正确",
                 "错误",
@@ -735,10 +745,15 @@ $a+b+\\sqrt{a^2+b^2-2ab\\cos\\theta}$
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `有 个顶点、 条边的图的深度优先搜索遍历时间复杂度为 。`,
+            question: `有V个顶点、E条边的图的深度优先搜索遍历时间复杂度为 O(V+E)。`,
             options: [
                 "正确",
                 "错误",
@@ -773,22 +788,26 @@ DFS 的遍历过程主要由两部分耗时构成：
         },
         {
             id: 25,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `从 32 名学生中选出 4 人分别担任班长、副班长、学习委员和组织委员，老师要求班级综合成绩排名最后的 4 名学生不得参选班长或学习委员（仍可以参选副班长和组织委员），则共有 种不同的选法。`,
+            question: `从32名学生中选出4人分别担任班长、副班长、学习委员和组织委员，老师要求班级综合成绩排名最后的4名学生不得参选班长或学习委员（仍可以参选副班长和组织委员），则共有 P(30,4) 种不同的选法。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案表为错误。先安排班长和学习委员，两人须从合资格的28人中依次选择，共28×27种。再安排副班长和组织委员，从剩下30人中依次选，共30×29种。总数为28×27×30×29=657720，与原题P(30,4)=30×29×28×27巧合相等，形成官方答案与实际计算的额外争议。
 
-**解析：**
-4 个职位（班长、副班长、学习委员、组织委员）互不相同，属排列问题。设综合排名最后的 4 人为受限组，其余 28 人为普通组，受限组不得担任班长与学习委员。计数：班长从 28 人选 1（28 种），学习委员从剩余 27 人选 1（27 种），副班长为剩余 30 人中选 1（30 种），组织委员为剩余 29 人中选 1（29 种），共计 28×27×30×29 = 657720 种。若原题所填数字为 657720，则命题正确。
-
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
             tags: [
                 "排列组合",
             ],

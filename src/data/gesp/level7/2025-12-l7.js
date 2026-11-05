@@ -206,40 +206,23 @@ export const paperData = {
         },
         {
             id: 3,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第1页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 1,
+            sourcePages: [1],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "题干的地址区间、待插入关键字序列与哈希函数在原卷中以图片给出，文本提取后全部丢失（「地址区间为 的哈希表……哈希函数为 。」）。解析中已注明无法从文本恢复、只能照抄官方答案。本题已排除出计分与考点练习。",
-            question: `现有一个地址区间为 的哈希表，当出现冲突情况，会往后找第一个空的地址存储（到 冲突了就从 开始往后），现在要依次存储 ，哈希函数为 。其中 存储在哈希表哪个地址中 （ ）。`,
-            options: [
-                "3",
-                "5",
-                "6",
-                "7",
-],
+            question: `现有一个地址区间为0～10的哈希表，当出现冲突情况，会往后找第一个空的地址存储（到10冲突了就从0开始往后），现在要依次存储(1,3,5,7,9)，哈希函数为 h(x)=(x²+x) mod 11。其中9存储在哈希表哪个地址中（ ）。`,
+            options: ["1", "2", "3", "4"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D（地址 4）**
+            explanation: `**答案为D。**
 
-**核心解析：**
-题库公式丢失。原卷：哈希表地址 \`0~10\`，冲突时向后找空位，到 10 则从 0 继续；依次存入 \`1,3,5,7,9\`；\`h(x)=(x*x+x)%11\`。问 9 的地址。原卷选项是 A.1、B.2、C.3、D.4（题库误写成 3、5、6、7）。
+按顺序计算，h(1)=2、h(3)=1、h(5)=8，这三个地址均空。h(7)=1，地址1与2已占，继续探测到3存入7。h(9)=2，地址2与3已占，因此将9放入下一个空地址4。
 
-- \`h(1)=(1*1+1)%11=2\`，地址 2 空，存 1。
-- \`h(3)=(3*3+3)%11=1\`，地址 1 空，存 3。
-- \`h(5)=(5*5+5)%11=8\`，地址 8 空，存 5。
-- \`h(7)=(7*7+7)%11=1\`，地址 1、2 已占用，地址 3 空，存 7。
-- \`h(9)=(9*9+9)%11=2\`，地址 2、3 已占用，地址 4 空，存 9。
-
-因此 9 存在地址 4，选 D。
-
-**选项逐项分析：**
-- **A 1**：❌ 地址 1 里是 3。
-- **B 2**：❌ 这是 \`h(9)\` 的起点，已被 1 占用。
-- **C 3**：❌ 已被 7 占用，9 还要往后探。
-- **D 4**：✅ 从 2 起线性探测，跳过 2 和 3，落入空位 4。
-
-**易错提醒：**
-- 平方写成 \`x*x\`。C++ 里尖角符号是异或，不是乘方。
-- 必须按 \`1,3,5,7,9\` 的顺序插入，不能覆盖已占位置。`,
+线性探测必须保留已存元素，不能直接覆盖。计算平方时，C++应写x*x，符号^表示按位异或。原卷地址范围、函数和四个选项已从图像补齐。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -248,16 +231,16 @@ export const paperData = {
         },
         {
             id: 4,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第1页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 1,
+            sourcePages: [1],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `在 0/1 背包问题中，给定一组物品，每个物品有一个重量和价值，背包的容量有限。假设背包的最大容量为 ，物品的数量为 ，其中第个物品的重量为 ，价值为 。以下关于 0/1 背包问题的描述，正确的是（ ）。`,
-            options: [
-                "在解决 0/1 背包问题时，使用贪心算法可以保证找到最优解，因为物品只能放入一次。",
-                "0/1 背包是 P 问题（多项式时间可解问题），它可以在 的时间复杂度内解决。",
-                "0/1 背包问题中，动态规划解法的空间复杂度为 ，但可以通过滚动数组技巧将空间复杂度优化到 。",
-                "0/1 背包问题中，每个物品只能选择一次，并且子问题之间是独立的，无法重用计算结果。",
-            ],
+            question: `在0/1背包问题中，给定一组物品，每个物品有一个重量和价值，背包的容量有限。假设背包的最大容量为W，物品的数量为n，其中第i个物品的重量为w[i]，价值为v[i]。以下关于0/1背包问题的描述，正确的是（ ）。`,
+            options: ["在解决0/1背包问题时，使用贪心算法可以保证找到最优解，因为物品只能放入一次。", "0/1背包是P问题（多项式时间可解问题），它可以在O(nW)的时间复杂度内解决。", "0/1背包问题中，动态规划解法的空间复杂度为O(nW)，但可以通过滚动数组技巧将空间复杂度优化到O(W)。", "0/1背包问题中，每个物品只能选择一次，并且子问题之间是独立的，无法重用计算结果。"],
             answer: 2,
             score: 2,
             explanation: `**答案：C**
@@ -646,33 +629,23 @@ int main() {
         },
         {
             id: 13,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第4页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "题干的递推式系数与基准在原卷中以图片/公式给出，文本提取后丢失，无法套用主定理判断。解析中已注明只能照抄官方答案。本题已排除出计分与考点练习。",
-            question: `假设一个算法时间复杂度的递推式是 （ 为正整数），和 ，那么这个算法的 时间复杂度是（ ）。`,
-            options: [
-                "O(n)",
-                "O(n log n)",
-                "O(log n)",
-                "O(2^n)",
-],
+            question: `假设一个算法时间复杂度的递推式是 T(n)=8T(n/4)+n√n（n为正整数），和 T(0)=1，那么这个算法的时间复杂度是（ ）。`,
+            options: ["O(n√n)", "O(n√n log n)", "O(n²)", "O(n² log n)"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B（\`O(n*sqrt(n)*log n)\`）**
+            explanation: `**答案为B。**
 
-**核心解析：**
-题库把根号丢了。原卷递推式是 \`T(n)=8*T(n/4)+n*sqrt(n)\`（\`n\` 为正整数），\`T(0)=1\`。原卷选项为 A.\`O(n*sqrt(n))\`、B.\`O(n*sqrt(n)*log n)\`、C.\`O(n*n)\`、D.\`O(n*n*log n)\`。
+主定理中a=8、b=4，因此n^(log₄8)=n^(3/2)=n√n，与每层的非递归项n√n同阶。递归树每层的总工作量都是Θ(n√n)，层数为Θ(log n)，合计Θ(n√n log n)。
 
-主定理参数：\`a=8\`，\`b=4\`，\`f(n)=n*sqrt(n)\`。\`4=2*2\`，\`8=2*2*2\`，所以 \`log4(8)=3/2\`。临界项是 \`n\` 的 \`3/2\` 次方，也就是 \`n*sqrt(n)\`，与 \`f(n)\` 同阶。同阶时再乘树高 \`log n\`，得 \`O(n*sqrt(n)*log n)\`。
-
-**选项逐项分析：**
-- **A \`O(n*sqrt(n))\`**：❌ 只算了一层，漏了 \`log n\` 层累加。
-- **B \`O(n*sqrt(n)*log n)\`**：✅ 每层工作量相同，再乘层数。
-- **C \`O(n*n)\`**：❌ 比真实阶更高，不是紧确结果。
-- **D \`O(n*n*log n)\`**：❌ 多项式次数和对数因子都放大了。
-
-**易错提醒：**
-\`log4(8)\` 要用换底：\`log2(8)/log2(4)=3/2\`。\`f(n)\` 更慢时结果由临界项决定；严格更快时结果是 \`O(f(n))\`；同阶才乘 \`log n\`。`,
+A遗漏了层数因子。C、D给出了更宽松的上界，未反映本题要求的紧确增长量级。根号和选项必须同时保留，不能把n√n误写成n。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -868,10 +841,15 @@ int main() {
         },
         {
             id: 22,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `使用邻接矩阵存储一个有 个顶点、 条边的图，对该图进行一次完整的 BFS 遍历，时间复杂度为 。`,
+            question: `使用邻接矩阵存储一个有 V 个顶点、E 条边的图，对该图进行一次完整的 BFS 遍历，时间复杂度为 O(V+E)。`,
             options: [
                 "正确",
                 "错误",
@@ -908,30 +886,26 @@ int main() {
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `使用链地址法处理冲突的哈希表，当所有元素都映射到同一个槽位时，查找操作的最坏时间复杂度为 ， 其中 为元素个数。`,
+            question: `使用链地址法处理冲突的哈希表，当所有元素都映射到同一个槽位时，查找操作的最坏时间复杂度为 O(n)，其中 n 为元素个数。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案为正确。**
 
-**判定依据：**
-链地址法（又称拉链法）是将哈希表中的每个槽位（桶）作为单链表的头节点。当插入元素时，如果发生哈希冲突，就直接把元素挂在对应槽位的链表后。
-在理想情况下，哈希函数能将 \`n\` 个元素均匀分散到各个槽位中，平均查找时间复杂度为 \`O(1)\`。但在最极端的最坏情况下，若选取的哈希函数极差或输入数据被恶意构造，导致所有 \`n\` 个元素计算出的哈希值完全相同，它们就会全部映射到同一个槽位中。
-此时，该槽位退化成一条包含 \`n\` 个节点的单链表。当查找一个不存在的元素或链表末尾的元素时，程序必须从头到尾遍历整个链表，比较次数达到 \`n\` 次，因此最坏时间复杂度退化为 \`O(n)\`。题干陈述完全符合哈希表的性质。
+所有n个元素都在同一条链表中时，查找链尾元素或不存在的元素，需要依次比较最多n个结点，最坏耗时O(n)。桶的数量无法缩短这条实际承载全部元素的链。
 
-**选项逐项分析：**
-- **A 正确**：✅ 分析无误。极端冲突下哈希表退化为单链表，最坏查找复杂度确为 \`O(n)\`。
-- **B 错误**：❌ 误判了链地址法在退化情况下的时间复杂度。
-
-**易错提醒：**
-- 区分**平均复杂度**与**最坏复杂度**：哈希表的平均查找与插入时间复杂度为 \`O(1)\`，但链地址法的最坏查找复杂度是 \`O(n)\`，开放寻址法（如线性探测）的最坏查找复杂度同样是 \`O(n)\`。
-- 在工程实践中，为了避免退化为 \`O(n)\`，高级哈希表（如 Java 的 \`HashMap\` 或 C++ 部分扩展实现）会在单个桶内的链表长度超过阈值（如 8）时，将链表自动转换为红黑树，使最坏查找时间复杂度优化至 \`O(log n)\`。`,
+平均O(1)通常还要求散列分布与装载因子受到控制。链地址法本身不保证各桶长度有常数上界，也不规定自动转换为平衡树，因此不能把某些库的额外优化当作所有哈希表共有的行为。`,
             tags: [
                 "客观题",
                 "判断题",

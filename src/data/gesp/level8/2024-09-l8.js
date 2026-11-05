@@ -46,16 +46,16 @@ export const paperData = {
         },
         {
             id: 2,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第1页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 1,
+            sourcePages: [1],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `对于一个具有 个顶点的无向图，若采用邻接矩阵表示，则该矩阵的大小为（ ）。`,
-            options: [
-                "n",
-                "n²",
-                "2n",
-                "n(n-1)/2",
-],
+            question: `对于一个具有n个顶点的无向图，若采用邻接矩阵表示，则该矩阵的大小为（ ）。`,
+            options: ["n×(n/2)", "n×n", "(n-1)×(n-1)", "(n+1)×(n+1)"],
             answer: 1,
             score: 2,
             explanation: `**答案：B**
@@ -713,21 +713,25 @@ void Merge_Sort(int a[], int left, int right) {
         },
         {
             id: 22,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第8页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `现有 个完全相同的元素，要将其分为 组，允许每组可以有 个元素，则一共有 种分组方案。`,
+            question: `现有n个完全相同的元素，要将其分为k组，允许每组可以有0个元素，则一共有 C(n-1,k-1) 种分组方案。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,            score: 2,
-            explanation: `**答案：错误**
+            explanation: `答案为错误。
 
-**解析：**
-本题命题涉及“将相同元素分组”的方案数。若把 n 个完全相同元素分成 k 组，允许空组的方案数为 C(n+k−1, k−1)（隔板法），不允许空组为 C(n−1, k−1)。依据官方答案，该命题判为错误。
+按原卷将k组视作可区分的组，允许空组时，计数非负整数解x₁+…+xₖ=n，隔板法得到C(n+k-1,k-1)。若要求每组至少一个，才得到C(n-1,k-1)。
 
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+例如n=2、k=2，允许空组时有(0,2)、(1,1)、(2,0)三种，原式仅为C(1,1)=1。允许0会改变隔板放置方式。`,
             tags: [
                 "C++综合",
             ],
@@ -753,10 +757,15 @@ void Merge_Sort(int a[], int left, int right) {
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第8页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `已知等差数列的通项公式 ，则前 项和的求和公式为 。使用这一公 式计算 的时间复杂度是 。`,
+            question: `已知等差数列的通项公式 aₙ=a₁+(n-1)·d，则前n项和的求和公式为 Sₙ=n·(a₁+aₙ)/2。使用这一公式计算Sₙ的时间复杂度是 O(1)。`,
             options: [
                 "正确",
                 "错误",

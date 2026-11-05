@@ -21,10 +21,18 @@ export const paperData = {
     notes: '全卷依据 CCF 官网 PDF 逐题转录；Q1 数字集合、Q2 人数、Q10 边集、J1/J10 数字、编程题数据范围等公式图片均渲染核对。',
   },
   verification: {
-    status: 'partial',
-    reviewedBy: '本站校订',
-    reviewedAt: '2026-11-03',
-    scope: '单选答案串 BCBABBCDABAACDD 与判断答案串 √√×√×√√×√√ 按官方答案表转录并逐题逻辑复核，Q1/Q2/Q3 计数经程序穷举验证，编程题样例与数据范围已渲染核对。',
+    "status": "verified",
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "scope": "全卷27题的题面、选项、答案、解析，以及两道编程题的样例、数据范围与参考代码。",
+    "notes": "AI-Codex 对照官方PDF 1767258921631776.pdf全卷文本及第1/2/4/5/7/8/9页渲染图。单选BCBABBCDABAACDD，判断√√×√×√√×√√。补Q27跨页行驶时间范围，Q26将官方DFS改为等价显式栈，修复本机10万链栈溢出。3个官方样例编译运行及边界、独立穷举核对。本次为AI核验。",
+    "dimensions": {
+      "statement": "verified",
+      "options": "verified",
+      "answer": "verified",
+      "explanation": "verified",
+      "referenceCode": "verified"
+    }
   },
   confidence: {
     answer: 1.0,
@@ -39,19 +47,11 @@ export const paperData = {
       answer: 1,
       score: 2,
       tags: ['组合数学'],
-      explanation: `**答案：B**
+      explanation: `**答案为B。**
 
-**核心解析：**
-能被 3 整除 ⟺ 各位数字之和被 3 整除。按数字模 3 分类：余 0 类 {0, 3}、余 1 类 {1, 4}、余 2 类 {2, 5}。三位数（百位非零、无重复）的数字组合按余数凑和：
+按模3的余数分组，得到{0,3}、{1,4}、{2,5}。三个不同数字的和是3的倍数时，余数可为全相同或分别为0、1、2。每组只有两个数字，无法选出三个不同的同余数字，因此只能每组各选一个。
 
-- 三数余数组合为 (0,0,0)、(0,1,2)、(1,1,1)、(2,2,0) 等可行型；逐一枚举各型在"百位非零 + 无重复"约束下的排列数。
-
-程序穷举验证（百位 1-5，十位个位 0-5，互不相同，和被 3 整除）：共 **40** 个。
-
-**选项分析：**
-- **A**：漏掉了含 0 的部分组合（或漏掉某类余数组合）。
-- **B（正确）**：穷举/分类计数均为 40。
-- **C / D**：重复计数（未去掉百位为 0 的情形）或允许重复数字的错误结果。`,
+不含0时，第一组只能选3，另外两组各有2种选择，共4组，每组能排成6个三位数，得到24个。含0时，另外两组仍有4种选法，每组选出的数字共有6种排列，去掉0在百位的2种，得到16个。合计24+16=40。`,
     },
     {
       id: 2,
@@ -61,21 +61,11 @@ export const paperData = {
       answer: 2,
       score: 2,
       tags: ['组合数学', '排列组合'],
-      explanation: `**答案：C**
+      explanation: `**答案为C。**
 
-**核心解析：**
-环形排列（区分时针方向）：n 人围圈的坐法数为 (n−1)!。甲乙必须相邻，把两人绑定成一个整体：
+把相邻的甲乙视为一个整体，与其余4人合计5个元素。圆桌座位没有编号，旋转后视为同一种，所以圆排列共有(5-1)!=24种。
 
-- 整体与另外 4 人共 5 个"元素"围圈：(5−1)! = 24 种。
-- 甲乙内部可交换（甲左乙右 / 乙左甲右，时针方向区分）：× 2。
-
-总数 = 2 × 24 = **48**。
-
-**选项分析：**
-- **A**：24 只是忘记乘甲乙内部交换的 2。
-- **B**：计算错误。
-- **C（正确）**：2 × 4! = 48。
-- **D**：120 = 5!，是"座位不区分且不区分方向"或未做环形归约的错误结果（线性排列 5 个元素会得 5!，但环形需除以 5）。`,
+甲乙在整体内部还有两个顺序，乘以2得到48。题目区分时针方向，因此镜像排列不合并。24漏乘内部顺序，120则直接使用5!，没有消除5种旋转重复。`,
     },
     {
       id: 3,
@@ -85,22 +75,11 @@ export const paperData = {
       answer: 1,
       score: 2,
       tags: ['动态规划', '区间DP'],
-      explanation: `**答案：B**
+      explanation: `**答案为B。**
 
-**核心解析：**
-相邻合并（区间 DP）：f[i][j] = min over i ≤ k < j ( f[i][k] + f[k+1][j] ) + Σ(i..j)。
+令f[i][j]表示合并连续区间[i,j]的最小代价。枚举最后一次合并的分界k，代价为f[i][k]+f[k+1][j]+区间总和，取其中最小值。
 
-- 长度 2：f(1,2)=3，f(2,3)=5，f(3,4)=7
-- 长度 3：f(1,3) = min(0+5, 3+0) + 6 = **9**；f(2,4) = min(0+7, 5+0) + 9 = **14**
-- 长度 4：f(1,4) = min(0+14, 3+7, 9+0) + 10 = 9 + 10 = **19**
-
-对应方案：(1,2) 合并代价 3，堆序 [3,3,4]；合并相邻的两个 3 代价 6，堆序 [6,4]；最后合并代价 10。总 3+6+10 = 19（已用程序穷举全部 6 种合并顺序验证）。
-
-**选项分析：**
-- **A**：次优顺序。
-- **B（正确）**：区间 DP 最优值。
-- **C**：典型错误——按 (1,2)、(3,4)、(3,7) 的次优方案得 20，漏掉了"新堆与原堆继续配对"的更优路径。
-- **D**：更差的合并顺序。`,
+两堆区间的代价依次是3、5、7。三堆区间的最小代价为9与14。最后四堆的代价为min(14,3+7,9)+10=19。可先合并1与2，花3，再合并相邻的3与3，花6，最后合并6与4，花10。总计19，17低于最优值，不能称为次优方案。`,
     },
     {
       id: 4,
@@ -139,16 +118,11 @@ export const paperData = {
       answer: 1,
       score: 2,
       tags: ['数论', '快速幂'],
-      explanation: `**答案：B**
+      explanation: `**答案为B。**
 
-**核心解析：**
-快速幂把指数 b 按二进制拆分：a^b = a^(b 的各二进制位对应 2 的幂次之积)。从低位到高位迭代，每轮把底数平方、指数右移一位，乘法次数 O(log b)，空间 O(1)。
+非负整数指数b可写成二进制各位之和。逐位扫描时维护a、a²、a⁴等值，只在当前指数位为1时乘入答案，每轮把指数右移一位，总共O(log b)次乘法。迭代实现使用常数个变量，辅助空间O(1)。
 
-**选项分析：**
-- **A**：负指数需要模逆元（费马小定理要求模数为质数）或先化成分数正指数，"任意负指数"不成立。
-- **B（正确）**：二进制拆分正是快速幂的核心，O(b) → O(log b)。
-- **C**：快速幂本身就是反复平方乘，与模数是否为质数无关；只有涉及除法/逆元时才关心质数模。
-- **D**：迭代写法只用常数个变量，空间 O(1)。`,
+这种方法不要求模数为质数。负指数若在模运算中使用，需要底数存在模逆元，条件与底数和模数是否互质有关，不能保证任意负指数都可处理。b=0时直接返回乘法单位元1。`,
     },
     {
       id: 6,
@@ -158,16 +132,11 @@ export const paperData = {
       answer: 1,
       score: 2,
       tags: ['组合数学'],
-      explanation: `**答案：B**
+      explanation: `**答案为B。**
 
-**核心解析：**
-杨辉三角第 n 行第 k 个数（从 0 计数）就是二项式系数 C(n, k)。本题即 C(7, 3) = 7! / (3! × 4!) = 35。
+行列都从0计数时，第n行第k项为组合数C(n,k)。因此本题是C(7,3)=7*6*5/(3*2*1)=35。
 
-**选项分析：**
-- **A**：21 = C(7, 2)，列数少算一位。
-- **B（正确）**：C(7, 3) = 35。
-- **C**：42 = C(7, 4)？不对——C(7,4) = 35；42 无对应组合数（C(7,k) 序列为 1,7,21,35,35,21,7,1）。
-- **D**：56 = C(8, 3)，行数多算一位。`,
+第7行的全部数依次为1、7、21、35、35、21、7、1。21对应下标2，35对应下标3与4。56是C(8,3)，属于第8行。先确定从0计数的约定，再代入行列，可避免偏移一行或一列。`,
     },
     {
       id: 7,
@@ -177,16 +146,11 @@ export const paperData = {
       answer: 2,
       score: 2,
       tags: ['基础语法', '数学'],
-      explanation: `**答案：C**
+      explanation: `**答案为C。**
 
-**核心解析：**
-设宽为 w，长为 3w。周长 2(w + 3w) = 8w = 48 → w = 6，长 = 18。面积 = 18 × 6 = **108**。
+设宽为w，长就是3w。周长为2*(w+3w)=8w，代入48得w=6，长为18。面积为6*18=108。
 
-**选项分析：**
-- **A**：72 = 12 × 6，把长算成 12（周长方程解错）。
-- **B**：96 无对应。
-- **C（正确）**：18 × 6 = 108。
-- **D**：144 = 12² 或 24 × 6，周长被当成 2w + 3w 处理的错误结果。`,
+可把结果代回核对，长宽比18/6=3，周长2*(18+6)=48，均满足条件。不能把48当作长宽之和，因为周长中长与宽都出现两次。求出的6与18是边长，面积还需相乘。`,
     },
     {
       id: 8,
@@ -196,20 +160,11 @@ export const paperData = {
       answer: 3,
       score: 2,
       tags: ['数学'],
-      explanation: `**答案：D**
+      explanation: `**答案为D。**
 
-**核心解析：**
-恒等式：(x + y)² − (x − y)² = 4xy。
+将两个方程相加，得到2x=8，所以x=4。代入x+y=7得y=3，因此xy=12。
 
-4xy = 7² − 1² = 49 − 1 = 48 → xy = **12**。
-
-（解方程组：x = 4, y = 3，xy = 12 一致。）
-
-**选项分析：**
-- **A**：7 是 x + y 的值。
-- **B**：8 无对应。
-- **C**：10 = 7 + 3？无依据的错误计算。
-- **D（正确）**：xy = 12。`,
+也可使用(x+y)²-(x-y)²=4xy，代入后4xy=49-1=48，仍得到12。7只是两数的和，不能直接当作乘积。两种计算互相核对，并且x-y=4-3=1，满足第二个条件。`,
     },
     {
       id: 9,
@@ -276,16 +231,11 @@ Kruskal 按权从小到大扫描，用并查集判连通（n = 5，需选 4 条�
       answer: 0,
       score: 2,
       tags: ['最短路', 'Dijkstra'],
-      explanation: `**答案：A**
+      explanation: `**答案为A。**
 
-**核心解析：**
-堆优化 Dijkstra 的核心操作是"每次取出当前距离最小的未确定顶点"。因此堆中元素是 (dist[v], v)——顶点当前的最短距离估计与顶点编号，按距离构成小根堆。弹出堆顶即为下一个确定最短路的顶点，再以其为跳板松弛邻边、向堆中压入更新后的 (dist, v)。
+堆中通常保存距离估计值与顶点编号，例如(dist[v],v)，并按距离构成小根堆。这样每次能够取出当前距离最小的候选顶点。边权用于把“到u的距离”更新为“经过u到v的距离”，堆比较的是累计距离，而不是单条边权。
 
-**选项分析：**
-- **A（正确）**：(距离, 顶点编号) 是标准写法。
-- **B**：边权与终点是松弛时用的信息，不进堆。
-- **C**：入度用于拓扑排序，与 Dijkstra 无关。
-- **D**：父结点编号用于最后回溯路径，但不是堆中元素。`,
+允许重复入堆的实现还应跳过过期条目，或判断该顶点是否已经确定。顶点入度用于其他图算法，父结点信息可另存用于还原路径，都不承担这里的堆排序依据。`,
     },
     {
       id: 12,
@@ -435,10 +385,11 @@ int main() {
       answer: false,
       score: 2,
       tags: ['生成树', '图论'],
-      explanation: `**答案：×**
+      explanation: `**答案为错误。**
 
-**解析：**
-"存在权值相同的边"与"MST 是否唯一"没有必然联系。反例：星形图，1-2、1-3、1-4 三条边权值都是 1，另加边 2-3 权值 5。MST 必须包含全部三条权 1 的边（它们是 2、3、4 号点与外界连通的唯一手段），MST 唯一——尽管树中存在权值相同的边。MST 不唯一需要"权值相同的边可以互相替换且都不在环上被强制"这类条件，仅凭树内有等权边推不出来。`,
+取只有三点的路径1-2-3，两条边的权值都为1。图本身已经是一棵树，任何一条边删去都会断开，因此它只有这一棵生成树，也就只有这一棵最小生成树。
+
+这个例子包含相同权值的边，却仍然唯一。边权全不相同是最小生成树唯一的一个充分条件，但它的逆命题不成立。是否存在多个最优树，需要判断是否存在不改变总权值的替换方式。`,
     },
     {
       id: 19,
@@ -448,10 +399,11 @@ int main() {
       answer: true,
       score: 2,
       tags: ['最短路', 'Dijkstra'],
-      explanation: `**答案：√**
+      explanation: `**答案为正确，按通常简单图的复杂度分析。**
 
-**解析：**
-朴素 Dijkstra 的两步循环：每轮从所有未确定顶点中线性扫描选出距离最小的（O(V)，共 V 轮 → O(V²)）；用邻接表松弛当前顶点的邻边总代价 O(E)。总复杂度 O(V² + E) = O(V²)（连通图 E ≥ V−1）。这一界与存储方式无关（即使用邻接矩阵也是 O(V²)），邻接表只是保证松弛部分不拖慢到 O(V²) 之上。`,
+朴素Dijkstra每轮线性扫描全部顶点，选择未确定顶点中距离最小者，V轮合计O(V²)。邻接表中每条边参与松弛的总成本为O(E)，所以更完整的写法为O(V²+E)。
+
+在简单图中E=O(V²)，可化简为O(V²)。这里需要的是边数的上界，不能用连通图E>=V-1这个下界来作化简依据。如果允许不受限制的重边，保留O(V²+E)更准确。`,
     },
     {
       id: 20,
@@ -562,66 +514,14 @@ int main() {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['图论', 'DFS', '生成树'],
-      referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 1e5 + 5;\nconst int E = N << 1;\nconst int mod = 998244353;\nint n, m;\nint h[N], to[E], nx[E], et;\nint d[N];\nint ans;\nvoid ae(int u, int v) {\n    to[++et] = v;\n    nx[et] = h[u];\n    h[u] = et;\n}\nvoid dfs(int u, int p = 0) {\n    d[u] = d[p] + 1;\n    for (int i = h[u]; i; i = nx[i]) {\n        int v = to[i];\n        if (v == p)\n            continue;\n        if (!d[v])\n            dfs(v, u);\n        if (d[v] < d[u])\n            ans = 1ll * ans * (d[u] - d[v] + 1) % mod;\n    }\n}\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    for (int i = 1; i <= m; i++) {\n        int u, v;\n        scanf(\"%d%d\", &u, &v);\n        ae(u, v);\n        ae(v, u);\n    }\n    ans = 1;\n    dfs(1);\n    printf(\"%d\\n\", ans);\n    return 0;\n}\n",
-      explanation: `**解题思路：**
+      referenceCode: "#include <cstdio>\n#include <vector>\nusing namespace std;\nconst int N = 100005;\nconst int E = 200010;\nconst int MOD = 998244353;\nint head[N], to[E], nextEdge[E], edgeCount;\nint depth[N], parent[N], cursor[N];\nvoid addEdge(int u, int v) {\n    to[++edgeCount] = v;\n    nextEdge[edgeCount] = head[u];\n    head[u] = edgeCount;\n}\nint main() {\n    int n, m;\n    scanf(\"%d%d\", &n, &m);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        scanf(\"%d%d\", &u, &v);\n        addEdge(u, v);\n        addEdge(v, u);\n    }\n    long long answer = 1;\n    vector<int> path;\n    depth[1] = 1;\n    cursor[1] = head[1];\n    path.push_back(1);\n    while (!path.empty()) {\n        int u = path.back();\n        int edge = cursor[u];\n        if (edge == 0) {\n            path.pop_back();\n            continue;\n        }\n        cursor[u] = nextEdge[edge];\n        int v = to[edge];\n        if (v == parent[u]) continue;\n        if (depth[v] == 0) {\n            parent[v] = u;\n            depth[v] = depth[u] + 1;\n            cursor[v] = head[v];\n            path.push_back(v);\n        } else if (depth[v] < depth[u]) {\n            answer = answer * (depth[u] - depth[v] + 1) % MOD;\n        }\n    }\n    printf(\"%lld\\n\", answer);\n    return 0;\n}\n",
+      explanation: `**解题思路**
 
-1. **结构性质**：每条边至多属于一个简单环 ⟹ G 是"仙人掌图"（边仙人掌），环与环之间最多通过桥（不在任何环上的边）相连。
-2. **计数原理**：生成树必须包含所有桥（否则图断开）；而每个简单环（长为 L）上必须恰好**删去一条边**才能成树，删哪条都行，共 L 种选择。环之间相互独立，由乘法原理：
+题目给出的图是仙人掌图，环之间可以共享一个顶点，也可以通过桥连接。桥必须全部保留。每个长度L的简单环恰好删除一条边才能消除该环并保持连通，共有L种选择。各环边不重叠，选择相互独立，所以答案是全部环长的乘积。
 
-   生成树数 = Π（每个简单环的长度）。
+无向图DFS中跳过父边。遇到已访问且深度更小的非父结点v时，发现一条返祖边，与DFS树路径组成长度depth[u]-depth[v]+1的环。反向扫描时深度条件不成立，因此每个环只乘一次。题目保证无重边，跳过父结点即可区分父边。
 
-3. **实现（对应官方参考程序）**：从任意点 DFS，维护深度 d[u]。遍历到已访问结点 v 且 d[v] < d[u] 时，发现一条返祖边，它对应一个长度为 d[u] − d[v] + 1 的环，把 ans 乘上 (d[u] − d[v] + 1) 取模。注意对同一个环的两条方向不同的返祖边各乘一次会重复——参考程序靠"每个环恰好被发现一次"的遍历顺序保证正确（环上第一条回边被发现时计入，长度相同的环边不会被二次统计，因为另一方向的回边连接的端点深度差相同且只在其枚举到时乘一次；由于每条边至多属于一个环，每个环的回边对 (u,v) 与 (v,u) 中，只有深度大的一端在扩展时满足 d[v] < d[u]）。
-
-   更稳妥的理解：每个环恰好有一条"深度差 = 环长 − 1"的返祖边在 DFS 树中被统计一次，乘上环长。
-4. **复杂度**：一次 DFS，O(n + m)，n, m ≤ 10⁵ 轻松通过。
-5. **验证样例 2**：图本身是无环树，生成树唯一，输出 1 ✓。
-
-**参考实现：**
-
-\`\`\`cpp
-#include <cstdio>
-#include <algorithm>
-using namespace std;
-const int N = 1e5 + 5;
-const int E = N << 1;
-const int mod = 998244353;
-int n, m;
-int h[N], to[E], nx[E], et;
-int d[N];
-int ans;
-void ae(int u, int v) {
-    to[++et] = v;
-    nx[et] = h[u];
-    h[u] = et;
-}
-void dfs(int u, int p = 0) {
-    d[u] = d[p] + 1;
-    for (int i = h[u]; i; i = nx[i]) {
-        int v = to[i];
-        if (v == p)
-            continue;
-        if (!d[v])
-            dfs(v, u);
-        if (d[v] < d[u])
-            ans = 1ll * ans * (d[u] - d[v] + 1) % mod;
-    }
-}
-int main() {
-    scanf("%d%d", &n, &m);
-    for (int i = 1; i <= m; i++) {
-        int u, v;
-        scanf("%d%d", &u, &v);
-        ae(u, v);
-        ae(v, u);
-    }
-    ans = 1;
-    dfs(1);
-    printf("%d\\n", ans);
-    return 0;
-}
-\`\`\`
-
-**样例验证：** 样例 1：环 1-2-3（长 3）与环 4-5-6-7（长 4），3-4 是桥。生成树数 = 3 × 4 = **12** ✓。样例 2：无环，生成树唯一，输出 **1** ✓。`,
+当前参考程序用显式栈保存DFS路径，并为每个结点保留下一条待扫描边，等价模拟原卷递归程序，适应10万节点链的深度。时间O(n+m)，空间O(n+m)。样例1两个环长为3和4，答案12，样例2无环，答案1。`,
     },
     {
       id: 27,
@@ -651,80 +551,18 @@ int main() {
 - 1 ≤ q ≤ 5 × 10^5
 - 1 ≤ uᵢ, vᵢ, xᵢ, yᵢ ≤ n
 - 0 ≤ lᵢ, sᵢ ≤ 10^5
+- 1 ≤ tᵢ ≤ 10^4
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['最短路', 'Dijkstra', '图论'],
       referenceCode: "#include <cstdio>\n#include <algorithm>\n#include <queue>\nusing namespace std;\nconst int N = 505;\nconst int E = 1005;\nconst int oo = 1e9;\nint n, m;\nint h[N], to[E], nx[E], l[E], t[E];\nint d[N][N];\npriority_queue<pair<int, int> > q;\nvoid calc(int u, int d[]) {\n    for (int i = 1; i <= n; i++)\n        d[i] = -oo;\n    d[u] = oo;\n    q.push(make_pair(d[u], u));\n    while (!q.empty()) {\n        pair<int, int> p = q.top();\n        q.pop();\n        if (d[p.second] != p.first)\n            continue;\n        int u = p.second;\n        for (int i = h[u]; i; i = nx[i]) {\n            int v = to[i];\n            int w = min(d[u] - t[i], l[i]);\n            if (w < 0)\n                continue;\n            if (w > d[v]) {\n                d[v] = w;\n                q.push(make_pair(d[v], v));\n            }\n        }\n    }\n}\nint main() {\n    int q;\n    scanf(\"%d%d%d\", &n, &m, &q);\n    for (int i = 1; i <= m; i++) {\n        int u, v;\n        scanf(\"%d%d%d%d\", &u, &v, &l[i], &t[i]);\n        to[i] = u;          // 反向存边：到达 v 后可查\"从哪来\"\n        nx[i] = h[v];\n        h[v] = i;\n    }\n    for (int i = 1; i <= n; i++)\n        calc(i, d[i]);\n    while (q--) {\n        int u, v, s;\n        scanf(\"%d%d%d\", &u, &v, &s);\n        if (s <= d[v][u])\n            printf(\"Yes\\n\");\n        else\n            printf(\"No\\n\");\n    }\n    return 0;\n}\n",
-      explanation: `**解题思路：**
+      explanation: `**解题思路**
 
-1. **关键转化**：询问多达 5×10⁵ 次而站点只有 500 个——对每个可能的终点预处理。定义 best[y][x] = "从 x 出发能到达 y 的最晚出发时刻"。询问 (x, y, s) 的答案就是 s ≤ best[y][x]。
-2. **状态定义**：对每个终点 y 单独计算 d[x] = 从 x 最晚出发（出发时刻越晚越好）仍能到达 y 的时刻。这是"最晚出发时间"的最短路——把 Dijkstra 的小根堆换成大根堆（贪心取当前 d 最大的站点扩展）。
-3. **转移（对应官方参考程序）**：把每条线路 u→v 反向挂在 v 上。从 d[v]（已在 v、可继续）倒推：想乘线路 u→v 到达后衔接，需在时刻 ≤ min(d[v] − tᵢ, lᵢ) 从 u 发车。若该值 ≥ 0 且大于当前 d[u]，更新并入堆。d[y] 初始为 +∞（已在终点）。
-4. **复杂度**：n 次反图 Dijkstra，O(n·(m + n) log n)。n ≤ 500、m ≤ 1000，预处理约 500 × 1500 ≈ 10⁶ 级别；每次询问 O(1)，q ≤ 5×10⁵ 次询问绰绰有余。
-5. **细节**：发车时间从第 0 分钟到 lᵢ 每分钟一班（离散时刻），换乘条件是到达时刻之后的任意班次，min(d[v] − tᵢ, lᵢ) < 0 时该线路不可用；询问时 s 可以等于最晚出发时刻（s ≤ d 即可）。
+对每个终点y预处理best[y][x]，表示从x仍能到达y的最晚出发时刻。将线路u→v反向存储，在已知v最晚可衔接时刻d[v]后，倒推u的候选时刻为min(d[v]-t,l)。候选非负且更晚时更新。
 
-**参考实现：**
+以终点的d[y]=正无穷开始，用大根堆每次处理当前最晚时刻最大的站。由于行驶时间为正，反向延伸不能把时刻变得更晚，这与Dijkstra的贪心确定过程对应。每个终点计算一次后，询问(x,y,s)只需判断s<=best[y][x]。x=y时已处于终点，也能直接回答Yes。
 
-\`\`\`cpp
-#include <cstdio>
-#include <algorithm>
-#include <queue>
-using namespace std;
-const int N = 505;
-const int E = 1005;
-const int oo = 1e9;
-int n, m;
-int h[N], to[E], nx[E], l[E], t[E];
-int d[N][N];
-priority_queue<pair<int, int> > q;
-void calc(int u, int d[]) {
-    for (int i = 1; i <= n; i++)
-        d[i] = -oo;
-    d[u] = oo;
-    q.push(make_pair(d[u], u));
-    while (!q.empty()) {
-        pair<int, int> p = q.top();
-        q.pop();
-        if (d[p.second] != p.first)
-            continue;
-        int u = p.second;
-        for (int i = h[u]; i; i = nx[i]) {
-            int v = to[i];
-            int w = min(d[u] - t[i], l[i]);
-            if (w < 0)
-                continue;
-            if (w > d[v]) {
-                d[v] = w;
-                q.push(make_pair(d[v], v));
-            }
-        }
-    }
-}
-int main() {
-    int q;
-    scanf("%d%d%d", &n, &m, &q);
-    for (int i = 1; i <= m; i++) {
-        int u, v;
-        scanf("%d%d%d%d", &u, &v, &l[i], &t[i]);
-        to[i] = u;          // 反向存边：到达 v 后可查"从哪来"
-        nx[i] = h[v];
-        h[v] = i;
-    }
-    for (int i = 1; i <= n; i++)
-        calc(i, d[i]);
-    while (q--) {
-        int u, v, s;
-        scanf("%d%d%d", &u, &v, &s);
-        if (s <= d[v][u])
-            printf("Yes\\n");
-        else
-            printf("No\\n");
-    }
-    return 0;
-}
-\`\`\`
-
-**样例验证：** 询问 (1,3,2)：1 经线路1（发车≤min(d[2]−3,3)=2）时刻 2 发车到 2（时刻 5），换乘线路2（发车≤5）到 3 → Yes ✓。询问 (2,1,3)：2 发车 3 到 3 时刻 5，而线路3（3→1）最晚发车 4，赶不上；线路4（1→3）方向相反不可用 → No ✓。五组输出依次 Yes/Yes/No/Yes/No ✓。`,
+预处理时间O(n(n+m)log n)，存储O(n²+m)，每次询问O(1)。样例(1,3,2)可在时刻2乘车到2，时刻5换乘到3。(2,1,3)到3已是时刻5，错过最晚时刻4的3→1线路，因此不能到达。边界时刻相等仍允许乘车或换乘。`,
     },
   ],
 };

@@ -30,14 +30,15 @@ const only = args.filter((a) => /^\d{4}-\d{2}-l\d$/.test(a));
 const { paperIds, paperMeta } = await import(pathToFileURL(path.join(root, 'src/data/gesp/_generated.js')).href);
 const { paperSources } = await import(pathToFileURL(path.join(root, 'src/data/gesp/paperSources.js')).href);
 
-const cacheDir = path.join(os.tmpdir(), 'gesp-pdf-cache');
+const cacheDir = process.env.GESP_PDF_CACHE || path.join(os.tmpdir(), 'gesp-pdf-cache');
+const python = process.env.PYTHON || (process.platform === 'win32' ? 'py' : 'python3');
 fs.mkdirSync(cacheDir, { recursive: true });
 
 // errors='replace' is required: several official PDFs embed lone surrogates
 // (math glyphs) that would otherwise abort extraction with UnicodeEncodeError.
 const EXTRACT = `
 import sys, pypdf
-sys.stdout.reconfigure(errors='replace')
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 r = pypdf.PdfReader(sys.argv[1])
 out = []
 for p in r.pages:
@@ -48,7 +49,7 @@ sys.stdout.write('\\n'.join(out))
 const extractText = (pdfPath) => {
   const scriptPath = path.join(cacheDir, '_extract.py');
   fs.writeFileSync(scriptPath, EXTRACT, 'utf8');
-  return execFileSync('python3', [scriptPath, pdfPath], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  return execFileSync(python, [scriptPath, pdfPath], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
 };
 
 // Page 1 carries: "题号 1 2 ... 15" then "答案 B D D ...". Only the single-choice

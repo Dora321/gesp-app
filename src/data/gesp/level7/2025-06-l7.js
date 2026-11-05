@@ -887,23 +887,28 @@ int main() {
         },
         {
             id: 18,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：原卷判断第3题为O(n log n)，原卷答案表标×，题库answer原值0。按TASK红线保留answer，记录题库与原卷不一致，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `对 个元素的数组进行快速排序，最差情况的时间复杂度为 。`,
+            question: `对 n 个元素的数组进行快速排序，最差情况的时间复杂度为 O(n log n)。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**原卷答案表为错误，当前题库答案存在ANSWER-DOUBT。**
 
-快速排序选基准划分数组。最差情况出现在每次划分都极不均衡时（如数组已有序/逆序，且总选到端点作基准），每趟只把问题规模减 1，需 \`n-1\` 趟，比较次数约 \`n+(n-1)+…+1 = n(n-1)/2\`，时间复杂度为 **O(n²)**。平均情况才是 O(n log n)。
+原卷写的是最差O(n log n)，并非原解析补写的O(n²)。快速排序每次划分极端失衡时，工作量为n+(n-1)+…+1，最坏紧确量级为Θ(n²)，所以原卷表中的×符合这一分析。
 
-**注**：源文件题干末“时间复杂度为 。”处缺失了 \`O(n²)\`，按标准答案“正确”解析。
-
-**考点**：快速排序的最坏时间复杂度。`,
+题库原answer为0，依照本轮红线保留该字段并标记争议，等待单独裁定。不能把缺失的公式补成O(n²)来配合既有答案。`,
             tags: [
                 "客观题",
                 "判断题",

@@ -275,11 +275,18 @@ export const paperData = {
     },
     {
       id: 8,
+      verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf 第2页文本及渲染图核对。`,
+      sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf`,
+      sourcePage: 2,
+      sourcePages: [2],
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
+      sourceVerified: true,
       type: 'single',
-      sourceIntegrity: "options-reconstructed",
-      integrityNote: "选项 A「第5行代码1」与正确答案 C「第5行代码 1」只差一个空格，是同一句话；学生选 A 会被判错，但两者含义完全相同。本题已排除出计分与考点练习，待对照原卷确认选项原文后恢复。",
+
+
       question: `下面 C++ 代码执行时输入 \`10\` 后，正确的输出是（ ）。\n\n\`\`\`cpp\nint N;\ncout << "请输入正整数：";\ncin >> N;\nif (N % 3)\n    printf("第5行代码%2d", N % 3);\nelse\n    printf("第6行代码%2d", N % 3);\n\`\`\``,
-      options: ['第5行代码1', '第6行代码1', '第5行代码 1', '第6行代码 1'],
+      options: ["```text\n第5行代码1\n```", "```text\n第6行代码1\n```", "```text\n第5行代码 1\n```", "```text\n第6行代码 1\n```"],
       answer: 2,
       score: 2,
       explanation: `**答案：C（第5行代码 1）**
@@ -352,6 +359,9 @@ export const paperData = {
     },
     {
       id: 11,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `下面的 C++ 代码用于求 \`1~N\` 之间所有奇数之和，其中 \`N\` 为正整数，如果 \`N\` 为奇数，则求和时包括 \`N\`。有关描述错误的是（ ）。\n\n\`\`\`cpp\nint N;\ncout << "请输入正整数：";\ncin >> N;\nint i = 1, Sum = 0;\nwhile (i <= N){\n    if (i % 2 == 1)\n        Sum += i;\n    i += 1;\n}\ncout << i << " " << Sum;\n\`\`\``,
       options: [
@@ -362,177 +372,189 @@ export const paperData = {
       ],
       answer: 2,
       score: 2,
-      explanation: `**答案：C**
-
-如果把 \`i += 1\` 移到判断前面，循环会先跳过 \`1\`，求和逻辑改变，不能实现原要求。`,
+      explanation: `答案为C。原程序先判断当前i的奇偶再累加，输入10得到1+3+5+7+9=25，退出时i=11。若把自增移到判断之前，会跳过1，还可能处理超过N的值。例如N=5时处理2至6，只加3与5，结果为8。D直接从1开始每次加2，可以只访问奇数并保留原求和结果。`,
       tags: [TAGS.loop, TAGS.condition],
     },
     {
       id: 12,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `如果一个整数 \`N\` 能够表示为 \`X*X\` 的形式，那么它就是一个完全平方数，下面 C++ 代码用于完成判断 \`N\` 是否为一个完全平方数，在横线处应填入的代码是（ ）。\n\n\`\`\`cpp\nint N;\ncin >> N;\nfor(int i = 0; i <= N; i++)\n    if(___________________)\n        cout << N << "是一个完全平方数\\n";\n\`\`\``,
       options: ['i == N*N', 'i*10 == N', 'i+i == N', 'i*i == N'],
       answer: 3,
       score: 2,
-      explanation: `**答案：D**
-
-完全平方数需要存在整数 \`i\`，使得 \`i * i == N\`。`,
+      explanation: `答案为D。完全平方数要求存在整数i满足i²=N，所以判断条件应写i*i==N。循环从0枚举到N，可以在正常算术范围内覆盖非负平方根。i+i检查的是两倍关系，i*10检查十倍关系，i==N*N则把候选根与N的平方比较，均没有表达题目需要的关系。实际大数实现还需防止乘法溢出。`,
       tags: [TAGS.loop, TAGS.condition],
     },
     {
       id: 13,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `执行下面 C++ 代码后输出的 \`cnt\` 的值是（ ）。\n\n\`\`\`cpp\nint cnt=0;\nfor(int i = 0; i*i < 64; i+=2)\n    cnt++;\ncout << cnt;\n\`\`\``,
       options: ['8', '7', '4', '1'],
       answer: 2,
       score: 2,
-      explanation: `**答案：C**
-
-\`i\` 依次为 \`0, 2, 4, 6\` 时满足 \`i*i < 64\`，到 \`i = 8\` 时不满足。一共执行 4 次。`,
+      explanation: `答案为C。i从0开始，每轮增加2，条件检查i*i<64。i依次取0、2、4、6时均成立，cnt分别增加到1、2、3、4。接着i变为8，8*8等于64，不满足严格小于，循环立即结束。不能把边界8计入，也不能忽略初始值0已经执行了一次循环。`,
       tags: [TAGS.loop],
     },
     {
       id: 14,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `小杨父母带他到某培训机构给他报名参加 CCF 组织的 GESP 认证考试的第 1 级，那他可以选择的认证语言有几种？（ ）`,
       options: ['1', '2', '3', '4'],
       answer: 2,
       score: 2,
-      explanation: `**答案：C**
-
-GESP 一级可以选择 Scratch、Python、C++ 三类认证语言。`,
+      explanation: `按该次考试的官方答案选择C，共3种。题目考查报名时区分的Scratch、Python与C++三个语言类别，不能把“第1级”中的数字当成语言数量。级别用于描述认证能力层次，语言是实现与考查这一能力所使用的形式，两者是不同分类维度。该解析按原题考试背景理解。`,
       tags: [TAGS.system],
     },
     {
       id: 15,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'single',
       question: `ENIAC 于 1946 年投入运行，是世界上第一台真正意义上的计算机，它的主要部件都是（ ）组成的。`,
       options: ['感应线圈', '电子管', '晶体管', '集成电路'],
       answer: 1,
       score: 2,
-      explanation: `**答案：B**
-
-ENIAC 属于第一代电子计算机，主要部件是电子管。`,
+      explanation: `答案为B。ENIAC属于电子管时代的早期电子计算机，电子管用于实现开关与逻辑电路。晶体管对应后来的第二代计算机，集成电路对应更后续的技术阶段。按计算机主要电子器件划分代际时，应将ENIAC与电子管对应起来，题目中的感应线圈也不是其主要逻辑器件。`,
       tags: [TAGS.system],
     },
     {
       id: 16,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++ 代码中变量 \`X\` 被赋值为 \`16.44\`，则 \`cout << X / 10\` 执行后输出的一定是 \`1\`。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-如果 \`X\` 是浮点类型，\`X / 10\` 的结果约为 \`1.644\`，不一定输出 \`1\`。`,
+      explanation: `答案为错误。题目没有指定X的类型，因此“一定输出1”不能成立。若X为double，赋值16.44后执行浮点除法，X/10约为1.644。若X为int，赋值时小数部分先被截断为16，再执行16/10才得到1。判断表达式结果需结合变量类型及参与运算的操作数。`,
       tags: [TAGS.operator],
     },
     {
       id: 17,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `C++ 的整型变量 \`N\` 被赋值为 \`10\`，则语句 \`cout << N / 4 << "->" << N % 4 << "->" << N / 4.0\` 执行后输出是 \`2->2->2.0\`。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`N / 4\` 为 \`2\`，\`N % 4\` 为 \`2\`，但 \`N / 4.0\` 是浮点除法，结果为 \`2.5\`。`,
+      explanation: `答案为错误。N是int，N/4采用整数除法得到2，N%4得到余数2。最后一个除数4.0为double，使N转换为浮点参与除法，10/4.0得到2.5。因此在默认输出设置下，完整内容为2->2->2.5。前两次整数运算不会影响第三次独立表达式的类型与结果。`,
       tags: [TAGS.operator],
     },
     {
       id: 18,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `定义 C++ 的 \`float\` 型变量 \`N\`，则语句 \`cin >> N; cout << int(float(N))\` 可以输入正负整数和浮点数，并将其转换为整数后输出。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-\`float\` 可以读取整数或浮点数，\`int(float(N))\` 会把数值转换为整数，转换时直接截断小数部分。`,
+      explanation: `按题目通常的有效输入范围，答案为正确。cin可把整数形式或小数形式的输入读取到float变量N，float(N)保留其浮点值，随后int转换朝零截断小数部分。例如3.8变为3，-3.8变为-3，并非向下取整。输入与转换结果还需处于相应类型可表示的范围内，超出范围不能直接套用该结论。`,
       tags: [TAGS.basics, TAGS.io],
     },
     {
       id: 19,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `C++ 的整型 \`N\` 被赋值为 \`5\`，语句 \`printf("%d*2",N)\` 执行后将输出 \`10\`。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`%d\` 被 \`N\` 的值 5 替换，\`*2\` 是普通字符，原样输出，所以结果是 \`5*2\`。`,
+      explanation: `答案为错误。printf的格式字符串中只有%d是转换说明，用N的值5替换。紧随其后的*与2属于普通字符，不会被再次解释成C++乘法表达式，实际输出为5*2。若希望输出乘法结果10，应把运算写到参数中，例如printf("%d", N*2)，而不是放在格式字符串里。`,
       tags: [TAGS.io],
     },
     {
       id: 20,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++ 中，\`break\` 语句用于终止当前层次的循环，循环可以是 \`for\` 循环，也可以是 \`while\` 循环。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-\`break\` 可以终止当前所在的 \`for\`、\`while\`、\`do-while\` 循环。`,
+      explanation: `答案为正确。break可以立即结束包含它的最内层for、while或do-while循环，执行流程随后转到该循环之后。无需等到条件判断失败，也不会再执行这一轮余下的循环体。多层嵌套时仅终止当前内层，外层是否继续还取决于外层自己的条件与控制语句。`,
       tags: [TAGS.loop],
     },
     {
       id: 21,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++，\`continue\` 语句通常与 \`if\` 语句配合使用。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-\`continue\` 常用于“满足某个条件时跳过本次循环剩余语句”，因此通常会和 \`if\` 条件判断配合使用。`,
+      explanation: `答案为正确。程序常在if判断某种情况后执行continue，跳过本轮不需处理的剩余语句，并进入下一次循环。for会先执行更新表达式，再检查条件，while则直接重新检查条件。题目说的是常见搭配，并未要求continue必须写在if中，它在循环体内也可以无条件执行。`,
       tags: [TAGS.loop, TAGS.condition],
     },
     {
       id: 22,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++ 代码中，不可以将变量命名为 \`printf\`，因为 \`printf\` 是 C++ 语言的关键字。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`printf\` 是标准库函数名，不是 C++ 关键字。实际编程中不建议重名，但“因为它是关键字”这个说法错误。`,
+      explanation: `答案为错误。printf属于标准库函数的名字，不在C++关键字列表中。局部作用域可声明同名变量，但会遮蔽函数名，随后尝试以printf(...)调用时可能因此报错。int、while等关键字才受语言语法保留，不能用作变量名。是否容易引起冲突不能用来判定一个名字是不是关键字。`,
       tags: ['变量与标识符'],
     },
     {
       id: 23,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `在 C++ 中有整型变量 \`N\`，则表达式 \`N += 8/4//2\` 相当于 \`N += 8/(4/2)\`。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-C++ 中 \`//\` 是单行注释的开始，不是整除运算符，因此不能把它理解为 \`8/(4/2)\`。`,
+      explanation: `答案为错误。C++把//及其后直到换行的内容识别为单行注释，因此//2并不是第二个除法运算。若把该行作为语句书写，前面实际只剩N+=8/4，还需要合适的分号结束语句。即使设想成8/4/2，除法也按左结合得到1，8/(4/2)却得到4，两个分组仍不等价。`,
       tags: ['运算符'],
     },
     {
       id: 24,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `C++ 中定义变量 \`int N\`，则表达式 \`(!!N)\` 的值也是 \`N\` 的值。（ ）`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
-
-\`!!N\` 会把 \`N\` 转换成布尔意义上的 \`0\` 或 \`1\`。例如 \`N = 5\` 时，\`!!N\` 的值是 \`1\`，不是 \`5\`。`,
+      explanation: `答案为错误。第一个!将N按真假求反，第二个!再次取反，结果仅保留N是否非零的信息。N=0时!!N为false，N非0时为true，输出为0或1。例如N=5时结果为1，无法保留原来的5。只有N本来为0或1时数值碰巧相同，不能推广到所有整数。`,
       tags: [TAGS.operator],
     },
     {
       id: 25,
+      verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
       type: 'judge',
       question: `GESP 测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。（ ）`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: `**答案：正确**
-
-GESP 重点认证编程能力和计算思维。同一级别在不同语言之间的核心能力要求基本对齐。`,
+      explanation: `按本题表述，答案为正确。同一级别关注的核心是程序设计、逻辑推理与解决问题的能力，语言承担表达程序的作用。不同语言需要使用各自的语法和工具，但不能仅因换了一种语言就认为所要求的能力等级随之改变。这里“基本上”描述核心能力的对应关系，没有要求各语言题目和语法知识逐项相同。`,
       tags: [TAGS.system],
     },
     {

@@ -865,9 +865,16 @@ g++ 编译运行修改后代码，输入 1→2→3，输出 \`3 2 1\`，反转�
         },
         {
             id: 16,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第5,6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `哈夫曼树是一种二叉树。`,
             options: [
                 "正确",
@@ -895,9 +902,16 @@ g++ 编译运行修改后代码，输入 1→2→3，输出 \`3 2 1\`，反转�
         },
         {
             id: 17,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第5,6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `在动态规划中，状态转移方程的作用是定义状态之间的关系。`,
             options: [
                 "正确",
@@ -925,9 +939,16 @@ g++ 编译运行修改后代码，输入 1→2→3，输出 \`3 2 1\`，反转�
         },
         {
             id: 18,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第5,6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `继承是将已有类的属性和方法引入新类的过程。`,
             options: [
                 "正确",
@@ -1030,9 +1051,16 @@ Dog 自动拥有 eat()，实现代码复用，体现 is-a 关系。
         },
         {
             id: 21,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第5,6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `在宽度优先搜索中，通常使用队列来辅助实现。`,
             options: [
                 "正确",
@@ -1093,32 +1121,28 @@ Dog 自动拥有 eat()，实现代码复用，体现 is-a 关系。
         },
         {
             id: 23,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：原卷第5页题面为O(N)，答案表为×。未指定平均或最坏情形，而退化二叉搜索树最坏查找确为O(N)。保留原有answer=1，等待明确口径。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `二叉搜索树的查找操作的时间复杂度是 O(log n)。`,
+            question: `二叉搜索树的查找操作的时间复杂度是 O(N)。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `
-**答案：×**
+            explanation: `**官方答案为错误。**
 
-**解析：**
-说法**不严谨**，官方判定为错。
+原卷题面写的是O(N)，答案表标为×，这里保留这一答案并记录ANSWER-DOUBT。普通二叉搜索树的查找耗时由树高决定，平衡时为O(log N)，退化为链时最坏达到O(N)。
 
-二叉搜索树的查找效率取决于**树的形态**：
-- 树**平衡**时，每次比较排除一半节点，查找为 O(log n)；
-- 但普通 BST **不保证平衡**：按有序序列插入会退化成一条链表（每个节点只有单侧孩子），此时查找为 **O(n)**。
-
-因此「BST 的查找复杂度是 O(log n)」的说法以偏概全——只有**平衡二叉搜索树**（如 AVL、红黑树）才能保证 O(log n)。
-
-**易错点：** 平均情况下 BST 查找接近 O(log n)，但复杂度分析以**最坏情况**为准；题目缺少「平衡」前提，故为错。
-
-**考点：** 二叉搜索树的查找复杂度
-        `,
+因此不能把最坏O(N)本身说成错误，也不能将原卷的N擅自改成log N来配合答案。题目未说明平均、最坏或紧确量级口径，需保留这一疑问。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -1127,9 +1151,16 @@ Dog 自动拥有 eat()，实现代码复用，体现 is-a 关系。
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第5,6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `栈的基本操作包括入栈（ push ）和出栈（ pop ）。`,
             options: [
                 "正确",

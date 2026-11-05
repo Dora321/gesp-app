@@ -350,10 +350,35 @@ void traverse(TreeNode* root) {
         },
         {
             id: 4,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第1,2页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 1,
+            sourcePages: [1, 2],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "contaminated-stem",
-            integrityNote: "题干里塞进了两段代码（一个只做前序打印的 traverse 与另一个 isCompleteTree），中间还夹着行号残留「1 2 3 4 5 6」。四个选项描述的是「这段代码用来判断什么」，而首段代码只是打印节点值，并不判断任何性质，题面与选项对应不上。",
-            question: `以下关于完全二叉树的代码描述，正确的是（ ）。\n\n\`\`\`cpp\nvoid traverse(TreeNode* root) {\n    if (root == nullptr) return;\n    cout << root->val << " ";\n    traverse(root->left);\n    traverse(root->right);\n}\nbool isCompleteTree(TreeNode* root) {\n    // ……判断逻辑\n}\n\`\`\`\n`,
+            question: `以下关于完全二叉树的代码描述，正确的是（ ）。
+\`\`\`cpp
+bool isCompleteTree(TreeNode* root) {
+    if (root == nullptr) return true;
+    queue<TreeNode*> q;
+    q.push(root);
+    bool hasNull = false;
+    while (!q.empty()) {
+        TreeNode* node = q.front();
+        q.pop();
+        if (node == nullptr) {
+            hasNull = true;
+        } else {
+            if (hasNull) return false;
+            q.push(node->left);
+            q.push(node->right);
+        }
+    }
+    return true;
+}
+\`\`\``,
             options: [
                 "该代码用于判断一棵树是否为满二叉树",
                 "该代码用于判断一棵树是否为完全二叉树",
@@ -362,25 +387,11 @@ void traverse(TreeNode* root) {
             ],
             answer: 1,
             score: 2,
-            explanation: `
-**答案：B**
+            explanation: `**答案为B。**
 
-**解析：**
-题目给出的是**先序遍历**框架（先输出根，再递归左右）+ \`isCompleteTree\` 函数名，问代码用途。
+代码用队列层序遍历，同时把空孩子也入队。第一次遇到空位时将hasNull置为true，此后如果再遇到非空结点就返回false。这正好检查完全二叉树在层序中“全部结点连续占据前面位置”的要求。
 
-- 函数名 \`isCompleteTree\` 直接表明意图：**判断一棵树是否为完全二叉树**。典型实现是层序遍历过程中，一旦遇到「空位后还有节点」的情况即非完全二叉树。
-- 上面的 \`traverse\` 只是先序遍历辅助展示，判断逻辑在 \`isCompleteTree\` 中。
-
-逐项分析：
-- **A**：错误，满二叉树要求每层都满，与函数名不符。
-- **B**：正确，\`isCompleteTree\` 即判断完全二叉树。
-- **C**：错误，判断二叉搜索树通常要比较节点值的大小关系（中序递增）。
-- **D**：错误，计算高度是返回 max(左, 右)+1 的递归。
-
-**易错点：** 完全二叉树判定核心是「层序中不允许出现空位后再有节点」，不是看节点数。
-
-**考点：** 完全二叉树的判定思路
-        `,
+函数没有比较结点数值，不是在判断二叉搜索树。它允许最后一层没有填满，也没有计算高度。空树直接返回true。应依据完整逻辑判断用途，不能只依据函数名。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -501,9 +512,16 @@ TreeNode* op(TreeNode* root, int val) {
         },
         {
             id: 8,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第3页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 3,
+            sourcePages: [3],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "题干称「以下代码中，类的构造函数被调用了（ ）次」，但代码未随本题收录，无法数出调用次数。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
+
+
             question: `以下代码中，类的构造函数被调用了（ ）次。\n\n\`\`\`cpp\nclass MyClass {\npublic:\n    MyClass() {\n        cout << "Constructor called!" << endl;\n    }\n};\nint main() {\n    MyClass obj1;\n    MyClass obj2 = obj1;\n    return 0;\n}\n\`\`\`\n`,
             options: [
                 "1",
@@ -1090,9 +1108,16 @@ BST 中的最小值结点是整棵树**最左边的结点**（从根一路向左
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第8页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 8,
+            sourcePages: [8],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-code",
-            integrityNote: "题干称「以下代码创建的树是一棵完全二叉树」，但建树代码未随本题收录，无从判断。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
+
+
             question: `以下代码创建的树是一棵完全二叉树：\n\n\`\`\`cpp\nTreeNode* root = new TreeNode{1};\nroot->left = new TreeNode{2};\nroot->right = new TreeNode{3};\nroot->left->left = new TreeNode{4};\n\`\`\`\n`,
             options: [
                 "正确",
@@ -1100,31 +1125,11 @@ BST 中的最小值结点是整棵树**最左边的结点**（从根一路向左
             ],
             answer: 0,
             score: 2,
-            explanation: `
-**答案：√**
+            explanation: `**答案为正确。**
 
-**解析：**
-代码构建的树形：
-\`\`\`text
-        1
-       / \
-      2   3
-     /
-    4
-\`\`\`
+第一层有根1，第二层为2、3，第三层只有2的左孩子4。前两层全满，最后一层的结点占据最左位置，因此满足完全二叉树定义。
 
-完全二叉树的判定：除最后一层外每层都满，且最后一层节点**从左到右连续排列**。
-
-- 第 1 层：1（满）
-- 第 2 层：2、3（满）
-- 第 3 层：只有 4，且 4 位于最左侧位置（2 的左孩子）✓
-
-第 3 层的空位（2 的右孩子、3 的左右孩子）都在节点 4 **之后**，符合「从左到右填充」，所以是**完全二叉树**，说法正确。
-
-**易错点：** 若代码最后一句写成 \`root->right->left = new TreeNode{4};\`（4 出现在 3 的左孩子而 2 的右孩子空着），则第 3 层出现「空位在前、节点在后」，就不是完全二叉树了。
-
-**考点：** 完全二叉树的判定
-        `,
+若4改为挂在3的左边或2的右边，同时让2的左边为空，最后一层就会出现前面空位、后面有结点的情况。本题代码中的位置是root->left->left，不存在这一缺口。`,
             tags: [
                 "客观题",
                 "判断题",

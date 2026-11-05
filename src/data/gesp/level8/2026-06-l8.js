@@ -526,17 +526,23 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
     },
     {
       id: 21,
+      verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第4页文本及渲染图核对。`,
+      sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+      sourcePage: 4,
+      sourcePages: [4],
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
+      sourceVerified: true,
       type: 'judge',
       question: `只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图。`,
       options: ['正确', '错误'],
       answer: false,
       score: 2,
-      explanation: `**答案：×**
+      explanation: `答案为错误。
 
-**解析：**
-Dijkstra 的正确性依赖**贪心不变量**：每次从优先队列取出的顶点距离已最终确定（基于"边权非负，绕路不会更短"）。存在负权边时，即使没有负权环，该不变量也会被破坏——后面发现的负权边可能让"已确定"的顶点距离变得更小，而 Dijkstra 不会回头修正。
+标准Dijkstra依赖非负边权，才能在取出当前最近顶点时确定其最短距离。反例为s→u权2、s→v权3、v→u权-2，图无环，当然没有负环。算法先确定u的距离为2，但实际可沿s→v→u得到1，已经确定的结点会被后续负边改善。
 
-例如 1→2 权 3、1→3 权 2、3→2 权 −2：Dijkstra 先确定 dist[2]=3，但实际最短是 0。处理负权边应使用 Bellman-Ford / SPFA。`,
+因此只有“无负权环”仍不足以使用标准Dijkstra，需采用适合负边的最短路算法。原解析的例子会先处理较近的中转点，无法构成反例，现已纠正。`,
       tags: ['图论', 'Dijkstra', '最短路'],
     },
     {

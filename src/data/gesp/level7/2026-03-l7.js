@@ -437,11 +437,18 @@ export const paperData = {
         },
         {
             id: 5,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第1,2页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 1,
+            sourcePages: [1, 2],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "选项 C、D 末尾的复杂度公式在提取时丢失（「链地址法在最坏情况下查找时间复杂度为」「查找哈希表的时间复杂度总是」后无内容），而记录答案正是 D，无法据以判断。",
+
+
             question: `关于哈希表（ Hash Table ）在不考虑扩容且采用简单均匀哈希函数的前提下，下列说法中错误的是（ ）。`,
-            options: ["装载因子越大，发生冲突的概率通常越高", "开放定址法在删除元素时实现相对复杂", "链地址法在最坏情况下查找时间复杂度为", "查找哈希表的时间复杂度总是"],
+            options: ["装载因子越大，发生冲突的概率通常越高", "开放定址法在删除元素时实现相对复杂", "链地址法在最坏情况下查找时间复杂度为 O(n)", "查找哈希表的时间复杂度总是 O(1)"],
             answer: 3,
             score: 2,
             explanation: `**不正确的是 D（查找哈希表的时间复杂度总是 O(1)）**

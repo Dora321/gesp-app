@@ -576,9 +576,16 @@ g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 
         },
         {
             id: 9,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第4页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
+
+
             question: `（ ）是 3 位格雷编码。`,
             options: [
                 "000 001 011 010 110 111 101 100",
@@ -813,9 +820,16 @@ TreeNode* node = q.front(); q.pop();
         },
         {
             id: 15,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
+
+
             question: `假设背包的最大容量 W = 8kg，共有 4 个物品可供选择，4 个物品的重量分别为 weights = [2, 3, 5, 7]，对应的价值分别为 values = [30, 40, 60, 80]，则该 0/1 背包问题中，背包的最大价值为（ ）。`,
             options: [
                 "70",
@@ -864,9 +878,16 @@ TreeNode* node = q.front(); q.pop();
         },
         {
             id: 16,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第6,7页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6, 7],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `构造函数是一种特殊的类成员函数，构造函数的名称和类名相同。但通过函数重载，可以创建多个同名的构 造函数，条件是每个构造函数的参数列表不同。`,
             options: [
                 "正确",
@@ -948,9 +969,16 @@ public:
         },
         {
             id: 18,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第6,7页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6, 7],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `栈中元素的插入和删除操作都在栈的顶端进行，所以方便用单向链表实现。`,
             options: [
                 "正确",
@@ -982,9 +1010,16 @@ public:
         },
         {
             id: 19,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第6,7页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6, 7],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `下面代码构建的树一定是完全二叉树：\n\n\`\`\`cpp\nstruct TreeNode {\n    int value;\n    TreeNode* left;\n    TreeNode* right;\n};\nTreeNode* buildCompleteBinaryTree() {\n    TreeNode* root = new TreeNode{1};\n    root->left = new TreeNode{2};\n    root->right = new TreeNode{3};\n    root->left->left = new TreeNode{4};\n    root->left->right = new TreeNode{5};\n    root->right->left = new TreeNode{6};\n    return root;\n}\n\`\`\`\n`,
             options: [
                 "正确",
@@ -992,30 +1027,11 @@ public:
             ],
             answer: 0,
             score: 2,
-            explanation: `
-**答案：√**
+            explanation: `**答案为正确。**
 
-**解析：**
-代码构建的树：
+构造出的树第一层是1，第二层是2、3，第三层依次为4、5、6。前两层全满，最后一层从左到右连续占据前三个位置，空缺仅在最右端，因此是完全二叉树。
 
-\`\`\`text
-        1
-       / \
-      2   3
-     / \  /
-    4  5 6
-\`\`\`
-
-- 第 1 层：1（满）
-- 第 2 层：2、3（满）
-- 第 3 层：4、5、6——从左到右**连续**排列（4、5 挂在 2 下，6 挂在 3 的左）✓
-
-第 3 层唯一空位是 3 的右孩子（在最右），符合完全二叉树「最后一层从左到右填充」的定义，说法正确。
-
-**易错点：** 若 6 挂在 \`root->right->right\`（3 的右孩子）而 3 的左孩子空着，第 3 层出现「空位在前、节点在后」，就**不是**完全二叉树了。
-
-**考点：** 完全二叉树的判定
-        `,
+花括号中未显式给出的left与right指针会进行零初始化，所以这些新结点的孩子为空。若把6放在3的右侧而空着左侧，才会出现最后一层左边空缺的情况。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -1121,9 +1137,16 @@ void preorder(TreeNode* root) {
         },
         {
             id: 23,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第6,7页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6, 7],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `宽度优先搜索算法（ BFS ）保证了每个节点在最短路径的情况下被访问。`,
             options: [
                 "正确",
@@ -1151,9 +1174,16 @@ BFS 按「距离起点 0 层、1 层、2 层……」的顺序逐层扩展：每
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第6,7页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 6,
+            sourcePages: [6, 7],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
+
+
             question: `在解决简单背包问题时，动态规划的状态转移方程如下：\n\n\`\`\`cpp\ndp[i][w] = max(dp[i-1][w], dp[i-1][w - weights[i-1]] + values[i-1]);\n\`\`\`\n\n该方程表示：在考虑第 i 个物品时，当前背包容量为 w，如果不放物品 i，则最大价值是 dp[i-1][w]；如果放入物品 i，则最大价值是 dp[i-1][w-weights[i-1]]+values[i-1]，其中数组 weights 和 values 分别存储每个物品的重量和价值。`,
             options: [
                 "正确",

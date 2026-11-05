@@ -821,6 +821,13 @@ int main() {
     },
     {
       id: 25,
+      verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf 第6,7页文本及渲染图核对。`,
+      sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf`,
+      sourcePage: 6,
+      sourcePages: [6, 7],
+      reviewedAt: `2026-11-06`,
+      reviewedBy: `AI-Codex`,
+      sourceVerified: true,
       type: 'judge',
       question: `下面代码可以通过编译。
 \`\`\`cpp
@@ -830,16 +837,11 @@ a++;
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: `**答案：错误**
+      explanation: `答案为错误。
 
-**判定依据：**
-数组名 \`a\` 在表达式中退化为"指向首元素的**常量**指针"（int* const），它的值（首地址）**不可修改**。\`a++\` 等价于 \`a = a + 1\`，试图给常量指针赋值 → **编译错误**（lvalue required as increment operand）。
+数组a不是可修改左值，无法对它执行自增。多数表达式中，a会转换为指向首元素的临时指针值，但这个转换结果也不能作为++所需的可修改左值，因此a++不能编译。
 
-**易错点：**
-- 指针变量可以 ++（p++ 合法），数组名不行——数组名不是普通的可修改左值。
-- 想遍历数组，应把数组名赋给一个指针变量再 ++。
-
-**考点：** 数组名与常量指针`,
+不能把数组本身的类型说成int* const。若定义int* p=a，p才是可以修改的指针变量，可以用p++移动到后续元素，而数组a的类型仍是int[5]。`,
       tags: ['数组', '指针与引用'],
     },
     {

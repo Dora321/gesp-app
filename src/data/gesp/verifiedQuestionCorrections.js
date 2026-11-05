@@ -86,7 +86,10 @@ Node *Insert(Node *pHead, string s)
         '触发异常，不能对空指针进行操作。',
       ],
       answer: 1,
-      explanation: '应先判断原链表的第一个数据节点是否存在；存在时把它接到 p 后并更新其 prev，再把 p 接到头节点之后。',
+      explanation: `官方答案为B。头插前必须判断pHead->next是否存在，有旧首节点时才更新它的prev，否则会解引用空指针。A只判断头节点，无法保证其next非空，C也缺少检查。原程序另有边界缺陷，命中尾节点时p->next可能为NULL，却直接执行p->next->prev，应补空指针判断。这里保留原代码和填空答案，注明整段程序的缺陷。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['双向链表'],
     }),
   },
@@ -114,7 +117,10 @@ addVerifiedQuestionCorrections(
     }
 }`, {
       answer: 1,
-      explanation: '删除中间节点时，前驱节点的 next 应越过 current，指向 current->next。',
+      explanation: `答案为B。删除current时，前驱的next必须越过current，改指向current->next，正好对应B。后面的代码已在后继存在时，将后继的prev改为current->prev，补齐反向链接。删除头节点走else更新head，删除尾节点时无需修改空后继。最后释放current，不能误删其后继或仅改current自身的指针。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['双向链表'],
     }),
   },
@@ -152,7 +158,10 @@ int gcd1(int big, int small) {
         'gcd1() 中的代码 for (int i = small; i >= 1; --i) 应该修改为 for (int i = small; i > 1; --i)',
       ],
       answer: 3,
-      explanation: '两个正整数的最大公约数可能为 1，因此 gcd1 的循环必须检查 i == 1，D 项修改会漏掉互质情况。',
+      explanation: `官方答案为D。D宣称循环“应该”改成i>1，这一修改并无必要。原循环保留i=1能直接识别公约数1，但删除该轮后，函数尾部return 1仍可正确处理互质输入，因此不能声称修改会漏掉互质情况。gcd0通过余数递归缩小参数，gcd1按候选因数递减枚举，最坏量级分别为对数与线性。此题D的必要性措辞应与返回结果区分。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['最大公约数', '时间复杂度'],
     }),
   },
@@ -187,7 +196,10 @@ addVerifiedQuestionCorrections(
         'for (int j = 1; j < n && i * primes[j] <= n; j++)',
       ],
       answer: 0,
-      explanation: '线性筛应从 primes[0] 开始枚举，并同时限制质数下标与乘积不越界。',
+      explanation: `答案为A。内层枚举从第一个素数primes[0]开始，同时要求j小于素数表长度、i*primes[j]不超过n，从而保证读取与标记均不越界。遇到第一个整除i的素数就break，使每个合数只由其最小质因数参与的那一对乘积标记。其他选项跳过下标0或缺少必要边界，不能保持线性筛过程。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['线性筛', '质数'],
     }),
   },
@@ -219,7 +231,10 @@ int main() {
         '代码 cout << st.data << endl; 可输出 ABC。',
       ],
       answer: 0,
-      explanation: '官方答案为 A。该题按原卷录入；MyStr 没有提供 operator<<，因此直接输出对象 st 不成立。',
+      explanation: `原卷答案为A，但题意和选项存在冲突。A称直接输出st会报错，这符合代码未提供operator<<的事实。B所述data确为成员，C调用公开构造函数也成立。D从类外访问默认private的data会产生访问权限错误，按“选错误说法”的题意应是D。保留官方A，记录ANSWER-DOUBT并停止计分。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['类', '运算符重载'],
     }),
     7: q(3, `#include <iostream>
@@ -263,7 +278,10 @@ int main() {
         '可以为 ManyData 类的 push()、pop() 函数增加异常处理代码，否则在使用 ManyData 类时可能导致运行时错误或逻辑错误（不一定局限于上述代码中的 main 函数）。',
       ],
       answer: 3,
-      explanation: 'push 和 pop 都没有检查容量或空栈边界，超量压入或空栈弹出时可能越界，应增加异常处理。',
+      explanation: `答案为D。push在尾部写入并增加tail，pop先减少tail再返回元素，所以结构按后进先出工作。连续压入超过capacity个元素会越界，空栈执行pop也会使下标为负，需要检查边界并处理失败。给出的main中只压入4个元素，容量为100，可以正常操作。__data是私有成员，类外不能直接访问，B、C也不成立。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['栈', '异常处理'],
     }),
   },
@@ -291,18 +309,8 @@ addVerifiedQuestionCorrections(
         }
     }
 }
-
-// 树结构：
-//         1
-//        / \
-//       2   3
-//      / \   \
-//     8   9   6
-//    / \       \
-//   4   5       7
-//              / \
-//             10 11`, {
-      question: '阅读以下广度优先搜索的代码，使用以上算法遍历下列树，可能的输出是（ ）。',
+`, {
+      question: '阅读以下广度优先搜索的代码，使用该算法遍历下图的树，可能的输出是（ ）。\n\n![官方树结构](/question-assets/2024-03-l6/q8-tree.png)',
       options: [
         '1 2 8 9 4 5 3 6 7 10 11',
         '1 2 3 4 5 6 7 8 9 10 11',
@@ -310,7 +318,10 @@ addVerifiedQuestionCorrections(
         '1 2 3 8 9 4 5 6 7 10 11',
       ],
       answer: 2,
-      explanation: '广度优先搜索按层从左到右访问，顺序为 1、2、3、8、9、6、4、5、7、10、11。',
+      explanation: `答案为C。队列先进先出，根1先出队，随后2、3依次出队。再按这两个结点入队孩子的先后得到8、9、6，下一层得到4、5、7，最后是10、11。因此结果为1 2 3 8 9 6 4 5 7 10 11。深层结点4不能越过已在队列中等待的3与6，这是与深度优先搜索的区别。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['广度优先搜索', '二叉树'],
     }),
   },
@@ -349,7 +360,10 @@ int main() {
 }`, {
       options: ['1 1 1', '1 2 3', '1 1 2', '1 2 2'],
       answer: 1,
-      explanation: 'count 是所有对象共享的静态成员；三个对象依次构造后，输出分别为 1、2、3。',
+      explanation: `答案为B。静态成员count由整个类共享，初值是0。构造obj1时加到1并输出，构造obj2时加到2，构造obj3时加到3，所以依次输出1 2 3。通过类名或对象名调用print_count，访问的都是同一个静态计数器。三个对象在这些输出之后才离开作用域，其析构减计数不会改变已经输出的内容。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['静态成员', '类'],
     }),
   },
@@ -377,7 +391,10 @@ addVerifiedQuestionCorrections(
     return nullptr;
 }`, {
       answer: 0,
-      explanation: '广度优先搜索应把当前节点存在的左右孩子依次加入队列。',
+      explanation: `答案为A。处理完current后，需要把它存在的左、右孩子加入队尾，后续才能逐层访问整棵树。push执行入队，pop只删除队首，front只查看队首，B、C的接口使用也不成立。D将判断与入队的孩子交叉，只有单侧孩子时会压入空指针或漏掉真实孩子，无法保证遍历正确。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['广度优先搜索', '二叉树'],
     }),
   },
@@ -406,7 +423,10 @@ void dfs(TreeNode* root) {
     }
 }`, {
       answer: 0,
-      explanation: '栈后进先出；先压右孩子、再压左孩子，才能按根、左、右的顺序遍历。',
+      explanation: `答案为A。栈后进先出，程序已先压入右孩子，随后应将存在的左孩子压栈，使左孩子先被弹出并访问。与当前根先输出的步骤结合，形成根、左、右的先序深度优先遍历。pop不接收要删除的结点参数，stack也没有front接口。D检查左孩子却压右孩子，会遗漏左子树并重复处理右子树。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['深度优先搜索', '二叉树'],
     }),
     12: q(8, `struct TreeNode {
@@ -437,7 +457,10 @@ TreeNode* bfsFind(TreeNode* root, int x) {
         'q.push(cur->left);\nq.push(cur->right);',
       ],
       answer: 2,
-      explanation: '普通二叉树没有大小规律，广度优先搜索需要把存在的左右孩子都加入队列。',
+      explanation: `答案为C。普通二叉树的左右子树没有值的大小保证，查找x时两侧都可能包含目标，必须将非空左右孩子入队。队列先进先出，使查找按层推进。A把刚处理的cur重新入队，可能无限重复。B遗漏左子树，D没有检查空孩子，后续读取cur->val可能发生空指针访问。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['广度优先搜索', '二叉树'],
     }),
   },
@@ -457,7 +480,10 @@ addVerifiedQuestionCorrections(
         '格雷编码不能用于数字电路和状态转换的设计中',
       ],
       answer: 1,
-      explanation: '格雷编码的核心性质是相邻两个编码恰好只有一位不同，可减少状态切换时的瞬时错误。',
+      explanation: `答案为B。格雷编码要求相邻码字恰好只有一个二进制位变化，例如两位反射格雷码00、01、11、10，每次相邻转换只改变一位。位数增加不会改变这一相邻性质，所以A不成立。对普通二进制统一取反也不能保证相邻仅差一位。该性质可用于数字电路状态切换，D的绝对否定不成立。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['格雷编码'],
     },
   },
@@ -496,7 +522,10 @@ int main() {
         'a[i][j] = a[i - 1][j - 1] + a[i][j];',
       ],
       answer: 0,
-      explanation: '杨辉三角的内部元素等于上一行左上方与正上方两个元素之和。',
+      explanation: `答案为A。杨辉三角内部位置等于上一行相邻两项之和，即a[i-1][j-1]+a[i-1][j]。边界j=1或j=i已经被单独赋值为1，填空只处理内部位置。B引用同一行左侧，C把上一行同一项重复相加，D引用尚未赋成目标值的当前项，都没有表达杨辉三角的递推关系。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['动态规划', '杨辉三角'],
     }),
   },
@@ -531,7 +560,10 @@ int main() {
         'a[j + 1] += a[j]',
       ],
       answer: 1,
-      explanation: '一维数组原地生成杨辉三角时必须从右向左更新，使 a[j] 仍能使用上一行的 a[j - 1]。',
+      explanation: `答案为B。一维数组在更新前保存上一行，内部位置的新值为原a[j]+原a[j-1]。从右向左遍历可使两项都还未被本轮覆盖，因此填写a[j]+=a[j-1]。若从左向右更新，a[j-1]已属于新行，会产生错误累加。每轮先把最右边界a[i]置1，左边界a[0]保持1。`,
+      reviewedBy: 'AI-Codex',
+      reviewedAt: '2026-11-06',
+      verificationNote: 'AI-Codex依据题面及已有代码核验推演并重写解析。',
       tags: ['动态规划', '杨辉三角'],
     }),
   },

@@ -919,10 +919,15 @@ BFS 从结点 1 出发，按“逐层、先访问先扩展”的规则：
         },
         {
             id: 21,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `一颗 层的完全二叉树，一定有 个结点。`,
+            question: `一棵 N 层的完全二叉树，一定有 2^N-1 个结点。`,
             options: [
                 "正确",
                 "错误",

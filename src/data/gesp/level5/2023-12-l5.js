@@ -443,6 +443,11 @@ void sortA(int lstA[], int n)
         },
         {
             id: 5,
+            verificationNote: `AI-Codex依据题面及已有代码核验推演并重写解析。`,
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            integrityNote: `原卷命中尾结点时直接解引用p->next，可能空指针访问。保留填空答案B并注明原程序边界缺陷。`,
+            sourceIntegrity: `official-source-defect`,
             type: "single",
             question: `下面的 C++ 代码用于将字符串保存到双向链表中，横线处应填入代码是（ ）。`,
             options: [

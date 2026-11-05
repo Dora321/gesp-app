@@ -266,9 +266,16 @@ C++ 从源代码到最终运行通常经历四个主要阶段：
         },
         {
             id: 2,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第1,2页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 1,
+            sourcePages: [1, 2],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "contaminated-stem",
-            integrityNote: "选项 A 的末尾串入了题干的类定义代码（「class Animal { public: std::string name; …」），说明抓取时把代码块混进了选项文本。答案本身可辨认，但选项文本已不是原卷原文。",
+
+
             question: `为了让 Dog 类的构造函数能正确地调用其父类 Animal 的构造方法，横线处应填入（ ）。\n\n\`\`\`cpp\nclass Animal {\npublic:\n    std::string name;\n    Animal(std::string str) : name(str) {\n        std::cout << "Animal created\\n";\n    }\n    virtual void speak() {\n        cout << "Animal speaks" << endl;\n    }\n};\n\nclass Dog : public Animal {\n    std::string breed;\npublic:\n    Dog(std::string name, std::string b) : ______________, breed(b) {\n        std::cout << "Dog created\\n";\n    }\n    void speak() override {\n        cout << "Dog barks" << endl;\n    }\n};\n\nint main() {\n    Animal* p = new Dog("Rex", "Labrador");\n    p->speak();\n    delete p;\n    return 0;\n}\n\`\`\`\n`,
             options: [
                 "Animal(name)",
@@ -452,9 +459,16 @@ C++ 从源代码到最终运行通常经历四个主要阶段：
         },
         {
             id: 7,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第2,3页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 2,
+            sourcePages: [2, 3],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "options-reconstructed",
-            integrityNote: "题干的索引公式在提取时丢失（「索引为 （从 开始计数）」），选项 A 是另一道题的栈/队列代码，选项 B、C、D 仍是占位符，本题内容基本未收录。",
+
+
             question: `在使用数组表示完全二叉树时，如果一个节点的索引为 i（从 0 开始计数），那么其左子节点的索引通常是（ ）。`,
             options: [
                 "(i-1)/2",
@@ -464,24 +478,11 @@ C++ 从源代码到最终运行通常经历四个主要阶段：
             ],
             answer: 3,
             score: 2,
-            explanation: `
-**答案：D**
+            explanation: `**答案为D。**
 
-**解析：**
-数组表示完全二叉树、**从 0 开始编号**时：节点 i 的左孩子是 **2i+1**，右孩子是 2i+2，父节点是 ⌊(i−1)/2⌋。
+从0起按层序编号时，根0的左右孩子是1与2。一般结点i的孩子为2i+1与2i+2，父亲为floor((i-1)/2)，其中父亲公式仅对i>0使用。
 
-验证：根 i=0 → 左孩子 1、右孩子 2；节点 1 → 孩子 3、4——与层序编号 0,1,2,3,4… 完全一致。
-
-逐项分析：
-- **A (i−1)/2**：错误，这是**父节点**索引。
-- **B i+1**：错误，i+1 是 i 的右兄弟（若存在）。
-- **C i*2**：错误，这是**从 1 开始编号**时的左孩子公式。
-- **D 2*i+1**：正确，0 起点编号的左孩子。
-
-**易错点：** 与 2024 年真题「从 1 开始编号：左孩子 2i、右孩子 2i+1」对照记忆——起点差 1，公式差 1，审题先看起点。
-
-**考点：** 完全二叉树的数组存储（0 起点编号）
-        `,
+A是父亲位置的计算式，C则是从1起编号时的左孩子公式。B的i+1只在部分位置碰巧是孩子或兄弟，不能作为通用关系。例如i=2时，左孩子是5，i+1却为3。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -584,16 +585,18 @@ C++ 从源代码到最终运行通常经历四个主要阶段：
         },
         {
             id: 10,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第3页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 3,
+            sourcePages: [3],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "contaminated-stem",
-            integrityNote: "选项 D 的末尾串入了本卷第 9 题的选项内容（「a: 010 b: 011 c: 00 …」）与行号残留，说明抓取跨题串了内容。",
+
+
             question: `3 位格雷编码中，编码 101 之后的下一个编码不可能是（ ）。`,
-            options: [
-                "100",
-                "111",
-                "110",
-                "001 a: 010 b: 011 c: 00 d: 10 e: 11 1 2 3 4 5 a: 00 b: 10 c: 011 d: 100 e: 111 1 2 3 4 5 a: 10 b: 01 c: 011 d: 100 e: 111 1 2 3 4 5 a: 100 b: 01 c: 011 d: 100 e: 00 1 2 3 4 5",
-            ],
+            options: ["100", "111", "110", "001"],
             answer: 2,
             score: 2,
             explanation: `**答案：C（110）**
@@ -622,9 +625,18 @@ C++ 从源代码到最终运行通常经历四个主要阶段：
         },
         {
             id: 11,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第4页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `原卷函数有root与result两个形参，但四个选项中的递归调用都漏传result。保留官方答案A和原选项，解析说明预期遍历意图及编译缺陷。`,
+            sourceIntegrity: `official-source-defect`,
             type: "single",
-            sourceIntegrity: "contaminated-stem",
-            integrityNote: "题干与代码是二叉树的深度优先遍历（参数为 TreeNode* root），四个选项却全是图遍历的判断条件（visited[v]、adj[u].size()），两者来自不同的题目，无法对应作答。",
+
+
             question: `请将下列 C++ 实现的深度优先搜索（DFS）代码补充完整，横线处应填入（ ）。\n\n\`\`\`cpp\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n};\n\nvoid dfs(TreeNode* root, vector<int>& result) {\n    if (root == nullptr) return;\n    ____________________\n}\n\`\`\`\n`,
             options: [
                 "result.push_back(root->val);\ndfs(root->left);\ndfs(root->right);",
@@ -634,30 +646,11 @@ C++ 从源代码到最终运行通常经历四个主要阶段：
             ],
             answer: 0,
             score: 2,
-            explanation: `
-**答案：A**
+            explanation: `**官方答案为A。**
 
-**解析：**
-函数框架是递归 DFS（先序）：空树直接返回；非空时要**先记录当前节点的值，再递归左右子树**。
+按遍历意图，先记录root->val，再递归左、右子树，是根、左、右的先序DFS。B、C、D直接访问孩子的值，跳过当前根，而且孩子为空时会产生非法访问。
 
-\`\`\`cpp
-result.push_back(root->val);   // 访问根
-dfs(root->left);               // 递归左
-dfs(root->right);              // 递归右
-\`\`\`
-
-这正是**先序遍历**（根→左→右）的收集过程，选 A。
-
-逐项分析：
-- **A push root->val，先左后右**：正确，先序遍历。
-- **B push root->left->val（左孩子的值）**：错误，没有访问根，且若 root->left 为空会解引用空指针。
-- **C 同 B**：错误，同上。
-- **D push root->right->val**：错误，先访问右孩子且跳过根，不符合任何标准遍历。
-
-**易错点：** DFS 遍历三序的区别只在于「访问根」的位置：先序（根左右）、中序（左根右）、后序（左右根）；选项 B/C/D 连根都没访问，直接排除。
-
-**考点：** 递归 DFS（先序遍历）的补全
-        `,
+原卷存在代码缺陷。dfs声明了root和result两个参数，但选项中的dfs(root->left)与dfs(root->right)均只给出一个参数，直接填入不能编译。完整实现应为dfs(root->left,result)与dfs(root->right,result)。这里保留原选项并注明缺陷。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -666,9 +659,16 @@ dfs(root->right);              // 递归右
         },
         {
             id: 12,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第4,5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 4,
+            sourcePages: [4, 5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "options-reconstructed",
-            integrityNote: "题干要求「返回每一层中最大的节点值」，这需要层序遍历并逐层取最大；四个选项却都是前序遍历的写法，且所录答案 D 会在叶子节点解引用空指针。选项与题意不匹配。",
+
+
             question: `给定一个二叉树，返回每一层中最大的节点值，结果以数组形式返回，横线处应填入（ ）。\n\n\`\`\`cpp\n#include <vector>\n#include <queue>\n#include <algorithm>\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}\n};\nvector<int> largestValues(TreeNode* root) {\n    vector<int> result;\n    if (!root) return result;\n    queue<TreeNode*> q;\n    q.push(root);\n    while (!q.empty()) {\n        int sz = q.size();\n        int maxVal = INT_MIN;\n        for (int i = 0; i < sz; ++i) {\n            TreeNode* node;\n            ______________________ // 在此处填入代码\n            maxVal = max(maxVal, node->val);\n            if (node->left) q.push(node->left);\n            if (node->right) q.push(node->right);\n        }\n        result.push_back(maxVal);\n    }\n    return result;\n}\n\`\`\`\n`,
             options: [
                 "node = q.end();",
@@ -709,9 +709,16 @@ q.pop();            // 移出队列
         },
         {
             id: 13,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf 第5,6页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "options-reconstructed",
-            integrityNote: "代码中插入函数的参数名为 key，四个选项却一律写作 val；且横线处缺少 key 与 root->val 的比较条件，仅凭选项无法判断该走左子树还是右子树。",
+
+
             question: `下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。\n\n\`\`\`cpp\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}\n};\n\nvoid insert(TreeNode*& root, int key) {\n    if (!root) {\n        root = new TreeNode(key);\n        return;\n    }\n    _______________________________\n}\n\`\`\`\n`,
             options: [
                 "if (key < root->val)\n    insert(root->left, key);\nelse if (key > root->val)\n    insert(root->right, key);",

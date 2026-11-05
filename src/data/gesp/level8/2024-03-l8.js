@@ -361,16 +361,16 @@ C++ 在定义并初始化二维数组时，只有第一维（行数）可以省�
         },
         {
             id: 8,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第2页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 2,
+            sourcePages: [2],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "single",
-            sourceIntegrity: "options-reconstructed",
-            integrityNote: "本题选项在文本提取时受损——公式被吞掉后多个选项内容完全相同或只剩标点，无法区分。本题已排除出计分与考点练习，待对照原卷补全后恢复。",
             question: `在有n个元素的二叉排序树中进行查找，其最好、最差时间复杂度分别为（ ）。`,
-            options: [
-                "、",
-                "、",
-                "、",
-                "、",
-            ],
+            options: ["O(1)、O(n)", "O(1)、O(log n)", "O(log n)、O(log n)", "O(log n)、O(n)"],
             answer: 0,
             score: 2,
             explanation: `**答案：A（最好 \`O(1)\`、最差 \`O(n)\`）**
@@ -757,33 +757,26 @@ a, (b = b), a
         },
         {
             id: 19,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `个顶点的无向完全图有 条边。`,
+            question: `N个顶点的无向完全图有 N×(N-1) 条边。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案表为错误。无向完全图中，每对不同顶点之间恰有一条边，应计算无序对数量C(N,2)=N(N-1)/2。N(N-1)将每条边按两个方向重复计算，适用于不带自环的有向完全图。
 
-**判定依据：**
-1. **无向完全图的定义**：在无向图中，如果任意两个不同的顶点之间都恰好存在一条边相连，则该图称为无向完全图（通常记作 \`K_n\`）。
-2. **边数推导（两种角度）**：
-   - **组合数法**：从 \`n\` 个顶点中任意选取 2 个顶点，都能且只能确定一条无向边。因此总边数等于从 \`n\` 个元素中选 2 个元素的组合数，即 \`C(n, 2) = n * (n - 1) / 2\` 条。
-   - **握手定理法**：在 \`n\` 个顶点的无向完全图中，每个顶点都要与其他 \`n - 1\` 个顶点各连一条边，因此每个顶点的度数都是 \`n - 1\`。所有顶点的度数总和为 \`n * (n - 1)\`。根据握手定理，无向图中所有顶点的度数之和等于边数的 2 倍，故总边数为 \`n * (n - 1) / 2\` 条。
-
-题干陈述完全符合图论定义与推导，因此该命题为真。
-
-**选项分析：**
-- **A 正确**：✅ 准确描述了包含 \`n\` 个顶点的无向完全图边数公式，判断正确。
-- **B 错误**：❌ 错误否定了无向完全图的基础性质与标准边数结论。
-
-**易错提醒：**
-- **区分无向与有向**：无向完全图的边没有方向，顶点对 \`(u, v)\` 间只有 1 条边，边数为 \`n * (n - 1) / 2\`；而**有向完全图**任意两顶点间有两条方向相反的边（\`<u, v>\` 与 \`<v, u>\`），其边数为 \`n * (n - 1)\`。
-- **边界验证**：遇到此类公式记忆不清时，可代入小规模数据快速验证：例如 \`n = 1\` 时只有 1 个点，边数为 \`0\`；\`n = 3\` 时形成三角形，边数为 \`3\`，代入公式 \`3 * 2 / 2 = 3\` 均完全吻合。`,
+题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
             tags: [
                 "C++综合",
             ],
@@ -821,24 +814,26 @@ a, (b = b), a
         },
         {
             id: 21,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
+            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
+            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `求一个包含v个顶点、e条边的带权连通无向图的最小生成树， Prim 算法的时间复杂度为 。`,
+            question: `求一个包含v个顶点、e条边的带权连通无向图的最小生成树，Prim算法的时间复杂度为 O(v×e)。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `原卷答案表为错误。常见邻接矩阵实现的紧确量级是O(v²)，使用邻接表与二叉堆通常为O(e log v)。原题的O(ve)未指定如此低效的实现，原卷按常见实现的时间复杂度判为×。严格作为宽松上界时也需区分大O与紧确量级。
 
-**解析：**
-Prim 算法求最小生成树的时间复杂度：用邻接矩阵并线性扫描选最小边为 O(V²)；用二叉堆维护优先队列为 O(E log V)。若题述空白处为标准复杂度，则结论正确。
-
-（注：本题源数据空白处缺失，按标准结论判正确；建议结合官方 PDF 复核空白处原式。）
-
-**考点**：Prim 算法的时间复杂度。`,
+题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
             tags: [
                 "最小生成树",
             ],
@@ -892,10 +887,15 @@ S = sqrt( ((a+b+c)/2) * ((b+c-a)/2) * ((a+c-b)/2) * ((a+b-c)/2) )
         },
         {
             id: 24,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `在 个元素的二叉排序树中查找一个元素，平均情况的时间复杂度是 。`,
+            question: `在N个元素的二叉排序树中查找一个元素，平均情况的时间复杂度是 O(log N)。`,
             options: [
                 "正确",
                 "错误",
@@ -916,24 +916,26 @@ S = sqrt( ((a+b+c)/2) * ((b+c-a)/2) * ((a+c-b)/2) * ((a+b-c)/2) )
         },
         {
             id: 25,
+            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
+            sourcePage: 5,
+            sourcePages: [5],
+            reviewedAt: `2026-11-06`,
+            reviewedBy: `AI-Codex`,
+            sourceVerified: true,
             type: "judge",
-            sourceIntegrity: "missing-formula",
-            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
-            question: `给定double类型的变量x，且其值大于等于 ，我们可以通过二分法求出 的近似值。`,
+            question: `给定double类型的变量x，且其值大于等于1，我们可以通过二分法求出 log x 的近似值。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `答案为正确。
 
-**解析：**
-对 \`x ≥ 0\`，可在区间 \`[0, max(1, x)]\` 上对函数 \`f(t) = t*t - x\` 使用二分法求零点，从而逼近 \`sqrt(x)\` 的近似值。题干陈述正确。
+以自然对数为例，指数函数exp(y)严格递增，求log x可转化为求exp(y)=x的解。当x≥1时，解非负，可以在包含解的区间内根据exp(mid)与x的大小更新边界，逐步达到所需精度。
 
-（注：本题源数据空白处缺失“0”与“平方根”等词，按标准结论判正确；建议结合官方 PDF 复核。）
-
-**考点**：二分法求方程近似根。`,
+二分适用的依据是单调性。计算中还需选择精度与避免指数运算溢出。原卷要求求对数，不能将缺失公式改成平方根。`,
             tags: [
                 "面向对象",
             ],
