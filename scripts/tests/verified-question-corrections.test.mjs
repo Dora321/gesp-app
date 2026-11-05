@@ -96,7 +96,7 @@ test('content-audited questions retain official answers and traceability', async
 });
 
 const restoredOfficialQuestionCases = [
-  ['2023-12-l1', 8, 2, 3],
+  ['2023-12-l1', 8, 2, 3, '2026-11-06'],
   ['2024-12-l2', 14, 3, 5],
   ['2025-06-l1', 15, 1, 5],
   ['2024-06-l2', 15, 3, 6],

@@ -1,20 +1,18 @@
 {
   "paperId": "2023-12-l1",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-12-l1"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
     "pages": {
-      "单选答案表": "p.1",
-      "判断答案表+判断题全文": "p.5"
-    }
+      "total": 8,
+      "note": "全部文本及渲染页逐页核验；代码与公式图像以渲染为准。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-12-l1/source.pdf"
   },
   "answerTable": {
     "single": {
@@ -31,304 +29,827 @@
   "questions": [
     {
       "id": 1,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "CCF GESP内部含有空格，不能作为一个变量名，因此选A。其余三个名字均以字母开头，只包含字母或下划线，符合命名规则。C++允许大小写字母，但大小写不同的名字是不同的标识符。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q1 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "先计算括号2+1=3，再按同级从左到右计算3*3%10=9%10=9，最后10-9=1，因此选B。不能把减法提前，也不能把整个10-9再按其他结合方式计算。"
     },
     {
       "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "整题错位：题库为仿写单空题（(10+N)%24），官方是双空题（第几天几时：dayX=(10+N)/24, hourX=(10+N)%24），代码图含 if(dayX==0) 今天 / else 第(dayX+1)天。",
-      "fix": "按官方 p.1 渲染图整题重建（题干+代码+四选项）。验证：N=20 → dayX=1, hourX=6 → 「第2天6点」✓；N=4 → 「今天14点」✓。官方答案 B。",
-      "evidence": "tmp/verify/2023-12-l1/pg-1.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "从今天零点起算，N小时后的总小时数是10+N。整除24得到跨过的天数dayX，对24取余得到当天小时hourX，因此选B。N=20时得到dayX=1、hourX=6，输出第2天6点；N=4时得到0与14，输出今天14点。"
     },
     {
       "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
-      ],
-      "findings": "题库为无代码仿写版，选项 B/C 与官方不符（官方 B=N%2=0 赋值陷阱、C=N%2 非0即真反向）。官方有 if(____) 偶数/奇数 代码图。",
-      "fix": "按官方 p.2 渲染图重建（题干+代码+官方四选项 N%2==0 / N%2=0 / N%2 / N%2!=0）。官方答案 A。",
-      "evidence": "tmp/verify/2023-12-l1/pg-2.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1-2",
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "整数N是偶数当且仅当N%2==0，因此选A。B试图给N%2的计算结果赋值，不符合语法；C把余数直接作真假判断，非零才真，反而对应奇数；D也是奇数条件。负偶数除以2的余数仍为0，此判断同样适用。"
     },
     {
       "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "整题错位：题库为 sqrt(9.0) 表达式题，官方是 for 循环计数题（cnt 从 0，i=1..N-1 共 N-1 次，第5行输出 cnt）。",
-      "fix": "按官方 p.2 渲染图整题重建。验证：N≥2 时输出 N-1（N=2→1✓, N=3→2✓）；A 错在 N=2 输出 1 非 0。官方答案 B。",
-      "evidence": "tmp/verify/2023-12-l1/pg-2.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "当N>=2时，i从1依次取到N-1，共N-1次，每次cnt加1，最终输出N-1，因此选B。A在N=2时已经不成立，因为此时循环执行1次，输出1而非0；C把循环次数多算了一次。"
     },
     {
       "id": 6,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q6 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "每轮中cnt加1，i先在循环体内加2，再在for更新处加1，因此相邻两轮起点相差3。进入循环体时i依次为1、4、7，第三轮更新后为10，不再满足i<10。共3轮，输出3，选C。"
     },
     {
       "id": 7,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q7 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2-3",
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "奇数首先触发continue，跳过后面的判断和累加；偶数才进入else if。能同时被3和5整除的数是15的倍数，1至19中仅15，但它是奇数，已被continue跳过。因此break不会执行，累加2+4+6+8+10+12+14+16+18=90，选A。"
     },
     {
       "id": 8,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "每轮先检查N==0，未为0才计数并减2。计数时N依次为10、8、6、4、2，共5轮；随后N=0，下一次检查break退出且不再计数。输出5，选C。while(1)提供恒真条件，但程序仍可通过break终止。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q8 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "循环枚举1至N，N%i==0时找到一个因数，应把cnt加1，故选D。质数恰有1和自身两个正因数，故cnt==2时判质数。A和B反复覆盖计数，C的cnt=+1只是把正数1赋给cnt，均不能统计因数个数。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3-4",
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "选D，程序不能编译。仅包含stdlib.h，缺少声明cout与endl的iostream；此外i在for初始化处声明，其作用域在for结束时终止，后面的cout<<i越界使用。即使补上iostream，仍存在i未声明的问题，因此A、B、C的输出都不会发生。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "i从10开始，每轮减3，且要求i>3，因此进入循环体时依次为10、7、4，cnt累计为10、17、21。下一次i=1，不满足条件，输出21，选B。不要把退出时的1也加进去。"
     },
     {
       "id": 12,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "A和B是C风格显式转换，C是函数式转换，均把66转换为char。D的char 66缺少函数式转换所需的圆括号，语法不合法，因此选D。转换后若使用ASCII兼容编码，对应字符B，但这不影响本题语法判断。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q12 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "输入C后从case C进入，先输出3。该分支没有break，继续执行case D，输出5，随后遇到break退出switch，所以输出3 5，选B。不会倒回执行case B，也不会越过case D的break进入后续分支。"
     },
     {
       "id": 14,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q14 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "按题目所述的声控选路功能，麦克风接收目的地，扬声器告知路线，传感器提供环境信息；油量表用于显示油量，不是该功能选路所必需，因此选C。不要把“有助于驾驶的设备”都等同于“完成本题选路所必需的设备”。"
     },
     {
       "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
         "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照"
-      ],
-      "findings": "题干「典型的计算机体系结构采用的是」应为官方「现代计算机是指电子计算机，它所基于的是（ ）体系结构」；选项应为人物名（艾伦·图灵/冯·诺依曼/阿塔纳索夫/埃克特-莫克利），题库误用了架构名。",
-      "fix": "恢复官方题干与选项，解析按官方选项重写（区分理论奠基人/硬件先驱/体系结构奠基人）。官方答案 B 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "本题所考的基础体系结构是冯·诺依曼体系结构，因此选B。它以存储程序为核心，程序指令和数据保存在存储器中，由运算器、控制器、存储器、输入设备和输出设备协同工作。不能把图灵的理论模型与本题所问的体系结构名称混淆。"
     },
     {
       "id": 16,
-      "paperJudgeNo": 1,
-      "official": "√",
-      "bank": "√",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（强类型语言先定义后使用）非原卷题；原卷第 1 题为「int(3.14) 的值为 3」。独立推导：浮点转整型向零截断，int(3.14)=3，命题为真，官方 √ 正确。答案碰巧相同，但题文与解析整体错置，一并替换。",
-      "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（截断规则）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "int(3.14)把浮点数显式转换为int，丢弃小数部分，得到3，判断正确。该转换向零截断，不是四舍五入；例如int(3.9)也得到3。"
     },
     {
       "id": 17,
-      "paperJudgeNo": 2,
-      "official": "×",
-      "bank": "×",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（true && false）非原卷题；原卷第 2 题为「cout << (2*3, 3%10, 2+3) 的输出为 6,3,5」。独立推导：括号内为逗号表达式，整体值只取最后一项 5，输出为 5 而非 6,3,5，命题为假，官方 × 正确。答案碰巧相同，一并替换。",
-      "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（逗号表达式）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "括号内是逗号表达式，依次计算2*3、3%10、2+3，整个表达式的值取最后一项5。cout只输出5，不会依次输出6、3、5，因此判断错误。若需要分别输出三个值，必须分别使用输出运算符。"
     },
     {
       "id": 18,
-      "paperJudgeNo": 3,
-      "official": "×",
-      "bank": "√",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（语句必须分号结尾）非原卷题；原卷第 3 题为「for(int i=1;i<10;i+=3) 表示 i 从 1 开始到 10 结束间隔为 3，相当于 1、4、7、10」。独立推导：i 实际取 1、4、7，i=10 时条件 i<10 不成立取不到 10，命题为假，官方 × 正确。",
-      "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（循环边界取值）"
+      "type": "judge",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原卷p5确实写成for(int i = 1; i < 10; i += 3;) ;，更新表达式后的额外分号导致语法错误，不能编译。保留原文及官方“错误”答案，标记official-source-defect并暂停计分，等待来源澄清。若删除该分号，则循环体执行时i为1、4、7，更新到10后条件为假；但这只是对可能意图的说明，不能替代原卷或声称i从未更新到10。"
     },
     {
       "id": 19,
-      "paperJudgeNo": 4,
-      "official": "×",
-      "bank": "√",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（010 表示八进制数）非原卷题；原卷第 4 题为「010+100+001 的值为 111」。独立推导：010 是八进制 8、001 是八进制 1，8+100+1=109≠111，命题为假，官方 × 正确。",
-      "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（八进制字面值求和）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "以0开头的整数常量010和001采用八进制：010等于十进制8，001等于1，而100为十进制100。相加得到8+100+1=109，并非111，因此判断错误。不能把前导0一律当作无意义的格式补位。"
     },
     {
       "id": 20,
-      "paperJudgeNo": 5,
-      "official": "√",
-      "bank": "√",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（for 循环一定有结束条件）非原卷题；原卷第 5 题为「if 语句中的条件表达式的结果可以为 int 类型」。独立推导：if 条件允许算术类型，非零即真，int 合法，命题为真，官方 √ 正确。答案相同，一并替换。",
-      "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（if 条件类型要求）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "if条件可以使用int表达式，求值后会转换为真假：0为假，非0为真，因此判断正确。条件不要求必须写成关系表达式或bool变量，但应注意赋值和比较的区别。"
     },
     {
       "id": 21,
-      "paperJudgeNo": 6,
-      "official": "√",
-      "bank": "×",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（continue 跳出整个循环）非原卷题；原卷第 6 题为「while(1) continue; 由于 continue 无条件被执行将导致死循环」。独立推导：while 条件恒真且无 for 式更新子句，continue 跳回后无任何变量变化，确实死循环，命题为真，官方 √ 正确。",
-      "fix": "question 按原卷逐字转写替换，answer 1→0，解析重写（while 死循环构成，并与 for(i++) continue 对照）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "while(1)的条件恒为真，循环体只有continue，它使控制回到下一次条件判断，仍为真。因此此代码不会自然终止，判断正确。死循环来自恒真条件且没有退出路径，不能推广为任何出现continue的循环都会死循环。"
     },
     {
       "id": 22,
-      "paperJudgeNo": 7,
-      "official": "×",
-      "bank": "×",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（数组下标从 1 开始）非原卷题；原卷第 7 题为「('1'+'1'=='2') ? flag=1 : flag=2 的结果值和 (flag==2) 的相同」。独立推导：'1'+'1'=98≠'2'(50) 条件为假 → flag=2，三元表达式值为 2；而 (flag==2) 值为 true(1)。2≠1，不相同，命题为假，官方 × 正确。答案相同，一并替换。",
-      "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（字符运算+三元+赋值表达式值）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "按常见ASCII兼容编码，'1'+'1'得到98，'2'为50，条件为假，因此选择flag=2分支。赋值表达式的结果值为2；随后flag==2为true，按数值表示为1，两者不相等，原叙述错误。表达式结果是数值2，与“该数作为条件时为真”是不同的问题。"
     },
     {
       "id": 23,
-      "paperJudgeNo": 8,
-      "official": "×",
-      "bank": "×",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（Name 和 name 相同）非原卷题；原卷第 8 题为「不能用 scanf 作变量名」。独立推导：scanf 是标准库函数名非关键字，可用作变量名（遮蔽），命题为假，官方 × 正确。答案相同，一并替换。",
-      "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（关键字 vs 库函数名）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "scanf是标准库函数名，不是C++关键字。局部作用域可以声明同名变量，从而遮蔽外层同名函数，因此“不能用scanf作为变量名”的绝对说法错误。同一作用域与既有函数声明冲突的情况需另行判断，实际编程应避免这样的命名。"
     },
     {
       "id": 24,
-      "paperJudgeNo": 9,
-      "official": "×",
-      "bank": "√",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（!(10>5) 为 false）非原卷题；原卷第 9 题为「Dev C++ 也是一个小型操作系统」。独立推导：Dev C++ 是 IDE（应用软件），不是操作系统，命题为假，官方 × 正确。",
-      "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（操作系统 vs IDE）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "Dev C++是用于编写、编译和调试程序的集成开发环境，运行在操作系统之上，不负责操作系统的全部资源管理职责，因此原叙述错误。能够运行程序的软件不一定就是操作系统。"
     },
     {
       "id": 25,
-      "paperJudgeNo": 10,
-      "official": "√",
-      "bank": "√",
-      "textMatch": false,
-      "changed": true,
-      "findings": "题库题文（编译器翻译高级语言）非原卷题；原卷第 10 题为「任何一个 while 循环都可以转化为等价的 for 循环」。独立推导：while/for 三要素可互相移动，for 子句可留空，表达力等价，命题为真，官方 √ 正确。答案相同，一并替换。",
-      "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（while/for 等价转换）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "while(条件){循环体}可以写成for(;条件;){循环体}，省略for的初始化与更新部分，保留原条件和循环体，因此判断正确。此转换不会新增更新表达式，原有continue也会重新检查条件，控制流程保持一致。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5-6",
+      "evidence": "参考程序先计算res=(X+N)%7，结果为0时改为7，以符合星期日用7表示的约定。这与(X-1+N)%7+1等价。样例1为(1+6)%7=0，输出7；样例2为(5+3)%7=1，输出1。N为7的倍数时星期保持不变。时间O(1)，空间O(1)，输出不附带提示。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7-8",
+      "evidence": "从1依次枚举到N，若i%M!=0便输出i，每个数占一行；余数为0时跳过。枚举上界必须包含N，且只能跳过M的倍数。N=5、M=2时输出1、3、5；N=10、M=3时跳过3、6、9，输出1、2、4、5、7、8、10。时间O(N)，额外空间O(1)，M大于N时应输出全部1至N。"
     }
   ],
-  "unresolved": [],
-  "answerKey": "单选答案串 A B B A B C A C D D B D B C B，题库比对全部一致（含重建的 Q3/Q4/Q5）。"
+  "unresolved": [
+    {
+      "id": 18,
+      "type": "official-source-defect",
+      "note": "p5 for(int i = 1; i < 10; i += 3;) ; 多分号语法不合法；保留原文和官方错误答案，暂停计分，待来源澄清。"
+    }
+  ],
+  "notes": "AI-Codex对照mirror PDF，本地镜像Git blob SHA fc1710d0b0364bfaf1f8e2a963828b643690fdd3一致；8页文本与全部渲染核对。Q18原卷语法缺陷保留隔离，不能宣称全过。所有answer字段未改，解析为AI逻辑复核，参考代码另有编译运行证据。",
+  "history": [
+    {
+      "paperId": "2023-12-l1",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2023-12-l1"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+        "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-25",
+        "pages": {
+          "单选答案表": "p.1",
+          "判断答案表+判断题全文": "p.5"
+        }
+      },
+      "answerTable": {
+        "single": {
+          "page": 1,
+          "content": "A B B A B C A C D D B D B C B",
+          "matchesBank": true
+        },
+        "judge": {
+          "page": 5,
+          "content": "√ × × × √ √ × × × √",
+          "note": "答案表为图片（红色 √/×），已 4 倍放大逐位核对"
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q1 explanation 升级；答案未改"
+        },
+        {
+          "id": 3,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看",
+            "代码逻辑验证"
+          ],
+          "findings": "整题错位：题库为仿写单空题（(10+N)%24），官方是双空题（第几天几时：dayX=(10+N)/24, hourX=(10+N)%24），代码图含 if(dayX==0) 今天 / else 第(dayX+1)天。",
+          "fix": "按官方 p.1 渲染图整题重建（题干+代码+四选项）。验证：N=20 → dayX=1, hourX=6 → 「第2天6点」✓；N=4 → 「今天14点」✓。官方答案 B。",
+          "evidence": "tmp/verify/2023-12-l1/pg-1.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 4,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看"
+          ],
+          "findings": "题库为无代码仿写版，选项 B/C 与官方不符（官方 B=N%2=0 赋值陷阱、C=N%2 非0即真反向）。官方有 if(____) 偶数/奇数 代码图。",
+          "fix": "按官方 p.2 渲染图重建（题干+代码+官方四选项 N%2==0 / N%2=0 / N%2 / N%2!=0）。官方答案 A。",
+          "evidence": "tmp/verify/2023-12-l1/pg-2.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 5,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看",
+            "代码逻辑验证"
+          ],
+          "findings": "整题错位：题库为 sqrt(9.0) 表达式题，官方是 for 循环计数题（cnt 从 0，i=1..N-1 共 N-1 次，第5行输出 cnt）。",
+          "fix": "按官方 p.2 渲染图整题重建。验证：N≥2 时输出 N-1（N=2→1✓, N=3→2✓）；A 错在 N=2 输出 1 非 0。官方答案 B。",
+          "evidence": "tmp/verify/2023-12-l1/pg-2.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 6,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q6 explanation 升级；答案未改"
+        },
+        {
+          "id": 7,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q7 explanation 升级；答案未改"
+        },
+        {
+          "id": 8,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q8 explanation 升级；答案未改"
+        },
+        {
+          "id": 12,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q12 explanation 升级；答案未改"
+        },
+        {
+          "id": 14,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q14 explanation 升级；答案未改"
+        },
+        {
+          "id": 15,
+          "dimensions": [
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照"
+          ],
+          "findings": "题干「典型的计算机体系结构采用的是」应为官方「现代计算机是指电子计算机，它所基于的是（ ）体系结构」；选项应为人物名（艾伦·图灵/冯·诺依曼/阿塔纳索夫/埃克特-莫克利），题库误用了架构名。",
+          "fix": "恢复官方题干与选项，解析按官方选项重写（区分理论奠基人/硬件先驱/体系结构奠基人）。官方答案 B 一致。",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 16,
+          "paperJudgeNo": 1,
+          "official": "√",
+          "bank": "√",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（强类型语言先定义后使用）非原卷题；原卷第 1 题为「int(3.14) 的值为 3」。独立推导：浮点转整型向零截断，int(3.14)=3，命题为真，官方 √ 正确。答案碰巧相同，但题文与解析整体错置，一并替换。",
+          "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（截断规则）"
+        },
+        {
+          "id": 17,
+          "paperJudgeNo": 2,
+          "official": "×",
+          "bank": "×",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（true && false）非原卷题；原卷第 2 题为「cout << (2*3, 3%10, 2+3) 的输出为 6,3,5」。独立推导：括号内为逗号表达式，整体值只取最后一项 5，输出为 5 而非 6,3,5，命题为假，官方 × 正确。答案碰巧相同，一并替换。",
+          "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（逗号表达式）"
+        },
+        {
+          "id": 18,
+          "paperJudgeNo": 3,
+          "official": "×",
+          "bank": "√",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（语句必须分号结尾）非原卷题；原卷第 3 题为「for(int i=1;i<10;i+=3) 表示 i 从 1 开始到 10 结束间隔为 3，相当于 1、4、7、10」。独立推导：i 实际取 1、4、7，i=10 时条件 i<10 不成立取不到 10，命题为假，官方 × 正确。",
+          "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（循环边界取值）"
+        },
+        {
+          "id": 19,
+          "paperJudgeNo": 4,
+          "official": "×",
+          "bank": "√",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（010 表示八进制数）非原卷题；原卷第 4 题为「010+100+001 的值为 111」。独立推导：010 是八进制 8、001 是八进制 1，8+100+1=109≠111，命题为假，官方 × 正确。",
+          "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（八进制字面值求和）"
+        },
+        {
+          "id": 20,
+          "paperJudgeNo": 5,
+          "official": "√",
+          "bank": "√",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（for 循环一定有结束条件）非原卷题；原卷第 5 题为「if 语句中的条件表达式的结果可以为 int 类型」。独立推导：if 条件允许算术类型，非零即真，int 合法，命题为真，官方 √ 正确。答案相同，一并替换。",
+          "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（if 条件类型要求）"
+        },
+        {
+          "id": 21,
+          "paperJudgeNo": 6,
+          "official": "√",
+          "bank": "×",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（continue 跳出整个循环）非原卷题；原卷第 6 题为「while(1) continue; 由于 continue 无条件被执行将导致死循环」。独立推导：while 条件恒真且无 for 式更新子句，continue 跳回后无任何变量变化，确实死循环，命题为真，官方 √ 正确。",
+          "fix": "question 按原卷逐字转写替换，answer 1→0，解析重写（while 死循环构成，并与 for(i++) continue 对照）"
+        },
+        {
+          "id": 22,
+          "paperJudgeNo": 7,
+          "official": "×",
+          "bank": "×",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（数组下标从 1 开始）非原卷题；原卷第 7 题为「('1'+'1'=='2') ? flag=1 : flag=2 的结果值和 (flag==2) 的相同」。独立推导：'1'+'1'=98≠'2'(50) 条件为假 → flag=2，三元表达式值为 2；而 (flag==2) 值为 true(1)。2≠1，不相同，命题为假，官方 × 正确。答案相同，一并替换。",
+          "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（字符运算+三元+赋值表达式值）"
+        },
+        {
+          "id": 23,
+          "paperJudgeNo": 8,
+          "official": "×",
+          "bank": "×",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（Name 和 name 相同）非原卷题；原卷第 8 题为「不能用 scanf 作变量名」。独立推导：scanf 是标准库函数名非关键字，可用作变量名（遮蔽），命题为假，官方 × 正确。答案相同，一并替换。",
+          "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（关键字 vs 库函数名）"
+        },
+        {
+          "id": 24,
+          "paperJudgeNo": 9,
+          "official": "×",
+          "bank": "√",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（!(10>5) 为 false）非原卷题；原卷第 9 题为「Dev C++ 也是一个小型操作系统」。独立推导：Dev C++ 是 IDE（应用软件），不是操作系统，命题为假，官方 × 正确。",
+          "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（操作系统 vs IDE）"
+        },
+        {
+          "id": 25,
+          "paperJudgeNo": 10,
+          "official": "√",
+          "bank": "√",
+          "textMatch": false,
+          "changed": true,
+          "findings": "题库题文（编译器翻译高级语言）非原卷题；原卷第 10 题为「任何一个 while 循环都可以转化为等价的 for 循环」。独立推导：while/for 三要素可互相移动，for 子句可留空，表达力等价，命题为真，官方 √ 正确。答案相同，一并替换。",
+          "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（while/for 等价转换）"
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "unresolved": [],
+      "answerKey": "单选答案串 A B B A B C A C D D B D B C B，题库比对全部一致（含重建的 Q3/Q4/Q5）。"
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\r",
+    "standard": "c++17",
+    "caseCount": 92,
+    "objectiveCaseCount": 5,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-12-l1/programming-run.json"
+  }
 }
