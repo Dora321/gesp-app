@@ -1,11 +1,7 @@
 {
   "paperId": "2025-12-l1",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2025-12-l1"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
@@ -13,8 +9,10 @@
     "fetchedAt": "2026-10-24",
     "pages": {
       "total": 9,
-      "note": "官方卷式：单选答案表在 p1 顶部，判断答案表在 p5 判断题节首（均裁剪放大核对），编程题解析 pp.7-9"
-    }
+      "note": "全部文本及渲染逐页核对，数学范围与代码以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2025-12-l1/source.pdf"
   },
   "answerTable": {
     "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表",
@@ -52,122 +50,671 @@
   },
   "questions": [
     {
-      "note": "题库题面与官方原卷逐题对应，25 道客观题答案全部一致，零修改。单选逐项独立复核：Q4 (X=3,X++,++X) 输出 5=C；Q5 2+3*4%5=4=B；Q6 b=a=4 输出 4 4=A；Q9 循环 100 次输出 100 100=D；Q10 i=1 改 i=0 结果不同（0+2+4+6+8=20 ≠ 1+3+5+7+9=25）=B；Q11 全部 continue 后 i=100 输出 100 END=C；Q12 辗转相减=A；Q13 N%10%3==0=D；Q14 奇因数 (N%i==0)&&(i%2!=0)=C；Q15 tmp-=a*1000 等价 i%1000=C。判断题官方 10 题全 ×，题库 answer 全为 1（错误），逐题独立推导均确认 ×：鸿蒙非编译器；40%6=4≠20%3=2；J3 输出 1 非 0；J4 改写后循环行为不同；J5 输出 100 非 99；J6 输出最高位而非 N%10；J7 输入 8 仍输出 Y；J8 printf(\"%d\",&a) 打印地址；J9 三目 int/double 混用不报错；J10 keyword 非 C++ 关键字。",
-      "action": "无需修改。",
-      "programmingCheck": "编程题两道与官方一致：Q26 小杨的爱心快递（样例 100.4/300.2/60.6/70.5→50.2、99.8/200.9/60.2/70.1→49.9，与原卷 p7 一致）；Q27 手机电量显示（与原卷 p8 一致），无需修改。",
-      "resolved": true
+      "id": 1,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "题目问的是执行判断的部件，处理器负责执行指令及逻辑判断，因此选B。传感器获取外部数据，内存保存程序与数据，输出设备呈现结果。背景中数据可能受影响不意味着判断也由存储器完成，解题要按具体功能区分部件。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "原卷L1中a=3与b=4之间是中文逗号，应改为C++支持的英文逗号，选A。英文逗号表达式可按顺序完成两个赋值，不必拆成两行。两个cout语句分别占行也合法；保存文件与否不能解释代码中出现的无效标点字符。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "for是语言关键字，不能作为用户变量名，因此A正确。局部变量可用下划线开头，_tnt及_tnt_不会因为外形易混淆就不合法。D把printf说成关键字，理由错误；它是标准库函数名，适当局部作用域可有同名变量，但会遮蔽函数，实际应避免此类命名。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1-2",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "逗号表达式从左到右求值，先把X赋为3，再执行X++使其变为4，最后++X使其变为5。整个表达式取最后一项的值5，cout输出5，选C。逗号运算提供求值顺序，不能把这里的多个修改误判成没有顺序的冲突。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "先计算3*4=12，再执行12%5=2，最后2+2=4，选B。乘法与求余同级、左结合，均优先于加法。不能先把2+3算成5，再乘4和求余；括号不在源表达式中，不能自行更改分组。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "b=a=4按赋值右结合规则先将a设为4，再将赋值表达式的值4存入b。因此两个变量都为4，格式串按先a后b输出4 4，选A。a此前的3已经被覆盖，不能把它当作保留不变的初值。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "两次scanf分别读得10与20，N+M为30。格式串内%%输出一个普通百分号，(N+M)=作为文本原样输出，%d替换为30，所以数值结果为%(N+M)=30，选C。原代码还会先输出两个输入提示。多提供的int(N+M)实参没有对应格式说明，不会额外输出。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2-3",
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "序列按1、2、3、2四位一组重复。编号N对4取余后，余数1、2、3分别对应原数字1、2、3，余数0对应2，由已有else处理，所以选A。N/4统计的是完整周期数，N%3或N/3也无法表达四位周期。最高位编号从1开始，不能误按从0编号。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "i从0进入循环，一直执行至99，共100轮；每次tnt加1，最终tnt为100。最后更新i到100后条件为假，且i定义在for外可继续使用，因此输出100 100，选D。循环次数与最后一次进入循环体的i=99不是同一个数。"
     },
     {
       "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "findings": "题干「有关下面C++代码的发展」为错别字，官方为「有关下面C++代码的说法」；选项 C/D「结果相同」官方为「效果相同」。",
-      "fix": "恢复官方措辞。官方答案行 Q10=B 一致（i=0 时序列变 0,2,4,6,8，和 20≠25）。",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "原程序累加1、3、5、7、9，总和25。把上界改成i<11仍不包括11，偶数10也不会由步长2取到，因此A成立。把起点改为0后会累加0、2、4、6、8，和为20，结果改变，错误项为B。C、D对普通int加法在本题范围内等价。"
+    },
+    {
+      "id": 11,
+      "type": "single",
       "resolved": true,
-      "reviewedAt": "2026-10-30",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q10 explanation 升级；答案未改"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "i取10、20、…、90，每次i%10都为0，触发continue，循环体printf全部被跳过。更新到100时退出，i>=100成立，输出100 END，选C。continue仍会执行for更新，不会停在某一个10的倍数死循环，也不会输出100#。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3-4",
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "应在N较大时用N=N-M减小N，在M较大时用M=M-N减小M，选A。两数始终为正，公约数集合保持不变，直到相等得到最大公约数。B在N>M时错误修改较小的M，可能变为负数；C也不保持正确的差值；D是逗号表达式，并非交换或执行指定减法。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "每轮N%10取当前个位，再%3判断这个数字是否为3的倍数，所以应比较N%10%3==0，选D。随后N/=10继续检查下一位；数字0也是3的倍数。A只检查个位是否0而漏掉3、6、9，B次序颠倒，C直接用非零余数作真条件，含义相反。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "4-5",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "需要同时满足“i整除N”和“i为奇数”：N%i==0与i%2非零，以&&连接，对应C。输入53时只有1和53两个奇因数，总和54能被27整除，输出Y。A、D没有正确筛选因数，B选的是偶因数；原卷没有else输出N，不能添加为原题代码。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "a=(tmp=i)/1000取得千位，但tmp仍为原数。减去a*1000后，tmp仅保留末三位，再除10得到中间两位bc，减bc*10得到个位d，因此选C。A先去掉个位，B只留末两位，D只留千位量级，都会破坏后续的取位过程。原题B不是i%1000，不能沿用旧题库中B与C等价的改写。"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "操作系统管理资源与程序运行，源程序翻译成目标程序属于编译器等语言处理工具的职责，不能直接归因于操作系统本身，因此原叙述错误。操作系统可以承载编译器并运行生成的程序，但运行环境与负责翻译的工具并不是同一个概念。"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "10*4%6按左结合先得40再求余，结果4；10*2%3先得20再求余，结果2。两个结果不同，因此原叙述错误。不能把被除数与除数同时缩小就认为余数值也保持不变，求余不是可任意约分的分式。"
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "i=0时i%3==0成立，执行continue后仍更新到1。i=1时条件为假，执行else中的break，退出且不再更新。于是cout输出1而不是0，判断错误。原卷有else break，旧题库漏录这两行会让程序变成另一条执行路径。"
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5-6",
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原循环i=0后更新为-1；进入下一轮时i<0，改为1，随后更新又回到0，循环变量在0与-1的入口值之间反复，不能正常结束输出。改成递增版本则累加0至9并输出45，所以结果不相同，判断错误。原程序tnt持续增长最终还有整型溢出风险，不应启动无界运行后用偶然结果作证据。"
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "i从0至99共100个值，每轮cnt加1，最终cnt=100，因此判断错误。条件确实不包含100，但这并不意味着只有99轮，起点0也算一轮。计数变量cnt和循环变量i虽都参与程序，不能把最大进入值99直接当作cnt。"
     },
     {
       "id": 21,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "整题错位：题库为仿写题「输出为 N%10」，官方 judge6 是对称数判断题（while 循环反序后 n 已被破坏为 0，n==new_number 永假，永远输出「非对称数」）。",
-      "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge6=×，题库 ans=1 一致。",
-      "evidence": "tmp/verify/2025-12-l1/pg-6.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "循环取位过程中持续执行n/=10，结束时原n已变成0；随后却用这个0与逆序结果比较，因此不能正确识别一般正整数回文，判断错误。例如输入121，new_number为121而n为0，会误报非对称数。应另存原数再比较，但不能把这项修复悄悄加入原题。"
     },
     {
       "id": 22,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "整题错位：题库为仿写题（输入7输出Y/输入8输出N），官方 judge7 是 for(i=-100;i<100) 求和题，输出 -100 非 0。",
-      "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge7=×，题库 ans=1 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "-99至99可正负配对抵消为0，而循环还多包含-100，却没有100，所以总和为-100，不是0，判断错误。上界i<100严格排除了100，不能把-100至99误认为关于0对称的完整区间；中间经过0也不会抵消额外的负端点。"
     },
     {
       "id": 23,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
-      ],
-      "findings": "整题错位：题库为仿写题（cout 改 printf(&a)），官方 judge8 是 %g 格式题（6.14159 为 %g 默认 6 位有效数字的正常行为）。",
-      "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge8=×，题库 ans=1 一致。",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "%g没有指定精度时，默认按6个有效数字格式化。3加3.1415926535约为6.1415926535，显示6.14159属于正常格式化结果，不表示计算机故障，因此判断错误。输出显示位数与内部浮点精度不同，若要更多位数，应按需要设置格式精度。"
+    },
+    {
+      "id": 24,
+      "type": "judge",
       "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "条件运算符允许两个算术分支采用不同类型。1227可转换为double，与12.27形成共同结果类型，表达式合法：x为0时选12.27，非0时选1227，因此“会因类型混乱编译报错”错误。原题后文把12.27写成12.12，也不能改变这条类型规则。"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "keyword只是英语中“关键字”的意思，并不属于C++关键字列表，可以作为普通变量名，因此原叙述错误。判断是否为保留关键字必须核对具体拼写，不能仅看单词含义；for、while等与keyword的地位不同。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7-8",
+      "evidence": "先算体积价V/2.0，再按G<300选择重量价M，否则选择N，最终取两者较小值。G恰为300时必须使用N档。样例100.4、300.2、60.6、70.5得到50.2；第二组得到49.9。原卷浮点数不超过1000，输出固定一位小数；时间与额外空间O(1)，不能把两类价格相加。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "8-9",
+      "evidence": "对每组电量先判断P<=10，输出R；否则再判断P<=20，输出L；其余输出原整数。这样10归R、11与20归L、21起直接显示数字。按原卷1<=T<=20、1<=P<=100逐组处理，每组独占一行，时间O(T)，额外空间O(1)。样例10、1、20、99、19对应R、R、L、99、L。"
     }
   ],
   "unresolved": [],
-  "executedAt": "2026-10-24",
-  "answerKey": "单选答案串 B A A C B A C A D B C A D C C，题库比对全部一致；判断题答案表 × × × × × × × × × × 与题库 10/10 一致。",
-  "priorReviewCorrection": "此前 review 给本卷 10 道判断题全部加了 sourceIntegrity:answer-key-suspect（怀疑答案未录入全为默认值）。2026-10-27 渲染官方 PDF 答案表（tmp/verify/2025-12-l1/pg-5.png，300dpi 级别可读）：10 题官方答案确实全部为 ×。嫌疑不成立，已移除全部标记并恢复计分；同步为校验器增加 judgeAnswerKeyVerified 豁免机制。",
-  "judgeAnswerKeyVerified": true
+  "notes": "AI-Codex对照mirror PDF全部9页文本及渲染；Git blob SHA 1f798b8619325cbf9c9178b067276e921ecb1c4f一致。恢复多处改写选项与漏录代码，25个answer字段全部保持。解析为AI逻辑复核，参考代码及模板有GNU C++17独立编译运行证据。",
+  "history": [
+    {
+      "paperId": "2025-12-l1",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2025-12-l1"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+        "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-24",
+        "pages": {
+          "total": 9,
+          "note": "官方卷式：单选答案表在 p1 顶部，判断答案表在 p5 判断题节首（均裁剪放大核对），编程题解析 pp.7-9"
+        }
+      },
+      "answerTable": {
+        "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表",
+        "content": {
+          "single": [
+            "B",
+            "A",
+            "A",
+            "C",
+            "B",
+            "A",
+            "C",
+            "A",
+            "D",
+            "B",
+            "C",
+            "A",
+            "D",
+            "C",
+            "C"
+          ],
+          "judge": [
+            "×",
+            "×",
+            "×",
+            "×",
+            "×",
+            "×",
+            "×",
+            "×",
+            "×",
+            "×"
+          ]
+        }
+      },
+      "questions": [
+        {
+          "note": "题库题面与官方原卷逐题对应，25 道客观题答案全部一致，零修改。单选逐项独立复核：Q4 (X=3,X++,++X) 输出 5=C；Q5 2+3*4%5=4=B；Q6 b=a=4 输出 4 4=A；Q9 循环 100 次输出 100 100=D；Q10 i=1 改 i=0 结果不同（0+2+4+6+8=20 ≠ 1+3+5+7+9=25）=B；Q11 全部 continue 后 i=100 输出 100 END=C；Q12 辗转相减=A；Q13 N%10%3==0=D；Q14 奇因数 (N%i==0)&&(i%2!=0)=C；Q15 tmp-=a*1000 等价 i%1000=C。判断题官方 10 题全 ×，题库 answer 全为 1（错误），逐题独立推导均确认 ×：鸿蒙非编译器；40%6=4≠20%3=2；J3 输出 1 非 0；J4 改写后循环行为不同；J5 输出 100 非 99；J6 输出最高位而非 N%10；J7 输入 8 仍输出 Y；J8 printf(\"%d\",&a) 打印地址；J9 三目 int/double 混用不报错；J10 keyword 非 C++ 关键字。",
+          "action": "无需修改。",
+          "programmingCheck": "编程题两道与官方一致：Q26 小杨的爱心快递（样例 100.4/300.2/60.6/70.5→50.2、99.8/200.9/60.2/70.1→49.9，与原卷 p7 一致）；Q27 手机电量显示（与原卷 p8 一致），无需修改。",
+          "resolved": true
+        },
+        {
+          "id": 10,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "findings": "题干「有关下面C++代码的发展」为错别字，官方为「有关下面C++代码的说法」；选项 C/D「结果相同」官方为「效果相同」。",
+          "fix": "恢复官方措辞。官方答案行 Q10=B 一致（i=0 时序列变 0,2,4,6,8，和 20≠25）。",
+          "resolved": true,
+          "reviewedAt": "2026-10-30",
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q10 explanation 升级；答案未改"
+        },
+        {
+          "id": 21,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看",
+            "代码逻辑验证"
+          ],
+          "findings": "整题错位：题库为仿写题「输出为 N%10」，官方 judge6 是对称数判断题（while 循环反序后 n 已被破坏为 0，n==new_number 永假，永远输出「非对称数」）。",
+          "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge6=×，题库 ans=1 一致。",
+          "evidence": "tmp/verify/2025-12-l1/pg-6.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 22,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看",
+            "代码逻辑验证"
+          ],
+          "findings": "整题错位：题库为仿写题（输入7输出Y/输入8输出N），官方 judge7 是 for(i=-100;i<100) 求和题，输出 -100 非 0。",
+          "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge7=×，题库 ans=1 一致。",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 23,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看"
+          ],
+          "findings": "整题错位：题库为仿写题（cout 改 printf(&a)），官方 judge8 是 %g 格式题（6.14159 为 %g 默认 6 位有效数字的正常行为）。",
+          "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge8=×，题库 ans=1 一致。",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "unresolved": [],
+      "executedAt": "2026-10-24",
+      "answerKey": "单选答案串 B A A C B A C A D B C A D C C，题库比对全部一致；判断题答案表 × × × × × × × × × × 与题库 10/10 一致。",
+      "priorReviewCorrection": "此前 review 给本卷 10 道判断题全部加了 sourceIntegrity:answer-key-suspect（怀疑答案未录入全为默认值）。2026-10-27 渲染官方 PDF 答案表（tmp/verify/2025-12-l1/pg-5.png，300dpi 级别可读）：10 题官方答案确实全部为 ×。嫌疑不成立，已移除全部标记并恢复计分；同步为校验器增加 judgeAnswerKeyVerified 豁免机制。",
+      "judgeAnswerKeyVerified": true
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\r",
+    "standard": "c++17",
+    "caseCount": 41,
+    "objectiveCaseCount": 8,
+    "templateCompileCount": 2,
+    "diagnosticCount": 1,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2025-12-l1/programming-run.json"
+  },
+  "judgeAnswerKeyVerified": true,
+  "judgeAnswerKeyAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "sourcePage": 5,
+    "officialSequence": "× × × × × × × × × ×",
+    "note": "本轮已逐位查看原卷p5判断答案表，并逐题复核Q16-Q25；全错为原卷真实分布。保留原有证据级judgeAnswerKeyVerified声明，不增设或放宽门禁豁免机制。"
+  }
 }

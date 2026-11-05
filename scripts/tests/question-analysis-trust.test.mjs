@@ -7,14 +7,14 @@ import { buildGenericStudyHint, buildRichAnalysis, selectAnalysisView } from '..
 test('getPaper exposes generated verification metadata to question pages', async () => {
   const verified = await getPaper('2024-03-l1');
   const partial = await getPaper('2026-03-l1');
-  const unverified = await getPaper('2025-12-l1');
+  const recentlyVerified = await getPaper('2025-12-l1');
 
   assert.equal(verified.reviewStatus, 'verified');
   assert.equal(verified.reviewedBy, 'AI-Codex');
   assert.equal(partial.reviewStatus, 'partial');
   assert.match(partial.reviewScope, /单选题 1-15/);
-  assert.equal(unverified.reviewStatus, 'unverified');
-  assert.equal(unverified.reviewedBy, '');
+  assert.equal(recentlyVerified.reviewStatus, 'verified');
+  assert.equal(recentlyVerified.reviewedBy, 'AI-Codex');
 });
 
 test('generic study hints do not change when the stored answer changes', () => {
