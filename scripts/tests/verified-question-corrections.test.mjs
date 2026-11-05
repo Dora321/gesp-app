@@ -185,6 +185,9 @@ test('official answer-key conflicts stay visible and excluded from scoring', asy
 
 const march2026OfficialKeys = {
   '2026-03-l1': {
+    reviewedBy: 'AI-Codex',
+    reviewedAt: '2026-11-06',
+    reviewScope: /全卷五维逐题对照mirror PDF/,
     sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf',
     answers: [1, 0, 3, 3, 0, 0, 1, 3, 3, 1, 1, 1, 3, 1, 0],
   },
@@ -215,7 +218,7 @@ test('latest L1-L4 papers expose bounded official verification', async () => {
     ];
 
     assert.equal(paper.reviewStatus, expected.reviewStatus || 'partial');
-    assert.equal(paper.reviewedBy, '本站校订');
+    assert.equal(paper.reviewedBy, expected.reviewedBy || '本站校订');
     assert.equal(paper.reviewedAt, expected.reviewedAt || '2026-07-14');
     assert.equal(paper.sourceUrl, expected.sourceUrl);
     assert.match(paper.reviewScope, expected.reviewScope || /单选题 1-15/);

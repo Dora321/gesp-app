@@ -12,7 +12,9 @@ test('getPaper exposes generated verification metadata to question pages', async
   assert.equal(verified.reviewStatus, 'verified');
   assert.equal(verified.reviewedBy, 'AI-Codex');
   assert.equal(partial.reviewStatus, 'partial');
-  assert.match(partial.reviewScope, /单选题 1-15/);
+  assert.match(partial.reviewScope, /全卷五维逐题对照mirror PDF/);
+  assert.equal(partial.reviewedBy, 'AI-Codex');
+  assert.equal(partial.questions.find((question) => question.id === 7).sourceIntegrity, 'official-source-defect');
   assert.equal(recentlyVerified.reviewStatus, 'verified');
   assert.equal(recentlyVerified.reviewedBy, 'AI-Codex');
 });
