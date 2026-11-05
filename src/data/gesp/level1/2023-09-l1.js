@@ -14,17 +14,17 @@ export const paperData = {
     type: 'public-recovery',
   },
   verification: {
-  "status": "verified",
-  "reviewedBy": "AI-Codex",
-  "reviewedAt": "2026-11-06",
-  "scope": "全卷五维逐题核验；2道编程题独立编译运行。",
-  "notes": "AI-Codex对照mirror PDF全部8页文本及渲染，Git blob SHA 799df3436d987adf8ecbb6ec1513d1dd02fcb66b一致；答案未改。编程代码GNU C++17共84组检查通过，另10组客观代码通过。",
-  "dimensions": {
-    "statement": "verified",
-    "options": "verified",
-    "answer": "verified",
-    "explanation": "verified",
-    "referenceCode": "verified"
+  status: "verified",
+  reviewedBy: "AI-Codex",
+  reviewedAt: "2026-11-06",
+  scope: "全卷五维逐题核验；2道编程题独立编译运行。",
+  notes: "AI-Codex对照mirror PDF全部8页文本及渲染，Git blob SHA 799df3436d987adf8ecbb6ec1513d1dd02fcb66b一致；答案未改。编程代码GNU C++17共84组检查通过，另10组客观代码通过。",
+  dimensions: {
+    statement: "verified",
+    options: "verified",
+    answer: "verified",
+    explanation: "verified",
+    referenceCode: "verified"
   }
 },
   questions: [

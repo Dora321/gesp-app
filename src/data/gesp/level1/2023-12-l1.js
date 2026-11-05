@@ -18,17 +18,17 @@ export const paperData = {
     statement: 1.0,
   },
   verification: {
-  "status": "partial",
-  "reviewedBy": "AI-Codex",
-  "reviewedAt": "2026-11-06",
-  "scope": "原卷逐题核验，Q18源缺陷隔离；参考代码独立运行。",
-  "notes": "AI-Codex对照mirror PDF，本地镜像Git blob SHA fc1710d0b0364bfaf1f8e2a963828b643690fdd3一致；8页文本与全部渲染核对。Q18原卷语法缺陷保留隔离，不能宣称全过。所有answer字段未改，解析为AI逻辑复核，参考代码另有编译运行证据。",
-  "dimensions": {
-    "statement": "partial",
-    "options": "partial",
-    "answer": "partial",
-    "explanation": "partial",
-    "referenceCode": "verified"
+  status: "partial",
+  reviewedBy: "AI-Codex",
+  reviewedAt: "2026-11-06",
+  scope: "原卷逐题核验，Q18源缺陷隔离；参考代码独立运行。",
+  notes: "AI-Codex对照mirror PDF，本地镜像Git blob SHA fc1710d0b0364bfaf1f8e2a963828b643690fdd3一致；8页文本与全部渲染核对。Q18原卷语法缺陷保留隔离，不能宣称全过。所有answer字段未改，解析为AI逻辑复核，参考代码另有编译运行证据。",
+  dimensions: {
+    statement: "partial",
+    options: "partial",
+    answer: "partial",
+    explanation: "partial",
+    referenceCode: "verified"
   }
 },
   questions: [

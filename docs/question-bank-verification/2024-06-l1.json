@@ -1,11 +1,7 @@
 {
   "paperId": "2024-06-l1",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2024-06-l1"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
@@ -13,9 +9,11 @@
     "localFile": "tmp/official-2024-06-l1.pdf",
     "fetchedAt": "2026-10-25",
     "pages": {
-      "单选答案表": "p.1",
-      "判断答案表+判断题全文": "p.5"
-    }
+      "total": 7,
+      "note": "全部文本及渲染逐页查看，数学范围与代码逐项核对。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-06-l1/source.pdf"
   },
   "answerTable": {
     "single": {
@@ -32,244 +30,762 @@
   "questions": [
     {
       "id": 1,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q1 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "**答案：A**\n\nfive-Star中含有减号，会被分成five、-、Star三个记号，不能作为一个变量名，选A。其余名字仅含字母或下划线。_fiveStar在适当局部作用域可用，但以下划线开头的名字在全局作用域等情形有保留限制，实际命名应避开这些限制，不能把任何下划线开头名字都说成可随处使用。"
     },
     {
       "id": 2,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q2 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "**答案：D**\n\n先算3*3=9，再执行整数除法9/5=1，最后3-1=2，因此选D。乘除优先于减法，乘除同级按左结合分组；两个整数相除时向零截断小数部分。这里都是正数，结果恰好也等于向下取整，但不能把这一说法推广到负数，例如-9/5为-1。"
     },
     {
       "id": 3,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q3 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "**答案：B（8）**\n\n**核心解析：**\n1. **理解取模运算符 `%`**：在 C++ 中，`%` 表示整数求余数运算。对于任意正整数 `N` 和除数 `M`，表达式 `N % M` 的结果范围是 `0` 到 `M - 1`，余数一定严格小于除数 `M`。\n2. **分析各项的理论最大值**：\n   - 表达式第一项为 `N % 3`，除数是 3，因此余数的可能取值为 `0, 1, 2`，最大值为 `3 - 1 = 2`。\n   - 表达式第二项为 `N % 7`，除数是 7，因此余数的可能取值为 `0, 1, 2, 3, 4, 5, 6`，最大值为 `7 - 1 = 6`。\n3. **计算两项之和的理论上限**：\n   - 两部分均取理论最大值时，和为 `2 + 6 = 8`。因此，该表达式无论如何都不可能输出大于 8 的值。\n4. **验证最大值是否能够实际取到**：\n   - 两个式子共用同一个自变量 `N`，因此需要验证是否存在一个正整数 `N`，能同时满足 `N % 3 == 2` 和 `N % 7 == 6`。\n   - 列举满足 `N % 7 == 6` 的正整数：6、13、20、27……\n   - 检验它们除以 3 的余数：\n     - 当 `N = 6` 时，`6 % 3 = 0`；\n     - 当 `N = 13` 时，`13 % 3 = 1`；\n     - 当 `N = 20` 时，`20 % 3 = 2`，此时同时满足两项要求！\n   - 代入表达式计算：`20 % 3 + 20 % 7 = 2 + 6 = 8`。\n   - 理论最大值 8 可以实际达到，因此可能输出的最大值就是 8。\n\n**选项逐项分析：**\n- **A 6**：❌ 错误。6 确实是该表达式可能输出的值（例如当 `N = 6` 时，`6 % 3 + 6 % 7 = 0 + 6 = 6`），但题目要求的是“可能输出的最大值”，由于存在更大的输出值 8，因此 6 不是正确答案。\n- **B 8**：✅ 正确。`N % 3` 最大为 2，`N % 7` 最大为 6，理论最大和为 8；且当 `N = 20` 时可实际取到 8，符合题意。\n- **C 9**：❌ 错误。`N % 3` 的最大值为 2，`N % 7` 的最大值为 6，两者之和绝对不会超过 8，因此不可能输出 9。\n- **D 10**：❌ 错误。余数不可能等于除数本身。如果直接将除数相加 `3 + 7 = 10` 会导致误选，实际上两项最大只能达到 `2 + 6 = 8`，绝对不可能达到 10。\n\n**易错提醒：**\n- **余数绝不能等于除数**：部分初学者容易把模数本身当作可能得到的最大余数。一定要牢记，正整数 `N % M` 能得到的最大值是 `M - 1`，而不是 `M`。\n- **理论上限需验证可达性**：在涉及同一个变量 `N` 的极值问题中，不仅要求出各部分的最大值，还必须验证两者能否“同时取得”。如果无法同时满足，实际最大值会小于理论各部分最大值之和（本题中 `N = 20` 刚好能够同时达到）。\n\n**知识延伸：**\n- 类似本题中寻找同时满足 `N % 3 == 2` 且 `N % 7 == 6` 的正整数 `N`，在数学上属于经典的“同余”与“中国剩余定理”模型。"
     },
     {
       "id": 4,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "**答案：C（5%2={1}）**\n\n**核心解析：**\n本题考查 C++ 中 `printf` 格式化输出函数的基本规则、格式占位符与转义机制，以及取模运算符 `%` 的计算。\n\n整个语句由两部分组成：双引号内的“格式控制字符串”和逗号后的“参数表达式”。我们逐步拆解：\n1. **字符串内部的 `5%%2`**：在 `printf` 的格式字符串中，单个 `%` 属于特殊引导符（用于表示占位符）。如果想要输出一个普通的 `%` 字符，必须连续书写两个百分号 `%%` 进行转义。因此，`5%%2` 会被转换为普通文本 `5%2` 输出，并不会在此处进行数学运算。\n2. **花括号 `{}` 与占位符 `%d`**：花括号 `{}` 在 `printf` 中没有特殊含义，会作为普通字符原样输出；`%d` 是整型格式占位符，运行时会被后面对应参数的计算结果替换。\n3. **参数表达式 `5 % 2`**：这里的 `%` 是 C++ 中的取模（求余数）运算符。`5` 除以 `2` 商为 `2`，余数为 `1`，所以算式 `5 % 2` 的运算结果为整数 `1`。这个值填入前面的 `%d` 处，得到 `{1}`。\n4. **转义字符 `\\n`**：表示换行符，输出完内容后光标移动到下一行。\n\n综合以上分析，屏幕上最终打印的内容为：`5%2={1}`。\n\n**选项逐项分析：**\n- **A 1={1}**：❌ 错误。该项混淆了“字符串文本”与“表达式计算”。双引号内的 `5%%2` 是纯文本输出，不会把前面的 `5` 和 `2` 计算成余数 `1`。\n- **B 5%2={5%2}**：❌ 错误。该项误以为花括号内的 `%d` 原样输出了表达式文本。实际上 `%d` 是占位符，必须被后面参数 `5 % 2` 计算出的数值 `1` 替换。\n- **C 5%2={1}**：✅ 正确。`%%` 正确转义输出字符 `%` 得到 `5%2`，`%d` 正确接收表达式 `5 % 2` 的求余结果 `1` 得到 `{1}`。\n- **D 5 ={1}**：❌ 错误。该项误以为连续的 `%%` 会被忽略或替换为空格。在 `printf` 中 `%%` 会明确输出一个 `%`。\n\n**易错提醒：**\n- **双引号内外的区分**：双引号内的字符属于文本模板，其中的符号不会自动当成数学公式来运算；只有逗号后面的部分才是代码表达式，会先计算出数值再传递给占位符。\n- **如何打印特殊符号**：如果想在 `printf` 中打印字符 `%`，必须写成 `%%`；类似地，想要打印反斜杠 `\\` 时，需要写成 `\\\\`。\n- **算术取模的意义**：`a % b` 得到的是整数相除后的余数，例如 `5 % 2` 得到的是 `1`，而不是商 `2`。"
     },
     {
       "id": 5,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q5 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1-2",
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "**答案：B（将输出 5）**\n\n**核心解析：**\n1. **输入流的处理规则**：`i` 是整型（`int`）变量，执行 `cin >> i` 时，输入流会先跳过前面的空白字符，然后从左到右依次读取能够组成合法整数的字符。\n2. **字符截断机制**：输入 `5+2` 时，`cin` 先读取数字字符 `'5'`。接下来遇到字符 `'+'`，在整数的中间不能出现加号，因此提取过程立即停止。此时变量 `i` 成功赋值为整数 `5`，而未读完的 `+2` 依然留在输入缓冲区中。\n3. **输出与逗号表达式**：语句 `cin >> i, cout << i` 中使用了逗号运算符，程序会先执行左边的输入语句，再执行右边的输出语句。因为 `i` 的值是 `5`，所以 `cout << i` 会在屏幕上输出 `5`。\n\n**选项逐项分析：**\n- **A 将输出整数 7**：❌ 错误。`cin` 只是将终端输入的字符流转为对应类型，不是数学计算器或编译器，不会自动计算字符串表达式 `5+2` 的结果。\n- **B 将输出 5**：✅ 正确。`cin >> i` 成功读取数字 `5`，遇到非数字字符 `'+'` 结束读取，随后输出变量 `i` 的值 `5`。\n- **C 语句执行将报错，输入表达式不能作为输出的参数**：❌ 错误。`cin >> i` 能够正常提取出数字 `5`，读取状态正常，不会产生运行报错；`cout << i` 输出的是变量 `i`，语法与逻辑完全合法。\n- **D 语句能执行，但输出内容不确定**：❌ 错误。输入流在遇到 `'+'` 前已经确定提取到了数字 `5`，变量 `i` 有确定的值，输出结果明确，并非随机值。\n\n**易错提醒：**\n- **区分代码表达式与输入字符**：如果在 C++ 源码中写 `int i = 5 + 2;`，编译器会计算出结果 `7`；但在运行窗口中手动输入 `5+2`，输入流只会把它们当作普通文本字符逐个解析。\n- **缓冲区残留**：未被读入的 `+2` 并没有丢失，而是留在了输入缓冲区中。如果后续紧接着执行 `char op; cin >> op;`，变量 `op` 就会读取到字符 `'+'`。\n\n**知识延伸：**\n整型输入提取何时停止？\n- 遇到空白字符（空格、Tab、回车换行）；\n- 遇到不属于该整数的非数字字符（除开头的正负号 `+`/`-` 之外的字母、标点符号等）。"
     },
     {
       "id": 6,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q6 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "**答案：C**\n\n后一次a=101覆盖前一次赋值，float变量a的类型不变，值为101.0。参数a+1得到102.0，传入printf可变参数时提升为double，与%f匹配。%.0f按零位小数格式化，此值正好是整数，输出102；普通文本a+1={与}原样保留，完整结果为a+1={102}，选C。"
     },
     {
       "id": 7,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q7 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "**答案：B（-18）**\n\n**核心解析：**\n计算表达式 `9/4 - 6 % (6 - 2) * 10` 的值，需要遵循 C++ 中运算符的**优先级**、**结合性**以及**整数运算规则**：\n\n1. **最高优先级：小括号 `()`**  \n   先计算小括号内的内容：  \n   `6 - 2 = 4`  \n   原式化简为：`9 / 4 - 6 % 4 * 10`。\n\n2. **次高优先级：乘除与取模（`*`、`/`、`%` 同级，从左往右依次计算）**  \n   - 计算 `9 / 4`：在 C++ 中，两个整数相除为**整数除法**，只保留商的整数部分，舍去小数部分，因此 `9 / 4 = 2`（而不是 2.25）。  \n   - 计算 `6 % 4`：取模运算求两数相除的余数，`6` 除以 `4` 商 `1` 余 `2`，因此 `6 % 4 = 2`。  \n   - 计算乘法：用前面求出的余数 `2` 乘 `10`，得到 `2 * 10 = 20`。  \n   此时原式化简为：`2 - 20`。\n\n3. **最低优先级：减法 `-`**  \n   最后计算减法：  \n   `2 - 20 = -18`。\n\n因此，表达式的最终值为 `-18`。\n\n**选项逐项分析：**\n- **A -17.75**：❌ 错误。该选项误将整数除法 `9 / 4` 当作数学中的小数除法算成了 `2.25`，得出 `2.25 - 20 = -17.75`。C++ 中整型相除会自动截断小数。\n- **B -18**：✅ 正确。正确运用了括号优先、整数除法取整（`9 / 4 = 2`）、模与乘法从左往右结合（`6 % 4 * 10 = 20`），最终得出 `2 - 20 = -18`。\n- **C -14**：❌ 错误。通常源于运算符优先级颠倒（如误先算 `4 * 10 = 40` 再算 `6 % 40`）或计算减法时符号混淆。\n- **D -12.75**：❌ 错误。同时混淆了整数除法与运算符的先后计算次序。\n\n**易错提醒：**\n- **整数除法舍弃小数**：C++ 中两个整型相除结果依然是整型，`9 / 4` 的结果是 `2`；只有当至少一方带小数（如 `9.0 / 4`）时，结果才会是 `2.25`。\n- **同级运算自左向右**：乘法 `*`、除法 `/`、取模 `%` 处于同一优先级，运算严格按照从左往右的顺序进行。在 `6 % 4 * 10` 中，必须先算 `6 % 4` 得 `2`，再算 `2 * 10` 得 `20`，绝不能先算 `4 * 10`。\n\n**知识延伸：**\n常见运算符优先级顺序（由高到低）：  \n小括号 `()` > 乘、除、取模（`*`、`/`、`%`）> 加、减（`+`、`-`）> 关系运算（如 `<`、`>`）> 赋值运算（`=`）。同级算术运算符一律自左向右结合。"
     },
     {
       "id": 8,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "**答案：C**\n\n10%3=1，作为if条件非零为真，执行第5行的printf。%2d指定最小宽度2并默认右对齐，整数1左侧补一个空格，因此选项C所示“第5行代码 1”正确。第2行还会先输出“请输入正整数：”提示语，选项只列后续分支部分；完整标准输出应包含该提示。else分支被跳过，不会执行第7行的printf；第6行本身只是else关键字。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q8 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2-3",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "**答案：C**\n\ni++先提供旧值参与Sum累加，再把i加1。因此循环体加入的数是0至9，总和45。加入9后i变为10，下一次条件i<10为假，退出并输出10 45，选C。for头部省略更新表达式并不表示i不变，更新已经写在循环体中，不能把10也累加进去。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "**答案：C**\n\n输入2时N>=2成立，Flag先设为true；for中i从2开始，i<N立即为假，循环体没有执行，最终输出“是质数”，选C。负数不会进入N>=2分支，Flag保持false，A错误。B忽略了循环之前的Flag赋值；改成N>2会漏判质数2，故D也错误。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3-4",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "答案为C。原程序先判断当前i的奇偶再累加，输入10得到1+3+5+7+9=25，退出时i=11。若把自增移到判断之前，会跳过1，还可能处理超过N的值。例如N=5时处理2至6，只加3与5，结果为8。D直接从1开始每次加2，可以只访问奇数并保留原求和结果。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "答案为D。完全平方数要求存在整数i满足i²=N，所以判断条件应写i*i==N。循环从0枚举到N，可以在正常算术范围内覆盖非负平方根。i+i检查的是两倍关系，i*10检查十倍关系，i==N*N则把候选根与N的平方比较，均没有表达题目需要的关系。实际大数实现还需防止乘法溢出。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "答案为C。i从0开始，每轮增加2，条件检查i*i<64。i依次取0、2、4、6时均成立，cnt分别增加到1、2、3、4。接着i变为8，8*8等于64，不满足严格小于，循环立即结束。不能把边界8计入，也不能忽略初始值0已经执行了一次循环。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "按该次考试的官方答案选择C，共3种。题目考查报名时区分的Scratch、Python与C++三个语言类别，不能把“第1级”中的数字当成语言数量。级别用于描述认证能力层次，语言是实现与考查这一能力所使用的形式，两者是不同分类维度。该解析按原题考试背景理解。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "4-5",
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "答案为B。ENIAC属于电子管时代的早期电子计算机，电子管用于实现开关与逻辑电路。晶体管对应后来的第二代计算机，集成电路对应更后续的技术阶段。按计算机主要电子器件划分代际时，应将ENIAC与电子管对应起来，题目中的感应线圈也不是其主要逻辑器件。"
     },
     {
       "id": 16,
-      "paperJudgeNo": 1,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "答案为错误。题目没有指定X的类型，因此“一定输出1”不能成立。若X为double，赋值16.44后执行浮点除法，X/10约为1.644。若X为int，赋值时小数部分先被截断为16，再执行16/10才得到1。判断表达式结果需结合变量类型及参与运算的操作数。"
     },
     {
       "id": 17,
-      "paperJudgeNo": 2,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "答案为错误。N是int，N/4采用整数除法得到2，N%4得到余数2。最后一个除数4.0为double，使N转换为浮点参与除法，10/4.0得到2.5。因此在默认输出设置下，完整内容为2->2->2.5。前两次整数运算不会影响第三次独立表达式的类型与结果。"
     },
     {
       "id": 18,
-      "paperJudgeNo": 3,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "按题目通常的有效输入范围，答案为正确。cin可把整数形式或小数形式的输入读取到float变量N，float(N)保留其浮点值，随后int转换朝零截断小数部分。例如3.8变为3，-3.8变为-3，并非向下取整。输入与转换结果还需处于相应类型可表示的范围内，超出范围不能直接套用该结论。"
     },
     {
       "id": 19,
-      "paperJudgeNo": 4,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "答案为错误。printf的格式字符串中只有%d是转换说明，用N的值5替换。紧随其后的*与2属于普通字符，不会被再次解释成C++乘法表达式，实际输出为5*2。若希望输出乘法结果10，应把运算写到参数中，例如printf(\"%d\", N*2)，而不是放在格式字符串里。"
     },
     {
       "id": 20,
-      "paperJudgeNo": 5,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "答案为正确。break可以立即结束包含它的最内层for、while或do-while循环，执行流程随后转到该循环之后。无需等到条件判断失败，也不会再执行这一轮余下的循环体。多层嵌套时仅终止当前内层，外层是否继续还取决于外层自己的条件与控制语句。"
     },
     {
       "id": 21,
-      "paperJudgeNo": 6,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "答案为正确。程序常在if判断某种情况后执行continue，跳过本轮不需处理的剩余语句，并进入下一次循环。for会先执行更新表达式，再检查条件，while则直接重新检查条件。题目说的是常见搭配，并未要求continue必须写在if中，它在循环体内也可以无条件执行。"
     },
     {
       "id": 22,
-      "paperJudgeNo": 7,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "答案为错误。printf属于标准库函数的名字，不在C++关键字列表中。局部作用域可声明同名变量，但会遮蔽函数名，随后尝试以printf(...)调用时可能因此报错。int、while等关键字才受语言语法保留，不能用作变量名。是否容易引起冲突不能用来判定一个名字是不是关键字。"
     },
     {
       "id": 23,
-      "paperJudgeNo": 8,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "答案为错误。C++把//及其后直到换行的内容识别为单行注释，因此//2并不是第二个除法运算。若把该行作为语句书写，前面实际只剩N+=8/4，还需要合适的分号结束语句。即使设想成8/4/2，除法也按左结合得到1，8/(4/2)却得到4，两个分组仍不等价。"
     },
     {
       "id": 24,
-      "paperJudgeNo": 9,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "答案为错误。第一个!将N按真假求反，第二个!再次取反，结果仅保留N是否非零的信息。N=0时!!N为false，N非0时为true，输出为0或1。例如N=5时结果为1，无法保留原来的5。只有N本来为0或1时数值碰巧相同，不能推广到所有整数。"
     },
     {
       "id": 25,
-      "paperJudgeNo": 10,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "按本题表述，答案为正确。同一级别关注的核心是程序设计、逻辑推理与解决问题的能力，语言承担表达程序的作用。不同语言需要使用各自的语法和工具，但不能仅因换了一种语言就认为所要求的能力等级随之改变。这里“基本上”描述核心能力的对应关系，没有要求各语言题目和语法知识逐项相同。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5-6",
+      "evidence": "**解析**\n\n先把起始时刻换为总秒数t=h*3600+m*60+s，再令t+=k。输出t/3600、(t%3600)/60、t%60，中间用空格分隔。原卷限制1<=h<=12、0<=m,s<=59、1<=k<=3600，最大结果13:59:59，不需要按12或24回绕。样例12:59:59加10秒得到13:0:9。时间O(1)，额外空间O(1)，总秒数最大50399，int足够。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "6-7",
+      "evidence": "**解析**\n\n参考程序枚举i=1至n，若i*i*i==n则设置标记并退出，否则循环结束后输出No。原卷限定1<=n<=1000，i的立方最大1000000000，在常见32位int范围内，因此现有代码不会因乘法溢出出错。样例8在i=2命中，输出Yes；9没有正整数立方根，输出No。包含i=1以正确处理n=1；时间O(n)，额外空间O(1)。"
     }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "notes": "AI-Codex对照登记mirror PDF全部7页文本及渲染；本地Git blob SHA 49006abdf763539afdbe8aed200cab4540e5ee0b一致。25题answer字段未改。补两编程题原卷范围；解析为AI逻辑复核，参考程序另有GNU C++17运行证据。",
+  "history": [
+    {
+      "paperId": "2024-06-l1",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2024-06-l1"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+        "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+        "shaVerified": true,
+        "localFile": "tmp/official-2024-06-l1.pdf",
+        "fetchedAt": "2026-10-25",
+        "pages": {
+          "单选答案表": "p.1",
+          "判断答案表+判断题全文": "p.5"
+        }
+      },
+      "answerTable": {
+        "single": {
+          "page": 1,
+          "content": "A D B C B C B C C C C D C C B",
+          "matchesBank": true
+        },
+        "judge": {
+          "page": 5,
+          "content": "× × √ × √ √ × × × √",
+          "note": "答案表为图片（红色 √/×），已 4 倍放大逐位核对"
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q1 explanation 升级；答案未改"
+        },
+        {
+          "id": 2,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q2 explanation 升级；答案未改"
+        },
+        {
+          "id": 3,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q3 explanation 升级；答案未改"
+        },
+        {
+          "id": 4,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q4 explanation 升级；答案未改"
+        },
+        {
+          "id": 5,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q5 explanation 升级；答案未改"
+        },
+        {
+          "id": 6,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q6 explanation 升级；答案未改"
+        },
+        {
+          "id": 7,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q7 explanation 升级；答案未改"
+        },
+        {
+          "id": 8,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q8 explanation 升级；答案未改"
+        },
+        {
+          "id": 16,
+          "paperJudgeNo": 1,
+          "official": "×",
+          "bank": "×",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 17,
+          "paperJudgeNo": 2,
+          "official": "×",
+          "bank": "×",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 18,
+          "paperJudgeNo": 3,
+          "official": "√",
+          "bank": "√",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 19,
+          "paperJudgeNo": 4,
+          "official": "×",
+          "bank": "×",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 20,
+          "paperJudgeNo": 5,
+          "official": "√",
+          "bank": "√",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 21,
+          "paperJudgeNo": 6,
+          "official": "√",
+          "bank": "√",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 22,
+          "paperJudgeNo": 7,
+          "official": "×",
+          "bank": "×",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 23,
+          "paperJudgeNo": 8,
+          "official": "×",
+          "bank": "×",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 24,
+          "paperJudgeNo": 9,
+          "official": "×",
+          "bank": "×",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 25,
+          "paperJudgeNo": 10,
+          "official": "√",
+          "bank": "√",
+          "textMatch": true,
+          "changed": false
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "unresolved": []
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\r",
+    "standard": "c++17",
+    "caseCount": 1035,
+    "objectiveCaseCount": 8,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-06-l1/programming-run.json"
+  }
 }

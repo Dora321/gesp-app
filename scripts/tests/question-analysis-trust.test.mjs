@@ -10,7 +10,7 @@ test('getPaper exposes generated verification metadata to question pages', async
   const unverified = await getPaper('2025-12-l1');
 
   assert.equal(verified.reviewStatus, 'verified');
-  assert.equal(verified.reviewedBy, '本站校订');
+  assert.equal(verified.reviewedBy, 'AI-Codex');
   assert.equal(partial.reviewStatus, 'partial');
   assert.match(partial.reviewScope, /单选题 1-15/);
   assert.equal(unverified.reviewStatus, 'unverified');

@@ -126,9 +126,9 @@ test('explicit full-paper verification is not downgraded by question corrections
     const meta = paperMeta['2024-03-l1'];
 
     assert.equal(meta.reviewStatus, 'verified');
-    assert.equal(meta.reviewedBy, '本站校订');
-    assert.equal(meta.reviewedAt, '2026-07-04');
-    assert.equal(meta.reviewScope, '题面、代码、选项与答案');
+    assert.equal(meta.reviewedBy, 'AI-Codex');
+    assert.equal(meta.reviewedAt, '2026-11-06');
+    assert.equal(meta.reviewScope, '全卷五维逐题对照mirror PDF，参考程序独立运行。');
   } finally {
     await rm(outputDir, { recursive: true, force: true });
   }
