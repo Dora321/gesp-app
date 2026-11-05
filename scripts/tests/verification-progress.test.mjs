@@ -15,6 +15,11 @@ const evidence = { paperId: paper.id, source: { shaVerified: true, mirrorSha: sh
   answerTable: { content: { single: 'B', judge: '√' } }, questions: [], unresolved: [] };
 const build = (extra = {}) => buildVerificationProgress({ paper, evidence, source: { mirrorSha: sha }, ...extra });
 
+test('evidence preserves an explicit AI reviewer and supports historical reviewer objects', () => {
+  assert.equal(build({ evidence: { ...evidence, reviewedBy: 'AI-Codex' } }).reviewedBy, 'AI-Codex');
+  assert.equal(build().reviewedBy, 'AI · test');
+});
+
 test('matching answer evidence upgrades only objective answers, not the whole paper', () => {
   const result = build();
   assert.equal(result.dimensions.answer, 'verified');

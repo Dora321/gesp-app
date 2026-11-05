@@ -111,7 +111,8 @@ export function buildVerificationProgress({ paper, legacy = {}, evidence, source
   const status = summarizeVerification(dimensions);
   return {
     status, dimensions, coverage,
-    reviewedBy: usable ? `${evidence.reviewedBy?.type || '审校'} · ${evidence.reviewedBy?.executor || '证据记录'}` : legacy.reviewedBy || '',
+    reviewedBy: usable ? (typeof evidence.reviewedBy === 'string' ? evidence.reviewedBy
+      : `${evidence.reviewedBy?.type || '审校'} · ${evidence.reviewedBy?.executor || '证据记录'}`) : legacy.reviewedBy || '',
     reviewedAt: usable ? evidence.judgeAnswerAudit?.executedAt || evidence.reviewedAt || evidence.executedAt || '' : legacy.reviewedAt || '',
     scope: '按已登记证据分项统计；答案仅指客观题，参考代码仅指编程题。未决问题保留部分核验状态。',
     evidence: Boolean(usable),

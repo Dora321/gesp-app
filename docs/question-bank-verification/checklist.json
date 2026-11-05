@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T18:10:24.779Z",
+  "generatedAt": "2026-11-05T18:37:17.311Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -18,26 +18,30 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "verified",
-        "options": "verified",
-        "answer": "verified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "unverified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "12": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"
@@ -59,15 +63,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "partial",
-        "explanation": "partial",
-        "referenceCode": "unverified"
+        "statement": "verified",
+        "options": "verified",
+        "answer": "verified",
+        "explanation": "verified",
+        "referenceCode": "verified"
       },
-      "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-25",
+      "overallStatus": "verified",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -310,12 +314,12 @@
         "statement": "verified",
         "options": "verified",
         "answer": "verified",
-        "explanation": "partial",
+        "explanation": "verified",
         "referenceCode": "verified"
       },
-      "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "overallStatus": "verified",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,

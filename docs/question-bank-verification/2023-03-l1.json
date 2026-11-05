@@ -1,11 +1,7 @@
 {
   "paperId": "2023-03-l1",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-03-l1"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
@@ -13,381 +9,544 @@
     "fetchedAt": "2026-10-24",
     "pages": {
       "total": 17,
-      "note": "该 PDF 为第三方《2023年3月 GESP C++ 一级真题解析》，逐题内嵌【答案】，无独立答案表；单选题 pp.1-10，判断题 pp.10-13，编程题解析 pp.13-16"
-    }
+      "note": "第三方解析版，单选pp.1-10，判断pp.10-13，编程题pp.13-17；不是独立官方答案表。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-03-l1/source.pdf"
   },
   "answerTable": {
-    "location": "逐题内嵌（红色【答案】行，pp.1-13）",
+    "location": "AI-Codex核对mirror解析版逐题内嵌【答案】及对应渲染页。",
     "single": "BAACBDDAADBCDBC",
-    "judge": "√××√××××√√（0=√,1=×）"
+    "judge": "√××√××××√√（0=√,1=×）",
+    "content": {
+      "single": [
+        "B",
+        "A",
+        "A",
+        "C",
+        "B",
+        "D",
+        "D",
+        "A",
+        "A",
+        "D",
+        "B",
+        "C",
+        "D",
+        "B",
+        "C"
+      ],
+      "judge": [
+        "√",
+        "×",
+        "×",
+        "√",
+        "×",
+        "×",
+        "×",
+        "×",
+        "√",
+        "√"
+      ]
+    }
   },
   "questions": [
     {
       "id": 1,
       "type": "single",
-      "officialAnswer": "B",
-      "bankAnswer": 1,
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q1 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "输入向内、输出向外，音箱不是输入设备，B。"
     },
     {
       "id": 2,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1-2",
       "officialAnswer": "A",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "大写B=Byte，A；纠正“最小单位”说法。"
     },
     {
       "id": 3,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
       "officialAnswer": "A",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "无后缀浮点字面量7.0为double，A。"
     },
     {
       "id": 4,
       "type": "single",
-      "officialAnswer": "C",
-      "bankAnswer": 2,
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2-3",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "未声明的变量不能直接使用，C；其余选项符合入门语法。"
     },
     {
       "id": 5,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
       "officialAnswer": "B",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "0x321是十六进制整数字面量，以数字开头不是标识符，B。"
     },
     {
       "id": 6,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3-4",
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "cout是std::ostream对象而不是关键字或const常对象，D。"
     },
     {
       "id": 7,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "4-5",
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "a++后直接跟b不符合语法，D；其余为合法赋值。"
     },
     {
       "id": 8,
       "type": "single",
-      "officialAnswer": "A",
-      "bankAnswer": 0,
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q8 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "a+b*2漏了一条长，A；其余等价于2a+2b。"
     },
     {
       "id": 9,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5-6",
       "officialAnswer": "A",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "bool和char先整数提升，最后加double得到double，A；纠正线性提升链。"
     },
     {
       "id": 10,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "6*=3后18，D；复合赋值左侧只求值一次。"
     },
     {
       "id": 11,
       "type": "single",
-      "officialAnswer": "B",
-      "bankAnswer": 1,
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q11 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "6-7",
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "连等按左结合变成不等判断，B不符合两者同为0；A/C/D符合。"
     },
     {
       "id": 12,
       "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7-8",
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "ANSWER-DOUBT：原卷p7-8给出C，但仅限定a为int；a=-4时C为0，目标应为-4。保留answer=2并暂停计分，等待明确适用范围。",
+      "sourceIntegrity": "official-source-defect"
     },
     {
       "id": 13,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "8-9",
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "D先编码为1020，再商10余20实现交换。"
     },
     {
       "id": 14,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 9,
       "officialAnswer": "B",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "B步进翻倍，i依次1、2、4、8；D不写回导致无限循环。"
     },
     {
       "id": 15,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "9-10",
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "3或5倍数仅计一次，和98，C；修正旧解析D的无关说法。"
     },
     {
       "id": 16,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 10,
       "officialAnswer": "√",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "剪切后粘贴移动所选文本，√。"
     },
     {
       "id": 17,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 10,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "CPU不直接执行所列高级语言源代码，×。"
     },
     {
       "id": 18,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "10-11",
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "注释在编译前处理，不增加运行指令，×。"
     },
     {
       "id": 19,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 11,
       "officialAnswer": "√",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "数字可在标识符后续位置但不能首位，√。"
     },
     {
       "id": 20,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 11,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "C++普通字符字面量为char而非int，×。"
     },
     {
       "id": 21,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "11-12",
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "int可上下文转换为bool做if条件，×。"
     },
     {
       "id": 22,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 12,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "for第一次条件为假可执行0次，×。"
     },
     {
       "id": 23,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 12,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "a=a+3是赋值更新而非数学等式，题目所说语法错误不成立，×。"
     },
     {
       "id": 24,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "12-13",
       "officialAnswer": "√",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "整数向零截断，a/4==2恰为8..11，√。"
     },
     {
       "id": 25,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 13,
       "officialAnswer": "√",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "答案表核对一致"
-      ]
+      "evidence": "double 3.5乘int 2转换后结果为double 7.0，√。"
     },
     {
       "id": 26,
       "type": "programming",
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "题面/样例按原卷核对",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "referenceCode",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "13-15",
+      "evidence": "恢复p13-15首道编程题每月天数；样例2022 1、2020 2与p14一致；镜像未给年份范围，移除未证实限制；GNU C++17及60组日历边界通过。"
     },
     {
       "id": 27,
       "type": "programming",
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-24 重建）",
-        "题面/样例按原卷核对",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "referenceCode",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "15-17",
+      "evidence": "恢复p15-17第二编程题长方形面积；枚举宽至平方根且整除，样例4/6与p16一致；输入A=2..1000全域与独立全宽枚举对照通过。"
     }
   ],
-  "unresolved": [],
+  "unresolved": [
+    "ANSWER-DOUBT Q12：原镜像p7-8仅限定a为int，C在a=-4时算0而目标为-4。保留answer=2及原题，official-source-defect隔离；等待原始来源明确非负和溢出约束。"
+  ],
   "executedAt": "2026-10-25",
   "pages": 17,
   "rebuildNote": {
     "date": "2026-10-24",
     "action": "整卷重录：原 25 道客观题系历史占位重建题（与官方原卷不对应），已按官方原卷逐页转写重录为 15 单选 + 10 判断 + 2 编程共 27 题；答案串与官方答案表逐题一致，placeholder 标记消除",
     "verifiedBy": "WorkBuddy AI（渲染页转写 + 答案表核对 + validate:bank/test 99/99 通过）"
+  },
+  "history": [
+    {
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2023-03-l1"
+      },
+      "unresolved": []
+    }
+  ],
+  "notes": "AI-Codex 对照已登记mirror PDF（本地镜像Git blob SHA 5cbab3719b6f61cc26a4cd470c267ac59170bf38一致），核对文本层与渲染页。解析为AI逻辑复核，非人工核验。答案字段未改。参考代码通过GNU C++17官方样例及边界检查。",
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\r",
+    "standard": "c++17",
+    "caseCount": 1063,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-03-l1/programming-run.json"
   }
 }

@@ -1,11 +1,7 @@
 {
   "paperId": "2023-06-l1",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-06-l1"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
@@ -14,10 +10,12 @@
     "pages": {
       "total": 16,
       "note": "《2023年6月 GESP C++ 一级真题解析》，答案以【答案】标记内嵌于每题之后（pp.1-12），编程题解析 pp.12-16"
-    }
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-06-l1/source.pdf"
   },
   "answerTable": {
-    "location": "逐题内嵌【答案】（p1-p12 渲染图人工读取）",
+    "location": "AI-Codex核对mirror解析版逐题内嵌【答案】及对应渲染页。",
     "content": {
       "single": [
         "A",
@@ -53,115 +51,477 @@
   "questions": [
     {
       "id": 1,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q1 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "p1恢复B音箱/C打印机/D显示器；麦克风为输入设备，A。"
     },
     {
       "id": 2,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1-2",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "p1-2恢复完整原题及改邮件/编剧本/擦地板/写代码；C物理任务。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q2 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "p2恢复double/float/char/int选项，字符字面量为char，C。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2-3",
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "p2-3恢复变量定义及赋值的四选项；值可不变，D。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "p3恢复360AntiVirus/Man&Woman/break干扰项，A合法。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3-4",
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "p3-4恢复double/else/while选项，endl为库操纵符，D。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "p4恢复完整三个int变量前提及原卷语句；a+c不能赋值，D。"
     },
     {
       "id": 8,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "p5恢复1*a*a与a*2*a/2；^为异或，C。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q8 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "p5恢复47/20/23/56选项，运算结果23，C。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "p6恢复完整题干及1/2/3/4选项，余数2，B。"
     },
     {
       "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "6-7",
       "officialAnswer": "B",
-      "bankAnswerBefore": 3,
-      "changed": true,
-      "findings": "题库原题面为改写版（选项 A a==0||b==0、B !(a||b)、C a+b==0、D a==0&&b==0），其中 B 与 D 均正确（!(a||b) ≡ a==0&&b==0），题面存在双正确选项缺陷，且文件内注释自认与官方提取结果（B）冲突后擅改答案为 D。官方原卷（p6）选项为 A.(a==b==0) B.!(a||b) C.(a+b==0) D.(a==0)+(b==0)，唯一正确答案 B。",
-      "fix": "按原卷恢复题干与四个选项；answer 3→1；解析整体重写（逐选项：A 链式比较陷阱、B 德摩根定律判定、C 和为零反例、D 只能判『或』的个数），并补充官方答案表出处。",
-      "evidence": "独立推导：A 中 a=1,b=2 时 a==b 为 0 再 ==0 为真，错；B 德摩根展开 !a&&!b 即两变量均为 0，对；C a=5,b=-5 反例；D 表达式值为判零个数，a=0,b=1 时为 1 为真，判的是『或』，错。与官方答案 B 一致。tmp/pages/2023-06-l1/p06.png",
-      "resolved": true
+      "bankAnswer": 1,
+      "evidence": "p6-7四选项与原卷一致；逻辑或取反仅在两者为0时为真，B。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 7,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "p7恢复三种加0.0的表达式；A先整数除法得到3.0，其余3.5。"
     },
     {
       "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7-8",
       "officialAnswer": "C",
-      "bankAnswerBefore": 1,
-      "changed": true,
-      "findings": "题库原题为整题改写（代码变为 a=b; 后填空使输出 20 10，选项 b=a;/b=10;/b=a-b;/b=20;，答案 B），与官方原题结构完全不同。官方原题（pp.7-8）：int a=10,b=20; a=____; b=a+b; a=b-a; 输出 20 10，选项 A.a+b B.b C.a-b D.b-a，官方答案 C。",
-      "fix": "按原卷恢复题面代码（含注释）、四个选项；answer 1→2；解析按官方思路重写（倒推法：输出 20 10 → 第 7 行前 a=-10 → 第 5 行需使 a=10-20=-10），并逐选项给出输出结果（A 20 50、B 20 40、C 20 10、D 20 30）。",
-      "evidence": "独立推导：a=a-b=-10 → b=-10+20=10 → a=10-(-10)=20，输出 20 10，选 C。其余选项分别得 20 50 / 20 40 / 20 30。与官方答案 C 一致。tmp/pages/2023-06-l1/p07.png、p08.png",
-      "resolved": true
+      "bankAnswer": 2,
+      "evidence": "p7-8代码与选项空格规范化；依次a=-10、b=10、a=20，C。"
     },
     {
       "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "8-9",
       "officialAnswer": "B",
-      "bankAnswerBefore": 1,
-      "changed": false,
-      "findings": "答案字母一致（均为 B），未改。但题面存在轻度转录偏差：官方为 for(i=1;i<=8;i++) 且选项 C 为 i=i+3、D 为 i+3；题库为 i<=9 且选项 C 为 i%4==1、D 为 i%7==1。题库版本自洽（i%3==1 在 1..9 内输出 147），保留题库文本，仅记录。",
-      "resolved": true
+      "bankAnswer": 1,
+      "evidence": "p8-9恢复i<=8、C赋值i=i+3和D i+3；B输出147，独立纠正PDF解析除以4的笔误。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 9,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "p9恢复1..20中3或5倍数累加的完整程序及63/98/113选项；未初始化sum，D。"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 10,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "p10计算机硬件五大部件；内嵌答案√。"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 10,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "p10恢复完整1958/1946及十多年表述；12年符合，√；删除旧解析独立设计的误导。"
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 10,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "p10输出可直接接受表达式，3+4输出7，3>4输出0；×。"
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "10-11",
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "p10-11首字符不能为数字，含字母不足以合法，2ab反例；×。"
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 11,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "p11十进制无后缀10可由int表示，为int；√。"
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 11,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "p11单分支if可无else；√。"
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 11,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "p11 do循环先执行后判断；√。"
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "11-12",
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "p11-12恢复int前提；=赋值而非==比较；×。"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 12,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "p12恢复int前提；4为偶数但余数0，反例成立；×；修正负余数说明。"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 12,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "p12 37与4均int，整数除法得int 9；√。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "referenceCode",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "12-14",
+      "evidence": "pp12-14同日24小时制、四行输入、两官方样例一致；统一换算分钟，2样例与2边界通过。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "referenceCode",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "14-16",
+      "evidence": "pp14-16恢复1<=n<=100数学符号；2累加器递推等价于原卷公式；3样例及1..100全输入域通过。"
     }
   ],
   "judgeAnswerAudit": {
-    "executedAt": "2026-10-25",
+    "executedAt": "2026-11-06",
     "executor": "WorkBuddy 子代理",
     "method": "回官方 PDF 内嵌【答案】逐题核对（tmp/pages/2023-06-l1/p10-p12.png），洛谷仅作线索。洛谷判断题以 A=正确(√)、B=错误(×) 编码，比对时已换算。",
     "officialSequence": "Q16→Q25 = √ √ × × √ √ √ × × √（p.10 第1-4题、p.11 第5-8题、p.12 第9-10题）",
@@ -198,11 +558,32 @@
       }
     ]
   },
-  "unresolved": [
-    "轻度转录偏差（答案不受影响，未修改）：Q2 选项与官方不同（官方 A发邮件/B写剧本/C擦地板/D写代码，题库为 编写程序/翻译语言/炒菜/写诗，正确项均为 C）；Q4/Q5/Q6/Q8/Q9/Q12 干扰项为改写版本（正确项字母与官方一致）；Q15 官方代码为 1..20 中 3或5 的倍数累加且 sum 未初始化，题库为 1..10 累加且 sum 未初始化，考点与答案（D 无法确定）一致。如需与原卷逐字一致，可另行整卷重录。"
-  ],
+  "unresolved": [],
   "executedAt": "2026-10-24",
-  "notes": [
-    "2026-10-27 复核：本卷官方 PDF 为「真题解析」版（N. 题干 +【答案】格式），audit-pdf-stem-diff 低分属结构性假阳性。从解析版文本层提取 25 个【答案】（含判断题√×）与题库逐位比对，25/25 完全一致，确认无需修改。"
-  ]
+  "notes": "AI-Codex 对照已登记mirror PDF（本地镜像Git blob SHA ebf0c1dc93583d82b4ed9b05703dafa744d1d99d一致），核对文本层与渲染页。解析为AI逻辑复核，非人工核验。答案字段未改。参考代码通过GNU C++17官方样例及边界检查。",
+  "history": [
+    {
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2023-06-l1"
+      },
+      "unresolved": [
+        "轻度转录偏差（答案不受影响，未修改）：Q2 选项与官方不同（官方 A发邮件/B写剧本/C擦地板/D写代码，题库为 编写程序/翻译语言/炒菜/写诗，正确项均为 C）；Q4/Q5/Q6/Q8/Q9/Q12 干扰项为改写版本（正确项字母与官方一致）；Q15 官方代码为 1..20 中 3或5 的倍数累加且 sum 未初始化，题库为 1..10 累加且 sum 未初始化，考点与答案（D 无法确定）一致。如需与原卷逐字一致，可另行整卷重录。"
+      ],
+      "notes": [
+        "2026-10-27 复核：本卷官方 PDF 为「真题解析」版（N. 题干 +【答案】格式），audit-pdf-stem-diff 低分属结构性假阳性。从解析版文本层提取 25 个【答案】（含判断题√×）与题库逐位比对，25/25 完全一致，确认无需修改。"
+      ]
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\r",
+    "standard": "c++17",
+    "caseCount": 107,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-06-l1/programming-run.json"
+  }
 }

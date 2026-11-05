@@ -1,11 +1,7 @@
 {
   "paperId": "2024-12-l1",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2024-12-l1"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
@@ -14,10 +10,12 @@
     "pages": {
       "total": 8,
       "note": "官方卷式：单选答案表在 p1 顶部，判断答案表在 p5（判断题节首），编程题 pp.6-8"
-    }
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-12-l1/source.pdf"
   },
   "answerTable": {
-    "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表（均经裁剪放大人工核对 √/× 与 A/D 形近字符）",
+    "location": "AI-Codex核对PDF渲染：单选p1顶部；判断p5节首表。",
     "content": {
       "single": [
         "C",
@@ -54,318 +52,472 @@
     {
       "id": 1,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 1 列 C）"
-      ]
+      "evidence": "人工智能方向，C；题面与四选项对照p1。"
     },
     {
       "id": 2,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 2 列 C）"
-      ]
+      "evidence": "操作系统与应用区分，C；修正把系统等同内核的旧解析。"
     },
     {
       "id": 3,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 3 列 D）"
-      ]
+      "evidence": "三个双引号形成相邻空串与普通字符串拼接，D。"
     },
     {
       "id": 4,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
       "officialAnswer": "B",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 4 列 B）"
-      ]
+      "evidence": "12-3*2=6，6&&2为true，默认输出1，B。"
     },
     {
       "id": 5,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
       "officialAnswer": "B",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 5 列 B）；题干按原卷转录为「假设N为正整数2」（原卷如此，按 N=2 解释自洽）"
-      ]
+      "evidence": "2/3=0，2%3=2，相加2，B。"
     },
     {
       "id": 6,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 6 列 D）"
-      ]
+      "evidence": "只计算引号外7%3，引号内逐字输出，D。"
     },
     {
       "id": 7,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
       "officialAnswer": "B",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 7 列 B）"
-      ]
+      "evidence": "星期余数0对应星期天，B；修正A和D逻辑关系表述。"
     },
     {
       "id": 8,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 8 列 C）；循环体经 PDF 文本层确认为 N += 1（9+10=19）"
-      ]
+      "evidence": "9次累加后N=9、退出i=10，结果19，C。"
     },
     {
       "id": 9,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 9 列 C）"
-      ]
+      "evidence": "个位0..9之和45重复10次为450，C；注明原卷片段未展示i声明。"
     },
     {
       "id": 10,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 10 列 C）"
-      ]
+      "evidence": "奇数5,15,25,35,45,55计数6，55时break，C。"
     },
     {
       "id": 11,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 11 列 D）"
-      ]
+      "evidence": "两个余数均等于0并逻辑与，D。"
     },
     {
       "id": 12,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
       "officialAnswer": "C",
       "bankAnswer": 2,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 12 列 C）"
-      ]
+      "evidence": "体内与步进各自增，累加1+3+5+7+9=25，C。"
     },
     {
       "id": 13,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 13 列 D）",
-        "正方形示意图裁自 p4 原卷，存 public/question-assets/2024-12-l1/q13-square.png"
-      ]
+      "evidence": "周长加4需边长加1，只有++a改变a，D；图示与p4核对。"
     },
     {
       "id": 14,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
       "officialAnswer": "B",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 14 列 B）"
-      ]
+      "evidence": "true提升为int 1再乘2，B。"
     },
     {
       "id": 15,
       "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "4-5",
       "officialAnswer": "D",
       "bankAnswer": 3,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p1 表第 15 列 D）"
-      ]
+      "evidence": "先保存个位并删除个位，D；A首次相等时返回0，并非死循环。"
     },
     {
       "id": 16,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "√",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 1 列 √）"
-      ]
+      "evidence": "复制、粘贴产生文件副本；p5答案表√。"
     },
     {
       "id": 17,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "√",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 2 列 √）"
-      ]
+      "evidence": "8/3=2与8%3=2相同；p5答案表√。"
     },
     {
       "id": 18,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 3 列 ×）"
-      ]
+      "evidence": "类型化输入输出不保留原字符格式，007可输出7；×。"
     },
     {
       "id": 19,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 4 列 ×）"
-      ]
+      "evidence": "continue使累加不可达，N=0；×。"
     },
     {
       "id": 20,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 5 列 ×）"
-      ]
+      "evidence": "退出i=101，不是100；×。"
     },
     {
       "id": 21,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 6 列 ×）"
-      ]
+      "evidence": "i=0,3,6,9共4次；保留原卷“三次/一次”笔误并说明；×。"
     },
     {
       "id": 22,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 7 列 ×）"
-      ]
+      "evidence": "逗号表达式值为最后一项2；×。"
     },
     {
       "id": 23,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
       "officialAnswer": "√",
       "bankAnswer": 0,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 8 列 √）"
-      ]
+      "evidence": "三个名称均合法且非关键字；√。"
     },
     {
       "id": 24,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 9 列 ×）"
-      ]
+      "evidence": "2e-1为0.2，f<1为true，输出1；×。"
     },
     {
       "id": 25,
       "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
       "officialAnswer": "×",
       "bankAnswer": 1,
-      "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "答案表核对一致（p5 节首表第 10 列 ×）"
-      ]
+      "evidence": "先执行的控制转移使后一句不可达，没有抵消；×。"
     },
     {
       "id": 26,
       "type": "programming",
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "题面/样例/数据范围/参考程序按原卷 pp.6-7 核对，参考程序采用原卷 3.1.10 版本",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "referenceCode",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "6-7",
+      "evidence": "C=K-273.15，F=32+C*1.8，严格F>212；p6-7两官方样例、参考程序及边界运行通过。"
     },
     {
       "id": 27,
       "type": "programming",
+      "resolved": true,
       "match": true,
-      "method": [
-        "官方原卷逐页转写重录（2026-10-25 整卷重建）",
-        "题面/样例/数据范围/参考程序按原卷 pp.7-8 核对，参考程序采用原卷 3.2.5 版本",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
+        "statement",
+        "referenceCode",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7-8",
+      "evidence": "正整数%2分类计数，按奇、偶顺序输出；p7-8样例、数据范围与代码一致，单元素及最大n运行通过。"
     }
   ],
   "unresolved": [],
@@ -375,5 +527,26 @@
     "date": "2026-10-25",
     "action": "整卷重录：原 25 道客观题系早期占位重建题（单选答案串与官方恰好一致、判断题 5 处不一致，题面与官方原卷不对应，如题库 Q1「三位科学家」vs 原卷「两位」），已按官方原卷逐页转写重录为 15 单选 + 10 判断 + 2 编程共 27 题；答案串与官方答案表逐题一致，source.type 改为 official 并补 verification.verified，placeholder 状态经 npm run generate:papers 消除",
     "verifiedBy": "WorkBuddy AI（渲染页+PDF 文本层双通道转写、mirrorSha 251c7430 校验、答案表裁图放大核对 + validate:bank/test 通过）"
+  },
+  "history": [
+    {
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2024-12-l1"
+      },
+      "unresolved": []
+    }
+  ],
+  "notes": "AI-Codex 对照已登记mirror PDF（本地镜像Git blob SHA 251c7430ba844abf8e6595b10b94e997a4a18e57一致），核对文本层与渲染页。解析为AI逻辑复核，非人工核验。答案字段未改。参考代码通过GNU C++17官方样例及边界检查。",
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\r",
+    "standard": "c++17",
+    "caseCount": 9,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-12-l1/programming-run.json"
   }
 }
