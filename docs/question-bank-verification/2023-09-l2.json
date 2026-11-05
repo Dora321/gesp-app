@@ -1,16 +1,18 @@
 {
   "paperId": "2023-09-l2",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-09-l2"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
     "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
     "shaVerified": true,
-    "fetchedAt": "2026-10-25"
+    "fetchedAt": "2026-10-25",
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-09-l2/source.pdf",
+    "pages": {
+      "total": 10,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    }
   },
   "answerTable": {
     "location": "单选答案表 p.1 顶部；判断答案表 p.7「2 判断题」标题下方",
@@ -23,273 +25,855 @@
     {
       "id": 1,
       "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "我国第一台大型通用电子数字计算机为104机，采用电子管作为主要逻辑部件，故选D。旧解析误写为103机，须区分小型与大型通用机。晶体管、集成电路及大规模集成电路属于后续主要技术阶段。计算机发展代际的时间划分常为概略区间，判断本题应以具体机器的逻辑元件为依据。"
     },
     {
       "id": 2,
       "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false,
-      "dimensions": [
-        "statement"
-      ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
-      ],
-      "findings": "官方题干仅「下列流程图的输出结果是（ ）？」11 个汉字（流程图为图片，x=5,y=12 硬编码在图中）。题库题干把图内容改写进文字（「如果输入的 x 和 y 分别是 5 和 12…」）。审计残留 miss 属结构性假阴性：官方题干不足 14 字，探针窗口必然溢出到选项文本。",
-      "fix": "题干改为自包含流程图文字描述（开始→x=5,y=12→判断 x>y：是则 a=x、b=y；否则 a=y、b=x→输出 a、b），解析按官方图重写（5>12 为假走否分支，输出 12 5=B）。官方答案 B 一致。",
-      "evidence": "tmp/verify/2023-09-l2/pg1-01.png",
       "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "流程图先令x=5、y=12，再判断x>y。5>12为假，走否分支，分别把y赋给a、x赋给b，因此a=12、b=5，输出12 5，选B。原图没有修改x、y，也没有在分支执行后再次判断，须顺着箭头走到同一输出框，不能把是分支的赋值结果当成实际结果。"
     },
     {
       "id": 3,
       "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "通常先比较a、b大小，再根据比较结果选择其中一个值，属于分支结构，选C。顺序结构按步骤执行，循环用于重复处理，goto等跳转语句不属于这里要考查的常用二选一结构。题目问“通常”，不需要声称所有能求较大值的程序都必须在源码中显式出现if。"
     },
     {
       "id": 4,
       "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "continue、break、goto是语言关键字，分别用于继续下一轮、退出循环或switch、跳到标签。cout是标准库iostream中声明的标准输出流对象，并非语言关键字，所以选B。它属于std命名空间。endl则是流操纵器，也不能把所有常见输出相关名称都称为库对象或关键字。"
     },
     {
       "id": 5,
       "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "先进行浮点除法，-123.123/10约为-12.3123，再用int转换为整数，在可表示范围内向零截断，结果为-12，选D。向零截断不同于向负无穷取整，后者才会得到-13。转换作用于括号内整个除法结果，不能先把原数转换后忽略除以10这一操作。"
     },
     {
       "id": 6,
       "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "从N递减到1逐个判断N%i是否为0，可以按从大到小的顺序输出全部正因子，因此选C。条件i>0包含1又避免除数为0，N自身也会输出。B方向相反且漏N，D漏1。A只给空的for头，没有声明题中使用的i，不能直接说它是一个可运行的无限循环。"
     },
     {
       "id": 7,
       "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2,
+        3
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "原卷下标从1到N，主对角线上行号与列号相等，因此填i==j，选D。j!=j始终为假，i>=j会把对角线下方也置1。i=j是赋值，会改变外层循环变量并把赋值结果当真假值，不能判断位置相等。原代码没有给内层for加花括号，它控制的仍是完整if/else语句。"
     },
     {
       "id": 8,
       "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "原卷从2检查到N-1。发现因子时输出非质数，并应立即break退出循环。此时i<N，循环后的i==N为假，不会再输出是质数。若一直没有因子，循环正常结束时i=N，输出是质数。故选A。continue会继续检查，可能重复输出，exit只是函数名而不是合法调用，return会退出所在函数，不能替代此处的循环退出逻辑。"
     },
     {
       "id": 9,
       "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "i依次为2、3、4、5、6、7、8。只有i=3时9%i为0，其余6次余数非零，都输出1#。循环之后另输出0并换行，完整结果为1#1#1#1#1#1#0，选D。这里判断的是余数非零，正好与通常找整除因子的条件相反，不能把每轮都当成输出。"
     },
     {
       "id": 10,
       "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "按原卷外层i=1..8，内层j从1开始、步长2且严格小于i，各轮执行次数为0、1、1、2、2、3、3、4，相加得到16，选A。题库原来改成i<8、j<=i虽然碰巧总次数相同，但循环边界已改变，应恢复原题再分析，不能用输出相同代替题面核对。"
     },
     {
       "id": 11,
       "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "原卷外层i为1、4、7、10。i=1时内层不执行，i=4或10时第一个j=1就使乘积为偶数，break退出内层。i=7时j=1、3、5的乘积均为奇数，分别让cnt加1，所以最终为3，选B。break只退出内层循环，外层仍继续更新并检查后续i。"
     },
     {
       "id": 12,
       "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false,
+      "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        4,
+        5
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q12 explanation 升级；答案未改"
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "x从1开始每次加2。x=3、9时能被3整除，分别输出3,和9,。到x=11时不能被3整除，但x/10=1非零，进入else if并break，此轮不再加2。循环后输出当前x=11，所以完整结果为3,9,11，选B。两个分支属于同一if/else链，输出3或9后不会再判断else if。"
     },
     {
       "id": 13,
       "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "每行内层j从0开始，j%3按0、1、2重复。加字符A后得到A、B、C的编码，再显式转换成char，cout才按字符输出，所以选D。A、B用整除使字母每3个位置才变化，C虽然余数周期正确，但算术结果是int，会输出编码数字。行与行之间j重新从0开始，因此每行都以A开头。"
     },
     {
       "id": 14,
       "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false,
-      "dimensions": [
-        "statement"
-      ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
-      ],
-      "findings": "题库题干「输入行数 lineCount，输出金字塔图形」与官方「输入行数，约定 1 ≤ lineCount ≤ 9，输出以下图形」有差异；官方的 1≤lineCount≤9 是公式图片、文本层丢失。代码与选项一致。",
-      "fix": "恢复官方题干并把公式转写为文本「约定 1 ≤ lineCount ≤ 9，输出以下数字金字塔图形」。审计残留 miss 属公式图片假阴性（文本层无约束式，探针窗口被转写文本隔断）。官方答案 A 一致（(lineCount-i-1)*2 空格）。",
-      "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
       "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        5,
+        6
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "第i行从0编号，数字部分宽度为4*i+2个输出字符，上一层与下一层相差4个字符，居中时左缩进每行减少2个空格。末行i=lineCount-1应为0个前导空格，因此应填(lineCount-i-1)*2，选A。其他选项或让末行仍有缩进，或每层只减少1个空格，无法与示意图对齐。"
     },
     {
       "id": 15,
       "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false,
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
         "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看",
-        "代码逻辑验证"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        6
       ],
-      "findings": "整题错位：题库为仿写题「判断 M 是否为 N 的相关数」，官方 Q15 是「班级成绩统计」题——while 横线填入循环条件，选项 true/false/True/False。题库答案 A 恰与官方字母撞车。",
-      "fix": "按官方 p.6 渲染图整题重建：官方题干+代码（totalScore/studCount 累加，score<0 break）+官方选项。官方答案 A(true)：恒真循环由 break 退出；True/False 不是 C++ 关键字。解析全部重写。",
-      "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
-      "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "人数未知，应持续读取到负成绩，再由break退出，while条件填小写true，选A。负数在累加与人数增加之前就被排除，平均值用double总分除以人数得到。false使循环一次不执行，True、False不是C++布尔字面量。按正常输入成功且至少一个有效成绩的场景使用，否则还需要处理流失败或人数为0。"
     },
     {
       "id": 16,
       "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "互联网由分布在全球、彼此互联的许多网络构成，覆盖范围属于广域网络范畴。它跨越多个国家和地区，由多方分工建设与运行，不能把整个互联网归为某一个国家所有，因此原判断正确。具体国家和机构仍可拥有或管理其中的网络基础设施，这与整体跨地域互联的性质并不冲突。"
     },
     {
       "id": 17,
       "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "神威·太湖之光采用我国研制的处理器，在2016至2017年的TOP500榜单中连续多次位居第一，符合题目所述“多次荣膺榜首”，判断正确。这里是历史成就陈述，应核对对应年份的榜单记录，不能用当前排名替代，也不能把历史第一解释为此后始终保持第一。"
     },
     {
       "id": 18,
       "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "7.8是double字面量，整数2经过通常算术转换后参与浮点除法，表达式类型为double，数学值为3.9。因此原判断虽然数值描述符合题意，但把类型写成float，整体错误。二进制浮点表示可能存在细小舍入误差，这不改变字面量及运算结果的静态类型。"
     },
     {
       "id": 19,
       "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "逻辑或||的结果类型为bool，左侧2*3=6非零，条件为真，右侧甚至可以因短路而不求值。结果为true，默认cout显示为1，并非把6与7拼成67，因此判断错误。逻辑运算与算术加法、字符串拼接是不同操作，不能把两个操作数的显示形式串接来求值。"
     },
     {
       "id": 20,
       "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "逗号表达式从左到右求值，并以末项为结果。每轮先令m=3*n，再求m+1但不保存，最终把m-1赋给n。n依次由1变为2、5、14，此时n<9为假，结束后n=14为偶数，因此判断正确。内层的m+1不会自动更新m，也不会成为外层逗号表达式的最终结果。"
     },
     {
       "id": 21,
       "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "正确范围判断需要a>=5与a<=10同时成立。连续比较5<=a<=10会先算5<=a得到bool的0或1，再与10比较，两种结果都小于等于10。例如a=0时前式为假，后式仍为真，足以否定“总是相同”，判断错误。C++不把连续比较解释成数学区间记号。"
     },
     {
       "id": 22,
       "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原卷外层条件为i<10，循环体里和for更新处各把i加1，实际进入循环时i为1、3、5、7、9，共5轮，每轮cnt只加1，最终输出5。因此所称输出10错误。最后一轮结束后i变为11，不再满足条件。必须同时考虑循环体修改和迭代表达式，不能只看for头部。"
     },
     {
       "id": 23,
       "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": true,
-      "note": "题干代码与原卷不符（题库为 i <= 100，原卷为 i < 100），按原卷还原代码并将 answer 由 √ 改为 ×（原卷代码输出 -100 非 0），解析重写。"
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "累加项是-100、-98、……、98，共100个偶数，右端不包括100。除了-100外其余正负项可抵消，最终为-100，所以“输出0”的判断错误。也可用等差数列公式100*(-100+98)/2=-100验证。若把边界误看成小于等于100，才会得到对称的0。"
     },
     {
       "id": 24,
       "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": true,
-      "note": "题干代码与原卷不符（题库为 i <= 10，原卷为 i < 10），按原卷还原代码并将 answer 由 √ 改为 ×（原卷代码输出 20 非 30），解析重写。"
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "循环变量依次为0、2、4、6、8，到了10后条件i<10为假，因此和为20，原判断错误。30对应把10也计入的情形，但原卷严格排除10。步长为2不是逐个整数累加，也不是迭代了10轮，明确列出参与求和的数就能避免边界误算。"
     },
     {
       "id": 25,
       "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "C++提供变量、表达式、条件、循环、函数、类与模板等语言抽象，属于高级程序设计语言，因此判断正确。“高级”描述抽象层次，不是评价程序员水平或学习难度。机器语言面向具体机器指令，汇编用助记符表示指令，C++源程序则通常通过编译构建后运行。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7,
+        8,
+        9
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": "用从0开始的行列下标，主对角线满足i==j，副对角线满足i+j==N-1。任一条件成立就输出加号，否则输出减号，每行完成后换行。奇数阶中心同时满足两条件，仍只输出一个加号。N为5..49内奇数，逐项打印N²个字符，时间O(N²)、额外空间O(1)。可用独立构造对角线位置集合检查全域输出，无需改动参考程序。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        9,
+        10
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": "每轮把三个数位升序排列，分别组成最小数与最大数，相减后更新状态并计数。输入已为495时直接输出0。含0时最小排列可能以0开头，按数值计算即可，例如013表示13，仍要保持三数位的位置含义。原题要求各位互异，112不属于合法输入。样例352依次到297、693、594、495，共4步。排序实现与原卷六种排列分支在合法域内等价，空间O(1)。"
     }
   ],
   "unresolved": [],
-  "summary": {
-    "singleMatch": true,
-    "judgeModified": 2
-  },
-  "answerKey": "单选答案串 D B C B D C D A D A B B D A A，题库 15/15 一致（含重建的 Q15）；判断题答案表（矢量图，300dpi 渲染读图）√ √ × × √ × × × × √ 与题库 10/10 一致。"
+  "supplementarySources": [
+    {
+      "questionId": 1,
+      "url": "https://ict.cas.cn/liguojiewenxuan_162523/wzlj/lgjkp/201912/t20191227_5476779.html",
+      "note": "中科院计算所资料区分103小型机与104大型通用电子管计算机。"
+    },
+    {
+      "questionId": 17,
+      "url": "https://top500.org/lists/top500/2017/11/highlights/",
+      "note": "历史榜单记录神威太湖之光第一。"
+    }
+  ],
+  "notes": "AI-Codex对照登记mirror PDF全部10页文本和渲染，Git blob SHA 4987bf68cca3f221e76edf1834cf98ee4a91acc0一致。恢复原卷程序与图示，25题answer保持，两份参考程序及模板另行GNU C++17编译运行。",
+  "history": [
+    {
+      "paperId": "2023-09-l2",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2023-09-l2"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+        "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-25"
+      },
+      "answerTable": {
+        "location": "单选答案表 p.1 顶部；判断答案表 p.7「2 判断题」标题下方",
+        "content": {
+          "single": "DBCBDCDADABBDAA",
+          "judge": "√√××√××××√"
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "type": "single",
+          "official": "D",
+          "bank": 3,
+          "modified": false
+        },
+        {
+          "id": 2,
+          "type": "single",
+          "official": "B",
+          "bank": 1,
+          "modified": false,
+          "dimensions": [
+            "statement"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看",
+            "代码逻辑验证"
+          ],
+          "findings": "官方题干仅「下列流程图的输出结果是（ ）？」11 个汉字（流程图为图片，x=5,y=12 硬编码在图中）。题库题干把图内容改写进文字（「如果输入的 x 和 y 分别是 5 和 12…」）。审计残留 miss 属结构性假阴性：官方题干不足 14 字，探针窗口必然溢出到选项文本。",
+          "fix": "题干改为自包含流程图文字描述（开始→x=5,y=12→判断 x>y：是则 a=x、b=y；否则 a=y、b=x→输出 a、b），解析按官方图重写（5>12 为假走否分支，输出 12 5=B）。官方答案 B 一致。",
+          "evidence": "tmp/verify/2023-09-l2/pg1-01.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 3,
+          "type": "single",
+          "official": "C",
+          "bank": 2,
+          "modified": false
+        },
+        {
+          "id": 4,
+          "type": "single",
+          "official": "B",
+          "bank": 1,
+          "modified": false
+        },
+        {
+          "id": 5,
+          "type": "single",
+          "official": "D",
+          "bank": 3,
+          "modified": false
+        },
+        {
+          "id": 6,
+          "type": "single",
+          "official": "C",
+          "bank": 2,
+          "modified": false
+        },
+        {
+          "id": 7,
+          "type": "single",
+          "official": "D",
+          "bank": 3,
+          "modified": false
+        },
+        {
+          "id": 8,
+          "type": "single",
+          "official": "A",
+          "bank": 0,
+          "modified": false
+        },
+        {
+          "id": 9,
+          "type": "single",
+          "official": "D",
+          "bank": 3,
+          "modified": false
+        },
+        {
+          "id": 10,
+          "type": "single",
+          "official": "A",
+          "bank": 0,
+          "modified": false
+        },
+        {
+          "id": 11,
+          "type": "single",
+          "official": "B",
+          "bank": 1,
+          "modified": false
+        },
+        {
+          "id": 12,
+          "type": "single",
+          "official": "B",
+          "bank": 1,
+          "modified": false,
+          "dimensions": [
+            "explanation"
+          ],
+          "resolved": true,
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q12 explanation 升级；答案未改"
+        },
+        {
+          "id": 13,
+          "type": "single",
+          "official": "D",
+          "bank": 3,
+          "modified": false
+        },
+        {
+          "id": 14,
+          "type": "single",
+          "official": "A",
+          "bank": 0,
+          "modified": false,
+          "dimensions": [
+            "statement"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看"
+          ],
+          "findings": "题库题干「输入行数 lineCount，输出金字塔图形」与官方「输入行数，约定 1 ≤ lineCount ≤ 9，输出以下图形」有差异；官方的 1≤lineCount≤9 是公式图片、文本层丢失。代码与选项一致。",
+          "fix": "恢复官方题干并把公式转写为文本「约定 1 ≤ lineCount ≤ 9，输出以下数字金字塔图形」。审计残留 miss 属公式图片假阴性（文本层无约束式，探针窗口被转写文本隔断）。官方答案 A 一致（(lineCount-i-1)*2 空格）。",
+          "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 15,
+          "type": "single",
+          "official": "A",
+          "bank": 0,
+          "modified": false,
+          "dimensions": [
+            "statement",
+            "options",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看",
+            "代码逻辑验证"
+          ],
+          "findings": "整题错位：题库为仿写题「判断 M 是否为 N 的相关数」，官方 Q15 是「班级成绩统计」题——while 横线填入循环条件，选项 true/false/True/False。题库答案 A 恰与官方字母撞车。",
+          "fix": "按官方 p.6 渲染图整题重建：官方题干+代码（totalScore/studCount 累加，score<0 break）+官方选项。官方答案 A(true)：恒真循环由 break 退出；True/False 不是 C++ 关键字。解析全部重写。",
+          "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-27",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 16,
+          "type": "judge",
+          "official": "√",
+          "bank": 0,
+          "modified": false
+        },
+        {
+          "id": 17,
+          "type": "judge",
+          "official": "√",
+          "bank": 0,
+          "modified": false
+        },
+        {
+          "id": 18,
+          "type": "judge",
+          "official": "×",
+          "bank": 1,
+          "modified": false
+        },
+        {
+          "id": 19,
+          "type": "judge",
+          "official": "×",
+          "bank": 1,
+          "modified": false
+        },
+        {
+          "id": 20,
+          "type": "judge",
+          "official": "√",
+          "bank": 0,
+          "modified": false
+        },
+        {
+          "id": 21,
+          "type": "judge",
+          "official": "×",
+          "bank": 1,
+          "modified": false
+        },
+        {
+          "id": 22,
+          "type": "judge",
+          "official": "×",
+          "bank": 1,
+          "modified": false
+        },
+        {
+          "id": 23,
+          "type": "judge",
+          "official": "×",
+          "bank": 1,
+          "modified": true,
+          "note": "题干代码与原卷不符（题库为 i <= 100，原卷为 i < 100），按原卷还原代码并将 answer 由 √ 改为 ×（原卷代码输出 -100 非 0），解析重写。"
+        },
+        {
+          "id": 24,
+          "type": "judge",
+          "official": "×",
+          "bank": 1,
+          "modified": true,
+          "note": "题干代码与原卷不符（题库为 i <= 10，原卷为 i < 10），按原卷还原代码并将 answer 由 √ 改为 ×（原卷代码输出 20 非 30），解析重写。"
+        },
+        {
+          "id": 25,
+          "type": "judge",
+          "official": "√",
+          "bank": 0,
+          "modified": false
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "unresolved": [],
+      "summary": {
+        "singleMatch": true,
+        "judgeModified": 2
+      },
+      "answerKey": "单选答案串 D B C B D C D A D A B B D A A，题库 15/15 一致（含重建的 Q15）；判断题答案表（矢量图，300dpi 渲染读图）√ √ × × √ × × × × √ 与题库 10/10 一致。"
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 674,
+    "objectiveCaseCount": 20,
+    "templateCompileCount": 2,
+    "diagnosticCount": 0,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-09-l2/programming-run.json"
+  }
 }
