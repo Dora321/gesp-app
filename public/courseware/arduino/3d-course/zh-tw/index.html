@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-Hant-TW" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Arduino 入門：給初學者的互動式 3D 課程</title>
+    <meta name="description" content="在互動式 3D 開發板上學習 Arduino：連接 LED、按鈕、感測器、馬達和伺服馬達，然後執行程式碼，看它運作。16 堂免費的入門課程。" />
+    <meta name="author" content="Dilum Sanjaya" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6eddd" />
+    <meta name="color-scheme" content="light" />
+    <meta name="application-name" content="Learn Arduino" />
+    <meta name="apple-mobile-web-app-title" content="Learn Arduino" />
+    <link rel="icon" href="../favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
+
+    <!-- link previews (Open Graph, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Learn Arduino" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:title" content="Arduino 入門：互動式 3D 課程" />
+    <meta property="og:description" content="在 3D Arduino Uno 上連接 LED、按鈕、感測器、馬達和伺服馬達，然後執行程式碼，看它運作。16 堂免費的入門課程。" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@DilumSanjaya" />
+    <link rel="canonical" href="./" />
+    <link rel="alternate" hreflang="en" href="../en/" />
+    <link rel="alternate" hreflang="es" href="../es/" />
+    <link rel="alternate" hreflang="pt" href="../pt/" />
+    <link rel="alternate" hreflang="fr" href="../fr/" />
+    <link rel="alternate" hreflang="de" href="../de/" />
+    <link rel="alternate" hreflang="it" href="../it/" />
+    <link rel="alternate" hreflang="tr" href="../tr/" />
+    <link rel="alternate" hreflang="id" href="../id/" />
+    <link rel="alternate" hreflang="zh-Hans" href="../zh/" />
+    <link rel="alternate" hreflang="zh-Hant-TW" href="../zh-tw/" />
+    <link rel="alternate" hreflang="ja" href="../ja/" />
+    <link rel="alternate" hreflang="ko" href="../ko/" />
+    <link rel="alternate" hreflang="hi" href="../hi/" />
+    <link rel="alternate" hreflang="he" href="../he/" />
+    <link rel="alternate" hreflang="x-default" href="../" />
+    <meta property="og:url" content="./" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="pt_BR" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="it_IT" />
+    <meta property="og:locale:alternate" content="tr_TR" />
+    <meta property="og:locale:alternate" content="id_ID" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:locale:alternate" content="ko_KR" />
+    <meta property="og:locale:alternate" content="hi_IN" />
+    <meta property="og:locale:alternate" content="he_IL" />
+    <meta property="og:image" content="../og-image-zh-tw.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="一塊插圖風格的 3D Arduino Uno，透過麵包板連接著一個距離感測器和一個紅綠燈，前面停著一輛玩具車" />
+    <meta name="twitter:image" content="../og-image-zh-tw.png" />
+    <meta name="twitter:image:alt" content="一塊插圖風格的 3D Arduino Uno，透過麵包板連接著一個距離感測器和一個紅綠燈，前面停著一輛玩具車" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":["WebApplication","LearningResource"],"name":"Arduino 入門","url":"./","description":"在互動式 3D 開發板上學習 Arduino：連接 LED、按鈕、感測器、馬達和伺服馬達，然後執行程式碼，看它運作。16 堂免費的入門課程。","image":"../og-image-zh-tw.png","applicationCategory":"EducationalApplication","operatingSystem":"Any (runs in a web browser with WebGL)","browserRequirements":"Requires JavaScript and WebGL.","inLanguage":"zh-Hant-TW","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"educationalLevel":"Beginner","learningResourceType":"Interactive lesson","teaches":["認識開發板","讓 LED 閃爍","按下按鈕","轉動旋鈕","混合顏色","感知光線","讀取感測器","發出聲音","迷你鋼琴","控制馬達","感知溫度","讓伺服馬達擺動","轉動轉盤","智慧植物","感受壓力","動手做專案"],"about":["Arduino","Electronics","Microcontrollers","Programming"],"author":{"@type":"Person","name":"Dilum Sanjaya","url":"https://x.com/DilumSanjaya"}}</script>
+    <!-- linked here rather than imported from main.js, so the first paint
+         (the loading screen) is already styled, on the dev server too -->
+    <link rel="preload" href="../assets/barlow-semi-condensed-latin-600-normal-BkLiAYu4.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/barlow-semi-condensed-latin-500-normal-G0uxJNrM.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="module" crossorigin src="../assets/index-DOAqqu4h.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/index-Db24VE9E.css">
+  </head>
+  <body>
+    <!-- Covers the page until the board is built and every lesson card has
+         its picture (src/ui/loader.js) -->
+    <div class="loader" id="loader" role="status" aria-live="polite">
+      <div class="loader-inner">
+        <svg class="loader-logo" viewBox="0 0 92 50" aria-hidden="true">
+          <path class="loop" d="M24 6.5a18.5 18.5 0 1 0 0 37c8.7 0 13.4-6.6 22-18.5S59.3 6.5 68 6.5a18.5 18.5 0 1 1 0 37c-8.7 0-13.4-6.6-22-18.5S32.7 6.5 24 6.5z" />
+          <path class="sign" d="M15.5 25h12M62 25h12M68 19v12" />
+        </svg>
+        <p class="loader-title">Arduino 入門</p>
+        <div class="loader-track" aria-hidden="true"><span class="loader-fill"></span><span class="loader-shine"></span></div>
+        <p class="loader-step">載入中</p>
+        <noscript>
+          <style>.loader{overflow:auto}.loader-track,.loader-step{display:none}</style>
+          <div class="noscript">
+            <p>在瀏覽器中學習的互動式 3D 課程。請開啟 JavaScript 後開始。</p>
+            <ol class="noscript-lessons"><li><b>1. 認識開發板</b> — Arduino Uno 是一款很受歡迎的微控制器開發板，基於 ATmega328P。</li><li><b>2. 讓 LED 閃爍</b> — 你的第一個電路：麵包板上的一個 LED 和一個電阻，由腳位 13 驅動。</li><li><b>3. 按下按鈕</b> — 輸入讓開發板能感知外界。</li><li><b>4. 轉動旋鈕</b> — 可變電阻是帶滑動端的電阻。</li><li><b>5. 混合顏色</b> — RGB LED 是裝在同一個乳白色燈罩裡的三個 LED：紅、綠、藍。</li><li><b>6. 感知光線</b> — 光敏電阻（LDR）受到的光越多，導電越好。</li><li><b>7. 讀取感測器</b> — HC-SR04 發出一串超音波，然後聽回聲。</li><li><b>8. 發出聲音</b> — 壓電蜂鳴器在腳位每切換一次時就「咔」一聲。</li><li><b>9. 迷你鋼琴</b> — 八個按鍵加一個蜂鳴器，就是一架能彈的鋼琴。</li><li><b>10. 控制馬達</b> — 腳位本身推不動馬達，所以由電晶體來扛重活。</li><li><b>11. 感知溫度</b> — TMP36 把溫度變成電壓：0 °C 時 0.5 V，每升高一度多 10 mV。</li><li><b>12. 讓伺服馬達擺動</b> — 伺服馬達是知道自己位置的馬達。</li><li><b>13. 轉動轉盤</b> — 步進馬達按精確的步數轉動，這一款轉一整圈是 2048 步。</li><li><b>14. 智慧植物</b> — 插在土裡的電容式感測器告訴你土壤有多濕，一塊小小的 OLED 螢幕把它變成百分比和表情。</li><li><b>15. 感受壓力</b> — 壓力感測器（FSR）是一片薄薄的墊子，按下去時它的電阻會從幾百萬歐姆降到幾百歐姆。</li><li><b>16. 動手做專案</b> — 把學過的都用上：距離感測器盯著障礙物，紅綠燈告訴司機什麼時候該停。</li></ol>
+          </div>
+        </noscript>
+      </div>
+    </div>
+
+    <!-- inert (not hidden) while the loading screen covers it -->
+    <div id="app" class="artboard" inert>
+      <svg class="traces" id="traces" aria-hidden="true"></svg>
+
+      <!-- Sidebar -->
+      <nav class="sidebar" aria-label="主要內容">
+        <button class="side-toggle" aria-label="展開側邊欄" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path d="M9 5.5 15.5 12 9 18.5" /></svg>
+        </button>
+        <ul class="side-nav">
+          <li class="is-active">
+            <a href="#" data-nav="home" aria-label="首頁" title="首頁">
+              <svg viewBox="0 0 32 32" class="fill"><path d="M16 4.2 3.6 15.1c-.7.6-.3 1.7.6 1.7H6v9.4c0 1 .8 1.8 1.8 1.8h5.4v-7.3h5.6V28h5.4c1 0 1.8-.8 1.8-1.8v-9.4h1.8c.9 0 1.3-1.1.6-1.7z" /></svg>
+              <span class="side-label">首頁</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="lessons" aria-label="課程" title="課程">
+              <svg viewBox="0 0 32 32"><path d="M16 9.2C13.4 7.3 9.6 6.6 5 6.8v17.6c4.6-.2 8.4.5 11 2.4 2.6-1.9 6.4-2.6 11-2.4V6.8c-4.6-.2-8.4.5-11 2.4zM16 9.2v17.6" /><path d="M3 9.4v17.4c5-.4 9.6.2 13 2.2 3.4-2 8-2.6 13-2.2V9.4" /></svg>
+              <span class="side-label">課程</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="parts" aria-label="元件" title="元件">
+              <svg viewBox="0 0 32 32"><rect x="8.5" y="8.5" width="15" height="15" rx="1.6" /><rect x="12" y="12" width="8" height="8" rx=".6" class="fill" /><path d="M12.5 4v4.5M16 4v4.5M19.5 4v4.5M12.5 23.5V28M16 23.5V28M19.5 23.5V28M4 12.5h4.5M4 16h4.5M4 19.5h4.5M23.5 12.5H28M23.5 16H28M23.5 19.5H28" /></svg>
+              <span class="side-label">元件</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="run" aria-label="執行模擬" title="執行模擬">
+              <svg viewBox="0 0 32 32"><rect x="4.5" y="6.5" width="23" height="19" rx="1.5" /><path d="m13.5 11.6 7 4.4-7 4.4z" class="fill" /></svg>
+              <span class="side-label">模擬器</span>
+            </a>
+          </li>
+          <li class="is-muted">
+            <a href="#" data-nav="settings" aria-label="設定" title="設定">
+              <svg viewBox="0 0 32 32" class="fill"><path d="M18.3 3.5h-4.6l-.7 3.4a9.7 9.7 0 0 0-2.6 1.5L7.1 7.3 4.8 11.2l2.6 2.3a9.9 9.9 0 0 0 0 3l-2.6 2.3 2.3 3.9 3.3-1.1c.8.6 1.7 1.1 2.6 1.5l.7 3.4h4.6l.7-3.4c.9-.4 1.8-.9 2.6-1.5l3.3 1.1 2.3-3.9-2.6-2.3a9.9 9.9 0 0 0 0-3l2.6-2.3-2.3-3.9-3.3 1.1c-.8-.6-1.7-1.1-2.6-1.5zM16 11.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6z" /></svg>
+              <span class="side-label">設定</span>
+            </a>
+          </li>
+          <!-- the page's language, one click away where there's room for it
+               (it's in Settings too); src/ui/sidebar.js fills in its name -->
+          <li class="is-muted side-lang">
+            <a href="#" data-nav="language" aria-label="語言" title="語言">
+              <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11.5" /><ellipse cx="16" cy="16" rx="5.2" ry="11.5" /><path d="M4.5 16h23M6.2 10.2h19.6M6.2 21.8h19.6" /></svg>
+              <span class="side-code" aria-hidden="true"></span>
+              <span class="side-label"></span>
+            </a>
+          </li>
+        </ul>
+        <a class="credit credit-side" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="設計：x.com/DilumSanjaya">
+          <span class="credit-text"><small>設計</small><b>x.com/DilumSanjaya</b></span>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+        </a>
+      </nav>
+      <aside class="flyout" id="flyout" aria-live="polite"></aside>
+
+      <!-- Brand -->
+      <header class="brand">
+        <svg class="brand-logo" viewBox="0 0 92 50" aria-hidden="true">
+          <path class="loop" d="M24 6.5a18.5 18.5 0 1 0 0 37c8.7 0 13.4-6.6 22-18.5S59.3 6.5 68 6.5a18.5 18.5 0 1 1 0 37c-8.7 0-13.4-6.6-22-18.5S32.7 6.5 24 6.5z" />
+          <path class="sign" d="M15.5 25h12M62 25h12M68 19v12" />
+        </svg>
+        <span class="brand-rule" aria-hidden="true"></span>
+        <div class="brand-text">
+          <h1>Arduino 入門</h1>
+          <p>探索 <i>·</i> 理解 <i>·</i> 動手</p>
+        </div>
+      </header>
+
+      <!-- Stage: three.js board + callouts -->
+      <main class="stage" id="stage">
+        <canvas id="board-canvas" aria-label="互動式 3D 檢視。拖曳或用 WASD 平移，Q 和 E 旋轉，滾輪縮放。"></canvas>
+        <svg class="leaders" id="leaders" aria-hidden="true"></svg>
+        <div class="rig" id="rig"></div>
+        <div class="tags" id="tags"></div>
+        <div class="signals" id="signals" aria-hidden="true"></div>
+        <svg class="insp-lines" id="insp-lines" aria-hidden="true"></svg>
+        <div class="inspector" id="inspector" role="dialog" aria-label="元件檢查器"></div>
+        <section class="schematic" id="schematic" aria-label="電路圖"></section>
+        <div class="tip" id="tip" role="tooltip"><b></b><span></span></div>
+
+        <div class="minimap" id="minimap" aria-label="小地圖：點選或拖曳來移動檢視">
+          <canvas></canvas>
+        </div>
+
+        <div class="viewbar" id="viewbar" role="toolbar" aria-label="3D 檢視">
+          <p class="view-hint">拖曳或 WASD 平移 · Q / E 旋轉 · 滾輪縮放</p>
+          <button data-view="left" title="向左轉（Q）" aria-label="向左轉">
+            <svg viewBox="0 0 24 24"><path d="M4.5 10.5A8 8 0 1 1 6 17" /><path d="M4 5v5.8h5.8" /></svg>
+          </button>
+          <button data-view="right" title="向右轉（E）" aria-label="向右轉">
+            <svg viewBox="0 0 24 24"><path d="M19.5 10.5A8 8 0 1 0 18 17" /><path d="M20 5v5.8h-5.8" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="out" title="縮小（−）" aria-label="縮小">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14" /></svg>
+          </button>
+          <button data-view="in" title="放大（+）" aria-label="放大">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="reset" class="compass" title="重置檢視（R）" aria-label="重置檢視">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><g class="compass-needle"><path d="M12 5.2 14.2 12h-4.4z" class="fill" /><path d="M12 18.8 9.8 12h4.4z" /></g></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="flow" class="toggle" title="電流流動（F）" aria-label="顯示電流流動" aria-pressed="false">
+            <svg viewBox="0 0 24 24"><path d="M2.5 15.5c4.2 0 5.3-7 9.5-7s5.3 7 9.5 7" /><circle cx="6.6" cy="13" r="1.7" class="fill" /><circle cx="12" cy="8.5" r="1.7" class="fill" /><circle cx="17.4" cy="13" r="1.7" class="fill" /></svg>
+          </button>
+          <button data-view="schematic" class="toggle" title="電路圖（C）" aria-label="顯示電路圖" aria-pressed="false">
+            <svg viewBox="0 0 24 24"><path d="M1.5 12h4.2l1.6-4 2.6 8 2.6-8 2.6 8 1.6-4h5.8" /></svg>
+          </button>
+        </div>
+      </main>
+
+      <!-- Top-right status -->
+      <section class="status" aria-label="進度">
+        <div class="progress-card">
+          <svg viewBox="0 0 40 40" class="progress-icon" aria-hidden="true"><path d="M20 10.6c-3.3-2.4-8.2-3.2-14-3v21.2c5.8-.2 10.7.6 14 3 3.3-2.4 8.2-3.2 14-3V7.6c-5.8-.2-10.7.6-14 3zM20 10.6v21.2" /><path d="M3 11v21c6.3-.5 12.6.2 17 2.6 4.4-2.4 10.7-3.1 17-2.6V11" /></svg>
+          <div class="progress-body">
+            <span class="progress-label">基礎</span>
+            <div class="progress-row">
+              <span class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="16" aria-valuenow="0"><span class="progress-fill" id="progress-fill"></span></span>
+              <span class="progress-count" id="progress-count">0/16</span>
+            </div>
+          </div>
+        </div>
+        <time class="clock" id="clock">
+          <span id="clock-date"></span>
+          <span id="clock-time"></span>
+        </time>
+      </section>
+
+      <!-- Right info panel -->
+      <section class="info-card" aria-label="課程資訊">
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" class="is-active">總覽</button>
+          <button role="tab" aria-selected="false">腳位圖</button>
+          <button role="tab" aria-selected="false">範例</button>
+          <button role="tab" aria-selected="false">規格</button>
+        </div>
+        <div class="info-body" role="tabpanel">
+          <button class="expand" aria-label="展開面板">
+            <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+          </button>
+          <div class="info-content"></div>
+        </div>
+      </section>
+
+      <!-- Code card -->
+      <section class="code-card" aria-label="動手試試" data-state="idle">
+        <header>
+          <h2>動手試試</h2>
+          <div class="code-actions">
+            <button class="btn-ghost btn-expand" aria-label="展開程式碼" title="展開程式碼" aria-expanded="false">
+              <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+            </button>
+            <button class="btn-ghost btn-copy" aria-label="複製程式碼" title="複製程式碼">
+              <svg viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12.5" rx="1.6" /><path d="M15.5 5.2V4.8c0-.9-.7-1.6-1.6-1.6H6.1c-.9 0-1.6.7-1.6 1.6v9.6c0 .9.7 1.6 1.6 1.6h.4" /></svg>
+            </button>
+            <button class="btn-run" aria-label="執行程式" title="執行程式（空白鍵）">
+              <svg viewBox="0 0 24 24"><path d="M7.5 4.8v14.4L19 12z" class="fill" /></svg>
+            </button>
+          </div>
+        </header>
+        <div class="code-wrap">
+          <pre class="code"><code></code></pre>
+          <div class="console">
+            <div class="console-grip" role="separator" aria-orientation="horizontal" aria-label="調整序列埠監控視窗大小" tabindex="-1"></div>
+            <div class="console-head">
+              <span class="console-dot"></span>
+              <span class="console-title">序列埠監控視窗</span>
+              <span class="console-status">已停止</span>
+              <button class="console-close" aria-label="停止程式">
+                <svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" /></svg>
+              </button>
+            </div>
+            <div class="console-lines" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lessons -->
+      <section class="lessons" aria-label="課程">
+        <h2>課程</h2>
+        <ol class="lesson-list" id="lesson-list"></ol>
+      </section>
+
+      <!-- Footer (compact layout; the wide layout keeps these in the side nav) -->
+      <footer class="app-foot">
+        <a class="credit credit-row" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="設計：x.com/DilumSanjaya">
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <span class="credit-text"><small>設計</small><b>x.com/DilumSanjaya</b></span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
