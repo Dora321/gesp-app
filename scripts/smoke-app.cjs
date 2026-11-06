@@ -166,7 +166,7 @@ async function run() {
   const directQuestionBankStart = requestUrls.length;
   await page.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
   await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
-  await page.getByText('五项均已核验', { exact: true }).waitFor({ timeout: 10000 });
+  await page.getByRole('main').getByText('五项均已核验', { exact: true }).waitFor({ timeout: 10000 });
   await page.getByText('已有核验进展', { exact: true }).waitFor({ timeout: 10000 });
   await page.getByText('尚无可用核验记录', { exact: true }).waitFor({ timeout: 10000 });
   await page.getByText(/一级真题列表/).waitFor({ timeout: 10000 });
