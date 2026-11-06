@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T06:14:19.502Z",
+  "generatedAt": "2026-11-06T06:30:21.658Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -1663,22 +1663,41 @@
         "options": "partial",
         "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "unverified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 6,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "9": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "10": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "12": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "13": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "16": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "18": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"
@@ -1700,26 +1719,42 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
+        "statement": "partial",
         "options": "partial",
         "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "unverified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-25",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 5,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "5": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "12": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "13": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "17": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "19": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"

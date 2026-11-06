@@ -1,20 +1,18 @@
 {
   "paperId": "2024-09-l3",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2024-09-l3"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
     "pages": {
-      "singleAnswerTable": "p.1",
-      "judgeAnswerTable": "p.5"
-    }
+      "total": 8,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-09-l3/source.pdf"
   },
   "answerTable": {
     "single": {
@@ -29,147 +27,710 @@
   },
   "questions": [
     {
-      "id": 9,
+      "id": 1,
+      "type": "single",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
-        "options"
+        "options",
+        "answer",
+        "explanation"
       ],
-      "method": [
-        "官方PDF对照",
-        "代码逻辑验证"
-      ],
-      "findings": "题库选项 D 被旧脚本改写为「a 的值变为 1011 1000（高位移出，低位补 0 后按 8 位观察应为 1011 1000）」——与选项 A 实质重复的畸形干扰项；官方 D 为「a 的值变为 0101 1100」。题干措辞也有差异（官方「a=1010 1110,a<<2,下面关于这个说法正确的是」）。",
-      "fix": "恢复官方题干与选项 D=0101 1100；解析 D 项改写为「左移 2 位、右移、循环移位都得不到该值」，C 项更正为循环左移 1 位的结果（官方 C=0101 1101 系最高位绕回）。官方答案 A 一致（1010 1110<<2 = 1011 1000，8 位截断）。",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "在本卷采用的常见IEEE二进制浮点实现中，0.9与0.1都不能精确表示，1.0减去存储的0.9后得到的值与存储的0.1不完全相同，因此输出Not equal，选B。程序可正常执行并进入else。本机以17位有效数字观察可见差值约为0.099999999999999978，不能以十进制数学恒等式直接判断浮点相等。实际比较近似结果时需依据任务误差范围选容差。"
+    },
+    {
+      "id": 2,
+      "type": "single",
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "按本卷带符号编码的术语，机器数包含符号信息，C正确。形式位串按无符号读出的数值与所代表真值不一定相同，负数就能反驳A。原码把符号位与数值的绝对值编码组合，不能简单说是符号位加真值。固定8位时−1的原码为10000001，反码为11111110，而D写成11111111，故不对。这里明确采用题目的带符号编码语境。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1–2",
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "八进制3703先按每位三比特展开为011 111 000 011，去掉最前导0后再每四位分组得到0111 1100 0011，即十六进制7C3，选A。按位权也可算3×512+7×64+0×8+3=1987，再验证0x7C3也是1987。分组方向从整数低位开始，不足四位在最高处补0，不能把八进制数码直接逐位替换成十六进制数码。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "0.8125等于13/16，也就是8/16+4/16+1/16，对应二进制小数点后的1/2、1/4、0/8、1/16，结果为0.1101，选D。也可连续乘2依次取整数位1、1、0、1。A的0.1110为0.875；其余长小数串不等于本题数值。这里分母是2的幂，所以能够用有限位二进制小数准确表示。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "C正确，因为23为二进制10111，10为01010，按位或为11111即31。A中22&01=0，而22&&01把两个非零数作逻辑与得到1，二者不同。B的23|11也是31而非30，D的23|01仍为23。前导0的01在这里是八进制1，数值不变，但不能据此把所有多位数字都当作二进制来算。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "2>>2为0，1>>1也为0，所以B正确。A分别为1和0，C的11^00为11而1^0为1，并不相同。在本机补码整数环境中~0为−1，D声称输出1也不正确。应区分按位异或与逻辑判断，表达式中的11按十进制字面量解释，不应因为邻近位运算符就自行改读成二进制3。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "函数以引用接收a与b，三条异或赋值会交换两个变量的值，所以C。初始5、10经第一步成为15、10，第二步成为15、5，第三步成为10、5。条件a!=b使相等值时无需执行，也保护两个引用指向同一对象的情形，不会把该对象异或成0。函数并非仅返回一次异或结果，也不涉及把一个数的高低位片段互换。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2–3",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "在本卷整数位模式解释下，~1的最低位为0，其余有效位为1，a与它按位与后只清除最低位，其他位保留，因此选C。对于非负a，相当于向下取最近的偶数，例如7变6；负补码值也可按位观察，但不能把任何按位与都概括为数值减小。表达式本身只计算结果，若要修改变量仍需要赋回。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "原表A对应把10101110左移两位后只保留低8位的结果10111000。但原题未给类型、位宽或截断，也没有赋值运算。若a是普通int且值为174，a<<2得到696，即二进制1010111000，单独求表达式还不会改变a。保留官方A并隔离，等待明确8位截断及赋回约定，不能在解析中默默补上这些前提来认证原题。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "result由123&1得到1。第二段先将−1转成unsigned int的最大值，再按通常算术转换求与，结果取决于long的位宽。本机Windows的long和unsigned int均为32位，最终得到−123，与官方D一致；若signed long为64位且能表示所有32位无符号值，则第二项为4294967173。保留D并隔离，实际另用固定宽度类型模型验证差别，不把本机结果推广为所有平台保证。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "第k阶段持续k天，每天浇水k次，阶段总次数为k²。前13阶段共1+2+…+13=91天，次数为1²+2²+…+13²=819；还剩9天处于每天14次阶段，再加9×14=126，总共945，选D。不能把第100天简单对应每天100次，也不能把阶段的天数k漏掉。独立按日期构造每日次数序列可复核该累加结果。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3–4",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "选项C虽然循环i<10的边界正确，但循环体实际写成um=sum+a[i]，um没有声明，会编译失败。A/B/D均取到下标10，超出长度10数组的合法范围0..9，A还读取未初始化元素。四项原样均不能保证正确执行，官方C保留并隔离。旧库对C和D的实质改写已按原图恢复，去掉u笔误后的求和55只用于说明命题意图。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "数组长度10，合法元素下标0到9，原代码访问a[10]是越界读，C++对行为没有保证。它可能显示某个数，也可能异常，不能承诺程序必然输出“不确定的值”。保留官方D及原程序并隔离，等待来源表述澄清。本次只确认下标和长度关系，没有直接运行越界程序并把某次结果当作答案，也没有把下标偷偷改为9。"
     },
     {
       "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方PDF对照"
-      ],
-      "findings": "题干措辞与官方有差异（「其中 1 个是小偷」vs 官方「其中一个是小偷」、分行 vs 连排），导致探针窗口不命中。另解析 C 选项一行被旧脚本污染（混入「该项不符合题目限定…a[3] = {2, 1, 4, 3}」他卷乱码）。",
-      "fix": "题干按官方连排措辞对齐；清除解析污染文本。官方答案 C 一致（假设-验证：仅 C 为小偷时四人陈述自洽）。",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "假设C是小偷，A说不是我为真，B说是C为真，C说是D为假，D说C瞎说为真，恰好只有小偷C说假话，因此选C。换成A/B/D任一人为小偷，都不能同时满足四人的真假身份约束。可把小偷身份逐个枚举，并要求每人话语真值恰等于“此人不是小偷”，这比仅凭其中两句相互矛盾就直接猜身份更完整。"
+    },
+    {
+      "id": 15,
+      "type": "single",
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "4–5",
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "字符串Hello,CHAD的下标从0起，H、e、l、l、o、逗号、C、H、A、D分别位于0至9，A第一次出现于下标8，选B。find返回首次匹配的位置，区分大小写；若不存在才返回string::npos。本题原程序输出8并换行，不能把位置按日常第几个字符从1开始计数而选9，也不能把字符串总长度当作查找结果。"
     },
     {
       "id": 16,
       "type": "judge",
-      "official": "√",
-      "bank": "×(改前)",
-      "modified": true,
-      "fix": "answer 1→0，解析重写：+1 原码 00000001 与 -1 原码 10000001 直接按二进制相加（符号位参与）得 10000010，按原码解释为 -2，题干说法正确；独立推导与官方 √ 一致"
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "保留旧证据中的原码运算歧义。正确处理正负号的原码加法应使1+(−1)=0；若只把00000001与10000001直接作位串相加，再把10000010当原码读，才得到−2，这是不处理符号的直接相加模型。官方判正确保留，但原句未明确采用这一模型，继续隔离。不能把−2写成数学加法本身的结果，也不能清掉既有unresolved。"
     },
     {
       "id": 17,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在本卷通常采用的补码整数环境中，整数1的二进制有效低位为0001，按位取反得到全部高位1、最低位0，对应−2，原判断正确。本机实际输出~1为−2。这里讨论的是按位取反~，不是逻辑非!；逻辑非1则为0。表达式类型取决于整型提升后的操作数，不能由示意图画了几位就擅自缩短其存储类型。"
     },
     {
       "id": 18,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "11111110是−2补码的8位示意或~1结果的低8位，但C++整数常量1的类型为int，按位取反作用于整型提升后的完整类型。本机int为32位，完整结果是11111111111111111111111111111110，不能直接把未标位宽的等号右侧8位当作完整int表示。保留官方正确判断并隔离，待明确这是8位示意、低位截取还是完整类型结果。"
     },
     {
       "id": 19,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "按位模式解释，掩码00001111的最低四位为1，高位为0。X&Y保留X最低四位并清除其余位，原判断正确。输出数值是低四位组成的0到15，可用于提取半字节信息；掩码需在实际代码中写成合适的字面量如0x0F，而题目带空格的二进制串是图示，不是可直接粘贴的C++整数语法。"
     },
     {
       "id": 20,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "ASCII下char x=65初始为A，前一条x++已把它改成B；随后cout<<x++输出自增前的B，再把x改成C。因此声称输出A错误。后缀自增是先取当前表达式值再完成递增，但不能因此忽略之前那条独立自增语句。字符型的流输出显示字符本身，而不是直接显示其编码数字66。"
     },
     {
       "id": 21,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "字符串CHADai的C、H、A、D依次位于下标0、1、2、3，因此find('D')返回3，原判断正确。这里使用size_t保存string::find的位置类型，与题意一致；find区分大小写，不会把后面的小写字母误作大写D。位置从0编号，日常的第4个字符在程序下标中正是3，不应把两个计数口径混合。"
     },
     {
       "id": 22,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "数组a[10]={1}只显式初始化首项为1，其余元素自动补0。输出的是a[1]，即第二项，其值为0，所以原判断错误。若输出a[0]才会得到1，不能把唯一的初始化值当成所有元素的统一填充值。初始化列表与给数组所有元素填充相同数值是不同操作，后者需要遍历或其他填充方法。"
     },
     {
       "id": 23,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "变量a保存整数65，强制转换为char后，在题目采用的ASCII环境中对应字符A，原判断正确。cout接收char时按字符输出，接收未转换的int时则通常显示数字65，所以转换位置改变了输出重载的选择。不能把(char)a理解成将十进制文本65的首位字符拿出来，也没有字符串数值解析过程。"
     },
     {
       "id": 24,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "十六进制每位恰对应四个二进制位，A的数码值为10，对应1010，B的数码值为11，对应1011，连接后得到10101011，原判断正确。这里的AB是两位十六进制数，不是两个ASCII字符的编码拼接。若按位权计算10×16+11=171，再转二进制也会得到同样结果，可作独立核对。"
     },
     {
       "id": 25,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "十六进制DEF等于13×256+14×16+15=3567。五进制103231等于1×3125+0×625+3×125+2×25+3×5+1=3566，相差1，所以原判断错误。3567的五进制实际为103232。比较不同进制时应统一展开成整数或重新转换，不能只因数码位数更多就判断大或小，也不能把十六进制字母当作ASCII码代入。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5–7",
+      "evidence": "先求序列总和，再从左向右累加前缀，检查某个非末尾位置的前缀是否恰为总和的一半。切点只能在1到n−1，所以n=1必定No；正数前提也使末尾空段不可能作为平衡分法。原卷t≤100且n、a_i≤10000，单组总和最多10^8，前缀乘2最多2×10^8，当前int安全。每组时间O(n)、数组空间O(n)，独立检查对候选切点直接分别求左右段和。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7–8",
+      "evidence": "枚举两个片段的分界j，要求左片段和右片段都至少2个字符，所以2≤j≤m−2。逐段逆序并与原片段比较，找到任一合法分界就输出Yes。样例aabbb可分成aa与bbb，其余样例不满足。长度小于4时没有合法分界。每串长度不超过100、最多10串，当前参考每个分界构造字符串的时间O(m)，总O(m²)、额外空间O(m)。独立预言机用区间回文表检查两个片段，不复用逆串比较流程。"
     }
   ],
-  "secondaryCheck": {
-    "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
-    "result": "all-match"
-  },
   "unresolved": [
-    "Q16（判断第 1 题）考点本身有歧义空间：若按「原码运算规则」（异号相加取大绝对值符号做减法）则 1+(-1)=0，题干说法为错；官方答案表判为 √（正确），取的是「原码位串直接相加得 10000010 = -2」的解释。已按红线以官方答案表为准改为 √。"
+    {
+      "id": 9,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p3未说明a的类型、位宽和截断，也未写赋回。按普通int取二进制174，a<<2的表达式值为696且a本身仍174，只有另作8位截断模型才得到10111000。保留answer=0及原文/选项，暂停计分，待位宽与操作约定澄清。"
+    },
+    {
+      "id": 10,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p3未指定数据模型，官方D依赖long与unsigned int同为32位以及超范围转回signed long的实现。在long为64位、unsigned int为32位的模型，long能表示unsigned int全域，第二个结果为4294967173。保留answer=3及原程序，暂停计分，待平台前提澄清。"
+    },
+    {
+      "id": 12,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷pp3–4的A/B/D均遍历到越界下标10，A还读取未初始化值。C原图为um=sum+a[i]，um未声明，不能正确编译。旧库曾把C改成全0数组正确循环且把D串成另一题，本轮恢复四个原选项。保留官方answer=2并隔离。"
+    },
+    {
+      "id": 13,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p4读取长度10数组的a[10]，行为未定义，不能保证会输出某个不确定值。保留answer=3及原代码/选项，暂停计分，不运行越界表达式采信偶然输出。"
+    },
+    {
+      "id": 16,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT，保留旧unresolved。按正确原码异号加法规则，1+(-1)=0。若把8位原码位串00000001和10000001直接按无符号加法相加，再按原码解释10000010，才得到-2。原题未明确采用错误的直接位串加法模型，官方判√保留，暂停计分，等待运算规则澄清。"
+    },
+    {
+      "id": 18,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p5给~1=11111110并判√，但未标位宽。C++中整数常量1是int，~作用于提升后的类型，本机为32位，结果-2的完整补码为32位FFFFFFFE，11111110只是低8位示意。保留answer=0和原文，暂停计分，待位宽约定澄清。"
+    }
   ],
-  "executedAt": "2026-10-25",
-  "answerKey": "单选答案串 B C A D C B C C A D D C D C B，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）√ √ √ √ × √ × √ √ × 与题库 10/10 一致。"
+  "supplementarySources": [
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr",
+      "note": "通常算术转换及有符号/无符号类型共同类型规则。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.integral",
+      "note": "超出目标有符号类型范围的整数转换具有实现定义结果。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.unary.op",
+      "note": "按位取反对整型提升后的类型求值。"
+    }
+  ],
+  "notes": "AI-Codex逐页对照登记mirror PDF全部8页文本与渲染，Git blob SHA b24fa856150b7751d986562d76d1438402e43241一致，p1单选/p5判断表逐项一致。保留Q16旧unresolved，补齐隔离字段，并新增Q9/Q10/Q12/Q13/Q18来源疑点。25客观answer与2编程空answer保持。编程范围及原代码按PDF恢复，参考与模板保持。",
+  "history": [
+    {
+      "paperId": "2024-09-l3",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2024-09-l3"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-25",
+        "pages": {
+          "singleAnswerTable": "p.1",
+          "judgeAnswerTable": "p.5"
+        }
+      },
+      "answerTable": {
+        "single": {
+          "content": "B C A D C B C C A D D C D C B",
+          "page": "p.1"
+        },
+        "judge": {
+          "content": "√ √ √ √ × √ × √ √ ×",
+          "page": "p.5",
+          "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2024-09-l3-judge.png），第 1 题为 √ 已放大确认非 ×"
+        }
+      },
+      "questions": [
+        {
+          "id": 9,
+          "dimensions": [
+            "statement",
+            "options"
+          ],
+          "method": [
+            "官方PDF对照",
+            "代码逻辑验证"
+          ],
+          "findings": "题库选项 D 被旧脚本改写为「a 的值变为 1011 1000（高位移出，低位补 0 后按 8 位观察应为 1011 1000）」——与选项 A 实质重复的畸形干扰项；官方 D 为「a 的值变为 0101 1100」。题干措辞也有差异（官方「a=1010 1110,a<<2,下面关于这个说法正确的是」）。",
+          "fix": "恢复官方题干与选项 D=0101 1100；解析 D 项改写为「左移 2 位、右移、循环移位都得不到该值」，C 项更正为循环左移 1 位的结果（官方 C=0101 1101 系最高位绕回）。官方答案 A 一致（1010 1110<<2 = 1011 1000，8 位截断）。",
+          "resolved": true,
+          "reviewedAt": "2026-10-28",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 14,
+          "dimensions": [
+            "statement",
+            "explanation"
+          ],
+          "method": [
+            "官方PDF对照"
+          ],
+          "findings": "题干措辞与官方有差异（「其中 1 个是小偷」vs 官方「其中一个是小偷」、分行 vs 连排），导致探针窗口不命中。另解析 C 选项一行被旧脚本污染（混入「该项不符合题目限定…a[3] = {2, 1, 4, 3}」他卷乱码）。",
+          "fix": "题干按官方连排措辞对齐；清除解析污染文本。官方答案 C 一致（假设-验证：仅 C 为小偷时四人陈述自洽）。",
+          "resolved": true,
+          "reviewedAt": "2026-10-28",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 16,
+          "type": "judge",
+          "official": "√",
+          "bank": "×(改前)",
+          "modified": true,
+          "fix": "answer 1→0，解析重写：+1 原码 00000001 与 -1 原码 10000001 直接按二进制相加（符号位参与）得 10000010，按原码解释为 -2，题干说法正确；独立推导与官方 √ 一致"
+        },
+        {
+          "id": 17,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 18,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 19,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 20,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 21,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 22,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 23,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 24,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 25,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "secondaryCheck": {
+        "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
+        "result": "all-match"
+      },
+      "unresolved": [
+        "Q16（判断第 1 题）考点本身有歧义空间：若按「原码运算规则」（异号相加取大绝对值符号做减法）则 1+(-1)=0，题干说法为错；官方答案表判为 √（正确），取的是「原码位串直接相加得 10000010 = -2」的解释。已按红线以官方答案表为准改为 √。"
+      ],
+      "executedAt": "2026-10-25",
+      "answerKey": "单选答案串 B C A D C B C C A D D C D C B，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）√ √ √ √ × √ × √ √ × 与题库 10/10 一致。"
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 383,
+    "objectiveCaseCount": 608,
+    "templateCompileCount": 2,
+    "diagnosticCount": 5,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-09-l3/programming-run.json"
+  }
 }
