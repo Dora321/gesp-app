@@ -99,7 +99,7 @@ const restoredOfficialQuestionCases = [
   ['2023-12-l1', 8, 2, 3, '2026-11-06'],
   ['2024-12-l2', 14, 3, 5],
   ['2025-06-l1', 15, 1, 5, '2026-11-06'],
-  ['2024-06-l2', 15, 3, 6],
+  ['2024-06-l2', 15, 3, 6, '2026-11-06'],
   ['2025-03-l2', 13, 1, 5],
   ['2025-12-l2', 10, 1, 3],
   // 2024-12-l4 于 2026-10-25 按官方 PDF 整卷重录，页码与复核日期随重建更新
@@ -425,10 +425,11 @@ test('2024-09 L2 retains the audited paper and excludes its official source defe
     ...(paper.programmingQuestions || []),
   ];
 
-  assert.equal(paper.reviewStatus, 'verified');
-  assert.equal(paper.reviewedBy, '本站校订');
-  assert.equal(paper.reviewedAt, '2026-07-27');
-  assert.match(paper.reviewScope, /全卷 27 题/);
+  // 五维复核保留 Q13/Q14 隔离，不能继续声称整卷无缺口通过。
+  assert.equal(paper.reviewStatus, 'partial');
+  assert.equal(paper.reviewedBy, 'AI-Codex');
+  assert.equal(paper.reviewedAt, '2026-11-06');
+  assert.match(paper.reviewScope, /全卷五维.*mirror PDF.*源疑点保持隔离/);
   assert.equal(allQuestions.length, 27);
   assert.deepEqual(
     paper.questions.map(question => question.answer),
