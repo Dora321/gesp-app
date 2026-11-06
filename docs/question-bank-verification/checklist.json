@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T00:11:45.171Z",
+  "generatedAt": "2026-11-06T05:26:19.865Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -1105,11 +1105,11 @@
         "options": "partial",
         "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "verified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -1153,18 +1153,18 @@
         "options": "partial",
         "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "verified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 3,
+        "integrityFlagged": 5,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
@@ -1172,7 +1172,13 @@
           "6": [
             "sourceIntegrity:official-source-defect"
           ],
+          "11": [
+            "sourceIntegrity:official-source-defect"
+          ],
           "15": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "18": [
             "sourceIntegrity:official-source-defect"
           ],
           "19": [

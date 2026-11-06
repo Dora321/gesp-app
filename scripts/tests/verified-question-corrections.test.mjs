@@ -269,9 +269,10 @@ test('2025-09 L2 retains the audited paper and excludes official source defects'
     ...(paper.programmingQuestions || []),
   ];
 
-  assert.equal(paper.reviewStatus, 'verified');
-  assert.equal(paper.reviewedAt, '2026-07-27');
-  assert.match(paper.reviewScope, /全卷 27 题/);
+  assert.equal(paper.reviewStatus, 'partial');
+  assert.equal(paper.reviewedBy, 'AI-Codex');
+  assert.equal(paper.reviewedAt, '2026-11-06');
+  assert.match(paper.reviewScope, /全卷五维.*mirror PDF.*源疑点保持隔离/);
   assert.equal(allQuestions.length, 27);
   assert.deepEqual(
     paper.questions.map(question => question.answer),
@@ -286,7 +287,9 @@ test('2025-09 L2 retains the audited paper and excludes official source defects'
   const officialDefects = paper.questions
     .filter(question => question.sourceIntegrity === 'official-source-defect')
     .map(question => question.id);
-  assert.deepEqual(officialDefects, [6, 15, 19]);
+  assert.deepEqual(officialDefects, [6, 11, 15, 18, 19]);
+  assert.match(paper.questions.find(question => question.id === 11).integrityNote, /没有-999.*输出|EOF/);
+  assert.match(paper.questions.find(question => question.id === 18).integrityNote, /a=5.*输出1/);
   assert.match(paper.questions.find(question => question.id === 18).question, /a < 10 and 20/);
   assert.match(paper.questions.find(question => question.id === 21).explanation, /686766/);
   assert.match(paper.programmingQuestions[0].referenceCode, /int v = i % 10/);
@@ -300,9 +303,10 @@ test('2025-06 L2 retains the audited paper and its source-defect exclusions', as
     ...(paper.programmingQuestions || []),
   ];
 
-  assert.equal(paper.reviewStatus, 'verified');
-  assert.equal(paper.reviewedAt, '2026-07-27');
-  assert.match(paper.reviewScope, /全卷 27 题/);
+  assert.equal(paper.reviewStatus, 'partial');
+  assert.equal(paper.reviewedBy, 'AI-Codex');
+  assert.equal(paper.reviewedAt, '2026-11-06');
+  assert.match(paper.reviewScope, /全卷五维.*mirror PDF.*源疑点保持隔离/);
   assert.equal(allQuestions.length, 27);
   assert.deepEqual(
     paper.questions.map(question => question.answer),

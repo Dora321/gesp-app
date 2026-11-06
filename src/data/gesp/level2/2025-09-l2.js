@@ -1,945 +1,730 @@
-// 2025年9月 GESP C++ 二级真题 (第11次认证)
-//
-// 全卷 27 题（15 单选 + 10 判断 + 2 编程）已逐页对照 CCF GESP 原卷镜像校订。
-// 镜像文件的 git blob 为 ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057
-//（1162339 字节），与 paperSources.js 登记值一致。
-//
-// 客观题答案均取自原卷答案表：
-//   单选题：D C C D D A D B D A D C A A D
-//   判断题：× √ × √ √ × √ √ √ ×
-// 判断题答案表在 PDF 第 6 页以红色矢量记号呈现，已渲染后逐格人工读取。
-const SOURCE_URL = 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf';
-const REVIEWED_BY = '本站校订';
-const REVIEWED_AT = '2026-07-27';
-
+// 2025-09-l2 五维核验记录见 docs/question-bank-verification
 export const paperData = {
-    id: '2025-09-l2',
-    title: '2025年9月 GESP C++ 二级真题',
+    id: "2025-09-l2",
+    title: "2025年9月 GESP C++ 二级真题",
     level: 2,
     year: 2025,
     month: 9,
     session: 11,
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     source: {
-        officialPdf: SOURCE_URL,
-        type: 'archived-official',
-        notes: '题面、代码、选项、答案表、编程题样例、约束与参考程序均按 CCF GESP 原卷镜像逐页转录。',
+        officialPdf: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+        type: "archived-official",
+        notes: "题面、代码、选项、答案表、编程题样例、约束与参考程序均按 CCF GESP 原卷镜像逐页转录。",
+        url: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf"
     },
-    reviewStatus: 'verified',
-    reviewScope: '全卷 27 题（单选 15 + 判断 10 + 编程 2）的题面、代码、选项、答案、解析，以及两道编程题的题意、约束、样例与原卷参考程序，均已逐题核验。',
-    reviewedBy: '本站校订',
-    reviewedAt: '2026-07-27',
+    reviewStatus: "partial",
+    reviewScope: "AI-Codex全卷五维对照mirror PDF，Q6/Q11/Q15/Q18/Q19源疑点保持隔离，卷级partial。",
+    reviewedBy: "AI-Codex",
+    reviewedAt: "2026-11-06",
     verification: {
-        status: 'verified',
-        reviewedBy: '本站校订',
-        reviewedAt: '2026-07-27',
-        scope: '全卷 27 题均已逐题对照 CCF GESP 原卷镜像核验；单选题答案取自第 1 页答案表，判断题答案按第 6 页红色矢量标记逐格读取。',
+        status: "partial",
+        reviewedBy: "AI-Codex",
+        reviewedAt: "2026-11-06",
+        scope: "全卷五维逐题对照mirror PDF，参考程序独立编译运行，源疑点保持隔离。",
+        notes: "AI-Codex逐页对照10页mirror PDF，Git blob SHA ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057一致，全部answer保持。保留Q6/Q15/Q19既有隔离；Q11无结束标记与最终输出前提新增疑点隔离，重写27题解析，两参考程序保持并独立编译运行。 Q18原判×与具体输出1及a=5的大小关系不符，追加源疑点隔离，答案保持。",
         dimensions: {
-            statement: 'verified',
-            options: 'verified',
-            answer: 'verified',
-            explanation: 'verified',
-            referenceCode: 'verified',
-        },
+            statement: "partial",
+            options: "partial",
+            answer: "partial",
+            explanation: "partial",
+            referenceCode: "partial"
+        }
     },
     questions: [
         {
             id: 1,
-            type: 'single',
-            question: `人工智能现在非常火，小杨就想多了解一下，其中就经常听人提到“大模型”。那么请问这里说的“大模型”最贴切是指（ ）。`,
-            options: ['大电脑模型', '大规模智能', '智能的单位', '大语言模型'],
+            type: "single",
+            question: "人工智能现在非常火，小杨就想多了解一下，其中就经常听人提到“大模型”。那么请问这里说的“大模型”最贴切是指（ ）。",
+            options: [
+                "大电脑模型",
+                "大规模智能",
+                "智能的单位",
+                "大语言模型"
+            ],
             answer: 3,
             score: 2,
             sourceVerified: true,
             sourcePage: 1,
-            sourcePages: [1],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：D（大语言模型）**
-
-**核心解析：**
-在当前人工智能（AI）领域中，人们常说的“大模型”通常是“大语言模型”（Large Language Model，简称 LLM）或“大规模预训练模型”的通俗简称。
-1. **“大”的含义**：指的是模型的参数量极其庞大（通常达到数十亿、数百亿甚至上千亿个参数），并且在训练时使用了海量的语料数据与庞大的算力，而不是指硬件设备或电脑的物理体积大。
-2. **“语言模型”**：是指能够理解人类自然语言、进行多轮对话、回答问题、编写代码以及生成各类文本的人工智能模型（例如常见的 ChatGPT、文心一言等）。
-因此，日常语境中所说的“大模型”最贴切、最规范的对应术语是“大语言模型”。
-
-**选项逐项分析：**
-- **A 大电脑模型**：❌ 错误。“大模型”指的是运行在计算机内的算法与数学模型参数规模大，与电脑硬件本身的体积、机箱物理大小毫无关系。计算机科学中也没有“大电脑模型”这一术语。
-- **B 大规模智能**：❌ 错误。“大规模”常用来修饰数据量、参数量或计算集群规模，人工智能学科中并没有“大规模智能”这一固定术语，属于生造词汇。
-- **C 智能的单位**：❌ 错误。“模型”不是计量单位。在计算机与度量衡中，单位有“字节（Byte）”、“赫兹（Hz）”等；而模型的规模通常用“参数量”（如 7B、13B，B代表十亿）来表示，不存在“智能的单位叫大模型”的说法。
-- **D 大语言模型**：✅ 正确。这是人工智能领域的正式专业术语（Large Language Model，LLM），也是大众日常口中的“大模型”最贴切、最公认的指代对象。
-
-**易错提醒：**
-- **避免望文生义**：初学者容易受字面意思误导，误以为“大”指的是物理实物很大（误选 A），或者把“模型”误当成度量单位（误选 C）。计算机里的“模型”本质上是一套由算法和海量参数构成的数学计算系统。
-
-**知识延伸：**
-广义上的“大模型”除了处理文字与编程语言的“大语言模型”（LLM）之外，还涵盖了能看懂图片、生成视频、识别声音的“多模态大模型”（如文本生成图像的 Diffusion 模型、视频生成模型等）。`,
-            tags: ['计算机基础'],
+            sourcePages: [
+                1
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 D**\n\n按本卷四个选项语境，大语言模型D最贴近所指的人工智能大模型；其余三项不是对应的模型类别或正式计量单位。这里不应推广为所有大模型都只能处理语言：人工智能还包括视觉和多模态等模型。本题按给定选项作最贴切选择，来源答案表位于mirror PDF第1页。",
+            tags: [
+                "计算机基础"
+            ]
         },
         {
             id: 2,
-            type: 'single',
-            question: `在 TCP 协议中，完成连接建立需要通过（ ）握手。`,
-            options: ['一次', '二次', '三次', '四次'],
+            type: "single",
+            question: "在 TCP 协议中，完成连接建立需要通过（ ）握手。",
+            options: [
+                "一次",
+                "二次",
+                "三次",
+                "四次"
+            ],
             answer: 2,
             score: 2,
             sourceVerified: true,
             sourcePage: 1,
-            sourcePages: [1],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：C（三次）**
-
-**核心解析：**
-TCP（传输控制协议）是一种面向连接的、可靠的传输层通信协议。在通信双方正式开始传输数据之前，必须先建立起稳定的连接。为了以最少的信息交互确保双方都具备正常的发送和接收能力，并同步双方的初始序列号，TCP 规定在建立连接时必须进行**三次握手**（Three-way Handshake）。
-
-三次握手的具体过程通俗来说就是通信双方互相“打招呼”并确认：
-1. **第一次握手（客户端发起）**：客户端向服务器发送同步请求（SYN）。此时服务器确认了：客户端的发送能力正常，服务器自己的接收能力正常。
-2. **第二次握手（服务器响应）**：服务器收到后向客户端发送确认与自己的同步请求（SYN+ACK）。此时客户端确认了：服务器的收发能力都正常，客户端自己的收发能力也正常。
-3. **第三次握手（客户端确认）**：客户端最后向服务器回复一个确认（ACK）。服务器收到后确认了：客户端的接收能力正常。至此，双向通信链路完全打通，连接正式建立。
-
-**选项逐项分析：**
-- **A 一次**：❌ 仅发一次消息是单向通知，发送方完全不知道接收方是否在线或成功收到，无法建立可靠的双向通信连接。
-- **B 二次**：❌ 两次握手只能让客户端确认服务器的能力，但服务器无法确认客户端是否收到了第二次握手的确认。同时，若网络中存在延迟到达的失效历史请求，服务端直接建立连接会导致严重的空间与网络资源浪费，因此两次握手不足以保证可靠连接。
-- **C 三次**：✅ TCP 协议标准定义建立连接通过三次握手完成，既能防止旧的重复连接初始化，又能以最小开销确认双向收发功能完好，符合题意。
-- **D 四次**：❌ TCP 建立连接只需要三次握手。四次交互对应的是 TCP 断开连接时的“四次挥手”，选项混淆了连接建立与释放阶段。
-
-**易错提醒：**
-- 牢记口诀：**“建连三次握手，断开四次挥手”**。断开连接需要四次，是因为连接建立时服务器可以把“同意连接（ACK）”和“请求连接（SYN）”合并在第二次握手发送；而断开连接时，一方不再发数据并不代表对方的数据也发完了，必须分别确认关闭，所以断开时是四次。
-
-**知识延伸：**
-我们平时浏览网页（HTTP/HTTPS）或下载文件，底层大多依赖 TCP 协议。三次握手虽然稍微增加了建立连接的耗时，但换来了高度可靠的传输保障，有效避免了丢包与数据错乱。`,
-            tags: ['网络基础'],
+            sourcePages: [
+                1
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 C**\n\nTCP连接的典型建立过程是三次握手：发起方发送SYN，对端以SYN与ACK回应，发起方再确认ACK，因此选C。建立连接与关闭连接是不同阶段，不能把常见的关闭连接报文过程套入本题。题目询问握手次数，不是双方计算机数量。",
+            tags: [
+                "网络基础"
+            ]
         },
         {
             id: 3,
-            type: 'single',
-            question: `下面的 C++ 代码用于输入姓名，然后输出姓名，正确的说法是（ ）。\n\n\`\`\`cpp\nstring XingMing;\ncout << "请输入您的姓名：";\ncin >> XingMing;\ncout << XingMing;\n\`\`\``,
-            options: ['XingMing 是汉语拼音，不能作为变量名称', '可以将 XingMing 改为 Xing Ming', '可以将 XingMing 改为 xingming', '可以将 XingMing 改为 Xing-Ming'],
+            type: "single",
+            question: "下面的 C++ 代码用于输入姓名，然后输出姓名，正确的说法是（ ）。\n\n```cpp\nstring XingMing;\ncout << \"请输入您的姓名：\";\ncin >> XingMing;\ncout << XingMing;\n```",
+            options: [
+                "XingMing 是汉语拼音，不能作为变量名称",
+                "可以将 XingMing 改为 Xing Ming",
+                "可以将 XingMing 改为 xingming",
+                "可以将 XingMing 改为 Xing-Ming"
+            ],
             answer: 2,
             score: 2,
             sourceVerified: true,
             sourcePage: 1,
-            sourcePages: [1],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：C（可以将 XingMing 改为 xingming）**
-
-**核心解析：**
-本题考查 C++ 中**变量名（标识符）的命名规则**。
-
-在 C++ 中，合法的标识符必须满足以下基本规则：
-1. **字符组成**：只能由大小写英文字母（\`a-z\`、\`A-Z\`）、数字（\`0-9\`）以及下划线（\`_\`）组成，不能包含空格、连字符（减号 \`-\`）或其他特殊标点符号。
-2. **首字符要求**：必须以字母或下划线开头，绝对不能以数字开头。
-3. **避开关键字**：不能使用 C++ 语言中已被保留的关键字（如 \`int\`、\`return\`、\`cin\` 等）。
-4. **严格区分大小写**：C++ 区分英文字母的大小写。例如 \`XingMing\`、\`xingming\` 和 \`XINGMING\` 都是合法且相互独立的变量名。
-5. **含义不限**：编译器只从语法层面检查字符构成，并不限制变量名是由英文单词还是拼音构成。
-
-因此，代码中的 \`XingMing\` 和选项 C 的 \`xingming\` 均符合语法规范，可以作为变量名；而包含空格或减号的名称都是非法的。
-
-**选项逐项分析：**
-- **A XingMing 是汉语拼音，不能作为变量名称**：❌ 错误。C++ 编译器只检查变量名是否由合法的字母、数字和下划线构成，不会判断它是英文单词还是汉语拼音。\`XingMing\` 完全由英文字母组成，符合语法规则，可以正常作为变量名使用。
-- **B 可以将 XingMing 改为 Xing Ming**：❌ 错误。变量名中间不能包含空格。若写成 \`string Xing Ming;\`，编译器会将它们拆解为两个独立的词，导致语法错误。
-- **C 可以将 XingMing 改为 xingming**：✅ 正确。\`xingming\` 全部由小写英文字母组成，不以数字开头，不含特殊字符，也不是关键字，符合 C++ 标识符规范，完全可以作为变量名。
-- **D 可以将 XingMing 改为 Xing-Ming**：❌ 错误。变量名中不能含有减号 \`-\`。在 C++ 中，减号是减法运算符，编译器会将其理解为 \`Xing\` 减去 \`Ming\` 的计算表达式，无法识别为一个单一的变量名。
-
-**易错提醒：**
-- **混淆减号与下划线**：在连接多个拼音或单词时，可以使用下划线（如 \`Xing_Ming\`），但绝对不能使用连字符/减号（\`Xing-Ming\`）。
-- **区分“编程习惯”与“语法规则”**：在平时的规范编程中推荐使用有实际意义的英文单词命名，但在语法上，使用拼音并不报错，也是合法的标识符。
-- **大小写敏感**：若将变量声明改为 \`string xingming;\`，后续的输入 \`cin >> xingming;\` 和输出 \`cout << xingming;\` 也必须同步调整为全小写，否则会报“未声明标识符”的编译错误。
-
-**知识延伸：**
-在 C++ 实际开发中，常见的合规命名方式有两种：
-1. **小驼峰命名法**：第一个单词首字母小写，后续单词首字母大写，例如 \`studentName\`、\`xingMing\`。
-2. **蛇形命名法（下划线法）**：所有字母小写，单词之间用下划线隔开，例如 \`student_name\`、\`xing_ming\`。`,
-            tags: ['变量与标识符'],
+            sourcePages: [
+                1
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 C**\n\nXingMing与xingming都由字母组成，符合变量命名规则；在所有使用处一致改名即可，所以选C。拼音拼写并不影响词法合法性，空格会分开标识符，减号会成为运算符。C++区分大小写，改名时不能只改声明而保留原引用，否则将变成两个不同名字。",
+            tags: [
+                "变量与标识符"
+            ]
         },
         {
             id: 4,
-            type: 'single',
-            question: `下面 C++ 代码用于获得正整数 N 的第 M 位数，如 N 等于 1234，M 等于 2，则输出 3。此题假设 M 的值大于等于 1 且小于等于 N 的位数。横线处应填入的代码是（ ）。\n\n\`\`\`cpp\nint N, M, div=1;\ncout << "请输入一个正整数：";\ncin >> N;\ncout << "请输入从右到左取第几位数：";\ncin >> M;\n\nfor (int i =0; i < (M - 1); i++) div *= 10;\n\ncout << (______________);\n\`\`\``,
-            options: ['N % div / 10', 'N / div / 10', 'N % div % 10', 'N / div % 10'],
+            type: "single",
+            question: "下面 C++ 代码用于获得正整数 N 的第 M 位数，如 N 等于 1234，M 等于 2，则输出 3。此题假设 M 的值大于等于 1 且小于等于 N 的位数。横线处应填入的代码是（ ）。\n\n```cpp\nint N, M, div=1;\ncout << \"请输入一个正整数：\";\ncin >> N;\ncout << \"请输入从右到左取第几位数：\";\ncin >> M;\n\nfor (int i =0; i < (M - 1); i++) div *= 10;\n\ncout << (______________);\n```",
+            options: [
+                "N % div / 10",
+                "N / div / 10",
+                "N % div % 10",
+                "N / div % 10"
+            ],
             answer: 3,
             score: 2,
             sourceVerified: true,
             sourcePage: 1,
-            sourcePages: [1, 2],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：D（\`N / div % 10\`）**
-
-**核心解析：**
-要取正整数 \`N\` 从右往左的第 \`M\` 位：第 1 位是个位，第 2 位是十位。题干保证 \`M\` 至少为 1，并且不超过 \`N\` 的位数。
-
-\`div\` 从 1 开始，循环执行 \`M - 1\` 次 \`div *= 10\`。结束后 \`div\` 是 10 的 \`M - 1\` 次方：\`M = 1\` 时循环 0 次，\`div\` 仍为 1；\`M = 2\` 时循环 1 次，\`div\` 为 10。
-
-取这一位分两步。先算 \`N / div\`：整数除法丢掉小数，相当于去掉右边 \`M - 1\` 位，让目标数字落到个位。再算 \`% 10\`，得到这个个位。题干例子 \`N = 1234\`、\`M = 2\` 时，\`div\` 为 10，\`1234 / 10\` 得 123，\`123 % 10\` 得 3。连起来就是 \`N / div % 10\`。
-
-**选项逐项分析：**
-- **A \`N % div / 10\`**：❌ \`N % div\` 留下的是目标位右边的低位，目标位及以上已经被丢掉。\`1234 % 10\` 得 4，再 \`/ 10\` 得 0，十位上的 3 已经不在结果里。
-- **B \`N / div / 10\`**：❌ 连续除两次，等于多去掉一位，目标数字也被截掉。\`1234 / 10 / 10\` 得 12，不是单独的数字 3。
-- **C \`N % div % 10\`**：❌ 同样先丢掉第 \`M\` 位及更高位。当 \`M = 1\`、\`div = 1\` 时，任何整数对 1 取模都是 0，得不到个位。
-- **D \`N / div % 10\`**：✅ 先用除法去掉右侧低位，再用 \`% 10\` 取出已经落到个位上的目标数字。\`M = 1\` 时它就是 \`N / 1 % 10\`，与直接取个位 \`N % 10\` 一致。
-
-**易错提醒：**
-- \`/ 10\` 用来削掉末位，\`% 10\` 用来取出末位。先做取模，就会把目标位丢掉。
-- 拿不准时代入 \`M = 1\`、\`div = 1\`：只有 D 仍等于 \`N % 10\`。A 和 C 都会碰到 \`N % 1\`，结果是 0，可以排除。
-- \`/\` 与 \`%\` 优先级相同，并且从左往右结合，所以 \`N / div % 10\` 等价于先除以 \`div\`，再对 10 取模。`,
-            tags: ['数位提取'],
+            sourcePages: [
+                1,
+                2
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 D**\n\n循环后div=10的M-1次方，先N/div去掉右侧M-1位，再%10取当前个位，即原第M位，所以选D。N=1234、M=2时div=10，1234/10%10=3。M保证不超过N的位数，int可表示的正N在此计算中最多用到10^9，div不会越界。",
+            tags: [
+                "数位提取"
+            ]
         },
         {
             id: 5,
-            type: 'single',
-            question: `下面 C++ 代码执行，其输出是（ ）。\n\n\`\`\`cpp\na, b = 3, 4;\nc = a == b;\ncout << a << ' ' << b << ' ' << c;\n\`\`\``,
-            options: ['3 4 0', '3 3 3', '4 4 4', '以上都不对'],
+            type: "single",
+            question: "下面 C++ 代码执行，其输出是（ ）。\n\n```cpp\na, b = 3, 4;\nc = a == b;\ncout << a << ' ' << b << ' ' << c;\n```",
+            options: [
+                "3 4 0",
+                "3 3 3",
+                "4 4 4",
+                "以上都不对"
+            ],
             answer: 3,
             score: 2,
             sourceVerified: true,
             sourcePage: 2,
-            sourcePages: [2],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：D（以上都不对）**
-
-逗号运算符的优先级低于赋值运算符，因此第一行按 \`(a), (b = 3), (4)\` 计算：\`b\` 被赋值为 3，最后的 4 没有赋给变量，\`a\` 也没有在这行得到新值。随后 \`c\` 只能是比较结果 0 或 1，不可能是选项 B、C 中的 3 或 4；A 的 \`b=4\` 也不成立，所以选 D。原卷片段省略了变量此前的声明与初值，但不影响排除前三项。`,
-            tags: ['表达式'],
+            sourcePages: [
+                2
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 D**\n\na,b=3,4不是分别给a、b赋3和4；逗号从左到右求值，只给b赋3，最右的4也不会赋给a。随后c记录a与b相等的比较结果，a保持原值。因此A/B/C均不是可据此保证的输出，选D。片段省略了变量声明和a初值，不能把它当Python式多目标赋值；见证提供明确初值展示真实赋值效果。",
+            tags: [
+                "表达式"
+            ]
         },
         {
             id: 6,
-            type: 'single',
-            question: `某种编号的规则是“XX-Y”，其中 XX 从 00 到 11，Y 从 0 到 9。第 1 个编号是 00-0，第 2 个编号是 01-1，……，第 12 个编号 11-1，第 13 个编号 00-2，即其编码规则是 XX 和 Y 同时增 1，到 XX 到 11 时下一个变为 00，Y 到 9 时，下一个变为 0。下面的 C++ 代码用于生成第 N 个编号，横线处应填上的代码是（ ）。\n\n\`\`\`cpp\ncout << "请输入编号位置：";\ncin >> N;\n\npart1 = N % _____;\npart2 = N % _____;\n\nif (part1 < 10)\n    printf("0%d-%d\\n", part1, part2);\nelse\n    printf("%d-%d\\n", part1, part2);\n\`\`\``,
-            options: ['12 10', '10 10', '11 9', '9 9'],
+            type: "single",
+            question: "某种编号的规则是“XX-Y”，其中 XX 从 00 到 11，Y 从 0 到 9。第 1 个编号是 00-0，第 2 个编号是 01-1，……，第 12 个编号 11-1，第 13 个编号 00-2，即其编码规则是 XX 和 Y 同时增 1，到 XX 到 11 时下一个变为 00，Y 到 9 时，下一个变为 0。下面的 C++ 代码用于生成第 N 个编号，横线处应填上的代码是（ ）。\n\n```cpp\ncout << \"请输入编号位置：\";\ncin >> N;\n\npart1 = N % _____;\npart2 = N % _____;\n\nif (part1 < 10)\n    printf(\"0%d-%d\\n\", part1, part2);\nelse\n    printf(\"%d-%d\\n\", part1, part2);\n```",
+            options: [
+                "12 10",
+                "10 10",
+                "11 9",
+                "9 9"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 2,
-            sourcePages: [2],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            sourceIntegrity: 'official-source-defect',
-            integrityNote: '原卷示例称第 1 个编号为 00-0，但所给代码直接使用 N 取模，输入 1 会得到 01-1。两处填空的除数仍可确定为 12 和 10，但整段程序缺少 N-1 的序号转换，因此本题不计分。',
-            explanation: `**答案：A（12 10）**
-
-**核心解析：**
-题目要求生成形如“XX-Y”的编号，两部分的取值范围和循环周期不同：
-1. **第一部分 \`part1\`（XX）**：取值范围是 \`0\` 到 \`11\`，包含 \`00, 01, ..., 11\` 共 \`11 - 0 + 1 = 12\` 种不同取值。在 C++ 中，正整数对 \`M\` 取模（\`N % M\`）的结果范围是 \`0\` 到 \`M - 1\`。因此，要得到 \`0 ~ 11\` 循环的 12 种状态，除数必须是 \`12\`，即 \`part1 = N % 12\`。
-2. **第二部分 \`part2\`（Y）**：取值范围是 \`0\` 到 \`9\`，包含 \`0, 1, ..., 9\` 共 \`9 - 0 + 1 = 10\` 种不同取值。同理，要得到 \`0 ~ 9\` 循环的 10 种状态，除数必须是 \`10\`，即 \`part2 = N % 10\`。
-
-因此，两处横线应分别填入 \`12\` 和 \`10\`，正确选项为 A。
-
-**选项逐项分析：**
-- **A 12 10**：✅ 正确。\`N % 12\` 的余数范围为 \`0 ~ 11\`（共 12 种可能），\`N % 10\` 的余数范围为 \`0 ~ 9\`（共 10 种可能），与题干中 XX 和 Y 的变化周期完全对应。
-- **B 10 10**：❌ 错误。第一处若填 \`10\`，\`N % 10\` 的余数最大只能是 9，无法生成 10 和 11 这两个合法的 XX 编号。
-- **C 11 9**：❌ 错误。误将范围的最大值直接当作模数。若模 \`11\`，余数范围是 \`0 ~ 10\`，取不到 11；若模 \`9\`，余数范围是 \`0 ~ 8\`，取不到 9。
-- **D 9 9**：❌ 错误。两个除数均填 \`9\`，不仅无法完整覆盖 \`0 ~ 11\` 与 \`0 ~ 9\` 的所有编号，还混淆了两部分的周期长度。
-
-**易错提醒：**
-- **取模除数与范围的关系**：正整数 \`N % K\` 的结果范围是 \`0\` 到 \`K - 1\`，包含的数字个数正好是 \`K\` 个。想得到从 \`0\` 到最大值 \`MAX\` 的循环，除数应为 \`MAX + 1\`，而不是 \`MAX\`。
-- **题目序号与代码细节**：题干给出的示例序号从第 1 个开始，如果让输入 \`1\` 严格对应 \`00-0\`，理论上需要使用 \`(N - 1) % 12\` 和 \`(N - 1) % 10\`。但本题的考查焦点是确定取模的循环周期（12 和 10），不影响横线处选择除数。`,
-            tags: ['取模运算'],
+            sourcePages: [
+                2
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            sourceIntegrity: "official-source-defect",
+            integrityNote: "原卷示例称第 1 个编号为 00-0，但所给代码直接使用 N 取模，输入 1 会得到 01-1。两处填空的除数仍可确定为 12 和 10，但整段程序缺少 N-1 的序号转换，因此本题不计分。",
+            explanation: "**原卷疑点，暂停计分**\n\nANSWER-DOUBT：原卷示例称第 1 个编号为 00-0，但所给代码直接使用 N 取模，输入 1 会得到 01-1。两处填空的除数仍可确定为 12 和 10，但整段程序缺少 N-1 的序号转换，因此本题不计分。 12和10是两个分量的周期，故填空意图是A，但从第1项00-0开始时需要使用N-1。原代码填A，N=1会输出01-1，N=12会输出00-2，都比题意序号偏一；不能只因周期正确就清除已有隔离或修改原程序补偏移。",
+            tags: [
+                "取模运算"
+            ]
         },
         {
             id: 7,
-            type: 'single',
-            question: `下面的 C++ 代码执行后其输出是（ ）。\n\n\`\`\`cpp\ncnt = 0;\nfor (int i = -10; i < 10; i++)\n    for (int j =0; j < i; j++)\n        cnt += 1;\ncout << cnt;\n\`\`\``,
-            options: ['145', '125', '55', '45'],
+            type: "single",
+            question: "下面的 C++ 代码执行后其输出是（ ）。\n\n```cpp\ncnt = 0;\nfor (int i = -10; i < 10; i++)\n    for (int j =0; j < i; j++)\n        cnt += 1;\ncout << cnt;\n```",
+            options: [
+                "145",
+                "125",
+                "55",
+                "45"
+            ],
             answer: 3,
             score: 2,
             sourceVerified: true,
             sourcePage: 2,
-            sourcePages: [2, 3],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：D（45）**
-
-当 $i\\le0$ 时，内层循环一开始就是 \`j=0\`，条件 \`j<i\` 不成立，所以不累加。$i=1$ 到 $9$ 时，内层分别执行 1、2、……、9 次，因此 \`cnt=1+2+...+9=45\`。外层条件是 \`i<10\`，不会执行 $i=10$。`,
-            tags: ['循环'],
+            sourcePages: [
+                2,
+                3
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 D**\n\ni=-10到0时内层j从0开始，j<i一开始为假，不加cnt。i=1到9时分别加1到9次，总和45，选D。不能把外层20轮直接当成计数，也不能认为负i会让内层按负方向执行；内层更新仍是j++且必须先满足条件。",
+            tags: [
+                "循环"
+            ]
         },
         {
             id: 8,
-            type: 'single',
-            question: `下面 C++ 代码执行后其输出是（ ）。\n\n\`\`\`cpp\nfor (i =1; i < 12; i++){\n    if (i % 2 == 0)\n        continue;\n\n    for (j = 0; j < i; j++)\n        if (i * j % 2)\n            break;\n}\nif(i>= 12)\n    cout << (i * j);\n\`\`\``,
-            options: ['110', '12', '不确定', '无输出'],
+            type: "single",
+            question: "下面 C++ 代码执行后其输出是（ ）。\n\n```cpp\nfor (i =1; i < 12; i++){\n    if (i % 2 == 0)\n        continue;\n\n    for (j = 0; j < i; j++)\n        if (i * j % 2)\n            break;\n}\nif(i>= 12)\n    cout << (i * j);\n```",
+            options: [
+                "110",
+                "12",
+                "不确定",
+                "无输出"
+            ],
             answer: 1,
             score: 2,
             sourceVerified: true,
             sourcePage: 3,
-            sourcePages: [3],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：B（12）**
-
-偶数 $i$ 会被 \`continue\` 跳过。每次遇到奇数 $i$，内层循环都会重新执行 \`j=0\`：此时乘积为 0，不会退出；接着 \`j=1\`，奇数乘 1 仍是奇数，于是 \`break\`，留下 \`j=1\`。最后一次奇数是 $i=11$，所以外层结束时 $i=12,j=1$，条件成立并输出 $12\\times1=12$。`,
-            tags: ['循环控制'],
+            sourcePages: [
+                3
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 B**\n\n外层偶数轮continue跳过内层。最后实际执行内层的i=11，j=0时乘积为偶数不break，j=1时乘积为奇数而break，留下j=1。随后i增到12退出，外部if成立，输出12*1=12，选B。在运行见证外围声明i、j，不把退出后的i误写成11。",
+            tags: [
+                "循环控制"
+            ]
         },
         {
             id: 9,
-            type: 'single',
-            question: `阅读下面的 C++ 代码，其中变量都是整型，则说法正确的是（ ）。\n\n\`\`\`cpp\ncin >>a >> b;\n\nwhile (b != 0){\n    remainder = a % b;\n    a = b;\n    b = remainder;\n}\ncout << a;\n\`\`\``,
-            options: ['b 不能为 0，因为 a % b 将导致错误', 'a 必须小于 b，否则 a % b 将导致错误', 'a 和 b 都必须为正整数，否则 a % b 将导致错误', '如果 a 输入为 0，则不管 b 的输入值是什么，输出值的绝对值都是 abs(b)'],
-            answer: 3,
-            score: 2,
-            sourceVerified: true,
-            sourcePage: 3,
-            sourcePages: [3],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：D**
-
-循环只在 \`b != 0\` 时计算 \`a % b\`，所以输入的 \`b\` 可以是 0；此时循环直接跳过。取模也不要求 $a<b$，负整数同样可以进行整数取模。若初始 $a=0,b\\ne0$，第一轮得到余数 0，然后令 \`a=b,b=0\`，最终输出原来的 $b$；若初始 $b=0$，输出 0。因此输出值的绝对值都是 \`abs(b)\`。`,
-            tags: ['最大公约数'],
-        },
-        {
-            id: 10,
-            type: 'single',
-            question: `下面 C++ 代码执行后输出是（ ）。\n\n\`\`\`cpp\nnum = 0;\nwhile (num <= 5){\n    num += 1;\n    if (num == 3)\n        continue;\n    printf("%d#", num);\n}\n\`\`\``,
-            options: ['1#2#4#5#6#', '1#2#4#5#6', '1#2#3#4#5#6#', '1#2#3#4#5#6'],
-            answer: 0,
-            score: 2,
-            sourceVerified: true,
-            sourcePage: 3,
-            sourcePages: [3],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：A（\`1#2#4#5#6#\`）**
-
-每轮先把 \`num\` 加 1，再判断是否等于 3。等于 3 时只跳过本轮输出，因此没有 \`3#\`。当进入最后一轮时 \`num=5\` 仍满足 \`num<=5\`，加 1 后会输出 \`6#\`，下一次检查才结束循环。`,
-            tags: ['循环控制'],
-        },
-        {
-            id: 11,
-            type: 'single',
-            question: `下面 C++ 代码用于记录多个输入数中的最大数和最小数（输入 -999 则输入结束），相关说法错误的是（ ）。\n\n\`\`\`cpp\ncin >> now_num;\nmin_num = max_num = now_num;\n\nwhile (now_num != -999){\n    if (max_num < now_num)\n        max_num = now_num;\n\n    if (min_num > now_num)\n        min_num = now_num;\n\n    cin >> now_num;\n}\ncout << min_num << ' ' << max_num;\n\`\`\``,
+            type: "single",
+            question: "阅读下面的 C++ 代码，其中变量都是整型，则说法正确的是（ ）。\n\n```cpp\ncin >>a >> b;\n\nwhile (b != 0){\n    remainder = a % b;\n    a = b;\n    b = remainder;\n}\ncout << a;\n```",
             options: [
-                '程序运行时如果第一个数输入 -999，则输出将是 -999 -999',
-                '程序输入过程中，如果输入的第一个数不是 -999，则如果待输入的数据中没有 -999，则程序能求出已输入整数中的最大数和最小数',
-                '如果用于输入考试成绩，即成绩中不可能有 -999，则程序能求出已输入成绩中的最高成绩和最低成绩',
-                '可以将 cin >> now_num; 移动到 while (now_num != -999) { 下面，结果不变',
+                "b 不能为 0，因为 a % b 将导致错误",
+                "a 必须小于 b，否则 a % b 将导致错误",
+                "a 和 b 都必须为正整数，否则 a % b 将导致错误",
+                "如果 a 输入为 0，则不管 b 的输入值是什么，输出值的绝对值都是 abs(b)"
             ],
             answer: 3,
             score: 2,
             sourceVerified: true,
             sourcePage: 3,
-            sourcePages: [3, 4],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：D（该说法错误）**
-
-程序先读入第一个数，用它初始化最大值和最小值，之后每轮先处理当前值、再读下一个值。这个顺序不能随意移动：若把首次读入移进循环，循环条件会先读取尚未获得有效值的 \`now_num\`；若把循环末尾的读入移到循环开头，则当前值的处理顺序也会改变，所以“结果不变”不成立。首次输入 -999 时循环不执行，A 的输出正确；B、C 按题意都需要在有效数据之后再输入 -999 作为结束标志。`,
-            tags: ['循环'],
+            sourcePages: [
+                3
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 D**\n\na初始为0时，若b也为0，循环不执行直接输出0；若b非0，第一轮余数0，随后a=b、b=0，退出并输出原b，所以输出的数学绝对值等于原b的绝对值，选D。b=0由循环条件挡住，a不必小于b或为正。若把abs落实为int函数，INT_MIN的绝对值需更宽类型表达；不能对超范围abs作无条件保证。",
+            tags: [
+                "最大公约数"
+            ]
+        },
+        {
+            id: 10,
+            type: "single",
+            question: "下面 C++ 代码执行后输出是（ ）。\n\n```cpp\nnum = 0;\nwhile (num <= 5){\n    num += 1;\n    if (num == 3)\n        continue;\n    printf(\"%d#\", num);\n}\n```",
+            options: [
+                "1#2#4#5#6#",
+                "1#2#4#5#6",
+                "1#2#3#4#5#6#",
+                "1#2#3#4#5#6"
+            ],
+            answer: 0,
+            score: 2,
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [
+                3
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 A**\n\nnum从0开始，每轮先加1；依次得到1、2、3、4、5、6。3时continue只跳过该次打印，while会再次判断，6这一轮也会打印，然后因6<=5为假退出。结果1#2#4#5#6#，选A。末尾#来自格式串，不能省略；不能把先更新的循环误算到5为止。",
+            tags: [
+                "循环控制"
+            ]
+        },
+        {
+            id: 11,
+            type: "single",
+            question: "下面 C++ 代码用于记录多个输入数中的最大数和最小数（输入 -999 则输入结束），相关说法错误的是（ ）。\n\n```cpp\ncin >> now_num;\nmin_num = max_num = now_num;\n\nwhile (now_num != -999){\n    if (max_num < now_num)\n        max_num = now_num;\n\n    if (min_num > now_num)\n        min_num = now_num;\n\n    cin >> now_num;\n}\ncout << min_num << ' ' << max_num;\n```",
+            options: [
+                "程序运行时如果第一个数输入 -999，则输出将是 -999 -999",
+                "程序输入过程中，如果输入的第一个数不是 -999，则如果待输入的数据中没有 -999，则程序能求出已输入整数中的最大数和最小数",
+                "如果用于输入考试成绩，即成绩中不可能有 -999，则程序能求出已输入成绩中的最高成绩和最低成绩",
+                "可以将 cin >> now_num; 移动到 while (now_num != -999) { 下面，结果不变"
+            ],
+            answer: 3,
+            score: 2,
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [
+                3,
+                4
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**原卷疑点，暂停计分**\n\nANSWER-DOUBT：mirror PDF p.3–4 B称首数不是-999且待输入数据没有-999时，程序能求出结果，但代码仅在读到-999后退出并输出，且未检查EOF/输入失败；有限无标记输入不能完成最终输出。D移动读入也不等价。若B仅指内部维护极值而非程序完成输出，需说明终止前提；保留官方D、answer=3与原文，暂停计分。 原逻辑以首数初始化极值，每次比较当前数再读下一项。若按D把循环末尾读入移到开头，会跳过首轮当前值的正常处理，并可能把-999纳入最小值，确实不等价。正常测试须显式附结束标记；无标记见证只做有界EOF观察，不运行无限循环。",
+            tags: [
+                "循环"
+            ],
+            sourceIntegrity: "official-source-defect",
+            integrityNote: "ANSWER-DOUBT：mirror PDF p.3–4 B称首数不是-999且待输入数据没有-999时，程序能求出结果，但代码仅在读到-999后退出并输出，且未检查EOF/输入失败；有限无标记输入不能完成最终输出。D移动读入也不等价。若B仅指内部维护极值而非程序完成输出，需说明终止前提；保留官方D、answer=3与原文，暂停计分。"
         },
         {
             id: 12,
-            type: 'single',
-            question: `下面 C++ 代码执行后输出与 5 有关数的数量。“与 5 有关的数”定义为含有 5 或者能被 5 整除的数。相关说法正确的是（ ）。\n\n\`\`\`cpp\ncnt = 0;\nfor (i = 1; i < 1000; i++){\n    if (i % 5 == 0){\n        cnt += 1;\n        continue;\n    }\n    j = i;\n    while (j > 0)\n        if (j % 10 == 5){\n            cnt += 1;\n            break;\n        }\n        else\n            j /= 10;\n}\ncout << cnt;\n\`\`\``,
-            options: ['删除代码中 continue 不影响程序执行结果', '删除 j = i 并将 while 循环内的 j 修改为 i，不影响程序执行结果', '代码中 break 修改为 j = 0，不影响程序执行结果', '将 while (j > 0) 修正为 while (j >= 0) 不影响程序执行的结果'],
+            type: "single",
+            question: "下面 C++ 代码执行后输出与 5 有关数的数量。“与 5 有关的数”定义为含有 5 或者能被 5 整除的数。相关说法正确的是（ ）。\n\n```cpp\ncnt = 0;\nfor (i = 1; i < 1000; i++){\n    if (i % 5 == 0){\n        cnt += 1;\n        continue;\n    }\n    j = i;\n    while (j > 0)\n        if (j % 10 == 5){\n            cnt += 1;\n            break;\n        }\n        else\n            j /= 10;\n}\ncout << cnt;\n```",
+            options: [
+                "删除代码中 continue 不影响程序执行结果",
+                "删除 j = i 并将 while 循环内的 j 修改为 i，不影响程序执行结果",
+                "代码中 break 修改为 j = 0，不影响程序执行结果",
+                "将 while (j > 0) 修正为 while (j >= 0) 不影响程序执行的结果"
+            ],
             answer: 2,
             score: 2,
             sourceVerified: true,
             sourcePage: 4,
-            sourcePages: [4],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：C（把 \`break\` 改为 \`j=0\`）**
-
-发现某一位是 5 后，\`break\` 会立刻结束内层 \`while\`；改成 \`j=0\` 后，下一次检查 \`j>0\` 也会结束循环，计数相同。删除 \`continue\` 会让某些既能被 5 整除又含 5 的数重复计数；直接修改外层变量 \`i\` 会破坏枚举；把条件改成 \`j>=0\` 则会在 \`j=0\` 时永远循环。`,
-            tags: ['数位判断'],
+            sourcePages: [
+                4
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 C**\n\n命中数字5时把break替换为j=0，会使下一次while条件失败，同时计数仍只加一次，所以C等价。删除continue会让既被5整除又含5的数重计；直接用i拆位会破坏外层变量；j>=0会在j归0后一直执行除10而不终止。原定义是满足二者之一，不能把两类分别相加不去重。",
+            tags: [
+                "数位判断"
+            ]
         },
         {
             id: 13,
-            type: 'single',
-            question: `下面 C++ 代码实现输出如下图形，应该在横线处填入的代码是（ ）。\n\n\`\`\`text\n请输入层数：10\n         1\n        23\n       456\n      7891\n     23456\n    789123\n   4567891\n  23456789\n 123456789\n1234567891\n\`\`\`\n\n\`\`\`cpp\ncout << "请输入层数：";\ncin >> N;\n\nK = 1;\n\nfor (i = 1; i < N + 1; i++){\n    for (int _ = 1; _ < ___________; _++)\n        cout << " ";\n\n    for (int _ = 1; _ < ________; _++){\n        cout << K;\n\n        K += 1;\n        if (K == 10)\n            K = 1;\n    }\n    cout << '\\n';\n}\n\`\`\``,
-            options: ['N - i + 1；i + 1', 'N - i；i', 'N；i', 'N - i；i + 1'],
+            type: "single",
+            question: "下面 C++ 代码实现输出如下图形，应该在横线处填入的代码是（ ）。\n\n```text\n请输入层数：10\n         1\n        23\n       456\n      7891\n     23456\n    789123\n   4567891\n  23456789\n 123456789\n1234567891\n```\n\n```cpp\ncout << \"请输入层数：\";\ncin >> N;\n\nK = 1;\n\nfor (i = 1; i < N + 1; i++){\n    for (int _ = 1; _ < ___________; _++)\n        cout << \" \";\n\n    for (int _ = 1; _ < ________; _++){\n        cout << K;\n\n        K += 1;\n        if (K == 10)\n            K = 1;\n    }\n    cout << '\\n';\n}\n```",
+            options: [
+                "N - i + 1；i + 1",
+                "N - i；i",
+                "N；i",
+                "N - i；i + 1"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 4,
-            sourcePages: [4, 5],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：A（\`N-i+1\`，\`i+1\`）**
-
-第 $i$ 行需要先输出 $N-i$ 个空格，再输出 $i$ 个数字。循环变量从 1 开始且条件使用“小于”：\`_ < N-i+1\` 恰好执行 $N-i$ 次，\`_ < i+1\` 恰好执行 $i$ 次。数字 $K$ 加到 10 时重置为 1，所以会按 1 到 9 循环。`,
-            tags: ['循环'],
+            sourcePages: [
+                4,
+                5
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 A**\n\n第i行需N-i个前导空格、i个数字。两处循环都从1开始并使用严格小于，因此上界分别要写N-i+1和i+1，选A。K持续从1到9循环，不在行首清零。N=10时第一行九个空格后打印1，最后一行十个数字1234567891；示例中的10是输入回显。",
+            tags: [
+                "循环"
+            ]
         },
         {
             id: 14,
-            type: 'single',
-            question: `下面 C++ 代码执行，其输出是（ ）。\n\n\`\`\`cpp\nint a=9, b=27;\na = 'a' + 'b';\nb = 'a' - 'b';\na = a - b;\ncout << a << ' ' << b << endl;\n\`\`\``,
-            options: ['196 -1', '27 9', '98 97', '不确定'],
+            type: "single",
+            question: "下面 C++ 代码执行，其输出是（ ）。\n\n```cpp\nint a=9, b=27;\na = 'a' + 'b';\nb = 'a' - 'b';\na = a - b;\ncout << a << ' ' << b << endl;\n```",
+            options: [
+                "196 -1",
+                "27 9",
+                "98 97",
+                "不确定"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 5,
-            sourcePages: [5],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：A（\`196 -1\`）**
-
-按本题采用的 ASCII 编码，\`'a'=97\`、\`'b'=98\`。因此先得到 \`a=97+98=195\`，再得到 \`b=97-98=-1\`，最后 \`a=195-(-1)=196\`。输出时两个整数之间有一个空格，所以结果是 \`196 -1\`。`,
-            tags: ['字符编码'],
+            sourcePages: [
+                5
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**答案 A**\n\n按本卷ASCII兼容字符编码，'a'=97、'b'=98，先赋a=195、b=-1，再令a=a-b=196。于是输出196、空格、-1和换行，选A。字符常量参与加减时进行整数提升，不会连接成字符串；初始9和27已被后面的赋值覆盖。",
+            tags: [
+                "字符编码"
+            ]
         },
         {
             id: 15,
-            type: 'single',
-            question: `有个无限长的链，由 3 种外形相同但材质不同的环链成。3 种环的重量分别是 3、4、6 克，相同材质的多个环每 12 克一组，分别记为 G3、G4、G6。链依次 G3、G4、G6、G3、G4、G6、……。同时对链上所有环从头依次编号 1、2、3、4……。输入正整数代表环编号，求该编号前所有环（不含该环本身）的重量。下面是 C++ 代码实现，正确说法是（ ）。\n\n\`\`\`cpp\ni int N, G, R;\nint wc = 0;\n\ncin >> N; // 输入正整数\nG = (N - 1) / 9; // L1\nR = (N - 1) % 9; // L2: 保存余数\nwc += 36*G;\n\nif((1 <= R) && (R <= 4))\n    wc += 3*R; // L3\nelse if ((5 <= R) && (R <= 7))\n    wc += 4*R; // L4\nelse if(R == 8)\n    wc += 6*(R - 1); // L5\ncout << wc << endl;\n\`\`\``,
-            options: ['必须同时修改 L1 和 L2 代码行才能实现功能', '必须同时修改 L3 和 L4 代码行才能实现功能', '必须同时修改 L3 和 L5 代码行才能实现功能', '其他说法都不对'],
+            type: "single",
+            question: "有个无限长的链，由 3 种外形相同但材质不同的环链成。3 种环的重量分别是 3、4、6 克，相同材质的多个环每 12 克一组，分别记为 G3、G4、G6。链依次 G3、G4、G6、G3、G4、G6、……。同时对链上所有环从头依次编号 1、2、3、4……。输入正整数代表环编号，求该编号前所有环（不含该环本身）的重量。下面是 C++ 代码实现，正确说法是（ ）。\n\n```cpp\ni int N, G, R;\nint wc = 0;\n\ncin >> N; // 输入正整数\nG = (N - 1) / 9; // L1\nR = (N - 1) % 9; // L2: 保存余数\nwc += 36*G;\n\nif((1 <= R) && (R <= 4))\n    wc += 3*R; // L3\nelse if ((5 <= R) && (R <= 7))\n    wc += 4*R; // L4\nelse if(R == 8)\n    wc += 6*(R - 1); // L5\ncout << wc << endl;\n```",
+            options: [
+                "必须同时修改 L1 和 L2 代码行才能实现功能",
+                "必须同时修改 L3 和 L4 代码行才能实现功能",
+                "必须同时修改 L3 和 L5 代码行才能实现功能",
+                "其他说法都不对"
+            ],
             answer: 3,
             score: 2,
             sourceVerified: true,
             sourcePage: 5,
-            sourcePages: [5, 6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            sourceIntegrity: 'official-source-defect',
-            integrityNote: '原卷代码首行印为“i int N, G, R;”，无法通过编译。题目考查的 L1-L5 逻辑仍可分析，但题面程序不是可执行的完整 C++，因此本题不计分。',
-            explanation: `**答案：D（其他说法都不对）**
-
-**转录说明：** 原卷第 5 页首行确实印有多余的字符 \`i\`。要编译需先改成 \`int N, G, R;\`；选项考查的是标记为 L1 至 L5 的计算逻辑，以下按原卷显然意图分析。
-
-每种材质凑 12 克时，G3 有 4 个环、G4 有 3 个环、G6 有 2 个环，所以一个完整周期共 9 个环、36 克。L1、L2 正确。余数 $R=1..4$ 时，前 $R$ 个都是 3 克环，L3 正确；$R=5..7$ 时应为 $12+4(R-4)=4R-4$，L4 错；$R=8$ 时应为 $12+12+6=30$，L5 也错。真正需要修改的是 L4 和 L5，而前三个选项都没有这一组合，所以选 D。`,
-            tags: ['程序分析'],
+            sourcePages: [
+                5,
+                6
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            sourceIntegrity: "official-source-defect",
+            integrityNote: "原卷代码首行印为“i int N, G, R;”，无法通过编译。题目考查的 L1-L5 逻辑仍可分析，但题面程序不是可执行的完整 C++，因此本题不计分。",
+            explanation: "**原卷疑点，暂停计分**\n\nANSWER-DOUBT：原卷代码首行印为“i int N, G, R;”，无法通过编译。题目考查的 L1-L5 逻辑仍可分析，但题面程序不是可执行的完整 C++，因此本题不计分。 若仅为分析逻辑先排除首行多余i，9环一周期重量36，前R环重量在R=5到7时应12+4*(R-4)，R=8时应30。L1/L2/L3本来符合周期/前四环，实际需改L4/L5而非A/B/C所列组合，故官方D反映意图；语法修正后的见证只用于解释，不替换原卷或解除隔离。",
+            tags: [
+                "程序分析"
+            ]
         },
         {
             id: 16,
-            type: 'judge',
-            question: `在集成开发环境里调试程序时，要注意不能修改源程序，因为如果修改，就要终止调试、关闭该文件并重新打开，才能再次开始调试。（ ）`,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "在集成开发环境里调试程序时，要注意不能修改源程序，因为如果修改，就要终止调试、关闭该文件并重新打开，才能再次开始调试。（ ）",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 1,
             score: 2,
             sourceVerified: true,
             sourcePage: 6,
-            sourcePages: [6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：错误**
-
-**判定依据：**
-在集成开发环境（IDE）中调试程序时，如果修改了源程序，只需要**停止当前调试、重新编译、再次开始调试**即可，**完全不需要关闭该文件并重新打开**。
-
-1. **源文件随时可编辑保存**：源程序只是文本代码，在 IDE 中可以随时修改与保存，不需要关闭文件。
-2. **调试对象与源文件的关系**：调试器运行的是上一次编译生成的可执行文件，而不是直接跑源文件文本。因此修改代码后，只要重新编译生成新的可执行程序，就可以开始新的调试。题干中“必须关闭该文件并重新打开”的说法严重不符合实际情况。
-
-**选项逐项分析：**
-- **A 正确**：❌ 题干描述错误。修改代码后只需重新编译并重启调试，无需多此一举地关闭再重新打开文件。
-- **B 错误**：✅ 题干中增加的“关闭该文件并重新打开”是不存在的限制，因此本题说法错误。
-
-**易错提醒：**
-- 调试过程中如果直接修改了代码，必须记得**重新编译**。如果不重新编译就再次运行或调试，计算机执行的依然是修改前的旧程序。正确的步骤是：停止调试 $\\rightarrow$ 修改并保存 $\\rightarrow$ 重新编译 $\\rightarrow$ 开始新调试。`,
-            tags: ['调试'],
+            sourcePages: [
+                6
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 错误**\n\n集成开发环境可以在编辑后重新编译调试，通常不需要关闭源文件再打开；有些还支持特定条件下的热修改，因此题干所称必需流程错误。修改正在调试的代码是否立即生效取决于工具和配置，但这不足以推出“不能修改源程序”或“一定要关闭文件”的普遍结论。",
+            tags: [
+                "调试"
+            ]
         },
         {
             id: 17,
-            type: 'judge',
-            question: `在 C++ 代码中，假设 N 为正整数且大于 100，则 \`N / 100\` 将舍弃个位和十位，如 N 为 1234 则 \`cout << (N / 100)\` 将输出 12。如果 N 小于 100，则其值为 0。（ ）`,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "在 C++ 代码中，假设 N 为正整数且大于 100，则 `N / 100` 将舍弃个位和十位，如 N 为 1234 则 `cout << (N / 100)` 将输出 12。如果 N 小于 100，则其值为 0。（ ）",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 6,
-            sourcePages: [6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：正确**
-
-**判定依据：**
-题干陈述完全符合 C++ 中整数除法的运算规则。
-
-1. **整数除法的截断（向下取整/向零截断）规则**：
-   在 C++ 中，当被除数和除数均为整型（如 \`int\`）时，运算符 \`/\` 执行的是**整数除法**。其计算结果只保留商的整数部分，所有小数部分都会被直接丢弃，并不进行四舍五入。
-
-2. **当 \`N > 100\` 时的运算分析**：
-   正整数除以 100，在十进制下相当于将数字向右移动两位。例如 \`N = 1234\` 时，实际数学结果是 \`12.34\`。由于是整型除法，小数部分 \`.34\`（即原数字的十位与个位）被完全丢弃，运算结果为 \`12\`。因此，\`N / 100\` 的效果正是舍弃个位和十位。
-
-3. **当 \`N < 100\` 时的运算分析**：
-   因为题干设定 \`N\` 为正整数，当 \`N < 100\` 时，\`N\` 的范围为 \`1\` 到 \`99\`。此时 \`N / 100\` 的实际商介于 \`0.01\` 到 \`0.99\` 之间。在截断小数部分后，整数部分均为 \`0\`，因此其值确实为 \`0\`。
-
-两种情况的描述均与代码运行结果完全一致，题干判断为正确。
-
-**选项分析：**
-- **A 正确**：✅ 题干对两种数值范围下整数除法特性的描述均准确无误。
-- **B 错误**：❌ 题干描述完全符合 C++ 语法规则，判断错误。
-
-**易错提醒：**
-- **整除 \`/\` 与取模 \`%\` 的区别**：
-  - \`N / 100\` 是整除，用来**去掉**末两位，保留百位及以上的高位数字；
-  - \`N % 100\` 是求余，用来**提取**末两位数字（例如 \`1234 % 100\` 的结果是 \`34\`）。
-- **避免混淆整除与浮点除法**：
-  只有当参与除法运算的两个数都是整数时才会整除。如果写成 \`N / 100.0\`，计算将自动转换为浮点数除法，结果就会保留小数（输出 \`12.34\`）。`,
-            tags: ['整数除法'],
+            sourcePages: [
+                6
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 正确**\n\n整数N/100会丢弃末两位，N=1234得到12；正数小于100时整数商是0，故题干描述的数位操作正确。其前后分别讨论不同范围的N，不能把先前假设大于100理解为后半句也必须同时小于100。取百位单个数字还需再%10，本题没有这一要求。",
+            tags: [
+                "整数除法"
+            ]
         },
         {
             id: 18,
-            type: 'judge',
-            question: `下列 C++ 代码执行后将输出 1，因为 a 确实小于 20 和 10。（ ）\n\n\`\`\`cpp\na = 5;\ncout << (a < 10 and 20);\n\`\`\``,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "下列 C++ 代码执行后将输出 1，因为 a 确实小于 20 和 10。（ ）\n\n```cpp\na = 5;\ncout << (a < 10 and 20);\n```",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 1,
             score: 2,
             sourceVerified: true,
             sourcePage: 6,
-            sourcePages: [6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：错误**
-
-\`and\` 是 \`&&\` 的另一种写法，且 \`<\` 优先级更高，所以表达式是 \`(a < 10) and 20\`。当 $a=5$ 时，左边为真，非零整数 20 也会转换为真，因此程序确实输出 1；但代码根本没有比较 \`a<20\`，题干给出的“因为 a 小于 20 和 10”不是这段表达式的语义。原卷据此把整句判断为错误。若要同时检查两个上界，应写出两个完整比较，例如 \`a < 10 && a < 20\`。`,
-            tags: ['逻辑运算'],
+            sourcePages: [
+                6
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**原卷疑点，暂停计分**\n\nANSWER-DOUBT：mirror PDF p.6判×，但a=5时(a<10 and 20)实际输出1，且5确实同时小于10和20。and后面的20虽是非零常量，但本题10、20顺序使“a<10”与“a<10且a<20”对整型a等价，不能据此否定题干具体输出与事实。保留answer=1与原文，暂停计分。 真实求值为(5<10)&&20，即true&&true。它没有执行第二个比较，但原文也未明确声称执行了两次比较，不能把教学意图替代原句真假。将常数写入逻辑与并非通用双上界写法，仍应说明应显式写两个关系式；该建议不能用来宣称本题实际输出不是1。",
+            sourceIntegrity: "official-source-defect",
+            integrityNote: "ANSWER-DOUBT：mirror PDF p.6判×，但a=5时(a<10 and 20)实际输出1，且5确实同时小于10和20。and后面的20虽是非零常量，但本题10、20顺序使“a<10”与“a<10且a<20”对整型a等价，不能据此否定题干具体输出与事实。保留answer=1与原文，暂停计分。",
+            tags: [
+                "逻辑运算"
+            ]
         },
         {
             id: 19,
-            type: 'judge',
-            question: `下面的 C++ 代码中变量都是整型，则执行后将输出 1。（ ）\n\n\`\`\`cpp\nx, y, z = 5, 10, 15;\nresult = x < y < z;\ncout << result;\n\`\`\``,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "下面的 C++ 代码中变量都是整型，则执行后将输出 1。（ ）\n\n```cpp\nx, y, z = 5, 10, 15;\nresult = x < y < z;\ncout << result;\n```",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 6,
-            sourcePages: [6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            sourceIntegrity: 'official-source-defect',
-            integrityNote: '原卷写作“x, y, z = 5, 10, 15;”，按 C++ 逗号运算符规则只会给 z 赋值，不能得到题目解析所假设的 x=5、y=10、z=15。官方答案按命题意图为“正确”，但程序片段本身不足以推出该结果，因此本题不计分。',
-            explanation: `**答案：正确（按原卷答案表）**
-
-原卷的考查意图是：在 $x=5,y=10,z=15$ 的前提下，\`x < y < z\` 按从左到右计算，先得 \`x<y\` 为 1，再算 \`1<z\`，仍为真，所以输出 1。
-
-**严格的 C++ 提醒：** 原卷第一行写成 \`x, y, z = 5, 10, 15;\`，按逗号运算符的真实规则只会把 5 赋给 \`z\`，并不会依次把 5、10、15 赋给三个变量；片段又没有给出 \`x,y\` 的旧值。因此这行本身存在上下文歧义。本站保留原卷的“正确”答案，同时明确指出：实际程序应分别写 \`x=5; y=10; z=15;\`，范围判断则应写 \`x < y && y < z\`。`,
-            tags: ['表达式'],
+            sourcePages: [
+                6
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            sourceIntegrity: "official-source-defect",
+            integrityNote: "原卷写作“x, y, z = 5, 10, 15;”，按 C++ 逗号运算符规则只会给 z 赋值，不能得到题目解析所假设的 x=5、y=10、z=15。官方答案按命题意图为“正确”，但程序片段本身不足以推出该结果，因此本题不计分。",
+            explanation: "**原卷疑点，暂停计分**\n\nANSWER-DOUBT：原卷写作“x, y, z = 5, 10, 15;”，按 C++ 逗号运算符规则只会给 z 赋值，不能得到题目解析所假设的 x=5、y=10、z=15。官方答案按命题意图为“正确”，但程序片段本身不足以推出该结果，因此本题不计分。 原逗号表达式只将z赋为5，不能据它推得x=5、y=10。若x、y在外围已确定，x<y先产生0或1，再与z=5比较会为真；但原题未给出其可靠初值，存在未初始化读取的可能。保留answer=0和已有隔离，不把原行改成三条赋值掩盖来源问题。",
+            tags: [
+                "表达式"
+            ]
         },
         {
             id: 20,
-            type: 'judge',
-            question: `下面 C++ 代码执行时如输入 99.99，将输出“及格”两个汉字。（ ）\n\n\`\`\`cpp\nint score;\ncout << "请输入学生成绩：";\ncin >> score;\nif (score >= 60)\n    printf("及格");\nelse\n    printf("不及格");\n\`\`\``,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "下面 C++ 代码执行时如输入 99.99，将输出“及格”两个汉字。（ ）\n\n```cpp\nint score;\ncout << \"请输入学生成绩：\";\ncin >> score;\nif (score >= 60)\n    printf(\"及格\");\nelse\n    printf(\"不及格\");\n```",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 6,
-            sourcePages: [6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：正确**
-
-\`score\` 是 \`int\`。用 \`cin >> score\` 读取输入 \`99.99\` 时，会先成功读到小数点之前的整数 99，小数点及后面的内容留在输入缓冲区。因为 $99\\ge60$，程序进入第一个分支并输出“及格”。`,
-            tags: ['输入输出'],
+            sourcePages: [
+                6
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 正确**\n\nscore为int，输入99.99只提取整数部分99，余下小数点留在流中。99>=60为真，打印提示后输出及格，因此判断正确。该行为不是四舍五入成100，也不是将整个99.99当int语法错误；后续若继续读取整数还要考虑残留小数点和流状态。",
+            tags: [
+                "输入输出"
+            ]
         },
         {
             id: 21,
-            type: 'judge',
-            question: `执行下面的 C++ 代码时输入 123，则输出是 DCB。（ ）\n\n\`\`\`cpp\nint a;\ncin >> a;\nwhile(a){\n    cout << 'A'+a%10;\n    a /= 10;\n}\n\`\`\``,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "执行下面的 C++ 代码时输入 123，则输出是 DCB。（ ）\n\n```cpp\nint a;\ncin >> a;\nwhile(a){\n    cout << 'A'+a%10;\n    a /= 10;\n}\n```",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 1,
             score: 2,
             sourceVerified: true,
             sourcePage: 6,
-            sourcePages: [6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：错误**
-
-循环确实按个位、十位、百位依次取得 3、2、1，但表达式 \`'A' + a % 10\` 发生整数运算，结果类型是 \`int\`，所以 \`cout\` 输出数值而不是字符。按 ASCII，三次结果分别为 $65+3=68$、$65+2=67$、$65+1=66$，且代码没有分隔符，实际输出是 \`686766\`，不是 \`DCB\`。本站已用 C++17 实测确认。若要输出字符，应写 \`cout << char('A' + a % 10);\`。`,
-            tags: ['字符编码'],
+            sourcePages: [
+                6
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 错误**\n\n依次拆出个位3、2、1，但'A'+a%10经整数提升得到编码整数，而非char。在ASCII兼容环境中分别为68、67、66，cout连在一起输出686766，不是DCB，判断错误。若要输出对应字符需显式转换为char；原代码没有这个转换，不能按字符直觉替它补上。",
+            tags: [
+                "字符编码"
+            ]
         },
         {
             id: 22,
-            type: 'judge',
-            question: `下面的 C++ 代码执行后将输出 \`+#+#3#\`。（ ）\n\n\`\`\`cpp\nint i;\nfor (i = 0; i < 3; i++){\n    if (i == 2)\n        continue;\n    printf("+#");\n}\ncout << i << '#';\n\`\`\``,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "下面的 C++ 代码执行后将输出 `+#+#3#`。（ ）\n\n```cpp\nint i;\nfor (i = 0; i < 3; i++){\n    if (i == 2)\n        continue;\n    printf(\"+#\");\n}\ncout << i << '#';\n```",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 7,
-            sourcePages: [7],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：正确**
-
-$i=0$ 和 $i=1$ 时各输出一次 \`+#\`，合起来是 \`+#+#\`。$i=2$ 时 \`continue\` 跳过输出，但仍会执行 for 循环的 \`i++\`，所以循环结束时 $i=3$。最后再输出 \`3#\`，完整结果就是 \`+#+#3#\`。`,
-            tags: ['循环控制'],
+            sourcePages: [
+                7
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 正确**\n\ni=0、1各输出+#；i=2执行continue但仍走for更新，i最终变3退出。循环外cout再打印3#，整体+#+#3#，判断正确。continue只影响当前一轮，不能跳过循环后的输出；末尾#也属于明确输出内容。",
+            tags: [
+                "循环控制"
+            ]
         },
         {
             id: 23,
-            type: 'judge',
-            question: `下列 C++ 代码用于求斐波那契数列，即第 1 个数 0，第 2 个数 1，从第三个数开始，是前两个数之和。如果输入的值为大于 1 的正整数，该代码能实现。（ ）\n\n\`\`\`cpp\ncin >> n;\na = 0, b = 1;\nfor (int j = 0; j < n; j++){\n    cout << a << " ";\n    b = b + a;\n    a = b - a;\n}\n\`\`\``,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "下列 C++ 代码用于求斐波那契数列，即第 1 个数 0，第 2 个数 1，从第三个数开始，是前两个数之和。如果输入的值为大于 1 的正整数，该代码能实现。（ ）\n\n```cpp\ncin >> n;\na = 0, b = 1;\nfor (int j = 0; j < n; j++){\n    cout << a << \" \";\n    b = b + a;\n    a = b - a;\n}\n```",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 7,
-            sourcePages: [7],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：正确**
-
-每轮先输出当前的 \`a\`。随后令新 \`b=旧a+旧b\`，再令新 \`a=新b-旧a=旧b\`，所以二元组会从 $(0,1)$ 依次变成 $(1,1)$、$(1,2)$、$(2,3)$……。循环执行 $n$ 次，正好输出斐波那契数列的前 $n$ 项。`,
-            tags: ['循环'],
+            sourcePages: [
+                7
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 正确**\n\n每轮输出当前a，再令b=a+b，随后a=b-a取得更新前的b，状态从相邻两项移动到后一对。因此输出从0、1开始的n项，判断正确。实现时需确保所用整数类型容纳中间结果；若按int运行见证，只测试不会溢出的n范围，不能把算法正确性说成任意长度都不会溢出。",
+            tags: [
+                "循环"
+            ]
         },
         {
             id: 24,
-            type: 'judge',
-            question: `下面的 C++ 不能实现如下输出，但如果将 L1 标记的 \`cout << 0\` 行移动到 \`if\` 块外面，或者说移动到 L2 标记行，则可以。（ ）\n\n\`\`\`text\n请输入矩阵大小n: 9\n100000000\n020000000\n003000000\n000400000\n000050000\n000006000\n000000700\n000000080\n000000009\n\`\`\`\n\n\`\`\`cpp\nint n, i, j;\ncout << "请输入矩阵大小n: ";\ncin >> n;\n\nfor (i = 0; i < n; i++){\n    for (j = 0; j < n; j++){\n        if (i == j){\n            cout << i + 1;\n            continue;\n            cout << 0; // L1\n        }\n        // L2\n    }\n    printf("\\n");\n}\n\`\`\``,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "下面的 C++ 不能实现如下输出，但如果将 L1 标记的 `cout << 0` 行移动到 `if` 块外面，或者说移动到 L2 标记行，则可以。（ ）\n\n```text\n请输入矩阵大小n: 9\n100000000\n020000000\n003000000\n000400000\n000050000\n000006000\n000000700\n000000080\n000000009\n```\n\n```cpp\nint n, i, j;\ncout << \"请输入矩阵大小n: \";\ncin >> n;\n\nfor (i = 0; i < n; i++){\n    for (j = 0; j < n; j++){\n        if (i == j){\n            cout << i + 1;\n            continue;\n            cout << 0; // L1\n        }\n        // L2\n    }\n    printf(\"\\n\");\n}\n```",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 0,
             score: 2,
             sourceVerified: true,
             sourcePage: 7,
-            sourcePages: [7],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：正确**
-
-原来的 \`cout << 0\` 位于 \`continue\` 后面，永远执行不到，因此非对角线位置也没有任何输出。把它移到 L2 后：当 $i=j$ 时先输出 $i+1$，再由 \`continue\` 跳过 L2；当 $i\\ne j$ 时执行 L2 输出 0。这样每行就会有一个对角线数字和其余的 0，得到题目展示的矩阵。`,
-            tags: ['嵌套循环'],
+            sourcePages: [
+                7
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 正确**\n\n原L1位于continue之后，永远执行不到；非对角位置也没有输出，所以原程序每行只打印一个对角数字。将cout<<0移到L2，非对角位置输出0，而对角位置在continue前已输出数字并跳过L2，形成目标矩阵，判断正确。示例n=9，不能因改动后某些位置为0就误以为会覆盖已打印数字。",
+            tags: [
+                "嵌套循环"
+            ]
         },
         {
             id: 25,
-            type: 'judge',
-            question: `C++ 代码 \`cout << ('5'+4);\` 执行后的输出为 9。（ ）`,
-            options: ['正确', '错误'],
+            type: "judge",
+            question: "C++ 代码 `cout << ('5'+4);` 执行后的输出为 9。（ ）",
+            options: [
+                "正确",
+                "错误"
+            ],
             answer: 1,
             score: 2,
             sourceVerified: true,
             sourcePage: 7,
-            sourcePages: [7],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
-            explanation: `**答案：错误**
-
-\`'5'\` 是字符常量，不是整数 5。它参与加法时会提升为字符编码的整数值；按 ASCII，\`'5'=53\`，所以 \`'5'+4=57\`，表达式类型也是整数，\`cout\` 输出 \`57\`。如果想得到数值 9，可写 \`'5'-'0'+4\`。`,
-            tags: ['字符编码'],
-        },
+            sourcePages: [
+                7
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+            explanation: "**判断 错误**\n\n'5'是字符编码，参与加法先提升为整数；在ASCII兼容环境中编码53，加4得到57，cout输出整数57，不是数字9，判断错误。若要把字符表示的数字转成数值，应先减'0'；原表达式没有这一步，也没有把结果再转换成字符输出。",
+            tags: [
+                "字符编码"
+            ]
+        }
     ],
     programmingQuestions: [
         {
             id: 26,
-            type: 'programming',
-            title: '优美的数字',
-            timeLimit: '1.0 s',
-            memoryLimit: '512.0 MB',
+            type: "programming",
+            title: "优美的数字",
+            timeLimit: "1.0 s",
+            memoryLimit: "512.0 MB",
             sourceVerified: true,
             sourcePage: 8,
-            sourcePages: [8, 9],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
+            sourcePages: [
+                8,
+                9
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
             samples: [
                 {
-                    input: `6`,
-                    output: `6`,
+                    input: "6",
+                    output: "6"
                 },
                 {
-                    input: `2025`,
-                    output: `28`,
-                },
+                    input: "2025",
+                    output: "28"
+                }
             ],
-            question: `
-# [GESP202509 二级] 优美的数字
-
-- **试题名称**：优美的数字
-- **时间限制**：1.0 s
-- **内存限制**：512.0 MB
-
-## 题目描述
-
-如果一个正整数在十进制下的所有数位都相同，小 A 就会觉得这个正整数很优美。例如，正整数 6 的数位都是 6，所以 6 是优美的。正整数 99 的数位都是 9，所以 99 是优美的。正整数 123 的数位不都相同，所以 123 并不优美。
-
-小 A 想知道不超过 $n$ 的正整数中有多少优美的数字。你能帮他数一数吗？
-
-## 输入格式
-
-一行，一个正整数 $n$。
-
-## 输出格式
-
-一行，一个正整数，表示不超过 $n$ 的优美正整数的数量。
-
-## 样例
-
-### 输入样例 1
-
-\`\`\`text
-6
-\`\`\`
-
-### 输出样例 1
-
-\`\`\`text
-6
-\`\`\`
-
-### 输入样例 2
-
-\`\`\`text
-2025
-\`\`\`
-
-### 输出样例 2
-
-\`\`\`text
-28
-\`\`\`
-
-## 数据范围
-
-对于所有测试点，保证 $1 \\le n \\le 2025$。
-`,
+            question: "\n# [GESP202509 二级] 优美的数字\n\n- **试题名称**：优美的数字\n- **时间限制**：1.0 s\n- **内存限制**：512.0 MB\n\n## 题目描述\n\n如果一个正整数在十进制下的所有数位都相同，小 A 就会觉得这个正整数很优美。例如，正整数 6 的数位都是 6，所以 6 是优美的。正整数 99 的数位都是 9，所以 99 是优美的。正整数 123 的数位不都相同，所以 123 并不优美。\n\n小 A 想知道不超过 $n$ 的正整数中有多少优美的数字。你能帮他数一数吗？\n\n## 输入格式\n\n一行，一个正整数 $n$。\n\n## 输出格式\n\n一行，一个正整数，表示不超过 $n$ 的优美正整数的数量。\n\n## 样例\n\n### 输入样例 1\n\n```text\n6\n```\n\n### 输出样例 1\n\n```text\n6\n```\n\n### 输入样例 2\n\n```text\n2025\n```\n\n### 输出样例 2\n\n```text\n28\n```\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n \\le 2025$。\n",
             score: 25,
-            explanation: `**题意与样例：**
-
-一个数只有在每一位都相同时才计数。样例 1 中，1 到 6 都只有一位，所以共有 6 个。样例 2 中，一位数有 9 个；两位数 \`11,22,...,99\` 有 9 个；三位数 \`111,222,...,999\` 有 9 个；四位数中只有 \`1111\\le2025\`，合计 $9+9+9+1=28$。
-
-**原卷算法：逐个枚举并检查数位**
-
-对每个 $i\\in[1,n]$，先用 \`i%10\` 记住个位 \`v\`，再不断用 \`t%10\` 检查其余数位。只要发现不同数位，就把 \`chk\` 设为 0；检查结束后把 \`chk\` 加入答案。$n\\le2025$，最多检查 2025 个数，每个数不超过 4 位，运算量很小。
-
-**易错点：**
-- 一位正整数都满足“所有数位相同”。
-- 检查数位时要使用副本 \`t\`，不要破坏外层枚举变量 \`i\`。
-- 原卷参考程序即使发现不同数位也继续检查，结果仍正确；提前退出只是可选优化。`,
-            tags: ['编程题', '枚举', '数位分离'],
+            explanation: "**解析**\n\n参考程序枚举1到n，以个位v为标准，副本t逐位检查是否全部相同，chk只要变0便不再加分；全局ans自动初始化为0。n<=2025，最多四位，O(n log n)时间、O(1)额外空间。样例6得到6；2025以内有9个一位、9个两位、9个三位和1111，共28。保留原代码，独立从1到9分别重复拼接1到4次构造集合，检查全部n=1..2025，不复用原拆位算法作预言机。",
+            tags: [
+                "编程题",
+                "枚举",
+                "数位分离"
+            ],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-            referenceCode: `#include <algorithm>
-#include <cstdio>
-
-using namespace std;
-
-int n, ans;
-
-int main() {
-    scanf("%d", &n);
-    for (int i = 1; i <= n; i++) {
-        int v = i % 10, t = i / 10, chk = 1;
-        while (t) {
-            if (t % 10 != v) chk = 0;
-            t /= 10;
-        }
-        ans += chk;
-    }
-    printf("%d\\n", ans);
-    return 0;
-}`,
+            referenceCode: "#include <algorithm>\n#include <cstdio>\n\nusing namespace std;\n\nint n, ans;\n\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) {\n        int v = i % 10, t = i / 10, chk = 1;\n        while (t) {\n            if (t % 10 != v) chk = 0;\n            t /= 10;\n        }\n        ans += chk;\n    }\n    printf(\"%d\\n\", ans);\n    return 0;\n}"
         },
         {
             id: 27,
-            type: 'programming',
-            title: '菱形',
-            timeLimit: '1.0 s',
-            memoryLimit: '512.0 MB',
+            type: "programming",
+            title: "菱形",
+            timeLimit: "1.0 s",
+            memoryLimit: "512.0 MB",
             sourceVerified: true,
             sourcePage: 9,
-            sourcePages: [9, 10],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
-            sourceUrl: SOURCE_URL,
+            sourcePages: [
+                9,
+                10
+            ],
+            reviewedBy: "AI-Codex",
+            reviewedAt: "2026-11-06",
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
             samples: [
                 {
-                    input: `3`,
-                    output: `.#.\n#.#\n.#.`,
+                    input: "3",
+                    output: ".#.\n#.#\n.#."
                 },
                 {
-                    input: `9`,
-                    output: `....#....\n...#.#...\n..#...#..\n.#.....#.\n#.......#\n.#.....#.\n..#...#..\n...#.#...\n....#....`,
-                },
+                    input: "9",
+                    output: "....#....\n...#.#...\n..#...#..\n.#.....#.\n#.......#\n.#.....#.\n..#...#..\n...#.#...\n....#...."
+                }
             ],
-            question: `
-# [GESP202509 二级] 菱形
-
-- **试题名称**：菱形
-- **时间限制**：1.0 s
-- **内存限制**：512.0 MB
-
-## 题目描述
-
-小 A 想绘制一个菱形。具体来说，需要绘制的菱形是一个 $n$ 行 $n$ 列的字符画，$n$ 是一个大于 1 的奇数。菱形的四个顶点依次位于第 1 行、第 1 列、第 $n$ 行、第 $n$ 列的正中间，使用 \`#\` 绘制。相邻顶点之间也用 \`#\` 连接。其余位置都是 \`.\`。例如，一个 5 行 5 列的菱形字符画是这样的：
-
-\`\`\`text
-..#..
-.#.#.
-#...#
-.#.#.
-..#..
-\`\`\`
-
-给定 $n$，请你帮小 A 绘制对应的菱形。
-
-## 输入格式
-
-一行，一个正整数 $n$。
-
-## 输出格式
-
-输出共 $n$ 行，表示对应的菱形。
-
-## 样例
-
-### 输入样例 1
-
-\`\`\`text
-3
-\`\`\`
-
-### 输出样例 1
-
-\`\`\`text
-.#.
-#.#
-.#.
-\`\`\`
-
-### 输入样例 2
-
-\`\`\`text
-9
-\`\`\`
-
-### 输出样例 2
-
-\`\`\`text
-....#....
-...#.#...
-..#...#..
-.#.....#.
-#.......#
-.#.....#.
-..#...#..
-...#.#...
-....#....
-\`\`\`
-
-## 数据范围
-
-对于所有测试点，保证 $3 \\le n \\le 29$ 并且 $n$ 为奇数。
-`,
+            question: "\n# [GESP202509 二级] 菱形\n\n- **试题名称**：菱形\n- **时间限制**：1.0 s\n- **内存限制**：512.0 MB\n\n## 题目描述\n\n小 A 想绘制一个菱形。具体来说，需要绘制的菱形是一个 $n$ 行 $n$ 列的字符画，$n$ 是一个大于 1 的奇数。菱形的四个顶点依次位于第 1 行、第 1 列、第 $n$ 行、第 $n$ 列的正中间，使用 `#` 绘制。相邻顶点之间也用 `#` 连接。其余位置都是 `.`。例如，一个 5 行 5 列的菱形字符画是这样的：\n\n```text\n..#..\n.#.#.\n#...#\n.#.#.\n..#..\n```\n\n给定 $n$，请你帮小 A 绘制对应的菱形。\n\n## 输入格式\n\n一行，一个正整数 $n$。\n\n## 输出格式\n\n输出共 $n$ 行，表示对应的菱形。\n\n## 样例\n\n### 输入样例 1\n\n```text\n3\n```\n\n### 输出样例 1\n\n```text\n.#.\n#.#\n.#.\n```\n\n### 输入样例 2\n\n```text\n9\n```\n\n### 输出样例 2\n\n```text\n....#....\n...#.#...\n..#...#..\n.#.....#.\n#.......#\n.#.....#.\n..#...#..\n...#.#...\n....#....\n```\n\n## 数据范围\n\n对于所有测试点，保证 $3 \\le n \\le 29$ 并且 $n$ 为奇数。\n",
             score: 25,
-            explanation: `**解析：**
-
-本题要求绘制一个大小为 \`n * n\`（\`n\` 为大于 1 的奇数）的空心菱形字符画。菱形的四个顶点分别位于第 1 行、第 1 列、第 \`n\` 行、第 \`n\` 列的正中间，边框由 \`#\` 连接绘制，其余位置（包括菱形内部和外部）均填充为 \`.\`。
-
-### 一、数学规律与判定条件
-
-1. **确定中心位置**：
-   因为 \`n\` 是奇数，整个字符画的中心行和中心列均处于正中间。
-   令 \`k = n / 2\`（整数除法向下取整），中心点的行列坐标均为 \`center = k + 1\`。
-   例如，当 \`n = 5\` 时，\`k = 5 / 2 = 2\`，中心即为第 \`2 + 1 = 3\` 行、第 3 列。
-
-2. **利用曼哈顿距离判断边界**：
-   菱形的一个核心几何性质是：边框上的所有格子到中心点的**曼哈顿距离**是恒定相等的。
-   在按 1 开始编号的网格中，任意格子 \`(i, j)\` 到中心 \`(k + 1, k + 1)\` 的行距离为 \`abs(i - (k + 1))\`，列距离为 \`abs(j - (k + 1))\`。
-   两项之和即为该点到中心的曼哈顿距离：
-   \`distance = abs(i - (k + 1)) + abs(j - (k + 1))\`
-   在参考代码中，\`abs(k - i + 1)\` 与 \`abs(i - (k + 1))\` 数值完全相同（互为相反数的绝对值相等）。
-   - **当 \`distance == k\` 时**：该点恰好位于菱形的四条边界上，输出 \`#\`；
-   - **当 \`distance < k\` 时**：该点位于菱形内部，按题目要求输出 \`.\`；
-   - **当 \`distance > k\` 时**：该点位于菱形外部，输出 \`.\`。
-
-因此，我们无需复杂地计算每行空格数与 \`#\` 的位置，只需双重循环遍历每个格子，判断其到中心的距离是否恰好为 \`k\` 即可。
-
-### 二、完整算法步骤
-
-1. **输入数据**：读取正整数 \`n\`。
-2. **计算核心参数**：计算中心半径参数 \`k = n / 2\`。
-3. **双重循环遍历网格**：
-   - 外层循环变量 \`i\` 从 \`1\` 到 \`n\`，代表当前行号；
-   - 内层循环变量 \`j\` 从 \`1\` 到 \`n\`，代表当前列号；
-   - 计算当前点 \`(i, j)\` 到中心点的曼哈顿距离：\`abs(k - i + 1) + abs(k - j + 1)\`；
-   - 若距离等于 \`k\`，调用 \`printf("#")\` 输出 \`#\`；
-   - 否则，调用 \`printf(".")\` 输出 \`.\`。
-4. **行末换行**：内层循环结束后，输出换行符 \`\\n\`，进入下一行。
-5. **复杂度分析**：
-   - **时间复杂度**：外层执行 \`n\` 次，内层执行 \`n\` 次，总共检查 \`n * n\` 个格子，单次距离计算耗时 \`O(1)\`。总时间复杂度为 \`O(n^2)\`。题目给定 \`3 <= n <= 29\`，最大计算次数仅为 \`29 * 29 = 841\` 次，计算机可在 1 毫秒内瞬间完成，远低于 1.0 秒时限。
-   - **空间复杂度**：仅使用常数个整型变量，空间复杂度为 \`O(1)\`，远低于 512 MB 限制。
-
-### 三、样例走查
-
-以**输入样例 1（\`n = 3\`）**为例进行完整逐步走查：
-- 计算参数：\`k = 3 / 2 = 1\`，中心位置为 \`(1 + 1, 1 + 1) = (2, 2)\`。
-- 我们对所有 \`3 * 3 = 9\` 个格子依次检查 \`abs(1 - i + 1) + abs(1 - j + 1) == 1\`：
-  - **第 1 行 (\`i = 1\`)**：
-    - \`j = 1\`：\`abs(1 - 1 + 1) + abs(1 - 1 + 1) = 1 + 1 = 2 != 1\`，输出 \`.\`；
-    - \`j = 2\`：\`abs(1) + abs(0) = 1 == 1\`，满足条件，输出 \`#\`；
-    - \`j = 3\`：\`abs(1) + abs(-1) = 1 + 1 = 2 != 1\`，输出 \`.\`；
-    - 该行输出并换行：\`.#.\`。
-  - **第 2 行 (\`i = 2\`)**：
-    - \`j = 1\`：\`abs(0) + abs(1) = 0 + 1 = 1 == 1\`，满足条件，输出 \`#\`；
-    - \`j = 2\`：\`abs(0) + abs(0) = 0 != 1\`（菱形正中心），输出 \`.\`；
-    - \`j = 3\`：\`abs(0) + abs(-1) = 0 + 1 = 1 == 1\`，满足条件，输出 \`#\`；
-    - 该行输出并换行：\`#.#\`。
-  - **第 3 行 (\`i = 3\`)**：
-    - \`j = 1\`：\`abs(-1) + abs(1) = 1 + 1 = 2 != 1\`，输出 \`.\`；
-    - \`j = 2\`：\`abs(-1) + abs(0) = 1 + 0 = 1 == 1\`，满足条件，输出 \`#\`；
-    - \`j = 3\`：\`abs(-1) + abs(-1) = 1 + 1 = 2 != 1\`，输出 \`.\`；
-    - 该行输出并换行：\`.#.\`。
-- 最终输出为：
-\`\`\`text
-.#.
-#.#
-.#.
-\`\`\`
-与样例 1 结果完全一致。
-
-**输入样例 2（\`n = 9\`）关键位置走查**：
-- 计算参数：\`k = 9 / 2 = 4\`，中心点为 \`(5, 5)\`。
-- **四个顶点检查**：
-  - 上顶点 \`(1, 5)\`：\`abs(1 - 5) + abs(5 - 5) = 4 + 0 = 4 == 4\`，输出 \`#\`；
-  - 下顶点 \`(9, 5)\`：\`abs(9 - 5) + abs(5 - 5) = 4 + 0 = 4 == 4\`，输出 \`#\`；
-  - 左顶点 \`(5, 1)\`：\`abs(5 - 5) + abs(1 - 5) = 0 + 4 = 4 == 4\`，输出 \`#\`；
-  - 右顶点 \`(5, 9)\`：\`abs(5 - 5) + abs(9 - 5) = 0 + 4 = 4 == 4\`，输出 \`#\`。
-- **内部与角落检查**：
-  - 中心 \`(5, 5)\` 距离为 0，输出 \`.\`；
-  - 四角如 \`(1, 1)\` 距离为 \`4 + 4 = 8 != 4\`，输出 \`.\`。
-整体图案与样例 2 输出完全吻合。
-
-**易错提醒：**
-- **坐标偏移处理**：代码中外层和内层循环都是从 \`1\` 到 \`n\`（按 1 编号），中心坐标为 \`(k + 1, k + 1)\`。求距离时应写为 \`abs(i - (k + 1))\` 或 \`abs(k - i + 1)\`，不能遗漏 \`+ 1\`。
-- **空心要求**：题目要求仅在菱形边缘连线上输出 \`#\`，内部全部保留为 \`.\`。判断条件必须是严格等于 \`== k\`，若写成 \`<= k\` 则会画成实心菱形。
-- **行末换行**：每行打满 \`n\` 个字符后必须输出换行，且每行首尾不能输出多余的空格。`,
-            tags: ['编程题', '嵌套循环', '曼哈顿距离'],
+            explanation: "**解析**\n\nn为3到29的奇数，中心坐标按1编号为(k+1,k+1)，k=n/2。参考程序以到中心的行列绝对差之和等于k判断边界，故四个顶点及其连线为#，内部和外部均为点。复杂度O(n²)时间、O(1)额外空间；最大841格，不作无依据的具体毫秒耗时承诺。保留原程序，独立按四条斜线画边检查14个合法n全部输入；样例3为.#.、#.#、.#.，每行恰好n字符，无额外空格。",
+            tags: [
+                "编程题",
+                "嵌套循环",
+                "曼哈顿距离"
+            ],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-            referenceCode: `#include <algorithm>
-#include <cstdio>
-
-using namespace std;
-
-int main() {
-    int n, i, j, k;
-    scanf("%d", &n);
-    k = n / 2;
-    for (i = 1; i <= n; i++) {
-        for (j = 1; j <= n; j++) {
-            if (abs(k - i + 1) + abs(k - j + 1) == k)
-                printf("#");
-            else
-                printf(".");
+            referenceCode: "#include <algorithm>\n#include <cstdio>\n\nusing namespace std;\n\nint main() {\n    int n, i, j, k;\n    scanf(\"%d\", &n);\n    k = n / 2;\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j <= n; j++) {\n            if (abs(k - i + 1) + abs(k - j + 1) == k)\n                printf(\"#\");\n            else\n                printf(\".\");\n        }\n        printf(\"\\n\");\n    }\n    return 0;\n}"
         }
-        printf("\\n");
-    }
-    return 0;
-}`,
-        },
-    ],
+    ]
 };
