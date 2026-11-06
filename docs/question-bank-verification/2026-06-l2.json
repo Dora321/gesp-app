@@ -1,83 +1,674 @@
 {
   "paperId": "2026-06-l2",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2026-06-l2"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
     "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
     "mirrorBytes": 983895,
     "shaVerified": true,
     "fetchedAt": "2026-11-03",
-    "note": "2026-11-03 重新下载镜像 PDF，git hash-object 复算 blob sha 与字节数，均与 src/data/gesp/paperSources.js 登记一致。"
+    "note": "2026-11-03 重新下载镜像 PDF，git hash-object 复算 blob sha 与字节数，均与 src/data/gesp/paperSources.js 登记一致。",
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2026-06-l2/source.pdf",
+    "pages": {
+      "total": 10,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    }
   },
-  "session": 14,
   "answerTable": {
     "content": {
       "single": "CBDCBBAAADABDBA",
       "judge": "√√√√×××√√√"
     }
   },
-  "verification": {
-    "method": "收录时同步核验：官方答案表200dpi渲染逐格读取；单选15题+判断10题程序化正则提取比对；判断题逐题代码级逻辑复核；编程题样例程序化验证（跑参考算法）；pypdf文本层粘连数字（样例输出+行号）全部渲染核对纠正",
-    "answerKeySource": "官方PDF答案表程序化提取（非手工转录）",
-    "singleChoice": "15/15官方答案表比对一致",
-    "judge": "10/10官方答案表比对一致 + 逐题代码级逻辑复核通过",
-    "programming": "完全平方数计数（1≤l≤r≤2000）、菱形（(2n-1)²画布四边方程判定，样例n=3）"
-  },
-  "note": "",
-  "resolved": true,
   "questions": [
     {
-      "id": 16,
+      "id": 1,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q16 explanation 升级；答案未改"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "湿度传感器检测外界状态并把测量数据送入中央控制器，其功能相当于计算机的输入设备，选C。中央控制器处理数据更类似处理器，保存数据的部件对应存储器，向外执行或呈现结果的部件对应输出设备。不要因传感器用于自动控制就把采集和处理两种作用混同。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "题干明确计划增加物理内存，应购买内存条，选B。机械硬盘、移动硬盘主要提供持久文件存储空间；显卡负责图形处理并可能有独立显存，均不等于直接增加系统主内存。此处按给定故障提示和扩容目标选择，不声称任何卡顿都一定只靠加内存解决。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "3是整数，3.5是double字面量，做加法时进行通常算术转换，结果6.5再用于初始化float a。6.5在二进制中可精确表示，普通cout输出6.5，所以选D。混合类型运算本身合法，不需要先显式把3转换成float，也不会因左侧float而自动截去小数。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "按题目通常的有序数值比较，用德摩根律否定“x>5或y<=10”，得到“x<=5且y>10”，故C。and/or/not对应&&/||/!。D缺括号，not先作用于变量，解析为(!x)>5等，并不是分别否定完整比较；不能只看相同单词就判断表达式等价。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "2.5、2.25可以由有限二进制小数精确表示，而2.2、2.1通常只能近似表示，求和后显露微小误差，最可能原因是B。输出多少位还取决于流的precision等格式状态，默认cout通常只显示4.3，不能说该单句无论环境都打印长尾；题设所见长尾不表示+不支持浮点数。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "输入4后外层i依次取4、3、2、1；内层每轮从j=0打印j+1到i，故四行依次为1 2 3 4、1 2 3、1 2、1。最后一行只有1，选B。各数字后还输出一个空格，行末有换行；不要把代码的从0编号j误当成直接打印0。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "外层i=1时内层计数一次，tnt变1并输出1#；i+=3后为4，内层再计4次，累计5并输出5#。下一次i=7已不满足i<5，最后在循环外输出5，整体1#5#5，选A。累加器只在最开始清零，不在每轮重新计数，末尾也没有额外#。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "not的优先级高于%和==，所以条件实际为((!i)%3)==0，而不是简单地否定i%3==0。在本题i=-2、-1、0、1中，非零时!i为0，条件为真；0时!i为1，条件为假。依次打印-2#-1#1#，循环退出i=2再打印2，选A。换成i=3可看出它不一般等价于“不能被3整除”。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        2,
+        3
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "外层i=0、1、2时，j分别从当前i减到0，while执行次数0、1、2，cnt总计3。最后一次while退出留下j=0；外层更新i到3后退出。最终输出3 0 3，选A。输出读取的是循环结束后的变量，不能把i的最后入口值2误作退出值。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "每个外层i=1、2、3的内层都先从j=0开始，此时j%3为0不continue，count加1后立即break。内层始终留下j=0，外层结束i=4，count=3，所以输出4 0 3，选D。break只终止内层，不会阻止之后的两个外层入口。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "填A时num<=10每轮加1，所以先输出1到11；输出11后因11>10，把num整数除2变5，再输出5到11并重复。35次打印正好产生题干序列。>=配%=会在10处回到0，=+1是赋值为正1而非加1，都不能得到该模式。每次打印的数之后有一个空格。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        3,
+        4
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "图形要求四条边框以及主对角线任一条件成立就输出1，采用or连接，故B。A用and要求同时位于所有边界，N=10时不可能；C的0和N+1均在循环1到N之外，无法画边框；D也用了不可能同时满足的边界。每格后有一个空格，外层结束一行后换行。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "首次输入-1时立即break，tnt与cnt仍为0；随后执行整型0/0，构成未定义行为，故D指出了真正的边界输入问题。while(1)可用内部break正常结束，同一行初始化两个变量合法，输入前显示提示也不是语言要求。无需实际执行除零来验证：退出时cnt=0已足以证明缺少保护。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        4,
+        5
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "n=4时，首行没有前导0，输出1 2 3 4；每下一行前导0增加一个，余下数字仍从1开始。四行依次为1 2 3 4、0 1 2 3、0 0 1 2、0 0 0 1，选B。输出每一项后有空格，不能把前导0移到右侧，也不能让非零数字从行号开始。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        5,
+        6
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "按原卷0到10的评分范围，max初值0、min初值100，每个输入都参与比较和累加，最后减掉一次最高分与一次最低分，得到剩余6个分数的总和，故A。无需把min改成0，否则正分数时最小值可能错误；相等分数不必重复更新极值；减法右侧先求值，再赋回同一变量完全合法。这里只给出了去高低分求和规则，没有擅自补除6的平均分要求。 按原PDF移除printf首物理行续行反斜杠前多录的一个空格，保留后续行12个缩进空格的字符串效果。"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "按本卷场景，智能眼镜可能内置系统并具有无线通信能力，因此也可能被闭卷考试限制携带，判断正确。设备外形是眼镜并不排除它具备计算机功能；不能把这段历史题解析当成任何具体考试的现行规定，也不能据此断言所有普通眼镜都具备这些能力。"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在ASCII兼容编码下字符5的编码53为奇数，左侧not(53%2==0)为真。右侧not先作用于字符，!53为0，0%2再与0比较也为真。两个bool比较相等，普通cout输出1，故正确。关键是not优先级，右侧不能擅自读成not(53%2)后再改变原有括号。"
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "int(3.5)先进行浮点转整数，丢弃小数部分得到3，再乘整数2得到6，判断正确。它不是先算3.5*2再转换，也不是四舍五入到4后乘2。类型转换的位置决定后续运算的输入值，本题各中间结果都在int可表示范围内。"
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "原条件not i % 3实际为(!i)%3。i依次是1、4、7，均非0，所以!i始终为0，余数0使if不成立，break不执行，依次输出1-4-7-，故正确。此处不要把not当成对整个余数取反；虽然在这些入口值下某些误读恰好同结果，解析仍应按真实优先级说明。"
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "例如N=-3时输出-3 -2 -1三个整数，循环退出i=0，最后比较(i-1)==abs(N)即-1==3，为假而输出0，不是1，因此题干错误。正N在适当范围时末尾比较为真；不能用正例证明所有N。另有N+1、abs(INT_MIN)等溢出边界，但该小负数已给出无溢出的反例。"
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "第一次外层i=0时，内层j=0不满足j<i，cnt不增加；接着无条件break退出外层，i也不会再自增。最终cout打印i=0而非9，判断错误。cnt在这里不是被输出变量，不能因前面出现计数循环就直接套用常见嵌套求和结果。"
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "输入N=10时，内层j从-i到i-1，共2i次；i=0到9累计2*(0+1+…+9)=90，不是100，判断错误。程序还先输出原提示语。严格小于i使正端点不被包含，不能把每轮次数算成2i+1而误得100。"
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "i、j都取0、1、2，满足i+j>=3的组合仅(1,2)、(2,1)、(2,2)，count从0增加三次，输出3，故正确。两层while都在每轮末尾推进各自变量，内层j每个外层入口重新置0，既不会漏后续组合，也没有无限循环。"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        7,
+        8
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "ANSWER-DOUBT：mirror PDF p.7–8判断正整数输入能原样输出并判√，但N=1000000000时，最后一轮已令N=0，仍执行int Nbase*=10，从1000000000变为数学值10000000000，超出32位int，构成有符号溢出。题面没有限制为9位以内；保留answer=0和原代码，暂停计分。 在位权乘10不溢出的较小输入域内，逐位乘回位权确能重建原数。但即使最后一次N已经归0，也不能忽略同一逗号表达式中仍执行的位权更新；不能用优化编译时偶然输出正确证明标准语义对所有正int成立。另存-ftrapv编译运行见证，题库原程序不改。"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        8
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "输入5时，第i行两侧各5-i个0，中间依次递增1到i再递减到1。五行正是000010000、000121000、001232100、012343210、123454321，判断正确。每行宽度为2*(5-i)+(2i-1)=9，且没有空格；递减部分从i-1开始，峰值不会重复。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        8,
+        9
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": "枚举正整数i且i*i<=r，每个平方落入[l,r]时计数。样例1到21的平方为1、4、9、16，共4；下界包含端点，所以i*i>=l即可。r<=2000，仅需检查44个候选，乘法安全，时间O(sqrt(r))、额外空间O(1)。保留现有参考代码，使用独立整数平方集合/区间前缀计数预言机覆盖单点、平方邻域、空区间结果和随机合法区间，不用浮点开方复写参考逻辑。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": [
+        9,
+        10
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": "画布边长2n-1，中心(n,n)，四条菱形边分别满足i+j=n+1、i+j=3n-1、i-j=n-1、j-i=n-1。满足任一条件输出+，其余输出点，行末换行。n=4得到7行7列的原样例，n=3为5行图。复杂度O(n²)时间、O(1)额外空间；n=3到15仅13个合法值。保留参考程序，用独立中心距离判定预言机核对全部13值及字符数，确保空心与完整点背景。"
     }
-  ]
+  ],
+  "unresolved": [
+    {
+      "id": 24,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT：mirror PDF p.7–8判断正整数输入能原样输出并判√，但N=1000000000时，最后一轮已令N=0，仍执行int Nbase*=10，从1000000000变为数学值10000000000，超出32位int，构成有符号溢出。题面没有限制为9位以内；保留answer=0和原代码，暂停计分。"
+    }
+  ],
+  "supplementarySources": [],
+  "notes": "AI-Codex逐页对照10页mirror PDF，Git blob SHA 46f343b77f0d32bf68cf4557bca15b8ee4cc94e8一致，全部answer保持。Q15评分原范围0到10恢复，printf格式和Q22提示恢复，Q14图形选项保留换行，重写27题解析。Q24十位int输入的位权溢出新增源疑点隔离；两参考程序原样保留并独立编译运行。",
+  "history": [
+    {
+      "paperId": "2026-06-l2",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2026-06-l2"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+        "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+        "mirrorBytes": 983895,
+        "shaVerified": true,
+        "fetchedAt": "2026-11-03",
+        "note": "2026-11-03 重新下载镜像 PDF，git hash-object 复算 blob sha 与字节数，均与 src/data/gesp/paperSources.js 登记一致。"
+      },
+      "session": 14,
+      "answerTable": {
+        "content": {
+          "single": "CBDCBBAAADABDBA",
+          "judge": "√√√√×××√√√"
+        }
+      },
+      "verification": {
+        "method": "收录时同步核验：官方答案表200dpi渲染逐格读取；单选15题+判断10题程序化正则提取比对；判断题逐题代码级逻辑复核；编程题样例程序化验证（跑参考算法）；pypdf文本层粘连数字（样例输出+行号）全部渲染核对纠正",
+        "answerKeySource": "官方PDF答案表程序化提取（非手工转录）",
+        "singleChoice": "15/15官方答案表比对一致",
+        "judge": "10/10官方答案表比对一致 + 逐题代码级逻辑复核通过",
+        "programming": "完全平方数计数（1≤l≤r≤2000）、菱形（(2n-1)²画布四边方程判定，样例n=3）"
+      },
+      "note": "",
+      "resolved": true,
+      "questions": [
+        {
+          "id": 16,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q16 explanation 升级；答案未改"
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ]
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 2379,
+    "objectiveCaseCount": 50,
+    "templateCompileCount": 2,
+    "diagnosticCount": 0,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2026-06-l2/programming-run.json"
+  },
+  "objectiveOverflowAudit": {
+    "reviewedBy": "AI-Codex",
+    "input": "1000000000",
+    "flags": "-O0 -ftrapv",
+    "status": 3221226505,
+    "signal": null,
+    "arithmetic": "last Nbase update: 1000000000*10=10000000000 > INT_MAX",
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2026-06-l2/q24-overflow.json"
+  }
 }
