@@ -1,136 +1,675 @@
 {
   "paperId": "2023-12-l3",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-12-l3"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
     "pages": {
-      "Q17": "p.4"
-    }
+      "total": 9,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-12-l3/source.pdf"
   },
   "questions": [
     {
-      "id": 2,
-      "resolved": true,
+      "id": 1,
+      "type": "single",
+      "resolved": false,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "C使用单引号包住chen等多个字符，形成多字符常量，其类型为int且值由实现决定，并不是能存储名字的字符串。将本机这些常量放进char列表会发生不允许的窄化并被C++17编译器拒绝，不能沿用旧解析说必然截取最后一个字符。官方选择C保留，但题目称可执行后丢失数据缺少标准/扩展前提，已隔离。需要存名字应采用string数组等合适结构。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q2 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "二进制11011101按位权展开为128+64+16+8+4+1=221。转八进制可分组为011 011 101，即335；转十六进制为1101 1101，即DD。十六进制5D则等于5×16+13=93，与221不同，因此选D。这里dd和DD只是十六进制数码的大小写差别，不改变值，也不能把字符编码值拿来替代数码值。"
     },
     {
       "id": 3,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "四个字符G、E、S、P对应下标0到3。C从下标1开始输出，依次为E、S、P以及下标4处值为0的字符，因此不能输出GESP，选C。C++17允许只读string的pos==size()位置，其值为char()，与访问pos>size()的越界不同，不能把本题str[4]误说成必然未定义。其余三种初始化方式都可得到并整串输出GESP。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q3 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1–2",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "外层i取1至6，内层j取1至4，i/j为整数商而不是浮点商。满足商为2的数对是(2,1)、(4,2)、(5,2)、(6,3)，共有4组，选C。特别是5/2也等于2，不能只统计i恰好等于2j的情形；反之i=3、j=1的商已经为3，不计入。按循环范围逐对验证可避免错把除法当成精确比例。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "字符串chen的长度是4，因此x=4。循环i从0开始且条件为i<=x，依次处理0、1、2、3、4共5个值，每次给temp加1，所以输出5，选C。这个循环没有访问str[i]，只使用字符串长度作计数上界，因此不能因为包含i=4就说发生字符串越界；循环次数与合法字符下标的范围须分开分析。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "字符串chen由c、h、e、n四个字符组成，length()返回内容长度4，输出4，选A。这里是std::string的成员函数，不是用sizeof统计对象本身所占的存储空间；字符串为实现管理的对象，其sizeof与所保存字符数量没有这种直接相等关系。C风格结尾空字符也不计入string的length()返回值。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "str内容为chen，size()为4。C++17的operator[]只允许pos<=size()，其中pos==4只读时返回零字符，原题访问5已超过允许范围，行为未定义，不能承诺一定输出某个未知的数或字符。官方A保留，但选项没有准确描述此语义，因此隔离等待澄清。本轮不运行str[5]并用偶然输出当答案，仅检查size与访问位置关系。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2–3",
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "char ch[10]只显式初始化首元素为字符'1'，剩余9个元素值初始化为零字符，所以ch[2]为'\\0'。流插入char会送出这个不可见字符，随后endl还送出换行并刷新；按选项通常指不显示可见字符的含义选D。它不是可见数字0，也不是空格或字符1。不能把“什么也不输出”解释成标准输出字节数严格为0，本次实际核对保留NUL与换行。"
     },
     {
       "id": 9,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "原字符串中小写o出现3次，而小写s仅出现2次。ASCII中'a'+14和111均为字符o的编码，A、B、D都统计o，得到3；115对应s，统计得到2，所以不能填C。应按大小写敏感的字符比较逐个数，字符串开头大写GESP中的S不是小写s，不能混计；本轮恢复了原代码的变量名x及填空框架。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q9 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "按题目通常采用的32位补码int环境，其值域为−2^31到2^31−1，即−2147483648到2147483647，选C。共有2^32种位模式，但2^32不是一个值域区间，不能将B当作范围。负数比正数多一个可表示值。32位机器这个描述本身不构成所有C++实现对int位宽的普遍规定，解析明确此处依本卷常用实现并在本机核对limits边界。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "循环i取0到20，包含两个端点。同时满足i%3==0与i%5==0的是0与15，cnt因此增加2次，选A。0除以任何非零整数余数都为0，所以也符合判断条件；如果忽略起点0，就会错误地只数到15。逻辑与要求两个条件都成立，不能把3或5任一个的倍数都计入结果。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3–4",
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "a和b都是int，表达式按同级乘除从左到右求值，先算3/2得到整数1，再与double常量1.0相乘得到double的1。cout默认格式输出1，选B。后面的乘1.0不能补回整数除法已经舍去的小数部分；若要求1.5，需要在除法发生之前把至少一个操作数转换为浮点类型，例如a*1.0/b。"
     },
     {
       "id": 13,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q13 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "程序将连续数字字符追加到tel，遇到非数字且tel非空时输出tel并换行，再清空，因此选A。示例得到01084025890、119、120、110四行。循环含i==strSrc.length()这一轮：C++17读取string末尾位置得到零字符，恰可触发末段输出，不是普通数组随意越界。空串或末尾有非数字时tel为空，不会额外打印空号码；要输出格式化分隔须保留原有endl。"
     },
     {
-      "id": 17,
+      "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "按题设声控选路并告知乘客的过程，麦克风负责接收目的地语音，扬声器负责播报告知，传感器提供驾驶所需环境信息。油量表显示燃油余量，并非这一选路过程的必要部件，依本题功能分类选C。这是题设简化场景下的输入、处理、输出与感知设备辨认，不能把结论扩大成任何真实车辆的路线规划都永远不用能源状态。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "本题按基础计算机课程中的存储程序体系结构分类，选择冯·诺依曼，B。核心思想是程序指令与数据存储在存储器中，由处理器按控制流程执行；常用功能部件包括运算器、控制器、存储器、输入和输出设备。这是本题的经典体系结构称谓，不意味着现代每一种专用电子计算设备都严格采用同一种内部存储组织。"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
       "dimensions": [
         "statement",
         "answer",
         "explanation"
       ],
-      "method": [
-        "原卷对照（页面渲染人工查看）",
-        "程序执行"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "5和2转换为bool时均为true，逻辑与true&&true的结果为bool真，cout在未启用boolalpha时输出1，原判断正确。这里计算的是逻辑真值，不是把两个整数按二进制逐位与；如果用单个&，5&2反而为0。默认输出格式与boolalpha下的true字样也要区分，本题原式没有改变格式标志。"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
       ],
-      "findings": "题面缺失程序代码（原卷为图片，位于 p.4 判断题第 2 题下方）。原卷代码为三行：string str; cin>>str; cout<<str;。题干原句「C++程序执行后，输入 chen a dai 输出应该为： chen。（ ）」此前按公开解析还原并带【题面按公开解析还原】标记。",
-      "fix": "按原卷 p.4 逐字转写三行代码，以 fenced cpp 块回填题面；题干恢复为原卷表述并移除【题面按公开解析还原】前缀；删除 sourceIntegrity/integrityNote；解析中「根据题面还原」措辞改为「根据题面代码」，其余解析与代码一致，未改动。",
-      "evidence": "g++ 编译运行转写代码，输入「chen a dai」实际输出 chen，与题库 answer 0（正确）一致；亦与原卷 p.4 判断题答案表第 2 题 √ 一致。tmp/verify/2023-12-l3/q17.cpp",
-      "resolved": true
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "cin>>str按空白分隔提取一个字符串。输入chen a dai时，只把第一个单词chen读入str，随后的空格及后续单词不会成为这次提取的内容，所以cout输出chen，原判断正确。这里不是读取整行的getline；程序也未执行第二次或第三次提取，因此不能把后三个字母段连接或连同空格输出。"
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "逻辑或只要求至少一个操作数真。5和2都非零，表达式5||2结果为bool真，默认输出1，因此原判断正确。逻辑或不是按位或，也不等于两个数相加：5|2为7，而5||2为1。本题没有boolalpha设置，所以输出的是数码1；不能用其操作数的数值大小推断输出5、2或7。"
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "a初值china，replace(0,1,\"C\")从下标0开始用字符串C替换长度1的片段，即把首字母c换成大写C，其余hina保持，结果为China，原判断正确。这不是在开头额外插入一个C，也不是替换整个字符串。replace这里的第二个参数表示删除/替换的字符数，而不是结束下标。"
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "i在0到9中使i%5==0的值是0和5，但输出的是list[i]，分别为1与6，因此实际输出为“1 6 ”，末尾确有一个空格，原判断声称“0 5 ”是错误的。必须区分数组下标和数组元素值，本题初始化从1开始而下标从0开始；不能只看if筛选出0、5就把这两个下标当作输出。"
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "cout<<list中数组表达式会退化为指向首元素的int指针，由流的指针输出重载显示地址形式，不是输出首元素1，原判断错误。初始化{1}只说明第一个元素为1、其余为0，并不使数组名代表数组内容。地址的具体文字随运行环境和分配位置变化，不应为其编造固定十六进制结果；输出首项须写list[0]。"
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "数组arr只显式给出一个初始化值1，首元素arr[0]因此为1，剩余元素按聚合初始化规则补零。语句明确输出首元素，得到1，原判断正确。它与上一题直接输出数组名不同，既不会输出地址，也不会把十个元素全部逐个输出；要输出整张数组仍须另写遍历循环或其他逐项输出逻辑。"
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "循环i依次为0、2、4、6、8，读取数组的第1、3、5、7、9个元素，也就是1、3、5、7、9；每次随后输出一个空格，因此9之后也有空格，原判断正确。i+=2改变的是下标，不是对读取到的元素加2；本题数据恰好连续递增，不能把这个巧合当作任意数组输出等差数列的规则。"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "Dev C++属于集成开发环境，提供编辑、编译、调试与运行程序的工具入口，需要依托操作系统工作，并不因为可以运行练习程序就成为一个操作系统，原判断错误。操作系统管理计算机资源并提供基础运行服务，开发环境则是其上的应用软件。应依据职责分类，不能把软件界面看起来能做很多事误作系统软件依据。"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "原判断正确。while(condition){body}可直接改写为for(;condition;){body}，没有额外初始化和更新表达式，两者的条件判断时机相同；body中的break和continue仍作用于同一个循环逻辑。若使用涉及新变量作用域的更复杂改写，还需保留作用域和执行顺序，但不影响这种直接等价写法。不要混入把带更新for反向改while时的continue陷阱。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5–7",
+      "evidence": "按原PDF算法枚举最后一只小猫拿到的份额k，从1递增，最后一次分鱼前有k*N+i条。往前倒推时，当前剩余鱼数必须能被N−1整除，上一轮分鱼前数为当前数/(N−1)*N+i，连续倒推N−1轮。合法情况下该值随k递增，所以首个成功结果最小。N=1时没有倒推步骤，避免除以0。恢复原卷0<N<10、i<N的范围，鱼数语境中i可为0；不沿用旧库强加i>0的限制。时间O(KN)、额外空间O(1)，优于逐个初始鱼数枚举；用long long存中间值。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7–9",
+      "evidence": "六种合法转换的倍率是1000或1000000，按输入源单位和目标单位查询倍率再乘原数即可。最大输入1000乘1000000为1000000000，当前long long实现安全。输出保留原数、单位、等号及单空格，只将问号替换为结果；输入严格按原题格式，不引入提示。每行独立处理，0也要输出0。当前参考采用固定六项表，与原PDF按最小单位权重相除等价，时间O(N)，除固定表外额外空间O(1)。"
     }
   ],
-  "unresolved": [],
-  "notes": [
-    "2026-10-27 官方 PDF 复核（镜像 sha 71be70512154a513b84196e753fd37621a509a86，本地与镜像一致）：渲染读图核对 p.1-5，Q4-Q8/Q11/Q12 单选代码块与官方逐行一致，Q19-Q23 判断题代码块与官方逐行一致；单选答案表渲染裁图 CDCCCAADCCABACB、判断答案表 √√√√××√√×√，与题库 25/25 一致。本轮改动：移除 12 题的「【题面按公开解析还原】」自标标签（内容经官方 PDF 确认后该标签已无必要），题干对齐官方原文，Q19 代码围栏错位修复（原把前两行代码放在围栏外）。题面比对覆盖率 0.680 → 1.000。之前的「按公开解析还原」标记升级为「官方 PDF 已核对」。"
-  ]
+  "unresolved": [
+    {
+      "id": 1,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT：原卷p1选C并称会丢失数据，但chen/wang/zhou均写在单引号中，是实现定义int值的多字符常量，并非字符串。当前GNU C++17对这些常量初始化char的列表窄化直接报错，不能保证该定义可执行后只是丢失数据。保留answer=2和原选项，暂停计分，待语言版本/扩展语境澄清。"
+    },
+    {
+      "id": 7,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT：原卷p2选A“输出未知的数”，但string(\"chen\")长度4，str[5]大于size()，不满足operator[]前提，行为未定义；不是保证会输出某个数。保留answer=0和原代码/选项，暂停计分。str[4]读取末尾零字符与str[5]越界需严格区分，不执行越界以采信偶然输出。"
+    }
+  ],
+  "supplementarySources": [
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/lex.ccon",
+      "note": "多字符常量类型int、值实现定义。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list",
+      "note": "列表初始化窄化限制。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.access",
+      "note": "C++17 operator[]要求pos<=size；pos==size可只读零字符，pos>size违反前提。"
+    }
+  ],
+  "notes": "AI-Codex逐页对照登记mirror PDF全部9页文本与渲染，Git blob SHA 71be70512154a513b84196e753fd37621a509a86一致，p1单选/p4判断答案表与25题原answer逐项一致。Q1/Q7源疑点保留官方答案隔离；补齐代码截图转录与分鱼范围，分鱼参考按原PDF倒推算法替换逐鱼枚举，独立BigInt预言机全合法域检查另记。",
+  "history": [
+    {
+      "paperId": "2023-12-l3",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2023-12-l3"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-24",
+        "pages": {
+          "Q17": "p.4"
+        }
+      },
+      "questions": [
+        {
+          "id": 2,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q2 explanation 升级；答案未改"
+        },
+        {
+          "id": 3,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q3 explanation 升级；答案未改"
+        },
+        {
+          "id": 9,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q9 explanation 升级；答案未改"
+        },
+        {
+          "id": 13,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q13 explanation 升级；答案未改"
+        },
+        {
+          "id": 17,
+          "dimensions": [
+            "statement",
+            "answer",
+            "explanation"
+          ],
+          "method": [
+            "原卷对照（页面渲染人工查看）",
+            "程序执行"
+          ],
+          "findings": "题面缺失程序代码（原卷为图片，位于 p.4 判断题第 2 题下方）。原卷代码为三行：string str; cin>>str; cout<<str;。题干原句「C++程序执行后，输入 chen a dai 输出应该为： chen。（ ）」此前按公开解析还原并带【题面按公开解析还原】标记。",
+          "fix": "按原卷 p.4 逐字转写三行代码，以 fenced cpp 块回填题面；题干恢复为原卷表述并移除【题面按公开解析还原】前缀；删除 sourceIntegrity/integrityNote；解析中「根据题面还原」措辞改为「根据题面代码」，其余解析与代码一致，未改动。",
+          "evidence": "g++ 编译运行转写代码，输入「chen a dai」实际输出 chen，与题库 answer 0（正确）一致；亦与原卷 p.4 判断题答案表第 2 题 √ 一致。tmp/verify/2023-12-l3/q17.cpp",
+          "resolved": true
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "unresolved": [],
+      "notes": [
+        "2026-10-27 官方 PDF 复核（镜像 sha 71be70512154a513b84196e753fd37621a509a86，本地与镜像一致）：渲染读图核对 p.1-5，Q4-Q8/Q11/Q12 单选代码块与官方逐行一致，Q19-Q23 判断题代码块与官方逐行一致；单选答案表渲染裁图 CDCCCAADCCABACB、判断答案表 √√√√××√√×√，与题库 25/25 一致。本轮改动：移除 12 题的「【题面按公开解析还原】」自标标签（内容经官方 PDF 确认后该标签已无必要），题干对齐官方原文，Q19 代码围栏错位修复（原把前两行代码放在围栏外）。题面比对覆盖率 0.680 → 1.000。之前的「按公开解析还原」标记升级为「官方 PDF 已核对」。"
+      ]
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 58,
+    "objectiveCaseCount": 61,
+    "templateCompileCount": 2,
+    "diagnosticCount": 4,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-12-l3/programming-run.json"
+  },
+  "referenceCodeFixAudit": {
+    "questionId": 26,
+    "reviewedBy": "AI-Codex",
+    "reason": "旧参考从初始鱼数1逐个枚举，候选上界达数亿；恢复原PDF pp6–7从末猫正份额k倒推的算法。N=1无倒推，避免除0；保留旧程序于runtime-before。",
+    "independentOracle": "BigInt平移y=x+(N−1)i，则每次变为(N−1)y/N，N轮可分要求原y为N^N倍数；从正倍数求最小初值并做正向余数/每份正数核验。全45组N=1..9、i=0..N−1通过。",
+    "answersPreserved": true,
+    "templatePreserved": true,
+    "otherReferencePreserved": true
+  }
 }

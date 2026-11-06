@@ -1,20 +1,18 @@
 {
   "paperId": "2023-09-l3",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-09-l3"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
     "pages": {
-      "singleAnswerTable": "p.1",
-      "judgeAnswerTable": "p.5"
-    }
+      "total": 8,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-09-l3/source.pdf"
   },
   "answerTable": {
     "single": {
@@ -29,176 +27,767 @@
   },
   "questions": [
     {
-      "id": 11,
+      "id": 1,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "App是Application的缩写，指满足用户具体任务需求的应用程序，因此选B。手机操作系统负责资源管理和为应用提供运行环境，属于系统软件；通话设备则是硬件概念。手机上安装应用这一描述既不表示安装一套操作系统，也不表示增加一台通话设备，应按软件用途分类判断。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q11 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "按本轮补回的原卷流程图执行，初始a=5、s=1。第一次判断5≥4，令s=1×5=5，再使a=4；第二次判断4≥4，令s=5×4=20，再使a=3。第三次3≥4为假，转到输出s，得到20，选B。旧解析在缺图时依据答案猜测“典型流程”，已改成按原图逐步追踪。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "ASCII大写字母编码连续，L相对A的偏移是11，即十六进制0B。0x41+0x0B=0x4C，所以选C。这里要求的是十六进制数字4C，实际十进制值为76；4A和4B分别少算两位和一位，52不是从A正确偏移所得。不要把从A到L共12个字母误当作编码差值12。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "单独的~是按位取反，<是小于比较，<<可用于位左移并可被流类型重载；~~不是一个独立运算符，因此选B。合法的~~x会被分成两个连续的一元~，并不产生新的运算符。内建~要求整数或相应枚举操作数，不能沿用旧解析声称可对float使用；小整数还会先发生整型提升。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "初始化列表含4个元素，因此整个数组占4*sizeof(long long)字节。在本卷常用的8位字节、long long占8字节环境中是4×8=32，选A；本机实际编译检查也为32。应区分标准至少64位的要求和所有实现一律8字节的说法。sizeof直接作用于数组时得到整个数组大小，不是单个元素或指针大小。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "长度为3的数组有3个元素，下标从0开始，合法下标依次是0、1、2，所以最大下标为2，选A。下标3已经位于末尾之后，不能作为元素读取或写入；数组占用的字节数与元素下标不是同一尺度。即便某次越界没有出现报错，也不能将其当成合理访问或在解析中承诺运行结果。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "B有3个初始化项，可推导长度为3，常量1、2.0、'3'均可在这里转换为double，选B。列表初始化并非普遍允许窄化；这里整数常量值能够精确表示，不触发该限制。A作为普通局部定义既无长度也无初值，C用浮点数作数组界限，D将[]放在了不符合C++声明语法的位置。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "不补前导零时，若正整数有d位十进制数字，则N≥10^(d−1)≥2^(d−1)，因此二进制至少也有d位，C正确。这比把位数近似为对数更适合直接证明。任意这些进位制都能表示小数，A错；时间常用六十进制等混合进位方式，B过于笼统；八进制数码最大是7，D错。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "原表选C：越界并不必然导致编译错误，程序可能编译并结束，但其行为没有保证。本题另有A的语境疑点：标准普通内建数组不允许0界限，GNU接受int a[0]属于扩展；new int[0]则是标准允许的动态数组分配形式，不能混为同一规则。原文未限定讨论范围，保留官方C与原选项并隔离，等待澄清而不擅改答案。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "按无溢出整数代数，A先加1000再减1000会恢复a；但题目只说int，没有排除a=INT_MAX，第一步就超出可表示范围，不能保证表达式有定义。B乘2也可能溢出，C仅判断最低位为1，D也不是对任意a成立。官方A保留并隔离；补范围后的推理不能冒充原题对所有int的保证，也不能用优化器消项后的输出证明安全。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "B会丢失最低位，例如a=2、b=3时均右移为1，错误地认为相等。A的双重比较和D的异或为0可直接判断相等；C在加法均有定义时可消去公共a，但a=b=INT_MAX时两边的加法都会超范围，因此原题全int范围下还需考虑C。官方选B保留，因遗漏溢出前提隔离，不能沿用旧解析把C说成无条件等价。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "正确判断必须同时满足下界和上界，即('A'<=a)&&(a<='Z')，选D。A只有上界且允许26，比'Z'大一位的'['也能满足；B的关系运算从左到右，先得到0或1再与'Z'比较，不能表示数学链式范围；C还把变量a写成字符常量'a'。以'@'、'A'、'Z'、'['等边界可直接区分这些表达式。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "原代码将10左移8位并与20按位或，得到0x0A14，即2580。填B先取高字节，使b=2580>>8=10，再取低字节，使a=2580&0xff=20，输出20 10。顺序很关键：若先覆盖a的高字节信息，再取低字节就无法保留20。A原选项末尾缺分号，按原文保留；B本身包含所需分号，直接填入合法。"
     },
     {
       "id": 14,
-      "dimensions": [
-        "statement"
-      ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
-      ],
-      "findings": "题干为改写版（「如果要使得下面代码输出 120，则横线处应填入」），官方为「在下列代码的横线处填写（ ），可以使得输出是“120”」。代码与选项与官方一致。",
-      "fix": "恢复官方题干。官方答案行 Q14=D 一致（res=0 时 += 得 15、*= 得 0、= 得 5，均得不到 120）。",
-      "evidence": "tmp/verify/2023-09-l3/pg4-4.png",
+      "type": "single",
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "res初始为0。A依次累加1到5，结果15；B从0开始乘，结果一直为0；C逐次覆盖res，最后得到5。因此三项均不能输出120，应选D。120是1×2×3×4×5，但想求该乘积还须把初值改为1，原题只允许填写横线，不能偷偷改变res的初始化。原空位自带分号，A已有分号时多出的空语句不影响本题求和结果。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "数组先初始化为下标值。p=2处理2的倍数，p=3处理3的倍数；p=4已被修改所以跳过，后面仍满足array[p]==p的是5和7。最终下标1至9的值依次为1、1、2、2、4、2、6、4、6，总和28，选B。程序是欧拉函数筛的一种实现；也可独立枚举1..n中与n互素的整数计数来核对，不能直接把原下标求和45当答案。"
     },
     {
       "id": 16,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "二进制小数点左侧101为4+1=5，右侧.101按2^−1、2^−2、2^−3展开为1/2+0+1/8=0.625，总值5.625而非5.005，因此原判断错误。小数点后仍使用所在进制的位权，不能把二进制小数的字符形状直接搬到十进制小数中；0.101的十进制数值与二进制.101不同。"
     },
     {
       "id": 17,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "原判断正确。位运算也有固定优先级，例如移位高于按位与，按位与又高于按位异或和按位或；相等比较也与按位操作存在先后关系。若想判断最低位，应写(a&1)==0，不能省略括号写a&1==0，因为后者先算1==0。合理使用括号可明确预期分组，不能简单按表达式从左到右套算。"
     },
     {
       "id": 18,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "在ASCII环境，字符常量'3'的编码值是51，而整型常量3就是数值3，二者并不相同，原判断错误。这不仅是存储大小的差别；字符转换成整数参与运算时也不会自动变成数字3，应通过'3'-'0'得到3。普通字符常量在C++中类型为char，整型提升后仍保留原编码数值。"
     },
     {
       "id": 19,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false,
-      "dimensions": [
-        "statement"
-      ],
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
-      ],
-      "findings": "假阴性说明：官方 judge4（=题库 Q19，无错位）中「长度为 3」「下标为 3」的 3 为数字图片，文本层丢失。题库语义正确。",
-      "fix": "无需修复。官方答案表（p.5 渲染图）× √ × × √ × × × √ √，judge4=×，题库 ans=1 一致（越界是未定义行为，编译期不报错）。",
-      "evidence": "tmp/verify/2023-09-l3/answer-table.png",
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原卷用的是长度n与下标n，本轮恢复该一般表述。长度n的普通数组合法下标为0到n−1，下标n在末尾之后，元素读写属于越界，但不必在编译期报错，所以原判断错误。可编译只能说明未被该次诊断拒绝，不能证明访问合法；本轮只编译越界示例，不运行并采信其偶然输出。"
     },
     {
       "id": 20,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "原表判正确，但原文涵盖所有int又未限定标准版本。C++17规定负有符号数左移为未定义行为，例如a=−1时a<<1没有可依赖的标准结果，不能保证反复左移到0；移位数还必须小于类型位宽。固定宽度无符号数的连续左移丢位直觉不能代替该规则。保留官方判断并隔离，等待语言版本和操作前提澄清，不运行未定义代码来推导答案。"
     },
     {
       "id": 21,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原判断错误。普通数组中元素连续存储，同一个数组中下标较大的元素地址也更靠后，每相邻元素相隔sizeof(元素类型)字节。下标既确定逻辑位置，也参与实际地址计算，不能说与内存位置的先后顺序无关。这里讨论的是同一数组内的元素，不能推广成不同无关对象之间的地址排序规则。"
     },
     {
       "id": 22,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原判断错误。定义int a[]={1,2,3}时，方括号中可省略长度，编译器从初始化项推导出3；字符数组由字符串字面量初始化时也可推导长度并计入结尾空字符。这不意味着没有初始化信息的普通局部数组int a[]也合法，应区分“可以省略且能推导”和“随意不提供大小信息”两种情形。"
     },
     {
       "id": 23,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原判断错误。哥德巴赫猜想讨论所有大于2的偶数，是无限多的输入；逐个枚举并检查有限范围只能证明该范围内成立，不能推出所有更大偶数也成立。程序可找出一个偶数的素数分解，或在有界范围寻找反例，但有限计算没有反例不等于完成普遍数学证明，不能把验证算法与证明混同。"
     },
     {
       "id": 24,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "十六进制0xff有两个数码F，每个值15，因此数值为15×16+15=255，与十进制整数常量255相等，表达式值为true，原判断正确。这里比较整数数值而非源代码书写字符串；0x前缀指定十六进制，字母f的大小写不改变数码值，不能把字符f的ASCII编码参与此处计算。"
     },
     {
       "id": 25,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在本卷使用的补码整数环境中，最低位为0表示该整数可被2整除，按位与1只留下最低位，因此(a&1)==0说明a为偶数，原判断正确；0和负偶数同样成立。本机按正负边界实际验证该结论。若要不依赖有符号表示细节地写整除条件，可用a%2==0；不能把最低位检测误读成a本身必须为0。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5–6",
+      "evidence": "建立按编号索引的余额表，初始全0。第i天读入编号a_i，给该编号增加i元，处理完D天再按0到N−1输出各余额。样例2中0号得到1+2+3+5=11，2号得到4，1号仍为0。总金额最多1000×1001/2=500500，当前long long参考实现安全。时间O(N+D)，余额表按规模理解为O(N)空间；当前代码固定分配1005项，合法下标至999，不输出任何提示。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "7–8",
+      "evidence": "只判断字符串各字符是否属于某进制允许的数码集合，不需要把整个数转换成int，长度10的字符串也不会引起数值转换溢出。二、八、十、十六进制集合依次是01、0..7、0..9、0..9及A..F；出现G至Z则四种都不合法。当前参考程序逐字符转换后更新4个标志，与原PDF按最大字符判断等价。输入按原卷要求不以0开头，旧库“可能以0开头”已恢复。总字符数为L时时间O(L)，单串存储O(最长串长)，每组独立重置标志。"
     }
   ],
-  "judgeAnswerAudit": {
-    "executedAt": "2026-10-25",
-    "executor": "WorkBuddy 子代理",
-    "method": "回官方 PDF 判断题答案表（p.5 表头『题号 1..10 / 答案』）逐列放大核对（4 倍裁剪 tmp/crop-2023-09-l3-p05-top.png），洛谷仅作线索（A=√、B=×）。",
-    "officialSequence": "Q16→Q25 = × √ × × √ × × × √ √（对应表内第 1..10 列）",
-    "items": [
-      {
-        "qid": 20,
-        "bankAnswer": "√",
-        "luoguAnswer": "×（B）",
-        "officialAnswer": "√",
-        "officialLocation": "p.5 判断题答案表第 5 列（第5题：『所有 int 类型的值，经过若干次左移操作（<<）后，它们的值总会变为 0。』）",
-        "derivation": "int 为有限位宽（通常 32 位），每次左移整体左移一位并补 0，不断丢失最高位；左移足够多次（≤32 次）后所有位均为 0，结果必为 0。命题正确（有符号溢出属标准未定义行为，但本题按位模式理解且官方判 √）。",
-        "changed": false,
-        "verdict": "洛谷错，题库正确"
-      }
-    ]
+  "unresolved": [
+    {
+      "id": 9,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT：原卷p3选C，但A“可以定义0个元素的数组”未区分普通内建数组与new T[0]。标准C++17普通数组界限须大于0，int a[0]须诊断；GNU默认模式允许它是扩展，不能泛称标准合法。new int[0]则标准允许。若按普通内建数组语境，A和C都错；待澄清数组范围/编译扩展约定。保留answer=2和原选项、暂停计分。"
+    },
+    {
+      "id": 10,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT：原卷p3选A，但仅限定int而无范围。a=INT_MAX时a+1000已超有符号int范围，后减1000不能消除先发生的未定义行为；原式不保证总为true。保留answer=0及原表达式，暂停计分。"
+    },
+    {
+      "id": 11,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT：原卷p3选B；B把2和3右移都变成1，确实不能判断相等。但C的a+b和a+a可能有符号溢出，a=b=INT_MAX时也不保证有定义，故在未限定范围的int域并非只有B不能可靠判断。保留answer=1和原选项，暂停计分。"
+    },
+    {
+      "id": 20,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT：原卷p5判√，但未限定语言版本或无符号数。C++17对负int左移为未定义行为，如-1<<1；对非负数也有可表示性及移位数界限要求，不能把固定宽度位丢弃直觉推广为所有int总能移为0。保留answer=0和原文，暂停计分，待版本/操作前提澄清。"
+    }
+  ],
+  "supplementarySources": [
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.array",
+      "note": "C++17普通数组界限须大于0，元素连续。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.new",
+      "note": "首维new数组的0长度与普通数组声明不同，不能忽略A的范围歧义。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr",
+      "note": "8/4：结果超类型可表示范围时未定义行为。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.shift",
+      "note": "负有符号数左移及位数越界的C++17规则。"
+    }
+  ],
+  "notes": "AI-Codex对照登记mirror PDF全部8页文本与渲染，Git blob SHA cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666一致；p1单选与p5判断答案表逐项对照。保留全部answer及已有隔离，Q9/Q10/Q11/Q20新增来源前提/标准疑点隔离；参考程序在合法输入域用独立预言机运行后另存审计。",
+  "history": [
+    {
+      "paperId": "2023-09-l3",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2023-09-l3"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-25",
+        "pages": {
+          "singleAnswerTable": "p.1",
+          "judgeAnswerTable": "p.5"
+        }
+      },
+      "answerTable": {
+        "single": {
+          "content": "B B C B A A B C C A B D B D B",
+          "page": "p.1"
+        },
+        "judge": {
+          "content": "× √ × × √ × × × √ √",
+          "page": "p.5",
+          "note": "判断题答案表为红色 √/× 字形，已按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2023-09-l3 无需，整页 p05 可读且与放大裁剪一致）"
+        }
+      },
+      "questions": [
+        {
+          "id": 11,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q11 explanation 升级；答案未改"
+        },
+        {
+          "id": 14,
+          "dimensions": [
+            "statement"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看"
+          ],
+          "findings": "题干为改写版（「如果要使得下面代码输出 120，则横线处应填入」），官方为「在下列代码的横线处填写（ ），可以使得输出是“120”」。代码与选项与官方一致。",
+          "fix": "恢复官方题干。官方答案行 Q14=D 一致（res=0 时 += 得 15、*= 得 0、= 得 5，均得不到 120）。",
+          "evidence": "tmp/verify/2023-09-l3/pg4-4.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-28",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 16,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 17,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 18,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 19,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false,
+          "dimensions": [
+            "statement"
+          ],
+          "method": [
+            "官方PDF对照",
+            "页面渲染人工查看"
+          ],
+          "findings": "假阴性说明：官方 judge4（=题库 Q19，无错位）中「长度为 3」「下标为 3」的 3 为数字图片，文本层丢失。题库语义正确。",
+          "fix": "无需修复。官方答案表（p.5 渲染图）× √ × × √ × × × √ √，judge4=×，题库 ans=1 一致（越界是未定义行为，编译期不报错）。",
+          "evidence": "tmp/verify/2023-09-l3/answer-table.png",
+          "resolved": true,
+          "reviewedAt": "2026-10-28",
+          "reviewedBy": "AI对照官方PDF校订"
+        },
+        {
+          "id": 20,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 21,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 22,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 23,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 24,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 25,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "judgeAnswerAudit": {
+        "executedAt": "2026-10-25",
+        "executor": "WorkBuddy 子代理",
+        "method": "回官方 PDF 判断题答案表（p.5 表头『题号 1..10 / 答案』）逐列放大核对（4 倍裁剪 tmp/crop-2023-09-l3-p05-top.png），洛谷仅作线索（A=√、B=×）。",
+        "officialSequence": "Q16→Q25 = × √ × × √ × × × √ √（对应表内第 1..10 列）",
+        "items": [
+          {
+            "qid": 20,
+            "bankAnswer": "√",
+            "luoguAnswer": "×（B）",
+            "officialAnswer": "√",
+            "officialLocation": "p.5 判断题答案表第 5 列（第5题：『所有 int 类型的值，经过若干次左移操作（<<）后，它们的值总会变为 0。』）",
+            "derivation": "int 为有限位宽（通常 32 位），每次左移整体左移一位并补 0，不断丢失最高位；左移足够多次（≤32 次）后所有位均为 0，结果必为 0。命题正确（有符号溢出属标准未定义行为，但本题按位模式理解且官方判 √）。",
+            "changed": false,
+            "verdict": "洛谷错，题库正确"
+          }
+        ]
+      },
+      "secondaryCheck": {
+        "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致（含 p.1 表格放大复核第 13 题 = B）",
+        "result": "all-match"
+      },
+      "unresolved": [],
+      "executedAt": "2026-10-25",
+      "answerKey": "单选答案串 B B C B A A B C C A B D B D B，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× √ × × √ × × × √ √ 与题库 10/10 一致。"
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 525,
+    "objectiveCaseCount": 444,
+    "templateCompileCount": 2,
+    "diagnosticCount": 9,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-09-l3/programming-run.json"
   },
-  "secondaryCheck": {
-    "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致（含 p.1 表格放大复核第 13 题 = B）",
-    "result": "all-match"
-  },
-  "unresolved": [],
-  "executedAt": "2026-10-25",
-  "answerKey": "单选答案串 B B C B A A B C C A B D B D B，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× √ × × √ × × × √ √ 与题库 10/10 一致。"
+  "objectiveOverflowAudit": [
+    {
+      "questionId": 10,
+      "flags": [
+        "-std=c++17",
+        "-O0",
+        "-ftrapv"
+      ],
+      "input": "2147483647",
+      "status": 3221226505,
+      "signal": null,
+      "stdout": "",
+      "stderr": "",
+      "mathFirstIntermediate": "2147484647",
+      "intMax": "2147483647",
+      "note": "额外将原式加法中间结果存入volatile以阻止代数消项的插桩见证，不冒充未插桩原程序必然陷阱。首次未插桩Q10被消项、未陷阱，断言失败一次；理论疑点依据数学范围和标准规则，不依赖实际陷阱。"
+    },
+    {
+      "questionId": 11,
+      "flags": [
+        "-std=c++17",
+        "-O0",
+        "-ftrapv"
+      ],
+      "input": "2147483647 2147483647",
+      "status": 3221226505,
+      "signal": null,
+      "stdout": "",
+      "stderr": "",
+      "mathFirstIntermediate": "4294967294",
+      "intMax": "2147483647",
+      "note": "额外将原式加法中间结果存入volatile以阻止代数消项的插桩见证，不冒充未插桩原程序必然陷阱。首次未插桩Q10被消项、未陷阱，断言失败一次；理论疑点依据数学范围和标准规则，不依赖实际陷阱。"
+    }
+  ]
 }
