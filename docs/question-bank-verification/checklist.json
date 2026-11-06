@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T05:56:53.690Z",
+  "generatedAt": "2026-11-06T06:14:19.502Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -1558,26 +1558,36 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
-        "answer": "verified",
+        "statement": "partial",
+        "options": "partial",
+        "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "unverified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 3,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "2": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "4": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "13": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"
@@ -1600,14 +1610,14 @@
       },
       "dimensions": {
         "statement": "partial",
-        "options": "unverified",
-        "answer": "verified",
+        "options": "partial",
+        "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "unverified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
       "correctionsOverlay": {
         "present": true,
         "reviewedAt": "2026-08-25",
@@ -1616,11 +1626,18 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 2,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "2": [
+            "sourceIntegrity:official-source-defect"
+          ],
+          "24": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"

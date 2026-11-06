@@ -1,20 +1,18 @@
 {
   "paperId": "2024-03-l3",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2024-03-l3"
-  },
+  "reviewedAt": "2026-11-06",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
     "pages": {
-      "singleAnswerTable": "p.1",
-      "judgeAnswerTable": "p.5"
-    }
+      "total": 8,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-06",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-03-l3/source.pdf"
   },
   "answerTable": {
     "single": {
@@ -29,129 +27,675 @@
   },
   "questions": [
     {
-      "id": 6,
+      "id": 1,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "16位补码中，−5的位模式可按2^16−5计算，65536−5=65531，写成十六进制为FFFB，选D。也可从正5的0005逐位取反得到FFFA，再加1得到FFFB。题目明确给出位宽和补码，不能省略高位F后又按另一个位宽解释，也不要把负数的符号直接附在十六进制位模式之前。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q6 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "原卷把FFFE称为二进制，但二进制数码只能为0、1，含F/E的写法与该词不符。若按其明显指向的16位补码十六进制位模式解释，−4为2^16−4=65532，即FFFC，对应官方C。本轮恢复原文并保留答案，因前提进制用词矛盾隔离，等待来源澄清。FFFH也不是合法十六进制数码表示，不能把H看作十六进制的一位。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 1,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "3的低位为00011，16的对应位为10000，逐位或得10011，即十进制19，选C。两数在本题没有同时为1的二进制位，所以结果也恰好等于3+16。代码随后有两次endl，实际字符流先输出19再有两次换行，本轮按PDF恢复该额外空行。按位或不是逻辑或，结果不会被归一为布尔值1。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "1–2",
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "原题x为−5，原表给输出1，但本次C++17核验规则下x<<1已对负有符号整数实施左移，属于未定义行为。因此不能用补码算术右移的某次实现结果保证表达式一定为真，也不能说移位后必然恢复原值。保留官方B和原表达式并隔离，等待标准版本或适用条件澄清。没有运行该未定义表达式并据偶然输出判定正确。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 2,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "已知ASCII字符'0'为48，'3'、'1'、'6'分别为51、49、54。程序直接把字符编码加到x，没有减去'0'，所以总和是154，选C。数字之和10和整数316是另外两种含义，均不等于本段代码的字符累加。原代码输出154后还额外输出一行空行，本轮保留两次endl，并用精确字符流检查格式。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "2–3",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "只有当一个元素既不是2的倍数、也不是3的倍数时，两项余数都非零，逻辑与为真，该元素才被置为0。留下的大于0元素因此能被2或3整除，选C。满足两者任意一个即可，不要求同时满足。对1到20，保留序列为2、3、4、6、8、9、10、12、14、15、16、18、20，每项输出后带一个空格。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "第一个循环用外部变量i从0递增至20才退出，此时i保留为20。第二个循环没有重新初始化i，首先访问a[i−1]即a[19]，其值为20，所以第一个数是20，选A。随后i递减，依次倒序输出到1，全部下标仍在0到19内。不能把循环结束时的i误写成19，也不能把第一次访问误读为a[20]。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 3,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "在ASCII中，大写字母比相应小写字母的编码小32，正确转换应加上'A'−'a'，因此填C。条件只进入小写字母位置，大写字母和空格保持，最终文本为GESP IS INTERESTING。A的差值方向相反，B的20也不是正确偏移量。原卷使用字符常量'a'与'z'作范围比较，本轮恢复并保留末尾额外空行。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "3–4",
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "原字符串gEsP is  Interesting  !有三段连续空格。每遇到一段，先使nwords加1，再由while跳过该段剩余空格，最后共计3，选C。这个程序实际统计空格段数，并不是通用的正确单词计数器，若无空格、前导空格或尾随空格，统计含义都会不同。必须按原输入执行，双空格不能在转录时压缩成单空格来代替原题。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "四个整数字面量分别按其前缀解释。100为十进制100，075是八进制，等于7×8+5=61，0x70为十六进制112，0x60为十六进制96。因此最大的是0x70，选C。前导0和0x决定进制，不能只按可见数字大小比较，也不需要把它们先当作字符串或字符编码中的十进制文本。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 4,
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "初始化后i=20，第二个循环检查i=20到2，共19个相邻对。对应元素和依次为39、37、35直到3，全是连续的19个奇数。其中可被3整除的有3、9、15、21、27、33、39共7个，余数非零的为19−7=12，选D。原if直接使用余数作为布尔条件，统计的是不整除的对，不能把这7组当成cnt结果。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "4–5",
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "字符数组容量为20，只给前4个元素初始化G、E、S、P，其余自动补为零字符。因此第一个'\\0'出现在下标4，C风格字符串内容长度为4，选A。容量20不等于字符串长度，也不需要把终止零字符本身计入长度。这里数组初始化保证有终止标记，区别于一个恰好没有预留空位的未终止字符序列。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "a=3与b=16的二进制置位不重叠，按位或得19，相加也得19。B“等于”成立，而D“等于或小于”是包含等于的关系，也同样成立。原题没有给出选择最精确描述的要求，不能仅凭精确程度否定D，因此保留官方B并隔离。这个具体例子的或等于加也不能推广到位有重叠的整数，例如3|1=3而3+1=4。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "鸿蒙在题设手表中承担管理设备资源、提供应用运行环境等系统职责，属于操作系统，选C。小程序是依托平台运行的应用形式，计时器是一种功能或设备，神话人物是名称来源相关的干扰选项，均不符合题干“手表上跑的”软件类别。这里按系统软件与应用软件的职责分类，不依赖某一个手表型号的界面或功能列表。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "本题选择王选先生在汉字激光照排系统方面的贡献，C。北京大学王选计算机研究所的成果介绍记录其带领团队研制汉字激光照排技术并形成中文电子出版系统，题干考查这一计算机中文信息处理成果。制造自动驾驶汽车和创立培训学校不对应此项贡献，成立公司也不能替代题目所指的核心技术发明。"
     },
     {
       "id": 16,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原判断错误。正数的反码与补码和原码相同，已足以反驳“任意整数都有1位不同”。负数补码是在其反码上加1，加法进位还可能改变多个位，例如固定8位下−3的反码11111100、补码11111101只差一位，而−4的反码11111011、补码11111100有多位变化。不能把“加1”理解成必然只翻转一位。"
     },
     {
       "id": 17,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 5,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原判断错误。a<<2表示把a的值左移两位，a为3时表达式值为12，这不是输入输出运算，也不会自动赋回a。若单独写a<<2，a本身仍为3，要更新需要a=a<<2或a<<=2。流插入cout<<a虽然使用相同的两个尖括号，但左操作数和重载含义不同，不能把整数位移解释成向变量输出数字2。"
     },
     {
       "id": 18,
       "type": "judge",
-      "official": "×",
-      "bank": "√(改前)",
-      "modified": true,
-      "fix": "answer 0→1，解析重写：循环累加求和无「候选解+检验」过程，不属于穷举法（独立推导与官方 × 一致）"
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "5–6",
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原程序可得到1到100的累加和5050，但它按既定求和步骤遍历各加数并累加，不是在候选解空间中逐一检验来筛选满足条件的解，依本卷算法分类原判断错误。算法分析不能见到for循环就一概称为穷举法，还要看循环中处理对象和目标。外层另声明的i未被读取，内层for的同名变量单独控制求和过程。"
     },
     {
       "id": 19,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原判断错误，题目只限定int，左移可能丢失高位，且有符号移位还受标准版本和操作数范围约束。本机C++17实现中可用a=536870912观察左移2位得到负值后再右移不能恢复a，右移负数的结果还具有实现相关性。不能把某几个小正数成功恢复推广到所有int，也不能忽略左移对负数及可表示性的限制。"
     },
     {
       "id": 20,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "010在C++整数字面量中是八进制，数值为8，左移1位得到16，所以“结果是100”错误。不能把以0开头的010直接当作二进制文本10来操作，也不能把移位后的数字串想象成在尾部加一个0然后仍按十进制读。若需要明确二进制字面量，应使用0b前缀，但这不会改变原题中010的进制。"
     },
     {
       "id": 21,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "find(\"s\")寻找小写s第一次出现的位置，大小写敏感。字符串gEsP中下标0、1、2、3对应g、E、s、P，因此首次找到的位置为2，原判断正确。中间is中的另一个s出现在更后面，不影响第一次匹配。原程序在输出2之后还有一次额外endl，本轮按原卷恢复完整输出框架与空行。"
     },
     {
       "id": 22,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "按已定义的普通字符数组对象来理解，元素个数在创建该对象时确定，其存储容量不能靠后续赋值自行改变，所以原判断错误。可以修改已有元素的字符值，也可以另行定义不同大小的数组，但这不等于给原数组扩容。std::string或vector提供可变长度管理，是不同对象类型，不能把它们的resize规则套到内建字符数组。"
     },
     {
       "id": 23,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "原判断正确。先把最小值初始化为a[0]即2，再从下标1到6逐项比较，遇到更小值更新，最终得到0。单次遍历即可找到本数组最小值，时间O(n)、额外空间O(1)，不需要先排序，也不需要枚举所有元素对。初始化为一个已有元素比随意设为0更适合通用数组，尤其当所有数据为正或为负时。"
     },
     {
       "id": 24,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "题设WIFI盒子承担设备接入家庭网络并转发通信的职责，具有路由器功能，原判断正确。电视配置IP地址后接入该设备，反映的是网络通信层面的连接功能，与显示节目的屏幕硬件功能不同。实际家用设备常集成多种网络功能，本题判断“具有”路由功能即可，不能把它理解成所有无线接入设备都只执行单一功能。"
     },
     {
       "id": 25,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 6,
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "原判断正确，但改写时要保持初始化、条件判断、循环体和更新表达式的执行时机。对for(init;cond;step)，可在等价作用域中先init，再用while(cond)执行循环体及step。若原循环体中的continue针对该for，改写时需在对应路径执行step再继续，不能机械地把step只放在末尾并让continue跳过。带嵌套循环时也须保留continue所属目标。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": "6–7",
+      "evidence": "逐字母累加。小写字母按其在a到z中的位置映射到1至26，大写字母取ASCII编码相反数，A至Z映射到−65至−90。示例aAc为1−65+3=−61。原卷示例误写“正整数−65”，本轮保留原词并在转录说明中指出前文已定义为负值。n最多10^5时总和在−9000000至2600000之间，当前int足够。参考程序时间O(n)、字符数组空间O(n)，以输入n与实际长度一致为合法输入前提。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-06",
+      "sourcePages": 8,
+      "evidence": "枚举每个i<j的下标对，检查两元素之和是否为非负整数平方。重复数值的不同下标仍须分别计数，0+0=0也符合定义。合法范围n≤1000、A_i≤10^5使和最多200000，平方根附近用整数平方回查可判断，计数最大为1000×999/2=499500，int安全。样例中下标值为(1,3)的两对以及(4,5)的一对共3对。参考时间O(n²)、数组空间O(n)，独立检查用平方集合和数值频次组合计数。"
     }
   ],
-  "secondaryCheck": {
-    "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
-    "result": "all-match"
-  },
-  "unresolved": [],
-  "executedAt": "2026-10-25"
+  "unresolved": [
+    {
+      "id": 2,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p1写“二进制是FFFE”，含F/E的表示不能是二进制。旧库擅改为“十六进制”，本轮恢复原词并隔离。按16位补码的十六进制意图可得FFFC，但需来源澄清原题进制用词。保留官方answer=2及原选项。"
+    },
+    {
+      "id": 4,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p1–2令int x=-5，计算x<<1>>1，官方给B。C++17负有符号数左移属于未定义行为，不能保证输出1，后续右移也不能消除该问题。保留answer=1和原代码，暂停计分，等待语言版本/前提澄清。"
+    },
+    {
+      "id": 13,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p5给B“等于”，但a=3、b=16时a|b与a+b均为19，D“等于或小于”也为真。没有要求选择最精确关系，不能仅以B更精确排除包含等于的D。保留answer=1和四个原选项，暂停计分，等待单选唯一性澄清。"
+    }
+  ],
+  "supplementarySources": [
+    {
+      "questionId": 4,
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.shift",
+      "note": "C++17负有符号数左移未定义，负数右移实现定义。"
+    },
+    {
+      "questionId": 15,
+      "url": "https://www.wict.pku.edu.cn/kxyj/kycg/1201844icst1222285.htm",
+      "note": "北京大学王选计算机研究所记录汉字激光照排成果。"
+    }
+  ],
+  "notes": "AI-Codex逐页对照登记mirror PDF全部8页文本和渲染，Git blob SHA 37a63c4fc0a34cbf57aa761620402f5a4cd05199一致。p1单选/p5判断答案表逐项一致。Q2进制用词、Q4负数左移、Q13包含关系选项疑点保留官方答案隔离。参考程序保持，合法域独立运行审计另存。",
+  "history": [
+    {
+      "paperId": "2024-03-l3",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2024-03-l3"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-25",
+        "pages": {
+          "singleAnswerTable": "p.1",
+          "judgeAnswerTable": "p.5"
+        }
+      },
+      "answerTable": {
+        "single": {
+          "content": "D C C B C C A C C C D A B C C",
+          "page": "p.1"
+        },
+        "judge": {
+          "content": "× × × × × √ × √ √ √",
+          "page": "p.5",
+          "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2024-03-l3-judge.png），排除 √/× 形近误读"
+        }
+      },
+      "questions": [
+        {
+          "id": 6,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q6 explanation 升级；答案未改"
+        },
+        {
+          "id": 16,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 17,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 18,
+          "type": "judge",
+          "official": "×",
+          "bank": "√(改前)",
+          "modified": true,
+          "fix": "answer 0→1，解析重写：循环累加求和无「候选解+检验」过程，不属于穷举法（独立推导与官方 × 一致）"
+        },
+        {
+          "id": 19,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 20,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 21,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 22,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 23,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 24,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 25,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "secondaryCheck": {
+        "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
+        "result": "all-match"
+      },
+      "unresolved": [],
+      "executedAt": "2026-10-25"
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-06",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 1042,
+    "objectiveCaseCount": 222,
+    "templateCompileCount": 2,
+    "diagnosticCount": 1,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2024-03-l3/programming-run.json"
+  }
 }

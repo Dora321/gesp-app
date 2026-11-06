@@ -88,20 +88,16 @@ else
     sourceUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf',
     reviewedAt: '2026-08-25',
     questions: {
-      12: q(5, `using namespace std;
-
+      12: q(5, `#include <iostream>
+using namespace std;
 int main() {
-    string s = "0629";
-
-    int n = s.length();
-
-int x = 0;
-    for(int i = 0; i < n; i++)
-        x += s[i];
-
-    cout << x << endl;
-    return 0;
-}`),
+ string s = "0629";
+ int n = s.length();
+ int x = 0;
+ for (int i = 0; i < n; i++) x += s[i];
+ cout << x << endl;
+ return 0;
+}`, { reviewedBy: 'AI-Codex', reviewedAt: '2026-11-06' }),
     },
   },
   '2024-06-l4': {
