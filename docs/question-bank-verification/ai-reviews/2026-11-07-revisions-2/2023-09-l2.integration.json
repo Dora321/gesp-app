@@ -1,0 +1,20 @@
+{
+  "paperId": "2023-09-l2",
+  "integratedAt": "2026-11-07T23:34:51.546Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 14,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "输入行数，约定 1 ≤ lineCount ≤ 9，输出以下数字金字塔图形。应在C++代码横线处填入（ ）。\n\n输入 9 时输出：\n```\n                1 \n              1 2 1 \n            1 2 3 2 1 \n          1 2 3 4 3 2 1 \n        1 2 3 4 5 4 3 2 1 \n      1 2 3 4 5 6 5 4 3 2 1 \n    1 2 3 4 5 6 7 6 5 4 3 2 1 \n  1 2 3 4 5 6 7 8 7 6 5 4 3 2 1 \n1 2 3 4 5 6 7 8 9 8 7 6 5 4 3 2 1 \n```\n```cpp\nfor (int i = 0; i < lineCount; i++) {\n    for (int j = 0; j < ________; j++)\n        cout << ' ';\n    for (int j = 1; j < i + 1; j++) cout << j << \" \";\n    for (int j = i + 1; j > 0; j--) cout << j << \" \";\n    cout << endl;\n}\n```"
+      }
+    }
+  ],
+  "codeChecks": []
+}

@@ -1,0 +1,95 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    14
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T23:25:48.977Z",
+  "completedAt": "2026-11-07T23:29:00.026Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 16070,
+    "completion_tokens": 19560,
+    "total_tokens": 35630,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18610
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0141465,
+      "allowance": 0.0084879,
+      "tokens": {
+        "input": 16070,
+        "output": 19560,
+        "reasoning": 18610,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1ea60c497d9592d4dfae08135f6bf9e79b035fe04f134eefa3890782d49d1171",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为CCF GESP C++二级、2023年9月；同页答案表第14题为A。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "原卷第5-6页题干为“输入行数，约定1≤lineCount≤9，输出以下图形……”，并展示输入9时的9行数字金字塔（第i行前导空格较上一行少2，数字为1…i与i+1…1）；候选question只有文字和循环代码，漏掉该金字塔图形及输入9的示例，“以下图形”无对应内容，影响对前导空格规律的确认。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷第6页选项依次为A.(lineCount-i-1)*2、B.(lineCount-i)*2、C.lineCount-i-1、D.lineCount-i，顺序与内容均与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为A（0起始索引0），候选answer=0；按代码逐行核对，第i行前导空格为2(lineCount-i-1)，与A一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选已将升序段修正为1…i（i个），与for(j=1;j<i+1;j++)一致；降序段i+1…1（i+1个）正确；宽2(2i+1)、最宽2(2lineCount-1)及前导空格公式推导正确，lineCount=4时6/4/2/0与输入9时16个空格均与代码/原图相符，B/C/D分析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "输入行数，约定 1 ≤ lineCount ≤ 9，输出以下数字金字塔图形。应在C++代码横线处填入（ ）。\n\n输入 9 时输出：\n```\n                1 \n              1 2 1 \n            1 2 3 2 1 \n          1 2 3 4 3 2 1 \n        1 2 3 4 5 4 3 2 1 \n      1 2 3 4 5 6 5 4 3 2 1 \n    1 2 3 4 5 6 7 6 5 4 3 2 1 \n  1 2 3 4 5 6 7 8 7 6 5 4 3 2 1 \n1 2 3 4 5 6 7 8 9 8 7 6 5 4 3 2 1 \n```\n```cpp\nfor (int i = 0; i < lineCount; i++) {\n    for (int j = 0; j < ________; j++)\n        cout << ' ';\n    for (int j = 1; j < i + 1; j++) cout << j << \" \";\n    for (int j = i + 1; j > 0; j--) cout << j << \" \";\n    cout << endl;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题14。官方答案为A（0起始索引0），候选选项顺序、答案以及修正后的解析核心推导均正确；唯一需修订的是题面漏掉原卷第6页输入9的9行金字塔示例图形，导致“以下图形”无所指。已给出补图后的question字段，其余维度通过。"
+  }
+}
