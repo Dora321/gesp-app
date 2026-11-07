@@ -32,7 +32,13 @@ function command(program, args, label, env = {}) {
         const fd = fs.openSync(logfile, 'a');
         const child = spawn(program, args, { cwd: root, env: { ...process.env, ...env }, stdio: ['ignore', fd, fd] });
         child.once('error', error => { fs.closeSync(fd); reject(error); });
-        child.once('exit', code => { fs.closeSync(fd); code === 0 ? resolve() : reject(new Error(`${label}: exit ${code}; ${logfile}`)); });
+        child.once('exit', code => {
+            fs.closeSync(fd);
+            if (code === 0) return resolve();
+            const tail = fs.readFileSync(logfile, 'utf8').slice(-8000);
+            const fatal = /HTTP (?:401|402|403)|未确认 Go|insufficient_quota|quota_exceeded/.test(tail);
+            reject(new Error(`${fatal ? '模型账号或 Go 来源需要协调者处理；' : ''}${label}: exit ${code}; ${logfile}`));
+        });
     });
 }
 const node = (script, id, label, env) => command(process.execPath, [script, id], label, env);
@@ -86,7 +92,7 @@ async function processPaper(id) {
         if (evidence.inputSha256 !== read(originalReview).inputSha256 || evidence.questions?.length !== read(originalReview).report.questions.length) {
             await node('scripts/collect-five-dimension-review.mjs', id, `queue-${id}-collect`, environment);
             await publish(id, '初核复核');
-        }
+        } else if (git('status', '--porcelain', '--', evidenceFile, originalReview, `src/data/gesp/level${id.at(-1)}/${id}.js`)) await publish(id, '恢复未发布检查点');
         entry.initialCollected = true; save();
     });
     let previousRun = date;
@@ -94,7 +100,10 @@ async function processPaper(id) {
         const run = round === 1 ? `${date}-revisions` : `${date}-revisions-${round}`;
         const revisionCache = round === 1 ? path.join(cache, 'revisions') : path.join(cache, run);
         const integrationFile = path.join(reviews, run, `${id}.integration.json`);
-        if (exists(integrationFile)) { previousRun = run; continue; }
+        if (exists(integrationFile)) {
+            if (git('status', '--porcelain', '--', integrationFile)) await serialize(() => publish(id, `恢复第${round}轮修订`));
+            previousRun = run; continue;
+        }
         const evidence = read(evidenceFile);
         if (!evidence.unresolved.length) break;
         const candidateFile = path.join(revisionCache, id, 'paper.json');
@@ -129,12 +138,14 @@ while ((pending.length || active.size) && !stopped) {
         const index = pending.findIndex(id => !runningExternal.some(worker => worker.ids.includes(id)));
         if (index < 0) break;
         const id = pending.splice(index, 1)[0]; active.add(id);
+        Object.assign(state.papers[id] ||= {}, { status: 'working', workingAt: new Date().toISOString() }); save();
         report({ id, status: 'working', pending: pending.length });
         const job = processPaper(id).catch(error => {
             const entry = state.papers[id] ||= {};
             entry.attempts = (entry.attempts || 0) + 1; entry.error = error.message;
             // 仅模型传输/结构失败可在队尾重试；集成/测试/发布失败保留现场交回协调者。
-            if (/queue-.*-(?:initial|revision-\d+): exit/.test(error.message) && entry.attempts < 4) { pending.push(id); entry.status = 'retry-queued'; }
+            if (/模型账号或 Go 来源/.test(error.message)) { entry.status = 'account-blocked'; stopped = true; }
+            else if (/queue-.*-(?:initial|revision-\d+): exit/.test(error.message) && entry.attempts < 4) { pending.push(id); entry.status = 'retry-queued'; }
             else if (/queue-.*-(?:initial|revision-\d+): exit/.test(error.message)) entry.status = 'model-request-blocked';
             else { entry.status = 'integration-blocked'; stopped = true; }
             save(); report({ id, status: entry.status, error: error.message });
