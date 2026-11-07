@@ -54,6 +54,14 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                         <p className="mt-3 text-xs text-stone-500">作者 Dilum Sanjaya（<a href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">x.com/DilumSanjaya</a>），原站 <a href="https://learn-arduino-red.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">learn-arduino-red.vercel.app</a>；离线镜像供课堂使用，感谢原作者。</p>
                     </aside>
                 )}
+                {['foundation', 'arduino', 'advanced'].includes(courseId) && (
+                    <aside className="mt-6 rounded-2xl border border-stone-300 bg-[#fffdf8] p-6" aria-labelledby="electronics-101-title">
+                        <h2 id="electronics-101-title" className="flex items-center gap-2 text-xl font-bold"><CircuitBoard size={24} aria-hidden="true" />电子学 3D 互动课程</h2>
+                        <p className="mt-3 text-sm leading-7 text-stone-600">先看懂电路，再动手搭建。48 节简体中文互动课，涵盖电路基础、电阻、LED、电容、开关、晶体管和传感器；调整元件参数，结合电路图与图表观察变化。</p>
+                        <a href={`${import.meta.env.BASE_URL}courseware/electronics-101/`} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-stone-950 px-5 py-3 font-bold text-amber-100 hover:bg-stone-800">进入电子学课程<ArrowRight size={18} aria-hidden="true" /></a>
+                        <p className="mt-3 text-xs text-stone-500">Electronics 101 · 作者 <a href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">Dilum Sanjaya</a> · <a href="https://electronics-101-six.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">查看原站</a>。感谢原作者，本站提供课堂访问入口。</p>
+                    </aside>
+                )}
                 <section className="mt-10" aria-labelledby="science-lessons-title" data-course-lessons>
                     <h2 id="science-lessons-title" className="flex items-center gap-2 text-2xl font-black"><BookOpen size={24} />课程目录</h2>
                     <p className="mb-6 mt-3 text-sm leading-7 text-stone-600">{course.updateNote}</p>

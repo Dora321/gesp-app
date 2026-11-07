@@ -1,0 +1,38 @@
+{
+  "id": "./",
+  "name": "电子学 3D 互动课程 · 48 节入门课 | Electronics 101",
+  "short_name": "Electronics 101",
+  "description": "从电路、电阻、LED 到电容、晶体管与传感器，通过 48 节简体中文 3D 互动课程调整元件参数，结合电路图和图表观察电流变化。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6eddd",
+  "theme_color": "#f6eddd",
+  "categories": [
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "lang": "zh-CN"
+}

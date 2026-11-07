@@ -27,6 +27,13 @@ const items = [
         icon: Cpu,
     },
     {
+        title: '电子学 3D 互动课程',
+        desc: '48 节简体中文互动课，从电路、电阻和 LED 到电容、晶体管与传感器，调整元件参数，观察电流变化。',
+        action: '进入电子学课程',
+        href: `${import.meta.env.BASE_URL}courseware/electronics-101/`,
+        icon: Box,
+    },
+    {
         title: 'Arduino 3D 互动课程',
         desc: '在 3D Arduino 电路板上连接 LED、按键、传感器和电机，运行代码观察效果，跟着 16 节入门课程动手练习。',
         action: '进入 3D 互动课程',
