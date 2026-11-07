@@ -1,0 +1,134 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:23:55.764Z",
+  "completedAt": "2026-11-07T12:28:05.060Z",
+  "finishReason": "stop",
+  "inputSha256": "188130a32a00721b8bd4f5169d1edaa68a300a295a524c71e00383f583d42cad",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 五级 2025 年 06 月”，与 2025-06-l5 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第13页3.1节列明试题名称“奖品兑换”、时间限制1.0 s、内存限制512.0 MB；3.1.1题目描述、3.1.2输入格式、3.1.3输出格式与候选正文一致；第13页3.1.4样例1/2与候选samples一致；第14页3.1.5数据范围“60%：1≤a,b≤100，1≤n,m≤500；所有测试点：1≤a,b≤10^4，1≤n,m≤10^9”已完整写入候选。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF第13—14页3.1节亦无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不列入PDF第1页单选题答案表或第10页判断题答案表，officialAnswer为null与候选一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的算法部分（二分单调性、check中按d=b-a调整、向上取整、a==b特判、long long防溢出）独立核验成立；但样例1走查写成先检查mid=5、再7、再6，与参考代码初始mid=(0+8+1)/2=4不符，实际轨迹为4→6→5。需修正解析中的该走查。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第14页3.1.6参考程序与候选referenceCode逐行一致：交换n,m与a,b、a==b特判输出n/a、check中1ll*v*a和1ll*v*b、t=(y-m+(b-a)-1)/(b-a)、mid=(l+r+1)>>1、输出r。独立检验：规范化后每份至少消耗a≥1张课堂券，r=n为合法上界；y>m时取最小调整数t后x'随t增加，故最小t可判可行；t>v时x'>v*b>m≥n必判假；数据范围下v*a、v*b≤10^13，t*(b-a)同量级，long long无溢出；l+r+1≤2×10^9+1不溢出int。样例1、2人工推演分别得5、1599。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案单调性**：若能兑换 v 份，则任意少于 v 份也能兑换；若不能兑换 v 份，则更多份也不能兑换，因此可二分答案。\n\n**check(v) 设计**：规范化 n≤m、a≤b。先令 v 份全按方式一兑换，课堂券消耗 x=v*a，作业券消耗 y=v*b。若 y≤m，则只需判断 x≤n。若 y>m，每将一份改为方式二，作业券减少 d=b-a，课堂券增加 d；为使作业券不超过 m，至少调整 t=ceil((y-m)/d)=(y-m+d-1)/d 份。调整后 x'=x+t*d，y'=y-t*d，最终判断 x'≤n 且 y'≤m。若 t>v，则 x'>v*b>m≥n，必然不可行，代码也会判假。\n\n**算法步骤**：读入 n,m,a,b；若 n>m 交换 n,m；若 a>b 交换 a,b；若 a==b，输出 n/a 并结束；否则在 [0,n] 上二分，mid=(l+r+1)/2，check(mid) 为真则 l=mid，否则 r=mid-1，最后输出 r。\n\n**样例1**：8 8 / 2 1 规范化后 n=8,m=8,a=1,b=2。l=0,r=8：mid=4，x=4,y=8，无需调整，check(4) 为真，l=4；mid=(4+8+1)/2=6，x=6,y=12，t=4，x'=10>8，check(6) 为假，r=5；mid=(4+5+1)/2=5，x=5,y=10，t=2，x'=7,y'=8，check(5) 为真，l=5；输出5。\n\n**样例2**：314159 2653589 / 27 1828。check(1599) 时 t=150，x'=313323≤314159，y'=2652822≤2653589，为真；check(1600) 时 t=151，x'=315151>314159，为假，输出1599。\n\n**易错提醒**：计算 v*a、v*b、t*(b-a) 使用 long long；向上取整用 (y-m+d-1)/d；采用 l=mid 分支时中点必须取 (l+r+1)/2，避免死循环。"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "a=b=1 时一份奖品消耗课堂券和作业券各1张，n=m=1 恰好可兑1份，2份需各2张。独立推演，未实际运行。"
+          },
+          {
+            "name": "混用两种兑换方式",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "2份可一份方式一、一份方式二，共耗课堂券2+3=5、作业券3+2=5；3份的课堂券最少也需3×2=6>5，故最多2。独立推演，未实际运行。"
+          },
+          {
+            "name": "a==b且不足一份",
+            "input": "3 100\n5 5",
+            "output": "0",
+            "reason": "a=b=5 时每份需课堂券5张，n=3不足一份；参考代码特判输出 n/a=0。独立推演，未实际运行。"
+          },
+          {
+            "name": "调整次数超过份数",
+            "input": "5 5\n3 4",
+            "output": "1",
+            "reason": "2份时全部按方式一耗课堂券6>5，且y=8>5，t=ceil((8-5)/1)=3>2，调整后x'=9>5判假；1份可按方式一耗(3,4)实现。独立推演，未实际运行。"
+          },
+          {
+            "name": "大数防溢出",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份两模式合计固定消耗10001张券，总券数2×10^9，上界floor(2×10^9/10001)=199980；取99990份方式一和99990份方式二，两类券各耗999999990≤10^9，可行；199981份总消耗超界。独立推演，未实际运行。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 30667,
+        "completion_tokens": 18887,
+        "total_tokens": 49554,
+        "prompt_tokens_details": {
+          "cached_tokens": 30464
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 17204
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01145404,
+          "allowance": 0.00687243,
+          "tokens": {
+            "input": 203,
+            "output": 18887,
+            "reasoning": 17204,
+            "cache_read": 30464,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T12:23:55.764Z",
+      "completedAt": "2026-11-07T12:28:05.060Z"
+    }
+  ]
+}
