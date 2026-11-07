@@ -1,0 +1,238 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:07:54.393Z",
+  "completedAt": "2026-11-07T12:12:11.357Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54633,
+    "completion_tokens": 19188,
+    "total_tokens": 73821,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16407
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01778895,
+      "allowance": 0.01778895,
+      "tokens": {
+        "input": 54633,
+        "output": 19188,
+        "reasoning": 16407,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 六级 / 2023 年 12 月」，第 6 页为判断题（第 1—10 题，每题 2 分，共 20 分）及答案表，第 8 页起为两道编程题；与 2023-12-l6 的年份（2023）、月份（12）、级别（6）一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "接受初核。独立复核：第 6 页答案表判断第 6 格为 ×（错误=1），当前 answer=1 一致；解析（delete 后 ptr 为悬空指针，再次解引用属未定义行为，不能断定必然报错）与官方口径相符，予以保留。题面确需修订：原卷代码以截图形式带行号 5—8，题干问「第 8 行」，而网站代码块无行号（仅 4 行），「第 8 行」失去直接对应；采纳补注行号关系的修改，修复后核验通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 6 页第 6 题题干文字与网站一致；原卷代码截图带行号 5—8（第 8 行即最后一行 cout<<*ptr<<endl;），网站 Markdown 代码块丢失行号致「第 8 行」无从对应，已在题干补注行号对应关系，与原卷截图一致，未改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项为「正确/错误」，不适用单选题 options 维度；官方判定符号见第 6 页答案表（第 6 格 ×）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 6 格为 ×（错误=1），当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：delete ptr 结束其指向的 int 对象的生命周期，ptr 本身不被删除而成为悬空指针；此后解引用属未定义行为，可能崩溃「报错」，也可能照常运行并输出残留值，故题干「将报错」不能成立，判定为「错误」。网站解析与此一致，且与官方 × 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在下面 C++ 代码中（原题代码带行号 5—8，最后一行即第 8 行 `cout<<*ptr<<endl;`），由于删除了变量 ptr，因此 ptr 所对应的数据也随之删除，故第 8 行代码被执行时，将报错。（ ）\n\n```cpp\nint * ptr=new int(10);\ncout<<*ptr<<endl;\ndelete ptr;\ncout<<*ptr<<endl;\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "接受初核。独立核对第 6 页答案表第 7 格为 √（正确=0），与网站 answer=1 直接冲突；且按教科书口径，随机/平均形态下 BST 查找平均复杂度为 O(log N)（最坏退化 O(N)，两者口径不同），题干「平均时间复杂度为 O(log N)」应判正确。原文解析声称「这正是官方判定为错误的原因」，与官方答案表矛盾，必须整体替换。采纳 answer=0 与重写后的解析，修复后核验通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页第 7 题原文「二叉搜索树查找的平均时间复杂度为O(log N)。（ ）」与网站题干一致（O(log N) 的公式排版等价）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项为「正确/错误」，不适用单选题 options 维度；官方判定符号见第 6 页答案表（第 7 格 √）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 6 页判断题答案表第 7 格为 √（正确=0），answer 已由 1 修正为 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：新解析独立给出「查找代价与树高同阶；随机建立/等概率查找的平均代价为 O(log N)；普通 BST 无自平衡、最坏退化 O(N)；平衡树才保证任意顺序下 O(log N)」的推导，支撑 √ 判定；原解析以最坏情形否定平均并声称「官方判定为错误」，与官方答案表第 7 格 √ 矛盾，已整体替换。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "answer": 0,
+          "explanation": "**答案：正确**\n\n**解析：**\n二叉搜索树（BST）的查找从根出发，沿一条根到目标节点（或空指针）的路径逐个比较，单次查找的代价与树高同阶。\n- **平均情况**：对按随机顺序插入等方式建立、形态较均衡的 BST，树高为 O(log N)，对树中各节点成功查找的平均比较次数也是 O(log N) 量级。题干限定的正是「平均时间复杂度」，故说法正确。\n- **最坏情况**：普通 BST 没有自平衡机制，若按有序序列依次插入会退化成一条链，此时查找为 O(N)；但「最坏 O(N)」与「平均 O(log N)」是两种口径，前者不能否定后者，题干问的是平均情况。\n- 若要求任意插入顺序下都保证 O(log N)，需使用 AVL 树、红黑树等自平衡二叉搜索树。\n\n**易错点：** 不能拿「最坏退化成链为 O(N)」当作「平均 O(log N)」的反例——题干问的是平均情况，平均通常按随机建立或对各节点等概率查找理解；混淆平均与最坏是本题的主要陷阱。\n\n**考点：** 二叉搜索树、平均时间复杂度"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核（无修改）。独立复核：答案表第 8 格为 √（正确=0），当前 answer=0 一致；解析按「左<父<右」对子树递归归纳出「左子树全部小于根、右子树全部大于根」，并承认空树/单节点树，结论正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页第 8 题原文关于空树、单节点树、多节点 BST 及左右子树取值的表述与网站题干一致（仅换行排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项为「正确/错误」，不适用单选题 options 维度；官方判定符号见第 6 页答案表（第 8 格 √）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 8 格为 √（正确=0），当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：空树、单节点树均满足 BST 定义；多节点时每个节点处「左<父<右」严格成立，对该性质逐层递归应用（归纳法）即得右子树中所有值均大于根、左子树中所有值均小于根。网站解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核（无修改）。独立复核：答案表第 9 格为 √（正确=0），当前 answer=0 一致；解析用「真因数 d≤N/2，枚举 1..⌊N/2⌋ 再计 N 本身」论证循环不超过 N/2 次即可统计因数个数，成立（N=1 时 0 次循环也成立）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页第 9 题原文「……重复没有超过N/2次的循环就能够算出来了。（ ）」与网站题干一致（仅换行排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项为「正确/错误」，不适用单选题 options 维度；官方判定符号见第 6 页答案表（第 9 格 √）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 9 格为 √（正确=0），当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：N 的真因数 d 满足 N=d·k（k≥2），故 d≤N/2；循环枚举 1..⌊N/2⌋ 至多 ⌊N/2⌋ 次（不超过 N/2 次），再计入 N 本身即得全部因数个数；N=1 时循环 0 次，结论仍成立。网站解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核（无修改）。独立复核：答案表第 10 格为 √（正确=0），当前 answer=0 一致；解析指出两种链表均可沿 next 顺序访问相邻节点完成简单冒泡，比较/交换次数同为 O(N²)，prev 指针不带来渐进增益，复杂度相同，结论正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页第 10 题原文（含「双向链」的原表述）与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项为「正确/错误」，不适用单选题 options 维度；官方判定符号见第 6 页答案表（第 10 格 √）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 10 格为 √（正确=0），当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：简单冒泡排序的基本操作是比较相邻元素并按需交换，对单链表与双向链表均沿 next 指针顺序扫描，比较/交换总次数均为 Θ(N²)，与存储结构无关；双向链表多出的 prev 指针对冒泡无帮助，两者复杂度相同，题干说法正确，与官方 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅核验题号 21—25（对应 PDF 第 6 页判断题第 6—10 题，每题 2 分）。判断题答案符号（文本层留空，从第 6 页原图读取）为 √√√√××√√√√，本题批内映射：21=×(1)、22=√(0)、23=√(0)、24=√(0)、25=√(0)。共 2 题修订：① 题 21 题面补注原卷代码行号 5—8（「第 8 行」即最后一行 cout<<*ptr<<endl;），答案与解析保持不变；② 题 22 官方答案为 √（正确=0），网站 answer=1 错误，已改 0 并重写解析为「平均（随机形态）O(log N)、最坏退化 O(N)」的口径，同时删除与官方答案表矛盾的「官方判定为错误」表述。题 23—25 题干、答案、解析经独立推导均与 PDF 一致，直接通过。5 题均为判断题，options 维度不适用；本批无编程题，故无 tests；无未决项。本批未核验其余题目。"
+  }
+}

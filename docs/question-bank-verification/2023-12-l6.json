@@ -1,193 +1,1246 @@
 {
   "paperId": "2023-12-l6",
-  "reviewedAt": "2026-10-31",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-12-l6"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "Codex（资料、队列、自动校验与发布）"
   },
   "source": {
-    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/",
-    "localCache": "tmp/pdfs/2023-12-l6.pdf",
-    "shaVerified": false,
-    "note": "镜像仓库官方PDF，答案表文本层+渲染双重提取"
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b",
+    "pages": 11
   },
-  "answerTable": {
-    "location": "单选答案表p.1顶部（文本层提取）；判断答案表矢量记号，按「答案」文字坐标400dpi裁图逐格读取",
-    "content": {
-      "single": "DCCDBBBDBDAABCB",
-      "judge": "√√√√√××√√√"
-    }
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2023-12-l6.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2023-12-l6.glm.json",
+    "previous": "ai-reviews/2026-11-07/2023-12-l6.previous-evidence.json"
   },
-  "verification": {
-    "singleChoice": "15/15与官方答案表一致（数字索引0-3语义转换后比对）",
-    "judge": "10/10与官方答案表一致；10题逐题逻辑复核一致（delete悬空指针×、哈夫曼WPL唯一√、BST平均×、满表哈希/链表冒泡等）",
-    "method": "答案串程序化正则提取（tmp/audit5-official.json），零手工拼串"
-  },
-  "fixes": [
-    {
-      "id": 20,
-      "question": "哈夫曼编码具有唯一性，因此有确定的压缩率",
-      "oldAnswer": "×",
-      "newAnswer": "√",
-      "reason": "官方判√：WPL唯一→压缩率确定。题库原把「编码不唯一」混同于「压缩率不确定」。解析已按官方口径重写"
-    },
-    {
-      "id": 22,
-      "question": "二叉搜索树查找的平均时间复杂度为O(log N)",
-      "oldAnswer": "√",
-      "newAnswer": "×",
-      "reason": "官方判×：BST无自平衡保证，退化情形O(N)，平均O(log N)需随机形态前提，官方按不严谨判错。解析已重写"
-    }
-  ],
-  "resolved": true,
-  "reverifiedAt": "2026-10-30",
-  "reverifyNote": "解析升级批次中发现并修复重大结构错位：原题库把官方第5题拆成两道（幽灵Q5含不明选项组），导致Q8-Q15的答案整体错位一位（哈夫曼题存了fibo题的答案等7处错误），且官方第15题（排序分类）在题库中缺失。已删除幽灵题、重编号Q6-Q15→Q5-Q14、修正7处错位答案、补录官方Q15。修复后单选 DCCDBBBDBDAABCB 与官方答案表逐位一致（官方600dpi复核），并经题目内容逻辑闭环验证（哈夫曼WPL=32、fiboA效率低=错误说法、通讯卫星=信号中继等）。",
-  "structuralFix": "ghost-question-removed; answer-misalignment-fixed(7); missing-official-q15-added",
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
   "questions": [
     {
       "id": 1,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "blockedDimensions": [
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "official": 3,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q1 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第1页第1题题干与四个选项文字和网站一致；D项为“可以在自定义函数中嵌套定义新的函数”。",
+          "review": "PDF第1页第1题题干『关于C++类和对象的说法，错误的是( )。』与网站一致；本题无代码插图，纯文字题。"
+        },
+        "options": {
+          "initial": "四个选项的顺序和文字与PDF一致，D对应0起始索引3。",
+          "review": "A—D四个选项的顺序与文字与PDF第1页逐条一致，D为『在C++中，可以在自定义函数中嵌套定义新的函数』。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第1题答案为D；网站answer=3，映射正确。",
+          "review": "PDF第1页答案表第1题为D，即0起始索引3；网站answer=3一致，独立确认C++（至C++23）确实禁止在函数体内定义常规具名函数，D为错误的说法。"
+        },
+        "explanation": {
+          "initial": "当前解析把A、C直接判为正确，并用“广义对象/可调用实体”作辩护；按严格ISO C++，A“一切皆对象”和C“函数都是类或者对象”都不严谨，函数本身不是类也不是对象。需要保留官方答案D，同时说明题干表述争议。",
+          "review": "网站解析把A『一切皆对象』、C『内置函数和自定义函数，都是类或者对象』直接判为『说法正确』并以『广义可调用对象』为函数辩护；按严格ISO C++，函数本身既不是类也不是对象（[intro.object]）、「一切皆对象」也不是C++性质，把这些断言作为正确说法教给学生属实质性内容错误，需改写为官方口径与严格语义双层说明并保留答案D。"
+        }
+      },
+      "unresolved": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 2,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "blockedDimensions": [
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "official": 2,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q2 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第1页第2题代码区显示class Rectangle、private嵌套class Point、Point a,b,c,d及public:，网站题干中的代码摘要与PDF可见部分一致；省略号表示后续代码省略，不影响本题。",
+          "review": "PDF第1页第2题题干及代码可见部分（class Rectangle、private 中嵌套 class Point{ public: double x; double y; }、Point a,b,c,d、double length/width、public:）与网站逐行一致；原图截至L5『public:』，后续省略部分网站以『// …』与『};』等价补全，不影响任何选项判断。"
+        },
+        "options": {
+          "initial": "A—D选项顺序和文字与PDF第1页一致，C为“内部类可以随便访问，不需要通过外部类来访问”。",
+          "review": "A—D选项顺序与文字与PDF第1页一致，C为『内部类可以随便访问，不需要通过外部类来访问』，D含 Rectangle::Point 限定名写法。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第2题答案为C；网站answer=2，映射正确。",
+          "review": "PDF第1页答案表第2题为C，0起始索引2；网站answer=2一致。独立确认C错误：内部类名字受外部类作用域与访问控制双重约束，不能脱离外部类随便访问。"
+        },
+        "explanation": {
+          "initial": "当前解析一边判D正确，一边又指出Point在private区、类外写Rectangle::Point会编译报错，逻辑自相矛盾。需说明D只是“限定名写法”层面的官方口径，并指出其受访问控制限制。",
+          "review": "网站解析一边把D判为『✅ 说法正确』，一边在易错提醒中明确『本题 Point 定义在 private 区域，类外直接写 Rectangle::Point 会引发编译报错』，两处表述互相冲突（若类外 Rectangle::Point 都不可用，D按字面的外部访问亦不成立）；需统一为官方口径（D仅指限定名写法）并保留访问控制说明，答案C不变。"
+        }
+      },
+      "unresolved": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "options"
+      ],
+      "blockedDimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "sourcePages": [
+        1,
+        2
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第2页代码行号为2 using namespace std;、3 class newClass、6 static int objCounter;、9类外初始化、14/15两个cout、16右花括号；网站题面在using后多出空行，代码字段又缺#include，导致题面所谓第14/15行实际不是两个cout。",
+          "review": "PDF第2页代码可见行号为：2 using namespace std;、3 class newClass、4 {、5 public:、6 static int objCounter;、7 高亮空行、8 };、9 int newClass::objCounter=2;、10 int main()、12/13 定义 classA/classB、14/15 两个cout、16 }（行1在截图外，按语法应为 #include <iostream>，与网站一致）。网站题面代码在 using 后、};后、初始化语句后多出空行，使第6/14/15行的指称错位，选项A—D的行号引用失去对象，需按PDF行号重排版面。"
+        },
+        "options": {
+          "initial": "A—D选项文字与PDF第2页一致；选项涉及第14、15行及第6行，按PDF原始行号解释成立。",
+          "review": "A—D选项文字与顺序与PDF第2页一致；『第14行/第15行/第6行』的引用与PDF原始行号一致，题面代码修正后即完全自洽。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第3题答案为C；网站answer=2，映射正确。",
+          "review": "PDF第1页答案表第3题为C，0起始索引2；网站answer=2一致。独立确认：静态成员类外初始化为2且无自增，第14行类名访问、第15行对象名访问均合法（各输出2），故『两行都正确』成立。"
+        },
+        "explanation": {
+          "initial": "修正代码行号后，第6行为static int objCounter;声明，第9行为类外初始化，第14、15行分别为通过类名和对象访问静态成员；解析结论与PDF答案C一致。",
+          "review": "修复题面行号后核验通过：解析中『第14行/第15行为两个cout、第6行为static int objCounter;声明（类内不能直接初始化，const整型除外，写成objCounter += 1在类体中非法）、第9行为类外初始化』的引用与修正后行号一一对齐，结论C正确；解析本身无需改动。"
+        }
+      },
+      "unresolved": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 4,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第2页第4题代码与网站一致，包含struct BiNode、BiNode* lchid,*rchid、class BiTree及Creat/Release声明、构造函数和析构函数；题干问“错误的是”。",
+          "review": "PDF第2页第4题题干及代码（struct BiNode{ char data; BiNode* lchid,*rchid; }、class BiTree 的 private 区 Creat()/Release(BiNode* bt)/root、公有构造函数 BiTree(){ root = Creat(); } 与析构函数 ~BiTree(){ Release(root); }）与网站一致，源卷拼写 lchid 原样保留；截图止于高亮的 Release(root); 行，收尾括号为等价补全，不影响选项。"
+        },
+        "options": {
+          "initial": "A—D选项文字与PDF一致，D为“析构函数不可以省略”。",
+          "review": "A—D选项文字与顺序与PDF第2页一致，D为『析构函数不可以省略』。"
+        },
+        "answer": {
+          "initial": "PDF第2页答案表第4题答案为D；网站answer=3，映射正确。",
+          "review": "PDF第1页答案表第4题为D，0起始索引3；网站answer=3一致。独立确认：C++允许类不显式定义析构函数，编译器合成默认析构，D的说法过于绝对故为应选项。"
+        },
+        "explanation": {
+          "initial": "解析独立指出：C++允许省略显式析构函数，编译器会合成默认析构函数；本题二叉树若省略析构函数会造成动态节点泄漏，但这是资源管理问题，不是语法强制，因此D的说法错误。",
+          "review": "独立复核成立：省略 ~BiTree() 语法上完全合法（编译器合成默认析构函数），只是动态节点无法经 Release(root) 回收，属资源管理缺陷而非语法强制，故D『不可以省略』错误、答案D成立；A（框架通用性）、B（BiNode即节点结构）、C（构造函数调用Creat()建树）与代码结构相符；解析还正确区分了语法强制与工程规范（三法则）两个层面。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        2,
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第2—3页第5题代码为Order(BiNode* bt)，先判空，再输出bt->data，再递归lchid、rchid；网站题干代码与PDF一致。",
+          "review": "PDF第2—3页第5题题干『基于第4题的定义，有关下面C++代码的说法正确的是（ ）。』及代码（if (bt == nullptr) return; else { cout << bt->data; Order(bt->lchid); Order(bt->rchid); }）与网站一致，lchid 为源卷原拼写；代码完整可见于第2页，选项A—C在第2页、D在第3页顶部，网站完整收录。"
+        },
+        "options": {
+          "initial": "A—D选项与PDF一致；B选项描述“先访问根节点，然后对左子树进行前序遍历，再对右子树前序遍历”，符合代码的根—左—右顺序。",
+          "review": "A—D四个选项文字与顺序与PDF第2—3页一致；B『先访问根节点，然后对左子树进行前序遍历，再对右子树前序遍历』与代码的递归结构相符。"
+        },
+        "answer": {
+          "initial": "PDF第3页答案表对应第5题答案为B；网站answer=1，映射正确。",
+          "review": "PDF第1页答案表第5题为B，0起始索引1；网站answer=1一致。独立确认该递归为先输出根、再递归左右子树的前序遍历，B为正确说法。"
+        },
+        "explanation": {
+          "initial": "解析独立判断该递归结构为前序遍历：输出根节点的语句在两次递归之前；A为中序描述、C为中序描述、D为后序描述，均不符。",
+          "review": "独立推导成立：输出根节点的 cout 语句位于两次递归调用之前，即根—左—右的前序遍历；A、C描述的是中序（左—根—右）、D描述的是后序（左—右—根），均与本代码顺序不符；网站解析并指出判型方法（看 cout 相对两次递归的位置）与根访问时机的命名依据，推导完整。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "options"
+      ],
+      "blockedDimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第3页第6题题干为“有关下面C++代码的说法正确的是”，页图代码为 typedef struct LinkList 及 ListInit；网站 question 与独立 code 字段均与页图对应，无缺漏。",
+          "review": "PDF第3页题干“有关下面C++代码的说法正确的是”及LinkList/ListInit代码（typedef struct LinkList{int data;LinkList* next;LinkList* prev;}LinkList,LinkNode; bool ListInit…L=new LinkNode;…L->next=NULL;L->prev=NULL;L->data=-1;…）与网站question逐行一致。但网站独立code字段实际挂载的是第5题的void Order(BiNode* bt)遍历代码，与源卷不符；按changes替换为本题代码后核验通过（修复后核验通过）。"
+        },
+        "options": {
+          "initial": "四个选项与页图逐字对应：A单向链表、B双向链表、C循环链表、D指针链表；官方答案表第6题为B。",
+          "review": "A单向链表、B双向链表、C循环链表、D指针链表，四项与PDF第3页逐字一致。"
+        },
+        "answer": {
+          "initial": "网站 answer=1，对应官方答案B（选项索引1），映射一致。",
+          "review": "官方答案表第6题为B（0起始索引1），网站answer=1。独立判定：节点同时含next与prev两个指针，非单向；ListInit将两指针均置NULL，非循环；“指针链表”非标准术语。B成立。"
+        },
+        "explanation": {
+          "initial": "节点同时含 next 与 prev，ListInit 将两者置 NULL，故为双向非循环链表；解析结论与B项一致。",
+          "review": "解析结论与独立推导一致：next+prev两指针构成双向链表为B项理由，初始化置NULL排除循环链表，代码短句“if(!L)return false”等与解析引述相符。"
+        }
+      },
+      "unresolved": [
+        "修改 code 未获得两模型一致批准，待回流"
+      ]
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "options"
+      ],
+      "blockedDimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第3页第7题题干和四个选项均为文字，没有代码；网站 question 正确，但独立 code 字段误挂载了第6题的 LinkList/ListInit 代码，且 requiresCode=true 与题面不符。",
+          "review": "PDF第3页第7题为纯文字题（对 hello world 使用霍夫曼编码（Huffman Coding），最少bit（比特）为），题面无代码；网站question与页图一致，但独立code字段误挂第6题的LinkList/ListInit代码。按changes清空code后核验通过（修复后核验通过）。"
+        },
+        "options": {
+          "initial": "选项A 4、B 32、C 64、D 88 与页图一致；官方答案表第7题为B。",
+          "review": "A.4、B.32、C.64、D.88与PDF第3页一致。"
+        },
+        "answer": {
+          "initial": "网站 answer=1，对应官方答案B（选项索引1），一致。",
+          "review": "官方答案表第7题为B（索引1），网站answer=1。独立重算：hello world共11字符、8种，频率l=3、o=2，h/e/空格/w/r/d各1；哈夫曼树7个内部权之和=WPL=32，最少32 bit；88为定长8bit×11对照。完整确认B。"
+        },
+        "explanation": {
+          "initial": "hello world 共11字符，频率 l=3、o=2，h/e/空格/w/r/d各1；按Huffman合并内部节点权和 2+2+3+3+5+6+11=32，最少32 bit，结论与B项一致。",
+          "review": "解析结论32 bit与独立WPL重算一致（解析所列合并序1,1,2,3,5,6,11内部权合计32；按严格“每次取最小两权”的另一规范序内部权2,2,2,4,4,7,11合计同为32，哈夫曼最优WPL值唯一，两种均成立）；并正确提示空格计为字符。"
+        }
+      },
+      "unresolved": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 8,
       "resolved": true,
       "dimensions": [
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [
+        "statement"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q8 explanation 升级；答案未改"
+      "official": 3,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第4页第8题代码与网站 question 内代码一致，包含 fiboA 和 fiboB 两个函数；但独立 code 字段误挂第6题链表代码，与本题无关。",
+          "review": "PDF第4页第8题题干及fiboA/fiboB代码与网站question内嵌代码逐行一致，官方原文“fiboB[n]=FiboB(n-1)+FiboB(n-2)”的FiboB大小写笔误亦如实保留；该题JSON本无独立code字段，题面代码内嵌完整，勿需修复。"
+        },
+        "options": {
+          "initial": "A递归、B动态规划、C大量重复计算、D代码短效率高，与页图一致；官方答案表第8题为D。",
+          "review": "A递归实现、B动态规划、C存在大量重复计算、D代码较短效率较高，四项与PDF第4页一致。"
+        },
+        "answer": {
+          "initial": "网站 answer=3，对应官方答案D（选项索引3），一致。",
+          "review": "官方答案表第8题为D（索引3），网站answer=3。独立判定：fiboA朴素递归存在指数级重叠子问题、fiboB以数组记忆化属动态规划、算法效率取决于复杂度而非代码长短，D为错误说法。"
+        },
+        "explanation": {
+          "initial": "fiboA为朴素递归，N大时指数级重复；fiboB用记忆化保存子问题，属动态规划；代码短不等于效率高，D为错误说法。解析结论与答案一致。",
+          "review": "解析独立成立：fiboA无记忆化约O(2^n)并给出台阶膨胀机理，fiboB记忆化搜索O(n)，指明“空间换时间”，与答案D对应。"
+        }
+      },
+      "unresolved": [
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 9,
       "resolved": true,
       "dimensions": [
+        "options"
+      ],
+      "blockedDimensions": [
+        "statement",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "sourcePages": [
+        4
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q9 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第4页第9题代码参数为 int Depth(BiTree T)，网站 question 内代码与页图一致；但独立 code 字段写成 int Depth(BiNode* T)，与题面和PDF冲突。",
+          "review": "PDF第4页第9题代码首行为int Depth(BiTree T)，网站question内嵌代码与PDF一致；但独立code字段被改成int Depth(BiNode* T)，与源卷及题面冲突。按changes恢复为Pdf Depth(BiTree T) 原文后核验通过（修复后核验通过）。"
+        },
+        "options": {
+          "initial": "A可求深度、B非根节点不可作参数、C递归、D要求节点有left/right属性，与页图一致；官方答案表第9题为B。",
+          "review": "A可求二叉树深度、B参数T表示根节点非根节点不可作参数、C采用递归、D可用于各种形式且要求节点至少有left和right属性，四项与PDF第4页一致。"
+        },
+        "answer": {
+          "initial": "网站 answer=1，对应官方答案B（选项索引1），一致。",
+          "review": "官方答案表第9题为B（索引1），网站answer=1。独立判定：代码内部递归调用Depth(T->lchild)与Depth(T->rchild)，实参即子节点，“非根节点不可以作为参数”为错误说法，B成立。"
+        },
+        "explanation": {
+          "initial": "解析结论“非根节点也可作为参数、B错”成立，但论证依赖 T->lchild；PDF题面参数为 BiTree T，网站 code 字段又改为 BiNode* T，需确认以哪一版展示，暂保留争议。",
+          "review": "解析结论“非根节点可作参数、B错误”经独立推导成立：递归传参本身就是直接反例；解析另正确说明空树返回0、取左右子树深度较大者加1的递归结构。源卷参数类型BiTree与成员访问T->lchild的类型不匹配属源卷笔误，已单列不构成解析错误。"
+        }
+      },
+      "unresolved": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 10,
       "resolved": true,
       "dimensions": [
+        "options"
+      ],
+      "blockedDimensions": [
+        "statement",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "sourcePages": [
+        5
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q10 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页第10题题干与选项一致；网站独立 code 字段误挂第9题 Depth 代码，且 sourcePage 标为4，而PDF页图为第5页。",
+          "review": "PDF第5页第10题为纯文字题（树的存储），题面无代码；网站question与页图一致，但独立code字段误挂第9题Depth代码，且sourcePage标为4而实际页为第5页。按changes清空code后核验通过（修复后核验通过）；sourcePage不在可修改字段范围，保留待平台修正。"
+        },
+        "options": {
+          "initial": "A完全二叉树可用list、B一般二叉树可用list并以None占位、C满二叉树可用list、D所有树都可用list，与页图一致；官方答案表第10题为D。",
+          "review": "A完全二叉树可以用list存储、B一般二叉树都可以用list存储以None占位、C满二叉树可以用list存储、D树数据结构都可以用list存储，四项与PDF第5页一致。"
+        },
+        "answer": {
+          "initial": "网站 answer=3，对应官方答案D（选项索引3），一致。",
+          "review": "官方答案表第10题为D（索引3），网站answer=3。独立判定：完全/满二叉树可按2i/2i+1下标规律一维存储，一般二叉树可补None占位，而一般树度数不固定、无固定父子下标公式，D说法过于绝对。"
+        },
+        "explanation": {
+          "initial": "完全二叉树和满二叉树可按层序一维存储；一般二叉树可用None补空；一般树度数不固定，不能一概用一维list存储，D错误。解析与答案一致。",
+          "review": "解析与独立推导一致：区分“能否存储”与“是否划算”，指出一般树需孩子兄弟/双亲表示法或邻接表，逻辑完整。"
+        }
+      },
+      "unresolved": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第5页第11题题干为“构造二叉树 [1,2,3,null,4]（ ）。”，站点题干中的层序序列、null 占位和设问均与 PDF 一致。",
+          "review": "PDF 第 5 页原文「第11题 构造二叉树 [1,2,3,null,4]（ ）。」与站点题干逐字一致，层序序列与设问均无缺漏。"
+        },
+        "options": {
+          "initial": "PDF 第5页四个选项依次为 A. 1(2()(4))(3)；B. 1(2(3)())(4)；C. (1,2(3),(4))；D. (1,(2)(3),(4))；站点选项的内容与顺序均一致。",
+          "review": "PDF 第 5 页选项依次为 A. 1(2()(4))(3)；B. 1(2(3)())(4)；C. (1,2(3),(4))；D. (1,(2)(3),(4))，与站点 options 内容及顺序逐字一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页答案表第11题标为 A，按 0 起始选项索引为 0；站点 answer=0，与官方答案一致。",
+          "review": "PDF 第 1 页答案表第 11 题标为 A（该行第 11 格），0 起始选项索引为 0；站点 answer=0，一致。"
+        },
+        "explanation": {
+          "initial": "独立按层序还原：1 为根，2、3 分别为左右孩子；2 的左孩子为 null、右孩子为 4，因此括号表示为 1(2()(4))(3)。当前解析的还原过程及对 B、C、D 的排除理由与此一致。",
+          "review": "独立推导：层序 [1,2,3,null,4] 中 1 为根，出队后其两个孩子为 2、3；处理 2 时其两个孩子为 null、4，即 2 无左孩子、右孩子为 4；3 为叶子。括号表示（节点(左子树)(右子树)）：根 1 的左子树为 2()(4)，右子树为 (3)，整树为 1(2()(4))(3) 即 A。B 把 3 放到 2 的左孩子并把 4 挂到根右，C/D 的逗号式并列结构均与层序占位不符，排除正确，与站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第5页第12题题干为“下面有关布尔类型的函数的说法，正确的是（ ）。”，站点题干文字一致。",
+          "review": "PDF 第 5 页原文「第12题 下面有关布尔类型的函数的说法，正确的是（ ）。」与站点题干一致。"
+        },
+        "options": {
+          "initial": "PDF 第5页选项依次为 A. bool 类型函数只能返回0或者1两种值；B. bool 类型函数可以返回任何整数值；C. bool 类型函数必须有参数传递；D. bool 类型函数没有返回值；站点四个选项及顺序一致。",
+          "review": "PDF 第 5 页选项依次为 A. bool 类型函数只能返回0或者1两种值；B. bool 类型函数可以返回任何整数值；C. bool 类型函数必须有参数传递；D. bool 类型函数没有返回值，与站点 options 内容及顺序一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页答案表第12题标为 A，按 0 起始选项索引为 0；站点 answer=0，与官方答案一致。",
+          "review": "PDF 第 1 页答案表第 12 题标为 A，0 起始选项索引为 0；站点 answer=0，一致。"
+        },
+        "explanation": {
+          "initial": "独立判断：bool 函数返回 bool 值，只有 true/false，转换为整数时对应 1/0；bool 函数可以无参数，也不能保留任意整数的原值，并且有返回值，因此 A 正确。当前解析逐项分析与此一致。",
+          "review": "独立推导：bool 类型取值域仅为 true/false（对应 1/0），bool 函数中 return 表达式时整型值会隐式转换为 bool，故调用方得到的只有 0/1 两种，A 正确；B 错在「返回任何整数值」——如 return 5 实得 true(1)，并非保留整数值 5；C 错，bool 函数可以无参；D 错，bool 与 void 不同，有返回值。与站点解析逐项结论一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第5页第13题题干为“通讯卫星在通信网络系统中主要起到（ ）的作用。”，站点题干一致。",
+          "review": "PDF 第 5 页原文「第13题 通讯卫星在通信网络系统中主要起到（ ）的作用。」与站点题干一致。"
+        },
+        "options": {
+          "initial": "PDF 第5页选项为 A. 信息过滤；B. 信号中继；C. 避免攻击；D. 数据加密；站点选项内容与顺序一致。",
+          "review": "PDF 第 5 页选项依次为 A. 信息过滤；B. 信号中继；C. 避免攻击；D. 数据加密，与站点 options 内容及顺序一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页答案表第13题标为 B，按 0 起始选项索引为 1；站点 answer=1，与官方答案一致。",
+          "review": "PDF 第 1 页答案表第 13 题标为 B，0 起始选项索引为 1；站点 answer=1，一致。"
+        },
+        "explanation": {
+          "initial": "独立判断：通信卫星接收地面站的上行信号，经放大、变频后向地面转发，主要功能是信号中继，通常不负责内容过滤、攻击防护或数据加密。当前解析与此一致。",
+          "review": "独立推导：通信卫星在网络中的角色是中继节点——接收地面站上行载波，放大并变频后向地面转发，本身不解读或加工业务内容，不承担过滤、抗攻击或端到端加密职能，故主要作用为信号中继（B）。与站点解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        1,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第5页第14题题干为“小杨想编写一个判断任意输入的整数N是否为素数的程序，下面哪个方法不合适？（ ）”，站点题干文字、变量 N 和设问一致。",
+          "review": "PDF 第 5 页原文「第14题 小杨想编写一个判断任意输入的整数N是否为素数的程序，下面哪个方法不合适？（ ）」与站点题干逐字一致。"
+        },
+        "options": {
+          "initial": "PDF 第5页选项为 A. 埃氏筛法；B. 线性筛法；C. 二分答案；D. 枚举法；站点选项内容与顺序一致。",
+          "review": "PDF 第 5 页选项依次为 A. 埃氏筛法；B. 线性筛法；C. 二分答案；D. 枚举法，与站点 options 内容及顺序一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页答案表第14题标为 C，按 0 起始选项索引为 2；站点 answer=2，与官方答案一致。",
+          "review": "PDF 第 1 页答案表第 14 题标为 C，0 起始选项索引为 2；站点 answer=2，一致。"
+        },
+        "explanation": {
+          "initial": "独立判断：素数判定是一个是否为素数的判定问题；二分答案通常要求待求答案在有序数值空间上具有单调可判定性，因此不适合直接用于本题。枚举试除、埃氏筛或线性筛预处理后判定均可完成素性判断，故 C 为不合适项。当前解析的结论和排除理由一致。",
+          "review": "独立推导：素性判定是「是/否」谓词问题，不存在随候选值单调变化、可逐步收缩的答案空间，二分答案的前提（单调可判定性）不成立，故 C 不合适；枚举试除 2..√N 直接可行；埃氏筛/线性筛可预处理素数表后查表（用 ≤√N 的素数标记其倍数直至 N，N 为合数必被标记）。站点解析结论一致，其「筛出 [2,√N] 的素数并标记倍数」在标记倍数延伸到 N 的意义下表述成立，无需修改。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第5页第15题题干为“内排序有不同的类别，下面哪种排序算法和冒泡排序是同一类？（ ）”，站点题干一致。",
+          "review": "PDF 第 5 页原文「第15题 内排序有不同的类别，下面哪种排序算法和冒泡排序是同一类？（ ）」与站点题干一致。"
+        },
+        "options": {
+          "initial": "PDF 第5页选项为 A. 希尔排序；B. 快速排序；C. 堆排序；D. 插入排序；站点选项内容与顺序一致。",
+          "review": "PDF 第 5 页选项依次为 A. 希尔排序；B. 快速排序；C. 堆排序；D. 插入排序，与站点 options 内容及顺序一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页答案表第15题标为 B，按 0 起始选项索引为 1；站点 answer=1，与官方答案一致。",
+          "review": "PDF 第 1 页答案表第 15 题标为 B，0 起始选项索引为 1；站点 answer=1，一致。"
+        },
+        "explanation": {
+          "initial": "独立判断：冒泡排序通过相邻元素交换实现排序，快速排序的核心也是交换，二者同属交换排序；希尔排序属于插入类排序，堆排序属于选择类排序，插入排序属于插入类排序。当前解析与此一致。",
+          "review": "独立推导：内排序按核心操作分类——冒泡排序以「比较相邻元素并在逆序时交换」为核心，属交换排序；快速排序 partition 过程同样以交换为主要操作，同属交换类。希尔排序是分组插入的改进、属插入类；堆排序借堆选取最值、属选择类；插入排序直接属插入类。故与冒泡同类的是快排（B），与站点解析一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 16,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q16 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第6页第1题原文为“在面向对象中，方法在C++的class中表现为class内定义的函数。( )”，网站题面语义与文字一致，无漏项或改变含义。",
+          "review": "PDF 第 6 页判断第 1 题原文「在面向对象中，方法在C++的class中表现为class内定义的函数。（ ）」，网站题面仅有空格排版差异，文字与语义完全一致。"
+        },
+        "answer": {
+          "initial": "PDF第6页判断题答案表第1格为“√”；判断题正确映射为0，与网站当前 answer=0 一致。",
+          "review": "PDF 第 6 页判断题答案表第 1 格为「√」（全表 √√√√××√√√√），「正确」映射为 0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "现解析说明“方法”在C++中由成员函数体现，并区分类内声明、类外通过“类名::”实现仍归属于该类，能独立推出命题正确，不是仅复述答案。",
+          "review": "网站解析从「面向对象方法 ↔ C++ 成员函数」的概念对应出发，说明成员函数可类内定义或类内声明+类外 :: 实现、均归属该类，并区分普通全局函数，能独立推出命题成立，与官方 √ 一致，非仅复述答案。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 17,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第6页第2题原文为“C++类的定义中，可以没有构造函数，会给出默认的构造函数（ ）”，网站题面与原文一致，没有漏掉限定条件或改变含义。",
+          "review": "PDF 第 6 页判断第 2 题原文「C++类的定义中，可以没有构造函数，会给出默认的构造函数（ ）」，网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF第6页判断题答案表第2格为“√”；正确映射为0，与网站当前 answer=0 一致。",
+          "review": "答案表第 2 格为「√」→官方判定 0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "现解析指出：用户未声明构造函数时，编译器会隐式提供默认构造函数；并补充内置类型成员不自动清零、用户一旦声明其他构造函数则不再隐式生成默认版本，推导符合C++规则。",
+          "review": "解析指出：类中未定义任何构造函数时编译器隐式生成默认构造函数（内置类型成员不自动清零），且一旦显式定义任意构造函数即不再隐式生成（C++11 可 =default 找回），C++ 规则核对无误，能独立支撑「正确」。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 18,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第6页第3题原文为“如果某个C++对象（object）支持下标运算符（方括号运算符），则该对象在所对应class中以成员函数的形式进行了重载。( )”，网站题面与原文一致。",
+          "review": "PDF 第 6 页判断第 3 题原文「如果某个C++对象（object）支持下标运算符（方括号运算符），则该对象在所对应class中以成员函数的形式进行了重载。（ ）」，网站题面仅空格差异。"
+        },
+        "answer": {
+          "initial": "PDF第6页判断题答案表第3格为“√”；正确映射为0，与网站当前 answer=0 一致。",
+          "review": "答案表第 3 格为「√」→0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "现解析指出 operator[] 必须以非静态成员函数形式重载，因此类对象能使用 obj[i] 即说明其类以成员函数重载了下标运算符；该推导正确且回应了命题。",
+          "review": "C++ 标准规定下标运算符 operator[] 必须以非静态成员函数形式重载（典型如 std::vector、std::map），解析据此推出「对象支持 [] 即其类以成员函数重载」成立，独立支撑官方 √。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 19,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第6页第4题原文为“深度优先搜索（DFS，Depth First Search的简写）属于图算法，其过程是对每一个可能的分支路径深入到不能再深入为止，而且每个节点只能访问一次。( )”，网站题面与原文一致。",
+          "review": "PDF 第 6 页判断第 4 题原文「深度优先搜索（DFS，Depth First Search的简写）属于图算法，其过程是对每一个可能的分支路径深入到不能再深入为止，而且每个节点只能访问一次。（ ）」，网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF第6页判断题答案表第4格为“√”；正确映射为0，与网站当前 answer=0 一致。",
+          "review": "答案表第 4 格为「√」→0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "现解析说明DFS属于图/树遍历算法，沿分支深入、走不通回溯，并用 visited 标记保证每个节点只访问一次，能够独立推出命题正确。",
+          "review": "解析说明 DFS 属图/树遍历算法：沿分支深入、走不通回溯，并以 visited 标记保证每个节点仅访问一次，与题干表述相符，可独立推出命题正确。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 20,
+      "resolved": true,
+      "dimensions": [
+        "statement"
+      ],
+      "blockedDimensions": [
+        "answer",
+        "explanation"
+      ],
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第6页第5题原文为“哈夫曼编码（Huffman Coding）具有唯一性，因此有确定的压缩率。 ( )”，网站题面与原文一致，无漏项。",
+          "review": "PDF 第 6 页判断第 5 题原文「哈夫曼编码（Huffman Coding）具有唯一性，因此有确定的压缩率。 ( )」，网站题面仅空格差异，无漏项。"
+        },
+        "answer": {
+          "initial": "PDF第6页判断题答案表第5格为“×”；判断题错误映射为1，网站当前 answer=0 与官方答案冲突，应改为1。",
+          "review": "PDF 第 6 页判断题答案表第 5 格为「×」（全表 √√√√××√√√√），「错误」映射为 1；网站当前 answer=0 与官方答案表直接冲突。内容层面同样支持 ×：同权节点合并次序可变、左右子树可互换，哈夫曼编码并不唯一，题干前提「具有唯一性」为假。"
+        },
+        "explanation": {
+          "initial": "现解析以“WPL唯一、压缩率确定”为由判定题干正确，但题干前半句“哈夫曼编码具有唯一性”不成立：同频节点合并顺序或左右子树分配不同会得到不同编码，官方答案据此判×。需保留“编码不唯一、最优WPL确定”的辨析，但整句应判错误。",
+          "review": "网站解析结论为「题干正确」，与官方答案表 × 相反；其论证仅强调 WPL 唯一、压缩率确定，未指出题干前提「哈夫曼编码具有唯一性」本身不成立（前提为假则整句复合命题错误）。须整段重写为与「错误」一致的解析，同时保留「编码不唯一 ≠ 压缩率不确定」的辨析。"
+        }
+      },
+      "unresolved": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同"
+      ]
+    },
+    {
+      "id": 21,
+      "resolved": true,
+      "dimensions": [
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [
+        "statement"
+      ],
+      "official": 1,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页第 6 题代码带行号 5—8，最后一行是第 8 行；当前题面代码块丢失行号，却直接问“第 8 行”，无法从题面直接对应，需补足行号说明。",
+          "review": "修复后核验通过：PDF 第 6 页第 6 题题干文字与网站一致；原卷代码截图带行号 5—8（第 8 行即最后一行 cout<<*ptr<<endl;），网站 Markdown 代码块丢失行号致「第 8 行」无从对应，已在题干补注行号对应关系，与原卷截图一致，未改变题意。"
+        },
+        "answer": {
+          "initial": "PDF 第 6 页判断题答案表第 6 格为“×”，即错误=1；当前 answer=1 一致。",
+          "review": "第 6 页判断题答案表第 6 格为 ×（错误=1），当前 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "delete ptr 结束所指向 int 对象的生命周期，ptr 成为悬空指针；再次解引用属于未定义行为，可能崩溃也可能输出旧值，不能断言必然报错。当前解析符合此结论。",
+          "review": "独立推导：delete ptr 结束其指向的 int 对象的生命周期，ptr 本身不被删除而成为悬空指针；此后解引用属未定义行为，可能崩溃「报错」，也可能照常运行并输出残留值，故题干「将报错」不能成立，判定为「错误」。网站解析与此一致，且与官方 × 相符。"
+        }
+      },
+      "unresolved": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 22,
+      "resolved": true,
+      "dimensions": [
+        "statement"
+      ],
+      "blockedDimensions": [
+        "answer",
+        "explanation"
+      ],
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页第 7 题原文为“二叉搜索树查找的平均时间复杂度为 O(log N)。”，与当前题干一致。",
+          "review": "第 6 页第 7 题原文「二叉搜索树查找的平均时间复杂度为O(log N)。（ ）」与网站题干一致（O(log N) 的公式排版等价）。"
+        },
+        "answer": {
+          "initial": "PDF 第 6 页判断题答案表第 7 格为“√”，即正确=0；当前 answer=1 与官方答案冲突，需改为 0。",
+          "review": "修复后核验通过：第 6 页判断题答案表第 7 格为 √（正确=0），answer 已由 1 修正为 0。"
+        },
+        "explanation": {
+          "initial": "当前解析用 BST 最坏 O(N) 否定题干的“平均 O(log N)”，与官方答案√不符；应区分平均/随机形态 O(log N) 与最坏 O(N)，并说明平衡树才保证任意插入顺序下 O(log N)。",
+          "review": "修复后核验通过：新解析独立给出「查找代价与树高同阶；随机建立/等概率查找的平均代价为 O(log N)；普通 BST 无自平衡、最坏退化 O(N)；平衡树才保证任意顺序下 O(log N)」的推导，支撑 √ 判定；原解析以最坏情形否定平均并声称「官方判定为错误」，与官方答案表第 7 格 √ 矛盾，已整体替换。"
+        }
+      },
+      "unresolved": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同"
+      ]
+    },
+    {
+      "id": 23,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页第 8 题原文关于空树、单节点树、多节点 BST 及左右子树大小关系的表述，与当前题干一致。",
+          "review": "第 6 页第 8 题原文关于空树、单节点树、多节点 BST 及左右子树取值的表述与网站题干一致（仅换行排版差异）。"
+        },
+        "answer": {
+          "initial": "PDF 第 6 页判断题答案表第 8 格为“√”，即正确=0；当前 answer=0 一致。",
+          "review": "第 6 页判断题答案表第 8 格为 √（正确=0），当前 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "空树、单节点树均符合 BST 定义；多节点时由“左<父<右”对子树递归应用，可归纳得到左子树全部小于根、右子树全部大于根。当前解析结论正确。",
+          "review": "独立推导：空树、单节点树均满足 BST 定义；多节点时每个节点处「左<父<右」严格成立，对该性质逐层递归应用（归纳法）即得右子树中所有值均大于根、左子树中所有值均小于根。网站解析结论一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页第 9 题原文为“重复没有超过 N/2 次的循环就能够算出来”，与当前题干一致。",
+          "review": "第 6 页第 9 题原文「……重复没有超过N/2次的循环就能够算出来了。（ ）」与网站题干一致（仅换行排版差异）。"
+        },
+        "answer": {
+          "initial": "PDF 第 6 页判断题答案表第 9 格为“√”，即正确=0；当前 answer=0 一致。",
+          "review": "第 6 页判断题答案表第 9 格为 √（正确=0），当前 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "除 N 本身外的真因数 d 满足 N=d·k 且 k≥2，故 d≤N/2；枚举 1..⌊N/2⌋ 再计入 N 本身即可。N=1 时循环 0 次后计入 N 本身也得到 1。当前解析结论正确。",
+          "review": "独立推导：N 的真因数 d 满足 N=d·k（k≥2），故 d≤N/2；循环枚举 1..⌊N/2⌋ 至多 ⌊N/2⌋ 次（不超过 N/2 次），再计入 N 本身即得全部因数个数；N=1 时循环 0 次，结论仍成立。网站解析结论一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 25,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页第 10 题原文关于单链表和双向链上简单冒泡排序复杂度的表述，与当前题干一致（原文“双向链”照录）。",
+          "review": "第 6 页第 10 题原文（含「双向链」的原表述）与网站题干一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 6 页判断题答案表第 10 格为“√”，即正确=0；当前 answer=0 一致。",
+          "review": "第 6 页判断题答案表第 10 格为 √（正确=0），当前 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "单链表和双向链表上的简单冒泡排序都需进行 O(N²) 次相邻比较/交换，双向指针的存在不改变渐进复杂度；当前解析结论正确。",
+          "review": "独立推导：简单冒泡排序的基本操作是比较相邻元素并按需交换，对单链表与双向链表均沿 next 指针顺序扫描，比较/交换总次数均为 Θ(N²)，与存储结构无关；双向链表多出的 prev 指针对冒泡无帮助，两者复杂度相同，题干说法正确，与官方 √ 一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "referenceCode"
+      ],
+      "blockedDimensions": [
+        "statement",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "sourcePages": [
+        6,
+        7,
+        8
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第6-7页题面、输入输出、第7页样例与网站基本一致；但网站question未收录第7页数据规模：20% M=1，40% N≤20且M≤2，全部N≤10^4且M≤100。",
+          "review": "PDF第6页3.1节及第7页题面、输入描述、样例1/2与网站逐句一致（含 x+a_i≥N 通关、|b_i|≤10^5、样例131/101）。网站缺第7页“3.1.11 数据规模”：对于20%测试点保证 M=1；对于40%测试点保证 N≤20 且 M≤2；对于所有测试点保证 N≤10^4 且 M≤100。已在 changes.question 补齐并对照第7页原图复核——修复后核验通过。“特别提醒”（不要输出提示信息）属考试系统说明，网站体例一贯不收录，不视为缺失。"
+        },
+        "explanation": {
+          "initial": "DP推导、样例走查和复杂度正确；但解析称累计分值可能超过32位int，而官方N≤10^4、|b_i|≤10^5，总分绝对值不超过10^9，未超过int范围。",
+          "review": "网站解析的倒序DP定义、转移 dp[i]=b[i]+bestNext、样例1/2走查（dp[5]=30、dp[4]=30、dp[3]=130、dp[2]=60、dp[1]=130、dp[0]=131；样例2 dp[3]=100、dp[0]=101）经本人独立逐步推演全部一致。但原解析断言“累计分值可能超过32位int上限、必须用long long”与官方规模矛盾：N≤10^4、|b_i|≤10^5，总分绝对值≤10^9<2^31-1，int理论上不溢出；且解析未给实际规模下的运算量。已在 changes.explanation 修正该断言、按 N≤10^4/M≤100 补充 O(NM)≈10^6 的量级说明、补充站点参考代码1起始下标与0起始推导的对应关系，并保留原样例走查与易错点2/3——修复后核验通过。"
+        },
+        "referenceCode": {
+          "initial": "参考程序1起始映射正确：b[1..N]对应原题b_0..b_{N-1}，dp[i]对应原题第i-1关，i+a[j]>N表示通关；O(NM)≤10^6，long long安全；样例与独立边界计算一致。",
+          "review": "站点参考程序1起始映射正确：b[1..N]对应原题b_0..b_{N-1}，dp[i]对应原题第i-1关，i+a[j]>N判通关，输出dp[1]即原题dp[0]；a[j]≥1保证倒序无前向依赖；LLONG_MIN→0截断实现“直接通关得0分可与负dp比较”的语义。独立推演样例1得131、样例2得101，且与第8页官方参考程序（正向f[i] accumulation + 出口枚举）在本人构造的4个边界用例（N=1最小、直通跳负关、全负强制逐关、中段跳负关）上期望值逐一致。复杂度O(NM)≤10^6满足1s时限，long long无溢出风险，代码无需修改。"
+        }
+      },
+      "unresolved": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "referenceCode"
+      ],
+      "blockedDimensions": [
+        "statement",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "sourcePages": [
+        8,
+        9,
+        10,
+        11
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第8-9页题面、第9-10页样例与网站基本一致；但网站question未收录第10页数据规模：50% N≤50，全部3≤N≤300且Q≤100。另官方第二行写‘正整数’但样例含0，保留原文不擅改。",
+          "review": "PDF第9页题面与输入输出描述、样例输入/输出1（第9页）、样例2（第10页）与网站逐句一致。已按第9页原图将“每位员工只能受到本人或直接领导或间接领导的管理”恢复为原文“本人或本人直接领导或间接领导”，并统一“$f_1,f_2,\\dots,f_{N-1}$”转写。网站缺第10页“3.2.10 数据规模”：对于50%测试点保证 N≤50；对于所有测试点保证 3≤N≤300、Q≤100。已在 changes.question 补齐——修复后核验通过。“特别提醒”属考试系统说明不收录。官方“正整数”与样例含0的矛盾按原卷保留，见 unresolved。"
+        },
+        "explanation": {
+          "initial": "公共祖先等于LCA到根路径、bestOnPath的推导正确；但解析称N/Q规模较大、务必使用快速I/O，与官方N≤300、Q≤100不符。",
+          "review": "树模型（x管理y ⇔ x为y的祖先或本人）、公共祖先=根到LCA路径、bestOnPath、倍增LCA与结合律合并、样例1（2/2/0）与样例2查询{4,6}→2、{4,5}→1、{4,5,6}→1、{2,4,5,6}→1、{3,4}→0 的走查均经本人按祖先集独立推演一致。原易错提醒“Q与N规模较大、务必使用快速I/O防止超时”与官方 N≤300、Q≤100 不符（官方参考程序本身即 O(N²) 级暴力 DFS 判定），已在 changes.explanation 修正为规模很小、快速I/O非必需，并补充复杂度与数据规模说明——修复后核验通过。"
+        },
+        "referenceCode": {
+          "initial": "父节点建树、BFS预处理深度与倍增祖先、bestOnPath、多节点LCA合并均正确；N≤300无溢出；复杂度O((N+Σm)logN)，样例与独立边界计算一致。",
+          "review": "站点参考程序：建树+parent[0]=0防越界；LOG 取最小使 2^LOG>n，depth差≤n-1<2^LOG，对齐与同步上跳的倍增LCA标准正确；多参与者按结合律依次合并；答案 bestOnPath[总LCA] 正确处理了“编号最大祖先可能高于LCA”（本人独立用例：祖先链0-5-2，LCA=2但答案5）。两份样例输出 2 2 0 与 2 1 1 1 0 独立推演一致；4个边界用例（最小N=3、高编号祖先、多合并、主持人为参与者本人）期望值与站点代码、官方暴力代码（第10-11页，按dep≤mnd且DFS标记从大到小判定）双重推演均一致。N≤300无溢出，复杂度O(NlogN+Q·m·logN)远低于1s时限，代码无需修改。"
+        }
+      },
+      "unresolved": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
     }
-  ]
+  ],
+  "unresolved": [
+    {
+      "id": 1,
+      "dimensions": [
+        "explanation"
+      ],
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 2,
+      "dimensions": [
+        "explanation"
+      ],
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 3,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 6,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流"
+      ]
+    },
+    {
+      "id": 7,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 8,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 9,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 10,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 20,
+      "dimensions": [
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同"
+      ]
+    },
+    {
+      "id": 21,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 22,
+      "dimensions": [
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同"
+      ]
+    },
+    {
+      "id": 26,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 27,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    }
+  ],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2023-12-l6.code-checks.json"
 }

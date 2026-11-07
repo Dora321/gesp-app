@@ -1,0 +1,238 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:50:46.244Z",
+  "completedAt": "2026-11-07T11:52:40.154Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54446,
+    "completion_tokens": 6344,
+    "total_tokens": 60790,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3693
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0113389,
+      "allowance": 0.0113389,
+      "tokens": {
+        "input": 54446,
+        "output": 6344,
+        "reasoning": 3693,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 C++ 六级 2023年12月」，与 paperId 2023-12-l6 的语言(++)、等级(6)、年份(2023)、月份(12)一致；同页单选答案表题号 1–15 的答案为 D C C D B B B D B D A A B C B。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文「第11题 构造二叉树 [1,2,3,null,4]（ ）。」与站点题干逐字一致，层序序列与设问均无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A. 1(2()(4))(3)；B. 1(2(3)())(4)；C. (1,2(3),(4))；D. (1,(2)(3),(4))，与站点 options 内容及顺序逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题标为 A（该行第 11 格），0 起始选项索引为 0；站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：层序 [1,2,3,null,4] 中 1 为根，出队后其两个孩子为 2、3；处理 2 时其两个孩子为 null、4，即 2 无左孩子、右孩子为 4；3 为叶子。括号表示（节点(左子树)(右子树)）：根 1 的左子树为 2()(4)，右子树为 (3)，整树为 1(2()(4))(3) 即 A。B 把 3 放到 2 的左孩子并把 4 挂到根右，C/D 的逗号式并列结构均与层序占位不符，排除正确，与站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为主观无代码的单选题，PDF 未提供参考代码，站点也未设置该字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核建议与独立重推结果一致（层序建树 → 1(2()(4))(3)，答案 A/0），题干选项也无差异，接受初核，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文「第12题 下面有关布尔类型的函数的说法，正确的是（ ）。」与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A. bool 类型函数只能返回0或者1两种值；B. bool 类型函数可以返回任何整数值；C. bool 类型函数必须有参数传递；D. bool 类型函数没有返回值，与站点 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题标为 A，0 起始选项索引为 0；站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：bool 类型取值域仅为 true/false（对应 1/0），bool 函数中 return 表达式时整型值会隐式转换为 bool，故调用方得到的只有 0/1 两种，A 正确；B 错在「返回任何整数值」——如 return 5 实得 true(1)，并非保留整数值 5；C 错，bool 函数可以无参；D 错，bool 与 void 不同，有返回值。与站点解析逐项结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对五维的判定与独立推导一致（bool 值域与隐式转换逻辑成立，答案 A/0），接受初核，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文「第13题 通讯卫星在通信网络系统中主要起到（ ）的作用。」与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A. 信息过滤；B. 信号中继；C. 避免攻击；D. 数据加密，与站点 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题标为 B，0 起始选项索引为 1；站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：通信卫星在网络中的角色是中继节点——接收地面站上行载波，放大并变频后向地面转发，本身不解读或加工业务内容，不承担过滤、抗攻击或端到端加密职能，故主要作用为信号中继（B）。与站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与独立判断一致（卫星=中继转发节点，答案 B/1），题面无出入，接受初核，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文「第14题 小杨想编写一个判断任意输入的整数N是否为素数的程序，下面哪个方法不合适？（ ）」与站点题干逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A. 埃氏筛法；B. 线性筛法；C. 二分答案；D. 枚举法，与站点 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题标为 C，0 起始选项索引为 2；站点 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：素性判定是「是/否」谓词问题，不存在随候选值单调变化、可逐步收缩的答案空间，二分答案的前提（单调可判定性）不成立，故 C 不合适；枚举试除 2..√N 直接可行；埃氏筛/线性筛可预处理素数表后查表（用 ≤√N 的素数标记其倍数直至 N，N 为合数必被标记）。站点解析结论一致，其「筛出 [2,√N] 的素数并标记倍数」在标记倍数延伸到 N 的意义下表述成立，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对二分答案不适用性的论证与独立推导一致（答案 C/2），埃氏筛用于单个判定的表述经复核可成立，接受初核，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文「第15题 内排序有不同的类别，下面哪种排序算法和冒泡排序是同一类？（ ）」与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A. 希尔排序；B. 快速排序；C. 堆排序；D. 插入排序，与站点 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题标为 B，0 起始选项索引为 1；站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：内排序按核心操作分类——冒泡排序以「比较相邻元素并在逆序时交换」为核心，属交换排序；快速排序 partition 过程同样以交换为主要操作，同属交换类。希尔排序是分组插入的改进、属插入类；堆排序借堆选取最值、属选择类；插入排序直接属插入类。故与冒泡同类的是快排（B），与站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对排序分类的判断与独立推导一致（冒泡与快排同属交换排序，答案 B/1），接受初核，无需修改。"
+      }
+    ],
+    "summary": "本轮仅复核第 11–15 题，其余题目不在本次范围。核对依据：PDF 第 1 页卷头与单选答案表（第 11–15 格为 A A B C B，对应 0 起始索引 0/0/1/2/1）、第 5 页题干与选项原图。五题题干、选项与站点数据逐字一致，官方答案映射与站点 answer 全部吻合；解析经独立重推（层序建树括号表示、bool 值域与隐式转换、卫星中继职能、素性判定与二分答案适用条件、排序按核心操作分类）均成立。五题均为单选题，referenceCode 维度不适用，无编程题因而无 tests。对初核草稿（DeepSeek）逐项复核后全部接受，未发现需修改之处，五题均 approve。"
+  }
+}

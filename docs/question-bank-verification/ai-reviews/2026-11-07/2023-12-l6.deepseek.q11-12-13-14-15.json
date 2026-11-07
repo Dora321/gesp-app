@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:42:45.563Z",
+  "completedAt": "2026-11-07T06:44:46.882Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34698,
+    "completion_tokens": 7364,
+    "total_tokens": 42062,
+    "prompt_tokens_details": {
+      "cached_tokens": 34560
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5808
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00454278,
+      "allowance": 0.00272567,
+      "tokens": {
+        "input": 138,
+        "output": 7364,
+        "reasoning": 5808,
+        "cache_read": 34560,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "normalization": "仅将纯数字题号字符串转换为整数，未修改审校结论。",
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 六级 2023年12月”，与 paperId 2023-12-l6 的年份、月份、等级和语言均一致；同页答案表给出第11-15题答案依次为 A、A、B、C、B。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第11题题干为“构造二叉树 [1,2,3,null,4]（ ）。”，站点题干中的层序序列、null 占位和设问均与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页四个选项依次为 A. 1(2()(4))(3)；B. 1(2(3)())(4)；C. (1,2(3),(4))；D. (1,(2)(3),(4))；站点选项的内容与顺序均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题标为 A，按 0 起始选项索引为 0；站点 answer=0，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按层序还原：1 为根，2、3 分别为左右孩子；2 的左孩子为 null、右孩子为 4，因此括号表示为 1(2()(4))(3)。当前解析的还原过程及对 B、C、D 的排除理由与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码，站点亦未设置 referenceCode。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第12题题干为“下面有关布尔类型的函数的说法，正确的是（ ）。”，站点题干文字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项依次为 A. bool 类型函数只能返回0或者1两种值；B. bool 类型函数可以返回任何整数值；C. bool 类型函数必须有参数传递；D. bool 类型函数没有返回值；站点四个选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题标为 A，按 0 起始选项索引为 0；站点 answer=0，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：bool 函数返回 bool 值，只有 true/false，转换为整数时对应 1/0；bool 函数可以无参数，也不能保留任意整数的原值，并且有返回值，因此 A 正确。当前解析逐项分析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第13题题干为“通讯卫星在通信网络系统中主要起到（ ）的作用。”，站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项为 A. 信息过滤；B. 信号中继；C. 避免攻击；D. 数据加密；站点选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题标为 B，按 0 起始选项索引为 1；站点 answer=1，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：通信卫星接收地面站的上行信号，经放大、变频后向地面转发，主要功能是信号中继，通常不负责内容过滤、攻击防护或数据加密。当前解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第14题题干为“小杨想编写一个判断任意输入的整数N是否为素数的程序，下面哪个方法不合适？（ ）”，站点题干文字、变量 N 和设问一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项为 A. 埃氏筛法；B. 线性筛法；C. 二分答案；D. 枚举法；站点选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题标为 C，按 0 起始选项索引为 2；站点 answer=2，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：素数判定是一个是否为素数的判定问题；二分答案通常要求待求答案在有序数值空间上具有单调可判定性，因此不适合直接用于本题。枚举试除、埃氏筛或线性筛预处理后判定均可完成素性判断，故 C 为不合适项。当前解析的结论和排除理由一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第15题题干为“内排序有不同的类别，下面哪种排序算法和冒泡排序是同一类？（ ）”，站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项为 A. 希尔排序；B. 快速排序；C. 堆排序；D. 插入排序；站点选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题标为 B，按 0 起始选项索引为 1；站点 answer=1，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：冒泡排序通过相邻元素交换实现排序，快速排序的核心也是交换，二者同属交换排序；希尔排序属于插入类排序，堆排序属于选择类排序，插入排序属于插入类排序。当前解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核题号 11-15。已对照 PDF 第5页题干与选项、第1页官方答案表逐题核验：五题均为单选题，官方答案映射分别为 0、0、1、2、1，站点现有题干、选项、答案和解析均与 PDF 一致，未发现需修改项；五题均无参考代码维度，也没有编程题边界测试。"
+  }
+}

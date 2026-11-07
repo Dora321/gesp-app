@@ -1,0 +1,175 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:12:11.367Z",
+  "completedAt": "2026-11-07T12:17:17.695Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34692,
+    "completion_tokens": 27155,
+    "total_tokens": 61847,
+    "prompt_tokens_details": {
+      "cached_tokens": 34560
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 24148
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01641648,
+      "allowance": 0.00984989,
+      "tokens": {
+        "input": 132,
+        "output": 27155,
+        "reasoning": 24148,
+        "cache_read": 34560,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为CCF GESP C++ 六级，2023年12月，与2023-12-l6一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6-7页题面、输入输出、第7页样例与网站基本一致；但网站question未收录第7页数据规模：20% M=1，40% N≤20且M≤2，全部N≤10^4且M≤100。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，answer为空。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "DP推导、样例走查和复杂度正确；但解析称累计分值可能超过32位int，而官方N≤10^4、|b_i|≤10^5，总分绝对值不超过10^9，未超过int范围。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考程序1起始映射正确：b[1..N]对应原题b_0..b_{N-1}，dp[i]对应原题第i-1关，i+a[j]>N表示通关；O(NM)≤10^6，long long安全；样例与独立边界计算一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202312 六级] 闯关游戏\n\n## 题目描述\n\n你来到了一个闯关游戏。\n\n这个游戏总共有 $N$ 关，每关都有 $M$ 个通道，你需要选择一个通道并通往后续关卡。其中，第 $i$ 个通道可以让你前进 $a_i$ 关，也就是说，如果你现在在第 $x$ 关，那么选择第 $i$ 个通道后，你将直接来到第 $x+a_i$ 关（特别地，如果 $x+a_i ≥ N$，那么你就通关了）。此外，当你顺利离开第 $s$ 关时，你还将获得 $b_s$ 分。\n\n游戏开始时，你在第 $0$ 关。请问，你通关时最多能获得多少总分。\n\n## 输入格式\n\n第一行两个整数 $N$，$M$，分别表示关卡数量和每关的通道数量。\n\n接下来一行 $M$ 个用单个空格隔开的整数 $a_0,a_1,…,a_{M-1}$。保证 $1≤a_i≤N$。\n\n接下来一行 $N$ 个用单个空格隔开的整数 $b_0,b_1,…,b_{N-1}$。保证 $|b_i|≤10^5$。\n\n## 输出格式\n\n一行一个整数，表示你通关时最多能够获得的分数。\n\n## 数据规模\n\n对于 20% 的测试点，保证 $M=1$。\n\n对于 40% 的测试点，保证 $N≤20$；保证 $M≤2$。\n\n对于所有测试点，保证 $N≤10^4$；保证 $M≤100$。",
+          "explanation": "**解析：**\n\n每次选择通道只会使关卡编号严格增大，无回路，可按关卡倒序做线性动态规划。\n\n设 dp[i] 表示从第 i 关（0≤i<N）出发并最终通关能获得的最大总分。离开第 i 关必得 b[i]；选择通道 j 后：\n- 若 i+a[j]≥N，直接通关，后续收益 0；\n- 否则到达第 i+a[j] 关，后续收益 dp[i+a[j]]。\n\n故 dp[i] = b[i] + max_j( i+a[j]≥N ? 0 : dp[i+a[j]] )。从 i=N-1 递减到 0 计算，答案 dp[0]。\n\n参考程序采用 1 起始下标：读入的 b[1..N] 对应原题 b_0..b_{N-1}，dp[i] 对应原题第 i-1 关；目标 i+a[j]>N 表示通关，输出 dp[1]。\n\n复杂度 O(NM)，空间 O(N)。按 N≤10^4、M≤100，运算量至多 10^6。按 N≤10^4、|b_i|≤10^5，总分绝对值不超过 10^9，实际上未超过 32 位 int；参考程序使用 long long 更稳妥。\n\n样例1：0-index 下 dp[5]=30，dp[4]=30，dp[3]=130，dp[2]=60，dp[1]=130，dp[0]=131。样例2中 dp[5]=-1，第3关选择直接通关可得 dp[3]=100，最终 dp[0]=101，说明负分关应允许用 0 分直接通关来跳过。"
+        },
+        "tests": [
+          {
+            "name": "N=1 最小规模",
+            "input": "1 1\n1\n5",
+            "output": "5",
+            "reason": "第0关选择通道1直接通关，获得b0=5。"
+          },
+          {
+            "name": "跳过负分尾关",
+            "input": "2 2\n1 2\n10 -100",
+            "output": "10",
+            "reason": "从第0关选a=2直接通关得10；若选a=1进入第1关，再通关共得10-100=-90，最优为10。"
+          },
+          {
+            "name": "全负分且必须逐关前进",
+            "input": "3 1\n1\n-5 -10 -20",
+            "output": "-35",
+            "reason": "a=1时只能从第0关到第1关、第2关再通关，必须累加-5-10-20=-35，验证负分不被0截断。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第8-9页题面、第9-10页样例与网站基本一致；但网站question未收录第10页数据规模：50% N≤50，全部3≤N≤300且Q≤100。另官方第二行写‘正整数’但样例含0，保留原文不擅改。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，answer为空。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "公共祖先等于LCA到根路径、bestOnPath的推导正确；但解析称N/Q规模较大、务必使用快速I/O，与官方N≤300、Q≤100不符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "父节点建树、BFS预处理深度与倍增祖先、bestOnPath、多节点LCA合并均正确；N≤300无溢出；复杂度O((N+Σm)logN)，样例与独立边界计算一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202312 六级] 工作沟通\n\n## 题目描述\n\n某公司有 $N$ 名员工，编号从 $0$ 至 $N-1$。其中，除了 $0$ 号员工是老板，其余每名员工都有一个直接领导。我们假设编号为 $i$ 的员工的直接领导是 $f_i$。\n\n该公司有严格的管理制度，每位员工只能受到本人或直接领导或间接领导的管理。具体来说，规定员工 $x$ 可以管理员工 $y$，当且仅当 $x=y$，或 $x=f_y$，或 $x$ 可以管理 $f_y$。特别地，$0$ 号员工老板只能自我管理，无法由其他任何员工管理。\n\n现在，有一些同事要开展合作，他们希望找到一位同事来主持这场合作，这位同事必须能够管理参与合作的所有同事。如果有多名满足这一条件的员工，他们希望找到编号最大的员工。你能帮帮他们吗？\n\n## 输入格式\n\n第一行一个整数 $N$，表示员工的数量。\n\n第二行 $N - 1$ 个用空格隔开的正整数，依次为 $f_1,f_2,…f_{N-1}$。\n\n第三行一个整数 $Q$，表示共有 $Q$ 场合作需要安排。\n\n接下来 $Q$ 行，每行描述一场合作：开头是一个整数 $m$（$2≤m≤N$），表示参与本次合作的员工数量；接着是 $m$ 个整数，依次表示参与本次合作的员工编号（保证编号合法且不重复）。\n\n保证公司结构合法，即不存在任意一名员工，其本人是自己的直接或间接领导。\n\n## 输出格式\n\n输出 $Q$ 行，每行一个整数，依次为每场合作的主持人选。\n\n## 数据规模\n\n对于 50% 的测试点，保证 $N≤50$。\n\n对于所有测试点，保证 $3≤N≤300$；$Q≤100$。",
+          "explanation": "**解析：**\n\n将员工关系看成以 0 为根的有根树，f_i 是 i 的父节点。x 能管理 y 当且仅当 x 是 y 的祖先（含 x=y）。因此能管理所有参与者的员工就是这些参与者的公共祖先；所有公共祖先恰好是从根 0 到这些参与者 LCA 的路径。题目要求编号最大者，故需维护根到每个节点路径上的最大编号 bestOnPath。\n\n预处理：读入 f_i 建树，从 0 开始 BFS/DFS，求 depth、倍增祖先 up[k][u] 和 bestOnPath[v]=max(bestOnPath[parent[v]], v)，根 bestOnPath[0]=0，parent[0]=0。\n\n查询：对 m 个参与者依次合并 LCA，得到 cur，输出 bestOnPath[cur]。倍增求 LCA：先按深度差上跳对齐，若相同即为 LCA；否则从大到小同时上跳，直到父节点相同，返回父节点。\n\n复杂度 O(N log N + Σm log N)，空间 O(N log N)。官方限制 N≤300、Q≤100，规模很小；快速 I/O 可用但非必需。\n\n样例1：树为 0 的孩子 1,2；2 的孩子 3,4。查询 {3,4} 的 LCA 为 2，根到 2 的路径 {0,2}，最大编号 2；查询 {2,3,4} 的 LCA 为 2，输出 2；查询 {1,4} 的 LCA 为 0，输出 0。样例2同理。"
+        },
+        "tests": [
+          {
+            "name": "最小N且仅根为公共祖先",
+            "input": "3\n0 0\n1\n2 1 2",
+            "output": "0",
+            "reason": "1和2均为0的孩子，公共祖先只有0，最大编号为0。"
+          },
+          {
+            "name": "最大编号祖先大于LCA",
+            "input": "6\n0 5 0 2 0\n1\n2 4 2",
+            "output": "5",
+            "reason": "4和2的公共祖先为2,5,0，最大编号是5；不能直接输出LCA=2。"
+          },
+          {
+            "name": "多参与者LCA合并",
+            "input": "6\n0 5 2 2 0\n1\n3 4 3 2",
+            "output": "5",
+            "reason": "4、3、2的总LCA为2，根到2路径为0-5-2，最大编号5；验证多节点合并与bestOnPath。"
+          }
+        ],
+        "unresolved": [
+          "官方输入描述称f_i为正整数，但样例1和样例2均含0；按原卷保留，未擅自改为非负整数。"
+        ]
+      }
+    ],
+    "summary": "仅核验26、27。两题题面均缺官方数据规模，已补；q26解析修正溢出表述，q27解析修正快速I/O必要性；两题参考代码算法正确并给出边界用例期望；q27官方‘正整数’与样例含0的冲突保留待定。"
+  }
+}

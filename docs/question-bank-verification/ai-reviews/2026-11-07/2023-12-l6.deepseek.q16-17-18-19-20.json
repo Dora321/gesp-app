@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:52:40.163Z",
+  "completedAt": "2026-11-07T11:59:18.771Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34698,
+    "completion_tokens": 9742,
+    "total_tokens": 44440,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7688
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0110499,
+      "allowance": 0.00662994,
+      "tokens": {
+        "input": 34698,
+        "output": 9742,
+        "reasoning": 7688,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 六级 / 2023 年 12 月”，与 2023-12-l6 的年份、月份、级别一致；第6页为判断题第1—10题及答案表，其中第1—5题答案为 √、√、√、√、×；给定来源 git-blob SHA 2f8da49f90bbb031ec77e06865e27465483be552 与此卷对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第1题原文为“在面向对象中，方法在C++的class中表现为class内定义的函数。( )”，网站题面语义与文字一致，无漏项或改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF中仅有括号判断，无 A/B/C/D 单选选项；按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第1格为“√”；判断题正确映射为0，与网站当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析说明“方法”在C++中由成员函数体现，并区分类内声明、类外通过“类名::”实现仍归属于该类，能独立推出命题正确，不是仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第2题原文为“C++类的定义中，可以没有构造函数，会给出默认的构造函数（ ）”，网站题面与原文一致，没有漏掉限定条件或改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF中无 A/B/C/D 选项；按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第2格为“√”；正确映射为0，与网站当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析指出：用户未声明构造函数时，编译器会隐式提供默认构造函数；并补充内置类型成员不自动清零、用户一旦声明其他构造函数则不再隐式生成默认版本，推导符合C++规则。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第3题原文为“如果某个C++对象（object）支持下标运算符（方括号运算符），则该对象在所对应class中以成员函数的形式进行了重载。( )”，网站题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF中无 A/B/C/D 选项；按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第3格为“√”；正确映射为0，与网站当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析指出 operator[] 必须以非静态成员函数形式重载，因此类对象能使用 obj[i] 即说明其类以成员函数重载了下标运算符；该推导正确且回应了命题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第4题原文为“深度优先搜索（DFS，Depth First Search的简写）属于图算法，其过程是对每一个可能的分支路径深入到不能再深入为止，而且每个节点只能访问一次。( )”，网站题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF中无 A/B/C/D 选项；按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第4格为“√”；正确映射为0，与网站当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析说明DFS属于图/树遍历算法，沿分支深入、走不通回溯，并用 visited 标记保证每个节点只访问一次，能够独立推出命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第5题原文为“哈夫曼编码（Huffman Coding）具有唯一性，因此有确定的压缩率。 ( )”，网站题面与原文一致，无漏项。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF中只有括号判断，无 A/B/C/D 选项；按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页判断题答案表第5格为“×”；判断题错误映射为1，网站当前 answer=0 与官方答案冲突，应改为1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析以“WPL唯一、压缩率确定”为由判定题干正确，但题干前半句“哈夫曼编码具有唯一性”不成立：同频节点合并顺序或左右子树分配不同会得到不同编码，官方答案据此判×。需保留“编码不唯一、最优WPL确定”的辨析，但整句应判错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {
+          "answer": 1,
+          "explanation": "答案：错误。\n\n判定依据：同一组字符频率下，构造哈夫曼树时若出现相同权值的节点，合并次序或左右子树分配可以不同，因而得到的哈夫曼编码并不唯一；题干“哈夫曼编码具有唯一性”这一前提不成立。需要区分的是，虽然具体编码不唯一，但最优带权路径长度 WPL 是确定的，总编码位数由 WPL 决定，压缩率通常不因具体最优编码不同而改变；题干却把“编码唯一”当作“压缩率确定”的原因，整体命题错误，故官方答案判为错误（×）。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验判断题16—20，五题均完成题面、选项适用性、答案、解析、参考代码五个维度记录。16—19题题面与官方PDF一致，官方答案表均为√，网站 answer=0 正确，解析可独立推导；20题官方答案表为×（错误，1），网站当前 answer=0 且解析误判为正确，需按 changes 修正答案和解析。判断题无A/B/C/D选项和参考程序，相关维度记 not_applicable；未运行或声称运行任何代码。"
+  }
+}

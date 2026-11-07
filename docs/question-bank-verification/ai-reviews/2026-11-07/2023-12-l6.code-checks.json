@@ -1,0 +1,128 @@
+{
+  "executedAt": "2026-11-07T16:25:37.247Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "6 2 \n2 3\n1 0 30 100 30 30",
+          "output": "131",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "131\n",
+          "passed": true
+        },
+        {
+          "input": "6 2\n2 3\n1 0 30 100 30 -1",
+          "output": "101",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "101\n",
+          "passed": true
+        },
+        {
+          "name": "N=1 最小规模",
+          "input": "1 1\n1\n5",
+          "output": "5",
+          "reason": "第0关离开必得b0=5，任一通道都满足0+a_i≥1即通关；站点代码dp[1]=5+0=5，官方代码ans=f[0]+b[0]=5，两实现一致。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "直通跳过负分关",
+          "input": "2 2\n1 2\n10 -100",
+          "output": "10",
+          "reason": "0起始：从第0关选a=2直接通关得10；若进入第1关总分为10-100=-90；站点代码bestNext=max(dp[2]=-100,0)=0得10，官方代码ans=max(10,-90)=10，一致。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "全负分强制逐关前进",
+          "input": "3 1\n1\n-5 -10 -20",
+          "output": "-35",
+          "reason": "a=1只能依次离开0、1、2关后通关，总分-5-10-20=-35；验证负分不可被0截断（bestNext须取到负的dp值），站点代码dp[1]=-35，官方代码ans=f[2]+b[2]=-15-20=-35，一致。",
+          "kind": "boundary",
+          "actual": "-35\n",
+          "passed": true
+        },
+        {
+          "name": "中段跳过负分关",
+          "input": "5 2\n1 3\n1 -100 1 1 1",
+          "output": "3",
+          "reason": "最优路径0→3→4再通关，得b0+b3+b4=1+1+1=3并跳过b1=-100；独立推演：dp[5]=1，dp[4]=2，dp[3]=3，dp[2]=-100+3=-97，dp[1]=1+max(-97,2)=3；官方正向代码f[4]=2，ans=max(f[3]+b[3]=2, f[4]+b[4]=3)=3，一致。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "bbb79ff52ad41534b6bc2718acd8a247e0e0be05846f5118e1e7491df06def5d"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n0 0 2 2\n3\n2 3 4\n3 2 3 4\n2 1 4",
+          "output": "2\n2\n0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n2\n0\n",
+          "passed": true
+        },
+        {
+          "input": "7\n0 1 0 2 1 2\n5\n2 4 6\n2 4 5\n3 4 5 6\n4 2 4 5 6\n2 3 4",
+          "output": "2\n1\n1\n1\n0",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n1\n1\n1\n0\n",
+          "passed": true
+        },
+        {
+          "name": "最小N=3仅根可主持",
+          "input": "3\n0 0\n1\n2 1 2",
+          "output": "0",
+          "reason": "1与2互不为祖先，公共祖先仅{0}；官方代码check(2)漏1、check(1)漏2、check(0)通过输出0，站点代码lca(1,2)=0同得0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "编号最大祖先高于LCA",
+          "input": "6\n0 5 0 2 0\n1\n2 4 2",
+          "output": "5",
+          "reason": "祖先链：0-5-2-4，4与2的公共祖先为{5,2,0}，编号最大为5；若直接输出LCA=2会错。站点代码bestOnPath[2]=max(bestOnPath[5]=5,2)=5；官方代码mnd=2时i=5先通过check输出5，一致。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "多参与者合并",
+          "input": "6\n0 5 2 2 0\n1\n3 4 3 2",
+          "output": "5",
+          "reason": "树为0的孩子1、5，5的孩子2，2的孩子3、4；参与者{4,3,2}的候选主持为{0,2,5}（2管3、4，5为2之父），编号最大为5；多节点LCA合并后bestOnPath[2]=5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "主持人可为参与者本人",
+          "input": "4\n0 0 2\n1\n2 2 3",
+          "output": "2",
+          "reason": "f3=2，2可管理自己与3，公共祖先{0,2}编号最大为2；官方代码dep[2]=1≤mnd=1且check(2)命中输出2，站点代码lca(2,3)=2同得2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0bff7dbf51322f38800c4c5f122959772d357d0db0b6ea2102354ec197426e52"
+    }
+  ]
+}

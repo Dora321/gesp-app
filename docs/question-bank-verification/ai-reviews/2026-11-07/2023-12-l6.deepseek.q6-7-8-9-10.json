@@ -1,0 +1,239 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:33:45.502Z",
+  "completedAt": "2026-11-07T06:36:43.246Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34698,
+    "completion_tokens": 13913,
+    "total_tokens": 48611,
+    "prompt_tokens_details": {
+      "cached_tokens": 34560
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12364
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00847218,
+      "allowance": 0.00508331,
+      "tokens": {
+        "input": 138,
+        "output": 13913,
+        "reasoning": 12364,
+        "cache_read": 34560,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头标明“CCF GESP 编程能力等级认证 C++ 六级 2023年12月”；单选题答案表第6-10题依次为 B、B、D、B、D，与网站数据对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第6题题干为“有关下面C++代码的说法正确的是”，页图代码为 typedef struct LinkList 及 ListInit；网站 question 与独立 code 字段均与页图对应，无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与页图逐字对应：A单向链表、B双向链表、C循环链表、D指针链表；官方答案表第6题为B。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "网站 answer=1，对应官方答案B（选项索引1），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "节点同时含 next 与 prev，ListInit 将两者置 NULL，故为双向非循环链表；解析结论与B项一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第3页第7题题干和四个选项均为文字，没有代码；网站 question 正确，但独立 code 字段误挂载了第6题的 LinkList/ListInit 代码，且 requiresCode=true 与题面不符。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项A 4、B 32、C 64、D 88 与页图一致；官方答案表第7题为B。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "网站 answer=1，对应官方答案B（选项索引1），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "hello world 共11字符，频率 l=3、o=2，h/e/空格/w/r/d各1；按Huffman合并内部节点权和 2+2+3+3+5+6+11=32，最少32 bit，结论与B项一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考代码。"
+          }
+        },
+        "changes": {
+          "code": ""
+        },
+        "tests": [],
+        "unresolved": [
+          "题面无代码，requiresCode 应为 false，但该字段不在允许修改字段中；已建议清空误挂的 code。"
+        ]
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页第8题代码与网站 question 内代码一致，包含 fiboA 和 fiboB 两个函数；但独立 code 字段误挂第6题链表代码，与本题无关。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A递归、B动态规划、C大量重复计算、D代码短效率高，与页图一致；官方答案表第8题为D。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "网站 answer=3，对应官方答案D（选项索引3），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "fiboA为朴素递归，N大时指数级重复；fiboB用记忆化保存子问题，属动态规划；代码短不等于效率高，D为错误说法。解析结论与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考代码。"
+          }
+        },
+        "changes": {
+          "code": ""
+        },
+        "tests": [],
+        "unresolved": [
+          "官方第4页代码第22行写作 FiboB(n-1)+FiboB(n-2)，函数名却是 fiboB，且 fiboB[n] 未声明为数组；属源卷代码瑕疵，不影响选项答案，保留原文。"
+        ]
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页第9题代码参数为 int Depth(BiTree T)，网站 question 内代码与页图一致；但独立 code 字段写成 int Depth(BiNode* T)，与题面和PDF冲突。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A可求深度、B非根节点不可作参数、C递归、D要求节点有left/right属性，与页图一致；官方答案表第9题为B。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "网站 answer=1，对应官方答案B（选项索引1），一致。"
+          },
+          "explanation": {
+            "status": "unresolved",
+            "evidence": "解析结论“非根节点也可作为参数、B错”成立，但论证依赖 T->lchild；PDF题面参数为 BiTree T，网站 code 字段又改为 BiNode* T，需确认以哪一版展示，暂保留争议。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考代码。"
+          }
+        },
+        "changes": {
+          "code": ""
+        },
+        "tests": [],
+        "unresolved": [
+          "源卷参数 BiTree T 与内部 T->lchild 的类型访问不一致；网站 code 字段 BiNode* T 与 question/PDF 冲突，已建议清空 code，是否修正官方原文待定。"
+        ]
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页第10题题干与选项一致；网站独立 code 字段误挂第9题 Depth 代码，且 sourcePage 标为4，而PDF页图为第5页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A完全二叉树可用list、B一般二叉树可用list并以None占位、C满二叉树可用list、D所有树都可用list，与页图一致；官方答案表第10题为D。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "网站 answer=3，对应官方答案D（选项索引3），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "完全二叉树和满二叉树可按层序一维存储；一般二叉树可用None补空；一般树度数不固定，不能一概用一维list存储，D错误。解析与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考代码。"
+          }
+        },
+        "changes": {
+          "code": ""
+        },
+        "tests": [],
+        "unresolved": [
+          "sourcePage 标注为4，PDF页图为第5页；该字段不在允许修改字段中，已在 sourcePages 记录正确页。"
+        ]
+      }
+    ],
+    "summary": "本次核验第6-10题：题干、选项和官方答案均与PDF答案表一致（B、B、D、B、D）。主要数据问题是第7、8、10题的独立 code 字段串入其他题代码，第9题 code 字段与题面参数类型冲突，均建议清空 code；第8、9题涉及官方源码自身瑕疵，保留争议，不擅自改题面或答案。"
+  }
+}

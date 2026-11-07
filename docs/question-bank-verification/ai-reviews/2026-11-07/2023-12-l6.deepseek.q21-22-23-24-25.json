@@ -1,0 +1,228 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:05:35.735Z",
+  "completedAt": "2026-11-07T12:07:54.382Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34698,
+    "completion_tokens": 12400,
+    "total_tokens": 47098,
+    "prompt_tokens_details": {
+      "cached_tokens": 34560
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10627
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00756438,
+      "allowance": 0.00453863,
+      "tokens": {
+        "input": 138,
+        "output": 12400,
+        "reasoning": 10627,
+        "cache_read": 34560,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 六级 / 2023 年 12 月”，第 6 页含判断题第 1—10 题及答案表；与 2023-12-l6 的年份、月份、级别一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 6 页第 6 题代码带行号 5—8，最后一行是第 8 行；当前题面代码块丢失行号，却直接问“第 8 行”，无法从题面直接对应，需补足行号说明。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不属于单选题 options 维度；官方判断符号见第 6 页答案表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 6 格为“×”，即错误=1；当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "delete ptr 结束所指向 int 对象的生命周期，ptr 成为悬空指针；再次解引用属于未定义行为，可能崩溃也可能输出旧值，不能断言必然报错。当前解析符合此结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在下面 C++ 代码中（原题代码为第 5 至 8 行，最后一行即第 8 行 `cout<<*ptr<<endl;`），由于删除了变量 ptr，因此 ptr 所对应的数据也随之删除，故第 8 行代码被执行时，将报错。（ ）\n\n```cpp\nint * ptr=new int(10);\ncout<<*ptr<<endl;\ndelete ptr;\ncout<<*ptr<<endl;\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 7 题原文为“二叉搜索树查找的平均时间复杂度为 O(log N)。”，与当前题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不属于单选题 options 维度；官方判断符号见第 6 页答案表。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 6 页判断题答案表第 7 格为“√”，即正确=0；当前 answer=1 与官方答案冲突，需改为 0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析用 BST 最坏 O(N) 否定题干的“平均 O(log N)”，与官方答案√不符；应区分平均/随机形态 O(log N) 与最坏 O(N)，并说明平衡树才保证任意插入顺序下 O(log N)。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {
+          "answer": 0,
+          "explanation": "**答案：正确**\n\n**解析：**\n二叉搜索树的查找代价取决于树高。对于按随机顺序插入、形态较均衡的树，平均查找长度与树高同阶，为 O(log N)；但 BST 不保证自平衡，最坏情况下（例如按有序序列插入而退化成链）为 O(N)。题干限定“平均时间复杂度”，通常指随机/平均形态下的期望复杂度，因此 O(log N) 的说法正确。若要求任意插入顺序下都保证 O(log N)，需使用 AVL 树、红黑树等平衡二叉搜索树。\n\n**易错点：** 不能把“最坏 O(N)”直接当作“平均 O(log N)”的反例；题干问的是平均情况，而非最坏情况。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 8 题原文关于空树、单节点树、多节点 BST 及左右子树大小关系的表述，与当前题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不属于单选题 options 维度；官方判断符号见第 6 页答案表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 8 格为“√”，即正确=0；当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "空树、单节点树均符合 BST 定义；多节点时由“左<父<右”对子树递归应用，可归纳得到左子树全部小于根、右子树全部大于根。当前解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 9 题原文为“重复没有超过 N/2 次的循环就能够算出来”，与当前题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不属于单选题 options 维度；官方判断符号见第 6 页答案表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 格为“√”，即正确=0；当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "除 N 本身外的真因数 d 满足 N=d·k 且 k≥2，故 d≤N/2；枚举 1..⌊N/2⌋ 再计入 N 本身即可。N=1 时循环 0 次后计入 N 本身也得到 1。当前解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 10 题原文关于单链表和双向链上简单冒泡排序复杂度的表述，与当前题干一致（原文“双向链”照录）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不属于单选题 options 维度；官方判断符号见第 6 页答案表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 10 格为“√”，即正确=0；当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "单链表和双向链表上的简单冒泡排序都需进行 O(N²) 次相邻比较/交换，双向指针的存在不改变渐进复杂度；当前解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第 6 页核对判断题第 6—10 题，对应网站题号 21—25。5 题均为判断题，options 与 referenceCode 维度按规则标记不适用。题 21 题面丢失原代码行号 5—8，需补足“第 8 行”的对应关系；题 22 官方答案表第 7 格为√（正确=0），当前 answer=1 且解析按最坏情况否定平均复杂度，存在答案冲突，已提出 answer 与 explanation 纠错草稿；题 23—25 的题干、答案与解析均与 PDF 一致。未运行代码；本批无编程题。"
+  }
+}

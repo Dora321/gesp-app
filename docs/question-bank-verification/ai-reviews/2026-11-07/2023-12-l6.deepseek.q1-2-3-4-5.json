@@ -1,0 +1,236 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:15:30.104Z",
+  "completedAt": "2026-11-07T06:18:53.259Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34698,
+    "completion_tokens": 14410,
+    "total_tokens": 49108,
+    "prompt_tokens_details": {
+      "cached_tokens": 34560
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12399
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00877038,
+      "allowance": 0.00526223,
+      "tokens": {
+        "input": 138,
+        "output": 14410,
+        "reasoning": 12399,
+        "cache_read": 34560,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0dc45752ac07489a5bc80084af81a2f280667a4f153a8387700634c74a3032ff",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确为“CCF GESP C++ 六级 2023年12月”；单选题答案表列出第1—5题答案为 D、C、C、D、B，与本题卷及网站题号、答案映射一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题题干与四个选项文字和网站一致；D项为“可以在自定义函数中嵌套定义新的函数”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项的顺序和文字与PDF一致，D对应0起始索引3。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第1题答案为D；网站answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析把A、C直接判为正确，并用“广义对象/可调用实体”作辩护；按严格ISO C++，A“一切皆对象”和C“函数都是类或者对象”都不严谨，函数本身不是类也不是对象。需要保留官方答案D，同时说明题干表述争议。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（与 PDF 答案表一致）**\n\nD 项错误：标准 C++ 不允许在一个函数的函数体内再定义一个常规具名函数；具名函数定义只能位于命名空间或类作用域。C++11 的 lambda 是局部的匿名函数对象，不等于“嵌套定义常规函数”。\n\nB 项正确。按本题官方命题口径，A、C 被当作对 C++ 对象/函数体系的教学性概括；但按严格 ISO C++，A 的“一切皆对象”以及 C 的“函数都是类或者对象”并不严谨（函数本身既不是类，也不是对象；函数指针、函数对象才属于对象范畴）。答案表明确给 D；A、C 的表述瑕疵保留为题目争议，不改官方答案。"
+        },
+        "tests": [],
+        "unresolved": [
+          "严格 ISO C++ 下 A、C 也有错误表述；本题按官方答案表取 D，存在命题口径争议。"
+        ]
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题代码区显示class Rectangle、private嵌套class Point、Point a,b,c,d及public:，网站题干中的代码摘要与PDF可见部分一致；省略号表示后续代码省略，不影响本题。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D选项顺序和文字与PDF第1页一致，C为“内部类可以随便访问，不需要通过外部类来访问”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题答案为C；网站answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析一边判D正确，一边又指出Point在private区、类外写Rectangle::Point会编译报错，逻辑自相矛盾。需说明D只是“限定名写法”层面的官方口径，并指出其受访问控制限制。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（与 PDF 答案表一致）**\n\nA 正确：C++ 允许在类内嵌套定义类。B 正确：嵌套类常被称为内部类，外层类可称为外部类/外围类。C 错误：内部类的名字受外层类作用域和访问控制约束，不能脱离外层类“随便访问”。\n\nD 的官方口径是把 `Rectangle::Point` 当作外层类中内部类名字的限定写法；但本题 `Point` 位于 `private` 区，类外直接使用 `Rectangle::Point` 仍会被访问控制拒绝，因此 D 的措辞并不严谨，只能理解为在具有访问权限的作用域内使用该限定名。单选按答案表取 C。"
+        },
+        "tests": [],
+        "unresolved": [
+          "Point为private，D的“可以通过Rectangle::Point访问”若指类外直接访问也不成立；官方仍取C，保留题面表述争议。"
+        ]
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第2页代码行号为2 using namespace std;、3 class newClass、6 static int objCounter;、9类外初始化、14/15两个cout、16右花括号；网站题面在using后多出空行，代码字段又缺#include，导致题面所谓第14/15行实际不是两个cout。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D选项文字与PDF第2页一致；选项涉及第14、15行及第6行，按PDF原始行号解释成立。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题答案为C；网站answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修正代码行号后，第6行为static int objCounter;声明，第9行为类外初始化，第14、15行分别为通过类名和对象访问静态成员；解析结论与PDF答案C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "有关下面 C++ 代码的说法，正确的是 ( ) 。\n\n```cpp\n#include <iostream>\nusing namespace std;\nclass newClass\n{\n    public:\n    static  int objCounter;\n\n};\nint newClass::objCounter=2;\nint main()\n{\n    newClass classA;\n    newClass classB;\n    cout<<newClass::objCounter<<endl;\n    cout<<classB.objCounter<<endl;\n}\n```",
+          "code": "#include <iostream>\nusing namespace std;\nclass newClass\n{\n    public:\n    static int objCounter;\n\n};\nint newClass::objCounter = 2;\nint main()\n{\n    newClass classA;\n    newClass classB;\n    cout << newClass::objCounter << endl;\n    cout << classB.objCounter << endl;\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第4题代码与网站一致，包含struct BiNode、BiNode* lchid,*rchid、class BiTree及Creat/Release声明、构造函数和析构函数；题干问“错误的是”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D选项文字与PDF一致，D为“析构函数不可以省略”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页答案表第4题答案为D；网站answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立指出：C++允许省略显式析构函数，编译器会合成默认析构函数；本题二叉树若省略析构函数会造成动态节点泄漏，但这是资源管理问题，不是语法强制，因此D的说法错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2—3页第5题代码为Order(BiNode* bt)，先判空，再输出bt->data，再递归lchid、rchid；网站题干代码与PDF一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D选项与PDF一致；B选项描述“先访问根节点，然后对左子树进行前序遍历，再对右子树前序遍历”，符合代码的根—左—右顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页答案表对应第5题答案为B；网站answer=1，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立判断该递归结构为前序遍历：输出根节点的语句在两次递归之前；A为中序描述、C为中序描述、D为后序描述，均不符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第1—5题：五题网站答案均与PDF答案表一致（D、C、C、D、B）。第3题题面代码行号有错位，需修正题面代码及独立code字段；第1、2题答案虽与官方一致，但原解析存在严格C++口径或访问控制表述矛盾，已提出解析修订并保留题目争议。第4、5题题面、选项、答案和解析均核验通过。无编程题纳入本次五维审查。"
+  }
+}
