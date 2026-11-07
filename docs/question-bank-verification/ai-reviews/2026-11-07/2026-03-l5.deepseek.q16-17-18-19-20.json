@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:01:13.202Z",
+  "completedAt": "2026-11-07T06:03:11.541Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35182,
+    "completion_tokens": 6028,
+    "total_tokens": 41210,
+    "prompt_tokens_details": {
+      "cached_tokens": 35072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4636
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00373852,
+      "allowance": 0.00224311,
+      "tokens": {
+        "input": 110,
+        "output": 6028,
+        "reasoning": 4636,
+        "cache_read": 35072,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标明“CCF 编程能力等级认证 C++ 五级”和“2026 年 03 月”，与 2026年3月 GESP C++ 五级及 paperId 2026-03-l5 对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第1题原文为“有一个存储了 n 个整数的线性表，分别用数组和单链表两种方式实现。在已知下标（或结点指针）的前提下，数组的随机访问是 O(1)，而在链表中已知某结点的指针时，在该结点之后插入一个新结点的操作也是 O(1)。”平台题面与原文含义一致，复杂度记号完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题答案表第1题为“√”，平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明数组按下标随机访问为 O(1)，单链表已知结点指针后插只需常数次指针修改，支持“正确”的判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页末给出判断题第2题题干，PDF 第10页给出 lowerBound 代码；平台题面与代码逐行等价，仅空白差异，升序数组、查找第一个大于等于 x 的位置这一语义未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题答案表第2题为“√”，平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以循环不变量说明：a[mid] >= x 时 r = mid 保留 mid 作为候选，否则 l = mid + 1；循环结束时 l 即第一个大于等于 x 的位置，独立推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第3题原文为“快速排序只要每次都选取中间元素作为枢轴，就一定是稳定排序。”平台题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题答案表第3题为“×”，平台 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出枢轴选择方式不改变快速排序 partition 交换可能打乱相等元素相对次序的性质；选取中间元素不能保证稳定性，故原命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第4题原文为“若某算法满足递推式：T(n)=2T(n/2)+O(n)，则其时间复杂度为 O(n log n)。”平台题面仅增加空格排版，含义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题答案表第4题为“√”，平台 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按主定理取 a=2、b=2、f(n)=O(n)，得 T(n)=Θ(n log n)，因此 O(n log n) 成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第5题给出逆序对定义及 merge_count 代码；平台题面、代码与原文等价，仅“下列/下面”等措辞差异，不改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 单选选项；平台仅以“正确/错误”两态呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题答案表第5题为“×”，平台 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出该函数只统计左右两半之间的跨区间逆序对，未递归处理左右子区间内部逆序对，也未执行归并合并，不能单独统计整个区间的逆序对总数，判定错误成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16-20（对应 PDF 判断题第1-5题）。五道题题面与 PDF 第9-10页一致；PDF 第9页判断题答案表为“√ √ × √ ×”，对应 officialAnswer 依次为 0、0、1、0、1，与现有 answer 完全一致；解析均可独立支持答案。判断题无单选 options 和参考程序，故两维记为 not_applicable；无编程题，故 tests 均为空。未发现需修改字段，changes 均为空，无未决问题。"
+  }
+}

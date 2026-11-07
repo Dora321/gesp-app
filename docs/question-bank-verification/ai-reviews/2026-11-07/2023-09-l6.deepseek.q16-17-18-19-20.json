@@ -1,0 +1,223 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:20:38.455Z",
+  "completedAt": "2026-11-07T06:21:14.849Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33556,
+    "completion_tokens": 2724,
+    "total_tokens": 36280,
+    "prompt_tokens_details": {
+      "cached_tokens": 33408
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1459
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00175682,
+      "allowance": 0.00105409,
+      "tokens": {
+        "input": 148,
+        "output": 2724,
+        "reasoning": 1459,
+        "cache_read": 33408,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a3dcbe8889a10b4b49014454a91f4b974866a0620af0710e854c8bb9465d8847",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标注“C++ 六级 2023 年 9 月”；PDF 第 7 页为判断题第 1～10 题及对应答案表，题号、题干与站内 16～20 题一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 1 题原文为“TCP/IP的传输层的两个不同的协议分别是UDP和TCP。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选题选项核验；站内“正确/错误”用于答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 1 格为“√”，对应 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "TCP/IP 传输层的主要协议确为 TCP 与 UDP：TCP 面向连接、可靠传输，UDP 无连接、尽最大努力交付；解析独立说明了二者定位，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 2 题原文为“5G网络中，5G中的G表示Gigabytes/s，其中 1 GB = 1024 MB。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选题选项核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 2 格为“×”，对应 1；站内 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "5G 的 G 指 Generation（第五代移动通信技术），并非 Gigabytes/s；网络速率常用 Gbps（Gigabits/s）。即便“1 GB = 1024 MB”按常见存储换算成立，也不能使整句成立，故解析判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 3 题原文为“在面向对象中，类是对象的实例。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选题选项核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 3 格为“×”，对应 1；站内 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "面向对象中类是对对象的抽象描述，对象才是类实例化后得到的具体实体；题干颠倒关系，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 4 题原文为“在C++类的定义中，使用 static 修饰符定义的静态成员被该类的所有对象共享。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选题选项核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 4 格为“√”，对应 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C++ 静态数据成员属于类而非某个具体对象，所有对象共享同一份存储；解析还说明静态成员函数只能直接访问静态成员，判断依据充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 5 题原文为“在C++类的定义中，可以定义初始化函数或运算符函数等。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选题选项核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 5 格为“√”，对应 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C++ 类可定义构造函数以初始化对象，也可定义普通成员函数及 operator 运算符重载函数；解析结论与语言规则一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验判断题 16～20。五题题干均与 PDF 第 7 页原文一致，官方判断题答案依次为√、×、×、√、√，站内 answer 依次为 0、1、1、0、0，全部匹配；解析均能独立支持答案，未发现需修改项。"
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:05:09.352Z",
+  "completedAt": "2026-11-07T06:08:50.059Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 76599,
+    "completion_tokens": 17535,
+    "total_tokens": 94134,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12853
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02025735,
+      "allowance": 0.02025735,
+      "tokens": {
+        "input": 76599,
+        "output": 17535,
+        "reasoning": 12853,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头（原图）显示“CCF 编程能力等级认证 / C++ 五级 / 2025 年 06 月”，与目标套卷 2025-06-l5（level=5, year=2025, month=6）一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干“在升序数组 lst 中查找目标值 target 最后一次出现的位置”与 PDF 第 6 页原文一致；代码逐行对照一致（lst.empty() 早退、low/high 初始化、mid=(low+high+1)/2、lst[mid]<=target 时 low=mid 否则 high=mid-1、最后判定 lst[low]==target）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项与网站逐字一致、顺序相同：A（重复 target/全相同元素仍返回末位）、B（target 小于全部元素返回 0）、C（low<=high 效果相同且提高准确性）、D（中点改为下取整效果相同）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 A；网站 answer=0 映射 A。独立推演：全相同元素时 mid 上取整使 low 每轮至少前移 1，收敛到末位，A 正确；B 情形 high 逐步左移最终 lst[0]!=target 返回 -1 而非 0；C 在 low==high 时若 lst[low]<=target 则 low=mid 不推进；D 在 high=low+1、lst[mid]<=target 时 low=mid 原地踏步，均死循环，故唯一正确说法为 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析各断言独立复核成立：上取整防死循环、B 返回 -1、C 两种情形均可死循环（解析以 lst[low]<=target 为主情形说明，与考点一致）、D 上取整退化为下取整后死循环。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：选项原文、答案映射与解析推演均经独立复核一致，mid 上取整与死循环构造验证无误。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干与 PDF 第 6 页一致；sqrt_binary 两阶段二分代码（阶段 1 整数二分求完全平方根、next_k 复查、阶段 2 在 [k, k+1] 浮点二分、result+0.5 整数复查）与 PDF 第 6-7 页逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 A-D 与网站一致（“阶段 1”/“阶段1”等空格为纯排版差异）：A 阶段 1 找正完全平方根，B 阶段 2 无整数根时在附近求小数平方根，C 检查因浮点误差是否为完全平方根，D 称 epsilon 区间条件不能用于浮点比较且会死循环。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 D；网站 answer=3 映射 D。独立推演：阶段 2 每轮区间长度至少减半，high_d-low_d 严格单调递减，必在有限步小于 epsilon 后正常退出，不可能是死循环，D 为错误说法；A、B、C 均与代码行为相符，故选 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对两阶段目标、result+0.5 的四舍五入复查、以及“区间宽度条件是浮点二分标准终止条件且每轮折半必终止”的论证均复核成立，可确定性排除 D 以外选项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：官方答案 D 与独立推演一致；区间每轮至少减半因而必终止这一关键论证复核无误。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 7 页题面原文为：“coins 存储可用硬币规格，单位为角，假设规格都小于10角，且一定有1角规格。amount 为要找零的金额，约定必须为1角的整数倍。输出为每种规格及其数量，按规格从大到小输出，如果某种规格不必要，则输出为0。”网站题干缩写为“coins 存储可用硬币面额，amount 为待找零金额”，丢失单位、规格范围、1 角保底、整数倍及输出格式等必要约束。按 changes.question 恢复后核验通过（代码块与 PDF 第 7-8 页逐行一致，原卷自带的 sorted_coins 引用原样保留）。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8 页 B 项原文为“针对本题具体要求，上述代码总能找到最优解”；网站改写为“针对任意面额系统，上述代码总能找到最优解”，含义已被放大。A、C、D 与 PDF 一致。按 changes.options 恢复原句后核验通过（顺序、映射均与 PDF 相同，答案 A 不受影响）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 A；网站 answer=0 映射 A。独立判断：A（贪心实现）为唯一正确说法——B 即便在本题全部设定下也可用规格 {1,3,4} 找零 6 角证伪（贪心 4+1+1 共 3 枚，最优 3+3 共 2 枚），C/D 与代码特征不符。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析针对被改写的 B（任意面额）展开，且断言“有 1 角、金额 1 角整数倍、规格小于 10 角才保证贪心正确”在技术上错误（{1,3,4} 满足上述设定仍不最优）。按 changes.explanation 重写：A 逐贪心定位、B 用该反例证伪、C/D 排除，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序维度。"
+          }
+        },
+        "changes": {
+          "question": "硬币找零问题中要求找给客户最少的硬币。`coins` 存储可用硬币规格，单位为角，假设规格都小于 10 角，且一定有 1 角规格。`amount` 为要找零的金额，约定必须为 1 角的整数倍。输出为每种规格及其数量，按规格从大到小输出，如果某种规格不必要，则输出为 0。下面是其实现代码，相关说法正确的是（ ）。\n\n```cpp\nconst int MAX_COINS = 10;\nint result[MAX_COINS] = {0};  // 假设最多10种面额\n\nint find_coins(const vector<int>& coins, int amount) {\n    sort(coins.begin(), coins.end(), greater<int>());\n\n    int n = coins.size();\n\n    for (int i = 0; i < n; ++i) {\n        int coin = coins[i];\n        int num = amount / coin;\n        result[i] = num;\n        amount -= num * coin;\n        if (amount == 0) break;\n    }\n\n    cout << \"找零方案如下：\" << endl;\n    for (int i = 0; i < n; ++i) {\n        cout << sorted_coins[i] << \"角需要\" << result[i] << \"枚\" << endl;\n    }\n\n    return 0;\n}\n```",
+          "options": [
+            "上述代码采用贪心算法实现",
+            "针对本题具体要求，上述代码总能找到最优解",
+            "上述代码采用枚举算法",
+            "上述代码采用分治算法"
+          ],
+          "explanation": "**答案：A**\n\n**解析：**\n代码先把硬币规格从大到小排序，再对每种规格尽可能多地取用（num = amount / coin），余款交给更小规格处理——每一步都做当前能取得最多的选择且不回溯，属**贪心算法**实现（A 正确）；代码没有枚举所有方案（C 错），也没有“分解为子问题再合并”的分治结构（D 错）。\n\n**B 错**：即使满足本题全部设定（规格均小于 10 角、含有 1 角规格、amount 为 1 角整数倍），贪心也不保证最优。反例：规格 {1,3,4} 找零 6 角，贪心得 4+1+1 共 3 枚，而最优方案 3+3 只需 2 枚。贪心找零仅在特定面额系统（如常见人民币规格）下恰好最优，通用最优解需用动态规划（完全背包）。\n\n**考点：** 贪心算法、贪心不一定最优的经典反例。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核的 needs_fix 结论与修复方案：恢复文本已逐句对照 PDF 第 7-8 页核验无误；并独立验证反例 {1,3,4} 找零 6 角成立（满足 1 角保底、规格<10、整数倍全部设定），故 B 确为错误说法，官方答案 A 维持。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干“关于下述C++代码的快速排序算法，说法错误的是（ ）。”与 PDF 第 8 页一致；randomPartition（随机 swap 到 high、Lomuto 循环、swap(arr[i+1], arr[high])）与 quickSort 递归结构与网站逐行一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8-9 页原句：A“变量 i 的作用是记录大于基准值的元素的边界”；B“可以避免输入数据特定模式导致的最坏情况下时间复杂度 O(n²)”；C“快速排序平均时间复杂度是 O(n log n)”（无“的”字）；D 与网站相同。网站 A 改写为“记录不大于基准值元素区间的右边界”、B 改写为“降低遇到最坏情况的概率”、C 增加“的”，均为与原卷不同的表述。按 changes.options 恢复原句后核验通过（四项顺序、映射与 PDF 相同，答案 D 不受影响）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 D；网站 answer=3 映射 D。官方口径下 A、B、C 为正确说法；独立验证 D 错误：快排划分中的跨位置交换会打乱相等元素次序，如 [3a,3b,1] 以 1 为基准划分后变为 [1,3b,3a]，不稳定。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析建立在改写后的 A/B 之上（“不大于基准值区间右边界”“降低概率”），与 PDF 原句不对应。按 changes.explanation 重写：A 按“大于基准值一侧的边界（大于区从 i+1 起）”的官方口径解释、B 按“避免特定输入模式确定性触发最坏情况”解释并注明随机化只降概率不改理论最坏、C 平均 O(n log n)、D 用相等元素交换反例判不稳定。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "在 randomPartition 函数中，变量 i 的作用是记录大于基准值的元素的边界",
+            "randomPartition 函数随机选择基准值，可以避免输入数据特定模式导致的最坏情况下时间复杂度 $O(n^2)$",
+            "快速排序平均时间复杂度是 $O(n\\log n)$",
+            "快速排序是稳定排序算法"
+          ],
+          "explanation": "**答案：D**\n\n**解析：**\n本题要求选出**错误**的说法。\n\n- **A 对**（按官方口径）：Lomuto 划分中循环不变量为 `[low, i]` 内元素均不大于基准值、`[i+1, j-1]` 内元素均大于基准值；因此 `i` 也被视作“大于基准值元素”一侧的边界（大于区从 i+1 开始），原句判为正确说法。\n- **B 对**（按官方口径）：固定取端点为基准时，已有序/逆序等特定输入模式会导致每次划分极不均匀，确定性触发最坏 O(n²)；随机选取基准后特定输入模式不再必然触发最坏划分，故原句判为正确说法。（严格而言，随机化只是让最坏情况出现的概率变得极低，理论最坏复杂度仍为 O(n²)。）\n- **C 对**：平均情况下划分大体均衡，递归深度 O(log n)、每层划分总代价 O(n)，平均时间复杂度 O(n log n)。\n- **D 错**：快排的元素交换是跨越多个位置的“远距离交换”，会打乱相等元素的相对次序，是不稳定排序。例如 [3a, 3b, 1] 以 1 为基准划分时 3a 与 1 交换，变成 [1, 3b, 3a]。\n\n**易错提醒：** 存在远距离跳跃交换的排序（快排、选择、堆、希尔）通常不稳定；冒泡、插入、归并在常规实现下稳定。\n\n**考点：** 快速排序、Lomuto 划分、排序稳定性。"
+        },
+        "tests": [],
+        "unresolved": [
+          "PDF 原卷 A、B 选项措辞本身不够严谨（“大于基准值的元素的边界”存在边界归属歧义；“避免最坏情况”严格说只是降概率）。本次仅按原卷忠实恢复选项并以官方答案 D 为准解释，不采用网站改写句替代，原句歧义予以保留说明。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核的恢复方案：A/B/C 三项原句已逐一对照 PDF 第 8-9 页核验一致（C 项网站另多一“的”字，恢复版一并修正）；保留官方答案 D 与原句歧义 unresolved 注记的做法合理，解析重写与官方口径自洽。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页原句为“小杨编写了一个如下的高精度除法函数，则横线上应填写的代码为（ ）。”网站在此基础上补入与代码第 55 行注释相同的语境短语“在把下一位加入余数时”，不改变题意与答案映射，可接受。BigInt/compare/sub/div 代码与 PDF 第 9-10 页逐行对照一致（含右移循环、填空横线位置、else 分支 r.d[0]=a.d[i]; r.len=1）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页 A-D 四项与网站逐字一致、顺序相同：A r.d[0]=a.d[i]; r.len++;，B/C 用下标 i 且 B 保持 r.len++、C 置 r.len=1，D r.d[0]=a.d[i]; r.len=1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 A；网站 answer=0 映射 A。独立推演：非零余数先整体右移一位腾出最低位，新位应写入 d[0] 并使 len 增一，即 A；B/C 将 r 的存储下标与 a 的下标 i 混淆，D 的 r.len=1 会抹掉余数原有高位（那是 r==0 分支的行为）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对分支条件（r.len>1 || r.d[0]!=0）、右移后写 d[0] 并 len++、else 分支已给出 r.len=1，以及 B/C/D 的下标与长度错误说明，均与代码逻辑一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：代码、选项、答案与解析均复核一致；网站题干多出的“在把下一位加入余数时”短语对应代码内既有注释，仅为语境补充，不改变题意与选项答案映射，故不作修改（statement evidence 中已透明记录该差异）。"
+      }
+    ],
+    "summary": "本次独立复核第 11-15 题并审查 DeepSeek 初核。PDF 第 1 页官方答案表对应 11-15 为 A、D、A、D、A（0 起始索引 0/3/0/3/0），与网站 answer 映射全部一致，未发现答案表冲突。Q11、Q12、Q15 题面/选项/答案/解析与原卷一致，直接通过；Q15 网站题干多出的语境短语经评估不改变题意，记录但未修改。Q13 题干被缩写，丢失“单位为角、规格<10、必含 1 角、amount 为 1 角整数倍、按规格从大到小输出”等原卷约束，且 B 项被改写为“任意面额系统”，已恢复 PDF 原文并重写解析（含 {1,3,4} 找 6 角反例），官方答案 A 维持，修复后核验通过。Q14 的 A、B（及 C 措辞）选项被网站改写，已恢复 PDF 原句并按官方口径重写解析，保留原句歧义的 unresolved 注记，官方答案 D 维持，修复后核验通过。全部 5 题均为单选题，不适用 tests/referenceCode；未运行任何源码。"
+  }
+}

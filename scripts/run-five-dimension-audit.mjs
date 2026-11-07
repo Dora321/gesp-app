@@ -34,8 +34,41 @@ function validate(report, paper, manifest) {
     }
 }
 
-async function request(model, phase, paper, manifest, draft) {
-    const file = path.join(out, `${paper.id}.${phase}.json`);
+async function readStream(response, label) {
+    let pending = '', content = '', model, usage, finishReason, done = false, reasoningCharacters = 0, lastHeartbeat = Date.now();
+    const decoder = new TextDecoder();
+    const line = raw => {
+        if (!raw.startsWith('data:')) return;
+        const data = raw.slice(5).trim();
+        if (data === '[DONE]') { done = true; return; }
+        if (!data) return;
+        const item = JSON.parse(data);
+        if (item.error) throw new Error(JSON.stringify(item.error));
+        model ||= item.model;
+        if (item.usage) usage = item.usage;
+        const choice = item.choices?.[0];
+        if (choice?.finish_reason) finishReason = choice.finish_reason;
+        if (typeof choice?.delta?.content === 'string') content += choice.delta.content;
+        // 只计数，不保存思考内容。
+        reasoningCharacters += choice?.delta?.reasoning_content?.length || 0;
+        if (Date.now() - lastHeartbeat > 30000) {
+            console.log(JSON.stringify({ ...label, status: 'streaming', finalCharacters: content.length, reasoningCharacters }));
+            lastHeartbeat = Date.now();
+        }
+    };
+    for await (const chunk of response.body) {
+        pending += decoder.decode(chunk, { stream: true });
+        const lines = pending.split('\n'); pending = lines.pop();
+        lines.forEach(line);
+    }
+    pending += decoder.decode(); if (pending.trim()) line(pending);
+    if (!done || !finishReason) throw new Error('模型流中断，未收到完整完成标记');
+    return { model, usage, choices: [{ finish_reason: finishReason, message: { content } }] };
+}
+
+async function request(model, phase, paper, manifest, draft, questionIds) {
+    const group = questionIds.join('-');
+    const file = path.join(out, `${paper.id}.${phase}.q${group}.json`);
     if (fs.existsSync(file)) {
         const saved = JSON.parse(fs.readFileSync(file));
         if (saved.inputSha256 === crypto.createHash('sha256').update(JSON.stringify(paper)).digest('hex')) return saved;
@@ -50,21 +83,23 @@ async function request(model, phase, paper, manifest, draft) {
         content.push({ type: 'text', text: `以下是 PDF 第 ${index + 1} 页原图` });
         content.push({ type: 'image_url', image_url: { url: `data:image/jpeg;base64,${fs.readFileSync(path.join(dir, image)).toString('base64')}`, detail: 'high' } });
     });
-    content.push({ type: 'text', text: phase === 'deepseek'
+    content.push({ type: 'text', text: (phase === 'deepseek'
         ? `你负责初核：逐题完成五维对照、提出必要纠错草稿和编程边界测试。${schema}`
-        : `你负责独立复核：先基于原卷和网站数据自行推导，再检查下面 DeepSeek 初核草稿。不要盲目沿用其结论。对不可靠修改直接否决。返回同样结构，但 changes 只包含你独立确认应该应用的最终完整字段值；verified 必须说明具体依据；有充分修复且明确复核通过可将对应维度标 verified 并在 evidence 中说明"修复后核验通过"。没有修改时评估网站原数据。还必须增加每题 verdict（approve/revise/unresolved）和 reviewNote（接受或否决初核的理由）。返回的 tests 必须由你独立核对期望输出。${schema}\nDeepSeek 草稿：\n${JSON.stringify(draft.report)}` });
+        : `你负责独立复核：先基于原卷和网站数据自行推导，再检查下面 DeepSeek 初核草稿。不要盲目沿用其结论。对不可靠修改直接否决。返回同样结构，但 changes 只包含你独立确认应该应用的最终完整字段值；verified 必须说明具体依据；有充分修复且明确复核通过可将对应维度标 verified 并在 evidence 中说明"修复后核验通过"。没有修改时评估网站原数据。还必须增加每题 verdict（approve/revise/unresolved）和 reviewNote（接受或否决初核的理由）。返回的 tests 必须由你独立核对期望输出。${schema}\nDeepSeek 草稿：\n${JSON.stringify(draft.report)}`)
+        + `\n本次仅处理题号 ${questionIds.join('、')}，其余题目仅提供上下文，不要核验或输出。questions 必须恰好包含这 ${questionIds.length} 题。允许 changes.code 修改独立代码字段。` });
     for (let attempt = 1; attempt <= 2; attempt += 1) {
         const started = new Date().toISOString();
-        console.log(JSON.stringify({ paperId: paper.id, phase, model, status: 'requesting', attempt, started }));
+        console.log(JSON.stringify({ paperId: paper.id, phase, group, model, status: 'requesting', attempt, started }));
         const response = await fetch('https://opencode.ai/inference/go/v1/chat/completions', {
             method: 'POST', signal: AbortSignal.timeout(1200000),
             headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'User-Agent': 'gesp-codex-audit/1.0', 'x-opencode-session': `gesp-five-dim-${date}-${paper.id}-${phase}` },
-            body: JSON.stringify({ model, reasoning_effort: 'max', thinking: { type: 'enabled' }, max_tokens: attempt === 1 ? 65536 : 131072, messages: [{ role: 'system', content: system }, { role: 'user', content }] }),
+            body: JSON.stringify({ model, reasoning_effort: 'max', thinking: { type: 'enabled' }, stream: true, stream_options: { include_usage: true }, max_tokens: attempt === 1 ? 32768 : 65536, messages: [{ role: 'system', content: system }, { role: 'user', content }] }),
         });
         if (!response.ok) throw new Error(`${paper.id} ${phase}: HTTP ${response.status} ${(await response.text()).slice(0,500)}`);
-        const payload = await response.json();
-        const metadata = { paperId: paper.id, phase, model: payload.model, requestedModel: model, effort: 'max', startedAt: started, completedAt: new Date().toISOString(), finishReason: payload.choices?.[0]?.finish_reason, usage: payload.usage };
-        fs.writeFileSync(path.join(cache, `${paper.id}.${phase}.request-${attempt}.json`), JSON.stringify(metadata, null, 2));
+        const payload = await readStream(response, { paperId: paper.id, phase, group });
+        const metadata = { paperId: paper.id, phase, questionIds, model: payload.model, requestedModel: model, effort: 'max', startedAt: started, completedAt: new Date().toISOString(), finishReason: payload.choices?.[0]?.finish_reason, usage: payload.usage };
+        fs.writeFileSync(path.join(cache, `${paper.id}.${phase}.q${group}.request-${attempt}.json`), JSON.stringify(metadata, null, 2));
+        if (payload.usage?.opencode?.billing_source !== 'go') throw new Error('未确认 Go 套餐用量来源，停止后续调用');
         const final = payload.choices?.[0]?.message?.content;
         if (!final || metadata.finishReason !== 'stop') {
             if (attempt < 2 && metadata.finishReason === 'length') continue;
@@ -72,14 +107,14 @@ async function request(model, phase, paper, manifest, draft) {
         }
         const cleaned = final.trim().replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
         let report;
-        try { report = JSON.parse(cleaned); validate(report, paper, manifest); }
+        try { report = JSON.parse(cleaned); validate(report, { ...paper, questions: paper.questions.filter(question => questionIds.includes(question.id)) }, manifest); }
         catch (error) {
-            fs.writeFileSync(path.join(cache, `${paper.id}.${phase}.invalid.txt`), final);
+            fs.writeFileSync(path.join(cache, `${paper.id}.${phase}.q${group}.invalid.txt`), final);
             throw error;
         }
         const result = { ...metadata, inputSha256: crypto.createHash('sha256').update(JSON.stringify(paper)).digest('hex'), source: manifest.source, pageCount: manifest.images.length, report };
         fs.writeFileSync(file, JSON.stringify(result, null, 2) + '\n');
-        console.log(JSON.stringify({ paperId: paper.id, phase, model: payload.model, status: 'complete', billingSource: payload.usage?.opencode?.billing_source, questions: report.questions.length }));
+        console.log(JSON.stringify({ paperId: paper.id, phase, group, model: payload.model, status: 'complete', billingSource: payload.usage?.opencode?.billing_source, questions: report.questions.length }));
         return result;
     }
 }
@@ -93,8 +128,23 @@ await Promise.all(Array.from({ length: Math.min(Number(process.env.GESP_AUDIT_CO
             const dir = path.join(cache, id);
             const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json')));
             const paper = JSON.parse(fs.readFileSync(path.join(dir, 'paper.json')));
-            const draft = await request('deepseek-v4.1-flash', 'deepseek', paper, manifest);
-            await request('glm-5.3-flash', 'glm', paper, manifest, draft);
+            const parts = { deepseek: [], glm: [] };
+            for (let start = 0; start < paper.questions.length; start += 5) {
+                const questionIds = paper.questions.slice(start, start + 5).map(question => question.id);
+                const draft = await request('deepseek-v4.1-flash', 'deepseek', paper, manifest, null, questionIds);
+                parts.deepseek.push(draft);
+                parts.glm.push(await request('glm-5.3-flash', 'glm', paper, manifest, draft, questionIds));
+            }
+            for (const [phase, entries] of Object.entries(parts)) {
+                const report = {
+                    paperId: id, sourceIdentity: { matches: entries.every(entry => entry.report.sourceIdentity?.matches === true), evidence: entries.map(entry => entry.report.sourceIdentity?.evidence).join('\n') },
+                    questions: entries.flatMap(entry => entry.report.questions), summary: '分组逐题初核及独立复核，详见各分组原始结论。',
+                };
+                validate(report, paper, manifest);
+                const aggregate = { ...entries[0], completedAt: entries.at(-1).completedAt, questionIds: paper.questions.map(question => question.id), usage: undefined, requests: entries.map(entry => ({ questionIds: entry.questionIds, usage: entry.usage, startedAt: entry.startedAt, completedAt: entry.completedAt })), report };
+                fs.writeFileSync(path.join(out, `${id}.${phase}.json`), JSON.stringify(aggregate, null, 2) + '\n');
+            }
+            console.log(JSON.stringify({ paperId: id, status: 'ready-for-gates' }));
         } catch (error) {
             failures.push({ paperId: id, error: error.message });
             console.log(JSON.stringify({ paperId: id, status: 'blocked', error: error.message }));

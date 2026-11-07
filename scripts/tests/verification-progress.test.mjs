@@ -90,3 +90,13 @@ test('previously missed audit records appear without pretending all five dimensi
   assert.equal(rebuilt.dimensions.explanation, 'partial');
   assert.equal(rebuilt.status, 'partial');
 });
+
+test('explicit review exclusions override historical blanket verification claims', () => {
+  const result = build({ legacy: { status: 'verified', scope: '题面、选项、答案、解析、参考代码' },
+    evidence: { ...evidence, dimensionScopedUnresolved: true, questions: [{ id: 1, blockedDimensions: ['explanation'] }], unresolved: [{ qid: 1, dimensions: ['explanation'], reason: '两模型复核意见不同' }] },
+  });
+  assert.equal(result.coverage.explanation.reviewed, 2);
+  assert.equal(result.dimensions.explanation, 'partial');
+  assert.equal(result.dimensions.answer, 'verified');
+  assert.equal(result.status, 'partial');
+});

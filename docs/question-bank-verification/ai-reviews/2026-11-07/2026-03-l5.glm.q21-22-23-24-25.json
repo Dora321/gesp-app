@@ -1,0 +1,236 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:07:57.935Z",
+  "completedAt": "2026-11-07T06:09:59.311Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 59765,
+    "completion_tokens": 8946,
+    "total_tokens": 68711,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6751
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01343775,
+      "allowance": 0.01343775,
+      "tokens": {
+        "input": 59765,
+        "output": 8946,
+        "reasoning": 6751,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 五级”“2026 年 03 月”，与 paperId 2026-03-l5、level=5、year=2026、month=3 一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 6 题原文：“根据唯一分解定理，如果大于1的整数不能被任何不超其平方根的质数整除，那么 n 必定是质数。”网站补出主语 n、将“不超”补全为“不超过”，属无害标准化，命题含义不变（文本层“不超”疑为缺字，语法上必须是“不超过”）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 原卷仅要求判断正误，站点 options 为标准“正确/错误”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 6 题符号为“√”（序列 √ √ × √ × √ √ × × × 中第 6 位），对应正确=0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：若 n>1 为合数，则 n=ab（1<a≤b<n），于是 a≤√n，a 的某质因子 p 满足 p≤a≤√n 且 p 整除 n，与“不被任何不超过 √n 的质数整除”矛盾，故 n 必为质数；解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面差异（补 n、“不超”→“不超过”）不影响命题；答案表第 6 题为 √ 与站点 0 一致；解析经独立数论推导成立。无修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 10 页判断题第 7 题原文为“假设数组 a 的值域范围是 D，以下程序的时间复杂度是 O(n log n + n log D)。”，站点原写“[0, D]”多加了官方没有的下界限定；已改为与原文一致。题干附带程序与 PDF 第 11 页代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 7 题为“√”（序列第 7 位），对应正确=0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：sort 为 O(n log n)；值域上界为 D 时 a[n-1]-a[0]≤D，二分至多 O(log D) 轮，每轮 check 线性扫描 O(n)，合计 O(n log n + n log D)，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "题干代码是判断依据的一部分，不是编程题参考程序；判断题无 referenceCode。"
+          }
+        },
+        "changes": {
+          "question": "假设数组 a 的值域范围是 D，以下程序的时间复杂度是 O(n log n + n log D)。\n\nbool check(int n, int a[], int k, int dist) {\n int cnt = 1;\n int last = a[0];\n for (int i = 1; i < n; i++) {\n if (a[i] - last >= dist) {\n cnt++;\n last = a[i];\n }\n }\n return cnt >= k;\n}\n\nint solve(int n, int a[], int k) {\n sort(a, a + n);\n int l = 0;\n int r = a[n - 1] - a[0];\n while (l < r) {\n int mid = (l + r + 1) / 2;\n if (check(n, a, k, mid)) l = mid;\n else r = mid - 1;\n }\n return l;\n}"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核的修复：站点把官方“值域范围是 D”扩写为“[0, D]”，不等同原文；恢复官方原句（含“以下程序”），代码保持不变，不影响复杂度结论与答案 √。对初核草稿的问题字段修改予以采纳。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 8 题原文“若一个问题满足最优子结构性质，则一定可以用贪心算法得到最优解”，与站点题面完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 8 题为“×”（序列第 8 位），对应错误=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：最优子结构只保证整体最优解由子问题最优解构成，贪心还需贪心选择性质等条件；反例：0-1 背包具最优子结构但按单位价值贪心得不到最优解。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面逐字一致，答案表第 8 题 × 与站点 1 一致，解析的反例性论证独立复核成立。无修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 9 题原文明确写“线性筛通过‘每个合数只被其最大质因子筛去’的策略……实现 O(n) 的时间复杂度”，站点题面与原文一致；该“最大质因子”表述本身为错误命题，题面如实保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 9 题为“×”（序列第 9 位），对应错误=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：欧拉筛在 i % primes[j] == 0 时 break，使每个合数恰在其最小质因子作为 primes[j] 时被标记一次，“最大质因子”说法错误（合数 12=4×3 由最小质因子 3 筛去而非最大质因子），故命题为假，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面忠实保留官方的错误表述“最大质因子”且判定为错误项，答案表 × 与站点 1 一致；解析用最小质因子机制反驳，独立推导成立。无修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 10 题原文“任何递归程序都可以改写为等价的非递归程序，但改写后的非递归程序一定需要显式地使用栈来模拟递归调用过程”，与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 10 题为“×”（序列第 10 位），对应错误=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：递归总可改写为迭代（第一半为真）；但如 gcd 等单分支/尾递归型递归可直接化为循环，无需显式栈，故“一定需要显式地使用栈”为假，命题错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面逐字一致，答案表第 10 题 × 与站点 1 一致；解析指出部分递归可直接循环化，独立复核成立。无修改。"
+      }
+    ],
+    "summary": "本次独立复核题号 21-25 共 5 道判断题。卷头“C++ 五级 2026 年 03 月”与 2026-03-l5 一致；PDF 第 9 页判断题答案表第 6-10 题依次为 √、√、×、×、×，站点 answer（0,0,1,1,1）全部对应一致，且各解析均经独立逻辑/数论推导确认命题真假判断正确。唯一实质差异在第 22 题：官方原文为“值域范围是 D”，站点写为“[0, D]”，已采纳初核修复并恢复官方原句，修复后核验通过；第 21 题站点对“不超→不超过”及补主语 n 的处理视为无害标准化。其余题面、答案未见问题，初核草稿 5 题结论全部接受，无否决项。"
+  }
+}

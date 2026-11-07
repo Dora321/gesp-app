@@ -1,0 +1,238 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:15:34.670Z",
+  "completedAt": "2026-11-07T06:19:00.682Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 76298,
+    "completion_tokens": 11270,
+    "total_tokens": 87568,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8291
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0170797,
+      "allowance": 0.0170797,
+      "tokens": {
+        "input": 76298,
+        "output": 11270,
+        "reasoning": 8291,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为「CCF 编程能力等级认证 C++ 五级 2025 年 06 月」，与网站 title/level/year/month 一致；第 10 页判断题答案表（题号 1—10：√ √ × × √ √ √ × × √）为本次 5 题（对应判断第 6—10 题）的官方答案依据。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页判断第 6 题原文「查字典这个小学生必备技能……排除字典后半部分，查找范围缩小到前半部分；不断重复上述步骤，直至找到首字母为 g 的页码。这种查字典的一系列操作可看作二分查找」与网站题面逐句比对一致，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定「正确/错误」两选项，不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题答案表第 6 位为 √，officialAnswer=0（正确），与网站 answer=0 一致；且该说法本身正确：有序数组、取约中点比较、按序折半排除，最多 log₂n 步命中。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：字典按字母序等价于有序数组；翻约一半=mids，g<m 排除后半=right 左移，重复折半即可在 O(log n) 内定位；解析的有序性前提、约中点比较、折半排除四要素均成立，且与图无关。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对题面、官方答案与解析均与 PDF 一致且推导正确；初核未提出修改，接受初核结论，无需变更。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 12 页判断第 7 题原文为「求解下图中A点到D点最短路径……Dijkstra算法是贪心算法」，并附 A—G 七点带权无向图；网站题面只写「图中」却未提供图。经逐条对照原图，边的相对位置确认 12 条边及权值为 A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9（合计与原图 12 个权值数字一一对应），补充边权后题面自足，修复核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定「正确/错误」两选项，不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题答案表第 7 位为 √，officialAnswer=0（正确），与网站 answer=0 一致；该结论只依赖算法描述（每步选当前距起点最近节点、选定后固定），是贪心的定义特征，且非负权保证贪心不回溯仍最优，判断与具体图无关。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：Dijkstra 每轮从未确定集合选距源点最近者并固定，属于「局部最优选定后不回溯」的贪心策略；非负权下已固定节点不会被更短路径推翻，故贪心成立。解析不依赖题图，缺图问题仅在 statement 维度修复。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "求解下图中 A 点到 D 点最短路径（图为 7 个点 A—G、12 条无向带权边：A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9），其中 A 到 B 之间的 12 可以理解为距离。求解这样的问题通常用 Dijkstra 算法，其思想是通过逐步选择当前距离起点最近的节点来求解非负权图（如距离不能为负值）单源最短路径的算法。从该算法的描述可以看出，Dijkstra 算法是贪心算法。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的补图修复：原图 12 条边及权值已由本人对照 PDF 第 12 页原图（各数字相对各连线位置）逐条独立核实，与初核列出的边集一致，且补充后未改变原题含义（最短路问题仅作为 Dijkstra 的引入场景，答案不受影响）。除此之外初核无其他改动，予以采纳。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页判断第 8 题原文「分治算法将原问题可以分解成规模更小的子问题……所以分治算法的效率通常比直接求解原问题的效率低」与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定「正确/错误」两选项，不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题答案表第 8 位为 ×，officialAnswer=1（错误），与网站 answer=1 一致；「分治效率通常更低」的说法确实错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：分解/合并确有额外开销，但规模缩减收益更大——归并排序 O(n²)→O(n log n)、二分查找 O(n)→O(log n) 均为效率提升的实例，结论「通常比直接求解高而非低」正确；解析同时给出子问题重叠退化（朴素递归斐波那契）的反例边界，表述严谨无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面、官方答案、解析均一致且论证正确；初核未提修改，接受初核结论。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页判断第 9 题题面「函数 puzzle 定义如下，则调用 puzzle(7) 程序会无限递归」及代码（n==1 返回 1；偶数返回 puzzle(n/2)；奇数返回 puzzle(3*n+1)）与网站一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定「正确/错误」两选项，不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题答案表第 9 位为 ×，officialAnswer=1（错误），与网站 answer=1 一致；「会无限递归」说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：7→22→11→34→17→52→26→13→40→20→10→5→16→8→4→2→1，到达 1 命中 if(n==1) return 1 正常终止，不会无限递归；解析轨迹逐项复核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面代码与原图一致，答案表为 ×，轨迹已独立模拟确认；初核未提修改，接受初核结论。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12—13 页判断第 10 题线性筛代码（外层 i 自 2 至 n，is_prime[i] 则 push_back；内层标记 i*primes[j] 并在 i%primes[j]==0 时 break）及题干「每个合数只被它的最小质因数筛掉一次，时间复杂度为 O(n)」与网站完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定「正确/错误」两选项，不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题答案表第 10 位为 √，officialAnswer=0（正确），与网站 answer=0 一致；该 break 机制确为线性筛核心，合数 m 只在 i=m/spf(m)、p=spf(m) 时被标记一次，总操作数线性。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析举例「12 只会以 4×3 的形式被筛掉」与实际执行相反——i=4 时先标记 8，随即 4%2==0 break，根本不会执行 4×3；12 实际在 i=6、p=2 时被标记。已改为按 i=6/p=2 与 i=4 提前 break 的真实执行过程重写该例，修正后的解析与代码行为逐点吻合，修复核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n该线性筛在标记合数时使用 `is_prime[i * primes[j]] = false;`，并在 `if (i % primes[j] == 0) break;` 处立即退出内层循环。因为 `primes` 从小到大存放已发现的质数，当第一次遇到整除 `i` 的质数 `p = primes[j]` 时，`p` 必是 `i` 的最小质因数，此后更大的质数不再参与本轮标记，从而保证每个合数 `m` 只会在 `i = m / spf(m)`、`p = spf(m)` 时被筛掉恰好一次（`spf(m)` 为 `m` 的最小质因数）。\n\n以合数 12 验证：实际它在 `i = 6`、`primes[j] = 2` 时被标记（6×2=12），由于 `6 % 2 == 0`，内层随即 `break`。而当 `i = 4` 时，内层先用质数 2 标记 8，随后因 `4 % 2 == 0` 立即退出，根本不会执行到「4×3」——所以 12 绝不会被 4×3 标记，更不会被重复标记。\n\n每个合数恰好被筛一次、每个素数被记录一次，内外层总操作次数与 n 成线性关系，时间复杂度为 $O(n)$，因此称为线性筛（欧拉筛）。\n\n**易错提醒：**\n- 若删去 `break`，同一合数会被多个质因数重复标记，退化为类似埃氏筛的重复筛除过程，复杂度变回 $O(n\\log\\log n)$。\n- `is_prime[i]` 标记 i 的素性；`primes` 顺序保存已发现的素数，供内层筛合数使用，二者分工不同。\n\n**考点：** 线性筛的核心机制、复杂度分析、与埃氏筛的区别。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对解析示例的修正：本人独立模拟 i=4（先标记 8 后因 4%2==0 break）与 i=6（标记 12 后因 6%2==0 break）两条执行路径，确认原解析「12 以 4×3 被筛掉」为事实性错误、初核改法正确；修正后的理论表述（m 仅在 i=m/spf(m)、p=spf(m) 被筛）亦经推导成立，予以采纳。"
+      }
+    ],
+    "summary": "本次仅核验判断题 21—25（对应官方判断第 6—10 题）。官方答案表第 10 页为 √ √ × × √ √ √ × × √，本五题依次为 √、√、×、×、√，与网站 answer 全部一致。22 题题面缺原图（A—G 七点带权图），已按原图逐条核实 12 条边权后补入题面并核验通过；25 题解析中「12 以 4×3 被筛掉」示例与线性筛实际执行过程相反（12 由 6×2 筛除，i=4 时仅标 8 即 break），已重写该例并核验通过。21、23、24 三题题面、答案、解析均与原卷一致且论证正确，approve；最终 verdict：21 approve、22 revise、23 approve、24 approve、25 revise。"
+  }
+}

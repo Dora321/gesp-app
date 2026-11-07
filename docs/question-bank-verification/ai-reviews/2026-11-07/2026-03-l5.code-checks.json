@@ -1,0 +1,94 @@
+{
+  "executedAt": "2026-11-07T11:27:48.214Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2 11",
+          "output": "5",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "5",
+          "passed": true
+        },
+        {
+          "name": "最小输入 L=R=1（a=1 特殊值）",
+          "input": "1 1\n",
+          "output": "1",
+          "reason": "1/1=1 是有限小数；按参考程序 t=1 不进任何除法循环，t==1 计数，独立推得输出 1。",
+          "kind": "boundary",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "name": "单点非终止数",
+          "input": "3 3\n",
+          "output": "0",
+          "reason": "3 含非 2、5 质因子，t 保持 3≠1，不计数，输出 0。",
+          "kind": "boundary",
+          "actual": "0",
+          "passed": true
+        },
+        {
+          "name": "上界附近混合",
+          "input": "999999 1000000\n",
+          "output": "1",
+          "reason": "999999=3^3·7·11·13·37 无 2、5 因子；1000000=2^6·5^6 为终止数，仅后者计数，输出 1（覆盖数据范围上界 R=10^6）。",
+          "kind": "boundary",
+          "actual": "1",
+          "passed": true
+        }
+      ],
+      "codeSha256": "892905b80b7c742da637e75ce28d2e0c6d0f018eb58d699b32be15bb105e39e3"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 5\n4 2 3\n3 1 5 4 6",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2",
+          "passed": true
+        },
+        {
+          "name": "最小规模且两数组相同",
+          "input": "1 1\n1\n1\n",
+          "output": "1",
+          "reason": "n=m=1 且 A、B 唯一元素相同；排序后 l=r=0二分命中，按参考程序推得输出 1。",
+          "kind": "boundary",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "name": "元素取上限 10^9",
+          "input": "2 2\n1000000000 1\n1000000000 2\n",
+          "output": "1",
+          "reason": "取数据范围上限 10^9，int 可容纳；A 排序为 [1,10^9]，B 中 10^9 命中、2 未命中，输出 1。",
+          "kind": "boundary",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "name": "完全无交集且 ok 逐轮重置",
+          "input": "2 3\n1 2\n3 4 5\n",
+          "output": "0",
+          "reason": "B 的 3、4、5 均不在 A=[1,2] 中，三次二分均未命中、ok 每轮重置，输出 0（附着验证 ok 重置逻辑）。",
+          "kind": "boundary",
+          "actual": "0",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f6ec5db50a7cd40c69cae60b4188bb833f3098376c0940f77d3a1ea2848557fb"
+    }
+  ]
+}

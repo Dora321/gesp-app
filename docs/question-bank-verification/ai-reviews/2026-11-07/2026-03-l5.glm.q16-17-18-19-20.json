@@ -1,0 +1,234 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:03:11.551Z",
+  "completedAt": "2026-11-07T06:05:02.350Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 59742,
+    "completion_tokens": 6893,
+    "total_tokens": 66635,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3913
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0124078,
+      "allowance": 0.0124078,
+      "tokens": {
+        "input": 59742,
+        "output": 6893,
+        "reasoning": 3913,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 Grade Examination of Software Programming”“C++ 五级”“2026 年 03 月”，与网站 title“2026年3月 GESP C++ 五级真题”、level=5、year=2026、month=3 及 paperId 2026-03-l5 一致；题型结构（15 单选+10 判断+2 编程、每题分值）也与网站数据吻合。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断第 1 题原文：“有一个存储了 n 个整数的线性表，分别用数组和单链表两种方式实现。在已知下标（或结点指针）的前提下，数组的随机访问是 O(1)，而在链表中已知某结点的指针时，在该结点之后插入一个新结点的操作也是 O(1)。”网站题面逐句一致，仅记号排版差异，需比较的 O(1) 结论完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，源卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 1 题为“√”，按正确=0 映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：数组以“数组名+下标”直接寻址，地址为 base+i*sizeof(T)，常数时间，故随机访问 O(1) 成立；单链表已知结点指针 p 时做后插只需 s->next=p->next; p->next=s 两次指针改动，与链长无关，O(1) 成立。解析所述判定依据与之一致，支持“正确”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、答案（PDF 答案表第 1 题“√”→0）、解析均已独立对照第 9 页原图确认，无需要修改的字段。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页末句为题干“若数组 a 已按升序排列，则下面代码可以正确实现‘在 a 中查找第一个大于等于 x 的元素的位置’”，代码在第 10 页：int l=0, r=a.size(); while(l<r){int mid=(l+r)/2; if(a[mid]>=x) r=mid; else l=mid+1;} return l;。网站题面与代码逐行等价，仅空白差异，升序前提、 MID 分支与返回值均未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，源卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 2 题为“√”，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导循环不变量：下标 < l 的元素均 < x，下标 ≥ r 的元素均 ≥ x。l<r 时 mid=(l+r)/2 落在 [l, r-1]；a[mid]≥x 则首个满足位置在 [l, mid]，r=mid 收缩；a[mid]<x 则 [l, mid] 全部 < x，l=mid+1 收缩；每轮区间长度至少减 1，必终止于 l==r，此时 l 即第一个 ≥x 的下标（全部小于 x 时 l=n 亦为语义正确的位置）。代码是标准 lower_bound 实现，判定“正确”成立，与解析一致；l,r 为容器索引不会发生 int 溢出，不构成反例。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我对 half-open 区间二分做了完整推导，确认命题为真，与官方答案“√”及网站 answer=0 相符；题面代码与第 9-10 页原图一致，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断第 3 题原文：“快速排序只要每次都选取中间元素作为枢轴，就一定是稳定排序。”网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，源卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 3 题为“×”，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：稳定性只取决于排序算法对相等元素的交换方式。快速排序的 partition 会跨越较大距离交换元素（如本卷第 13 题代码中 swap(a[i], a[j])），两个相等元素可能被枢轴交换而颠倒先后次序；枢轴取自中间只改变划分均衡性，不改变交换流程，故快排仍不稳定，“一定是稳定排序”不成立。与解析“枢轴选择不改变快排不稳定”的结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：以 partition 跨距交换破坏相等元素次序这一反例机制独立确认命题为假，PDF 答案“×”与 answer=1 一致，无需修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断第 4 题原文：“若某算法满足递推式：T(n) = 2T(n/2) + O(n)，则其时间复杂度为 O(n log n)。”网站题面仅空格排版差异，递推式与结论完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，源卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 4 题为“√”，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导（主定理）：a=2, b=2，n^(log_b a)=n；f(n)=O(n)=Θ(n) 与 n^(log_b a) 同阶，落入情形二，T(n)=Θ(n log n)，故 O(n log n) 成立；也可用递归树验证：log n 层每层合并代价 O(n)。解析结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：主定理情形二独立复算得 Θ(n log n)，命题为真与 PDF“√”、answer=0 相符，无需修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断第 5 题先给逆序对定义（i<j 且 a[i]>a[j]），随后代码为：long long cnt=0; void merge_count(vector<int>& a,int l,int m,int r){int i=l, j=m+1; while(i<=m && j<=r){if(a[i]<=a[j]) i++; else {cnt+=(m-i+1); j++;}}}。网站题面、代码与其等价，仅“下面/下列”措辞及空格差异，重点行 cnt += (m - i + 1) 未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现“正确/错误”两态，源卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 5 题为“×”，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：merge_count 只有两个有序段 (l..m) 与 (m+1..r) 之间的一次扫描，else 分支 cnt+=(m-i+1) 统计的是跨中点逆序对；函数体内无对 (l,m)、(m+1,r) 的递归调用，也无归并写回数组的动作，左右两半内部的逆序对完全未被统计。例如 a={2,1,4,3}，l=0,m=1,r=3：跨中点对为 2>1?（2 与右半 4、3 比较：2≤4、2≤3、2<4? 进入右半后 i=1: 1<4→j 竭尽…实际跨段逆序对为 2>无、1>无 共 0 或按实现为 (2,无),(1,无)，两端内部 (2,1)、(4,3) 两对未计入），故不能得到区间 [l,r] 的逆序对总数，命题“可以正确统计”为假。解析表述与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不含参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我用反例（区间内部分逆序对位于左右两半内部而函数不递归）独立确认该代码不能完成全区间统计，PDE 答案“×”→1 与网站一致，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核题号 16-20（对应 PDF 判断题第 1-5 题）。五道题的题面/代码与 PDF 第 9-10 页原图逐行对照一致（仅空格与“下面/下列”等非语义差异）；PDF 第 9 页判断题答案表为“√ √ × √ × √ √ × × ×”，据此判断题 1-5 的 officialAnswer 依次为 0、0、1、0、1，与网站 answer 完全匹配。解析均经独立推导复核：16 题数组寻址与链表后插均为 O(1)；17 题为标准 half-open lower_bound、循环不变量成立；18 题快排 partition 跨距交换导致不稳定、枢轴取中无效；19 题主定理情形二得 Θ(n log n)；20 题给出的函数缺少递归与归并、仅统计跨中点逆序对。判断题无单选 options 与参考程序，相应维度记 not_applicable；无编程题，tests 均为空。五题全部 approve，无 changes、无未决问题。"
+  }
+}

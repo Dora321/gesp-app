@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:10:58.440Z",
+  "completedAt": "2026-11-07T06:13:42.622Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 75603,
+    "completion_tokens": 12779,
+    "total_tokens": 88382,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10792
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01772995,
+      "allowance": 0.01772995,
+      "tokens": {
+        "input": 75603,
+        "output": 12779,
+        "reasoning": 10792,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP C++ 五级 2025 年 06 月”，与 paperId 2025-06-l5 的年月、等级一致；判断题部分依据第10—12页原图逐页核验，文本层仅辅助。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第1题原文为“…用欧几里得算法（辗转相除法）求两个正整数的最大公约数，a 大于 b 还是小于 b 都适用”，8 行 gcd 代码 while(b){int temp=b; b=a%b; a=temp;} return a; 与网站题面及代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以官方答案表√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第10页判断题答案表第1格为√（读自页面原图，非文本层推断），对应 正确=0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：不变式 gcd(a,b)=gcd(b,a%b)，b 归零时 a 即为最大公约数；a<b 时首轮 a%b=a，如 gcd(12,18)→(18,12) 自动换序，实验轨迹 gcd(4,6)→(6,4)→(4,2)→(2) 正确，与网站解析及“都适用”的结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维独立复核与初核结论一致，答案√（0）与辗转相除法性质相符，无需改动。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页末第2题题干“假设函数 gcd() 函数能正确求两个正整数的最大公约数，则下面的 lcm() 函数能求相应两数的最小公倍数”，第11页代码 int lcm(int a, int b){ return a * b / gcd(a, b); }；网站题干为语义等价的轻度转述（“也能正确求出这两个数的最小公倍数”），未改变含义，代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以官方答案表√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第10页判断题答案表第2格为√（读自页面原图），对应 正确=0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：正整数下 gcd(a,b)·lcm(a,b)=a·b，且 gcd 整除 a·b，a*b/gcd(a,b) 为精确整除并等于最小公倍数（a=12,b=18：216/6=36）；解析另提示先除后乘防溢出，属补充提醒不改判定，结论“正确”成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干转述不改语义，恒等式推导可独立复现，答案√（0）正确。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11页判断题第3题题干及输出形如 {5: [5], 6: [2, 3], 7: [7], 8: [2, 2, 2]}，代码第12行 prime_factor[i] = prime_factor[i] + j; 与网站题面、代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以官方答案表√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第10页判断题答案表第3格为×（读自页面原图），对应 错误=1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：prime_factor[i] 类型为 vector<int>，标准库未定义 vector<int> 与 int 的 operator+，该行非法、无法通过编译，程序不可能产生题述输出，故“错误”判定充分；push_back 为正确替换写法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：编译错误推导独立成立，答案×（1）与官方答案表一致。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11—12页判断题第4题题干“…将输出一次 HERE 字符串，因为merge()函数仅被调用一次”及 merge/mergeSort 代码与网站一致；第12页第39—40行依次为 std::cout << \"HERE\"; 与 merge(arr, left, mid, right);，位于递归体内、merge 调用之前。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以官方答案表√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第10页判断题答案表第4格为×（读自页面原图），对应 错误=1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：每次进入 mergeSort 且 left<right 即执行一次 cout 并调用一次 merge，长度为 1 的区间提前返回；对 n 个元素 merge 被调用 n−1 次（n=8 时递归树内部节点恰为 7 个：(0,7)(0,3)(4,7)(0,1)(2,3)(4,5)(6,7)），题干“仅被调用一次”作为对代码的一般性描述不成立，判定“错误”充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：递归调用计数独立复算为 n−1，与解析一致；题干为全称断言，判定×（1）成立。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第5题原文“归并排序的最好、最坏和平均时间复杂度均为 O(n log n)”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以官方答案表√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第10页判断题答案表第5格为√（读自页面原图），对应 正确=0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：mergeSort 对任意输入都先将区间折半（划分量与数据初态无关），递归树 log n 层、每层合并合计 O(n)，故最好/最坏/平均均为 O(n log n)；另需 O(n) 辅助数组。结论“正确”成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：三种情况复杂度推导独立成立，答案√（0）与官方答案表一致。"
+      }
+    ],
+    "summary": "本次仅核验判断题 16—20，均依据 PDF 第10—12页原图（文本层仅辅助）。题面与代码逐行比对一致；判断题答案表（第10页原图）依次为 √√××√，对应 officialAnswer 0,0,1,1,0，与网站 answer 全部匹配，且与单选题答案表（第1页 C C D A C D D B C D A D A D A）交叉印证答案表读取可靠。五题解析均可独立推导成立：欧几里得算法对 a<b 自动换序、lcm 恒等式精确整除、vector<int>+int 编译错误、merge 递归调用 n−1 次（n=8 时 7 次）、归并排序三态复杂度均为 O(n log n)。判断题 options/referenceCode 按规则记为不适用；无编程题故无 tests。全部 approve，无修改项，DeepSeek 初核结论全部接受。"
+  }
+}

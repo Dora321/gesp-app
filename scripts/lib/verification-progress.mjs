@@ -95,6 +95,12 @@ export function buildVerificationProgress({ paper, legacy = {}, evidence, source
       }
     }
     for (const entry of evidence.judgeAnswerAudit?.items || []) recordAnswer(entry.qid, entry.officialAnswer);
+    // 新一轮审查明确否决的维度优先于旧的整卷声明或历史答案表。
+    for (const entry of evidence.questions || []) {
+      for (const key of entry.blockedDimensions || []) {
+        if (dimensionKeys.includes(key)) reviewed[key].delete(Number(entry.id));
+      }
+    }
     // A conflict from any source stays unresolved even if another entry matches.
     for (const id of conflicts) reviewed.answer.delete(id);
   }
@@ -102,10 +108,13 @@ export function buildVerificationProgress({ paper, legacy = {}, evidence, source
   const coverage = Object.fromEntries(dimensionKeys.map(key => [key, {
     reviewed: reviewed[key].size, total: applicable[key].length,
   }]));
-  const unresolved = usable && (evidence.unresolved?.length > 0 || conflicts.size > 0);
+  const unresolvedFor = key => usable && (evidence.dimensionScopedUnresolved === true
+    ? (key === 'answer' && conflicts.size > 0)
+      || (evidence.unresolved || []).some(item => !Array.isArray(item?.dimensions) || item.dimensions.includes(key))
+    : (evidence.unresolved?.length > 0 || conflicts.size > 0));
   const dimensions = Object.fromEntries(dimensionKeys.map(key => {
     const { reviewed: count, total } = coverage[key];
-    return [key, count > 0 && count === total && !unresolved ? 'verified'
+    return [key, count > 0 && count === total && !unresolvedFor(key) ? 'verified'
       : count > 0 || partial.has(key) ? 'partial' : 'unverified'];
   }));
   const status = summarizeVerification(dimensions);

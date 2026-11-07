@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:57:18.823Z",
+  "completedAt": "2026-11-07T05:59:35.801Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35182,
+    "completion_tokens": 10153,
+    "total_tokens": 45335,
+    "prompt_tokens_details": {
+      "cached_tokens": 35072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8354
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00621352,
+      "allowance": 0.00372811,
+      "tokens": {
+        "input": 110,
+        "output": 10153,
+        "reasoning": 8354,
+        "cache_read": 35072,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 五级 2026年03月”，与2026-03-l5（2026年3月C++五级）一致；同页答案表第11至15题依次为B、B、C、B、B，与已校验来源SHA 0484a47a6bc80be1119ff30e778a48bb89830e6c对应页图一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题11题干与第7页代码块均与网站question一致：solve按mid递归分治并线性计算lmax、rmax，题干与代码未缺失关键内容。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页选项为A O(n^2)、B O(n log n)、C O(log n)、D O(n)，与网站四项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为B；独立按T(n)=2T(n/2)+O(n)用主定理得O(n log n)，对应0起始选项索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出的递推式、主定理结果及A/C/D排除理由均成立，未发现依赖错误事实或与官方答案冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页题面与核心循环代码和网站一致：横线位于if条件中，两个分支分别push A[i]与B[j]；PDF后续两个收尾while不参与填空，网站省略不影响本题条件判断。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页选项为A A[i] >= B[j]、B A[i] <= B[j]、C i >= j、D i <= j，与网站顺序及含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为B；独立检查升序合并应在A[i] <= B[j]时先取A，对应0起始选项索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以保持整体升序解释取A[i]的条件，与代码两个push分支一致，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页题13题干、快速排序代码与网站一致：pivot=a[l]，i、j双指针划分及递归调用均未缺失或改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第8页四项为O(n)、O(n log n)、O(n^2)、O(log n)，与网站内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为C；已升序输入且固定取首元素为pivot时，每次只缩小一个元素，递推为T(n)=T(n-1)+O(n)，故为O(n^2)，对应0起始选项索引2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出有序输入下划分退化、每次仅确定一个元素，复杂度O(n^2)，推导及选项判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页题干“下面关于排序算法的描述中，不正确的是”与四个排序性质选项均与网站一致；选项D的“三种情况的时间复杂度”与网站“三种情况下的时间复杂度”为等价表述。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第8页选项为A冒泡/插入稳定、B快排/归并均不稳定、C冒泡/插入最好O(n)、D归并最好最坏平均O(n log n)，与网站顺序及含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为B；归并排序是稳定排序，故B“快速排序和归并排序都是不稳定的排序算法”错误，对应0起始选项索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析分别核对稳定性与时间复杂度，指出归并稳定、快排不稳定，A/C/D成立，最终判定B为不正确项，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页题15题干与第9页代码块均与网站一致：大整数以string逐位存入a，rem参与长除，q为当前商位，横线位于c.push_back(q)之后。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第9页四项为rem /= b、rem %= b、rem = b、rem = q，与网站内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为B；独立按竖式长除法，当前商位q=rem/b后应把余数更新为rem % b，对应0起始选项索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明rem应保留当前余数并执行rem %= b，符合长除法过程，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题11至15均与PDF页图及第1页答案表一致；题干、选项顺序、答案索引和解析均通过初核；五题均为单选题，参考代码维度不适用，未发现需修改项或需保留的争议，无需提供编程边界测试。"
+  }
+}

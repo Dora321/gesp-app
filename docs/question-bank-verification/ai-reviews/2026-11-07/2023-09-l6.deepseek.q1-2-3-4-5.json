@@ -1,0 +1,227 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:59:03.357Z",
+  "completedAt": "2026-11-07T06:01:52.799Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33556,
+    "completion_tokens": 11225,
+    "total_tokens": 44781,
+    "prompt_tokens_details": {
+      "cached_tokens": 33408
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9354
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00685742,
+      "allowance": 0.00411445,
+      "tokens": {
+        "input": 148,
+        "output": 11225,
+        "reasoning": 9354,
+        "cache_read": 33408,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a3dcbe8889a10b4b49014454a91f4b974866a0620af0710e854c8bb9465d8847",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 六级 2023年9月”，单选答案表题号1-15与判断题答案表、第7页编程题编号2023-09-23-06-C-01/02，均与2023-09-l6匹配。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干为手写板属于哪类设备，选项为输入/输出/控制/记录；站点题干与选项顺序一致，仅存在排版空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页A输入、B输出、C控制、D记录；站点options顺序完全一致，answer=0对应A。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题号1为A，按0起始索引为0；站点answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按信息流向判定手写板为输入设备，并逐项排除输出、控制、记录，结论与A一致，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干为a、b均为int且b不为0，判断“a是b的3倍”的表达式；站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项A为(a >> 3 == b)、B为(a - b) % 3 == 0、C为(a / b == 3)、D为(a == 3 * b)；站点options顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题号2为D，按0起始索引为3；站点answer=3一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析B反例写“4不是1的3倍（7才是）”，正确应为“3才是”；C的截断区间结论仅在b>0时成立，需限定条件。其余逐项推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**解析：**\n判断「a 是 b 的 3 倍」的数学定义就是 a == 3 * b。\n- **A 错误：** `a >> 3 == b` 按优先级解析为 `(a >> 3) == b`，判断的是「a 右移 3 位（约等于除以 8）后是否等于 b」，与 3 倍关系无关。\n- **B 错误：** `(a - b) % 3 == 0` 只能说明 a 与 b 的差是 3 的倍数。反例：a=4, b=1，差为 3，余 0 成立，但 4 不是 1 的 3 倍（a 应为 3 才满足 a=3b）。这是「必要不充分」条件。\n- **C 错误：** `a / b == 3` 是**整数除法**，商向零截断。反例：a=7, b=2，7/2 = 3 成立，但 7 不是 2 的 3 倍（6 才是）。当 b>0 时，截断使商为 3 的范围是 [3b, 4b)，不只是 3b。\n- **D 正确：** `a == 3 * b` 直接按定义判断；在 `3 * b` 不发生有符号整型溢出的前提下完全准确。\n\n**易错点：** 整数除法截断是高频陷阱——当 b>0 时，「a / b == k」等价于「a ∈ [k·b, (k+1)·b)」而不是「a == k·b」。\n\n**考点：** 运算符优先级、整数除法、表达式判断"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干为“以下不属于面向对象程序设计语言的是”，站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页A为C++、B为Python、C为Java、D为C；站点options顺序一致，answer=3对应D。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题号3为D，0起始索引为3；站点answer=3一致，C语言是面向过程语言。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析区分面向对象与面向过程，指出C无原生类、继承、访问控制、虚函数多态等OOP机制，逐项分析A-C均属OOP语言，结论D正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干为“下面有关C++类定义的说法，错误的是”，站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页A为实例化执行构造函数、B为构造函数实现自动类型转换、C为可重载>和<比较、D为可包含任意类型成员；站点options顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题号4为D，0起始索引为3；站点answer=3一致。D因类不能包含自身值成员、void、抽象类对象等而不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析用自身类型直接成员的不完整类型问题说明D错误，并确认A构造函数调用、B转换构造函数、C运算符重载均成立，与答案D自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干与代码第1-15行和站点code一致：MyStr含私有string data，构造函数为public，main中输出st；选项A-D顺序与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A为直接输出st会因未重载<<报错、B为第6行data是成员、C为MyStr st(\"ABC\")执行构造函数、D为输出st.data可得到ABC；站点options顺序一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第1页答案表题号5为A（索引0），但按题意A陈述为真，D因data是class默认private、类外访问会编译失败而为假；“选错误说法”应指向D，官方答案与题意冲突，保留原answer=0待定。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立指出A真、B真、C真、D假，并明确原卷答案A与题意冲突，保留官方A且停止计分，没有擅自改答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "PDF答案表题5=A（0），但A陈述为真；D陈述因data为private而不可在main中输出ABC，是错误项，题面与答案表冲突，保留officialAnswer=0待定。"
+        ]
+      }
+    ],
+    "summary": "共初核题号1-5：sourceIdentity匹配。1、3、4题题面、选项、答案、解析均未发现需改；2题答案正确但解析中B反例“7才是”应为“3才是”，且C的截断区间需限定b>0，已提交完整解析修正；5题官方答案表为A，但按题意A真D假，存在答案冲突，保留officialAnswer=0并标记未决。未处理题号6及以后。"
+  }
+}

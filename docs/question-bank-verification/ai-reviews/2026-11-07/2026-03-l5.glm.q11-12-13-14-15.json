@@ -1,0 +1,235 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:59:35.811Z",
+  "completedAt": "2026-11-07T06:01:13.192Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 59779,
+    "completion_tokens": 7946,
+    "total_tokens": 67725,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4847
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01293985,
+      "allowance": 0.01293985,
+      "tokens": {
+        "input": 59779,
+        "output": 7946,
+        "reasoning": 4847,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为『C++ 五级』『2026 年 03 月』，并带 CCF/GESP 标识，与 2026-03-l5 对应；同页答案表单选 1–15 为 D C B A C C B A D A B B C B B，其中 11–15 为 B、B、C、B、B，后续核验以此为准。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页末题干『第 11 题 下面代码用分治求“最大连续子段和”，其时间复杂度为（ ）。』与网站 question 文字一致；第 7 页页图代码第 1–23 行（if(l == r) return a[l]; mid = l + (r - l) / 2; 左右递归；两段线性扫描求 lmax、rmax；return max({left, right, lmax + rmax});）与网站逐行一致，无缺失或改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页页图选项依次为 A. O(n²)、B. O(n log n)、C. O(log n)、D. O(n)，与网站 [\"O(n^2)\",\"O(n log n)\",\"O(log n)\",\"O(n)\"] 内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 B。独立推导：分治每次求 mid 把区间对半分，两层线性扫描合并代价 O(区间长)，递推 T(n)=2T(n/2)+O(n)，主定理 case 2 得 O(n log n)，对应 0 起始索引 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出递推式 T(n)=2T(n/2)+O(n) 与主定理结论 O(n log n)，并排除 A/C/D：每层扫描总量 O(n)、层数 O(log n) 既非平方也非对数或线性，推导独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立按主定理复核 T(n)=2T(n/2)+O(n)=O(n log n) 为 B（索引 1），与答案表及网站 answer 一致；题干代码与第 7 页页图逐行一致，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页页图题干（A={12,35,67,89}，B={20,45,55,78}）与核心循环第 1–10 行（横线在 if 条件处，两分支分别 push_back(A[i++]) / push_back(B[j++])）与网站一致；PDF 第 12–18 行另有收尾两个 while（把剩余 A、B 元素依次 push 进 result），网站题面省略了该收尾段，但其内容与横线条件判断无关，不影响题意与答案，属等价省略。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页页图选项依次为 A. A[i] >= B[j]、B. A[i] <= B[j]、C. i >= j、D. i <= j，与网站内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 B。独立验证：若填 A[i] >= B[j]，当 A[i] < B[j] 时会先放入较大的 B[j]，破坏升序；填 A[i] <= B[j] 时（含相等先取 A，兼顾稳定）逐项合并得 12,20,35,45,55,67,78,89，为正确升序，对应索引 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析『保持整体升序应在 A[i] 不大于 B[j] 时优先放入 A[i]』与合并逻辑一致；A/C/D 排除理由正确（C、D 用下标大小比较与元素值无关）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核，并对 statement 维度补充复核说明：PDF 比网站多出两个收尾 while，但该段不参与填空判断、省略不改变题意与答案，视为等价转换，不构成 needs_fix。答案 B 与答案表及独立合并演算一致。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图题干『有 n 位同学的成绩已经从小到大排好序，现在对它执行下面这段以第一个元素为 pivot 的快速排序，请问此次排序的时间复杂度是（ ）。』及代码（int pivot = a[l]; while(i<j) 内 a[j] >= pivot 时 j--、a[i] <= pivot 时 i++；swap(a[l], a[i]); 递归 (l, i-1) 与 (i+1, r)）与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 8 页页图选项依次为 A. O(n)、B. O(n log n)、C. O(n²)、D. O(log n)，与网站内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 C。独立推演：升序输入时 pivot=a[l] 恒为区间最小值，第一个内层 while 中 a[j] >= pivot 恒真，j 一直减到与 i 相遇，本次划分仅移出一个元素，右递归规模为 n-1，得 T(n)=T(n-1)+O(n)，总和为 O(n²)，对应索引 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析『数组已升序且总选首元素为枢轴，每次只划分出一个元素的最坏情况，复杂度 O(n^2)』与独立推演一致，A/B/D 排除合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立推演最坏划分过程（j 扫描至与 i 相遇、每层仅处理一个元素）得 O(n²)=C（索引 2），与答案表及网站 answer 一致，题干与代码无缺失。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图题干『下面关于排序算法的描述中，不正确的是（ ）。』与四个选项原文一致； сайта 网站选项 D 作『三种情况下的时间复杂度』，PDF 作『三种情况的时间复杂度』，仅一字排版差异，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 8 页页图选项为 A 冒泡/插入均稳定、B 快排/归并均不稳定、C 冒泡/插入最好 O(n)、D 归并最好、最坏、平均均 O(n log n)，与网站内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 B。独立核验：A 正确（两者相等不交换/不后移）；C 正确（最好 O(n)）；D 正确（归并划分与数据无关、恒为 O(n log n)）；而归并排序合并时相等元素优先取左半部分，是稳定排序，故 B『归并排序不稳定』为错误表述，即应选 B（索引 1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项核对稳定性与复杂度并给出『快选堆希不稳定』口诀，结论（只有 B 不正确）与独立推理一致，无依赖错误事实。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立确认归并排序为稳定排序（相等元素左半优先入列），A/C/D 均正确、B 不正确，与答案表 B（索引 1）及网站 answer 一致；选项 D 的『下』字差异为等价表述，不改判。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页题干『…被除数为一个“大整数”，用字符串表示，除数是一个小整数，用 int 表示，则横线处应该填写（ ）。』与第 9 页页图代码（string 逐位 push_back(c - '0')；循环内 rem = rem * 10 + a[i]; int q = rem / b; c.push_back(q); 横线；结尾去前导零并输出 rem）与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 9 页页图选项依次为 A. rem /= b;、B. rem %= b;、C. rem = b;、D. rem = q;，与网站内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 B。独立模拟竖式除法 s=123, b=3：rem=1→q=0→rem=1；rem=12→q=4→rem=0；rem=3→q=1→rem=0，商去前导零为 41，余 0，正确。若填 A（rem/=b）：第二步 rem=12/3=4，则三轮得 rem=4*10+3=43，q=14 商余全错，故 B 正确，对应索引 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析『长除法中 rem 应保留当前余数，因此应更新为 rem %= b』与独立模拟一致；A/C/D 排除正确（rem=b、rem=q 均使下一步 rem*10+a[i] 失去余数语义）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：以 123÷3 独立模拟对比四个选项，仅 rem %= b; 能保持余数语义并输出正确商余，B（索引 1）与答案表及网站 answer 一致；题干与代码与第 8、9 页页图一致。"
+      }
+    ],
+    "summary": "题目 11–15 复核完成，全部 approve：题干与代码与 PDF 第 6–9 页页图逐行一致；选项内容与顺序一致；核对第 1 页答案表，11=B、12=B、13=C、14=B、15=B，对应 0 起始索引 1/1/2/1/1，且各题均经独立推导验证（11 主定理 O(n log n)，12 升序合并条件，13 有序退化 O(n²)，14 归并稳定性，15 竖式除法余数更新）；解析推导均成立。题 12 网站省略了与填空无关的收尾 while，属等价转换不改判。全部维度无需修改，changes 均为空；五题均为单选题，referenceCode 不适用，无编程题故无 tests；无未决事项。"
+  }
+}

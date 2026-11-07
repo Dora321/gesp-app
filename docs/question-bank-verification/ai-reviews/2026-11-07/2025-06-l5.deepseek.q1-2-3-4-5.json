@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:50:02.721Z",
+  "completedAt": "2026-11-07T05:52:17.770Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47754,
+    "completion_tokens": 12479,
+    "total_tokens": 60233,
+    "prompt_tokens_details": {
+      "cached_tokens": 47616
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10749
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00765095,
+      "allowance": 0.00459057,
+      "tokens": {
+        "input": 138,
+        "output": 12479,
+        "reasoning": 10749,
+        "cache_read": 47616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证 C++ 五级，2025年06月，与目标 2025-06-l5 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干与四个选项均与网站一致，没有遗漏代码、图表或约束。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A-D 与网站 options 逐项对应，C 为“在已知位置插入或删除节点”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题标 C，按 0 起始为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按链表与数组的插入/删除、随机访问、查找、遍历复杂度逐项判断，结论与选项 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1-2页第2题题干及 DoubleLink/is_empty 代码与网站一致，横线位置正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 与网站 options 对应；C 为 head.data == 0。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题标 C，按 0 起始为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 head/tail/size 在维护正确时均可判空，而 head.data 存在语法错误且即使改成 head->data 也不等价于判空，分析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第3题题干与 append 代码和网站一致，横线位于非空分支。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 与网站 options 逐项对应，D 为完整三步操作。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题标 D，按 0 起始为 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析对 B 项描述错误：B 实际是 newNode->prev = tail; tail = newNode; 并非先移动 tail 后让 prev 指向自己；B 的问题是漏掉用旧尾设置 tail->next = newNode。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**解析：**\n非空时把新结点接到尾部，必须完成三步：\n1. `tail->next = newNode;`：让原尾结点的 `next` 指向新结点；\n2. `newNode->prev = tail;`：让新结点的 `prev` 回指原尾结点；\n3. `tail = newNode;`：最后更新尾指针。\n\n- **A** 仅执行 `tail->next = newNode;`，没有更新 `tail`；后续再追加时旧尾的 `next` 会被覆盖，新结点会从正向链表中丢失。\n- **B** 执行 `newNode->prev = tail; tail = newNode;`，漏掉了用旧尾设置 `tail->next = newNode;` 这一步，新结点没有从原尾正向挂入链表。\n- **C** 先把 `tail` 改为 `newNode`，再执行 `newNode->prev = tail;` 会使 `prev` 指向自己，`tail->next = newNode;` 又形成自环，且原尾没有接到新结点。\n- **D** 三步顺序正确：先用旧尾建立正向连接，再设置新结点的前驱，最后移动 `tail`，故为正确答案。\n\n**易错点：** 必须先使用旧 `tail` 建立连接，最后再更新 `tail`。\n\n**考点：** 双向链表、尾部插入、指针操作顺序。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2-3页第4题题干与循环链表代码和网站一致；原卷函数名为 fingLastSurvival，网站保留该写法。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 与网站 options 逐项对应，均是删除 p 的三步顺序组合。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题标 A，按 0 起始为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 A 先断链、再 delete、最后移动 p，并逐项排除 B/C/D 的错误顺序。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3-4页第5题题干与 is_prime 原代码和网站一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第4页 D 项包含替换后的循环代码块 `for (int i = 2; i < finish_number; i++) ...`，网站 options[3] 只保留“while 循环修改如下”而缺少代码，导致 D 项不完整。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题标 C，按 0 起始为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立判断 A/B/D 为假、C 为真：5 已被特判，finish_number=sqrt(n)+1 不是错误，逐个试除虽然结果相同但效率更低，6k±1 试除的前提成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "代码存在错误，比如 5 是质数，但因为5 % 5 余数是 0 返回了false",
+            "finish_number 的值应该是n / 2 ，当前写法将导致错误",
+            "当前while 循环正确的前提是：所有大于 3 的质数都符合6k±1 形式",
+            "while 循环修改如下，其执行效果和执行时间相同。\n\n```cpp\nfor (int i = 2; i < finish_number; i++) {\n    if (n % i == 0)\n        return false;\n}\nreturn true;\n```"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核题1-5：官方答案表为 C、C、D、A、C，网站 answer 均与之一致；题1、2、4五维与 PDF 一致；题3解析对 B 项描述有误，已给出修正草稿；题5选项 D 缺失 PDF 中的替换循环代码块，已给出补全草稿。未运行源码。"
+  }
+}

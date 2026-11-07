@@ -1,0 +1,226 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:05:02.360Z",
+  "completedAt": "2026-11-07T06:07:57.925Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35182,
+    "completion_tokens": 11457,
+    "total_tokens": 46639,
+    "prompt_tokens_details": {
+      "cached_tokens": 35072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10040
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00699592,
+      "allowance": 0.00419755,
+      "tokens": {
+        "input": 110,
+        "output": 11457,
+        "reasoning": 10040,
+        "cache_read": 35072,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 五级”“2026 年 03 月”，与 paperId 2026-03-l5、level 5、year 2026、month 3 一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 6 题原文为“根据唯一分解定理，如果大于 1 的整数不能被任何不超其平方根的质数整除，那么 n 必定是质数”。站点补出变量 n，并将“不超”写作“不超过”，不影响原命题含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 仅要求判断正误；站点 options 为标准“正确/错误”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 6 题为“√”，对应正确，即 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：若 n 为合数，取它的最小质因子 p，则 p ≤ √n 且 p 整除 n，与题设矛盾，因此 n 必为质数；现有解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 10 页判断题第 7 题原文为“假设数组 a 的值域范围是 D，以下程序的时间复杂度是 O(n log n + n log D)”。站点写成“[0, D]”，额外限定了下界；虽然不影响该复杂度结论，但不等同于原文。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 仅要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 7 题为“√”，对应正确，即 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：排序耗时 O(n log n)；二分区间上界为 a[n-1]-a[0] ≤ D，最多 O(log D) 轮；每轮 check 线性扫描 O(n)，总复杂度为 O(n log n + n log D)，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "题干中的代码是判断依据，不是编程题参考程序；判断题无 referenceCode。"
+          }
+        },
+        "changes": {
+          "question": "假设数组 a 的值域范围是 D，以下程序的时间复杂度是 O(n log n + n log D)。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 8 题原文为“若一个问题满足最优子结构性质，则一定可以用贪心算法得到最优解”，与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 仅要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 8 题为“×”，对应错误，即 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：最优子结构表示整体最优解包含子问题最优解，但贪心还要求贪心选择性质以及可交换性等条件；仅有最优子结构不能保证贪心正确，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 9 题原文明确写“每个合数只被其最大质因子筛去”，与站点题面一致；该表述本身错误。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 仅要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 9 题为“×”，对应错误，即 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：标准欧拉筛在 i % primes[j] == 0 时 break，使合数 i*primes[j] 只在其最小质因子处被标记一次；说成“最大质因子”错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 10 题原文为“任何递归程序都可以改写为等价的非递归程序，但改写后的非递归程序一定需要显式地使用栈来模拟递归调用过程”，与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 仅要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题答案表第 10 题为“×”，对应错误，即 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：递归程序可以改写为迭代；但部分递归可直接化为循环，如尾递归、简单线性递归，并非一定需要显式栈，因此原命题错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验题号 21-25 共 5 道判断题。PDF 卷头与 2026-03-l5 一致；判断题答案表第 6-10 题依次为正确、正确、错误、错误、错误，站点 answer 全部对应一致。第 22 题题面将官方“值域范围是 D”写成“[0, D]”，已提出恢复原文的修改；其余题面、答案和解析未发现实质性问题。"
+  }
+}

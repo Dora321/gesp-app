@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:50:02.746Z",
+  "completedAt": "2026-11-07T05:51:28.802Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35182,
+    "completion_tokens": 5490,
+    "total_tokens": 40672,
+    "prompt_tokens_details": {
+      "cached_tokens": 35072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4038
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00341572,
+      "allowance": 0.00204943,
+      "tokens": {
+        "input": 110,
+        "output": 5490,
+        "reasoning": 4038,
+        "cache_read": 35072,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 五级 2026 年 03 月”，与 2026-03-l5 的年份、月份和等级一致；第 1 页客观题答案表与第 9 页判断题答案表清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干与站点 question 语义一致，均为判断单链表、双链表和循环链表的说法。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D 四项与站点 options 的顺序和含义一致，D 项为“带头结点的循环单链表判空看 head->next 是否指向自身”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 1 为 D；按 0 起始选项索引映射为 3，站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明单链表删除任意结点需要前驱结点、空循环链表的头指针可以为空、循环双链表尾结点的 next 会回指头结点，并推导空表时 head->next==head，结论与 D 一致，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干与站点 question 一致，均为双向循环链表中在 p 之前插入 s 的指针操作选择。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D 四段指针序列与站点 options 的顺序和内容一致；C 项为 s->next=p、s->prev=p->prev、p->prev->next=s、p->prev=s。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 2 为 C；按 0 起始映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 B 项实际是 p 之后插入，C 项先设置 s 的两条指针，再更新原前驱的 next，最后更新 p->prev，完成前插；A、D 的破坏链表原因说明成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末至第 2 页第 3 题函数 eraseAll 的哑结点、while 循环、删除 del 与返回 dummy.next 的代码与站点 question 语义及结构一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 四项与站点 options 顺序和内容一致，B 项为 cur->next = del->next。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 3 为 B；按 0 起始映射为 1，站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明删除 cur->next 指向的 del 时应让 cur->next 跳过 del 并连接到 del->next；这样哑结点也能统一处理删除头结点且不丢失后续结点。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题给出的 gcd 递归代码与站点 question、code 字段一致：b==0 ? a : gcd(b, a%b)。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 四个调用序列与站点 options 顺序及内容一致，A 项为 gcd(48,18)->gcd(18,12)->gcd(12,6)->gcd(6,0)。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 4 为 A；按 0 起始映射为 0，站点 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 48%18=12、18%12=6、12%6=0 逐步推导出 gcd(18,12)、gcd(12,6)、gcd(6,0)，并在 b==0 时返回 6，调用序列与 A 一致；未发现计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末第 5 题题干与第 3 页欧拉筛完整函数一致；站点 question 与 code 字段保留了外层枚举、内层素数表枚举及 i%primes[j]==0 跳出逻辑。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 四项与站点 options 顺序和内容一致，C 项为 j < primes.size()。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 5 为 C；按 0 起始映射为 2，站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出内层循环遍历当前已找到的素数表，因此边界应为 primes.size()；结合短路求值可避免 primes[j] 越界，C 项成立，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题 1-5。五题的题面、选项、答案与 PDF 页图及答案表一致；解析均能独立推导出对应答案，未发现需要修改的字段。题 1-5 均为单选题，不适用参考代码和编程边界测试。"
+  }
+}

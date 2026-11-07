@@ -1,0 +1,228 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:08:08.851Z",
+  "completedAt": "2026-11-07T06:10:28.707Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33556,
+    "completion_tokens": 11816,
+    "total_tokens": 45372,
+    "prompt_tokens_details": {
+      "cached_tokens": 33408
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9349
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00721202,
+      "allowance": 0.00432721,
+      "tokens": {
+        "input": 148,
+        "output": 11816,
+        "reasoning": 9349,
+        "cache_read": 33408,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a3dcbe8889a10b4b49014454a91f4b974866a0620af0710e854c8bb9465d8847",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证 C++ 六级 2023年9月”，与 paperId=2023-09-l6 一致；第1页选择题答案表第6至10项依次为 D、D、B、B、B。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干为“下列关于命名空间的说法错误的是（ ）。”，与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A、B、C、D四项与站点一致：嵌套命名空间、只能在全局定义、可存放变量和函数、using 引用多个命名空间且存在同名函数时出现“程序运行错误”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6项为D，对应索引3；D把同名函数的二义性误说成运行错误，实际属于编译期错误且未调用时甚至不一定报错，因此D确为错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析说明了嵌套命名空间、命名空间定义位置限制、其中可放变量和函数，并区分编译期二义性与运行错误，结论可独立推出。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干、ManyData 代码及 main 函数与站点题干和 code 字段一致；push 用 tail++，pop 用 --tail，size 返回 tail-head。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页四项与站点一致：A称不能正常运行；B称ManyData可构造队列；C称类外可访问__data[0]；D称push/pop缺少异常处理可能导致越界或空pop等运行时/逻辑错误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第7项为D，对应索引3；main中4次push未超容量100，可正常运行，A错；ManyData按后进先出工作，B错；__data为private，C错；只有D正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确指出结构为后进先出、超过capacity或空pop会越界，且__data为私有成员；没有只复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "题干内嵌的 MoreData 代码与PDF第4页第8题一致；但站点独立 code 字段误用了第7题的 ManyData 代码（void push、pop 中 --tail），与本题 MoreData（返回引用的链式push、pop 中 head++）不符，需更正 code 字段，否则页面重复渲染时会串题。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A、B、C、D四项与站点一致：A队列、B连续push导致编译错误、C __data私有、D以上均没有错误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第8项为B，对应索引1；MoreData 的 push 返回 MoreData& 并 return *this，链式调用合法，B为错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确说明 MoreData 为FIFO队列、链式push合法、__data为private、D因B错误而不成立，结论可独立推出。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序；题干中的独立代码字段修正见 changes.code。"
+          }
+        },
+        "changes": {
+          "code": "#include <iostream>\nusing namespace std;\n\nclass MoreData {\n    int * __data;\n    int head, tail, capacity;\npublic:\n    MoreData(int cap) {\n        capacity = cap;\n        __data = new int[capacity];\n        head = tail = 0;\n    }\n    MoreData & push(int val) {\n        __data[tail++] = val;\n        return *this;\n    }\n    int pop() {\n        return __data[head++];\n    }\n    int size() {\n        return tail - head;\n    }\n};\nint main() {\n    auto myData = MoreData(100);\n    myData.push(1);\n    myData.push(2);\n    myData.push(3);\n    myData.push(11).push(12).push(13);\n    cout << myData.pop() << endl;\n    return 0;\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题面及第5页树图显示：A=0.40、B=0.30、C=0.15、D=0.05、E=0.04、F=0.03、G=0.03；0.15左子0.06含G/F，右子0.09含E/D，站点文字化描述与图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页四个选项依次为10010、10011、10111、10001，与站点一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第9项为B，对应索引1；按图左0右1，D路径为根右侧1→0.60左侧0→0.30左侧0→0.15右侧1→0.09右侧1，即10011，对应B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析对D路径推导10011正确，但后文自洽性列举错误：C应为101而不是10，G应为10000而不是0000，F应为10001而不是0001，E应为10010而不是0010；需更正解析，答案不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**解析：**\n按图中哈夫曼树分支，约定左分支为0、右分支为1。B的路径为：根1.00→右子0.60（1）→右子叶B(0.30)（1），故B=11，与题干给出的锚点一致。\n\nD的路径为：根1.00→右子0.60（1）→左子0.30（0）→左子0.15（0）→右子0.09（1）→右子叶D(0.05)（1），编码为**10011**。\n\n其余叶编码可校验为：A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011，均为前缀码，故答案B。\n\n**易错点：**读码须从根到叶逐层记录分支，不能漏掉高位分支；题干给出的B=11可用于确认“左0右1”的约定。\n\n**考点：**哈夫曼编码、哈夫曼树"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干为“下面有关格雷码的说法，错误的是（ ）。”，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页四项与站点一致：相邻码一位不同、称为唯一性编码、最大数与最小数一位不同、属于可靠性编码。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第10项为B，对应索引1；格雷码满足单位距离与循环相邻特性，属于可靠性编码，但并非只能有一种构造，因此“唯一性编码”说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析说明了相邻码一位翻转、首尾相邻、可靠性编码，并指出存在多种格雷码构造，能独立支撑B为错误项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第6至10题。五题官方答案依次为D、D、B、B、B，站点answer均一致。题6、7、10题面、选项、答案和解析均通过；题8题干正确但独立code字段误放第7题ManyData代码，需替换为MoreData代码；题9答案和D路径10011正确，但解析末尾C、G、F、E的辅助编码列举有误，需更正为101、10000、10001、10010。以上两处修正均不改变官方答案，未发现未决答案冲突，未声称运行程序。"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:08:50.071Z",
+  "completedAt": "2026-11-07T06:10:58.429Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47754,
+    "completion_tokens": 7716,
+    "total_tokens": 55470,
+    "prompt_tokens_details": {
+      "cached_tokens": 47616
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6357
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00479315,
+      "allowance": 0.00287589,
+      "tokens": {
+        "input": 138,
+        "output": 7716,
+        "reasoning": 6357,
+        "cache_read": 47616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP C++ 五级 2025 年 06 月”，与 paperId 2025-06-l5 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第1题原文为“下面C++代码是用欧几里得算法（辗转相除法）求两个正整数的最大公约数，a 大于 b 还是小于 b 都适用”，与网站题面及代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF 答案表以√/×判定，不使用单选题式 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题答案表第1题标为√，对应 0（正确），网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明了对正整数 a<b 时首轮 a%b=a、循环变量轮换后变为 gcd(b,a)，并举 gcd(12,18) 轨迹，结论与辗转相除法正确性一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页末给出“假设函数 gcd() 函数能正确求两个正整数的最大公约数，则下面的 lcm() 函数能求相应两数的最小公倍数”，第11页给出 lcm 代码；网站表述语义一致，仅去掉了原文重复的“函数”一词。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF 以√/×作答，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题答案表第2题标为√，对应 0（正确），网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据 lcm(a,b)×gcd(a,b)=a×b 独立推导，并用 12 与 18 验证 36；同时提示实际编码中 a*b 可能溢出，未改变本题按公式判定为正确的结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11页第3题代码第12行为 prime_factor[i] = prime_factor[i] + j;，与网站代码及“输出每个数对应质因数列表”的题意一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF 答案表以√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题答案表第3题标为×，对应 1（错误），网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 prime_factor[i] 的类型是 vector<int>，而 vector<int> 与 int 之间没有合法的 operator+，该行无法通过编译，故程序不能按题述输出质因数列表；该推导充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11—12页给出归并排序 merge/mergeSort 代码，其中 HERE 输出位于 mergeSort 递归体内、merge 调用之前，与网站代码一致；题干称“仅调用一次 merge”与递归结构不符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF 答案表以√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题答案表第4题标为×，对应 1（错误），网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按递归树说明长度为 8 的数组会产生 7 次有效划分，因此 HERE 与 merge 均执行 7 次；即使未限定 n，也不会普遍只执行一次，足以否定题干。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第5题原文为“归并排序的最好、最坏和平均时间复杂度均为 O(n log n)”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF 答案表以√/×判定，不使用单选题式选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题答案表第5题标为√，对应 0（正确），网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出归并排序固定二分 log n 层、每层合并 O(n)，与输入有序性无关，故三种情况均为 O(n log n)，并补充 O(n) 辅助空间，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验判断题 16—20。五题的题面、代码/公式与 PDF 卷面一致，官方答案表依次为 √、√、×、×、√，对应网站 answer 0、0、1、1、0，全部匹配。未发现需要改动题面、答案或解析的实质问题；判断题的 options 与 referenceCode 按规则记为不适用。"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "executedAt": "2026-11-07T11:28:41.245Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "5 100\n100 2000\n2 50\n4 40\n5 30\n3 20",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "input": "5 141\n100 2000\n2 50\n4 40\n5 30\n3 20",
+          "output": "100",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "100\n",
+          "passed": true
+        },
+        {
+          "input": "4 141\n2 50\n4 40\n5 30\n3 20",
+          "output": "no solution",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "no solution\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模且恰好达到",
+          "input": "1 1\n7 1",
+          "output": "7",
+          "reason": "N=1、L=1 取约束最小值，唯一饮料 (7,1) 必买，独立推演 dp[1]=7。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "总容量不足",
+          "input": "1 2\n1 1",
+          "output": "no solution",
+          "reason": "唯一饮料容量 1<2，任何购买方案最高容量 1，dp[2] 保持 INF。",
+          "kind": "boundary",
+          "actual": "no solution\n",
+          "passed": true
+        },
+        {
+          "name": "0/1禁止重复购买",
+          "input": "2 10\n1 5\n100 5",
+          "output": "101",
+          "reason": "每种至多 1 瓶，必须两瓶都买才达容量 10，花费 1+100=101；若错误地重复购买第一瓶会得到 2，可暴露 0/1 实现缺陷。",
+          "kind": "boundary",
+          "actual": "101\n",
+          "passed": true
+        },
+        {
+          "name": "超过目标容量截断",
+          "input": "2 10\n1 100\n5 10",
+          "output": "1",
+          "reason": "第一瓶容量 100≥10 且花费 1 即达标，min(L,j+len) 把超容量状态归入 dp[L]，比第二瓶（花费 5）更优。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最大花费与容量上界",
+          "input": "1 2000\n1000000 1000000",
+          "output": "1000000",
+          "reason": "c_i=l_i=10^6、L=2000 取全约束上界，单瓶覆盖，检查大数值与截断（min(2000,10^6)=2000）路径。",
+          "kind": "boundary",
+          "actual": "1000000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "c3c77b368109f25affb10b0a46f16c9cbd4072e956fa26217dadbf45a7d7bfe5"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "4\n2 1 3 0",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "6\n0 1 2 3 4 5",
+          "output": "15",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "15\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模升序",
+          "input": "2\n0 1",
+          "output": "1",
+          "reason": "0 先进入；1 进入时教室内已有学号 0<1，握手 1 次，即顺序对 (0,1)。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模降序",
+          "input": "2\n1 0",
+          "output": "0",
+          "reason": "1 先进入；0 进入时室内没有学号小于 0 的同学，握手 0 次。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "混合顺序",
+          "input": "5\n2 4 1 3 0",
+          "output": "3",
+          "reason": "独立枚举满足 i<j 且 a[i]<a[j] 的对：(0,1)、(0,3)、(2,3)，共 3 次。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "完全降序边界",
+          "input": "5\n4 3 2 1 0",
+          "output": "0",
+          "reason": "每位后进入者学号都小于已入室同学，任何时刻都无 i<j 且 a[i]<a[j]，握手 0 次。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "非单调局部峰值（本次追加）",
+          "input": "5\n3 0 4 1 2",
+          "output": "5",
+          "reason": "独立枚举顺序对 (0,2)、(1,2)、(1,3)、(1,4)、(3,4)，共 5 次；逐步进入核对为 0+0+2+1+2，检验非单调序列下前缀查询的正确性。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "2c9c742228da28024c1890248e00e1729c74203e2a25b4e63f2df63e961c5462"
+    }
+  ]
+}

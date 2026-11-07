@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:52:40.062Z",
+  "completedAt": "2026-11-07T05:54:20.640Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35182,
+    "completion_tokens": 7892,
+    "total_tokens": 43074,
+    "prompt_tokens_details": {
+      "cached_tokens": 35072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6379
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00485692,
+      "allowance": 0.00291415,
+      "tokens": {
+        "input": 110,
+        "output": 7892,
+        "reasoning": 6379,
+        "cache_read": 35072,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头为“CCF GESP C++ 五级 2026年03月”，第1页单选题答案表和第9页判断题答案表可读；卷头年月、等级与paperId 2026-03-l5一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第6题题干为“埃氏筛中将内层循环从 j = i*i 开始而不是 j = 2*i 的主要原因是（ ）。”网站题干文字一致；PDF附带的埃氏筛函数用于展示该循环，设问本身已明确比较 j=i*i 与 j=2*i，未漏必要约束或改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A-D依次为“因为 2*i 一定不是合数”“i*i 一定是质数”“小于 i*i 的 i 的倍数已被更小质因子筛过”“这样可以把时间复杂度降为 O(n)”，与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题答案为C；C为0起始索引2，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出较小的 i 的倍数已被更小质因子筛过，从 i*i 开始可避免重复标记；这与PDF代码将标记起点设为 (long long)i*i 的作用一致，独立推导结论为C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题7的check、solve、main代码及输入 a[]={1,2,8,4,9}、n=5、k=3 与网站题面一致；仅存在 std::sort/std::cout 与未限定 sort/cout 的表述层级差异，不改变程序语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为A.2、B.3、C.4、D.5，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题答案为B；B为0起始索引1，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "排序后为1,2,4,8,9；取1、4、8时最小间距为3。独立检查dist=4时无法选出3个满足间距的端点，故最大值为3，与B一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题8题干及lowerBound函数与网站题面一致：l=0、r=a.size()、mid=l+(r-l)/2，条件为 a[mid]>=x 时填空。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项A-D依次为 r=mid;、r=mid-1;、l=mid;、l=mid+1;，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题答案为A；A为0起始索引0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当a[mid]>=x时mid可能是第一个满足条件的位置，应保留mid作为候选并令r=mid，与标准lower_bound写法一致；解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题9题干“关于递归函数调用，下列说法错误的是（ ）”及四个选项与网站内容一致，仅个别句末标点差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A-D依次涉及递归过深导致栈溢出、尾递归优化、循环改写、栈溢出后继续执行，与网站四个选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题答案为D；D为0起始索引3，与网站answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "栈溢出通常导致程序异常终止，不能保证抛出可恢复异常并继续执行后续代码，因此D确实错误；A、B、C在该题语境下成立，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5-6页题10题干“切成不少于m段等长木段，求最大可能长度”及check/main代码、l=1、r=mx、ans=0等与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页选项A为 l=mid+1; r=mid-1;，B为 l=mid-1; r=mid+1;，C为 l=mid+1; r=mid;，D为 l=mid; r=mid+1;，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题答案为A；A为0起始索引0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "在闭区间 while(l<=r) 二分中，check(mid)为真时记录ans=mid并向右寻找更大长度，应l=mid+1；为假时向左收缩，应r=mid-1。解析与A相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题6-10共5道单选题。卷头来源身份匹配；题干、选项、答案及解析逐题对照PDF页图与答案表，答案索引依次为2、1、0、3、0，均与网站数据一致，无必要纠正。题7代码仅有std::限定符层面的等价表述差异，不改变运行结果。五题均非编程题，故不提供编程边界测试。"
+  }
+}

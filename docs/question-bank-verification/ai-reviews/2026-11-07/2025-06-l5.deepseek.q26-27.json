@@ -1,0 +1,175 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:19:00.694Z",
+  "completedAt": "2026-11-07T06:22:32.995Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47748,
+    "completion_tokens": 19302,
+    "total_tokens": 67050,
+    "prompt_tokens_details": {
+      "cached_tokens": 47616
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17237
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01174385,
+      "allowance": 0.00704631,
+      "tokens": {
+        "input": 132,
+        "output": 19302,
+        "reasoning": 17237,
+        "cache_read": 47616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 五级”“2025 年 06 月”，与 2025-06-l5 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第13-14页题面、样例与站内一致；但第14页3.1.5数据范围在站内缺失：60%测试点1≤a,b≤100、1≤n,m≤500；所有测试点1≤a,b≤10^4、1≤n,m≤10^9。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核二分可行性及check：排序后设a≤b，v份先按(a,b)计，超出m时用t=ceil((vb-m)/(b-a))调整为(b,a)组合，再验x≤n且y≤m；样例1、2和边界推演一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "对照PDF第14页参考程序，变量、1ll防溢出、a==b分支、二分mid=(l+r+1)>>1等一致；按约束推导可处理1e9资源与1e4单价。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 五级] 奖品兑换\n\n## 题目描述\n\n班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 $a$ 张课堂优秀券和 $b$ 张作业优秀券兑换一份奖品，或者使用 $b$ 张课堂优秀券和 $a$ 张作业优秀券兑换一份奖品。\n\n现在小 A 有 $n$ 张课堂优秀券和 $m$ 张作业优秀券，他最多能兑换多少份奖品呢？\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，分别表示小 A 持有的课堂优秀券和作业优秀券的数量。\n\n第二行，两个正整数 $a,b$，表示兑换一份奖品所需的两种券的数量。\n\n## 输出格式\n\n输出共一行，一个整数，表示最多能兑换的奖品份数。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1≤a,b≤100$，$1≤n,m≤500$。\n\n对于所有测试点，保证 $1≤a,b≤10^4$，$1≤n,m≤10^9$。"
+        },
+        "tests": [
+          {
+            "name": "最小值",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "n=m=a=b=1，一份奖品恰好消耗一张课堂券和一张作业券，最多1份。"
+          },
+          {
+            "name": "无法兑换",
+            "input": "1 99\n1 100",
+            "output": "0",
+            "reason": "方式一需100张作业券超过99，方式二需100张课堂券超过1，故0份。"
+          },
+          {
+            "name": "混合兑换且b-a=1",
+            "input": "3 3\n1 2",
+            "output": "2",
+            "reason": "两份可按方式一、方式二各一份，消耗课堂券1+2=3、作业券2+1=3；三份总消耗超过6张券总量。"
+          },
+          {
+            "name": "a==b特殊分支与大数",
+            "input": "1000000000 1000000000\n10000 10000",
+            "output": "100000",
+            "reason": "a=b=10000，每份需两种券各10000张，最多floor(10^9/10000)=100000份。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第15页写“k ≥ 3”，站内为“k > 3”；且第15页3.2.5数据范围缺失：60%测试点1≤n≤10^3、1≤q≤10；所有测试点1≤n≤10^5、1≤q≤10^5、1≤a_i≤1000。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导gcd(a1+i,...,an+i)=gcd(a1+i,g)，g为排序后相邻差值的gcd；n=1时g=0，代码用gcd(0,a1+i)返回a1+i，样例1、2推演一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "对照PDF第16页参考程序，排序、预处理相邻差值gcd、逐询问输出gcd(g,a[1]+i)一致；给定数据范围内int足够。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 五级] 最大公因数\n\n## 题目描述\n\n对于两个正整数 $a,b$，他们的最大公因数记为 $\\gcd(a,b)$。对于 $k ≥ 3$ 个正整数 $c_1,c_2,\\dots,c_k$，他们的最大公因数为：\n\n$\\gcd(c_1,c_2,\\dots,c_k)=\\gcd(\\gcd(c_1,c_2,\\dots,c_{k-1}),c_k)$\n\n给定 $n$ 个正整数 $a_1,a_2,\\dots,a_n$ 以及 $q$ 组询问。对于第 $i(1≤i≤q)$ 组询问，请求出 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数，也即 $\\gcd(a_1+i,a_2+i,\\dots,a_n+i)$。\n\n## 输入格式\n\n第一行，两个正整数 $n,q$，分别表示给定正整数的数量，以及询问组数。\n\n第二行，$n$ 个正整数 $a_1,a_2,\\dots,a_n$。\n\n## 输出格式\n\n输出共 $q$ 行，第 $i$ 行包含一个正整数，表示 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1≤n≤10^3$，$1≤q≤10$。\n\n对于所有测试点，保证 $1≤n≤10^5$，$1≤q≤10^5$，$1≤a_i≤1000$。"
+        },
+        "tests": [
+          {
+            "name": "n=1最小值边界",
+            "input": "1 1\n1000",
+            "output": "1001",
+            "reason": "只有一个数时gcd(a1+i)=1000+1=1001；g=0时gcd(0,1001)=1001。"
+          },
+          {
+            "name": "全相同数使g=0",
+            "input": "3 2\n5 5 5",
+            "output": "6\n7",
+            "reason": "i=1时全为6，gcd=6；i=2时全为7，gcd=7；相邻差值全0，验证gcd(0,x)分支。"
+          },
+          {
+            "name": "非零差值且答案随i变化",
+            "input": "2 2\n1 1000",
+            "output": "1\n3",
+            "reason": "排序后差值g=999；i=1时gcd(2,1001)=1，i=2时gcd(3,1002)=3。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "依据PDF第13-16页核对题26、27；两题站内题面均缺数据范围，27题k范围有笔误，已在changes补正；参考程序与官方PDF一致，未发现逻辑错误；测试为独立推导，未运行。"
+  }
+}

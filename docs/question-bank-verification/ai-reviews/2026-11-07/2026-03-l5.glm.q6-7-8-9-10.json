@@ -1,0 +1,236 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:54:20.649Z",
+  "completedAt": "2026-11-07T05:57:18.813Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 59866,
+    "completion_tokens": 14093,
+    "total_tokens": 73959,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10692
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0160264,
+      "allowance": 0.0160264,
+      "tokens": {
+        "input": 59866,
+        "output": 14093,
+        "reasoning": 10692,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 五级 / 2026 年 03 月」，与 paperId 2026-03-l5（2026 年 3 月、五级）一致；第 1 页单选题答案表（题 1-15 依次为 D C B A C C B A D A B B C B B）与第 9 页判断题答案表（√√×√×√√×××）在页图中清晰可读，本次核验以页图为准。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页页图题 6 题干为「埃氏筛中将内层循环从 j = i*i 开始而不是 j = 2*i 的主要原因原因是（）」，并附 eratosthenes_sieve 完整实现（内层 `for (long long j = (long long)i*i; j <= n; j += i) is_composite[j] = true;`）。网站题干保留设问原文；经独立判断，设问文字已自足给出比较对象 j=i*i 与 j=2*i，四个选项均为纯文字且不引用代码专有细节（如 long long 强转等），该代码段属辅助展示而非解题必要代码，缺失不改变设问含义与可解性。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A「因为 2*i 一定不是合数」、B「i*i 一定是质数」、C「小于 i*i 的 i 的倍数已被更小质因子筛过」、D「这样可以把时间复杂度降为 O(n)」，与网站四选项内容、顺序逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 C，按 0 起始索引为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：形如 k*i（k<i）的 i 的倍数，其最小质因子小于 i，故在枚举更小因子时已被标记，只有 i*i 及更高倍数才首次由 i 标记，从 j=i*i 开始可避免重复且是正确原因，对应 C；从 i*i 开始并不会把整体复杂度降为 O(n)（仍为 O(n log log n) 量级），解析中对 D「复杂度分析有误」的评注成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，原卷无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。经独立核对第 3 页页图：题干、选项与答案表第 6 题 C（索引 2）均与网站一致；初核将缺失的埃氏筛代码段判定为非必要辅助展示，该判断经复核成立（设问与选项自足、可独立作答），故维持 verified 而非 needs_fix；解析结论 C 已独立推导确认。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页末出现「第 7 题 下面程序的运行结果为（ ）。」，第 4 页页图为 check/solve/main 完整代码，输入 `int a[] = {1, 2, 8, 4, 9}`、n=5、k=3，与网站题面一致；网站仅省略 std:: 前缀（std::sort/std::cout/std::endl）与 main 末尾 `return 0;`，属片段式等价表述，不影响算法逻辑与运行结果。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A.2、B.3、C.4、D.5，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 B，0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：排序后为 [1,2,4,8,9]。dist=3 时可取 1、4、8（间隔 3、4），cnt=3 可行；dist=4 时任何三点方案最小相邻间隔均小于 4（含端点 1、9 的方案中间点须恰为 5，数组中无 5），不可行。二分 l=0、r=8 用上取整 mid 依次验证 dist=8（cnt=2，否）、dist=2（可行）、dist=3（可行）后收敛于 3，输出 3，与 B 一致；网站解析「选 1、4、8 时最小间距最大为 3」结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，原卷无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核，另将 sourcePages 修正为 [3,4]（第 3 页末已有题干行，初核仅记 [4] 不完整）。代码差异仅为 std:: 前缀与末尾 return 0; 的片段式省略，经复核不改语义与结果；dist=3 可行、dist=4 不可行及二分收敛过程已独立演算，无需修改任何字段。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图题 8 题干「在升序数组中查找第一个大于等于 x 的位置，下面循环中横线应填（ ）。」及 lowerBound 代码（`int l=0, r=a.size();`、`mid = l + (r - l)/2`、`if(a[mid] >= x) _____; else l = mid + 1;`）与网站题面逐行一致，横线位置相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A `r = mid;`、B `r = mid - 1;`、C `l = mid;`、D `l = mid + 1;`，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：while(l<r) 且 mid=l+(r-l)/2 恒有 mid<r，故 r=mid 保证区间严格收缩不死循环；a[mid]>=x 时 mid 自身仍是候选答案（更靠右的可能存在更小解），应保留 mid 为上界即 r=mid，与标准 lower_bound 写法一致，A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，原卷无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。代码、选项、答案与 PDF 第 4-5 页一致；r=mid 的正确性（保留候选且区间收缩）已独立验证，初核结论无偏。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 9 题干「关于递归函数调用，下列说法错误的是（ ）。」与网站一致；A-D 选项内容一致，仅网站句末补有句号，属纯标点差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为：A 递归调用层次过深时可能会耗尽栈空间导致栈溢出；B 尾递归函数可以通过编译器优化来避免栈溢出；C 所有递归函数都可以通过循环结构来改写，从而避免栈溢出；D 栈溢出发生时，程序会抛出异常并可以继续执行后续代码。与网站四选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 D，0 起始索引 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：C++ 中栈溢出属未定义行为，通常直接异常终止（段错误），并非可捕获的 C++ 异常，不能保证继续执行后续代码，故 D 为错误说法、符合「选错误项」；A 明显正确，B 在支持尾调用优化的编译器下成立，C 在改写为等效迭代（含显式栈模拟，调用栈转移至堆）的意义下成立，D 是唯一错误项，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，原卷无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。题干选项仅句末标点差异可忽略；答案 D 与答案表一致；D 错误的判定及 A/B/C 在本题语境下的成立性已独立复核，初核无偏。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页出现「第 10 题 给定 n 根木头，第 i 根长度为 a[i]。要切成不少于 m 段等长木段，求最大可能长度，则横线上应填写（ ）。」，第 6 页页图为 MAXN/a/check/main 完整代码（`long long l = 1, r = mx;`、`while(l <= r)`、`mid = l + (r - l) / 2`、check 可行时 `ans = mid;` 后与 else 分支各留一根横线），与网站题面一致；网站仅省略 main 末尾 `return 0;`，属可省略语句的等价转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项依次为 A `l = mid + 1; r = mid - 1;`、B `l = mid - 1; r = mid + 1;`、C `l = mid + 1; r = mid;`、D `l = mid; r = mid + 1;`，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：闭区间 while(l<=r) 二分中，check(mid) 可行时已记录 ans=mid，需继续向右探索更大长度，应写 l=mid+1（若写 l=mid 会因区间包含 mid 且 ans 已更新而可能死循环/错误收缩）；不可行时向左收缩应写 r=mid-1。A 正确；C 在不可行时会死循环（r=mid 保留不可行值并可能使区间不再缩小），D 在可行时同理。解析与 A 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，原卷无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核，另将 sourcePages 修正为 [5,6]（题干在第 5 页、代码在第 6 页，初核记录一致但已复核）。代码除省略 return 0; 外与 PDF 一致；l=mid+1 / r=mid-1 的推进性（避免死循环）已独立验证，初核结论无偏。"
+      }
+    ],
+    "summary": "本次独立复核题 6-10 共 5 道单选题。来源卷头（CCF GESP C++ 五级 2026 年 03 月）与 paperId 匹配；PDF 第 1 页单选答案表第 6-10 题依次为 C、B、A、D、A（0 起始索引 2、1、0、3、0），与网站 answer 逐题一致。题干与选项已逐字对照页图：题 9 仅句末标点差异、题 7/10 仅为 std:: 前缀与 main 末 return 0 的片段式省略，均不影响含义与结果；题 6 网站未收录原卷展示的 eratosthenes_sieve 代码段，经独立判断该代码为辅助展示、设问文字与选项自足且非解题必要内容，维持 verified。五题解析均已独立推演验证（含题 7 的 dist=3 可行 / dist=4 不可行与二分收敛到 3 的过程；题 10 的闭区间二分边界推进性）。无需要修改的字段，五题全部 approve；均为单选题，不适用编程题测试（tests 为空）。"
+  }
+}

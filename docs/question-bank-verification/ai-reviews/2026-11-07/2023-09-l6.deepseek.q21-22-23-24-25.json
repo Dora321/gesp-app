@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:22:18.131Z",
+  "completedAt": "2026-11-07T06:23:42.261Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33556,
+    "completion_tokens": 6644,
+    "total_tokens": 40200,
+    "prompt_tokens_details": {
+      "cached_tokens": 33408
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4919
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00410882,
+      "allowance": 0.00246529,
+      "tokens": {
+        "input": 148,
+        "output": 6644,
+        "reasoning": 4919,
+        "cache_read": 33408,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a3dcbe8889a10b4b49014454a91f4b974866a0620af0710e854c8bb9465d8847",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头标明“CCF 编程能力等级认证 C++ 六级 2023年9月”，与2023-09-l6一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第6题原文为“DFS 是深度优先算法的英文简写。”，站内题面空格差异不影响语义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用A-D单选题选项；按指令options维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第6题（对应站内id21）符号为√，映射为正确=0；站内answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核对：DFS即Depth-First Search，为深度优先搜索缩写；现有解析表述正确，无事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第7题原文为“哈夫曼编码是一种有损压缩算法。”，与站内题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用A-D单选题选项；按指令options维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第7题符号为×，映射为错误=1；站内answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核对：哈夫曼编码依据字符频率生成前缀码，可无损还原原始数据，属于无损压缩；现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第8题原文与站内题面一致，均表达“链表只能使用指针实现”这一绝对化判断。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用A-D单选题选项；按指令options维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第8题符号为×，映射为错误=1；站内answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核对：链表逻辑结构可用指针动态实现，也可用数组下标模拟静态链表，故“只能使用指针”错误；现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第9题原文为“如果节点数为 N，广度搜索算法的最差时间复杂度为 O(N)。”；站内写作“广度优先搜索”，属等价术语，无实质差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用A-D单选题选项；按指令options维度不适用。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "PDF第7页判断题答案表第9题符号为×，对应officialAnswer=1（错误）；站内answer=0（正确）与官方答案表相反。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析以“每个节点入队、出队各一次”断言O(N)，忽略BFS通常为O(V+E)；题目仅给节点数N而未限制边数，稠密图中E可达O(N²)，不能笼统断言最差为O(N)。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "answer": 1,
+          "explanation": "**答案：错误**\n\n**解析：**\n广度优先搜索（BFS）通常借助队列遍历图或状态空间，其时间复杂度为 O(V+E)，其中 V 为节点数、E 为边数。题目只给出节点数 N，并未限定边数 E 与 N 同阶。对于稠密图，E 可以达到 O(N²)；使用邻接矩阵时也需要检查大量边。因此，最差情况下 BFS 不能笼统断言为 O(N)，题干说法错误。只有当边数与节点数同阶（如树结构或每个节点度数为常数）时，BFS 才可视为 O(N)。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第10题原文为“二叉搜索树的左右子树也是二叉搜索树。”，与站内题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用A-D单选题选项；按指令options维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第10题符号为√，映射为正确=0；站内answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核对：二叉搜索树定义具有递归性，左右子树必须分别满足二叉搜索树性质；现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核对PDF第7页判断题第6至第10题及对应答案表。站内题21、22、23、25的题面、答案与解析均与官方卷一致；题24官方答案表为×（officialAnswer=1），站内answer=0且解析将BFS最坏复杂度误解为O(N)，需改answer=1并重写解析。5题均为判断题，无参考代码，未生成编程测试。"
+  }
+}

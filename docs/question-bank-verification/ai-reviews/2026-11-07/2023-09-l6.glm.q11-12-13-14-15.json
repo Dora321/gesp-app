@@ -1,0 +1,246 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T06:17:11.919Z",
+  "completedAt": "2026-11-07T06:20:38.445Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55320,
+    "completion_tokens": 15945,
+    "total_tokens": 71265,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12608
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0162705,
+      "allowance": 0.0162705,
+      "tokens": {
+        "input": 55320,
+        "output": 15945,
+        "reasoning": 12608,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a3dcbe8889a10b4b49014454a91f4b974866a0620af0710e854c8bb9465d8847",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP / C++ 六级 / 2023年9月”，与title（2023年9月、六级）、level=6、year=2023、month=9一致；页1单选答案表1~15为 A D D D A D D B B B B C C B D，页7判断题答案表为 √ × × √ √ √ × × √ √，与网站题量结构（15单选+10判断+2编程）相符。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干“有关下图的二叉树，说法正确的是（ ）。”；第6页树图：根5，左子2（孩子-4、3），右子17（孩子9、21），21的孩子为19、25——与网站题面结构描述逐项一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页四项：既是完全二叉树也是满二叉树／既是二叉搜索树也是平衡二叉树／非平衡二叉树／以上说法都不正确，文字与顺序和网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11题为B（0起始索引1），网站answer=1。独立复核：左子树{-4,2,3}均<5、右子树{9,17,19,21,25}均>5且各子树内部有序，为BST；各结点左右子树高度差≤1（结点5差1、结点17差1，其余差0），为平衡二叉树；层序中9无孩子而21有孩子形成空缺，非完全二叉树，叶子不在同一深度，非满二叉树。B为唯一正确项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析的完全/满二叉树排除理由、对整棵子树取值范围的BST校验、逐结点高度差校验，与上述独立推导一致，无误导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受DeepSeek初核的通过结论；本复核独立核对树图、五维与官方答案表B，均一致，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页题干为“第 12 题 N 个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。”（N为变量），网站漏开头的“N”，写作“个节点的二叉搜索树…”。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页选项为 A O(1)、B O(N)、C O(log N)、D O(N²)；网站为 O(n)、O(n²)、O(log n)、O(n log n)，A、B、D三项与原卷不符，D的 O(n log n) 在原卷中并不存在。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为C（索引2），网站answer=2；独立推导：键随机插入时BST期望高度为O(log N)，平均查找即O(log N)，与C对应，互换修正选项后映射仍为索引2，自洽。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析按错误选项展开（称A O(n)为最坏情形、D O(n log n)为排序量级），与原卷选项不对应，需按A O(1)/B O(N)/D O(N²)重写；changes.explanation已给出完整替换值。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "N 个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。",
+          "options": [
+            "O(1)",
+            "O(N)",
+            "O(log N)",
+            "O(N²)"
+          ],
+          "explanation": "**答案：C**\n\n**解析：**\nN 个节点的二叉搜索树，查找需从根出发沿一条路径逐层与节点比较，比较次数由树高决定。\n- **A O(1) 错误：** 常数时间只对「已知位置直接访问」成立；按值查找必须沿路径逐节点比较，做不到 O(1)。\n- **B O(N) 错误：** 这是**最坏**情况——按有序序列插入时 BST 退化成链表，树高为 N；题目问的是平均复杂度。\n- **C O(log N) 正确：** 键以随机顺序插入时，BST 的期望高度为 O(log N)，平均查找比较约 O(log N) 次。\n- **D O(N²) 错误：** 单次查找沿一条根到叶的路径进行，比较次数不超过树高，不存在平方级。\n\n**易错点：** 普通 BST「平均 O(log N)、最坏 O(N)」；AVL、红黑树等自平衡 BST 才能保证最坏情形也是 O(log N)，二者勿混淆。\n\n**考点：** 二叉搜索树、平均时间复杂度"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受DeepSeek初核对Q12的三项判断（题干漏N、选项与PDF不符、解析按错选项展开），本人已独立对照PDF第6页选项逐一确认；初核的替换文本经复核正确，予以采纳并微调：options统一为与原卷一致的 O(1)/O(N)/O(log N)/O(N²)，解析重写使A/B/D论证与正确选项对应，并保持网站易错点/考点结构。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页代码行：int jumpFrog(int N) { if (N <= 3) return N; return jumpFrog(N - 1) + jumpFrog(N - 2); }，与网站代码一致；题干“青蛙每次能跳1或2步……该段代码采用的算法是（ ）”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页四项依次为递推算法、贪心算法、动态规划算法、分治算法，与网站文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为C（索引2），网站answer=2。独立判定：f(N)=f(N-1)+f(N-2)且N≤3时返回N（f(1)=1、f(2)=2、f(3)=3），恰为“每步跳1或2步的到达方案数“的递归求值，含状态定义与转移方程、子问题大量重叠，属自顶向下的动态规划实现。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析以转移方程、重叠子问题论证DP，并正确区分贪心（局部最优）、分治（子问题独立）、自底向上递推（迭代形态），结论与官方C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受DeepSeek初核的通过结论；本复核独立验证代码抄录、选项与答案表C映射，均一致。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页末起题干为“第 14 题 N 个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。”（第7页续选项C、D），网站漏“N”，写作“个节点的双向循环链…”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A O(1)、B O(N)，第7页C O(log N)、D O(N²)；网站O(1)/O(n)/O(log n)/O(n²)与原卷值和顺序一致，n与N为大小写记法等价差异，不构成修改。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为B（索引1），网站answer=1；独立推导：双向/循环仅改善访问方向与边界，按值查找仍需沿指针线性扫描，平均约N/2个节点，复杂度O(N)，与B一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析得出平均查找N/2次、O(n)的结论，指出O(1)限于已知位置访问、链表无法二分、双向同时找只省常数因子，论证严谨并与官方B一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "N 个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受DeepSeek初核：仅题干缺“N”一处需补，给出question替换值；初核对options仅记大小写等价、不提修改，判断正确，照准。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页题干“关于C++语言，以下说法不正确的是（ ）。”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页四项（const常对象只能调用const成员函数／所有常量静态变量只能在类外初始化／类A对象a为类B静态成员应在main之前初始化／静态全局对象、常量全局对象main之前初始化、main执行完后析构）文字与顺序和网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为D（索引3），网站answer=3，与官方键完全一致——本维度核对的是网站stored answer与官方答案表的对应关系，通过。学理备注：B项在现代C++中存在反例（static const整型/constexpr/inline static可类内初始化），D项对基本类型常量全局对象“被析构”表述不严谨，题源本身欠严谨，但官方指定答案唯一为D，网站解析已披露B项例外并按考试口径维持官方答案，争议已留痕，不改answer。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析以“基本类型常量全局对象无析构函数，谈不上被析构”判D不确认（区分内存回收与执行析构），并明确注明B项在现代C++的类内赋初值特例、按考试基准口径予以排除——立场与官方一致且已披露争议点，事实性无误，无需重写；answer与解析口径匹配。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决DeepSeek初核对Q15的两处提案：（1）将answer标为unresolved不当——answer维度的职责是与官方答案表比对，D/索引3一致即通过，B项学理张力属题面双欠严谨问题，网站解析已在B、D两项说明中披露并保留官方口径，足以定案为“与官方键一致”；（2）解析重写属等义改写——初核新版与网站解析信息内核相同（均承认B例外、按官方选D、区分析构与内存回收），且原解析逐项分析更完整，按“无问题不做改写”原则维持原样。争议原文记录于answer/evidence。"
+      }
+    ],
+    "summary": "本次仅独立核验第11~15题（其余题不在范围）。官方答案表（页1）11~15为B、C、C、B、D，与网站answer（1/2/2/1/3）全部一致。Q11、Q13五维全部通过无修改；Q12确认为三处实错——题干漏“N”、选项A/B/D与原卷不符（原卷为O(1)/O(N)/O(N²)，网站为O(n)/O(n²)/O(n log n)）、解析按错误选项展开——已给出question+options+explanation完整替换值（answer映射修正后仍为索引2，自洽）；Q14仅题干漏“N”，给出question替换值，options大小写为等价记法不改；Q15官方答案D与网站一致且解析已披露B项在现代C++的类内初始化例外并保留官方口径，维持原样并通过，否决初核将其answer标unresolved与解析重写两提案。本批均为单选题，tests均为空，无编程题复核项。"
+  }
+}

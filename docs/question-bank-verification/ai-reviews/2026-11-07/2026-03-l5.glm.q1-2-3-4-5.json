@@ -1,0 +1,235 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:51:28.811Z",
+  "completedAt": "2026-11-07T05:52:40.052Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 59781,
+    "completion_tokens": 5330,
+    "total_tokens": 65111,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2188
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01163215,
+      "allowance": 0.01163215,
+      "tokens": {
+        "input": 59781,
+        "output": 5330,
+        "reasoning": 2188,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc311924df656a5997daebd5fc7bea559d7df766fb10b80edc419ca886aff0f7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 五级 2026 年 03 月」，且页脚标注『第 1 页 / 共 14 页』整卷共 14 页，与待核 ID 的年份 2026、月份 3、等级 5 一致；第 1 页单选题答案表与第 9 页判断题答案表在页图中清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：本轮独立对照第 1 页题干、四个选项文字及答案表首项 D，均与其结论一致，未发现需修改字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 1 题题干为「关于单链表、双链表和循环链表，下列说法正确的是（ ）」，与站点 question 逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A「在单链表中，若已知任意结点的指针，则可以在 O(1) 时间内删除该结点」、B「循环链表中一定不存在空指针」、C「在循环双链表中，尾结点的 next 指针一定为 nullptr」、D「在带头结点的循环单链表中，判定链表是否为空只需判断头结点的 next 是否指向自身」与站点 options 顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 1 对应答案 D；0 起始索引为 3，站点 answer=3。独立推导亦得 D：A 中删除单链表结点需改前驱 next，对任意结点（含尾结点）无法保证 O(1)；B 中空循环链表头指针可为 nullptr；C 中循环双链表尾结点 next 环回指向头结点；D 中空表时仅头结点自身成环 head->next==head，判空正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析独立可复现：逐项指出 A 需遍历找前驱（尾结点复制法失效）、B 空表头指针为空、C 循环双链表尾结点 next 回指头结点，并推出 head->next==head 判空；推导过程与结论无误，且未声称编造的运行输出。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：页图中 A-D 四段指针序列与站点选项逐条比对一致，答案表第 2 题为 C，初核对指针顺序的判断经独立重推成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 2 题题干「双向循环链表中要在结点 p 之前插入新结点 s（均非空），以下指针操作正确的是（ ）」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A: s->next=p; p->prev=s; p->next=s; s->prev=p；B: s->prev=p; s->next=p->next; p->next->prev=s; p->next=s；C: s->next=p; s->prev=p->prev; p->prev->next=s; p->prev=s；D: s->next=p; s->prev=nullptr; p->prev=s。四段序列顺序与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题 2 为 C，0 起始索引 2，站点 answer=2。独立重推：C 先设 s 的 next/prev，再借原 p->prev 更新原前驱的 next，最后才覆盖 p->prev，四步完整且无指针丢失，语义为前插；B 实为在 p 之后插入；A 第二步即覆盖 p->prev 丢失原前驱且错误改 p->next；D 未连接原前驱且循环表不应出现 nullptr。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析的「先连后改、防丢失前驱」顺序分析与逐项错误归因（A 覆盖丢失、B 方向颠倒、D nullptr 与缺连接）经独立重推成立，结论与 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 2 页代码块与选项在页图逐行核对一致，站点内嵌代码仅排版紧凑化、语义等价；删除逻辑 cur->next = del->next 经独立跟踪确认正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页末题干「下面函数用『哑结点』统一处理删除单向链表中的头结点与中间结点。横线处应填（ ）」；第 2 页代码 struct Node（含构造 Node(int v):val(v),next(nullptr)）、eraseAll 的 dummy 结点、while(cur->next) 循环、if(cur->next->val==x) 分支、Node* del = cur->next、横线、delete del、else cur=cur->next、return dummy.next 均与站点 question 内嵌代码语义一致（仅缩进排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图 A: cur = cur->next;；B: cur->next = del->next;；C: del->next = cur->next;；D: cur->next = nullptr;。与站点 options 顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题 3 为 B，0 起始索引 1，站点 answer=1。独立跟踪：del 即 cur->next，删除它需让 cur->next 指向 del->next 再 delete del，该写法对头结点（del==head）同样适用且返回 dummy.next 自动成为新头；A 使 cur 跳到 del 导致无法翻越被删结点且 delete 后悬空；C 为自赋值无效果；D 截断整条链。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析「删除 cur->next 指向的结点时，应先让 cur->next 跳过 del，连接到 del->next」与独立推导一致，B 标注正确，逐项判断无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：答案表第 4 题为 A、取模序列 48%18=12、18%12=6、12%6=0 本轮独立重算一致；站点登记的 code 字段与第 2 页页图逐字符一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页页图题干「对如下代码实现的欧几里得算法（辗转相除法），执行 gcd(48, 18) 得到的调用序列为（ ）」，代码 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); } 与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图 A: gcd(48,18) -> gcd(18,12) -> gcd(12,6) -> gcd(6,0)；B: gcd(48,18) -> gcd(30,18) -> gcd(12,18)；C: gcd(48,18) -> gcd(18,30) -> gcd(30,6)；D: gcd(48,18) -> gcd(12,18) -> gcd(6,12)。与站点 options 顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题 4 为 A，0 起始索引 0，站点 answer=0。独立重算：48%18=12 得 gcd(18,12)；18%12=6 得 gcd(12,6)；12%6=0 得 gcd(6,0)；b==0 返回 a=6（即 gcd(48,18)=6），调用序列与 A 完全吻合；B、C、D 的序列均不满足递归展开规则。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析按四次调用逐步给出余数与下一层参数（含 48=18*2+12、18=12*1+6、12=6*2+0 的拆分说明），并指出终值 6 及 B 混淆更相减损术、C 取模结果错误、D 序列不符，推导独立可复现且无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 3 页欧拉筛代码与四个选项在页图逐行核对一致，答案表第 5 题为 C；缺少 j 越界保护的分析经独立重推成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页末题干「下面代码实现了欧拉（线性）筛，横线处应填写（ ）」；第 3 页代码 euler_sieve 的 is_composite(n+1,false)、primes 表、外层 i 从 2 到 n、内层 for(int j = 0; 横线 && (long long)i * primes[j] <= n; j++)、is_composite[i*primes[j]]=true、if(i % primes[j]==0) break 均与站点 question 内嵌代码一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图 A: j <= n；B: j < sqrt(n)；C: j < primes.size()；D: j < i。与站点 options 顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题 5 为 C，0 起始索引 2，站点 answer=2。独立推导：欧拉筛内层需遍历当前已收集的素数表，因此循环条件必须含 j < primes.size()；且该条件位于 && 左侧，短路求值保证 primes[j] 越界访问不会发生。A、B、D 均无法正确约束素数表下标界，其中 D 还会漏筛。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析指出内层循环遍历当前素数表故边界应为 primes.size()，并结合短路求值避免越界；该说明与独立推导一致，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮独立复核题 1-5：五题题干、选项、答案与 PDF 第 1-3 页页图及第 1 页答案表（D C B A C）逐项一致，0 起始映射分别为 3、2、1、0、2，与站点 answer 相同。每题解析均经独立逻辑重推（单链表删除复杂度、双向循环链表前插四步顺序、哑结点翻转后继、辗转相除取模序列、欧拉筛素数表边界与短路求值），未发现事实错误，无需修改字段，五题均 approve 并接受初核结论。单选题不适用参考代码与编程测试维度。"
+  }
+}

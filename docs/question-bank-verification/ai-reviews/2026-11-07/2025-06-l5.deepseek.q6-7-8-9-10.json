@@ -1,0 +1,227 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:53:54.222Z",
+  "completedAt": "2026-11-07T05:56:56.243Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47754,
+    "completion_tokens": 14910,
+    "total_tokens": 62664,
+    "prompt_tokens_details": {
+      "cached_tokens": 47616
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13567
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00910955,
+      "allowance": 0.00546573,
+      "tokens": {
+        "input": 138,
+        "output": 14910,
+        "reasoning": 13567,
+        "cache_read": 47616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF卷头显示“CCF 编程能力等级认证 C++ 五级 2025 年 06 月”，且含单选题15道、判断题10道、编程题2道，与 2025-06-l5 对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第6题题干与网站一致，要求选“说法错误的是”；gcd0()/gcd1() 代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页 A-D 与网站顺序一致：A为 O(log n)，B为 O(n)，C为效率比较，D为 i>=1 改 i>1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题标 D；网站 answer=3，即 D，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按欧几里得递归与递减枚举说明 A/B/C；并指出 D 的 i>1 修改并非必要，尾部 return 1 仍能处理互质情况，可独立推出 D 为错误项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7题题干位于PDF第4页末，代码与选项位于第5页；网站题面及 is_prime() 代码与PDF一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页 A-D 与网站一致：A/B讨论筛法效率，C讨论重复计算，D称埃氏筛效率最高。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题标 D；网站 answer=3，即 D，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以逐个试除 O(√n) 与埃氏筛、线性筛的批量复杂度比较，说明 A/B/C 成立而 D 错误，推导独立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第8题题干“唯一分解定理描述了关于正整数的什么性质？”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页 A-D 与网站顺序、含义一致；B为“任何大于1的合数都可以唯一分解为有限个质数的乘积”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题标 B；网站 answer=1，即 B，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确陈述唯一分解定理，并逐一排除哥德巴赫猜想、错误 gcd/lcm 公式及“所有素数都是奇数”等干扰项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第9题题干、find_max_recursive() 与 find_max() 代码和网站一致，均用于求最大值并询问错误说法。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页 A-D 与网站一致：A分治、B递归、C贪心、D不是递推算法。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题标 C；网站 answer=2，即 C，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确识别该实现为分治递归而非贪心，并解释其不属于自底向上的递推，能推出 C 为错误项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页末第10题题干与第6页 find_max() 代码和网站一致：单层 range-for 迭代求最大值。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页 A-D 与网站顺序一致：A迭代、B时间复杂度 O(n)、C无递归栈开销、D与上一题空间复杂度相同。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "给定PDF第1页答案表第10题在图片中可读为 D，网站 answer=3(D) 与其对应；但现有 sourceIntegrity 记录当前 CCF 下载版标 C、另一存档版标 D，存在答案表冲突，按规则保留未决。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按迭代实现辅助空间 O(1)、上一题分治递归调用栈 O(log n) 推导 D 为错误项，结论与代码分析一致；但官方答案冲突未决。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第10题答案表存在 C/D 冲突：现有记录称当前 CCF 下载版标 C、存档版标 D；给定 PDF 页1题10可读为 D，网站 answer=3 并已停止计分。保留 sourceIntegrity=answer-key-conflict，不擅自定案。"
+        ]
+      }
+    ],
+    "summary": "本次仅初核第6-10题。第6-9题的题干、选项、答案表与解析均能与PDF对应；第10题题干、代码和选项与PDF一致，按代码分析应为 D，但因官方答案表存在 C/D 冲突，答案维度保留 unresolved，不修改答案和计分。未对字段作改动。"
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:56:56.254Z",
+  "completedAt": "2026-11-07T06:00:53.915Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 75568,
+    "completion_tokens": 21143,
+    "total_tokens": 96711,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18563
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0219067,
+      "allowance": 0.0219067,
+      "tokens": {
+        "input": 75568,
+        "output": 21143,
+        "reasoning": 18563,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85e9a6fa450cd8114a0d554d0d8060b1d98ab0665ba09d667e5f4523e38da3bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为 CCF 编程能力等级认证（GESP）C++ 五级、2025年06月，全卷结构为单选题15题（每题2分共30分）、判断题10题（每题2分共20分）、编程题2题（每题25分共50分），与 2025-06-l5 的五级、2025年6月批次一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第6题题干“下列C++代码用两种方式求解两个正整数的最大公约数，说法错误的是”与网站一致；gcd0（交换后取余递归）与 gcd1（自 small 起降序枚举、末尾 return 1）两段代码与网站 code 字段逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页 A：gcd0() 时间复杂度 O(log n)；B：gcd1() 时间复杂度 O(n)；C：一般说来 gcd0() 效率高于 gcd1()；D：gcd1() 中 for (int i = small; i >= 1; --i) 应该修改为 for (int i = small; i > 1; --i)。与网站四选项顺序、内容一致（仅排版空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题为 D（0起始索引3），与网站 answer=3 一致。独立推导：gcd0 为欧几里得算法，最坏量级 O(log n)，A 真；gcd1 在互质（公约数为1）时需枚举到底，量级 O(n)，B 真；C 真；将 i>=1 改为 i>1 只是跳过必然成立的 i=1 一轮，函数尾部 return 1 仍保证互质输入正确返回 1，故“应该修改”的必要性说法不成立，D 为错误项，与答案表吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指明官方答案 D，论证 i>1 修改无必要（尾部 return 1 兜底覆盖互质情形），并给出 gcd0 对数级、gcd1 线性级的最坏复杂度对比；该推导可独立复现，与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对题干、代码、选项、答案表（D=3）与解析均吻合，接受初核对第6题的全部结论，无需修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7题题干位于PDF第4页末（“下面的代码用于判断整数 n 是否是质数，错误的说法是”），is_prime 代码与选项位于第5页；代码（n<=1 返回 false、上界 static_cast<int>(sqrt(n)) + 1、循环 i < finish_number 试除）与网站逐行一致。网站题干省略变量名“n”，语义不变，属非实质性差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页 A（埃氏筛相对于上面代码效率更高）、B（线性筛相对于上面代码效率更高）、C（该代码逐个判断造成大量重复计算、筛连续数效率不高）、D（相对而言埃氏筛比上面代码以及线性筛效率都高）与网站顺序、文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为 D（索引3），与网站 answer=3 一致。独立推导：该代码为逐个试除，单数 O(√n)；批量判断连续整数时埃氏筛 O(n log log n)、线性筛 O(n) 均更快，且线性筛不慢于埃氏筛，故 A、B、C 为真，D（埃氏筛效率都高）为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析以 O(√n) 试除与埃氏筛/线性筛复杂度对比逐项判定，可独立复现推出 D 为错误说法，与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，接受初核；题干省略的“n”不改变题意，不作修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第8题题干“唯一分解定理描述了关于正整数的什么性质？”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页 A（任何正整数都可表示为两个素数的和）、B（任何大于1的合数都可唯一分解为有限个质数的乘积）、C（gcd 恒等于 lcm 除以乘积）、D（所有素数都是奇数）与网站顺序、文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为 B（索引1），与网站 answer=1 一致。独立推导：算术基本定理即 B；A 为哥德巴赫猜想且范围表述有误；C 颠倒了正确恒等式 gcd(a,b)×lcm(a,b)=a×b；D 有显式反例质数 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确陈述唯一分解定理（不计顺序唯一分解），并逐项排除哥德巴赫猜想、错误的 gcd/lcm 公式与“素数皆奇数”，与官方答案及独立推导一致（12=2²×3 举例恰当）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，接受初核；三个干扰项的排除理由均成立，无需修改。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第9题题干与代码（递归基 left==right 返回 nums[left]、mid 二分、左右递归后 max 合并；find_max 空数组抛 invalid_argument 并委托递归版）与网站内嵌代码及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页 A（该算法采用分治算法）、B（该算法是递归实现）、C（该算法采用贪心算法）、D（该算法不是递推算法）与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为 C（索引2），与网站 answer=2 一致。独立推导：代码对左右子区间均独立求解并合并，属分治+递归，A、B 真；不存在每步只沿“当前最优”分支推进且不回溯的贪心选择，C 假；实现为自顶向下递归调用栈而非自底向上递推，D 真，故错误说法为 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按分解/解决/合并三阶段说明分治，并区分贪心与分治、递归与递推，可独立复现出 A、B、D 真、C 假的结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，接受初核；反向单选“错误的是 C”与答案表及解析一致，无需修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第10题题干位于第5页末（“下面的C++代码，用于求一系列数据中的最大值。有关其算法说法错误的是”），迭代 find_max 代码位于第6页第1-13行：空数组抛异常、max_value=nums[0]、range-for 逐个比较更新，与网站 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页 A（本题 find_max() 采用迭代算法）、B（时间复杂度 O(n)）、C（相比上一题因无递归 therefore 没有栈的创建和销毁开销）、D（与上一题空间复杂度相同）与网站顺序、表述一致（“（　）”与“（ ）”等全半角差异忽略）。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "给定PDF第1页答案表第10题在文本层与页面图中均可读为 D（0起始索引3），与网站 answer=3 对应；独立代码分析同样支持 D 为假（本题迭代辅助空间 O(1)，上一题分治递归调用栈 O(log n)，二者不同）、C 在“无递归栈增长”的通常意义下为真，A、B 明显为真。但网站已登记 sourceIntegrity=answer-key-conflict（称当前 CCF 下载版答案表标 C、另一存档版标 D，status=unresolved），现有证据无法证实或否定“存在标 C 的现行版本”，按规约保留争议、不擅自定案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按迭代版辅助空间 O(1)、上一题分治递归栈深 O(log n) 推出 D 为错误项，并逐项论证 A、B、C 为真；该数学分析独立成立，且与给定PDF答案表(D)及网站保留答案一致；因官方答案存在 C/D 版本争议，解析与“现行官方版”的最终一致性取决于争议澄清（见 answer 维度）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第10题答案表存在 C/D 版本冲突：网站记录称当前 CCF 下载版标 C、存档版标 D；本轮提供的官方PDF（第1页答案表）第10题可读为 D，与网站 answer=3 一致。冲突无法依现有证据裁决，维持 sourceIntegrity=answer-key-conflict 及该题停止计分状态，等待官方澄清。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核对第10题的处理：题面、选项、解析经独立推导成立，给定PDF答案表为 D；但网站登记的官方答案版本冲突（C vs D）无新证据可裁决，answer 维度维持 unresolved，不修改答案、解析或计分。"
+      }
+    ],
+    "summary": "本轮独立复核第6-10题并审阅 DeepSeek 初核草稿。第6-9题的题干、源代码、选项、答案表与解析均与PDF一致且可独立推导（gcd0/gcd1 复杂度与“应修改”之辨、试除与两种筛法对比、唯一分解定理、分治求最大值），全部 approve、零修改；第10题题面、选项与解析同样核验一致（迭代 O(1) 辅助空间 vs 上一题递归 O(log n) 栈空间，D 为假），给定PDF答案表第10题为 D，但网站已登记官方答案表 C/D 版本冲突且证据不足裁决，故 answer 维度保留 unresolved，该题 verdict=unresolved，未改动任何字段、答案或计分状态。五题均无需 changes。"
+  }
+}
