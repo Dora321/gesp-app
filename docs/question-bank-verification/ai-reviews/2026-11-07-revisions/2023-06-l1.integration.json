@@ -1,0 +1,181 @@
+{
+  "paperId": "2023-06-l1",
+  "integratedAt": "2026-11-07T19:24:31.198Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 3,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 23,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 8,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3",
+          "output": "10",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "input": "4",
+          "output": "20",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "20\n",
+          "passed": true
+        },
+        {
+          "input": "10",
+          "output": "220",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "220\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 n=1",
+          "input": "1\n",
+          "output": "1",
+          "reason": "求和式仅含第1项 1；闭式 1×2×3/6=1，递推 inner=1、total=1，独立手算确认。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "递推衔接校验 n=2",
+          "input": "2\n",
+          "output": "4",
+          "reason": "1+(1+2)=4；若 inner 每轮清零将误得 3，此用例可检验前缀和跨轮保留，独立手算确认。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "约束上限 n=100",
+          "input": "100\n",
+          "output": "171700",
+          "reason": "闭式 100×101×102/6=171700，为题目范围内最大结果，独立手算确认，并验证 long long 无溢出。",
+          "kind": "boundary",
+          "actual": "171700\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0cebe3cf3792f980b73da1bb2efefef394f94f0cd0b72204dd5b98d57e3f5572"
+    }
+  ]
+}

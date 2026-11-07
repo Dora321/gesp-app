@@ -1,0 +1,256 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    14,
+    15,
+    23,
+    24,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T19:20:21.597Z",
+  "completedAt": "2026-11-07T19:24:29.395Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 69185,
+    "completion_tokens": 19278,
+    "total_tokens": 88463,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15741
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02001675,
+      "allowance": 0.02001675,
+      "tokens": {
+        "input": 69185,
+        "output": 19278,
+        "reasoning": 15741,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "609820cbdb28b66d7addbd763c6af930bc5f24c0ed84179f007afb69d024affd",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标题为“2023 年 6 月 GESP C++ 一级真题解析”，CCF GESP 认证说明齐全，与候选 year=2023、month=6、level=1 一致。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页页图题14为“在下列代码的横线处填写（ ），可以使得输出是“147”。”，代码共8行：第4行 for (int i = 1; i <= 8; i++)、第5行 if (________) // 在此处填入代码、第6行 cout << i;；候选题面代码块逐行一致，循环上界 i<=8 与行内注释均无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第8页页图选项为 A. i % 2 == 1、B. i % 3 == 1、C. i = i + 3、D. i + 3；候选 options 的顺序与文字完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】B，0起始索引为1；候选 answer=1。独立代入 i=1..8 追踪：A 在 i 为奇数时输出 1357；B 在 i∈{1,4,7} 时输出 147；C 为赋值表达式，轨迹 i:1→4(输出4)→i++=5→8(输出8)→i++=9 退出，输出 48；D 恒真输出 12345678。仅 B 满足“输出147”，与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析四个选项的输出（1357/147/48/12345678）与我独立逐步追踪完全一致；其 B 项按“除以 3 余 1”表述正确（PDF 第9页原文“1、4、7 除以 4 的刚好余 1”为官方文档自身笔误，候选未沿用该错误）；C 项对赋值表达式改变 i、跳值并输出 48 的分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其对题面/选项/答案/解析及官方“除以 4 余 1”笔误甄别的结论，经我独立代入 i=1..8 对四选项逐一追踪后全部成立；候选与原卷一致，无需修改字段，changes 保持为空。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页页图题15程序共10行：int sum;（未初始化）、for (int i = 1; i <= 20; i++)、if (i % 3 == 0 || i % 5 == 0)、sum += i;、cout << sum << endl;；候选题面代码块逐行一致，决定答案的“未初始化局部变量”条件完整保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第9页选项为 A. 63、B. 98、C. 113、D. 无法确定；候选 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页【答案】D，0起始索引3；候选 answer=3。独立判断：sum 为 main 内未初始化局部变量，sum += i 须先读取其不确定值，读取未初始化变量属未定义行为，程序无保证输出，只能选“无法确定”；若假想初值为 0 只能得到 98（B）等假想值，并非程序保证的输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算干扰项来源：1~20 中 3 或 5 的倍数为 3,5,6,9,10,12,15,18,20，其和 98（对应 B）；仅 3 的倍数和 3+6+9+12+15+18=63（对应 A）；63+50=113 且重复计入 15（对应 C）。候选解析的数值溯源与 UB 结论均与我的结果一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其对未初始化 sum 属未定义行为及 63/98/113 干扰项来源的独立核算，与我手算结果一致；候选与原卷一致，无需修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11页页图判断题8原文“如果 a 和 b 为 int 类型的变量，则表达式 a = b 可以判断 a 和 b 是否相等。”；候选题面与原文逐字一致，int 类型前提在位。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两选项，网站 options=[正确,错误] 与 PDF 的 √/× 一一对应，顺序映射由 answer 维度核验，不适用单选 options 逐项核验标准。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第11页页图【答案】×，映射“错误”=索引1；候选 answer=1。独立判断：a = b 是赋值表达式，把 b 的值赋给 a，其值不构成“是否相等”的判断（如 a=1、b=2 时赋值后表达式值为 2，非零为真，也不能据此得出相等）；判断相等须用 ==，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析区分 = 与 == 的语义、说明 if (a = b) 合法但按赋值结果是否为 0 来判断、并提及 -Wparentheses 警告，均符合 C++ 事实，与 PDF 第12页解析（判断相等需要两个等于号 ==，一个等于号 = 是赋值符号）结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题面（含 int 前提）、×→索引1 映射与解析语义经我独立验证全部成立，候选无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页页图判断题9原文“如果 a 为 int 类型的变量，则表达式(a % 4 == 2)可以判断 a 的值是否为偶数。”；候选题面一致，表达式与变量类型前提无缺失（仅括号旁空格属排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，顺序映射由 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页页图【答案】×，索引1；候选 answer=1。独立判断：a%4==2 仅对 a ≡ 2 (mod 4)（即 2,6,10,…）成立且这些数均为偶数，但 4,8,12 等 4 的倍数同为偶数却使表达式为假（4%4=0），该表达式只覆盖偶数真子集，不能判断偶数性，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析“%4 余数范围 0~3”“4k+2 型数全为偶数但遗漏 4 的倍数”“反例：4 是偶数但不满足 a%4==2”“标准判据 a%2==0”均经我独立验证正确，与 PDF 解析（“例如，4 是偶数，被 4 除余 0”）一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：关于 (a%4==2) 不能判定偶数性的覆盖性分析与 ×→索引1 映射经我独立复核成立，候选无需修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第14—15页：问题描述为求 1+(1+2)+(1+2+3)+(1+2+3+4)+…+(1+2+…+n) 的累计相加；输入为“一个正整数，约定 1≤n≤100”；输出累计相加结果；样例 3→10、4→20、10→220。候选 Markdown 题面（约束写为 $1 \\le n \\le 100$，转义正确可渲染为 ≤）与三组 samples 逐一对应，约束与样例无缺失，属允许的排版等价转换。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无单选选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项型答案，PDF 仅提供样例与参考程序，officialAnswer 按约定记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第 i 项为 1+2+…+i=i(i+1)/2，总和 Σi(i+1)/2=n(n+1)(n+2)/6；代入 n=3 得 10、n=4 得 20、n=10 得 220，与三组样例一致。候选解析以 inner 维护当前项、total 累加总和，与 PDF 第15页官方思路 (i+1)*i/2 累加在数学上逐项相等；其 n=3、n=4 的走查数值正确；“推荐 long long 防溢出”为稳妥建议（上限 171700，int 亦足够），不构成错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第16页官方参考程序在循环内执行 sum += (i+1)*i/2；候选代码第 i 轮后 inner=Σ_{j=1..i} j=i(i+1)/2，total=Σ i(i+1)/2，与官方逐项相等；官方式 (i+1)*i 恒为偶数、整除无误差，递推写法完全等价且免去除法。单层循环 O(n)，n≤100 时结果最大 171700（100×101×102/6），long long 无溢出风险；n=1 时 inner=1、total=1 正确。算法、复杂度、边界、溢出均通过核验。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 n=1",
+            "input": "1\n",
+            "output": "1",
+            "reason": "求和式仅含第1项 1；闭式 1×2×3/6=1，递推 inner=1、total=1，独立手算确认。"
+          },
+          {
+            "name": "递推衔接校验 n=2",
+            "input": "2\n",
+            "output": "4",
+            "reason": "1+(1+2)=4；若 inner 每轮清零将误得 3，此用例可检验前缀和跨轮保留，独立手算确认。"
+          },
+          {
+            "name": "约束上限 n=100",
+            "input": "100\n",
+            "output": "171700",
+            "reason": "闭式 100×101×102/6=171700，为题目范围内最大结果，独立手算确认，并验证 long long 无溢出。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题面约束与样例一致、参考代码与官方 (i+1)*i/2 解法逐项等价、解析走查正确；其 n=1/2/100 三组测试的期望输出（1/4/171700）经我独立手算复核成立，予以保留且无需追加修改。"
+      }
+    ],
+    "summary": "本轮独立复核题号 14、15、23、24、27 共 5 题，全部逐条对照 PDF 页图：14（第8—9页）题面代码 i<=8 与选项 A—D 一致，四选项输出 1357/147/48/12345678 经独立追踪，仅 B 输出 147，与【答案】B 一致，官方解析“1、4、7 除以 4 余 1”系原卷自身笔误，候选已按 i%3 正确表述；15（第9页）代码与选项一致，sum 未初始化属未定义行为，答案 D，干扰项 63/98/113 的来源经独立核算成立；23（第11—12页）、24（第12页）判断题题面与【答案】×一致，= 与 == 语义、(a%4==2) 仅覆盖偶数子集的分析经独立验证成立；27（第14—16页）题面约束 1≤n≤100 与三组样例 3→10、4→20、10→220 一致，参考代码前缀和递推与官方 (i+1)*i/2 解法逐项等价，n=1/2/100 的期望输出 1/4/171700 独立手算确认。DeepSeek 初核 5 题的核验结论全部经我独立复核成立，予以接受；未发现任何字段需要修改，五题均为 approve。"
+  }
+}

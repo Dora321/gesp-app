@@ -1,0 +1,246 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    14,
+    15,
+    23,
+    24,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T19:18:00.830Z",
+  "completedAt": "2026-11-07T19:20:21.586Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 41072,
+    "completion_tokens": 17441,
+    "total_tokens": 58513,
+    "prompt_tokens_details": {
+      "cached_tokens": 40832
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15472
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0106231,
+      "allowance": 0.00637386,
+      "tokens": {
+        "input": 240,
+        "output": 17441,
+        "reasoning": 15472,
+        "cache_read": 40832,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "609820cbdb28b66d7addbd763c6af930bc5f24c0ed84179f007afb69d024affd",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“2023 年 6 月 GESP C++ 一级真题解析”，与候选的 year=2023、month=6、level=1 相符。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页页图题14代码为 for (int i = 1; i <= 8; i++)、if 横线、cout << i;，候选题面完整保留该程序结构、循环边界和“输出147”的目标。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第8页页图选项为 A. i % 2 == 1、B. i % 3 == 1、C. i = i + 3、D. i + 3；候选 options 的顺序和文字均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】B，0起始索引为1；候选 answer=1，映射到 B 正确。逐项代入 i=1..8：A 输出1357，B 输出147，C 输出48，D 输出12345678。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立代入正确：B 的 1、4、7 均满足 i%3==1；C 为赋值表达式，i=1 时改为4并输出，i++后为5，再改为8并输出，i++后为9退出，故输出48；D 恒真且不改变i，输出12345678。PDF 第9页原文“1、4、7除以4余1”系官方文档笔误，候选解析已按 i%3 正确表述，不影响答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页页图题15程序为 int sum;、for (int i = 1; i <= 20; i++)、if (i % 3 == 0 || i % 5 == 0) sum += i;、cout << sum << endl;，候选题面逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第9页页图选项为 A. 63、B. 98、C. 113、D. 无法确定；候选 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页【答案】D，0起始索引为3；候选 answer=3，与“无法确定”对应正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立判断正确：sum 为 main 内未初始化局部变量，读取其值属未定义行为，输出无法确定。若错误假设 sum=0，则1~20中3或5的倍数并集和为 3+5+6+9+10+12+15+18+20=98（B项）；63为仅3的倍数和，113为63与50直接相加并重复计入15，均为干扰项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11页页图判断题8原文为“如果 a 和 b 为 int 类型的变量，则表达式 a = b 可以判断 a 和 b 是否相等。”候选题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不属于单选 options 维度；选项映射由 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第11页页图给出【答案】×，对应“错误”索引1；候选 answer=1，且 options[1] 为“错误”，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：a = b 是赋值表达式，把 b 的值赋给 a，表达式结果不是“a与b是否相等”的布尔判断；判断相等必须使用 a == b。候选解析与 PDF 第12页解析一致，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页页图判断题9原文为“如果 a 为 int 类型的变量，则表达式(a % 4 == 2)可以判断 a 的值是否为偶数。”候选题面保留 int 前提与表达式，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不属于单选 options 维度；选项映射由 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页页图给出【答案】×，对应“错误”索引1；候选 answer=1，且 options[1] 为“错误”，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：判断偶数应使用 a % 2 == 0；(a % 4 == 2) 只覆盖部分偶数，例如2、6、10，但遗漏4、8、12等4的倍数，因此不能判断所有偶数。候选解析的核心结论和反例正确，与 PDF 第12页解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第14页页图题2为“累计相加”，描述为输入正整数 n，求 1+(1+2)+(1+2+3)+(1+2+3+4)+…+(1+2+3+…+n) 的累计相加；约束为 1≤n≤100；样例为 3→10、4→20、10→220。候选题面、输入输出描述、约束与三组 samples 均一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项型答案，PDF 未提供选项答案，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第 i 项为 1+2+…+i=i(i+1)/2，总和为 Σi(i+1)/2=n(n+1)(n+2)/6；代入 n=3 得10、n=4 得20、n=10 得220，与三组样例一致。候选解析的 inner 维护当前项、total 累加前缀和，与官方逐项求和等价。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "官方参考程序为 sum += (i+1)*i/2；候选代码每轮 inner += i、total += inner，归纳可得第 i 轮后 inner=i(i+1)/2、total 为其前缀和，与官方式逐项相等。循环 O(n)，n≤100，最大值171700，long long 足以避免溢出，边界和复杂度均满足题意。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 n=1",
+            "input": "1\n",
+            "output": "1",
+            "reason": "式子只有第1项1；闭式 1×2×3/6=1，独立手算确认。"
+          },
+          {
+            "name": "相邻项递推 n=2",
+            "input": "2\n",
+            "output": "4",
+            "reason": "1+(1+2)=4；若 inner 每轮清零会误得3，此项可检验前缀和递推保留上一项，独立手算确认。"
+          },
+          {
+            "name": "约束上限 n=100",
+            "input": "100\n",
+            "output": "171700",
+            "reason": "闭式 100×101×102/6=171700；独立手算确认，并验证在题目上限下结果正确且 long long 无溢出。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验指定5题（网站题号14、15、23、24、27）。14、15与PDF第8—9页原题逐行一致，答案分别为B、D；23、24与PDF第11—12页判断题原文一致，答案均为错误；27与PDF第14—16页“累计相加”的题意、约束、样例一致，参考代码与官方前缀和公式等价，并补充 n=1、2、100 的边界测试。未发现需要变更的字段。"
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    7,
+    8,
+    9,
+    10,
+    12
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T19:15:44.885Z",
+  "completedAt": "2026-11-07T19:18:00.818Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 68797,
+    "completion_tokens": 9846,
+    "total_tokens": 78643,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7022
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01524255,
+      "allowance": 0.01524255,
+      "tokens": {
+        "input": 68797,
+        "output": 9846,
+        "reasoning": 7022,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "609820cbdb28b66d7addbd763c6af930bc5f24c0ed84179f007afb69d024affd",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023 年 6 月 GESP C++ 一级真题解析”，年月（2023 年 6 月）、语言（C++）、等级（一级）与 paperId 2023-06-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图题干“如果 a、b 和 c 都是 int 类型的变量，下列哪个语句不符合 C++语法？（ ）”，候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图选项为 A. a = (b == c); B. b = 5.5; C. c = a + b + c; D. a + c = b + c;（D 项延续至第 5 页），候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页【答案】D，0 起始索引 3；候选 answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：A 中 b==c 结果为 bool，true/false 对应 1/0，可赋给 int 变量 a，合法；B 中 5.5 赋给 int 合法，截断取整为 5；C 中先取 a、b、c 旧值求和再赋给 c，合法；D 中赋值号左侧 a+c 是算术表达式，产生临时值，不是可接收赋值的变量（可修改左值），非法。候选解析与官方解析及本人推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核五维 verified：本人对照 PDF 第 4 页页图逐字确认题干与官方选项无缺失，并独立验证四个选项的合法性推导（A 布尔转 int、B 实数截断、D 左侧非左值）与答案 D（索引 3），候选的题干/选项/答案/解析均为上轮已应用的修复版本，本轮复核全部成立，无需任何改动。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页页图题干为“如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）”；候选只写“如果 a 是 int 类型的变量”，漏掉“a 表达正方形的边长”这一定义。经独立推演确认该前提必要：面积公式取决于 a 表示的量——若 a 为边长，A(a*a)、B(1*a*a)、D(a*2*a/2=a²) 均为面积；若 a 为对角线则面积应为 a²/2，A/B/D 全部失真。故“a 是边长”是判断 A、B、D 能否计算面积的决定性约束，缺失则题目无法唯一作答；且候选解析首句即依赖“边长为 a”，题干却未给出该前提，文本不自洽，属漏必要约束而非等价表述。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页页图选项为 A. a * a、B. 1 * a * a、C. a ^ 2、D. a * 2 * a / 2，候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页【答案】C，0 起始索引 2；候选 answer=2 且对应选项为 a ^ 2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：边长为 a 的正方形面积为 a²；A 即 a²，B 乘系数 1 不变，D 按 (a*2)*a=2a² 再/2 得 a²；C 中 ^ 在 C++ 为按位异或（非乘方），代入 a=5：101^010=111=7≠25，不能计算面积。候选解析与官方解析一致并给出具体异或示例，修复题干后无需再改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核 statement=needs_fix 的判断并采纳其修复文本；否决上一轮“候选题干属等价表述、不改动题干”的结论——本人独立推演表明“a 表达正方形的边长”是评估 A/B/D 是否表示面积的决定性约束（a 若为对角线/周长则 A/B/D 失真），候选漏掉该前提将使题目可作答性受影响，属漏约束而非文风差异。修复文本与 PDF 第 5 页官方题干逐字一致（完整字面：“如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）”）。其余三维度（选项、答案索引 2、解析）经独立复核通过。verdict=revise 表示需应用 changes 中的题干修复；应用后五维均与原卷一致。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页页图题干“表达式(4 * (11 + 12) / 4)的计算结果为（ ）”；候选加“C++”前缀并以“结果是”表述，表达式本体与设问一致，属等价措辞。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页页图选项为 A. 47、B. 20、C. 23、D. 56，候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页【答案】C，0 起始索引 2；候选 answer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：11+12=23；原式化为 4*23/4；乘除同级从左到右：4*23=92，92/4=23，整数运算结果 23。若错误先算 23/4 得 20（对应 B 陷阱），候选提醒合理。候选解析与本人推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核五维 verified：独立沿优先级重算 4*(11+12)/4=92/4=23，与【答案】C（索引 2）一致；选项 47/20/23/56、题干语义均对照第 5 页页图通过，候选解析含正确的从左到右与整数除法提醒，无需改动。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页页图题干“如果 a 为 int 类型的变量，且 a 的值为 6，则执行 a %= 4;之后，a 的值会是（ ）”；候选一致（仅空格排版差异），保留了 int 类型、初值 6、%= 语境。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页页图选项为 A. 1、B. 2、C. 3、D. 4，候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页【答案】B，0 起始索引 1；候选 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：a%=4 等价于 a=a%4；6÷4 商 1 余 2，故 6%4=2，a 变为 2。A(1) 为商、D(4) 违反“余数小于除数”、C(3) 非余数，候选逐项分析与本人推导及官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核五维 verified：独立验证 6%4=2 与【答案】B（索引 1）一致；候选题干已含“int 类型且值为 6”完整前提，选项 1/2/3/4 与解析（含“ %= 等价 a=a%4”及余数界限提醒）均对照第 6 页页图通过，无需改动。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图题干“如果 a 和 b 为 int 类型的变量，且值分别为 7 和 2，则下列哪个表达式的计算结果不是 3.5？（ ）”；候选压缩语序但完整保留 a、b 为 int、值分别为 7 和 2、“找出计算结果不是 3.5 的表达式”设问，条件与语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图选项为 A. 0.0 + a / b、B. (a + 0.0) / b、C. (0.0 + a) / b、D. a / (0.0 + b)，候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页【答案】A，0 起始索引 0；候选 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入 a=7、b=2：A 中 / 优先级高于 +，先算 7/2=3（int 整除），再加 0.0 得 3.0≠3.5，符合“不是 3.5”；B 括号内 7+0.0=7.0，7.0/2=3.5；C 括号内 0.0+7=7.0，7.0/2=3.5；D 括号内 0.0+2=2.0，7/2.0=3.5。答案 A 与官方一致，候选解析逐项与本推导相符（其“除法向下截断”承接官方对正数整除的表述，本题 7/2 场景无歧义）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核五维 verified：本人独立对四个表达式代入 a=7、b=2 求值（A=3.0，B=C=D=3.5），确认答案 A（索引 0）不变；候选题干保留全部必要条件（类型、初值、设问），选项与解析为上轮已恢复的官方版本，本轮对照第 7 页页图逐项复核通过，无需改动。"
+      }
+    ],
+    "summary": "本轮独立复核题号 7、8、9、10、12（均为单选题，无编程题测试）。题 7、9、10、12 五维全部通过（题干语义等价、选项与官方一致、答案映射 7=D/3、9=C/2、10=B/1、12=A/0 无误、解析经独立推导确认），无需修改、approve。题 8 的选项（a*a / 1*a*a / a^2 / a*2*a/2）、答案 C（索引 2）、解析通过，但候选题干漏掉“用一个 int 类型的变量 a 表达正方形的边长”这一必要定义——a 的角色直接决定 A/B/D 是否表示面积（a 为对角线时面积应为 a²/2），属漏约束而非文风差异，故否决上轮“等价表述”结论、采纳官方原文修复题干，verdict=revise，verdict=revise 表示应用 changes 后五维与原卷一致。验收口径：statement/options/explanation 均以 PDF 页图逐字对照并独立推导；answer 以 PDF 答案表与 0 起始索引映射核对。"
+  }
+}

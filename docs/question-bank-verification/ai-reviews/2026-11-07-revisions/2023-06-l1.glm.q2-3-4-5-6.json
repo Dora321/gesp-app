@@ -1,0 +1,236 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T19:12:15.095Z",
+  "completedAt": "2026-11-07T19:13:32.811Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 68813,
+    "completion_tokens": 5189,
+    "total_tokens": 74002,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2754
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01291645,
+      "allowance": 0.01291645,
+      "tokens": {
+        "input": 68813,
+        "output": 5189,
+        "reasoning": 2754,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "609820cbdb28b66d7addbd763c6af930bc5f24c0ed84179f007afb69d024affd",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“2023 年 6 月 GESP C++ 一级真题解析”，与 paperId 2023-06-l1、year=2023、month=6、level=1 一致；单选题部分（第 1 页）标注“每题 2 分，共 30 分”与候选 score=2 吻合。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末至第 2 页原题干为“ChatGPT 是 OpenAI 研发的聊天机器人程序，它能通过理解和学习人类的语言来进行对话，还能根据聊天的上下文进行互动，完成很多工作。请你猜猜看，下面任务中，ChatGPT 不能完成的是（ ）。”；候选压缩为“ChatGPT 是目前流行的一种人工智能应用，它不能完成的任务是（ ）”，保留了“ChatGPT”与“不能完成的任务”两个设问核心，删减部分仅为背景铺垫，判定所需信息（ChatGPT 为软件程序）不受影响，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项为 A. 改邮件、B. 编剧本、C. 擦地板、D. 写代码；候选四项内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】C，对应 0 起始索引 2；候选 answer=2，且 index2=“擦地板”，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：改邮件、编剧本、写代码均可由 ChatGPT 以文本方式完成，擦地板需物理执行、纯软件程序无法亲自完成；候选逐项分析结论与此一致，“询问如何擦地板得到文字步骤属于信息生成，不等于亲自执行”的提醒合理，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立逐字对照 PDF 第 1—2 页：候选的选项与答案映射（index2=擦地板=官方 C）及解析均与原卷一致。上一轮修订（官方四选项+完整逐项解析）已正确落实，初核五维 verified 的结论经我独立复核成立，接受之，无新增修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页原题干“3. 常量'3'的数据类型是（ ）。”与候选“常量 '3' 的数据类型是（ ）。”逐字一致，仅引号旁空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项为 A. double、B. float、C. char、D. int；候选四项内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】C，对应 0 起始索引 2；候选 answer=2，且 index2=char，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：单引号括起的单个字符是字符常量，类型为 char；'3' 的 ASCII 编码为 51，与整数 3 是不同值。候选对 double/float（实数字面量带小数点或指数）与 int（直接写数字）的区分说明正确，与官方“属于字符型 char”的解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照 PDF 第 2 页原文：题干、选项（double/float/char/int）、答案映射（answer=2 → char）与解析结论均与原卷一致，上一轮选项修复已正确落实，初核结论经复核成立，接受之。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末原题干“4. 下列关于 C++语言变量的叙述，正确的是（ ）。”；候选“关于C++语言变量的叙述，正确的是（ ）”仅省略“下列”二字，设问对象与判断要求不变，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末选项为 A. 变量可以没有定义、B. 对一个没有定义的变量赋值，相当于定义了一个新变量、C. 执行赋值语句后，变量的类型可能会变化、D. 执行赋值语句后，变量的值可能不会变化；候选四项文字与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】D，对应 0 起始索引 3；候选 answer=3，且 index3 为官方 D 项原文，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 变量须“先定义，再使用”，A（可以没有定义）与 B（赋值相当于定义新变量）错误；赋值只改值不改声明类型，C 错误；当右侧结果与变量原值相同时（如 a=10 再赋 a=10;）值保持不变，D 正确。候选对“可能”二字的辨析与该推导及官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照 PDF 第 2—3 页：候选四个选项与官方逐字一致，答案映射（answer=3 → D 项“值可能不会变化”）正确，解析剔除原错位干扰项后已与官方判据吻合，上一轮修复落实无误，初核结论经复核成立，接受之。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原题干“5. 以下可以作为 C++标识符的是（ ）。”；候选“可以作为C++标识符的是（ ）”仅省略“以下”，设问与判断标准不变，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项为 A. number_of_Chinese_people_in_millions、B. 360AntiVirus、C. Man&Woman、D. break；候选四项内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】A，对应 0 起始索引 0；候选 answer=0，且 index0 为合法长标识符，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：B 以数字 3 开头违反命名的首字符规则；C 含字符 &（非字母/数字/下划线）；D break 为 C++ 关键字（官方第 4 页关键字表亦列有 break），均不合法；A 仅含字母与下划线且以字母开头，合法，且标识符无长度上限。候选解析判据与官方解析及第 4 页关键字表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照 PDF 第 3 页及第 4 页关键字表：候选已恢复官方干扰项（数字开头/含&/关键字 break），答案映射（answer=0 → A）与解析判据均正确，上一轮修复落实无误，初核结论经复核成立，接受之。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原题干“6. 以下哪个不是 C++语言的关键字？（ ）”；候选“以下哪个不是C++语言关键字（ ）”仅有“的”字、问号与空格的排版差异，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项为 A. double、B. else、C. while、D. endl；候选四项内容与顺序完全一致；PDF 第 4 页 C++ 关键字表中列有 double、else、while（分别见于 double 行、else 格、while 格），表中无 endl。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】D，对应 0 起始索引 3；候选 answer=3，且 index3=endl，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对第 4 页关键字表：double、else、while 均为语言关键字；endl 不在表中，是标准库流操纵符，需包含 <iostream> 并以 std::endl 使用，作用为输出换行并刷新缓冲区，不属于语言保留字。候选关于关键字与标准库符号区别的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照 PDF 第 3 页选项及第 4 页关键字表原图：候选已恢复官方选项（double/else/while/endl），答案映射（answer=3 → endl=官方 D）与解析（endl 属标准库非关键字）均与原卷判据一致，上一轮修复落实无误，初核结论经复核成立，接受之。"
+      }
+    ],
+    "summary": "本次按分工仅核验题号 2、3、4、5、6 共 5 道单选题，其余题目只作上下文不输出。逐题对照 PDF 第 1—4 页原图独立复核：5 题的题干与官方均为语义等价表述（题 4、5、6 仅省略“下列/以下”或“的”字等排版差异，题 2 为保留设问核心的压缩改写，均不影响作答）；题 2、3、4、5、6 的选项均已是上一轮修复后的官方选项且顺序一致（改邮件/编剧本/擦地板/写代码；double/float/char/int；变量定义与赋值四叙述；number_of_Chinese_people_in_millions/360AntiVirus/Man&Woman/break；double/else/while/endl）；答案映射逐一复验（C→2、C→2、D→3、A→0、D→3）全部正确；解析均已按官方选项逐项重写，与我的独立推导及官方判据（含第 4 页关键字表）一致，无事实性错误。故 5 题均为 verdict=approve、changes={}、unresolved=[]，初核结论全部接受；五题均为单选题，无编程测试与参考代码维度。"
+  }
+}
