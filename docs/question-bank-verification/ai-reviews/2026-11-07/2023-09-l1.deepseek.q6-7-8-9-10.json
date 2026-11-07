@@ -1,0 +1,251 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T19:57:13.575Z",
+  "completedAt": "2026-11-07T19:58:52.734Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28108,
+    "completion_tokens": 15062,
+    "total_tokens": 43170,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28032,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 12352,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0091327,
+      "allowance": 0.00547962,
+      "tokens": {
+        "input": 76,
+        "output": 15062,
+        "reasoning": 12352,
+        "cache_read": 28032,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c8ff345b811941eff175adca112d1470c5ef195c2925ce31f752d78735b88d65",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2023 年 9 月”，与 paperId 2023-09-l1 的年月、等级匹配。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题题干为“对 int 类型的变量 a、b、c，下列语句不符合C++语法是（ ）。”，当前题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. c += 5; B. b = c % 2.5; C. a = (b = 3, c = 4, b + c); D. a -= a = (b = 6) / (c = 2); 当前选项仅 C 中空格及 b+c 写法不同，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 B，按0起始索引为1；当前 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析对 B 的 % 操作数必须为整数、C 的逗号表达式合法、D 的赋值表达式在语法上合法给出判断，与官方答案 B 的推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题代码为 m=14、n=12，三段 if-else 判断奇偶并输出中文文本；当前 question 中的代码与源卷一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 都是偶数 B. 都是奇数 C. 不都是偶数或奇数 D. 以上说法都不正确；当前 options 顺序和文本一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 A，按0起始索引为0；当前 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "m=14、n=12 时 m%2==0、n%2==0，第一条件成立并输出“都是偶数”，与当前解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第2页第8题代码使用 m=14、n=12，条件为 if (m % 2 && n % 2)、else if (m % 2 == 1 && n % 2 == 1)，并输出中文文本；当前 question 被改成了输出 A/B/C 的另一段代码，与源卷不符。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 选项为 A. 都是偶数 B. 都是奇数 C. 不都是偶数或奇数 D. 以上说法都不正确，其中 D 在第3页顶部；当前 options 为 A/B/C/程序运行错误，与源卷不符。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 C，按0起始索引为2；当前 answer=2，修正选项后索引2仍对应 C“不都是偶数或奇数”。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "源卷实际执行 m=14、n=12：m%2=0、n%2=0，第一、第二条件均为假，执行 else，输出“不都是偶数或奇数”，应选 C；当前解析按 A/B/C 选项和另一段代码推导，需替换。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面C++代码执行后的输出是（ ）。\n```cpp\nint m = 14;\nint n = 12;\nif (m % 2 && n % 2)\n    cout << \"都是偶数\";\nelse if (m % 2 == 1 && n % 2 == 1)\n    cout << \"都是奇数\";\nelse\n    cout << \"不都是偶数或奇数\";\n```",
+          "options": [
+            "都是偶数",
+            "都是奇数",
+            "不都是偶数或奇数",
+            "以上说法都不正确"
+          ],
+          "explanation": "**答案：C（不都是偶数或奇数）**\n\nm=14，n=12。`m % 2` 和 `n % 2` 均为0。第一个条件 `if (m % 2 && n % 2)` 即 `if (0 && 0)`，为假；第二个条件 `if (m % 2 == 1 && n % 2 == 1)` 即 `if (0 == 1 && 0 == 1)`，也为假；因此执行最后的 `else`，输出字符串“不都是偶数或奇数”，对应选项C。第一个分支的文本虽写“都是偶数”，但其条件是两个数都为奇数，本题不会进入该分支。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第3页第9题代码为 int m = 7; if (m / 5 || m / 3) cout << 0; else if (m / 3) cout << 1; else if (m / 5) cout << 2; else cout << 3; 当前 question 使用了 n=7、n / 5 != 0 并改动了后续条件，与源卷不符。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 0 B. 1 C. 2 D. 3；当前 options 为 0、1、2、3，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 A，按0起始索引为0；当前 answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "源卷 m=7 时 m/5=1、m/3=2，`m / 5 || m / 3` 为真，进入第一个 if 并输出 0；当前解析虽得 0，但引用的是被改写的 n 和 `!=0` 条件，需按原代码重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面C++代码执行后的输出是（ ）。\n```cpp\nint m = 7;\nif (m / 5 || m / 3)\n    cout << 0;\nelse if (m / 3)\n    cout << 1;\nelse if (m / 5)\n    cout << 2;\nelse\n    cout << 3;\n```",
+          "explanation": "**答案：A（0）**\n\nm=7。整数除法 `m / 5` 得1，`m / 3` 得2；两者均为非零值，在逻辑或条件中按真处理，因此 `m / 5 || m / 3` 为真。程序进入第一个 `if` 分支，执行 `cout << 0`，输出0；后续 `else if` 和 `else` 均不执行。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第3页第10题代码为 int cnt = 0; for (int i = 1; i <= 5; i++) cnt = cnt + 1; cout << cnt; 当前 question 改成了 s += i 的累加求和代码，与源卷不符。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 选项为 A. 1 B. 4 C. 5 D. 10；当前 options 为 1、5、15、10，与源卷不符。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 C，按0起始索引为2；当前 answer=2，修正选项后索引2对应 C“5”。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "源卷循环体仅执行 `cnt = cnt + 1` 共5次，cnt 由0变为5，输出5；当前解析按 1+2+...+5=15 推导，与源卷代码不符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面C++代码段执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i <= 5; i++)\n    cnt = cnt + 1;\ncout << cnt;\n```",
+          "options": [
+            "1",
+            "4",
+            "5",
+            "10"
+          ],
+          "explanation": "**答案：C（5）**\n\n`cnt` 初值为0，`for` 循环的 `i` 从1取到5，循环体共执行5次；每次执行 `cnt = cnt + 1`，`cnt` 依次变为1、2、3、4、5。循环结束后输出 `cnt`，结果为5。注意本题循环体不是 `cnt += i`，不能按1+2+3+4+5计算。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第1-3页及答案表核对指定第6-10题。第6、7题与源卷一致；第8、9、10题的题干代码与 PDF 不一致，第8、10题的选项也不一致，均已在 changes 中给出纠错草稿；第8-10题的答案索引与官方答案表一致。无未决项。"
+  }
+}

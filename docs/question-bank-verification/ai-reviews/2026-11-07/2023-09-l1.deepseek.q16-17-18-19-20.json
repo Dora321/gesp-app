@@ -1,0 +1,234 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T20:12:21.067Z",
+  "completedAt": "2026-11-07T20:14:21.791Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28108,
+    "completion_tokens": 11795,
+    "total_tokens": 39903,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28032,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 9433,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0071725,
+      "allowance": 0.0043035,
+      "tokens": {
+        "input": 76,
+        "output": 11795,
+        "reasoning": 9433,
+        "cache_read": 28032,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c8ff345b811941eff175adca112d1470c5ef195c2925ce31f752d78735b88d65",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2023 年 9 月”，与 2023-09-l1 的年份、月份和等级一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第1题原文为“早期计算机内存不够大，可以将字库固化在一个包含只读存储器的扩展卡中插入计算机主板帮助处理汉字。”网站写成“……扩展卡中协助处理汉字”，省略了“插入计算机主板”，但“用含 ROM 的扩展卡固化字库以辅助汉字处理”的核心语义未变，不影响判断。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A/B/C/D 单选选项；网站用“正确/错误”表示判断结果，不属于单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第1题为 √；独立判断：汉卡通过 ROM 扩展卡固化字库，题述成立。officialAnswer=0，网站 answer=0，两者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以汉卡和 ROM 固化字库解释内存不足时借助扩展卡处理汉字的方案，符合计算机硬件发展史；未发现事实或推导错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第2题原文与网站题面一致：神威·太湖之光是中国自主研制的超级计算机，在全球超级计算机 TOP500 排行榜中多次荣膺榜首。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A/B/C/D 单选选项；网站用“正确/错误”表示判断结果，不属于单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第2题为 √；独立判断：神威·太湖之光采用国产申威处理器，曾在 TOP500 多次排名第一，题述成立。officialAnswer=0，网站 answer=0，两者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出国产申威处理器、2016—2017 年多次位居 TOP500 第一、峰值性能约 12.5 亿亿次等事实，均有依据，未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第3题原文与网站题面一致：C++ 表达式 int(3.14) 的值为 3。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A/B/C/D 单选选项；网站用“正确/错误”表示判断结果，不属于单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第3题为 √；独立判断：浮点数转 int 时向零截断，int(3.14) 得 3。officialAnswer=0，网站 answer=0，两者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明函数式类型转换及向零截断机制，并给出 int(-3.9) 为 -3 的补充，未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页判断题第4题原文为“C++语句 cout << (2, 3, \"23\") 的输出为 2, 3, 23 。”网站写成“输出为 2,3,23”，少了输出串中的两个空格。题干是在断言具体输出内容，空格属于被判断文本，建议恢复。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A/B/C/D 单选选项；网站用“正确/错误”表示判断结果，不属于单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第4题为 ×，officialAnswer=1；独立判断：(2, 3, \"23\") 是逗号表达式，值为最后一个子表达式 \"23\"，输出为 23，而非 2, 3, 23，命题错误。网站 answer=1，与答案表一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体正确：逗号表达式取最后一个子表达式的值，输出为 23。但知识延伸把 for 初始化/迭代表达式中的逗号说成“分隔符的用法”不准确；如 for(i=0, j=10; i<j; i++, j--) 中的逗号仍是逗号表达式。需改正该处表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "C++ 语句 cout << (2, 3, \"23\") 的输出为 2, 3, 23。",
+          "explanation": "**答案：错误**\n\n**判定依据：**\n`(2, 3, \"23\")` 是一个逗号表达式。逗号表达式从左到右依次计算各子表达式，整个表达式的值取最后一个子表达式的值；前面的 `2`、`3` 只被求值，结果被丢弃。因此 `cout << (2, 3, \"23\")` 输出的是最后一个子表达式 `\"23\"` 的内容，即 `23`（不含引号），而不是 `2, 3, 23`。原命题错误。\n\n**易错提醒：**\n- 括号限定了逗号表达式的范围，不能把它误认为 `cout` 的多个输出项。\n- 逗号表达式只产生最后一个值，不会依次输出所有子表达式。\n\n**知识延伸：**\n逗号运算符的优先级低于常见算术、关系和赋值运算符；在 `for (i = 0, j = 10; i < j; i++, j--)` 的初始化/迭代表达式中，逗号同样构成逗号表达式，而不是简单并列多个独立语句。\n\n**考点：** 逗号表达式的求值特性与结果判定"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第5题原文与网站题面一致：for (int i = 0; i < 10; i += 2) 表示 i 从 0 开始到 10 结束但不包含 10，间隔为 2。仅有空格和标点排版差异，不改变语义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A/B/C/D 单选选项；网站用“正确/错误”表示判断结果，不属于单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第5题为 √；独立判断：循环体实际处理 i=0、2、4、6、8，i 自增到 10 时条件失败退出，确实不包含 10，间隔为 2。officialAnswer=0，网站 answer=0，两者一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论正确，但解析称 i 的合法取值为 0,1,2,...,9、并称“到 9 结束”，与步长 2 不符。实际循环体处理的 i 是 0、2、4、6、8，i=10 时退出；该推导错误需改正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n`for (int i = 0; i < 10; i += 2)` 的三个部分为：\n1. 初始化 `int i = 0`：i 从 0 开始。\n2. 条件 `i < 10`：每轮进入循环体前判断，只有 i 小于 10 才执行循环体；当 i 变为 10 时条件为假，循环结束，因此循环体处理的 i 不包含 10。\n3. 步进 `i += 2`：每轮循环体执行完后，i 增加 2。\n\n循环体实际处理的 i 依次为 `0, 2, 4, 6, 8`；执行完 i=8 这一轮后，i 自增为 10，条件 `10 < 10` 为假，循环终止。因此 i 从 0 开始，按间隔 2 递增，止于 10 之前（不包含 10），命题正确。\n\n**易错提醒：**\n- 不要把条件失败时的 i=10 误认为循环体执行过 i=10；也不要把 0 到 9 的所有整数都列为 i 的取值，步长是 2。\n- `i += 2` 表示每轮加 2，而不是“递增到 2 为止”。\n\n**知识延伸：**\n若要让循环体包含 10，可把条件改为 `i <= 10`；此时实际处理的值为 `0, 2, 4, 6, 8, 10`。\n\n**考点：** for 循环的三个表达式语义及边界条件"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第 1、5 页核验题 16—20（对应判断题 1—5）。卷头为 2023 年 9 月 C++ 一级；第 5 页判断题答案表为 √√√×√，与网站答案 0/0/0/1/0 一致。题 16—18 题面与解析未发现实质错误；题 19 题面输出串空格需恢复，解析中 for 循环逗号说明需改正；题 20 题面正确，但解析中的 i 取值序列和结束值需改正，结论仍正确。未发现答案冲突，无待决项。"
+  }
+}

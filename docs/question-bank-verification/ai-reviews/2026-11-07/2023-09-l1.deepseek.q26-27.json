@@ -1,0 +1,171 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T20:22:52.245Z",
+  "completedAt": "2026-11-07T20:24:12.018Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28102,
+    "completion_tokens": 11979,
+    "total_tokens": 40081,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28032,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 10778,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.007282,
+      "allowance": 0.0043692,
+      "tokens": {
+        "input": 70,
+        "output": 11979,
+        "reasoning": 10778,
+        "cache_read": 28032,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c8ff345b811941eff175adca112d1470c5ef195c2925ce31f752d78735b88d65",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页的卷头显示 CCF GESP、C++、一级、2023 年 9 月，与 2023-09-l1 的年份、月份及等级一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 3.1.1—3.1.7：签字笔 2 元/支、记事本 5 元/本、直尺 3 元/把，数量为 X、Y、Z，钱数为 Q；输入 4 行，约定 1≤X,Y,Z≤10；样例 1 输出 Yes/10，样例 2 输出 No/5。网站题面和样例一致；输入描述未逐行重复写出 X/Y/Z，但前文已定义，不影响题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，PDF 无客观题答案索引，按测试点评分。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：总价为 2X+5Y+3Z；Q≥总价时输出 Yes 和 Q−总价，否则输出 No 和总价−Q。样例 1 总价 10、余额 10；样例 2 总价 10、差额 5，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 3.1.8 与网站代码逻辑等价：读取 4 个 int，计算 2*x+5*y+3*z，再按 q>=cost 分支输出；仅变量名 t/cost 不同。X/Y/Z≤10 时总价≤100，O(1)；PDF 未给 Q 上界，官方也同样以 int 读取 Q，故不另改。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小数量且钱不足",
+            "input": "1\n1\n1\n1\n",
+            "output": "No\n9\n",
+            "reason": "总价 2+5+3=10，Q=1<10，差额 9，覆盖最小数量与 No 分支。"
+          },
+          {
+            "name": "最大数量且刚好够",
+            "input": "10\n10\n10\n100\n",
+            "output": "Yes\n0\n",
+            "reason": "总价 20+50+30=100，Q=100，相等时走 Yes，余额 0，覆盖最大数量与边界相等。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7—8 页 3.2.1—3.2.9：个位数为 k 的正整数及所有 k 的倍数为“k 幸运数”，求 [L,R] 内幸运数之和；约定 2≤k≤9、1≤L≤R≤1000；样例 1 为 7，样例 2 为 31。网站题面、约束和样例一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，PDF 无客观题答案索引，按测试点评分。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：枚举 [L,R]，条件为 (n%10==k)||(n%k==0)，每个数最多累加一次；样例 1 仅 7 满足，样例 2 为 14+17=31，解析正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 3.2.10 使用 int n 循环，网站使用 long long i，逻辑等价；区间长度≤1000，最大和不超过 250500，无溢出；时间复杂度 O(R−L+1)，重叠满足两条件时只累加一次。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小区间且非幸运数",
+            "input": "2\n1\n1\n",
+            "output": "0\n",
+            "reason": "1 不是 2 的倍数，个位数也不是 2，和为 0，覆盖 L=R=1 的最小值。"
+          },
+          {
+            "name": "单点同时满足两条件",
+            "input": "2\n2\n2\n",
+            "output": "2\n",
+            "reason": "2 既是个位为 2，又是 2 的倍数；单次 if 只累加一次。"
+          },
+          {
+            "name": "右端上界与多位数个位",
+            "input": "9\n999\n1000\n",
+            "output": "999\n",
+            "reason": "999 个位为 9 且能被 9 整除，1000 不满足；覆盖 R=1000 上界。"
+          },
+          {
+            "name": "最大区间全偶数覆盖",
+            "input": "2\n1\n1000\n",
+            "output": "250500\n",
+            "reason": "k=2 时所有个位为 2 的数都是偶数，已被 2 的倍数覆盖；总和 2+4+…+1000=250500。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "按指令仅核验题号 26、27。两题的题面、约束、样例、解析及参考程序均与 PDF 页图一致，未发现需要修改的字段；已补充独立推导的边界测试，未声称实际运行。"
+  }
+}

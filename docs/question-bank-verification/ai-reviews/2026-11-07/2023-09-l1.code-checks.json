@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-07T20:27:48.491Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "1\n1\n1\n20",
+          "output": "Yes\n10",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\n10\n",
+          "passed": true
+        },
+        {
+          "input": "1\n1\n1\n5",
+          "output": "No\n5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "No\n5\n",
+          "passed": true
+        },
+        {
+          "name": "最小数量且钱不足",
+          "input": "1\n1\n1\n1",
+          "output": "No\n9",
+          "reason": "cost=2+5+3=10，Q=1<10，输出 No 与差额 9；覆盖 X/Y/Z 最小值与 No 分支。",
+          "kind": "boundary",
+          "actual": "No\n9\n",
+          "passed": true
+        },
+        {
+          "name": "最大数量且恰好够",
+          "input": "10\n10\n10\n100",
+          "output": "Yes\n0",
+          "reason": "cost=20+50+30=100，Q=100 时走 Yes 分支输出余额 0；覆盖最大数量与 q==cost 边界。",
+          "kind": "boundary",
+          "actual": "Yes\n0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "75db38eb0a22ee937f7d2dc2d390deab5223248bb354fb2f5f592034d2be0bcc"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "7\n1\n10",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "input": "7\n10\n20",
+          "output": "31",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "name": "最小区间且非幸运数",
+          "input": "2\n1\n1",
+          "output": "0",
+          "reason": "L=R=1：1%10=1≠2，1%2=1≠0，和为 0；覆盖 k 与 L 的最小值。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "单点同时满足两条件",
+          "input": "2\n2\n2",
+          "output": "2",
+          "reason": "2 既个位为 2 又是 2 的倍数，或关系下单次 if 只累加一次，和=2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "k 上界与 R 上界混合",
+          "input": "9\n999\n1000",
+          "output": "999",
+          "reason": "999 个位为 9 且 999=9×111，累加一次；1000 两条件均不满足。覆盖 k=9 与 R=1000 上界。",
+          "kind": "boundary",
+          "actual": "999\n",
+          "passed": true
+        },
+        {
+          "name": "全区间偶数覆盖",
+          "input": "2\n1\n1000",
+          "output": "250500",
+          "reason": "k=2 时个位为 2 的数均为 2 的倍数，并集即 [1,1000] 全部偶数，2+4+…+1000=250500；覆盖最大区间。",
+          "kind": "boundary",
+          "actual": "250500\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "8ee05e29d3f96817426fcef5f07b79a1db52b8795248a3aa7c983f5b82e37fa1"
+    }
+  ]
+}

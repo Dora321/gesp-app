@@ -1,0 +1,229 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T20:20:17.827Z",
+  "completedAt": "2026-11-07T20:21:10.506Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28108,
+    "completion_tokens": 6684,
+    "total_tokens": 34792,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28032,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 5460,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0041059,
+      "allowance": 0.00246354,
+      "tokens": {
+        "input": 76,
+        "output": 6684,
+        "reasoning": 5460,
+        "cache_read": 28032,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c8ff345b811941eff175adca112d1470c5ef195c2925ce31f752d78735b88d65",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头标注“C++ 一级 2023年9月”，与2023-09-l1一致；题号21-25对应PDF第5页判断题第6-10题。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第6题原文为“C++表达式 ('1' + '1') 的值为 '2'。”，网站题面含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF以判断题形式给出，答案表用×表示错误；网站选项为“正确/错误”，映射为0/1，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第6项为×，对应“错误”，即0起始索引1，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按字符常量取ASCII码推导：'1'为49，49+49=98，而'2'的码值为50，故命题错误；独立推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第7题原文为“在C++语言中，do-while 循环不可能导致死循环，但 while 有可能。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF答案表以×表示该判断为错误，网站“正确/错误”二选项映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第7项为×，对应“错误”，即索引1，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出do-while先执行循环体再判断条件，条件恒真时同样可死循环，故原命题错误；推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第8题原文为“在下面的C++代码中，由于循环中的 continue 是无条件被执行，因此将导致死循环。”，并给出代码 for (int i = 1; i < 10; i++) continue;，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF答案表第8项为×，网站“正确/错误”选项与判断题符号映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第8项为×，对应“错误”，即索引1，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明continue不会跳过for的更新表达式i++；i取1到9共9轮后正常结束，不会死循环，故命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第9题原文为“在C++代码中，不可以将变量命名为 cout ，因为 cout 是C++的关键字。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF答案表第9项为×，网站“正确/错误”选项顺序与0/1映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第9项为×，对应“错误”，即索引1，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分C++关键字与std命名空间中的cout对象；cout不是关键字，原命题理由不成立，故判断为错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第10题原文为“C++是一种高级程序设计语言。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF答案表第10项为√，网站“正确/错误”选项映射为0/1，顺序正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第10项为√，对应“正确”，即索引0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按机器语言、汇编语言、高级语言的层次说明C++属于高级程序设计语言，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核对题号21-25（PDF判断题第6-10题）。题面、选项、答案与PDF第5页及判断题答案表一致：第6-9题答案为×（网站answer=1），第10题答案为√（网站answer=0）。五题解析经独立推导均成立，无需修改；判断题无参考代码和编程边界测试。"
+  }
+}

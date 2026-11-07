@@ -1,0 +1,241 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T19:52:39.582Z",
+  "completedAt": "2026-11-07T19:54:46.042Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28108,
+    "completion_tokens": 13410,
+    "total_tokens": 41518,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 10366,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0122622,
+      "allowance": 0.00735732,
+      "tokens": {
+        "input": 28108,
+        "output": 13410,
+        "reasoning": 10366,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c8ff345b811941eff175adca112d1470c5ef195c2925ce31f752d78735b88d65",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 一级 2023年9月”；单选答案表第1-5题依次为 C、D、B、C、D，与paperId及网站答案映射相符（C=2，D=3，B=1，C=2，D=3）。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题题干与网站一致：“我们通常说的‘内存’属于计算机中的（ ）。”"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项依次为A输出设备、B输入设备、C存储设备、D打印设备，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第1题答案为C，对应0起始索引2；与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析知识延伸称“存储器与运算器、控制器共同构成CPU核心”，该说法错误：CPU核心由运算器、控制器及寄存器/高速缓存等构成，内存储器不属于CPU核心。答案C不受影响，但解析需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (存储设备)**\n\n**核心解析：**\n计算机硬件系统通常分为运算器、控制器、存储器、输入设备和输出设备五大部件。内存（主存储器，通常指RAM）位于主机内部，用于临时存放CPU正在执行的程序指令和数据，承担存储功能，因此属于存储设备。\n\n**选项逐项分析：**\n- **A (输出设备)**：错误。输出设备把计算机内部的数据向外传递，如显示器、打印机；内存不负责向外输出。\n- **B (输入设备)**：错误。输入设备把外部信息送入计算机，如键盘、鼠标；内存不负责接收外部输入。\n- **C (存储设备)**：正确。内存是计算机内部的存储部件，用于暂存运行中的程序和数据；其易失性不改变其存储设备属性。\n- **D (打印设备)**：错误。打印设备属于输出设备，与内存的存储功能不同。\n\n**易错提醒：**\n- 存储器分为内存储器（主存，如RAM）和外存储器（辅存，如硬盘、U盘）；不能把内存与外存混淆。\n- 内存速度快、断电易失，这些是内存的特点，不意味着它属于运算器。\n\n**知识延伸：**\nCPU主要由运算器和控制器构成，并包含寄存器、高速缓存等部件；内存储器属于主机中的存储部件，不属于CPU核心。\n\n**考点：** 计算机硬件系统的分类与功能分工"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干为“以下C++不可以作为变量的名称的是（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项依次为A redStar、B RedStar、C red_star、D red star；D含空格不合法，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第2题答案为D，对应0起始索引3；与网站answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按标识符不能包含空格、必须为连续字符序列说明D不合法，A/B/C均合法；推导与官方答案D一致，未发现实质性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题表达式为“2 - 1 && 2 % 10”，网站写作“2-1 && 2 % 10”，仅为空格排版差异，含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项依次为A 0、B 1、C 2、D 3，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第3题答案为B，对应0起始索引1；与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按优先级先算2-1=1、2%10=2，再算1&&2为真，对应官方值1；短路求值说明亦成立，未发现实质性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第4题代码为 int a=3,b=4; cout << \"a+b=\" << a+b;，与网站代码块一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项依次为A 3+4= 7（等号后有空格）、B 3+4=7、C a+b=7、D a+b=a+b，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第4题答案为C，对应0起始索引2；与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析逐项分析把B写成“(7)”，但PDF和网站实际选项B为“3+4=7”；另有“合龙输出”笔误。答案C仍正确，但选项分析需按实际选项修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (a+b=7)**\n\n**核心解析：**\n语句 `cout << \"a+b=\" << a+b;` 按从左到右顺序输出两个部分：\n1. 字符串字面量 `\"a+b=\"` 原样输出 `a+b=`；\n2. 表达式 `a+b` 使用变量值计算，`a=3,b=4`，结果为 `7`；\n两部分直接拼接，输出 `a+b=7`。\n\n**选项逐项分析：**\n- **A (3+4= 7)**：错误。字符串部分不会把变量名替换成数值，输出开头应为 `a+b=`；且该选项还多一个空格。\n- **B (3+4=7)**：错误。理由同上，`\"a+b=\"` 是字符串字面量，输出的是 `a+b=`，不是 `3+4=`。\n- **C (a+b=7)**：正确。字符串原样输出，变量表达式求值为 `7`，拼接得到 `a+b=7`。\n- **D (a+b=a+b)**：错误。第二个 `a+b` 不加引号，是表达式，会求值为 `7`，不会原样输出。\n\n**易错提醒：**\n- 双引号内的内容是字符串字面量，原样输出；双引号外的变量或表达式要按值计算。\n- `cout` 的多个 `<<` 输出项按从左到右顺序拼接。\n\n**知识延伸：**\n`cout` 根据操作数类型选择输出方式；字符串输出字符序列，整型表达式输出计算结果。\n\n**考点：** 输出流中字符串字面量与变量表达式的区别"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题题干为“在C++语言中，int类型的变量x、y、z的值分别为2、4、6，以下表达式的值为真的是（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第2页选项D为“x < y || !x < z”，网站写成“x < y || ! (x < z)”，多出括号，改变了“!”的作用对象和运算优先级；A-C顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页单选答案表第5题答案为D，对应0起始索引3；与网站answer=3一致；按PDF原式D仍为真。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析按带括号的“!(x < z)”解释，和PDF原式“!x < z”不一致；应按“!”优先于“<”解析为“(!x) < z”。虽然左侧x<y为真使整个||为真，结论D不变，但解析需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "x > y || x > z",
+            "x != z - y",
+            "z > y + x",
+            "x < y || !x < z"
+          ],
+          "explanation": "**答案：D (x < y || !x < z)**\n\n**核心解析：**\n已知 x=2、y=4、z=6。原式D为 `x < y || !x < z`。C++中 `!` 的优先级高于 `<`，因此右侧 `!x < z` 解析为 `(!x) < z`，整个表达式等价于 `(x < y) || ((!x) < z)`。\n- `x < y` 即 `2 < 4`，为真；逻辑或 `||` 具有短路求值，左侧为真时整个表达式已确定为真。\n- 即使继续求右侧：`!x` 为 `false`（转换为0），`0 < 6` 也为真；不影响结论。\n\n**选项逐项分析：**\n- **A (x > y || x > z)**：`2 > 4` 假，`2 > 6` 假，结果假。\n- **B (x != z - y)**：`z-y=6-4=2`，`x != 2` 即 `2 != 2`，结果假。\n- **C (z > y + x)**：`y+x=4+2=6`，`6 > 6` 假。\n- **D (x < y || !x < z)**：`2 < 4` 真，整个逻辑或表达式为真，故选D。\n\n**易错提醒：**\n- `!x < z` 不是 `!(x < z)`；`!` 只作用于 `x`，再与 `z` 比较，这是运算符优先级考点。\n- 逻辑或短路求值可避免计算右侧，但本题右侧按原式也为真。\n\n**知识延伸：**\n`!` 是单目逻辑非，优先级高于关系运算符 `<`；若想表达“x<z不成立”，必须写成 `!(x < z)`。\n\n**考点：** 关系运算符、逻辑运算符与优先级/短路求值"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅初核第1-5题。卷头年月、等级及单选答案表与网站答案映射一致；第2、3题未发现实质问题；第1题解析含CPU组成表述错误，第4题解析B项与实际选项不符并有笔误，第5题选项D多出括号且解析按带括号的错误表达式解释。已分别给出纠错草稿，均为客观题，未涉及参考代码运行。"
+  }
+}
