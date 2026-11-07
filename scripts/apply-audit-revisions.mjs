@@ -79,8 +79,8 @@ for (const id of process.argv.slice(2)) {
             codeCheck = checkProgram(id, question, b.tests); codeChecks.push(codeCheck);
         }
         const gate = gateQuestionReview(question, a, b, { codeCheck });
-        if (gate.blockedDimensions.length || Object.keys(a?.changes || {}).length || Object.keys(b?.changes || {}).length) {
-            deferred.push({ id: question.id, reasons: gate.unresolved, furtherChanges: b?.changes || {} }); continue;
+        if (gate.blockedDimensions.length || b?.verdict !== 'approve' || Object.keys(a?.changes || {}).length || Object.keys(b?.changes || {}).length) {
+            deferred.push({ id: question.id, reasons: [...gate.unresolved, ...(b?.verdict !== 'approve' ? ['复核未明确批准候选'] : []), ...(Object.keys(a?.changes || {}).length || Object.keys(b?.changes || {}).length ? ['模型仍提出追加修改，候选不能直接应用'] : [])], furtherChanges: b?.changes || {} }); continue;
         }
         const fields = { ...proposal.changes, sourcePage: b.sourcePages[0], reviewedBy: 'AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核', reviewedAt: date };
         updates.set(question.id, fields);
