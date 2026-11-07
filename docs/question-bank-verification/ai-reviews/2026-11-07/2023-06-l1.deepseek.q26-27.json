@@ -1,0 +1,168 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:58:03.752Z",
+  "completedAt": "2026-11-07T18:59:13.177Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37032,
+    "completion_tokens": 8308,
+    "total_tokens": 45340,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7110
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0105396,
+      "allowance": 0.00632376,
+      "tokens": {
+        "input": 37032,
+        "output": 8308,
+        "reasoning": 7110,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b71ae6ce69ffb9b245798446986d059fdb5789337eb8727ae49933fcf73ceca0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 6 月 GESP C++ 一级真题解析”，年月与等级均与paperId 2023-06-l1一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          12,
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第12页题1《时间规划》的问题描述、输入描述，第13页输出描述与样例1、2，均与本站题面一致：输入4行小时/分钟，24小时制，同日且开始时刻早于结束时刻，输出分钟差。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无单选选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引；PDF仅提供题目、样例和参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "对照PDF第13页题目大意与解题思路，核心为统一换算成总分钟数后作差；本站解析的公式、两个样例走查和借位说明均可独立复算成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第14页参考程序与本站代码均读入h1、m1、h2、m2并输出分钟差；本站使用(h2*60+m2)-(h1*60+m1)，与PDF的(h2-h1)*60+(m2-m1)在整数范围内等价。O(1)，最大时间跨度1439分钟，无溢出或边界问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小时间差",
+            "input": "0\n0\n0\n1\n",
+            "output": "1",
+            "reason": "同日且开始早于结束，最小可用差为1分钟；总分钟数0到1，差为1。"
+          },
+          {
+            "name": "分钟借位边界",
+            "input": "9\n59\n10\n0\n",
+            "output": "1",
+            "reason": "结束分钟小于开始分钟，按总分钟数计算为600-599=1，验证代码不依赖逐字段直接相减。"
+          },
+          {
+            "name": "当日最大跨度",
+            "input": "0\n0\n23\n59\n",
+            "output": "1439",
+            "reason": "24小时制下同日最晚为23:59，总分钟数1439，验证当天边界。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第14页输入描述为“约定1≤n≤100”；本站题面写成“$1 le n le 100$”，缺少LaTeX反斜杠，不能正确渲染≤。其余题目描述、三组样例与PDF原图一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无单选选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引；PDF仅提供题目、样例和参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF第15页解题思路给出第i项为1+2+...+i，可化为(i+1)*i/2并累加；本站解析用inner维护当前项、total累计总和，递推等价，样例3/4/10的走查结果分别10/20/220，均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第16页参考程序按(i+1)*i/2累加；本站代码用inner+=i、total+=inner递推同一三角数序列，结果一致。单层循环O(n)，n≤100，long long无溢出，实际最大值n=100时为171700。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202306 一级] 累计相加\n\n## 题目描述\n\n输入一个正整数 $n$，求形如：\n\n$1+(1+2)+(1+2+3)+(1+2+3+4)+ \\cdots +(1+2+3+4+5+ \\cdots +n)$ 的累计相加。\n\n## 输入格式\n\n输入一个正整数 $n$。约定 $1 \\le n \\le 100$。\n\n## 输出格式\n\n输出累计相加的结果。\n"
+        },
+        "tests": [
+          {
+            "name": "最小n",
+            "input": "1\n",
+            "output": "1",
+            "reason": "n=1时只有第1项1；按公式1×2×3/6=1，递推也为inner=1、total=1。"
+          },
+          {
+            "name": "n=2累加项",
+            "input": "2\n",
+            "output": "4",
+            "reason": "1+(1+2)=4；验证当前项inner在循环间保留并累加，未错误清零。"
+          },
+          {
+            "name": "最大约束n",
+            "input": "100\n",
+            "output": "171700",
+            "reason": "约束上限n=100，用闭式n(n+1)(n+2)/6=100×101×102/6=171700；验证最大边界及结果精度。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题26、27，均为编程题。题26题面、样例、解析和参考代码与PDF一致，代码与官方参考程序等价且边界测试通过设计核验。题27除输入约束LaTeX缺少反斜杠需修正外，题面、三组样例、解析和参考代码均一致；已补充最小值、递推边界和最大约束测试。编程题无选项答案，officialAnswer均为null。"
+  }
+}

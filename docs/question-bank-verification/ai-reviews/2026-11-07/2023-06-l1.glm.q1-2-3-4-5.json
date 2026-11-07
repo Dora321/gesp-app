@@ -1,0 +1,267 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:28:56.730Z",
+  "completedAt": "2026-11-07T18:33:42.564Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64851,
+    "completion_tokens": 20012,
+    "total_tokens": 84863,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16541
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01973365,
+      "allowance": 0.01973365,
+      "tokens": {
+        "input": 64851,
+        "output": 20012,
+        "reasoning": 16541,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b71ae6ce69ffb9b245798446986d059fdb5789337eb8727ae49933fcf73ceca0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023年6月 GESP C++ 一级真题解析”，并注明“2023年6月份，C++ 一级考试真题解析”，年月、语言与级别均与目标 2023-06-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维结论逐项复核无误。网站选项为官方集合的换序排列（允许），answer=0 仍指向“麦克风”，与官方【答案】A 的映射已核验一致，不构成需修复的问题。",
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原文“以下不属于计算机输出设备的有（ ）。”，与网站题干逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "官方选项 A 麦克风/B 音箱/C 打印机/D 显示器；网站为 麦克风/打印机/显示器/音箱，集合相同仅顺序不同（允许换序），answer=0→麦克风=官方A，映射核对无误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页标注【答案】A，0 起始索引为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按自身选项序逐项判断：麦克风为输入设备（外界→计算机），打印机/显示器/音箱为输出设备，结论与官方“麦克风属于向内部输入声音，属于输入概念”一致，推理独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "verdict": "revise",
+        "reviewNote": "采纳初核“选项被整体替换、须按官方修复并重写解析”的结论；但否决直接沿用其过简 explanation 草稿（缺逐项分析与易错提醒），已按官方四选项（改邮件/编剧本/擦地板/写代码）重写完整最终值。answer=2 修复选项后仍对应官方 C（擦地板），无需改动。",
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "官方题干（第1—2页）“ChatGPT 是 OpenAI 研发的聊天机器人程序……请你猜猜看，下面任务中，ChatGPT 不能完成的是（ ）”；网站简写为“ChatGPT 是目前流行的一种人工智能应用，它不能完成的任务是（ ）”，设问对象与目标未变，未丢失答题必需信息，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原数据选项 编写程序/翻译语言/炒菜/写诗 与官方 A 改邮件/B 编剧本/C 擦地板/D 写代码（第2页）内容不符，仅第3位“炒菜”与“擦地板”在语义角色上巧合等价；已提供官方完整选项修正值，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】C，索引 2；网站 answer=2。选项修复后 index2=擦地板=官方C，映射核验正确，answer 无需改动。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析以自拟选项（编写程序/翻译语言/炒菜/写诗）逐项展开，与官方选项（改邮件/编剧本/擦地板/写代码）不符；已按官方四选项重写完整解析并强调“信息生成≠物理执行”，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "改邮件",
+            "编剧本",
+            "擦地板",
+            "写代码"
+          ],
+          "explanation": "**答案：C（擦地板）**\n\n**核心解析：**\nChatGPT 是运行在计算机上的纯软件对话程序，能力集中在理解和生成文本信息。判断本题的关键，是看任务是否需要在物理世界中真实执行。\n\n**选项逐项分析：**\n- **A（改邮件）**：❌ 不符合题意。改写、润色邮件属于文本信息处理，ChatGPT 能够完成。\n- **B（编剧本）**：❌ 不符合题意。剧本创作属于文本生成，是 ChatGPT 擅长的任务。\n- **C（擦地板）**：✅ 符合题意。擦地板是现实世界中的物理动作，ChatGPT 作为软件程序没有实体硬件，无法亲自完成。\n- **D（写代码）**：❌ 不符合题意。ChatGPT 能够编写程序代码。\n\n**易错提醒：**\n- 向 ChatGPT 询问“如何擦地板”，它给出的是文字步骤，这属于信息生成，并不等于它具备亲自执行物理动作的能力。\n- 让 AI 完成擦地板等物理任务，需要将其与机器人等实体设备结合（具身智能）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "verdict": "revise",
+        "reviewNote": "采纳初核的选项修复方案（官方 A double/B float/C char/D int）；其 explanation 草稿方向正确但偏简，替换为对照官方四选项的完整逐项分析最终值，并修正原解析中“整数字面量默认 int/double”的不准确表述。answer=2 修复后仍为 char（官方 C），无需改动。",
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页原文“常量'3'的数据类型是（ ）。”，与网站题干逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原数据选项 int/double/char/bool 与官方 A double/B float/C char/D int 既换序又把 float 换成 bool；已提供官方完整选项修正值，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】C，索引 2；网站 answer=2。修复选项后 index2='char'=官方C，映射核验正确，answer 无需改动。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析按当前错误选项（int/double/bool）逐项展开，且“整数字面量默认 int/double”表述不准；已按官方四选项重写（含 ASCII 51 提醒），修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "double",
+            "float",
+            "char",
+            "int"
+          ],
+          "explanation": "**答案：C（char）**\n\n**核心解析：**\nC++ 字面量常量的类型由书写形式决定：单引号括起单个字符即字符型 char；实数字面量必须含小数点或指数；整数字面量直接写数字。'3' 是用单引号括起的单个字符，属于字符型。\n\n**选项逐项分析：**\n- **A（double）**：❌ 错误。double 是实数类型，字面量形式应如 3.0、3e0。\n- **B（float）**：❌ 错误。float 同为实数类型，字面量形式与实数一致（可加 f 后缀，如 3.0f）。\n- **C（char）**：✅ 正确。单引号是字符常量的定界符，'3' 类型为 char，占 1 字节，存储的是字符 '3' 的编码值（ASCII 为 51）。\n- **D（int）**：❌ 错误。int 类型整型常量直接写数字 3，不带任何引号。\n\n**易错提醒：**\n- 单引号 → 字符（char），双引号 → 字符串，不要混淆。\n- 字符 '3' 的 ASCII 码是 51，与整数 3 是完全不同的两个值。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "verdict": "revise",
+        "reviewNote": "采纳初核结论：网站前三项被替换为标识符命名类干扰项，与官方 A（变量可以没有定义）、B（未定义变量赋值相当于定义新变量）、C（赋值后类型可能变化）语义完全不同，必须修复；其 explanation 草稿过简，替换为覆盖官方四个选项（含“可能”二字辨析）的完整最终值。answer=3 修复后仍对应官方 D，无需改动。",
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "官方“下列关于 C++语言变量的叙述，正确的是（ ）”（第2—3页）；网站省略“下列”，设问不变，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原数据前三项（变量名数字开头/先赋值再定义/包含空格）为非官方干扰项，仅第 4 项与官方 D 一致；已提供官方完整选项修正值，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】D，索引 3；网站 answer=3。修复后 index3=官方D 原文，映射核验正确，answer 无需改动。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析围绕标识符命名规则展开，未针对官方 A/B/C 的变量定义与赋值类型语义；已按官方选项重写完整解析，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "变量可以没有定义",
+            "对一个没有定义的变量赋值，相当于定义了一个新变量",
+            "执行赋值语句后，变量的类型可能会变化",
+            "执行赋值语句后，变量的值可能不会变化"
+          ],
+          "explanation": "**答案：D（执行赋值语句后，变量的值可能不会变化）**\n\n**核心解析：**\n- **A（变量可以没有定义）**：❌ 错误。C++ 变量必须“先定义，再使用”，没有定义过的变量无法使用。\n- **B（对一个没有定义的变量赋值，相当于定义了一个新变量）**：❌ 错误。赋值操作不能自动定义变量，对未定义的变量赋值会导致编译错误。\n- **C（执行赋值语句后，变量的类型可能会变化）**：❌ 错误。赋值只改变变量的值，不会改变变量声明时的类型；例如把 5.5 赋给 int 变量，变量类型仍是 int，只取整数部分 5 存入。\n- **D（执行赋值语句后，变量的值可能不会变化）**：✅ 正确。当赋值号右侧表达式的计算结果与左侧变量原值相同时（如 a 原值为 10，执行 a = 10;），赋值后变量的值保持不变，但赋值操作本身仍然执行。\n\n**易错提醒：**\n- 注意题中“可能”二字：只需存在“赋同值不变”的情形 D 即成立，而 A、B、C 的说法是绝对性错误。\n- 区分“值没变”与“操作没执行”：D 的情形是操作执行了但结果值恰好相同。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "verdict": "revise",
+        "reviewNote": "采纳初核结论：官方干扰项为 360AntiVirus/Man&Woman/break，与当前占位内容 2023_GESP/GESP-2023/cout 完全不同，且官方判据是“数字开头、含&、关键字”，而非初核所描述需另行论证，必须按原文修复；其 explanation 草稿偏简，替换为完整最终值，强调 break 是关键字并与官方判据一致。answer=0 修复后仍对应官方 A，无需改动。",
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "官方“以下可以作为 C++标识符的是（ ）”（第3页）；网站省略“以下”，设问不变，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原数据 B/C/D（2023_GESP、GESP-2023、cout）为非官方占位内容；官方 B 360AntiVirus（数字开头）、C Man&Woman（含&）、D break（关键字）；已提供官方完整选项修正值，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】A，索引 0；网站 answer=0。修复后 index0=number_of_Chinese_people_in_millions=官方A，映射核验正确，answer 无需改动。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析按错误占位选项展开，并以“潜在语义冲突”解释 cout；官方干扰项依据分别为数字开头、含&、关键字 break；已按官方选项重写完整解析，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "number_of_Chinese_people_in_millions",
+            "360AntiVirus",
+            "Man&Woman",
+            "break"
+          ],
+          "explanation": "**答案：A（number_of_Chinese_people_in_millions）**\n\n**核心解析：**\nC++ 标识符（变量名、函数名等）的命名规则：能且只能包含字母、数字、下划线，且不能用数字开头；关键字已被语言保留，不能用作标识符。\n\n**选项逐项分析：**\n- **A（number_of_Chinese_people_in_millions）**：✅ 正确。仅由字母和下划线组成，以字母开头；标识符没有长度限制，写得长也合法。\n- **B（360AntiVirus）**：❌ 错误。以数字 3 开头，违反“不能用数字开头”的规则。\n- **C（Man&Woman）**：❌ 错误。包含符号“&”，& 不是标识符的合法字符，编译器会将其解析为运算符。\n- **D（break）**：❌ 错误。break 是 C++ 关键字（用于跳出循环或 switch），已被语言保留。\n\n**易错提醒：**\n- “不能用数字开头”与“可以没有字母”是两回事：_123 合法，2ab 非法。\n- 关键字（如 if、while、break）不能作变量名，含 & 等符号的名称也不是合法标识符。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 1–5 题（均为单选题）。结论：题 1 与原卷完全对应——选项属官方集合的合法换序且答案映射正确，五维全部通过，无需修改；题 2–5 的 answer 索引均与官方【答案】一致并经修复后映射复核通过，answer 无需改动，但其选项内容被替换或混入非官方占位项、解析据此锚定错误，属实质性失真，已按 PDF 第 1–3 页原文提供 options 与 explanation 的完整修正值并以“修复后核验通过”入档。对初核的改错方向全部确认成立，但其 explanation 草稿过简，未直接沿用，已替换为对照官方选项的完整逐项分析。本批无编程题，tests 不适用；第 6 题及以后按分工未核验、未输出。"
+  }
+}

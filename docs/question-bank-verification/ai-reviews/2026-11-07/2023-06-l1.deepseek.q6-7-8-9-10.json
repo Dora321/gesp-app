@@ -1,0 +1,272 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:33:42.576Z",
+  "completedAt": "2026-11-07T18:35:17.715Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37038,
+    "completion_tokens": 9484,
+    "total_tokens": 46522,
+    "prompt_tokens_details": {
+      "cached_tokens": 36864
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7195
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00582709,
+      "allowance": 0.00349626,
+      "tokens": {
+        "input": 174,
+        "output": 9484,
+        "reasoning": 7195,
+        "cache_read": 36864,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b71ae6ce69ffb9b245798446986d059fdb5789337eb8727ae49933fcf73ceca0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页图卷头为“2023 年 6 月 GESP C++ 一级真题解析”，与目标卷 2023-06-l1、C++ 一级相符。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题6与网站题干均为询问“哪个不是 C++ 语言关键字”，仅括号和空格排版不同，语义一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第3页页图选项为 A double、B else、C while、D endl；网站为 A int、B for、C if、D endl，A-C 被替换，虽答案仍指向 endl，但选项内容不符官方。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页【答案】D，对应 0 起始索引 3；网站 answer=3，且当前 D 为 endl，修正选项后仍为 D。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF第3-4页解析及关键字表针对 double/else/while/endl；网站解析逐项分析的是 int/for/if/endl，与官方选项不一致，需按官方选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "double",
+            "else",
+            "while",
+            "endl"
+          ],
+          "explanation": "C++ 关键字是语言保留的、具有固定语法含义的单词。double、else、while 都是 C++ 关键字；endl 不是关键字，它是标准库中用于输出换行并刷新缓冲区的流操纵符，通常写作 std::endl。因此不是关键字的为 D（endl）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页题干明确“如果 a、b 和 c 都是 int 类型的变量”；网站题干省略了 a、b、c 的类型前提，只剩“不符合C++语法的语句是”，必要上下文缺失。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页选项为 A a=(b==c);、B b=5.5;、C c=a+b+c;、D a+c=b+c;；网站为 A a=b+c;、B b=a;、C c=a/b;、D a+c=b+c;，仅 D 相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页【答案】D，对应索引 3；网站 answer=3，D 仍为 a+c=b+c;，修正选项后映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF第4-5页解析按官方 A-D 判断：A 的关系运算结果可赋给 int，B 的实数值可赋给 int，C 合法，D 左侧是算术运算；网站解析针对不同选项，且“左侧必须是单个变量”表述过窄，应改为“必须是可修改左值”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "如果 a、b 和 c 都是 int 类型的变量，下列哪个语句不符合 C++语法？（ ）",
+          "options": [
+            "a = (b == c);",
+            "b = 5.5;",
+            "c = a + b + c;",
+            "a + c = b + c;"
+          ],
+          "explanation": "赋值运算符左侧必须是可修改的左值，即具有确定存储位置且可被赋值的对象，不能是算术表达式结果等右值。A 中 b==c 得到 bool，可转换为 int 后赋给 a，合法；B 中 double 值赋给 int 变量允许隐式转换，截断取整，合法；C 中先计算右侧再赋给 c，合法；D 中 a+c 是算术表达式，不是可修改左值，不能作为赋值目标，不符合语法。因此答案为 D（a+c=b+c;）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页题干为“用一个 int 类型的变量 a 表达正方形的边长”；网站省略了“表达边长”这一语义前提，需补回以保证 a 的几何含义明确。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页选项为 A a*a、B 1*a*a、C a^2、D a*2*a/2；网站为 A a*a、B pow(a,2)、C a^2、D a*(double)a，B、D 与官方不同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页【答案】C，对应索引 2；网站 answer=2，且当前 C 为 a^2，修正选项后仍为 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析逐项分析 pow(a,2) 和 a*(double)a，与官方 B、D 不符；官方解析针对 1*a*a 和 a*2*a/2，需按官方选项重写并说明 ^ 是按位异或。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）",
+          "options": [
+            "a * a",
+            "1 * a * a",
+            "a ^ 2",
+            "a * 2 * a / 2"
+          ],
+          "explanation": "边长为 a 的正方形面积为 a 的平方。A 的 a*a 正确；B 的 1*a*a 等于 a*a；D 的 a*2*a/2 按乘除从左到右计算为 ((a*2)*a)/2，结果为 a 的平方；C 的 a^2 中 ^ 是 C++ 的按位异或运算符，不是乘方，例如 a=5 时 5^2 得 7 而不是 25。因此不能用来计算面积的是 C。",
+          "tags": [
+            "数学函数",
+            "数据类型"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页表达式为 (4 * (11 + 12) / 4)，网站仅增加“C++表达式”和空格，语义及运算式一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页选项为 A 47、B 20、C 23、D 56；网站为 A 22、B 22.75、C 23、D 25，仅 C 相同，A、B、D 均被替换。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页【答案】C，对应索引 2；网站 answer=2，C 仍为 23，修正选项后映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析中的 A 22、B 22.75、D 25 对应的是被替换后的选项，不是官方 A 47、B 20、D 56；计算过程虽正确，但选项分析需按官方选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "47",
+            "20",
+            "23",
+            "56"
+          ],
+          "explanation": "先计算括号内：11+12=23，原式变为 4*23/4。乘除同级，按从左到右计算：4*23=92，92/4=23。全程为整数运算，结果为 int 类型的 23。A 47、B 20、D 56 均不等于 23，因此答案为 C（23）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页题干明确“a 为 int 类型的变量，且 a 的值为 6”；网站只写“原值为 6”，遗漏 int 类型这一必要前提。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页选项为 A 1、B 2、C 3、D 4；网站为 A 1、B 2、C 4、D 6，C、D 与官方不同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页【答案】B，对应索引 1；网站 answer=1，B 仍为 2，修正选项后映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析中的 C 4、D 6 对应被替换后的选项，不是官方 C 3、D 4；核心等式 a%=4 等价于 a=a%4 正确，但逐项分析需按官方选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "如果 a 为 int 类型的变量，且 a 的值为 6，则执行 a %= 4; 之后，a 的值会是（ ）。",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "explanation": "复合赋值运算符 %= 等价于先取余再赋值，即 a%=4 等价于 a=a%4。a 原值为 6，6 除以 4 的商为 1、余数为 2，因此 6%4=2，赋回后 a=2。A 的 1、C 的 3、D 的 4 都不是该余数，因此答案为 B（2）。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅初核题6-10，均为单选题。5题的官方答案索引与网站 answer 映射一致，但5题选项内容均与 PDF 原卷不符，且解析均需按官方选项重写；题7、题8、题10 的题干还遗漏了官方必要前提。未涉及编程题，故 tests 均为空；未发现需要保留的答案冲突。"
+  }
+}

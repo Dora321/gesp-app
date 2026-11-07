@@ -1,0 +1,118 @@
+{
+  "executedAt": "2026-11-07T19:04:06.921Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "9\n5\n9\n6",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "input": "9\n5\n10\n0",
+          "output": "55",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "55\n",
+          "passed": true
+        },
+        {
+          "name": "最小时间差",
+          "input": "0\n0\n0\n1\n",
+          "output": "1",
+          "reason": "合法最小差为1分钟：总分钟0与1，差1；期望值由手算独立确认。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "分钟借位边界",
+          "input": "9\n59\n10\n0\n",
+          "output": "1",
+          "reason": "结束分钟小于开始分钟，逐字段直接相减会出负数；按总分钟600−599=1，手算确认统一换算写法处理借位正确。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "当日最大跨度",
+          "input": "0\n0\n23\n59\n",
+          "output": "1439",
+          "reason": "约束下最大差：23×60+59=1439，手算确认上限且int无溢出。",
+          "kind": "boundary",
+          "actual": "1439\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "a01f6952e8e6481272c541d9a3a8986dd17d0f3f8ef0431c60f8669dcb04efa1"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3",
+          "output": "10",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "input": "4",
+          "output": "20",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "20\n",
+          "passed": true
+        },
+        {
+          "input": "10",
+          "output": "220",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "220\n",
+          "passed": true
+        },
+        {
+          "name": "最小n",
+          "input": "1\n",
+          "output": "1",
+          "reason": "n=1 时式子仅第1项1；闭式 1·2·3/6=1，递推 inner=1、total=1，期望值独立手算确认。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "递推衔接校验",
+          "input": "2\n",
+          "output": "4",
+          "reason": "1+(1+2)=4；可检验 inner 在两轮循环间保留不清零（若每轮清零将误得3），期望值独立手算确认。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "约束上限",
+          "input": "100\n",
+          "output": "171700",
+          "reason": "n=100 取约束上限；闭式 n(n+1)(n+2)/6=100×101×102/6=171700，手算确认，同时验证最大值在 long long 下无溢出，期望值独立手算确认。",
+          "kind": "boundary",
+          "actual": "171700\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0cebe3cf3792f980b73da1bb2efefef394f94f0cd0b72204dd5b98d57e3f5572"
+    }
+  ]
+}

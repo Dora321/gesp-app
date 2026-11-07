@@ -1,0 +1,208 @@
+{
+  "paperId": "2023-06-l1",
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-06-l1"
+  },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": {
+      "total": 16,
+      "note": "《2023年6月 GESP C++ 一级真题解析》，答案以【答案】标记内嵌于每题之后（pp.1-12），编程题解析 pp.12-16"
+    }
+  },
+  "answerTable": {
+    "location": "逐题内嵌【答案】（p1-p12 渲染图人工读取）",
+    "content": {
+      "single": [
+        "A",
+        "C",
+        "C",
+        "D",
+        "A",
+        "D",
+        "D",
+        "C",
+        "C",
+        "B",
+        "B",
+        "A",
+        "C",
+        "B",
+        "D"
+      ],
+      "judge": [
+        "√",
+        "√",
+        "×",
+        "×",
+        "√",
+        "√",
+        "√",
+        "×",
+        "×",
+        "√"
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q1 explanation 升级；答案未改"
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
+    },
+    {
+      "id": 11,
+      "officialAnswer": "B",
+      "bankAnswerBefore": 3,
+      "changed": true,
+      "findings": "题库原题面为改写版（选项 A a==0||b==0、B !(a||b)、C a+b==0、D a==0&&b==0），其中 B 与 D 均正确（!(a||b) ≡ a==0&&b==0），题面存在双正确选项缺陷，且文件内注释自认与官方提取结果（B）冲突后擅改答案为 D。官方原卷（p6）选项为 A.(a==b==0) B.!(a||b) C.(a+b==0) D.(a==0)+(b==0)，唯一正确答案 B。",
+      "fix": "按原卷恢复题干与四个选项；answer 3→1；解析整体重写（逐选项：A 链式比较陷阱、B 德摩根定律判定、C 和为零反例、D 只能判『或』的个数），并补充官方答案表出处。",
+      "evidence": "独立推导：A 中 a=1,b=2 时 a==b 为 0 再 ==0 为真，错；B 德摩根展开 !a&&!b 即两变量均为 0，对；C a=5,b=-5 反例；D 表达式值为判零个数，a=0,b=1 时为 1 为真，判的是『或』，错。与官方答案 B 一致。tmp/pages/2023-06-l1/p06.png",
+      "resolved": true
+    },
+    {
+      "id": 13,
+      "officialAnswer": "C",
+      "bankAnswerBefore": 1,
+      "changed": true,
+      "findings": "题库原题为整题改写（代码变为 a=b; 后填空使输出 20 10，选项 b=a;/b=10;/b=a-b;/b=20;，答案 B），与官方原题结构完全不同。官方原题（pp.7-8）：int a=10,b=20; a=____; b=a+b; a=b-a; 输出 20 10，选项 A.a+b B.b C.a-b D.b-a，官方答案 C。",
+      "fix": "按原卷恢复题面代码（含注释）、四个选项；answer 1→2；解析按官方思路重写（倒推法：输出 20 10 → 第 7 行前 a=-10 → 第 5 行需使 a=10-20=-10），并逐选项给出输出结果（A 20 50、B 20 40、C 20 10、D 20 30）。",
+      "evidence": "独立推导：a=a-b=-10 → b=-10+20=10 → a=10-(-10)=20，输出 20 10，选 C。其余选项分别得 20 50 / 20 40 / 20 30。与官方答案 C 一致。tmp/pages/2023-06-l1/p07.png、p08.png",
+      "resolved": true
+    },
+    {
+      "id": 14,
+      "officialAnswer": "B",
+      "bankAnswerBefore": 1,
+      "changed": false,
+      "findings": "答案字母一致（均为 B），未改。但题面存在轻度转录偏差：官方为 for(i=1;i<=8;i++) 且选项 C 为 i=i+3、D 为 i+3；题库为 i<=9 且选项 C 为 i%4==1、D 为 i%7==1。题库版本自洽（i%3==1 在 1..9 内输出 147），保留题库文本，仅记录。",
+      "resolved": true
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
+    }
+  ],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy 子代理",
+    "method": "回官方 PDF 内嵌【答案】逐题核对（tmp/pages/2023-06-l1/p10-p12.png），洛谷仅作线索。洛谷判断题以 A=正确(√)、B=错误(×) 编码，比对时已换算。",
+    "officialSequence": "Q16→Q25 = √ √ × × √ √ √ × × √（p.10 第1-4题、p.11 第5-8题、p.12 第9-10题）",
+    "items": [
+      {
+        "qid": 19,
+        "bankAnswer": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "×",
+        "officialLocation": "p.10 判断题第4题，题面『在 C++语言中，标识符的命名不能完全由数字组成，至少有一个字母就可以。』后【答案】×",
+        "derivation": "C++ 标识符只要求『不以数字开头』，_123 无任何字母也合法，故『至少有一个字母就可以』为假；反之 2ab 有字母仍非法。命题错误。",
+        "changed": false,
+        "verdict": "洛谷错（AI OCR 录入把 × 抬成 A=正确），题库正确"
+      },
+      {
+        "qid": 22,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "√",
+        "officialLocation": "p.11 判断题第7题，题面『do ... while 语句的循环体至少会执行一次。』后【答案】√",
+        "derivation": "do...while 先执行循环体再判断条件，条件首次为假也至少执行一次。命题正确。",
+        "changed": false,
+        "verdict": "洛谷错，题库正确"
+      },
+      {
+        "qid": 24,
+        "bankAnswer": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "×",
+        "officialLocation": "p.12 判断题第9题，题面『如果 a 为 int 类型的变量，则表达式(a % 4 == 2)可以判断 a 的值是否为偶数。』后【答案】×",
+        "derivation": "a=4 时 4%4==0，表达式为假，而 4 是偶数；该式只覆盖 4k+2 形式的偶数，遗漏全部 4 的倍数，不能用于判偶。命题错误。",
+        "changed": false,
+        "verdict": "洛谷错，题库正确"
+      }
+    ]
+  },
+  "unresolved": [
+    "轻度转录偏差（答案不受影响，未修改）：Q2 选项与官方不同（官方 A发邮件/B写剧本/C擦地板/D写代码，题库为 编写程序/翻译语言/炒菜/写诗，正确项均为 C）；Q4/Q5/Q6/Q8/Q9/Q12 干扰项为改写版本（正确项字母与官方一致）；Q15 官方代码为 1..20 中 3或5 的倍数累加且 sum 未初始化，题库为 1..10 累加且 sum 未初始化，考点与答案（D 无法确定）一致。如需与原卷逐字一致，可另行整卷重录。"
+  ],
+  "executedAt": "2026-10-24",
+  "notes": [
+    "2026-10-27 复核：本卷官方 PDF 为「真题解析」版（N. 题干 +【答案】格式），audit-pdf-stem-diff 低分属结构性假阳性。从解析版文本层提取 25 个【答案】（含判断题√×）与题库逐位比对，25/25 完全一致，确认无需修改。"
+  ]
+}

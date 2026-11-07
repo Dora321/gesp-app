@@ -1,0 +1,262 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:48:23.442Z",
+  "completedAt": "2026-11-07T18:52:37.283Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 65557,
+    "completion_tokens": 18948,
+    "total_tokens": 84505,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14710
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01930755,
+      "allowance": 0.01930755,
+      "tokens": {
+        "input": 65557,
+        "output": 18948,
+        "reasoning": 14710,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b71ae6ce69ffb9b245798446986d059fdb5789337eb8727ae49933fcf73ceca0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标题为“2023 年 6 月 GESP C++ 一级真题解析”，等级为 C++ 一级，与目标卷 2023-06-l1（2023年6月，C++ level 1）一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干“如果 a 和 b 均为 int 类型的变量，下列表达式能正确判断‘a 等于 0 且 b 等于 0’的是（ ）”，与本站题干语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项 A (a == b == 0)、B !(a || b)、C (a + b == 0)、D (a == 0) + (b == 0)，顺序与内容与本站逐一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】B，对应 0 起始索引 1；本站 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复验：A 中 == 左结合，(a==b) 先得 0/1 再与 0 比较，a=1,b=2 时为真但不满足条件；B 由德摩根 !(a||b)≡!a&&!b；C 取 a=5,b=-5 反例成立；D 仅在至少一方为 0 时非零。本站解析各条推导均成立且结论 B 与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。本人独立代入复验 A 的链式比较反例、C 的相反数反例、D 的计数语义，均支持 B，题干/选项/答案/解析与官方一致，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页题干“如果 a 和 b 为 int 类型的变量，且值分别为 7 和 2，则下列哪个表达式的计算结果不是 3.5？”；本站表述压缩但条件（a=7、b=2、找不是 3.5 者）与设问等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 7 页官方选项为 A 0.0 + a / b、B (a + 0.0) / b、C (0.0 + a) / b、D a / (0.0 + b)；原站 B/C/D 被改成 (double)a / b、a / (double)b、a / 2.0，与官方不符，已在 changes 中恢复官方写法并逐项代入 a=7、b=2 复验（A=3.0，B=C=D=3.5）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】A，对应索引 0；本站 answer=0，且 A 表达式官方一致仍为正确项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原站解析按 (double)a/b、a/(double)b、a/2.0 展开，与官方 B/C/D 不对应；已按官方表达式重写并独立复算：/ 优先级高于 +，A 先整除 7/2=3 再加 0.0 得 3.0；B/C/D 括号内 int 提升为 double 后除法得 3.5，结论 A 与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "0.0 + a / b",
+            "(a + 0.0) / b",
+            "(0.0 + a) / b",
+            "a / (0.0 + b)"
+          ],
+          "explanation": "**答案：A (0.0 + a / b)**\n\n先明确变量：a=7、b=2，均为 int 类型。题目要求找出计算结果**不是** 3.5 的表达式。\n\n**选项逐项分析：**\n- **A (0.0 + a / b)**：✅ 符合题意。`/` 的优先级高于 `+`，先计算 `a / b`；两操作数均为 int，执行整数除法 `7 / 2 = 3`（小数部分被截断）。再加 `0.0` 后结果为 `3.0`，不是 3.5。整除截断发生在加 0.0 之前，精度已经丢失，事后补 0.0 也无法恢复。\n- **B ((a + 0.0) / b)**：❌ 不符合题意。括号内 `a + 0.0` 中 int 与 double 相加被提升为 double，得 7.0；`7.0 / 2` 触发浮点除法，结果为 3.5。\n- **C ((0.0 + a) / b)**：❌ 不符合题意。括号内 `0.0 + 7 = 7.0`，`7.0 / 2 = 3.5`。\n- **D (a / (0.0 + b))**：❌ 不符合题意。括号内 `0.0 + 2 = 2.0`，`7 / 2.0` 触发浮点除法，结果为 3.5。\n\n**易错提醒：**\n- `0.0 + a / b` 中 0.0 写在前面并不能改变运算顺序：除法优先级更高，先做整数除法，再加浮点数只是把 3 变成 3.0。\n- 要得到 3.5，必须让**参与除法的至少一个操作数**在除法发生前已是浮点型（例如放进括号内与 0.0 相加），而不是除完再处理。\n\n**知识延伸：**\nC++ 中 int 与 int 运算结果仍为 int（除法向下截断）；只要其中一个操作数是 double/float，整个运算就按浮点进行。\n\n**考点：** 运算符优先级、整数除法截断与类型提升"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的修复判断：本站 B/C/D 属于对官方选项的擅自改写，必须恢复。本人对官方四个表达式代入 a=7、b=2 独立求值（A=3.0，B=C=D=3.5），确认答案 A、索引 0 不变，修复值已对照 PDF 第 7 页原图逐项核过。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页代码：第 4 行 int a = 10, b = 20; 第 5 行 a = ________（此处填代码）；第 6 行 b = a + b; 第 7 行 a = b - a; 第 8 行输出，要求输出“20 10”；本站代码逐行一致且含同一批注。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7—8 页选项 A a + b、B b、C a - b、D b - a，顺序与内容与本站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】C，对应索引 2；本站 answer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入复算四种填法：a+b 时 b=50、a=20，输出 20 50；填 b 时 b=40、a=20，输出 20 40；填 a-b 时 a=-10、b=10、a=20，输出 20 10；填 b-a 时 b=30、a=20，输出 20 30。仅 C 正确，本站倒推法与各选项结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。本人按四种填法逐步复算（20 50 / 20 40 / 20 10 / 20 30），仅 C 满足“20 10”，答案映射无误，解析推导成立。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 8 页官方代码为 `for (int i = 1; i <= 8; i++)`、if 与 cout 两行组成循环体、完整程序含 iostream/main；原站写成 i <= 9 且省略外层程序，已在 changes 中按原图逐行恢复，并独立确认上界差异不改变正确项（i=9 对 B 选项不输出）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：官方选项为 A i % 2 == 1、B i % 3 == 1、C i = i + 3、D i + 3；原站 C/D 误作 i % 4 == 1、i % 7 == 1，已恢复并代入 i=1~8 逐一复验输出为 1357 / 147 / 48 / 12345678。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】B，对应索引 1；本站 answer=1；恢复官方代码与选项后满足“输出 147”的仍是 B，映射不变。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原站解析基于 i<=9 与改写后的 C/D（且 D 项误标为 i%4），须重写；新解析独立推导 A→1357、B→147、C 为赋值表达式（i=1→变 4 输出，i++→5，再变 8 输出，i++→9 退出）→48、D 恒真→12345678，结论 B 与官方一致；官方文档“1、4、7 除以 4 的刚好余 1”系原文笔误（应为除以 3），重写稿已更正表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在下列代码的横线处填写（ ），可以使得输出是“147”。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    for (int i = 1; i <= 8; i++)\n        if (________) // 在此处填入代码\n            cout << i;\n    return 0;\n}\n```",
+          "options": [
+            "i % 2 == 1",
+            "i % 3 == 1",
+            "i = i + 3",
+            "i + 3"
+          ],
+          "explanation": "**答案：B (i % 3 == 1)**\n\n循环变量 i 从 1 递增到 8，逐一将各选项代入判断：\n\n**选项逐项分析：**\n- **A (i % 2 == 1)**：❌ 错误。条件在 i 为奇数时成立，输出 1、3、5、7，即 `1357`，不是 147。\n- **B (i % 3 == 1)**：✅ 正确。1、4、7 均满足除以 3 余 1（1%3=1，4%3=1，7%3=1），输出恰好为 `147`。\n- **C (i = i + 3)**：❌ 错误。赋值表达式的值为赋值后 i 的新值，非零恒真，且会改变 i 本身：i=1 时先变为 4 并输出，随后 i++ 变 5；再变为 8 并输出，随后 i++ 变 9，退出循环。输出为 `48`。\n- **D (i + 3)**：❌ 错误。对 i=1~8，`i+3` 均非零，条件恒真且不改变 i，逐个输出，结果为 `12345678`。\n\n**易错提醒：**\n- `i = i + 3` 是赋值表达式：条件恒真还会跳过部分 i 的取值，与 `i + 3`（仅求值、不改变 i）语义完全不同。\n- 模运算可筛选等差数列：`i % k == r` 输出首项为 r、公差为 k 的数列。\n\n**考点：** for 循环中变量的取值与求余运算"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的修复判断，并补充：① 官方解析称 B 项“1、4、7 除以 4 的刚好余 1”是官方文档自身笔误（选项为 i%3==1），不影响答案，重写稿已按正确口径表述；② 上界 9 与 8 虽不改变正确项 B，但会改变 C 选项的执行轨迹，故题面代码必须恢复官方 i<=8。修复值已对照 PDF 第 8 页原图逐行核过。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 9 页官方程序为 int sum;（未初始化）、for (int i = 1; i <= 20; i++)、if (i % 3 == 0 || i % 5 == 0) 内 sum += i;；原站误作 i=1~10 无条件累加，已在 changes 中按原图逐行恢复。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：官方选项为 A 63、B 98、C 113、D 无法确定；原站 55/0/45/无法确定仅 D 相同，已恢复官方集合并独立核算：假想 sum=0 时 3、5 倍数并集和为 98（63+50-15），63 为仅 3 的倍数和，113 为 63+50 重复计入 15。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】D（无法确定），对应索引 3；本站 answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原站解析按 1~10 无条件累加讨论 55/45，与官方程序无关；新解析围绕未初始化的局部 sum 重写：C++ 不保证局部变量初值为 0，sum += i 先读取不确定值，故输出无法确定；并独立核算干扰项来源（假想 sum=0 得 98，对应 B），结论 D 与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "执行以下 C++语言程序后，输出结果是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int sum;\n    for (int i = 1; i <= 20; i++)\n        if (i % 3 == 0 || i % 5 == 0)\n            sum += i;\n    cout << sum << endl;\n    return 0;\n}\n```",
+          "options": [
+            "63",
+            "98",
+            "113",
+            "无法确定"
+          ],
+          "explanation": "**答案：D (无法确定)**\n\n程序中 `sum` 定义在 `main` 函数内且未初始化：\n```cpp\nint sum;\nfor (int i = 1; i <= 20; i++)\n    if (i % 3 == 0 || i % 5 == 0)\n        sum += i;\ncout << sum << endl;\n```\n\nC++ 不保证局部变量自动初始化为 0，`sum` 的初始值是不确定的。`sum += i` 首先要**读取**这个不确定的初始值，因此即使循环累加过程是确定的，最终输出也无法确定，必须选 D。\n\n**干扰项验证：**\n若错误地假定 `sum = 0`，程序将累加 1~20 中能被 3 或 5 整除的数：3+5+6+9+10+12+15+18+20 = 98，即选项 B——它正是“忘记 sum 未初始化”这一典型错误假设下的结果。选项 A（63）是只累加 3 的倍数之和，C（113）是把 3 的倍数与 5 的倍数简单相加（重复计入 15）的结果；它们都建立在“初值为 0”这一未获保证的假设上，并非程序保证的输出。\n\n**易错提醒：**\n- 不要默认局部变量初值为 0；全局变量和静态存储期变量才会默认初始化为 0。\n- 读取未初始化的局部变量是未定义行为，任何输出值都可能出现。\n- 声明累加变量时应立即初始化，如 `int sum = 0;`。\n\n**考点：** C++ 局部变量未初始化的行为"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的修复判断：本站题面、选项、解析均基于另一段程序（1~10 无条件累加），与官方完全不符。本人独立核算 3、5 倍数并集和 98 及 63/113 干扰项来源，确认答案 D、索引 3 不变，修复值已对照 PDF 第 9 页原图逐行核过。"
+      }
+    ],
+    "summary": "本轮仅核验题 11—15。题 11、13 的题干、选项、答案与本站一致，本站解析经我独立代入复算成立，通过。题 12、14、15 存在实质性错误：本站把官方选项/代码擅自改写（12 的 B/C/D 表达式、14 的循环上界与 C/D 选项、15 的整段程序与选项），均已依据 PDF 第 7、8、9 页原图恢复官方原文并重写解析；这三题的修复内容经独立代入求值/逐行克隆核对后确认与官方一致，应用 changes 即可通过。5 题 officialAnswer 与本站 answer 索引全部吻合，无编程题，未提供 tests。官方文档在题 14 解析中“除以 4 余 1”为原文笔误，不影响答案，已在重写解析中更正。"
+  }
+}

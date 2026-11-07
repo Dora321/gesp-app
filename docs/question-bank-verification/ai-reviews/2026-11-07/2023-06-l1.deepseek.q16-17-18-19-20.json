@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:52:37.301Z",
+  "completedAt": "2026-11-07T18:53:29.732Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37038,
+    "completion_tokens": 5675,
+    "total_tokens": 42713,
+    "prompt_tokens_details": {
+      "cached_tokens": 36864
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4453
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00354169,
+      "allowance": 0.00212502,
+      "tokens": {
+        "input": 174,
+        "output": 5675,
+        "reasoning": 4453,
+        "cache_read": 36864,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b71ae6ce69ffb9b245798446986d059fdb5789337eb8727ae49933fcf73ceca0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 6 月 GESP C++ 一级真题解析”，并标注单选30分、判断20分、编程50分，年月与等级均与 paperId=2023-06-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第1题原文为“计算机硬件主要包括运算器、控制器、存储器、输入设备和输出设备。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options；网站以“正确/错误”呈现，无选项顺序映射问题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】为√；按判断题“正确=0”映射，officialAnswer=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析列出冯·诺依曼体系五大硬件部件（运算器、控制器、存储器、输入设备、输出设备），并据此判定命题正确，推导与PDF解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第2题原文为“诞生于1958年的103机是中国第一台通用数字电子计算机，比1946年在美国诞生的第一台通用电子计算机ENIAC晚了十多年。”网站题面省略了1958年及“晚了十多年”等背景，但保留的“103机为中国第一台通用数字电子计算机”和“ENIAC诞生于1946年”两项断言均正确，不改变判断结论。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】为√；正确=0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出1958年103机、1946年ENIAC及相差十多年的史实，与PDF解析相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第3题原文为“在C++语言中，计算结果必须存储在变量中才能输出。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】为×；按判断题“错误=1”映射，officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站用 cout << a+b 等示例说明输出流可直接输出表达式，不必先存入变量，独立推导正确，与PDF解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10—11页判断题第4题原文为“在C++语言中，标识符的命名不能完全由数字组成，至少有一个字母就可以。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】为×；错误=1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站按“首字符不能为数字”的规则给出 1abc、2x、9flag 等反例，说明“至少有一个字母就可以”不成立；与PDF解析中 _123 合法、2ab 非法的论证一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题第5题原文为“10 是一个 int 类型常量。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】为√；正确=0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站说明无后缀十进制整数字面量 10 在 int 范围内，默认类型为 int；与PDF解析一致，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题16—20（PDF判断题1—5）。5题的题面、官方答案与解析均与PDF页图/文本相符；判断题答案按“正确=0、错误=1”映射，网站依次为0、0、1、1、0，全部正确。题17网站题面为简写，但保留断言不改变判断结论。未发现需要修改的字段；本批无编程题，故不提供边界测试。"
+  }
+}

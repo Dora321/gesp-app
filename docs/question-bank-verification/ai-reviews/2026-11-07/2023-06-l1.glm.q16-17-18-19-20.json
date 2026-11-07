@@ -1,0 +1,234 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:53:29.743Z",
+  "completedAt": "2026-11-07T18:55:44.284Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64447,
+    "completion_tokens": 10165,
+    "total_tokens": 74612,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8154
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01474955,
+      "allowance": 0.01474955,
+      "tokens": {
+        "input": 64447,
+        "output": 10165,
+        "reasoning": 8154,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b71ae6ce69ffb9b245798446986d059fdb5789337eb8727ae49933fcf73ceca0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页图卷头为“2023年6月 GESP C++ 一级真题解析”（红色标题清晰），同页标注“一、单选题（每题2分，共30分）”，后续页含“二、判断题（每题2分，共20分）”“三、编程题（每题25分，共50分）”，年月、等级（一级）与分值结构均与 paperId=2023-06-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页页图判断题第1题原文“计算机硬件主要包括运算器、控制器、存储器、输入设备和输出设备。”与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以“正确/错误”判定，不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页页图该题【答案】为√（红色符号清晰可辨）；按判断题“正确=0”映射为0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按冯·诺依曼体系，计算机硬件由运算器、控制器、存储器、输入设备、输出设备五大部分组成，命题为真。网站解析列出五大部件并判定正确，与PDF解析“分别是：存储器、控制器、运算器、输入设备和输出设备，所以本题正确”一致，结论无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与DeepSeek初核一致：题面逐字相符，答案符号√按正确=0映射正确，解析五大部件推导无误，接受其结论。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页页图判断题第2题原文：“诞生于 1958 年的 103 机是中国第一台通用数字电子计算机，比 1946 年在美国诞生的第一台通用电子计算机 ENIAC 晚了十多年。”网站题面为简写“103 机是中国第一台通用数字电子计算机，ENIAC 诞生于1946年。”，省略了1958年份与“晚了十多年”的背景；所保留的两项断言均经独立核对为真命题，不改变判断结论（仍为√），语义无实质变化。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页页图该题【答案】为√；按“正确=0”映射为0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对史实：103机于1958年8月研制成功（后编为DJS-1），为中国第一台通用数字电子计算机；ENIAC于1946年2月诞生于美国宾夕法尼亚大学，两者相差约12年属于“十多年”，网站解析的年份与推断均正确，与PDF解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。独立复核确认：网站题面虽为简写，但保留断言（103机为中国第一台通用数字电子计算机、ENIAC诞生于1946年）全部为真，答案仍为√，无含义或答案改变，不构成需修复的问题，故不做恢复原文的改写，仅在证据中记录简写差异。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页页图判断题第3题原文“在 C++语言中，计算结果必须存储在变量中才能输出。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页页图该题【答案】为×（红色符号清晰）；按“错误=1”映射为1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 的 cout << 可直接对接表达式（cout << a+b 输出 7、cout << 2*3 输出 6、cout << (a>b) 输出 1），先求值再输出，无需先存入变量，故命题为假。网站解析的示例与推导正确，与PDF解析“输出语句可以直接输出表达式，输出的内容是表达式运算结果”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题面逐字相符，答案×→1，解析中cout直接输出表达式的示例（含结果值）经独立验证无误，接受。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页页图判断题第4题原文“在 C++语言中，标识符的命名不能完全由数字组成，至少有一个字母就可以。”与网站题面一致（该题解析延续至第11页页图）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页页图该题【答案】为×；按“错误=1”映射为1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++标识符必须以字母或下划线开头、首字符不能为数字，“至少有一个字母就可以”忽略了首字符排他约束——以数字开头的1abc、2x、9flag均非法，且_123（无字母）合法、2ab（有字母）非法，命题为假。网站解析的反例方向与PDF第11页解析“例如_123是合理的标识符”“例如2ab不是合理的标识符”两个方向的论证一致，推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题面相符、答案×→1，解析同时覆盖“无字母可合法（_123）”与“有字母仍非法（2ab）”两个反例方向，与PDF页图论证相符，接受。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页页图判断题第5题原文“10 是一个 int 类型常量。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第11页页图该题【答案】为√（红色符号清晰）；按“正确=0”映射为0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：无后缀十进制整数字面量10在int表示范围内，按C++整型字面量类型推断规则默认为int，命题为真。网站解析给出无L/U后缀、默认int的判定依据并提示10L/10U差异，规则陈述符合标准，与PDF解析“10 是一个整型常量，默认类型为 int 类型”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题面相符、答案√→0，解析的字面量类型推断规则（无后缀十进制默认int）经独立核对无误，接受。"
+      }
+    ],
+    "summary": "本次复核范围为题16—20（对应PDF第10—11页判断题第1—5题）。逐题核对页图：5题题面与PDF原文一致（题17为网站简写，但保留的两项断言均为真命题，判断结论√不变，语义无实质改变）；答案符号√、√、×、×、√按“正确=0、错误=1”映射为0、0、1、1、0，与网站answer完全一致；每题解析均经独立推导（五大部件、103机/ENIAC史实、cout直出表达式、标识符首字符规则、整型字面量默认类型），未发现事实或推理错误。判断题不适用options与referenceCode维度，本批无编程题故无需边界测试。五题全部approve，无修改项；对DeepSeek初核结论逐题独立验证后均予接受。"
+  }
+}
