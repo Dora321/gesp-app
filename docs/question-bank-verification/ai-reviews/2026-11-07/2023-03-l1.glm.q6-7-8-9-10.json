@@ -1,0 +1,238 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:17:16.603Z",
+  "completedAt": "2026-11-07T17:21:07.568Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 66875,
+    "completion_tokens": 12129,
+    "total_tokens": 79004,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9473
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01609575,
+      "allowance": 0.01609575,
+      "tokens": {
+        "input": 66875,
+        "output": 12129,
+        "reasoning": 9473,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，正文含单选题（每题 2 分共 30 分）15 道、判断题 10 道、编程题 2 道，与 2023-03-l1（2023 年 3 月、C++ 一级）一致；卷面【答案】 marks（红字）逐题可辨。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题 6 题干“以下哪个不是 C++语言的关键字？”与网页题干一致（空格差异属排版等价）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次 A. int、B. for、C. do、D. cout，网页选项数组顺序与内容完全一致，无重排。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】D、第 4 页解析结论“本题正确答案为 D”；索引 D=3 与网页 answer=3 一致。独立验证：第 4 页关键字表（auto/bool/char/int/…/do/for/…）中不含 cout，int/for/do 均在表内，cout 为标准库对象名而非语言保留字，选 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 3—4 页官方解析写作“cin 和 cout 都是 C++的常对象，但不是关键字”；网站扩写为“ostream 类的常量对象”，而 std::cout 是 <iostream> 中声明的非 const 的 std::ostream 对象，“常量对象”为术语错误（官方“常对象”本意为常用对象）。已提供修正后的完整解析（改为“标准库对象”，保留原判据“无需任何头文件即可使用的是关键字”，并加官方表述来源注记）；独立逐句复核无事实错误，修复后核验通过。答案 D 不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (cout)**\n\n**核心解析：**\n`int`、`for`、`do` 都是 C++ 标准中的关键字；而 `cout` 是 C++ 标准库中定义在 `<iostream>` 头文件里的 `std::ostream` 类型对象（经 `using namespace std;` 即可直接写作 `cout`），它属于标准库提供的名字，**不是关键字**。\n\n**选项逐项分析：**\n- **A (int)**：❌ 整型关键字。\n- **B (for)**：❌ 循环关键字。\n- **C (do)**：❌ do-while 循环关键字。\n- **D (cout)**：✅ 正确。标准库对象名，不是语言保留字。\n\n**易错提醒：**\n- 关键字由语言语法直接保留，无需任何头文件即可使用；`cin`、`cout`、`endl` 是标准库提供的对象/名字，依赖头文件及命名空间引入。判断标准：离开 `<iostream>` 后 `cout` 就不可用，说明它不是关键字。\n- 注记：官方原卷解析称“cin 和 cout 都是 C++ 的常对象”，此处的“常”应理解为“常用”，并非 C++ 语义上的 const 常量——`std::cout` 不是 const 对象。\n\n**考点：** 计算机基础与编程环境——关键字与标准库对象的区分"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：其指出网站把 cout 称为“常量对象”（std::cout 并非 const 对象）属实，且仅为解析术语问题、不影响答案 D。初核给出的修改文本经我逐句独立核验准确；最终字段在其基础上补回原网站“关键字无需任何头文件即可使用”的判据并加官方“常对象”来源注记，无信息损失。初核其余各维度结论与我的独立复核一致，予以采纳。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题 7 题干“如果 a、b 和 c 都是 int 类型的变量，下列哪个语句不符合 C++语法？”与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次 A. c = a + b;、B. c += a + b;、C. c = a = b;、D. c = a ++ b;，网页数组顺序与内容一致（含 D 中“a ++ b”的空格写法）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页【答案】D、第 5 页解析结论为 D；D=3 与网页 answer=3 一致。独立语法验证：A 为普通赋值；B 复合赋值 c += (a+b) 合法；C 赋值运算符右结合，先算 a=b 再赋给 c，合法；D 中 a++ 是完整的后缀自增表达式，其后直接紧跟 b（即 (a++) b）无法构成任何合法表达式，确为语法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网页解析对 A/B/C 逐一判定合法（含 B 等价 c = c + (a+b)、C 的右结合描述）并指出 D 不合法，与独立推导及官方第 5 页解析完全吻合，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经独立复核全部成立，sourcePages [4,5] 核对正确（题干/选项/答案在第 4 页，解析在第 5 页），website 数据与原卷一致，无修改，接受初核。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 8 题干“……下列哪个表达式不能用来计算长方形的周长？”与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次 A. a + b * 2、B. 2 * a + 2 * b、C. a + b + a + b、D. b + a * 2 + b，网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页【答案】A；A=0 与网页 answer=0 一致。独立验证：按乘法优先于加法，A 结果为 a + 2b（一长两宽），不等于周长 2a+2b；B=2a+2b、C=a+b+a+b=2a+2b、D=b+a*2+b=2a+2b，均可计算周长。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网页解析强调优先级“先乘后加”、指出 A 事实为 a+2b 漏掉一条长并提醒需写 (a+b)*2，与独立推导及官方“先算乘法 b*2，后算加法”的说明一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经独立复核全部成立，website 与原卷一致且解析含独立推导要点，无修改，接受初核。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 9 题干“表达式((3 == 0) + ‘A’ + 1 + 3.0)的结果类型为（）”，网页表达式逐字符一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次 A. double、B. int、C. char、D. bool，网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5—6 页【答案】A；A=0 与网页 answer=0 一致。独立验证：false 参与 + 运算提升为 int 0，'A' 提升为 int 65，逐项相加至 +1 后仍为 int，最后与 double 的 3.0 相加被提升，整个表达式按普通算术转换最终结果类型为 double（数值 69.0）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网页解析四步（bool→int 0、char→int 65、前三项 int、遇 3.0 提升 double，并给出“就高不就低”提升方向）与独立推导及官方“从低精度的向高精度的进行类型转换”表述一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经独立复核全部成立（sourcePages [5,6]：题干/选项/答案在第 5 页，解析续至第 6 页首），无修改，接受初核。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题 10 题干“如果 a 为 int 类型的变量，且 a 的值为 6，则执行 a *= 3;之后，a 的值会是（）”与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项依次 A. 3、B. 6、C. 9、D. 18，网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页【答案】D；D=3 与网页 answer=3 一致。独立验证：a *= 3 等价 a = a * 3，旧值 6×3=18 赋回 a，结果 18。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网页解析给出复合赋值恒等式 a op= b ⟺ a = a op (b) 并列出四个选项的干扰原因（3/6/9 的错误归因），6×3=18 计算正确，与官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经独立复核全部成立，无修改，接受初核。"
+      }
+    ],
+    "summary": "题 6—10 五题逐项对照 PDF 原卷页图核验完毕。题干、选项顺序与内容均与原卷一致；官方答案串 D、D、A、A、D（0 起始索引 3、3、0、0、3）与网页 answer 值逐一吻合，并经独立语义验证（D 选项语法分析：a++ 后紧跟 b 不构成表达式；表达式 A 的 a+2b 不等价周长；类型提升后结果为 double；6*3=18）。唯一需要修改的是题 6 解析术语：网站沿用官方“常对象”并写成“常量对象”，而 std::cout 并非 const 对象，已按标准库对象修正并提供完整字段值，修复后核验通过，答案 D 不受影响。题 7—10 的解析经独立推导全部准确，无 changes、无测试项（均为单选题，不适用 referenceCode/tests）。五个维度在每题中均已记录；无未决事项，无 sourceIntegrity 或 needsReview 争议。"
+  }
+}

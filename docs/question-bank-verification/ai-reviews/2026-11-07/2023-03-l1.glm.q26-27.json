@@ -1,0 +1,172 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:40:59.840Z",
+  "completedAt": "2026-11-07T17:43:05.998Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 66337,
+    "completion_tokens": 7898,
+    "total_tokens": 74235,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5566
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01389955,
+      "allowance": 0.01389955,
+      "tokens": {
+        "input": 66337,
+        "output": 7898,
+        "reasoning": 5566,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，正文末段写明“2023 年 3 月份，C++ 一级考试真题解析”，与目标 2023-03-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          15,
+          16,
+          17
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并经独立复核确认：题面文字（含约定 2≤A≤1000、长≥宽、正方形为特例）与 PDF 第 15-16 页逐句一致，样例 4→2、6→2 一致；网站输出格式补入变量名 $C$ 属于对 PDF 原句“表示有种可能的长方形”（疑似漏印）的合理修复，未改变含义，无需回改；参考代码与 PDF 第 17 页参考程序算法等价（n/count/i 对应 area/cnt/w，均枚举 w=1..√A 且 A%w==0 计数，A≤1000 无溢出、无重复统计长宽颠倒）；tests 的期望输出（2→1、4→2、1000→8）均由我独立手算因数对复核，未沿用初核结论。options/answer 维度对编程题不适用，PDF 未给出客观答案索引，officialAnswer=null。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 15 页题名为“2. 长方形面积”，问题描述与网站 Markdown 题面一致（整数长宽、长≥宽、正方形为特例）；输入描述“输入一行，包含一个整数，表示长方形的面积。约定 2 ≤ A ≤ 1000”与网站一致；第 16 页样例 4→2（长宽 2×2、4×1）、6→2（长宽 3×2、6×1）与网站 samples 一致。网站输出格式“表示有 $C$ 种可能的长方形”比 PDF 原句“表示有种可能的长方形”多一个变量名 C，属修复漏字，不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF 无 A-D 选项列表。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引，PDF 仅提供【参考程序】与样例，无【答案】标记。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：因限定长≥宽，枚举宽 w 只需满足 w*w≤面积即可保证对应长 n/w≥w；每对无序因数（含完全平方数的 w=w）恰好计一次。网站解析中的数学推导（w*w≤w*h=n）、样例走查（4 叠加 w=1、2 得 2；6 叠加 w=1、2 得 2）与易错提醒（循环上界、%0 除零、正方形计入一次）均正确，与解题思路一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 17 页参考程序逐行对齐：循环条件 w*w<=area、整除判断 area%w==0、cnt++ 相同；网站变量名 n/count/i 与原卷 area/cnt/w 为等价更名。算法为 O(√A)，A≤1000 时循环至多 31 次，int 无溢出风险；w 从 1 开始避免对 0 取模。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小面积",
+            "input": "2\n",
+            "output": "1\n",
+            "reason": "A=2 为输入下界，仅存在无序因数对 1×2（w=1 时 2%1==0，w=2 不满足 2×2≤2），输出 1。"
+          },
+          {
+            "name": "完全平方数（样例兼边界）",
+            "input": "4\n",
+            "output": "2\n",
+            "reason": "A=4 为完全平方数：因数对 1×4、2×2，正方形 2×2 依题意只计一种，输出 2，与 PDF 样例解释一致。"
+          },
+          {
+            "name": "最大面积",
+            "input": "1000\n",
+            "output": "8\n",
+            "reason": "A=1000 为输入上界。不超过 √1000≈31.6 的因数为 1,2,4,5,8,10,20,25，对应 1×1000、2×500、4×250、5×200、8×125、10×100、20×50、25×40 共 8 对，输出 8。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "verdict": "unresolved",
+        "reviewNote": "接受初核结论中的 unresolved 处理：该 PDF 第 13 页【输入描述】仅写“输入一行，包含两个整数，分别表示一个日期的年、月”，未印出网站补充的数据范围“2000≤A≤3000、1≤B≤12”，仅凭本镜像 PDF 无法证实该约束属于原卷，保留待核验、不擅自定案。其余维度经独立复核通过：题目描述、样例（2022 1→31、2020 2→29）与 PDF 第 13-14 页一致；参考代码与 PDF 第 15 页参考程序在语义上等价（PDF 用 leap 标志分两步置 true，其最终判定 (y%400==0)||(y%4==0&&y%100!=0) 与网站单条布尔表达式完全相同），大月/小月/二月分支齐全，2^{31} 范围内 int 无溢出，合法月份 1..12 内逻辑正确；tests（2000→29、2100→28、3000→28）经我独立按闰年规则手算确认。另注：PDF 卷内编程题顺序为“1. 每月天数、2. 长方形面积”，与网站 id26（长方形面积）/id27（每月天数）相反，鉴于不允许修改 id，仅在 summary 提示题序差异，不作为数据错误。",
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第 13-14 页问题、输入/输出描述与样例框（2022 1→31、2020 2→29）与网站一致；但网站输入格式含“约定 $2000 \\leq A \\leq 3000$，$1 \\leq B \\leq 12$”，而该 PDF 页面【输入描述】只写“包含两个整数，分别表示一个日期的年、月”，未印任何范围约定，此约束无法由登记证据单独证实，保留待核验。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF 无 A-D 选项列表。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引，PDF 仅提供【参考程序】与样例，无【答案】标记。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：大月 1/3/5/7/8/10/12 为 31 天、小月 4/6/9/11 为 30 天、2 月按平闰年 28/29 天；闰年条件 (y%4==0&&y%100!=0)||y%400==0 与历法规则一致。解析中样例走查（2022 1→31、2020 2→29）及补查 2021 2→28（2021%4=1 且 %400=21）均正确；对 && 优先级高于 || 与 ==/= 混淆的提醒无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 15 页参考程序等价：网站版 else 分支仅在月份非大月非小月（即 m==2）时执行闰年判断，与 PDF 版 leap 标志逻辑 (y%400==0)||(y%4==0&&y%100!=0) 完全一致；分支覆盖 1..12 全部月份，O(1) 复杂度，2000=闰、2100=平、3000=平校验通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份且整百年闰年",
+            "input": "2000 2\n",
+            "output": "29\n",
+            "reason": "2000 能被 400 整除，为闰年，2 月 29 天；覆盖范围下界与 y%400==0 分支。"
+          },
+          {
+            "name": "世纪平年",
+            "input": "2100 2\n",
+            "output": "28\n",
+            "reason": "2100 % 4 == 0 但被 100 整除且 % 400 == 100 ≠ 0，非闰年，2 月 28 天；覆盖整百年陷阱分支。"
+          },
+          {
+            "name": "最大年份 2 月",
+            "input": "3000 2\n",
+            "output": "28\n",
+            "reason": "3000 % 4 == 0 但被 100 整除且 % 400 == 200 ≠ 0，非闰年，2 月 28 天；覆盖范围上界。"
+          }
+        ],
+        "unresolved": [
+          "网站题面补充的数据范围“2000 ≤ A ≤ 3000，1 ≤ B ≤ 12”未见于该 PDF 第 13 页【输入描述】，无法仅凭登记证据证实，保留待核验。"
+        ]
+      }
+    ],
+    "summary": "本轮仅核验第 26、27 题。id26（长方形面积）与 id27（每月天数）的题面、样例、解析、参考代码均与 PDF 第 13-17 页对照一致并通过独立推导核验；网站输出格式补入 $C$ 属修复 PDF 漏印、不改变题意。id27 网站新增的数据范围约束（2000≤A≤3000、1≤B≤12）未见于该镜像 PDF，statement 维度维持 unresolved，不擅自定案。verdict：id26=approve、id27=unresolved。tests 全部由本人独立手算期望输出（2→1、4→2、1000→8；2000 2→29、2100 2→28、3000 2→28）。另提请题库元数据层面注意：PDF 卷内编程题顺序（每月天数在前、长方形面积在后）与网站 id26/id27 顺序相反，因不允许修改 id，本轮不调整。"
+  }
+}

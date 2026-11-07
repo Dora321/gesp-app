@@ -1,0 +1,228 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:14:09.569Z",
+  "completedAt": "2026-11-07T17:17:16.592Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37506,
+    "completion_tokens": 13149,
+    "total_tokens": 50655,
+    "prompt_tokens_details": {
+      "cached_tokens": 37376
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11026
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00802103,
+      "allowance": 0.00481262,
+      "tokens": {
+        "input": 130,
+        "output": 13149,
+        "reasoning": 11026,
+        "cache_read": 37376,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023年3月 GESP C++ 一级真题解析”，正文含单选题 15 道、判断题 10 道、编程题 2 道，与 2023-03-l1（2023 年 3 月、C++ 一级）一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题 6 为“以下哪个不是 C++语言的关键字？”，网页题干含义与文字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A int、B for、C do、D cout；网页选项顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题 6【答案】为 D；按 0 起始索引 D=3，与网页 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3—4 页说明 cin、cout 不是关键字，但网页解析称 cout 为“常量对象”不准确：std::cout 是 <iostream> 中 std::ostream 类型的标准库对象，并非 const 常量对象。答案判断不受影响，但需修正术语。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (cout)**\n\n**核心解析：**\n`int`、`for`、`do` 都是 C++ 标准中的关键字；而 `cout` 是 C++ 标准库中定义在 `<iostream>` 的 `std::ostream` 类型对象（通常写为 `std::cout`，或经 `using namespace std;` 后写作 `cout`），它是标准库对象名，但**不是关键字**。\n\n**选项逐项分析：**\n- **A (int)**：❌ 整型关键字。\n- **B (for)**：❌ 循环关键字。\n- **C (do)**：❌ do-while 循环关键字。\n- **D (cout)**：✅ 正确。标准库对象名，不是关键字。\n\n**易错提醒：**\n- 关键字是语言自身的保留字；`cin`、`cout`、`endl` 是标准库提供的名字，依赖头文件及命名空间引入。\n- 两者容易混淆，判断标准是：关键字由语言语法直接保留，不是通过头文件声明的标识符。\n\n**考点：** 计算机基础与编程环境——关键字与标准库对象的区分"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题 7 为“如果 a、b 和 c 都是 int 类型的变量，下列哪个语句不符合 C++语法？”，网页题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A c = a + b;、B c += a + b;、C c = a = b;、D c = a ++ b;，网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4—5 页题 7【答案】为 D；按 0 起始索引 D=3，与网页 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页解析说明 A、B、C 合法，D 中 `a++` 后接 `b` 不构成合法表达式；与独立语法分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 8 为“如果用两个 int 类型的变量 a 和 b 分别表达长方形的长和宽，则下列哪个表达式不能用来计算长方形的周长？”，网页题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A a + b * 2、B 2 * a + 2 * b、C a + b + a + b、D b + a * 2 + b；网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 8【答案】为 A；按 0 起始索引 A=0，与网页 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页解析指出 A 先算 b*2，得到 a+2b，不能表示周长；B、C、D 均等价于 2a+2b，独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 9 为“表达式((3 == 0) + 'A' + 1 + 3.0)的结果类型为（）”，网页表达式一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A double、B int、C char、D bool；网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题 9【答案】为 A；按 0 起始索引 A=0，与网页 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 5—6 页解析按 bool/char/int/double 的隐式转换说明最终为 double；独立推导：0+65+1+3.0 的类型为 double。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题 10 为“如果 a 为 int 类型的变量，且 a 的值为 6，则执行 a *= 3;之后，a 的值会是（）”，网页题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项依次为 A 3、B 6、C 9、D 18；网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题 10【答案】为 D；按 0 起始索引 D=3，与网页 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页解析说明 a*=3 等价于 a=a*3，6*3=18；网页解析与独立计算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题 6—10 已完成五维初核：题干、选项顺序和官方答案均与 PDF 页图一致。题 6 解析把 std::cout 误写为“常量对象”，建议改为“标准库对象”，答案 D 不受影响；其余题目的解析与独立推导一致。五题均为单选题，无参考代码测试项。"
+  }
+}

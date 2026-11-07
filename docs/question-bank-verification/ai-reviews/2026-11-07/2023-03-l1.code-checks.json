@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-07T17:43:08.508Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "6",
+          "output": "2",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "最小面积",
+          "input": "2\n",
+          "output": "1\n",
+          "reason": "A=2 为输入下界，仅存在无序因数对 1×2（w=1 时 2%1==0，w=2 不满足 2×2≤2），输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "完全平方数（样例兼边界）",
+          "input": "4\n",
+          "output": "2\n",
+          "reason": "A=4 为完全平方数：因数对 1×4、2×2，正方形 2×2 依题意只计一种，输出 2，与 PDF 样例解释一致。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "最大面积",
+          "input": "1000\n",
+          "output": "8\n",
+          "reason": "A=1000 为输入上界。不超过 √1000≈31.6 的因数为 1,2,4,5,8,10,20,25，对应 1×1000、2×500、4×250、5×200、8×125、10×100、20×50、25×40 共 8 对，输出 8。",
+          "kind": "boundary",
+          "actual": "8\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f0255d85725e20d2f493084bc3bae6046bf24464f3ec23003df51adecd8917a8"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2022 1",
+          "output": "31",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "input": "2020 2",
+          "output": "29",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "29\n",
+          "passed": true
+        },
+        {
+          "name": "最小年份且整百年闰年",
+          "input": "2000 2\n",
+          "output": "29\n",
+          "reason": "2000 能被 400 整除，为闰年，2 月 29 天；覆盖范围下界与 y%400==0 分支。",
+          "kind": "boundary",
+          "actual": "29\n",
+          "passed": true
+        },
+        {
+          "name": "世纪平年",
+          "input": "2100 2\n",
+          "output": "28\n",
+          "reason": "2100 % 4 == 0 但被 100 整除且 % 400 == 100 ≠ 0，非闰年，2 月 28 天；覆盖整百年陷阱分支。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        },
+        {
+          "name": "最大年份 2 月",
+          "input": "3000 2\n",
+          "output": "28\n",
+          "reason": "3000 % 4 == 0 但被 100 整除且 % 400 == 200 ≠ 0，非闰年，2 月 28 天；覆盖范围上界。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "7a847c0fb60785f7d7f63499f0f25cf3fcf42f6205651be8940490656a71f2b8"
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:24:37.960Z",
+  "completedAt": "2026-11-07T17:30:54.155Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 67122,
+    "completion_tokens": 22814,
+    "total_tokens": 89936,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19200
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0214753,
+      "allowance": 0.0214753,
+      "tokens": {
+        "input": 67122,
+        "output": 22814,
+        "reasoning": 19200,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页眉含 CCF/GESP 徽标，卷头为『2023 年 3 月 GESP C++ 一级真题解析』，卷面结构为单选 30 分、判断 20 分、编程 50 分，年份（2023）、月份（3 月）、语言与等级（C++ 一级）与 paperId 2023-03-l1 完全对应。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原文『11. 如果 a 和 b 均为 int 类型的变量，下列表达式不能正确判断“a 等于 0 且 b 等于 0”的是（）』与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 依次为 (a == 0) && (b == 0)、(a == b == 0)、(!a) && (!b)、(a == 0) + (b == 0) == 2，与网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页红字【答案】B，0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：== 左结合，(a == b) == 0 等价于 a != b；a=b=0 时 (0==0)==0 → 1==0 为假，确不能表达『同时为 0』（a=1,b=2 时反而为真）；A 成立需两比较同时为真，C 中 !x 为真 ⇔ x 为 0，D 中 + 优先于 == 故 ((a==0)+(b==0))==2 仅当两者同时为 0 成立。网站解析与官方第 6-7 页思路一致且无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维均已按页图独立复核一致；(a==b)==0 的左结合语义、a=b=0 反例与 A/C/D 逐一验证无误，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页原文『12. 如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足“大于等于 a 且是 4 的倍数”的整数中最小的？』与网站题面逐字一致，无缺项。原卷未写 a 的非负限定，该命题严谨性问题属原卷自身，记入 unresolved，不影响与原卷转录一致性的核验。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 A-D 依次为 a * 4、a / 4 * 4、(a + 3) / 4 * 4、a - a % 4 + 4，与网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页红字【答案】C，0 起始索引 2，与网站 answer=2 一致。a≥0 范围争议见 unresolved 清单，官方答案标记本身无歧义，不据此改动。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析主体可独立推导成立：C 的 a=4k+t 分解与官方第 7-8 页思路一致（官方页 8 的不等式 (4k+4) <= (a+3)/4*4 <= (4k+4) 排版有误，网站已化简为等价正确表述，属合理的等价改写）；但选项 B 分析残留官方原卷的『a/3』笔误：网站写作『a 是 int 类型，a/3（整除）会把小数部分舍去』，而选项为 a/4，a=3 时正确算式是 a/4=0（官方原卷页 7 同样误写 a/3 两处，网站修正了一处、残留一处），且全文未说明该题默认 a 为非负整数的前提。已提供修正后的完整解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C ((a + 3) / 4 * 4)**\n\n**核心解析：**\n本题考察 C++ 基本运算中的整除与取模运用。在题目默认 a 为非负整数的前提下，设 a = 4k + t（k ≥ 0，0 ≤ t ≤ 3）：\n- 若 t = 0（a 本身是 4 的倍数），则 (a + 3) / 4 = (4k + 3) / 4 = k，结果为 k * 4 = a，恰好是 a 本身；\n- 若 t ≥ 1，则 t + 3 ∈ [4, 6]，(t + 3) / 4 = 1，故 (a + 3) / 4 = k + 1，结果为 (k + 1) * 4 = 4k + 4，是大于 a 的最小 4 的倍数。\n两种情况都得“大于等于 a 且是 4 的倍数”的整数中最小的，故 C 正确。\n\n**选项逐项分析：**\n- **A (a * 4)**：❌ 假设 a 为 3，a * 4 = 12，虽是 4 的倍数且大于等于 a，但不是最小的（最小应为 4），排除。\n- **B (a / 4 * 4)**：❌ a 为 int 类型，a / 4 为整除（C++ 向零截断）。当 a 为正整数且不是 4 的倍数时（假设 a 为 3，a / 4 = 0，故 a / 4 * 4 = 0），结果不满足“大于等于 a”，排除。（注：a ≤ 0 或 a 本身是 4 的倍数时 B 恰好成立，但正的非倍数即不成立。）\n- **C ((a + 3) / 4 * 4)**：✅ 正确，推导如上；这是“把 x 向上取整到 m 的倍数”的通用写法 (x + m - 1) / m * m（x ≥ 0、m > 0）。\n- **D (a - a % 4 + 4)**：❌ 假设 a 为 4（4 % 4 = 0），结果为 4 - 0 + 4 = 8，虽大于等于 a 且是 4 的倍数，但不是最小的，比正确答案多加了 4，排除。\n\n**易错提醒：**\n- 整除的方向性：a / 4 * 4 得到的是“不大于 a 的 4 的倍数”，向上取整需先加 (m - 1) 再整除。\n- 选项 D 相当于“严格大于 a”时的写法，边界（a 本身是 4 的倍数）时会多加一轮。\n\n**命题范围说明（保留争议）：** 原题只声明 a 为 int，未限定 a ≥ 0。C++ 整数除法向零截断，例如 a = -4 时：(a + 3) / 4 * 4 = (-1) / 4 * 4 = 0，而满足条件的最小 4 的倍数应为 -4；严格按全部 int 取值，C 并不恒成立，官方解析按 a 为非负整数的语境得出结论。按规范保留此争议说明，不改变官方答案 C。"
+        },
+        "tests": [],
+        "unresolved": [
+          "命题范围争议：原题仅声明 a 为 int 类型，未限定 a ≥ 0；按 C++ 向零截断，在负的 4 的倍数（如 a = -4，(a+3)/4*4 = 0 ≠ -4）处选项 C 不成立，官方答案 C 依赖非负整数语境。按『来源争议保留、不擅自定案』原则记录，不改动官方答案标记。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：确认『a/3』为笔误——官方原卷页 7 在选项 B 分析中亦两处误写 a/3，而选项是 a/4，a=3 时正确算式为 a/4=0；采纳其修正方向与负数域反例说明，但替换为本人独立撰写、结构完整的修正文本（补 a≥0 前提与 B 的成立范围）。否决初核将 statement、answer 标为 unresolved：这两维核验的是网站与原卷的转录一致性，页 7 题面、四选项与红字【答案】C 均与网站一致，应标 verified；范围漏洞已按规范以 unresolved 清单与解析内说明保留，不据此擅改官方答案。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页代码图：int a = 10, b = 20; / a = ________;（注释“在此处填入代码”）/ b = a / 100; / a = a % 100; / cout << a << \" \" << b << endl;，输出要求“20 10”，与网站代码及空位一致（填空下划线个数为排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 A-D 依次为 a + b、(a + b) * 100、b * 100 + a、a * 100 + b，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页红字【答案】D，0 起始索引 3，与网站 answer=3 一致；第 9 页结论『只有选项 D 的表达式的计算结果为 1020』呼应。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：D 得 a = 10*100+20 = 1020，随后 b = 1020/100 = 10、a = 1020%100 = 20，输出“20 10”符合；A 得 a=30，输出“30 0”；B 得 3000，b=30、a=0，输出“0 30”；C 得 2010，b=20、a=10，输出“10 20”（与目标恰好互换）。网站解析各项结论与我的代入结果一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：代码图与网站逐行一致，四个选项均经独立代入验证，D 唯一使输出为“20 10”，解析无误，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页代码图：for (int i = 1; i <= 8; ________) // 在此处填入代码 / cout << i;，要求输出“1248”，与网站代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 A-D 依次为 i++、i *= 2、i += 2、i * 2，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页红字【答案】B，0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举步进序列：i *= 2 时 i 取 1、2、4、8（9>8 停），输出 1248；i++ 输出 12345678；i += 2 输出 1357；i * 2 为合法表达式但无副作用，i 恒为 1，持续输出 1 构成死循环。网站解析逐项正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：i *= 2 的序列独立验证通过；对 i * 2 死循环的判断正确（for 第三子句允许纯表达式，但必须由其副作用更新循环变量），无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9-10 页代码图：int sum = 0; / for (int i = 1; i <= 20; i++) / if (i % 3 == 0 || i % 5 == 0) / sum += i; / cout << sum << endl;，与网站代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页末 A. 210，第 10 页 B. 113、C. 98、D. 15，与网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页红字【答案】C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立求和：1-20 内 3 或 5 的倍数为 3、5、6、9、10、12、15、18、20，15 只计一次，累加 3+5=8、+6=14、+9=23、+10=33、+12=45、+15=60、+18=78、+20=98 = 98，与网站一致；210 为 1..20 全和（210=20×21/2），113=98+15 对应把 15 重复累加。注：网站对干扰项 D“15”的成因归因（称‘只累加了 3 或 5 本身’，实为 3+5=8）属推测性归因，不构成对答案或正确项推导的事实错误，不作修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：核心枚举与求和 98 独立复核一致，B 的 113=98+15 归因成立；干扰项 D 的成因描述瑕疵仅在 reviewNote 与 evidence 中留痕，不据此改动。"
+      }
+    ],
+    "summary": "范围：仅第 11-15 题，基于 PDF 第 6-10 页页图与文本层独立复核。第 11、13、14、15 题题面、选项、红字答案与解析均与原卷一致，独立推导（(a==b)==0 左结合反例、1020 拼接与 20 10 输出、i*=2 序列 1/2/4/8、3 或 5 的倍数求和 98）复核通过，均 approve 且无修改。第 12 题题面、四个选项与红字【答案】C 与网站一致，statement/options/answer 标 verified；解析在选项 B 处残留官方原卷的“a/3”笔误（选项为 a/4，a=3 时应为 a/4=0），且未说明官方默认 a 为非负整数的前提，已用修正后的完整解析替换（verdict=revise）；“原题未限定 a≥0、负的 4 的倍数处 C 不成立”的命题范围漏洞按规范记入 unresolved 保留，不据此改动官方答案。初核将 12 题 statement/answer 标为 unresolved 属维度错标（这两维核验的是与原卷的转录一致性），已否决；其余初核记录与独立结论一致，予以接受。"
+  }
+}

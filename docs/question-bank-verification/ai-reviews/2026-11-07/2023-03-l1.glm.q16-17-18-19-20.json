@@ -1,0 +1,234 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:32:05.399Z",
+  "completedAt": "2026-11-07T17:33:22.980Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 66504,
+    "completion_tokens": 2980,
+    "total_tokens": 69484,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1040
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0114656,
+      "allowance": 0.0114656,
+      "tokens": {
+        "input": 66504,
+        "output": 2980,
+        "reasoning": 1040,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为『2023 年 3 月 GESP C++ 一级真题解析』，正文说明本次为 2023 年 3 月 C++ 一级考试真题解析，与核验目标 2023-03-l1（year=2023, month=3, level=1）一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立对照 PDF 第 10 页原图，判断题 1 题面、答案符号均在第 10 页同页可核，映射与站点一致，解析独立推导通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页原图判断题第 1 题原文：『在 Windows 系统中通过键盘完成对选定文本移动的按键组合是先 Ctrl+X，移动到目标位置后按 Ctrl+V。』与站点题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，原卷未列 A/B 选项；站点使用固定『正确/错误』二元选项，无顺序映射风险。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页原图【答案】为 √；按判断题 正确=0 映射，站点 answer=0 一致；与站点答案串 √××√××××√√ 第 1 位吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：Ctrl+X 为剪切（复制并从原位置删除），目标位置 Ctrl+V 粘贴，剪切+粘贴组合即完成移动，原位置内容被移除；与复制（Ctrl+C）+粘贴区分，站点解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立对照 PDF 第 10 页原图，题面与答案符号同页核得，映射与站点一致，解析独立推导通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页原图判断题第 2 题原文：『程序员用 C、C++、Python、Scratch 等编写的程序能在 CPU 上直接执行。』与站点题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，原卷未列 A/B 选项；站点使用固定『正确/错误』二元选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页原图【答案】为 ×；按判断题 错误=1 映射，站点 answer=1 一致；与答案串第 2 位吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：CPU 仅能直接执行机器语言二进制指令；C/C++ 需编译、Python 需解释、Scratch 为图形化语言更需转换，高级语言源代码不能被 CPU 直接识别执行，命题错误成立。},"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面在 PDF 第 10 页原图末行，答案与解析在第 11 页原图首部，跨页核验一致，映射与站点一致，解析独立推导通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页原图末行为判断题第 3 题题面：『在 C++语言中，注释不宜写得过多，否则会使得程序运行速度变慢。』与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，原卷未列 A/B 选项；站点使用固定『正确/错误』二元选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页原图【答案】为 ×；按判断题 错误=1 映射，站点 answer=1 一致；与答案串第 3 位吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：注释在预处理/编译阶段被去除，不生成机器指令，不进入可执行程序，故不影响运行速度；至多影响源码体积与编译时间。命题『运行速度变慢』错误成立，站点解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立对照 PDF 第 11 页原图，题面、答案符号同页核得，映射与站点一致，解析独立推导通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页原图判断题第 4 题原文：『在 C++语言中，标识符中可以有数字，但不能以数字开头。』与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，原卷未列 A/B 选项；站点使用固定『正确/错误』二元选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页原图【答案】为 √；按判断题 正确=0 映射，站点 answer=0 一致；与答案串第 4 位吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 标识符由字母、数字、下划线组成且首字符须为字母或下划线，数字可出现在非首位（如 x3 合法、3x 非法），且不得与关键字重名，命题正确成立，站点解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立对照 PDF 第 11 页原图，题面（含单引号字符 '3'）与答案符号同页核得，映射与站点一致，解析独立推导通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页原图判断题第 5 题原文：『3'是一个 int 类型常量。』（'3' 为单引号字符常量），与站点题面一致，单引号符号在原图中可见，非文本层误读。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，原卷未列 A/B 选项；站点使用固定『正确/错误』二元选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页原图【答案】为 ×；按判断题 错误=1 映射，站点 answer=1 一致；与答案串第 5 位吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：单引号括起的 '3' 是 char 类型字符常量，其值为字符 ASCII 码 '0'=48、'3'=48+3=51；不带引号的 3 才是 int 常量。命题错误成立，站点解析中 ASCII 51 计算正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅处理题号 16-20（判断题第 1-5 小题）。基于 PDF 第 10、11 页原图逐题核对：五道判断题题面与站点逐字一致（含第 20 题单引号字符 '3' 的符号细节），答案符号 √、×、×、√、× 按正确=0/错误=1 映射后与站点 answer 0、1、1、0、1 完全一致，且与站点已核答案串『√××√××××√√』第 1-5 位吻合。解析经独立推导（剪切粘贴=移动、高级语言不可被 CPU 直接执行、注释不生成指令、标识符数字规则、char 常量 ASCII 51）全部无误。DeepSeek 初核草稿与此独立结论一致，全部接受，无修改项。判断题不适用 options 与 referenceCode 维度，均记录为 not_applicable；无 tests 需求（判断题不适用）。第 18 题题面位于第 10 页而答案解析位于第 11 页，sourcePages 记为 [10,11]。无争议项，无需保留待核。"
+  }
+}

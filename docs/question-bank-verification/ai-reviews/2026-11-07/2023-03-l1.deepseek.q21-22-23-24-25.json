@@ -1,0 +1,225 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:33:22.996Z",
+  "completedAt": "2026-11-07T17:35:16.501Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37506,
+    "completion_tokens": 5825,
+    "total_tokens": 43331,
+    "prompt_tokens_details": {
+      "cached_tokens": 37376
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4014
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00362663,
+      "allowance": 0.00217598,
+      "tokens": {
+        "input": 130,
+        "output": 5825,
+        "reasoning": 4014,
+        "cache_read": 37376,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，正文为 C++ 一级试题，与 2023-03-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11页判断题第6题原文与站点题面一致：if 语句中的条件表达式的结果必须为 bool 类型。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第11页该题【答案】为“×”；按错误=1 映射，officialAnswer=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：C++ 的 if 条件按上下文转换为 bool，整数等标量可按“非零为真、零为假”参与判断，例如 int a; if (a) 合法，故“必须为 bool”是错误命题；站点解析与 PDF 第11-12页解析一致且推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第7题原文与站点题面一致：for 语句的循环体至少会执行一次。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页该题【答案】为“×”；按错误=1 映射，officialAnswer=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：for 循环先执行初始化，再判断条件；若首次判断即为假，循环体执行 0 次，至少执行一次的是 do-while。站点解析与 PDF 解析一致且论证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第8题原文与站点题面一致：如果 a 为 int 类型的变量，则赋值语句 a = a + 3; 是错误的，因为这条语句会导致 a 无意义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页该题【答案】为“×”；按错误=1 映射，officialAnswer=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：C++ 的 = 是赋值运算符，a = a + 3; 先取 a 的原值加 3，再写回 a，语义合法且不会使 a 无意义。站点解析与 PDF 第12页解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第9题原文与站点题面一致：如果 a 为 int 类型的变量，则表达式 (a / 4 == 2) 和表达式 (a >= 8 && a <= 11) 的结果总是相同的。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页该题【答案】为“√”；按正确=0 映射，officialAnswer=0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：int 除法向零截断，a / 4 == 2 当且仅当 a 属于 8 到 11；负数的商不可能为 2，因此与 a >= 8 && a <= 11 恒等价。站点解析与 PDF 第12-13页解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第13页判断题第10题原文与站点题面一致：表达式 (3.5 * 2) 的计算结果为 7.0，且结果类型为 double。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第13页该题【答案】为“√”；按正确=0 映射，officialAnswer=0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：3.5 是 double 字面量，2 是 int，混合乘法按 double 进行，3.5 * 2 精确得到 7.0 且结果类型为 double。站点解析与 PDF 第13页解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅初核题号 21-25（PDF 判断题 6-10）。五题题面均与 PDF 第11-13页原文一致；官方答案串为 ×××√√，映射为 1、1、1、0、0，与站点 answer 完全一致；各题解析均可独立成立。未发现需修改项，changes 均为空。"
+  }
+}

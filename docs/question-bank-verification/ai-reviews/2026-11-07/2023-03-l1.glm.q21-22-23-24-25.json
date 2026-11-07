@@ -1,0 +1,235 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:35:16.513Z",
+  "completedAt": "2026-11-07T17:36:52.298Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 66613,
+    "completion_tokens": 3446,
+    "total_tokens": 70059,
+    "prompt_tokens_details": {
+      "cached_tokens": 60928
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1305
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00440359,
+      "allowance": 0.00440359,
+      "tokens": {
+        "input": 5685,
+        "output": 3446,
+        "reasoning": 1305,
+        "cache_read": 60928,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确为“2023 年 3 月 GESP C++ 一级真题解析”，正文含单选题 15 题、判断题 10 题、编程题（每月天数、长方形面积）各 25 分的 C++ 一级试卷结构，与 2023-03-l1 的 year=2023、month=3、level=1 完全一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 6 题原文“if 语句中的条件表达式的结果必须为 bool 类型。”与站点 question 逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；站点以正确/错误形式呈现，其判定在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页该题【答案】符号为“×”；按判断题错误=1 映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 的 if 条件在上下文中被转换为 bool，任何标量（含 int）按非零为真、零为假参与判断，如 int a;-if (a); 合法，故“必须为 bool”是错误命题，答案 × 成立。站点解析与 PDF 第 11-12 页官方解析（含 if (a); 示例、a 非零为真/零为假）逐点一致，另补充的 Java 对比与“非零即真”易错点与推导相符，无事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面、答案映射（×→1）、解析均经独立复核成立，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页判断题第 7 题原文“for 语句的循环体至少会执行一次。”与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；站点以正确/错误形式呈现，其判定在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页该题【答案】符号为“×”；按错误=1 映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：for 循环先执行初始化表达式、再判断循环条件，条件首次即假时循环体执行 0 次；至少执行一次的是 do-while。故命题错误，答案 × 成立。站点解析（四步走流程、第②步条件为假则不执行循环体、do-while 对比）与 PDF 第 12 页官方解析逐点一致，推断无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面与官方原文一致，×→1 映射正确，解析经独立推导成立，无需修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页判断题第 8 题原文“如果 a 为 int 类型的变量，则赋值语句 a = a + 3;是错误的，因为这条语句会导致 a 无意义。”与站点 question 一致（仅标点/空格排版差异，含义不变）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；站点以正确/错误形式呈现，其判定在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页该题【答案】符号为“×”；按错误=1 映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 中 = 为赋值运算符，执行 a = a + 3; 时先取 a 的原值加 3 再写回 a，语义合法且不会使 a 无意义，命题错误，答案 × 成立。站点解析与 PDF 第 12 页官方解析（含“数学上 a=a+3 是无解的”但 C++ 中为合法赋值）逐点一致；“右侧先求值、左侧后更新、sum=sum+i 累加器”的易错提醒与赋值语义相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面与官方原文一致，×→1 映射正确，“数学上无解但 C++ 中合法”的解析与官方原文一致且推导成立，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页判断题第 9 题原文“如果 a 为 int 类型的变量，则表达式(a / 4 == 2)和表达式(a >= 8 && a <= 11)的结果总是相同的。”（解析续于第 13 页）与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；站点以正确/错误形式呈现，其判定在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页该题【答案】符号为“√”；按正确=0 映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 中 int 相除为整除（向零截断），a/4==2 当且仅当 8≤a≤11（a=12 时 12/4=3，a≤7 时商≤1，负数区间商不可能为 2），故 (a/4==2) 与 (a>=8 && a<=11) 对任意 int 值恒真同假，命题正确，答案 √ 成立。站点解析与 PDF 第 12-13 页官方解析（含 8/4、9/4、10/4、11/4 均为 2 的枚举）逐点一致，易错提醒补充的“向零舍去、而非 a==8”表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面与官方原文一致，√→0 映射正确，整除等价性经独立推导（含负数区间排除）成立，无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 13 页判断题第 10 题原文“表达式(3.5 * 2)的计算结果为 7.0，且结果类型为 double。”与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；站点以正确/错误形式呈现，其判定在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 13 页该题【答案】符号为“√”；按正确=0 映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：3.5 为 double 类型字面量（二进制 11.1 可精确表示），2 为 int，混合乘法中 int 提升为 double，按 double 运算得 7.0（可精确表示，无舍入误差），结果类型为 double，命题正确，答案 √ 成立。站点解析与 PDF 第 13 页官方解析逐点一致；“就高不就低”与 7.0/7 数值相等但类型不同、sizeof 不同的易错提醒与类型提升规则相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面与官方原文一致，√→0 映射正确，3.5 精确表示使 3.5*2 精确得 7.0 的推导成立，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核题号 21-25（对应 PDF 判断题第 6-10 题，PDF 第 11-13 页）。五题题面均与 PDF 原文逐字一致（仅判断题第 8 题存在无含义影响的标点/空格排版差异）；官方判断答案串为 ×、×、×、√、√，按错误=1/正确=0 映射为 1、1、1、0、0，与站点 answer 完全一致；五题解析均经独立推导核验成立，且与官方解析逐点对应，未发现事实性错误；判断题不适用 options 与 referenceCode 维度。DeepSeek 初核的 5 条记录全部经独立复核后接受，无否决、无待核验项，故 changes 均为空。均在授权范围（21-25）内，其余题目未核验。"
+  }
+}

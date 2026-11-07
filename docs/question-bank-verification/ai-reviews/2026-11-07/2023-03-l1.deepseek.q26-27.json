@@ -1,0 +1,168 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:36:52.310Z",
+  "completedAt": "2026-11-07T17:40:59.827Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37500,
+    "completion_tokens": 19729,
+    "total_tokens": 57229,
+    "prompt_tokens_details": {
+      "cached_tokens": 37376
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18603
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01196813,
+      "allowance": 0.00718088,
+      "tokens": {
+        "input": 124,
+        "output": 19729,
+        "reasoning": 18603,
+        "cache_read": 37376,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，正文说明为“C++ 一级考试”，与目标 2023-03-l1 的年份、月份和等级一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          15,
+          16,
+          17
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第15-16页题名为“长方形面积”，题面包含整数长宽、长≥宽、正方形为特例、2≤A≤1000，样例为4→2、6→2；网站题面及样例与之一致，输出说明中的C为清楚表述，不影响题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引；PDF只提供参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按宽w从1枚举至w*w≤A，并以A%w==0统计因数对；因限定长≥宽，每个无序长宽组合只计一次，完全平方数也只计一次。样例4、6推导正确，算法复杂度O(√A)，A≤1000无溢出。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第17页参考程序算法等价：从i=1循环至i*i≤n，n%i==0时计数；变量名area/cnt/w替换为n/count/i不影响正确性，覆盖2≤A≤1000且不会重复统计长宽颠倒情况。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小面积",
+            "input": "2\n",
+            "output": "1\n",
+            "reason": "A=2时，满足长≥宽的因数对只有1×2，计数1。"
+          },
+          {
+            "name": "完全平方数",
+            "input": "4\n",
+            "output": "2\n",
+            "reason": "因数对为1×4、2×2；正方形只计一种，计数2。"
+          },
+          {
+            "name": "最大面积",
+            "input": "1000\n",
+            "output": "8\n",
+            "reason": "1000的因数对为1×1000、2×500、4×250、5×200、8×125、10×100、20×50、25×40，共8种。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第13-14页核心题面、输入输出描述及样例（2022 1→31，2020 2→29）与网站一致；但PDF页仅写“包含两个整数”，未显式列出网站新增的“2000≤A≤3000、1≤B≤12”，该范围约束无法仅凭该PDF核实。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引；PDF只提供参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按大月31天、小月30天、2月按闰年处理；闰年条件(y%4==0&&y%100!=0)||y%400==0正确。样例2020年2月为闰年、2021年2月为平年的补充推导均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第15页参考程序等价：先判断大月和小月，否则按2月处理；闰年公式完整，2000、2020为闰年，2100、3000为平年；在合法月份1..12内逻辑正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份且为400年闰年",
+            "input": "2000 2\n",
+            "output": "29\n",
+            "reason": "2000能被400整除，是闰年，2月有29天。"
+          },
+          {
+            "name": "世纪平年",
+            "input": "2100 2\n",
+            "output": "28\n",
+            "reason": "2100能被100整除但不能被400整除，是平年，2月有28天。"
+          },
+          {
+            "name": "最大年份2月",
+            "input": "3000 2\n",
+            "output": "28\n",
+            "reason": "3000为范围上界，能被100整除但不能被400整除，是平年，2月有28天。"
+          }
+        ],
+        "unresolved": [
+          "PDF第13页未印出输入范围，网站补充的2000≤A≤3000、1≤B≤12无法由该PDF单独证实，保留待核验。"
+        ]
+      }
+    ],
+    "summary": "两题均为编程题，PDF第13-17页可对应：id26“长方形面积”的题面、样例、解析和参考程序均与PDF一致并核验通过；id27“每月天数”的核心题面、样例、解析和参考程序也一致，但PDF未显式列出网站新增的A、B范围，保留一项范围约束待核验。另PDF卷面顺序为“每月天数”在前、“长方形面积”在后，而网站id26/27顺序相反，建议在题库元数据层面核对题序；本次不改id。"
+  }
+}

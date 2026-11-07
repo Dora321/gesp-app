@@ -1,0 +1,237 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:07:43.138Z",
+  "completedAt": "2026-11-07T17:14:09.549Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 66807,
+    "completion_tokens": 13905,
+    "total_tokens": 80712,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11388
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01697355,
+      "allowance": 0.01697355,
+      "tokens": {
+        "input": 66807,
+        "output": 13905,
+        "reasoning": 11388,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为《2023 年 3 月 GESP C++ 一级真题解析》，标明年份 2023、月份 3、C++ 一级，与 paperId 2023-03-l1 一致；全卷结构为一、单选题（每题 2 分，共 30 分，15 题，pp.1-10）、二、判断题（每题 2 分，共 20 分，10 题，pp.10-13）、三、编程题（每题 25 分，共 50 分，2 题，pp.13-17），与网站 27 题（15 单选+10 判断+2 编程）框架相符。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题面“以下不属于计算机输入设备的有（ ）。”与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A. 键盘、B. 音箱、C. 鼠标、D. 传感器，网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页【答案】B，按 0 起始索引为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：键盘、鼠标、传感器将外界信息采集送入计算机，属输入设备；音箱接收主机音频信号转成声音向外播放，属输出设备，故不属于输入设备的是 B。网站解析按数据流向核心标准判断并逐项分析（含触摸屏复合设备说明、冯·诺依曼五大部件延伸），推导成立、与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案与 PDF 第 1 页逐项一致，解析独立推导成立，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题面“计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）。”与网站题面一致，题干本身使用的就是“基本单位”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页为 A.Byte，第 2 页续 B.Block、C.Bulk、D.Bit，网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】A，按 0 起始索引为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析核心句称“表示存储大小的最小单位为‘字节’”，与同一解析选项 D 处“位（小写 b）是更小的单位，1 Byte = 8 Bit”自相矛盾，且与题干“基本单位”不符（事实上 bit 才是最小存储单位，Byte 是基本存储单位）。原卷官方解析亦沿用“最小单位”措辞，但网站解析为扩展改写版而非逐字转录，故按事实修复核心句，答案与选项分析不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (Byte)**\n\n**核心解析：**\n计算机中，表示存储容量的基本单位是“字节”，英文为 Byte，用大写字母 B 表示；1 Byte = 8 bit，位（bit，小写 b）是比字节更小的存储单位。本题问的是大写字母 B 代表的基本存储单位，故为 Byte。\n\n**选项逐项分析：**\n- **A (Byte)**：✅ 正确。字节（Byte）即大写 B 所代表的单位。\n- **B (Block)**：❌ 块是文件系统中的分配概念，不是 B 的含义。\n- **C (Bulk)**：❌ 与存储单位无关。\n- **D (Bit)**：❌ 位（小写 b）是更小的单位，1 Byte = 8 Bit，大小写含义不同。\n\n**易错提醒：**\n- 大写 B = Byte（字节），小写 b = bit（位），两者相差 8 倍，网速常用小写 b、容量常用大写 B。\n\n**考点：** 计算机基础——存储单位 Byte 与 Bit 的区别"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受并独立确认初核指出的缺陷：解析首句“最小单位为字节”与同解析选项 D“位（bit）更小”在同一文本内自相冲突，题干问法也是“基本单位”，属事实性问题而非纯文风改写，修复必要。初核修复方向正确，但其版本额外改动了易错提醒措辞（删去“网速常用小写 b、容量常用大写 B”）属无必要改动，本复核否决该部分，改用最小改动版本：仅替换核心解析首句并补 1 Byte = 8 bit 关系，其余全文保留。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题面“3. 常量 7.0 的数据类型是（ ）。”与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A. double、B. float、C. void、D. int，网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】A，按 0 起始索引为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 中无后缀的浮点字面量默认类型为 double（float 需 f 后缀如 7.0f），void 表示“无类型”不可能作为常量类型，int 不能含小数部分，故 7.0 为 double。网站解析逐项与此一致，并提示区分 7（int）、7.0（double）、7.0f（float）、'7'（char）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案与 PDF 第 2 页一致，解析独立推导成立，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题面“下列关于 C++语言的叙述，不正确的是（ ）。”与网站题面一致（仅 C++ 两侧空格排版差异，不影响含义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A. 变量定义时可以不初始化、B. 变量被赋值之后的类型不变、C. 变量没有定义也能够使用、D. 变量名必须是合法的标识符，网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末【答案】C（解析起始于第 3 页），按 0 起始索引为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 正确（如 int a; 合法，定义可不初始化）；B 正确（C++ 静态类型，赋 3.99 给 int 型 a 只截断取值 3，a 类型不变）；C 错误（C++ 要求先定义后使用，未定义标识符参与 cout<<n 会编译报错，如 'n' was not declared in this scope）；D 正确（变量名须符合标识符规范）。故叙述不正确的是 C，网站解析逐项与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案与 PDF 第 2-3 页一致，解析独立推导成立（含赋值截断、编译报错示例），无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题面“5.以下不可以作为 C++标识符的是（ ）。”与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. x321、B. 0x321、C. x321_、D. _x321，网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】B，按 0 起始索引为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：标识符只能由字母、数字、下划线组成且首字符必须是字母或下划线，数字不能打头；0x321 以数字 0 开头非法，且形如十六进制字面量更不可能是标识符；x321、x321_、_x321 均合法。网站解析与此一致。附注：原卷解析第 3 条规则写“不能使用 C++的指令或关键字”，网站简写为“不能使用 C++ 的关键字”，对本题判定（取决于首字符规则）无影响，属等价转写，不构成缺陷。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案与 PDF 第 3 页一致，解析独立推导成立；原卷“指令或关键字”与网站“关键字”为等价转写、不影响判定，不要求改动。"
+      }
+    ],
+    "summary": "本批次独立复核 2023-03 GESP C++ 一级单选题 1-5（对应 PDF 第 1-3 页），DeepSeek 初核仅覆盖该 5 题，判断题与编程题不在本批次范围、未核验。五题题面、选项内容与顺序、答案全部与原卷一致，独立读出的答案串 B、A、A、C、B 与网站 answer 的 0 起始索引（1、0、0、2、1）核对无误；各题解析均能独立推导支撑答案。唯一缺陷为题 2 解析首句把 Byte 称作存储“最小单位”，与同解析选项 D“位（bit）是更小的单位”及题干“基本单位”自相矛盾，属事实性问题而非文风问题：已应用最小修复（仅替换核心解析首句，其余内容不动），修复后核验通过。初核其余结论经独立复核均成立，其题 2 修复中对易错提醒的无谓改动已被否决并改用最小版本。"
+  }
+}

@@ -1,0 +1,1203 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:04:53.968Z",
+  "completedAt": "2026-11-07T17:40:59.827Z",
+  "finishReason": "stop",
+  "inputSha256": "a1162fb234bc2f03ca6449a0785b679c1f8c4a365a306037031c9b8a8e64e660",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，与 paperId 对应的年月和等级一致；题 1-5 位于 PDF 第 1-3 页。\nPDF 第 1 页卷头为“2023年3月 GESP C++ 一级真题解析”，正文含单选题 15 道、判断题 10 道、编程题 2 道，与 2023-03-l1（2023 年 3 月、C++ 一级）一致。\nPDF第1页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，与 paperId 2023-03-l1（2023年3月C++一级）一致。\nPDF 第 1 页卷头标题为“2023 年 3 月 GESP C++ 一级真题解析”，并标明单选题、判断题、编程题的分值结构，与 2023-03-l1 的年份、月份、等级一致。\nPDF 第1页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，正文为 C++ 一级试题，与 2023-03-l1 的年份、月份、等级一致。\nPDF第1页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，正文说明为“C++ 一级考试”，与目标 2023-03-l1 的年份、月份和等级一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题面为“以下不属于计算机输入设备的有（ ）。”，网站题面与其一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A 键盘、B 音箱、C 鼠标、D 传感器，网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页【答案】为 B；按 0 起始索引对应 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按输入/输出设备的数据流向判断，音箱为输出设备，键盘、鼠标、传感器为输入设备，独立推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题面为“计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1-2 页选项依次为 A.Byte、B.Block、C.Bulk、D.Bit，网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】为 A；按 0 起始索引对应 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析首句称字节为存储大小的“最小单位”，但同一解析又指出 Bit 是更小的单位，前后矛盾；独立知识中 bit 才是最小存储单位，Byte 是基本存储单位。PDF 第 2 页原解析亦沿用“最小单位”措辞，但网站解析应修正为“基本单位”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码要求。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (Byte)**\n\n**核心解析：**\n计算机中，表示存储容量的基本单位是“字节”，英文为 Byte，常用大写字母 B 表示。一个字节通常由 8 个二进制位（bit）组成；bit（位，小写 b）是更小的存储单位。题目问的是 B 所代表的基本单位，因此是 Byte。\n\n**选项逐项分析：**\n- **A (Byte)**：✅ 正确。字节（Byte）即大写 B 所代表的单位。\n- **B (Block)**：❌ 块是文件系统或存储管理中的分配概念，不是 B 的含义。\n- **C (Bulk)**：❌ 与存储单位无关。\n- **D (Bit)**：❌ 位（小写 b）是更小的单位，1 Byte = 8 bit，大小写含义不同。\n\n**易错提醒：**\n- 大写 B = Byte（字节），小写 b = bit（位），两者相差 8 倍；存储容量常用大写 B，位常用小写 b。\n\n**考点：** 计算机基础——存储单位 Byte 与 Bit 的区别"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题面为“常量 7.0 的数据类型是（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A double、B float、C void、D int，网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】为 A；按 0 起始索引对应 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出不带后缀的浮点字面量 7.0 默认为 double，float 需写 7.0f，int 不能表示小数，推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题面为“下列关于 C++语言的叙述，不正确的是（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A 变量定义时可以不初始化、B 变量被赋值之后的类型不变、C 变量没有定义也能够使用、D 变量名必须是合法的标识符，网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页【答案】为 C；按 0 起始索引对应 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 2-3 页解析指出变量必须先定义后使用，未定义变量会导致编译错误；A、B、D 均为正确叙述，独立推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题面为“以下不可以作为 C++标识符的是（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A x321、B 0x321、C x321_、D _x321，网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】为 B；按 0 起始索引对应 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据标识符不能以数字开头的规则判断 0x321 非法；x321、x321_、_x321 均符合基本命名规则，独立推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题 6 为“以下哪个不是 C++语言的关键字？”，网页题干含义与文字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A int、B for、C do、D cout；网页选项顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题 6【答案】为 D；按 0 起始索引 D=3，与网页 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3—4 页说明 cin、cout 不是关键字，但网页解析称 cout 为“常量对象”不准确：std::cout 是 <iostream> 中 std::ostream 类型的标准库对象，并非 const 常量对象。答案判断不受影响，但需修正术语。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (cout)**\n\n**核心解析：**\n`int`、`for`、`do` 都是 C++ 标准中的关键字；而 `cout` 是 C++ 标准库中定义在 `<iostream>` 的 `std::ostream` 类型对象（通常写为 `std::cout`，或经 `using namespace std;` 后写作 `cout`），它是标准库对象名，但**不是关键字**。\n\n**选项逐项分析：**\n- **A (int)**：❌ 整型关键字。\n- **B (for)**：❌ 循环关键字。\n- **C (do)**：❌ do-while 循环关键字。\n- **D (cout)**：✅ 正确。标准库对象名，不是关键字。\n\n**易错提醒：**\n- 关键字是语言自身的保留字；`cin`、`cout`、`endl` 是标准库提供的名字，依赖头文件及命名空间引入。\n- 两者容易混淆，判断标准是：关键字由语言语法直接保留，不是通过头文件声明的标识符。\n\n**考点：** 计算机基础与编程环境——关键字与标准库对象的区分"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题 7 为“如果 a、b 和 c 都是 int 类型的变量，下列哪个语句不符合 C++语法？”，网页题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A c = a + b;、B c += a + b;、C c = a = b;、D c = a ++ b;，网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4—5 页题 7【答案】为 D；按 0 起始索引 D=3，与网页 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页解析说明 A、B、C 合法，D 中 `a++` 后接 `b` 不构成合法表达式；与独立语法分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 8 为“如果用两个 int 类型的变量 a 和 b 分别表达长方形的长和宽，则下列哪个表达式不能用来计算长方形的周长？”，网页题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A a + b * 2、B 2 * a + 2 * b、C a + b + a + b、D b + a * 2 + b；网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 8【答案】为 A；按 0 起始索引 A=0，与网页 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页解析指出 A 先算 b*2，得到 a+2b，不能表示周长；B、C、D 均等价于 2a+2b，独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题 9 为“表达式((3 == 0) + 'A' + 1 + 3.0)的结果类型为（）”，网页表达式一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A double、B int、C char、D bool；网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题 9【答案】为 A；按 0 起始索引 A=0，与网页 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 5—6 页解析按 bool/char/int/double 的隐式转换说明最终为 double；独立推导：0+65+1+3.0 的类型为 double。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题 10 为“如果 a 为 int 类型的变量，且 a 的值为 6，则执行 a *= 3;之后，a 的值会是（）”，网页题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项依次为 A 3、B 6、C 9、D 18；网页顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题 10【答案】为 D；按 0 起始索引 D=3，与网页 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页解析说明 a*=3 等价于 a=a*3，6*3=18；网页解析与独立计算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干“如果 a 和 b 均为 int 类型的变量，下列表达式不能正确判断……”与网站文字一致，无缺项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A-D依次为 (a == 0) && (b == 0)、(a == b == 0)、(!a) && (!b)、(a == 0) + (b == 0) == 2；网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页红字【答案】B；网站 answer=1，0起始索引1对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：==左结合，a == b == 0 即 (a == b) == 0，等价于 a != b；a=b=0 时为假，不能正确判断同时为0，故选B。A、C、D均可表示a、b同时为0，网站解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第7页题干与网站文字一致；但原题只声明 a 为 int，未限定 a≥0，严格按 int 全域理解时题意不完整，存在范围争议。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页A-D依次为 a * 4、a / 4 * 4、(a + 3) / 4 * 4、a - a % 4 + 4；网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第7页【答案】C，网站 answer=2；若按常见非负整数语境，C正确；但a=-4等负的4的倍数时，C++整数除法向零截断使C得0而非-4，不能无条件成立，保留争议。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析把选项B中的 a / 4 误写成 a / 3；且未处理C++负整数除法向零截断的问题，a=-4反例说明答案C需要a≥0前提。解析需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（(a + 3) / 4 * 4）**\n\n**核心解析：**\n当 a 为非负整数时，设 a = 4k + t（k 为非负整数，0 ≤ t ≤ 3）。若 t = 0，则 (a + 3) / 4 * 4 = (4k + 3) / 4 * 4 = 4k = a；若 t = 1、2、3，则 (a + 3) / 4 * 4 = (4k + t + 3) / 4 * 4 = 4k + 4，即大于 a 的最小 4 的倍数。因此 C 正确。\n\n**选项逐项分析：**\n- A (a * 4)：例如 a = 3 时得 12，但最小满足值是 4，不是最小。\n- B (a / 4 * 4)：a 为正整数且不是 4 的倍数时，得到的是不大于 a 的 4 的倍数，例如 a = 3 时得 0，不满足“大于等于 a”。\n- C ((a + 3) / 4 * 4)：在 a ≥ 0 前提下正确。\n- D (a - a % 4 + 4)：当 a 本身是 4 的倍数时会多加 4，例如 a = 4 时得 8，而最小满足值是 4。\n\n**注意：** 原题只声明 a 为 int，未限定 a ≥ 0。C++ 的整数除法向零截断；若 a = -4 等负的 4 的倍数，C 得到 0 而不是 -4，因此官方答案 C 需要“a 为非负整数”这一前提，否则题目范围存在漏洞。选项 B 中的整除应为 a / 4，不是 a / 3。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷未限定a≥0；严格按所有int取值，选项C在负的4的倍数（如a=-4）时不正确，官方答案C仅在非负前提下成立。"
+        ]
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页代码为 int a = 10, b = 20; a = ______; b = a / 100; a = a % 100; 输出“20 10”，网站代码、空位和行序一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第8页A-D依次为 a + b、(a + b) * 100、b * 100 + a、a * 100 + b；网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页红字【答案】D；网站 answer=3，0起始索引3对应D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：D得a=10*100+20=1020，随后b=10、a=20，输出20 10；A得30、B得3000、C得2010，均不符。网站解析与页图一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页代码为 for (int i = 1; i <= 8; ______) cout << i;，要求输出“1248”；网站代码和条件一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第9页A-D依次为 i++、i *= 2、i += 2、i * 2；网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页红字【答案】B；网站 answer=1，0起始索引1对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i *= 2 时i依次为1、2、4、8，输出1248；i++输出12345678，i+=2输出1357，i*2没有赋值且i不变，会持续输出1。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9-10页代码为1到20循环，满足 i%3==0 或 i%5==0 时 sum += i，最后输出sum；网站代码和逻辑一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第10页A-D依次为210、113、98、15；网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页红字【答案】C；网站 answer=2，0起始索引2对应C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举1到20中3或5的倍数为3、5、6、9、10、12、15、18、20，和为98；15只累加一次。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 1 题原文为：“在 Windows 系统中通过键盘完成对选定文本移动的按键组合是先 Ctrl+X，移动到目标位置后按 Ctrl+V。”与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A/B 选项；站点使用固定“正确/错误”二值，不涉及选项顺序或映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页【答案】为“√”；按判断题正确=0 映射，站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：Ctrl+X 为剪切，Ctrl+V 为粘贴；剪切后到目标位置粘贴即完成移动，原位置内容被移除，站点解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 2 题原文为：“程序员用 C、C++、Python、Scratch 等编写的程序能在 CPU 上直接执行。”与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A/B 选项；站点固定“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页【答案】为“×”；按判断题错误=1 映射，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：CPU 直接执行机器指令；C/C++ 需编译、Python 需解释、Scratch 也需转换为机器可执行形式，源代码不能直接在 CPU 上执行，站点解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 3 题原文为：“在 C++ 语言中，注释不宜写得过多，否则会使得程序运行速度变慢。”与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A/B 选项；站点固定“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页【答案】为“×”；按判断题错误=1 映射，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：注释在预处理/编译阶段被去除，不生成运行期指令，不改变程序执行速度；可能影响源文件体积或编译时间，但不影响运行速度，站点解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 4 题原文为：“在 C++ 语言中，标识符中可以有数字，但不能以数字开头。”与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A/B 选项；站点固定“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页【答案】为“√”；按判断题正确=0 映射，站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：C++ 标识符可由字母、数字、下划线组成，首字符必须是字母或下划线；数字可出现在非首位，站点解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页判断题第 5 题原文为：“'3'是一个 int 类型常量。”与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A/B 选项；站点固定“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 11 页【答案】为“×”；按判断题错误=1 映射，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：单引号括起的 '3' 是 char 类型字符常量，其值为字符 '3' 的 ASCII 码 51；不带引号的 3 才是 int 常量，站点解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11页判断题第6题原文与站点题面一致：if 语句中的条件表达式的结果必须为 bool 类型。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第11页该题【答案】为“×”；按错误=1 映射，officialAnswer=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：C++ 的 if 条件按上下文转换为 bool，整数等标量可按“非零为真、零为假”参与判断，例如 int a; if (a) 合法，故“必须为 bool”是错误命题；站点解析与 PDF 第11-12页解析一致且推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第7题原文与站点题面一致：for 语句的循环体至少会执行一次。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页该题【答案】为“×”；按错误=1 映射，officialAnswer=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：for 循环先执行初始化，再判断条件；若首次判断即为假，循环体执行 0 次，至少执行一次的是 do-while。站点解析与 PDF 解析一致且论证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第8题原文与站点题面一致：如果 a 为 int 类型的变量，则赋值语句 a = a + 3; 是错误的，因为这条语句会导致 a 无意义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页该题【答案】为“×”；按错误=1 映射，officialAnswer=1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：C++ 的 = 是赋值运算符，a = a + 3; 先取 a 的原值加 3，再写回 a，语义合法且不会使 a 无意义。站点解析与 PDF 第12页解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第12页判断题第9题原文与站点题面一致：如果 a 为 int 类型的变量，则表达式 (a / 4 == 2) 和表达式 (a >= 8 && a <= 11) 的结果总是相同的。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第12页该题【答案】为“√”；按正确=0 映射，officialAnswer=0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：int 除法向零截断，a / 4 == 2 当且仅当 a 属于 8 到 11；负数的商不可能为 2，因此与 a >= 8 && a <= 11 恒等价。站点解析与 PDF 第12-13页解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第13页判断题第10题原文与站点题面一致：表达式 (3.5 * 2) 的计算结果为 7.0，且结果类型为 double。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；站点以“正确/错误”形式呈现，答案映射在 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第13页该题【答案】为“√”；按正确=0 映射，officialAnswer=0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：3.5 是 double 字面量，2 是 int，混合乘法按 double 进行，3.5 * 2 精确得到 7.0 且结果类型为 double。站点解析与 PDF 第13页解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          15,
+          16,
+          17
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第15-16页题名为“长方形面积”，题面包含整数长宽、长≥宽、正方形为特例、2≤A≤1000，样例为4→2、6→2；网站题面及样例与之一致，输出说明中的C为清楚表述，不影响题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引；PDF只提供参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按宽w从1枚举至w*w≤A，并以A%w==0统计因数对；因限定长≥宽，每个无序长宽组合只计一次，完全平方数也只计一次。样例4、6推导正确，算法复杂度O(√A)，A≤1000无溢出。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第17页参考程序算法等价：从i=1循环至i*i≤n，n%i==0时计数；变量名area/cnt/w替换为n/count/i不影响正确性，覆盖2≤A≤1000且不会重复统计长宽颠倒情况。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小面积",
+            "input": "2\n",
+            "output": "1\n",
+            "reason": "A=2时，满足长≥宽的因数对只有1×2，计数1。"
+          },
+          {
+            "name": "完全平方数",
+            "input": "4\n",
+            "output": "2\n",
+            "reason": "因数对为1×4、2×2；正方形只计一种，计数2。"
+          },
+          {
+            "name": "最大面积",
+            "input": "1000\n",
+            "output": "8\n",
+            "reason": "1000的因数对为1×1000、2×500、4×250、5×200、8×125、10×100、20×50、25×40，共8种。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第13-14页核心题面、输入输出描述及样例（2022 1→31，2020 2→29）与网站一致；但PDF页仅写“包含两个整数”，未显式列出网站新增的“2000≤A≤3000、1≤B≤12”，该范围约束无法仅凭该PDF核实。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引；PDF只提供参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按大月31天、小月30天、2月按闰年处理；闰年条件(y%4==0&&y%100!=0)||y%400==0正确。样例2020年2月为闰年、2021年2月为平年的补充推导均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第15页参考程序等价：先判断大月和小月，否则按2月处理；闰年公式完整，2000、2020为闰年，2100、3000为平年；在合法月份1..12内逻辑正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份且为400年闰年",
+            "input": "2000 2\n",
+            "output": "29\n",
+            "reason": "2000能被400整除，是闰年，2月有29天。"
+          },
+          {
+            "name": "世纪平年",
+            "input": "2100 2\n",
+            "output": "28\n",
+            "reason": "2100能被100整除但不能被400整除，是平年，2月有28天。"
+          },
+          {
+            "name": "最大年份2月",
+            "input": "3000 2\n",
+            "output": "28\n",
+            "reason": "3000为范围上界，能被100整除但不能被400整除，是平年，2月有28天。"
+          }
+        ],
+        "unresolved": [
+          "PDF第13页未印出输入范围，网站补充的2000≤A≤3000、1≤B≤12无法由该PDF单独证实，保留待核验。"
+        ]
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "usage": {
+        "prompt_tokens": 37506,
+        "completion_tokens": 8880,
+        "total_tokens": 46386,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7239
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0109539,
+          "allowance": 0.00657234,
+          "tokens": {
+            "input": 37506,
+            "output": 8880,
+            "reasoning": 7239,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T17:04:53.968Z",
+      "completedAt": "2026-11-07T17:07:43.122Z"
+    },
+    {
+      "questionIds": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "usage": {
+        "prompt_tokens": 37506,
+        "completion_tokens": 13149,
+        "total_tokens": 50655,
+        "prompt_tokens_details": {
+          "cached_tokens": 37376
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11026
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00802103,
+          "allowance": 0.00481262,
+          "tokens": {
+            "input": 130,
+            "output": 13149,
+            "reasoning": 11026,
+            "cache_read": 37376,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T17:14:09.569Z",
+      "completedAt": "2026-11-07T17:17:16.592Z"
+    },
+    {
+      "questionIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 37506,
+        "completion_tokens": 20478,
+        "total_tokens": 57984,
+        "prompt_tokens_details": {
+          "cached_tokens": 37376
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18549
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01241843,
+          "allowance": 0.00745106,
+          "tokens": {
+            "input": 130,
+            "output": 20478,
+            "reasoning": 18549,
+            "cache_read": 37376,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T17:21:07.582Z",
+      "completedAt": "2026-11-07T17:24:37.948Z"
+    },
+    {
+      "questionIds": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "usage": {
+        "prompt_tokens": 37506,
+        "completion_tokens": 4063,
+        "total_tokens": 41569,
+        "prompt_tokens_details": {
+          "cached_tokens": 37376
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2749
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00256943,
+          "allowance": 0.00154166,
+          "tokens": {
+            "input": 130,
+            "output": 4063,
+            "reasoning": 2749,
+            "cache_read": 37376,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T17:30:54.171Z",
+      "completedAt": "2026-11-07T17:32:05.386Z"
+    },
+    {
+      "questionIds": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 37506,
+        "completion_tokens": 5825,
+        "total_tokens": 43331,
+        "prompt_tokens_details": {
+          "cached_tokens": 37376
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4014
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00362663,
+          "allowance": 0.00217598,
+          "tokens": {
+            "input": 130,
+            "output": 5825,
+            "reasoning": 4014,
+            "cache_read": 37376,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T17:33:22.996Z",
+      "completedAt": "2026-11-07T17:35:16.501Z"
+    },
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 37500,
+        "completion_tokens": 19729,
+        "total_tokens": 57229,
+        "prompt_tokens_details": {
+          "cached_tokens": 37376
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18603
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01196813,
+          "allowance": 0.00718088,
+          "tokens": {
+            "input": 124,
+            "output": 19729,
+            "reasoning": 18603,
+            "cache_read": 37376,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T17:36:52.310Z",
+      "completedAt": "2026-11-07T17:40:59.827Z"
+    }
+  ]
+}
