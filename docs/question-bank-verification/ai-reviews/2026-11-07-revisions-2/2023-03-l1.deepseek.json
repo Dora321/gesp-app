@@ -1,0 +1,135 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:04:30.041Z",
+  "completedAt": "2026-11-07T18:05:53.274Z",
+  "finishReason": "stop",
+  "inputSha256": "78237649b9787197b983ee1b74cfc78fc98bf09e29cc948087d71311e0cf6a88",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为「2023年3月 GESP C++ 一级真题解析」，与paperId 2023-03-l1及level=1/year=2023/month=3一致。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第13页【问题描述】【输入描述】【输出描述】及第14页样例框（2022 1→31、2020 2→29）与候选主体、样例一致；但PDF输入描述仅有「输入一行，包含两个整数，分别表示一个日期的年、月」，候选额外写入「2000 ≤ A ≤ 3000，1 ≤ B ≤ 12」，该约束在本镜像证据内无出处，无法证实也无法证伪，保留待核验。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF第13—15页为编程题，未印A-D选项列表，故选项维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引；PDF仅提供样例与参考程序，无【答案】标记。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核对：大月1、3、5、7、8、10、12月为31天，小月4、6、9、11月为30天，2月按平闰年为28/29天；闰年条件(y%4==0&&y%100!=0)||(y%400==0)符合公历规则；样例2022 1→31、2020 2→29及补充手算2021 2→28均成立；易错提醒中双等号、&&优先级、7月与8月连续大月均无误；switch-case延伸说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与PDF第15页官方参考程序语义等价：大月输出31、小月输出30、其余月份按闰年输出29/28；PDF先置leap标志，候选在非大月非小月分支内直接判断，对合法月份1..12真值一致；int在年份2000..3000下无溢出，时间复杂度O(1)；样例2022 1→31、2020 2→29由逐行静态推导核对一致，未声称运行。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份且整四百年闰年二月",
+            "input": "2000 2",
+            "output": "29",
+            "reason": "2000%400==0，属闰年，2月29天；覆盖年份下界与400年闰年分支，期望输出按公历规则手算。"
+          },
+          {
+            "name": "整百年平年二月",
+            "input": "2100 2",
+            "output": "28",
+            "reason": "2100%4==0但2100%100==0且2100%400==100≠0，非闰年，2月28天；覆盖整百年陷阱。"
+          },
+          {
+            "name": "最小年份大月",
+            "input": "2000 1",
+            "output": "31",
+            "reason": "1月为大月固定31天，不依赖闰年判断；覆盖年份下界与大月分支。"
+          },
+          {
+            "name": "普通平年小月",
+            "input": "2023 4",
+            "output": "30",
+            "reason": "4月为小月固定30天；覆盖非闰年、非边界普通用例。"
+          },
+          {
+            "name": "最大年份年尾大月",
+            "input": "3000 12",
+            "output": "31",
+            "reason": "3000为年份上界，12月为大月固定31天；覆盖年份上界与年末大月。"
+          }
+        ],
+        "unresolved": [
+          "候选题面补充的数据范围「2000 ≤ A ≤ 3000，1 ≤ B ≤ 12」未见于本镜像PDF第13页输入描述，不能确认属于原卷，保留待核验。"
+        ]
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 26968,
+        "completion_tokens": 5423,
+        "total_tokens": 32391,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4478
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.007299,
+          "allowance": 0.0043794,
+          "tokens": {
+            "input": 26968,
+            "output": 5423,
+            "reasoning": 4478,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T18:04:30.041Z",
+      "completedAt": "2026-11-07T18:05:53.274Z"
+    }
+  ]
+}

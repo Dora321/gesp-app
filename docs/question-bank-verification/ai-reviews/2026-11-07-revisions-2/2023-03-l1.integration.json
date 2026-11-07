@@ -1,0 +1,96 @@
+{
+  "paperId": "2023-03-l1",
+  "integratedAt": "2026-11-07T18:08:44.818Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 27,
+      "reasons": [
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "2022 1",
+          "output": "31",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "input": "2020 2",
+          "output": "29",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "29\n",
+          "passed": true
+        },
+        {
+          "name": "年份下界二月闰年",
+          "input": "2000 2",
+          "output": "29",
+          "reason": "2000=400×5 整除 400，为闰年，2 月 29 天；覆盖年份下界及 y%400==0 闰年分支，期望输出按规则手算。",
+          "kind": "boundary",
+          "actual": "29\n",
+          "passed": true
+        },
+        {
+          "name": "整百年平年二月",
+          "input": "2100 2",
+          "output": "28",
+          "reason": "2100 可被 4 整除（525×4=2100），但 2100%100==0 且 2100%400==100≠0，非闰年，2 月 28 天；覆盖被 100 整除而不被 400 整除的陷阱分支。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        },
+        {
+          "name": "年份下界大月",
+          "input": "2000 1",
+          "output": "31",
+          "reason": "1 月属大月固定 31 天，不依赖闰年判断；覆盖年份下界与大月分支。",
+          "kind": "boundary",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "name": "普通平年小月",
+          "input": "2023 4",
+          "output": "30",
+          "reason": "4 月属小月固定 30 天；覆盖非闰年非边界的常规小月分支。",
+          "kind": "boundary",
+          "actual": "30\n",
+          "passed": true
+        },
+        {
+          "name": "年份上界大月",
+          "input": "3000 12",
+          "output": "31",
+          "reason": "12 月属大月固定 31 天（3000%4==0 但 3000%100==0、3000%400==200≠0，闰否不影响大月结果）；覆盖年份上界。",
+          "kind": "boundary",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "name": "年份上界非闰二月",
+          "input": "3000 2",
+          "output": "28",
+          "reason": "3000 可被 4 整除（750×4=3000），但 3000%100==0 且 3000%400==200≠0，非闰年，2 月 28 天；覆盖年份上界与平年二月分支。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "7a847c0fb60785f7d7f63499f0f25cf3fcf42f6205651be8940490656a71f2b8"
+    }
+  ]
+}
