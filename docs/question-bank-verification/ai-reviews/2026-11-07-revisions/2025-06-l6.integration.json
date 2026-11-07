@@ -1,0 +1,170 @@
+{
+  "paperId": "2025-06-l6",
+  "integratedAt": "2026-11-07T16:57:04.884Z",
+  "accepted": [
+    {
+      "id": 9,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 23,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：错误**\n\n**解析：**\ntree = {1, 2, 3, 4, -1, 6, 7}，按层序还原：节点 1 的孩子是 2、3；节点 2 的孩子是 4 和空（-1）；节点 3 的孩子是 6、7。\n\n完全二叉树要求空节点只能出现在层序序列的末尾——一旦某个位置为空，其后不允许再有任何节点。本题中 -1 出现在下标 4（从 0 开始计），其后还有 6、7 两个节点，即第 3 层出现空位之后仍继续存在节点，不满足完全二叉树的定义。\n\n**判定技巧：** 层序数组扫描时，遇到第一个空位（-1）之后必须全为空；只要空位后面还出现非空节点，就不是完全二叉树。\n\n**考点：** 树与二叉树、完全二叉树"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n1 5 6 3",
+          "output": "10",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "input": "8\n0 2 5 6 4 3 3 4",
+          "output": "12",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "12\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1",
+          "input": "1\n0\n",
+          "output": "0",
+          "reason": "n=1 时唯一划分为单人组，a_1=0，dp[1]=dp[0]+a_1=0；覆盖最小 n 与 a_i=0 下界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "组合抉择非平凡情形",
+          "input": "3\n0 5 1\n",
+          "output": "5",
+          "reason": "独立枚举划分：{3} 得 a_3=1，{2,1} 得 5+0=5，{1,1,1} 得 0，最大值 5；按候选 DP 复算 dp[1]=0、dp[2]=5、dp[3]=5 一致。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "a_i 上界的单人组最优",
+          "input": "4\n10000 0 0 0\n",
+          "output": "40000",
+          "reason": "独立枚举：{4}=0、{3,1}=0+10000=10000、{2,1,1}=10000、{1,1,1,1}=4×10000=40000，最大 40000，覆盖 a_i=10^4 上界。",
+          "kind": "boundary",
+          "actual": "40000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6207c080de1833731904354d686b1b27c1fb17b8d3933b65646b6625e60f5b6c"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3\n1 3\n2 5\n4 8",
+          "output": "1\n2\n1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n2\n1\n",
+          "passed": true
+        },
+        {
+          "input": "1\n120 650",
+          "output": "9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小询问与根自身距离",
+          "input": "1\n1 1\n",
+          "output": "0",
+          "reason": "q=1 为最小规模；dist(1,1)=0，验证 depth(1)=0 且 x==y 时不进入任何跳跃循环。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "同深度非平凡 LCA",
+          "input": "1\n12 18\n",
+          "output": "4",
+          "reason": "独立推父链：12→6→3→1、18→9→3→1，两链深度均为 3，同步上跳两步同遇 LCA=3，距离 2+2=4；按候选代码逐步模拟 dx=dy=3、两轮各 ans+2 后 x==y，输出 4。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "不同深度对齐与到根距离",
+          "input": "2\n1 12\n8 4\n",
+          "output": "3\n1\n",
+          "reason": "独立推出：depth(12)=3，与根 1 距离即 3，模拟代码为 6→3→1 三次上跳；8 的父结点为 4（8/2），深度对齐一步即 x==y，距离 1。覆盖深度对齐而非同步上跳的分支。",
+          "kind": "boundary",
+          "actual": "3\n1\n",
+          "passed": true
+        },
+        {
+          "name": "最大编号与最大深度",
+          "input": "2\n1 1000000000\n536870912 1\n",
+          "output": "18\n29",
+          "reason": "10^9=2^9×5^9 共 18 个质因子（计重），到根距离 18；536870912=2^29 是 ≤10^9 内指数最高的 2 的幂（2^30>10^9），深度 29；均触及 x_i≤10^9 上界。",
+          "kind": "boundary",
+          "actual": "18\n29\n",
+          "passed": true
+        },
+        {
+          "name": "超大素数经父链直达根",
+          "input": "1\n999999937 2\n",
+          "output": "2",
+          "reason": "999999937 为 10^9 以内已知最大素数（已做小素数试除与已知事实核对），spf 返回其自身，父结点为 1，深度 1；2 的父结点为 1，深度 1；同步上跳一轮在 1 相遇，距离 2。检验 SPF 对素数返回自身的分支。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d169450ea8653f2aa6ca0b8f947e25decaaf32197dc1857a563afee91fdb76cc"
+    }
+  ]
+}
