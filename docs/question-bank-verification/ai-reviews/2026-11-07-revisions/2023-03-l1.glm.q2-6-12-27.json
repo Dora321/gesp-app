@@ -1,0 +1,238 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    6,
+    12,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:53:34.343Z",
+  "completedAt": "2026-11-07T17:57:05.595Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 60983,
+    "completion_tokens": 13766,
+    "total_tokens": 74749,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10153
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01603045,
+      "allowance": 0.01603045,
+      "tokens": {
+        "input": 60983,
+        "output": 13766,
+        "reasoning": 10153,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "81a01e8e9bf46a1d5ba39081661195f2cbd6f32afe9064ad2821290cec9491e1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为『2023 年 3 月 GESP C++ 一级真题解析』，与目标 2023-03-l1 的年份 2023、月份 3、语言 C++、等级一级一致；卷内结构为单选 15 题（每题 2 分共 30 分）、判断 10 题（每题 2 分共 20 分）、编程 2 题（每题 25 分共 50 分），共 27 题，与网站 coverage total 27 吻合。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图题 2 题干『计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）。』与候选题面逐字一致，关键词『基本单位』无改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页为 A.Byte，第 2 页原图续 B.Block、C.Bulk、D.Bit，候选选项数组内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页红字【答案】A，0 起始索引为 0，与候选 answer=0 一致；独立判断：大写 B 表示字节 Byte，小写 b 才是 bit，故选 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选已修复官方解析『表示存储大小的最小单位为“字节”』的事实性错误（bit 才是最小单位，且题干用的是『基本单位』）：核心句改为『表示存储容量的基本单位是字节』并补 1 Byte = 8 bit；1 Byte=8 bit、四个选项分析、大小写 B/b 提示均经独立核验无误，修复后核验通过，答案 A 不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核与上轮复核结论：官方解析『最小单位』表述与题干『基本单位』同页自相矛盾，属事实性修复而非纯文风改写；候选版本完整保留了易错提醒中的『网速常用小写 b、容量常用大写 B』等原有信息，修复后逐项复核通过，予以确认。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原图题 6 题干『以下哪个不是 C++语言的关键字？』与候选一致（空格差异属排版等价）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原图选项依次 A.int、B.for、C.do、D.cout，候选内容与顺序完全一致，无重排。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】D，第 4 页解析结论『本题正确答案为 D』；独立核对第 4 页关键字表图（auto/bool/char/int/short/long/…、do/for/while/… 等）含 int、for、do 而不含 cout，0 起始索引 3 与候选 answer=3 一致，判 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选核心句『cout 是定义在 <iostream> 头文件里的 std::ostream 类型标准库对象（extern 声明、非 const），不是关键字』经独立核验正确；判定标准『关键字无需头文件即可使用』保留无误；对官方『常对象』按『常用』义加注且明确 std::cout 不是 const 对象，术语澄清属实，修复后核验通过，不影响答案 D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核修复方向：网站原稿称 cout 为『常量对象』确属术语错误（std::cout 非 const），候选改为『标准库对象』并加官方『常对象』来源注记，信息无损失、无事实错误，予以确认。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页原图题 12 题干『12. 如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足“大于等于 a 且是 4 的倍数”的整数中最小的？』与候选逐字一致；原卷亦未限定 a 非负，该命题范围问题属原卷自身，记入 unresolved 而不影响转录一致性核验。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页原图选项依次 A.a * 4、B.a / 4 * 4、C.(a + 3) / 4 * 4、D.a - a % 4 + 4，与候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页红字【答案】C，0 起始索引 2，与候选 answer=2 一致；在非负整数语境下 ((a+3)/4)*4 推导成立，判 C 无误；范围争议按规范保留，不据此改动官方答案标记。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推候选全部数学内容：设非负 a=4k+t，t=0 时 (a+3)/4=k 得 k*4=a 恰为最小；t∈[1,3] 时 (t+3)/4=1 得 4k+4 为最小，均成立；修正官方 a/3 笔误为 a/4（a=3 时 a/4=0，a/4*4=0 不满足）正确；B 在 a≤0（向零截断实际向上取到 ≥a 的最小 4 的倍数）或 a 为 4 的倍数时恰好成立、正的非倍数不成立的范围说明正确；a=-4 反例 ((a+3)/4)*4=0≠-4 计算正确；D 在 a=4 时得 8 非最小及『严格大于』定性正确；通用式 (x+m-1)/m*m（x≥0）无误，修复后核验通过；『a/4*4 得到不大于 a 的 4 的倍数』提醒按本题非负前提理解，文内已由 B 的适用范围注与争议说明覆盖。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "命题范围争议：原题仅声明 a 为 int 类型，未限定 a ≥ 0；按 C++ 向零截断，在负的 4 的倍数（如 a = -4 时 (a+3)/4*4 = 0 ≠ -4）处选项 C 不成立，官方答案 C 依赖非负整数语境。按『来源争议保留、不擅自定案』原则记录，不改动官方答案 C。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核解析修复：a/3 笔误属实（官方第 7 页原文两处误写 a/3 而选项为 a/4），候选的 a=4k+t 推导、B 的适用范围注与负值反例均经我独立重推无误；同时确认 statement、options、answer 三维核验的是与原卷的转录一致性、页 7 题面/选项/红字答案均与网站一致，应标 verified，范围漏洞仅以 unresolved 清单与解析内说明保留，与候选现状一致，无新修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第 13—14 页原图【问题描述】【输入描述】【输出描述】及样例框（2022 1 → 31、2020 2 → 29）与候选一致；但第 13 页【输入描述】仅写『输入一行，包含两个整数，分别表示一个日期的年、月』，未印出候选补充的约束 2000 ≤ A ≤ 3000、1 ≤ B ≤ 12，该约束在本镜像证据内无出处，无法证实也无法证伪，保留待核验；候选未擅自删改该约束文本，处理得当。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF 无 A-D 选项列表。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引，PDF 仅提供【参考程序】与样例，无【答案】标记，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：大月 1、3、5、7、8、10、12 月为 31 天，小月 4、6、9、11 月为 30 天，2 月按平闰年 28/29 天；闰年条件 (y%4==0 && y%100!=0) || y%400==0 符合公历规则；样例走查 2022 1→31、2020 2→29 及补充走查 2021 2→28（2021%4=1 且 2021%400=21，非闰年）均手算成立；&& 优先级高于 ||、==/=/单双等号与 7、8 月连续大月的提醒无误，口诀『一三五七八十腊』代指 1/3/5/7/8/10/12 月正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与 PDF 第 15 页官方参考程序语义等价：PDF 以 leap 标志先替 2 月判定 (y%400==0)||(y%4==0&&y%100!=0)，候选把同一布尔表达式置于『非大月非小月』的 else 分支内，leap 亦只在 2 月分支被使用，真值表完全一致；分支覆盖输入约束内全部月份 1..12；年份 2000..3000 与结果均无溢出（int 足够）；输出含 endl 与样例输出格式一致；时空复杂度均 O(1)；samples（2022 1→31、2020 2→29）经逐行执行走查与样例一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份且整四百年闰年二月",
+            "input": "2000 2",
+            "output": "29",
+            "reason": "2000 % 400 == 0 为闰年，2 月 29 天；覆盖年份下界与 y%400==0 分支，期望输出手算核对。"
+          },
+          {
+            "name": "整百年平年二月",
+            "input": "2100 2",
+            "output": "28",
+            "reason": "2100 % 4 == 0 但 2100 % 100 == 0 且 2100 % 400 == 100 ≠ 0，非闰年，2 月 28 天；覆盖整百年陷阱分支，期望输出手算核对。"
+          },
+          {
+            "name": "最小年份大月",
+            "input": "2000 1",
+            "output": "31",
+            "reason": "1 月属大月固定 31 天，不依赖闰年判断；覆盖年份下界与大月分支，期望输出手算核对。"
+          },
+          {
+            "name": "平年常规小月",
+            "input": "2023 4",
+            "output": "30",
+            "reason": "4 月属小月固定 30 天；覆盖典型非闰年、非边界的常规用例，期望输出手算核对。"
+          },
+          {
+            "name": "最大年份年尾大月",
+            "input": "3000 12",
+            "output": "31",
+            "reason": "3000 为年份上界，12 月属大月固定 31 天（3000 % 400 = 200 非闰年亦不改变大月结果）；覆盖年份上界与流年年末边界，期望输出手算核对。"
+          }
+        ],
+        "unresolved": [
+          "网站题面补充的数据范围『2000 ≤ A ≤ 3000，1 ≤ B ≤ 12』未见于本镜像 PDF 第 13—14 页【输入描述】，无法仅凭登记证据确认是否属于原卷，保留待核验，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核与上轮复核的 unresolved 处理：题面主体、样例、解析与参考代码经我独立复核全部通过（参考代码与 PDF 第 15 页程序语义等价，tests 的期望输出均由我独立手算，未声称运行），但 statement 维的年份月份范围约束在本镜像中无出处，只能保留待核验，不删除该约束文本（删除同样属于无法证实的编辑）；不将其他维度降级。"
+      }
+    ],
+    "summary": "本轮按要求仅复核题 2、6、12、27，逐题基于 PDF 页图与文本层独立推导。结论：题 2、6、12 判 approve——题面、选项与官方答案映射均与原卷逐字/逐项一致（单选答案抽核：第 2 题A、第 6 题D、第 12 题C，与已登记答案串 BAACBDDAADBCDBC 对应位置吻合），三题解析层面的修复（『最小单位→基本单位』事实修正、cout 标准库对象澄清、a/3→a/4 笔误修正）经独立重推全部成立，修复后核验通过；题 12 的『a 未限定非负』范围争议按规范保留于 unresolved，不改动官方答案。题 27 判 unresolved——样例、解析、参考代码验证通过（与 PDF 第 15 页参考程序语义等价，5 个边界测试期望输出均独立手算），但镜像 PDF 未印出网站补充的 2000≤A≤3000、1≤B≤12 约束，statement 保留待核验。无新增字段修改（changes 均为空）。另注：卷内编程题顺序为『1.每月天数、2.长方形面积』，与网站 id26/id27 相反，仅记录题序差异，不改动 id。"
+  }
+}

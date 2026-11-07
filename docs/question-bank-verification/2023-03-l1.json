@@ -69,42 +69,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页题面为“计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）。”，网站题面一致。",
-          "review": "PDF 第 1 页题面“计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）。”与网站题面一致，题干本身使用的就是“基本单位”。"
+          "initial": "PDF 第 1 页题 2 题干“计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）”与候选题面一致，未改变关键词“基本单位”。",
+          "review": "PDF 第 1 页原图题 2 题干『计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）。』与候选题面逐字一致，关键词『基本单位』无改动。"
         },
         "options": {
-          "initial": "PDF 第 1-2 页选项依次为 A.Byte、B.Block、C.Bulk、D.Bit，网站选项内容及顺序一致。",
-          "review": "PDF 第 1 页为 A.Byte，第 2 页续 B.Block、C.Bulk、D.Bit，网站选项内容与顺序一致。"
+          "initial": "PDF 第 1—2 页选项依次为 A.Byte、B.Block、C.Bulk、D.Bit，候选选项内容与顺序一致。",
+          "review": "PDF 第 1 页为 A.Byte，第 2 页原图续 B.Block、C.Bulk、D.Bit，候选选项数组内容与顺序完全一致。"
         },
         "answer": {
-          "initial": "PDF 第 2 页【答案】为 A；按 0 起始索引对应 0，与网站 answer=0 一致。",
-          "review": "PDF 第 2 页【答案】A，按 0 起始索引为 0，与网站 answer=0 一致。"
+          "initial": "PDF 第 2 页红字【答案】A，0 起始索引为 0，与候选 answer=0 一致；独立判断 B 代表 Byte，A 正确。",
+          "review": "PDF 第 2 页红字【答案】A，0 起始索引为 0，与候选 answer=0 一致；独立判断：大写 B 表示字节 Byte，小写 b 才是 bit，故选 A 正确。"
         },
         "explanation": {
-          "initial": "网站解析首句称字节为存储大小的“最小单位”，但同一解析又指出 Bit 是更小的单位，前后矛盾；独立知识中 bit 才是最小存储单位，Byte 是基本存储单位。PDF 第 2 页原解析亦沿用“最小单位”措辞，但网站解析应修正为“基本单位”。",
-          "review": "修复后核验通过：原解析核心句称“表示存储大小的最小单位为‘字节’”，与同一解析选项 D 处“位（小写 b）是更小的单位，1 Byte = 8 Bit”自相矛盾，且与题干“基本单位”不符（事实上 bit 才是最小存储单位，Byte 是基本存储单位）。原卷官方解析亦沿用“最小单位”措辞，但网站解析为扩展改写版而非逐字转录，故按事实修复核心句，答案与选项分析不变。"
+          "initial": "候选解析改正了 PDF 原解析“存储大小的最小单位为字节”的事实错误：bit 才是最小存储单位，Byte 是基本单位；1 Byte=8 bit 的关系及选项逐项分析均正确，不影响答案 A。",
+          "review": "候选已修复官方解析『表示存储大小的最小单位为“字节”』的事实性错误（bit 才是最小单位，且题干用的是『基本单位』）：核心句改为『表示存储容量的基本单位是字节』并补 1 Byte = 8 bit；1 Byte=8 bit、四个选项分析、大小写 B/b 提示均经独立核验无误，修复后核验通过，答案 A 不受影响。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l1.glm.json"
       ]
     },
     {
@@ -231,42 +234,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 3 页题 6 为“以下哪个不是 C++语言的关键字？”，网页题干含义与文字一致。",
-          "review": "PDF 第 3 页题 6 题干“以下哪个不是 C++语言的关键字？”与网页题干一致（空格差异属排版等价）。"
+          "initial": "PDF 第 3 页题 6 为“以下哪个不是 C++语言的关键字？”，候选题面与之一致，空格差异属排版等价。",
+          "review": "PDF 第 3 页原图题 6 题干『以下哪个不是 C++语言的关键字？』与候选一致（空格差异属排版等价）。"
         },
         "options": {
-          "initial": "PDF 第 3 页选项依次为 A int、B for、C do、D cout；网页选项顺序与内容一致。",
-          "review": "PDF 第 3 页选项依次 A. int、B. for、C. do、D. cout，网页选项数组顺序与内容完全一致，无重排。"
+          "initial": "PDF 第 3 页选项依次为 A.int、B.for、C.do、D.cout，候选内容和顺序完全一致。",
+          "review": "PDF 第 3 页原图选项依次 A.int、B.for、C.do、D.cout，候选内容与顺序完全一致，无重排。"
         },
         "answer": {
-          "initial": "PDF 第 3 页题 6【答案】为 D；按 0 起始索引 D=3，与网页 answer=3 一致。",
-          "review": "PDF 第 3 页【答案】D、第 4 页解析结论“本题正确答案为 D”；索引 D=3 与网页 answer=3 一致。独立验证：第 4 页关键字表（auto/bool/char/int/…/do/for/…）中不含 cout，int/for/do 均在表内，cout 为标准库对象名而非语言保留字，选 D 正确。"
+          "initial": "PDF 第 3 页【答案】D，0 起始索引为 3，与候选 answer=3 一致；PDF 第 4 页关键字表含 int、for、do 而不含 cout，独立判断 D 正确。",
+          "review": "PDF 第 3 页【答案】D，第 4 页解析结论『本题正确答案为 D』；独立核对第 4 页关键字表图（auto/bool/char/int/short/long/…、do/for/while/… 等）含 int、for、do 而不含 cout，0 起始索引 3 与候选 answer=3 一致，判 D 正确。"
         },
         "explanation": {
-          "initial": "PDF 第 3—4 页说明 cin、cout 不是关键字，但网页解析称 cout 为“常量对象”不准确：std::cout 是 <iostream> 中 std::ostream 类型的标准库对象，并非 const 常量对象。答案判断不受影响，但需修正术语。",
-          "review": "PDF 第 3—4 页官方解析写作“cin 和 cout 都是 C++的常对象，但不是关键字”；网站扩写为“ostream 类的常量对象”，而 std::cout 是 <iostream> 中声明的非 const 的 std::ostream 对象，“常量对象”为术语错误（官方“常对象”本意为常用对象）。已提供修正后的完整解析（改为“标准库对象”，保留原判据“无需任何头文件即可使用的是关键字”，并加官方表述来源注记）；独立逐句复核无事实错误，修复后核验通过。答案 D 不受影响。"
+          "initial": "候选指出 cout 是标准库对象而非关键字，准确；并注明官方“常对象”应理解为“常用对象”，std::cout 不是 const 对象，这一术语修正正确，不影响答案 D。",
+          "review": "候选核心句『cout 是定义在 <iostream> 头文件里的 std::ostream 类型标准库对象（extern 声明、非 const），不是关键字』经独立核验正确；判定标准『关键字无需头文件即可使用』保留无误；对官方『常对象』按『常用』义加注且明确 std::cout 不是 const 对象，术语澄清属实，修复后核验通过，不影响答案 D。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l1.glm.json"
       ]
     },
     {
@@ -471,45 +477,47 @@
       "id": 12,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
-        "explanation",
         "statement",
-        "answer"
+        "options",
+        "answer",
+        "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第7页题干与网站文字一致；但原题只声明 a 为 int，未限定 a≥0，严格按 int 全域理解时题意不完整，存在范围争议。",
-          "review": "PDF 第 7 页原文『12. 如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足“大于等于 a 且是 4 的倍数”的整数中最小的？』与网站题面逐字一致，无缺项。原卷未写 a 的非负限定，该命题严谨性问题属原卷自身，记入 unresolved，不影响与原卷转录一致性的核验。"
+          "initial": "PDF 第 7 页题 12 题干为“如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足‘大于等于 a 且是 4 的倍数’的整数中最小的？”，与候选题面逐字一致。",
+          "review": "PDF 第 7 页原图题 12 题干『12. 如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足“大于等于 a 且是 4 的倍数”的整数中最小的？』与候选逐字一致；原卷亦未限定 a 非负，该命题范围问题属原卷自身，记入 unresolved 而不影响转录一致性核验。"
         },
         "options": {
-          "initial": "PDF第7页A-D依次为 a * 4、a / 4 * 4、(a + 3) / 4 * 4、a - a % 4 + 4；网站选项顺序和内容一致。",
-          "review": "PDF 第 7 页 A-D 依次为 a * 4、a / 4 * 4、(a + 3) / 4 * 4、a - a % 4 + 4，与网站选项顺序和内容一致。"
+          "initial": "PDF 第 7 页选项依次为 A.a * 4、B.a / 4 * 4、C.(a + 3) / 4 * 4、D.a - a % 4 + 4，与候选顺序和内容一致。",
+          "review": "PDF 第 7 页原图选项依次 A.a * 4、B.a / 4 * 4、C.(a + 3) / 4 * 4、D.a - a % 4 + 4，与候选顺序和内容一致。"
         },
         "answer": {
-          "initial": "PDF第7页【答案】C，网站 answer=2；若按常见非负整数语境，C正确；但a=-4等负的4的倍数时，C++整数除法向零截断使C得0而非-4，不能无条件成立，保留争议。",
-          "review": "PDF 第 7 页红字【答案】C，0 起始索引 2，与网站 answer=2 一致。a≥0 范围争议见 unresolved 清单，官方答案标记本身无歧义，不据此改动。"
+          "initial": "PDF 第 7 页红字【答案】C，0 起始索引为 2，与候选 answer=2 一致；在非负整数语境下 C 确实成立。",
+          "review": "PDF 第 7 页红字【答案】C，0 起始索引 2，与候选 answer=2 一致；在非负整数语境下 ((a+3)/4)*4 推导成立，判 C 无误；范围争议按规范保留，不据此改动官方答案标记。"
         },
         "explanation": {
-          "initial": "网站解析把选项B中的 a / 4 误写成 a / 3；且未处理C++负整数除法向零截断的问题，a=-4反例说明答案C需要a≥0前提。解析需修正。",
-          "review": "网站解析主体可独立推导成立：C 的 a=4k+t 分解与官方第 7-8 页思路一致（官方页 8 的不等式 (4k+4) <= (a+3)/4*4 <= (4k+4) 排版有误，网站已化简为等价正确表述，属合理的等价改写）；但选项 B 分析残留官方原卷的『a/3』笔误：网站写作『a 是 int 类型，a/3（整除）会把小数部分舍去』，而选项为 a/4，a=3 时正确算式是 a/4=0（官方原卷页 7 同样误写 a/3 两处，网站修正了一处、残留一处），且全文未说明该题默认 a 为非负整数的前提。已提供修正后的完整解析。"
+          "initial": "候选已改正原卷选项 B 分析中的 a/3 笔误为 a/4；对非负 a 的 a=4k+t 推导、B 在 a≤0 或 a 为 4 的倍数时成立的范围说明、D 是严格大于 a 的最小 4 的倍数的分析均正确；负值反例也准确。",
+          "review": "独立重推候选全部数学内容：设非负 a=4k+t，t=0 时 (a+3)/4=k 得 k*4=a 恰为最小；t∈[1,3] 时 (t+3)/4=1 得 4k+4 为最小，均成立；修正官方 a/3 笔误为 a/4（a=3 时 a/4=0，a/4*4=0 不满足）正确；B 在 a≤0（向零截断实际向上取到 ≥a 的最小 4 的倍数）或 a 为 4 的倍数时恰好成立、正的非倍数不成立的范围说明正确；a=-4 反例 ((a+3)/4)*4=0≠-4 计算正确；D 在 a=4 时得 8 非最小及『严格大于』定性正确；通用式 (x+m-1)/m*m（x≥0）无误，修复后核验通过；『a/4*4 得到不大于 a 的 4 的倍数』提醒按本题非负前提理解，文内已由 B 的适用范围注与争议说明覆盖。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l1.glm.json"
       ]
     },
     {
@@ -1052,40 +1060,6 @@
   ],
   "unresolved": [
     {
-      "id": 2,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 6,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "explanation",
-        "statement",
-        "answer"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 27,
       "dimensions": [
         "statement"
@@ -1096,5 +1070,6 @@
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2023-03-l1.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2023-03-l1.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-03-l1.integration.json"
 }

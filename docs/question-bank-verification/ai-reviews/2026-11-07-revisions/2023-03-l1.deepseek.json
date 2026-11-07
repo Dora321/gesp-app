@@ -1,0 +1,236 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    6,
+    12,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:50:32.374Z",
+  "completedAt": "2026-11-07T17:53:34.332Z",
+  "finishReason": "stop",
+  "inputSha256": "81a01e8e9bf46a1d5ba39081661195f2cbd6f32afe9064ad2821290cec9491e1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023 年 3 月 GESP C++ 一级真题解析”，与目标 2023-03-l1 的年月、语言和等级一致；卷内含 15 道单选、10 道判断、2 道编程题，结构相符。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题 2 题干“计算机系统中存储的基本单位用 B 来表示，它代表的是（ ）”与候选题面一致，未改变关键词“基本单位”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1—2 页选项依次为 A.Byte、B.Block、C.Bulk、D.Bit，候选选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页红字【答案】A，0 起始索引为 0，与候选 answer=0 一致；独立判断 B 代表 Byte，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析改正了 PDF 原解析“存储大小的最小单位为字节”的事实错误：bit 才是最小存储单位，Byte 是基本单位；1 Byte=8 bit 的关系及选项逐项分析均正确，不影响答案 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题 6 为“以下哪个不是 C++语言的关键字？”，候选题面与之一致，空格差异属排版等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A.int、B.for、C.do、D.cout，候选内容和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】D，0 起始索引为 3，与候选 answer=3 一致；PDF 第 4 页关键字表含 int、for、do 而不含 cout，独立判断 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选指出 cout 是标准库对象而非关键字，准确；并注明官方“常对象”应理解为“常用对象”，std::cout 不是 const 对象，这一术语修正正确，不影响答案 D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页题 12 题干为“如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足‘大于等于 a 且是 4 的倍数’的整数中最小的？”，与候选题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页选项依次为 A.a * 4、B.a / 4 * 4、C.(a + 3) / 4 * 4、D.a - a % 4 + 4，与候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页红字【答案】C，0 起始索引为 2，与候选 answer=2 一致；在非负整数语境下 C 确实成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选已改正原卷选项 B 分析中的 a/3 笔误为 a/4；对非负 a 的 a=4k+t 推导、B 在 a≤0 或 a 为 4 的倍数时成立的范围说明、D 是严格大于 a 的最小 4 的倍数的分析均正确；负值反例也准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原题仅声明 a 为 int，未限定 a≥0；按 C++ 向零截断，在负的 4 的倍数处，例如 a=-4 时，(a+3)/4*4=0，而满足“大于等于 a 且是 4 的倍数”的最小整数应为 -4，故严格按全部 int 取值 C 不恒成立。按来源争议保留，不改动官方答案 C。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第 13—14 页问题描述、输入输出描述与样例（2022 1→31、2020 2→29）与候选一致；但 PDF 第 13 页【输入描述】只写“包含两个整数，分别表示一个日期的年、月”，未印出候选补充的 2000≤A≤3000、1≤B≤12，约束来源证据不足。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引，PDF 仅提供样例和参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "大月 1、3、5、7、8、10、12 月为 31 天，小月 4、6、9、11 月为 30 天，2 月按平闰年取 28/29 天；闰年条件 (y%4==0&&y%100!=0)||y%400==0 正确。样例走查和 2021 2→28 的补充走查均经独立手算确认，&& 优先级与 ==、= 混淆提醒也无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与 PDF 第 15 页参考程序语义等价：候选在非大月非小月分支中直接按闰年规则处理 2 月，等价于 PDF 用 leap 标志先判闰年再分支；合法月份 1..12 内分支完整，年份 2000..3000 范围无溢出，时间与空间复杂度均为 O(1)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份的一月",
+            "input": "2000 1\n",
+            "output": "31\n",
+            "reason": "2000 为年份下界，1 月为大月，固定 31 天，覆盖最小年份与月份边界。"
+          },
+          {
+            "name": "最小年份闰年二月",
+            "input": "2000 2\n",
+            "output": "29\n",
+            "reason": "2000 能被 400 整除，是闰年，2 月 29 天，覆盖 y%400==0 分支。"
+          },
+          {
+            "name": "世纪平年二月",
+            "input": "2100 2\n",
+            "output": "28\n",
+            "reason": "2100 能被 4 整除且能被 100 整除，但不能被 400 整除，是平年，2 月 28 天，覆盖整百年陷阱。"
+          },
+          {
+            "name": "最大年份十二月",
+            "input": "3000 12\n",
+            "output": "31\n",
+            "reason": "3000 为年份上界，12 月为大月，固定 31 天，覆盖最大年份与年末边界。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第 13 页输入描述未印出网站补充的“2000≤A≤3000、1≤B≤12”范围约束，无法仅凭登记证据确认这些约束是否属于原卷，保留待核验。"
+        ]
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        6,
+        12,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 31528,
+        "completion_tokens": 14881,
+        "total_tokens": 46409,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12975
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0136578,
+          "allowance": 0.00819468,
+          "tokens": {
+            "input": 31528,
+            "output": 14881,
+            "reasoning": 12975,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T17:50:32.374Z",
+      "completedAt": "2026-11-07T17:53:34.332Z"
+    }
+  ]
+}
