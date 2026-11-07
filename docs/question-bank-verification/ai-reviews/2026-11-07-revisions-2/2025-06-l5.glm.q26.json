@@ -1,0 +1,121 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:06:59.893Z",
+  "completedAt": "2026-11-07T12:11:48.922Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 58708,
+    "completion_tokens": 21010,
+    "total_tokens": 79718,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18646
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0193112,
+      "allowance": 0.0193112,
+      "tokens": {
+        "input": 58708,
+        "output": 21010,
+        "reasoning": 18646,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "81d17ff4cdce45ead5cf355cbd2941a35ff2c8ab3a09e4ad48eae566ba615473",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 五级 2025 年 06 月”，与候选 title“2025年6月 GESP C++ 五级真题”、level=5、year=2025、month=6 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。PDF 第 13 页 3.1 节列明时间限制 1.0 s、内存限制 512.0 MB；3.1.1 题目描述（可用 a 张课堂券+b 张作业券，或 b 张课堂券+a 张作业券兑换一份；小 A 有 n 张课堂券和 m 张作业券）、3.1.2 输入格式（第一行 n,m，第二行 a,b）、3.1.3 输出格式均与候选正文逐句一致。原候选仅缺 3.1 节时间/内存限制与第 14 页 3.1.5 数据范围（60% 测试点：1≤a,b≤100、1≤n,m≤500；所有测试点：1≤a,b≤10^4、1≤n,m≤10^9），已在 changes.question 按 PDF 原文补全，属漏写必要约束而非文风改动。样例由 samples 字段承载，与 PDF 3.1.4 逐项一致（8 8/2 1→5；314159 2653589/27 1828→1599）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项维度，PDF 第 13—14 页亦无选项；仅第 1/10 页的单选/判断答案表不覆盖本编程题。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不计入 PDF 第 1 页单选答案表与第 10 页判断题答案表，officialAnswer 为 null，与候选一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。独立推导：归一化 n≤m、a≤b 后，设 v 份中 k 份用方式二，则课堂消耗 v*a+k*(b-a)、作业消耗 v*b-k*(b-a)；可行性关于 v 前缀单调（可行则 v-1 亦可行），二分合法。若 v*b>m，课堂消耗随 k 严格增，故取最小调整数 t=ceil((v*b-m)/(b-a))（ceil 公式 (y-m+(b-a)-1)/(b-a) 正确）检验 x'、y' 即充要；t>v 时 x'>v*b>m≥n 判假，不影响正确性。a==b 特判输出 n/a 正确（每份耗 a 课堂+b 作业，min(n/a,m/b)=n/a）。人工重放样例 1 二分轨迹与代码一致：(l=0,r=8,mid=4) 真→(4,8,6) t=4 调整后 x=10>8 假→(4,5,5) t=2 调整后 x=7、y=8 真，输出 5；候选走查（4→6→5、各步 x/y/t 数值）逐项吻合。样例 2 独立计算：check(1599) 时 t=150、x'=313323≤314159、y'=2652822≤2653589 为真；check(1600) 时 t=151、x'=315151>314159 为假，输出 1599。易错提醒（long long 防溢出、ceil 公式、mid=(l+r+1)/2 防死循环）独立验证成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 14 页 3.1.6 参考程序（图与文本层一致）与候选逐行相同：规范化 swap(n,m)/swap(a,b)、a==b 特判输出 n/a、check 中 1ll*v*a、ceil 调整公式、mid=(l+r+1)>>1、l=0/r=n 上界、输出 r。独立核验：上界 r=n 合法（每份至少耗 a≥1 张课堂券，v*a≤x'≤n）；可行性单调故二分收敛于最大可兑换数；数据范围内 v*b≤10^9×10^4=10^13、t*(b-a)≤10^13 量级，long long 无溢出；l+r+1≤2n≤2×10^9<2^31-1 无 int 溢出；复杂度 O(log n)。样例 1、2 人工模拟分别得 5 与 1599，与输出样例一致。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202506 五级] 奖品兑换\n\n**时间限制：** 1.0 s\n\n**内存限制：** 512.0 MB\n\n## 题目描述\n\n班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 $a$ 张课堂优秀券和 $b$ 张作业优秀券兑换一份奖品，或者使用 $b$ 张课堂优秀券和 $a$ 张作业优秀券兑换一份奖品。\n\n现在小 A 有 $n$ 张课堂优秀券和 $m$ 张作业优秀券，他最多能兑换多少份奖品呢？\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，分别表示小 A 持有的课堂优秀券和作业优秀券的数量。\n\n第二行，两个正整数 $a,b$，表示兑换一份奖品所需的两种券的数量。\n\n## 输出格式\n\n输出共一行，一个整数，表示最多能兑换的奖品份数。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 \\le a,b \\le 100$，$1 \\le n,m \\le 500$。\n\n对于所有测试点，保证 $1 \\le a,b \\le 10^4$，$1 \\le n,m \\le 10^9$。\n"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "a==b==1 走特判输出 n/a=1；独立推演恰好可兑 1 份（消耗两种券各 1 张），第 2 份需各 2 张不可行。未实际运行。"
+          },
+          {
+            "name": "需要调整兑换方式",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "v=2 时全部方式一 x=4、y=6>5，t=1 调整后 x'=5、y'=5，可行；v=3 总消耗 3×(2+3)=15 张券超过合计持有 10 张（对应 t=4 后 x'=10>5），不可行。独立推演，未实际运行。"
+          },
+          {
+            "name": "a==b 且不足一份",
+            "input": "3 100\n5 5",
+            "output": "0",
+            "reason": "a==b 特判输出 n/a=3/5=0；独立推演 1 份需 5 张课堂券而仅有 3 张，不可兑。未实际运行。"
+          },
+          {
+            "name": "大数防溢出边界",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份固定消耗 a+b=10001 张券，总持有 2×10^9 张，上界 floor(2×10^9/10001)=199980；99990 份方式一+99990 份方式二两类券各耗 999999990≤10^9，可行（check(199980) 得 t=99990 后 x'=y'=999999990 亦验证）；v=199981 时 t=99991 后 x'=1000009990>10^9 不可行。v*b≈2×10^9、t*(b-a)≈10^9 量级可确认 1ll 防溢出的必要性。独立推演，未实际运行。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核全部结论并独立复核确认：其一，statement 缺失项（3.1 节时间限制 1.0 s、内存限制 512.0 MB 与 3.1.5 数据范围）经对照 PDF 第 13—14 页原图逐项确认成立，补全内容与原卷完全一致，采纳写入 changes.question；其二，explanation 修复版经独立模拟参考代码二分轨迹复核（样例 1 真实轨迹为 4→6→5，而非未修复版误写的 5→7→6），样例走查与易错提醒全部成立；其三，referenceCode 与 3.1.6 逐行一致，算法正确性、单调性、O(log n) 复杂度、int/long long 边界溢出独立核验通过，两样例人工模拟输出 5/1599。4 条 tests 期望输出（1、2、0、199980）由我独立推演确认。无需否决任何修改，应用 changes 后题 26 与原卷一致，可上线。"
+      }
+    ],
+    "summary": "本轮仅核验题 26（编程题 1「奖品兑换」，PDF 第 13—14 页）：题目正文、两组样例、参考程序与官方 PDF 逐项一致；解析经上轮修复后的样例 1 走查（二分轨迹 4→6→5、输出 5）与参考代码实际执行轨迹吻合，样例 2 经 check(1599)/check(1600) 独立计算验证输出 1599；参考代码算法正确性、单调性、复杂度与溢出边界核验通过。初核新提出的 statement 缺失（时间/内存限制与数据范围）确认成立并已在 changes.question 补全，修复后核验通过；4 条 tests 期望输出均独立推演确认。无争议事项，应用修改后题 26 可上线。"
+  }
+}

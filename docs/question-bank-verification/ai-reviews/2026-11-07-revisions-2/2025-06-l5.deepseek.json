@@ -1,0 +1,128 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:02:42.917Z",
+  "completedAt": "2026-11-07T12:06:59.875Z",
+  "finishReason": "stop",
+  "inputSha256": "81d17ff4cdce45ead5cf355cbd2941a35ff2c8ab3a09e4ad48eae566ba615473",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP C++ 五级 2025 年 06 月”，与候选标题“2025年6月 GESP C++ 五级真题”一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第13页3.1.1—3.1.4的题目描述、输入/输出格式和样例1（8 8 / 2 1 → 5）、样例2（314159 2653589 / 27 1828 → 1599）与候选一致；但PDF第14页3.1.5的数据范围（60%: 1≤a,b≤100、1≤n,m≤500；全部: 1≤a,b≤10^4、1≤n,m≤10^9）以及第13页的时间限制1.0 s、内存限制512.0 MB未写入候选question。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题没有选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在PDF选择题/判断题答案表中，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导成立：规范化n≤m、a≤b后，v份需存在k∈[0,v]使v*a+k*(b-a)≤n且v*b-k*(b-a)≤m。若v*b>m，取t=ceil((v*b-m)/(b-a))为使作业券不超限的最小调整份数；课堂券随k增加，因此检查最小t调整后的x≤n且y≤m即为充要条件。当t>v时，也会因x>n而判定为不可行，不影响正确性。样例1真实二分轨迹为4→6→5，对应check(4)=真、check(6)=假、check(5)=真，最终输出5；样例2中v=1599时调整t=150，x'=313323≤314159，v=1600时调整t=151，x'=315151>314159，故输出1599。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第14页3.1.6参考程序与候选逐行一致（1ll防溢出、向上取整公式、a==b特判输出n/a、mid=(l+r+1)>>1、上界r=n）。在n,m≤10^9、a,b≤10^4范围内v*a≤10^13，long long足够；独立验证判定函数与二分边界正确，样例输出5/1599均成立。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202506 五级] 奖品兑换\n\n**时间限制：** 1.0 s\n\n**内存限制：** 512.0 MB\n\n## 题目描述\n\n班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 $a$ 张课堂优秀券和 $b$ 张作业优秀券兑换一份奖品，或者使用 $b$ 张课堂优秀券和 $a$ 张作业优秀券兑换一份奖品。\n\n现在小 A 有 $n$ 张课堂优秀券和 $m$ 张作业优秀券，他最多能兑换多少份奖品呢？\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，分别表示小 A 持有的课堂优秀券和作业优秀券的数量。\n\n第二行，两个正整数 $a,b$，表示兑换一份奖品所需的两种券的数量。\n\n## 输出格式\n\n输出共一行，一个整数，表示最多能兑换的奖品份数。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 \\le a,b \\le 100$，$1 \\le n,m \\le 500$。\n\n对于所有测试点，保证 $1 \\le a,b \\le 10^4$，$1 \\le n,m \\le 10^9$。\n"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "a==b==1，一份奖品消耗两类券各1张，只能兑换1份；第2份需各2张，不足。独立推演，未实际运行。"
+          },
+          {
+            "name": "需要调整兑换方式",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "2份可各用方式一和方式二，共消耗5张课堂券、5张作业券；3份总消耗至少15张券，超过持有的10张。独立推演，未实际运行。"
+          },
+          {
+            "name": "a==b且不足一份",
+            "input": "3 100\n5 5",
+            "output": "0",
+            "reason": "a==b特判输出n/a，此时n为较小持有量3，3/5=0。独立推演，未实际运行。"
+          },
+          {
+            "name": "大数防溢出边界",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份奖品两种券合计消耗10001张，总券数20亿，floor(2000000000/10001)=199980；构造99990份方式一和99990份方式二，两类券各耗999999990张，可行；199981份总耗2000009981张，超过总量，不可行。独立推演，未实际运行。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 31014,
+        "completion_tokens": 20950,
+        "total_tokens": 51964,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 19608
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0172221,
+          "allowance": 0.01033326,
+          "tokens": {
+            "input": 31014,
+            "output": 20950,
+            "reasoning": 19608,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T12:02:42.917Z",
+      "completedAt": "2026-11-07T12:06:59.875Z"
+    }
+  ]
+}
