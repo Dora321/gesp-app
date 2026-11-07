@@ -1,0 +1,247 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T13:03:07.958Z",
+  "completedAt": "2026-11-07T13:06:23.315Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54153,
+    "completion_tokens": 10083,
+    "total_tokens": 64236,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7535
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01316445,
+      "allowance": 0.01316445,
+      "tokens": {
+        "input": 54153,
+        "output": 10083,
+        "reasoning": 7535,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bfebf10eafbc34b4732a7df6e803d20694aca33c76fc6ca556862bee94b9c566",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP / C++ 六级 / 2025 年 06 月”，与目标 2025-06-l6（六级、2025年6月）的等级与考期一致；第1页单选答案表完整（15题），第6-10题官方答案依次为 B、D、D、A、C。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第6题题干“（ ）只有最底层的节点未被填满，且最底层节点尽量靠左填充。”与网站题干逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页四个选项依次为 A 完美二叉树、B 完全二叉树、C 完满二叉树、D 平衡二叉树，顺序与文字均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第6题为 B，对应 0 起始索引 1，网站 answer=1。按定义独立推导：除最底层外各层填满且最底层自左向右连续填充的正是完全二叉树。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对完全二叉树特征的表述与题干吻合；对完美（各层全满）、完满（只约束度为0或2）、平衡（约束左右子树高度差）的辨析经独立推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、四选项、答案映射（B→1）与解析均经我对照第2页页图及第1页答案表独立核对，无需修改。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第7题题干“在使用数组表示完全二叉树时，如果一个节点的索引为 i（从 0 开始计数），那么其左子节点的索引通常是（ ）。”与网站一致，仅斜体排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页给出 A. (i−1)/2；第3页接续 B. i+1、C. i*2、D. 2*i+1，与网站四项一致，顺序无差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题为 D，对应索引 3，网站 answer=3。独立推导：0 起始层序编号下结点 i 的左孩子为 2i+1（根0→孩子1、2），D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出左/右孩子 2i+1、2i+2，父结点 floor((i-1)/2)，并指出 A 为父结点式、C 为 1 起始编号公式、B 仅个别位置巧合（i=2 时左孩子为 5 而 i+1=3），例证经计算正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核：跨第2、3页的选项与网站一致，官方答案映射正确，解析公式我已独立验证。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第8题“已知一棵二叉树的前序遍历序列为 GDAFEMHZ，中序遍历序列为 ADFGEHMZ，则其后序遍历序列为（ ）。”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页四项依次为 A. ADFGEHMZ、B. ADFGHMEZ、C. AFDGEMZH、D. AFDHZMEG，与网站顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为 D，对应索引 3，网站 answer=3。我独立还原：根 G，左子树 D(A,F)，右子树 E 无左孩子、其右子树 M(H,Z)，后序为 AFD HZME G = AFDHZMEG，与选项 D 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按前序定根、中序分左右逐步还原，树形图与后序拼接和我独立推导一致，并指出 E 左侧为空这一易错点。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核：我按前序定根、中序分割独立还原树并求出后序 AFDHZMEG，与官方答案及解析一致。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第9题“设有字符集 {a, b, c, d, e}，其出现频率分别为 {5, 8, 12, 15, 20}，得到的哈夫曼编码为（ ）。”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷第3页 B 为 a:00/b:10/c:011/d:100/e:111，C 为 a:10/b:01/c:011/d:100/e:111，D 为 a:100/b:01/c:011/d:100/e:00；网站原 B/C/D 与之不符（仅 A 一致）。已按 changes 修正为与原卷逐项一致，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为 A，对应索引 0，网站 answer=0。独立构造：5+8=13、12+13=25、15+20=35、25+35=60，a、b 码长3位，c、d、e 码长2位，WPL=133；A 为唯一符合该码长分配的合法前缀码。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析对 B/C/D 的排除基于网站旧错误选项，不成立；修正版解释经我独立复核：合并序列、WPL 5×3+8×3+12×2+15×2+20×2=133、B 中 b:10 是 d:100 前缀且 WPL=167 非最优、C 中 b:01 是 c:011 前缀、D 中 a 与 d 重复 100，均与原卷选项对应无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "初核发现网站选项 B/C/D 与原卷不符，经我对照第3页页图与文本层确认属实；其提出的 options 与 explanation 修正我已独立复核（含各错误选项的前缀冲突、重复码字与 WPL 计算），修复充分，接受并标修复后核验通过。",
+        "changes": {
+          "options": [
+            "a:010, b:011, c:00, d:10, e:11",
+            "a:00, b:10, c:011, d:100, e:111",
+            "a:10, b:01, c:011, d:100, e:111",
+            "a:100, b:01, c:011, d:100, e:00"
+          ],
+          "explanation": "**答案：A**\n\n频率为 a:5、b:8、c:12、d:15、e:20。按哈夫曼算法每次合并最小两堆：5+8=13，12+13=25，15+20=35，25+35=60（根）。由此码长分配为：a、b 各 3 位，c、d、e 各 2 位，带权路径长度 WPL=5×3+8×3+12×2+15×2+20×2=133。\n\n选项 A 中 c:00、d:10、e:11 为 2 位，a:010、b:011 为 3 位，且任意两个码字互不为前缀，正好对应上述码长分配的一种合法哈夫曼编码。\n\n其余选项：B 中码长为 a、b 各 2 位，c、d、e 各 3 位，WPL=167 非最优，且 b:10 是 d:100 的前缀，根本不是前缀码；C 中 b:01 是 c:011 的前缀，也不是前缀码；D 中 a 与 d 的码字都是 100，出现重复码字。因此只有 A 正确。\n\n**考点：** 哈夫曼编码、贪心"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第10题“3 位格雷编码中，编码 101 之后的下一个编码不可能是（ ）。”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页四项依次为 A. 100、B. 111、C. 110、D. 001，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题为 C，对应索引 2，网站 answer=2。独立推导：101 的一位翻转邻居仅有 001、111、100；101 与 110 差两位（异或 011 有两个 1），不可能相邻。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析列出改最高/中/最低位得到的 001、111、100，并用异或说明 110 差两位，推导正确且非仅凭答案表。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核：101 与 110 相差两位、其余三项均只差一位，官方答案 C→2 映射正确，解析无误。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批复核第6-10题：第6、7、8、10题的题干、选项、官方答案映射（B→1、D→3、D→3、C→2）与解析均经独立对照 PDF 页图核对通过；第9题官方答案 A→0 正确，但网站选项 B/C/D 与原卷第3页不符（原卷 B:a:00,b:10,c:011,d:100,e:111；C:a:10,b:01,c:011,d:100,e:111；D:a:100,b:01,c:011,d:100,e:00），解析亦基于旧错误选项，已给出与原卷一致的修正并独立复核通过（WPL=133、前缀冲突与重复码字排除其余三项）。除第9题外无修改；本批均为单选题，tests 不适用，未运行任何代码。"
+  }
+}

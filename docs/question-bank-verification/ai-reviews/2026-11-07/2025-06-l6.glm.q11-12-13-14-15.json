@@ -1,0 +1,240 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T13:09:43.673Z",
+  "completedAt": "2026-11-07T13:14:20.700Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53436,
+    "completion_tokens": 16409,
+    "total_tokens": 69845,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13399
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0162199,
+      "allowance": 0.0162199,
+      "tokens": {
+        "input": 53436,
+        "output": 16409,
+        "reasoning": 13399,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bfebf10eafbc34b4732a7df6e803d20694aca33c76fc6ca556862bee94b9c566",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为 CCF 编程能力等级认证 GESP，等级为 C++ 六级，落款 2025年06月，与网站 level=6、year=2025、month=6 一致；第1页单选题答案表 1–15 题为 D A B B B B D D A C A D A B C；已校验来源 git-blob SHA cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第11题题干“请将下列 C++ 实现的深度优先搜索（DFS）代码补充完整，横线处应填入（ ）。”及 TreeNode 定义、dfs(TreeNode* root, vector<int>& result) 函数签名、空位与函数结尾，均与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与PDF第4页代码块逐行一致：A 先 push root->val 再递归左右；B push root->left->val、先右后左；C push root->left->val、先左后右；D push root->right->val、先右后左。四项递归调用均漏传 result 实参，与官方原卷原样一致；该源卷缺陷已由本站 sourceIntegrity=official-source-defect 与 integrityNote 登记，未擅自改动。",
+            "note": "忠实再现官方原样；编译争议见 unresolved。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第11题为 A，0 起起始映射为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：先序 DFS 意图为先记录 root->val 再递归左右子树，A 正确；B/C 取 root->left->val 会跳过当前根且左孩子为空时非法解引用，D 取右孩子同理。网站解析与此推导一致，并如实注明四选项漏传 result 按原样不能编译的官方缺陷，未虚构可编译结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方PDF第11题四个选项中的 dfs(root->left)/dfs(root->right) 均只传一个实参，与 dfs(TreeNode*, vector<int>&) 签名不符、按原样无法编译；保留官方答案 A 与原选项，缺陷以 sourceIntegrity=official-source-defect 存档，不擅自定案修复。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核对官方缺陷的保留处理，但不沿用其把 options 维度标为 unresolved 的做法：本复核确认四个选项与PDF第4页逐字一致（含缺陷原样忠实再现），options 调整为 verified；编译缺陷争议继续由 sourceIntegrity 与本 unresolved 条目保留，不擅自修复。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4–5页第12题题干与 largestValues 完整代码（含 #include <vector>/<queue>/<algorithm>、TreeNode 定义、逐层 BFS 框架、第24行空位、result.push_back(maxVal) 收尾）与网站一致；网站空位行附注“// 在此处填入代码”仅为排版标注，不改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项 A node=q.end();、B node=q.front();、C 先 q.pop(); 再 node=q.front();、D 先 node=q.front(); 再 q.pop();，内容与顺序均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为 D，映射 3；网站 answer=3。独立推导：逐层处理需先 front 取节点再 pop 弹出；std::queue 无 end()（A 错），B 只取不弹致队列长度不变、外层 while 死循环，C 先弹后取丢失当前节点且队列空时 front 未定义，仅 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐项给出上述四点理由并强调 front/pop 顺序陷阱，与代码逻辑及官方答案 D 一致，推导独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核结论与初核一致，五维全部核验通过，接受。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第13题题干“下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。”及 TreeNode 定义、insert(TreeNode*& root, int key) 的基准插入代码、空位，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5–6页选项：A key<val 进左、key>val 进右；B 方向完全颠倒；C 无条件先左后右双递归；D 先右后左双递归。内容与顺序均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为 A，映射 0；网站 answer=0。独立推导：BST 左小右大且题目保证无重复键，A 正确；B 会把较小键插入右子树破坏有序性；C/D 无大小比较、无条件双递归插入，不符合 BST 插入语义。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析基于 BST 性质与 TreeNode*& 引用形参的挂载作用独立推导 A，并逐项否定 B/C/D，非仅复述官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核结论与初核一致，五维全部核验通过，接受。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第14题题干“以下关于动态规划算法特性的描述，正确的是（ ）。”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A“子问题相互独立，不重叠”、B“问题包含重叠子问题和最优子结构”、C“只能从底至顶迭代求解”、D“必须使用递归实现，不能使用迭代”，四项内容与顺序同PDF第6页。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为 B，映射 1；网站 answer=1。独立推导：动态规划两大适用前提是最优子结构与重叠子问题；A 是分治的特征，C 忽略自顶向下记忆化递归写法，D 忽略递推（迭代）实现，仅 B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明最优子结构与重叠子问题两个前提、对比分治、并指出记忆化递归与递推两种实现，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核结论与初核一致，五维全部核验通过，接受。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干原文含变量 n、W、wt[i]、val[i]：“给定 n 个物品和一个最大承重为 W 的背包，每个物品有一个重量 wt[i] 和价值 val[i]，每个物品只能选择放或不放。目标是选择若干个物品放入背包，使得总价值最大，且总重量不超过 W。关于下面代码，说法正确的是（ ）。”网站原题面将这些变量全部丢失为空格（如“给定 个物品”“最大承重为 的背包”）；已补回并采用纯文本等价记法，逐句与PDF第6页核对一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页四个选项：A 该算法不能处理背包容量为 0 的情况；B 外层循环 i 遍历背包容量，内层遍历物品；C 从大到小遍历 w 是为了避免重复使用同一物品；D 这段代码计算的是最小重量而非最大价值。内容与顺序均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为 C，映射 2；网站 answer=2。独立推导：一维 0/1 背包需倒序遍历容量，使 dp[w-wt[i]] 仍是未考虑第 i 件物品时的旧值，防止同一物品重复选取；A 中 W=0 时 dp 长度为 1、内层循环条件不成立、返回 dp[0]=0，可正确处理；B 把循环层级说反；D 中 max 取的是价值较大者，求的是最大价值。仅 C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出倒序/正序遍历的方向推理并逐项分析 A/B/D，与上述独立推导及官方答案 C 一致；配套 code 字段与PDF第6页 knapsack1D 代码逐行一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {
+          "question": "给定 n 个物品和一个最大承重为 W 的背包，每个物品有一个重量 wt[i] 和价值 val[i]，每个物品只能选择放或不放。目标是选择若干个物品放入背包，使得总价值最大，且总重量不超过 W。关于下面代码，说法正确的是（ ）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的题干修复：本复核对PDF第6页原句逐词核对，确认网站题面确丢失变量 n、W、wt[i]、val[i]，采纳的修复文案与原卷逐句一致（纯文本等价记法）；代码、选项、答案均无需改动，verdict=revise 仅针对题干一处转录缺陷的修复。"
+      }
+    ],
+    "summary": "本次复核覆盖第 11–15 题（均为单选题，tests 留空）。11 题忠实再现官方原卷（四选项均漏传 result 实参的源卷缺陷，已由 sourceIntegrity 登记保留），全维通过，但初核把 options 标为 unresolved 不当，本复核确认为与PDF第4页逐字一致后调整为 verified，缺陷争议保留在 unresolved；12、13、14 题题面/选项/答案/解析与PDF逐字且逐项一致，approve；15 题网站题干丢失变量 n、W、wt[i]、val[i]，已提供逐句对应PDF第6页的题干修复，修复后核验通过，verdict=revise。官方答案映射 11:A(0)、12:D(3)、13:A(0)、14:B(1)、15:C(2) 与第1页答案表逐一核对无误。"
+  }
+}

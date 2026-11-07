@@ -1,0 +1,223 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T13:14:20.710Z",
+  "completedAt": "2026-11-07T13:15:45.724Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33720,
+    "completion_tokens": 6343,
+    "total_tokens": 40063,
+    "prompt_tokens_details": {
+      "cached_tokens": 33664
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5027
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00391519,
+      "allowance": 0.00234912,
+      "tokens": {
+        "input": 56,
+        "output": 6343,
+        "reasoning": 5027,
+        "cache_read": 33664,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bfebf10eafbc34b4732a7df6e803d20694aca33c76fc6ca556862bee94b9c566",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF卷头显示“CCF GESP C++ 六级 2025年06月”；题号16-20对应PDF判断题第1-5题，分别位于第6页和第7页，判断题答案表位于第6页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第1题原文为“构造函数可以被声明为 virtual。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D选项；官方以“√/×”给出判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第1项为“×”，映射为1；与网站answer=1一致。独立判断：C++构造函数不能声明为virtual。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核心成立：虚函数机制依赖对象动态类型和vtable，构造对象时无法通过虚机制选择构造函数；需要克隆时可用虚工厂函数，析构函数通常应声明为virtual。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第2题原文为“给定一组字符及其出现的频率，构造出的哈夫曼树是唯一的。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第2项为“×”，映射为1；与网站answer=1一致。独立判断：存在相同频率节点时合并顺序可不同，左右子树也可互换，故哈夫曼树不唯一。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：频率相同会导致选择顺序不唯一，左右子树可交换；不同树形可能有相同WPL，但编码和树结构可以不同，因此哈夫曼树不唯一。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第3题描述使用环形数组、调整队首和队尾指针，使出队操作为O(1)并避免删除首元素的O(n)问题；网站题干含义一致，空格差异不影响。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第3项为“√”，映射为0；与网站answer=0一致。独立判断：环形数组通过移动front/rear指针实现O(1)出队，避免整体搬移。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核心成立：普通数组队首删除需要前移元素为O(n)，环形数组用front=(front+1)%capacity移动队首，配合留空位或计数区分空满，出队和入队均可O(1)。std::deque分块结构的类比不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第4题原文为“对一棵二叉排序树进行中序遍历，可以得到一个递增的有序序列。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第4项为“√”，映射为0；与网站answer=0一致。独立判断：BST中序遍历按左-根-右访问，得到递增序列。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：二叉排序树满足左子树小于根、根小于右子树，中序遍历先左后根再右，递归展开后得到递增有序序列。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第5题描述BST连续插入删除后节点偏向一侧、退化为链表，并称复杂度从O(log n)退化到O(n log n)；网站题干与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第5项为“×”，映射为1；与网站answer=1一致。独立判断：退化为单链表后查找、插入、删除均为O(n)，不是O(n log n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：BST退化为链表后只能沿单一链路逐节点比较，操作代价为线性O(n)；题干写成O(n log n)，故原判断错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16-20（对应PDF判断题第1-5题）。五题题干均与PDF原文一致；PDF判断题答案表“× × √ √ ×”与网站answer映射（1,1,0,0,1）完全一致；解析经独立推导均成立。判断题无选项和参考代码，相关维度记为not_applicable；未发现需修改项，无未决问题，未运行代码。"
+  }
+}

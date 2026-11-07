@@ -1,0 +1,229 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T13:06:23.326Z",
+  "completedAt": "2026-11-07T13:09:43.661Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33720,
+    "completion_tokens": 15117,
+    "total_tokens": 48837,
+    "prompt_tokens_details": {
+      "cached_tokens": 33664
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13260
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00917959,
+      "allowance": 0.00550776,
+      "tokens": {
+        "input": 56,
+        "output": 15117,
+        "reasoning": 13260,
+        "cache_read": 33664,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bfebf10eafbc34b4732a7df6e803d20694aca33c76fc6ca556862bee94b9c566",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为 CCF GESP C++ 六级，2025年06月；题号、单选题答案表与当前卷一致；核对来源 SHA cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第11题题干、TreeNode 定义、dfs 签名、空位及要求与当前一致。"
+          },
+          "options": {
+            "status": "unresolved",
+            "evidence": "四个选项与PDF第4页逐行一致，但 A/B/C/D 中的 dfs(root->left)、dfs(root->right) 均漏传 result，而函数签名为 dfs(TreeNode*, vector<int>&)，按原样不能编译；属官方源缺陷。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第11题为 A，映射为 0；当前 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按先序 DFS 的预期意图解释 A，并指出 B/C/D 直接访问孩子及空指针风险，同时明确记录原卷漏传 result 的编译缺陷，未虚构可编译结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方PDF第11题的四个选项均漏传 result 实参，按原样无法编译；保留官方答案A与原选项，不擅自改题。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4–5页第12题题干、代码、横线位置与当前一致；代码包含 largestValues 主体及逐层处理框架。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项内容与顺序均与PDF第5页一致：A 为 q.end()，B 为仅 q.front()，C 为先 q.pop() 再 q.front()，D 为先 q.front() 再 q.pop()。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第12题为 D，映射为 3；当前 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项说明 A 的 q.end() 不存在、B 只取不弹导致队列不减并死循环、C 先 pop 会丢失当前节点、D 先 front 后 pop 正确；推导与代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5–6页第13题题干、TreeNode 定义、insert 函数、空位及“没有相同的数值”条件与当前一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项内容与顺序均与PDF第5–6页一致；A 为左小右大递归，B 为方向颠倒，C/D 为无条件双递归。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第13题为 A，映射为 0；当前 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立依据二叉排序树“左小右大”性质说明 A，并检查 TreeNode*& 引用挂载及 C/D 的重复插入问题，不是仅复述官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第14题题干“以下关于动态规划算法特性的描述，正确的是”与当前一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项内容与顺序均与PDF第6页一致：A 独立不重叠，B 重叠子问题与最优子结构，C 只能自底向上迭代，D 必须递归不能迭代。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第14题为 B，映射为 1；当前 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明最优子结构与重叠子问题是 DP 前提，对比分治的独立子问题，并指出 DP 可用记忆化递归或递推实现；推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页题干含 n、W、wt[i]、val[i]；当前题面这些变量均丢失为空格，且“或不放”断成“或 不放”，影响题意完整性。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项内容与顺序均与PDF第6页一致：A 容量0、B 外层容量内层物品、C 倒序避免重复使用、D 最小重量而非最大价值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第15题为 C，映射为 2；当前 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确解释一维 0/1 背包倒序避免重复选取，并逐项判断 A/B/D 与代码不符；与横线所填逻辑及答案C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {
+          "question": "给定 n 个物品和一个最大承重为 W 的背包，每个物品有一个重量 wt[i] 和价值 val[i]，每个物品只能选择放或不放。目标是选择若干个物品放入背包，使得总价值最大，且总重量不超过 W。关于下面代码，说法正确的是（ ）。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "5题均对照PDF页图与答案表核对：11题保留官方源缺陷（四个选项均漏传 result 实参）；12、13、14题五维一致；15题题干变量 n、W、wt[i]、val[i] 丢失，已给出修正草稿，答案 C 与官方一致。本次均为单选题，未运行代码，tests 为空。"
+  }
+}

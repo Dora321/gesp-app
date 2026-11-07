@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-07T16:33:10.624Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n1 5 6 3",
+          "output": "10",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "input": "8\n0 2 5 6 4 3 3 4",
+          "output": "12",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "12\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1",
+          "input": "1\n0\n",
+          "output": "0",
+          "reason": "n=1 时唯一划分为单人组，答案为 a_1=0，验证循环边界 j=1..1 与 dp[0]=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "零积极度与组合抉择",
+          "input": "3\n0 5 1\n",
+          "output": "5",
+          "reason": "n=3：2+1 划分得 a_2+a_1=5+0=5，优于单独 3 人组（a_3=1）与三个单人组（0），最大值 5，由我独立枚举验证。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "单人组最优并触及 a_i 上界",
+          "input": "4\n10000 0 0 0\n",
+          "output": "40000",
+          "reason": "a_2..a_4 均为 0，任何合并只会减少单人组数量，最优为 4 个单人组共 4×10^4=40000；覆盖 a_i=10^4 上界。",
+          "kind": "boundary",
+          "actual": "40000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6207c080de1833731904354d686b1b27c1fb17b8d3933b65646b6625e60f5b6c"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n1 3\n2 5\n4 8",
+          "output": "1\n2\n1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n2\n1\n",
+          "passed": true
+        },
+        {
+          "input": "1\n120 650",
+          "output": "9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小询问与根自身距离",
+          "input": "1\n1 1\n",
+          "output": "0",
+          "reason": "q=1 为最小规模；dist(1,1)=0 验证 depth(1)=0 及 x==y 时不进入跳跃循环的边界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "非平凡 LCA 同步上跳",
+          "input": "1\n12 18\n",
+          "output": "4",
+          "reason": "12 链 12→6→3→1，18 链 18→9→3→1；两链同深度 3，同步上跳两步后同遇 LCA=3，dist=2+2=4，检验首遇点确为 LCA 而非更浅公共结点。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "最大编号与最大深度",
+          "input": "2\n1 1000000000\n536870912 1\n",
+          "output": "18\n29",
+          "reason": "10^9=2^9×5^9 共 18 个质因子（计重）；536870912=2^29 是 ≤10^9 内指数最大的 2 的幂，深度 29；到根的距离即深度，同时触及 x_i 上界 10^9。",
+          "kind": "boundary",
+          "actual": "18\n29\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d169450ea8653f2aa6ca0b8f947e25decaaf32197dc1857a563afee91fdb76cc"
+    }
+  ]
+}

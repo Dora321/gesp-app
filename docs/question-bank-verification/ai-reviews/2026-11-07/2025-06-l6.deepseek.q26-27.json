@@ -1,0 +1,164 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T13:27:37.520Z",
+  "completedAt": "2026-11-07T13:31:00.958Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33714,
+    "completion_tokens": 17382,
+    "total_tokens": 51096,
+    "prompt_tokens_details": {
+      "cached_tokens": 33664
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15216
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01053769,
+      "allowance": 0.00632262,
+      "tokens": {
+        "input": 50,
+        "output": 17382,
+        "reasoning": 15216,
+        "cache_read": 33664,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bfebf10eafbc34b4732a7df6e803d20694aca33c76fc6ca556862bee94b9c566",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示CCF GESP C++ 六级、2025年06月，与paperId“2025-06-l6”一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第8页第3.1节“学习小组”的题目描述、输入输出和样例与当前题面一致；但官方第3.1.5节的数据范围（40%：1≤n≤10；全部：1≤n≤1000，0≤a_i≤10^4）以及1.0 s/512.0 MB限制未写入当前题面。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，按not_applicable处理。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析的DP推导基本正确，但称累计积极度可能超出32位并建议按溢出风险处理有误；按官方范围n≤1000、a_i≤10^4，最大答案不超过10^7，int已足够，long long只是更稳妥。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前参考程序用一维dp枚举最后分出的小组人数j，递推dp[i]=max(dp[i],dp[i-j]+a[j])，dp[0]=0；可覆盖全部分组方案，复杂度O(n^2)，按题面范围不会溢出；样例1=10、样例2=12手工推算一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 六级] 学习小组\n\n**时间限制：** 1.0 s\n**内存限制：** 512.0 MB\n\n## 题目描述\n\n班主任计划将班级里的 $n$ 名同学划分为若干个学习小组，每名同学都需要分入某一个学习小组中。观察发现，如果一个学习小组中恰好包含 $k$ 名同学，则该学习小组的讨论积极度为 $a_k$。\n\n给定讨论积极度 $a_1, a_2, ..., a_n$，请你计算将这 $n$ 名同学划分为学习小组的所有可能方案中，讨论积极度之和的最大值。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示班级人数。\n\n第二行，$n$ 个非负整数 $a_1, a_2, ..., a_n$，表示不同人数学习小组的讨论积极度。\n\n## 输出格式\n\n输出共一行，一个整数，表示所有划分方案中，学习小组讨论积极度之和的最大值。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 ≤ n ≤ 10$。\n\n对于所有测试点，保证 $1 ≤ n ≤ 1000$，$0 ≤ a_i ≤ 10^4$。",
+          "explanation": "**解析：**\n\n设 `dp[i]` 表示把 `i` 名同学完全分组能获得的最大积极度。枚举最后分出的一个小组人数 `j`（`1 <= j <= i`），则\n\n`dp[i] = max(dp[i], dp[i-j] + a[j])`，其中 `dp[0] = 0`。按 `i` 从小到大计算，最终答案为 `dp[n]`。\n\n样例 1：`n=4`，`a=[1,5,6,3]`。\n- `dp[1]=1`；\n- `dp[2]=max(dp[1]+1, a[2])=max(2,5)=5`；\n- `dp[3]=max(dp[2]+1, dp[1]+5, a[3])=max(6,6,6)=6`；\n- `dp[4]=max(dp[3]+1, dp[2]+5, dp[1]+6, a[4])=max(7,10,7,3)=10`。\n\n样例 2 中可将 8 人分为 `3+3+2`，积极度为 `5+5+2=12`；以上递推同样得到 `12`。\n\n**复杂度：** 时间复杂度 `O(n^2)`，空间复杂度 `O(n)`。\n\n**数据范围说明：** 因为 `n <= 1000` 且每个 `a_i <= 10^4`，最大答案不超过 `n * 10^4 = 10^7`，`int` 已足够；参考程序使用 `long long` 更稳妥，但不是必需。"
+        },
+        "tests": [
+          {
+            "name": "最小规模 n=1",
+            "input": "1\n0\n",
+            "output": "0",
+            "reason": "n=1 时只能将唯一同学分为 1 人组，积极度为 a1=0。"
+          },
+          {
+            "name": "零值与拆分小组",
+            "input": "3\n0 5 1\n",
+            "output": "5",
+            "reason": "n=3 的划分中，[2,1] 得 a2+a1=5+0=5，[3] 得 a3=1，[1,1,1] 得0，故最大值为5。"
+          },
+          {
+            "name": "最大 a_i 与全单人组",
+            "input": "4\n10000 0 0 0\n",
+            "output": "40000",
+            "reason": "a2、a3、a4均为0，拆成4个1人组可取得4×10000=40000，任何合并都会减少1人组数量。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第9-10页第3.2节“最大因数”的题目描述、输入输出和样例与当前题面一致；但官方第3.2.5节的数据范围（60%：1≤x_i,y_i≤1000；全部：1≤q≤1000，1≤x_i,y_i≤10^9）以及1.0 s/512.0 MB限制未写入当前题面。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，按not_applicable处理。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出父结点为k除以最小质因子、深度等于质因子总数（按重数计），并给出向上对齐深度再同步上跳到LCA的距离算法；120与650的分步结果为9，与样例一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前程序筛出31623以内素数求最小质因子，记忆化求深度，再按深度对齐并同步上跳求距离；q≤1000、x_i,y_i≤10^9时深度至多29，unordered_map记忆化与递归边界可接受；样例1、2手工推算均一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 六级] 最大因数\n\n**时间限制：** 1.0 s\n**内存限制：** 512.0 MB\n\n## 题目描述\n\n给定一棵有 $10^9$ 个结点的有根树，这些结点依次以 $1, 2, ..., 10^9$ 编号，根结点的编号为 $1$。对于编号为 $k$（$2 ≤ k ≤ 10^9$）的结点，其父结点的编号为 $k$ 的因数中除 $k$ 以外最大的因数。\n\n现在有 $q$ 组询问，第 $i$（$1 ≤ i ≤ q$）组询问给定 $x_i, y_i$，请你求出编号分别为 $x_i, y_i$ 的两个结点在这棵树上的距离。两个结点之间的距离是连接这两个结点的简单路径所包含的边数。\n\n## 输入格式\n\n第一行，一个正整数 $q$，表示询问组数。\n\n接下来 $q$ 行，每行两个正整数 $x_i, y_i$，表示询问结点的编号。\n\n## 输出格式\n\n输出共 $q$ 行，每行一个整数，表示结点 $x_i, y_i$ 之间的距离。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 ≤ x_i, y_i ≤ 1000$。\n\n对于所有测试点，保证 $1 ≤ q ≤ 1000$，$1 ≤ x_i, y_i ≤ 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "根结点自身",
+            "input": "1\n1 1\n",
+            "output": "0",
+            "reason": "两个查询结点都是根结点1，路径只有1个结点，边数为0。"
+          },
+          {
+            "name": "最大编号与最大深度",
+            "input": "2\n1 1000000000\n536870912 1\n",
+            "output": "18\n29",
+            "reason": "到根结点的距离等于质因子总个数（含重数）；10^9=2^9×5^9，共18个质因子；536870912=2^29，共29个质因子。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验第26、27题。两题正文和样例与官方PDF一致，但均漏写官方数据范围及1.0 s/512 MB限制，已草拟题面补全。第26题解析中“可能超出32位、需long long”的说法与官方范围不符，已改为int足够、long long更稳妥。两题现有参考程序经算法、边界和样例手工对照均正确；本次无未决冲突。"
+  }
+}

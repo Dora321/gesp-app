@@ -1,0 +1,237 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:54:04.337Z",
+  "completedAt": "2026-11-07T12:57:30.980Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53517,
+    "completion_tokens": 10624,
+    "total_tokens": 64141,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8508
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01333955,
+      "allowance": 0.01333955,
+      "tokens": {
+        "input": 53517,
+        "output": 10624,
+        "reasoning": 8508,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bfebf10eafbc34b4732a7df6e803d20694aca33c76fc6ca556862bee94b9c566",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF 编程能力等级认证（GESP）、C++ 六级、2025 年 06 月，并给出第 1—15 题官方答案表（D A B B B B D D A C A D A B C），与 2025-06-l6 六级 2025 年 6 月场次试卷身份一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干为“下列哪一项不是面向对象编程的基本特征？”，与网站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题选项依次为 A 继承、B 封装、C 多态、D 链接，顺序与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立判断：OOP 三大基本特征为封装、继承、多态，链接是编译构建环节而非 OOP 特征；与第 1 页答案表第 1 题 D（索引 3）一致，网站 answer=3 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对解析逐项排除：继承/封装/多态均为 OOP 基本特征（继承复用、封装隐藏内部、多态虚函数动态绑定），链接属构建流程，结论与解析及官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案（D→索引 3）与解析均与原卷一致，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照第 1 页原图逐行核对 Animal/Dog 定义共 29 行：Animal(name, str) 带参构造、virtual void speak()、Dog 初始化列表留空（横线长度差异不改含义）、breed(b)、main 中 Animal* p = new Dog(\"Rex\", \"Labrador\") 均与网站代码一致；题干语义一致（原卷“横线线处”为排版用语，等价于网站“横线处”）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页末 A. Animal(name)，第 2 页 B. super(name)、C. Animal::Animal(name)、D. Animal()，与网站 options 顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：派生类应在成员初始化列表中调用基类构造，标准写法为 Animal(name)；B super 非 C++ 关键字；D Animal() 因已定义带参构造而无默认构造可调用。与第 1 页答案表第 2 题 A（索引 0）一致，网站 answer=0 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核心（初始化列表调用 Animal(name)、执行流程 Animal created → Dog created）及对 B、D 的排除正确；对 C 项“不能显式限定调用基类构造函数”的论断在标准细节上有争议（限定名形式的 mem-initializer 如 B::B(args) 在多数编译器实际可用），但该瑕疵不动摇 A 为官方答案及解析主体，故不判 needs_fix。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核对题面、选项、答案的核对；但否决初核把“Animal::Animal(name) 不合法”当作确定性判据——限定名 mem-initializer 在标准语法允许且多数编译器接受。该争议不影响 A 的正确性与官方答案，维持解析 verified，不改写解析。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 3 题原文“代码同上一题，代码执行结果是（ ）。”，与网站 question 等价，并指向第 2 题 Animal/Dog 代码。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页选项依次为 A 输出 Animal speaks、B 输出 Dog barks、C 编译错误、D 程序崩溃，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：Animal::speak 为 virtual，Dog::speak 声明 override，Animal* p = new Dog 实际对象为 Dog，p->speak() 动态绑定至 Dog::speak，输出 Dog barks；与第 1 页答案表第 3 题 B（索引 1）一致，网站 answer=1 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的动态绑定三条件（基类指针、virtual、实际对象为派生类）与 A/C/D 的排除均正确；解析将 delete 经非虚析构表述为“警告隐患”，严格说是 UB，但发生在 p->speak() 之后的析构阶段，不影响本题输出判断，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对非虚析构风险的补充说明方向正确，仅“警告隐患”措辞不如 UB 严谨，属次要表述，维持 verified。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 4 题题干与 8 行代码（stack<int> s; queue<int> q; 循环将 1、2、3 同时压入两容器后输出 s.top() 与 q.front()）与网站 question 及 code 字段逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页选项依次为 A 1 3、B 3 1、C 3 3、D 1 1，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立模拟：1、2、3 依次入栈后栈为 1 2 3，top=3；同序入队后队列为 1 2 3，front=1；输出“3 1”。与第 1 页答案表第 4 题 B（索引 1）一致，网站 answer=1 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的逐步模拟表、top 取最新/front 取最旧的语义及 A/C/D 的排除推理独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：模拟输出 3 1 经独立复核无误，题面与选项一致。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 5 题原文描述循环队列中 front 指向队头、rear 指向队尾、最大容量 maxSize，问队列已满的条件，与网站 question 一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页选项依次为 A rear == front、B (rear+1) % maxSize == front、C (rear-1+maxSize) % maxSize == front、D (rear-1) == front，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：通行循环队列约定牺牲一个存储单位，以 front==rear 判空、(rear+1)%maxSize==front 判满（实际容量 maxSize-1）；与第 1 页答案表第 5 题 B（索引 1）一致，网站 answer=1 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对判满原理（front==rear 用于判空、牺牲一位避免空满混淆）及 A 为判空、C 为单元素态、D 缺取模的排除推理独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：判满条件独立复核正确，题面与选项一致。"
+      }
+    ],
+    "summary": "本轮仅核验第 1—5 题（单选题）。五题题面、选项均与 PDF 原卷页图一致，officialAnswer 分别为 3、0、1、1、1，与网站 answer 字段完全相符；独立推导均支持官方答案，无字段需要修改（changes 全为空）。两处次要争议已在 reviewNote 记录：第 2 题解析对 C 选项“不合法”的论断技术上可议（限定名 mem-initializer 多数编译器可用，但不改变 A 为官方答案），第 3 题解析把非虚析构引发的 delete 描述为“警告隐患”（严格属 UB，但不影响本题输出判断）。初核草稿的核对结论与官方答案映射均被独立确认并接受。本次范围为单选题，无编程题，未生成 tests。"
+  }
+}

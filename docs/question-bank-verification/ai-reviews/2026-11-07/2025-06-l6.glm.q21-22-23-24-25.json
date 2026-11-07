@@ -1,0 +1,240 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T13:24:20.472Z",
+  "completedAt": "2026-11-07T13:27:37.506Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53500,
+    "completion_tokens": 11242,
+    "total_tokens": 64742,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8860
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.013646,
+      "allowance": 0.013646,
+      "tokens": {
+        "input": 53500,
+        "output": 11242,
+        "reasoning": 8860,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bfebf10eafbc34b4732a7df6e803d20694aca33c76fc6ca556862bee94b9c566",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 GESP」「C++ 六级」「2025 年 06 月」，与目标 2025-06-l6 的年份、月份、级别（六级）一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第6题题干「执行下列代码，my_dog.name 的最终值是 Charlie。」及代码（class Dog，public 成员 std::string name，构造函数初始化列表，main 中先 Dog my_dog(\"Buddy\") 构造、再 my_dog.name = \"Charlie\" 赋值）与网站一致；网站仅在代码块首补写了 #include <iostream>，属无害补行，不改变题意与判定。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 四选项；网站仅提供 正确/错误 两个选项，适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表为 ××√√×√××√√，第6格为 √（正确=0），与网站 answer=0 一致；独立推导：构造初始化 name=Buddy 后显式赋值 Charlie，最终值确为 Charlie，判 √ 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：name 为 public 成员，类外可直接访问；构造时初始化为 Buddy，随后赋值 Charlie 覆盖，最终值 Charlie，题干表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核已指出网站补写 include 并判定无害，与独立复核结论一致；答案表第6格√与 answer=0 相符，题面与解析核对通过，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第7题题干与代码逐行一致：Parent 私有成员 int value = 100，Child 公有继承 Parent，成员函数 get_private_val 中 return value（含注释「尝试访问父类的私有成员」），网站完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 四选项；网站仅提供 正确/错误 两个选项，适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第7格为 ×（错误=1），与网站 answer=1 一致；独立推导：private 成员仅对 Parent 自身及友元可见，public 继承不改变访问权限，get_private_val 访问 value 导致编译失败，题干「可以成功编译」为假，判 × 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对访问控制规则与解析一致：public 继承不会使派生类获得对基类 private 成员的直接访问权，需改为 protected 才可，故该代码无法编译，结论错误正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、答案表第7格×与解析推导均与独立复核一致，无需修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页第8题题干「下列代码中的 tree 向量，表示的是一棵完全二叉树 (-1 代表空节点)按照层序遍历的结果。」后附代码 #include <vector> 与 std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};；网站题干只保留问句并称「下列代码」，却未附该代码，指代对象缺失，需按原文补全。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 四选项；网站仅提供 正确/错误 两个选项，适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第8格为 ×（错误=1），与网站 answer=1 一致；独立还原：层序下标 0..6 对应 1、2、3、4、-1（空）、6、7，节点 index1 的右孩子为空而 index2 的孩子为 6、7，空位之后仍有非空节点，不满足完全二叉树，判 × 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：完全二叉树要求空节点只能出现在层序序列末尾，本例 -1 在下标4、其后仍有 6、7（第3层左缺右有），不是完全二叉树，解析关键结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序；题内展示代码缺失问题已在 statement 维度处理，不适用。"
+          }
+        },
+        "changes": {
+          "code": "#include <vector>\nstd::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核修改：独立确认网站确实缺失 tree 向量代码，按 PDF 第7页原文补入 code 字段；修复后重核题面指代完整，答案与解析不受影响，无争议点。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第9题原文「在树的深度优先搜索（DFS）中，使用栈作为辅助数据结构以实现“先进后出”的访问顺序。」与网站题面一致（文本层「使」「栈」间为识别缺字，第7页原图可辨为「使用栈」）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 四选项；网站仅提供 正确/错误 两个选项，适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第9格为 √（正确=0），与网站 answer=0 一致；独立推导：先入后出与后入先出是同一 LIFO 特性的两种表述，栈正确实现该访问顺序，判 √ 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对与解析一致：DFS 非递归实现以栈（LIFO）辅助，出栈访问、孩子逆序压栈实现一走到底再回溯；递归版依赖函数调用栈，同属 LIFO；与 BFS 用队列（FIFO）形成对照，解析无逻辑错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：「先进后出」即 LIFO，与 websites/初核判定一致；答案表第9格√、题面与解析核对通过，无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第10题题干与 coinChangeDPComp 代码逐行一致（仅缩进排版差异）：n=coins.size()，MAX=amt+1，dp 初始化为 amt+1 个 MAX，dp[0]=0，外层硬币 i 从 1 到 n、内层金额 a 从 1 到 amt 升序，coins[i-1]>a 时保持 dp[a] 不变，否则 dp[a]=min(dp[a], dp[a-coins[i-1]]+1)，返回 dp[amt]（为 MAX 则 -1），与网站完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 四选项；网站仅提供 正确/错误 两个选项，适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第10格为 √（正确=0），与网站 answer=0 一致；独立推导：外层枚举硬币、内层金额升序使 dp[a-coins[i-1]] 可含当前硬币，实现每枚硬币可重复选取；MAX=amt+1 为不可达上界（amount 所需硬币数不超过 amt），dp[amt] 仍为 MAX 说明不可凑，返回 -1，代码确实按题干所述求解最少硬币数，判 √ 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对与解析一致：状态定义 dp[a] 为凑出金额 a 的最少硬币数，dp[0]=0 正确；MAX 作为无穷占位语义恰当；升序内层对应完全背包（硬币可重复）；返回逻辑正确，题干描述成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序；题内展示代码已随 statement 逐行核对，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：代码逐行对照 PDF 第7页一致，动态规划语义（完全背包求最少硬币）与解析推导正确；答案表第10格√与 answer=0 相符，无需修改。"
+      }
+    ],
+    "summary": "本次复核题号 21-25（对应原卷判断题第 6-10 题）。卷头「C++ 六级 2025年06月」与 paperId 相符。五题答案与 PDF 第6页判断题答案表（××√√×√××√√）逐格对应：21=√、22=×、23=×、24=√、25=√，网站 answer 全部一致且经独立推导成立。题面方面：21 题网站在原卷代码基础上补写 #include <iostream>，属无害补行不改变判定；22、24、25 题面与原卷逐行一致；23 题网站缺失 std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7}; 代码，致题干「下列代码」指代不完整，已按 PDF 第7页原文补入 code 字段，修复后核验通过。五题五维均有记录；均为判断题，options/referenceCode 不适用，tests 为空。初核 5 条记录与独立复核结论一致，全部接受；无答案冲突或源卷缺陷，无遗留未决项。"
+  }
+}
