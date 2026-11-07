@@ -6,7 +6,8 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cache = process.env.GESP_AUDIT_CACHE || path.join(root, 'tmp/five-dimension-audit');
 const date = process.env.GESP_AUDIT_DATE || '2026-11-07';
-const out = path.join(root, 'docs/question-bank-verification/ai-reviews', date);
+const run = process.env.GESP_AUDIT_RUN || date;
+const out = path.join(root, 'docs/question-bank-verification/ai-reviews', run);
 const ids = process.argv.slice(2);
 const apiKey = process.env.OPENCODE_API_KEY;
 if (!apiKey) throw new Error('请通过 OPENCODE_API_KEY 环境变量提供 OpenCode Go 凭据');
@@ -22,6 +23,10 @@ tests 仅编程题使用，格式 [{"name":"边界场景","input":"完整输入"
 
 function validate(report, paper, manifest) {
     if (report.paperId !== paper.id || !Array.isArray(report.questions)) throw new Error('返回的试卷/题目结构错误');
+    for (const question of report.questions) {
+        if (typeof question.id === 'string' && /^\d+$/.test(question.id)) question.id = Number(question.id);
+        if (Array.isArray(question.sourcePages)) question.sourcePages = question.sourcePages.map(page => typeof page === 'string' && /^\d+$/.test(page) ? Number(page) : page);
+    }
     const actual = report.questions.map(question => question.id).sort((a, b) => a - b);
     const expected = paper.questions.map(question => question.id).sort((a, b) => a - b);
     if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error('返回题号缺失或重复');
@@ -77,7 +82,7 @@ async function request(model, phase, paper, manifest, draft, questionIds) {
     const dir = path.join(cache, paper.id);
     const textPages = fs.readFileSync(path.join(dir, 'source.txt'), 'utf8').split('\f').map((text, index) => `PDF 第 ${index + 1} 页\n${text}`).join('\n');
     const content = [
-        { type: 'text', text: `核验目标 ${paper.id}；已校验来源 git-blob SHA ${manifest.source.mirrorSha}。当前网站数据：\n${JSON.stringify(paper)}\n\nPDF 文本层（图片中的代码等可能缺失）：\n${textPages}` },
+        { type: 'text', text: `核验目标 ${paper.id}；已校验来源 git-blob SHA ${manifest.source.mirrorSha}。${manifest.candidate ? '以下是依据上一轮 GLM 意见生成的修订候选，尚未上线；请核验修订后是否真正符合原卷，并独立核对答案及解析。' : '以下是当前网站数据：'}\n${JSON.stringify(paper)}\n\nPDF 文本层（图片中的代码等可能缺失）：\n${textPages}` },
     ];
     manifest.images.forEach((image, index) => {
         content.push({ type: 'text', text: `以下是 PDF 第 ${index + 1} 页原图` });
@@ -87,12 +92,13 @@ async function request(model, phase, paper, manifest, draft, questionIds) {
         ? `你负责初核：逐题完成五维对照、提出必要纠错草稿和编程边界测试。${schema}`
         : `你负责独立复核：先基于原卷和网站数据自行推导，再检查下面 DeepSeek 初核草稿。不要盲目沿用其结论。对不可靠修改直接否决。返回同样结构，但 changes 只包含你独立确认应该应用的最终完整字段值；verified 必须说明具体依据；有充分修复且明确复核通过可将对应维度标 verified 并在 evidence 中说明"修复后核验通过"。没有修改时评估网站原数据。还必须增加每题 verdict（approve/revise/unresolved）和 reviewNote（接受或否决初核的理由）。返回的 tests 必须由你独立核对期望输出。${schema}\nDeepSeek 草稿：\n${JSON.stringify(draft.report)}`)
         + `\n本次仅处理题号 ${questionIds.join('、')}，其余题目仅提供上下文，不要核验或输出。questions 必须恰好包含这 ${questionIds.length} 题。允许 changes.code 修改独立代码字段。` });
-    for (let attempt = 1; attempt <= 2; attempt += 1) {
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
         const started = new Date().toISOString();
         console.log(JSON.stringify({ paperId: paper.id, phase, group, model, status: 'requesting', attempt, started }));
         const response = await fetch('https://opencode.ai/inference/go/v1/chat/completions', {
             method: 'POST', signal: AbortSignal.timeout(1200000),
-            headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'User-Agent': 'gesp-codex-audit/1.0', 'x-opencode-session': `gesp-five-dim-${date}-${paper.id}-${phase}` },
+            headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'User-Agent': 'gesp-codex-audit/1.0', 'x-opencode-session': `gesp-five-dim-${run}-${paper.id}-${phase}` },
             body: JSON.stringify({ model, reasoning_effort: 'max', thinking: { type: 'enabled' }, stream: true, stream_options: { include_usage: true }, max_tokens: attempt === 1 ? 32768 : 65536, messages: [{ role: 'system', content: system }, { role: 'user', content }] }),
         });
         if (!response.ok) throw new Error(`${paper.id} ${phase}: HTTP ${response.status} ${(await response.text()).slice(0,500)}`);
@@ -102,7 +108,7 @@ async function request(model, phase, paper, manifest, draft, questionIds) {
         if (payload.usage?.opencode?.billing_source !== 'go') throw new Error('未确认 Go 套餐用量来源，停止后续调用');
         const final = payload.choices?.[0]?.message?.content;
         if (!final || metadata.finishReason !== 'stop') {
-            if (attempt < 2 && metadata.finishReason === 'length') continue;
+            if (attempt < 3 && metadata.finishReason === 'length') continue;
             throw new Error(`${paper.id} ${phase}: 未获得完整最终答复 (${metadata.finishReason})`);
         }
         const cleaned = final.trim().replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
@@ -116,6 +122,12 @@ async function request(model, phase, paper, manifest, draft, questionIds) {
         fs.writeFileSync(file, JSON.stringify(result, null, 2) + '\n');
         console.log(JSON.stringify({ paperId: paper.id, phase, group, model: payload.model, status: 'complete', billingSource: payload.usage?.opencode?.billing_source, questions: report.questions.length }));
         return result;
+      } catch (error) {
+        if (attempt === 3 || /HTTP (?:400|401|403|404)|未确认 Go/.test(error.message)) throw error;
+        console.log(JSON.stringify({ paperId: paper.id, phase, group, status: 'retrying', attempt, error: error.message }));
+        content.push({ type: 'text', text: `上次传输或结构检查未通过：${error.message}。请重新给出完整合法 JSON，仅包含题号 ${questionIds.join('、')}。JSON 字符串内的双引号、反斜杠、换行必须正确转义。不得省略题号、不得附加其他题。` });
+        await new Promise(resolve => setTimeout(resolve, 30000));
+      }
     }
 }
 

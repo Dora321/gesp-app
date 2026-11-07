@@ -15,7 +15,7 @@ const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 const outputText = value => String(value).replace(/\r\n/g, '\n').split('\n').map(line => line.trimEnd()).join('\n').trimEnd();
 const headerNames = ['algorithm','array','bitset','cassert','cctype','cfloat','climits','cmath','complex','cstdarg','cstddef','cstdint','cstdio','cstdlib','cstring','ctime','deque','exception','forward_list','functional','iomanip','ios','iosfwd','iostream','istream','iterator','limits','list','locale','map','memory','new','numeric','ostream','queue','random','ratio','regex','set','sstream','stack','stdexcept','streambuf','string','tuple','type_traits','typeinfo','unordered_map','unordered_set','utility','valarray','vector'];
 
-function checkProgram(id, question, reviewedTests) {
+export function checkProgram(id, question, reviewedTests) {
     const code = question.referenceCode;
     const result = { id: question.id, passed: false, sampleCount: 0, boundaryCount: 0, tests: [], codeSha256: typeof code === 'string' ? hash(code) : null };
     if (!code || /\b(system|popen|exec\w*|fork|fopen|freopen|fstream|filesystem|socket)\s*[(<:]|#\s*include\s*[<"](?:unistd|windows)/.test(code)) return { ...result, error: '代码缺失或需要单独确认文件/系统操作' };
@@ -48,7 +48,7 @@ function checkProgram(id, question, reviewedTests) {
     return result;
 }
 
-for (const id of process.argv.slice(2)) {
+for (const id of path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url) ? process.argv.slice(2) : []) {
     if (!/^\d{4}-\d{2}-l[1-8]$/.test(id)) throw new Error('非法试卷 ID');
     const dir = path.join(cache, id);
     const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json')));

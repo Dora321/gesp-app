@@ -1,0 +1,74 @@
+{
+  "paperId": "2026-03-l5",
+  "integratedAt": "2026-11-07T11:39:45.805Z",
+  "accepted": [
+    {
+      "id": 22,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "description"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3 5\n4 2 3\n3 1 5 4 6",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2",
+          "passed": true
+        },
+        {
+          "name": "最小规模且命中",
+          "input": "1 1\n1\n1\n",
+          "output": "1",
+          "reason": "n=m=1，A={1}与B={1}交集为{1}；独立按定义计算，同时覆盖最小数据边界。",
+          "kind": "boundary",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "name": "无交集",
+          "input": "3 3\n1 2 3\n4 5 6\n",
+          "output": "0",
+          "reason": "两组互不相同正整数集合无公共元素，期望输出0，覆盖ans保持0的路径。",
+          "kind": "boundary",
+          "actual": "0",
+          "passed": true
+        },
+        {
+          "name": "乱序部分交集",
+          "input": "4 4\n8 2 6 4\n4 8 1 6\n",
+          "output": "3",
+          "reason": "A排序后为[2,4,6,8]；B中4、8、6命中、1未命中，独立计算得3，覆盖乱序输入与排序后二分。",
+          "kind": "boundary",
+          "actual": "3",
+          "passed": true
+        },
+        {
+          "name": "10^9上界边界",
+          "input": "2 2\n1000000000 1\n1000000000 999999999\n",
+          "output": "1",
+          "reason": "A={10^9,1}排序后二分：查10^9在l=r=1处命中（ans=1），查999999999未命中（ans仍1）；验证值上界10^9在int内的存储与mid不溢出。",
+          "kind": "boundary",
+          "actual": "1",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f6ec5db50a7cd40c69cae60b4188bb833f3098376c0940f77d3a1ea2848557fb"
+    }
+  ]
+}

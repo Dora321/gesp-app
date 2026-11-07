@@ -825,39 +825,43 @@
       "id": 22,
       "resolved": true,
       "dimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
+        9,
         10,
         11
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 10 页判断题第 7 题原文为“假设数组 a 的值域范围是 D，以下程序的时间复杂度是 O(n log n + n log D)”。站点写成“[0, D]”，额外限定了下界；虽然不影响该复杂度结论，但不等同于原文。",
-          "review": "修复后核验通过：PDF 第 10 页判断题第 7 题原文为“假设数组 a 的值域范围是 D，以下程序的时间复杂度是 O(n log n + n log D)。”，站点原写“[0, D]”多加了官方没有的下界限定；已改为与原文一致。题干附带程序与 PDF 第 11 页代码逐行一致。"
+          "initial": "PDF第10页判断题第7题题干为“假设数组a的值域范围是D，以下程序的时间复杂度是O(n log n+n log D)”；第11页check/solve代码与候选一致。候选省略仅用于示例的main，不影响该复杂度判断。",
+          "review": "PDF第10页判断题第7题原文为“假设数组a的值域范围是D，以下程序的时间复杂度是O(n log n + n log D)”，与候选题干一致；第11页check与solve代码逐行核对与候选一致。原卷另含硬编码数组{1,2,8,4,9}的示例main，候选省略后仅去掉与复杂度判断无关的固定调用入口，check/solve全保留，不改变命题含义。"
         },
         "answer": {
-          "initial": "PDF 第 9 页判断题答案表第 7 题为“√”，对应正确，即 0。",
-          "review": "PDF 第 9 页判断题答案表第 7 题为“√”（序列第 7 位），对应正确=0，与站点 answer=0 一致。"
+          "initial": "PDF第9页判断题答案表第7题标记为“√”；候选answer=0对应“正确”。",
+          "review": "PDF第9页判断题答案表第7位标记为√（图片核对，非仅文本层）；√对应“正确”，即0起始索引0，与候选answer=0一致。"
         },
         "explanation": {
-          "initial": "独立推导：排序耗时 O(n log n)；二分区间上界为 a[n-1]-a[0] ≤ D，最多 O(log D) 轮；每轮 check 线性扫描 O(n)，总复杂度为 O(n log n + n log D)，解析正确。",
-          "review": "独立推导：sort 为 O(n log n)；值域上界为 D 时 a[n-1]-a[0]≤D，二分至多 O(log D) 轮，每轮 check 线性扫描 O(n)，合计 O(n log n + n log D)，解析正确。"
+          "initial": "排序为O(n log n)；二分的答案区间长度至多D，迭代O(log D)次，每次check线性扫描O(n)，总复杂度O(n log n+n log D)，解析结论成立。",
+          "review": "独立推导：solve先对a排序O(n log n)；二分区间[0, a[n-1]-a[0]]长度不超过值域D，while(l<r)且mid=(l+r+1)/2每次收缩区间，迭代O(log D)次；每次check单层循环O(n)。合计O(n log n + n log D)，命题成立，与解析一致。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l5.glm.json"
       ]
     },
     {
@@ -1001,64 +1005,47 @@
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         13,
         14
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第13页题目描述、样例和参考程序均与网站主体一致，但 PDF 明确给出数据范围“40%：1 ≤ n,m ≤ 1000；100%：1 ≤ n,m ≤ 10^5，1 ≤ a_i,b_i ≤ 10^9”，网站 description 未包含该必要约束。另 PDF 输入格式第二处重复写“第二行包含 m 个…”，与样例三行输入矛盾；网站 inputDescription 写为第三行，符合样例和题意，保留源卷笔误记录。",
-          "review": "对照 PDF 第13—14页：3.2.1 题目描述、3.2.2 输入格式（第一行 n,m；第二行数组 A；B 行源卷误写『第二行』，按三行样例应为第三行）、3.2.3 输出格式、3.2.4 样例『3 5 / 4 2 3 / 3 1 5 4 6』→『2』、3.2.5 样例解释（4、3 在 A 与 B 中均出现，经核对 A={4,2,3} 同时含于 B 中者确为 3、4）与网站一致；网站 description 缺 PDF 3.2.6 数据范围（40%：1≤n,m≤1000；100%：1≤n,m≤10^5，1≤a_i,b_i≤10^9），已在 changes 补入，修复后核验通过；inputDescription 写作『第三行』与样例相符，源卷笔误保留争议见 unresolved。"
+          "initial": "PDF第13页题目描述、输入输出、样例、数据范围与候选一致；原文输入格式把数组B所在行重复写成“第二行”，按样例三行结构应为第三行，候选已订正。候选description末尾重复输出说明，不改变题意。第14页参考程序与候选一致。",
+          "review": "修复后核验通过：PDF第13页题面（A、B均为互不相同正整数，求两数组均出现的数的个数）、样例输入输出、样例解释（4、3均出现）、时间1.0s/内存512.0MB、数据范围（40%: 1≤n,m≤1000；100%: 1≤n,m≤10^5，1≤a_i,b_i≤10^9）与候选一致。原卷输入格式两处均写作“第二行包含……表示数组B”，为官方排版笔误（与样例三行结构矛盾），候选按样例结构订正为“第三行包含 m 个正整数 b_i 表示数组 B”，未增删约束或样例，属不改题意的修复，予以确认。"
         },
         "explanation": {
-          "initial": "解析采用排序 A 后对 B 中每个数二分查找，因 A、B 各自元素互不相同，统计命中数等价于交集大小；样例 B 顺序 3、1、5、4、6 走查得到 3 和 4 命中，答案 2，与样例一致；复杂度 O(n log n + m log n) 正确。",
-          "review": "独立推导：两数组元素各自互不相同，对排序后的 A 逐个二分查 B 元素，命中计数等价于 |A∩B|，思路正确；按样例走查（A 排序为 {2,3,4}，B 依次 3、1、5、4、6），3、4 命中得 2，与样例输出一致；复杂度 O(n log n + m log n)，n,m≤10^5 规模在 1 s 内可过；空间 O(n) 正确。"
+          "initial": "将B中每个数视为查询，在排序后的A中二分；样例中3、4命中，输出2。复杂度O(n log n+m log n)、空间O(n)，与代码及约束相符。",
+          "review": "独立推导：对A升序排序后，对B中每个数在A上做闭区间[l,r]二分（l<=r，a[mid]>b收缩r，a[mid]<b收缩l，相等则ok置true并break），互异性保证每个公共数恰计一次。逐查询走查样例：查询3命中（ans=1）、1未命中、5未命中、4命中（ans=2）、6未命中，输出2，与样例一致；解析中复杂度O(n log n + m log n)、空间O(n)的推导正确，易错点（先排序、l<=r边界、ok重置、防溢出中点）与代码行为相符。"
         },
         "referenceCode": {
-          "initial": "PDF 第14页参考程序与网站 referenceCode 逐行一致（仅空行/缩进差异）；n ≥ 1 时 r=n-1 合法，a_i ≤ 10^9 用 int 存储足够，排序后逐个二分查找算法正确。",
-          "review": "与 PDF 第14页 3.2.7 参考程序逐行核对一致（仅空行/缩进差异）：a_i,b_i≤10^9 在 int 范围内；ok 每轮查询前重置；闭区间 l≤r 精确匹配二分（找到即 break）；元素互异保证命中数即交集大小；n≥1 时 r=n-1≥0 合法，mid 用 l+(r-l)/2 防溢出，算法正确。"
+          "initial": "PDF第14页参考程序与候选一致；代码对A排序后逐个二分查找B中元素，n,m≤10^5、a_i,b_i≤10^9范围内可正确计数。",
+          "review": "PDF第14页参考程序与候选逐行等价（仅排版差异）：读入n,m后读入A并sort，逐个读B做二分计数并输出ans。算法在1≤n,m≤10^5、1≤a_i,b_i≤10^9内正确：int可存10^9；mid=l+(r-l)/2中l,r≤10^5-1无溢出；n=1时l=r=0，while(l<=r)仍执行，不漏判；数组内元素互异，ans不会被重复计数；未读入多余数据或越界访问。"
         }
       },
-      "unresolved": [
-        "修改 description 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "description"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l5.glm.json"
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 22,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 description 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l5.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-03-l5.integration.json"
 }

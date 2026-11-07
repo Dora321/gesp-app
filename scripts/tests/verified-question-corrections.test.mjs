@@ -12,6 +12,21 @@ import {
   verifiedQuestionCorrections,
 } from '../../src/data/gesp/verifiedQuestionCorrections.js';
 
+test('later reviewed fields survive historical corrections while untouched code is restored', () => {
+  const historical = verifiedQuestionCorrections['2024-09-l6'].questions[12];
+  const paper = applyVerifiedQuestionCorrections({
+    id: '2024-09-l6',
+    questions: [{ id: 12, explanation: '后续双模型审校的解析', reviewedFields: ['explanation', 'reviewedBy', 'reviewedAt'], reviewedBy: '后续审校', reviewedAt: '2026-11-07' }],
+  });
+  const question = paper.questions[0];
+  assert.equal(question.explanation, '后续双模型审校的解析');
+  assert.equal(question.reviewedBy, '后续审校');
+  assert.equal(question.reviewedAt, '2026-11-07');
+  assert.equal(question.code, historical.code);
+  assert.equal(question.requiresCode, true);
+  assert.deepEqual(question.options, historical.options);
+});
+
 test('verified question corrections are traceable to official papers', () => {
   for (const [paperId, correction] of Object.entries(verifiedQuestionCorrections)) {
     assert.ok(paperIds.includes(paperId), `Unknown paper: ${paperId}`);

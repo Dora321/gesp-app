@@ -71,7 +71,7 @@ const programmingQuestions = [
       title: '找数',
       problemNumber: 'P15799',
       score: 25,
-      description: '给定一个包含 n 个互不相同的正整数的数组 A，以及一个包含 m 个互不相同的正整数的数组 B。输出一个整数，表示在数组 A 与数组 B 中均出现的数的个数。',
+      description: "给定一个包含 n 个互不相同的正整数的数组 A，以及一个包含 m 个互不相同的正整数的数组 B。输出一个整数，表示在数组 A 与数组 B 中均出现的数的个数。\n\n数据范围：对于 40% 的数据，保证 1 ≤ n, m ≤ 1000；对于 100% 的数据，保证 1 ≤ n, m ≤ 10^5，1 ≤ a_i, b_i ≤ 10^9。",
       inputDescription: '第一行包含两个整数 n, m。第二行包含 n 个正整数 a_i 表示数组 A。第三行包含 m 个正整数 b_i 表示数组 B。',
       outputDescription: '输出一个整数，表示在数组 A 与数组 B 中均出现的数的个数。',
       samples: [
@@ -160,6 +160,10 @@ const programmingQuestions = [
       tags: ["编程题", "二分查找", "排序"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m, l, r, mid;\n    bool ok;\n    cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int ans = 0;\n    for (int i = 0, b; i < m; i++) {\n        cin >> b;\n        ok = false;\n        l = 0;\n        r = n - 1;\n        while (l <= r) {\n            mid = l + (r - l) / 2;\n            if (a[mid] > b) r = mid - 1;\n            else if (a[mid] < b) l = mid + 1;\n            else {\n                ok = true;\n                break;\n            }\n        }\n        if (ok) ans++;\n    }\n    cout << ans;\n    return 0;\n}",
+      "sourcePage": 13,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["description","sourcePage","reviewedBy","reviewedAt"],
     }
 ];
 
@@ -730,7 +734,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: `假设数组 a 的值域范围是 [0, D]，下列程序的时间复杂度是 O(n log n + n log D)。\n\nbool check(int n, int a[], int k, int dist) {\n int cnt = 1;\n int last = a[0];\n for (int i = 1; i < n; i++) {\n if (a[i] - last >= dist) {\n cnt++;\n last = a[i];\n }\n }\n return cnt >= k;\n}\n\nint solve(int n, int a[], int k) {\n sort(a, a + n);\n int l = 0;\n int r = a[n - 1] - a[0];\n while (l < r) {\n int mid = (l + r + 1) / 2;\n if (check(n, a, k, mid)) l = mid;\n else r = mid - 1;\n }\n return l;\n}`,
+            question: "假设数组 a 的值域范围是 D，以下程序的时间复杂度是 O(n log n + n log D)。\n\nbool check(int n, int a[], int k, int dist) {\n int cnt = 1;\n int last = a[0];\n for (int i = 1; i < n; i++) {\n if (a[i] - last >= dist) {\n cnt++;\n last = a[i];\n }\n }\n return cnt >= k;\n}\n\nint solve(int n, int a[], int k) {\n sort(a, a + n);\n int l = 0;\n int r = a[n - 1] - a[0];\n while (l < r) {\n int mid = (l + r + 1) / 2;\n if (check(n, a, k, mid)) l = mid;\n else r = mid - 1;\n }\n return l;\n}",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -743,7 +747,11 @@ export const paperData = {
 
             **考点：** 二分答案
             `,
-            tags: ["客观题", "判断题", "二分答案"]
+            tags: ["客观题", "判断题", "二分答案"],
+      "sourcePage": 9,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 23,

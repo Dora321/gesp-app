@@ -1,0 +1,166 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "glm",
+  "questionIds": [
+    22,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:37:10.210Z",
+  "completedAt": "2026-11-07T11:39:26.546Z",
+  "finishReason": "stop",
+  "inputSha256": "a396f1959563534724bb760b4a5ae540fe8f484985b33c29b490e01865ea1e38",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 五级”“2026 年 03 月”，与 paperId 2026-03-l5 的等级、年月一致。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第7题原文为“假设数组a的值域范围是D，以下程序的时间复杂度是O(n log n + n log D)”，与候选题干一致；第11页check与solve代码逐行核对与候选一致。原卷另含硬编码数组{1,2,8,4,9}的示例main，候选省略后仅去掉与复杂度判断无关的固定调用入口，check/solve全保留，不改变命题含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方A/B/C/D选项；候选中的[\"正确\",\"错误\"]仅为答案载体，非卷面选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题答案表第7位标记为√（图片核对，非仅文本层）；√对应“正确”，即0起始索引0，与候选answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：solve先对a排序O(n log n)；二分区间[0, a[n-1]-a[0]]长度不超过值域D，while(l<r)且mid=(l+r+1)/2每次收缩区间，迭代O(log D)次；每次check单层循环O(n)。合计O(n log n + n log D)，命题成立，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：已独立核对图片版答案表第7题为√（answer=0），复杂度O(n log n + n log D)推导成立；候选省略示例main属等价转换，不构成修改，维持初核结论。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第13页题面（A、B均为互不相同正整数，求两数组均出现的数的个数）、样例输入输出、样例解释（4、3均出现）、时间1.0s/内存512.0MB、数据范围（40%: 1≤n,m≤1000；100%: 1≤n,m≤10^5，1≤a_i,b_i≤10^9）与候选一致。原卷输入格式两处均写作“第二行包含……表示数组B”，为官方排版笔误（与样例三行结构矛盾），候选按样例结构订正为“第三行包含 m 个正整数 b_i 表示数组 B”，未增删约束或样例，属不改题意的修复，予以确认。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无卷面选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在答案表范围内，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：对A升序排序后，对B中每个数在A上做闭区间[l,r]二分（l<=r，a[mid]>b收缩r，a[mid]<b收缩l，相等则ok置true并break），互异性保证每个公共数恰计一次。逐查询走查样例：查询3命中（ans=1）、1未命中、5未命中、4命中（ans=2）、6未命中，输出2，与样例一致；解析中复杂度O(n log n + m log n)、空间O(n)的推导正确，易错点（先排序、l<=r边界、ok重置、防溢出中点）与代码行为相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第14页参考程序与候选逐行等价（仅排版差异）：读入n,m后读入A并sort，逐个读B做二分计数并输出ans。算法在1≤n,m≤10^5、1≤a_i,b_i≤10^9内正确：int可存10^9；mid=l+(r-l)/2中l,r≤10^5-1无溢出；n=1时l=r=0，while(l<=r)仍执行，不漏判；数组内元素互异，ans不会被重复计数；未读入多余数据或越界访问。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模且命中",
+            "input": "1 1\n1\n1\n",
+            "output": "1",
+            "reason": "n=m=1，A={1}与B={1}交集为{1}；独立按定义计算，同时覆盖最小数据边界。"
+          },
+          {
+            "name": "无交集",
+            "input": "3 3\n1 2 3\n4 5 6\n",
+            "output": "0",
+            "reason": "两组互不相同正整数集合无公共元素，期望输出0，覆盖ans保持0的路径。"
+          },
+          {
+            "name": "乱序部分交集",
+            "input": "4 4\n8 2 6 4\n4 8 1 6\n",
+            "output": "3",
+            "reason": "A排序后为[2,4,6,8]；B中4、8、6命中、1未命中，独立计算得3，覆盖乱序输入与排序后二分。"
+          },
+          {
+            "name": "10^9上界边界",
+            "input": "2 2\n1000000000 1\n1000000000 999999999\n",
+            "output": "1",
+            "reason": "A={10^9,1}排序后二分：查10^9在l=r=1处命中（ans=1），查999999999未命中（ans仍1）；验证值上界10^9在int内的存储与mid不溢出。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：确认原卷输入格式“第二行”重复为官方笔误，候选订正为“第三行”并以样例三行结构佐证，属合理修复；参考代码与PDF第14页一致且边界、溢出、复杂度均经独立核验；4条测试期望输出均由本人独立推导，未声称运行。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        22,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 47830,
+        "completion_tokens": 7463,
+        "total_tokens": 55293,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5614
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.010906,
+          "allowance": 0.010906,
+          "tokens": {
+            "input": 47830,
+            "output": 7463,
+            "reasoning": 5614,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T11:37:10.210Z",
+      "completedAt": "2026-11-07T11:39:26.546Z"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "paperId": "2026-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    22,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:34:30.072Z",
+  "completedAt": "2026-11-07T11:37:10.199Z",
+  "finishReason": "stop",
+  "inputSha256": "a396f1959563534724bb760b4a5ae540fe8f484985b33c29b490e01865ea1e38",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++5级.pdf",
+    "mirrorSha": "0484a47a6bc80be1119ff30e778a48bb89830e6c",
+    "mirrorBytes": 1270117,
+    "shaVerified": true,
+    "sha256": "0b3b0e7e9ed0f9fea285b66d67bdab7af08b6b3644cb479ac0f50ea06e673f73"
+  },
+  "pageCount": 14,
+  "report": {
+    "paperId": "2026-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“C++ 五级”“2026年03月”，与paperId 2026-03-l5一致。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第7题题干为“假设数组a的值域范围是D，以下程序的时间复杂度是O(n log n+n log D)”；第11页check/solve代码与候选一致。候选省略仅用于示例的main，不影响该复杂度判断。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A/B/C/D选项，候选的“正确/错误”是答案标签而非单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题答案表第7题标记为“√”；候选answer=0对应“正确”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "排序为O(n log n)；二分的答案区间长度至多D，迭代O(log D)次，每次check线性扫描O(n)，总复杂度O(n log n+n log D)，解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第13页题目描述、输入输出、样例、数据范围与候选一致；原文输入格式把数组B所在行重复写成“第二行”，按样例三行结构应为第三行，候选已订正。候选description末尾重复输出说明，不改变题意。第14页参考程序与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "将B中每个数视为查询，在排序后的A中二分；样例中3、4命中，输出2。复杂度O(n log n+m log n)、空间O(n)，与代码及约束相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第14页参考程序与候选一致；代码对A排序后逐个二分查找B中元素，n,m≤10^5、a_i,b_i≤10^9范围内可正确计数。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模且命中",
+            "input": "1 1\n1\n1\n",
+            "output": "1",
+            "reason": "n=m=1，交集为{1}；按互异集合交集独立计算。"
+          },
+          {
+            "name": "无交集",
+            "input": "3 3\n1 2 3\n4 5 6\n",
+            "output": "0",
+            "reason": "两个互异正整数集合无公共元素。"
+          },
+          {
+            "name": "乱序且部分交集",
+            "input": "4 4\n8 2 6 4\n4 8 1 6\n",
+            "output": "3",
+            "reason": "A排序后为2,4,6,8；B中4、8、6命中，1不命中，共3个。"
+          },
+          {
+            "name": "1e9上界边界",
+            "input": "2 2\n1000000000 1\n1000000000 999999999\n",
+            "output": "1",
+            "reason": "仅1000000000为公共元素；验证int可存1e9且二分中点不溢出。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        22,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 23930,
+        "completion_tokens": 14569,
+        "total_tokens": 38499,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13689
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0123309,
+          "allowance": 0.00739854,
+          "tokens": {
+            "input": 23930,
+            "output": 14569,
+            "reasoning": 13689,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T11:34:30.072Z",
+      "completedAt": "2026-11-07T11:37:10.199Z"
+    }
+  ]
+}

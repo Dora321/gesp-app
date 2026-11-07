@@ -575,12 +575,15 @@ export function applyVerifiedQuestionCorrections(paper) {
   const reviewedAt = correction.reviewedAt || REVIEWED_AT;
 
   const questions = (paper.questions || []).map((question) => {
-    const verified = correction.questions[question.id];
-    if (!verified) return question;
+    const historical = correction.questions[question.id];
+    if (!historical) return question;
+    // 后续逐题核验直接修正的字段，不能再被早期覆盖层覆盖回旧内容。
+    const verified = Object.fromEntries(Object.entries(historical)
+      .filter(([field]) => !(question.reviewedFields || []).includes(field)));
     return {
       ...question,
       ...verified,
-      requiresCode: typeof verified.code === 'string',
+      requiresCode: typeof (verified.code ?? question.code) === 'string',
       sourceVerified: true,
       reviewedBy: verified.reviewedBy || question.reviewedBy || REVIEWED_BY,
       reviewedAt: verified.reviewedAt || question.reviewedAt || reviewedAt,
