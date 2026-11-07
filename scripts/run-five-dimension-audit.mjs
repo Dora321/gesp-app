@@ -100,7 +100,7 @@ async function request(model, phase, paper, manifest, draft, questionIds) {
         const response = await fetch('https://opencode.ai/inference/go/v1/chat/completions', {
             method: 'POST', signal: AbortSignal.timeout(1200000),
             headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'User-Agent': 'gesp-codex-audit/1.0', 'x-opencode-session': `gesp-five-dim-${run}-${paper.id}-${phase}` },
-            body: JSON.stringify({ model, reasoning_effort: 'max', thinking: { type: 'enabled' }, stream: true, stream_options: { include_usage: true }, max_tokens: attempt === 1 ? 32768 : 65536, messages: [{ role: 'system', content: system }, { role: 'user', content }] }),
+            body: JSON.stringify({ model, ...(phase === 'glm' ? { response_format: { type: 'json_object' } } : {}), reasoning_effort: 'max', thinking: { type: 'enabled' }, stream: true, stream_options: { include_usage: true }, max_tokens: attempt === 1 ? 32768 : 65536, messages: [{ role: 'system', content: system }, { role: 'user', content }] }),
         });
         if (!response.ok) throw new Error(`${paper.id} ${phase}: HTTP ${response.status} ${(await response.text()).slice(0,500)}`);
         const payload = await readStream(response, { paperId: paper.id, phase, group });
