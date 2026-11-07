@@ -1,0 +1,204 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    8,
+    9,
+    15,
+    24
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T16:33:56.205Z",
+  "completedAt": "2026-11-07T16:37:38.605Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 22708,
+    "completion_tokens": 18398,
+    "total_tokens": 41106,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16137
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.014445,
+      "allowance": 0.008667,
+      "tokens": {
+        "input": 22708,
+        "output": 18398,
+        "reasoning": 16137,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73648157ebcee259780f772c92055c4b67e532a64a353762ee6d685640eab800",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 六级 2023年9月”，与 paperId 2023-09-l6 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第3页末为题8题头，PDF第4页给出完整MoreData代码：第13行MoreData & push(int val)，第15行return *this，第29行链式push，第30行pop。候选question内嵌代码与图一致，但独立code字段误放第7题ManyData代码（void push、pop返回--tail），与题8不符，需改。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页四项文字及顺序与候选一致：A队列、B第29行连续push编译错误、C __data私有、D以上均没有错误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为B（索引1），候选answer=1一致。独立判断：push返回MoreData&并return *this，链式调用合法，B为假；A、C为真；D因B假而不成立，故选B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明链式调用依赖返回引用、class默认private，并指出B为错误项，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码；代码片段归属statement维度核对。"
+          }
+        },
+        "changes": {
+          "code": "#include <iostream>\nusing namespace std;\n\nclass MoreData {\n    int * __data;\n    int head, tail, capacity;\npublic:\n    MoreData(int cap) {\n        capacity = cap;\n        __data = new int[capacity];\n        head = tail = 0;\n    }\n    MoreData & push(int val) {\n        __data[tail++] = val;\n        return *this;\n    }\n    int pop() {\n        return __data[head++];\n    }\n    int size() {\n        return tail - head;\n    }\n};\nint main() {\n    auto myData = MoreData(100);\n    myData.push(1);\n    myData.push(2);\n    myData.push(3);\n    myData.push(11).push(12).push(13);\n    cout << myData.pop() << endl;\n    return 0;\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页末为题9题头，PDF第5页树形图。候选补述的树结构、左右孩子顺序、概率及左0右1约定与图一致，且B=11锚点吻合。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为A 10010、B 10011、C 10111、D 10001，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为B（索引1），候选answer=1一致。独立按图推导：根→0.60(1)→0.30(0)→0.15(0)→0.09(1)→D(1)得10011，选B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "D路径与答案正确，但候选叶码复核列错：候选写C=10、G=0000、F=0001、E=0010，与图不符；正确应为C=101、G=10000、F=10001、E=10010。错误叶码还会使C=10成为D=10011的前缀，破坏前缀码表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n按题图，根1.00左0右1；B=11与“左0右1”的约定一致。D的路径为：根→0.60（右，1）→0.30（左，0）→0.15（左，0）→0.09（右，1）→叶D（右，1），故D=10011，选B。\n\n全部叶码复核：A=0，B=11，C=101，G=10000，F=10001，E=10010，D=10011；均为前缀码，互不冲突。注意C不是10，G/F/E也不是0000/0001/0010；这些是内部路径而不是叶码。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页题干“关于C++语言，以下说法不正确的是（ ）。”与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页四项文字和顺序与候选一致：const对象调用const成员函数；常量静态变量只能在类外初始化；类A对象a为类B静态成员应在main前初始化；静态全局对象、常量全局对象main前初始化、main后析构。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第1页答案表第15题为D（索引3），候选answer=3与官方键一致。但独立分析发现B项在现代C++有类内初始化反例（static const整型/枚举、constexpr static），D项对基本类型常量全局对象不存在析构函数，B、D均可能被视为不正确；按规则保留官方答案D，不擅改。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析将B直接判为“说法正确”，与C++规则冲突；虽提及现代特例，却仍断言考试口径，需改写为明确披露B项例外、D项问题，并保留官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（按官方答案表；本题表述不严谨）**\n\nA：const对象只能调用const成员函数（静态成员函数等不受此限，但不改变本项常规判断），正确。\nB：严格说该说法不成立：C++允许static const整型/枚举成员及constexpr static成员在类内提供初始化器；若被odr-use，仍可能需要在类外定义。按本题命题口径，B被当作“静态成员需类外定义”的传统说法，故不作为错误项。\nC：类A对象a作为类B的静态成员，具有静态存储期，在main()前完成初始化，正确。\nD：并非所有常量全局对象都执行析构：const int等基本类型没有析构函数；只有具有非平凡析构函数的类对象才会在main结束后析构。故D是命题人设定的错误项。"
+        },
+        "tests": [],
+        "unresolved": [
+          "题面B项存在类内初始化例外；D项对基本类型常量全局对象的“被析构”表述不严谨。官方答案表定为D，候选answer=3与官方一致，保留官方键并注明争议。"
+        ]
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第9题原文为“如果节点数为N，广度搜索算法的最差时间复杂度为O(N)。”候选写作“广度优先搜索”，属等价补全；但题干未限定图/树或边数，存在口径依赖。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设A-D选项。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第7页判断题答案表第9题为√，按正确=0映射officialAnswer=0，候选answer=0与官方一致。严格按一般图并计入邻接边扫描，BFS为O(N+E)，最差可为O(N^2)，故该判断与O(N)存在口径冲突。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析说“最差遍历全部N个节点即O(N)”，并用O(N+E)作补充，但没有解决“最差”下E可达O(N^2)的问题；需注明官方口径与严格图论口径的差异。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确（按官方答案表）**\n\n官方按BFS中每个节点至多入队、出队一次，以节点访问次数计，最差遍历N个节点，故判O(N)。严格说，若针对一般图并计入邻接边扫描，BFS为O(N+E)，E最大可达O(N^2)，最差可为O(N^2)；原题未限定树/图或边数，因此该判断存在口径依赖。按原卷答案表第9题√，候选answer=0与官方一致，保留官方键并注明歧义。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案表第9题为√，候选answer=0一致；但题干未限定图类型/边数，一般图BFS为O(N+E)，最差可到O(N^2)，与O(N)判断存在口径冲突。保留官方答案0并注明争议。"
+        ]
+      }
+    ],
+    "summary": "2023年9月C++六级卷头与paperId匹配。题8答案、选项正确，但独立code字段串入第7题ManyData源码，已给出修正；题9答案正确，解析中的叶码复核列错（C/G/F/E），已修正；题15候选answer=3与官方D一致，但B项存在类内初始化例外、D项析构表述不严谨，解析已改写并保留争议；题24候选answer=0与官方√一致，但一般图BFS为O(N+E)且最差可到O(N^2)，解析已注明口径差异并保留争议。"
+  }
+}

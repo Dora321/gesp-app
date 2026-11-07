@@ -1,0 +1,50 @@
+{
+  "paperId": "2023-09-l6",
+  "integratedAt": "2026-11-07T16:43:55.519Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 8,
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "#include <iostream>\nusing namespace std;\n\nclass MoreData {\n    int * __data;\n    int head, tail, capacity;\npublic:\n    MoreData(int cap) {\n        capacity = cap;\n        __data = new int[capacity];\n        head = tail = 0;\n    }\n    MoreData & push(int val) {\n        __data[tail++] = val;\n        return *this;\n    }\n    int pop() {\n        return __data[head++];\n    }\n    int size() {\n        return tail - head;\n    }\n};\nint main() {\n    auto myData = MoreData(100);\n    myData.push(1);\n    myData.push(2);\n    myData.push(3);\n    myData.push(11).push(12).push(13);\n    cout << myData.pop() << endl;\n    return 0;\n}"
+      }
+    },
+    {
+      "id": 9,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：B**\n\n**解析：**\n按题图构建的哈夫曼树：根 1.00 的左子为叶 A(0.40)、右子为 0.60；0.60 的左子 0.30、右子为叶 B(0.30)；0.30 的左子 0.15、右子为叶 C(0.15)；0.15 的左子 0.06（其左孩子为叶 G(0.03)、右孩子为叶 F(0.03)）、右子 0.09（其左孩子为叶 E(0.04)、右孩子为叶 D(0.05)）。由锚点「B 的编码为 11」可确定约定为左分支记 0、右分支记 1。\n\nD 的读码路径：1.00 →（右，1）→ 0.60 →（左，0）→ 0.30 →（左，0）→ 0.15 →（右，1）→ 0.09 →（右，1）→ 叶 D，得 D 的编码为 **10011**，选 B。\n\n全部叶码复核：A = 0；B = 11（与题设一致）；C = 101；G = 10000；F = 10001；E = 10010；D = 10011。任一叶编码都不是其他叶编码的前缀，符合哈夫曼编码的前缀码性质。\n\n**易错点：** 读码必须从根出发逐分支记录完整路径。G、F 挂在 0.06 之下、E、D 挂在 0.09 之下，而 0.06、0.09 又位于 0.15、0.30 之下，故这四个深层叶子的编码均以 100 开头。若漏记该前缀段或把到达内部节点的路径当作叶编码，会误得 C=10、G=0000、F=0001、E=0010 之类结果；且 C=10 会成为 10000/10001/10010/10011 的前缀，破坏哈夫曼前缀码性质，可用前缀性自检。\n\n**考点：** 哈夫曼树、哈夫曼编码"
+      }
+    },
+    {
+      "id": 15,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 24,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": []
+}
