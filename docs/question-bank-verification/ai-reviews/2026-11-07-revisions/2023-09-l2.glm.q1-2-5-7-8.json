@@ -1,0 +1,235 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    5,
+    7,
+    8
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T23:05:06.259Z",
+  "completedAt": "2026-11-07T23:06:32.353Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51790,
+    "completion_tokens": 7162,
+    "total_tokens": 58952,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4459
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0113495,
+      "allowance": 0.0113495,
+      "tokens": {
+        "input": 51790,
+        "output": 7162,
+        "reasoning": 4459,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "8897306db5f4c1a36cd7c014ee55bb59950558da3e37c6e8ffa886c410458aad",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "blobSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 / GESP / C++ 二级 / 2023 年 9 月」，与 paperId=2023-09-l2 对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题原文「我国第一台大型通用电子计算机使用的逻辑部件是（ ）。」与候选题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题选项依次为 A. 集成电路、B. 大规模集成电路、C. 晶体管、D. 电子管，候选顺序与内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 D，对应 0 起始选项索引 3；候选 answer=3，一致。史实上第一代计算机以电子管为核心元件，D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对候选解析：我国第一台大型通用电子计算机为 1959 年的国产 104 机，采用电子管，答案 D 无误；代际元件顺序（电子管→晶体管→集成电路→大规模集成电路）及 A/C/D 的排除理由均成立；103 机与 104 机的辨析、ENIAC 约 18000 个电子管约 30 吨的延伸表述与公认史实相符，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其题面/选项/答案的核验与我的独立结论一致。候选解析已按 104 机（1959 年、电子管）表述修复史实问题，逐项选项分析与代际划分经我独立复核无误，不需要 changes。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图流程图为：开始→x=5,y=12→菱形判断 x>y，「是」分支进入 a=x、b=y，「否」分支进入 a=y、b=x，汇合后输出 a b→结束；候选以文字等价转写，逻辑与分支方向未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题选项依次为 A. 5 12、B. 12 5、C. 5 5、D. 12 12，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 B，对应 0 起始索引 1；候选 answer=1，一致。独立追踪：x=5、y=12，5>12 为假，走「否」分支 a=y=12、b=x=5，输出 12 5，与 B 吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：「否」分支推导正确；A 项归因于仅在条件成立时出现的「是」分支结果、C/D 两项因 a 与 b 取自不同变量不可能相等的排除理由均成立；「把较大值放进 a 的赋值选择而非交换」的定性亦与流程图一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其流程图转写、答案 B 与我的独立追踪一致；候选解析逻辑完整准确，不需要 changes。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题原文「C++表达式 int(-123.123 / 10) 的值是（ ）。」与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题选项依次为 A. -124、B. -123、C. -13、D. -12，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 D，对应 0 起始索引 3；候选 answer=3，一致。独立推导：-123.123 / 10 = -12.3123，int() 强制转换为向零截断，得 -12，D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：先浮点除法得 -12.3123、再向零截断两步表述正确；A 项两种取整方式均不可能得到 -124、B 项为省略 /10 直接对 -123.123 取整的产物（int(-123.123)=-123，归因准确）、C 项为 floor(-12.3123)=-13 的向负无穷取整结果，辨析均成立；与 trunc() 等价的提醒正确，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：本题候选解析已按上轮意见清理了无效算式并修正 B 项归因，我独立重推 -123.123/10=-12.3123、向零截断得 -12，与候选及官方答案 D 完全一致，不需要 changes。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末题干为「如下图所示，输出 N 行 N 列的矩阵，对角线为1，横线处应填入（ ）。」；第 3 页给出运行示例（请输入行列数量:9 与 9 行、每行 9 个数、对角线为 1 其余为 0 的矩阵）及官方代码（1 起始双重循环 for (int i = 1; i < N + 1; i++) / for (int j = 1; j < N + 1; j++)，提示语 cout << \"请输入行列数量:\";）。候选题面含同款 9×9 示例与 1 起始代码，逐行一致；9 行示例矩阵与第 3 页原图逐行相符。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. i = j、B. j != j、C. i >= j、D. i == j，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 D，对应 0 起始索引 3；候选 answer=3，一致。按官方 1 起始代码验证：主对角线位置行号等于列号，i==j 成立时输出 1，与 9×9 示例完全吻合，其余三项不产生该图形。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：逐项分析正确——A 为赋值而非相等判断、B 因任何数与自身相等而恒假、C 会输出含对角线的下三角、D 正确表达主对角线特征；解析基于官方 1 起始代码讲解且与示例对应；1 起始下副对角线条件 i + j == N + 1（0 起始为 i + j == N - 1）的提醒经推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其关于候选已替换为官方 1 起始代码并补齐 9×9 示例的判断，经我对第 2—3 页原图逐行核对属实；答案 D 与解析各结论均独立验证无误，不需要 changes。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题题干「下面C++代码用于判断 N 是否为质数（素数），约定输入 N 为大于等于2的正整数，请在横线处填入合适的代码（ ）。」及代码（int N = 0, i = 0; / cout << \"请输入一个大于等于2的正整数:\"; / cin >> N; / for (i = 2; i < N; i++) / if (N % i == 0) { cout << \"非质数\"; ______; } / if (i == N)  cout << \"是质数\";）与候选题面逐行一致，含空行与注释位置的等价排版。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. break、B. continue、C. exit、D. return，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 A，对应 0 起始索引 0；候选 answer=0，一致。独立追踪：填 break 时，合数（如 N=4）在 i=2 处输出「非质数」后跳出，i 保持为 2，循环后 if(i==N) 不成立；质数（如 N=5）时循环自然结束且 i==N=5，输出「是质数」；N=2 时不进入循环，直接输出「是质数」，均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：break 保证 i 停留在小于 N 处以维持循环后 if(i==N) 判定正确，核心机制说明成立；continue 会使循环结束时 i==N 而在「非质数」之后多输出「是质数」、exit 为需以 exit() 调用的库函数而非循环控制语句、return 语义为结束整个函数，三项排除理由均成立；N≥2 边界（N=2 不进循环）单独验证无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其题面比对与答案 A 的核验与我的独立结论一致；我对合数/质数/N=2 三类输入逐例追踪，候选解析中各选项后果与边界描述全部成立，不需要 changes。"
+      }
+    ],
+    "summary": "本轮仅核验第 1、2、5、7、8 题，五题均为单选题。题面、选项顺序与内容均与 PDF 原卷逐字或等价一致；官方答案表索引分别为 3（D）、1（B）、3（D）、3（D）、0（A），候选 answer 全部匹配；解析经我独立推导（含第 1 题 104 机史实、第 5 题向零截断、第 7 题 1 起始 i==j、第 8 题 break 与循环后 if(i==N) 的配合及 N=2/合数/质数边界）均成立。第 2、5、7、8 题候选已按上轮意见完成必要修复（第 7、8 题恢复官方 1 起始/试除代码、第 5 题清理无效算式、第 2 题维持原状），修复后核验通过，无未决问题。DeepSeek 初核草稿的五题结论与我的独立复核一致，全部接受，五题均 approve，无 changes。"
+  }
+}

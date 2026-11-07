@@ -1,0 +1,527 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14,
+    22,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T22:58:43.244Z",
+  "completedAt": "2026-11-07T23:15:46.018Z",
+  "finishReason": "stop",
+  "inputSha256": "8897306db5f4c1a36cd7c014ee55bb59950558da3e37c6e8ffa886c410458aad",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 C++ 二级 2023年9月」，与 paperId=2023-09-l2 对应。\nPDF 第1页卷头显示 C++ 二级、2023 年 9 月，与 2023-09-l2 一致。\nPDF第1页卷头为CCF GESP C++二级、2023年9月；第7页编程题1的试题编号为2023-09-23-02-C-01，名称为“小杨的 X 字矩阵”，与候选一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题面为「我国第一台大型通用电子计算机使用的逻辑部件是（ ）。」，与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题选项依次为 A. 集成电路、B. 大规模集成电路、C. 晶体管、D. 电子管，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 D，对应 0 起始索引 3；候选 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：我国第一台大型通用电子计算机为 1959 年的 104 机，采用电子管，故选 D；代际元件顺序及选项分析无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页流程图节点为：开始→x=5,y=12→判断 x>y，是则 a=x、b=y，否则 a=y、b=x→输出 a,b→结束；候选以文字等价转写，逻辑未改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A. 5 12、B. 12 5、C. 5 5、D. 12 12，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 B，对应 0 起始索引 1；候选 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立追踪：5>12 为假，进入「否」分支，a=12、b=5，输出 12 5；候选对 A、C、D 的排除及赋值逻辑说明成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题面为「C++表达式 int(-123.123 / 10) 的值是（ ）。」，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A. -124、B. -123、C. -13、D. -12，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 D，对应 0 起始索引 3；候选 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：-123.123/10=-12.3123，int() 向零截断得 -12，故 D 正确；候选对 B（漏除 10）和 C（floor 结果）的辨析准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干为「如下图所示，输出 N 行 N 列的矩阵，对角线为1，横线处应填入（ ）。」；第 3 页代码采用 1 起始循环并给出输入 9 的 9×9 对角线示例，候选代码与示例矩阵一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. i = j、B. j != j、C. i >= j、D. i == j，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 D，对应 0 起始索引 3；候选 answer=3，一致。按 1 起始下标，主对角线满足 i==j。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：A 为赋值而非比较，B 恒假，C 会输出下三角，D 正确表达主对角线；候选关于 1 起始下副对角线 i+j==N+1 的提醒也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题代码为 int N=0,i=0; 提示输入大于等于2的正整数; for(i=2;i<N;i++) if(N%i==0){ cout<<\"非质数\"; ______; } if(i==N) cout<<\"是质数\";，候选逐行一致，并保留 N≥2 约定。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. break、B. continue、C. exit、D. return，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 A，对应 0 起始索引 0；候选 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立追踪：合数时 break 使 i 停留在小于 N 的位置，循环后 if(i==N) 不成立，只输出「非质数」；质数时循环自然结束且 i==N，输出「是质数」；N=2 边界亦正确。continue 会在「非质数」后再输出「是质数」，exit/return 均非本题所考的循环跳出语句，按官方答案和考查意图排除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第10题代码为 `int cnt = 0; for (int i = 1; i < 9; i++) for (int j = 1; j < i; j += 2) cnt += 1; cout << cnt;`，候选题面代码、边界与循环步长逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A. 16、B. 28、C. 35、D. 36，顺序与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 A（0 起始索引 0）；独立逐轮计数：i=1..8 时内层次数为 0,1,1,2,2,3,3,4，合计 16。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "主解析按官方代码逐轮列表计数，0+1+1+2+2+3+3+4=16，与答案一致；j<i 不含等号、i<9 最大取8 的边界说明正确。B/C/D 归因措辞较泛，但未影响主推导和结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第11题代码为 `int cnt = 0; for (int i = 1; i < 13; i += 3) for (int j = 1; j < i; j += 2) if (i * j % 2 == 0) break; else cnt += 1; cout << cnt;`，候选题面与之逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A. 1、B. 3、C. 15、D. 没有输出，顺候与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 B（0 起始索引 1）；独立追踪：i=1 内层不执行；i=4 时首个乘积为偶数立即 break；i=7 时 j=1,3,5 使 cnt=3；i=10 时首个乘积为偶数 break，最终输出 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按官方代码逐轮追踪，正确说明 break 只跳出内层循环、外层继续；i=1/4/7/10 四轮结果与独立计算一致，最终 cnt=3。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页给出输入 7 的 7 行 ABC 循环图形及代码 `for (int i = 1; i < N + 1; i++) for (int j = 0; j < i; j++) cout << ________;`；候选以“例如输入 7 时”呈现图形，并保留官方代码结构，未改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项依次为 A. 'A' + j / 3、B. (char)('A' + j / 3)、C. 'A' + j % 3、D. (char)('A' + j % 3)，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 D（0 起始索引 3）；独立验证：第 j 个字符偏移应为 j%3，且 'A' 与 int 相加后为 int，必须显式转 char 才能输出字母，故 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 / 与 %、有无 char 转换；j%3 形成 A/B/C 周期，'A'+j%3 为 int 会输出 ASCII 数值，D 加 char 转换后正确。第4行 ABCA 的验证也与图形一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷第13题示例运行提示语为“请输入字母行数：7”，而代码提示语为“请输入行列数量:”，二者不一致，属源卷示例瑕疵；候选改用“例如输入 7 时”表述，不影响填空与答案。"
+        ]
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5—6页给出输入 9 的 9 行数字金字塔、代码 `for (int j = 0; j < ________; j++) cout << ' ';` 及两段数字循环；候选保留官方代码、约束与金字塔图形，空格按公式呈现。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页选项依次为 A. (lineCount - i - 1) * 2、B. (lineCount - i) * 2、C. lineCount - i - 1、D. lineCount - i，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 A（0 起始索引 0）；独立推导：每行有 2i+1 个数字、每个占 2 列，居中所需前导空格为 [2(2·lineCount-1)-2(2i+1)]/2=2(lineCount-i-1)，即 A。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析把第一段升序数字写成“1…i+1（i 个）”，但官方代码 `for (int j = 1; j < i + 1; j++)` 实际输出的是 1…i，共 i 个；该表述与代码矛盾。其余前导空格公式、选项判断和答案 A 均正确，需更正这一处。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A ((lineCount - i - 1) * 2)**\n\n**核心解析：**\n第 i 行（i 从 0 开始）由前导空格和两段数字组成：第一段升序输出 1…i（共 i 个），第二段降序输出 i+1…1（共 i+1 个），合计 2i+1 个数字。由 `cout << j << \" \"` 可知每个数字连同其后的空格占 2 列，第 i 行数字部分宽 2(2i+1) 列；最末行 i=lineCount-1 的数字部分宽 2(2·lineCount-1) 列。为使各行在同一中轴上居中，第 i 行前导空格数 = [2(2·lineCount-1) − 2(2i+1)] / 2 = 2(lineCount − i − 1)，即 (lineCount - i - 1) * 2。\n\n以 lineCount=4 验证：i=0,1,2,3 的前导空格依次为 6、4、2、0；输入 9 时 i=0 需 16 个空格，与官方图形左上留白一致。\n\n**选项逐项分析：**\n- **A ((lineCount - i - 1) * 2)**：✅ 正确，推导见上。\n- **B ((lineCount - i) * 2)**：❌ 错误。每行比 A 多 2 个空格（如 lineCount=4、i=0 时为 8 而非 6），最末行也会多出 2 个前导空格，金字塔右移。\n- **C (lineCount - i - 1)**：❌ 错误。未按“每个数字占 2 列”换算，空格数只有应填的一半。\n- **D (lineCount - i)**：❌ 错误。既少减 1 又少乘 2。\n\n**易错提醒：**\n- `cout << j << \" \"` 使每个数字（含尾随空格）占 2 列，空格补偿须 ×2。\n- 行号 i 从 0 开始，公式是 lineCount − i − 1 而不是 lineCount − i。\n\n**考点：** 图形打印的空格与数字宽度计算、等差规律"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题第7题代码为 `int cnt = 0; for (int i = 1; i < 10; i++) { cnt += 1; i += 1; } cout << cnt;`，候选题面代码与 i < 10 条件一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不适用单选 A–D 选项映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页答案表判断题第7题为“×”（错误，0 起始索引 1）；独立追踪进入循环的 i 为 1,3,5,7,9，共 5 轮，cnt=5，题面“输出为 10”错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析追踪表与独立计算一致：每轮 cnt 加 1 后 i 再加 1，循环末尾再 i++，所以 i 实际每次增加 2；最终 cnt=5，循环退出时 i=11，故判断为错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页标明试题编号2023-09-23-02-C-01、名称“小杨的 X 字矩阵”；第8页3.1.1至3.1.3与候选逐句对应：N×N矩阵、N为奇数、两条对角线为+其余为-、5≤N≤49且N为奇数、恰好输出N行且每行N个字符；5×5示例与样例1、样例2输出均逐字一致。第8页3.1.4的“不要附带提示信息”未单列，但候选输出格式已要求恰好N行且不得添加任何符号，该平台性提醒不改变题意或判题要求。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF答案表仅覆盖单选题与判断题，编程题无官方答案索引；officialAnswer=null正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：0起始下标下主对角线满足i==j，副对角线满足i+j==N-1；N为奇数时中心点两条件重合仍只输出一个+。按N=5逐行验算得+---+、-+-+-、--+--、-+-+-、+---+，与候选解析及样例一致；解析中“1起始时副对角线应为i+j==N+1”的提醒正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第9页3.1.9参考程序采用i=0至n-1、j=0至n-1，条件为i==j || i+j==n-1，是则输出+否则输出-，每行换行；候选虽用bits/stdc++.h、N和'\\n'，逐语句算法等价。N≤49，O(N^2)、至多2401次字符输出，无溢出、无终止性问题，且不输出输入提示。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小边界 N=5（官方样例1）",
+            "input": "5",
+            "output": "+---+\n-+-+-\n--+--\n-+-+-\n+---+",
+            "reason": "N=5为题目下界且为奇数；按i==j或i+j==4逐行独立推导：第0行+---+、第1行-+-+-、第2行--+--、第3、4行镜像，与PDF样例输出1一致。"
+          },
+          {
+            "name": "最大边界 N=49（奇数中心与上下镜像）",
+            "input": "49",
+            "output": "+-----------------------------------------------+\n-+---------------------------------------------+-\n--+-------------------------------------------+--\n---+-----------------------------------------+---\n----+---------------------------------------+----\n-----+-------------------------------------+-----\n------+-----------------------------------+------\n-------+---------------------------------+-------\n--------+-------------------------------+--------\n---------+-----------------------------+---------\n----------+---------------------------+----------\n-----------+-------------------------+-----------\n------------+-----------------------+------------\n-------------+---------------------+-------------\n--------------+-------------------+--------------\n---------------+-----------------+---------------\n----------------+---------------+----------------\n-----------------+-------------+-----------------\n------------------+-----------+------------------\n-------------------+---------+-------------------\n--------------------+-------+--------------------\n---------------------+-----+---------------------\n----------------------+---+----------------------\n-----------------------+-+-----------------------\n------------------------+------------------------\n-----------------------+-+-----------------------\n----------------------+---+----------------------\n---------------------+-----+---------------------\n--------------------+-------+--------------------\n-------------------+---------+-------------------\n------------------+-----------+------------------\n-----------------+-------------+-----------------\n----------------+---------------+----------------\n---------------+-----------------+---------------\n--------------+-------------------+--------------\n-------------+---------------------+-------------\n------------+-----------------------+------------\n-----------+-------------------------+-----------\n----------+---------------------------+----------\n---------+-----------------------------+---------\n--------+-------------------------------+--------\n-------+---------------------------------+-------\n------+-----------------------------------+------\n-----+-------------------------------------+-----\n----+---------------------------------------+----\n---+-----------------------------------------+---\n--+-------------------------------------------+--\n-+---------------------------------------------+-\n+-----------------------------------------------+",
+            "reason": "N=49为题目上界且为奇数；按每行49个字符、第i行在i列与48-i列输出+、其余输出-独立构造。首行+两侧夹47个-，中心行第24列为单个+且左右各24个-，其余各行关于中心行上下镜像。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        5,
+        7,
+        8
+      ],
+      "usage": {
+        "prompt_tokens": 33762,
+        "completion_tokens": 13818,
+        "total_tokens": 47580,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11886
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0133551,
+          "allowance": 0.00801306,
+          "tokens": {
+            "input": 33762,
+            "output": 13818,
+            "reasoning": 11886,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T22:58:43.244Z",
+      "completedAt": "2026-11-07T23:00:50.261Z"
+    },
+    {
+      "questionIds": [
+        10,
+        11,
+        13,
+        14,
+        22
+      ],
+      "usage": {
+        "prompt_tokens": 33762,
+        "completion_tokens": 17895,
+        "total_tokens": 51657,
+        "prompt_tokens_details": {
+          "cached_tokens": 33664
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 15414
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01085269,
+          "allowance": 0.00651162,
+          "tokens": {
+            "input": 98,
+            "output": 17895,
+            "reasoning": 15414,
+            "cache_read": 33664,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T23:06:32.363Z",
+      "completedAt": "2026-11-07T23:09:07.713Z"
+    },
+    {
+      "questionIds": [
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 33754,
+        "completion_tokens": 18384,
+        "total_tokens": 52138,
+        "prompt_tokens_details": {
+          "cached_tokens": 33664
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 17178
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01114489,
+          "allowance": 0.00668694,
+          "tokens": {
+            "input": 90,
+            "output": 18384,
+            "reasoning": 17178,
+            "cache_read": 33664,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T23:13:09.518Z",
+      "completedAt": "2026-11-07T23:15:46.018Z"
+    }
+  ]
+}

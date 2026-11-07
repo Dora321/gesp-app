@@ -1,0 +1,232 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    10,
+    11,
+    13,
+    14,
+    22
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T23:06:32.363Z",
+  "completedAt": "2026-11-07T23:09:07.713Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33762,
+    "completion_tokens": 17895,
+    "total_tokens": 51657,
+    "prompt_tokens_details": {
+      "cached_tokens": 33664
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15414
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01085269,
+      "allowance": 0.00651162,
+      "tokens": {
+        "input": 98,
+        "output": 17895,
+        "reasoning": 15414,
+        "cache_read": 33664,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "8897306db5f4c1a36cd7c014ee55bb59950558da3e37c6e8ffa886c410458aad",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 C++ 二级、2023 年 9 月，与 2023-09-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第10题代码为 `int cnt = 0; for (int i = 1; i < 9; i++) for (int j = 1; j < i; j += 2) cnt += 1; cout << cnt;`，候选题面代码、边界与循环步长逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A. 16、B. 28、C. 35、D. 36，顺序与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 A（0 起始索引 0）；独立逐轮计数：i=1..8 时内层次数为 0,1,1,2,2,3,3,4，合计 16。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "主解析按官方代码逐轮列表计数，0+1+1+2+2+3+3+4=16，与答案一致；j<i 不含等号、i<9 最大取8 的边界说明正确。B/C/D 归因措辞较泛，但未影响主推导和结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第11题代码为 `int cnt = 0; for (int i = 1; i < 13; i += 3) for (int j = 1; j < i; j += 2) if (i * j % 2 == 0) break; else cnt += 1; cout << cnt;`，候选题面与之逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A. 1、B. 3、C. 15、D. 没有输出，顺候与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 B（0 起始索引 1）；独立追踪：i=1 内层不执行；i=4 时首个乘积为偶数立即 break；i=7 时 j=1,3,5 使 cnt=3；i=10 时首个乘积为偶数 break，最终输出 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按官方代码逐轮追踪，正确说明 break 只跳出内层循环、外层继续；i=1/4/7/10 四轮结果与独立计算一致，最终 cnt=3。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页给出输入 7 的 7 行 ABC 循环图形及代码 `for (int i = 1; i < N + 1; i++) for (int j = 0; j < i; j++) cout << ________;`；候选以“例如输入 7 时”呈现图形，并保留官方代码结构，未改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项依次为 A. 'A' + j / 3、B. (char)('A' + j / 3)、C. 'A' + j % 3、D. (char)('A' + j % 3)，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 D（0 起始索引 3）；独立验证：第 j 个字符偏移应为 j%3，且 'A' 与 int 相加后为 int，必须显式转 char 才能输出字母，故 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 / 与 %、有无 char 转换；j%3 形成 A/B/C 周期，'A'+j%3 为 int 会输出 ASCII 数值，D 加 char 转换后正确。第4行 ABCA 的验证也与图形一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷第13题示例运行提示语为“请输入字母行数：7”，而代码提示语为“请输入行列数量:”，二者不一致，属源卷示例瑕疵；候选改用“例如输入 7 时”表述，不影响填空与答案。"
+        ]
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5—6页给出输入 9 的 9 行数字金字塔、代码 `for (int j = 0; j < ________; j++) cout << ' ';` 及两段数字循环；候选保留官方代码、约束与金字塔图形，空格按公式呈现。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页选项依次为 A. (lineCount - i - 1) * 2、B. (lineCount - i) * 2、C. lineCount - i - 1、D. lineCount - i，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 A（0 起始索引 0）；独立推导：每行有 2i+1 个数字、每个占 2 列，居中所需前导空格为 [2(2·lineCount-1)-2(2i+1)]/2=2(lineCount-i-1)，即 A。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析把第一段升序数字写成“1…i+1（i 个）”，但官方代码 `for (int j = 1; j < i + 1; j++)` 实际输出的是 1…i，共 i 个；该表述与代码矛盾。其余前导空格公式、选项判断和答案 A 均正确，需更正这一处。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A ((lineCount - i - 1) * 2)**\n\n**核心解析：**\n第 i 行（i 从 0 开始）由前导空格和两段数字组成：第一段升序输出 1…i（共 i 个），第二段降序输出 i+1…1（共 i+1 个），合计 2i+1 个数字。由 `cout << j << \" \"` 可知每个数字连同其后的空格占 2 列，第 i 行数字部分宽 2(2i+1) 列；最末行 i=lineCount-1 的数字部分宽 2(2·lineCount-1) 列。为使各行在同一中轴上居中，第 i 行前导空格数 = [2(2·lineCount-1) − 2(2i+1)] / 2 = 2(lineCount − i − 1)，即 (lineCount - i - 1) * 2。\n\n以 lineCount=4 验证：i=0,1,2,3 的前导空格依次为 6、4、2、0；输入 9 时 i=0 需 16 个空格，与官方图形左上留白一致。\n\n**选项逐项分析：**\n- **A ((lineCount - i - 1) * 2)**：✅ 正确，推导见上。\n- **B ((lineCount - i) * 2)**：❌ 错误。每行比 A 多 2 个空格（如 lineCount=4、i=0 时为 8 而非 6），最末行也会多出 2 个前导空格，金字塔右移。\n- **C (lineCount - i - 1)**：❌ 错误。未按“每个数字占 2 列”换算，空格数只有应填的一半。\n- **D (lineCount - i)**：❌ 错误。既少减 1 又少乘 2。\n\n**易错提醒：**\n- `cout << j << \" \"` 使每个数字（含尾随空格）占 2 列，空格补偿须 ×2。\n- 行号 i 从 0 开始，公式是 lineCount − i − 1 而不是 lineCount − i。\n\n**考点：** 图形打印的空格与数字宽度计算、等差规律"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题第7题代码为 `int cnt = 0; for (int i = 1; i < 10; i++) { cnt += 1; i += 1; } cout << cnt;`，候选题面代码与 i < 10 条件一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不适用单选 A–D 选项映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页答案表判断题第7题为“×”（错误，0 起始索引 1）；独立追踪进入循环的 i 为 1,3,5,7,9，共 5 轮，cnt=5，题面“输出为 10”错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析追踪表与独立计算一致：每轮 cnt 加 1 后 i 再加 1，循环末尾再 i++，所以 i 实际每次增加 2；最终 cnt=5，循环退出时 i=11，故判断为错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验 10、11、13、14、22 五题：答案均与 PDF 答案表一致；10、11、13、22 题题面与解析主体通过。14 题答案 A 正确，但解析将升序部分误写为“1…i+1（i 个）”，实际应为 1…i（i 个），已给出修正解析。13 题存在源卷提示语与示例运行提示语不一致，仅记录为源卷瑕疵，不影响填空和答案。"
+  }
+}
