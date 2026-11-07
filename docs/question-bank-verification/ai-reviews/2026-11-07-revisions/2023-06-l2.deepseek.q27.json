@@ -1,0 +1,113 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:53:51.511Z",
+  "completedAt": "2026-11-07T21:55:50.668Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35340,
+    "completion_tokens": 11815,
+    "total_tokens": 47155,
+    "prompt_tokens_details": {
+      "cached_tokens": 35200
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10837
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0072156,
+      "allowance": 0.00432936,
+      "tokens": {
+        "input": 140,
+        "output": 11815,
+        "reasoning": 10837,
+        "cache_read": 35200,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "e952dd35c697af718bcd738f35a07c752d90237c7e4c50e3e1c9738ff3432726",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023年6月 GESP C++ 二级真题解析”，并分“一、单选题（每题2分，共30分）”“二、判断题（每题2分，共20分）”“三、编程题（每题25分，共50分）”，与 2023-06、level 2 一致。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第13—14页题面包含 N 位自幂数定义、153与1634示例、1≤M≤100、待判断正整数均小于10^8、逐个判断并输出的提示；候选题干、约束、两组合法样例及输出格式均保留，仅将官方“在依次输出”的笔误按语义写作“再”，不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，PDF无答案表索引，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算官方样例：153=1^3+5^3+3^3→T，152=2^3+5^3+1^3=134→F，111≠111→F；8208、548834、88593477分别为各自位数的自幂数，12345的5次方和为4425、5432的4次方和为978，故样例1输出F/F/T、样例2输出T/T/T/F/F。候选解析关于位数统计、拆位、手写整数幂避免浮点误差、保护原数及每轮重置计数器的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码先复制 x 统计位数 len，再重新拆分 x 并累加 ipow(数字,len)，与PDF第16页官方参考程序语义等价；有效范围 M≤100、x<10^8 下 len≤8，最大数位幂和为 8×9^8=344373768，long long 无溢出；样例输出正确；x==0 分支超出“正整数”输入约束，不影响有效输入。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小输入",
+            "input": "1\n1\n",
+            "output": "T\n",
+            "reason": "M=1，待判断数取最小正整数1；1是1位数，1^1=1，等于自身，输出T。"
+          },
+          {
+            "name": "数值上界",
+            "input": "1\n99999999\n",
+            "output": "F\n",
+            "reason": "99999999是小于10^8的最大正整数，共8位；各位9的8次方之和为 8×9^8=344373768，不等于99999999，输出F。"
+          },
+          {
+            "name": "多位自幂数与含零数位",
+            "input": "4\n153\n1634\n9474\n10\n",
+            "output": "T\nT\nT\nF\n",
+            "reason": "153=1^3+5^3+3^3；1634=1^4+6^4+3^4+4^4；9474=9^4+4^4+7^4+4^4；10的两位平方和为1≠10，故依次输出T、T、T、F。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "第27题候选修订与PDF第13—16页原卷一致；题面、样例、解析和参考代码均通过独立核验，有效输入范围内无边界、溢出或复杂度问题，无必须修改项。新增最小输入、数值上界、多位自幂数及含零数位三组边界测试。"
+  }
+}

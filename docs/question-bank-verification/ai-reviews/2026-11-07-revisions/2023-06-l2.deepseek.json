@@ -1,0 +1,352 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    4,
+    9,
+    14,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:48:18.132Z",
+  "completedAt": "2026-11-07T21:55:50.668Z",
+  "finishReason": "stop",
+  "inputSha256": "e952dd35c697af718bcd738f35a07c752d90237c7e4c50e3e1c9738ff3432726",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确为‘2023年6月 GESP C++ 二级真题解析’，题号、题型和题量与2023年6月二级卷一致，候选卷标识2023-06-l2相符。\nPDF第1页卷头为“2023年6月 GESP C++ 二级真题解析”，并分“一、单选题（每题2分，共30分）”“二、判断题（每题2分，共20分）”“三、编程题（每题25分，共50分）”，与 2023-06、level 2 一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第3题题干为‘下列关于 C++语言的叙述，正确的是（ ）。’，候选题干文字和语义一致，仅存在空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为：A.char类型变量不能赋值给int类型的变量；B.两个int类型变量相乘，计算结果还是int类型；C.计算两个int类型变量相乘时，如果乘积超出了int类型的取值范围，程序会报错崩溃；D.计算两个double类型变量相除时，如果除数的值为0.0，程序会报错崩溃。候选四项顺序相同，均为等价压缩表述。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页红字【答案】B；B对应0起始下标1，候选answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐项核对：char为整数类型可赋给int，A错；两个int相乘结果类型仍为int，B对；有符号int溢出属未定义行为，常见实现为回绕而不会按选项所述必然报错崩溃，C错；double除0.0时按被除数正、负、0分别得到INF、-INF、NaN，程序不会按选项所述崩溃，D错。结论为B，与官方解析第2—3页一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第4题题干为‘下列关于 C++语言的叙述，不正确的是（ ）。’，候选题干与之一致，仅有空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为：A.if语句中的判断条件必须用小括号括起来；B.for语句中两个‘;’之间的循环条件可以省略，表示循环继续执行的条件一直满足；C.循环体包含多条语句时，可以用缩进消除二义性；D.除了‘先乘除、后加减’，还有很多运算符优先级。候选四项顺序与含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页红字【答案】C；C对应0起始下标2，候选answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：C++按语法结构而非缩进确定语句归属，循环体有多条语句时须用花括号括成复合语句，故C项错误；A、B、D分别符合if语法、for省略条件为真、运算符存在多级优先级的规则。解析中的while无花括号示例也正确说明缩进不能把n--纳入循环体。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第9题题干为‘以下哪个循环语句会无限次执行？（ ）’，候选题干语义一致，仅标点排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页四条for语句与候选A—D逐字对应，仅空白排版略有差异：A.for(int a=0;a;a++); B.for(bool b=false;b<=true;b++); C.for(char c='A';c<'z';c++); D.for(double d=0.0;d<10.0;d+=0.001);。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页红字【答案】B；B对应0起始下标1，候选answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：A初值0使条件首次即为假，不执行；B中bool自增在C++17删除前使false变为true、true仍为true，条件恒真；C从'A'(65)到'y'(121)执行57次，c变为'z'(122)时终止；D的d单调增加，约一万次累加后达到或超过10.0而终止，有限次。解析对C++98弃用、C++17删除bool自增的说明也符合标准沿革。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页末题干为‘在下列代码的横线处填写（ ），可以使得输出是 42’；PDF第8页页图代码为int sum=0; for(int i=1;i<=20;i++) if(________) sum+=i; cout<<sum<<endl;，候选代码块逐行对应，语义和结构一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第8页选项为A.i % 3 == 0；B.20 % i == 0；C.i <= 8；D.i >= 18，与候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页红字【答案】B；B对应0起始下标1，候选answer=1，一致。独立计算20%i==0筛出1、2、4、5、10、20，和为42。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：A累加3+6+9+12+15+18=63；B累加20的正因数1+2+4+5+10+20=42；C累加1至8得36；D累加18+19+20=57。结果与PDF第8页官方解析的‘63、42、36和57’逐一吻合，结论B正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          11,
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页【输入描述】明确‘输入2行，第一行包含正整数A，第二行包含正整数B。约定2≤A≤B≤1000’，第11—12页两个样例框均为两行输入；候选题面、输入格式、输出格式、约束和samples与官方一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer记为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算样例：[2,10]内素数为2、3、5、7共4个；98=2×49、99=3²×37、100=2²×5²均非素数，故[98,100]输出0。解析中试除上界i*i<=x需取等号（可正确处理9=3×3）、x<2特判、闭区间x<=B均正确，与官方第12—13页思路相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立核对参考程序：isPrime(2)因2*2>2不进入循环而返回true；9在d=3时命中返回false；主循环x从A到B且含B；cin>>A>>B可跨行读取两个整数，与官方两行输入兼容；A、B≤1000时d*d无溢出，复杂度约O((B-A+1)√B)，范围充裕。与官方第13页bool标记法参考程序语义等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值端点",
+            "input": "2\n2\n",
+            "output": "1\n",
+            "reason": "[2,2]仅含素数2；isPrime(2)因2*2>2直接返回true，覆盖A=B=2的约束下界和闭区间端点。"
+          },
+          {
+            "name": "上界素数端点",
+            "input": "997\n997\n",
+            "output": "1\n",
+            "reason": "997无不超过√997≈31.6的素因数，是素数；覆盖接近上界B=1000的A=B情况。"
+          },
+          {
+            "name": "上界合数区间",
+            "input": "998\n1000\n",
+            "output": "0\n",
+            "reason": "998=2×499，999=3²×37，1000=2³×5³，均非素数；覆盖B=1000上界及闭区间右端。"
+          },
+          {
+            "name": "全范围计数",
+            "input": "2\n1000\n",
+            "output": "168\n",
+            "reason": "[2,1000]的素数个数为π(1000)=168，覆盖完整数据范围并验证计数逻辑，而非只验证样例。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第13—14页题面包含 N 位自幂数定义、153与1634示例、1≤M≤100、待判断正整数均小于10^8、逐个判断并输出的提示；候选题干、约束、两组合法样例及输出格式均保留，仅将官方“在依次输出”的笔误按语义写作“再”，不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，PDF无答案表索引，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算官方样例：153=1^3+5^3+3^3→T，152=2^3+5^3+1^3=134→F，111≠111→F；8208、548834、88593477分别为各自位数的自幂数，12345的5次方和为4425、5432的4次方和为978，故样例1输出F/F/T、样例2输出T/T/T/F/F。候选解析关于位数统计、拆位、手写整数幂避免浮点误差、保护原数及每轮重置计数器的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码先复制 x 统计位数 len，再重新拆分 x 并累加 ipow(数字,len)，与PDF第16页官方参考程序语义等价；有效范围 M≤100、x<10^8 下 len≤8，最大数位幂和为 8×9^8=344373768，long long 无溢出；样例输出正确；x==0 分支超出“正整数”输入约束，不影响有效输入。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小输入",
+            "input": "1\n1\n",
+            "output": "T\n",
+            "reason": "M=1，待判断数取最小正整数1；1是1位数，1^1=1，等于自身，输出T。"
+          },
+          {
+            "name": "数值上界",
+            "input": "1\n99999999\n",
+            "output": "F\n",
+            "reason": "99999999是小于10^8的最大正整数，共8位；各位9的8次方之和为 8×9^8=344373768，不等于99999999，输出F。"
+          },
+          {
+            "name": "多位自幂数与含零数位",
+            "input": "4\n153\n1634\n9474\n10\n",
+            "output": "T\nT\nT\nF\n",
+            "reason": "153=1^3+5^3+3^3；1634=1^4+6^4+3^4+4^4；9474=9^4+4^4+7^4+4^4；10的两位平方和为1≠10，故依次输出T、T、T、F。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3,
+        4,
+        9,
+        14,
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 35348,
+        "completion_tokens": 14284,
+        "total_tokens": 49632,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12158
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0138726,
+          "allowance": 0.00832356,
+          "tokens": {
+            "input": 35348,
+            "output": 14284,
+            "reasoning": 12158,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T21:48:18.132Z",
+      "completedAt": "2026-11-07T21:50:47.975Z"
+    },
+    {
+      "questionIds": [
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 35340,
+        "completion_tokens": 11815,
+        "total_tokens": 47155,
+        "prompt_tokens_details": {
+          "cached_tokens": 35200
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10837
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0072156,
+          "allowance": 0.00432936,
+          "tokens": {
+            "input": 140,
+            "output": 11815,
+            "reasoning": 10837,
+            "cache_read": 35200,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T21:53:51.511Z",
+      "completedAt": "2026-11-07T21:55:50.668Z"
+    }
+  ]
+}

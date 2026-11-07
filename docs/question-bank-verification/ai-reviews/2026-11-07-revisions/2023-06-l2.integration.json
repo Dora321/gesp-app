@@ -1,0 +1,159 @@
+{
+  "paperId": "2023-06-l2",
+  "integratedAt": "2026-11-07T21:59:19.067Z",
+  "accepted": [
+    {
+      "id": 3,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "samples"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "2\n10",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "98\n100",
+          "output": "0",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "最小值端点",
+          "input": "2\n2\n",
+          "output": "1\n",
+          "reason": "A=B=2 为约束下界，[2,2] 仅含素数 2；isPrime(2) 因 2×2>2 不进循环返回 true。独立计算期望输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "上界素数端点",
+          "input": "997\n997\n",
+          "output": "1\n",
+          "reason": "997 为奇数、数字和 25 非 3 的倍数、末位非 0/5，且对 7、11、13、17、19、23、29、31 逐一试除均不整除（√997≈31.6），是素数，[997,997] 计 1；覆盖闭区间单点情形。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "上界合数区间",
+          "input": "998\n1000\n",
+          "output": "0\n",
+          "reason": "998=2×499、999=3³×37、1000=2³×5³ 均为合数，输出 0；覆盖 B=1000 上界与闭区间右端。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "全范围计数",
+          "input": "2\n1000\n",
+          "output": "168\n",
+          "reason": "[2,1000] 素数个数 π(1000)=168（按每一百个数段独立分段累计 25+21+16+16+17+14+16+14+15+14=168），验证整体计数逻辑而非仅样例；期望值由独立推导得出，未声称已实际运行。",
+          "kind": "boundary",
+          "actual": "168\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ee08c87cc218a9109661efb165b228196ac8d53aedfb5976ca1339dfaa5fab32"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n152\n111\n153",
+          "output": "F\nF\nT",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "F\nF\nT\n",
+          "passed": true
+        },
+        {
+          "input": "5\n8208\n548834\n88593477\n12345\n5432",
+          "output": "T\nT\nT\nF\nF",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "T\nT\nT\nF\nF\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入",
+          "input": "1\n1\n",
+          "output": "T\n",
+          "reason": "M 取最小值 1，待判断数取最小正整数 1；1 为 1 位数，1^1=1 等于自身，输出 T（独立验算）。",
+          "kind": "boundary",
+          "actual": "T\n",
+          "passed": true
+        },
+        {
+          "name": "数值上界",
+          "input": "1\n99999999\n",
+          "output": "F\n",
+          "reason": "99999999 为小于 10⁸ 的最大正整数，共 8 位；9⁸=43046721，各位 9 的 8 次方之和 8×43046721=344373768≠99999999，输出 F，覆盖上界与 8 位全 9 拆位路径（独立验算）。",
+          "kind": "boundary",
+          "actual": "F\n",
+          "passed": true
+        },
+        {
+          "name": "多位自幂数与含零数位",
+          "input": "4\n153\n1634\n9474\n10\n",
+          "output": "T\nT\nT\nF\n",
+          "reason": "独立验算：153=1+125+27 输 T；1634=1+1296+81+256 输 T（官方题面示例，样例未覆盖）；9474=6561+256+2401+256 输 T；10 为 2 位数，1²+0²=1≠10 输 F，覆盖含 0 数位的拆位路径。",
+          "kind": "boundary",
+          "actual": "T\nT\nT\nF\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "29fe4853b01224f147c6de697fd75abbf1d760608acf7b7f32522d505f587440"
+    }
+  ]
+}
