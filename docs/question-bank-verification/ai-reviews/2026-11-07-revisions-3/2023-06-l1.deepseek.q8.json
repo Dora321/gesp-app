@@ -1,0 +1,93 @@
+{
+  "paperId": "2023-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    8
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T19:42:50.514Z",
+  "completedAt": "2026-11-07T19:44:15.877Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 23928,
+    "completion_tokens": 6983,
+    "total_tokens": 30911,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6337
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.007779,
+      "allowance": 0.0046674,
+      "tokens": {
+        "input": 23928,
+        "output": 6983,
+        "reasoning": 6337,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5367b6b78648fa11061657fc9589435d243ee3de4dbd45fc86e2c0cef6926e16",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++1级.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "mirrorBytes": 1355045,
+    "shaVerified": true,
+    "sha256": "4139a02cd0efcd75bb48842d3f566d31f33d3676c1cb7c88b9764bf25fbfffbb"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“2023 年 6 月 GESP C++ 一级真题解析”，与 paperId 的年月及 C++ 一级一致。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页页图题干为“8. 如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）”。候选题干写成“如果 a 是 int 类型的变量，不能用来计算正方形面积的表达式是（ ）。”，遗漏“a 表达正方形边长”这一必要前提，需按原卷回补。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图四项依次为 A. a * a、B. 1 * a * a、C. a ^ 2、D. a * 2 * a / 2；候选 options 的表达式、内容和顺序均与原卷一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页【答案】为 C；按 0 起始索引 C 对应 2。候选 answer=2，映射到第 3 项 a ^ 2，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 为 a*a；B 为 1*a*a；D 在本题一级基本运算语义及正常 int 取值范围内按左结合得 (a*2)*a/2=a²；C 的 ^ 为按位异或而非乘方，如 5^2=7≠25，不能计算面积。候选解析逐项给出上述推导并与官方答案 C、官方解析一致；未把 int 极端溢出的边界问题作为本题考点，不改变答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单项选择题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验第 8 题：题干遗漏原卷“用一个 int 类型的变量 a 表达正方形的边长”前提，需按 changes.question 回补；选项与原卷逐字一致，答案 C（0 起始索引 2）及解析均独立核对通过；单选无参考代码，无未决项。"
+  }
+}

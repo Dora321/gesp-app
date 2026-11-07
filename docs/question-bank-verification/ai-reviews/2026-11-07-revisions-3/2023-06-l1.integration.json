@@ -1,0 +1,20 @@
+{
+  "paperId": "2023-06-l1",
+  "integratedAt": "2026-11-07T19:45:51.496Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 8,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "如果用一个 int 类型的变量 a 表达正方形的边长，则下列哪个表达式不能用来计算正方形的面积？（ ）"
+      }
+    }
+  ],
+  "codeChecks": []
+}
