@@ -1,0 +1,93 @@
+{
+  "executedAt": "2026-11-07T22:51:18.170Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": false,
+      "sampleCount": 2,
+      "boundaryCount": 1,
+      "tests": [
+        {
+          "input": "5",
+          "output": "+---+\n-+-+-\n--+--\n-+-+-\n+---+",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "+---+\n-+-+-\n--+--\n-+-+-\n+---+\n",
+          "passed": true
+        },
+        {
+          "input": "7",
+          "output": "+-----+\n-+---+-\n--+-+--\n---+---\n--+-+--\n-+---+-\n+-----+",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "+-----+\n-+---+-\n--+-+--\n---+---\n--+-+--\n-+---+-\n+-----+\n",
+          "passed": true
+        },
+        {
+          "name": "最小边界N=5（官方样例1）",
+          "input": "5",
+          "output": "+---+\n-+-+-\n--+--\n-+-+-\n+---+",
+          "reason": "N=5为题目下界且为奇数；独立推导：i==j或i+j==4处输出+，中心(2,2)仅一处+，五行与PDF样例输出1逐字一致。",
+          "kind": "boundary",
+          "actual": "+---+\n-+-+-\n--+--\n-+-+-\n+---+\n",
+          "passed": true
+        },
+        {
+          "name": "奇数中间值N=7（官方样例2）",
+          "input": "7",
+          "output": "+-----+\n-+---+-\n--+-$--\n---+---\n--+-+--\n-+---+-\n+-----+",
+          "reason": "与PDF第8页样例输出2逐字对照作为交叉验证；核对+位于第i列与第6-i列，第4行（中心）仅一个+。",
+          "kind": "boundary",
+          "actual": "+-----+\n-+---+-\n--+-+--\n---+---\n--+-+--\n-+---+-\n+-----+\n",
+          "passed": false
+        }
+      ],
+      "codeSha256": "28365f00f34566a43ee50f49394d18cd48efaa3416e42533075dbd129aa4815e"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "352",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "最小合法输入102（十位为0）",
+          "input": "102",
+          "output": "5",
+          "reason": "按代码逐步独立重算：排序[0,1,2]，ma=210、mi=012算术值12（与官方六分支程序的tmin=12一致），210-12=198；198→981-189=792；792→972-279=693；693→963-369=594；594→954-459=495，共5次；102为满足各位互异的最小三位数。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "初始即为495（零次变换）",
+          "input": "495",
+          "output": "0",
+          "reason": "4,9,5互异属合法输入；while(n!=495)首轮不成立直接输出0，覆盖零次循环的固定点边界，两版代码行为一致。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "最大合法输入987",
+          "input": "987",
+          "output": "5",
+          "reason": "独立重算：987-789=198，之后198→792→693→594→495，共5次；987为满足各位互异的最大三位数，覆盖上界。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "8e3a77013b2cd4b290bdc88539b19e054df086fdd2cc69e6100582ff0f0b07f9"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T22:37:34.526Z",
+  "completedAt": "2026-11-07T22:38:09.744Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33382,
+    "completion_tokens": 5310,
+    "total_tokens": 38692,
+    "prompt_tokens_details": {
+      "cached_tokens": 33280,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4025
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00330114,
+      "allowance": 0.00198068,
+      "tokens": {
+        "input": 102,
+        "output": 5310,
+        "reasoning": 4025,
+        "cache_read": 33280,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d404eddae65f8612ee91816deb604f058f29db5cf0096c6bb40c94c01bb19db",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF GESP”“C++ 二级”“2023 年 9 月”，与 paperId=2023-09-l2 对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第1题原文为“我们常说的互联网（Internet）是一个覆盖全球的广域网络，它不属于任何一个国家。”网站仅括号全/半角不同，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选 options 维度；页面只要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第1格为√；正确映射为0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "互联网是由 TCP/IP 互联的全球网络，无单一国家拥有其所有权；题干判断正确，解析结论与理由可独立复核。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第2题原文为“神威·太湖之光超级计算机是中国自主研制的超级计算机，在全球超级计算机TOP500排行榜中多次荣膺榜首。”网站增加引号及空格，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选 options 维度；页面只要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第2格为√；正确映射为0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "神威·太湖之光在2016年6月、2016年11月、2017年6月、2017年11月连续四次位列TOP500榜首，“多次荣膺榜首”成立，解析事实与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第3题原文为“C++表达式 7.8 / 2 的值为 3.9 ，类型为 float 。”网站仅空格差异，表达式与判断内容一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选 options 维度；页面只要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第3格为×；错误映射为1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "7.8 默认是 double 字面量，7.8/2 的结果为 double 类型 3.9，而非 float；题干错误，解析推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第4题原文为“C++表达式 (2 * 3) || (2 + 5) 的值为 67 。”网站仅空格差异，表达式一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选 options 维度；页面只要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第4格为×；错误映射为1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "(2*3)=6 为真，逻辑或发生短路，整个表达式结果为 bool 类型 true（数值上下文为1），不可能为67；题干错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第5题原文为“如果 m 和 n 为 int 类型变量，则执行 for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m + 1), m - 1); 之后 n 的值为偶数。”页面仅在“m - 1”处换行，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选 options 维度；页面只要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第5格为√；正确映射为0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逗号表达式使 n 的迭代为 n←3n−1：1→2→5→14；随后 14<9 为假退出，n=14 为偶数，题干正确，解析推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16—20。五题题面均与PDF第7页一致，答案与判断题答案表（√√××√）逐题映射一致；解析均可独立推导复核，未发现需修改项。判断题不适用单选options及编程题referenceCode维度，已按not_applicable记录。"
+  }
+}

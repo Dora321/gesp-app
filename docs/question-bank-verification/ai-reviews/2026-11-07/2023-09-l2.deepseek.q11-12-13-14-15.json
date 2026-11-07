@@ -1,0 +1,239 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T22:16:47.852Z",
+  "completedAt": "2026-11-07T22:18:36.915Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33382,
+    "completion_tokens": 17056,
+    "total_tokens": 50438,
+    "prompt_tokens_details": {
+      "cached_tokens": 33280,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14311
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01034874,
+      "allowance": 0.00620924,
+      "tokens": {
+        "input": 102,
+        "output": 17056,
+        "reasoning": 14311,
+        "cache_read": 33280,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d404eddae65f8612ee91816deb604f058f29db5cf0096c6bb40c94c01bb19db",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证”“C++ 二级”“2023 年 9 月”，与 paperId 2023-09-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页第11题代码为外层 i=1;i<13;i+=3，内层 j=1;j<i;j+=2，循环体为 if (i*j%2==0) break; else cnt+=1;；网站题面替换成了 if(i%2!=0) 后单独嵌套循环的版本，代码不一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为 A.1、B.3、C.15、D.没有输出；网站 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为 B；网站 answer=1，对应 B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析按错误代码推导，只筛 i 为奇数，未分析 i*j%2==0 的 break；按PDF代码应得 i=1无内层、i=4首轮break、i=7累加3次、i=10首轮break，输出3。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 13; i += 3)\n    for (int j = 1; j < i; j += 2)\n        if (i * j % 2 == 0)\n            break;\n        else\n            cnt += 1;\ncout << cnt;\n```",
+          "explanation": "**答案：B (3)**\n\n按 PDF 代码逐层追踪：外层 i 取 1、4、7、10（i < 13）。i=1 时内层 j<1，不执行；i=4 时 j=1，i*j=4 为偶数，立即 break；i=7 时 j=1、3、5，乘积均为奇数，else 分支执行 3 次，cnt=3；i=10 时 j=1，乘积为偶数，立即 break。循环结束输出 cnt=3。\n\n选项：A 1 错；B 3 对；C 15 错；D 没有输出错。\n\n**考点：** 嵌套循环、break 只跳出内层循环、奇偶判断。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页末至第5页代码与网站题面逐行一致：x=1，while(x<100)，if(!(x%3))输出，else if(x/10) break，x+=2，最后输出x。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为 A.1、B.3,9,11、C.3,6,9,10、D.1,5,7,11,13,15；网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为 B；网站 answer=1，对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立追踪：x=1→3→5→7→9→11；3和9是3的倍数被输出，11时x/10非零break，循环外再输出11，得到3,9,11。解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页第13题含样例输出图（输入7时输出 A/AB/ABC/ABCA/.../ABCABCA）及完整代码前置行 int N=0; cout...; cin>>N;；网站题面只保留循环片段，未给出所引用的图形样例，题面不完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为 A.'A'+j/3、B.(char)('A'+j/3)、C.'A'+j%3、D.(char)('A'+j%3)；网站顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为 D；网站 answer=3，对应 D。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析称选项C“缺少(char)转换……在某些环境能工作”不准确：'A'+j%3 的类型是 int，cout 会按整数输出 ASCII 码而不是字符；另外 j/3 是每3个字符换一次字母，不是逐字符循环 ABC。结论D仍正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用。"
+          }
+        },
+        "changes": {
+          "question": "下面图形每一行从字母 A 开始，以 ABC 方式重复。行数为输入的整数。请在 C++ 代码段横线处填入合适代码（ ）。\n\n例如输入 7 时，输出图形：\n```text\nA\nAB\nABC\nABCA\nABCAB\nABCABC\nABCABCA\n```\n\n```cpp\nint N = 0;\ncout << \"请输入行列数量:\";\ncin >> N;\nfor (int i = 1; i < N + 1; i++) {\n    for (int j = 0; j < i; j++)\n        cout << ________; // 此处填写代码\n    cout << endl;\n}\n```",
+          "explanation": "**答案：D ((char)('A'+j % 3))**\n\n内层 j 从 0 开始，每行输出 i 个字符。要使字符按 A、B、C、A…循环，字母偏移量应为 j % 3，所以字符表达式为 'A' + j % 3。由于 'A' + j % 3 的类型是 int，直接 `cout` 会输出 ASCII 整数值而不是字符，必须强制转换为 char，故应选 `(char)('A'+j % 3)`。\n\n选项：A、C 缺少 char 转换，会输出整数；A、B 使用 j / 3，会形成每 3 个字符才换一个字母的分组，不符合逐字符 ABC 循环。D 正确。"
+        },
+        "tests": [],
+        "unresolved": [
+          "PDF第13题代码中的提示语为“请输入行列数量:”，样例图顶部为“请输入字母行数: 7”，源卷提示语不一致，但不影响填空答案。"
+        ]
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页末至第6页第14题给出输入9时的数字金字塔图，并含 int lineCount=0; cout...; cin>>lineCount;；网站题面写“输出以下数字金字塔图形”但未附图形，且省略前置代码，题面不完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为 A.(lineCount-i-1)*2、B.(lineCount-i)*2、C.lineCount-i-1、D.lineCount-i；网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为 A；网站 answer=0，对应 A。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析中“第0行数字占1列”“第1行数字占4列”等列数计算不准确：每个数字后跟空格占2列，第i行有2i+1个数字，宽度为2(2i+1)。不过最终公式 (lineCount-i-1)*2 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用。"
+          }
+        },
+        "changes": {
+          "question": "输入行数，约定 1 ≤ lineCount ≤ 9，输出以下数字金字塔图形。应在 C++ 代码横线处填入（ ）。\n\n例如输入 9 时，输出：\n```text\n                1 \n              1 2 1 \n            1 2 3 2 1 \n          1 2 3 4 3 2 1 \n        1 2 3 4 5 4 3 2 1 \n      1 2 3 4 5 6 5 4 3 2 1 \n    1 2 3 4 5 6 7 6 5 4 3 2 1 \n  1 2 3 4 5 6 7 8 7 6 5 4 3 2 1 \n1 2 3 4 5 6 7 8 9 8 7 6 5 4 3 2 1 \n```\n\n```cpp\nint lineCount = 0;\ncout << \"请输入行数量:\";\ncin >> lineCount;\nfor (int i = 0; i < lineCount; i++) {\n    for (int j = 0; j < ________; j++) // 此处填写代码\n        cout << ' ';\n    for (int j = 1; j < i + 1; j++)\n        cout << j << \" \";\n    for (int j = i + 1; j > 0; j--)\n        cout << j << \" \";\n    cout << endl;\n}\n```",
+          "explanation": "**答案：A ((lineCount-i-1) * 2)**\n\n第 i 行（i 从 0 开始）前面需要留出居中空格。每个数字输出为 `j << \" \"`，占 2 列；第 i 行共有 2i+1 个数字，最后一行宽度为 2(2lineCount-1)。第 i 行前导空格数 = [2(2lineCount-1) - 2(2i+1)] / 2 = 2(lineCount-i-1)，因此选 A。\n\n例如 lineCount=4：i=0 需 6 个空格，i=1 需 4 个，i=2 需 2 个，i=3 需 0 个。B 少减 1 会多 2 个空格；C、D 未按每个数字占 2 列换算。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第15题代码与网站一致：totalScore、studCount、while(________)、读score、负数break、累加、输出平均分。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为 A.true、B.false、C.True、D.False；网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为 A；网站 answer=0，对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：人数未知需 while(true) 配合负数 break；false 不进循环，True/False 非 C++ 布尔字面量。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "PDF代码片段中 score 未显式声明，卷面如此；不影响填空判断。"
+        ]
+      }
+    ],
+    "summary": "本次核验11-15题：11题网站题面代码与PDF第4页不一致，解析也按错代码推导，需改题面和解析；12、15题题面/选项/答案/解析均与PDF一致；13、14题选项和答案正确，但题面漏掉PDF图形样例（14还漏前置代码），解析存在技术表述问题，需补正。均为单选题，无编程边界测试。"
+  }
+}

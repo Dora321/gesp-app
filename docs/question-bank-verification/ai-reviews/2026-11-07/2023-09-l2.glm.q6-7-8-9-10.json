@@ -1,0 +1,248 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T22:11:49.035Z",
+  "completedAt": "2026-11-07T22:16:47.841Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52434,
+    "completion_tokens": 21608,
+    "total_tokens": 74042,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17158
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0186691,
+      "allowance": 0.0186691,
+      "tokens": {
+        "input": 52434,
+        "output": 21608,
+        "reasoning": 17158,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d404eddae65f8612ee91816deb604f058f29db5cf0096c6bb40c94c01bb19db",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 / C++ 二级 / 2023年9月”，与 id 2023-09-l2、level 2、year 2023、month 9 一致；第1页单选题答案表第6–10题为 C、D、A、D、A，对应0起始索引 2、3、0、3、0。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面（含N=18样例与五边形代码框架）、四选项顺序、答案与解析经独立复核均与PDF一致。仅指出解析称A项“是死循环”欠严谨——按 for(;;) 填入后 i 未声明，实际无法编译，但不影响答案判断，属非原则性表述，不做文风性改写。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干“以下C++代码实现从大到小的顺序输出 N 的所有因子。例如，输入 N = 18 时输出 18 9 6 3 2 1，横线处应填入（ ）”及代码 int N=0;/cin>>N;/for(____)//此处填写代码/if(!(N%i))/cout<<i<<' '; 与网站逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为A“; ;”、B“int i = 1; i < N; i++”、C“int i = N; i > 0; i--”、D“int i = N; i > 1; i--”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第6题为C（0起始索引2），与网站answer=2一致；独立验证：C使i从N递减到1，依次输出18 9 6 3 2 1与样例相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核解析成立：C输出含N与1的全部因子且从大到小；B为升序且漏N；D止于i=2漏因子1，均正确。A项“死循环”的说法略有瑕疵（i未声明，实际为编译错误），不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "接受初核“题面与解析需按官方1起始代码替换”的结论，但不原样沿用：题面提示语标点依PDF文本层采用半角冒号“请输入行列数量:”，并按PDF第3页图逐行补入9×9示例；解析按1起始代码重写，结论仍为 i==j（答案D，索引3）不变。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原网站题面把官方代码改写为0起始双重循环（for i=0;i<N / j=0;j<N）且丢失官方9×9示例矩阵，属实质性不一致；替换为官方版本后已逐字核对PDF第3页代码（第2行 cout << \"请输入行列数量:\";，第4-5行 for (int i = 1; i < N + 1; i++) { / for (int j = 1; j < N + 1; j++)），示例矩阵9行对角线为1与PDF图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为A“i = j”、B“j != j”、C“i >= j”、D“i == j”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题为D（0起始索引3），网站answer=3一致；按官方1起始代码验证：主对角线满足行号等于列号，i==j为唯一正确条件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析按0起始改写代码讲解，未对应官方1起始循环与示例；替换后按官方代码独立推导（A赋值非比较、B恒假、C输出下三角、D正确），副对角线提醒1起始下为 i+j==N+1，正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "如下图所示，输出 N 行 N 列的矩阵，对角线为 1，横线处应填入（ ）。输入 9 时的输出为：\n```\n1 0 0 0 0 0 0 0 0\n0 1 0 0 0 0 0 0 0\n0 0 1 0 0 0 0 0 0\n0 0 0 1 0 0 0 0 0\n0 0 0 0 1 0 0 0 0\n0 0 0 0 0 1 0 0 0\n0 0 0 0 0 0 1 0 0\n0 0 0 0 0 0 0 1 0\n0 0 0 0 0 0 0 0 1\n```\n```cpp\nint N = 0;\ncout << \"请输入行列数量:\";\ncin >> N;\nfor (int i = 1; i < N + 1; i++) {\n    for (int j = 1; j < N + 1; j++)\n        if (____________) // 此处填写代码\n            cout << 1 << \" \";\n        else\n            cout << 0 << \" \";\n    cout << endl;\n}\n```",
+          "explanation": "**答案：D (i == j)**\n\n**核心解析：**\n官方代码采用 1 起始下标：外层 i 与内层 j 均从 1 到 N（条件为 i < N + 1）。矩阵第 i 行第 j 列位于主对角线时行号等于列号，因此条件 `i == j` 成立时输出 1，否则输出 0，恰好得到如 9×9 示例所示、对角线为 1 其余为 0 的 N×N 矩阵。\n\n**选项逐项分析：**\n- **A `i = j`**：❌ 这是赋值运算符，会把 j 的值赋给 i，不是相等判断，语义错误。\n- **B `j != j`**：❌ 任何数与自身相等，`j != j` 恒为假，所有位置都会输出 0。\n- **C `i >= j`**：❌ 对角线及其左下方（下三角含对角线）都满足，会输出下三角矩阵，与示例不符。\n- **D `i == j`**：✅ 正确表达主对角线“行号等于列号”的特征。\n\n**易错提醒：**\n- 混淆赋值 `=` 与相等 `==` 是本题最大陷阱。\n- 本题下标从 1 开始；若涉及副对角线，条件应为 `i + j == N + 1`（0 起始时为 `i + j == N - 1`）。\n\n**考点：** 嵌套循环、二维矩阵下标与对角线的对应关系"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "接受初核结论：网站把官方代码替换为 isPrime / i*i<=N 版本并漏掉“约定输入 N 为大于等于2的正整数”与循环后 if(i==N) 判定，属实质性不一致。否决初解析稿细节并自行重写：题面提示语按PDF文本层用半角冒号，解析按官方控制流给出A–D分析（continue 会使循环后 i==N 而“非质数”后又输出“是质数”；return/exit 非循环控制语句），答案A（索引0）不变。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原网站题面代码（bool isPrime、i*i<=N）与PDF第3页官方代码实质性不同；替换后逐字核对官方代码：int N = 0, i = 0;/cout << \"请输入一个大于等于2的正整数:\";/cin >> N;/for (i = 2; i < N; i++) if (N % i == 0) { cout << \"非质数\"; ______;//此处填写代码 } if (i == N) cout << \"是质数\";，并补回题干中“（素数）”与N≥2约定。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为A“break”、B“continue”、C“exit”、D“return”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为A（0起始索引0），网站answer=0一致；按官方代码验证：N%i==0 时 break 使 i 停留在小于N处，循环后 if(i==N) 不成立，不再输出“是质数”；质数时循环自然结束 i==N 输出“是质数”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析按√N优化与isPrime标志讲解，与官方O(N)试除、以循环后 i 的值判定的代码不符；替换后解析依官方代码独立推导，各选项后果描述正确（含N=2边界：不进循环直接输出“是质数”）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码用于判断 N 是否为质数（素数），约定输入 N 为大于等于2的正整数，请在横线处填入合适的代码（ ）。\n```cpp\nint N = 0, i = 0;\ncout << \"请输入一个大于等于2的正整数:\";\ncin >> N;\n\nfor (i = 2; i < N; i++)\n    if (N % i == 0) {\n        cout << \"非质数\";\n        ________; // 此处填写代码\n    }\nif (i == N)\n    cout << \"是质数\";\n```",
+          "explanation": "**答案：A (break)**\n\n**核心解析：**\n官方代码用 i 从 2 到 N-1 逐个试除。一旦 `N % i == 0`，程序已输出「非质数」，此时应立即跳出循环，即填 `break`。break 的关键作用是保住 i 的当前值（此时 i < N）：跳出循环后 `if (i == N)` 不成立，不会再输出「是质数」。若 N 是质数，循环内找不到任何因子，循环自然结束，结束时 i 恰好等于 N，`if (i == N)` 成立，输出「是质数」。\n\n**选项逐项分析：**\n- **A break**：✅ 正确。只提前结束 for 循环，循环后的 `if (i == N)` 判断正常执行，输出恰好只含「非质数」。\n- **B continue**：❌ 跳过本次循环后 i 继续自增试除；循环结束后 i == N，程序会在「非质数」之后又输出「是质数」，输出错误。\n- **C exit**：❌ exit 是终止整个程序的库函数（需以 exit() 方式调用），并非循环控制语句；本题只需要跳出当前循环并继续执行循环后的判断。\n- **D return**：❌ return 的语义是结束整个函数，不是「跳出循环、继续执行后续语句」的循环控制，不符合本题考查意图。\n\n**易错提醒：**\n- 本题依靠循环结束后 i 的值判断质数：找到因数必须 break，使 i 停留在小于 N 的位置。\n- 输入约定 N ≥ 2：N = 2 时不进入循环，直接走 `if (i == N)` 输出「是质数」，结论仍正确。\n\n**考点：** break 语句、循环结束后循环变量的值"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核。代码、选项与答案（D，索引3）独立复核一致；自行追踪 i=2..8 得 6 个 1# 加末尾 0。解析表头“逐轮分析 i = 9 的情况”为笔误但你表体各行（i=2..8 及余数）正确，不影响推导与结论，按不做纯笔误改写处理保留原状并记录。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页代码 int N = 9;/for (int i = 2; i < N; i++)/if (N % i)/cout << \"1#\";/cout << \"0\" << endl; 与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为A“1#0”、B“1#”、C“1#1#1#1#1#1”、D“1#1#1#1#1#1#0”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为D（0起始索引3）；独立追踪：i=2(余1),4(1),5(4),6(3),7(2),8(1)共6次非零输出1#，i=3时9%3=0不输出，末尾输出0，得 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐轮余数表与独立追踪一致，明确 i=3 时 9%3=0 不输出、循环后必有“0”；仅表头“i = 9 的情况”为笔误，表体正确，不影响推导，按不改纯笔误保留。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "接受初核“题面与解析需替换”的结论；题面恢复官方代码（外层 i<9、内层 j<i、cnt += 1）。否决初核解析中“网站改写……”的元说明，改为面向考生的边界提醒；自行逐轮核对官方代码计数 0+1+1+2+2+3+3+4=16，答案A（索引0）不变。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原网站题面代码被改写为 i<8、j<=i、cnt++，与PDF第4页官方代码（外层 for (int i = 1; i < 9; i++)、内层 for (int j = 1; j < i; j += 2)、循环体 cnt += 1;）不同；替换后逐字核对一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为A“16”、B“28”、C“35”、D“36”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题为A（0起始索引0）；按官方代码独立计数：i=1..8 时满足 j<i 的奇数个数依次为 0,1,1,2,2,3,3,4，合计16。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析与表格基于改写代码（i=1..7、j<=i）推算，依据与官方代码不符；替换后逐轮表按 i<9、j<i 重新计算并合计16，边界提醒（j<i 不含等号、i 最大取8）与官方代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 9; i++)\n    for (int j = 1; j < i; j += 2)\n        cnt += 1;\ncout << cnt;\n```",
+          "explanation": "**答案：A (16)**\n\n**核心解析：**\n官方代码外层 i 从 1 到 8（条件 i < 9），内层 j 从 1 开始、步长 2（j += 2），条件 j < i（严格小于，不含等号），内层每执行一次 cnt 加 1。逐轮统计内层循环执行次数：\n\n| i | 满足 j < i 的 j | 次数 |\n|---|---|---|\n| 1 | 无 | 0 |\n| 2 | 1 | 1 |\n| 3 | 1 | 1 |\n| 4 | 1, 3 | 2 |\n| 5 | 1, 3 | 2 |\n| 6 | 1, 3, 5 | 3 |\n| 7 | 1, 3, 5 | 3 |\n| 8 | 1, 3, 5, 7 | 4 |\n\n合计：0 + 1 + 1 + 2 + 2 + 3 + 3 + 4 = 16，输出 16。\n\n**选项逐项分析：**\n- **A 16**：✅ 正确。\n- **B 28 / C 35 / D 36**：❌ 均与逐轮计数结果不符，多为边界（如把 i < 9 写成 i <= 9）或内层条件（如把 j < i 写成 j <= i）记错所致。\n\n**易错提醒：**\n- 内层边界是 `j < i` 不含等号，i = 1 时内层一次都不执行。\n- 外层边界是 `i < 9`，i 最大取 8。\n\n**考点：** 嵌套循环次数统计、步长为 2 的循环"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次独立复核题6–10，共5题。五题答案均与第1页官方答案表一致（第6–10题：C、D、A、D、A → 索引2、3、0、3、0）。题6、题9的题面、选项、答案与解析与PDF一致，判 approve（题9解析表头笔误与题6对A项“死循环”的非严谨表述不影响结论，予以记录不改）。题7、题8、题10的网站题面代码被改写（7改为0起始循环且丢9×9示例；8改为 isPrime/i*i<=N 版本并漏N≥2约定；10改为 i<8、j<=i、cnt++），解析随之基于改写代码推导，均按PDF官方代码重写题面与解析，statement/explanation 修复后核验通过，判 revise。未涉及编程题，无 tests；所有 base 修改仅触及 question 与 explanation 字段，答案与选项均未改动。"
+  }
+}

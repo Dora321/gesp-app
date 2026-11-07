@@ -1,0 +1,234 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T22:10:19.282Z",
+  "completedAt": "2026-11-07T22:11:49.026Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33382,
+    "completion_tokens": 12646,
+    "total_tokens": 46028,
+    "prompt_tokens_details": {
+      "cached_tokens": 33280,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9886
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00770274,
+      "allowance": 0.00462164,
+      "tokens": {
+        "input": 102,
+        "output": 12646,
+        "reasoning": 9886,
+        "cache_read": 33280,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d404eddae65f8612ee91816deb604f058f29db5cf0096c6bb40c94c01bb19db",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 二级 2023年9月”；第1页单选题答案表题6-10为C、D、A、D、A，对应0起始索引2、3、0、3、0。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干、示例N=18输出18 9 6 3 2 1及代码框架均与网站一致；横线处为for循环控制部分。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为A“; ;”、B“int i = 1; i < N; i++”、C“int i = N; i > 0; i--”、D“int i = N; i > 1; i--”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第6题答案为C，网站answer=2；按C从N递减到1可输出N的全部因子且从大到小。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项说明C从i=N开始、i>0保证取到1，D漏掉因子1，推导与官方代码及样例一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第3页代码使用1起始下标：外层i=1; i<N+1; i++，内层j=1; j<N+1; j++，并有输入提示及9×9示例；网站题面改为0起始的双重循环且未附示例矩阵，代码与图示证据不一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为A“i = j”、B“j != j”、C“i >= j”、D“i == j”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第7题答案为D，网站answer=3；无论0起始还是官方1起始，主对角线均满足i==j。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析按0起始代码讲解；虽然结论i==j仍正确，但未对应官方1起始循环、输入提示和9×9示例，推导依据需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "如下图所示，输出 N 行 N 列的矩阵，对角线为 1，横线处应填入（ ）。例如输入 9 时输出：\n```\n1 0 0 0 0 0 0 0 0\n0 1 0 0 0 0 0 0 0\n0 0 1 0 0 0 0 0 0\n0 0 0 1 0 0 0 0 0\n0 0 0 0 1 0 0 0 0\n0 0 0 0 0 1 0 0 0\n0 0 0 0 0 0 1 0 0\n0 0 0 0 0 0 0 1 0\n0 0 0 0 0 0 0 0 1\n```\n```cpp\nint N = 0;\ncout << \"请输入行列数量:\";\ncin >> N;\nfor (int i = 1; i < N + 1; i++) {\n    for (int j = 1; j < N + 1; j++)\n        if (____________) // 此处填写代码\n            cout << 1 << \" \";\n        else\n            cout << 0 << \" \";\n    cout << endl;\n}\n```",
+          "explanation": "**答案：D (i == j)**\n\n官方代码使用1起始下标：外层i和内层j均从1到N。矩阵位置(i,j)在主对角线上时行号等于列号，因此条件为 i == j；满足时输出1，否则输出0，得到对角线为1、其余为0的N×N矩阵。\n\n逐项：A i=j 是赋值，不是比较；B j!=j 恒假；C i>=j 输出下三角（含对角线）；D i==j 正确。\n\n易错提醒：本题1起始下标下主对角线仍是 i==j；若写副对角线则应为 i+j==N+1。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第3页代码为 int N=0,i=0; for(i=2;i<N;i++) if(N%i==0){cout<<\"非质数\"; ________;} if(i==N) cout<<\"是质数\";，并约定N>=2；网站题面替换成bool isPrime与i*i<=N的代码，且漏掉输入约束和循环后i==N的输出判定，实质性不一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为A“break”、B“continue”、C“exit”、D“return”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第8题答案为A，网站answer=0；官方代码在N%i==0时用break跳出，使循环后i<N，避免再输出“是质数”。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析按sqrt优化和isPrime标志讲解，与官方O(N)试除并用循环后i==N判定的代码不符，需按官方代码重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码用于判断 N 是否为质数（素数），约定输入 N 为大于等于 2 的正整数，请在横线处填入合适的代码（ ）。\n```cpp\nint N = 0, i = 0;\ncout << \"请输入一个大于等于2的正整数：\";\ncin >> N;\n\nfor (i = 2; i < N; i++)\n    if (N % i == 0) {\n        cout << \"非质数\";\n        ________; // 此处填写代码\n    }\nif (i == N)\n    cout << \"是质数\";\n```",
+          "explanation": "**答案：A (break)**\n\n官方代码用 i 从2试除到N-1：若 N%i==0，则输出“非质数”，此时应立即跳出循环。跳出后 i 仍小于 N，所以后面的 if(i==N) 不会执行，不会再把非质数误判为质数。若 N 是质数，循环会一直执行到 i==N 后因 i<N 不成立而结束，随后 if(i==N) 成立并输出“是质数”。\n\n逐项：A break 正确；B continue 会继续循环，循环结束后 i==N，可能误输出“是质数”；C exit 不是普通循环控制语句，且会终止整个程序；D return 会直接结束函数，不符合此处仅跳出循环的语义。\n\n易错提醒：本题不是 sqrt 优化写法，循环后利用 i 的值判断是否为质数，因此必须用 break 保留 i<N 的状态。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第9题代码为 int N=9; for(int i=2;i<N;i++) if(N%i) cout<<\"1#\"; cout<<\"0\"<<endl;，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为A“1#0”、B“1#”、C“1#1#1#1#1#1”、D“1#1#1#1#1#1#0”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第9题答案为D，网站answer=3；i=2,4,5,6,7,8时余数非零共输出6次“1#”，i=3时9%3=0不输出，循环后输出“0”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐轮列出i=2..8的余数并统计6次“1#”，再补循环后的“0”，与官方输出D一致；表头“i=9”为笔误，不影响推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页代码为外层 for(int i=1;i<9;i++)、内层 for(int j=1;j<i;j+=2)、循环体 cnt+=1；网站题面改为 i<8、j<=i、cnt++，循环边界与内层条件均不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为A“16”、B“28”、C“35”、D“36”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第10题答案为A，网站answer=0；按官方代码逐轮计数为0+1+1+2+2+3+3+4=16。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析和表格按i=1..7、j<=i的改写代码计算，未对应官方i=1..8、j<i的代码；虽然结果同为16，但推导依据错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 9; i++)\n    for (int j = 1; j < i; j += 2)\n        cnt += 1;\ncout << cnt;\n```",
+          "explanation": "**答案：A (16)**\n\n官方代码外层 i 取1..8，内层 j 取1,3,5,...且必须满足 j<i，每满足一次 cnt 加1。逐轮统计内层执行次数：\n\n| i | 满足 j<i 的 j | 次数 |\n|---|---|---|\n| 1 | 无 | 0 |\n| 2 | 1 | 1 |\n| 3 | 1 | 1 |\n| 4 | 1,3 | 2 |\n| 5 | 1,3 | 2 |\n| 6 | 1,3,5 | 3 |\n| 7 | 1,3,5 | 3 |\n| 8 | 1,3,5,7 | 4 |\n\n合计 0+1+1+2+2+3+3+4=16。\n\n逐项：A 16正确；B 28、C 35、D 36均与上述计数不符。\n\n易错提醒：官方外层不含9，内层条件 j<i 不含等号；网站改写同时改变 i<8 与 j<=i 后总数碰巧仍为16，但边界依据不同。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题6-10。题6、题9的题面、选项、答案与解析均与PDF一致；题7、题8、题10的网站题面代码与PDF不一致，且解析基于改写代码，需按changes替换；五题答案均与官方答案表一致。未运行任何代码，编程题不涉及。"
+  }
+}

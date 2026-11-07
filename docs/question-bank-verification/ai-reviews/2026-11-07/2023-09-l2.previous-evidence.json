@@ -1,0 +1,295 @@
+{
+  "paperId": "2023-09-l2",
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-09-l2"
+  },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25"
+  },
+  "answerTable": {
+    "location": "单选答案表 p.1 顶部；判断答案表 p.7「2 判断题」标题下方",
+    "content": {
+      "single": "DBCBDCDADABBDAA",
+      "judge": "√√××√××××√"
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "官方题干仅「下列流程图的输出结果是（ ）？」11 个汉字（流程图为图片，x=5,y=12 硬编码在图中）。题库题干把图内容改写进文字（「如果输入的 x 和 y 分别是 5 和 12…」）。审计残留 miss 属结构性假阴性：官方题干不足 14 字，探针窗口必然溢出到选项文本。",
+      "fix": "题干改为自包含流程图文字描述（开始→x=5,y=12→判断 x>y：是则 a=x、b=y；否则 a=y、b=x→输出 a、b），解析按官方图重写（5>12 为假走否分支，输出 12 5=B）。官方答案 B 一致。",
+      "evidence": "tmp/verify/2023-09-l2/pg1-01.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q12 explanation 升级；答案未改"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "题库题干「输入行数 lineCount，输出金字塔图形」与官方「输入行数，约定 1 ≤ lineCount ≤ 9，输出以下图形」有差异；官方的 1≤lineCount≤9 是公式图片、文本层丢失。代码与选项一致。",
+      "fix": "恢复官方题干并把公式转写为文本「约定 1 ≤ lineCount ≤ 9，输出以下数字金字塔图形」。审计残留 miss 属公式图片假阴性（文本层无约束式，探针窗口被转写文本隔断）。官方答案 A 一致（(lineCount-i-1)*2 空格）。",
+      "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "整题错位：题库为仿写题「判断 M 是否为 N 的相关数」，官方 Q15 是「班级成绩统计」题——while 横线填入循环条件，选项 true/false/True/False。题库答案 A 恰与官方字母撞车。",
+      "fix": "按官方 p.6 渲染图整题重建：官方题干+代码（totalScore/studCount 累加，score<0 break）+官方选项。官方答案 A(true)：恒真循环由 break 退出；True/False 不是 C++ 关键字。解析全部重写。",
+      "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": true,
+      "note": "题干代码与原卷不符（题库为 i <= 100，原卷为 i < 100），按原卷还原代码并将 answer 由 √ 改为 ×（原卷代码输出 -100 非 0），解析重写。"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": true,
+      "note": "题干代码与原卷不符（题库为 i <= 10，原卷为 i < 10），按原卷还原代码并将 answer 由 √ 改为 ×（原卷代码输出 20 非 30），解析重写。"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
+    }
+  ],
+  "unresolved": [],
+  "summary": {
+    "singleMatch": true,
+    "judgeModified": 2
+  },
+  "answerKey": "单选答案串 D B C B D C D A D A B B D A A，题库 15/15 一致（含重建的 Q15）；判断题答案表（矢量图，300dpi 渲染读图）√ √ × × √ × × × × √ 与题库 10/10 一致。"
+}

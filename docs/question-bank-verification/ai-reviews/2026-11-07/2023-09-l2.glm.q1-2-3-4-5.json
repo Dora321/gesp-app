@@ -1,0 +1,237 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T22:08:04.138Z",
+  "completedAt": "2026-11-07T22:10:19.272Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52298,
+    "completion_tokens": 9018,
+    "total_tokens": 61316,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5830
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0123537,
+      "allowance": 0.0123537,
+      "tokens": {
+        "input": 52298,
+        "output": 9018,
+        "reasoning": 5830,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d404eddae65f8612ee91816deb604f058f29db5cf0096c6bb40c94c01bb19db",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP」「C++ 二级」「2023 年 9 月」，对应年=2023、月=9、level=2，与 id 2023-09-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题原文「我国第一台大型通用电子计算机使用的逻辑部件是（ ）。」与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题选项依次为 A. 集成电路 / B. 大规模集成电路 / C. 晶体管 / D. 电子管，顺序与网站 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页红字答案表第 1 题为 D，对应 0 起始选项索引 3；网站 answer=3；史实上第一代计算机以电子管为核心，D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "初核指出原解析将我国第一台大型通用电子计算机写为「103 机（1958 年）」；经独立核查史实，103 机是我国第一台电子数字计算机，第一台大型通用电子计算机为 1959 年国产 104 机（电子管），原表述确有史实错误。采纳并复核修复稿：代际划分、选项分析、答案 D 均成立，无新增错误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (电子管)**\n\n**核心解析：**\n计算机发展史中，逻辑部件的演变按代划分。第一代计算机（约1946—1958年）以电子管为核心元件；第二代（约1958—1964年）过渡到晶体管；第三代（约1964—1971年）采用集成电路；第四代（约1971年至今）使用大规模和超大规模集成电路。我国第一台大型通用电子计算机是1959年的104机，诞生于第一代时期，因此使用的逻辑部件是电子管。\n\n**选项逐项分析：**\n- **A 集成电路**：❌ 错误。集成电路是第三代计算机的主要逻辑部件，出现于1960年代中期。\n- **B 大规模集成电路**：❌ 错误。大规模集成电路是第四代计算机的标志，1970年代才广泛应用。\n- **C 晶体管**：❌ 错误。晶体管是第二代计算机的核心元件，1950年代末至60年代初。\n- **D 电子管**：✅ 正确。电子管是第一代计算机的核心元件，我国第一台大型通用电子计算机（104机，1959年）使用的正是电子管。\n\n**易错提醒：**\n- 混淆各代计算机的时间顺序：电子管→晶体管→集成电路→大规模集成电路。\n- 注意「大型通用」这一限定：我国第一台大型通用电子计算机是104机，不是小型的103机，但二者同为电子管计算机。\n\n**知识延伸：**\nENIAC（1946年）是世界上第一台电子管计算机，使用了约18000个电子管，重达30吨。\n\n**考点：** 计算机发展史、各代计算机的主要逻辑元件。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核修改。独立核实：103 机（1958 年，M-3 仿制）为我国第一台电子数字计算机，第一台大型通用电子计算机为 1959 年的 104 机，二者均为电子管，答案 D 不受影响；修复稿内容完整且无新错误，修复后核验通过。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页流程图：开始→x=5,y=12→判断 x>y，是→a=x、b=y，否→a=y、b=x→输出 a、b→结束；网站以文字等价转写，逻辑未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题选项依次为 A. 5 12 / B. 12 5 / C. 5 5 / D. 12 12，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页红字答案表第 2 题为 B，对应 0 起始索引 1；网站 answer=1。独立追踪：5>12 为假，走否分支 a=y=12、b=x=5，输出 12 5，与 B 及答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核原解析：A 项「这是「是」分支的结果，只有 x > y 成立才会 a = x、b = y」的表述本身正确且清楚（A 仅在条件成立时出现，本题条件为假故不选），与走否分支得 12 5 的推导不冲突；初核所标 needs_fix 的理由（认为该句暗示走「是」分支判断错误）不成立，其修改稿与原句仅为措辞差异，属纯文风改写，予以否决，原文核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决初核修改。原解析对 A 项的表述并无逻辑漏洞：它准确指出该结果仅属于「是」分支，而本题 5>12 为假不进入该分支；修改稿与原文只差措辞，不构成 needs_fix，按「不做纯文风改写」保留原解析。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 3 题原文「如果要找出整数 a、b 中较大一个，通常要用下面哪种程序结构？（ ）。」与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 3 题选项依次为 A. 顺序结构 / B. 循环结构 / C. 分支结构 / D. 跳转结构，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页红字答案表第 3 题为 C，对应 0 起始索引 2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：取 a、b 中较大者需按 a>b 与否在两结果间二选一，对应分支结构（if-else、三目运算符均为分支实现）；顺序结构无条件选择、循环用于重复执行、goto 跳转非本题所指结构化选择，解析逐项分析无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核未提修改；题面、选项、答案、解析经独立推导全部正确，原数据核验通过。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题原文「以下不是C++关键字的是（ ）。」与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题选项依次为 A. continue / B. cout / C. break / D. goto，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页红字答案表第 4 题为 B，对应 0 起始索引 1；网站 answer=1。continue、break、goto 均为 C++ 语言关键字，cout 是 iostream 标准库预定义对象而非关键字，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分语言关键字与标准库对象（cout 为 std 命名空间中的 ostream 实例），且逐项说明 continue/break/goto 的关键字属性，与答案推导一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核未提修改；题面、选项、答案与 PDF 一致，解析独立核验无误，原数据核验通过。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题原文「C++表达式 int(-123.123 / 10) 的值是（ ）。」与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题选项依次为 A. -124 / B. -123 / C. -13 / D. -12，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页红字答案表第 5 题为 D，对应 0 起始索引 3；网站 answer=3。独立推导：-123.123 / 10 = -12.3123，int() 向零截断得 -12，D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析 A 项出现「再加 -111」、B 项出现「然后 -123 - 12 = -135」等与题干无关的无效算式，属实质错误。采纳初核重写方向，并在复核中修正其 B 项表述（-123 是省略 /10 直接取整的产物，而非「不能得到」）：先浮点除法得 -12.3123，再向零截断得 -12，floor 对照 -13 说明无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (-12)**\n\n**核心解析：**\n表达式 `int(-123.123 / 10)` 的求值分两步：\n1. **先做浮点数除法**：操作数 `-123.123` 带小数点，`10` 参与的是浮点除法，`-123.123 / 10 = -12.3123`。\n2. **再做强制类型转换**：`int()` 将浮点数转为整数时**向零取整**（截断小数部分，行为等价于 `trunc()`），既不是四舍五入，也不是向负无穷取整：`int(-12.3123) = -12`。\n\n**选项逐项分析：**\n- **A -124**：❌ 错误。按原式无论向零取整还是向下取整，都不可能得到 -124，无合理计算路径。\n- **B -123**：❌ 错误。-123 是省略 `/ 10`、直接对 `-123.123` 取整的结果（int(-123.123) = -123），不符合原表达式；按原式先除以 10 得到 -12.3123，再取整不会是 -123。\n- **C -13**：❌ 错误。这是向负无穷取整（floor(-12.3123) = -13）的结果；而 int() 向零取整，-12.3123 的小数部分直接舍弃，得 -12。\n- **D -12**：✅ 正确。-12.3123 向零截断得 -12。\n\n**易错提醒：**\n- C++ 的 `int()` 强制类型转换是**向零取整**，不是四舍五入，也不是数学中的向下取整；对负数会向绝对值更小的整数舍去小数（-12.3123 → -12）。\n- 注意运算顺序：先除法乘法后取整；不要跳过 `/ 10` 直接对 `-123.123` 取整，也不要把这里的浮点除误当整数除。\n- 若需要传统的「向下取整」应使用 `floor()` 取整；`int()` 的结果与 `trunc()` 一致，向零截断。\n\n**考点：** 算术运算、强制类型转换中的数值截断规则、浮点数除法与整数除法的区别。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核的修复方向，但对其修复稿做了二次修正：初核稿 B 项「或忽略除法，均不能得到 -123」不准确（省略除法恰会得到 -123），已在最终稿中改为准确归因。原解析中「再加 -111」「-123 - 12 = -135」确属与题干无关的无效算式，实为错误，修改为必要而非文风调整；最终修复稿独立推导无误，核验通过。"
+      }
+    ],
+    "summary": "本层仅核验题 1—5。题面、选项与 PDF 原文逐字/等价一致；第 1 页红字答案表 D / B / C / B / D 与网站 answer（3/1/2/1/3）全部吻合，第 2 题流程图（x=5,y=12 判断 x>y 走否分支）与第 5 题向零截断推导均经独立复核确认。解析维度：题 1 的「103 机」史实错误与题 5 的无关算式为实质问题，采纳修改并逐句复核，修复后核验通过；题 2 初核所提 needs_fix 经独立复核不成立（原句对 A 项「是」分支归属的表述正确），否决该修改、保留原文；题 3、题 4 原数据核验通过。全部五题 verdict=approve，单选题编程维度均不适用，无 tests 与未决项。"
+  }
+}
