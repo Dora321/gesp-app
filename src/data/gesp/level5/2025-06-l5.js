@@ -129,27 +129,7 @@ const programmingQuestions = [
 1
 4` }
       ],
-      question: `
-# [GESP202506 五级] 最大公因数
-
-## 题目描述
-
-对于两个正整数 $a,b$，他们的最大公因数记为 $\\gcd(a,b)$。对于 $k > 3$ 个正整数 $c_1,c_2,\\dots,c_k$，他们的最大公因数为：
-
-$\\gcd(c_1,c_2,\\dots,c_k)=\\gcd(\\gcd(c_1,c_2,\\dots,c_{k-1}),c_k)$
-
-给定 $n$ 个正整数 $a_1,a_2,\\dots,a_n$ 以及 $q$ 组询问。对于第 $i(1 \\le i \\le q)$ 组询问，请求出 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数，也即 $\\gcd(a_1+i,a_2+i,\\dots,a_n+i)$。
-
-## 输入格式
-
-第一行，两个正整数 $n,q$，分别表示给定正整数的数量，以及询问组数。
-
-第二行，$n$ 个正整数 $a_1,a_2,\\dots,a_n$。
-
-## 输出格式
-
-输出共 $q$ 行，第 $i$ 行包含一个正整数，表示 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数。
-`,
+      question: "# [GESP202506 五级] 最大公因数\n\n## 题目描述\n\n对于两个正整数 $a,b$，他们的最大公因数记为 $\\gcd(a,b)$。对于 $k \\ge 3$ 个正整数 $c_1,c_2,\\dots,c_k$，他们的最大公因数为：\n\n$\\gcd(c_1,c_2,\\dots,c_k)=\\gcd(\\gcd(c_1,c_2,\\dots,c_{k-1}),c_k)$\n\n给定 $n$ 个正整数 $a_1,a_2,\\dots,a_n$ 以及 $q$ 组询问。对于第 $i(1 \\le i \\le q)$ 组询问，请求出 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数，也即 $\\gcd(a_1+i,a_2+i,\\dots,a_n+i)$。\n\n## 输入格式\n\n第一行，两个正整数 $n,q$，分别表示给定正整数的数量，以及询问组数。\n\n第二行，$n$ 个正整数 $a_1,a_2,\\dots,a_n$。\n\n## 输出格式\n\n输出共 $q$ 行，第 $i$ 行包含一个正整数，表示 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 \\le n \\le 10^3$，$1 \\le q \\le 10$。\n\n对于所有测试点，保证 $1 \\le n \\le 10^5$，$1 \\le q \\le 10^5$，$1 \\le a_i \\le 1000$。",
       score: 25,
       explanation: `**解析：**
 
@@ -249,6 +229,10 @@ $\\gcd(c_1,c_2,\\dots,c_k)=\\gcd(\\gcd(c_1,c_2,\\dots,c_{k-1}),c_k)$
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 1e5+5;\nint n, q, a[N], g;\nint gcd(int a, int b) {\n    if (a == 0 || b == 0) return a+b;\n    return gcd(b, a % b);\n}\nint main() {\n    scanf(\"%d%d\", &n, &q);\n    for (int i = 1; i <= n; i++) scanf(\"%d\", &a[i]);\n    sort(a+1, a+n+1);\n    for (int i = 2; i <= n; i++) g = gcd(g, a[i]-a[i-1]);\n    for (int i = 1; i <= q; i++) printf(\"%d\\n\", gcd(g, a[1]+i));\n    return 0;\n}",
       answer: '',
+      "sourcePage": 15,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"],
     }
 ];
 
@@ -396,28 +380,16 @@ void append(int data) {
             ],
             answer: 3,
             score: 2,
-            explanation: `
-**答案：D**
-
-**解析：**
-非空时把新结点接到尾部，三步缺一不可：
-1. tail->next = newNode —— 原尾结点的 next 指向新结点；
-2. newNode->prev = tail —— 新结点的 prev 回指原尾结点；
-3. tail = newNode —— 更新尾指针。
-
-- **A** 只挂接不更新 tail，tail 仍指向旧尾，链表尾部丢失；
-- **B** 先执行 tail = newNode 再 newNode->prev = tail，prev 指向了自己；
-- **C** 先 tail = newNode，再 tail->next = newNode 变成自环，旧尾也脱钩。
-
-**易错点：** 指针语句的**顺序**很重要——先用旧值建立连接，最后再移动 tail。
-
-**考点：** 双向链表、插入操作
-        `,
+            explanation: "**答案：D**\n\n**解析：**\n非空时把新结点接到尾部，必须完成三步：\n1. `tail->next = newNode;`：让原尾结点的 `next` 指向新结点；\n2. `newNode->prev = tail;`：让新结点的 `prev` 回指原尾结点；\n3. `tail = newNode;`：最后更新尾指针。\n\n- **A** 仅执行 `tail->next = newNode;`，没有更新 `tail`；后续再追加时旧尾的 `next` 会被覆盖，新结点会从正向链表中丢失。\n- **B** 执行 `newNode->prev = tail; tail = newNode;`，漏掉了用旧尾设置 `tail->next = newNode;` 这一步，新结点没有从原尾正向挂入链表。\n- **C** 先把 `tail` 改为 `newNode`，再执行 `newNode->prev = tail;` 会使 `prev` 指向自己，`tail->next = newNode;` 又形成自环，且原尾没有接到新结点。\n- **D** 三步顺序正确：先用旧尾建立正向连接，再设置新结点的前驱，最后移动 `tail`，故为正确答案。\n\n**易错点：** 必须先使用旧 `tail` 建立连接，最后再更新 `tail`。\n\n**考点：** 双向链表、尾部插入、指针操作顺序。",
             tags: [
                 "客观题",
                 "单选题",
                 "GESP5级",
-            ]
+            ],
+      "sourcePage": 2,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 4,
@@ -518,12 +490,7 @@ bool is_prime(int n) {
     return true;
 }
 \`\`\``,
-            options: [
-                "代码存在错误，比如 5 是质数，但因为5 % 5 余数是 0 返回了false",
-                "finish_number 的值应该是n / 2 ，当前写法将导致错误",
-                "当前while 循环正确的前提是：所有大于 3 的质数都符合6k±1 形式",
-                "while 循环修改如下，其执行效果和执行时间相同。",
-            ],
+            options: ["代码存在错误，比如 5 是质数，但因为5 % 5 余数是 0 返回了false","finish_number 的值应该是n / 2 ，当前写法将导致错误","当前while 循环正确的前提是：所有大于 3 的质数都符合6k±1 形式","while 循环修改如下，其执行效果和执行时间相同。\n\n```cpp\nfor (int i = 2; i < finish_number; i++) {\n    if (n % i == 0)\n        return false;\n}\nreturn true;\n```"],
             answer: 2,
             score: 2,
             explanation: `
@@ -542,7 +509,11 @@ bool is_prime(int n) {
                 "客观题",
                 "单选题",
                 "GESP5级",
-            ]
+            ],
+      "sourcePage": 3,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 6,
@@ -937,58 +908,20 @@ double sqrt_binary(long long n, double epsilon = 1e-10) {
         {
             id: 13,
             type: "single",
-            question: `硬币找零问题中要求找给客户最少的硬币。coins 存储可用硬币面额，amount 为待找零金额。下面是其实现代码，相关说法正确的是（ ）。
-
-\`\`\`cpp
-const int MAX_COINS = 10;
-int result[MAX_COINS] = {0};  // 假设最多10种面额
-
-int find_coins(const vector<int>& coins, int amount) {
-    sort(coins.begin(), coins.end(), greater<int>());
-
-    int n = coins.size();
-
-    for (int i = 0; i < n; ++i) {
-        int coin = coins[i];
-        int num = amount / coin;
-        result[i] = num;
-        amount -= num * coin;
-        if (amount == 0) break;
-    }
-
-    cout << "找零方案如下：" << endl;
-    for (int i = 0; i < n; ++i) {
-        cout << sorted_coins[i] << "角需要" << result[i] << "枚" << endl;
-    }
-
-    return 0;
-}
-\`\`\``,
-            options: [
-                "上述代码采用贪心算法实现",
-                "针对任意面额系统，上述代码总能找到最优解",
-                "上述代码采用枚举算法",
-                "上述代码采用分治算法",
-            ],
+            question: "硬币找零问题中要求找给客户最少的硬币。`coins` 存储可用硬币规格，单位为角，假设规格都小于 10 角，且一定有 1 角规格。`amount` 为要找零的金额，约定必须为 1 角的整数倍。输出为每种规格及其数量，按规格从大到小输出，如果某种规格不必要，则输出为 0。下面是其实现代码，相关说法正确的是（ ）。\n\n```cpp\nconst int MAX_COINS = 10;\nint result[MAX_COINS] = {0};  // 假设最多10种面额\n\nint find_coins(const vector<int>& coins, int amount) {\n    sort(coins.begin(), coins.end(), greater<int>());\n\n    int n = coins.size();\n\n    for (int i = 0; i < n; ++i) {\n        int coin = coins[i];\n        int num = amount / coin;\n        result[i] = num;\n        amount -= num * coin;\n        if (amount == 0) break;\n    }\n\n    cout << \"找零方案如下：\" << endl;\n    for (int i = 0; i < n; ++i) {\n        cout << sorted_coins[i] << \"角需要\" << result[i] << \"枚\" << endl;\n    }\n\n    return 0;\n}\n```",
+            options: ["上述代码采用贪心算法实现","针对本题具体要求，上述代码总能找到最优解","上述代码采用枚举算法","上述代码采用分治算法"],
             answer: 0,
             score: 2,
-            explanation: `
-**答案：A**
-
-**解析：**
-代码先把面额从大到小排序，然后对每种面额尽可能多地取（num = amount / coin），余款交给更小面额——每一步都拿当前能拿的最多，这是**贪心算法**（A 对），不是枚举/分治（C、D 错）。
-
-**B 错**：「任意面额系统总能找到最优解」不成立。经典反例：面额 {1, 3, 4} 找 6 元，贪心拿 4+1+1 共 3 枚，最优是 3+3 共 2 枚。只有本题的特殊设定（有 1 角规格、金额为 1 角整数倍、规格都小于 10 角）才保证贪心结果正确；更严格说，能被更大面额组合出的系统贪心就会出错。
-
-**易错点：** 贪心找零只在「面额系统特殊」时保证最优，通用最优解要用完全背包 DP。
-
-**考点：** 贪心算法、硬币找零
-        `,
+            explanation: "**答案：A**\n\n**解析：**\n代码先把硬币规格从大到小排序，再对每种规格尽可能多地取用（num = amount / coin），余款交给更小规格处理——每一步都做当前能取得最多的选择且不回溯，属**贪心算法**实现（A 正确）；代码没有枚举所有方案（C 错），也没有“分解为子问题再合并”的分治结构（D 错）。\n\n**B 错**：即使满足本题全部设定（规格均小于 10 角、含有 1 角规格、amount 为 1 角整数倍），贪心也不保证最优。反例：规格 {1,3,4} 找零 6 角，贪心得 4+1+1 共 3 枚，而最优方案 3+3 只需 2 枚。贪心找零仅在特定面额系统（如常见人民币规格）下恰好最优，通用最优解需用动态规划（完全背包）。\n\n**考点：** 贪心算法、贪心不一定最优的经典反例。",
             tags: [
                 "客观题",
                 "单选题",
                 "GESP5级",
-            ]
+            ],
+      "sourcePage": 7,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","options","explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 14,
@@ -1022,37 +955,19 @@ void quickSort(std::vector<int>& arr, int low, int high) {
     }
 }
 \`\`\``,
-            options: [
-                "在 randomPartition 函数中，变量 i 的作用是记录不大于基准值元素区间的右边界",
-                "randomPartition 随机选择基准值，可以降低遇到最坏情况 $O(N^2)$ 的概率",
-                "快速排序的平均时间复杂度是 $O(n log n)$",
-                "快速排序是稳定排序算法",
-            ],
+            options: ["在 randomPartition 函数中，变量 i 的作用是记录大于基准值的元素的边界","randomPartition 函数随机选择基准值，可以避免输入数据特定模式导致的最坏情况下时间复杂度 $O(n^2)$","快速排序平均时间复杂度是 $O(n\\log n)$","快速排序是稳定排序算法"],
             answer: 3,
             score: 2,
-            explanation: `**答案：不正确的是 D（快速排序是不稳定排序）**
-
-**核心解析：**
-快速排序基于分治思想。题中代码展示的是经典的 Lomuto 划分方案的随机化实现：
-1. \`randomPartition\` 函数随机挑选一个元素并与末尾 \`arr[high]\` 交换作为基准值（\`pivot\`）。
-2. 在循环中，指针 \`j\` 从前向后扫描，指针 \`i\` 始终指向当前已识别出的「不大于基准值区间」的最右侧。每当发现 \`arr[j] <= pivot\`，就让 \`i\` 右移一位并交换 \`arr[i]\` 与 \`arr[j]\`。
-3. 循环结束后，执行 \`std::swap(arr[i + 1], arr[high])\`，把基准值放到它最终的有序位置 \`i + 1\`。
-4. **排序的稳定性**：若序列中数值相等的元素在排序后的相对顺序保持不变，则称该排序算法是稳定的。在快速排序的分区过程中，元素交换是跨越较长距离的「跳跃式交换」，很容易打乱数值相同元素的先后次序，因此快速排序是**不稳定排序**。本题要求找出说法错误的一项，故选 D。
-
-**选项逐项分析：**
-- **A 在 randomPartition 函数中，变量 i 的作用是记录不大于基准值元素区间的右边界**：✅ 说法正确。算法初始设 \`i = low - 1\`，每当扫描到小于等于 \`pivot\` 的元素时，\`i\` 递增 1 并将该元素交换到位置 \`i\`。因此区间 \`[low, i]\` 维护的始终是已发现的小于等于基准值的元素，\`i\` 正是该区间的右边界。
-- **B randomPartition 随机选择基准值，可以降低遇到最坏情况 \`O(N^2)\` 的概率**：✅ 说法正确。若每次固定取端点作为基准，当遇到已有序或逆序的数组时，每次划分都会极其不均匀（一边为 0 个元素，另一边为 \`n - 1\` 个），导致递归深度达到 \`O(n)\`，时间复杂度退化为最坏的 \`O(n^2)\`。随机选取基准值可以有效打破这种极端的输入模式，极大降低触发最坏情况的概率。
-- **C 快速排序的平均时间复杂度是 \`O(n log n)\`**：✅ 说法正确。在平均情况下，基准值能较为均衡地将序列二分，递归树的层数为 \`O(log n)\`，每一层各区间的划分总耗时为 \`O(n)\`，综合平均时间复杂度为 \`O(n log n)\`。
-- **D 快速排序是稳定排序算法**：❌ 说法错误，符合题意。快速排序是不稳定排序。例如对序列 \`[3a, 3b, 1]\` 排序，以 1 为基准时，\`3a\` 会与 1 发生交换变成 \`[1, 3b, 3a]\`，原本位于前面的 \`3a\` 被移到了 \`3b\` 之后，相等元素的相对次序被破坏。
-
-**易错提醒：**
-- **稳定性判断技巧**：凡是存在跨越多个位置发生“远距离跳跃交换”的排序，往往都是不稳定的。例如快速排序、选择排序、堆排序、希尔排序均为不稳定排序；而冒泡排序、插入排序、归并排序在正常实现下属于稳定排序。
-- **随机化未改变理论最坏复杂度**：随机化基准只是让出现最坏情况的概率变得微乎其微，但理论上的最坏时间复杂度依然是 \`O(n^2)\`。`,
+            explanation: "**答案：D**\n\n**解析：**\n本题要求选出**错误**的说法。\n\n- **A 对**（按官方口径）：Lomuto 划分中循环不变量为 `[low, i]` 内元素均不大于基准值、`[i+1, j-1]` 内元素均大于基准值；因此 `i` 也被视作“大于基准值元素”一侧的边界（大于区从 i+1 开始），原句判为正确说法。\n- **B 对**（按官方口径）：固定取端点为基准时，已有序/逆序等特定输入模式会导致每次划分极不均匀，确定性触发最坏 O(n²)；随机选取基准后特定输入模式不再必然触发最坏划分，故原句判为正确说法。（严格而言，随机化只是让最坏情况出现的概率变得极低，理论最坏复杂度仍为 O(n²)。）\n- **C 对**：平均情况下划分大体均衡，递归深度 O(log n)、每层划分总代价 O(n)，平均时间复杂度 O(n log n)。\n- **D 错**：快排的元素交换是跨越多个位置的“远距离交换”，会打乱相等元素的相对次序，是不稳定排序。例如 [3a, 3b, 1] 以 1 为基准划分时 3a 与 1 交换，变成 [1, 3b, 3a]。\n\n**易错提醒：** 存在远距离跳跃交换的排序（快排、选择、堆、希尔）通常不稳定；冒泡、插入、归并在常规实现下稳定。\n\n**考点：** 快速排序、Lomuto 划分、排序稳定性。",
             tags: [
                 "客观题",
                 "单选题",
                 "GESP5级",
-            ]
+            ],
+      "sourcePage": 8,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 15,
@@ -1353,7 +1268,7 @@ prime_factor[i].push_back(j);
         {
             id: 22,
             type: "judge",
-            question: `求解图中 A 点到 D 点最短路径，其中 A 到 B 之间的 12 可以理解为距离。求解这样的问题通常用 Dijkstra 算法，其思想是通过逐步选择当前距离起点最近的节点来求解非负权图（如距离不能为负值）单源最短路径的算法。从该算法的描述可以看出，Dijkstra 算法是贪心算法。`,
+            question: "求解下图中 A 点到 D 点最短路径（图为 7 个点 A—G、12 条无向带权边：A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9），其中 A 到 B 之间的 12 可以理解为距离。求解这样的问题通常用 Dijkstra 算法，其思想是通过逐步选择当前距离起点最近的节点来求解非负权图（如距离不能为负值）单源最短路径的算法。从该算法的描述可以看出，Dijkstra 算法是贪心算法。",
             options: [
                 "正确",
                 "错误",
@@ -1376,7 +1291,11 @@ Dijkstra 算法的每一步都在做"当前最优"的选择：从尚未确定最
                 "客观题",
                 "判断题",
                 "GESP5级",
-            ]
+            ],
+      "sourcePage": 12,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 23,
@@ -1450,18 +1369,7 @@ Dijkstra 算法的每一步都在做"当前最优"的选择：从尚未确定最
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
-
-**判定依据：**
-代码的关键在 \`if (i % primes[j] == 0) break;\`：当 \`primes[j]\` 是 \`i\` 的最小质因数时立即停止内层循环。这保证了合数 \`i * primes[j]\` 只会在 \`primes[j]\` 恰为其最小质因数的那一次被标记，后续更大的质数不会重复标记同一个合数。例如 12 只会以 \`4 × 3\` 的形式被筛掉一次，而不会既被 \`6 × 2\` 又被 \`4 × 3\` 各标记一次。
-
-每个合数恰好被筛一次、每个素数被记录一次，内外层总循环次数与 n 成线性关系，时间复杂度为 $O(n)$，因此称"线性筛"（欧拉筛）。
-
-**易错提醒：**
-- 若删去 \`break\` 语句，就退化成每个合数被各个质因数重复标记的埃氏筛，复杂度变为 $O(n\\log\\log n)$。
-- \`is_prime\` 与 \`primes\` 的分工：\`is_prime[i]\` 标记素数身份，\`primes\` 顺序存放已发现的素数，供内层筛合数使用。
-
-**考点：** 线性筛的核心机制、复杂度分析、与埃氏筛的区别。`,
+            explanation: "**答案：正确**\n\n**判定依据：**\n该线性筛在标记合数时使用 `is_prime[i * primes[j]] = false;`，并在 `if (i % primes[j] == 0) break;` 处立即退出内层循环。因为 `primes` 从小到大存放已发现的质数，当第一次遇到整除 `i` 的质数 `p = primes[j]` 时，`p` 必是 `i` 的最小质因数，此后更大的质数不再参与本轮标记，从而保证每个合数 `m` 只会在 `i = m / spf(m)`、`p = spf(m)` 时被筛掉恰好一次（`spf(m)` 为 `m` 的最小质因数）。\n\n以合数 12 验证：实际它在 `i = 6`、`primes[j] = 2` 时被标记（6×2=12），由于 `6 % 2 == 0`，内层随即 `break`。而当 `i = 4` 时，内层先用质数 2 标记 8，随后因 `4 % 2 == 0` 立即退出，根本不会执行到「4×3」——所以 12 绝不会被 4×3 标记，更不会被重复标记。\n\n每个合数恰好被筛一次、每个素数被记录一次，内外层总操作次数与 n 成线性关系，时间复杂度为 $O(n)$，因此称为线性筛（欧拉筛）。\n\n**易错提醒：**\n- 若删去 `break`，同一合数会被多个质因数重复标记，退化为类似埃氏筛的重复筛除过程，复杂度变回 $O(n\\log\\log n)$。\n- `is_prime[i]` 标记 i 的素性；`primes` 顺序保存已发现的素数，供内层筛合数使用，二者分工不同。\n\n**考点：** 线性筛的核心机制、复杂度分析、与埃氏筛的区别。",
             options: [
                 "正确",
                 "错误",
@@ -1470,7 +1378,11 @@ Dijkstra 算法的每一步都在做"当前最优"的选择：从尚未确定最
                 "客观题",
                 "判断题",
                 "GESP5级",
-            ]
+            ],
+      "sourcePage": 10,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         ...programmingQuestions
     ]

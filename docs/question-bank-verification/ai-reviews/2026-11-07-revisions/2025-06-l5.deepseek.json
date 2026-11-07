@@ -1,0 +1,416 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    5,
+    13,
+    14,
+    22,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:39:26.559Z",
+  "completedAt": "2026-11-07T11:48:02.775Z",
+  "finishReason": "stop",
+  "inputSha256": "bc69bc844c51afa4624888ae55557acf024768eb55c2450b1de7c60918568a2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页眉显示“CCF 编程能力等级认证 C++ 五级 2025 年 06 月”，与 2025-06-l5 一致。\nPDF第1页卷头显示“CCF 编程能力等级认证 C++ 五级 2025年06月”，与2025-06-l5一致；第1页有单选题答案表，第10页有判断题答案表，题号体系与候选一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页原图第 3 题题干、`append()` 代码、空链表分支及横线位置均与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 四项逐行对照第 2 页原图一致；D 的三步顺序确为双向链表尾部插入的正确连接顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 D，候选 answer=3；独立模拟非空链表插入，只有 D 同时建立正向连接、反向连接并移动 tail。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 D 的三步说明正确；A 漏更新 tail、B 漏原尾正向连接、C 先改 tail 导致自环，错因成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3-4 页原图代码与候选一致，包括 n<=1、2/3/5 特判、step=4、finish_number=sqrt(n)+1 及 while 循环。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 选项与第 4 页原图一致；C“所有大于 3 的质数都符合 6k±1 形式”是本题正确说法。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 C，候选 answer=2；独立判断 A 因 5 的特判不成立，B 的 sqrt(n)+1 边界正确，D 耗时不同，仅 C 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确对应 6k±1 试除序列及 A/B/D 错因；D 选项实际为 i < finish_number，解析以区间概括不改变“效果同、耗时不同”的结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7-8 页原图题干、`find_coins()` 代码、贪心循环及输出语句与候选一致；原卷第 19 行确实写作未声明的 `sorted_coins[i]`。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第 8 页原图一致，A 为“采用贪心算法实现”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 A，候选 answer=0；独立反例 coins={1,3,4}、amount=6，贪心得 4+1+1 共 3 枚，最优为 3+3 共 2 枚，故 B 不成立，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对贪心、枚举、分治的辨析成立；反例有效说明 B“总能找到最优解”错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 8 页代码第 19 行 `sorted_coins[i]` 在原代码中未声明，疑为 `coins[i]` 的卷面笔误；候选忠实保留原卷，不影响选项 A 的算法分类判断。"
+        ]
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8-9 页原图第 14 题题干及 `randomPartition()`、`quickSort()` 代码与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第 8-9 页原图一致；D“快速排序是稳定排序算法”与快排实际不稳定性质冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 D，候选 answer=3；独立判断 A/B/C 按官方语境可视为正确，D 明确错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 Lomuto 划分、随机化降低特定输入最坏情形、平均 O(n log n) 及不稳定示例的说明能支持 D；B 严格说随机化只是降低最坏情形概率，解析已注明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 12 页原图第 7 题题干与候选一致；候选补充的 7 点、12 条无向带权边及权值 A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9 与原图逐项吻合。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，仅有正确/错误判断，不适用单选 options 顺序核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 10 页判断题答案表第 7 项为√，候选 answer=0；Dijkstra 逐步选取当前距起点最近的未确定节点，属于贪心策略。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明贪心选择、非负权保证已定距离不再被改进，并指出负权时失效；结论与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          10,
+          12,
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第12页判断第10题题干及第12–13页代码与候选一致，核心表述“每个合数只被它的最小质因数筛掉一次，时间复杂度为O(n)”完整保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第12页仅给出“正确/错误”两个判断项，候选options顺序与之一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题答案表第10题答案为“✓”，对应正确=0；候选answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：内层在i%primes[j]==0时break，合数m只在i=m/spf(m)、p=spf(m)时被标记一次；候选对12、4×3的说明成立，复杂度O(n)判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有独立参考程序，题中代码是判断材料。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第13页题目描述、输入输出、样例1及第14页数据范围、样例2均与候选一致；约束1≤a,b≤10^4、1≤n,m≤10^9无缺漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在PDF选择题答案表中。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：归一化后令v份先按(a,b)计算，若作业券超量，则以每份(b,a)替代可减少b-a张作业券并增加b-a张课堂券；最小替代次数t=ceil((vb-m)/(b-a))，课堂券随t增加，故取最小t判定充分必要；二分答案与复杂度分析正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第14页参考程序与候选referenceCode一致，包括1ll防溢出、向上取整、a==b特判和mid=(l+r+1)>>1；边界推演未发现反例。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "n=m=a=b=1时，一份奖品恰好消耗两类券各1张；兑换第二份需要各2张，不足。"
+          },
+          {
+            "name": "需要调整兑换方式",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "两份奖品可取一份(2,3)和一份(3,2)，两类券各消耗5张；三份至少需要总数15张券，超过持有的10张。"
+          },
+          {
+            "name": "大数防溢出边界",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份奖品固定消耗1+10000=10001张券，总数上限为floor(2×10^9/10001)=199980；取99990份各一种方式时两类券均消耗999999990张，未超1×10^9。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第15页题干、gcd递归定义、输入输出、两个样例及数据范围与候选一致；约束1≤n,q≤10^5、1≤a_i≤1000完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在PDF选择题答案表中。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：排序不改变集合gcd；令g为排序后相邻差值的gcd，则任意d整除所有a_j+i，当且仅当d整除a_min+i且整除所有相邻差，故答案为gcd(g,a_min+i)。n=1时g=0，gcd(0,a_1+i)=a_1+i也成立；两个样例的1,1,3及4,1,2,1,4均对得上。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第16页参考程序与候选referenceCode一致；gcd函数对0的处理、排序、前缀差预处理及按i=1..q查询均正确，时间复杂度O(n log n+(n+q)log V)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单元素最小边界",
+            "input": "1 1\n1",
+            "output": "2",
+            "reason": "n=1时只有一个数，a_1+1=2，单个数的最大公因数为2；参考代码中g=0，gcd(0,2)=2。"
+          },
+          {
+            "name": "所有数相同使g=0",
+            "input": "3 3\n5 5 5",
+            "output": "6\n7\n8",
+            "reason": "三个数相同，相邻差值gcd为0；查询即为gcd(0,5+i)=5+i，i=1,2,3得到6,7,8。"
+          },
+          {
+            "name": "无序输入与差值gcd",
+            "input": "3 3\n30 6 18",
+            "output": "1\n4\n3",
+            "reason": "排序为6,18,30，相邻差12,12，g=12；i=1,2,3时分别求gcd(12,7)=1、gcd(12,8)=4、gcd(12,9)=3。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3,
+        5,
+        13,
+        14,
+        22
+      ],
+      "usage": {
+        "prompt_tokens": 34506,
+        "completion_tokens": 15534,
+        "total_tokens": 50040,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13997
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0144963,
+          "allowance": 0.00869778,
+          "tokens": {
+            "input": 34506,
+            "output": 15534,
+            "reasoning": 13997,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T11:39:26.559Z",
+      "completedAt": "2026-11-07T11:42:31.063Z"
+    },
+    {
+      "questionIds": [
+        25,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 34502,
+        "completion_tokens": 16033,
+        "total_tokens": 50535,
+        "prompt_tokens_details": {
+          "cached_tokens": 34432
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 14662
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0097336,
+          "allowance": 0.00584016,
+          "tokens": {
+            "input": 70,
+            "output": 16033,
+            "reasoning": 14662,
+            "cache_read": 34432,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T11:44:33.733Z",
+      "completedAt": "2026-11-07T11:48:02.775Z"
+    }
+  ]
+}

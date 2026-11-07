@@ -1,0 +1,228 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    5,
+    13,
+    14,
+    22
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:39:26.559Z",
+  "completedAt": "2026-11-07T11:42:31.063Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34506,
+    "completion_tokens": 15534,
+    "total_tokens": 50040,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13997
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0144963,
+      "allowance": 0.00869778,
+      "tokens": {
+        "input": 34506,
+        "output": 15534,
+        "reasoning": 13997,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc69bc844c51afa4624888ae55557acf024768eb55c2450b1de7c60918568a2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页眉显示“CCF 编程能力等级认证 C++ 五级 2025 年 06 月”，与 2025-06-l5 一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页原图第 3 题题干、`append()` 代码、空链表分支及横线位置均与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 四项逐行对照第 2 页原图一致；D 的三步顺序确为双向链表尾部插入的正确连接顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 D，候选 answer=3；独立模拟非空链表插入，只有 D 同时建立正向连接、反向连接并移动 tail。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 D 的三步说明正确；A 漏更新 tail、B 漏原尾正向连接、C 先改 tail 导致自环，错因成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3-4 页原图代码与候选一致，包括 n<=1、2/3/5 特判、step=4、finish_number=sqrt(n)+1 及 while 循环。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 选项与第 4 页原图一致；C“所有大于 3 的质数都符合 6k±1 形式”是本题正确说法。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 C，候选 answer=2；独立判断 A 因 5 的特判不成立，B 的 sqrt(n)+1 边界正确，D 耗时不同，仅 C 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确对应 6k±1 试除序列及 A/B/D 错因；D 选项实际为 i < finish_number，解析以区间概括不改变“效果同、耗时不同”的结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7-8 页原图题干、`find_coins()` 代码、贪心循环及输出语句与候选一致；原卷第 19 行确实写作未声明的 `sorted_coins[i]`。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第 8 页原图一致，A 为“采用贪心算法实现”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 A，候选 answer=0；独立反例 coins={1,3,4}、amount=6，贪心得 4+1+1 共 3 枚，最优为 3+3 共 2 枚，故 B 不成立，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对贪心、枚举、分治的辨析成立；反例有效说明 B“总能找到最优解”错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 8 页代码第 19 行 `sorted_coins[i]` 在原代码中未声明，疑为 `coins[i]` 的卷面笔误；候选忠实保留原卷，不影响选项 A 的算法分类判断。"
+        ]
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8-9 页原图第 14 题题干及 `randomPartition()`、`quickSort()` 代码与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第 8-9 页原图一致；D“快速排序是稳定排序算法”与快排实际不稳定性质冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 D，候选 answer=3；独立判断 A/B/C 按官方语境可视为正确，D 明确错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 Lomuto 划分、随机化降低特定输入最坏情形、平均 O(n log n) 及不稳定示例的说明能支持 D；B 严格说随机化只是降低最坏情形概率，解析已注明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 12 页原图第 7 题题干与候选一致；候选补充的 7 点、12 条无向带权边及权值 A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9 与原图逐项吻合。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，仅有正确/错误判断，不适用单选 options 顺序核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 10 页判断题答案表第 7 项为√，候选 answer=0；Dijkstra 逐步选取当前距起点最近的未确定节点，属于贪心策略。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明贪心选择、非负权保证已定距离不再被改进，并指出负权时失效；结论与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 3、5、13、14、22 题，均已对照 PDF 页图。五题候选题面、选项（判断题不适用）、答案映射和解析结论均无需修改 changes。第 13 题原卷代码 `sorted_coins` 未定义，疑为原卷笔误，已在该题 unresolved 中保留说明，不影响官方答案 A。"
+  }
+}

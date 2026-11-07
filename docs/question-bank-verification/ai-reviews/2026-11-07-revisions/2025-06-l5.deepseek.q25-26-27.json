@@ -1,0 +1,199 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:44:33.733Z",
+  "completedAt": "2026-11-07T11:48:02.775Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34502,
+    "completion_tokens": 16033,
+    "total_tokens": 50535,
+    "prompt_tokens_details": {
+      "cached_tokens": 34432
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14662
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0097336,
+      "allowance": 0.00584016,
+      "tokens": {
+        "input": 70,
+        "output": 16033,
+        "reasoning": 14662,
+        "cache_read": 34432,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc69bc844c51afa4624888ae55557acf024768eb55c2450b1de7c60918568a2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证 C++ 五级 2025年06月”，与2025-06-l5一致；第1页有单选题答案表，第10页有判断题答案表，题号体系与候选一致。"
+    },
+    "questions": [
+      {
+        "id": 25,
+        "sourcePages": [
+          10,
+          12,
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第12页判断第10题题干及第12–13页代码与候选一致，核心表述“每个合数只被它的最小质因数筛掉一次，时间复杂度为O(n)”完整保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第12页仅给出“正确/错误”两个判断项，候选options顺序与之一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题答案表第10题答案为“✓”，对应正确=0；候选answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：内层在i%primes[j]==0时break，合数m只在i=m/spf(m)、p=spf(m)时被标记一次；候选对12、4×3的说明成立，复杂度O(n)判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题没有独立参考程序，题中代码是判断材料。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第13页题目描述、输入输出、样例1及第14页数据范围、样例2均与候选一致；约束1≤a,b≤10^4、1≤n,m≤10^9无缺漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在PDF选择题答案表中。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：归一化后令v份先按(a,b)计算，若作业券超量，则以每份(b,a)替代可减少b-a张作业券并增加b-a张课堂券；最小替代次数t=ceil((vb-m)/(b-a))，课堂券随t增加，故取最小t判定充分必要；二分答案与复杂度分析正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第14页参考程序与候选referenceCode一致，包括1ll防溢出、向上取整、a==b特判和mid=(l+r+1)>>1；边界推演未发现反例。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "n=m=a=b=1时，一份奖品恰好消耗两类券各1张；兑换第二份需要各2张，不足。"
+          },
+          {
+            "name": "需要调整兑换方式",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "两份奖品可取一份(2,3)和一份(3,2)，两类券各消耗5张；三份至少需要总数15张券，超过持有的10张。"
+          },
+          {
+            "name": "大数防溢出边界",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份奖品固定消耗1+10000=10001张券，总数上限为floor(2×10^9/10001)=199980；取99990份各一种方式时两类券均消耗999999990张，未超1×10^9。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第15页题干、gcd递归定义、输入输出、两个样例及数据范围与候选一致；约束1≤n,q≤10^5、1≤a_i≤1000完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在PDF选择题答案表中。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：排序不改变集合gcd；令g为排序后相邻差值的gcd，则任意d整除所有a_j+i，当且仅当d整除a_min+i且整除所有相邻差，故答案为gcd(g,a_min+i)。n=1时g=0，gcd(0,a_1+i)=a_1+i也成立；两个样例的1,1,3及4,1,2,1,4均对得上。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第16页参考程序与候选referenceCode一致；gcd函数对0的处理、排序、前缀差预处理及按i=1..q查询均正确，时间复杂度O(n log n+(n+q)log V)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单元素最小边界",
+            "input": "1 1\n1",
+            "output": "2",
+            "reason": "n=1时只有一个数，a_1+1=2，单个数的最大公因数为2；参考代码中g=0，gcd(0,2)=2。"
+          },
+          {
+            "name": "所有数相同使g=0",
+            "input": "3 3\n5 5 5",
+            "output": "6\n7\n8",
+            "reason": "三个数相同，相邻差值gcd为0；查询即为gcd(0,5+i)=5+i，i=1,2,3得到6,7,8。"
+          },
+          {
+            "name": "无序输入与差值gcd",
+            "input": "3 3\n30 6 18",
+            "output": "1\n4\n3",
+            "reason": "排序为6,18,30，相邻差12,12，g=12；i=1,2,3时分别求gcd(12,7)=1、gcd(12,8)=4、gcd(12,9)=3。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号25、26、27；三题题面、答案或参考代码、解析均已对照PDF页图和答案表复核，未发现需要修改的字段。编程题边界用例为独立推演设计，未声称已运行。"
+  }
+}

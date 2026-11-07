@@ -109,41 +109,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第2页第3题题干与 append 代码和网站一致，横线位于非空分支。",
-          "review": "PDF 第2页第3题题干与 append 代码（is_empty 分支 head = tail = newNode，横线在 else 末端）与网站一致。"
+          "initial": "第 2 页原图第 3 题题干、`append()` 代码、空链表分支及横线位置均与候选一致。",
+          "review": "第 2 页原图第 3 题题干“基于上题代码正确的前提下，填入相应代码完善 append()…”及代码（newNode 创建、is_empty 分支、++size、横线位置）与候选逐行一致。"
         },
         "options": {
-          "initial": "PDF 第2页 A-D 与网站 options 逐项对应，D 为完整三步操作。",
-          "review": "PDF 第2页 A 一句、B 两句（newNode->prev = tail; tail = newNode;）、C/D 三句的组合逐项与网站 options 对应。"
+          "initial": "A-D 四项逐行对照第 2 页原图一致；D 的三步顺序确为双向链表尾部插入的正确连接顺序。",
+          "review": "第 2 页原图 A（tail->next = newNode;）、B（newNode->prev = tail; tail = newNode;）、C（tail = newNode; newNode->prev = tail; tail->next = newNode;）、D（tail->next = newNode; newNode->prev = tail; tail = newNode;）逐行对照一致，仅横线长度属排版差异。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第3题标 D，按 0 起始为 3，与网站 answer=3 一致。",
-          "review": "PDF 第1页答案表第3题标 D，0 起始为 3，与网站 answer=3 一致。"
+          "initial": "第 1 页答案表第 3 题为 D，候选 answer=3；独立模拟非空链表插入，只有 D 同时建立正向连接、反向连接并移动 tail。",
+          "review": "第 1 页答案表第 3 题为 D（序列 C C D A C…），对应 0 起始索引 3。独立推演：A 缺 tail 更新与 newNode->prev；B 缺旧尾正向连接；C 先改 tail 致 prev/next 自环；仅 D 依次完成旧尾正向挂接、新结点回指、tail 后移，与官方一致。"
         },
         "explanation": {
-          "initial": "现解析对 B 项描述错误：B 实际是 newNode->prev = tail; tail = newNode; 并非先移动 tail 后让 prev 指向自己；B 的问题是漏掉用旧尾设置 tail->next = newNode。",
-          "review": "原解析对 B 描述有误：B 的实际顺序是先执行 newNode->prev = tail; 再 tail = newNode;（并非“先 tail = newNode 再 prev 指向自己”），其真正缺陷是漏掉用旧尾设置 tail->next = newNode;，导致新结点未从正向挂入链表。修复后核验通过（修复版对 B、以及 A 未更新尾指针、C 自环且脱钩的表述均经独立推演确认正确）。"
+          "initial": "解析对 D 的三步说明正确；A 漏更新 tail、B 漏原尾正向连接、C 先改 tail 导致自环，错因成立。",
+          "review": "解析给出三步正确顺序并逐一指出 A 漏更新 tail、B 漏 tail->next、C 自环错因，均经独立推演成立，易错点提示准确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.glm.json"
       ]
     },
     {
@@ -190,43 +193,47 @@
       "id": 5,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第3-4页第5题题干与 is_prime 原代码和网站一致。",
-          "review": "PDF 第3–4页第5题题干与 is_prime 代码（含 sqrt(n)+1 上界与 step=6-step 交替）与网站一致。"
+          "initial": "第 3-4 页原图代码与候选一致，包括 n<=1、2/3/5 特判、step=4、finish_number=sqrt(n)+1 及 while 循环。",
+          "review": "第 3 页原图给出题干与代码前 11 行，第 4 页原图续余下 while 循环；n<=1、2/3/5 特判、2/3/5 倍数排除、i=7、step=4、finish_number=sqrt(n)+1 及 while(i<=finish_number) 结构与候选逐行一致。"
         },
         "options": {
-          "initial": "PDF 第4页 D 项包含替换后的循环代码块 `for (int i = 2; i < finish_number; i++) ...`，网站 options[3] 只保留“while 循环修改如下”而缺少代码，导致 D 项不完整。",
-          "review": "PDF 第4页 D 项附有替换后的循环代码块 for (int i = 2; i < finish_number; i++) {...} return true;，网站原 options[3] 缺失该代码致 D 项不完整；补全后与 PDF 逐行一致，修复后核验通过（A/B/C 三项不受影响，答案映射 C 不变）。"
+          "initial": "A-D 选项与第 4 页原图一致；C“所有大于 3 的质数都符合 6k±1 形式”是本题正确说法。",
+          "review": "第 4 页原图 A–D 及 D 项代码 for(int i=2; i<finish_number; i++){...} 与候选一致；C“所有大于 3 的质数都符合 6k±1 形式”为原句。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第5题标 C，按 0 起始为 2，与网站 answer=2 一致。",
-          "review": "PDF 第1页答案表第5题标 C，0 起始为 2，与网站 answer=2 一致。"
+          "initial": "第 1 页答案表第 5 题为 C，候选 answer=2；独立判断 A 因 5 的特判不成立，B 的 sqrt(n)+1 边界正确，D 耗时不同，仅 C 成立。",
+          "review": "第 1 页答案表第 5 题为 C，对应索引 2。独立判断：A 错，5 在 n==5 特判得 true 到不了取模；B 错，sqrt(n)+1 上界对判定结果无碍；D 错，改为逐个试除 2..sqrt(n) 结果等价但试除大量非 6k±1 候选，时间明显更长；C 正确，7,11,13,17,… 序列由 step 4↔2 交替生成，恰覆盖全部 6k±1 型候选，正确性依赖该定理。"
         },
         "explanation": {
-          "initial": "解析独立判断 A/B/D 为假、C 为真：5 已被特判，finish_number=sqrt(n)+1 不是错误，逐个试除虽然结果相同但效率更低，6k±1 试除的前提成立。",
-          "review": "独立推导：5 已被 n==2||n==3||n==5 特判拦截故 A 错；sqrt(n)+1 上界正确故 B 错；大于3的质数均为 6k±1 形式（6k、6k±2、6k+3 均非质数位），step 4/2 交替遍历 7→11→13→17…故 C 成立；D 的替换代码虽判质结果相同但额外试除大量无效候选，执行时间不同，故 D 错。"
+          "initial": "解析正确对应 6k±1 试除序列及 A/B/D 错因；D 选项实际为 i < finish_number，解析以区间概括不改变“效果同、耗时不同”的结论。",
+          "review": "解析对 6k±1 原理（6k、6k±2 为偶，6k+3 为 3 倍数）、step 交替序列及 A/B/D 错因的说明经独立推导成立；D 项区间表述为概括性说法，不影响结论。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.glm.json"
       ]
     },
     {
@@ -486,93 +493,99 @@
     },
     {
       "id": 13,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7 页题面明确：coins 为硬币规格且单位为角、规格都小于 10 角、一定有 1 角规格、amount 必须为 1 角的整数倍、按规格从大到小输出且不需要的规格输出 0。网站题干漏掉这些必要约束。",
-          "review": "PDF 第 7 页题面原文为：“coins 存储可用硬币规格，单位为角，假设规格都小于10角，且一定有1角规格。amount 为要找零的金额，约定必须为1角的整数倍。输出为每种规格及其数量，按规格从大到小输出，如果某种规格不必要，则输出为0。”网站题干缩写为“coins 存储可用硬币面额，amount 为待找零金额”，丢失单位、规格范围、1 角保底、整数倍及输出格式等必要约束。按 changes.question 恢复后核验通过（代码块与 PDF 第 7-8 页逐行一致，原卷自带的 sorted_coins 引用原样保留）。"
+          "initial": "第 7-8 页原图题干、`find_coins()` 代码、贪心循环及输出语句与候选一致；原卷第 19 行确实写作未声明的 `sorted_coins[i]`。",
+          "review": "第 7 页原图题干（规格小于 10 角、含 1 角规格、amount 为 1 角整数倍、按规格从大到小输出）与第 8 页原图 find_coins() 代码逐行一致；原卷第 19 行确实写作未声明的 sorted_coins[i]，候选忠实保留。"
         },
         "options": {
-          "initial": "PDF 第 8 页 B 项为“针对本题具体要求，上述代码总能找到最优解”；网站改成“针对任意面额系统，上述代码总能找到最优解”，改变了选项含义。A、C、D 与 PDF 一致。",
-          "review": "PDF 第 8 页 B 项原文为“针对本题具体要求，上述代码总能找到最优解”；网站改写为“针对任意面额系统，上述代码总能找到最优解”，含义已被放大。A、C、D 与 PDF 一致。按 changes.options 恢复原句后核验通过（顺序、映射均与 PDF 相同，答案 A 不受影响）。"
+          "initial": "A-D 与第 8 页原图一致，A 为“采用贪心算法实现”。",
+          "review": "第 8 页原图 A–D（贪心实现 / 针对本题要求总能找到最优解 / 枚举算法 / 分治算法）与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 13 题为 A；网站 answer=0 映射 A。按代码思想判断 A 为正确说法。",
-          "review": "PDF 第 1 页答案表第 13 题为 A；网站 answer=0 映射 A。独立判断：A（贪心实现）为唯一正确说法——B 即便在本题全部设定下也可用规格 {1,3,4} 找零 6 角证伪（贪心 4+1+1 共 3 枚，最优 3+3 共 2 枚），C/D 与代码特征不符。"
+          "initial": "第 1 页答案表第 13 题为 A，候选 answer=0；独立反例 coins={1,3,4}、amount=6，贪心得 4+1+1 共 3 枚，最优为 3+3 共 2 枚，故 B 不成立，A 正确。",
+          "review": "第 1 页答案表第 13 题为 A，对应索引 0。独立判断：代码按面额降序每步取尽量多且不回溯，属贪心（A 正确）；C 无遍历所有方案结构、D 无子问题分解合并，均错；B 不成立——反例规格 {1,3,4} 找 6 角，贪心 4+1+1 共 3 枚，最优 3+3 共 2 枚。"
         },
         "explanation": {
-          "initial": "网站解析按改写后的 B 项解释为“任意面额系统”，又称本题特殊设定可保证贪心最优；但 PDF 的 B 项本身也可用反例 {1,3,4} 找零 6 证伪，故原解析需改写。",
-          "review": "网站解析针对被改写的 B（任意面额）展开，且断言“有 1 角、金额 1 角整数倍、规格小于 10 角才保证贪心正确”在技术上错误（{1,3,4} 满足上述设定仍不最优）。按 changes.explanation 重写：A 逐贪心定位、B 用该反例证伪、C/D 排除，修复后核验通过。"
+          "initial": "解析对贪心、枚举、分治的辨析成立；反例有效说明 B“总能找到最优解”错误。",
+          "review": "解析对贪心特征及 B 的反例说明经独立验证成立，且指出动态规划才是通用最优解法，无事实错误。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.glm.json"
       ]
     },
     {
       "id": 14,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页 randomPartition/quickSort 代码与网站一致；第 9 页 D 项延续同一题。",
-          "review": "题干“关于下述C++代码的快速排序算法，说法错误的是（ ）。”与 PDF 第 8 页一致；randomPartition（随机 swap 到 high、Lomuto 循环、swap(arr[i+1], arr[high])）与 quickSort 递归结构与网站逐行一致。"
+          "initial": "第 8-9 页原图第 14 题题干及 `randomPartition()`、`quickSort()` 代码与候选一致。",
+          "review": "第 8 页原图题干与 randomPartition() 前半段、第 9 页原图续 quickSort() 部分与候选逐行一致（随机基准、swap 到 high、Lomuto 划分、递归两半）。"
         },
         "options": {
-          "initial": "PDF 第 8 页 A 项为“变量 i 的作用是记录大于基准值的元素的边界”，B 项为“可以避免输入数据特定模式导致的最坏情况下时间复杂度 O(n^2)”。网站把 A 改成“不大于基准值元素区间的右边界”、把 B 改成“降低概率”，语义发生变化。C、D 与 PDF 一致。",
-          "review": "PDF 第 8-9 页原句：A“变量 i 的作用是记录大于基准值的元素的边界”；B“可以避免输入数据特定模式导致的最坏情况下时间复杂度 O(n²)”；C“快速排序平均时间复杂度是 O(n log n)”（无“的”字）；D 与网站相同。网站 A 改写为“记录不大于基准值元素区间的右边界”、B 改写为“降低遇到最坏情况的概率”、C 增加“的”，均为与原卷不同的表述。按 changes.options 恢复原句后核验通过（四项顺序、映射与 PDF 相同，答案 D 不受影响）。"
+          "initial": "A-D 与第 8-9 页原图一致；D“快速排序是稳定排序算法”与快排实际不稳定性质冲突。",
+          "review": "第 9 页原图选项 A（i 记录大于基准值元素的边界）、B（随机选基准避免特定模式最坏 O(n²)）、C（平均 O(n log n)）、D（快排是稳定排序）与候选一致，仅 C 的 LaTeX 记法为等价转换。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 14 题为 D；网站 answer=3 映射 D。",
-          "review": "PDF 第 1 页答案表第 14 题为 D；网站 answer=3 映射 D。官方口径下 A、B、C 为正确说法；独立验证 D 错误：快排划分中的跨位置交换会打乱相等元素次序，如 [3a,3b,1] 以 1 为基准划分后变为 [1,3b,3a]，不稳定。"
+          "initial": "第 1 页答案表第 14 题为 D，候选 answer=3；独立判断 A/B/C 按官方语境可视为正确，D 明确错误。",
+          "review": "第 1 页答案表第 14 题为 D，对应索引 3。独立判断：D 错——快排含跨位置交换，如 [3a,3b,1] 以 1 为基准划分后 3 的相对次序被打乱，故不稳定，是要求选出的错误说法；A 按 Lomuto 不变量（[low,i]≤pivot，大于区从 i+1 起）判为正确；B 为官方口径的合理表述；C 平均复杂度 O(n log n) 成立。"
         },
         "explanation": {
-          "initial": "网站解析建立在改写后的 A、B 项上；恢复 PDF 原句后，需要按官方口径解释 A 中“边界”的含义，并说明随机化避免的是特定输入模式必然触发最坏情况，而非消除理论最坏复杂度。",
-          "review": "网站解析建立在改写后的 A/B 之上（“不大于基准值区间右边界”“降低概率”），与 PDF 原句不对应。按 changes.explanation 重写：A 按“大于基准值一侧的边界（大于区从 i+1 起）”的官方口径解释、B 按“避免特定输入模式确定性触发最坏情况”解释并注明随机化只降概率不改理论最坏、C 平均 O(n log n)、D 用相等元素交换反例判不稳定。修复后核验通过。"
+          "initial": "解析对 Lomuto 划分、随机化降低特定输入最坏情形、平均 O(n log n) 及不稳定示例的说明能支持 D；B 严格说随机化只是降低最坏情形概率，解析已注明。",
+          "review": "解析对 A 给出循环不变量的官方口径说明，对 B 注明随机化仅使最坏情形出现概率极低而非消除理论最坏，对 C 给出递归深度与每层代价分析，对 D 给出具体不稳定反例，均成立。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.glm.json"
       ]
     },
     {
@@ -825,38 +838,41 @@
       "id": 22,
       "resolved": true,
       "dimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         12
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第12页第7题含A—G七点带权无向图，边权为A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9；网站题面只说“图中”但未提供图，缺失必要图形信息。",
-          "review": "修复后核验通过：PDF 第 12 页判断第 7 题原文为「求解下图中A点到D点最短路径……Dijkstra算法是贪心算法」，并附 A—G 七点带权无向图；网站题面只写「图中」却未提供图。经逐条对照原图，边的相对位置确认 12 条边及权值为 A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9（合计与原图 12 个权值数字一一对应），补充边权后题面自足，修复核验通过。"
+          "initial": "第 12 页原图第 7 题题干与候选一致；候选补充的 7 点、12 条无向带权边及权值 A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-E 5、C-F 6、D-E 4、E-F 2、E-G 8、F-G 9 与原图逐项吻合。",
+          "review": "第 12 页原图判断第 7 题题干与候选文字等价；候选补充的图数据经与原图逐一比对完全吻合：A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-F 6、C-E 5、D-E 4、E-F 2、E-G 8、F-G 9，共 7 点 12 条无向带权边，与图中所标 12、16、14、10、7、6、3、5、4、2、8、9 全部对应。"
         },
         "answer": {
-          "initial": "PDF第10页判断题答案表第7题标√，即officialAnswer=0（正确），与网站answer=0一致；Dijkstra逐步选择当前距起点最近节点，属于贪心策略。",
-          "review": "PDF 第 10 页判断题答案表第 7 位为 √，officialAnswer=0（正确），与网站 answer=0 一致；该结论只依赖算法描述（每步选当前距起点最近节点、选定后固定），是贪心的定义特征，且非负权保证贪心不回溯仍最优，判断与具体图无关。"
+          "initial": "第 10 页判断题答案表第 7 项为√，候选 answer=0；Dijkstra 逐步选取当前距起点最近的未确定节点，属于贪心策略。",
+          "review": "第 10 页原图判断题答案表为 √ √ × × √ √ √ × × √，第 7 项为 √，对应索引 0（正确）。独立判断：Dijkstra 每步从未确定节点中选距起点最近者固定并松弛邻点，选中后不回溯，符合贪心定义；非负权保证已定距离不被推翻，故“Dijkstra 是贪心算法”正确。"
         },
         "explanation": {
-          "initial": "解析说明Dijkstra每步选取当前最近节点并在非负权前提下固定最短距离，结论正确；不依赖具体图示，题干缺图问题另列。",
-          "review": "独立推导：Dijkstra 每轮从未确定集合选距源点最近者并固定，属于「局部最优选定后不回溯」的贪心策略；非负权下已固定节点不会被更短路径推翻，故贪心成立。解析不依赖题图，缺图问题仅在 statement 维度修复。"
+          "initial": "解析正确说明贪心选择、非负权保证已定距离不再被改进，并指出负权时失效；结论与官方答案一致。",
+          "review": "解析给出贪心选择特征、非负权保证最优的机理，并补充负权失效（Bellman-Ford）与 Prim 区分的易错提示，与官方判定一致且推理独立成立。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.glm.json"
       ]
     },
     {
@@ -932,38 +948,42 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
+        10,
         12,
         13
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第12—13页第10题代码与网站一致：外层i从2到n，若is_prime[i]则加入primes；内层遍历primes[j]，标记i*primes[j]，当i%primes[j]==0时break；题干称每个合数只被最小质因数筛一次、复杂度O(n)。",
-          "review": "PDF 第 12—13 页判断第 10 题线性筛代码（外层 i 自 2 至 n，is_prime[i] 则 push_back；内层标记 i*primes[j] 并在 i%primes[j]==0 时 break）及题干「每个合数只被它的最小质因数筛掉一次，时间复杂度为 O(n)」与网站完全一致。"
+          "initial": "PDF第12页判断第10题题干及第12–13页代码与候选一致，核心表述“每个合数只被它的最小质因数筛掉一次，时间复杂度为O(n)”完整保留。",
+          "review": "PDF 第 12 页判断第 10 题题干『如下为线性筛法……其核心思想是每个合数只被它的最小质因数筛掉一次，时间复杂度为O(n)』及其代码第 1–10 行、第 13 页代码第 11–18 行与候选逐行一致：vector<bool> is_prime(n + 1, true)、内层条件 j < primes.size() && i * primes[j] <= n、标记后 if (i % primes[j] == 0) break、return primes。"
         },
         "answer": {
-          "initial": "PDF第10页判断题答案表第10题标√，即officialAnswer=0（正确），与网站answer=0一致；该break机制确为线性筛的核心。",
-          "review": "PDF 第 10 页判断题答案表第 10 位为 √，officialAnswer=0（正确），与网站 answer=0 一致；该 break 机制确为线性筛核心，合数 m 只在 i=m/spf(m)、p=spf(m) 时被标记一次，总操作数线性。"
+          "initial": "PDF第10页判断题答案表第10题答案为“✓”，对应正确=0；候选answer=0。",
+          "review": "第 10 页判断题答案表第 10 题为 ✓（正确），对应 0；候选 answer=0。独立推导：内层用严格递增 primes 试乘 i，首次遇到整除 i 的 primes[j] 即 break，故合数 m 仅在 i=m/spf(m)、p=spf(m) 时被标记一次，总标记次数线性，题干断言成立，判定『正确』无误。"
         },
         "explanation": {
-          "initial": "原解析的核心原则和O(n)结论正确，但举例“12只会以4×3的形式被筛掉”错误：i=4时内层先以质数2标记8，随后4%2==0立即break，不会执行4×3；12实际在i=6、primes[j]=2时被标记，并因6%2==0退出。",
-          "review": "修复后核验通过：原解析举例「12 只会以 4×3 的形式被筛掉」与实际执行相反——i=4 时先标记 8，随即 4%2==0 break，根本不会执行 4×3；12 实际在 i=6、p=2 时被标记。已改为按 i=6/p=2 与 i=4 提前 break 的真实执行过程重写该例，修正后的解析与代码行为逐点吻合，修复核验通过。"
+          "initial": "独立复核：内层在i%primes[j]==0时break，合数m只在i=m/spf(m)、p=spf(m)时被标记一次；候选对12、4×3的说明成立，复杂度O(n)判断正确。",
+          "review": "独立复核候选解析：primes 升序保存、首次整除 i 的 primes[j] 即 i 的最小质因数；以 12 验证（i=6、p=2 时标记 12 且随即 break；i=4 时先标 8 后因 4%2==0 break，4×3 不执行）成立；删去 break 退化结论及 is_prime/primes 分工说明均正确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.glm.json"
       ]
     },
     {
@@ -1009,66 +1029,46 @@
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
-        14,
         15,
         16
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第15页写“k ≥ 3”，站内为“k > 3”；且第15页3.2.5数据范围缺失：60%测试点1≤n≤10^3、1≤q≤10；所有测试点1≤n≤10^5、1≤q≤10^5、1≤a_i≤1000。",
-          "review": "PDF 第 15 页 3.2.1 明确写作“对于 k ≥ 3 个正整数”，站内误作“k > 3”；且站内缺失第 15 页 3.2.5 数据范围：对于 60% 的测试点保证 1≤n≤10^3、1≤q≤10，对于所有测试点保证 1≤n≤10^5、1≤q≤10^5、1≤a_i≤1000（试题名称与时限行在第 14 页末）。已据第 15 页原图在 changes 修正 k≥3 并补数据范围，修复后核验通过；其余题面（公式递推定义、输入/输出格式、两组样例）与原图一致。"
+          "initial": "PDF第15页题干、gcd递归定义、输入输出、两个样例及数据范围与候选一致；约束1≤n,q≤10^5、1≤a_i≤1000完整保留。",
+          "review": "PDF 第 15 页 3.2.1 题干（gcd 记号与 k≥3 的递归式 gcd(c1..ck)=gcd(gcd(c1..c(k-1)),ck)）、3.2.2–3.2.4 输入输出格式及两个样例（『5 3 / 6 9 12 18 30 → 1 1 3』『3 5 / 31 47 59 → 4 1 2 1 4』）与候选一致；3.2.5 数据范围 60%：1≤n≤10^3、1≤q≤10，全部：1≤n≤10^5、1≤q≤10^5、1≤a_i≤1000，完整。"
         },
         "explanation": {
-          "initial": "独立推导gcd(a1+i,...,an+i)=gcd(a1+i,g)，g为排序后相邻差值的gcd；n=1时g=0，代码用gcd(0,a1+i)返回a1+i，样例1、2推演一致。",
-          "review": "独立推导不变量：整体加 i 后相邻差不变，故 gcd(a_1+i,...,a_n+i)=gcd(a_1+i,g)，g 为排序后相邻差值的 gcd（证明：h|所有差值 ⟹ h|g；d=gcd(a_1+i,g) 归纳可得 d|所有 a_k+i，两边互夹得等号）。n=1 时 g=0，参考代码 gcd(0,x)=x 分支正确输出 a_1+i。手工复算样例 1：差值 gcd=3，i=1/2/3 输出 gcd(3,7)=1、gcd(3,8)=1、gcd(3,9)=3；样例 2：g=gcd(16,12)=4，i=1..5 输出 4,1,2,1,4，均与官方样例一致。复杂度 O(n log n+(n+q) log V) 在 1e5 规模下可过；站内解析与此一致。"
+          "initial": "独立复核：排序不改变集合gcd；令g为排序后相邻差值的gcd，则任意d整除所有a_j+i，当且仅当d整除a_min+i且整除所有相邻差，故答案为gcd(g,a_min+i)。n=1时g=0，gcd(0,a_1+i)=a_1+i也成立；两个样例的1,1,3及4,1,2,1,4均对得上。",
+          "review": "独立复核：集合 gcd 与顺序无关，排序后相邻差 gcd 等于各数与最小值之差的 gcd；偏移 i 使相邻差不变，故答案=gcd(g, a_min+i)；候选的排序不变性推导、n=1 时 g=0 且 gcd(0,x)=x 的处理、以及两样例逐步演算（差 3,3,6,12→g=3 输出 1,1,3；差 16,12→g=4 输出 4,1,2,1,4）逐一验证无误。"
         },
         "referenceCode": {
-          "initial": "对照PDF第16页参考程序，排序、预处理相邻差值gcd、逐询问输出gcd(g,a[1]+i)一致；给定数据范围内int足够。",
-          "review": "对照 PDF 第 16 页参考程序逐行一致（N=1e5+5、排序、g 预处理 gcd(g,a[i]-a[i-1])、逐询问 printf gcd(g,a[1]+i)）。边界与溢出核算：a_i≤1000 排序后差值非负；a_1+i≤1000+1e5=101000 远在 int 范围；gcd 函数对 0 的处理（a==0||b==0 return a+b）保证 n=1 与全相同数（g=0）场景正确，无除零或死循环。"
+          "initial": "PDF第16页参考程序与候选referenceCode一致；gcd函数对0的处理、排序、前缀差预处理及按i=1..q查询均正确，时间复杂度O(n log n+(n+q)log V)。",
+          "review": "PDF 第 15–16 页参考程序与候选逐行一致；独立验证：gcd 的 0 保护（a==0||b==0 返回 a+b）使 n=1（g=0）与重复元素（差=0）均不出错；预处理 g=gcd(g, a[i]-a[i-1]) 与查询 gcd(g, a[1]+i) 正确；复杂度 O(n log n+(n+q) log V) 满足 10^5 规模，数值上 int 无溢出（a_i≤1000、a_1+q≤1000+10^5）。两样例人工重放输出与样例一致。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l5.glm.json"
       ]
     }
   ],
   "unresolved": [
-    {
-      "id": 3,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 5,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
     {
       "id": 10,
       "dimensions": [
@@ -1082,68 +1082,7 @@
       ]
     },
     {
-      "id": 13,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 22,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
       "dimensions": [
         "statement"
       ],
@@ -1154,5 +1093,6 @@
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-06-l5.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2025-06-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-06-l5.integration.json"
 }

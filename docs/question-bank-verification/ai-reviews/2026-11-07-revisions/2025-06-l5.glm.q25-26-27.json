@@ -1,0 +1,207 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:48:02.788Z",
+  "completedAt": "2026-11-07T11:54:13.568Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 62263,
+    "completion_tokens": 24837,
+    "total_tokens": 87100,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 20103
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02175795,
+      "allowance": 0.02175795,
+      "tokens": {
+        "input": 62263,
+        "output": 24837,
+        "reasoning": 20103,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc69bc844c51afa4624888ae55557acf024768eb55c2450b1de7c60918568a2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP C++ 五级 2025 年 06 月』；第 1 页为 15 题单选答案表、第 10 页为 10 题判断答案表（第 10 题为 ✓）、第 13–16 页为编程题『奖品兑换』与『最大公因数』，与候选 25/26/27 三题定位一致。"
+    },
+    "questions": [
+      {
+        "id": 25,
+        "sourcePages": [
+          10,
+          12,
+          13
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页判断第 10 题题干『如下为线性筛法……其核心思想是每个合数只被它的最小质因数筛掉一次，时间复杂度为O(n)』及其代码第 1–10 行、第 13 页代码第 11–18 行与候选逐行一致：vector<bool> is_prime(n + 1, true)、内层条件 j < primes.size() && i * primes[j] <= n、标记后 if (i % primes[j] == 0) break、return primes。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题仅给出『正确/错误』两项，候选 options 顺序与之一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 10 页判断题答案表第 10 题为 ✓（正确），对应 0；候选 answer=0。独立推导：内层用严格递增 primes 试乘 i，首次遇到整除 i 的 primes[j] 即 break，故合数 m 仅在 i=m/spf(m)、p=spf(m) 时被标记一次，总标记次数线性，题干断言成立，判定『正确』无误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：primes 升序保存、首次整除 i 的 primes[j] 即 i 的最小质因数；以 12 验证（i=6、p=2 时标记 12 且随即 break；i=4 时先标 8 后因 4%2==0 break，4×3 不执行）成立；删去 break 退化结论及 is_prime/primes 分工说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无独立参考程序，题内代码为判断材料，已在 statement 维核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表 ✓ 与独立推导均指向『正确=0』，候选解析的机制说明与复杂度论证经本人独立验证无误，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 13 页 3.1.1–3.1.4 题面（两种兑换方式 a 课堂/b 作业、b 课堂/a 作业）、输入输出格式、样例1『8 8 / 2 1 → 5』、样例2『314159 2653589 / 27 1828 → 1599』与候选一致；第 14 页数据范围 60%：1≤a,b≤100、1≤n,m≤500，全部：1≤a,b≤10^4、1≤n,m≤10^9，无缺漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在 PDF 选择/判断答案表中，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原候选唯一事实错误是样例1走查把初始区间 [0,8] 的首步中点写成 5（实际 (0+8+1)/2=4），且其轨迹 5→7→6 与代码真实轨迹 4→6→5 不符；已按真实轨迹重写该段走查（check(4)=true 无需调整；check(6) 经 t=4 调整后 x=10>8 为假；check(5) 经 t=2 调整后 x=7、y=8 为真），最终输出仍为 5。其余内容（单调性、check 设计与 ceil 公式、规范化步骤、中点 (l+r+1)/2 防死循环、long long 防溢出提醒）独立复核无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "第 14 页 3.1.6 参考程序与候选逐行一致（1ll 防溢出、ceil 公式、a==b 特判输出 n/a、mid=(l+r+1)>>1、上界 r=n）。独立验证：归一化 a≤b、n≤m 后，v 份可行的充要条件是存在份数调整使 v*a+k(b-a)≤n 且 v*b−k(b-a)≤m，x 随 k 单调增故取最小 t 判定即充分必要；可行性关于 v 单调，二分合法；人工重放样例1得输出 5，样例2 check(1599)：t=150 后 x'=313323≤314159 成立、check(1600)：t=151 后 x'=315151>314159 不成立，输出 1599 与样例相符。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案单调性**：若能成功兑换 `v` 份奖品，则少于 `v` 份必然也能兑换；若无法兑换 `v` 份，则更多份数更无法兑换。答案具有单调性，因此可以使用**二分答案**寻找最大兑换份数。\n\n---\n\n### 2. 判定函数（check）设计\n设当前需要检验是否能兑换 `v` 份奖品：\n为了让两类券的消耗尽量匹配持有数量（`n <= m`），我们优先尝试将 `v` 份全部按方式一兑换：\n- 初始课堂券消耗：`x = v * a`；\n- 初始作业券消耗：`y = v * b`。\n\n若 `y <= m`，且 `x <= n`，说明无需调整即可兑换。\n\n若 `y > m`，说明作业券超出持有量，需要将部分奖品由「方式一」调整为「方式二」：\n每将 1 份奖品改为方式二：\n- 作业券消耗减少 `b - a`；\n- 课堂券消耗增加 `b - a`。\n\n作业券超出量为 `y - m`，因此至少需要调整的份数 `t` 为向上取整：\n`t = (y - m + (b - a) - 1) / (b - a)`。\n\n调整后：\n- 作业券消耗变为：`y - t * (b - a)`；\n- 课堂券消耗变为：`x + t * (b - a)`。\n\n最后检验调整后的消耗是否满足 `x <= n && y <= m`。若满足则返回 `true`，否则返回 `false`。\n\n---\n\n### 3. 完整算法步骤\n1. **输入与规范化**：\n   - 读入 `n, m, a, b`；\n   - 若 `n > m`，交换 `n` 与 `m`；\n   - 若 `a > b`，交换 `a` 与 `b`；\n   - 若 `a == b`，直接输出 `n / a` 并退出。\n2. **二分答案**：\n   - 设置二分左右边界：`l = 0`，`r = n`（因为 `a >= 1`，每份奖品至少消耗 `a` 张课堂券，故最多不超过 `n / a <= n` 份）；\n   - 当 `l < r` 时循环：\n     - 取中点 `mid = (l + r + 1) / 2`；\n     - 调用 `check(mid)`：计算初值 `x = mid * a` 和 `y = mid * b`（使用 `long long` 防止溢出）；若 `y > m`，计算调整次数 `t` 并更新 `x` 和 `y`；\n     - 若 `check(mid)` 成立，说明至少可以兑换 `mid` 份，令 `l = mid`；\n     - 否则说明兑换不了 `mid` 份，令 `r = mid - 1`；\n3. **输出答案**：二分结束后，`r` 即为最多可兑换的份数。\n\n---\n\n### 4. 样例走查\n\n#### 样例 1\n输入：\n```text\n8 8\n2 1\n```\n1. **对称化**：`n = 8, m = 8`；由于 `a = 2 > b = 1`，交换后得到 `a = 1, b = 2`。\n2. **二分查找**（初始区间 `[0, 8]`）：\n   - **检验 `mid = (0 + 8 + 1) / 2 = 4`**：\n     - 初始 `x = 4 * 1 = 4`，`y = 4 * 2 = 8`；\n     - `y = 8 <= 8` 且 `x = 4 <= 8`，无需调整；\n     - `check(4)` 为真，区间缩小为 `[4, 8]`。\n   - **检验 `mid = (4 + 8 + 1) / 2 = 6`**：\n     - 初始 `x = 6`，`y = 12`；\n     - `y = 12 > 8`，超出 `4`，需调整 `t = (4 + 1 - 1) / 1 = 4` 次；\n     - 调整后：`y = 12 - 4 = 8 <= 8`，但 `x = 6 + 4 = 10 > 8`，课堂券透支；\n     - `check(6)` 为假，区间缩小为 `[4, 5]`。\n   - **检验 `mid = (4 + 5 + 1) / 2 = 5`**：\n     - 初始 `x = 5`，`y = 10`；\n     - `y = 10 > 8`，超出 `2`，需调整 `t = (2 + 1 - 1) / 1 = 2` 次；\n     - 调整后：`y = 10 - 2 = 8 <= 8`，`x = 5 + 2 = 7 <= 8`；\n     - 均不超额，`check(5)` 为真，区间缩小为 `[5, 5]`。\n3. **输出**：循环结束，`l = r = 5`，最终答案输出 `5`。\n\n---\n\n**易错提醒：**\n- **整型溢出**：在 `check` 中计算 `v * a` 和 `v * b` 时数值可能超过 `int` 最大值，需使用 `long long` 存储和运算。\n- **向上取整计算**：计算最少调整次数时采用整数向上取整公式 `(A + B - 1) / B`，即 `(y - m + (b - a) - 1) / (b - a)`，避免由于整除向下取整导致调整不足。\n- **二分边界**：当采用 `l = mid` 分支时，计算中点必须写成 `mid = (l + r + 1) / 2`，否则当区间只剩两个连续整数时会出现死循环。"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "n=m=a=b=1 时走 a==b 特判输出 n/a=1；人工验证仅 1 份可行（一份 (1,1)），第 2 份需两类券各 2 张，不足。独立推演，未实际运行。"
+          },
+          {
+            "name": "需要调整兑换方式",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "v=2：x=4、y=6>5，t=1 调整后 x'=5、y'=5，可行；v=3：x=6>5 且调整后 x'=10>5，不可行（3 份总消耗 3×(2+3)=15>10 亦印证）。独立推演，未实际运行。"
+          },
+          {
+            "name": "大数防溢出边界",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份固定消耗 1+10000=10001 张，总量上界 floor(2×10^9/10001)=199980；构造 99990 份方式一 + 99990 份方式二，两类券各耗 999999990≤10^9，可行；v=199981 总量 2000009981>2×10^9 不可行。check 中 v*a、v*b 达 10^9 量级以上验证 1ll 转换必要性。独立推演，未实际运行。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核对题面、样例、数据范围与参考代码的核验可接受，予以沿用；但『explanation 全部通过』不能采纳——独立重放二分轨迹发现候选走查首步 mid 误写为 5（(0+8+1)/2=4），且 5→7→6 的轨迹与代码真实轨迹 4→6→5 矛盾，属事实性错误而非文风，已重写样例1走查并复核通过。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 15 页 3.2.1 题干（gcd 记号与 k≥3 的递归式 gcd(c1..ck)=gcd(gcd(c1..c(k-1)),ck)）、3.2.2–3.2.4 输入输出格式及两个样例（『5 3 / 6 9 12 18 30 → 1 1 3』『3 5 / 31 47 59 → 4 1 2 1 4』）与候选一致；3.2.5 数据范围 60%：1≤n≤10^3、1≤q≤10，全部：1≤n≤10^5、1≤q≤10^5、1≤a_i≤1000，完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在 PDF 选择/判断答案表中，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：集合 gcd 与顺序无关，排序后相邻差 gcd 等于各数与最小值之差的 gcd；偏移 i 使相邻差不变，故答案=gcd(g, a_min+i)；候选的排序不变性推导、n=1 时 g=0 且 gcd(0,x)=x 的处理、以及两样例逐步演算（差 3,3,6,12→g=3 输出 1,1,3；差 16,12→g=4 输出 4,1,2,1,4）逐一验证无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 15–16 页参考程序与候选逐行一致；独立验证：gcd 的 0 保护（a==0||b==0 返回 a+b）使 n=1（g=0）与重复元素（差=0）均不出错；预处理 g=gcd(g, a[i]-a[i-1]) 与查询 gcd(g, a[1]+i) 正确；复杂度 O(n log n+(n+q) log V) 满足 10^5 规模，数值上 int 无溢出（a_i≤1000、a_1+q≤1000+10^5）。两样例人工重放输出与样例一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单元素最小边界",
+            "input": "1 1\n1",
+            "output": "2",
+            "reason": "n=1 时预处理循环不执行，g=0；代码 gcd(0, a[1]+1)=gcd(0,2)=2 输出，单个数的 gcd 即其自身。独立推演，未实际运行。"
+          },
+          {
+            "name": "所有数相同使 g=0",
+            "input": "3 3\n5 5 5",
+            "output": "6\n7\n8",
+            "reason": "相邻差全为 0，g=gcd(gcd(0,0),0)=0；每次查询 gcd(0,5+i)=5+i，i=1,2,3 得 6,7,8。验证重复元素在差值法下不出错。独立推演，未实际运行。"
+          },
+          {
+            "name": "无序输入与差值 gcd",
+            "input": "3 3\n30 6 18",
+            "output": "1\n4\n3",
+            "reason": "排序为 6,18,30，差 12,12，g=12；i=1,2,3 分别得 gcd(12,7)=1、gcd(12,8)=4、gcd(12,9)=3。验证排序对无序输入的必要性。独立推演，未实际运行。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与官方参考程序逐行一致，gcd 差分不变性推导与两个样例的人工重放均与候选解析相符，边界（n=1、重复元素、无序输入）经 tests 独立推演验证，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核题 25、26、27：题 25 题干与代码对照 PDF 第 12–13 页逐行一致，答案 ✓ 对应正确（0），线性筛断言经独立推导确认，全部通过；题 26 题面、样例、数据范围与第 14 页官方参考程序一致且算法经独立验证正确（check 充要性、单调性、防溢出、a==b 特判），但候选解析样例 1 二分走查首步 mid 误写为 5（实际 (0+8+1)/2=4），轨迹 5→7→6 与代码真实轨迹 4→6→5 不符，属事实性错误，已重写该段走查（answer 输出 5 不变）并复核通过，故该题 revise；题 27 题面、两样例及第 15–16 页参考程序一致，gcd 差分不变性推导与样例重放正确，全部通过。编程题六条测试用例期望输出均由本人独立推演，未声称实际运行。"
+  }
+}

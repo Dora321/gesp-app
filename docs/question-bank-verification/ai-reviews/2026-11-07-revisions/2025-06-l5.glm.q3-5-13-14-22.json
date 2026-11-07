@@ -1,0 +1,238 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    3,
+    5,
+    13,
+    14,
+    22
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:42:31.074Z",
+  "completedAt": "2026-11-07T11:44:33.718Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 62372,
+    "completion_tokens": 8342,
+    "total_tokens": 70714,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5479
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0135268,
+      "allowance": 0.0135268,
+      "tokens": {
+        "input": 62372,
+        "output": 8342,
+        "reasoning": 5479,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bc69bc844c51afa4624888ae55557acf024768eb55c2450b1de7c60918568a2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图页眉明确显示“CCF 编程能力等级认证 C++ 五级 2025 年 06 月”，等级、年份、月份与 2025-06-l5 完全一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页原图第 3 题题干“基于上题代码正确的前提下，填入相应代码完善 append()…”及代码（newNode 创建、is_empty 分支、++size、横线位置）与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页原图 A（tail->next = newNode;）、B（newNode->prev = tail; tail = newNode;）、C（tail = newNode; newNode->prev = tail; tail->next = newNode;）、D（tail->next = newNode; newNode->prev = tail; tail = newNode;）逐行对照一致，仅横线长度属排版差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 D（序列 C C D A C…），对应 0 起始索引 3。独立推演：A 缺 tail 更新与 newNode->prev；B 缺旧尾正向连接；C 先改 tail 致 prev/next 自环；仅 D 依次完成旧尾正向挂接、新结点回指、tail 后移，与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出三步正确顺序并逐一指出 A 漏更新 tail、B 漏 tail->next、C 自环错因，均经独立推演成立，易错点提示准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案、解析四维均与 PDF 原图核对无差异，无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页原图给出题干与代码前 11 行，第 4 页原图续余下 while 循环；n<=1、2/3/5 特判、2/3/5 倍数排除、i=7、step=4、finish_number=sqrt(n)+1 及 while(i<=finish_number) 结构与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页原图 A–D 及 D 项代码 for(int i=2; i<finish_number; i++){...} 与候选一致；C“所有大于 3 的质数都符合 6k±1 形式”为原句。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 C，对应索引 2。独立判断：A 错，5 在 n==5 特判得 true 到不了取模；B 错，sqrt(n)+1 上界对判定结果无碍；D 错，改为逐个试除 2..sqrt(n) 结果等价但试除大量非 6k±1 候选，时间明显更长；C 正确，7,11,13,17,… 序列由 step 4↔2 交替生成，恰覆盖全部 6k±1 型候选，正确性依赖该定理。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 6k±1 原理（6k、6k±2 为偶，6k+3 为 3 倍数）、step 交替序列及 A/B/D 错因的说明经独立推导成立；D 项区间表述为概括性说法，不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：跨页代码核对完整，四选项正误判断与官方答案 C 一致，解析推理独立成立。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页原图题干（规格小于 10 角、含 1 角规格、amount 为 1 角整数倍、按规格从大到小输出）与第 8 页原图 find_coins() 代码逐行一致；原卷第 19 行确实写作未声明的 sorted_coins[i]，候选忠实保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 8 页原图 A–D（贪心实现 / 针对本题要求总能找到最优解 / 枚举算法 / 分治算法）与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 A，对应索引 0。独立判断：代码按面额降序每步取尽量多且不回溯，属贪心（A 正确）；C 无遍历所有方案结构、D 无子问题分解合并，均错；B 不成立——反例规格 {1,3,4} 找 6 角，贪心 4+1+1 共 3 枚，最优 3+3 共 2 枚。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对贪心特征及 B 的反例说明经独立验证成立，且指出动态规划才是通用最优解法，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 8 页代码第 19 行 sorted_coins[i] 在原代码中未声明（上一行 sort 的是 coins），疑为原卷笔误；候选忠实保留原卷，不影响官方答案 A（算法分类判断）。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案 A 与解析经独立反例验证成立；原卷 sorted_coins 笔误属源卷自身问题，已在 unresolved 保留说明，不擅改原卷。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页原图题干与 randomPartition() 前半段、第 9 页原图续 quickSort() 部分与候选逐行一致（随机基准、swap 到 high、Lomuto 划分、递归两半）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 9 页原图选项 A（i 记录大于基准值元素的边界）、B（随机选基准避免特定模式最坏 O(n²)）、C（平均 O(n log n)）、D（快排是稳定排序）与候选一致，仅 C 的 LaTeX 记法为等价转换。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 D，对应索引 3。独立判断：D 错——快排含跨位置交换，如 [3a,3b,1] 以 1 为基准划分后 3 的相对次序被打乱，故不稳定，是要求选出的错误说法；A 按 Lomuto 不变量（[low,i]≤pivot，大于区从 i+1 起）判为正确；B 为官方口径的合理表述；C 平均复杂度 O(n log n) 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 A 给出循环不变量的官方口径说明，对 B 注明随机化仅使最坏情形出现概率极低而非消除理论最坏，对 C 给出递归深度与每层代价分析，对 D 给出具体不稳定反例，均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：A 选项措辞按官方口径判为正确（解析已注明依据），B 的概率性表述已加严谨注解；答案 D 经不稳定反例独立验证。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          12
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 12 页原图判断第 7 题题干与候选文字等价；候选补充的图数据经与原图逐一比对完全吻合：A-B 12、A-F 16、A-G 14、B-C 10、B-F 7、C-D 3、C-F 6、C-E 5、D-E 4、E-F 2、E-G 8、F-G 9，共 7 点 12 条无向带权边，与图中所标 12、16、14、10、7、6、3、5、4、2、8、9 全部对应。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有正确/错误两判断，不适用单选 options 顺序核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 10 页原图判断题答案表为 √ √ × × √ √ √ × × √，第 7 项为 √，对应索引 0（正确）。独立判断：Dijkstra 每步从未确定节点中选距起点最近者固定并松弛邻点，选中后不回溯，符合贪心定义；非负权保证已定距离不被推翻，故“Dijkstra 是贪心算法”正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出贪心选择特征、非负权保证最优的机理，并补充负权失效（Bellman-Ford）与 Prim 区分的易错提示，与官方判定一致且推理独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：图数据 12 条边权重与原图逐一核对吻合，图论信息无缺失；判定 √ 与答案表一致，解析完整。"
+      }
+    ],
+    "summary": "本次仅复核第 3、5、13、14、22 题（3、5、13、14 为单选，22 为判断），全部对照 PDF 页图逐字核对：题面、选项（判断题不适用）、答案均与原卷一致且与官方答案表（单选 D/C/A/D，判断第 7 题 √）匹配，五题解析经独立推导均成立，无需任何 changes。第 13 题原卷代码 sorted_coins 未定义疑为源卷笔误，候选忠实保留并在 unresolved 留档，不影响答案。全部题目 verdict=approve，核验无遗留争议（除上述源卷笔误记录）。客观题无编程参考代码，不适用 tests。"
+  }
+}
