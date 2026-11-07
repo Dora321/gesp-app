@@ -137,15 +137,16 @@ async function processPaper(id) {
     entry.completedAt = new Date().toISOString(); save();
     report({ id, status: entry.status, unresolvedQuestions: final.unresolved.length });
 }
-const priority = ['2025-06-l5', '2023-09-l6', '2023-12-l6', '2025-06-l6', '2023-12-l5', '2024-06-l6'];
-const ids = [...new Set([...priority, ...inventory.map(paper => paper.id)])].filter(id => id !== '2026-03-l5');
+// 用户指定按等级从一级到八级，再按试卷年月从早到晚逐卷推进。
+const ids = inventory.map(paper => paper.id).filter(id => id !== '2026-03-l5')
+    .sort((a, b) => Number(a.at(-1)) - Number(b.at(-1)) || a.localeCompare(b));
 const pending = ids.filter(id => !['verified', 'reviewed-with-open-issues'].includes(state.papers[id]?.status));
 const active = new Set();
 const jobs = new Set();
 save();
 while ((pending.length || active.size) && !stopped) {
     const runningExternal = external.filter(worker => alive(worker.pid));
-    const limit = runningExternal.length ? 1 : Math.min(3, Number(process.env.GESP_QUEUE_CONCURRENCY || 3));
+    const limit = 1;
     while (active.size < limit) {
         const index = pending.findIndex(id => !runningExternal.some(worker => worker.ids.includes(id)));
         if (index < 0) break;
