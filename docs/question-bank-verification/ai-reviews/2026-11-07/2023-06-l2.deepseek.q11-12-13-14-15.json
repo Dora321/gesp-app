@@ -1,0 +1,227 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:23:42.222Z",
+  "completedAt": "2026-11-07T21:24:57.979Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40744,
+    "completion_tokens": 8414,
+    "total_tokens": 49158,
+    "prompt_tokens_details": {
+      "cached_tokens": 40576
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6818
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00519533,
+      "allowance": 0.0031172,
+      "tokens": {
+        "input": 168,
+        "output": 8414,
+        "reasoning": 6818,
+        "cache_read": 40576,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 6 月 GESP C++ 二级真题解析”，题号11-15属于该卷单选题范围，年月、等级均匹配。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干为“如果 a 和 b 均为 int 类型的变量，下列表达式能正确判断‘a 等于 1 且 b 等于 1’的是（ ）”；网站表述为“若 a、b 均为 int”，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页选项A-D顺序与网站一致：A (a == b) && (b == 1)，B (a && b)，C (a == b == 1)，D (a * b == 1)。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页标注【答案】A，对应0起始索引0。独立验证：(a==b)&&(b==1)当且仅当a=1且b=1时为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐项说明B只判断非零、C存在连等陷阱、D可由-1×-1得1，与PDF第6页解析一致，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干为“如果 a 为 char 类型的变量，下列哪个表达式可以正确判断‘a 是数字’？”；网站写“数字字符”，在char语境下等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页选项A-D与网站一致：A '0' <= a && a <= '9'，B '1' <= a && a <= '0'，C '0' <= a <= '9'，D '1' <= a <= '0'。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页标注【答案】A，对应0起始索引0。独立验证：只有A正确表达ASCII数字字符区间48到57。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出B区间反向、C与D为连写比较陷阱，符合C++左结合规则，独立推导结论同样为A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页代码为 char a = '3', b = '6'; cout << ______; 与网站代码一致，要求输出9。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页选项A-D与网站完全一致：A (a+b)，B (a+b-'0')，C (char)(a+b)，D (char)(a+b-'0')。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页标注【答案】D，对应0起始索引3。独立计算：'3'+'6'-'0'=51+54-48=57，转为char后输出'9'。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按ASCII码计算并说明char提升为int再强转char，输出字符'9'，与PDF结论D一致且推导充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页代码在for循环内用if条件决定是否累加i，最终输出sum；网站代码与题意一致，横线处为待填条件。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第8页选项A-D与网站一致：A i % 3 == 0，B 20 % i == 0，C i <= 8，D i >= 18。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页标注【答案】B，对应0起始索引1。独立计算B筛出20的正因数1+2+4+5+10+20=42。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF第8页解析给出的四选项结果依次为63、42、36、57；网站解析却把A写成i%2==0、C写成i%3==0、D写成i%5!=0，与题面选项不符，需按题面修正选项分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（20 % i == 0）**\n\n程序在 `i=1..20` 中累加满足条件的 `i`，目标是使 `sum=42`。按题面四个选项分别计算：\n- A `i % 3 == 0`：累加 `3+6+9+12+15+18=63`；\n- B `20 % i == 0`：筛出20的正因数，累加 `1+2+4+5+10+20=42`；\n- C `i <= 8`：累加 `1+2+...+8=36`；\n- D `i >= 18`：累加 `18+19+20=57`。\n只有B能得到42，因此选B。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页程序代码与网站一致，循环枚举x从'A'到'D'，统计四个布尔条件之和是否等于3。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第8页选项A-D依次为A、B、C、D，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页标注【答案】C，对应0起始索引2。独立代入：x='C'时四个条件之和为1+1+0+1=3，输出C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析表格逐项统计x='A'到'D'的布尔条件之和，仅C为3，与PDF第9页解析及独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题11-13、15的题面、选项、答案和解析均与PDF一致；题14答案B正确，但网站解析把部分选项条件写错，已按PDF和独立计算给出修正解析。本次5题均为单选题，无编程题边界测试。"
+  }
+}

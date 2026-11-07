@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:11:18.380Z",
+  "completedAt": "2026-11-07T21:12:59.054Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40806,
+    "completion_tokens": 9742,
+    "total_tokens": 50548,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8232
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0119661,
+      "allowance": 0.00717966,
+      "tokens": {
+        "input": 40806,
+        "output": 9742,
+        "reasoning": 8232,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页原图卷头为“2023年6月 GESP C++ 二级真题解析”，与 paperId 2023-06-l2 的年份、月份、语言和级别一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干为“高级语言编写的程序需要经过以下（ ）操作，才可以生成在计算机上运行的可执行代码。”网站题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项依次为 A.编辑、B.保存、C.调试、D.编译；网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页【答案】D；对应网站 options 下标3，officialAnswer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析指出编译是把高级语言变成计算机可识别的二进制语言的过程；网站解析分别排除编辑、保存、调试，结论D与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页流程图显示：条件判断为“否”时进入语句块并回环，为“是”时向下退出。网站以“当条件不成立时反复执行语句块、条件成立时结束循环”的文字等价描述该流程图，未改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A.if 条件判断 then 语句块、B.if 条件判断 then 什么也不做 else 语句块、C.while 条件判断 do 语句块、D.while not 条件判断 do 语句块；网站顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页【答案】D；对应网站 options 下标3，officialAnswer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析说明条件不成立时执行语句块并重新判断、条件成立时流程继续；网站解析用 while not 条件解释同一逻辑，结论D一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2-3页题干为“下列关于 C++语言的叙述，正确的是（ ）。”网站题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2-3页四个选项依次涉及 char 赋给 int、int 相乘结果类型、int 溢出是否崩溃、double 除数为 0.0 是否崩溃；网站选项顺序和语义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页【答案】B；对应网站 options 下标1，officialAnswer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "官方解析指出C选项是溢出得到错误结果但不崩溃，D选项除数为0.0时得到 INF、-INF 或 NaN 且不崩溃。原网站解析把浮点除零笼统写成只得到正负无穷，漏掉 0.0/0.0 得到 NaN 的情况，并把整数除以0说成会直接导致程序崩溃，表述不严谨，需修订。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：B（两个 int 类型变量相乘，结果仍为 int 类型）。\n\n核心解析：A 错误，char 类型变量可以隐式转换为 int，赋值结果是该字符对应的整数值；B 正确，int 与 int 进行算术运算时结果类型仍为 int；C 错误，有符号 int 溢出属于未定义行为，常见实现会得到错误数值，但不会按题目所说必然报错崩溃；D 错误，浮点数除数为 0.0 时通常不会因除零而崩溃，非零数除以 0.0 得到正无穷或负无穷，0.0 除以 0.0 得到 NaN。\n\n因此正确选项为 B。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干为“下列关于 C++语言的叙述，不正确的是（ ）。”网站题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 if 条件必须用小括号、for 中间循环条件可省略表示一直满足、循环体多条语句可用缩进消除二义性、除先乘除后加减外还有很多优先级；网站选项顺序和语义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页【答案】C；对应网站 options 下标2，officialAnswer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析指出C错误在于循环体包含多条语句时需用花括号括起来；网站解析说明C++不靠缩进确定代码块、需使用复合语句，结论C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干为“以下哪个是 C++语言的关键字？（ ）”网站题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 A.main、B.max、C.double、D.sqrt；网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页【答案】C；对应网站 options 下标2，officialAnswer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析说明只有 double 是关键字，其余均为函数名；网站解析同样指出 main、max、sqrt 不是关键字，double 为类型关键字，结论C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号1-5。卷头身份与 2023-06-l2 匹配；5题的题干、选项和答案均可在 PDF 页图中确认。第3题解析存在技术表述不严谨，已在 changes 中提交 explanation 修订；其余题目五维记录均通过。本批无编程题，故不提供运行测试。"
+  }
+}

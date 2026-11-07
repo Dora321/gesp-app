@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-07T21:40:25.803Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2 10",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "98 100",
+          "output": "0",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "最小值闭区间",
+          "input": "2\n2\n",
+          "output": "1\n",
+          "reason": "A=B=2 为约束下界，[2,2] 仅含素数 2，计 1；由 d*d<=x 条件，isPrime(2) 不进循环返回 true。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "上界附近",
+          "input": "997\n1000\n",
+          "output": "1\n",
+          "reason": "独立验算：997 对 2≤i≤31 逐一试除均不整除，为素数；998=2×499、999=3³×37、1000=2³×5³ 均为合数，故计 1；覆盖 B=1000 上界及闭区间右端。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "全范围计数",
+          "input": "2\n1000\n",
+          "output": "168\n",
+          "reason": "[2,1000] 内素数共 168 个（分段累计 25+21+16+16+17+14+16+14+15+14=168），覆盖全部数据范围，验证整体计数逻辑而非仅样例。",
+          "kind": "boundary",
+          "actual": "168\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ee08c87cc218a9109661efb165b228196ac8d53aedfb5976ca1339dfaa5fab32"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n152\n111\n153",
+          "output": "F\nF\nT",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "F\nF\nT\n",
+          "passed": true
+        },
+        {
+          "input": "5\n8208\n548834\n88593477\n12345\n5432",
+          "output": "T\nT\nT\nF\nF",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "T\nT\nT\nF\nF\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入",
+          "input": "1\n1\n",
+          "output": "T\n",
+          "reason": "M 取最小值 1，待判断数取最小正整数 1；len=1，1^1=1 等于自身，输出 T。",
+          "kind": "boundary",
+          "actual": "T\n",
+          "passed": true
+        },
+        {
+          "name": "数值上界",
+          "input": "1\n99999999\n",
+          "output": "F\n",
+          "reason": "99999999 为小于 10⁸ 的最大正整数，8 位，各位 9 的 8 次方之和 8×43046721=344373768≠99999999，输出 F；覆盖上界与 8 位拆位路径。",
+          "kind": "boundary",
+          "actual": "F\n",
+          "passed": true
+        },
+        {
+          "name": "多位自幂数与零数位",
+          "input": "4\n153\n1634\n8208\n10\n",
+          "output": "T\nT\nT\nF\n",
+          "reason": "独立验算：153=1+125+27 为 3 位 T；1634=1+1296+81+256 为 4 位 T（官方题面示例，样例未覆盖）；8208=4096+16+0+4096 为 4 位 T；10 的各位平方和 1²+0²=1≠10 输出 F，覆盖含 0 数位的拆位。",
+          "kind": "boundary",
+          "actual": "T\nT\nT\nF\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "29fe4853b01224f147c6de697fd75abbf1d760608acf7b7f32522d505f587440"
+    }
+  ]
+}

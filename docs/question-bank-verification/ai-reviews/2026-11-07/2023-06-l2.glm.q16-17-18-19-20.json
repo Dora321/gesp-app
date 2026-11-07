@@ -1,0 +1,234 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:30:48.579Z",
+  "completedAt": "2026-11-07T21:32:25.246Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 68275,
+    "completion_tokens": 7373,
+    "total_tokens": 75648,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5183
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01392775,
+      "allowance": 0.01392775,
+      "tokens": {
+        "input": 68275,
+        "output": 7373,
+        "reasoning": 5183,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确写有“2023 年 6 月 GESP C++ 二级真题解析”，并标注单选题每题 2 分共 30 分、判断题每题 2 分共 20 分、编程题每题 25 分共 50 分，与 paperId 对应的年份、月份、等级及卷面结构一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第1题原文含“它的内存只有 64KB”“GB2312 中共有 6763 个汉字”“每个汉字用 2 个字节编码”“只占用了不超过 1/5 的内存空间”。网站题面保留全部判断条件（64KB、6763 个汉字、每字 2 字节、不超过 1/5）及判断对象（CEC-I），仅压缩背景叙述，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无四选一选项，官方以 √/× 给答案，网站以“正确/错误”承载。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，即错误，映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算：6763×2=13526 字节；64KB=64×1024=65536 字节，其 1/5 为 13107.2 字节；13526＞13107.2（等价于 13526/1024≈13.21KB＞12.8KB，占比≈20.64%＞20%），故“不超过 1/5”不成立。网站解析的数值、比较与结论均正确，与官方“超过 64KB 的 1/5”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：草稿对第9页题干压缩、×→1 映射及 13526/13107.2 比较的记录与我方独立推导一致，未做修改，无否决点。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第2题原文给出域名 gesp.ccf.org.cn 并断言“其中顶级域名是 gesp”。网站题面保留域名与该判断点，判断对象一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无四选一选项，官方以 √/× 给答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：DNS 域名自右向左分级，最右端逐级为六级主机名→……顶级域；gesp.ccf.org.cn 的顶级域是最右侧的 cn（与官方解析“gesp.ccf.org.cn 的顶级域名是.cn”一致），gesp 位于最左侧，不是顶级域名。网站解析层级划分（cn→org.cn→ccf.org.cn→gesp）与结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：草稿记录的题干对应关系与 ×→1 映射与 PDF 一致，其域名分级推导与我方独立判断相同，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第3题原文为“不能使用 sqrt、abs 等数学函数，包含<cmath>或<math.h>头文件后就能够使用了”。网站改写为“使用 sqrt、abs 等数学函数前需包含 <cmath> 或 <math.h>”，保留了“需先包含头文件才能使用”的核心条件，语义等价、判定方向一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无四选一选项，官方以 √/× 给答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“√”，即正确，映射为 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：sqrt、abs 等标准数学函数须先有头文件声明方可使用，<cmath>（C++）或 <math.h>（C 兼容）均可提供声明，与官方解析一致。网站解析中“abs 整数版本在 <cstdlib>”属细化补充，主线结论（包含 <cmath>/<math.h> 即可使用）不变，不影响判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：草稿确认网站题面为语义等价改写且 √→0 映射一致，与 PDF 第9页原文核对相符；其关于 abs 细节不影响题判的说明合理。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第4题题干为“在 C++语言中，标识符中可以有下划线‘_’。同时，‘_’也是 C++语言的运算符”，其解析延续至第10页。网站题面保留两个判断点（下划线可用于标识符命名、下划线是运算符），题意未变，故 sourcePages 覆盖 [9,10]。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无四选一选项，官方以 √/× 给答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：下划线是标识符的合法组成字符，但 C++ 运算符集中不存在下划线运算符，题干后半句为假，整体判错，与官方解析“下划线不是 C++语言的运算符”一致。网站解析核心结论正确；关于单独下划线保留用途的提醒属延伸，不影响判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：草稿标示题干在第9页、解析跨至第10页并给出 ×→1 映射，与 PDF 页面布局核对一致，结论与我方独立判断相同。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第5题原文为“如果 a 是 double 类型的变量，而且值为 3.5，则表达式 a * 10 的计算结果为 35，且结果类型为 int”。网站题面保留变量类型、取值、表达式与两个断言（结果 35、类型 int），语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无四选一选项，官方以 √/× 给答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页该题【答案】为“×”，映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a 为 double、字面量 10 为 int，混合运算中 int 向 double 提升，3.5×10.0=35.0，结果类型为 double 而非 int（数值 35 仅在赋给 int 时经截断转换得到）。网站解析的类型推断与结论正确，与官方“至少一个是 double 类型则结果为 double”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：草稿对第10页题干对应、×→1 映射及“int 提升为 double、结果为 35.0”的推导与我方独立核算一致，未做修改，无否决点。"
+      }
+    ],
+    "summary": "本次独立复核题 16—20（官方判断题第 1—5 题，均在限定范围内）。逐题对照 PDF 第 9—10 页页面图与文本层：题干均保留全部判断条件或为语义等价的压缩改写（题 16 压缩 CEC-I 背景但保留 64KB/6763 字/每字 2 字节/不超过 1/5，题 18 将“包含头文件后就能使用”正向改写，判定方向不变）；答案符号逐题核对（×=1：16、17、19、20；√=0：18）与网站 answer 全部一致；解析独立核算全部成立（题 16：13526 字节＞13107.2 字节，占比约 20.64%＞20%；题 20：int 提升 double，结果 35.0 为 double 型；题 17 顶级域为最右侧 cn；题 19 下划线非运算符）。五题 options 与 referenceCode 维度不适用，无编程题故不安排 tests。DeepSeek 初核草稿逐条与我方独立推导一致且未提出任何修改，全部接受，verdict 均为 approve，changes 均为空，无未决事项。"
+  }
+}

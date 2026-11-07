@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:29:29.724Z",
+  "completedAt": "2026-11-07T21:30:48.566Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40744,
+    "completion_tokens": 8597,
+    "total_tokens": 49341,
+    "prompt_tokens_details": {
+      "cached_tokens": 40576
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7141
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00530513,
+      "allowance": 0.00318308,
+      "tokens": {
+        "input": 168,
+        "output": 8597,
+        "reasoning": 7141,
+        "cache_read": 40576,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确为“2023 年 6 月 GESP C++ 二级真题解析”；第9—10页为判断题部分，与 paperId 对应的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第1题原文为“内存只有64KB……GB2312中共有6763个汉字，假如每个汉字用2个字节编码……只占用了不超过1/5的内存空间”。网站表述保留了64KB、6763个汉字、每字2字节、不超过1/5等必要条件和判断对象，虽压缩了中华学习机背景，但未改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 ABCD 选项；网站以“正确/错误”表示判断结果，官方以“√/×”给出答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，即错误，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算：6763×2=13526字节；64KB=64×1024=65536字节，其1/5为13107.2字节；13526＞13107.2，故“不超过1/5”为假。网站解析的数值、比较和结论均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第2题原文指出域名为 gesp.ccf.org.cn，并判断“其中顶级域名是 gesp”。网站题面与该判断完全对应，没有改变域名或判断对象。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 ABCD 选项；官方答案以“√/×”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：域名从右向左分级，最右侧标签 cn 才是顶级域名；gesp 位于最左侧，是四级域名/主机名，不是顶级域名。网站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第3题原文为“不能使用 sqrt、abs 等数学函数，包含<cmath>或<math.h>头文件后就能够使用了”。网站改写为“使用 sqrt、abs 等数学函数前需包含 <cmath> 或 <math.h>”，保留了头文件条件和函数范围，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 ABCD 选项；官方答案以“√/×”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“√”，即正确，映射为0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：C++ 标准数学库函数 sqrt、abs 等使用前应包含相应数学头文件，<cmath> 或 C 风格 <math.h> 均可提供声明。网站解析的核心结论正确；其中关于 abs 整数版本位于 <cstdlib> 的补充属于细化说明，不改变本题判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第4题原文为“在 C++语言中，标识符中可以有下划线‘_’。同时，‘_’也是 C++语言的运算符”。网站题面保留了“可用于标识符命名”和“也是运算符”两个判断点，未改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 ABCD 选项；官方答案以“√/×”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：下划线可以作为标识符的组成字符，但不是 C++ 运算符，因此题干后半句为假。网站解析关于“下划线不是运算符”的核心结论正确；单独下划线的保留标识符细节不影响本题判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第5题原文为“如果 a 是 double 类型的变量，而且值为 3.5，则表达式 a * 10 的计算结果为 35，且结果类型为 int”。网站题面与该表述一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 ABCD 选项；官方答案以“√/×”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页该题【答案】为“×”，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a 为 double，10 为 int，混合运算时 int 提升为 double，a*10 的结果为 double 类型的35.0，而不是 int 类型的35。网站解析结论和类型判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16—20，均为判断题。逐题对照PDF第9—10页原文、答案符号和解析：题面保留必要判断条件，答案映射（√=0、×=1）与网站answer一致，解析独立核算均成立。未发现需要修改的题面、答案或解析，changes均为空；判断题的options与referenceCode维度不适用，未安排编程测试。"
+  }
+}

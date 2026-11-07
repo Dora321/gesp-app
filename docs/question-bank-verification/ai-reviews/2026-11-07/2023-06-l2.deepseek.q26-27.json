@@ -1,0 +1,179 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:34:44.508Z",
+  "completedAt": "2026-11-07T21:36:28.396Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40738,
+    "completion_tokens": 11900,
+    "total_tokens": 52638,
+    "prompt_tokens_details": {
+      "cached_tokens": 40576
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10145
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00728603,
+      "allowance": 0.00437162,
+      "tokens": {
+        "input": 162,
+        "output": 11900,
+        "reasoning": 10145,
+        "cache_read": 40576,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023年6月 GESP C++ 二级真题解析”；第11页为编程题1“找素数”，第13页为编程题2“自幂数判断”，年月与等级均与paperId=2023-06-l2一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          11,
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第11页输入描述明确为“输入2行，第一行包含正整数A，第二行包含正整数B”，样例1/2在PDF第11—12页也是两行；网站题面写成“输入只有一行两个正整数”，且samples把两次输入合并为一行，属于输入格式与样例呈现不一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用options维度。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按试除法独立推导：2~10中素数2、3、5、7计4；98、99、100分别被2、3、2整除计0；并正确说明x<2特判、i*i<=x试除上界和闭区间x<=B，与PDF第12页样例解释及第13页参考程序一致。解析以A、B值记写样例，不依赖输入是否换行。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码用cin >> A >> B可读取两行或空格分隔输入；isPrime对x<2返回false，试除到d*d<=x；主循环x<=B覆盖闭区间。A,B<=1000时int与d*d无溢出，复杂度O((B-A+1)√B)满足范围。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202306 二级] 找素数\n\n## 题目描述\n\n小明刚刚学习了素数的概念：如果一个大于 $1$ 的正整数，除了 $1$ 和它自身外，不能被其他正整数整除，则这个正整数是素数。现在，小明想找到两个正整数 $A$ 和 $B$ 之间（包括 $A$ 和 $B$）有多少个素数。\n\n## 输入格式\n\n输入 2 行，第一行包含正整数 $A$，第二行包含正整数 $B$。约定 $2 \\le A \\le B \\le 1000$。\n\n## 输出格式\n\n输出一行，包含一个整数 $C$，表示找到 $C$ 个素数。\n",
+          "samples": [
+            {
+              "input": "2\n10",
+              "output": "4"
+            },
+            {
+              "input": "98\n100",
+              "output": "0"
+            }
+          ]
+        },
+        "tests": [
+          {
+            "name": "最小闭区间",
+            "input": "2\n2\n",
+            "output": "1\n",
+            "reason": "A=B=2，闭区间仅含2，2为素数，应计1；覆盖A、B最小值。"
+          },
+          {
+            "name": "上界附近",
+            "input": "997\n1000\n",
+            "output": "1\n",
+            "reason": "997为素数，998、999、1000均为合数；覆盖B=1000上界及闭区间右端。"
+          }
+        ],
+        "unresolved": [
+          "网站题面与样例把两次输入合并为一行；纠错草稿已改为两行并恢复官方样例，待应用。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第13—14页题面包含$1 \\le M \\le 100$、待判断正整数均小于$10^8$、1634的4位自幂数示例，以及可逐个输入判断输出的提示；网站题面只写“第一行是一个正整数M，之后M行”，缺少范围、1634示例和提示，影响数据规模与边界判断。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用options维度。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立走查153=1^3+5^3+3^3、152≠1^3+5^3+2^3，说明位数统计、拆位求幂、累加和比较，并提醒避免pow浮点误差及每轮重置计数；与PDF第15页解题思路一致。使用long long是保守做法，给定小于10^8范围下int也可容纳最大累加和，不影响正确性。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "代码先以t=x统计位数len，再重新拆位用ipow累加各位len次方；x<10^8时len<=8，最大累加约8×9^8=344373768，long long无溢出；M<=100，复杂度O(M·位数^2)可接受；x=0分支不在题目输入范围内。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202306 二级] 自幂数判断\n\n## 题目描述\n\n自幂数是指，一个 $N$ 位数，满足各位数字 $N$ 次方之和是本身。\n例如，$153$ 是 $3$ 位数，$1^3+5^3+3^3=153$，因此 $153$ 是自幂数；$1634$ 是 $4$ 位数，$1^4+6^4+3^4+4^4=1634$，因此 $1634$ 是自幂数。\n\n现在，输入若干个正整数，请判断它们是否是自幂数。\n\n## 输入格式\n\n输入第一行是一个正整数 $M$，表示有 $M$ 个待判断的正整数。约定 $1 \\le M \\le 100$。\n\n从第 $2$ 行开始的 $M$ 行，每行一个待判断的正整数。约定这些正整数均小于 $10^8$。\n\n## 输出格式\n\n输出 $M$ 行，如果对应的待判断正整数为自幂数，则输出英文大写字母 `T`，否则输出英文大写字母 `F`。\n\n提示：不需要等到所有输入结束再依次输出，可以输入一个数就判断一个数并输出，再输入下一个数。\n"
+        },
+        "tests": [
+          {
+            "name": "最小输入",
+            "input": "1\n1\n",
+            "output": "T\n",
+            "reason": "M=1且待判断数为最小正整数1，1^1=1，是1位自幂数，应输出T。"
+          },
+          {
+            "name": "小于10^8的最大正整数",
+            "input": "1\n99999999\n",
+            "output": "F\n",
+            "reason": "99999999为8位数，各位9的8次方之和=8×43046721=344373768，不等于99999999；覆盖上界附近。"
+          },
+          {
+            "name": "3位与4位自幂数",
+            "input": "2\n153\n1634\n",
+            "output": "T\nT\n",
+            "reason": "153=1^3+5^3+3^3，1634=1^4+6^4+3^4+4^4，均为自幂数，覆盖多组输入与不同位数。"
+          }
+        ],
+        "unresolved": [
+          "网站题面缺少M与待判断数范围、1634示例及提示；纠错草稿已补齐，待应用。"
+        ]
+      }
+    ],
+    "summary": "初核仅覆盖题26、27。卷头年月等级与来源匹配。题26算法与参考代码正确，但网站题面及样例把官方两次输入合并为一行，需按PDF改为两行并恢复官方样例行；题27参考代码正确，但题面缺少M与待判断数范围、1634示例及提示，需补齐。两题解析均可独立推导且与官方思路一致。测试期望值均为独立计算，未声称已运行代码。"
+  }
+}

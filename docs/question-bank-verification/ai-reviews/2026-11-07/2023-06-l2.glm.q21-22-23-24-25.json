@@ -1,0 +1,239 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:33:17.740Z",
+  "completedAt": "2026-11-07T21:34:44.496Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 68184,
+    "completion_tokens": 6267,
+    "total_tokens": 74451,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4333
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0133611,
+      "allowance": 0.0133611,
+      "tokens": {
+        "input": 68184,
+        "output": 6267,
+        "reasoning": 4333,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「2023 年 6 月 GESP C++ 二级真题解析」，年月（2023年6月）、语言（C++）、等级（二级）与 2023-06-l2 一致；已核对来源 git-blob SHA 3f62080135559d95a1d9f68bcad1e2049506d24b。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第6题原文：「在 if 语句中，如果条件成立时需要执行多条语句，可以使用大括号‘{’和‘}’将这些语句括起来。」网站题干「若条件成立需执行多条语句，可用花括号把这些语句括起来」为大括号↔花括号同义换名及压缩表述，语义一致。",
+            "evidenceType": "page_image+text_layer"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅「正确/错误」两项，无单选选项需核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 的 if 不加 {} 时只控制紧随其后的一条语句，多条语句须用 {} 组成复合 statement 才能整体受控，题干「可用花括号括起来」正确；PDF 第10页该题标注【答案】√，判断题正确映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析（复合语句/代码块原理、反例说明不加花括号时仅首条语句受 if 控制）与官方解析结论一致，且可由 C++ 语法独立推出，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核后与 DeepSeek 初核结论一致：题干压缩表述未改含义，答案映射 0 正确，解析可独立推出，接受初核，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第7题原文：「循环语句的循环体有可能无限制地执行下去。」网站仅省略助词「地」，语义完全一致。",
+            "evidenceType": "page_image+text_layer"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅「正确/错误」两项，无单选选项需核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：循环条件恒真或循环变量未按预期更新时可形成死循环，循环体确可能无限执行，题干正确；PDF 第10页该题标注【答案】√，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析列举 while(true)、for(;;)、漏写更新、更新方向写反等死循环情形并指出死循环不一定是错误，逻辑自洽，结论与官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题干仅差「地」字属无意义差异，答案与解析经独立推导确认，接受。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第8题原文：「++和==都是 C++语言的运算符，但+=不是。」网站仅调整空格与「语言的有→」表述，语义一致。",
+            "evidenceType": "page_image+text_layer"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅「正确/错误」两项，无单选选项需核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立判定：++（自增）、==（相等比较）、+=（复合赋值）均为 C++ 运算符（后者等价 a = a + b），题干后半句「但+=不是」错误，整题应判「错误」；PDF 第10页该题标注【答案】×，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确指出三者均为运算符、说明 += 的复合赋值语义及左值/优先级注意点，与官方解析结论一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：+= 确为运算符，题干判错，「错误」映射 1 正确，解析无误，接受。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干起于 PDF 第10页末：「如果 a 为 char 类型的变量，且取值为大写字母'F'，则执行语句 a = a + 1;后，a 的值会变为大写字母'G'。」其【答案】√ 排在第11页页首；网站压缩表述（省去引号与「类型的变量」）未改变含义。",
+            "evidenceType": "page_image+text_layer"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅「正确/错误」两项，无单选选项需核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：'F' 的 ASCII 为 70，a+1 按整型提升计算得 71，赋回 char 后为 'G'（71 在 char 表示范围内，转换无歧义），题干正确；PDF 第11页该题标注【答案】√，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出 ASCII 70→71 推导及 char 与 int 混合运算的提升—赋回路径，并附代码示例，结论与官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核跨页证据（第10页题干、第11页答案√）后与初核一致，ASCII 数值映射 70→71 独立确认，接受。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11页判断题第10题原文：「表达式 sqrt(9.0)的计算结果为 3，且结果类型为 int。」网站仅微调措辞，语义一致。",
+            "evidenceType": "page_image+text_layer"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅「正确/错误」两项，无单选选项需核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：<cmath> 的 sqrt(double) 返回类型为 double，sqrt(9.0) 数值为 3.0 但类型是 double 而非 int，题干「结果类型为 int」错误，应判「错误」；PDF 第11页该题标注【答案】×，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出函数原型 double sqrt(double)、指出返回值类型由函数定义决定、赋给 int 才发生隐式转换截断，论证正确，与官方解析（返回值类型为 double）一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：sqrt 返回 double 为标准规定，题干类型断言错误判「错误」映射 1 正确，接受。"
+      }
+    ],
+    "summary": "本次独立复核范围仅限题号 21-25（对应 PDF 第10-11页判断题第6-10题），逐题基于页面图与文本层推导：五题题干均为等价压缩表述（仅「地」字、花括号/大括号换名等无意义差异），官方答案映射为 0、0、1、0、1，与网站 answer 全部一致；解析均与官方结论一致且可独立推出，无事实错误。判断题的 options 与 referenceCode 维度不适用。无需修改（changes 全空）、无编程题故无 tests、无未决事项，五题全部 approve，初核结论经独立验证后全部接受。"
+  }
+}

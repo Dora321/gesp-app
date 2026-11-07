@@ -1,0 +1,238 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:24:57.991Z",
+  "completedAt": "2026-11-07T21:29:29.710Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 68390,
+    "completion_tokens": 24182,
+    "total_tokens": 92572,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 21239
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0223495,
+      "allowance": 0.0223495,
+      "tokens": {
+        "input": 68390,
+        "output": 24182,
+        "reasoning": 21239,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图卷头为“2023 年 6 月 GESP C++ 二级真题解析”，年（2023）、月（6）、语言（C++）、等级（二级）与目标卷 2023-06-l2 一致；该卷单选题共 15 题，第 11–15 题即本次核验对象。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干要求 a、b 均为 int 时选出能正确判断“a 等于 1 且 b 等于 1”的表达式；网站作“若 a、b 均为 int，能正确判断……的表达式”，语义等价，属允许的等价转写。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图与文本层均为 A. (a == b) && (b == 1)；B. (a && b)；C. (a == b == 1)；D. (a * b == 1)，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页【答案】A → 0 起始索引 0，与网站 answer=0 一致。独立验证：A 为 a==b 且 b==1 的合取，当且仅当 a=b=1 时为真；B 只保证 a、b 非零（如 2、3 也成立）；C 左结合为 (a==b)==1，a=b=2 时仍为真；D 在 a=b=-1 时也为真，仅 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出 B 非零陷阱、C 连等陷阱（先算 a==b 得 0/1 再与 1 比较）、D 的 -1×-1=1 反例，与 PDF 第 6 页官方解析逐条对应，推导独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、选项、答案映射及解析均与页图一致；B/C/D 反例（2&3、2==2==1、-1×-1=1）已独立推导确认，无修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干“如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a 是数字”？”；网站作“a 是数字字符”，在 char 变量语境下含义相同，属等价转写。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A. '0' <= a && a <= '9'；B. '1' <= a && a <= '0'；C. '0' <= a <= '9'；D. '1' <= a <= '0'，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页【答案】A → 索引 0，与网站 answer=0 一致。独立验证：仅 A 表示 ASCII 48–57 区间；B 区间倒置（'1'=49 大于 '0'=48）为空集；C、D 依左结合先算 ('0' <= a) 或 ('1' <= a) 得 0 或 1，再与 '9'(57) 或 '0'(48) 比较均恒成立，失去判断意义。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析对 B 区间倒置、C/D 连写比较恒真的说明符合 C++ 左结合规则，也与 PDF 第 7 页官方解析（两个条件须用&&连接，数字字符 ASCII 最小'0'最大'9'）一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：选项文本、答案及连写比较恒真的成因均已独立复核，与页图一致，无修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图代码逐行核对：char a = '3', b = '6'; 与 cout << ________; // 在此处填入代码 及 return 0; 与网站代码一致，题干“使得输出是 9”相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A. (a + b)；B. (a + b - '0')；C. (char)(a + b)；D. (char)(a + b - '0')，与网站一致（仅空格排版差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页【答案】D → 索引 3，与网站 answer=3 一致。独立计算：'3'+'6'=51+54=105（char 提升为 int），105-'0'=105-48=57，(char)57 即字符 '9'，cout 输出 9。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析各数值（51、54、48、105、57）及 A 输出 105、B 输出数值 57、C 输出 'i'(105) 的区分均与官方解析（char 提升为 int 参与计算、输出时需强转 char）一致，独立复核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：页图代码与网站逐行一致；51+54-48=57、(char)57='9' 已独立复核，A/C 选项的输出（105、'i'）亦验证无误，无修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页末题干“在下列代码的横线处填写（　），可以使得输出是 42”；第 8 页页图代码 int sum = 0; for (int i = 1; i <= 20; i++) if (________) // 在此处填入代码 sum += i; cout << sum << endl; 与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A. i % 3 == 0；B. 20 % i == 0；C. i <= 8；D. i >= 18，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页【答案】B → 索引 1，与网站 answer=1 一致。独立计算：20 % i == 0 筛出 20 的正因数 1、2、4、5、10、20，其和为 42。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析把 A/C/D 的条件误写成 i%2==0、i%3==0、i%5!=0 且求和错配（如称 i%2==0 得 63，实际 i%2==0 应为 110）；按题面重算 A=3+6+9+12+15+18=63、B=42、C=1+2+…+8=36、D=18+19+20=57，与 PDF 第 8 页官方解析“63、42、36 和 57”逐一吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（20 % i == 0）**\n\n**核心解析：**\n程序对 `i` 从 1 到 20 循环：条件成立时把 `i` 累加到 `sum`，最后输出 `sum`。目标输出是 42，即筛出的 `i` 之和应等于 42。\n`20` 的正因数是 1、2、4、5、10、20，其和为 `1+2+4+5+10+20 = 42`；条件 `20 % i == 0` 表示 `i` 能整除 20，恰好筛出这些因数。\n\n**选项逐项分析（按题面选项代入循环）：**\n- **A（i % 3 == 0）**：累加 3 的倍数 `3+6+9+12+15+18 = 63`。❌\n- **B（20 % i == 0）**：累加 20 的正因数 `1+2+4+5+10+20 = 42`。✅\n- **C（i <= 8）**：累加 `1+2+…+8 = 36`。❌\n- **D（i >= 18）**：累加 `18+19+20 = 57`。❌\n只有 B 使输出为 42，四个结果与 PDF 官方解析给出的“63、42、36 和 57”逐一对应。\n\n**易错提醒：**\n- `20 % i == 0` 与 `i % 20 == 0` 含义不同：后者在 1…20 内只有 `i=20` 成立，输出 20 而非 42。\n- 判断各选项时先列出入选的数集再求和，比盲试更快；本题 `i` 从 1 开始，`20 % i` 不存在除以 0 的问题。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：其对答案 B（因数和 42）与题面、代码一致的判断正确，予以采纳；其指出的解析选项文本错误（A/C/D 写成 i%2==0、i%3==0、i%5!=0）经我独立重算 63/42/36/57 确认属实，采纳修正后的完整解析。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页页图代码逐行核对：for (char x = 'A'; x <= 'D'; x++) 与 if ((x != 'A') + (x == 'C') + (x == 'D') + (x != 'D') == 3) cout << x; 与网站一致，题干“执行以下 C++语言程序后，输出结果是（　）”相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A. A；B. B；C. C；D. D，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页【答案】C → 索引 2，与网站 answer=2 一致。独立代入：'A'→0+0+0+1=1；'B'→1+0+0+1=2；'C'→1+1+0+1=3（输出）；'D'→1+0+1+0=2。加法优先级高于 ==，整式为四条件之和与 3 比较，仅 x='C' 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐字符统计四条件之和得 1/2/3/2，仅 'C' 输出，选项 A–D 的失败原因（和为 1、2、3、2）与 PDF 第 9 页官方解析“取到 C 时恰好满足四个条件中的三个，总和为 3”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：代码、选项、答案与页图一致；四条件和 1/2/3/2 的代入表已独立复核无误，无修改。"
+      }
+    ],
+    "summary": "本次独立复核题 11–15（均依据页图而非仅文本层）：五题题干、选项、答案映射（PDF【答案】A/A/D/B/C → 索引 0/0/3/1/2）与官方 PDF 一致。题 11、12、13、15 五维全部通过且无修改；题 14 答案正确，但原解析把 A/C/D 的选项条件误写为 i%2==0、i%3==0、i%5!=0 并连带错误求和（如 i%2==0 实际应为 110 而非 63），按题面重算为 63/42/36/57、与官方解析一致后已提交修正解析，修复后核验通过。本次 5 题均为单选题，无编程题，tests 为空；无遗留争议。"
+  }
+}

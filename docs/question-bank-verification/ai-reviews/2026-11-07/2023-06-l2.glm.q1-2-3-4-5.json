@@ -1,0 +1,239 @@
+{
+  "paperId": "2023-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T21:12:59.065Z",
+  "completedAt": "2026-11-07T21:16:41.106Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 68314,
+    "completion_tokens": 17182,
+    "total_tokens": 85496,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14348
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0188381,
+      "allowance": 0.0188381,
+      "tokens": {
+        "input": 68314,
+        "output": 17182,
+        "reasoning": 14348,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2bbf8c8d5c1db89be7a2fb5b4c41a07ebbae1265bb13b4ec9b4af38f1adbe730",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++2级.pdf",
+    "mirrorSha": "3f62080135559d95a1d9f68bcad1e2049506d24b",
+    "mirrorBytes": 1331358,
+    "shaVerified": true,
+    "sha256": "2e73640da3ba23d5d4705a86ceb013acb1f1c56f822090f0eaf5dc7efa7d96f9"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头红字标题为“2023 年 6 月 GESP C++ 二级真题解析”，与 paperId 2023-06-l2 的年份（2023）、月份（6）、语言（C++）、级别（二级）完全对应；第1页还标注“一、单选题（每题 2 分，共 30 分）”，与网站 single/single/… 结构吻合。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页题干“高级语言编写的程序需要经过以下（　）操作，可以生成在计算机上运行的可执行代码。”；网站作“才可以生成在计算机上运行的可执行代码。”，仅多一个“才”字，两个版本均表达“必须经过该操作才能生成可执行代码”，属等价措辞，不改变题意与作答。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A.编辑、B.保存、C.调试、D.编译；网站四个选项顺序与文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页红字【答案】D；D 为第 4 项即下标 3，网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析（第1页）指出“编译是把高级语言变成计算机可以识别的二进制语言的过程”；网站解析论证从源代码到可执行代码必须经过编译并逐项排除编辑/保存/调试，结论 D 与官方一致，技术表述无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维均经我独立核对与 PDF 第1页一致。补充说明初核未提及的一点：网站题干“才可以生成”较原文“可以生成”多一字，我判定为等价措辞、不构成含义改变，故不做修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页末尾提问“能够实现下面流程图功能的伪代码是（ ）”，流程图在第2页：条件判断“否”→执行语句块并回到条件判断回环，“是”→向下退出；网站以“当条件不成立时反复执行语句块、条件成立时结束循环”完整等价描述该流程图语义，题目功能未被改变或缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A.if 条件判断 then 语句块、B.if 条件判断 then 什么也不做 else 语句块、C.while 条件判断 do 语句块、D.while not 条件判断 do 语句块；网站同序同文。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第2页红字【答案】D，考纲知识点“流程图的概念与描述（二级），循环语句（一级）”；D 为下标 3，网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析（第2页）说明“当条件判断不成立时，会执行语句块，并重新进行条件判断，当条件判断成立时，则流程继续往下进行”；网站解析推导 while not 条件判断 do 语句块，并说明 if 结构无法实现循环，结论与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立核对了第2页流程图的分支走向（否→语句块并回环、是→向下退出），确认网站与第2页保持等价，其余维度一致，无需修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页题干“下列关于 C++语言的叙述，正确的是（ ）。”，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为：A.char 类型变量不能赋值给 int 类型的变量；B.两个 int 类型变量相乘，计算结果还是 int 类型；C.两个 int 相乘超出取值范围程序会报错崩溃；D.double 相除除数为 0.0 程序会报错崩溃；网站为压缩表述，语义与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "【答案】B 出现在第2页 Q3 选项之后（解析延续至第3页），B 为下标 1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析对 D 项只写“得到正无穷大或负无穷大”，遗漏官方解析（第2–3页）明确列出的被除数也为 0.0 时得 NaN 的情形，且“整数除以 0（会直接导致程序崩溃）”表述过于绝对（有符号整数除零属未定义行为，常见实现为异常终止）。已在 changes 中提交修订后的完整解析，逐项覆盖 A–D 并包含 INF、-INF、NaN 三种除零结果，经独立复核与官方解析一致且技术正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（两个 int 类型变量相乘，结果仍为 int 类型）**\n\n**核心解析：**\n本题考察 C++ 数据类型运算与转换规则。\n\n- **A（char 类型变量不能赋值给 int 类型变量）**：❌ 陈述错误。char 本质上是整数类型，可以赋值给 int，赋值结果是 char 变量中存放的整数值（如 `int a = 'A';` 得到 65）。\n- **B（两个 int 类型变量相乘，结果仍为 int 类型）**：✅ 陈述正确。两个 int 类型变量进行运算，结果仍为 int 类型。\n- **C（两个 int 相乘溢出时程序会报错崩溃）**：❌ 陈述错误。乘积超出 int 取值范围时会发生溢出，得到错误的结果，但程序不会报错崩溃（有符号整数溢出在 C++ 中属未定义行为，常见实现表现为数值回绕）。\n- **D（double 相除且除数为 0.0 时程序会报错崩溃）**：❌ 陈述错误。浮点除数为 0.0 时程序不会报错崩溃：被除数为正数时结果为 INF（正无穷），为负数时为 -INF（负无穷），被除数也为 0 时为 NaN（无意义），这些都是特殊的 double 类型值，程序继续正常运行。\n\n因此正确答案为 B。\n\n**易错提醒：**\n- 整数除以 0 属未定义行为，常见实现会导致程序异常终止，这与浮点除数为 0.0 时得到 INF/NaN 并继续运行不同，需要区分。\n- 不能因运算结果数值“看起来是整数”（如 35）就认为结果类型是 int，类型由操作数类型决定。\n\n**考点：** 基本运算、数据类型的转换"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对 explanation 的 needs_fix 判定——我独立确认两处问题：遗漏 0.0/0.0=NaN、整数除零“直接崩溃”说法过强；但否决直接照搬其文本，改用我逐项复核过的修订版完整解析作为 changes 终值（与官方解析第2–3页的 INF/-INF/NaN 表述对齐）。其余四维与 PDF 一致，通过。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第3页题干为“下列关于 C++语言的叙述，不正确的是（ ）。”，网站题干写作“下列关于 C++ 语句规则的叙述，不正确的是（ ）”，把源卷的“C++语言”改成了“C++ 语句规则”，属题面表述偏离原文；已在 changes 中提交还原修订，还原后与 PDF 第3页原文逐字一致，零风险。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项：A.if 判断条件必须用小括号'('和')'括起来；B.for 两个';'之间的循环条件可省略，表示循环继续执行的条件一直满足；C.循环体包含多条语句时可以用缩进消除二义性；D.除了“先乘除、后加减”还有很多运算符优先级。网站为等价改写（如“恒为真”对应“条件一直满足”），顺序一致、语义不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第3页红字【答案】C；C 为下标 2，网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析（第3页）指出 C 错误在于“循环体包含多条语句时，需要用花括号把循环体中的所有语句括起来”；网站解析说明 C++ 为自由格式语言、缩进无语法约束力、需用 {} 构成复合语句，并附示例代码——核对示例：while(n>0) 后仅 cout 语句属循环体，n-- 不在循环体内，n 不递减导致死循环，注释 “错误！该行不在循环体内，导致 n 无法递减，陷入死循环” 逻辑正确。结论 C 与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {
+          "question": "下列关于 C++ 语言的叙述，不正确的是（ ）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "否决初核对 statement 的“题干与之一致”结论：网站题干实为“关于 C++ 语句规则的叙述”，与源卷“关于C++语言的叙述”并不一致，初核此处描述失实。该偏离可无风险还原，故提交 question 修订（选项、答案、解析均不受影响且经独立核对通过）。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题干“以下哪个是 C++语言的关键字？（   ）”，网站题干一致（括号排版差异可忽略）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A.main、B.max、C.double、D.sqrt；网站顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第3页红字【答案】C；C 为下标 2，网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析（第3页）说明“选项中只有 double 是关键字，其余均为函数名”；网站解析逐项标注 main 为入口函数名、max 与 sqrt 为库函数名、double 为类型关键字，结论与官方一致，且“cin/cout/printf 不是关键字”的延伸正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五个维度经我独立核对均与 PDF 第3页一致，main/max/sqrt 非关键字、double 为关键字的事实判断无误，无需修改。"
+      }
+    ],
+    "summary": "本批独立复核第 1–5 题，卷头身份与 2023-06-l2 匹配。第 1、2、5 题五维全部通过（第1题题干“才可以/可以”判定为等价措辞）。第 4 题初核误判题干“一致”——网站把源卷“关于C++语言的叙述”写成“关于 C++ 语句规则的叙述”，我已提交题干还原修订（修复后核验通过）。第 3 题解析确有缺口：浮点除零漏掉官方解析明确列出的 NaN 情形、整数除零表述过强，我采纳修复方向但替换为自行修订、逐项核对过的完整解析（修复后核验通过），其余维度一致。初核草稿结论处理：第1、2、5题接受；第3题接受其 needs_fix 判定、否决照搬文本并改为我的修订版；第4题否决其 statement 结论。本批无编程题，不适用 tests 与 referenceCode 核验。"
+  }
+}
