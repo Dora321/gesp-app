@@ -1,0 +1,132 @@
+{
+  "paperId": "2023-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T18:15:36.603Z",
+  "completedAt": "2026-11-07T18:17:42.704Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 27432,
+    "completion_tokens": 9373,
+    "total_tokens": 36805,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7999
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0097386,
+      "allowance": 0.00584316,
+      "tokens": {
+        "input": 27432,
+        "output": 9373,
+        "reasoning": 7999,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "78237649b9787197b983ee1b74cfc78fc98bf09e29cc948087d71311e0cf6a88",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++1级.pdf",
+    "mirrorSha": "5cbab3719b6f61cc26a4cd470c267ac59170bf38",
+    "mirrorBytes": 391654,
+    "shaVerified": true,
+    "sha256": "83cea90a49c46d57b1a4937ecb560e5fafdd7066d424edd0feaf75307e3954f9"
+  },
+  "pageCount": 17,
+  "report": {
+    "paperId": "2023-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『2023年3月 GESP C++ 一级真题解析』，与候选年份2023、月份3、级别1一致；卷头标明语言为C++一级。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第13页原图题名『1. 每月天数』，【问题描述】与候选逐字一致；【输出描述】『输出一行，包含一个整数，表示输入月份有多少天。』一致；第13—14页样例框『2022 1』→『31』、『2020 2』→『29』与候选samples一致。但第13页【输入描述】原图仅印『输入一行，包含两个整数，分别表示一个日期的年、月。』，未印候选中的变量名A、B及『2000 ≤ A ≤ 3000，1 ≤ B ≤ 12』；该补写在本镜像证据中无出处，无法确认是否属于原卷，故题面保留待核验。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "第13—15页为编程题每月天数，原卷该题无A—D选项列表，选项维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "原卷【答案】标记仅出现在单选题和判断题段落；第13—15页编程题无客观答案标记，officialAnswer记null，答案维度不适用。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核历法及C++语义：大月1、3、5、7、8、10、12月为31天，小月4、6、9、11月为30天；2月按(y%4==0 && y%100!=0) || (y%400==0)判闰。手算样例2022 1→31、2020 2→29成立；补充走查2021 2→28成立。&&优先级高于||、==与=混淆提醒、7月与8月为连续大月、腊月代指12月、switch-case穿透合并分支均无事实错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与PDF第15页官方参考程序在合法月份1—12下等价：官方以leap累计(y%400==0)||(y%4==0&&y%100!=0)，候选在非大月非小月的2月分支直接判断同一布尔表达式；大月31、小月30、闰年2月29、平年2月28逐分支对应。样例2022 1→31、2020 2→29经手推核对；时间与空间复杂度O(1)，年份上限3000内int无溢出。未声称运行。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "年份下界闰年二月",
+            "input": "2000 2",
+            "output": "29",
+            "reason": "2000=400×5，能被400整除，为闰年，2月29天；覆盖年份下界及y%400==0闰年分支，期望输出按规则手算。"
+          },
+          {
+            "name": "整百年平年二月",
+            "input": "2100 2",
+            "output": "28",
+            "reason": "2100能被4整除，但2100%100==0且2100%400==100，非闰年，2月28天；覆盖被100整除而不被400整除的陷阱分支。"
+          },
+          {
+            "name": "年份下界大月",
+            "input": "2000 1",
+            "output": "31",
+            "reason": "1月为大月固定31天，不依赖闰年判断；覆盖年份下界与大月分支。"
+          },
+          {
+            "name": "普通平年小月",
+            "input": "2023 4",
+            "output": "30",
+            "reason": "4月为小月固定30天；覆盖非闰年、非边界的常规小月分支。"
+          },
+          {
+            "name": "年份上界大月",
+            "input": "3000 12",
+            "output": "31",
+            "reason": "12月为大月固定31天；覆盖年份上界。"
+          },
+          {
+            "name": "年份上界非闰二月",
+            "input": "3000 2",
+            "output": "28",
+            "reason": "3000能被4整除，但3000%100==0且3000%400==200，非闰年，2月28天；覆盖年份上界与世纪非闰平年二月分支。"
+          }
+        ],
+        "unresolved": [
+          "候选【输入格式】补入变量名A、B及『2000 ≤ A ≤ 3000，1 ≤ B ≤ 12』，但PDF第13页【输入描述】原图仅印『输入一行，包含两个整数，分别表示一个日期的年、月。』；该范围与变量名在本镜像证据中无出处，无法确认是否属于原卷，题面保留待核验，不擅自删改。"
+        ]
+      }
+    ],
+    "summary": "卷头身份与2023年3月GESP C++一级匹配。仅核验27题：题面主体、输出描述与两个样例与PDF一致，但候选补写的变量名A、B及年份月份范围在镜像PDF输入描述中无出处，题面维度保留待核验；解析经独立手算复核通过；参考代码与第15页官方参考程序语义等价；已补充6组边界测试，覆盖年份下界、世纪非闰年、普通小月及年份上界。"
+  }
+}

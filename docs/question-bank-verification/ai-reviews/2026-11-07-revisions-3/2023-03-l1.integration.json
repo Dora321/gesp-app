@@ -1,0 +1,105 @@
+{
+  "paperId": "2023-03-l1",
+  "integratedAt": "2026-11-07T18:20:37.620Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 27,
+      "reasons": [
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 7,
+      "tests": [
+        {
+          "input": "2022 1",
+          "output": "31",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "input": "2020 2",
+          "output": "29",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "29\n",
+          "passed": true
+        },
+        {
+          "name": "年份下界闰年二月",
+          "input": "2000 2",
+          "output": "29",
+          "reason": "独立手算：2000=400×5，2000%400==0 判闰，2月29天；覆盖年份下界及400倍数闰年分支。",
+          "kind": "boundary",
+          "actual": "29\n",
+          "passed": true
+        },
+        {
+          "name": "世纪非闰年二月",
+          "input": "2100 2",
+          "output": "28",
+          "reason": "独立手算：2100=4×525 可被4整除，2100%100==0 且 2100%400==100≠0，非闰年，2月28天；覆盖被100整除而不被400整除的陷阱分支。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        },
+        {
+          "name": "普通平年二月",
+          "input": "2021 2",
+          "output": "28",
+          "reason": "独立手算：2021%4==1≠0，2021%400==21≠0，非闰年，2月28天；补足非世纪普通平年二月分支（2020 2 样例已覆盖普通闰年二月）。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        },
+        {
+          "name": "年份下界大月",
+          "input": "2000 1",
+          "output": "31",
+          "reason": "独立手算：1月属大月固定31天，不依赖闰年判断；覆盖年份下界与大月分支。",
+          "kind": "boundary",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "name": "普通平年小月",
+          "input": "2023 4",
+          "output": "30",
+          "reason": "独立手算：4月属小月固定30天，闰与否不影响；覆盖非闰年、非边界的常规小月分支。",
+          "kind": "boundary",
+          "actual": "30\n",
+          "passed": true
+        },
+        {
+          "name": "年份上界大月",
+          "input": "3000 12",
+          "output": "31",
+          "reason": "独立手算：12月属大月固定31天；覆盖年份上界与大月分支。",
+          "kind": "boundary",
+          "actual": "31\n",
+          "passed": true
+        },
+        {
+          "name": "年份上界非闰二月",
+          "input": "3000 2",
+          "output": "28",
+          "reason": "独立手算：3000=4×750 可被4整除，3000%100==0 且 3000%400==200≠0，非闰年，2月28天；覆盖年份上界与世纪非闰平年二月分支。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "7a847c0fb60785f7d7f63499f0f25cf3fcf42f6205651be8940490656a71f2b8"
+    }
+  ]
+}
