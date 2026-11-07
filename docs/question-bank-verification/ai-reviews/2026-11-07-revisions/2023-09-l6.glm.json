@@ -1,0 +1,418 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    8,
+    9,
+    12,
+    14,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:58:48.076Z",
+  "completedAt": "2026-11-07T12:15:24.308Z",
+  "finishReason": "stop",
+  "inputSha256": "b4435cafb48ad72c03dce091213f64f0cf90366db4f4b41450ca23e5f11d29af",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF编程能力等级认证（GESP）C++ 六级 2023年9月”，第1页单选答案表覆盖题号1–15，第7页起含判断题10道与编程题2道（试题编号2023-09-23-06-C-01/02），与网站 2023-09-l6（level 6，2023年9月）结构一致。\nPDF 第 1 页卷头为“C++ 六级 / 2023 年 9 月”，与 2023-09-l6 的等级、年份、月份一致；第 7 页编程题 1（试题编号 2023-09-23-06-C-01，小杨买饮料）对应网站题 26，第 10 页编程题 2（试题编号 2023-09-23-06-C-02，小杨的握手问题）对应网站题 27；网站编号 26/27 与 15 单选+10 判断（共 25 客观题）的衔接规则一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干原文：如果a和b均为int类型的变量，且b的值不为0，那么下列能正确判断“a 是 b 的3倍”的表达式是（ ）。与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项：A. (a >> 3 == b)、B. (a - b) % 3 == 0、C. (a / b == 3)、D. (a == 3 * b)，四个表达式内容与顺序均与候选一致，无缺失。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2列为D，候选answer=3对应D。独立验证：A按优先级解析为(a>>3)==b，判断的是a右移3位（约除以8）后是否等于b；B等价于a≡b(mod 3)，a=4,b=1说明不充分、a=3,b=1说明不必要；C为整数除法截断，a=7,b=2时7/2==3但a≠3b，是必要不充分条件；仅D为定义式正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推与候选解析一致：优先级结论、B的同余本质与双向反例、C的截断区间（b>0时a∈[3b,4b)）与必要不充分定位、D所附3*b溢出前提说明均成立，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、选项、官方答案D、解析五维均经独立复核成立，无需修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8题题头在PDF第3页末（有关下面C++代码的说法，错误的是），完整代码在第4页共32行：第13行MoreData & push(int val)返回引用、第15行return *this、第29行myData.push(11).push(12).push(13);、第30行cout << myData.pop() << endl;。候选code字段与图中代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页：A. MoreData类可用于构造队列（Queue）数据结构；B. 代码第29行，连续push()的用法将导致编译错误；C. __data是MoreData类的私有成员，只能在类内访问；D. 以上说法均没有错误。与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为B，候选answer=1。独立验证：A真（tail端入、head端出构成FIFO队列）；C真（__data声明于public:之前，class默认private）；B假（push返回MoreData&并return *this，第29行链式调用语法合法可正常编译）。D为元选项：若选D须先断言A、B、C全部正确，而B是事实错误，自相矛盾，故B是唯一一致的答案，官方答案表定为B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立成立：返回*this引用支撑链式调用（并以cin/cout级联类比）、class默认private、若push返回void则链式报错等延伸均正确；对D已说明其不成立及与B错误的连带关系，符合单选惯例，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决初核对answer/explanation标unresolved的保留：选项D是自败元选项，选D即断言A、B、C全对，与B为事实错误矛盾，任何一致读法下B都是唯一答案；官方答案表为B、站点一致，不构成源卷错误或答案冲突，故撤销该unresolved。其余维度接受初核。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原卷第4页末题面以“如下图所示”指向第5页哈夫曼树图；候选原补述“0.15的左子0.06（孩子为叶G、F）、右子0.09（孩子为叶E、D）”未注明左右次序，使D编码在选项A（10010）与B（10011）间不唯一。第5页图底层自左至右为G、F、E、D，即0.06左孩子G、右孩子F，0.09左孩子E、右孩子D；补明后描述与原图完全一致，其余树结构（1.00左叶A右0.60；0.60左0.30右叶B；0.30左0.15右叶C）也与图相符。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项：A. 10010、B. 10011、C. 10111、D. 10001，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为B，候选answer=1。独立按图推导（约定左0右1，与锚点B=11吻合）：D路径为1.00→0.60(1)→0.30(0)→0.15(0)→0.09(1)→叶D(1)，编码10011，选B成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推全部叶码：A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011，均为前缀码且与第5页图左右结构一致；候选解析的逐层读码路径与叶码表无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "某内容仅会出现 ABCDEFG，其对应的出现概率为 0.40、0.30、0.15、0.05、0.04、0.03、0.03（依次对应 A 到 G）。按如下结构构建哈夫曼树：根 1.00 的左子是叶 A(0.40)，右子 0.60；0.60 的左子 0.30、右子是叶 B(0.30)；0.30 的左子 0.15、右子是叶 C(0.15)；0.15 的左子 0.06（左孩子为叶 G(0.03)，右孩子为叶 F(0.03)）、右子 0.09（左孩子为叶 E(0.04)，右孩子为叶 D(0.05)）；约定左分支为 0、右分支为 1。按照哈夫曼编码规则，假设 B 的编码为 11，则 D 的编码为（ ）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的题面修正并独立确认其必要性：仅写“孩子为叶G、F/叶E、D”无法确定0.09下E、D的左右次序，D的编码在选项A、B之间摇摆（两者均在选项中）；按PDF第5页图明确左G右F、左E右D后歧义消除，修正内容与原图一致，予以采纳。其余维度通过。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第12题：N个节点的二叉搜索树，其查找的平均时间复杂度为（ ）（文本层N为公式缺字，页面图上清晰可见），与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页：A. O(1)、B. O(N)、C. O(log N)、D. O(N²)，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为C，候选answer=2。独立验证：BST按值查找需沿根到目标路径逐点比较，次数由树高决定；键以随机顺序插入时期望高度为O(log N)，平均查找为O(log N)；有序插入退化成链时最坏O(N)，属最坏而非平均情形；O(1)与O(N²)均无依据。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐项分析（O(1)仅适用已知位置直接访问、O(N)是最坏退化情形、平均为O(log N)、单次查找不存在平方级）与独立推导一致，并正确区分普通BST与AVL/红黑树等自平衡结构的最坏保证，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维独立复核通过，官方答案C与站点一致，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页末第14题：N个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）（文本层N为缺字，页面图上可见），与候选一致；选项A、B在第6页，C、D跨至第7页顶部。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页A. O(1)、B. O(N)，第7页C. O(log N)、D. O(N²)。候选用O(n)/O(n²)，仅变量大小写的排版差异，顺序与答案映射不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为B，候选answer=1。独立验证：双向循环链表无随机访问、不可二分，按值查找需沿链逐个比较，平均约N/2次、最坏N次，为O(n)；O(1)仅适于访问已知位置的相邻节点，O(n²)属全表复合操作量级。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析（双向与循环只改善查找方向与边界，两方向同时找只省常数因子，本质仍是线性扫描；O(log n)需跳表或平衡树等结构）与独立推导一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维独立复核通过；候选与原卷O(n)/O(N)大小写差异属排版等价，不影响题意与答案映射，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照第 7—9 页原图：题名“小杨买饮料”、N 种饮料编号 0 至 N−1、售价 c_i/容量 l_i、三条需求（每种至多 1 瓶／总容量不低于 L／费用最少）、无法满足输出 no solution、输入“第一行 N,L+接下来 N 行每行 c_i,l_i”与输出格式逐项一致；三组样例输入输出逐字一致（5 100→9；5 141→100；4 141→no solution）；数据规模 40%（N≤20，1≤L≤100，l_i≤100）、70%（l_i≤100）、全部（1≤N≤500，1≤L≤2000，1≤c_i,l_i≤10^6）与第 9 页图一致（文本层此处乱码，以图为准）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，officialAnswer 亦不适用（PDF 答案表仅覆盖单选与判断题）。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案字段，officialAnswer 记 null，与原卷一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按 0/1 背包+容量截断推导并手算：样例 1 最优为容量 2/50、4/40、3/20 三瓶，50+40+20=110≥100，费 2+4+3=9；样例 2 不含 0 号时容量上限 140<141，必含 0 号，费 100；样例 3 剩余总容量 140<141，输出 no solution，与解析结论一致。解析的转移（ndp[min(L,j+len)]=min(...,dp[j]+c)）、避免重复（拷贝 ndp 或逆序）、long long 防溢出、INF 判无解均正确。仅“dp[j] 表示总容量至少达到 j”一句对中间态欠精确（截断实现下 j<L 为恰好截断容量，仅 dp[L] 等价于“≥L”），不影响算法与答案，属表述备注而非错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态核对站点参考代码：dp[0]=0、其余为 1LL<<60，逐件复制 ndp 后用旧 dp 转移，保证 0/1 性质；手算三组样例终态 dp[L] 分别为 9、100、INF→no solution；规模 N≤500、L≤2000 下复杂度 O(NL)≈10^6，满足 1s/128MB；j+len≤10^6+2000 在 int 内，dp 值用 long long 无溢出；无解分支正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 N=1 恰好满足",
+            "input": "1 1\n1 1\n",
+            "output": "1",
+            "reason": "最小 N、最小 L；单瓶 c=1、l=1 恰达容量下限，最少花费 1（独立手算，未运行）。"
+          },
+          {
+            "name": "最小规模无解",
+            "input": "1 2\n1 1\n",
+            "output": "no solution",
+            "reason": "仅一瓶容量 1<2，且每种至多 1 瓶，无法达标（独立手算，未运行）。"
+          },
+          {
+            "name": "超容量截断",
+            "input": "2 5\n2 3\n1 6\n",
+            "output": "1",
+            "reason": "单买容量 6≥5 的第二瓶花费 1 最优，验证超出 L 的容量截断后仍取到最优（独立手算 dp 路径 0→5，未运行）。"
+          },
+          {
+            "name": "组合优于单瓶",
+            "input": "3 10\n1 6\n1 5\n5 10\n",
+            "output": "2",
+            "reason": "前两瓶容量 11≥10、花费 2，优于恰好 10 容量的单价 5 方案；枚举全部 8 个子集取最小验证组合转移（独立手算，未运行）。"
+          },
+          {
+            "name": "L 上界与 10^6 费用量级",
+            "input": "2 2000\n1000000 1500\n1000000 1500\n",
+            "output": "2000000",
+            "reason": "L 取上界 2000、c_i 取 10^6；单瓶 1500<2000 不达标，必须两瓶共 2×10^6 元，检验边界与大数处理（独立手算，未运行）。"
+          }
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立复核通过：题面、三组样例、数据范围与第 7—9 页一致；站点参考代码静态追踪通过三组样例及全部边界测试；“dp[j] 至少达到 j”的措辞属可容忍瑕疵，不需改动；无 changes。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照第 10—12 页：题名“小杨的握手问题”、N 名同学学号 0 至 N−1、按给定顺序入场、仅与已在教室内且学号小于自己者握手、求总握手次数、归并排序降序提示、“输入包含 2 行”及学号范围 0∼N−1、每人恰好入场一次、30% N≤100 与全部 2≤N≤3×10^5、两组样例（4/2 1 3 0→2；6/0 1 2 3 4 5→15）及样例解释“0+0+2+0=2 次”“全握手 15”均一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，officialAnswer 亦不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案字段，officialAnswer 记 null，与原卷一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立将总握手数化为满足 i<j 且 a[i]<a[j] 的顺序对数量：手算样例 1 得 2、样例 2 得 C(6,2)=15，与解析一致；核对官方 PDF 参考程序（降序归并，取右半元素时 res+=m−i 统计左半中更小元素）与该模型吻合，解析中归并替代方案的说明正确；溢出示例（N=10^5 约 5×10^9）算术正确，实际 N≤3×10^5 时上限约 4.5×10^10 更须 long long，结论不变。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态核对 Fenwick 实现：add/sumPrefix 内部 ++x 转为 1 起始下标（规避 lowbit(0)），n=mx+1 覆盖学号 0..mx；主循环对每个入场者先 sumPrefix(x−1) 统计已入场且学号更小者（x=0 跳过）再 add(x,1)；手算样例 1 得 2、样例 2 得 15；复杂度 O(N log N)，N=3×10^5 时约 10^7 级操作，满足 1s/128MB；ans 与 bit 均为 long long，最大约 4.5×10^10 无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 N=2 升序",
+            "input": "2\n0 1\n",
+            "output": "1",
+            "reason": "最小规模；1 号入场时 0 号在场且学号更小，握手 1 次（独立手算，未运行）。"
+          },
+          {
+            "name": "最小 N=2 降序",
+            "input": "2\n1 0\n",
+            "output": "0",
+            "reason": "0 号最后入场且无更小学号在场，0 次（独立手算，未运行）。"
+          },
+          {
+            "name": "全升序极大握手",
+            "input": "3\n0 1 2\n",
+            "output": "3",
+            "reason": "贡献 0+1+2=3，验证顺序对逐步累计（独立手算，未运行）。"
+          },
+          {
+            "name": "全降序零握手",
+            "input": "3\n2 1 0\n",
+            "output": "0",
+            "reason": "每位入场者学号均小于在场者，0 次；覆盖 x=0 跳过查询的分支（独立手算，未运行）。"
+          },
+          {
+            "name": "混合交错顺序",
+            "input": "5\n1 3 0 2 4\n",
+            "output": "7",
+            "reason": "各步贡献 0+1+0+2+4=7，覆盖学号非单调的一般情形（独立手算，未运行）。"
+          }
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立复核通过：题面、样例、数据范围与第 10—12 页一致；站点 Fenwick 参考代码手算追踪样例 1、2 均正确，规模与溢出分析成立；所列测试期望值均经独立手算；无 changes。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        8,
+        9,
+        12,
+        14
+      ],
+      "usage": {
+        "prompt_tokens": 46380,
+        "completion_tokens": 22124,
+        "total_tokens": 68504,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18888
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.018019,
+          "allowance": 0.018019,
+          "tokens": {
+            "input": 46380,
+            "output": 22124,
+            "reasoning": 18888,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T11:58:48.076Z",
+      "completedAt": "2026-11-07T12:04:08.060Z"
+    },
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 46260,
+        "completion_tokens": 24039,
+        "total_tokens": 70299,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21585
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0189585,
+          "allowance": 0.0189585,
+          "tokens": {
+            "input": 46260,
+            "output": 24039,
+            "reasoning": 21585,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T12:09:03.462Z",
+      "completedAt": "2026-11-07T12:15:24.308Z"
+    }
+  ]
+}

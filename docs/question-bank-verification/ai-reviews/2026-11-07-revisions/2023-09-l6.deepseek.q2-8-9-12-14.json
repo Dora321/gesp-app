@@ -1,0 +1,230 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    8,
+    9,
+    12,
+    14
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:54:13.585Z",
+  "completedAt": "2026-11-07T11:58:48.068Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25182,
+    "completion_tokens": 26291,
+    "total_tokens": 51473,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 24733
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0195519,
+      "allowance": 0.01173114,
+      "tokens": {
+        "input": 25182,
+        "output": 26291,
+        "reasoning": 24733,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b4435cafb48ad72c03dce091213f64f0cf90366db4f4b41450ca23e5f11d29af",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示CCF编程能力等级认证C++六级、2023年9月；答案表覆盖题号1-15。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干与候选一致：a、b为int且b≠0，判断a是b的3倍。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页A-D四个表达式与候选逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第2题答案为D；候选answer=3，对应D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A为(a>>3)==b；B只保证a≡b(mod3)，a=4,b=1不充分且a=3,b=1不必要；C受整数除法截断，a=7,b=2反例；D为定义式，候选解析正确并注明3*b溢出边界。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页底部第8题题头与第4页MoreData完整代码、选项对应；候选code逐行一致，第29行为myData.push(11).push(12).push(13);。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D与候选项一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF答案表第8题为B，候选answer=1；但B为假时D'以上说法均没有错误'亦为假，严格单选存在B/D双假歧义，官方答案取B，保留争议。"
+          },
+          "explanation": {
+            "status": "unresolved",
+            "evidence": "候选正确解释push返回MoreData&且链式调用不编译错误；但解析一面判D错误、一面写'本项不选'，未消解B/D双假歧义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "严格逻辑下B、D均为错误陈述；官方答案表定B，存在单选题双假歧义，保留源卷争议。"
+        ]
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页树图明确0.15左子0.06（左G右F）、右子0.09（左E右D）；候选虽描述树结构，但保留'下图'指代且未明示G/F、E/D左右孩子，导致D编码不唯一。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A-D为10010、10011、10111、10001，候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第9题为B；候选answer=1。按图D路径为10011。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按左0右1：根→0.60(1)→0.30(0)→0.15(0)→0.09(1)→D右(1)=10011；候选叶码A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "某内容仅会出现 ABCDEFG，其对应的出现概率为 0.40、0.30、0.15、0.05、0.04、0.03、0.03（依次对应 A 到 G）。按如下结构构建哈夫曼树：根 1.00 的左子是叶 A(0.40)，右子 0.60；0.60 的左子 0.30、右子是叶 B(0.30)；0.30 的左子 0.15、右子是叶 C(0.15)；0.15 的左子 0.06（左孩子为叶 G(0.03)，右孩子为叶 F(0.03)）、右子 0.09（左孩子为叶 E(0.04)，右孩子为叶 D(0.05)）；约定左分支为 0、右分支为 1。按照哈夫曼编码规则，假设 B 的编码为 11，则 D 的编码为（ ）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第12题题干与候选一致：N个节点的二叉搜索树，查找的平均时间复杂度。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A O(1)、B O(N)、C O(log N)、D O(N²)，候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第12题为C；候选answer=2，对应C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：随机或较平衡的BST期望树高O(log N)，平均查找O(log N)；有序插入退化为链时最坏O(N)，不是平均情形；候选区分正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第14题题干及A-B选项、第7页C-D选项与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6-7页A O(1)、B O(N)、C O(log N)、D O(N²)；候选仅N/n大小写差异，答案映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第14题为B；候选answer=1，对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：双向循环链表按值查找仍需逐个扫描，平均约N/2、最坏N，复杂度O(n)；双向与循环只改变方向和边界，不改变线性查找本质，候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "卷头与2023年9月C++六级匹配。题2、12、14五维核验通过；题9题面需补明底层孩子左右并去除缺失图指代；题8官方答案B与候选一致，但选项D造成严格逻辑下B/D双假歧义，保留争议。题8代码本身可编译，链式push合法。"
+  }
+}

@@ -69,41 +69,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第1页题干为a、b均为int且b不为0，判断“a是b的3倍”的表达式；站点题干一致。",
-          "review": "PDF第1页题干为a、b均为int且b不为0，判断“a是b的3倍”的表达式；站点题干一致。"
+          "initial": "PDF第1页第2题题干与候选一致：a、b为int且b≠0，判断a是b的3倍。",
+          "review": "PDF第1页第2题题干原文：如果a和b均为int类型的变量，且b的值不为0，那么下列能正确判断“a 是 b 的3倍”的表达式是（ ）。与候选逐字一致。"
         },
         "options": {
-          "initial": "PDF第1页选项A为(a >> 3 == b)、B为(a - b) % 3 == 0、C为(a / b == 3)、D为(a == 3 * b)；站点options顺序一致。",
-          "review": "PDF第1页A为(a >> 3 == b)、B为(a - b) % 3 == 0、C为(a / b == 3)、D为(a == 3 * b)；站点options顺序与内容一致。"
+          "initial": "PDF第1页A-D四个表达式与候选逐项一致，顺序未变。",
+          "review": "PDF第1页选项：A. (a >> 3 == b)、B. (a - b) % 3 == 0、C. (a / b == 3)、D. (a == 3 * b)，四个表达式内容与顺序均与候选一致，无缺失。"
         },
         "answer": {
-          "initial": "PDF第1页答案表题号2为D，按0起始索引为3；站点answer=3一致。",
-          "review": "PDF第1页答案表题2为D，0起始索引为3；站点answer=3一致。独立验证：仅D按定义准确判定；A经优先级解析为(a>>3)==b与3倍无关；B、C均有具体反例。"
+          "initial": "PDF答案表第2题答案为D；候选answer=3，对应D。",
+          "review": "PDF第1页答案表第2列为D，候选answer=3对应D。独立验证：A按优先级解析为(a>>3)==b，判断的是a右移3位（约除以8）后是否等于b；B等价于a≡b(mod 3)，a=4,b=1说明不充分、a=3,b=1说明不必要；C为整数除法截断，a=7,b=2时7/2==3但a≠3b，是必要不充分条件；仅D为定义式正确。"
         },
         "explanation": {
-          "initial": "原解析B反例写“4不是1的3倍（7才是）”，正确应为“3才是”；C的截断区间结论仅在b>0时成立，需限定条件。其余逐项推导正确。",
-          "review": "独立复核发现站点解析三处实质错误：①B反例括注“（7 才是）”错误，b=1时3b应为3；②B条件被定性为“必要不充分”，实为既不必要也不充分（a=3,b=1满足a=3b，但a-b=2，2%3≠0，条件失效）；③截断区间结论[3b,4b)未限定b>0，负b时实为(4b,3b]。已按独立推导提交修复后的完整解析（changes.explanation），修复后核验通过。"
+          "initial": "独立推导：A为(a>>3)==b；B只保证a≡b(mod3)，a=4,b=1不充分且a=3,b=1不必要；C受整数除法截断，a=7,b=2反例；D为定义式，候选解析正确并注明3*b溢出边界。",
+          "review": "独立重推与候选解析一致：优先级结论、B的同余本质与双向反例、C的截断区间（b>0时a∈[3b,4b)）与必要不充分定位、D所附3*b溢出前提说明均成立，无事实错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.glm.json"
       ]
     },
     {
@@ -450,47 +453,50 @@
     },
     {
       "id": 12,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第6页题干为“N 个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。”当前题干开头漏掉“N”，写成“个节点”。",
-          "review": "PDF第6页题干为“第 12 题 N 个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。”（N为变量），网站漏开头的“N”，写作“个节点的二叉搜索树…”。"
+          "initial": "PDF第6页第12题题干与候选一致：N个节点的二叉搜索树，查找的平均时间复杂度。",
+          "review": "PDF第6页第12题：N个节点的二叉搜索树，其查找的平均时间复杂度为（ ）（文本层N为公式缺字，页面图上清晰可见），与候选一致。"
         },
         "options": {
-          "initial": "PDF第6页选项为 A O(1)、B O(N)、C O(log N)、D O(N²)；当前选项为 O(n)、O(n²)、O(log n)、O(n log n)，A、B、D均不符。",
-          "review": "PDF第6页选项为 A O(1)、B O(N)、C O(log N)、D O(N²)；网站为 O(n)、O(n²)、O(log n)、O(n log n)，A、B、D三项与原卷不符，D的 O(n log n) 在原卷中并不存在。"
+          "initial": "PDF第6页A O(1)、B O(N)、C O(log N)、D O(N²)，候选逐项一致。",
+          "review": "PDF第6页：A. O(1)、B. O(N)、C. O(log N)、D. O(N²)，与候选逐项一致。"
         },
         "answer": {
-          "initial": "PDF答案表第12题标C，对应索引2；当前answer=2。",
-          "review": "第1页答案表第12题为C（索引2），网站answer=2；独立推导：键随机插入时BST期望高度为O(log N)，平均查找即O(log N)，与C对应，互换修正选项后映射仍为索引2，自洽。"
+          "initial": "PDF答案表第12题为C；候选answer=2，对应C。",
+          "review": "PDF第1页答案表第12题为C，候选answer=2。独立验证：BST按值查找需沿根到目标路径逐点比较，次数由树高决定；键以随机顺序插入时期望高度为O(log N)，平均查找为O(log N)；有序插入退化成链时最坏O(N)，属最坏而非平均情形；O(1)与O(N²)均无依据。"
         },
         "explanation": {
-          "initial": "当前解析按错误选项A/B/D展开，称A为O(n)最坏、D为O(n log n)，与PDF选项不符，需按O(1)/O(N)/O(N²)重写。",
-          "review": "网站解析按错误选项展开（称A O(n)为最坏情形、D O(n log n)为排序量级），与原卷选项不对应，需按A O(1)/B O(N)/D O(N²)重写；changes.explanation已给出完整替换值。"
+          "initial": "独立推导：随机或较平衡的BST期望树高O(log N)，平均查找O(log N)；有序插入退化为链时最坏O(N)，不是平均情形；候选区分正确。",
+          "review": "候选逐项分析（O(1)仅适用已知位置直接访问、O(N)是最坏退化情形、平均为O(log N)、单次查找不存在平方级）与独立推导一致，并正确区分普通BST与AVL/红黑树等自平衡结构的最坏保证，无事实错误。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.glm.json"
       ]
     },
     {
@@ -536,44 +542,47 @@
       "id": 14,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第6-7页题干为“N 个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。”当前题干漏掉“N”，写成“个节点的双向循环链”。",
-          "review": "PDF第6页末起题干为“第 14 题 N 个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。”（第7页续选项C、D），网站漏“N”，写作“个节点的双向循环链…”。"
+          "initial": "PDF第6页第14题题干及A-B选项、第7页C-D选项与候选一致。",
+          "review": "PDF第6页末第14题：N个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）（文本层N为缺字，页面图上可见），与候选一致；选项A、B在第6页，C、D跨至第7页顶部。"
         },
         "options": {
-          "initial": "PDF选项为O(1)、O(N)、O(log N)、O(N²)；当前O(n)等仅为大小写记法差异，顺序和含义一致。",
-          "review": "PDF第6页A O(1)、B O(N)，第7页C O(log N)、D O(N²)；网站O(1)/O(n)/O(log n)/O(n²)与原卷值和顺序一致，n与N为大小写记法等价差异，不构成修改。"
+          "initial": "PDF第6-7页A O(1)、B O(N)、C O(log N)、D O(N²)；候选仅N/n大小写差异，答案映射一致。",
+          "review": "第6页A. O(1)、B. O(N)，第7页C. O(log N)、D. O(N²)。候选用O(n)/O(n²)，仅变量大小写的排版差异，顺序与答案映射不变。"
         },
         "answer": {
-          "initial": "PDF答案表第14题标B，对应索引1；当前answer=1。",
-          "review": "第1页答案表第14题为B（索引1），网站answer=1；独立推导：双向/循环仅改善访问方向与边界，按值查找仍需沿指针线性扫描，平均约N/2个节点，复杂度O(N)，与B一致。"
+          "initial": "PDF答案表第14题为B；候选answer=1，对应B。",
+          "review": "PDF第1页答案表第14题为B，候选answer=1。独立验证：双向循环链表无随机访问、不可二分，按值查找需沿链逐个比较，平均约N/2次、最坏N次，为O(n)；O(1)仅适于访问已知位置的相邻节点，O(n²)属全表复合操作量级。"
         },
         "explanation": {
-          "initial": "双向循环链表按值查找需沿指针逐节点扫描，平均约N/2次，复杂度O(N)；解析与官方B一致。",
-          "review": "网站解析得出平均查找N/2次、O(n)的结论，指出O(1)限于已知位置访问、链表无法二分、双向同时找只省常数因子，论证严谨并与官方B一致。"
+          "initial": "独立推导：双向循环链表按值查找仍需逐个扫描，平均约N/2、最坏N，复杂度O(n)；双向与循环只改变方向和边界，不改变线性查找本质，候选解析正确。",
+          "review": "候选解析（双向与循环只改善查找方向与边界，两方向同时找只省常数因子，本质仍是线性扫描；O(log n)需跳表或平衡树等结构）与独立推导一致，无事实错误。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.glm.json"
       ]
     },
     {
@@ -966,94 +975,90 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         7,
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第7-9页题面、样例1/2/3与网站一致；但PDF第9页有数据规模：40%测试点 N≤20、1≤L≤100、l_i≤100；70%测试点 l_i≤100；全部测试点 1≤N≤500、1≤L≤2000、1≤c_i,l_i≤10^6。网站 question 在输出格式后直接结束，缺少该约束。",
-          "review": "PDF 3.1.1-3.1.3（第 7-8 页）题目描述、输入描述、输出描述与网站 question 文字逐句一致（含 1/s 限定：N 种饮料编号 0 至 N-1、每种至多 1 瓶、总容量不低于 L、费用最少、不足输出 no solution），样例 1/2/3 输入输出（第 8-9 页）与网站 samples 完全一致；但网站 question 在输出格式后即结束，缺少 PDF 第 9 页 3.1.13 数据规模（40%: N≤20、1≤L≤100、l_i≤100；70%: l_i≤100；全部: 1≤N≤500、1≤L≤2000、1≤c_i,l_i≤10^6）。按原图逐项核对数值后在 changes.question 中补入该节，修复后核验通过。"
+          "initial": "对照 PDF 第 7—9 页：题名“小杨买饮料”、N 种饮料编号 0 至 N-1、每种至多 1 瓶、总容量不低于 L、最小花费、无解输出 no solution、输入输出格式及三组样例均一致；40%/70%/全部测试点的数据范围也与原卷一致。",
+          "review": "对照第 7—9 页原图：题名“小杨买饮料”、N 种饮料编号 0 至 N−1、售价 c_i/容量 l_i、三条需求（每种至多 1 瓶／总容量不低于 L／费用最少）、无法满足输出 no solution、输入“第一行 N,L+接下来 N 行每行 c_i,l_i”与输出格式逐项一致；三组样例输入输出逐字一致（5 100→9；5 141→100；4 141→no solution）；数据规模 40%（N≤20，1≤L≤100，l_i≤100）、70%（l_i≤100）、全部（1≤N≤500，1≤L≤2000，1≤c_i,l_i≤10^6）与第 9 页图一致（文本层此处乱码，以图为准）。"
         },
         "explanation": {
-          "initial": "独立按0/1背包复核：样例1购买编号1、2、4总容量50+40+20=110、花费2+4+3=9；样例2只能选编号0花费100；样例3总容量140<141输出no solution。解析中的容量截断与样例走查一致。",
-          "review": "独立推演截断 0/1 背包：dp 状态为总容量 min(累加和, L) 的最小花费，买第 (2,50)+(4,40)+(3,20) 三瓶容量 110≥100 花费 2+4+3=9，替代方案 (2,50)+(5,30)+(3,20) 容量恰 100 花费 10，与 PDF 样例解释 1 一致；样例 2 中其余四瓶总容量 140<141 只能买 0 号花费 100；样例 3 总容量 140<141 输出 no solution。解析中 min(L, j+len) 截断的必要性论证、long long 提示与逐瓶走查均与我的手工演算一致（走查中第 4 瓶后 dp[100]=11、第 5 瓶经 dp[90]=6 转移得 9，与解析相同）。"
+          "initial": "独立按 0/1 背包加容量截断推导：样例 1 最优为编号 1、2、4 的饮料，花费 2+4+3=9；样例 2 必须买容量 2000 的 0 号饮料，花费 100；样例 3 剩余总容量 140<141，输出 no solution。解析中“至少达到 j”的状态措辞结合代码应理解为 j<L 时恰好为 j、j=L 时截断，不影响结论。",
+          "review": "独立按 0/1 背包+容量截断推导并手算：样例 1 最优为容量 2/50、4/40、3/20 三瓶，50+40+20=110≥100，费 2+4+3=9；样例 2 不含 0 号时容量上限 140<141，必含 0 号，费 100；样例 3 剩余总容量 140<141，输出 no solution，与解析结论一致。解析的转移（ndp[min(L,j+len)]=min(...,dp[j]+c)）、避免重复（拷贝 ndp 或逆序）、long long 防溢出、INF 判无解均正确。仅“dp[j] 表示总容量至少达到 j”一句对中间态欠精确（截断实现下 j<L 为恰好截断容量，仅 dp[L] 等价于“≥L”），不影响算法与答案，属表述备注而非错误。"
         },
         "referenceCode": {
-          "initial": "独立推导：dp[0]=0，转移 nj=min(L,j+len)，用 ndp 复制防止同一饮料重复购买；long long 防溢出；L≤2000、N≤500；dp[L]==INF 输出 no solution。算法与题目约束一致。",
-          "review": "本站 referenceCode 是与 PDF 官方程序（逆序 cost[max(j-l,0)]+c，语义为『至少达到 j』且花费数组单调）等价的独立实现：ndp 复制副本保证每种饮料至多买 1 瓶，nj=min(L, j+len) 正确把超容量状态归入 dp[L]。按数据规模手工走查三组样例输出 9/100/no solution；最大总花费 500×10^6=5×10^8 不溢出，INF=1LL<<60 且只从有效状态转移，无 INF 参与运算；复杂度 O(N·L)≈2×10^6（含复制），1 s 内可行。数组仅开 L+1≤2001，空间无忧。"
+          "initial": "静态核对代码：逐物品复制 dp，按 0/1 方式用旧 dp 转移，nj=min(L,j+len)，不会重复选同一瓶；复杂度 O(NL)≤500×2001；INF 和答案用 long long；无解分支正确，能覆盖三组样例。",
+          "review": "静态核对站点参考代码：dp[0]=0、其余为 1LL<<60，逐件复制 ndp 后用旧 dp 转移，保证 0/1 性质；手算三组样例终态 dp[L] 分别为 9、100、INF→no solution；规模 N≤500、L≤2000 下复杂度 O(NL)≈10^6，满足 1s/128MB；j+len≤10^6+2000 在 int 内，dp 值用 long long 无溢出；无解分支正确。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         10,
         11,
         12
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第10-11页题面、样例1/2与网站一致；但PDF第11页有数据规模：30%测试点 N≤100；全部测试点 2≤N≤3×10^5。网站 question 缺少该数据规模约束。",
-          "review": "PDF 3.2.1-3.2.3（第 10 页）题目描述（含加粗的『已经在教室内且学号小于自己』与归并排序提示）、输入描述、输出描述与网站 question 一致，样例 1/2 输入输出（第 10-11 页）与网站 samples 一致；但网站缺少 PDF 第 11 页 3.2.11 数据规模（30%: N≤100；全部: 2≤N≤3×10^5）。按原图核对后在 changes.question 中补入，修复后核验通过。"
+          "initial": "对照 PDF 第 10—11 页：题名“小杨的握手问题”、N 名同学学号 0 至 N-1、按给定顺序入场、只与已在教室且学号更小的同学握手、归并排序提示、2 行输入、30%/全部测试点范围及两组样例均一致。",
+          "review": "对照第 10—12 页：题名“小杨的握手问题”、N 名同学学号 0 至 N−1、按给定顺序入场、仅与已在教室内且学号小于自己者握手、求总握手次数、归并排序降序提示、“输入包含 2 行”及学号范围 0∼N−1、每人恰好入场一次、30% N≤100 与全部 2≤N≤3×10^5、两组样例（4/2 1 3 0→2；6/0 1 2 3 4 5→15）及样例解释“0+0+2+0=2 次”“全握手 15”均一致。"
         },
         "explanation": {
-          "initial": "独立复核：握手次数为 i<j 且 a[i]<a[j] 的顺序对数量；样例1序列2 1 3 0得到2，样例2递增序列0 1 2 3 4 5得到15；树状数组查询前缀x-1并累加的流程与题解结论一致。",
-          "review": "独立推导：握手总数即序列顺序对数量 #{(i,j): i<j 且 a[i]<a[j]}。样例 1 a=[2,1,3,0] 仅有 (0,2)、(1,2) 两对，得 2；样例 2 递增序列依次碰面即完全握手，C(6,2)=15，均与 PDF 样例解释（第 10-11 页 0+0+2+0=2、全班互握 15 次）一致。解析的树状数组流程『先查 [0,x-1] 前缀再加 x』与代码一致，long long 与 0 号下标偏移两条易错提醒均成立。"
+          "initial": "独立将总握手数化为满足 i<j 且 a[i]<a[j] 的顺序对数量；样例 1 为 2，样例 2 为 C(6,2)=15。树状数组按入场顺序查询小于当前学号的人数并累加，逻辑正确；解析中 N=10^5 仅作溢出示例，实际上限 3×10^5，最大握手数约 4.50×10^10，必须用 long long 的结论不变。",
+          "review": "独立将总握手数化为满足 i<j 且 a[i]<a[j] 的顺序对数量：手算样例 1 得 2、样例 2 得 C(6,2)=15，与解析一致；核对官方 PDF 参考程序（降序归并，取右半元素时 res+=m−i 统计左半中更小元素）与该模型吻合，解析中归并替代方案的说明正确；溢出示例（N=10^5 约 5×10^9）算术正确，实际 N≤3×10^5 时上限约 4.5×10^10 更须 long long，结论不变。"
         },
         "referenceCode": {
-          "initial": "独立推导：Fenwick 使用 ++x 偏移处理学号0；mx+1 覆盖0..mx；按进入顺序查询小于当前学号的人数并累加 long long；N≤3×10^5，答案最大约为4.5×10^10，不会溢出。复杂度 O(N log N)。",
-          "review": "本站 Fenwick 实现：add/sumPrefix 用 ++x 内部 1-based 偏移，学号 0 无歧义；输入为 0..N-1 的排列故 mx=N-1，fw 尺寸 mx+1 覆盖全部学号；ans 用 long long，最大顺序对 C(3×10^5,2)≈4.5×10^10 不溢出；总复杂度 O(N log N)，1 s 内可行。手工走查样例 1（0/0/2/0）与样例 2（0+1+2+3+4+5）分别输出 2/15。PDF 官方参考程序（降序归并、右半元素出队时 res+=m-i 计左半剩余）同样统计 i<j 且 a[i]<a[j]，两者语义等价，且官方程序递归深度约 18 层、num/tmp[300000] 恰覆盖 N≤3×10^5，均无问题。"
+          "initial": "静态核对 Fenwick 代码：add/前缀和均统一 ++x 转为 1 起始下标，主循环用 x>0 时查询 sumPrefix(x-1)、再 add(x,1)；复杂度 O(N log N)，ans 与 bit 用 long long，可容纳最大 3×10^5 规模的结果。",
+          "review": "静态核对 Fenwick 实现：add/sumPrefix 内部 ++x 转为 1 起始下标（规避 lowbit(0)），n=mx+1 覆盖学号 0..mx；主循环对每个入场者先 sumPrefix(x−1) 统计已入场且学号更小者（x=0 跳过）再 add(x,1)；手算样例 1 得 2、样例 2 得 15；复杂度 O(N log N)，N=3×10^5 时约 10^7 级操作，满足 1s/128MB；ans 与 bit 均为 long long，最大约 4.5×10^10 无溢出。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l6.glm.json"
       ]
     }
   ],
   "unresolved": [
-    {
-      "id": 2,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
     {
       "id": 5,
       "dimensions": [
@@ -1089,33 +1094,6 @@
       ]
     },
     {
-      "id": 12,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 15,
       "dimensions": [
         "answer",
@@ -1137,28 +1115,9 @@
         "explanation 尚无一致、完整的原卷核验结论",
         "原卷答案未一致读出，或与当前采用答案不同"
       ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2023-09-l6.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2023-09-l6.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-09-l6.integration.json"
 }

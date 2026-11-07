@@ -23,33 +23,7 @@ const programmingQuestions = [
 5 30
 3 20`, output: `no solution` }
       ],
-      question: `
-# [GESP202309 六级] 小杨买饮料
-
-## 题目描述
-
-小杨来到了一家商店，打算购买一些饮料。这家商店总共出售 $N$ 种饮料，编号从 $0$ 至 $N-1$，其中编号为 $i$ 的饮料售价 $c_i$ 元，容量 $l_i$ 毫升。
-
-小杨的需求有如下几点：
-
-1. 小杨想要尽可能尝试不同种类的饮料，因此他希望每种饮料至多购买 $1$ 瓶；
-
-2. 小杨很渴，所以他想要购买总容量不低于 $L$ 的饮料；
-
-3. 小杨勤俭节约，所以在 $1$ 和 $2$ 的前提下，他希望使用尽可能少的费用。
-
-方便起见，你只需要输出最少花费的费用即可。特别地，如果不能满足小杨的要求，则输出 \`no solution\`。
-
-## 输入格式
-
-第一行两个整数 $N,L$。
-
-接下来 $N$行，依次描述第 $i=0,1,\\cdots,N-1$ 种饮料：每行两个整数 $c_i,l_i$。
-
-## 输出格式
-
-输出一行一个整数，表示最少需要花费多少钱，才能满足小杨的要求。特别地，如果不能满足要求，则输出 \`no solution\`。
-`,
+      question: "# [GESP202309 六级] 小杨买饮料\n\n## 题目描述\n\n小杨来到了一家商店，打算购买一些饮料。这家商店总共出售 $N$ 种饮料，编号从 $0$ 至 $N-1$，其中编号为 $i$ 的饮料售价 $c_i$ 元，容量 $l_i$ 毫升。\n\n小杨的需求有如下几点：\n\n1. 小杨想要尽可能尝试不同种类的饮料，因此他希望每种饮料至多购买 $1$ 瓶；\n\n2. 小杨很渴，所以他想要购买总容量不低于 $L$ 的饮料；\n\n3. 小杨勤俭节约，所以在 $1$ 和 $2$ 的前提下，他希望使用尽可能少的费用。\n\n方便起见，你只需要输出最少花费的费用即可。特别地，如果不能满足小杨的要求，则输出 `no solution`。\n\n## 输入格式\n\n第一行两个整数 $N,L$。\n\n接下来 $N$行，依次描述第 $i=0,1,\\cdots,N-1$ 种饮料：每行两个整数 $c_i,l_i$。\n\n## 输出格式\n\n输出一行一个整数，表示最少需要花费多少钱，才能满足小杨的要求。特别地，如果不能满足要求，则输出 `no solution`。\n\n## 数据规模\n\n对于 40% 的测试点，保证 $N \\le 20$，$1 \\le L \\le 100$，$l_i \\le 100$。\n\n对于 70% 的测试点，保证 $l_i \\le 100$。\n\n对于所有测试点，保证 $1 \\le N \\le 500$，$1 \\le L \\le 2000$，$1 \\le c_i,l_i \\le 10^6$。",
       score: 25,
       explanation: `**解析：**
 
@@ -143,6 +117,10 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, L;\n    cin >> n >> L;\n\n    const long long INF = (1LL << 60);\n    vector<long long> dp(L+1, INF);\n    dp[0] = 0;\n\n    for (int i = 0; i < n; ++i) {\n        int c, len;\n        cin >> c >> len;\n        vector<long long> ndp = dp;\n        for (int j = 0; j <= L; ++j) {\n            if (dp[j] == INF) continue;\n            int nj = min(L, j+len);\n            ndp[nj] = min(ndp[nj], dp[j]+c);\n        }\n        dp.swap(ndp);\n    }\n\n    if (dp[L] == INF) {\n        cout << \"no solution\\n\";\n    } else {\n        cout << dp[L] << '\\n';\n    }\n    return 0;\n}",
       answer: '',
+      "sourcePage": 7,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"],
     },
     {
       id: 27,
@@ -153,29 +131,7 @@ const programmingQuestions = [
         { input: `6
 0 1 2 3 4 5`, output: `15` }
       ],
-      question: `
-# [GESP202309 六级] 小杨的握手问题
-
-## 题目描述
-
-小杨的班级里共有 $N$ 名同学，学号从 $0$ 至 $N-1$。
-
-某节课上，老师安排全班同学进行一次握手游戏，具体规则如下：老师安排了一个顺序，让全班 $N$ 名同学依次进入教室。每位同学进入教室时，需要和 **已经在教室内** 且 **学号小于自己** 的同学握手。
-
-现在，小杨想知道，整个班级总共会进行多少次握手。
-
-**提示：可以考虑使用归并排序进行降序排序，并在此过程中求解。**
-
-## 输入格式
-
-输入包含 $2$ 行。第一行一个整数 $N$ ，表示同学的个数；第二行 $N$ 个用单个空格隔开的整数，依次描述同学们进入教室的顺序，每个整数在 $0 \\sim N-1$ 之间，表示该同学的学号。
-
-保证每位同学会且只会进入教室一次。
-
-## 输出格式
-
-输出一行一个整数，表示全班握手的总次数。
-`,
+      question: "# [GESP202309 六级] 小杨的握手问题\n\n## 题目描述\n\n小杨的班级里共有 $N$ 名同学，学号从 $0$ 至 $N-1$。\n\n某节课上，老师安排全班同学进行一次握手游戏，具体规则如下：老师安排了一个顺序，让全班 $N$ 名同学依次进入教室。每位同学进入教室时，需要和 **已经在教室内** 且 **学号小于自己** 的同学握手。\n\n现在，小杨想知道，整个班级总共会进行多少次握手。\n\n**提示：可以考虑使用归并排序进行降序排序，并在此过程中求解。**\n\n## 输入格式\n\n输入包含 $2$ 行。第一行一个整数 $N$ ，表示同学的个数；第二行 $N$ 个用单个空格隔开的整数，依次描述同学们进入教室的顺序，每个整数在 $0 \\sim N-1$ 之间，表示该同学的学号。\n\n保证每位同学会且只会进入教室一次。\n\n## 输出格式\n\n输出一行一个整数，表示全班握手的总次数。\n\n## 数据规模\n\n对于 30% 的测试点，保证 $N \\le 100$。\n\n对于所有测试点，保证 $2 \\le N \\le 3 \\times 10^5$。",
       score: 25,
       explanation: `**解析：**
 
@@ -251,6 +207,10 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Fenwick {\n    int n;\n    vector<long long> bit;\n    Fenwick(int n = 0) { init(n); }\n    void init(int n_) {\n        n = n_;\n        bit.assign(n+1, 0);\n    }\n    void add(int x, long long v) {\n        for (++x; x <= n; x += x & -x) bit[x] += v;\n    }\n    long long sumPrefix(int x) const {\n        long long res = 0;\n        for (++x; x > 0; x -= x & -x) res += bit[x];\n        return res;\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a(n);\n    int mx = 0;\n    for (int i = 0; i < n; ++i) {\n        cin >> a[i];\n        mx = max(mx, a[i]);\n    }\n\n    Fenwick fw(mx+1);\n    long long ans = 0;\n    for (int x : a) {\n        if (x > 0) ans += fw.sumPrefix(x-1);\n        fw.add(x, 1);\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       answer: '',
+      "sourcePage": 10,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"],
     }
 ];
 
@@ -307,25 +267,16 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: `
-**答案：D**
-
-**解析：**
-判断「a 是 b 的 3 倍」的数学定义就是 a == 3 * b。
-- **A 错误：** \`a >> 3 == b\` 按优先级解析为 \`(a >> 3) == b\`，判断的是「a 右移 3 位（约等于除以 8）后是否等于 b」，与 3 倍关系毫无关联。
-- **B 错误：** \`(a - b) % 3 == 0\` 只能说明 a 与 b 的差是 3 的倍数。反例：a=4, b=1，差为 3，余 0 成立，但 4 不是 1 的 3 倍（7 才是）。这是「必要不充分」条件。
-- **C 错误：** \`a / b == 3\` 是**整数除法**，商向零截断。反例：a=7, b=2，7/2 = 3 成立，但 7 不是 2 的 3 倍（6 才是）。截断使商为 3 的范围是 [3b, 4b)，不只是 3b。
-- **D 正确：** \`a == 3 * b\` 直接按定义判断，且 3 * b 在 int 范围内无溢出风险时完全准确。
-
-**易错点：** 整数除法截断是高频陷阱——「a / b == k」等价于「a ∈ [k·b, (k+1)·b)」而不是「a == k·b」。
-
-**考点：** 运算符优先级、整数除法、表达式判断
-        `,
+            explanation: "**答案：D**\n\n**解析：**\n判断「a 是 b 的 3 倍」的数学定义就是 a == 3 * b，逐一核验各选项：\n- **A 错误：** `a >> 3 == b` 按运算符优先级解析为 `(a >> 3) == b`，判断的是「a 右移 3 位（约等于除以 8）后是否等于 b」，与 3 倍关系无关。\n- **B 错误：** `(a - b) % 3 == 0` 只能说明 a 与 b 的差是 3 的倍数（即 a ≡ b (mod 3)），与「a 是 b 的 3 倍」没有必然联系，**既不充分也不必要**：不充分反例——a=4, b=1，差为 3，余 0 成立，但 4 不是 1 的 3 倍（a 应为 3）；不必要反例——a=3, b=1 满足 a=3b，但 a−b=2，2 % 3 ≠ 0，条件反而不成立。\n- **C 错误：** `a / b == 3` 是**整数除法**，商向零截断。反例：a=7, b=2，7/2 = 3 成立，但 7 不是 2 的 3 倍（6 才是）。一般地，b>0 时截断商为 3 对应 a ∈ [3b, 4b)；b<0 时对应 a ∈ (4b, 3b]，两区间均覆盖一段范围，并不等价于 a=3b（若 a=3b 则必有 a/b==3，故 C 是必要不充分条件）。\n- **D 正确：** `a == 3 * b` 直接按定义判断，在 `3 * b` 不发生有符号整型溢出的前提下完全准确。\n\n**易错点：** 整数除法截断是高频陷阱——当 b>0 时，「a / b == k」等价于「a ∈ [k·b, (k+1)·b)」而不是「a == k·b」。\n\n**考点：** 运算符优先级、整数除法、表达式判断",
             tags: [
                 "客观题",
                 "单选题",
                 "GESP6级",
-            ]
+            ],
+      "sourcePage": 1,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 3,
@@ -675,34 +626,20 @@ D 的编码：从根出发每一步取分支值：1.00→0.60（右，1）→ 0.
         {
             id: 12,
             type: "single",
-            question: `个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。`,
-            options: [
-                "O(n)",
-                "O(n²)",
-                "O(log n)",
-                "O(n log n)",
-],
+            question: "N 个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。",
+            options: ["O(1)","O(N)","O(log N)","O(N²)"],
             answer: 2,
             score: 2,
-            explanation: `
-**答案：C**
-
-**解析：**
-N 个节点的二叉搜索树，**平均**查找长度与树高同阶。
-- 随机插入顺序下，BST 的期望高度为 O(log N)，查找平均比较 O(log N) 次——**C 正确**。
-- **A O(n)**：这是最坏情况——按有序序列插入时退化成链表，但题目问的是平均。
-- **B O(n²)**：查找逐层深入，每层 O(1) 比较，不存在平方级的查找复杂度。
-- **D O(n log n)**：这是排序的量级，单次查找没有这一项。
-
-**易错点：** BST 查找「平均 O(log N)、最坏 O(N)」——与「自平衡 BST（AVL/红黑树）保证最坏 O(log N)」对比记忆；无自平衡保证是普通 BST 的软肋。
-
-**考点：** 二叉搜索树、平均时间复杂度
-        `,
+            explanation: "**答案：C**\n\n**解析：**\nN 个节点的二叉搜索树，查找需从根出发沿一条路径逐层与节点比较，比较次数由树高决定。\n- **A O(1) 错误：** 常数时间只对「已知位置直接访问」成立；按值查找必须沿路径逐节点比较，做不到 O(1)。\n- **B O(N) 错误：** 这是**最坏**情况——按有序序列插入时 BST 退化成链表，树高为 N；题目问的是平均复杂度。\n- **C O(log N) 正确：** 键以随机顺序插入时，BST 的期望高度为 O(log N)，平均查找比较约 O(log N) 次。\n- **D O(N²) 错误：** 单次查找沿一条根到叶的路径进行，比较次数不超过树高，不存在平方级。\n\n**易错点：** 普通 BST「平均 O(log N)、最坏 O(N)」；AVL、红黑树等自平衡 BST 才能保证最坏情形也是 O(log N)，二者勿混淆。\n\n**考点：** 二叉搜索树、平均时间复杂度",
             tags: [
                 "客观题",
                 "单选题",
                 "GESP6级",
-            ]
+            ],
+      "sourcePage": 6,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","options","explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 13,
@@ -739,7 +676,7 @@ N 个节点的二叉搜索树，**平均**查找长度与树高同阶。
         {
             id: 14,
             type: "single",
-            question: `个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。`,
+            question: "N 个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。",
             options: [
                 "O(1)",
                 "O(n)",
@@ -766,7 +703,11 @@ N 个节点的二叉搜索树，**平均**查找长度与树高同阶。
                 "客观题",
                 "单选题",
                 "GESP6级",
-            ]
+            ],
+      "sourcePage": 6,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 15,

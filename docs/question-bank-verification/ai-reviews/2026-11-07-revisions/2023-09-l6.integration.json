@@ -1,0 +1,210 @@
+{
+  "paperId": "2023-09-l6",
+  "integratedAt": "2026-11-07T12:42:08.831Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 8,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 9,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "某内容仅会出现 ABCDEFG，其对应的出现概率为 0.40、0.30、0.15、0.05、0.04、0.03、0.03（依次对应 A 到 G）。按如下结构构建哈夫曼树：根 1.00 的左子是叶 A(0.40)，右子 0.60；0.60 的左子 0.30、右子是叶 B(0.30)；0.30 的左子 0.15、右子是叶 C(0.15)；0.15 的左子 0.06（左孩子为叶 G(0.03)，右孩子为叶 F(0.03)）、右子 0.09（左孩子为叶 E(0.04)，右孩子为叶 D(0.05)）；约定左分支为 0、右分支为 1。按照哈夫曼编码规则，假设 B 的编码为 11，则 D 的编码为（ ）。"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "5 100\n100 2000\n2 50\n4 40\n5 30\n3 20",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "input": "5 141\n100 2000\n2 50\n4 40\n5 30\n3 20",
+          "output": "100",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "100\n",
+          "passed": true
+        },
+        {
+          "input": "4 141\n2 50\n4 40\n5 30\n3 20",
+          "output": "no solution",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "no solution\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 N=1 恰好满足",
+          "input": "1 1\n1 1\n",
+          "output": "1",
+          "reason": "最小 N、最小 L；单瓶 c=1、l=1 恰达容量下限，最少花费 1（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模无解",
+          "input": "1 2\n1 1\n",
+          "output": "no solution",
+          "reason": "仅一瓶容量 1<2，且每种至多 1 瓶，无法达标（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "no solution\n",
+          "passed": true
+        },
+        {
+          "name": "超容量截断",
+          "input": "2 5\n2 3\n1 6\n",
+          "output": "1",
+          "reason": "单买容量 6≥5 的第二瓶花费 1 最优，验证超出 L 的容量截断后仍取到最优（独立手算 dp 路径 0→5，未运行）。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "组合优于单瓶",
+          "input": "3 10\n1 6\n1 5\n5 10\n",
+          "output": "2",
+          "reason": "前两瓶容量 11≥10、花费 2，优于恰好 10 容量的单价 5 方案；枚举全部 8 个子集取最小验证组合转移（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "L 上界与 10^6 费用量级",
+          "input": "2 2000\n1000000 1500\n1000000 1500\n",
+          "output": "2000000",
+          "reason": "L 取上界 2000、c_i 取 10^6；单瓶 1500<2000 不达标，必须两瓶共 2×10^6 元，检验边界与大数处理（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "2000000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "c3c77b368109f25affb10b0a46f16c9cbd4072e956fa26217dadbf45a7d7bfe5"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "4\n2 1 3 0",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "6\n0 1 2 3 4 5",
+          "output": "15",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "15\n",
+          "passed": true
+        },
+        {
+          "name": "最小 N=2 升序",
+          "input": "2\n0 1\n",
+          "output": "1",
+          "reason": "最小规模；1 号入场时 0 号在场且学号更小，握手 1 次（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小 N=2 降序",
+          "input": "2\n1 0\n",
+          "output": "0",
+          "reason": "0 号最后入场且无更小学号在场，0 次（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "全升序极大握手",
+          "input": "3\n0 1 2\n",
+          "output": "3",
+          "reason": "贡献 0+1+2=3，验证顺序对逐步累计（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "全降序零握手",
+          "input": "3\n2 1 0\n",
+          "output": "0",
+          "reason": "每位入场者学号均小于在场者，0 次；覆盖 x=0 跳过查询的分支（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "混合交错顺序",
+          "input": "5\n1 3 0 2 4\n",
+          "output": "7",
+          "reason": "各步贡献 0+1+0+2+4=7，覆盖学号非单调的一般情形（独立手算，未运行）。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "2c9c742228da28024c1890248e00e1729c74203e2a25b4e63f2df63e961c5462"
+    }
+  ]
+}
