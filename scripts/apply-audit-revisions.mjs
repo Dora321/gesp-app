@@ -59,7 +59,7 @@ function patchQuestionObjects(source, updates) {
 
 for (const id of process.argv.slice(2)) {
     if (!/^\d{4}-\d{2}-l[1-8]$/.test(id)) throw new Error('非法试卷 ID');
-    const dir = path.join(cache, 'revisions', id);
+    const dir = path.join(process.env.GESP_REVISION_CACHE || path.join(cache, 'revisions'), id);
     const candidate = JSON.parse(fs.readFileSync(path.join(dir, 'paper.json')));
     const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json')));
     const initial = JSON.parse(fs.readFileSync(path.join(out, `${id}.deepseek.json`)));

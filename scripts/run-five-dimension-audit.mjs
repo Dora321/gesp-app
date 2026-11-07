@@ -84,6 +84,7 @@ async function request(model, phase, paper, manifest, draft, questionIds) {
     const content = [
         { type: 'text', text: `核验目标 ${paper.id}；已校验来源 git-blob SHA ${manifest.source.mirrorSha}。${manifest.candidate ? '以下是依据上一轮 GLM 意见生成的修订候选，尚未上线；请核验修订后是否真正符合原卷，并独立核对答案及解析。' : '以下是当前网站数据：'}\n${JSON.stringify(paper)}\n\nPDF 文本层（图片中的代码等可能缺失）：\n${textPages}` },
     ];
+    if (manifest.previousReview) content.push({ type: 'text', text: `以下是上一轮的最终审校意见，仅用于定位未决问题，不是本轮结论；请依据原卷重新核对当前候选，不重复提出已经包含在候选中的修改：\n${JSON.stringify(manifest.previousReview)}` });
     manifest.images.forEach((image, index) => {
         content.push({ type: 'text', text: `以下是 PDF 第 ${index + 1} 页原图` });
         content.push({ type: 'image_url', image_url: { url: `data:image/jpeg;base64,${fs.readFileSync(path.join(dir, image)).toString('base64')}`, detail: 'high' } });
