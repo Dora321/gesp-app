@@ -55,12 +55,13 @@ async function deployment(sha) {
 }
 async function publish(id, phase, extraPaths = []) {
     for (const task of ['generate:papers', 'validate:bank', 'test', 'check', 'lint', 'build']) await command('npm', ['run', task], `checks-${id}-${phase}`);
+    await command(process.execPath, ['scripts/report-five-dimension-progress.mjs'], `progress-${id}-${phase}`);
     git('diff', '--check');
     const evidence = read(path.join(evidenceRoot, `${id}.json`));
     const summary = { paperId: id, phase, checkedAt: new Date().toISOString(), reviewedQuestions: evidence.questions.length, acceptedDimensions: evidence.questions.reduce((sum, question) => sum + question.dimensions.length, 0), unresolved: evidence.unresolved, reviewFiles: evidence.reviewFiles, revisionChecks: evidence.revisionChecks, checks: '题库结构、单元测试、课程与链接、解析质量、Lint、生产构建通过' };
     const progressFile = path.join(evidenceRoot, `ai-reviews/${date}/${id}.delivery.json`);
     fs.writeFileSync(progressFile, JSON.stringify(summary, null, 2) + '\n');
-    const paths = [`docs/question-bank-verification/${id}.json`, `src/data/gesp/level${id.at(-1)}/${id}.js`, 'src/data/gesp/_generated.js', 'src/data/gesp/_stats.js', path.relative(root, progressFile), ...extraPaths];
+    const paths = [`docs/question-bank-verification/${id}.json`, 'docs/question-bank-verification/PROGRESS-2026-11-07.md', `src/data/gesp/level${id.at(-1)}/${id}.js`, 'src/data/gesp/_generated.js', 'src/data/gesp/_stats.js', path.relative(root, progressFile), ...extraPaths];
     for (const directory of fs.readdirSync(reviews).filter(name => name.startsWith(date))) {
         for (const file of fs.readdirSync(path.join(reviews, directory)).filter(name => name.startsWith(id + '.') && name.endsWith('.json'))) paths.push(`docs/question-bank-verification/ai-reviews/${directory}/${file}`);
     }
