@@ -43,10 +43,21 @@ function command(program, args, label, env = {}) {
 }
 const node = (script, id, label, env) => command(process.execPath, [script, id], label, env);
 async function deployment(sha) {
+    let retried = 0;
     for (let attempt = 0; attempt < 60; attempt++) {
         const runs = JSON.parse(execFileSync('gh', ['run', 'list', '--repo', 'Dora321/gesp-app', '--commit', sha, '--workflow', 'deploy.yml', '--limit', '1', '--json', 'databaseId,status,conclusion'], { cwd: root, encoding: 'utf8', timeout: 60000 }));
         if (runs[0]?.status === 'completed') {
-            if (runs[0].conclusion !== 'success') throw new Error(`GitHub 部署检查失败：${runs[0].databaseId} ${runs[0].conclusion}`);
+            if (runs[0].conclusion !== 'success') {
+                const jobs = JSON.parse(execFileSync('gh', ['run', 'view', String(runs[0].databaseId), '--repo', 'Dora321/gesp-app', '--json', 'jobs'], { cwd: root, encoding: 'utf8', timeout: 60000 })).jobs;
+                const transientPagesFailure = jobs.some(job => job.name === 'deploy' && job.conclusion === 'failure')
+                    && jobs.filter(job => job.name !== 'deploy').every(job => job.conclusion === 'success');
+                if (!transientPagesFailure || retried >= 2) throw new Error(`GitHub 部署检查失败：${runs[0].databaseId} ${runs[0].conclusion}`);
+                execFileSync('gh', ['run', 'rerun', String(runs[0].databaseId), '--repo', 'Dora321/gesp-app', '--failed'], { cwd: root, timeout: 60000 });
+                retried += 1;
+                report({ status: 'retrying-pages-deploy', runId: runs[0].databaseId, attempt: retried });
+                await wait(30000);
+                continue;
+            }
             return runs[0].databaseId;
         }
         await wait(30000);
