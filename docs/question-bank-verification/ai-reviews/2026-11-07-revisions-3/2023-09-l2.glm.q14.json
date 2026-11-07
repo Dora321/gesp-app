@@ -1,0 +1,97 @@
+{
+  "paperId": "2023-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    14
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T23:43:51.754Z",
+  "completedAt": "2026-11-07T23:49:08.138Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34349,
+    "completion_tokens": 25654,
+    "total_tokens": 60003,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 23202
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01797935,
+      "allowance": 0.01797935,
+      "tokens": {
+        "input": 34349,
+        "output": 25654,
+        "reasoning": 23202,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c2e2d45f060c0caa38aa474cc3c4869f46d8645bbd88c28903f2517339099d26",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++2级.pdf",
+    "mirrorSha": "4987bf68cca3f221e76edf1834cf98ee4a91acc0",
+    "mirrorBytes": 1362286,
+    "shaVerified": true,
+    "sha256": "5f37e0cd794a4cca114f3b686ecab7480f4693541d03ef5cbfa6543e9da9a2fd"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP』，标题『C++ 二级』，日期『2023 年 9 月』，与 paperId=2023-09-l2 及 level=2、year=2023、month=9 相符；同页单选题答案表题号 1–15 对应答案 D B C B D C D A D A B B D A A，其中第 14 题为 A。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原卷第 5 页题干为『输入行数，约定 1 ≤ lineCount ≤ 9，输出以下图形。应在C++代码横线处填入（ ）』；第 6 页给出运行界面『输入行数量：9』与 9 行金字塔，第 i 行为升序 1…i 接降序 i+1…1（第 5 行 1 2 3 4 5 4 3 2 1、末行 1…9 与 8…1），代码共 12 行：int lineCount = 0;、cout << \"请输入行数量:\";、cin >> lineCount;、外层 for (int i = 0; i < lineCount; i++)，空格层 for (int j = 0; j < ________; j++) // 此处填写代码 后 cout << ' ';，升序层 for (int j = 1; j < i + 1; j++) cout << j << \" \";，降序层 for (int j = i + 1; j > 0; j--) cout << j << \" \";，行末 cout << endl;。候选补入的 9 行图经逐行核对：行序、各行数字内容、前导空格 16/14/12/10/8/6/4/2/0（各行递减 2、末行贴左）及行尾空格，均与原图和代码实际输出一致，『以下图形』有所指；候选裁去的三行前置代码（声明/提示/读入）已由题干的变量名 lineCount、取值 1–9 和『输入行数』覆盖，不改变横线与答案，属等价裁剪；『输出以下图形』补述为『数字金字塔图形』为无害澄清。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷第 6 页四个选项依次为 A. (lineCount - i - 1) * 2、B. (lineCount - i) * 2、C. lineCount - i - 1、D. lineCount - i；候选 options 数组按同序给出同内容四项，仅运算符两侧排版空格差异，A 对应候选索引 0，映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 A（整行 D B C B D C D A D A B B D A A），对应候选 answer=0。独立复算：空格循环每执行一次输出 1 个空格字符，第 i 行数字部分（每个数字连同尾随空格）宽 2(2i+1) 列，最末行宽 2(2lineCount-1) 列，按末行对齐所需前导空格 = [2(2lineCount-1) - 2(2i+1)]/2 = 2(lineCount-i-1)；lineCount=9 时各行前导空格 16/14/…/2/0，与卷面金字塔逐行相符；B 每行恰多 2 个（末行仍有 2 个致整体右移），C 恰为正确值一半，D 既不减 1 也不乘 2，均不成立，仅 A（索引 0）正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：现候选解析的『数学归纳分析』段自相矛盾，lineCount=4 示意块前导空格为 9/7/5/3，既与其自身给出的『空格 6/4/2/0』不符，也与代码实际输出（各行数字部分含尾随空格宽 2/6/10/14 列、居中后前导空格 6/4/2/0）不符；『数字占 1/4/6/8 列』的表述混乱且含算术错误（如 1+4+2 写作 6），该段不能作为独立解析，故按 changes 整体替换。替换稿经逐句独立复算：升序层 for (j=1; j<i+1) 输出 1…i 共 i 个（i=0 时 0 个），降序层输出 i+1…1 共 i+1 个，合计 2i+1 个数字，每个数字连同尾随空格占 2 列，末行宽 2(2lineCount-1)，前导空格 [2(2lineCount-1)-2(2i+1)]/2 = 2(lineCount-i-1)；lineCount=4 验证 6/4/2/0，lineCount=9 首行 2×(9-0-1)=16、末行 i=8 为 0，均与卷面金字塔一致；对 B（每行恰多 2、末行仍 2）、C（恰为一半，lineCount=9 首行仅 8）、D（不减 1 不乘 2）的否证复算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，原卷无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A `(lineCount - i - 1) * 2`**\n\n**核心解析：**\n外层 `i` 从 0 到 `lineCount-1`。空格循环每执行一次输出一个空格，所以横线处应填第 `i` 行最前面的空格字符数。\n\n第 `i` 行先输出升序部分 `1,2,...,i`（`i=0` 时没有输出），再输出降序部分 `i+1,i,...,1`，数字个数为 `i+(i+1)=2i+1`。每个数字后面都紧跟一个空格，因此第 `i` 行数字部分（含每个数字后的空格）宽度为 `2(2i+1)` 列；最末行 `i=lineCount-1` 的数字部分宽度为 `2(2lineCount-1)`。把各行按最末行居中，第 `i` 行所需前导空格数为\n\n`[2(2lineCount-1)-2(2i+1)]/2 = 2(lineCount-i-1)`。\n\n所以应填 `(lineCount-i-1)*2`。\n\n以 `lineCount=4` 验证：第 0、1、2、3 行的前导空格数分别为 `6、4、2、0`；输入 9 时第 0 行为 `2×(9-0-1)=16` 个空格，最后一行 `i=8` 为 0 个空格，与卷面金字塔一致。\n\n**选项分析：**\n- A 正确，等于上述空格字符数。\n- B `(lineCount-i)*2` 每行比正确值多 2 个空格，最后一行仍有 2 个前导空格，金字塔右移。\n- C `lineCount-i-1` 只有正确值的一半，输入 9 时第一行仅 8 个空格，图形偏左。\n- D `lineCount-i` 既未减 1 也未乘 2，不正确。\n\n**易错提醒：** 数字后的空格也占列，必须按“数字连同尾随空格共 2 列”计算；`i` 从 0 开始，所以最后一行对应 `lineCount-1`。\n\n**考点：** 循环嵌套、图形打印与前导空格计算。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核并经独立确认：其 statement/options/answer 的 verified 结论与我基于第 1/5/6 页图和答案表的自行核对一致（9 行金字塔逐行比对一致、选项同序同内容、答案表 A→0 且前导空格公式独立复算仅 A 符），予以确认；其对 explanation 的 needs_fix 定性属实——我独立确认现候选『数学归纳分析』段示意块前导空格 9/7/5/3 与其结论 6/4/2/0 及代码输出矛盾，且列宽表述含算术错误，不能保留；其提供的替换解析经我逐句复算（升序 i 个 + 降序 i+1 个 = 2i+1 个数字、每数字连同尾随空格占 2 列、前导空格 2(lineCount-i-1)、lineCount=4 为 6/4/2/0、lineCount=9 首行 16/末行 0、B/C/D 否证）全部成立，采纳为最终值。changes 仅含 explanation；应用后五个维度均核验通过，无保留争议；verdict=revise 仅因该替换需上线应用。"
+      }
+    ],
+    "summary": "卷头与 paperId 相符（CCF GESP C++ 二级，2023 年 9 月）。本轮仅核验题 14：修订候选补入的 9 行数字金字塔经逐行核对与原卷第 6 页图形及代码实际输出（前导空格 16/14/…/0、行尾空格）一致，前置三行代码（声明/提示/读入）的省略属不影响横线与答案的等价裁剪；四选项与原卷同序同内容；答案表第 14 题为 A（索引 0），与前导空格公式 2(lineCount-i-1) 的独立复算相符；候选解析『数学归纳分析』段自相矛盾（示意块 9/7/5/3、列宽表述含算误），已提交经独立复算确认的完整替换解析。无未决问题；tests 不适用于单选题。"
+  }
+}
