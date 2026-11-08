@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:46:20.888Z",
+  "completedAt": "2026-11-08T04:47:35.867Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37675,
+    "completion_tokens": 5675,
+    "total_tokens": 43350,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3674
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00848875,
+      "allowance": 0.00848875,
+      "tokens": {
+        "input": 37675,
+        "output": 5675,
+        "reasoning": 3674,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f81b7dbab50fd5172d5c7d62c2368677c4d9936078b662bc699a5b75121d6d15",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确印有“C++ 一级”“2024 年 03 月”，与网站 year=2024、month=3、level=1、session=5 一致；第 1 页单选答案表（B D D A B A C D B B D B C C C）与第 4 页判断题答案表（√√××…）均系本卷特征，可交叉确认。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文“在C++代码中变量n被赋值为27，则 cout << n%10 执行后输出的是7”；本站仅加反引号与括号样式调整，代码片段与数值语义完全一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以√/×答案表呈现二元判断，本站规范化为[正确,错误]；正确→索引 0、错误→索引 1 的映射与答案表一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 1 格为√，按正确=0 得 officialAnswer=0，与本站 answer=0 一致；独立推导 27%10=7（27=2×10+7），命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：取模求余，27 除以 10 商 2 余 7，n%10 得 7，cout 输出 7 且不改变 n；本站解析推导链完整、结论正确，并补充了取个位与去个位的区分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立核对答案表第 1 格为√并自行推算 27%10=7，officialAnswer=0、题面、解析均无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文“C++语句 printf(\"%d#%d&\",2,3) 执行后输出的是2#3&”；本站题面保留同一格式串、参数与判断结论，仅排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以√/×答案表呈现判断题，本站规范化为[正确,错误]，0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 格为√，officialAnswer=0；独立推导 printf 按序替换两个%d为 2、3，#与&原样输出，得 2#3&，命题为真，与 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：%d 占位符从左到右依次消费参数 2 和 3，#、& 无转换含义原样写出，引号不输出，无换行符故不换行；本站解析与该推导一致且补充了无换行的细节。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：格式串替换过程我已独立演算，输出确为 2#3&，答案表第 2 格√对应 0，全部一致。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题原文“C++函数scanf()必须含有参数，且其参数为字符串型字面量，其功能是提示输入”；本站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以√/×答案表呈现判断题，本站规范化为[正确,错误]，0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 格为×，按错误=1 得 officialAnswer=1，与本站 answer=1 一致；独立判断：scanf 的格式参数可为字符数组/指针，其余参数为变量地址而非字符串字面量，且功能是读取输入而非输出提示，命题整体为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：scanf(格式, &变量) 中地址参数即非字面量，读取功能与“提示输入”矛盾，需 printf/cout 才能提示；本站解析理由充分、结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：命题的“参数为字符串型字面量”“功能是提示输入”两处均不成立，×对应 1，解析推导正确。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文“C++表达式 \"10\"*2 执行时将报错，因为 \"10\" 是字符串类型而2是整数类型，它们数据类型不同，不能在一起运算”；本站题面语义一致（仅反引号排版）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以√/×答案表呈现判断题，本站规范化为[正确,错误]，0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 格为√，officialAnswer=0；独立推导：\"10\" 在表达式中退化为 const char* 指针，* 运算无“指针×整数”重载，无法通过类型检查，报错结论成立，与 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导结论与解析一致：表达式确不能编译。命题给出的理由（“类型不同一概不能运算”）表述过宽（int 与 double 可混合运算），但就本例而言指针与整数相乘确属非法；本站解析明确指出理由瑕疵并按官方答案判定整句为真，处理恰当、无误导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：官方答案表为√，解析既确认报错结论又指出题干理由过宽，符合“保留原卷表述但独立说明”的要求，无需改动。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 5 题原文“在C++中，while可能是死循环，而for循环不可能是死循环”；本站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以√/×答案表呈现判断题，本站规范化为[正确,错误]，0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 格为×，按错误=1 得 officialAnswer=1，与本站 answer=1 一致；独立推导：for(;;){} 省略条件恒为真且无退出路径，同样可能死循环，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：for 的三个表达式均可省略，条件缺省即真，无 break 时无限执行；循环能否终止取决于条件与控制流而非关键字；本站解析与此一致，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：×对应 1，我独立验证了 for(;;) 反例，解析无需修改。"
+      }
+    ],
+    "summary": "本次独立复核题号 16—20，即 PDF 第 4 页判断题第 1—5 题（第 9、10 判断题在下一页，不在本次范围）。逐题核对：题面与 PDF 原文仅有反引号/空格等价排版差异；判断题二元选项按 √→0、×→1 规范化，与答案表前五格 √√×√× 完全对应，officialAnswer 依次为 0、0、1、0、1，与网站 answer 一致；各解析均含独立推导且结论无误，其中第 19 题对题干理由过宽的说明处理恰当。四处 referenceCode均为判断题不适用，tests 为空。DeepSeek 初核五题结论全部经独立验证成立，全部 approve，无修改项。"
+  }
+}

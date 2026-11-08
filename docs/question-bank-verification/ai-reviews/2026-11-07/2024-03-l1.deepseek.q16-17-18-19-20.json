@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:44:20.155Z",
+  "completedAt": "2026-11-08T04:46:20.880Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 24649,
+    "completion_tokens": 6663,
+    "total_tokens": 31312,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5240
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00769515,
+      "allowance": 0.00461709,
+      "tokens": {
+        "input": 24649,
+        "output": 6663,
+        "reasoning": 5240,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f81b7dbab50fd5172d5c7d62c2368677c4d9936078b662bc699a5b75121d6d15",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头写明“C++ 一级”“2024 年 03 月”；第 4 页判断题答案表的前五项依次为√、√、×、√、×，对应本站题号 16—20。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文为“变量 n 被赋值为 27，则 cout << n%10 执行后输出的是 7”；本站题面仅调整了空格和 Markdown 写法，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 中用判断题的√、×式答案表呈现，本站规范化为“正确”“错误”两项；正确对应索引 0、错误对应索引 1，选项顺序和映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页答案表判断题第 1 格为√；正确=0，与本站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：27 除以 10 的商为 2、余数为 7，所以 n%10 得到 7，cout 输出 7；解析结论和推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文为 printf(\"%d#%d&\",2,3) 执行后输出 2#3&；本站题面保留同一格式串、参数和输出判断，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以判断题答案表呈现，本站用“正确/错误”规范化；二元选项与正确=0、错误=1 的映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页答案表判断题第 2 格为√；正确=0，与本站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "printf 按格式串依次替换：第一个 %d 填入 2，# 原样输出，第二个 %d 填入 3，& 原样输出，故结果为 2#3&；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题原文讨论 scanf() 是否必须含有参数、参数是否为字符串型字面量及其是否用于提示输入；本站题面与该判断句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题采用√、×答案表，本站规范化为“正确/错误”；选项顺序和 answer 0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页答案表判断题第 3 格为×；错误=1，与本站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "scanf 的格式参数可以是字符数组或指针，不必是字符串字面量；scanf 的功能是从输入流读取数据，不会输出提示语，因此整句为假。本站解析已独立说明这些理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文为“C++表达式 \"10\"*2 执行时将报错，因为 \"10\" 是字符串类型而 2 是整数类型，它们数据类型不同，不能在一起运算”；本站题面与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题用√、×答案表，本站规范化为“正确/错误”；与 answer=0 对应正确一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页答案表判断题第 4 格为√；正确=0，与本站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "字符串字面量“10”在乘法表达式中退化为字符指针，C++ 没有“指针乘整数”的运算，表达式无法通过类型检查；本站解析同时指出题干“类型不同一概不能运算”的说法过宽，但结论仍为真，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 5 题原文为“在C++中，while可能是死循环，而for循环不可能是死循环”；本站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题使用√、×答案表，本站规范化为“正确/错误”；错误对应索引 1，与答案表一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页答案表判断题第 5 格为×；错误=1，与本站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "for(;;) 和 while(true) 都可能无限执行，for 同样可能形成死循环；因此原命题为假，本站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号 16—20 分别对应 PDF 第 4 页判断题 1—5。逐题核对题面、二元选项、答案表与解析后，本站 statements、options、answer、explanation 均与 PDF 及独立推导一致；officialAnswer 依次为 0、0、1、0、1。未发现需要修改的字段，判断题的 referenceCode 均不适用。"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:40:49.048Z",
+  "completedAt": "2026-11-08T04:42:20.929Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 24649,
+    "completion_tokens": 6224,
+    "total_tokens": 30873,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4800
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00743175,
+      "allowance": 0.00445905,
+      "tokens": {
+        "input": 24649,
+        "output": 6224,
+        "reasoning": 4800,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f81b7dbab50fd5172d5c7d62c2368677c4d9936078b662bc699a5b75121d6d15",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2024 年 03 月”，与 paperId=2024-03-l1 的年份、月份、语言等级一致；未发现同名异卷迹象。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题面为“下面关于整型变量int x的赋值语句不正确是( )”，站点写作“下面关于整型变量 `int x` 的赋值语句不正确的是（ ）”，仅为等价排版与措辞调整，语义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页四个选项依次为 A. x=(3.16); B. x=3.16; C. x=int(3.16); D. x=3.16 int;，与站点选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题列为D；站点 answer=3 对应选项D，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：A、B将浮点值赋给整型变量，语法合法但发生截断；C为函数式强制转换，合法；D把类型名放在数值后，不符合C++语法，无法通过编译。解析结论与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题面为“C++语言中下面可以完成数据输入的语句是（ ）。”，站点仅增加空格排版，语义一致；题面跨第3页至第4页选项区。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页至第4页选项依次为 A. printf语句、B. scanf语句、C. default语句、D. cout语句，与站点四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题列为B；站点 answer=1 对应选项B，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：scanf用于按格式从标准输入读取数据；printf与cout用于输出；default是switch分支标签，不具备输入功能。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题面为“在Dev C++中对一个写好的C++源文件要生成一个可执行程序需要执行下面哪个处理步骤？（ ）”，站点仅增加空格排版，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A. 创建、B. 编辑、C. 编译、D. 调试，与站点选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题列为C；站点 answer=2 对应选项C，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：要从源代码生成可执行程序，开发环境需执行编译并通常连带链接；创建、编辑不产生可执行程序，调试需先有可执行程序。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题面为“小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是？（ ）”，与站点题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A. 小程序、B. 计时器、C. 操作系统、D. 神话人物，与站点选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题列为C；站点 answer=2 对应选项C，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：题面“手表上跑的是鸿蒙”指设备运行的操作系统；计时器是功能、小程序是应用层概念，均不准确。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题面为“中国计算机学会（CCF）在2024年1月27日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（ ）。”，与站点题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A. 制造自动驾驶汽车、B. 创立培训学校、C. 发明汉字激光照排系统、D. 成立方正公司，与站点选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题列为C；站点 answer=2 对应选项C，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：王选先生的主要科技贡献是主持研制汉字激光照排系统，推动中文出版印刷电子化；解析与官方答案一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核范围仅为第11—15题。PDF卷头与 paperId=2024-03-l1 的年份、月份、语言等级匹配；五题的题面、选项顺序、官方答案与解析均逐项对照原卷图像并独立复核，未发现需要改动的字段。五题均为单选题，referenceCode 不适用，故 tests 为空、changes 为空、unresolved 为空。"
+  }
+}

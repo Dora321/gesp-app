@@ -1,0 +1,234 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:31:41.516Z",
+  "completedAt": "2026-11-08T04:32:51.266Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37770,
+    "completion_tokens": 5150,
+    "total_tokens": 42920,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2940
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0082405,
+      "allowance": 0.0082405,
+      "tokens": {
+        "input": 37770,
+        "output": 5150,
+        "reasoning": 2940,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f81b7dbab50fd5172d5c7d62c2368677c4d9936078b662bc699a5b75121d6d15",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头从上到下为“中国计算机学会 CCF”徽标、GESP 徽标、“CCF 编程能力等级认证 Grade Examination of Software Programming”、标题“C++ 一级”、“2024 年 03 月”，与 paperId 2024-03-l1（2024 年 3 月 C++ 一级）一致；同页还含单选题 1—15 答案表，供各题 answer 复核。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题原文“C++表达式 (3 - 2) * 3 + 5 的值是( )”，当前 question 运算符、括号、数值与设问逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图选项核对：A. -13，B. 8，C. 2，D. 0；当前 options [\"-13\",\"8\",\"2\",\"0\"] 内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 B（0 起始索引 1）；独立计算 (3-2)*3+5 = 1*3+5 = 8，与 B 选项互证。当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：括号最高优先级先算 3-2=1，再乘法 1*3=3，后加法 3+5=8，故为 B。网站解析的分步运算、选项分析及“括号优先于乘法”的易错提醒与独立推导一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立按优先级重算得 8，与答案表 B 及初核结论一致，接受初核。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题原文“C++语句 cout << \"5%2=\" << 5 % 2 执行后的输出是( )”，双引号位置与代码符号与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图选项核对：A. 2 2，B. 1 1，C. 5%2=2，D. 5%2=1；当前 options 内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 D（索引 3）；独立计算字符串 \"5%2=\" 原样输出、5%2 余 1、无自动空格，输出 5%2=1，与 D 互证。当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：字符串字面量不求值、% 为取余（5/2 商 2 余 1）、链式输出紧凑拼接；解析末尾“% 要求整数操作数，浮点用 % 会报错”表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立推演出 5%2=1 并核对答案表 D，初核结论准确，接受。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题原文“执行C++语句 cin >> a 时如果输入5+2，下述说法正确的是（ ）”，设问与代码与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图选项核对：A. 变量a将被赋值为整数7，B. 变量a将被赋值为字符串，字符串内容为5+2，C. 语句执行将报错，不能输入表达式，D. 依赖于变量a的类型。如果没有定义，会有编译错误；内容与顺序均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 D（索引 3）；独立分析：cin 不对输入文本求值，a 未定义即编译错误，a 为 int 读入 5（+2 留在缓冲区）或为 string 读入\"5+2\"，行为依赖类型，与 D 互证。当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析中 int/string/char 三种类型的读取行为描述与 cin 提取规则相符，“输入流不做表达式求值”为正确关键点，独立推导无冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立分析各类型下行为后确认 D 正确，与初核一致，接受。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题代码图为两行：int a = 1; 与 cout << \"a+1= \" << a+1 << endl;，字符串内等号后有一个空格；当前 question 代码及该空格均保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图选项核对：A. a+1= 2，B. a+1=2，C. 2=2，D. 2= 2；当前 options 内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 A（索引 0）；独立计算 \"a+1= \" 原样输出（含空格）后拼接 a+1=2，得“a+1= 2”，与 A 互证。当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：双引号内文本不参与计算、等号后空格必须输出、a+1 先求值为 2；选项 B 漏空格、C/D 误算引号内文本的辨析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "空格细节已按原图独立核验，输出 a+1= 2 与答案表 A 一致，接受初核。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题代码图为 int a = 1; 与 printf(\"a+1=%d\\n\", a+1);，格式串中等号与 %d 之间无空格；当前 question 代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页原图选项核对：A. a+1= 2，B. a+1=2，C. 2=2，D. 2= 2；当前 options 内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 B（索引 1）；独立计算格式串文本 a+1= 原样输出、%d 替换为 a+1=2、无空格，输出 a+1=2，与 B 互证。当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：%d 由双引号外参数替换、引号内 a+1 是纯文本、格式串无空格故输出无空格；知识延伸的等价 cout 代码 cout << \"a+1=\" << a+1 << endl 输出同为 a+1=2，正确（其代码块未闭合属排版瑕疵，不影响内容，不做文风修改）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立按 printf 格式化规则推演得 a+1=2，与答案表 B 一致；初核仅未在 sourcePages 标注答案表所在第 1 页，已在本轮补全，不影响结论，接受。"
+      }
+    ],
+    "summary": "本次复核范围仅题 1—5，其余题目未核验。来源身份按第 1 页原图卷头确认：CCF GESP C++ 一级、2024 年 03 月，与 2024-03-l1 匹配。五题均逐题独立重算：题1 (3-2)*3+5=8（B）；题2 输出 5%2=1（D）；题3 行为依赖 a 的类型（D）；题4 输出 a+1= 2 含空格（A）；题5 printf 输出 a+1=2（B），均与第 1 页单选答案表 B/D/D/A/B 及网站 answer 索引一致；题面、代码（含题4等号后空格、题5格式串无空格的细节）与选项顺序均与原图逐字核对无差异；各解析经独立推导内容正确（题5解析末尾代码块未闭合属排版瑕疵，不影响含义）。五题五维全部 verified，无 changes、无 unresolved、无客观题以外测试项。DeepSeek 初核结论全部独立确认，予以接受。"
+  }
+}

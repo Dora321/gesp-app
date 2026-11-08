@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:50:35.655Z",
+  "completedAt": "2026-11-08T04:52:14.006Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37596,
+    "completion_tokens": 7063,
+    "total_tokens": 44659,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5218
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0091709,
+      "allowance": 0.0091709,
+      "tokens": {
+        "input": 37596,
+        "output": 7063,
+        "reasoning": 5218,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f81b7dbab50fd5172d5c7d62c2368677c4d9936078b662bc699a5b75121d6d15",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF GESP 标识及『C++ 一级 2024 年 03 月』，与 2024 年 3 月 C++ 一级（2024-03-l1）对应；判断题区域位于第 4—5 页。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断第 6 题原文『在C++，break语句用于提前终止当前层次循环，适用于while循环，但不适用于for循环。』；网站题面语义逐字一致，仅加代码标记与空格。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 仅呈现判断句与空括号；网站按『正确/错误』二元格式呈现，无 A—D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表（√√×√×××√√√）第 6 位为 ×，即错误=1；网站 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：break 终止包含它的当前层次（最内层）循环，适用范围涵盖 for、while、do-while，也可结束 switch，故『适用于 while 但不适用于 for』与 C++ 语义相反，判定错误。内层 break 不自动终止外层循环的补充说明亦正确。网站解析结论与理由可独立推出。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核草稿与独立核验完全一致：题面、答案表 ×→1、解析结论均成立，接受。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断第 7 题原文『C++语言中3.0和3的值相等，所以它们占用的存储空间也相同。』；网站题面一致，仅加代码标记。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 选项，网站为『正确/错误』二元格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 位为 ×，即错误=1；网站 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：3.0 为 double 浮点字面量，3 为 int 整型字面量，常见实现中 sizeof(double)=8、sizeof(int)=4（具体由实现规定）；数值相等不蕴含占用存储相同，标准亦不保证二者等大，题干推断不成立。网站解析的编码差异与实现相关说明与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论正确：×→1 映射无误，解析理由独立可证，接受。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断第 8 题原文『在C++的程序中，cin是一个合法的变量名。』；网站题面一致，仅加代码标记。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 选项，网站为『正确/错误』二元格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 8 位为 √，即正确=0；网站 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：cin 是标准库在 std 命名空间中声明的输入流对象名，属于普通标识符而非 C++ 关键字/保留标识符，程序可在自己作用域声明同名变量（会遮蔽该名或使不带限定的引用产生歧义，仍可用 std::cin 限定访问），故作为变量名合法。网站解析与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论正确：√→0 映射无误，解析中关于遮蔽与歧义的补充符合语言语义，接受。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 9 题原文与网站一致：数字电视可通过遥控器输入电视剧名称找到想播放的电视剧，据此推知有交互式程序在运行。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 选项，网站为『正确/错误』二元格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "题面文字在 PDF 第 5 页，答案表位于 PDF 第 4 页且第 9 位为 √，即正确=0；网站 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：通过遥控器输入剧名属于运行期间向系统提供输入，系统检索并将匹配结果呈现、可据此继续操作，构成输入—处理—输出—再操作的交互过程；交互设备的形态不限于键盘。官方判定该说法正确成立。网站解析与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论正确：注意答案表在第 4 页而题面在第 5 页，初核已正确区分两处出处；√→0 映射无误，接受。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 10 题原文『任何一个for循环都可以转化为等价的while循环（ ）。』；网站题面一致，仅加代码标记。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 选项，网站为『正确/错误』二元格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "题面文字在 PDF 第 5 页，答案表位于 PDF 第 4 页且第 10 位为 √，即正确=0；网站 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：for(init;cond;step) 的初始化可移至循环前、条件作为 while(cond)、步进置于每轮循环体末尾，三种成分均可放进 while 结构实现等价重写，故任何 for 循环理论上都可转换；含 continue 时需保证步进先执行再检查条件（如借助标志变量调整控制流）。该说法成立，网站解析结论与转换细节说明一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论正确：√→0 映射无误，解析对 continue 等价转换的补充说明合理，接受。"
+      }
+    ],
+    "summary": "本次独立复核第 21—25 题（对应 PDF 判断题第 6—10 题，题面分别位于第 4 页与第 5 页，答案表在第 4 页）。逐题重新核验：答案表符号依次为 ×、×、√、√、√，映射为 1、1、0、0、0，与网站 answer 完全一致；题面文字与原图逐句比对仅存在代码标记/空格的等价差异；五题解析均按 C++ 语义独立推导（break 适用范围、double/int 字面量存储差异、cin 为普通标识符、交互式程序判定、for→while 转换），结论与网站解析相符，未发现事实性错误。判断题 options 与 referenceCode 维度不适用。DeepSeek 初核的全部五条结论与我的独立核验一致，全部接受；无修改（changes 均为空），无未决争议。"
+  }
+}

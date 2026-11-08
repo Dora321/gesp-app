@@ -1,0 +1,228 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:32:51.272Z",
+  "completedAt": "2026-11-08T04:35:29.662Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 24649,
+    "completion_tokens": 10411,
+    "total_tokens": 35060,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7950
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00994395,
+      "allowance": 0.00596637,
+      "tokens": {
+        "input": 24649,
+        "output": 10411,
+        "reasoning": 7950,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f81b7dbab50fd5172d5c7d62c2368677c4d9936078b662bc699a5b75121d6d15",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP”“C++ 一级”“2024 年 03 月”，与 paperId 2024-03-l1 的年月、语言和等级一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干及9行代码与当前题面一致；Markdown按换行可还原第1至9行，其中第4行为“能被3整除”输出，第7行为else，第8行为“不能被3和7整除”输出。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项A“代码第4行被执行”、B“第4和第7行代码都被执行”、C“仅有代码第7行被执行”、D“第8行代码将被执行，因为input()输入为字符串”与当前四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第6题为A，对应0起始索引0；输入21时21%3==0成立，进入第一个if并执行第4行，与答案A一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体正确，但末尾“知识延伸”停在未闭合的```cpp代码围栏，缺少示例代码及收尾，属于内容截断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（代码第4行被执行）**\n\n输入 N=21 时，21 % 3 == 0 成立，程序进入第一个 if 分支并执行第4行，输出“能被3整除”。`if ... else if ... else` 是多分支互斥结构，一旦第一个分支成立，后续 else if 与 else 都不会再判断或进入，所以第7行 else 所指分支和第8行不会执行；第9行的 `cout << endl` 会执行。\n\n**选项分析：**\n- A 正确。\n- B 错误。第4行执行后不会进入第7行 else 分支。\n- C 错误。输入21首先满足被3整除，不会进入 else。\n- D 错误。本题使用 `cin >> N`，N 是 int，不是 Python 的 `input()` 字符串输入；且第8行不会执行。\n\n若希望同时判断能否被3和7整除，可去掉 `else`，写成两个独立条件：\n```cpp\nif (N % 3 == 0)\n    cout << \"能被3整除\";\nif (N % 7 == 0)\n    cout << \"能被7整除\";\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题题干“第2行，总共被执行次数”及代码 `for(int i=-10; i<10; i++)`、`cout << i << \" \";` 与当前题面一致；Markdown虽未标行号，但两行结构对应。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项A 10、B 19、C 20、D 21与当前选项、顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第7题为C，对应0起始索引2；i依次取-10至9，共20个整数，循环体执行20次。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体已正确推导20次，但末尾只有“知识延伸：”标题而没有内容，属于截断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（总共被执行20次）**\n\ni 的取值为 -10,-9,...,-1,0,1,...,9，共 9-(-10)+1=20 个整数，因此第2行执行20次。循环条件是 `i<10`，当 i 变为10时退出，不包含10；若写成 `i<=10` 才是21次。\n\n**选项分析：**\n- A 10错误，只统计了负数部分或漏算正数部分。\n- B 19错误，计算区间长度时漏加了端点1。\n- C 20正确。\n- D 21错误，误把终止条件当成 `i<=10`。\n\n知识延伸：for 循环的初始化只执行一次，每轮先判断条件，再执行循环体，最后执行 `i++`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页至第3页第8题代码为 `int tnt=0;`、`for(int i=0; i<10; i++)`、`if(i%3 && i%7)`、`tnt +=i;`、`cout << tnt << endl;`；当前题面仅压缩了空行，语义和代码内容一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页给出A 0，第3页给出B 7、C 18、D 20；当前选项及顺序与之一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第8题为D，对应0起始索引3；满足 `i%3 && i%7` 的 i 为1、2、4、5、8，和为20。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 `i%3 && i%7` 表示 i 既不能被3整除也不能被7整除，并枚举1、2、4、5、8求得20，能够独立推导出官方答案D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第9题代码为 `int N=10;`、`while(N){ N -= 1; if(N%3 == 0) cout << N << \"#\"; }`，当前题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项A `9#6#3#`、B `9#6#3#0#`、C `8#7#5#4#2#1#`、D `10#8#7#5#4#2#1#` 与当前选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第9题为B，对应0起始索引1；程序先自减再判断，输出9#6#3#0#。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐轮说明先执行 `N -= 1` 再判断 `N%3==0`，并特别指出N从1减到0时仍会输出0#，直到下一次while(0)才结束，独立推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题题干、空白横线位置及代码 `for(int i=1; i<N+1; i++)`、`cnt +=1;`、`if(cnt == 2)` 与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项A `N % i`、B `N % i == 0`、C `N / i == 0`、D `N / i` 与当前选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第10题为B，对应0起始索引1；只有 `N % i == 0` 能统计1到N之间的正约数个数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明取模为0才表示i是N的约数，cnt统计1至N的正约数个数，质数恰有1和自身两个约数，并指出A条件方向相反、N=1被排除，推导充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅初核第6至10题，均为单选题，无编程题参考代码与测试。五题的题面、选项顺序和官方答案均与PDF第1至3页一致；第6、7题解析存在末尾截断，已分别给出完整解析替换草稿，第8至10题解析可独立推导且与官方答案一致。"
+  }
+}

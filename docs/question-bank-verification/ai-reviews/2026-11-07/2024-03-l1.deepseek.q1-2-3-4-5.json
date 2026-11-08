@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:30:21.805Z",
+  "completedAt": "2026-11-08T04:31:41.509Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 24649,
+    "completion_tokens": 4762,
+    "total_tokens": 29411,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3226
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00655455,
+      "allowance": 0.00393273,
+      "tokens": {
+        "input": 24649,
+        "output": 4762,
+        "reasoning": 3226,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f81b7dbab50fd5172d5c7d62c2368677c4d9936078b662bc699a5b75121d6d15",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2024 年 03 月”，与 paperId 2024-03-l1（2024年3月C++一级）相符；第1页还包含单选题1—15的答案表。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题原文为 C++表达式 (3 - 2) * 3 + 5 的值是( )，当前 question 中的运算符、括号、数值、设问均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项为 A. -13、B. 8、C. 2、D. 0；当前 options 的内容和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第1题标为 B；当前 answer=1，按0起始索引对应 B，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：(3-2)=1，1*3=3，3+5=8，因此选 B。当前解析对运算顺序和各选项的说明与独立推导一致，未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题原文考查 cout 输出语句，字符串部分为 5%2=，后接表达式 5 % 2；当前 question 的代码、符号和设问均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项为 A. 2 2、B. 1 1、C. 5%2=2、D. 5%2=1；当前 options 的内容和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第2题标为 D；当前 answer=3，按0起始索引对应 D，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：字符串字面量 5%2= 原样输出，5 % 2 的余数为 1，连续输出且无额外空格，故输出 5%2=1，即 D。当前解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题原文为执行 C++语句 cin >> a 时如果输入5+2，下述说法正确的是，并给出四个按变量类型判断的选项；当前 question 与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项依次为：赋值为整数7；赋值为字符串5+2；执行报错；依赖变量a的类型且未定义会编译错误。当前 options 内容和顺序均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第3题标为 D；当前 answer=3，按0起始索引对应 D，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：cin >> a 不会对输入文本进行表达式求值；a 未定义会导致编译错误，a 为 int 时通常读入5而留下+2，a 为 string 时可读入5+2，故行为依赖类型，D正确。当前解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第4题代码为 int a = 1; 与 cout << \"a+1= \" << a+1 << endl;，其中字符串内等号后有一个空格；当前 question 的代码和空格均保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项为 A. a+1= 2、B. a+1=2、C. 2=2、D. 2= 2；当前 options 的内容和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第4题标为 A；当前 answer=0，按0起始索引对应 A，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：字符串“a+1= ”原样输出并保留空格，随后表达式 a+1 由 a=1 得2，最终输出“a+1= 2”，即 A。当前解析与C++运算符优先级及输出结果一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题代码为 int a = 1; 与 printf(\"a+1=%d\\n\", a+1);，格式串中等号与%d之间无空格；当前 question 的代码、转义和参数一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为 A. a+1= 2、B. a+1=2、C. 2=2、D. 2= 2；当前 options 的内容和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第5题标为 B；当前 answer=1，按0起始索引对应 B，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：格式串中的 a+1= 为普通文本，%d 由表达式 a+1（a=1）得到的2替换，且格式串中无空格，因此输出 a+1=2，即 B。当前解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号1—5。PDF第1页卷头确认来源为2024年03月C++一级，与2024-03-l1匹配。5题的题面、选项、官方答案与当前数据均一致；解析经独立推导未发现事实或逻辑错误。5题均为单选题，referenceCode不适用，无编程题测试项；无需提交 changes，也无未决问题。"
+  }
+}
