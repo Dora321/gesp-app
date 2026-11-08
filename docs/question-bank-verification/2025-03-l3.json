@@ -1,20 +1,18 @@
 {
   "paperId": "2025-03-l3",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2025-03-l3"
-  },
+  "reviewedAt": "2026-11-08",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
     "pages": {
-      "singleAnswerTable": "p.1",
-      "judgeAnswerTable": "p.6"
-    }
+      "total": 9,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-08",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2025-03-l3/source.pdf"
   },
   "answerTable": {
     "single": {
@@ -29,120 +27,757 @@
   },
   "questions": [
     {
-      "questionId": 24,
-      "issue": "审计低分：官方判断题第9题「k进制，逢k进第二位，k²进百位，k³进千位」中 k²/k³ 为上标公式，pdftotext 文本层丢失",
-      "fix": "定性为假阴性，无需修改——渲染 p.6 @200/300dpi 确认官方原文与题库题面一致",
-      "evidence": "官方判断题答案表（p.6顶部，300dpi渲染）：×√√√√√√√××，题库Q16-Q25全对（10/10）；单选答案表程序化提取 DBAABACACDDDBDC，题库15/15全对"
+      "id": 1,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "10字节按3字节分组，共3个完整组与1个剩余字节组，总共4组。每组编码输出4个字符，末组通过等号补足，因此总长度为4×4=16字节，选D。不能将10×4/3直接取整，因为输出以4个字符为一个完整编码块。末组只有一个有效输入字节时产生两个有效字符和两个填充字符，填充字符同样计入长度。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "B的F0 90 80 80满足四字节规则，表示U+10000。合法UTF-8还要求最短编码，不能只检查首位模式。A的C0 80是对零码点的过长编码，应使用单字节00。C以续字节80开头，D含FF、FE等禁用字节。RFC 3629的规则限制四字节序列F0后的第二字节至少90，本题B恰好满足这一边界，故B唯一合法。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "八进制单个数码5的值仍为十进制5。8位原码中最高位表示负号，余下7位保存绝对值5，即0000101，拼接得到10000101，选A。B的11111010是固定8位反码形式，C的11111011是固定8位补码形式，D为正5原码。求负数反码时仅翻转原码的数值位，不能将符号位也一并取反。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "整数111为1101111。把111/1000连续乘2取整，小数前10位为0001110001，后面仍有非零位，所以A符合截断前缀。精确检查A小数为113/1024，与111/1000相差83/128000。原卷未约定截断精度或写省略号，所有有限选项都不精确等于111.111。保留官方A并隔离，解析不能自行添加“题目要求取10位”的条件。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "补码允许将减法转换为加上相反数，在固定位宽的模运算下复用加法电路，因此主要作用对应B。它还统一零的编码，8位补码可表示256个不同整数，而8位原码有正零和负零，仅有255个不同整数。旧解析把两者的不同整数个数都说成256需要纠正。浮点精度和内存分配不由整数补码编码方式决定。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "8位补码最高位的权重为−128，其余七位权重之和最多127。最小位串10000000表示−128，最大位串01111111表示127，故A正确。D是8位无符号范围，B把负端和正端错配，C需要9位补码才能覆盖。16位有符号补码范围是−32768到32767，不能沿用旧解析把−256到255误称为16位范围。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "C++将负整数转换为无符号整数时，按目标类型的模2^N取同余值。目标有32个数值位时，−5转为2^32−5=4294967291，本机运行结果对应C。若目标仅有16个数值位，则会得到65531。原卷没有位宽前提，因此保留官方C并隔离。转换规则按数值定义，不应笼统解释为任何平台、任何宽度下内存位模式必然完全不变。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "oct把cout的整数输出进制设为八进制。decimal存储的数值仍是25，输出时25=3×8+1，因此显示31，对应A。流格式状态会影响之后的整数输出，直到使用dec或hex等操纵符更改。这里没有读取八进制输入，也没有把变量改为字符串。题目所说转换指输出表示的进制变化，内部整数值保持为25。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2,
+        3
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "hex把整数以十六进制输出。255=15×16+15，默认十六进制数码字母为小写，因此填C会输出ff。A输出八进制377，B把变量decimal连续输出两次，得到255255，变量名decimal不会触发十进制格式操纵。题给头文件和命名空间已足够支持这些输出语句，所列合法语句都可以执行，不能选D。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "运算符^对整数逐位异或，所以D正确。1101和1011在相同位置不同才得到1，结果为0110，按cout默认十进制格式输出6。它与按位与的逐位“同时为1”、按位同或的逐位“相同为1”不同。整数异或会先对两个操作数作相应类型转换，当前两个正int值均很小，不涉及符号或溢出问题。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3,
+        4
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "D维护已扫描区间的最大值索引，固定数组中依次更新到7和9，最终输出3。然而填B和C实际也输出3，不能因为表达式出现±1就认定它们在本题数组上错误。B会漏掉只大1的更新，C对可安全加1的整数相当于>=，允许更新到另一个同值最大元素。题面没有限制保留第一个最大值，官方D缺乏唯一性，原答案保留并隔离。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "D让右指针跳过已经处在右侧的偶数，左指针跳过左侧的奇数，再交换一对错位元素。对{1,2,3,4,5}先交换2与5，再跳过3和4，得到1 5 3 4 2，输出每个数后含一个空格。A检查左侧却移动右侧，B可能把left减到负下标，C跳过右侧奇数会破坏分区目标。正确填法D不会访问数组范围之外的位置。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4,
+        5
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "HelloWorld中Hello占下标0到4，World从下标5开始，长度5。B的replace(5,5,\"C++\")恰好删除World并插入C++，得到HelloC++。A得到C++World，C得到HC++orld，D得到HellC++d，均不符。replace第二参数表示被替换字符的数量，最后插入字符串长度可以不同，所以结果总长度由原长度减删除量再加插入量得到。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "按原文目标world逐字比较，D先插入World再截取5字符，输出World，首字母大小写不同。A输出Worl，B的substr(5,5)自动截短为剩余C++，不会因为请求长度超过尾部而越界。C的单参数insert(\"World\")没有匹配重载，编译失败。选项D只有把目标改为World后才成立，保留原目标和官方答案并隔离。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "两个条件分别是a%9==0与a%8!=0，C用&&连接能够计数。D中相等比较优先于按位与，两个比较经整型提升成为0或1，其按位与结果恰好也是两条件同时成立。由于比较没有副作用且除数均为非零常量，是否短路不影响本题结果，C/D都正确。保留官方C并隔离，不能把推荐使用&&的习惯当作D语义错误的依据。"
     },
     {
       "id": 16,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "对实数a、b、c，“任意两边之和大于第三边”包含a+b>c、a+c>b、b+c>a。前两式相加得2a>0，同理b>0、c>0，正边长条件已由三个不等式推出。这也是非退化三角形的边长判定。旧解析所举0、1、2与−1、2、3均没有满足全部不等式，不能作为反例。官方判×与通常数学含义不符，保留答案并隔离。"
     },
     {
       "id": 17,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在题目ASCII字符语境下，x提升为整数后按位与1，最低位为1表示奇数，条件运算符据此输出YES，否则输出NO，并追加换行。例如A的ASCII为65输出YES，B为66输出NO。代码虽然另存ASCII变量，但判断直接使用x同样有效。scanf的%c会读取包括空格在内的单个字符，不会像默认格式化的cin读取char那样跳过前导空白。"
     },
     {
       "id": 18,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "闰年逻辑的两个分支正确覆盖非整百的4倍数和整百的400倍数。在默认输出格式下布尔值显示1或0，所以本段确实给出正确闰年标志。须注意原语句的<<优先于?:，实际是先输出布尔值，再对输出流作条件判断并丢弃1/0的结果。不能说?:的分支被cout输出。普通正常输出流下这个附带条件表达式不改变已经写出的闰年标志。"
     },
     {
       "id": 19,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "整数能同时被3与5整除，当且仅当能被它们的最小公倍数15整除，所以n%15==0可以判定，输出YES或NO与题意一致。负的15倍数余数也是0，零同样可被非零的3和5整除。这里两个除数互质，如果换成存在公共因子的两个整数，应使用其最小公倍数，不能直接照搬乘积作为必要条件。"
     },
     {
       "id": 20,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "每人有入选和不入选两种选择，包括空集时共有2^n个不同子集，官方√对应这种解释。例如n=3的子集共有8个，其中一个选择了0人。若参加合唱必须至少抽取1人，应排除空集，方法数为2^n−1。原文“任意个人数”没有明确是否允许无人参加，不能在解析中强行宣布0人为合法合唱方案，因此保留答案并隔离，待计数口径澄清。"
     },
     {
       "id": 21,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "2025=1024+512+256+128+64+32+8+1，其二进制为11111101001，共8个1，8是偶数，按题目定义归为A类数，判断正确。例子13有3个1为B类，10有2个1为A类，与该定义一致。除2取余时余数从低位到高位产生，写最终二进制需逆序，但统计1的个数可以直接累计各次余数而无需保存整串。"
     },
     {
       "id": 22,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "每次循环先输出当前n除以2的商与余数，再用整数除法更新n，直至n等于0。正负long long的除以2均向零截断，绝对值会逐步缩小，因此有限步结束，0输入则不输出任何行。例如5依次输出2 1、1 0、0 1。程序没有将余数倒序拼成二进制字符串，题干只是描述当前商余数的逐行输出，所以判断正确。"
     },
     {
       "id": 23,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "依题设，十三进制数码A、B分别代表10和11，和的十进制数值为21。21=1×13+8，因此十三进制表示为18，等式成立。十三进制允许数码0到12，使用字母时A为10、B为11、C为12，所以两个操作数和结果的每个数码均合法。进制改变的是位权与可用数码范围，已经给定的A/B数码数值不随加法步骤改变。"
     },
     {
       "id": 24,
       "type": "judge",
-      "official": "×",
-      "bank": "√(改前)",
-      "modified": true,
-      "fix": "answer 0→1，解析重写：k 进制正确规则是「逢 k 进一位」，不存在「逢 k 进第二位」；「百位/千位」是十进制位名，不能套用于任意 k 进制。原卷题面（p.6 判断第 9 题）与独立推导均支持 ×"
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原答案表判错。一般k进制相邻位的进位规则均为满k向高一位进1，位权从右向左依次为1、k、k²、k³。百位和千位通常指十进制的100与1000位权，对一般k不能直接按这两个十进制名称来解释其位权。教学中宜用第几位及明确的位权说明。原题的混合位名表述照录，不能在题面擅自改成规范进位定义后沿用错的判断。"
     },
     {
       "id": 25,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "modified": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "依高进制数码约定，C为12、F为15。CCF在十九进制下为12×19²+12×19+15=4575。21AC在十三进制下为2×13³+1×13²+10×13+12=4705。两个十进制值不同，所以原等式错误。这里字母数码本身的值没有改变，只是所在位置的基数幂不同，旧解析声称同一字母随进制改变数码值需要纠正。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        7,
+        8
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": "合法输入范围为0≤x<2025，所以x和候选y都非负且很小。逐位看，00贡献0，01或10贡献1，11在与加或中共贡献2，乘各位权求和可得(x&y)+(x|y)=x+y。因此唯一正解为2025−x，范围1到2025，唯一也就最小。样例1025对应1000。参考用long long计算，时间和额外空间均O(1)。测试还用逐个枚举正整数y并直接计算原位运算式的独立方法核对全部2025个合法x。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        8,
+        9
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": "把每个单词的所有字符统一转为小写，再累计该字符串频次，维护最高次数及对应单词。输入保证最终最高频词唯一，所以临时并列时保留旧答案仍可在最终正确输出。样例apple计3次，banana计2次，orange计1次。tolower先转换为unsigned char再传入，满足字符函数的输入要求。最多100词、每词30字符，map方案约O(nL log n)时间与O(nL)空间，大小写必须遍历全词。"
     }
   ],
-  "secondaryCheck": {
-    "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
-    "result": "all-match"
-  },
-  "unresolved": [],
-  "executedAt": "2026-10-25",
-  "lastReviewedAt": "2026-10-28"
+  "unresolved": [
+    {
+      "id": 4,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷pp1–2未说明近似精度或省略后续位。111.111=111111/1000的约分分母含5，不能用有限二进制小数精确表示。A是前10位截断，值为111.1103515625。保留官方A及原选项，暂停计分，等待近似表示约定澄清。"
+    },
+    {
+      "id": 7,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p2未限定unsigned int的位宽。负数转无符号按目标类型模2^N转换，32位时才为4294967291，16位模型为65531。保留官方C和原代码，暂停计分，待类型位宽前提澄清。本机实际unsigned int为32位。"
+    },
+    {
+      "id": 11,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷pp3–4固定数组{3,7,2,9,5}，填B、C、D都输出最大值下标3。D为通常写法，C在无溢出的整数比较下相当于>=，同值更新仍得到最大值索引。题面没有额外排除B/C的要求。保留官方D及原选项，暂停计分。"
+    },
+    {
+      "id": 14,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p5目标为小写world，D实际输出大写W的World，其余A输出Worl、B输出C++、C编译失败，没有一项精确得到world。恢复旧库擅改的目标大小写，保留官方D及原代码，暂停计分，待来源澄清。"
+    },
+    {
+      "id": 15,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p5给C，但D使用的&在两个无副作用比较之间同样得到0或1，与C的&&逻辑结果相同。C/D均能正确计数，不能仅据书写习惯排除D。保留官方C及两项，暂停计分。"
+    },
+    {
+      "id": 16,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p6判×，但任意两边之和大于第三边即三个严格三角形不等式，已蕴含三条实数边长均为正。例如前两个不等式相加可得2a>0。旧解析用未满足全部不等式的0/负数作反例无效。保留官方×及原文，暂停计分。"
+    },
+    {
+      "id": 20,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT。原卷p6给√，2^n是包含空集的全部子集数。参加合唱的抽取是否允许0人未明确，至少1人时为2^n−1。保留官方√和原文，暂停计分，待空选是否有效的前提澄清。"
+    }
+  ],
+  "supplementarySources": [
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc3629",
+      "questions": [
+        2
+      ],
+      "note": "第3/4节最短UTF-8编码与合法首字节、F0第二字节范围。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.integral",
+      "questions": [
+        7
+      ],
+      "note": "C++17目标无符号类型模2^N转换及bool向整数提升后的0/1值。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.bit.and",
+      "questions": [
+        15
+      ],
+      "note": "相等比较作为按位与操作数，两个bool比较结果按位与的语义。"
+    }
+  ],
+  "notes": "AI-Codex逐页对照登记mirror PDF全部9页文本和渲染，Git blob SHA 445d3959a5bc36b2425e573b813fd69a17c730c9一致。p1/p6答案表逐项核对，保留全部answer。Q4/Q7/Q11/Q14/Q15/Q16/Q20源疑点隔离。补完整代码、原world大小写、两编程范围。两参考程序及模板独立GNU C++17编译运行，原有证据收入history。",
+  "history": [
+    {
+      "paperId": "2025-03-l3",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2025-03-l3"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-25",
+        "pages": {
+          "singleAnswerTable": "p.1",
+          "judgeAnswerTable": "p.6"
+        }
+      },
+      "answerTable": {
+        "single": {
+          "content": "D B A A B A C A C D D D B D C",
+          "page": "p.1"
+        },
+        "judge": {
+          "content": "× √ √ √ √ √ √ √ × ×",
+          "page": "p.6",
+          "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2025-03-l3-judge.png），第 9、10 题均为 ×"
+        }
+      },
+      "questions": [
+        {
+          "questionId": 24,
+          "issue": "审计低分：官方判断题第9题「k进制，逢k进第二位，k²进百位，k³进千位」中 k²/k³ 为上标公式，pdftotext 文本层丢失",
+          "fix": "定性为假阴性，无需修改——渲染 p.6 @200/300dpi 确认官方原文与题库题面一致",
+          "evidence": "官方判断题答案表（p.6顶部，300dpi渲染）：×√√√√√√√××，题库Q16-Q25全对（10/10）；单选答案表程序化提取 DBAABACACDDDBDC，题库15/15全对"
+        },
+        {
+          "id": 16,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 17,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 18,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 19,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 20,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 21,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 22,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 23,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "modified": false
+        },
+        {
+          "id": 24,
+          "type": "judge",
+          "official": "×",
+          "bank": "√(改前)",
+          "modified": true,
+          "fix": "answer 0→1，解析重写：k 进制正确规则是「逢 k 进一位」，不存在「逢 k 进第二位」；「百位/千位」是十进制位名，不能套用于任意 k 进制。原卷题面（p.6 判断第 9 题）与独立推导均支持 ×"
+        },
+        {
+          "id": 25,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "modified": false
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "secondaryCheck": {
+        "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
+        "result": "all-match"
+      },
+      "unresolved": [],
+      "executedAt": "2026-10-25",
+      "lastReviewedAt": "2026-10-28"
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-08",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 2469,
+    "objectiveCaseCount": 1620,
+    "templateCompileCount": 2,
+    "diagnosticCount": 3,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2025-03-l3/programming-run.json"
+  }
 }
