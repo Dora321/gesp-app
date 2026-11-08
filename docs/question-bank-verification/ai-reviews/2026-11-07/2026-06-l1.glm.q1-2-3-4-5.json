@@ -1,0 +1,238 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:04:18.898Z",
+  "completedAt": "2026-11-08T13:05:43.539Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50153,
+    "completion_tokens": 6691,
+    "total_tokens": 56844,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4440
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01086845,
+      "allowance": 0.01086845,
+      "tokens": {
+        "input": 50153,
+        "output": 6691,
+        "reasoning": 4440,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头经页图核对：CCF 编程能力等级认证 GESP、C++ 一级、2026 年 06 月，与 2026-06-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页页图第 1 题题干与网站一致：湿度传感器连续检测土壤湿度并实时发送给中央控制器，问其类似计算机系统中哪类组件。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A.处理器、B.存储器、C.输入设备、D.输出设备，与网站顺序内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第 1 行为 C（红色），0 起始索引 2，网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推：传感器采集外部湿度信息并传入系统，属输入设备职责；处理器对应中央控制器的判断决策，输出设备向外呈现结果，解析逐项分析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对题面、选项、答案映射及解析的结论经页图与独立推导复核均成立，接受。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第 2 题题干：使用 IDE（如 Dev-C++）编辑源代码，选出在编辑区执行的操作描述不正确的一项，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A『可以将变量名 count 统一修改为 number』、B『可以连续撤销最近 2 次输入的内容』（文本层缺 2，页图中数字 2 予以确认）、C『可以调整代码行的缩进（如按 Tab 键）』、D『在注释文本中间不能混用中英文』，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第 2 行为 D，0 起始索引 3，网站 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推：A 文本替换、B 多次撤销、C Tab 缩进均为编辑器正常功能；注释内容编译器忽略，可混用中英文，D 的说法错误故为答案，解析与判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核补全选项 B 数字 2 的依据属实（页图确认），其余结论经独立复核成立，接受。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第 3 题代码 `float a = 3 + 3.5; cout << a;` 与网站一致，问法『有关如下 C++ 代码的说法，正确的是』一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A、B 关于报错及改写 `a = 3 + 3 + 1/2`、`a = 3.0 + 3.5`，C 输出 6、D 输出 6.5，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第 3 行为 D，索引 3，网站 answer=3。独立推导：3+3.5=6.5 赋给 float 无精度损失，cout 默认精度输出 6.5，与 D 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析在分析选项 A 时写『…中 1/2 是整数除法得 0，结果为 3』，独立重算 3+3+(1/2)=3+3+0=6，『结果为 3』确为算术错误且有误导；初核发现正确，采纳修正。修复后核验通过：新解析 A 项改为『整个表达式为 6，该改写可以执行，但选项前半句代码执行将报错错误，故 A 不成立』，其余推导（6.5 可被 float 精确表示为 110.1₂、输出 6.5）复核无误，答案 D 不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**核心解析：**\n1. `3 + 3.5`：int 与 double 混合运算，int 自动提升为 double，结果为 `6.5`（double 类型）。\n2. 把 6.5 赋值给 float 型变量 a：6.5 可以被 float 精确表示（6.5 = 110.1₂），无精度损失，赋值合法。\n3. `cout << a` 默认输出 `6.5`。\n\n整个流程没有任何语法错误，代码正常执行并输出 6.5。\n\n**选项逐项分析：**\n- **A**：❌ 原代码本来就不报错，前半句「代码执行将报错」错误；且 `3 + 3 + 1/2` 中 `1/2` 是整数除法得 0，整个表达式为 6，该改写确实能正常执行，但整个选项仍因前半句错误而不成立。\n- **B**：❌ 原代码本来就不报错，前提就是错的。\n- **C**：❌ 输出不是 6，浮点数 6.5 不会被截断为 6（float 能存下 6.5）。\n- **D**：✅ 正确。\n\n**易错提醒：**\n- `1/2` 是整数除法，结果为 0，不是 0.5；想得到 0.5 要写 `1.0/2`。\n- 整数与浮点数混合运算时，整数会自动提升为浮点数。\n\n**考点：** 数据类型与隐式类型转换、整数除法"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核指出的解析算术错误经独立重算确认：1/2 得 0，3+3+0=6 而非 3，原表述对学习者有误导，否决保留原文、采纳修正；答案与官方映射不受影响。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第 4 题要求选出与 `- 2 * 2 % 4` 值不同的表达式，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项为 `- (2 * 2) % 4`、`(- 2 * 2) % 4`、`- 2 * (2 % 4)`、`(2 * 2) % - 4`，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第 4 行为 C，索引 2，网站 answer=2。",
+            "explanation": null,
+            "referenceCode": null
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：原式一元负号优先级更高，((-2)*2)%4=(-4)%4=0；A=(-4)%4=0、B 同为 0、D=4%(-4)=0（商向零取整 -1，余数 0），仅 C=-2*(2%4)=-4 与原式不同，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          },
+          "answer_": null
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "四选项独立代入验证仅 C 得 -4，初核结论接受。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第 5 题代码 `int a = 3; int b = a; a = 4; printf(\"%d %d\", a, b);` 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A.3 3、B.4 3、C.4 4、D.3 4，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第 5 行为 B，索引 1，网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐行跟踪：a=3，b 复制当时值 3，随后 a 改 4 而 b 不受影响，printf 输出 4 3，解析中的值拷贝说明与易错点均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "变量赋值链路独立重推无误，初核结论接受。"
+      }
+    ],
+    "summary": "独立复核题 1—5：题干、选项与官方答案表（第 1 页答案行 C D D C B 对应索引 2/3/3/2/1）均与 PDF 页图一致，题面选项部分文字经页图逐一比对无缺失或歧义。题 3 解析中『3 + 3 + 1/2 … 结果为 3』经独立重算确认为算术错误（1/2 整除为 0，表达式应为 6），已提供修正后完整解析并复核通过，答案 D 不变；其余 4 题五个维度全部复核通过，维持网站原数据。单选题参考代码维度均不适用，无需 tests。"
+  }
+}

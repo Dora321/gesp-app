@@ -1,0 +1,59 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "初核复核",
+  "checkedAt": "2026-11-08T13:23:52.451Z",
+  "reviewedQuestions": 27,
+  "acceptedDimensions": 90,
+  "unresolved": [
+    {
+      "id": 3,
+      "dimensions": [
+        "explanation"
+      ],
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 22,
+      "dimensions": [
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同"
+      ]
+    },
+    {
+      "id": 25,
+      "dimensions": [
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "修改 answer 未获得两模型一致批准，待回流",
+        "answer 尚无一致、完整的原卷核验结论",
+        "原卷答案未一致读出，或与当前采用答案不同"
+      ]
+    },
+    {
+      "id": 27,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    }
+  ],
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2026-06-l1.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2026-06-l1.glm.json",
+    "previous": "ai-reviews/2026-11-07/2026-06-l1.previous-evidence.json"
+  },
+  "checks": "题库结构、单元测试、课程与链接、解析质量、Lint、生产构建通过"
+}

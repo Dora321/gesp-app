@@ -1,0 +1,120 @@
+{
+  "executedAt": "2026-11-08T13:23:27.596Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "999\n105\n699\n588",
+          "output": "693",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "693\n",
+          "passed": true
+        },
+        {
+          "input": "9\n3\n8\n7",
+          "output": "9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小值下界",
+          "input": "1\n1\n1\n1",
+          "output": "1",
+          "reason": "四行均为最小正整数 1，直飞 1 最小（两个组合方案均为 2）；覆盖输入下界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "三种方案同价",
+          "input": "5\n1\n4\n4",
+          "output": "5",
+          "reason": "直飞 5，高铁+飞机 1+4=5，高铁+高铁 1+4=5，三者并列最小，参考程序 <= 分支应输出 5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "组合方案为最低价",
+          "input": "10000\n1\n1\n2",
+          "output": "2",
+          "reason": "直飞 10000，方案 2 为 1+1=2，方案 3 为 1+2=3，最小 2；确认获胜者可为组合方案而非恒为直飞。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围上界",
+          "input": "10000\n10000\n10000\n10000",
+          "output": "10000",
+          "reason": "四行取上界 10000，y=z=20000 仍在 int 范围内，最小值为直飞 10000；验证上界与溢出安全。",
+          "kind": "boundary",
+          "actual": "10000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ddef629535c6bdd24e2081c0b2216e3a629646879082d20ae7856bb145d9e65d"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "932.0\n1634.3\n1790.4\n2172.9\n378.1\n283.4\n2761.9\n3583.5\n10.1\n2324.9\n1111.6\n3812.3",
+          "output": "2584.76",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2584.76\n",
+          "passed": true
+        },
+        {
+          "name": "收入下界",
+          "input": "0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1",
+          "output": "0.00",
+          "reason": "12 个月均为最小正数 0.1，均未超过 800 免税档，总和 0.00；覆盖最小值。",
+          "kind": "boundary",
+          "actual": "0.00\n",
+          "passed": true
+        },
+        {
+          "name": "恰为起征点",
+          "input": "800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0",
+          "output": "0.00",
+          "reason": "规则为「不超过 800」免税，800.0 属免税档，总和 0.00；验证边界含等号的分支方向。",
+          "kind": "boundary",
+          "actual": "0.00\n",
+          "passed": true
+        },
+        {
+          "name": "跨过起征点最小税额",
+          "input": "800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1",
+          "output": "0.24",
+          "reason": "每月税额 (800.1−800.0)×0.2=0.02，12 个月合计 0.24；覆盖刚超 800 的最小应税情形。",
+          "kind": "boundary",
+          "actual": "0.24\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围上界",
+          "input": "4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0",
+          "output": "7680.00",
+          "reason": "每月税额 (4000.0−800.0)×0.2=640.00，12 个月合计 7680.00；覆盖修正后官方数据范围上界。",
+          "kind": "boundary",
+          "actual": "7680.00\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "7c9c739d321abc52ca2280d8d3389fdda8ee47bbf5851686a5d71002411fa0ee"
+    }
+  ]
+}

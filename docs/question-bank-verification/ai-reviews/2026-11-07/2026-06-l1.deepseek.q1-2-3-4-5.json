@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:02:45.307Z",
+  "completedAt": "2026-11-08T13:04:18.890Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31846,
+    "completion_tokens": 8562,
+    "total_tokens": 40408,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6762
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0099141,
+      "allowance": 0.00594846,
+      "tokens": {
+        "input": 31846,
+        "output": 8562,
+        "reasoning": 6762,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证 / GESP”“C++ 一级”“2026 年 06 月”，与 paperId 2026-06-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题 1 题干与网站一致：湿度传感器连续检测土壤湿度并将数据发送给中央控制器，问其类似计算机系统中的哪类组件。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A.处理器、B.存储器、C.输入设备、D.输出设备，网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 C；C 的 0 起始索引为 2，网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：传感器采集外部湿度信息并送入系统，职责符合输入设备；处理器负责运算决策，存储器负责保存，输出设备负责向外呈现结果，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题 2 题干与网站一致：关于在 IDE 编辑区执行的操作，选择描述不正确的一项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页图像选项 A、C、D 与网站一致；选项 B 图像为“可以连续撤销最近 2 次输入的内容”，文本层缺“2”，网站已完整保留。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 D；D 的 0 起始索引为 3，网站 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：A、B、C 均属常见编辑操作；注释是文本内容，可以混用中英文，D 的说法错误，因此答案 D，解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题 3 代码为 `float a = 3 + 3.5; cout << a;`，与网站题干代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四个选项分别涉及 `3 + 3 + 1/2`、`3.0 + 3.5`、输出 6、输出 6.5，网站选项顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 D；D 的 0 起始索引为 3，网站 answer=3。程序输出 6.5，与 D 相符。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析在分析选项 A 时称 `3 + 3 + 1/2` 的结果为 3；实际 `1/2` 为 0，整个表达式应为 6。该算术说明错误，需修正；答案 D 不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**核心解析：**\n1. `3 + 3.5`：int 与 double 混合运算，int 自动提升为 double，结果为 `6.5`（double 类型）。\n2. 把 6.5 赋值给 float 型变量 a：6.5 可被 float 精确表示，赋值合法。\n3. `cout << a` 默认输出 `6.5`。\n\n整个流程没有语法错误，代码正常执行并输出 6.5。\n\n**选项逐项分析：**\n- **A**：❌ 原代码本来就不报错；且 `3 + 3 + 1/2` 中 `1/2` 是整数除法得 0，整个表达式为 6，该改写可以执行。选项的前半句“代码执行将报错”错误。\n- **B**：❌ 原代码本来就不报错，前提错误。\n- **C**：❌ 输出不是 6，float 能存下 6.5 并输出 6.5。\n- **D**：✅ 正确。\n\n**易错提醒：**\n- `1/2` 是整数除法，结果为 0，不是 0.5；想得到 0.5 要写 `1.0/2`。\n- 整数与浮点数混合运算时，整数会自动提升为浮点数。\n\n**考点：** 数据类型与隐式类型转换、整数除法"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题 4 要求选出与 `- 2 * 2 % 4` 值不同的表达式，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项为 `- (2 * 2) % 4`、`(- 2 * 2) % 4`、`- 2 * (2 % 4)`、`(2 * 2) % - 4`，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 C；C 的 0 起始索引为 2，网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：原式 `((-2)*2)%4=0`；A、B、D 的结果也均为 0；C 为 `-2*(2%4)=-4`，与原式不同，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题 5 代码为 `int a=3; int b=a; a=4; printf(\"%d %d\", a, b);`，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A.3 3、B.4 3、C.4 4、D.3 4，网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页答案表第 5 题为 B；B 的 0 起始索引为 1，网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：a 初始为 3，b 复制当时值 3；随后 a 改为 4，b 仍为 3，故输出 `4 3`，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题 1—5。题面、选项和官方答案映射均与 PDF 页图一致；题 3 解析中 `3 + 3 + 1/2` 误写为 3，实际应为 6，已提供完整修正解析，答案 D 不变。其余解析经独立推导未发现实质问题；单选题参考代码维度均为不适用。"
+  }
+}

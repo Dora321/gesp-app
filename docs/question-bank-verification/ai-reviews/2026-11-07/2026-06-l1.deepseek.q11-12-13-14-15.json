@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:10:13.293Z",
+  "completedAt": "2026-11-08T13:11:34.412Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31846,
+    "completion_tokens": 7801,
+    "total_tokens": 39647,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6047
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0094575,
+      "allowance": 0.0056745,
+      "tokens": {
+        "input": 31846,
+        "output": 7801,
+        "reasoning": 6047,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级 2026 年 06 月”，页脚连续标注 1/10 至 10/10；与 paperId 2026-06-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题代码为 int N,i; cin>>N; for(i=2;i<N;i++) if(N%i==0){cout<<\"1#\";break;} else cout<<\"0#\";，网站题面与该代码一致，仅换行排版略异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 四项与网站 options 文本、顺序一致：A 输入2输出1#；B 输入15输出0#1#；C 输入1输出0#；D 输入3输出1#。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第11题为 B；B 对应 0 起始选项索引 1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：N=2 时 i<N 不成立，无输出；N=15 时 i=2 输出0#，i=3 输出1#并 break；N=1 无输出；N=3 仅输出0#。只有 B 的说法正确，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF 第3页无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码为 int i,tot; i=0,tot=0; while(0<=i&&i<10){tot+=1;i+=1;} cout<<tot;，第4页 A-D 选项与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 与网站 options 一致：A 将条件改为 1<=i 并称输出仍为45；B 合并为 i=tot=0；C 交换两个自增；D 交换两个初始化。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第12题为 A；A 对应 0 起始选项索引 0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原代码 tot 每轮加1，i 从0到9共10轮，输出10。改为 1<=i 后 i=0 条件为假，循环0次，tot=0；且原代码不可能输出45，故 A 错。B 连续赋值使 i、tot 均为0；C 两个自增互不依赖；D 初始化顺序无关，故 B/C/D 对。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF 第3-4页无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第13题代码含 count 初始化、n=1000..9999 循环、a=n/1000、b=(n/100)%10、L1 空行、d=n%10 及四次方和判断，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 与网站 options 一致：A int c=(n/10)/10；B int c=(n/10)%10；C int c=(n%10)/10；D int c=(n%10)%10。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第13题为 B；B 对应 0 起始选项索引 1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "四位数 n 的十位标准提取为 (n/10)%10。以 n=3587 验证：B 得 358%10=8；A 得35；C 得0；D 得7，故 B 正确，与解析独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF 第4页无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第14题代码含 pos 赋值空位、if 条件空位及“秒后回到12点方向/秒后指向”的输出，网站题面结构一致；字符串内空格属排版差异，不影响填空与题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 与网站 options 一致：A (start+n)/60 和 pos==0；B (start+n)%60 和 pos==0；C (start+n)/60 和 pos<=0；D (start+n)%60 和 pos=0。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第14题为 B；B 对应 0 起始选项索引 1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "秒针位置应为 (start+n)%60，落在0..59；pos==0 表示回到12点方向。以 start=50、n=20 验证得 pos=10；A/C 用除法得圈数而非刻度，D 用赋值表达式且条件恒假，故 B 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF 第4页无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第15题代码含 N<=1 提前输出 NO、for(i=2;______;i++) 试除及 YES/NO 输出，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A-D 与网站 options 一致：A i<N；B i<=N；C i<=N/2；D i*i<=N。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第15题为 B；B 对应 0 起始选项索引 1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "B 的 i<=N 会使试除包含 i=N；当 N 为质数时 N%N==0，会误输出 NO。A 的 i<N、C 的 i<=N/2、D 的 i*i<=N 均可正确判定质数；例如 N=2/3/4 的边界验证成立，故不应填入 B，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF 第5页无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第11—15题，均为单选题。PDF 第1页答案表第11—15题依次为 B、A、B、B、B，映射为 0 起始索引 1、0、1、1、1；网站题面、选项、答案与解析经逐题独立推导均一致，未发现需修改项。参考代码维度对单选题不适用，无未决问题。"
+  }
+}

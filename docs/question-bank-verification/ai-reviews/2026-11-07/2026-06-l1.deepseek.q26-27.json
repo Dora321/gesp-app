@@ -1,0 +1,174 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:17:50.037Z",
+  "completedAt": "2026-11-08T13:19:11.021Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31840,
+    "completion_tokens": 7524,
+    "total_tokens": 39364,
+    "prompt_tokens_details": {
+      "cached_tokens": 31616
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5841
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00464285,
+      "allowance": 0.00278571,
+      "tokens": {
+        "input": 224,
+        "output": 7524,
+        "reasoning": 5841,
+        "cache_read": 31616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证 / C++ 一级 / 2026 年 06 月”，与 paperId 的 2026-06、l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6—8 页题名为“去旅行”，三种方案、4 行正整数输入、输出最便宜价格、样例 1/2 及数据范围不超过 10000 与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 答案表对应项，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立给出 x=a、y=b+c、z=b+d 并取最小值；样例 1 复算为 693，样例 2 复算为 9；组合价格最大 20000，int 不溢出。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 8 页参考程序逐行一致：读取 a,b,c,d，定义 x=a,y=b+c,z=b+d，用 <= 分支求最小值并输出换行。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "四程最小值",
+            "input": "1\n1\n1\n1",
+            "output": "1",
+            "reason": "直飞 1，高铁+飞机 2，高铁+高铁 2，最小值为 1；覆盖输入下界。"
+          },
+          {
+            "name": "三种方案同价",
+            "input": "5\n1\n4\n4",
+            "output": "5",
+            "reason": "直飞 5，高铁+飞机 1+4=5，高铁+高铁 1+4=5，最小值为 5；覆盖相等比较与 <= 分支。"
+          },
+          {
+            "name": "四程最大值",
+            "input": "10000\n10000\n10000\n10000",
+            "output": "10000",
+            "reason": "直飞 10000，组合价 20000；最小值 10000，验证上界及 int 范围。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8—9 页题面为 800 元起征、超过 800 的部分按 20% 计税、12 个月数据；但 PDF 第 9 页 3.2.8 数据范围写“不超过 4000.0”，站点 question 末尾写“不超过 10000”，数值上限不一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 答案表对应项，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按月判断 a>800，累加 (a-800)*0.2，最后保留两位小数；样例逐月累计为 2584.76，与 PDF 输出一致；复杂度 O(12)，double 适用。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 10 页参考程序逐行一致：循环 12 次读入 double，a<=800.0 不累加，否则累加 (a-800.0)*0.2，printf 保留两位小数。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202606 一级] 交税\n\n## 题目描述\n\n根据国家税收相关规定，劳务报酬需要按月预交个税，预交税率如下：\n1. 劳务报酬不超过 800 的，不需要预交个税；\n2. 劳务报酬超过 800 的，仅超过 800 的部分按照 20%（即 0.2）税率预交个税（不超过 800 的部分不需要预交个税）。\n\n例如，月劳务报酬为 1000.0，则按照规则 2 需要预交个税 (1000.0 − 800.0) × 20% = 40.00。\n\n现在给定小杨同学 12 个月的月度劳务报酬，请帮小杨同学计算他这 12 个月应预交个税的总和。\n\n## 输入格式\n\n输入 12 行，每行一个浮点数，表示小杨同学 12 个月中每个月的劳务报酬。\n\n每个浮点数恰好有一位小数。\n\n## 输出格式\n\n输出 1 行，一个浮点数，保留两位小数，表示小杨同学 12 个月应预交个税的总和。\n\n## 样例 1\n\n输入：\n```text\n932.0\n1634.3\n1790.4\n2172.9\n378.1\n283.4\n2761.9\n3583.5\n10.1\n2324.9\n1111.6\n3812.3\n```\n\n输出：\n```text\n2584.76\n```\n\n## 数据范围\n\n小杨同学每月劳务报酬收入均为正，且恰好有一位小数，且不超过 4000.0。\n"
+        },
+        "tests": [
+          {
+            "name": "正数下界",
+            "input": "0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1",
+            "output": "0.00",
+            "reason": "12 个月均为最小正数 0.1，均不超过 800，税额总和为 0.00。"
+          },
+          {
+            "name": "800 元边界",
+            "input": "800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0",
+            "output": "0.00",
+            "reason": "规则为不超过 800 不预交个税，800.0 走不征税分支，总和 0.00。"
+          },
+          {
+            "name": "刚好超过 800 元",
+            "input": "800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1",
+            "output": "0.24",
+            "reason": "每月税额 (800.1-800.0)*0.2=0.02，12 个月合计 0.24；覆盖边界刚超过情况。"
+          },
+          {
+            "name": "数据范围上界",
+            "input": "4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0",
+            "output": "7680.00",
+            "reason": "每月税额 (4000.0-800.0)*0.2=640.00，12 个月合计 7680.00；覆盖 PDF 数据范围上限。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题 26、27：题 26 题面、样例、解析与参考程序均与 PDF 一致；题 27 算法、样例与参考程序正确，但站点题面数据范围误写为 10000，PDF 第 9 页为 4000.0，已给出 question 修正。编程边界测试为独立计算建议，未声称已运行。"
+  }
+}

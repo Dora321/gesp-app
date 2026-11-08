@@ -1,0 +1,234 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:07:20.573Z",
+  "completedAt": "2026-11-08T13:10:13.289Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49890,
+    "completion_tokens": 13687,
+    "total_tokens": 63577,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11145
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.014327,
+      "allowance": 0.014327,
+      "tokens": {
+        "input": 49890,
+        "output": 13687,
+        "reasoning": 11145,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头含 CCF 徽标、GESP 标识及『CCF 编程能力等级认证 C++ 一级 2026 年 06 月』，与 paperId 2026-06-l1 的年月、级别完全一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "DeepSeek 初核对题 6 五维的判定与我方独立复核（页图+嵌入文本+cin 提取行为复算）一致，予以接受。注：解析中『1993 无来源』措辞欠严谨（1993 即把 2026-6-27 当算式计算的结果，属干扰值，cin>>int 不做算式求值），不影响答案判定与主论证，不列为需修复问题。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 6 题题干照录为『如下 C++ 代码执行时输入 2026-6-27，下列说法正确的是（）』，代码框为 int N; / cin >> N; / cout << N; 三行，与网站题干及代码逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四个选项 A『输入失败，不允许输入减号，没有输出』、B『允许输入，输出 1993』、C『允许输入并原样输出 2026-6-27』、D『允许输入并输出 2026』内容与顺序均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表 C D D C B D C C A A… 中第 6 题为 D（0 起始索引 3）；独立跟踪 cin 提取：读到 2026 遇『-』停止，N=2026，后续字符留缓冲区，输出 2026，仅 D 成立，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：cin>>int 按类型提取连续数字、遇非数字停止，缓冲区残留不影响已赋值，结论 D 成立；A（输入不失败）、B（1993 为算式干扰值，提取过程不会出现）、C（int 无法原样输出带减号字符串）排除理由均成立，通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "DeepSeek 初核对题 7 的判定与独立复算一致，接受。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 7 题题干为『其说法错误的是』，代码为 cin >> N >> M; 后按 N>M 输出 \"A \" 与 N-M，否则输出 \"B \" 与 M-N，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A『输入 4 3 输出 A 1』、B『输入 3 4 输出 B 1』、C『输入 3 3 输出 A 0』、D『输入 4 4 输出 B 0』与网站内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 7 题为 C（索引 2）；独立复算：4>3 真输出 A 1；3>4 假输出 B 1；3>3 假输出 B 0 而非 A 0（C 说法错误）；4>4 假输出 B 0。说法错误者唯 C，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐分支复算正确，明确指出 3>3 为假应输出 B 0，并提示反向设问与相等边界（严格大于）要点，通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "DeepSeek 初核对题 8 的判定与独立复算一致，接受。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 8 题题干『下列说法错误的是』，代码 int cnt = 0; for (int i = 0; i < 5; i++) cnt += 1; cout << cnt; 与网站逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A『cnt = cnt + 1』、B『cnt = 1 + cnt』、C『cnt =+ 1』、D『cnt = + 1 + cnt』与网站选项文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 8 题为 C（索引 2）；独立复算：A/B/D 均等价于每轮 cnt 加 1（D 中 +1 为一元正号），终值 5、效果相同；C 被解析为赋值号与一元正号即 cnt=(+1)，每轮赋 1，终值 1，效果不同。说法错误者唯 C，与 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 =+ 的解析陷阱（终值 1 而非 5）及合法自增写法延伸（cnt=cnt+1、+=、后/前置 ++）均正确，通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "DeepSeek 初核对题 9 的判定与独立模拟一致，接受。其中对选项 D 第三空的确认（『=+』而非『+=』）与页图及嵌入文本核对结果相符，已排除 D 与 A 重复选项的疑虑。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2~3 页题干给出目标输出『1 2 3 4 5 6 7 8 9 10 11 5 6 7 8 9 10 11 5 6 7 8 9 10 11 5 6 7 8 9 10 11 5 6 7』（逐项清点恰为 35 个数），代码三处空位分别在 if 条件、真分支、假分支，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图与嵌入文本均为 A『> /= +=』、B『>= %= +=』、C『> %= +=』、D『> /= =+』；重点确认 D 第三空为 =+（赋值号+一元正号，与第 8 题 C 项同型陷阱），区别于 A 第三空 +=，不构成重复选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 9 题为 A（索引 0）；独立模拟 A：num 逐轮 +1 从 1 爬至 11（每轮走 else num+=1），num=11 时 11>10 成立执行 11/=2 得 5，回到 5 再爬升；输出段为 1..11、之后三段完整 5..11、末尾 5 6 7，共 11+7×3+3=35 个，与目标序列逐项吻合。B 在 num=10 时 10>=10 成立致 10%=2=0 引入 0，C 输出 11 后 11%=2=1 序列从 1 重启，D 第三空 num=+1 使 num 恒坍为 1，均不复现目标序列。与 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的规律归纳（爬升用 >、跳回用 /=、步进用 +=）与次数核算（11+7×3=32 再 3 个共 35）与本人模拟完全一致，对 B/C/D 反例演算无误，通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "DeepSeek 初核对题 10 的判定与独立复算一致，接受。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 10 题代码 for (i = 1; i < 5; i++) 内 if (i % 2 == 0) { continue; cout << i << \"#\"; }，循环外 cout << i << \"END#\"；题干『其输出是』，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A『5END#』、B『5#END』、C『1#3#4#END』、D『1#3#4 END#』与网站选项内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 10 题为 A（索引 0）；独立复算：i=1、3 不满足 i%2==0 无输出；i=2、4 进入 if 后 continue 立即跳过本轮剩余语句 cout，\"#\" 从未输出；循环正常结束时 i=5，末句输出 5END#。与 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 continue 后语句不可达、for 结束后 i 的终值为首个不满足条件的值（5）的说明正确，对 B/C/D 的排除理由成立，通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅复核单选第 6~10 题，均已逐题对照页图与嵌入文本完成五维核验：题干代码、选项文字及顺序与网站数据一致；第 1 页答案表第 6~10 题依次为 D、C、C、A、A，与网站 answer（3、2、2、0、0）一致。解析经独立推导全部成立：题 6 按类型提取遇『-』截断输出 2026；题 7 以 3>3 为假确定应输出 B 0 故 C 说法错误；题 8 中 cnt=+1 解析为 cnt=(+1) 终值为 1；题 9 模拟 A 填法得输出 1..11、5..11×3、5 6 7 共 35 个数与目标序列吻合（并确认 D 第三空为 =+，区别于 A 的 +=），B/C/D 反例成立；题 10 continue 跳过 # 输出、循环后 i=5 得 5END#。全部五维维持 verified，无待修复问题，无未决争议，故无 changes 与 tests（单选题无参考代码维度，编程题不在本批范围）。"
+  }
+}

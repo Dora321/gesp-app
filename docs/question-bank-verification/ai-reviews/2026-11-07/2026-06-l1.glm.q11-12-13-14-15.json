@@ -1,0 +1,236 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:11:34.415Z",
+  "completedAt": "2026-11-08T13:13:47.345Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50108,
+    "completion_tokens": 9930,
+    "total_tokens": 60038,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7472
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0124812,
+      "allowance": 0.0124812,
+      "tokens": {
+        "input": 50108,
+        "output": 9930,
+        "reasoning": 7472,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 C++ 一级 2026 年 06 月』，单选题答案表（红色 C D D C B D C C A A B A B B B）与判断题答案表齐全，页脚 1/10 至 10/10 连续；与 paperId 2026-06-l1 的年份、月份、等级完全一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题代码 int N, i; cin >> N; for (i = 2; i < N; i++) if (N % i == 0) { cout << \"1#\"; break; } else cout << \"0#\"; 与网站题面代码逐行一致，仅排版换行微调。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 依次为：输入 2 输出 1#、输入 15 输出 0#1#、输入 1 输出 0#、输入 3 输出 1#，与网站 options 文本及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 B，对应 0 起始索引 1，网站 answer=1。独立模拟：N=15 时 i=2 输出 0#，i=3 整除输出 1# 后 break，得 0#1#；输入 2/1 时循环体一次不执行无输出；输入 3 仅输出 0#。仅 B 说法正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对网站解析各项结论：输入 2 与 1 时 i<N 不成立循环零次无输出、输入 15 得 0#1#、输入 3 得 0#（试除不含 N 本身），均与逐行模拟结果一致，解析非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，PDF 第 3 页亦无。"
+          },
+          "tests": [],
+          "unresolved": []
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立模拟四种输入与第 1 页答案表 B 完全吻合，网站解析推导正确；DeepSeek 初核对题面/选项/答案/解析的 verified 判断与我的独立结论一致，接受。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页代码 int i, tot; i = 0, tot = 0; while (0 <= i && i < 10) { tot += 1; i += 1; } cout << tot; 与网站一致（含逗号表达式初始化）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 与网站一致：A 条件改为 1 <= i && i < 10 并称输出仍为 45；B 合并为 i = tot = 0；C 交换 tot += 1 与 i += 1；D 交换 i = 0 与 tot = 0。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 A→索引 0，网站 answer=0。独立推导：原代码 tot 为循环计数器，i=0..9 共 10 轮输出 10；改为 1 <= i 后 i=0 时条件为假，循环 0 次输出 0；'输出同样为 45'两处皆错，A 为唯一错误说法，当选。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立成立：指出 A 的两处事实错误（原输出为 10 而非 45、修改后循环一次都不执行输出 0）；B 连续赋值右结合合法、C 两个自增互不依赖、D 初始化顺序无关，推导均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，PDF 第 3-4 页亦无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立推导确认原输出 10、修改后输出 0，A 唯一错误，与答案表 A 及网站解析一致；初核结论可靠，接受。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 13 题代码（count 初始化、n 从 1000 到 9999、a=n/1000、b=(n/100)%10、L1 填空行、d=n%10、四次方和判断）与网站一致，含 // L1 与 // 特定条件 注释。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 依次为 int c = (n / 10) / 10;、int c = (n / 10) % 10;、int c = (n % 10) / 10;、int c = (n % 10) % 10;，与网站文本及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 B→索引 1，网站 answer=1。独立验证 n=3587：千位 3、百位 5、十位 8、个位 7，B 得 (358)%10=8 为十位；A 得 35、C 得 0、D 得 7，仅 B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析以 n=3587 逐项对照四个表达式并给出『先除后模取十位』结论，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，PDF 第 4 页亦无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "以 n=3587 独立验证十位表达式，答案表 B 吻合，选项无顺序或文字差异；接受初核结论。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页代码（pos = 空位 // L1、if (空位) // L2、两分支输出）与网站结构逐行一致；题干『秒针位置（0～59）』在文本层因渲染空洞缺数字，与整卷行文连续性判断网站转录正确；输出字符串内空格（如『12 点方向』）与文本层略异，属排版级差异，不改变填空语义与答案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 与网站一致：A (start+n)/60 和 pos==0；B (start+n)%60 和 pos==0；C (start+n)/60 和 pos<=0；D (start+n)%60 和 pos=0。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 B→索引 1，网站 answer=1。独立验证：start=50、n=20 时 (50+20)%60=10 为刻度，(start+n)/60=1仅为圈数；L2 应为 pos==0；D 的 pos=0 为赋值表达式，值恒 0 使条件恒假，逻辑错误。故 B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析对环形取模定位、== 与 = 混淆陷阱、除法得圈数的推导均与独立结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，PDF 第 4 页亦无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立验证取模与 == 判断正确，答案表 B 吻合；输出字符串内空格差异经评估为排版级、不影响题意与答案，接受初核将题面标 verified 的处理。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题代码（N<=1 先行输出 NO 并 return、for (i = 2; ______; i++) 试除、YES/NO 输出）与网站一致；题干『若 N 是质数输出 YES 否则 NO、选不应填入项』与 PDF 文字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 依次为 i < N、i <= N、i <= N / 2、i * i <= N，与网站文本及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 B→索引 1，网站 answer=1。独立验证：填 B（i<=N）时对任意 i=N 有 N%N==0，质数必被误判为 NO，逻辑错误，故 B 不应填入；A、C、D 经 N=2、3、4 等边界验证均能正确判定，与题意吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析对 B 的误判机理（质数 N%N==0 误输出 NO）及 A/C/D 上界可行性的推导与独立结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，PDF 第 5 页亦无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立验证 i<=N 使任何质数误判、其余三个上界均可行，与答案表 B 及『选不应填入项』题意一致；初核结论可靠，接受。"
+      }
+    ],
+    "summary": "本次仅独立复核第 11-15 题共 5 道单选题。第 1 页答案表第 11-15 题依次为 B、A、B、B、B，映射为 0 起始索引 1、0、1、1、1，与网站 answer 全部一致。五题题面代码、选项文本与顺序均与 PDF 第 3-5 页逐行对照无误；解析均经独立模拟/推导验证成立（第 11 题四种输入模拟、第 12 题计数循环与 45 错误说法甄别、第 13 题 n=3587 数位验证、第 14 题取模与 ==/= 甄别、第 15 题质数试除上界边界验证）。第 14 题输出字符串内空格与文本层微异，评估为排版级差异不影响题意。无修改项，单选题 referenceCode 不适用，无未决问题。"
+  }
+}

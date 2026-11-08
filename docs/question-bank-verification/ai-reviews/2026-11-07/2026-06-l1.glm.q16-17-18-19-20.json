@@ -1,0 +1,234 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:14:51.897Z",
+  "completedAt": "2026-11-08T13:15:38.463Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49742,
+    "completion_tokens": 3553,
+    "total_tokens": 53295,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1479
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0092378,
+      "allowance": 0.0092378,
+      "tokens": {
+        "input": 49742,
+        "output": 3553,
+        "reasoning": 1479,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 一级 2026年06月”，与 2026-06-l1（2026 年 6 月 C++ 一级）一致；判断题第 1-5 题题干、代码及答案表见第 5 页及其后页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 1 题原文与网站题干逐字对照一致：均表述考试禁止携带 AI/智能眼镜，且“这些 AI 眼镜应该也是内置了操作系统并可能支持 Wi-Fi 或蓝牙连接”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站判断项“正确/错误”可完整表达官方 √/× 判定，第 5 页答案表第 1 题为 √ 判定成立。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 1 题标 √，按正确=0 映射，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：AI/智能眼镜（具备语音助手、摄像、联网等功能）是内置处理器与操作系统、可经 Wi-Fi/蓝牙通信的可穿戴计算设备，正因具备联网计算能力带来作弊风险而被禁带，官方判“正确”成立；网站解析对传感—处理—输出角色与设备性质的描述无逻辑错误，非仅凭答案表背书。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立比对第 5 页原图题干与答案表 √，独立支持下官方“正确”判定，网站解析结论无误，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 2 题原文与网站一致：均限定 n 为大于 100 的整数，比较 (n / 10) % 10 与 (n % 100) / 10 是否相等。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；判断项“正确/错误”映射与官方 √ 判定无冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 2 题标 √，正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：设 n=100q+r（0≤r≤99），(n/10)%10=(10q+（r/10）)%10=r/10（向下取整），(n%100)/10=r/10，两者均取十位数字；代 n=3587：358%10=8，87/10=8，相等。解析结论与推导吻合，且未超出题面含义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立数学推导确认两表达式同取十位，官方 √ 成立，网站 answer 与解析均正确。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 3 题代码框与网站代码逐行一致：int i; for (i = 0; i < 20; i += 3) 内 if (i % 3 != 0) break; 循环外 cout << i;，题干断言输出 19。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；判断项“正确/错误”映射与官方 × 判定无冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 3 题标 ×，错误=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪循环：i 序列为 0,3,6,9,12,15,18,21，均为 3 的倍数，i%3!=0 恒为假，break 永不触发；i=21 时 21<20 不成立退出，实际输出 21，断言“输出 19”不成立，故判“错误”正确；网站解析的序列与终值推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立循环追踪实得输出 21 而非 19，与官方 × 及网站 answer=1 一致，解析无误。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 4 题题干（N! 定义、3!=1×2×3=6 示例）与代码框（int N; 输入提示、int rst = 0; for (int i = 1; i < N + 1; i++) rst *= i; cout << rst;）与网站逐行一致；提示字符串“请输入正整数: ”与网站“请输入正整数： ”仅为标点/空格等价差异，不影响语义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；判断项“正确/错误”映射与官方 × 判定无冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 4 题标 ×，错误=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：累乘器 rst 初值为 0，rst*=i 对任意正整数 N 恒得 0（0×1×2×…×N=0），程序输出 0 而非 N!，断言“能输出 N!”不成立，判“错误”正确；网站解析指出应初始化为 1 且认可 i<N+1 等价于 i<=N，与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立确认 rst=0 导致累乘恒 0，官方 × 成立；网站唯一可见差异仅提示串标点，属等价转换，不改动。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在第 5 页末“如下 C++ 代码能实现输出正整数 N 的各位数字”，代码块在第 6 页顶部：while (N > 0) { cout << (N % 10) << endl; N = N / 10; }，与网站逐行一致（N = N / 10 与 N/=10 等价）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；判断项“正确/错误”映射与官方 √ 判定无冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 5 题标 √，正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：以 N=3587 为例，依次输出 7、8、5、3 后 N 变 0 退出，全部数位均已输出；题面仅要求“输出各位数字”，未限定从高位到低位，故代码功能成立，判“正确”正确；网站解析同时正确指出输出顺序为低位在前。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立数位分解跟踪确认全部数位被输出，官方 √ 成立，网站 answer 与解析均无误。"
+      }
+    ],
+    "summary": "本次独立复核仅覆盖题号 16-20（判断题 1-5）。第 5 页判断题答案表“√√××√”与网站 answer（0,0,1,1,0）映射一致；第 5-(5,6) 页题干与代码逐行对照无实质差异。逐题独立推导：题 16 设备常识下官方“正确”成立；题 17 两种写法同取十位（n=100q+r 恒等式）；题 18 循环终值 21≠19，官方判“错误”成立；题 19 rst=0 使累乘恒为 0，判“错误”成立；题 20 循环输出全部数位，判“正确”成立。五题均 approve，无需修改，无未决问题，判断题 options/referenceCode 均 not_applicable。"
+  }
+}

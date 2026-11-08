@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:05:43.545Z",
+  "completedAt": "2026-11-08T13:07:20.568Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31846,
+    "completion_tokens": 8860,
+    "total_tokens": 40706,
+    "prompt_tokens_details": {
+      "cached_tokens": 31616
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7333
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00544535,
+      "allowance": 0.00326721,
+      "tokens": {
+        "input": 230,
+        "output": 8860,
+        "reasoning": 7333,
+        "cache_read": 31616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b04c54a136beffad1e6f2ff6dd6e059551326471e1d593ae10d63bfe83d34b74",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标明“CCF 编程能力等级认证 C++ 一级 2026 年 06 月”，与 paperId 对应的等级和年月一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干为“输入 2026-6-27”，代码为 int N; cin >> N; cout << N;，与网站题干及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A“输入失败……没有输出”、B“输出 1993”、C“原样输出 2026-6-27”、D“输出 2026”与网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 D；按 0 起始选项索引为 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "复核 int 输入提取：读取 2026 后遇到“-”停止，N 为 2026，后续字符留在缓冲区，输出 2026；解析对 D 正确及 A/B/C 错误的分析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题代码为读入 N、M 后按 N>M 输出 A 与 N-M，否则输出 B 与 M-N；题干问“说法错误”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A“4 3→A 1”、B“3 4→B 1”、C“3 3→A 0”、D“4 4→B 0”与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 C；按 0 起始索引为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：4 3 输出 A 1；3 4 输出 B 1；3 3 时 3>3 为假，输出 B 0 而非 A 0；4 4 输出 B 0。故 C 的说法错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 8 题代码为 cnt=0，循环 5 次执行 cnt+=1，再输出 cnt；与网站题干及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A“cnt = cnt + 1”、B“cnt = 1 + cnt”、C“cnt =+ 1”、D“cnt = + 1 + cnt”与网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 C；按 0 起始索引为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "复核：A、B、D 均等价于每轮给 cnt 加 1，最终为 5；C 的 cnt =+ 1 解析为 cnt=(+1)，每轮赋值为 1，最终仍为 1，故 C 说法错误。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末至第 3 页第 9 题给出目标输出序列及带三处空白的循环代码，与网站题干、代码和 35 项输出序列一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A“> /= +=”、B“>= %= +=”、C“> %= +=”、D“> /= =+”与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 A；按 0 起始索引为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "模拟代码：num 从 1 递增到 11，11>10 时执行 11/=2 得 5，再递增至 11，循环往复；35 次末尾为 7。A 的 >、/=、+= 与序列吻合，其他选项反例成立，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题代码为 for(i=1;i<5;i++)，若 i 为偶数则 continue 后接 cout，循环外输出 i 与 END#；与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A“5END#”、B“5#END”、C“1#3#4#END”、D“1#3#4 END#”与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 A；按 0 起始索引为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "复核：i=2、4 时 continue 跳过 cout；循环结束后 i=5，循环外输出 5END#，循环内从未输出。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题 6 至题 10 均为单选题；PDF 卷面题干、代码、选项顺序及官方答案表均与网站数据一致，解析经独立复算无误，无需修改。本批无编程题，故无参考代码和边界测试。"
+  }
+}
