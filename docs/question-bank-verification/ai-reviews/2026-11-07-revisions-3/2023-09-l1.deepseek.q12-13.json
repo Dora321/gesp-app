@@ -1,0 +1,129 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    12,
+    13
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:06:40.987Z",
+  "completedAt": "2026-11-08T01:09:00.696Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14788,
+    "completion_tokens": 15829,
+    "total_tokens": 30617,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13824
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0117156,
+      "allowance": 0.00702936,
+      "tokens": {
+        "input": 14788,
+        "output": 15829,
+        "reasoning": 13824,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9c707045c9e301dad310d04aa199afa8b33c8e1ba656bdb363fdd81935256b41",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级 / 2023 年 9 月”；第1页答案表第12题 B、第13题 D；第3—4页为第12、13题原题及代码，身份匹配。"
+    },
+    "questions": [
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页末行题干为“第12题 下面C++代码执行后的输出是（ ）。”，第4页代码为 int n = 5; int cnt = 1; while (n >= 0) { cnt += 1; n -= 2; } cout << cnt;。候选将两条声明合写为一行并称“代码段”，必要代码完整且语义不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图选项依次为 A. 3、B. 4、C. 6、D. 7；候选 [\"3\",\"4\",\"6\",\"7\"] 与页图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 B（0 起始索引 1）。独立追踪：5>=0 时 cnt=2,n=3；3>=0 时 cnt=3,n=1；1>=0 时 cnt=4,n=-1；-1>=0 为假退出，输出 4。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心追踪和答案 4 正确；但选项逐项分析仍写“C (5)”“D (2)”，与已修复的选项 C=6、D=7 不一致，候选选项中也无 5、2。需将这两项改为 6、7 后再上线。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (4)**\n\n**核心解析：**\n逐步追踪循环执行过程：\n\n| 检查/轮次 | n 的值 | 条件 n >= 0 | cnt 变化 | n 变化 |\n|------|------|------|------|------|\n| 初始 | 5 | 真 | 1 | - |\n| 第1次执行循环体 | 5 | 真 | 2 | 3 |\n| 第2次执行循环体 | 3 | 真 | 3 | 1 |\n| 第3次执行循环体 | 1 | 真 | 4 | -1 |\n| 退出判断 | -1 | 假 | 不变 | - |\n\n循环体实际执行 3 次，cnt 由 1 增至 4；n=-1 时条件为假，退出循环，输出 4。\n\n**选项逐项分析：**\n- **A (3)**：❌ 错误。少算了一次循环递增。\n- **B (4)**：✅ 正确。循环体执行 3 次，cnt=1+3=4。\n- **C (6)**：❌ 错误。逐轮追踪结果为 4，不是 6。\n- **D (7)**：❌ 错误。逐轮追踪结果为 4，不是 7。\n\n**易错提醒：**\n- 当 n 变为 -1 时，`-1 >= 0` 为假，循环体不再执行。\n- cnt 的初值为 1，循环体执行 3 次，所以最终为 4。\n\n**知识延伸：**\n对于涉及循环计数器的问题，建议用表格法逐行记录变量变化，可有效避免遗漏执行轮次。\n\n**考点：** while 循环的手动追踪与边界条件判定"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图题干包含“求正整数的所有因数”和输入 10、12、17 的示例，代码含 int n = 0; cout << \"请输入一个正整数：\"; cin >> n; for (____) // 此处填写代码 if (n % i == 0) cout << i << endl;。候选题面与代码完整覆盖必要内容，空白用下划线表示、无行号属等价排版。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图选项为 A. int i = 1; i < n; i + 1；B. int i = 1; i < n + 1; i + 1；C. int i = 1; i < n; i++；D. int i = 1; i < n + 1; i++。候选四项与之一致，仅有空格排版差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 D（0 起始索引 3）。独立验证：A、B 的步进 i+1 未赋回 i，B 对任意正整数 n 死循环，A 在 n>1 时死循环且 n=1 时无输出；C 条件 i<n 漏掉 n 本身；D 覆盖 1..n 且 i++ 正确递增，唯一正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 D 的推导正确，但解析仍写 D 为 int i = 1; i <= n; i = i+1、C 为 i = i+1，与候选及原卷的 D=int i = 1; i < n + 1; i++、C=int i = 1; i < n; i++ 不一致；A 在 n=1 时并非死循环；“for 三表达式缺一不可”也不准确，C++ 允许省略。需修正解析文本。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (int i = 1; i < n + 1; i++)**\n\n**核心解析：**\n要找出正整数 n 的所有因数，需要遍历从 1 到 n 的所有整数，并对每个 i 检查 `n % i == 0`。\n\n- 初始化：`int i = 1;`，从最小正因数 1 开始。\n- 循环条件：必须包含 n 本身，`i < n + 1` 等价于 `i <= n`。\n- 步进表达式：`i++` 使 i 递增；若写成 `i + 1`，只是计算表达式值而未赋回 i，循环变量不会更新。\n\n**选项逐项分析：**\n- **A (int i = 1; i < n; i + 1)**：❌ 错误。条件漏掉 n；步进 `i + 1` 未改变 i，n>1 时会死循环，n=1 时直接跳过，均不能完整输出因数。\n- **B (int i = 1; i < n + 1; i + 1)**：❌ 错误。步进 `i + 1` 未改变 i，i 始终为 1，正整数 n 时条件恒真，会死循环。\n- **C (int i = 1; i < n; i++)**：❌ 错误。步进正确，但条件 `i < n` 漏掉 n 本身，例如输入 17 只输出 1。\n- **D (int i = 1; i < n + 1; i++)**：✅ 正确。遍历 1 到 n，能输出包括 1 和 n 在内的全部因数。\n\n**易错提醒：**\n- `i++` 会改变 i；`i + 1` 不会把结果赋回 i。\n- 因数包括 1 和自身，循环上界要覆盖 n。\n\n**知识延伸：**\nfor 循环的三个表达式在 C++ 中可以省略，但本题必须保证循环变量 i 能正确更新，否则会死循环或无法遍历。\n\n**考点：** for 循环的初始化、循环条件和步进表达式"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "两题答案均正确；第13题题面、选项已完成原卷恢复，第12题选项也已恢复为 3、4、6、7。剩余问题在解析：第12题解析仍引用旧选项 C(5)、D(2)，第13题解析仍把 C/D 写成非原卷的 i = i+1 / i <= n 形式，并含 A 边界与“for 三表达式缺一不可”的不准确表述。修订 explanation 后可通过。"
+  }
+}
