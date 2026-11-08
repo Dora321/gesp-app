@@ -153,13 +153,18 @@ while ((pending.length || active.size) && !stopped) {
         const id = pending.splice(index, 1)[0]; active.add(id);
         Object.assign(state.papers[id] ||= {}, { status: 'working', workingAt: new Date().toISOString() }); save();
         report({ id, status: 'working', pending: pending.length });
-        const job = processPaper(id).catch(error => {
+        const job = processPaper(id).catch(async error => {
             const entry = state.papers[id] ||= {};
             entry.attempts = (entry.attempts || 0) + 1; entry.error = error.message;
             // 仅模型传输/结构失败可在队尾重试；集成/测试/发布失败保留现场交回协调者。
             if (/模型账号或 Go 来源/.test(error.message)) { entry.status = 'account-blocked'; stopped = true; }
-            else if (/queue-.*-(?:initial|revision-\d+): exit/.test(error.message) && entry.attempts < 4) { pending.push(id); entry.status = 'retry-queued'; }
-            else if (/queue-.*-(?:initial|revision-\d+): exit/.test(error.message)) entry.status = 'model-request-blocked';
+            else if (/queue-.*-(?:initial|revision-\d+): exit/.test(error.message) && entry.attempts < 4) {
+                entry.status = 'retry-queued'; save();
+                report({ id, status: 'retry-waiting', seconds: 300, error: error.message });
+                await wait(300000);
+                pending.unshift(id);
+            }
+            else if (/queue-.*-(?:initial|revision-\d+): exit/.test(error.message)) { entry.status = 'model-request-blocked'; stopped = true; }
             else { entry.status = 'integration-blocked'; stopped = true; }
             save(); report({ id, status: entry.status, error: error.message });
         }).finally(() => { active.delete(id); jobs.delete(job); });
