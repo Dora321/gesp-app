@@ -45,7 +45,15 @@ const node = (script, id, label, env) => command(process.execPath, [script, id],
 async function deployment(sha) {
     let retried = 0;
     for (let attempt = 0; attempt < 60; attempt++) {
-        const runs = JSON.parse(execFileSync('gh', ['run', 'list', '--repo', 'Dora321/gesp-app', '--commit', sha, '--workflow', 'deploy.yml', '--limit', '1', '--json', 'databaseId,status,conclusion'], { cwd: root, encoding: 'utf8', timeout: 60000 }));
+        let runs;
+        try {
+            runs = JSON.parse(execFileSync('gh', ['run', 'list', '--repo', 'Dora321/gesp-app', '--commit', sha, '--workflow', 'deploy.yml', '--limit', '1', '--json', 'databaseId,status,conclusion'], { cwd: root, encoding: 'utf8', timeout: 60000 }));
+        } catch (error) {
+            if (!/EOF|timeout|timed out|connection reset|502|503|504/i.test(String(error.message))) throw error;
+            report({ status: 'retrying-github-status', sha, error: String(error.message).slice(0, 200) });
+            await wait(30000);
+            continue;
+        }
         if (runs[0]?.status === 'completed') {
             if (runs[0].conclusion !== 'success') {
                 const jobs = JSON.parse(execFileSync('gh', ['run', 'view', String(runs[0].databaseId), '--repo', 'Dora321/gesp-app', '--json', 'jobs'], { cwd: root, encoding: 'utf8', timeout: 60000 })).jobs;
