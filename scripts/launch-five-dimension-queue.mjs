@@ -7,7 +7,7 @@ const auth = JSON.parse(fs.readFileSync(authFile, 'utf8'))['opencode-go'];
 if (!auth?.key) throw new Error('未找到已连接的 OpenCode Go 凭据');
 process.env.OPENCODE_API_KEY ||= auth.key;
 process.env.GESP_AUDIT_CACHE ||= '/tmp/gesp-five-dim-20261107';
-process.env.GESP_EXISTING_WORKERS = '[]';
+process.env.GESP_EXISTING_WORKERS ||= '[]';
 const lock = path.join(process.env.GESP_AUDIT_CACHE, 'queue.pid');
 if (fs.existsSync(lock)) {
     const pid = Number(fs.readFileSync(lock, 'utf8'));

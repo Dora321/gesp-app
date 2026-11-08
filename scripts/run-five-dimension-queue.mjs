@@ -137,7 +137,7 @@ async function processPaper(id) {
     entry.completedAt = new Date().toISOString(); save();
     report({ id, status: entry.status, unresolvedQuestions: final.unresolved.length });
 }
-// 用户指定按等级从一级到八级，再按试卷年月从早到晚逐卷推进。
+// 用户指定按等级从一级到八级推进；同一级不同试卷可以并行审校。
 const ids = inventory.map(paper => paper.id).filter(id => id !== '2026-03-l5')
     .sort((a, b) => Number(a.at(-1)) - Number(b.at(-1)) || a.localeCompare(b));
 const pending = ids.filter(id => !['verified', 'reviewed-with-open-issues'].includes(state.papers[id]?.status));
@@ -146,9 +146,10 @@ const jobs = new Set();
 save();
 while ((pending.length || active.size) && !stopped) {
     const runningExternal = external.filter(worker => alive(worker.pid));
-    const limit = 1;
+    const limit = Math.max(1, Math.min(3, Number(process.env.GESP_QUEUE_CONCURRENCY || 3)) - runningExternal.length);
     while (active.size < limit) {
-        const index = pending.findIndex(id => !runningExternal.some(worker => worker.ids.includes(id)));
+        const currentLevel = Math.min(...[...pending, ...active].map(id => Number(id.at(-1))));
+        const index = pending.findIndex(id => Number(id.at(-1)) === currentLevel && !runningExternal.some(worker => worker.ids.includes(id)));
         if (index < 0) break;
         const id = pending.splice(index, 1)[0]; active.add(id);
         Object.assign(state.papers[id] ||= {}, { status: 'working', workingAt: new Date().toISOString() }); save();
