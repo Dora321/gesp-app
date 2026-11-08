@@ -1,0 +1,93 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    7
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T14:13:31.863Z",
+  "completedAt": "2026-11-08T14:14:33.406Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 16232,
+    "completion_tokens": 11276,
+    "total_tokens": 27508,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10094
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0092004,
+      "allowance": 0.00552024,
+      "tokens": {
+        "input": 16232,
+        "output": 11276,
+        "reasoning": 10094,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "14561f732ea7b1dc0209b1cf526f5a0bb88c322c39406711fee1e939e7a057d9",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确标注“C++ 一级”和“2025 年 12 月”，与候选的 level=1、year=2025、month=12 相符。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题代码框共6行，候选L1-L6逐行对应。L1候选为 `int N, M;`，原卷为 `int N,M;`，仅空格排版差异；L6候选为 `printf(\"%%(N+M)=%d\", N+M, int(N+M));`，与原卷页图中红色高亮的第二实参 `int(N+M)` 一致；两个提示 printf 和两次 scanf 也一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题四选项依次为 A 30=30、B 10+20=30、C %(N+M)=30、D 错误提示；候选 options 的内容与顺序完全相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为 C，0起始索引为2，候选 answer=2。独立推导：输入10、20分别赋给N、M；格式串 `%%` 输出一个 `%`，`(N+M)=` 原样输出，`%d` 用N+M=30输出；第二个实参 int(N+M)=30 多余但合法，求值后忽略；最终输出 `%(N+M)=30`，对应C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的结论和输出推导正确，但“逐行推导”引用的代码为 `printf(\"%%(N+M)=%d\", N+M);`，漏掉原卷L6的第二实参 `int(N+M)`，也未说明该多余实参合法且被忽略；解析引用与题面代码不同步，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第7题为单选题，无参考程序可核。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (%(N+M)=30)**\n\n**核心解析：**\n本题考察 printf 格式字符串中百分号 `%` 的转义规则。要输出字面百分号，格式串中必须写成 `%%`。\n\n**按题面第 6 行推导：**\n`printf(\"%%(N+M)=%d\", N+M, int(N+M));`\n- `%%` 转义输出一个字符 `%`；\n- `(N+M)=` 是普通文本，照原样输出；\n- `%d` 被第一个实参 `N+M`（10+20=30）替换；\n- 第二个实参 `int(N+M)` 也是 30，但格式串中只有一个 `%d`，该多余实参会被求值后忽略，不会报错，也不影响输出。\n\n完整输出：`%(N+M)=30`，对应 C。\n\n**选项逐项分析：**\n- A (30=30)：错误。没有按 `%%` 输出字面百分号，也没有保留普通文本 `(N+M)=`。\n- B (10+20=30)：错误。把 `(N+M)=` 当成输出表达式并代入操作数；实际 `%d` 只替换为 `N+M` 的计算结果 30。\n- C (%(N+M)=30)：正确。`%%` 输出 `%`，`(N+M)=` 原样输出，`%d` 输出 30。\n- D (错误提示)：错误。`%%` 和 `%d` 都是合法格式说明，且 printf 允许多余实参；本题不会因格式串产生错误提示。\n\n**易错提醒：**\n- printf 中输出百分号必须写成 `%%`；单个 `%` 是格式说明的开始。\n- 格式串中的普通字符（括号、字母、等号等）照原样输出。\n- 实参数量多于转换说明是合法的，多余实参求值后忽略；少于转换说明才会出问题。\n\n**考点：** printf 格式字符串中百分号转义 `%%` 与普通文本的区分。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "卷头身份与题号7来源页匹配；题面已含原卷第6行完整代码，选项与答案表C（索引2）一致，独立推导输出为 `%(N+M)=30`。唯一需修的是解析仍引用漏掉 `int(N+M)` 的 printf 调用，且未说明多余实参；已给出完整解析修复。无编程题测试。"
+  }
+}
