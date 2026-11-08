@@ -827,38 +827,40 @@
       "id": 22,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
-        5
+        5,
+        6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页判断题第 2 题原文为“如果 n 为大于 100 的整数，则 C++ 表达式 (n / 10) % 10 与 (n % 100) / 10 的结果相同”，与网站题干一致。",
-          "review": "PDF 第 5 页判断题第 2 题原文「如果 n 为大于 100 的整数，则 C++ 表达式 (n / 10) % 10 与 (n % 100) / 10 的结果相同。」与网站题干一致。"
+          "initial": "PDF 第6页判断第7题原文为“C++ 代码 cout << (2.5 % 2) 能够生成可执行代码，但执行时将报错，因为 % 只能适用于正整数。”候选仅使用 Markdown 反引号排版，文字与语义一致。",
+          "review": "PDF 第6页判断第7题原文「C++ 代码 cout << (2.5 % 2) 能够生成可执行代码，但执行时将报错，因为 % 只能适用于正整数。」与候选题干逐字一致（候选仅加 Markdown 反引号，属等价排版）。"
         },
         "answer": {
-          "initial": "PDF 第 5 页判断题答案表第 2 题为 √，即正确=0；网站 answer=1（错误）与官方答案表冲突，且网站解析也写“答案：正确”。",
-          "review": "PDF 第 5 页判断题答案表第 2 题为 √（读图确认 √√××√… 前两题均为对勾），且网站自身解析首行写「**答案：正确**」；而网站 answer=1（错误）自相矛盾，须改为 0。"
+          "initial": "PDF 第5页判断题答案表第7题为“×”；按正确=0、错误=1，officialAnswer=1，候选 answer=1 一致。",
+          "review": "PDF 第5页判断题答案表读得 √ √ × × √ √ × × × ×，第7题为 ×；采用「正确=0、错误=1」映射，officialAnswer=1，候选 answer=1 一致，且与候选解析首行「答案：错误」自洽。"
         },
         "explanation": {
-          "initial": "独立推导：设 n=100k+10t+u（0≤t,u≤9），则 (n/10)%10=t，(n%100)/10=t，二者恒等；n>100 只是限定条件，解析结论正确。",
-          "review": "独立推导：设 n=100k+10t+u（t,u∈0..9，k≥1），则 (n/10)%10=100k+10t 的个位=t，(n%100)/10=(10t+u)/10=t（整数除法），两式恒等；n=3587 双双得 8 验证一致。解析结论「正确」成立，无需改动，仅答案键有误。"
+          "initial": "独立推导：2.5 是浮点字面量，C++ 的 % 要求两个操作数为整型，故 2.5 % 2 在编译期即报错，不能生成可执行代码；且 % 可作用于负整数，并非“只能适用于正整数”。原陈述两处均假，候选解析结论“错误”成立。",
+          "review": "独立推导：2.5 为 double 字面量，% 要求两操作数均为整型，`2.5 % 2` 属编译期错误，根本生成不了可执行代码，谈不上「执行时报错」；且 % 适用于全部整型（含负整数，C++11 起结果符号随被除者），并非「只能适用于正整数」，浮点取余需 fmod。原陈述两处均假，结论「错误」成立，候选解析两条依据均正确。候选修复 answer=1 后复核通过。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2026-06-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2026-06-l1.glm.json"
       ]
     },
     {
@@ -933,39 +935,40 @@
       "id": 25,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页判断题第 5 题题干、第 6 页代码 while(N>0){ cout<<(N%10)<<endl; N=N/10; } 与网站题干及代码一致。",
-          "review": "PDF 第 5 页判断题第 5 题题干「如下 C++ 代码能实现输出正整数 N 的各位数字。」及第 6 页代码 while(N>0){ cout<<(N%10)<<endl; N=N/10; } 与网站题干及代码一致。"
+          "initial": "PDF 第6页判断第10题题干为“删除下面 C++ 代码中的 continue 后，其输出与原来相同。”代码 int x = 0; while (x < 4) { x++; if (x == 2) continue; cout << x << “,”; } 与候选一致。",
+          "review": "PDF 第6页判断第10题原文「删除下面 C++ 代码中的 continue 后，其输出与原来相同。」及代码 `int x = 0; while (x < 4) { x++; if (x == 2) continue; cout << x << \",\"; }` 与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 5 页判断题答案表第 5 题为 √，即正确=0；网站 answer=1（错误）与官方答案表冲突，且网站解析也写“答案：正确”。",
-          "review": "PDF 第 5 页判断题答案表第 5 题为 √（答案表横排 √√××√ 对应题 1–5），且网站自身解析首行写「**答案：正确**」；而网站 answer=1（错误）自相矛盾，须改为 0。"
+          "initial": "PDF 第5页判断题答案表第10题为“×”；按正确=0、错误=1，officialAnswer=1，候选 answer=1 一致。",
+          "review": "PDF 第5页判断题答案表第10题为 ×；采用「正确=0、错误=1」映射，officialAnswer=1，候选 answer=1 一致，且与候选解析首行「答案：错误」自洽。"
         },
         "explanation": {
-          "initial": "独立推导：N%10 取当前末位，N/=10 去掉末位，循环直到 N=0；如 N=3587 依次输出 7、8、5、3，覆盖各位数字。题面未要求从高位到低位输出，故判断为正确。",
-          "review": "独立推导：N%10 依次取末位、N/=10 逐位丢弃，以 N=3587 得 7、8、5、3，各位数字全部输出；题面未要求按高位到低位顺序，故判断为正确，解析结论成立，仅答案键有误。"
+          "initial": "独立模拟：原代码在 x=2 时执行 continue 跳过 cout，输出为“1,3,4,”；删除 continue（保留 if 后的分号形成空语句）后每轮都输出，得到“1,2,3,4,”，两者不同。即使按删除整个 continue; 后下一语句成为 if 体来理解，输出也不会与原代码相同。原陈述为假，候选解析成立。",
+          "review": "独立模拟：原代码 x=1→2 时命中 continue 跳过本轮 cout，输出 `1,3,4,`；删除 continue 后（无论将 if 体视为空语句删除整句，还是删除保留空语句）每轮都输出，得 `1,2,3,4,`，多出 `2,`，输出不相同，陈述为假。x++ 位于 continue 之前，删除后循环推进不受影响、不会死循环。候选解析结论与依据均成立，修复 answer=1 后复核通过。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2026-06-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2026-06-l1.glm.json"
       ]
     },
     {
@@ -1048,33 +1051,8 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 22,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2026-06-l1.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l1.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2026-06-l1.integration.json"
 }

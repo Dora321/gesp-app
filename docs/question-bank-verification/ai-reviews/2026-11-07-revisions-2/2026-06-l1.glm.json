@@ -1,0 +1,140 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    22,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:51:25.353Z",
+  "completedAt": "2026-11-08T13:51:44.970Z",
+  "finishReason": "stop",
+  "inputSha256": "9de84948a492a928763d989030c47ae6046e293abec88f5cf55ddd4252a39190",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确为「CCF 编程能力等级认证」「C++ 一级」「2026 年 06 月」，与核查目标 2026-06-l1（level 1, 2026, month 6）一致；候选仅含 id 22、id 25 两题，分别对应 PDF 判断题第 7、10 题。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第7题原文「C++ 代码 cout << (2.5 % 2) 能够生成可执行代码，但执行时将报错，因为 % 只能适用于正整数。」与候选题干逐字一致（候选仅加 Markdown 反引号，属等价排版）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项，官方以第5页 √/× 答案表呈现，网站用【正确/错误】二项，本维不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表读得 √ √ × × √ √ × × × ×，第7题为 ×；采用「正确=0、错误=1」映射，officialAnswer=1，候选 answer=1 一致，且与候选解析首行「答案：错误」自洽。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：2.5 为 double 字面量，% 要求两操作数均为整型，`2.5 % 2` 属编译期错误，根本生成不了可执行代码，谈不上「执行时报错」；且 % 适用于全部整型（含负整数，C++11 起结果符号随被除者），并非「只能适用于正整数」，浮点取余需 fmod。原陈述两处均假，结论「错误」成立，候选解析两条依据均正确。候选修复 answer=1 后复核通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，本维不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受修订候选 answer=1：独立读表确认判断第7题为 ×，与解析「错误」自洽；上一轮意见中错位套用的修正值 0 不予沿用。题干与解析均无需再改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第10题原文「删除下面 C++ 代码中的 continue 后，其输出与原来相同。」及代码 `int x = 0; while (x < 4) { x++; if (x == 2) continue; cout << x << \",\"; }` 与候选逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项，官方以第5页 √/× 答案表呈现，本维不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题为 ×；采用「正确=0、错误=1」映射，officialAnswer=1，候选 answer=1 一致，且与候选解析首行「答案：错误」自洽。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：原代码 x=1→2 时命中 continue 跳过本轮 cout，输出 `1,3,4,`；删除 continue 后（无论将 if 体视为空语句删除整句，还是删除保留空语句）每轮都输出，得 `1,2,3,4,`，多出 `2,`，输出不相同，陈述为假。x++ 位于 continue 之前，删除后循环推进不受影响、不会死循环。候选解析结论与依据均成立，修复 answer=1 后复核通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，本维不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受修订候选 answer=1：独立读表确认判断第10题为 ×，并独立模拟两种版本输出（`1,3,4,` 与 `1,2,3,4,`）确认原陈述为假；上一轮错位套用的修正值 0 不予沿用。题干与解析均无需再改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        22,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 34973,
+        "completion_tokens": 1268,
+        "total_tokens": 36241,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 75
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00587995,
+          "allowance": 0.00587995,
+          "tokens": {
+            "input": 34973,
+            "output": 1268,
+            "reasoning": 75,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T13:51:25.353Z",
+      "completedAt": "2026-11-08T13:51:44.970Z"
+    }
+  ]
+}

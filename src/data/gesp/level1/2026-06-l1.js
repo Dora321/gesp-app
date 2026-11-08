@@ -761,6 +761,10 @@ for (int i = 0; i < 100; i++) {
 
 **考点：** 取模运算符的操作数类型要求、编译错误 vs 运行错误`,
       tags: [LEVEL1_TAGS.operator],
+      "sourcePage": 5,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"],
     },
     {
       id: 23,
@@ -839,6 +843,10 @@ while (x < 4) {
 
 **考点：** continue 的跳过范围`,
       tags: [LEVEL1_TAGS.loop],
+      "sourcePage": 5,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"],
     },
     {
       id: 26,

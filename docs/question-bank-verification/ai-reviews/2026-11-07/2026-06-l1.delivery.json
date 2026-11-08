@@ -1,40 +1,15 @@
 {
   "paperId": "2026-06-l1",
-  "phase": "第1轮修订",
-  "checkedAt": "2026-11-08T13:43:27.653Z",
+  "phase": "第2轮修订",
+  "checkedAt": "2026-11-08T13:52:10.213Z",
   "reviewedQuestions": 27,
-  "acceptedDimensions": 92,
-  "unresolved": [
-    {
-      "id": 22,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    }
-  ],
+  "acceptedDimensions": 96,
+  "unresolved": [],
   "reviewFiles": {
     "initial": "ai-reviews/2026-11-07/2026-06-l1.deepseek.json",
     "review": "ai-reviews/2026-11-07/2026-06-l1.glm.json",
     "previous": "ai-reviews/2026-11-07/2026-06-l1.previous-evidence.json"
   },
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l1.integration.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2026-06-l1.integration.json",
   "checks": "题库结构、单元测试、课程与链接、解析质量、Lint、生产构建通过"
 }

@@ -1,0 +1,136 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    22,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:50:39.689Z",
+  "completedAt": "2026-11-08T13:51:25.349Z",
+  "finishReason": "stop",
+  "inputSha256": "9de84948a492a928763d989030c47ae6046e293abec88f5cf55ddd4252a39190",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2026 年 06 月”，与 paperId 及标题一致；题号 22、25 分别对应 PDF 判断第 7、10 题。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第7题原文为“C++ 代码 cout << (2.5 % 2) 能够生成可执行代码，但执行时将报错，因为 % 只能适用于正整数。”候选仅使用 Markdown 反引号排版，文字与语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 第5页以“√/×”答案表呈现；本题不适用选项维。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7题为“×”；按正确=0、错误=1，officialAnswer=1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：2.5 是浮点字面量，C++ 的 % 要求两个操作数为整型，故 2.5 % 2 在编译期即报错，不能生成可执行代码；且 % 可作用于负整数，并非“只能适用于正整数”。原陈述两处均假，候选解析结论“错误”成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，本维不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第10题题干为“删除下面 C++ 代码中的 continue 后，其输出与原来相同。”代码 int x = 0; while (x < 4) { x++; if (x == 2) continue; cout << x << “,”; } 与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，PDF 第5页以“√/×”答案表呈现；本题不适用选项维。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题为“×”；按正确=0、错误=1，officialAnswer=1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：原代码在 x=2 时执行 continue 跳过 cout，输出为“1,3,4,”；删除 continue（保留 if 后的分号形成空语句）后每轮都输出，得到“1,2,3,4,”，两者不同。即使按删除整个 continue; 后下一语句成为 if 体来理解，输出也不会与原代码相同。原陈述为假，候选解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，本维不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        22,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 17629,
+        "completion_tokens": 7491,
+        "total_tokens": 25120,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6710
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00713895,
+          "allowance": 0.00428337,
+          "tokens": {
+            "input": 17629,
+            "output": 7491,
+            "reasoning": 6710,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T13:50:39.689Z",
+      "completedAt": "2026-11-08T13:51:25.349Z"
+    }
+  ]
+}
