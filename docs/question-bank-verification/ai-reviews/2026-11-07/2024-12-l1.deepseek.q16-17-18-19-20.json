@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:40:47.085Z",
+  "completedAt": "2026-11-08T05:42:38.249Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25352,
+    "completion_tokens": 6069,
+    "total_tokens": 31421,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4627
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0074442,
+      "allowance": 0.00446652,
+      "tokens": {
+        "input": 25352,
+        "output": 6069,
+        "reasoning": 4627,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4311b07feb1dbf360678f1b647a05640e149f83c09b0bd2a78fc72df1c5c24aa",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++1级.pdf",
+    "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
+    "mirrorBytes": 443536,
+    "shaVerified": true,
+    "sha256": "4315e07e1575056207fac7ec81a501add5415159ff12d78f2c8aef0f58774293"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证 C++ 一级 2024年12月”，与 paperId 2024-12-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页“2 判断题”第1题原文为“在Windows的资源管理器中为已有文件A建立副本的操作是 Ctrl+C，然后 Ctrl+V。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A/B/C/D 选项，答案表直接给出√/×；网站“正确/错误”为统一判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1格为√；Ctrl+C 复制文件并保留原件，Ctrl+V 在目标位置生成副本，命题成立，对应 officialAnswer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：复制操作保留原文件A，粘贴后在目标文件夹生成内容相同的副本，解析结论与操作语义一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文为“在C++中，表达式 8/3 和 8%3 的值相同。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A/B/C/D 选项，答案表直接给出√/×；网站“正确/错误”为统一判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2格为√；8/3 的整型除法结果为2，8%3 的余数也为2，命题成立，对应 officialAnswer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：两个操作数均为 int，8/3 向零取整得2，8%3 得余数2，二者数值相同。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第3题原文为“X是C++语言的基本类型变量，则语句 cin>>X, cout <<X 能接收键盘输入并原样输出。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A/B/C/D 选项，答案表直接给出√/×；网站“正确/错误”为统一判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第3格为×；cin/cout 按变量类型解析和格式化，不能保证逐字符原样输出，命题错误，对应 officialAnswer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：输入按类型解析、输出按类型格式化，并不保留原始文本形式；例如 int 输入007输出7，float 输入2e-1通常输出0.2，故“原样输出”不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第4题代码为 int N = 0; for (int i = 0; i < 10; i++){ continue; N += 1; } cout << N;，与网站代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A/B/C/D 选项，答案表直接给出√/×；网站“正确/错误”为统一判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4格为×；continue 使本轮直接进入下一轮，N += 1 永不执行，N保持0，输出不是10，命题错误，对应 officialAnswer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：循环10轮均在 continue 处跳到下一轮，continue 之后的 N += 1 属不可达代码，最终 N=0。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第5题代码为 int i; for (i = 0; i <= 100; i++) continue; cout << i;，与网站代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A/B/C/D 选项，答案表直接给出√/×；网站“正确/错误”为统一判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第5格为×；循环在 i=101 时退出，输出101而不是100，命题错误，对应 officialAnswer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：i 从0执行到100，共101轮；随后 i 自增为101，条件 i<=100 不成立而退出，i 在循环外声明，最终输出101。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核题16-20（判断题第1-5题）。卷头年份、月份、等级与2024-12-l1一致；5题题干及代码均与PDF第5页一致。PDF判断题答案表前五格为√√×××，对应 officialAnswer 0,0,1,1,1，与网站答案一致。五题解析均经独立推导成立，无需纠错。判断题不适用A/B/C/D选项映射，也无参考程序，故相关维度记为 not_applicable。其余题目未处理。"
+  }
+}

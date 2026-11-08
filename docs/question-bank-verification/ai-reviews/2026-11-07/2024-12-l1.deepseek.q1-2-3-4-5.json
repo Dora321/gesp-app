@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:20:20.847Z",
+  "completedAt": "2026-11-08T05:21:45.609Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25352,
+    "completion_tokens": 5126,
+    "total_tokens": 30478,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3603
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0068784,
+      "allowance": 0.00412704,
+      "tokens": {
+        "input": 25352,
+        "output": 5126,
+        "reasoning": 3603,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4311b07feb1dbf360678f1b647a05640e149f83c09b0bd2a78fc72df1c5c24aa",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++1级.pdf",
+    "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
+    "mirrorBytes": 443536,
+    "shaVerified": true,
+    "sha256": "4315e07e1575056207fac7ec81a501add5415159ff12d78f2c8aef0f58774293"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 一级 2024 年 12 月”，与 paperId 中的 2024-12、l1 一致；第 1 页单选题答案表列出第 1—15 题答案，前 5 题为 C、C、D、B、B。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干为 2024 年 10 月 8 日诺贝尔物理学奖授予 John J. Hopfield 和 Geoffrey E. Hinton，询问两位科学家的主要研究方向；与网站题面一致，无缺漏或语义改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次为 A. 天体物理、B. 流体力学、C. 人工智能、D. 量子理论；与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 1 题标为 C，对应 0 起始索引 2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：2024 年诺贝尔物理学奖表彰人工神经网络与机器学习的基础性发现和发明，Hopfield 网络、玻尔兹曼机等均属人工智能方向；解析逐项排除 A、B、D，未发现事实或推导错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干为“下列软件中是操作系统的是（ ）。”；与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次为 A. 高德地图、B. 腾讯会议、C. 纯血鸿蒙、D. 金山永中；与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 2 题标为 C，对应 0 起始索引 2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：高德地图、腾讯会议、金山永中（办公软件）均为应用软件；纯血鸿蒙即 HarmonyOS NEXT，属操作系统。解析的核心判断与结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干为“有关下列 C++ 代码的说法，正确的是（ ）。”并给出代码 `printf(\"Hello,GESP!\");`；网站题面及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页四个选项分别讨论双引号内汉字、改为英文单引号、三个连续英文单引号、三个连续英文双引号；网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 3 题标为 D，对应 0 起始索引 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：C++ 相邻字符串字面量会拼接，`\"\"\"Hello,GESP!\"\"\"` 可解析为空串、`\"Hello,GESP!\"`、空串三个相邻字面量，输出不变；双引号内允许汉字，单引号会变成多字符字面量，三个连续单引号不合法。解析结论与选项分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干为“C++ 表达式 12 - 3 * 2 && 2 的值是（ ）。”；网站题面与表达式一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次为 A. 0、B. 1、C. 6、D. 9；与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 4 题标为 B，对应 0 起始索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：`3 * 2 = 6`，`12 - 6 = 6`，`6 && 2` 两侧均为非零，逻辑与结果为 true，按整数输出为 1。解析中的优先级和结果说明正确，C、D 为运算顺序干扰项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页题干为“在 C++ 中，假设 N 为正整数 2，则 cout << (N / 3 + N % 3) 将输出（ ）。”；网站题面及表达式一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页选项依次为 A. 0、B. 2、C. 3、D. 4；与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 5 题标为 B，对应 0 起始索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：N=2 为 int，`2 / 3 = 0`，`2 % 3 = 2`，相加为 2。解析正确指出整除不四舍五入、被除数小于除数时余数为自身，并排除 0、3、4 等干扰项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题 1—5（均为单选题）。五题题面、选项、官方答案索引、独立解析均与 PDF 第 1—2 页及第 1 页答案表一致，答案串为 C、C、D、B、B，未发现需要修改的字段；无编程题，故不提供边界测试。"
+  }
+}

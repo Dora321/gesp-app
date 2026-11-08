@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:30:49.865Z",
+  "completedAt": "2026-11-08T05:37:27.856Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25352,
+    "completion_tokens": 27563,
+    "total_tokens": 52915,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 25079
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0203406,
+      "allowance": 0.01220436,
+      "tokens": {
+        "input": 25352,
+        "output": 27563,
+        "reasoning": 25079,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4311b07feb1dbf360678f1b647a05640e149f83c09b0bd2a78fc72df1c5c24aa",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++1级.pdf",
+    "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
+    "mirrorBytes": 443536,
+    "shaVerified": true,
+    "sha256": "4315e07e1575056207fac7ec81a501add5415159ff12d78f2c8aef0f58774293"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF GESP C++ 一级、2024年12月；与 paperId 2024-12-l1 一致。给定 git-blob SHA 251c7430ba844abf8e6595b10b94e997a4a18e57 已校验。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF p3第11题题干、代码结构和横线位置与网站一致；但原卷两个输出字符串引号内末尾各有空格（“能被3整除的偶数 ”、“其他情形 ”），网站版本漏掉这两个空格，代码字面量不完全一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF p3选项A-D依次为 (N%2)&&(N%3)、(N%2==0)&&(N%3)、(N%2)&&(N%3==0)、(N%2==0)&&(N%3==0)，与网站文字和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF p1答案表第11题为D，对应0起始索引3；D同时判断N%2==0与N%3==0，符合“能被3整除的偶数”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导了D的两个==0条件，并逐项排除A/B/C；结论和答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序字段。"
+          }
+        },
+        "changes": {
+          "question": "下面的程序用于判断输入的整数N是否为能被3整除的偶数，横线处应填写代码是（ ）。\n```cpp\n    int N;\n    cin >> N;\n\n    if(______________)\n        cout << \"能被3整除的偶数 \" << endl;\n    else\n        cout << \"其他情形 \" << endl;\n\n\n    cout << endl;\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF p4第12题题干与代码块逐行一致；`cnt += i++;` 与 for 步进 `i++` 的叠加关系保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF p4选项A-D为54、45、25、10，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF p1答案表第12题为C，对应0起始索引2；逐轮追踪i=1,3,5,7,9，cnt=1+3+5+7+9=25。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明循环体内i++与for步进叠加，i每轮净增2，并列出1+3+5+7+9=25；追踪与代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF p4第13题题干、四条边长为4的文字与正方形示意图均在；网站保留图引用和边长文字条件，语义等价，答案不依赖图像细节。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF p4选项A-D为 a*4;、a+4;、a+1;、++a;，与网站顺序和文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF p1答案表第13题为D，对应0起始索引3；++a使a从4到5，周长由16变为20，增加4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确用周长=4a推出边长需增加1，并逐项说明a*4、a+4、a+1不改变a本身；结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF p4第14题表达式 `(6 > 2) * 2` 与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF p4选项A-D为1、2、true、truetrue，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF p1答案表第14题为B，对应0起始索引1；bool true提升为1，1*2=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明关系表达式产生bool true，参与乘法时整型提升为1，结果类型int、值为2；逐项排除正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF p4-p5第15题题干、代码和横线位置与网站一致；`while(N)` 前的预处理空位与循环体完整保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF p5选项A-D依次为 n2=N%10、N/=10、n2=N/10,N%=10、n2=N%10,N/=10，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF p1答案表第15题为D，对应0起始索引3；D先取末位并从N去掉该位，循环内继续比较并右移，符合位增数判断。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF p4-p5代码显示选项A填 `n2=N%10` 后，首轮 `n1=N%10` 与n2相等，`n1>=n2` 立即成立并输出0返回，不会执行到循环末尾的N/=10，因此不是死循环；原解析A项理由错误。其余B/C/D分析正确，已给修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (n2 = N%10, N /= 10)**\n\n**核心解析：**\n程序从个位开始两两比较相邻数位：循环里每次取末位 `n1 = N % 10` 与上一轮取出的低位 `n2` 比较，若 `n1 >= n2` 说明左侧数位不小于右侧数位，不满足“从首位到个位逐渐增大”，输出 0 并退出；否则用 `n2 = n1, N /= 10` 前进一位。因此进循环前必须先取出最初的末位作为 n2，并把该位从 N 中去掉，即 `n2 = N%10, N /= 10`。以 123 为例：预处理后 N=12、n2=3；第一轮 n1=2 < 3 通过，N=1、n2=2；第二轮 n1=1 < 2 通过，N=0 退出，输出 1。\n\n**选项逐项分析：**\n- **A (n2 = N%10)**：❌ 只把末位存入 n2，却没有在进循环前去掉该位；第一次循环 `n1=N%10` 与 n2 相等，`n1>=n2` 立即成立，程序会直接输出 0（对任意正整数），并不是死循环。\n- **B (N /= 10)**：❌ 没有初始化 n2，第一次比较使用未定义值，行为不可预期。\n- **C (n2 = N/10, N %= 10)**：❌ 方向全错：n2 应取末位（%10）而非去掉末位后的数，N 也应整除前进而非只留个位。\n- **D (n2 = N%10, N /= 10)**：✅ 正确。取末位作基准并右移一位，与循环内的推进逻辑一致。\n\n**易错提醒：**\n- “两两比较数位”型程序，循环前必须先取出一个数位作基准，循环内每轮再取新位。\n- 逗号表达式 `n2 = n1, N /= 10` 依次执行两个赋值，等价于写在两行。\n- 选项 A 虽然不会死循环，但第一次比较就会因 `n1 == n2` 直接判错，不能完成位增数判断。\n\n**考点：** 程序控制——while 循环与数位分离（数位处理）"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核题11-15共5题：题11的代码字符串内末尾空格与原卷不一致，已给question修正；题15解析A项误称死循环，实际会立即输出0并返回，已给explanation修正；其余题面、选项、答案和解析均与PDF p1答案表及p3-p5页图一致。5题均为单选题，tests为空；编程题不在本次范围。"
+  }
+}

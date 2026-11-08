@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:43:54.750Z",
+  "completedAt": "2026-11-08T05:46:08.441Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25352,
+    "completion_tokens": 7240,
+    "total_tokens": 32592,
+    "prompt_tokens_details": {
+      "cached_tokens": 25088
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5782
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00445886,
+      "allowance": 0.00267532,
+      "tokens": {
+        "input": 264,
+        "output": 7240,
+        "reasoning": 5782,
+        "cache_read": 25088,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4311b07feb1dbf360678f1b647a05640e149f83c09b0bd2a78fc72df1c5c24aa",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++1级.pdf",
+    "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
+    "mirrorBytes": 443536,
+    "shaVerified": true,
+    "sha256": "4315e07e1575056207fac7ec81a501add5415159ff12d78f2c8aef0f58774293"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 一级 2024年12月”，与 paperId 2024-12-l1 及卷头年月等级一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第6题原文为“下面C++代码被执行时，将执行三次输出（即标记行L2将被执行一次）”，代码为 for(int i=0;i<10;i+=3) cout<<i; //L2，网站题面代码与文字均保留一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅提供“正确/错误”固定判断项，非单选题选项，按规则不适用 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第6格为“×”，即错误、0起始索引1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i 依次为 0、3、6、9 时均满足 i<10，L2 实际执行4次，不是题干所称3次，也不是1次，故命题错误；解析结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，按规则不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第7题为“C++语句 cout << (3,2) 执行后，将输出3和2，且3和2之间有逗号间隔”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅提供“正确/错误”固定判断项，非单选题选项，按规则不适用 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7格为“×”，即错误、0起始索引1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：(3,2) 是逗号表达式，值为最后一个子表达式 2；cout 只输出 2，不会输出 3，也不会输出逗号，故命题错误。解析的推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，按规则不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第8题为“在C++代码中，studentName、student_name 以及 sStudentName 都是合法的变量名称”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅提供“正确/错误”固定判断项，非单选题选项，按规则不适用 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第8格为“√”，即正确、0起始索引0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：三个名称均由字母或下划线组成、均不以数字开头，且不是 C++ 关键字，符合标识符命名规则，故命题正确；解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，按规则不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第9题为“在C++中，对浮点变量 float f，则语句 cin >> f; cout << (f<1); 在输入是 2e-1 时，输出是0”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅提供“正确/错误”固定判断项，非单选题选项，按规则不适用 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9格为“×”，即错误、0起始索引1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：2e-1 表示 0.2，cin 可正确读入 float f=0.2；0.2<1 为真，cout 默认以 1 输出 bool 真值，故输出不是0，命题错误。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，按规则不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第10题为“在C++的循环体内部，如果 break 和 continue 语句连续在一起，那么作用抵消，可以顺利执行下一次循环”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅提供“正确/错误”固定判断项，非单选题选项，按规则不适用 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10格为“×”，即错误、0起始索引1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：若 break 在前，循环立即终止，后面的 continue 不可达；若 continue 在前，break 不可达，也不存在所谓作用抵消。两种顺序都不能支持“作用抵消并顺利执行下一次循环”的命题，故错误。解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，按规则不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题21至题25。PDF 第5页判断题答案表为“√√×××××√××”，映射到题21至题25依次为“×、×、√、×、×”，与网站 answer（1、1、0、1、1）完全一致。五题题面、答案与解析均通过对照和独立推导，无需修改，未发现未决冲突；本批均为判断题，无编程题测试项。"
+  }
+}

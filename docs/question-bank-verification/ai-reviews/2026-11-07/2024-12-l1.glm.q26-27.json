@@ -1,0 +1,168 @@
+{
+  "paperId": "2024-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T06:01:34.004Z",
+  "completedAt": "2026-11-08T06:03:24.406Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 39948,
+    "completion_tokens": 9259,
+    "total_tokens": 49207,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7008
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0106217,
+      "allowance": 0.0106217,
+      "tokens": {
+        "input": 39948,
+        "output": 9259,
+        "reasoning": 7008,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4311b07feb1dbf360678f1b647a05640e149f83c09b0bd2a78fc72df1c5c24aa",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++1级.pdf",
+    "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
+    "mirrorBytes": 443536,
+    "shaVerified": true,
+    "sha256": "4315e07e1575056207fac7ec81a501add5415159ff12d78f2c8aef0f58774293"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图卷头为「C++ 一级 / 2024 年 12 月」，附 CCF/GESP 标志与单选题答案表（题号 1-15，答案 CCDBBDBCCCDCDBD），第 5 页含判断题答案区、第 6-8 页含两道编程题（温度转换、奇数和偶数），共 15 单选+10 判断+2 编程，与 2024-12-l1 的等级、年月、题型结构一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照第 6 页页图：试题名称「温度转换」，时间限制 1.0s、内存 512.0MB；题目描述小杨学习三种温度转换，公式 C=K−273.15、F=C×1.8+32；输入格式一行一个实数 K；输出格式「高于 212」输出 Temperature is too high! 否则输出两个空格分隔实数保留两位小数；输入样例 412.00→Temperature is too high!、173.56→-99.59 -147.26，均与网站转录一致。第 7 页数据范围「0 < K < 105」即 0 < K < 10^5，网站 LaTeX 写法 $0<K<10^5$ 等价。公式区网站用 LaTeX 换行排版属等价转换，未漏样例或约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无 A/B/C/D 选项结构。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观题答案，officialAnswer 记 null，网站 answer 字段留空符合编程题结构。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按公式复算：样例 1 K=412.00，C=138.85，F=138.85×1.8+32=249.93+32=281.93>212，输出提示串，与解析一致；样例 2 K=173.56，C=−99.59，F=−99.59×1.8+32=−179.262+32=−147.262，保留两位 −147.26，与解析及官方样例一致。解析明确「高于 212」为严格大于（F>212），提醒字符串拼写与空格分隔，与题面语义吻合，无推导错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "逐行对照第 7 页参考程序页图：#include <cstdio>、using namespace std;、double K 用 scanf(\"%lf\",&K) 读入、C=K−273.15、F=32+C*1.8、F>212 分支 printf(\"Temperature is too high!\\n\")、else printf(\"%.2f %.2f\\n\",C,F)、return 0，与网站 referenceCode 完全一致。K 上限 10^5、F 上界约 1.8e5，double 精度充足；算法 O(1)、无溢出，实际题目范围内正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "华氏212等值边界",
+            "input": "373.15\n",
+            "output": "100.00 212.00",
+            "reason": "题面「高于 212」为严格大于；K=373.15 时 C=373.15−273.15=100.00、F=100×1.8+32=212.00，等于 212 应走 else 输出两个实数（未声称已运行，输出为按题面语义与参考代码分支独立推导的期望）。"
+          },
+          {
+            "name": "下限附近",
+            "input": "0.01\n",
+            "output": "-273.14 -459.65",
+            "reason": "覆盖 0<K 下限邻域：C=0.01−273.15=−273.14，F=−273.14×1.8+32=−459.652，保留两位为 −459.65，中间以单个空格分隔。"
+          },
+          {
+            "name": "高于阈值（复验官方样例）",
+            "input": "412.00\n",
+            "output": "Temperature is too high!",
+            "reason": "C=138.85，F=281.93，严格大于 212，输出规定提示串，与官方输出样例 1 一致。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 6-7 页页图：题面、公式、输入输出格式、两个样例、数据范围与第 7 页参考程序逐行比对均与网站一致；样例输出与公式推导独立复算吻合；浮点等值边界 373.15 经常数表示误差抵消分析后按参考代码分支亦落在 else 输出两个实数，期望成立。初核结论可接受，无修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照第 7 页页图：试题名称「奇数和偶数」，时间限制 1.0s、内存 512.0MB；题面描述小杨有 n 个正整数想知道奇数与偶数的个数；输入格式第一行正整数 n、之后 n 行每行一个正整数；输出格式两个正整数以英文空格间隔、个数为 0 时对应输出 0；样例 5 行数 1~5 输出 3 2；数据范围「1 ≤ n ≤ 105 且正整数大小不超过 105」即 1≤n≤10^5、数值≤10^5，网站转录一致（Markdown/LaTeX 上标为等价写法）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无 A/B/C/D 选项结构。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观题答案，officialAnswer 记 null，网站 answer 字段留空符合编程题结构。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：1~5 中奇数 1,3,5 共 3 个、偶数 2,4 共 2 个，输出『3 2』与样例一致；x%2!=0 判奇数、else 计偶数的逻辑正确覆盖全部正整数；计数器显式置 0 后为 0 的情形天然输出 0，与输出格式「如个数为 0 则对应输出 0」吻合；O(n) 时间、O(1) 空间的复杂度判断成立，n≤10^5 在 int 范围内无溢出。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "逐行对照第 8 页参考程序页图：#include<bits/stdc++.h>、int n、int a=0,b=0、cin>>n、for(int i=1;i<=n;i++) 内定义 int x、cin>>x、if(x%2!=0)a++; else b++;、循环外 cout<<a<<\" \"<<b<<\"\\n\"，14 行结构与网站 referenceCode 完全一致。边读边统计无需数组，n 与计数上限 10^5 均在 int 范围内，算法正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n最小值且为偶数",
+            "input": "1\n2\n",
+            "output": "0 1",
+            "reason": "n=1 的最小规模，唯一正整数 2 为偶数：奇数计数 0、偶数计数 1，验证『为 0 则对应输出 0』的约束。"
+          },
+          {
+            "name": "n最小值且为奇数",
+            "input": "1\n1\n",
+            "output": "1 0",
+            "reason": "n=1、唯一正整数 1 为奇数，输出奇数个数 1、偶数个数 0，覆盖另一侧的 0 输出。"
+          },
+          {
+            "name": "上限值与奇偶混合",
+            "input": "6\n100000\n99999\n99998\n1\n2\n3\n",
+            "output": "3 3",
+            "reason": "覆盖数据范围上限 100000 与 10^5 级数值（n 可达 10^5，此为示例性小规模混合用例）：偶数 100000、99998、2 共 3 个，奇数 99999、1、3 共 3 个，输出先奇后偶为 3 3。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 7-8 页页图：题面、输入/输出格式、样例（5/1-5→3 2）、数据范围与第 8 页参考程序逐行比对均与网站一致；样例与三条测试期望均由取模判奇偶逻辑独立复算得出，与官方参考程序行为一致；未发现需修改字段，初核结论可接受。"
+      }
+    ],
+    "summary": "仅复核第 26、27 题。两题题面、公式、输入/输出格式、样例、数据范围分别与 PDF 第 6、7、8 页页图逐行对照一致；官方参考程序与网站 referenceCode 均逐行吻合，算法分别为 O(1) 与 O(n)、在 0<K<10^5 与 n≤10^5 范围内无溢出或逻辑缺陷。样例输出（Temperature is too high! / -99.59 -147.26；3 2）与三条补充测试期望（0.01→-273.14 -459.65、373.15→100.00 212.00、412.00→Temperature is too high!；1/2→0 1、1/1→1 0、上限混合→3 3）均由独立推导得出；编程题 373.15 等值边界按题面「高于」= 严格大于应走 else，与参考代码分支一致。无需要修改的字段，初核对两题的结论均予接受。"
+  }
+}

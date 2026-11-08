@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:21:45.618Z",
+  "completedAt": "2026-11-08T05:22:43.279Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40136,
+    "completion_tokens": 4294,
+    "total_tokens": 44430,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2379
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0081674,
+      "allowance": 0.0081674,
+      "tokens": {
+        "input": 40136,
+        "output": 4294,
+        "reasoning": 2379,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4311b07feb1dbf360678f1b647a05640e149f83c09b0bd2a78fc72df1c5c24aa",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++1级.pdf",
+    "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
+    "mirrorBytes": 443536,
+    "shaVerified": true,
+    "sha256": "4315e07e1575056207fac7ec81a501add5415159ff12d78f2c8aef0f58774293"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP / C++ 一级 / 2024 年 12 月”，与目标 2024-12、一级（l1）一致；同页单选答案表题 1—5 为 C、C、D、B、B，与独立的 0 起始索引 2、2、3、1、1 对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干：2024 年 10 月 8 日诺贝尔物理学奖“意外地”颁给约翰·霍普菲尔德和杰弗里·辛顿（George E. Hinton 印刷形态为 Geoffrey E. Hinton），问主要研究方向；网站题面逐字一致（含英文括注）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次 A. 天体物理、B. 流体力学、C. 人工智能、D. 量子理论；与网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 C，0 起始索引 2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：2024 年诺贝尔物理学奖表彰“利用人工神经网络实现机器学习的基础性发现与发明”，Hopfield 网络（联想记忆/能量函数）与 Hinton 的玻尔兹曼机、反向传播均属人工智能方向，答案应为 C；解析逐项排除天体物理、流体力学（与获奖无关）、量子理论（2022 年奖项方向）的论述与事实相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立重推事实与解析，与初核结论相同且无误，接受其五维结论，无修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干“下列软件中是操作系统的是（ ）。”，网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次 A. 高德地图、B. 腾讯会议、C. 纯血鸿蒙、D. 金山永中；与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 C，索引 2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：操作系统是直接管理软硬件资源并为应用提供运行环境的系统软件；HarmonyOS NEXT（纯血鸿蒙）是华为自研操作系统，高德地图、腾讯会议为运行其上的应用，金山永中指办公套件（WPS/永中 Office）亦为应用软件，答案应为 C；解析的核心判断与逐项分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对操作系统判据的应用与官方答案一致，独立推导无异议，接受，无修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干“有关下列 C++ 代码的说法，正确的是（ ）。”，代码框内为 printf(\"Hello,GESP!\");，网站题面及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次为：双引号内不可以有汉字；改为英文单引号输出效果不变；改为三个连续英文单引号输出效果不变；改为三个连续英文双引号输出效果不变；与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 D，索引 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：字符串字面量可含汉字（A 错）；'Hello,GESP!' 是多字符字面量（int，值实现定义），不输出该字符串（B 错）；''' 不构成合法字面量，编译错（C 错）；\"\"\"Hello,GESP!\"\"\" 按 C++ 贪吃词法解析为 \"\"、\"Hello,GESP!\"、\"\" 三个相邻字面量，相邻字面量自动拼接，输出仍为 Hello,GESP!，故 D 正确；解析的词法切分与拼接论证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核的相邻字面量拼接推导与独立分析一致，接受，无修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干“C++ 表达式 12 - 3 * 2 && 2 的值是（ ）。”，网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次 A. 0、B. 1、C. 6、D. 9；与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 B，索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：* 优先于 -，- 优先于 &&，得 (12-(3*2))&&2 = 6&&2；两侧均非零，逻辑与结果为 true，作为整数输出为 1。C（6）是把 && 误做取左值/算术，D（9）为运算序干扰；解析说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核优先级与取值推导正确且与答案表吻合，接受，无修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页题干“在 C++ 中，假设 N 为正整数 2，则 cout << (N / 3 + N % 3) 将输出（ ）。”，网站题面与表达式一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页选项依次 A. 0、B. 2、C. 3、D. 4；与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 B，索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：N=2 为 int，2/3 整除向零取整得 0；2%3 得 2（商 0 余 2）；和为 2，答案 B。C（3）对应把整除误当四舍五入；解析中关于整除不四舍五入、小数对大数取余得自身的提醒正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核算术推导独立复算一致（0+2=2），与答案表吻合，接受，无修改。"
+      }
+    ],
+    "summary": "按任务限定仅核验第 1—5 题（单选题）。逐题对照 PDF 第 1—2 页原图与第 1 页单选答案表（题 1—5 依序为 C、C、D、B、B，即 0 起始索引 2、2、3、1、1），网站题面、选项、代码/表达式与官方一致；对第 1 题诺奖事实、第 2 题操作系统判别、第 3 题相邻字符串字面量拼接、第 4 题 (12-3*2)&&2=1、第 5 题 2/3+2%3=2 均独立重推，与网站解析及官方答案相符。DeepSeek 初核草稿的各维度结论经独立复核全部成立，故整卷该部分五题五维均 verified、无 changes、无 unresolved；五题均无参考代码，tests 不适用。"
+  }
+}
