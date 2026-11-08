@@ -1,0 +1,82 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "judge-answer-key-unblock",
+  "checkedAt": "2026-11-08T13:05:25Z",
+  "scheduler": "Grok CLI / coordinator",
+  "models": {
+    "initial": "opencode-go/deepseek-v4.1-flash#max",
+    "review": "opencode-go/glm-5.3-flash#max"
+  },
+  "source": {
+    "pageImage": "/tmp/gesp-five-dim-20261107/2025-12-l1/page-5.jpg",
+    "pdf": "/tmp/gesp-five-dim-20261107/2025-12-l1/source.pdf",
+    "answerTableLocation": "第5页判断题节首",
+    "officialSymbols": [
+      "×",
+      "×",
+      "×",
+      "×",
+      "×",
+      "×",
+      "×",
+      "×",
+      "×",
+      "×"
+    ]
+  },
+  "siteAnswers": [
+    {
+      "id": 16,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 17,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 18,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 19,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 20,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 21,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 22,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 23,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 24,
+      "answer": 1,
+      "label": "错误"
+    },
+    {
+      "id": 25,
+      "answer": 1,
+      "label": "错误"
+    }
+  ],
+  "dualModelAgreement": "DeepSeek 与 GLM 在初核复核中对 q16–q25 的 answer 维均为 verified，均读出官方答案表为 ×，并确认网站 answer=1 一致。",
+  "action": "未修改判断题答案；仅在 verification JSON 写入 judgeAnswerKeyVerified=true，使 validate:bank 豁免“全同值默认值”启发式。",
+  "blockReasonWas": "checks-2025-12-l1-初核复核: validate:bank INTEGRITY 10道判断题答案全是「错误」"
+}

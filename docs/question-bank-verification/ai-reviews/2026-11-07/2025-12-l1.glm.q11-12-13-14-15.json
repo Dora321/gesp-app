@@ -1,0 +1,276 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:36:19.221Z",
+  "completedAt": "2026-11-08T12:43:00.634Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51869,
+    "completion_tokens": 32706,
+    "total_tokens": 84575,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 28123
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02413335,
+      "allowance": 0.02413335,
+      "tokens": {
+        "input": 51869,
+        "output": 32706,
+        "reasoning": 28123,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 一级 / 2025年12月”，与 paperId 2025-12-l1（2025年12月·一级）一致；第1页单选答案表题号1—15与本批11—15题位置对应，来源 git-blob SHA 1f798b8619325cbf9c9178b067276e921ecb1c4f 已校验。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题题干“下面C++代码执行后输出是（ ）”及代码 int i; for (i = 10; i < 100; i += 10){ if (i % 10 == 0) continue; printf(\"%d#\",i); } if(i >= 100) printf(\"%d END\",i); 与网站一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页页图：A 10#20#30#40#50#60#70#80#90#100 END、B 100#100 END、C 100 END、D 没有输出；网站D误作“110 END”，已按页图更正（修复后核验通过），A/B/C与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11题为C；独立推演：i 取 10..90 时均执行 continue 跳过输出，i 终值为 100，循环后输出 100 END，对应索引2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析围绕错误的D=“110 END”展开，已按源卷D=“没有输出”重写逐项分析；continue 的跳过范围、退出时 i=100、循环后输出 100 END 均独立复核无误（修复后核验通过）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "10#20#30#40#50#60#70#80#90#100 END",
+            "100#100 END",
+            "100 END",
+            "没有输出"
+          ],
+          "explanation": "答案 C。for 循环中 i 依次为 10,20,…,90，每个值都满足 i%10==0，均执行 continue 直接回到 i+=10，因此循环体内的 printf(\"%d#\",i) 一次都不会执行，循环期间没有任何输出。i=90 那轮结束后 i 自增为 100，条件 i<100 不成立，循环退出，此时 i=100；随后循环外的 if (i>=100) 成立，printf(\"%d END\", i) 输出 100 END。\n\n- A（10#20#…90#100 END）：误以为循环中的 printf 正常执行，实际 9 次输出全部被 continue 跳过。\n- B（100#100 END）：误以为 i=100 仍能进入循环体打印 \"100#\"，实际 i=100 时条件 i<100 已不成立，循环早已结束。\n- C（100 END）：正确。\n- D（没有输出）：忽略了循环结束后还有一次 printf，程序仍会输出 100 END。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：第3页页图独立确认 D 为“没有输出”，网站“110 END”误植；答案表第11题为C、answer=2 无需改动。解析按源卷重写并独立推演确认。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3—4页题干为“最大数减去最小数得到一个值，该值和两个数的最小数构成新的两个正整数……直到两个数相等，此时输出该数”；第4页页图代码含 int N, M; cin >> N >> M; 与 while/if-else 双空结构及 cout << N;。网站代码缺失声明与输入两行，已按页图补全（修复后核验通过）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图：A 两行 N = N - M / M = M - N；B 两行 M = M - N / N = N - M；C 两行 M = N - M / N = M - N；D 两行 N, M = M, N / M, N = N, M。网站四处均与源卷不同（旧B与旧A语义重复造成双解，旧C/D为交换式赋值），已按页图还原（修复后核验通过）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为A；独立逐分支推演：if(N>M) 空应减 N、else 空应减 M，A 正确；B 使 M 变负且无法收敛，C 震荡死循环，D 为无效果逗号表达式死循环。索引0与网站 answer=0 一致，更正选项后映射不变。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析把两条语句当作同一分支顺序执行来分析，与源卷“if/else 两个空各填一行”的结构不符，且分析对象是源卷不存在的旧选项；已按真实选项重写并逐分支验证（修复后核验通过）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "两个正整数，只要不相等，就一直进行如下操作：最大数减去最小数得到一个值，该值和两个数的最小数构成新的两个正整数，重复操作，直到两个数相等，此时输出该数。下面的C++代码用于实现该操作，横线处应该填写的代码是（ ）。\n```cpp\nint N, M;\ncin >> N >> M;\n\nwhile (N != M){\n    if (N > M)\n        _______________;\n    else\n        _______________;\n}\n\ncout << N;\n```",
+          "options": [
+            "N = N - M\nM = M - N",
+            "M = M - N\nN = N - M",
+            "M = N - M\nN = M - N",
+            "N, M = M, N\nM, N = N, M"
+          ],
+          "explanation": "答案 A。该操作即更相减损术：只要两数不相等，就用大数减小数，差与原较小数组成新的一对数，重复至两数相等。代码中第一个空位于 if (N > M) 分支，此时 N 是大数，应填 N = N - M；第二个空位于 else 分支，此时 M 是大数，应填 M = M - N。选项 A 的两行与两个空一一对应，正确。\n\n- B（M = M - N / N = N - M 两行对调）：N>M 时第一空执行 M = M - N，M 立即变负而 N 不变，此后每轮仍满足 N>M，反复减法，永远到不了 N==M。\n- C（M = N - M / N = M - N）：N>M 时第一空执行 M = N - M，N 不变，得到的新一对是（原大数，差），并非题意的（差，原最小数）；此后 N>M 恒成立，M 在 N-M 与原值之间来回震荡，死循环（else 分支执行 N = M - N 时 M 同样不变，结果同理）。\n- D（N, M = M, N / M, N = N, M）：在 C++ 中这是逗号表达式，只会产生 M = M 这类无效果赋值，既不是交换也不做减法，两数不变，死循环。\n\n两数相等时退出循环，输出 N。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核并独立复核：第4页页图确认四组选项内容，网站选项系对源卷的改写（旧B与旧A语义重复导致双解）；题面补回变量声明与输入两行。逐分支推演确认A正确、B/C/D均无法终止，答案0不变。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页第13题题干与代码（Flag = 0、if (N % 3 == 0)、while 逐位检查、cout << (Flag? \"漂亮数\" : \"非漂亮数\");）与网站一致；网站省略两条非功能性注释，属等价排版转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图选项 A N % 10 == 0、B N % 3 % 10 == 0、C N % 10 % 3、D N % 10 % 3 == 0，与网站完全一致、顺序相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为D；独立推演：L1 应为 (N%10)%3==0，% 左结合故 N%10%3==0 等价，正确判断最低位能否被3整除，索引3与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站称选项C“无法构成判断条件，编译无法通过”不成立——if 可直接接受整数表达式，N%10%3 合法且其语义为“最低位不能被3整除”，方向与题意相反；已重写该项并同步核对A/B/D分析（修复后核验通过）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "答案 D。程序先看 N%3==0：成立则直接置 Flag=1（漂亮数）；否则进入 while 循环，每轮取出当前 N 的最低位 N%10，判断该位能否被 3 整除（该位为 0、3、6、9 时成立），成立则置 Flag=1 并 break；随后 N/=10 去掉最低位继续检查更高位，直到 N 变为 0。L1 处需要的是 (N%10)%3==0，由于 % 从左到右结合，写作 N%10%3==0 完全等价，选项 D 正确。\n\n- A（N%10==0）：只判断最低位是否为 0，个位为 3、6、9 时不会命中，会漏判。\n- B（N%3%10==0）：能进入 else 分支说明 N%3 必为 1 或 2，再 %10 得到的仍是这个 1 或 2，恒不等于 0，该条件恒为假；它也没有提取当前数位。\n- C（N%10%3）：缺少 == 0 但仍是合法的整数条件表达式，if 中按非 0 为真处理，并非编译错误；其取值为真表示最低位不能被 3 整除，判断方向恰好与题意相反。\n- D（N%10%3==0）：正确，先取个位再判断该位能否被 3 整除。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：“N%10%3 编译无法通过”确为事实错误（if 可直接接受整数条件），已重写；题面、选项与第4页页图一致，答案 D=3 不变。B 的恒假性亦独立复核成立。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页题干为“（即能将N整除的正奇数）……如输入53，它有两个奇因数1和53，则将输出 Y ”；第5页页图代码共8行，止于 cout << 'Y';，无 else 输出 'N' 也无 “L2” 标注。网站“平整除”笔误、多余的 else 行与 L2 标注均已按源卷更正（修复后核验通过）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页页图选项：A (N % i) && (i % 2)、B (N % i == 0) && (i % 2 == 0)、C (N % i == 0) && (i % 2)、D (N % i) && (i % 2 == 0)。网站四处（含 || 与显式 != 写法）均非源卷原文，已还原（修复后核验通过）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为C；独立推导：条件须同时含 N%i==0 与“i 为奇数”，源选项用 i%2 的非0真值表示奇数，C 正确；N=53 时奇因数 1、53，cnt=54 为 27 的倍数输出 Y，与题面一致。索引2与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析围绕源卷不存在的旧选项（|| 写法、i%2!=0 写法）展开，已按真实选项重写并逐项验证（修复后核验通过）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "如果正整数N的所有奇因数（即能将N整除的正奇数）的和是27的倍数，则称N是27的神秘数。下面的C++代码用于判断输入的N是否为27的神秘数。如输入53，它有两个奇因数1和53，则将输出 Y 。横线处应填入的代码是（ ）。\n```cpp\nint i, N, cnt = 0;\ncin >> N;\nfor (i=1; i <= N; i++){\n    if (_________________)\n        cnt += i;\n}\nif (cnt % 27 == 0)\n    cout << 'Y';\n```",
+          "options": [
+            "(N % i) && (i % 2)",
+            "(N % i == 0) && (i % 2 == 0)",
+            "(N % i == 0) && (i % 2)",
+            "(N % i) && (i % 2 == 0)"
+          ],
+          "explanation": "答案 C。cnt 要累加的是 N 的全部奇因数：i 必须同时满足能整除 N（N%i==0）和本身是奇数（i%2 非 0，即 i 为 1,3,5,…）这两个条件。选项 C (N % i == 0) && (i % 2) 同时表达两者（第二个条件利用整数非 0 即真表示奇数），正确。\n\n- A ((N % i) && (i % 2))：N%i 非 0 恰恰说明 i 不是 N 的因数，统计的是“不是因数的奇数”。\n- B ((N % i == 0) && (i % 2 == 0))：i%2==0 是偶数条件，统计的是偶因数。\n- D ((N % i) && (i % 2 == 0))：既不是因数又是偶数，与题意完全不符。\n\n验证：N=53 时奇因数为 1 和 53，cnt=54，54 是 27 的倍数，输出 Y，与题面示例一致。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的题面/选项还原与解析重写；但否决其保留 unresolved 的顾虑：第5页页图清晰显示代码共8行、止于 cout << 'Y';，无 else 分支与 L2 标注，证据充分，按源卷恢复后不留待核验。同时修正“平整除”笔误。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页第15题题干“找出千位与个位的和恰好等于中间两位的四位数”及代码（a = (tmp = i) / 1000; 横线行、bc = tmp / 10; d = tmp - bc * 10; if (a + d == bc){ count++; }）与网站一致，仅个别空格与措辞差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页页图选项：A tmp = i / 10;、B tmp = i % 100;、C tmp -= a * 1000;、D tmp = i - i%1000;。网站 A/B/D 三处均与源卷不同，且旧B（tmp = i % 1000）本身可正确剥离千位、与旧C构成双解，已按页图还原（修复后核验通过）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为C；独立验证：仅 tmp -= a*1000 使 tmp 保留后三位以供 bc、d 提取，走查 i=1109：a=1、tmp=109、bc=10、d=9、a+d=10==bc 即计数；索引2与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按源卷不存在的旧选项（tmp=i/1000、tmp=i%1000、tmp%=100）展开，已按真实选项重写并逐项验证（修复后核验通过）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "tmp = i / 10;",
+            "tmp = i % 100;",
+            "tmp -= a * 1000;",
+            "tmp = i - i%1000;"
+          ],
+          "explanation": "答案 C。第 4 行 a = (tmp = i) / 1000; 一边把 i 存入 tmp、一边取出千位数字 a。要让下一行 bc = tmp / 10 恰为百位和十位组成的两位数、d = tmp - bc*10 恰为个位，横线处必须把 tmp 变为只含后三位，即减去千位的贡献：tmp -= a * 1000。例如 i=1109：a=1，执行横线后 tmp=109，bc=10，d=9，a+d=10==bc，该数被计数。\n\n- A (tmp = i / 10;)：tmp 变成去掉个位后的前三位数（如 1109→110），bc、d 随之全错。\n- B (tmp = i % 100;)：tmp 只剩最后两位（如 1109→9），丢失百位信息，bc 错误。\n- C (tmp -= a * 1000;)：正确剥离千位，tmp 保留后三位。\n- D (tmp = i - i%1000;)：结果为千位乘 1000（如 1109→1000），bc、d 均错误。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：页图确认选项 A tmp=i/10; B tmp=i%100; D tmp=i-i%1000;；网站旧 B 本身也能正确剥离千位而与旧 C 构成双解，必须按源卷更正。答案 C=2 经独立走查（i=1109）确认，答案表第15题为C。"
+      }
+    ],
+    "summary": "本批仅核验第11–15题。五题 officialAnswer 与第1页答案表完全一致（11=C、12=A、13=D、14=C、15=C，索引 2/0/3/2/2），答案维度全部通过；12、14 修正选项后映射不变。实质问题集中在题面/选项与源卷不符：11 的 D 选项、12 的四个选项及缺失的输入两行、14 的题干笔误/多余 else 行/四个选项、15 的 A/B/D 选项，均已按第3—5页页图更正；13 的解析含“N%10%3 编译无法通过”的事实错误，已重写。全部修改经独立推演与页图对照复核通过；均为单选题，无参考代码适用、tests 为空；无遗留 unresolved。"
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:29:54.612Z",
+  "completedAt": "2026-11-08T11:33:02.977Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34409,
+    "completion_tokens": 14732,
+    "total_tokens": 49141,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12150
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01400055,
+      "allowance": 0.00840033,
+      "tokens": {
+        "input": 34409,
+        "output": 14732,
+        "reasoning": 12150,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 一级 2025年12月”，共9页；第1页答案表第1–5题为B、A、A、C、B，与目标卷一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题干与PDF第1页第1题一致，仅括号排版差异，不影响含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四项内容及顺序与PDF A–D一致：辐射传感器、处理器、内存单元、输出设备。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第1题标为B，网站answer=1（0起始B），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按控制器/运算器/存储器/输入输出设备职责分析，得出处理器执行逻辑判断；与官方答案一致且推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第1页第2题代码第2行为`a=3，b = 4; // L1`，其中a=3后是中文逗号；网站question代码块写成英文逗号`a=3, b = 4; // L1`，削弱并改变了题面证据。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A–D选项内容及顺序与PDF第1页第2题一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第2题A，网站answer=0（A），一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析中“A...该项不符合题目限定，正是本题要选的项”自相矛盾；应改为该项正是正确原因，并保持其他分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面的C++代码在某集成开发环境中编译运行时，提示有\"Invalid Character\"（\"无效字符\"）错误。可能的原因是():\n```cpp\nint a, b;\na=3，b = 4; // L1\ncout << a; // L2\ncout << b; // L3\n```",
+          "explanation": "**答案：A (L1行代码中的逗号很可能是中文逗号，应该改为英文逗号。)**\n\n**核心解析：**\nC++ 编译器在词法分析阶段要求运算符和分隔符使用合法字符。中文全角逗号 `，` 不是 C++ 的合法标点，编译器会报“Invalid Character”（无效字符）。题干代码 L1 的 `a=3，b = 4;` 若其中为中文逗号，正好会触发该错误；改成英文逗号 `,` 即可。\n\n**选项逐项分析：**\n- **A (中文逗号)**：✅ 正确。L1 中很可能把英文逗号误输入为中文逗号，符合 Invalid Character 的成因。\n- **B (应该分两行)**：❌ 错误。`a=3, b=4;` 使用逗号运算符是合法的，不需要必须拆成两行。\n- **C (没有保存)**：❌ 错误。未保存通常导致编译旧文件或提示未保存，不会产生“无效字符”这种词法错误。\n- **D (L2和L3不能分为两行)**：❌ 错误。C++ 源程序可以正常换行，换行不等于语法分隔错误。\n\n**易错提醒：**\n- 中英文输入法切换时容易输入全角标点；应使用英文逗号、分号、括号等。\n- 报错定位到某行时，应优先检查该行是否存在中文标点或不可见字符。\n\n**知识延伸：**\nC++ 源文件中的运算符、分隔符和标识符需符合语言词法规则；注释和字符串字面量中的中文通常不影响编译。\n\n**考点：** C++ 词法规则、字符编码与半角/全角标点的区分"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题干与PDF第1页第3题一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "网站C、D两项与PDF第1页C、D不一致：PDF C为`_tnt_`下划线混减号，D为`printf`是否关键字；网站却写成空格和main函数。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第3题A，网站answer=0（A），一致；官方正确项A在PDF选项中也成立。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析针对错误的C、D（空格、main函数）展开，未解释PDF实际C、D；需按源卷选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "不可以用 for 作为变量名，因为 for 是C++的关键字（保留字）。",
+            "_tnt 不可以是变量名，因为变量名的第一个字符必须是英文字母。",
+            "_tnt_ 不可以是变量名，因为最后一个字符容易与减号混淆。",
+            "可以用 printf 作为变量名，因为 printf 是关键字，但这不是好习惯，因为 printf 有约定的功能与含义。"
+          ],
+          "explanation": "**答案：A**\n\n**核心解析：**\nC++ 标识符不能与关键字（保留字）相同。`for` 是循环控制关键字，因此不能用作变量名。`_tnt`、`_tnt_` 以下划线开头或结尾，均符合标识符规则（首字符可为字母或下划线，后续可为字母、数字、下划线），不是关键字；`printf` 不是 C++ 关键字，而是标准库函数名。\n\n**选项逐项分析：**\n- **A**：✅ 正确。`for` 是 C++ 关键字，不能作为变量名。\n- **B**：❌ 错误。变量名首字符可以是下划线，`_tnt` 合法。\n- **C**：❌ 错误。`_tnt_` 的末尾是下划线，不是减号，标识符合法。\n- **D**：❌ 错误。`printf` 不是关键字，而是标准库函数名；把 `printf` 当作变量名容易与库函数名称冲突，且“因为 printf 是关键字”这一理由本身错误。\n\n**易错提醒：**\n- 关键字不能作标识符；标准库函数名不是关键字，但也不建议拿来命名。\n- 下划线可以作为标识符首字符或后续字符；C++ 标准对以下划线开头的一些名称有额外保留规则，但一级考试通常只判断基本命名合法性。\n\n**知识延伸：**\n常见关键字包括 `for`、`if`、`else`、`while`、`int`、`return` 等；`printf`、`cout` 属于库名称，不是语言关键字。\n\n**考点：** C++ 关键字与标识符命名规则"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题干与PDF第1页第4题及第2页选项一致，代码表达式`cout << (X=3, X++, ++X);`一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四项A 3、B 4、C 5、D 不确定与PDF顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第4题C，网站answer=2（C），一致；独立计算逗号表达式最后一个子表达式++X得5。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按逗号运算符左到右、最后子表达式取值，结合X++/++X推导得5；无事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干表达式和PDF第2页第5题一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四项0、4、14、50与PDF A–D顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第5题B，网站answer=1（B），一致；按优先级3*4=12，12%5=2，2+2=4。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心计算正确，但选项C/D的错误原因举例不准确：`(2+3*4)%5`得4而非14；从左到右`((2+3)*4)%5`得0而非50。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (4)**\n\n**核心解析：**\nC++ 中 `*` 和 `%` 的优先级相同且高于 `+`，同优先级按从左到右结合。因此 `2 + 3 * 4 % 5` 先计算 `3 * 4 = 12`，再计算 `12 % 5 = 2`，最后计算 `2 + 2 = 4`。\n\n**选项逐项分析：**\n- A (0)：❌ 错误。若误按从左到右先算 `2+3`，会得到 `((2+3)*4)%5=0`，但乘、取模优先级高于加法，不能这样算。\n- B (4)：✅ 正确。按优先级计算得到4。\n- C (14)：❌ 错误。若漏算最后的 `%5`，只算 `2+3*4=14`，就会得到该项；但题目中取模必须执行。\n- D (50)：❌ 错误。若把 `%` 误看成其他运算或随意组合运算，可能得到无关数值；按C++规则结果不是50。\n\n**易错提醒：**\n- `%` 是取余，不是百分号；`*`、`%`、`/` 同级，高于 `+`、`-`。\n- 不要先算加法；按优先级分步计算。\n\n**知识延伸：**\n算术运算符优先级：括号 > 一元 > `* / %` > `+ -`；同级左结合。\n\n**考点：** 算术运算符优先级与取模运算"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题1–5官方答案均与PDF答案表一致。题1、题4通过；题2题面代码需改为中文逗号并修正解析自相矛盾句；题3选项C、D与PDF不一致且解析需按源卷重写；题5答案正确但解析对C、D错误原因举例不准确，需修正。其余题面、选项与答案映射均通过。"
+  }
+}

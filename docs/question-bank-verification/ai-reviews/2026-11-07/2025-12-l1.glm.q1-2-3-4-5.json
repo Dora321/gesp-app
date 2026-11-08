@@ -1,0 +1,247 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:33:02.985Z",
+  "completedAt": "2026-11-08T11:37:16.371Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51995,
+    "completion_tokens": 20407,
+    "total_tokens": 72402,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16661
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01800275,
+      "allowance": 0.01800275,
+      "tokens": {
+        "input": 51995,
+        "output": 20407,
+        "reasoning": 16661,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 一级 2025年12月”，与目标2025-12-l1的等级与年月一致；全卷共9页（页脚逐页标注“第N页/共9页”），含单选15题、判断10题、编程2题；第1页单选答案表前五项为B/A/A/C/B，与考察范围一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题干与PDF第1页第1题逐句一致（“约6000架空客A320系列飞机……执行判断的部件最可能是下面的( )”），仅括号排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF A–D依次为：辐射传感器／处理器／内存单元／输出设备，与网站options内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第1题为B；对应0起始索引1，与网站answer=1一致。“执行判断”属逻辑运算，由运算器承担，故为处理器。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：判断是逻辑比较运算，由运算器（ALU）执行，运算器与控制器构成处理器CPU，故选B；网站解析对输入（传感器）/处理（CPU）/存储（内存）/输出设备的职责划分及逐项分析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "采纳初核：独立复核后确认题干、选项、答案与解析均与PDF一致，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题代码第2行实际为“a=3，b = 4; // L1”，a=3后是中文全角逗号，选项A“很可能是中文逗号”与此呼应；网站原代码写成半角逗号，丢失了触发Invalid Character的关键字符，且与题面“编译提示无效字符”的前提矛盾。已将题面改为全角逗号，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "网站A–D四项内容与顺序与PDF第1页第2题一致（中文逗号；分两行；没保存；合并为一行）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第2题为A（0起始索引0），与网站answer=0一致；全角逗号为非法词法字符，正是报错原因，A成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析A项“该项不符合题目限定，正是本题要选的项”自相矛盾、语句不通，已重写：全角逗号U+FF0C非合法词法字符故报Invalid Character；B逗号表达式合法无需拆行；C未保存不产生词法错误；D换行合法。重写后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面的C++代码在某集成开发环境中编译运行时，提示有\"Invalid Character\"（\"无效字符\"）错误。可能的原因是():\n```cpp\nint a, b;\na=3，b = 4; // L1\ncout << a; // L2\ncout << b; // L3\n```",
+          "explanation": "**答案：A（L1行代码中的逗号很可能是中文逗号，应该改为英文逗号。）**\n\n**核心解析：**\nC++ 编译器在词法分析阶段按合法字符集逐字符扫描源代码。中文全角逗号 `，`（U+FF0C）不属于 C++ 的合法标点，编译器会将其识别为非法字符并报“Invalid Character”（无效字符）。题中 L1 行 `a=3，b = 4;` 恰好使用了全角逗号，这正是触发该错误的原因；把它改为英文半角逗号 `,` 即可正常编译。\n\n**选项逐项分析：**\n- **A**：✅ 正确。L1 行的逗号是中文全角逗号，属于非法词法字符，触发 Invalid Character，应改为英文逗号。\n- **B**：❌ 错误。`a=3, b=4;` 借助逗号运算符在同一行写两个赋值是合法写法，无需拆成两行。\n- **C**：❌ 错误。未保存文件只会导致编译旧内容或提示保存，不会在词法阶段产生“无效字符”。\n- **D**：❌ 错误。C++ 中换行在语法上等效于空白（字符串字面量内除外），L2、L3 分两行完全合法。\n\n**易错提醒：**\n- 中英文输入法混用时最易误输全角标点（逗号、分号、引号、括号）；编译器报 Invalid Character 时应优先检查报错行的标点是否为全角。\n- 英文逗号 `,` 是合法分隔符；全角逗号 `，` 是完全不同的 Unicode 字符。\n\n**知识延伸：**\n除注释和字符串字面量外，源代码中的标识符、运算符、分隔符都必须使用编译器支持的字符集；中文一般只允许出现在注释与字符串里。\n\n**考点：** C++ 词法规则、半角/全角标点与字符编码"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：独立核对PDF第1页原图与文本层，确认L1应为全角逗号、网站代码写成了半角逗号，该修复必要；确认原解析A项自相矛盾句需重写。两处修改均采纳，修复后核验通过。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题干“下面有关C++变量的说法，正确的是( )。”与PDF第1页第3题一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF原图C为“_tnt_ 不可以是变量名，因为最后一个字符容易与减号混淆。”，D为“可以用 printf 作为变量名，因为 printf 是关键字，但这不是好习惯，因为 printf 有约定的功能与含义。”；网站C“变量名可以包含空格”、D“所有的变量必须在 main 函数内部定义”均非源卷内容，已按PDF原文替换，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第3题为A（0起始索引0），网站answer=0一致；就源卷选项而言：for是关键字不能作变量名（A对），_tnt/_tnt_均合法（B、C错），printf并非关键字（D错），正确项仅A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析针对的是网站自拟的错误C/D（空格、main函数），与源卷实际C/D完全对不上；已重写：B错因下划线可作首字符，C错因末尾是下划线且下划线合法、非减号，D错因printf不是关键字而是标准库函数名（选项断言“printf 是关键字”本身为假）。重写后对源卷四个选项的分析均成立，核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "不可以用 for 作为变量名，因为 for 是C++的关键字（保留字）。",
+            "_tnt 不可以是变量名，因为变量名的第一个字符必须是英文字母。",
+            "_tnt_ 不可以是变量名，因为最后一个字符容易与减号混淆。",
+            "可以用 printf 作为变量名，因为 printf 是关键字，但这不是好习惯，因为 printf 有约定的功能与含义。"
+          ],
+          "explanation": "**答案：A**\n\n**核心解析：**\nC++ 规定标识符（变量名、函数名等）不能与关键字（保留字）相同。`for` 是 C++ 的循环控制关键字，用作变量名会导致编译错误。\n\n**选项逐项分析：**\n- **A**：✅ 正确。`for` 是关键字（保留字），不能作变量名。\n- **B**：❌ 错误。标识符第一个字符可以是字母或下划线 `_`，`_tnt` 是合法变量名，“第一个字符必须是英文字母”的说法不成立。\n- **C**：❌ 错误。`_tnt_` 的最后一个字符是下划线 `_`，不是减号 `-`，二者是不同字符，且下划线可出现在标识符中的任意位置，`_tnt_` 合法。\n- **D**：❌ 错误。`printf` 不是 C++ 关键字，而是标准库中的输出函数名；该选项断言“printf 是关键字”本身是假的——正是由于它不是关键字才谈得上“可以用”，但选项给出的理由错误，用 `printf` 作变量名也易与同名库函数冲突、属不良习惯，故整项说法不正确。\n\n**易错提醒：**\n- 关键字一律不能作标识符；标准库函数名不是关键字，虽可命名但不建议使用。\n- 下划线可作为标识符的首字符、中间字符或末字符（对部分下划线开头的名称，标准有额外保留规则，一级阶段按基本规则判断即可）。\n\n**知识延伸：**\n常见关键字：int、double、if、else、while、for、return、const 等；cout、printf、string 等属库名称而非关键字。\n\n**考点：** C++ 关键字与标识符命名规则"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核并独立核对PDF第1页原图与文本层：C、D选项确为“_tnt_”与“printf”两项，网站版本系张冠李戴，替换依据充分；解析重写后对B/C/D错误原因的分析均成立。注意D项原文本身含逻辑矛盾（“printf 是关键字”为假）， 正是不选D的原因，解析已如实说明。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题干与PDF第1页第4题“X 是C++的整型变量，则 cout << (X=3, X++, ++X); 执行后的输出是（ ）”一致，代码表达式逐字符一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页A.3、B.4，第2页续C.5、D.不确定，与网站options内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第4题为C（0起始索引2），网站answer=2一致；独立推导：X=3→X++取值3且X=4→++X取值5且X=5，逗号表达式取最后子表达式的值，输出5。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按逗号表达式从左到右求值、取最后子表达式值推导，前置/后置自增的返回值描述正确；“假设X初始值为0”一句属多余假设但立即被X=3覆盖，不影响结论，不做纯文风改写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "采纳初核：独立复核通过，输出5、答案C，题面与解析无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题干表达式 2+3 * 4 % 5 与PDF第2页第5题一致，仅空格排版差异，不改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 0、B 4、C 14、D 50，与PDF第2页第5题A–D内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第5题为B（0起始索引1），网站answer=1一致；独立计算：`*`与`%`优先级相同且高于`+`，左结合：3*4=12→12%5=2→2+2=4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析核心计算正确，但对C、D的错误成因举例不成立：`(2+3*4)%5`=14%5=4并非14，从左到右`((2+3)*4)%5`=20%5=0并非50，自相矛盾。已改写：C成因定为“漏算% 5”得2+12=14；D改为任何固定运算顺序均无法得到50、属无明确成因的干扰项。改写后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (4)**\n\n**核心解析：**\nC++ 中 `*` 与 `%` 优先级相同且高于 `+`，同级运算从左到右结合。先算 `3*4=12`，再算 `12%5=2`（12=5×2+2），最后 `2+2=4`。\n\n**选项逐项分析：**\n- **A (0)**：❌ 错误。若把三种运算符当作同级、从左到右计算，得 `((2+3)*4)%5 = 20%5 = 0`；但 `*`、`%` 优先级高于 `+`，不能先算加法。\n- **B (4)**：✅ 正确。按优先级与左结合逐步计算：`3*4=12` → `12%5=2` → `2+2=4`。\n- **C (14)**：❌ 错误。该值对应“漏算 `% 5`”：把表达式当作 `2+3*4` 计算得 `2+12=14`；实际必须先对乘积取模，`12%5=2`。\n- **D (50)**：❌ 错误。无论按何种固定的运算顺序都无法得到 50（如从左到右得0，按正确优先级得4），它是无明确错误成因的干扰项，正确结果唯一为 4。\n\n**易错提醒：**\n- `%` 是求余运算，不是除法或百分号。\n- 优先级顺序：`* / %` 高于 `+ -`，同级左结合；不要“先算加法”或整式连乘。\n\n**知识延伸：**\n运算符优先级大致规律：括号 > 一元运算符 > `* / %` > `+ -` > 关系运算符 > 逻辑运算符。\n\n**考点：** 算术运算符优先级、左结合性与取模运算"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对网站C/D错误成因不成立的判断；在其基础上将C成因明确为“漏算%5得2+12=14”（初稿的(2+3*4)%5路径实得4，已被否定后另给出正确成因），并把初稿较含糊的D理由细化为“任何固定运算顺序均得不到50”，重写后核验通过。"
+      }
+    ],
+    "summary": "本次仅复核题1–5。PDF第1页单选答案表前五项为B/A/A/C/B，与各题officialAnswer（1/0/0/2/1）一致，且均经独立推导确认可复现。题1、题4直接通过（approve）。题2：源卷L1代码为全角逗号，网站写成半角逗号，已修复题面并重写自相矛盾的解析（statement与explanation修复后核验通过）；题3：网站C/D选项（空格、main函数）非源卷内容，已按PDF原文替换为“_tnt_”与“printf”两项并重写解析（options与explanation修复后核验通过）；题5：答案正确，但解析对C/D错误成因的举例与计算不符，已改写（explanation修复后核验通过）。所有修复均对照PDF页图与文本层逐字核对；无答案冲突、无遗留待核验事项。"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:47:50.368Z",
+  "completedAt": "2026-11-08T12:49:54.099Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34409,
+    "completion_tokens": 11181,
+    "total_tokens": 45590,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9365
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01186995,
+      "allowance": 0.00712197,
+      "tokens": {
+        "input": 34409,
+        "output": 11181,
+        "reasoning": 9365,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2025年12月”，与 paperId 2025-12-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第6题的题面和代码与网站一致：程序先将 n 逐位反序存入 new_number，同时 n /= 10，最后比较 if (n == new_number)。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第6格为“×”，即该说法错误，对应 officialAnswer=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入121：循环结束后 new_number=121、n=0，0==121 为假，输出“非对称数”，故该代码不能正确判断对称数；网站解析指出原变量被循环破坏，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第7题的题面和循环代码与网站一致：for (int i = -100; i < 100; i++) tnt += i;"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第7格为“×”，即“输出0”的说法错误，对应 officialAnswer=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：(-100)+…+(-1)=-5050，0+…+99=4950，总和为-100，不是0；网站解析的推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第8题的题面与网站一致：printf(\"%g\\n\", (3 + 3.1415926535)); 输出6.14159而非6.1415926535。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第8格为“×”，即“计算机存在故障”的判断错误，对应 officialAnswer=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "%g 默认输出6位有效数字，6.1415926535 舍入为6.14159，这是标准格式行为，不是计算机故障；网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第9题代码为 cout << ( x? 1227 : 12.27);，与网站代码一致。卷面说明文字中的“12.12”疑为排版笔误，网站按代码统一为12.27，未改变 int/double 的类型判断和题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第9格为“×”，即“编译时将报错”的命题错误；条件运算符两分支为 int 与 double 时做通常算术转换，结果类型为 double，编译可通过；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体关于三目运算符类型提升的推导正确，但末尾将代码中的 double 字面量 12.27 误写成 1227.0，造成示例与题面不一致，需更正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n分析三元运算符的类型推导规则：\n1. 三元运算符语法：`condition ? expr1 : expr2`，其中 `expr1` 和 `expr2` 是两个分支表达式。\n2. 类型提升规则：当两个分支表达式的类型不同时，C++ 会根据隐式类型转换规则，将精度较低或范围较小的类型提升为精度较高或范围较大的类型，这一过程称为“ usual arithmetic conversions”（通常算术转换）。\n3. 具体分析：`1227` 是 `int` 类型（整型常量），`12.27` 是 `double` 类型（双精度浮点常量）。`double` 的表示范围和精度均大于 `int`，因此 `int` 类型的 `1227` 会被隐式提升为 `double` 类型的 `1227.0`。\n4. 编译结果：整个三元表达式的结果类型为 `double`，`cout` 会以浮点数形式输出。编译完全通过，不存在任何错误。\n5. 命题误读：命题误以为类型不同会导致“识别混乱”，这忽视了 C++ 完善的隐式类型提升机制。\n\n**易错提醒：**\n- 三目运算符要求两个分支表达式类型兼容，不要求完全相同，编译器会自动处理提升。\n- 常量 `1227` 和 `12.27` 在 C++ 中类型不同，后者带小数点因此是 `double`。\n\n**知识延伸：**\n隐式类型转换还会在算术运算、函数传参等场景中出现。例如 `5 / 2` 得到 `2`（int 除法截断），而 `5.0 / 2` 或 `5 / 2.0` 得到 `2.5`（转换为 double 除法）。\n\n**考点：** 三目运算符（条件运算符 `?:`）中的隐式类型提升规则"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第10题的题面与网站一致：在C++代码中，不可以将变量命名为 keyword，因为它是C++语言的关键字。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第10格为“×”，即该说法错误，对应 officialAnswer=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "keyword 不在 C++ 关键字表中，可以作为普通标识符；命题将其误认为关键字，因此错误。网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，referenceCode 维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验21-25题。PDF第5页判断题答案表第6-10格均为“×”，即五道判断题均为“错误”，网站 answer=1 全部一致。21-23、25题的题面、代码与解析均与卷面及独立推导相符；24题卷面说明文字“12.12”疑为官方排版笔误（代码为12.27），网站题面按12.27统一不影响答案，但解析末尾把“12.27”误写成“1227.0”，已给出解析纠错草稿。五题均无参考程序，未做代码运行测试。"
+  }
+}

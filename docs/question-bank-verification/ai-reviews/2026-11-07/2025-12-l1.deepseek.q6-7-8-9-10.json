@@ -1,0 +1,225 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:37:16.381Z",
+  "completedAt": "2026-11-08T11:40:13.138Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34409,
+    "completion_tokens": 13643,
+    "total_tokens": 48052,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11611
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01334715,
+      "allowance": 0.00800829,
+      "tokens": {
+        "input": 34409,
+        "output": 13643,
+        "reasoning": 11611,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级”“2025 年 12 月”；第1页选择题答案表第6-10题依次为 A、C、A、D、B。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干及核心代码为 a=3; b=a=4; printf(\"%d %d\",a,b);，网站补入 int a,b; 仅为使片段可独立编译，未改变输出逻辑。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四个选项依次为“4 4”“3 3”“3 4”“4 3”，与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第6题标A，即0起始索引0；网站answer=0，一致。链式赋值 b=a=4 后 a、b 均为4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导正确：赋值右结合，a 先被赋值为4，b 再取内层赋值表达式的值4，printf 输出“4 4”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题题干、输入流程和格式串 %% (N+M)=%d 与网站一致；PDF代码中另有未被格式串消费的冗余实参 int(N+M)，不影响输出，网站省略不构成语义改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为“30=30”“10+20=30”“%(N+M)=30”“错误提示”，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第7题标C，即0起始索引2；网站answer=2，一致。%%输出%，%d取N+M=30，得到“%(N+M)=30”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导正确：%%转义为字面百分号，(N+M)=为普通文本，%d用30替换；不会触发错误提示。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第2页明确“假设最高位编号为1，要求判断从左边最高位开始的第N位数是几？”；网站写成“用N表示从左向右的该整数位数”，未明确1起始编号，存在歧义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A. N%4、B. N/4、C. N%3、D. N/3，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第8题标A，即0起始索引0；网站answer=0，一致。序列周期为4，N%4映射为1、2、3、0，0时输出2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按1起始位置推导：位置1~4对应1、2、3、2，周期{1,2,3,2}，N%4非0直接输出余数、为0输出2，结论与A一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {
+          "question": "某个整数很长很长，形如：1232123212321……，其规律是从1开始逐一升高到3然后逐一降低到1，然后又逐一升高到3，一直到很长很长。假设最高位编号为1，要求判断从左边最高位开始的第N位数是几？在横线处应该填入的代码是（ ）。\n```cpp\nint N, M;\ncout << \"请输入编号：\";\ncin >> N;\nM = ________________;\n\nif (M != 0)\n    cout << M;\nelse\n    cout << 2;\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第9题题干和代码与网站逐行一致：i从0开始、条件i<100、循环体tnt+=1，最后输出tnt和i。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为“99 99”“100 99”“99 100”“100 100”，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第9题标D，即0起始索引3；网站answer=3，一致。循环执行100次，tnt=100；退出时i=100。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导正确：i取0~99共100次，tnt累加100次为100；第100次后i++变为100，条件失败退出，输出“100 100”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题题干、代码及L1/L2注释与网站一致；循环为i=1、i<10、i+=2，累加tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为“i<10改为i<11结果相同”“i=1改为i=0结果相同”“tnt+=i与tnt=tnt+i效果相同”“tnt+=i与tnt=i+tnt效果相同”，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第10题标B，即0起始索引1；网站answer=1，一致。原代码累加1+3+5+7+9=25，改初值为0后为0+2+4+6+8=20，结果不同，故B是错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导正确：A中下一项为11，i<10与i<11均终止；C、D为复合赋值与加法交换律的等价变形；B的初值改变导致奇偶序列改变，结果不同。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验第6-10题，均为单选题。五题官方答案与PDF答案表及网站answer一致；第6题网站补充变量声明、第7题网站省略官方代码中未使用的冗余实参，均不影响输出。第8题网站题面未明确“最高位编号为1”，已给出按官方原句修订的题面草稿，其余维度通过。未发现需要修改的答案或选项；因无编程题，不生成边界测试。"
+  }
+}

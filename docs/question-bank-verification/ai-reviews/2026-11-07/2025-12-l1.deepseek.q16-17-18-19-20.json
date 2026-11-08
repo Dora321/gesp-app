@@ -1,0 +1,230 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:43:00.640Z",
+  "completedAt": "2026-11-08T12:45:25.866Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34409,
+    "completion_tokens": 13226,
+    "total_tokens": 47635,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10673
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01309695,
+      "allowance": 0.00785817,
+      "tokens": {
+        "input": 34409,
+        "output": 13226,
+        "reasoning": 10673,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确标注“C++ 一级”“2025年12月”，共9页，与 paperId 2025-12-l1 对应；来源 git-blob SHA 1f798b8619325cbf9c9178b067276e921ecb1c4f 与已给来源一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断题第1题题干与网站 question 一致：鸿蒙为华为开发的操作系统，并称其能将正确的源程序翻译成目标程序并运行，未改变原意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的“正确/错误”判断项，不适用单选题 options 维度；PDF未提供其他选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第1题符号为“×”，对应 officialAnswer=1（错误）；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分操作系统与编译器职能：操作系统加载运行已编译程序，源程序到目标程序的翻译由编译器完成，故命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断题第2题题干与网站 question 一致：比较 C++ 表达式 10 * 4 % 6 和 10 * 2 % 3 的结果是否相同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的“正确/错误”判断项，不适用单选题 options 维度；PDF未提供其他选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第2题符号为“×”，对应 officialAnswer=1（错误）；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析独立算出 4 与 2、结论正确，但将 * 与 % 误述为“乘法优先于取模”；C++中二者同级且左结合，需修正该技术表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n本题考察对取模运算符（%）运算规则的理解与计算。\n\n1. **计算第一个表达式** `10 * 4 % 6`：\n   - 乘法与取模同级并按从左到右结合，先算乘法：10 * 4 = 40\n   - 再算取模：40 % 6 = 4（因为 40 ÷ 6 = 6 余 4）\n   - 结果为 **4**\n\n2. **计算第二个表达式** `10 * 2 % 3`：\n   - 先算乘法：10 * 2 = 20\n   - 再算取模：20 % 3 = 2（因为 20 ÷ 3 = 6 余 2）\n   - 结果为 **2**\n\n3. **比较结果**：4 ≠ 2，两个表达式的值不同，因此命题为假。\n\n**易错提醒：**\n- 取模运算的结果取决于被除数和除数的具体数值，不具备线性传递性（即便乘数等比例变化）。\n- 不能想当然地认为 `a % m` 和 `a * k % (m * k)` 有相同余数关系。\n- 乘法、除法和取模运算符同级，按从左到右结合；不能误认为乘法优先级高于取模。\n\n**知识延伸：**\n在 GESP 各级别考试中，取模运算常见考点包括：取模结果的取值范围（余数的绝对值小于除数的绝对值）、负数取模的C++行为（结果与被除数同号或为零）、以及取模在循环数组索引中的应用。\n\n**考点：** 取模运算符（%）的运算规则与结果判定"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "网站代码缺少第5页判断题第3题原卷中的 `else break;`。原卷代码为 if (i % 3 == 0) continue; else break;，缺失该分支会改变程序行为。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的“正确/错误”判断项，不适用单选题 options 维度；PDF未提供其他选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第3题符号为“×”，对应 officialAnswer=1（错误）；网站 answer=1 一致。按网站漏代码版本输出10也不是0，答案符号仍不冲突。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析按无 `else break;` 的代码推导最终 i=10；原卷在 i=1 时执行 else 分支的 break，循环终止后输出1，解析与源卷代码不符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面C++代码执行后将输出 0。（ ）\n```cpp\nint i;\nfor (i = 0; i < 10; i++)\n    if (i % 3 == 0)\n        continue;\n    else\n        break;\ncout << i;\n```",
+          "explanation": "**答案：错误**\n\n**判定依据：**\n原题代码包含 `else break;`，执行过程如下：\n1. `i = 0` 时，`0 % 3 == 0` 成立，执行 `continue`，跳过本轮剩余语句；for 的步进 `i++` 使 `i` 变为 1。\n2. `i = 1` 时，`1 % 3 == 0` 不成立，进入 `else` 分支执行 `break`，直接终止整个 for 循环。\n3. 循环结束后 `i` 的值为 1，`cout << i;` 输出 **1**，不是 0。\n\n因此命题“执行后将输出 0”为假，答案选“错误”。\n\n**易错提醒：**\n- `continue` 只结束本次迭代，`break` 会结束整个循环；本题第一轮 `continue`、第二轮 `break`。\n- 不要把本题误看成没有 `else break;` 的版本；若缺少该语句，循环行为和输出都会改变。\n\n**考点：** for 循环中 `continue` 与 `break` 的控制流差异"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断题第4题题干和第6页代码框与网站一致：`for (int i = 0; i > -10; i--)`，循环体内有 `if (i < 0) i = -i;`。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的“正确/错误”判断项，不适用单选题 options 维度；PDF未提供其他选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第4题符号为“×”，对应 officialAnswer=1（错误）；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原代码在 i=-1 时执行 i=-i 变为1，随后又回到0、再到-1，形成死循环；修改后 i=0..9 累加为45，结果不同，故命题错误。解析判断成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第5题题干与网站一致；原卷循环体 `cnt += 1;` 与网站 `cnt++;` 在本题语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的“正确/错误”判断项，不适用单选题 options 维度；PDF未提供其他选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第5题符号为“×”，对应 officialAnswer=1（错误）；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确计算 i=0..99 共100次循环，cnt 从0累加到100，因此“输出99”为假；差一错误判断成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验16-20（PDF判断题1-5）共5题：官方答案表均为“×”，网站答案均对应1，答案全部一致。题16、19、20题面与解析可维持；题17解析中“乘法优先于取模”的表述需改为乘法、除法、取模同级左结合；题18网站题面漏掉原卷 `else break;`，且解析按漏代码版本推导，需同时修正题面和解析。未运行编程代码，本批均非编程题，tests 为空。"
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:14:43.520Z",
+  "completedAt": "2026-11-08T12:19:33.117Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51089,
+    "completion_tokens": 21284,
+    "total_tokens": 72373,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18940
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01830535,
+      "allowance": 0.01830535,
+      "tokens": {
+        "input": 51089,
+        "output": 21284,
+        "reasoning": 18940,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 一级 / 2025年12月”，与网站 title『2025年12月 GESP C++ 一级真题』、level=1、year=2025、month=12 一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页官方代码为 a=3; b=a=4; printf(\"%d %d\", a, b);（无声明的片段）；网站补入 int a, b; 属等价补全，官方原有各行全部保留，%d 输出隐含 a、b 为 int，语义与结果不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项依次为 A.4 4、B.3 3、C.3 4、D.4 3，与网站内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第6题为A（0起索引0），网站answer=0一致；独立推导：b=(a=4) 右结合链式赋值，a 被覆盖为4，b 取赋值表达式值4，printf 输出“4 4”，与A吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立推导右结合性并对四个选项逐项辨析，结论与官方A一致，无逻辑漏洞。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：补声明属等价补全而非删改官方内容，五维核验全部通过。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第6行官方代码为 printf(\"%%(N+M)=%d\", N+M, int(N+M));，网站省略了 int(N+M)。该实参虽被求值后忽略、不影响正确答案，但属官方印出的代码且是支撑选项D“错误提示”的诱因，省略即删减原文；按原文补回后与第2页逐字一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项依次为 A.30=30、B.10+20=30、C.%(N+M)=30、D.错误提示，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题为C（0起索引2），网站answer=2一致；独立推导：%%输出一个%，(N+M)=原样照印，%d代入10+20=30，输出 %(N+M)=30；多余实参 int(N+M) 求值后被忽略不会报错，故非D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确说明%%转义、普通文本照印及%d替换，结论 %(N+M)=30 与官方C一致；补回实参后解析结论不变（该实参不参与输出）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面的C++代码执行时如果先输入 10 回车后输入 20 并回车，其输出是 ( )。\n```cpp\nint N, M;\nprintf(\"第一个数:\");\nscanf(\"%d\", &N);\nprintf(\"第二个数:\");\nscanf(\"%d\", &M);\nprintf(\"%%(N+M)=%d\", N+M, int(N+M));\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分否决初核：初核以“省略不构成语义改变”判定statement通过，过宽——删除官方印出的实参削弱了选项D的诱因设计且有失保真，故按第2页原文还原代码；答案、选项、解析初核结论正确，予以采纳。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页原文为“……假设最高位编号为1，要求判断从左边最高位开始的第N位数是几？在横线处应该填入的代码是（ ）。”并含第5行空行的9行代码；网站改写为“用 N 表示从左向右的该整数位数”，丢失“最高位编号为1、求第N位数”的明确定义且与原文不符；按官方原文逐字还原后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项 A.N%4、B.N/4、C.N%3，D.N/3 位于第3页顶部，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为A（0起索引0），网站answer=0一致；独立推导：第N位（编号自1起）按序列 {1,2,3,2} 周期4循环，N%4 余1/2/3 对应数字1/2/3，余0 对应第4位的2，与代码 if(M!=0) 输出M 否则输出2 完全吻合，故A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按编号1起始推得周期{1,2,3,2}并说明余0时输出2，与官方答案A及还原后的题面一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "某个整数很长很长，形如：1232123212321……，其规律是从1开始逐一升高到3然后逐一降低到1，然后又逐一升高到3，一直到很长很长。假设最高位编号为1，要求判断从左边最高位开始的第N位数是几？在横线处应该填入的代码是（ ）。\n```cpp\nint N, M;\ncout << \"请输入编号：\";\ncin >> N;\nM = ________________;\n\nif (M != 0)\n    cout << M;\nelse\n    cout << 2;\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：其题面修订与第2页原图及文本层逐字一致，已独立复核确认；修复应对应正式应用，其余维度（选项/答案/解析）均核验通过。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码 int i, tnt = 0; for (i = 0; i < 100; i++) tnt += 1; cout << tnt << ' ' << i; 与网站逐行一致（仅缩进宽度排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项依次为 A.99 99、B.100 99、C.99 100、D.100 100，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为D（0起索引3），网站answer=3一致；独立推导：i 取0~99 共100次，tnt=100；循环结束后由自增得 i=100，输出“100 100”，与D吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确区分循环体执行次数与循环变量退出值，逐项排除99/混淆情形，结论与官方D一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案、解析均与原卷核对一致，独立推导确认。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码含 L1/L2 注释：int tnt = 0; for (int i = 1; i < 10; i += 2) // L1; tnt += i; // L2; cout << tnt; 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页四个选项依次为 i<10改i<11、i=1改i=0、tnt+=i与tnt=tnt+i、tnt+=i与tnt=i+tnt，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题为B（0起索引1），网站answer=1一致；独立推导：原代码取1,3,5,7,9和为25；A中下一值11使 i<10 与 i<11 同时为假，等价；B改初值0则取0,2,4,6,8和为20，结果不同，B说法为错误项，即答案；C/D为复合赋值与加法交换的等价变形。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析反向审题明确，25与20的对比推导、边界11跳过10的分析均正确，与官方B一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维核验通过，独立推导（和25/20、i<11终止点同为11）与解析一致。"
+      }
+    ],
+    "summary": "本次独立复核第6–10题（均为单选题）。官方答案与第1页答案表（6A/7C/8A/9D/10B）及网站 answer 全部一致，且与逐题手工推导吻合。两处题面修复：第7题补回官方印出的冗余实参 int(N+M)——它是官方设计中对选项D的诱因，删减即偏离原卷，故否决初核对 statement 的宽松判定并按第2页原文还原；第8题按原文还原“最高位编号为1、求第N位数”的题干（网站改写存在定位歧义），初核修复经逐字复核后采纳。第6题网站补入 int a, b; 声明属等价补全予以认可。范围内无编程题，未生成 tests；两题 verdict 为 revise（修复后逐字核验通过），其余三题 approve。"
+  }
+}

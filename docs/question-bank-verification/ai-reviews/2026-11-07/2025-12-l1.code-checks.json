@@ -1,0 +1,111 @@
+{
+  "executedAt": "2026-11-08T13:02:45.936Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "100.4\n300.2\n60.6\n70.5",
+          "output": "50.2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "50.2\n",
+          "passed": true
+        },
+        {
+          "input": "99.8\n200.9\n60.2\n70.1",
+          "output": "49.9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "49.9\n",
+          "passed": true
+        },
+        {
+          "name": "小数值正案例",
+          "input": "0.2\n300.0\n50.0\n60.0",
+          "output": "0.1",
+          "reason": "0.5×0.2=0.1；G=300.0不满足G<300，取N=60.0；取较小值0.1，按一位小数输出。覆盖最小量级并验证浮点输出格式。",
+          "kind": "boundary",
+          "actual": "0.1\n",
+          "passed": true
+        },
+        {
+          "name": "重量阈值G=300",
+          "input": "1000.0\n300.0\n1.0\n100.0",
+          "output": "100.0",
+          "reason": "0.5×1000.0=500.0；G=300.0应落入G≥300档取N=100.0，较小值100.0。若实现误写为G<=300将错误输出1.0，可检出该分支错误。",
+          "kind": "boundary",
+          "actual": "100.0\n",
+          "passed": true
+        },
+        {
+          "name": "两种计费相等",
+          "input": "100.0\n299.9\n50.0\n10.0",
+          "output": "50.0",
+          "reason": "0.5×100.0=50.0；G=299.9<300取M=50.0；两方案相等，应输出50.0，验证相等情形分支正确。",
+          "kind": "boundary",
+          "actual": "50.0\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围上限",
+          "input": "1000.0\n1000.0\n1000.0\n1000.0",
+          "output": "500.0",
+          "reason": "四个输入均取上限1000；体积费500.0，G≥300取N=1000.0，取较小值500.0，验证上限输入下无溢出。",
+          "kind": "boundary",
+          "actual": "500.0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "c5261747104d56f81b5b7188ef7d5148c9890bf52c574d3e616393245d6f3e43"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5\n10\n1\n20\n99\n19",
+          "output": "R\nR\nL\n99\nL",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "R\nR\nL\n99\nL\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模：T=1且P=1",
+          "input": "1\n1",
+          "output": "R",
+          "reason": "T与P均取数据范围最小值，P=1满足P≤10，应输出R。",
+          "kind": "boundary",
+          "actual": "R\n",
+          "passed": true
+        },
+        {
+          "name": "P=10/11/20/21四个边界",
+          "input": "4\n10\n11\n20\n21",
+          "output": "R\nL\nL\n21",
+          "reason": "P=10属P≤10出R；P=11属10<P≤20出L；P=20属P≤20出L；P=21属P>20应输出数字本身21，完整覆盖两处区间端点。",
+          "kind": "boundary",
+          "actual": "R\nL\nL\n21\n",
+          "passed": true
+        },
+        {
+          "name": "P取上限100",
+          "input": "1\n100",
+          "output": "100",
+          "reason": "P=100>20，应直接输出电量数字本身100，验证最大电量情形。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "385418fd21aa079ec4e80bf265eb9f5f523f97f97eb37a86f1a7f68b127dde10"
+    }
+  ]
+}

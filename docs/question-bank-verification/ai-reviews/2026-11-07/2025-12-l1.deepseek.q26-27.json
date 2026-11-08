@@ -1,0 +1,175 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:52:30.960Z",
+  "completedAt": "2026-11-08T12:56:57.707Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34403,
+    "completion_tokens": 25831,
+    "total_tokens": 60234,
+    "prompt_tokens_details": {
+      "cached_tokens": 34176
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 23687
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01563518,
+      "allowance": 0.00938111,
+      "tokens": {
+        "input": 227,
+        "output": 25831,
+        "reasoning": 23687,
+        "cache_read": 34176,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7b808314ed896b57bcdb0611a77e86b2fed25d1e234669c04c91136ec260f1ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 一级”“2025 年 12 月”，与 2025-12-l1 相符；编程题位于第6-9页。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第7页3.1.1-3.1.3的规则、输入输出与网站题面一致，第7-8页两组样例也一致；但PDF第6页题头的时间限制1.0 s、内存限制512.0 MB，以及第8页3.1.5数据范围“给出的浮点数不超过1000”未出现在网站题面中，属于漏约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无PDF答案表选项答案；officialAnswer设为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导体积费0.5×V、重量费在G<300时取M否则取N、最终取较小值，并对两组样例分别算出50.2和49.9；与PDF规则一致，未发现需改动结论。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码读入四个double，计算f1=0.5*v、f2=(g<300)?m:n，输出两者的较小值并用fixed setprecision(1)保留一位小数；与PDF参考程序的V/2.0、三元取min、printf的%.1f等价，约束内无溢出或类型错误。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202512 一级] 小杨的爱心快递\n\n## 限制\n\n时间限制：1.0 s\n内存限制：512.0 MB\n\n## 题目描述\n\n小杨是“爱心社区”的小志愿者，每周他都会帮助邻居们寄送捐赠给山区小学的文具和书籍。快递公司为了支持公益行动，制定了特殊的运费规则，鼓励大家合理包装：\n\n假设快递的体积为 $V$，重量为 $G$。\n\n- 按体积计算：运费按体积计算，公式是 0.5 × V 元。\n- 按重量计算：为了鼓励减轻包裹重量，规则是：当重量小于 300 克，即 $G < 300$ 时，运费为 $M$ 元；当重量达到或超过 300 克，即 $G ≥ 300$ 时，运费为 $N$ 元。\n\n快递公司的叔叔说：“我们应该选择最公平合理的计费方式。”\n\n所以，最终的运费会取按体积计算和按重量计算这两种方式中**价格较低**的那一个，这样对寄件人最公道。\n\n## 输入格式\n\n四行，每行一个一位小数的浮点数，分别代表，快递的体积 $V$，快递的重量 $G$，第一档重量运费 $M$，第二档重量运费 $N$。\n\n## 输出格式\n\n一行一个一位小数，代表实际快递运费。\n\n## 数据范围\n\n对于所有测试点，保证给出的浮点数不超过 1000。"
+        },
+        "tests": [
+          {
+            "name": "小体积正值的体积计费",
+            "input": "0.2\n300.0\n50.0\n60.0",
+            "output": "0.1",
+            "reason": "体积费为0.5×0.2=0.1；重量G=300.0，按G≥300取N=60.0；取较小值0.1。用于验证小数运算和重量阈值分支。"
+          },
+          {
+            "name": "重量阈值300.0",
+            "input": "1000.0\n300.0\n1.0\n100.0",
+            "output": "100.0",
+            "reason": "体积费为0.5×1000.0=500.0；G=300.0必须进入G≥300档，重量费为N=100.0；min=100.0。若误写g<=300会得到1.0。"
+          },
+          {
+            "name": "两种计费相等",
+            "input": "100.0\n299.9\n50.0\n10.0",
+            "output": "50.0",
+            "reason": "体积费为0.5×100.0=50.0；G<300取M=50.0；两方案相等，应输出50.0。"
+          },
+          {
+            "name": "数据范围上限",
+            "input": "1000.0\n1000.0\n1000.0\n1000.0",
+            "output": "500.0",
+            "reason": "体积费为500.0；G≥300取N=1000.0；min=500.0，验证上限输入下无溢出。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第8页3.2.1-3.2.3的规则、输入输出与网站题面一致，第9页样例也一致；但PDF第8页题头的时间限制1.0 s、内存限制512.0 MB，以及第9页3.2.5数据范围“1≤T≤20，1≤P≤100”未出现在网站题面中，属于漏约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无PDF答案表选项答案；officialAnswer设为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明P≤10输出R、10<P≤20输出L、P>20输出P，并逐组走查样例；与PDF规则和样例输出一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码用for循环读T组，if(P<=10)输出R，else if(P<=20)输出L，else输出P；与PDF的while(T--)参考程序等价，边界10/20/21处理正确。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202512 一级] 手机电量显示\n\n## 限制\n\n时间限制：1.0 s\n内存限制：512.0 MB\n\n## 题目描述\n\n小杨的手机就像一个聪明的小助手，当电量变化时，它会用不同的方式来提醒我们，假设当前的电量百分比为 $P$：\n\n- 当电量非常低（不超过 10，即 $P ≤ 10$），它会显示一个大写字母 R，就像在说：“快给我充电吧！（Red 警告色）”\n- 当电量有点低（超过 10 但不超过 20，即 $10 < P ≤ 20$），它会显示一个大写字母 L。\n- 当电量比较充足（即 $P > 20$）时，它会直接显示具体的数字，也就是当前的电量百分比。\n\n## 输入格式\n\n第一行一个正整数 $T$，代表数据组数。\n\n对于每组数据，一行包含一个正整数 $P$，代表手机电量百分比。\n\n## 输出格式\n\n对于每组数据，输出一行，代表当前手机显示的电量信息。\n\n## 数据范围\n\n对于所有测试点，保证 $1 ≤ T ≤ 20，1 ≤ P ≤ 100$。"
+        },
+        "tests": [
+          {
+            "name": "最小P=1",
+            "input": "1\n1\n",
+            "output": "R",
+            "reason": "T=1，P=1满足P≤10，应输出R。"
+          },
+          {
+            "name": "临界值10、11、20、21",
+            "input": "4\n10\n11\n20\n21\n",
+            "output": "R\nL\nL\n21",
+            "reason": "P=10和11验证10的边界，P=20和21验证20的边界；分别应输出R、L、L、21。"
+          },
+          {
+            "name": "最大P=100",
+            "input": "1\n100\n",
+            "output": "100",
+            "reason": "P=100满足P>20，应直接输出100。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题26、27。两题题面主体、样例和参考程序均与PDF一致，但均漏PDF中的时间/内存限制与数据范围，已给出补全题面草稿；解析独立推导正确，参考代码在约束内算法正确且覆盖了G=300、P=10/20/21等边界。编程题无官方答案，officialAnswer=null。"
+  }
+}
