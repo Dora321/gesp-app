@@ -1,0 +1,157 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    25,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:53:17.850Z",
+  "completedAt": "2026-11-08T13:54:14.341Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36509,
+    "completion_tokens": 10408,
+    "total_tokens": 46917,
+    "prompt_tokens_details": {
+      "cached_tokens": 34816
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9322
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0066032,
+      "allowance": 0.00396192,
+      "tokens": {
+        "input": 1693,
+        "output": 10408,
+        "reasoning": 9322,
+        "cache_read": 34816,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85580d8add43725aa8de8e2bd306d099a981a9bfacfdd4221bd054daf03f81d0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 一级 2026 年 03 月”，与 paperId 2026-03-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 10 题原文为“小明在测试 C++ 的 printf 的功能时执行了 printf(\"%-5d\\n\", 314)，则代码输出的结果是 -5314。”候选题面与代码格式串一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；候选以“正确/错误”作为判断标签，PDF 仅给出判断句。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 10 题为“×”，映射为错误=1，候选 answer=1。独立计算：%-5d 表示左对齐、最小宽度 5，314 后补 2 个空格，输出不是 -5314，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明 - 为左对齐、5 为最小字段宽度，314 占 3 字符，右侧补 2 个空格并换行；格式控制符不会被当作字符输出。结论与官方 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 3.2 节题名、题目描述（将全部 4 替换为 8，不含 4 则不变）、输入输出格式、两组样例、样例解释及数据范围 0≤A≤10^8 均与候选一致；无关键代码、图、约束或样例遗漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案；PDF 答案表不覆盖编程题，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的逐位拆位、按位权 t 重构算法与参考程序一致；样例 1 逐轮走查得到 8859085，样例 2 保持 123，均独立复算正确；A=0 输出 0，A=10^8 原样输出 100000000，最大输出判断成立；t 末值 10^9 仍在 32 位 int 范围内。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页参考程序与候选参考代码逐行一致（仅空白差异）：int a,b=0,t=1; while(a){ if(a%10==4) b+=t*8; else b+=t*(a%10); a/=10; t*=10; } cout<<b; 逻辑正确，A=0 时循环不进入并输出 0，范围内无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小边界 A=0",
+            "input": "0\n",
+            "output": "0",
+            "reason": "A=0 时 while(a) 不进入，直接输出初始值 b=0；覆盖数据范围下界。"
+          },
+          {
+            "name": "范围上界 A=10^8",
+            "input": "100000000\n",
+            "output": "100000000",
+            "reason": "A=10^8 为 9 位数且不含数字 4，逐位按权重重构原样输出 100000000；t 末值为 10^9，仍在 int 范围内。"
+          },
+          {
+            "name": "全 4 数字",
+            "input": "4444\n",
+            "output": "8888",
+            "reason": "四位均为 4，逐位替换为 8 后按权值累加得 8888，检验替换分支与位权重构。"
+          },
+          {
+            "name": "官方样例 1",
+            "input": "8459045\n",
+            "output": "8859085",
+            "reason": "官方样例，两个 4 分别替换为 8，其余位不变；独立逐位手算确认。"
+          },
+          {
+            "name": "内部多个 4",
+            "input": "45004\n",
+            "output": "85008",
+            "reason": "万位和个位的 4 替换为 8，其余位保持，独立手算输出 85008。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "题 25、27 均通过核验：题 25 判断题答案与 PDF 第 6 页答案表一致，解析对 %-5d 的说明正确；题 27 题面、样例、数据范围及参考程序与 PDF 一致，逐位重构算法和边界处理正确，现有解析中的最大输出与 int 溢出判断经独立复算成立。未生成 changes。"
+  }
+}

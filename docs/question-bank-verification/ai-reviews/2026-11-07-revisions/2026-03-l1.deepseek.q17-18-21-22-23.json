@@ -1,0 +1,226 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    17,
+    18,
+    21,
+    22,
+    23
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:50:06.494Z",
+  "completedAt": "2026-11-08T13:50:39.418Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36515,
+    "completion_tokens": 5893,
+    "total_tokens": 42408,
+    "prompt_tokens_details": {
+      "cached_tokens": 34816
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4557
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0038951,
+      "allowance": 0.00233706,
+      "tokens": {
+        "input": 1699,
+        "output": 5893,
+        "reasoning": 4557,
+        "cache_read": 34816,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85580d8add43725aa8de8e2bd306d099a981a9bfacfdd4221bd054daf03f81d0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证 GESP、C++ 一级、2026 年 03 月；第6页判断题答案表与候选第17、18、21、22、23题答案逐项对应。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第2题原文为“C++表达式 4 % 2 和 2 * 2 % 2 的结果相同。”与候选题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定“正确/错误”标签呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第2题为√，映射为正确=0；候选 answer=0。独立计算：4%2=0，(2*2)%2=4%2=0，结果相同。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 *、/、% 同优先级且左结合计算 (2*2)%2，结论与独立推导一致，无事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第3题命题为“下面C++代码段成功执行后将输出 0。”，for/if/break 三行代码与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定“正确/错误”标签呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第3题为×，映射为错误=1；候选 answer=1。独立追踪：i=1、2 不触发 break，i=3 时触发 break，本轮 i++ 不执行，最终输出 3 而非 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明 break 在循环体内先于本轮 i++ 执行，i 终值为 3，命题“输出 0”错误，推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第6题包含“变量都是整型……121 和 414 都是对称数，而 123 不是对称数”，PDF 第7页反转代码与候选逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定“正确/错误”标签呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第6题为√，映射为正确=0；候选 answer=0。独立验证：121 反转为 121，判定对称；123 反转为 321，判定非对称。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的备份原数、逐位反转、与原数比较三步正确，n=121 的反转过程演算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断第7题题干及 for (i = -N; i < N; i += 2) 代码与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定“正确/错误”标签呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第7题为√，映射为正确=0；候选 answer=0。独立推导：序列共 N 项，Σ(-N+2k)=-N²+N(N-1)=-N，输出恒为 -N。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析用 Σ(-N+2k)=-N 覆盖奇数与偶数 N 两种情形，并说明偶数 N 时 0 不影响总和，推导与边界验证一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断第8题“执行C++语句 printf(\"%d\\n\", 3.14) 将报错。”与候选题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定“正确/错误”标签呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第8题为×，映射为错误=1；候选 answer=1。%d 期望 int 而实参为 double，类型不匹配属未定义行为，通常仅警告而非必然编译报错，不能断言“将报错”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析将类型不匹配表述为未定义行为，区分“可能警告”与“必然报错”，结论与官方×一致，未作绝对化断言。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第17、18、21、22、23题。五题题面与 PDF 原卷一致，官方判断题答案表映射正确，解析经独立推导均通过；未发现需修改字段。判断题 options 与 referenceCode 不适用。"
+  }
+}

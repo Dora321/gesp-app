@@ -1,0 +1,236 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    17,
+    18,
+    21,
+    22,
+    23
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:50:39.421Z",
+  "completedAt": "2026-11-08T13:53:17.846Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54469,
+    "completion_tokens": 11683,
+    "total_tokens": 66152,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9049
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01401185,
+      "allowance": 0.01401185,
+      "tokens": {
+        "input": 54469,
+        "output": 11683,
+        "reasoning": 9049,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85580d8add43725aa8de8e2bd306d099a981a9bfacfdd4221bd054daf03f81d0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP」「C++ 一级」「2026 年 03 月」，与候选 title/level/year/month 一致；第 1 页单选答案表 B A D D A A B D D B B B D B A、第 6 页判断题答案表 √√××√√√×√×，与候选题号分布（单选 15、判断 10、编程 2）及本题五个判断题的答案映射全部对应。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "初核未提出修改并按通过处理；我基于第 6 页图独立复核：答案表第 2 位为 √、候选 answer=0 一致，解析按 *、/、% 同优先级左结合的计算经独立复算成立，维持通过、无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 2 题原文「C++表达式 4 % 2 和 2 * 2 % 2 的结果相同。」与候选题面逐字等价（仅 C++ 后空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定「正确/错误」标签呈现，其判定并入 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表依次为 √√××√√√×√×，第 2 位为 √，映射正确=索引 0，候选 answer=0 一致。独立计算：4%2=0；(2*2)%2 按 *、% 同优先级左结合得 4%2=0，两者结果相同，命题成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析（上轮已将「% 优先级低于乘法」的错误表述改为同优先级左结合）与独立推导一致——先算 2*2=4 再算 4%2=0，结论「结果相同」成立；易错提醒中优先级同组左结合的表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "初核未提出修改并按通过处理；我基于第 6 页图独立追踪循环：i=3 触发 break 且本轮 i++ 不执行、终值 3，与候选解析及官方 × 一致，维持通过、无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 3 题命题「下面C++代码段成功执行后将输出 0」及代码 for (i = 1; i < 10; i++) / if (i % 3 == 0) / break; / cout << i; 与候选一致（外层无花括号、i 未声明与原卷同，按题面既定前提核对）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定「正确/错误」标签呈现，其判定并入 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 位为 ×，映射错误=索引 1，候选 answer=1 一致。独立追踪：i=1、2 时 1%3=1、2%3=2 均不触发 break；i=3 时 3%3==0 触发 break，本轮步进 i++ 不再执行，i 终值 3，输出 3 而非 0，命题错误成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析逐轮追踪并明确「break 先于本轮 i++，跳出处即为 i 所在执行点」，得出 i=3、输出 3、命题错误，与独立推导完全一致；上轮「break 在 i 自增后判断」的误述已消除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "初核未提出修改并按通过处理；我基于第 6、7 页图独立复核：题面（已含上轮补入的对称数定义与例句）及反转代码与 PDF 逐行一致，121/123 演算成立，维持通过、无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 6 页判断第 6 题含定义句「所谓对称数是指从左到右和从右到左读该数，其值相同。例如，121 和 414 都是对称数，而 123 不是对称数。（ ）」，候选题面已完整补入该句（上轮修订点已落实）；第 7 页顶部代码（cout 输入提示、old_number/new_number、while 反转、if 比较）与候选逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定「正确/错误」标签呈现，其判定并入 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 6 位为 √，映射正确=索引 0，候选 answer=0 一致。独立验证：n=121 三轮反转 new_number=1→12→121，与 old_number 相等判「对称数」；n=123 反转为 321 不等判「非对称数」，代码确能实现对称数判定，命题成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的备份原数（循环会修改 n）、逐位反转（new_number*10+n%10 与 n/=10）、反转结果与原数比较三个要点均正确，n=121 的演算经独立复算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "初核未提出修改并按通过处理；我基于第 6、7 页图独立复核：求和公式 Σ(-N+2k)=-N 经逐步复算成立，N=1、N=4 两个边界手工验证吻合，解析含偶数 N 含 0 项的说明，维持通过、无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 7 题题干「……输入为大于0的整数，则输出数值一定为 -N 的值」及代码 cin >> N; total = 0; for (i = -N; i < N; i +=2) / total += i; / cout << total; 与候选一致（仅 i +=2 与 i += 2 的空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定「正确/错误」标签呈现，其判定并入 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 7 位为 √，映射正确=索引 0，候选 answer=0 一致。独立推导：i = -N+2k 且 i < N 给出 k=0..N-1 共 N 项，总和 Σ(-N+2k) = -N² + N(N-1) = -N；边界手工验证 N=1 时输出 -1、N=4 时 -4-2+0+2=-4=-N，命题「输出一定为 -N」成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析以 Σ(-N+2k)=-N²+N(N-1)=-N 的闭式推导统一覆盖奇/偶 N（替代上轮被否决的「两两配对抵消」不严密表述），并注明偶数 N 序列含 0 不影响总和、循环终点 i<N 不含 N，公式与结论均经独立复算确认。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "初核未提出修改并按通过处理；我基于第 7 页图独立复核：%d 与 double 实参不匹配属未定义行为、不能断言必然报错，与官方 × 及候选解析一致；上轮「不会崩溃」的绝对化表述在候选中已改为「也可能崩溃」，维持通过、无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 8 题原文「执行C++语句 printf(\"%d\\n\", 3.14) 将报错。」与候选题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项；候选以固定「正确/错误」标签呈现，其判定并入 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 8 位为 ×，映射错误=索引 1，候选 answer=1 一致。独立分析：%d 要求 int 而实参 3.14 为 double，格式符与实参类型不匹配属未定义行为；主流编译器默认仅告警（如 -Wformat），程序通常可编译运行，输出不可预测，故不能断言「将报错」，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析以未定义行为定性该调用，写明「可能警告、通常非编译错误；运行时输出不可预测，也可能崩溃，但不能断言将报错」，既不绝对化（已修正上轮「不会崩溃」表述）又保持「命题『将报错』错误」的结论，与标准表述和独立分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮仅独立复核第 17、18、21、22、23 题（对应判断题第 2、3、6、7、8 题）。五题题面与代码经 PDF 第 6、7 页图逐字比对均与原卷一致（仅空格/内联代码等价排版差异）；第 6 页判断题答案表 √√××√√√×√× 中第 2√、3×、6√、7√、8× 与候选 answer（0、1、0、0、1）映射全部吻合。解析逐一独立推导复核：Q17 两式均因左结合得 0；Q18 break 发生于 i=3 且本轮 i++ 不执行、输出 3、命题错误；Q21 反转比较算法可判定对称数；Q22 Σ(-N+2k)=-N²+N(N-1)=-N 且 N=1、N=4 边界验证成立；Q23 类型不匹配属未定义行为、不能断言报错。上轮已修复的解析/题面（左结合优先级、break 时机、对称数定义句补全、闭式求和口径、UB 定性）均已确认落实且无误。判断题 options 与 referenceCode 不适用，tests 仅编程题使用故为空。五题全部 approve，无待修改字段，无遗留未决问题。"
+  }
+}

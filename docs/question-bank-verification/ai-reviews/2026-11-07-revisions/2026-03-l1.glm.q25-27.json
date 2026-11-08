@@ -1,0 +1,161 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    25,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:54:14.345Z",
+  "completedAt": "2026-11-08T13:56:29.641Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54230,
+    "completion_tokens": 10580,
+    "total_tokens": 64810,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8652
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0134245,
+      "allowance": 0.0134245,
+      "tokens": {
+        "input": 54230,
+        "output": 10580,
+        "reasoning": 8652,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85580d8add43725aa8de8e2bd306d099a981a9bfacfdd4221bd054daf03f81d0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头原图为“C++ 一级 2026 年 03 月”，与 paperId 2026-03-l1 对应，标题、等级、年月经图核对一致。"
+    },
+    "questions": [
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 10 题原文“小明在测试C++的 printf 的功能时执行了 printf(\"%-5d\\n\", 314) ，则代码输出的结果是 -5314 。”与候选题面逐字一致，仅空格排版差异，无内容遗漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；候选以“正确/错误”作为判定标签，PDF 仅给出判断句与答案表符号（×）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 10 题为 ×，映射错误=索引 1，候选 answer=1 转录一致。独立推导：%-5d 中 - 为左对齐标志、5 为最小字段宽度、%d 为十进制整数；314 占 3 字符，左对齐时宽 5 需右侧补 2 个空格，实输出为“314␣␣\\n”而非 -5314，命题“输出结果是 -5314”为假，官方 × 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对 - （左对齐）、5（最小字段宽度）、314 占 3 字符、右侧补 2 个空格以及“格式控制符是不作为字符输出的指令”的说明逐条独立复核正确；与该解析自身结论一致且与官方 × 相符，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核结论：题面、官方答案（答案表 ×→answer=1）与解析三方一致，均经我独立复核无误；format 字符串 %-5d 的左对齐补空格方向经独立推算为“314 后补 2 个空格”，命题为假成立，无新增问题。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页编程题 2：题名“数字替换”、题目描述（4 全部替换为 8、不含 4 无需修改）、输入格式（一行一个整数 A，替换前的数）、输出格式（一行一个整数 B，替换后的数）、输入样例 #1 8459045/输出样例 #1 8859085、输入样例 #2 123/输出样例 #2 123、样例解释（样例1两个 4 替换为 8；样例2不含 4 输出 123）与数据范围 0≤A≤10^8，均与候选一致；候选仅省略结尾语气句“你能帮帮她吗？”，不承载判定信息，属非实质压缩。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项（PDF 亦无选项区）。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF 第 1/6 页答案表仅覆盖单选与判断题，officialAnswer=null 合理。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算候选解析全部成立：样例 1 七轮走查 b 序列 5→85→85→9085→59085→859085→8859085（第 6 轮 59085+100000*8=859085，第 7 轮 859085+1000000*8=8859085），样例 2 保持 123；A=0 时 while 不进入输出 0；范围内 8 位输入逐位重构不超过 99999999，唯一 9 位输入 10^8 无 4 原样输出，最大输出 100000000（不是 88888888）的论断正确；最高位权 t=10^8、循环末 t 可达 10^9，均小于 2^31-1，无溢出结论正确；字符串替换法对非负 A 亦正确。复杂度 O(位数)/O(1) 成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页参考程序与候选 referenceCode 逐行一致（仅 while(a) 空格与花括号内缩进差异）：int a,b=0,t=1; while(a){ if(a%10==4) b+=t*8; else b+=t*(a%10); a/=10; t*=10; } cout<<b; 算法对全部 0≤A≤10^8 正确：低位拆位、按位权重构无重排错误，A=0 直接输出 0，范围内无溢出、无死循环。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小边界 A=0",
+            "input": "0\n",
+            "output": "0",
+            "reason": "A=0 时 while(a) 条件不成立，循环不进入，b 保持初始值 0 直接输出；覆盖数据范围下界，独立手推确认。"
+          },
+          {
+            "name": "范围上界 A=10^8",
+            "input": "100000000\n",
+            "output": "100000000",
+            "reason": "100000000 共 9 位且不含数字 4，逐位按 t=1..10^8 重构仍得 100000000；t 末值 10^9 仍在 int 范围内，独立逐位手推确认。"
+          },
+          {
+            "name": "全 4 数字",
+            "input": "4444\n",
+            "output": "8888",
+            "reason": "四位均为 4，逐位 b+=t*8 得 8→88→888→8888，检验替换分支与位权重构，独立手推确认。"
+          },
+          {
+            "name": "官方样例 1",
+            "input": "8459045\n",
+            "output": "8859085",
+            "reason": "PDF 官方样例：十位与十万位的 4 替换为 8，其余位保持；独立七轮走查 b 序列 5→85→85→9085→59085→859085→8859085 确认。"
+          },
+          {
+            "name": "内部多个 4",
+            "input": "45004\n",
+            "output": "85008",
+            "reason": "万位与个位的 4 替换为 8，千/百/十位 5、0、0 保持；独立手推 b=8→8→8→5008→85008，确认输出 85008。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其认定的解析要点（最大输出为 100000000 而非 88888888、t 末值 10^9 不溢出、A=0 边界无需特判）经我独立复算全部属实；参考程序与 PDF 第 10 页逐行一致，样例走查与其手推吻合。5 条 tests 的期望输出均由我逐条独立手推核对无误，未运行程序仅静态验证。题面省略语气句不构成题意改变，不作为修改项；无 changes。"
+      }
+    ],
+    "summary": "本轮仅复核题 25、27。题 25 判断题：题面与 PDF 第 7 页一致，官方答案表第 10 题 ×（answer=1）一致，解析对 %-5d 左对齐、宽度 5、右侧补 2 个空格的说明经独立推导正确，实输出“314␣␣”而非 -5314，结论与官方相符，verdict approve。题 27 编程题：题面、样例（8459045→8859085、123→123）、样例解释与数据范围 0≤A≤10^8 与 PDF 第 9 页一致，参考代码与 PDF 第 10 页逐行一致；独立复算样例七轮走查、A=0 输出 0、最大输出 100000000、t 末值 10^9 及最大中间积均在 int 范围内等论断成立，5 条测试期望输出独立确认，verdict approve。两题均无新增问题，无 changes，无未决问题。"
+  }
+}

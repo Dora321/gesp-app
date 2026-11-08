@@ -1,0 +1,241 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    7,
+    9,
+    10,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:45:30.890Z",
+  "completedAt": "2026-11-08T13:50:06.489Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55622,
+    "completion_tokens": 21639,
+    "total_tokens": 77261,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17828
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0191628,
+      "allowance": 0.0191628,
+      "tokens": {
+        "input": 55622,
+        "output": 21639,
+        "reasoning": 17828,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "85580d8add43725aa8de8e2bd306d099a981a9bfacfdd4221bd054daf03f81d0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「C++ 一级、2026 年 03 月」，与 2026-03-l1 匹配；第 1 页单选答案表题号 1-15、第 6 页判断题答案表题号 1-10、编程两题题量齐全，与候选结构对应。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题题干与代码（int M = 0, N = 0; 两次 cin；if (N > M) 输出 (N - M)，else 输出 (M - N)）与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D（一正一负输出大于 0、结果大于等于 0、相等无输出、带小数点按整数部分计算）与候选逐字一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "官方答案表第 7 题为 B（索引 1），候选 answer=1 转录无误；但独立推导：一正一负两数必不相等，输出 |M-N|=|M|+|N|>0 且与正数赋给 M 还是 N 无关，A 按字面同样成立，与 B 并存，属源卷选项设置的多解歧义，无法在转录层面消解，保留官方答案待裁定。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析如实注明 A 亦成立且未判其为错；if-else 绝对值语义、C 相等时走 else 输出 0、D 首数带小数残留小数点使下一次 cin 失败（N 置/保持 0，第二个数不按整数部分参与计算）均经独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第 7 题选项 A（一正一负时输出必大于 0）与官方答案 B 按字面同时成立，属源卷多解歧义，保留官方答案 B 待裁定。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核：无新增修改；answer 维度维持 unresolved 并在 unresolved 列表保留争议，其余四维独立复核通过。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干含内联示例「例如输入 4，则计算序列前 4 项的值，规律如序列所示，输出为 0」，候选已包含；代码（tnt=0；for(i=1;i<N+1;i++) // L1；if(i%3==1) // L2；tnt += -i / else tnt += i）与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D（改为 i < N、改为 i % 3 == 0、改为 i % 3 与当前效果相同、当前代码能实现目标）与候选一致，「修为/改为」为同义差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 9 题为 D（索引 3），候选 answer=3；独立验证：循环取 i=1..N，i%3==1 的项（1、4、7…）取负、其余取正，恰为序列规律；输入 4 得 -1+2+3-4=0，与题面一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐项独立复核：A 改 i<N 漏第 N 项；B 使第 3、6、9 项带上负号与规律不符；C 改为 i%3 后余 2 项（2、5、8…）取负而当前程序取正，效果不同；D 正确。候选解析全部准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面（含内联示例）、选项、答案与解析逐项独立推导全部通过，无需修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页代码（if (i % 2 == 0){ continue; // L1 } else cout << i << \"#\"; 循环后 cout << i << \"END\"）与候选语义一致；候选将 else 体写成花括号块属等价排版。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D（输出 1#3#5#7#9#9END、删除 else 效果相同、删除 else 且将 cout 移入 L1 下面、末尾输出前增加 if(i > 10)）与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 10 题为 B（索引 1），候选 answer=1；独立追踪：奇数输出 1#3#5#7#9#，退出时 i=10，完整输出 1#3#5#7#9#10END；删除 else 后偶数仍被 continue 跳过、奇数直落输出，等价成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐项独立复核：A 误以退出值为 9（实际 10）；C 中 cout 位于 continue 之后同一分支内不可达，任何数都不再输出 i#；D 中退出时 i=10 使 if(10>10) 为假、10END 不输出；B 等价成立。候选解析准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案与解析独立复核全部通过，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 5 页题干（6 位正整数、高 3 位与低 3 位的差是否为 314 的倍数、例 628314）与候选一致；候选原题干代码输出串多一前导空格（\" 符合条件\"），已按 PDF 图与文本层（\"符合条件\"）修正为无空格。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四个表达式（低-高 /314 == 0、高-低 %314 == 0、低-高 /314、高-低 %314）与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 14 题为 B（索引 1）；独立验证 628314：高三位 628、低三位 314，(628-314)%314==0 成立，差为负且为倍数时 -314%314 仍为 0；A 以商代余且为低减高，(314-628)/314=-1 会漏判；C/D 未与 0 比较，真值方向错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原稿 C 项称「对 628314 得 -1 时条件反而为真而误输出」不成立——628314 本身符合要求，此时 C 值为 -1、条件为真、输出恰巧正确；真正缺陷以 N=100628 说明：C 值 (628-100)/314=1，条件为真而差 100-628=-528 非 314 倍数，会误判；修正稿已替换该表述，A/D 项分析（A 商判倍数、D 余数真值与题意相反）经独立复算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "执行下面 C++ 代码可以判断一个 6 位正整数 `N` 的高 3 位和低 3 位的差是否是 `314` 的倍数。例如 `628314` 就符合要求。横线处应该填入（ ）。\n```cpp\ncin >> N;\nif (___________________________)\n cout << N << \"符合条件\" << endl;\n```",
+          "explanation": "**答案：B (((N / 1000) - (N % 1000)) % 314 == 0)**\n\n**核心解析：**\n六位正整数 N 的高三位是 `N / 1000`，低三位是 `N % 1000`。如 `628314` → 高三位 628、低三位 314。判断「高3位和低3位的差是否是 314 的倍数」应写成 `差 % 314 == 0`。628 - 314 = 314，314 % 314 == 0，B 成立。差为负且为 314 的整倍数时，C++ 中 `-314 % 314` 仍为 0，判定不受负号影响。\n\n**选项逐项分析：**\n- **A**：❌ `x / 314 == 0` 只表示整除商为 0（|x| < 314），不是倍数判定；且方向为低三位减高三位。对 628314，(314 - 628) / 314 = -1 ≠ 0，会把符合要求的数判为不符合。\n- **B**：✅ 高三位减低三位后 `% 314 == 0`，正确。\n- **C**：❌ 它算出的是（低-高）除以 314 的商，且没有与 0 比较；`if` 对非零整数为真。对 628314 商为 -1，条件为真且输出碰巧正确；但例如 N=100628 时商为 (628 - 100) / 314 = 1，条件为真而输出「符合条件」，而高三位与低三位的差 100 - 628 = -528 并不是 314 的倍数，会误判。它不能表达「余数为 0」的倍数判定。\n- **D**：❌ 它算出的就是余数本身，但未与 0 比较：差恰为 314 的倍数时余数为 0、条件为假而不输出（如 628314）；差不是倍数时余数非零、条件为真而误输出，真值与题意正好相反。\n\n**易错提醒：**\n- 判断「是否为倍数」必须写 `x % k == 0`；`x / k == 0` 只是商为 0，不是整除判定。\n- C++ 的 if 条件可以是任意整型表达式，非零即真；C、D 的错误不在「语法上不能作条件」，而在判断对象错误或真值方向相反。\n\n**知识延伸：**\n`N / 1000` 与 `N % 1000` 是六位数按千位分割高、低三位的标准手段，配合取模可推广到任意分段的整除判定。\n\n**考点：** 整数位值剥离与倍数关系的取模判定"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核两处修复：题干输出串去前导空格与 PDF 图及文本一致；C 项以 N=100628 反例（商 1、差 100-628=-528 非 314 倍数而误判）替换「对 628314 误输出」的不当表述（628314 时 C 值 -1、条件为真、输出恰巧正确），两例均经我独立复算确认。选项、答案 B 与其余分析复核通过。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 5 页题面以「N 是一个正整数」开头，例句以「则 12375 就是一个双螺旋数」结尾，输出串为「是双螺旋数」（无前导空格）；修正稿已补回约束与句尾并去空格，代码（int i, N, N1=0, N2=0, N0; while(N) 两空白行；if(N1==N2)）与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页 A-D 两组两行（均 %10 与 /=10、均 /10 与 /=10、均 %10 与 %=10、均 /10 与 %=10）与候选一致，仅空格排版差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 15 题为 A（索引 0）；独立走查 12375：轮 1 N1=5、N2=7（N→123），轮 2 N1=8、N2=9（N→1），轮 3 N1=9、N2=9（N→0），N1==N2 判定成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 while 每轮执行两行走查 12375 得 9/9，「两组归属互换不影响 N1==N2 判定」的说明正确；B 累加 N/10 非数位（首轮加 1237）、C/D 的 N%=10 不删位致死循环（末位非 0）或漏加（末位 0）失败模式均经独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "N 是一个正整数。如果 `N` 的所有奇数位的数位和等于所有偶数位的数位和，则称它是一个“双螺旋数”。例如 `12375` 的所有奇数位的数位和是 9，同时它的所有偶数位的数位和也是 9，则 `12375` 就是一个双螺旋数。下面的 C++ 代码用于判断输入的 `N` 是否为双螺旋数。空白处应该填入的代码是（ ）。\n```cpp\nint i, N, N1 = 0, N2 = 0, N0;\ncin >> N;\nN0 = N;\nwhile (N) {\n _________________________\n _________________________\n}\nif (N1 == N2)\n cout << N0 << \"是双螺旋数\" << endl;\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 statement 修复：补回「N 是一个正整数」与例句尾「则 12375 就是一个双螺旋数」并去除输出串前导空格；DeepSeek 修改稿开头「NN 是一个正整数」系笔误，最终稿已更正为「N 是一个正整数」。选项、答案 A（12375 每轮两行走查 9/9）与解析逐项独立复核通过。"
+      }
+    ],
+    "summary": "本次仅复核题号 7、9、10、14、15：第 9、10 题题面（含内联示例与等价排版）、选项、答案与解析经独立推导全部通过；第 7 题官方答案 B 与候选一致，但选项 A（一正一负时输出必大于 0）按字面同样成立，属源卷选项设置的多解歧义，answer 维度保留 unresolved 待裁定；第 14 题应用两处修复——题干输出串去前导空格、解析 C 项以 N=100628 反例（值为 1、差 100-628=-528 非 314 倍数而误判）替换「对 628314 误输出」的不当表述（628314 时 C 值 -1、条件为真、输出恰巧正确），修复后 statement/explanation 均核验通过；第 15 题补回「N 是一个正整数」约束与例句尾「则 12375 就是一个双螺旋数」并去除输出串前导空格（同时更正 DeepSeek 修改稿「NN」笔误），修复后 statement 核验通过，选项、答案 A 与解析（每轮两行走查、B/C/D 失败模式）独立复核无误。 AAA"
+  }
+}
