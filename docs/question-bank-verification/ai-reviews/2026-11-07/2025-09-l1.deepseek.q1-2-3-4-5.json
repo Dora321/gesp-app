@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:15:16.642Z",
+  "completedAt": "2026-11-08T11:15:48.501Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31005,
+    "completion_tokens": 5142,
+    "total_tokens": 36147,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3712
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00773595,
+      "allowance": 0.00464157,
+      "tokens": {
+        "input": 31005,
+        "output": 5142,
+        "reasoning": 3712,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e96e32deeaefd6da2cc5a68a9d712491ab5defb0089a478a9319b380a28d113",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标明“CCF 编程能力等级认证”“C++ 一级”“2025 年 09 月”；选择题答案表第 1—15 题为 D C C C D A D C C A C D D A D，可对应核验第 1—5 题。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干为人工智能中“大模型”最贴切指什么，与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A“大电脑模型”、B“大规模智能”、C“智能的单位”、D“大语言模型”，与站点四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 1 题标为 D，即 0 起始索引 3；站点 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "“大模型”通常指大语言模型（LLM），核心在参数与训练数据规模；站点解析独立说明了 D 项正确，并逐项排除 A、B、C，结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题要求对 1 到 10001 之间所有偶数简单累加，并选择关于主要控制结构“最不合适”的说法，与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四项依次为“使用循环结构”“使用循环和分支的组合”“仅使用顺序结构”“不使用分支结构”，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 2 题标为 C，即索引 2；站点 answer=2，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "该任务需重复处理约 5000 个偶数，顺序结构无法简洁完成重复遍历，因此“仅使用顺序结构”最不合适；可用 for 循环遍历并配合 if 选偶数，也可用步长 2 的循环不使用分支。站点解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题给出 string XingMing、cin、cout 的姓名输入输出代码，并询问正确说法，与站点题干及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四项分别为“XingMing 是汉语拼音，不能作为变量名称”“可以将 XingMing 改为 Xing Ming”“可以将 XingMing 改为 xingming”“可以将 XingMing 改为 Xing-Ming”，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 3 题标为 C，即索引 2；站点 answer=2，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C++ 标识符可由字母、数字、下划线组成，不能含空格或连字符，不能以数字开头；XingMing 合法，xingming 同样合法。站点对空格与连字符错误的解释正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页给出 a=13、b=5、cout << a / b << a %// b << a % b; 以及下一行 a*b;，站点代码与题干一致，仅选项 B—D 延续到第 2 页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1—2 页四项依次为“2 3”“23”“20”“以上都不准确”，与站点选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 4 题标为 C，即索引 2；站点 answer=2，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "`//` 使第 3 行在 `a %` 后提前结束，下一行 `a*b;` 接续，实际表达式为 `cout << a / b << a % a*b;`。`a/b=2`，`a%a*b=(13%13)*5=0`，连续输出为 `20`。站点解析与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题为 C++ 表达式 `3 * 4 % 5 / 6` 的值，与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四项为 10、5、2、0，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 5 题标为 D，即索引 3；站点 answer=3，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "`*`、`%`、`/` 同级且从左到右：3*4=12，12%5=2，2/6 为整数除法得 0。站点解析正确，结果选 D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核仅覆盖题号 1—5。PDF 卷头年月等级与来源身份匹配，5 题的题干、选项、答案表及解析均与 PDF 对照一致，未发现需要修改的字段；5 题均为单选题，无需编程边界测试。"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:17:10.093Z",
+  "completedAt": "2026-11-08T11:18:56.685Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31005,
+    "completion_tokens": 8732,
+    "total_tokens": 39737,
+    "prompt_tokens_details": {
+      "cached_tokens": 30848
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7387
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00535529,
+      "allowance": 0.00321318,
+      "tokens": {
+        "input": 157,
+        "output": 8732,
+        "reasoning": 7387,
+        "cache_read": 30848,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e96e32deeaefd6da2cc5a68a9d712491ab5defb0089a478a9319b380a28d113",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 一级 2025年09月”，与 paperId 2025-09-l1 的年月、等级一致；第1页答案表列出第1至15题官方答案。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第6题题干、三行 scanf/printf 代码及“输入10、制表符、20、回车”的描述与网页一致，无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项依次为 A.{30}、B.1020、C.{N+M}、D.不输出，继续等待输入；网页选项顺序与文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第6题为 A，对应0起始索引0；网页 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：scanf(\"%d\") 会跳过前导空白（含制表符），故 N=10、M=20，N+M=30；printf 中花括号原样输出，得到 {30}。解析结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第7题题干、月份计算代码框架、if(M==0) 分支及输出语句均与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项依次为 A.N % 12、B.9 + N % 12、C.(9 + N) / 12、D.(9 + N) % 12；网页顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题为 D，对应0起始索引3；网页 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：从9月起过N个月，月份由 (9+N) 对12取余得到，余数0需单独映射为12月。如N=3得0，输出12月；N=5得2，输出2月。解析与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第8题代码为 n=0、i从0到99、n+=i%2、输出n，与网页题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项依次为 A.5050、B.4950、C.50、D.49；网页选项顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为 C，对应0起始索引2；网页 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i%2对偶数得0、奇数得1，累加结果等于0至99中奇数个数；该区间奇偶各50个，故输出50。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页末为第9题题干，第3页为完整代码与选项；代码 N=0、i从-100到99、N+=i%10、输出N，与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项依次为 A.900、B.100、C.0、D.-100；网页顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为 C，对应0起始索引2；网页 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++中负数取余结果与被除数同号；-100至-1的余数和与0至99的余数和互为相反数，合计抵消为0。解析中的区间求和结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第10题代码为 i从1到4、i%3==0时 break、否则输出 i#，循环后判断 i>5 输出 END，与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项依次为 A.1#2#、B.1#2#END、C.1#2、D.1#2#3#4#END；网页顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题为 A，对应0起始索引0；网页 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i=1输出1#，i=2输出2#，i=3时break立即退出且不执行i++，故i=3，不输出3#，也不满足i>5，最终为1#2#。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第6至第10题。5题的题面、选项顺序、官方答案映射和解析均与PDF一致，未发现需要修改的字段；第9题题干在第2页末、代码与选项在第3页，故 sourcePages 记为[2,3]。无编程题，不提供运行测试。"
+  }
+}

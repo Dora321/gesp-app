@@ -1,0 +1,223 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:29:49.030Z",
+  "completedAt": "2026-11-08T11:30:44.802Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31005,
+    "completion_tokens": 9139,
+    "total_tokens": 40144,
+    "prompt_tokens_details": {
+      "cached_tokens": 30720
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7334
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00561831,
+      "allowance": 0.00337099,
+      "tokens": {
+        "input": 285,
+        "output": 9139,
+        "reasoning": 7334,
+        "cache_read": 30720,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e96e32deeaefd6da2cc5a68a9d712491ab5defb0089a478a9319b380a28d113",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确为 CCF GESP、C++ 一级、2025年09月，与 paperId 2025-09-l1 一致；第5页给出判断题答案表：× √ × × √ × × × × √。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第1题（全卷第16题）原文为：在集成开发环境里调试程序时，要注意不能修改源程序，因为如果修改，就要终止调试、关闭该文件并重新打开，才能再次开始调试。与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选 A-D 选项；界面固定为“正确/错误”两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第1项为“×”，即错误，映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "调试中可直接修改源程序，通常只需停止当前调试并重新编译后再次调试，无须关闭文件并重新打开；“不能修改”与固定重开流程均不成立，故原命题错误。解析独立支持答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第2题原文为：执行C++表达式 10 % 0.5 将报错，因为 0.5 所在位置只能是整数。与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选 A-D 选项；界面固定为“正确/错误”两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第2项为“√”，即正确，映射为 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C++ 内置取模运算符 % 要求左右操作数为整型；0.5 是 double 字面量，不能作为 % 的右操作数，编译报错，命题正确。解析中关于 fmod 与整型要求的说明也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第3题代码为：for (i = 0; i < 10; i++) break; cout << i;，题干称“执行后将输出 9”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选 A-D 选项；界面固定为“正确/错误”两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第3项为“×”，即错误，映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "i 初始为 0，首次进入循环立即执行 break，跳过 i++ 并退出循环；i 仍为 0，故输出 0，不是 9，命题错误。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第4题代码为：n = 0; for (int i = 0; i > -10; i--) n = n + i * -1; cout << n;，题干称“将输出 55”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选 A-D 选项；界面固定为“正确/错误”两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第4项为“×”，即错误，映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "i 依次取 0,-1,-2,...,-9，共 10 次；i * -1 依次为 0,1,2,...,9，累加和为 45，不是 55。解析独立核算正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第5题题干与代码逻辑一致；代码为 cnt=0、for (int i=0; i<100; i++) // L1、cnt+=i、cout<<cnt。PDF末行分号在图像中未印出，网站补为合法语句，不改变待比较的循环起点与求和逻辑。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选 A-D 选项；界面固定为“正确/错误”两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第5项为“√”，即正确，映射为 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原代码累加 0+1+...+99=4950；将 i=0 改为 i=1 后累加 1+2+...+99，仍为 4950，仅少加不影响总和的 0，故输出相同。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第16至20题，均为判断题。已逐题对照 PDF 第5页题面、代码与判断题答案表：网站 official 答案映射分别为 1、0、1、1、0，全部与 PDF 一致；题面语义、解析推导均核对通过，无必要修改。第20题 PDF 末行疑似漏印分号，网站已按可编译语句补全，不影响判断结论。"
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:23:52.831Z",
+  "completedAt": "2026-11-08T11:25:32.934Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31005,
+    "completion_tokens": 14101,
+    "total_tokens": 45106,
+    "prompt_tokens_details": {
+      "cached_tokens": 30720
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12405
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00859551,
+      "allowance": 0.00515731,
+      "tokens": {
+        "input": 285,
+        "output": 14101,
+        "reasoning": 12405,
+        "cache_read": 30720,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e96e32deeaefd6da2cc5a68a9d712491ab5defb0089a478a9319b380a28d113",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确标注“CCF 编程能力等级认证（GESP）”“C++ 一级”“2025年09月”，与 paperId 2025-09-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题的题干、代码框架、示例“1234→4321”“120→21”、填空位置及“错误的选项是”均与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. N != 0、B. not (N == 0)、C. N = 0、D. N > 0，与网站四项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第11题为 C，对应 0 起始选项索引 2；网站 answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：C 中 while(N = 0) 是先赋值再判断，表达式值为 0，循环一次也不执行，rst=0，无法求镜面数；A、B、D 在正整数输入下都能让循环执行到 N 变为 0，因此 C 是最不合适的选项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷题干写“个位数不为0的正整数”，但示例输入120（个位为0）仍输出21，原卷题干与示例之间存在源卷内部表述矛盾；网站照录原卷，不影响第11题选 C。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3-4页第12题要求找出“不能实现交换”的代码，四段代码及“不能实现交换的代码是”表述与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3-4页四个选项的代码逐行对照：A 使用 temp，B 使用差值，C 使用和值，D 使用 a, b = b, a;，与网站选项顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第12题为 D，对应 0 起始选项索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 临时变量法可交换；B 的 b=a-b、a=a-b、b=a+b 可还原为交换；C 的 a=a+b、b=a-b、a=a-b 也可交换；D 按逗号运算符解析为 a、(b=b)、a，a 与 b 均未改变，不能交换，故答案 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第13题题干、取第M位的约定、示例 N=1234、M=2 输出3、代码框架及填空位置均与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A. N % div / 10、B. N / div / 10、C. N % div % 10、D. N / div % 10，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第13题为 D，对应 0 起始选项索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：循环使 div=10^(M-1)。N/div 先去掉低位，使目标位落到个位，再 %10 截取该位；N=1234、M=2 时 div=10，1234/10%10=3，符合题意，故 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4-5页第14题代码及“执行后输出是”的问题与网站一致，循环条件为 num<=5，num==3 时 continue。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4-5页选项 A. 1#2#4#5#6#、B. 1#2#4#5#6、C. 1#2#3#4#5#6#、D. 1#2#3#4#5#6，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第14题为 A，对应 0 起始选项索引 0；网站 answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：num 依次变为 1、2、3、4、5、6；num=3 时被 continue 跳过打印，其余均按 printf(\"%d#\") 输出并带 #，最终为 1#2#4#5#6#，与 A 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第15题题干、-999 作为结束标志的说明、代码及“相关说法错误的是”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A-D 四项文字与网站一致，特别是 D 项为“可以将 cin >> now_num; 移动到 while (now_num != -999) { 下面，结果不变”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第15题为 D，对应 0 起始选项索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：A 首个数为 -999 时 min_num=max_num=-999 且循环不执行，输出 -999 -999；B、C 在正常结束条件下可按哨兵循环求最值；D 若把循环末尾读取移到循环体开头，-999 会先参与比较，例如输入 5 3 -999 时最小值会变成 -999，结果改变，故 D 是错误说法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已逐题核对第11-15题的 PDF 第3-5页题面、代码、选项及第1页答案表：官方答案依次为 C、D、D、A、D，网站 answer 映射分别为 2、3、3、0、3，全部一致；题面与选项未发现需修改的转录错误。第11题存在原卷题干“个位数不为0”与示例120的内部矛盾，已保留说明，不影响答案。五题均为单选题，参考代码维度不适用。"
+  }
+}

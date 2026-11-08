@@ -1,0 +1,239 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:25:32.942Z",
+  "completedAt": "2026-11-08T11:29:49.021Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45998,
+    "completion_tokens": 21698,
+    "total_tokens": 67696,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17329
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0177487,
+      "allowance": 0.0177487,
+      "tokens": {
+        "input": 45998,
+        "output": 21698,
+        "reasoning": 17329,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e96e32deeaefd6da2cc5a68a9d712491ab5defb0089a478a9319b380a28d113",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头含 CCF/GESP 认证标识，标题为“C++ 一级”“2025 年 09 月”；第 1 页单选题答案表（D C C C D A D C C A C D D A D）、第 5 页判断题答案表（×√××√××××√）、第 6-8 页两道 25 分编程题（商店折扣、金字塔）的卷面结构与题量 15+10+2 均与 2025 年 9 月 GESP C++ 一级相符，paperId 2025-09-l1 的 year=2025、month=9、level=1 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 结论：我独立推导确认 while(N=0) 为恒假赋值表达式、循环体零次执行、rst 保持 0，官方答案 C 与网站 answer=2 映射正确；初核主动提出的源卷文案矛盾（提示语与示例 120）经我独立复核属实，同意保留为 unresolved 记录，且不属于网站转录错误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题：镜面数定义（“N的个位到最高位的各位数字依次反过来出现在数字中，但高位0将被忽略，不输出”）、示例“如输入1234，则将输出 4321”“又如输入120，则将输出 21”、“错误的选项是（ ）”、以及 8 行代码框架（cout 提示语、cin>>N、rst=0; // 保存逆序结果、while (______){、rst = rst * 10 + N % 10;、N = N / 10;、cout << rst << endl;）与网站逐句一致，无漏行漏字。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页四个选项依次为 A. N != 0、B. not (N == 0)、C. N = 0、D. N > 0，顺序与内容与网站完全一致；代码块第 6 行“N  = N / 10;”多一空格属排版，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 11 位为 C，按 A=0 计索引为 2；网站 answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：填入 C（N = 0）时为先赋值后判断，表达式值为 0 转 bool 为 false，循环一次不执行，rst 保持初值 0，程序输出 0，不能实现镜面数反转；输入为正整数时 A（N != 0）逐位剥离至 N 变 0 正常结束，B（not (N == 0)，逻辑非关键字与 !(N==0) 等价）与 A 等价，D（N > 0）与 A 等价，三者均能实现，故题目要求的“错误的选项”唯一为 C。解析中关于 -Wparentheses 警告、把常量写左边 0 != N 防误写成 0 = N 会编译报错的延伸说法亦准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方卷第 3 页未提供任何参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷内部文案矛盾：题干示例输入 120（个位为 0，演示反转后高位 0 被忽略输出 21），但代码第 1 行提示语为“请输入个位数不为0的正整数”，两者互斥，属原卷自身表述瑕疵；网站照录原卷未擅改，不影响本题答案 C 的判定，建议后台保留说明。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立逐行推演四个选项——A 临时变量法、B 差值法、C 和值法均能交换，D 按 C++ 语法解析为逗号表达式不改变任何变量，结论与初核及官方答案 D（索引 3）完全一致，全部采纳，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 12 题题干“下面C++代码用于交换两个正整数a和b的值，不能实现交换的代码是（ ）”与网站一致；四段选项代码分布第 3 页（题干与选项 A，选项 B 的题头）和第 4 页（B 的代码块、C、D），网站全部收录。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3-4 页逐行对照：选项 A 第 5-7 行 temp = a; a = b; b = temp;；选项 B 第 5-7 行 b = a - b; a = a - b; b = a + b;；选项 C 第 6-8 行 a = a + b; b = a - b; a = a - b;（PDF 第 4 行空行属排版，网站按语义承接，代码语义一致）；选项 D 第 5 行 a, b = b, a;。四段代码的输入提示与末行 cout 输出格式均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 12 位为 D，0 起始索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导验证：A（temp 法）三步赋值完成交换；B 设原值 a=A、b=B：b=a-b 得 A-B，a=a-b 得 A-(A-B)=B，b=a+b 得 B+(A-B)=A，交换成功；C：a=a+b 得 A+B，b=a-b 得 A，a=a-b 得 B，交换成功；D 中赋值运算符优先级高于逗号运算符，a, b = b, a; 解析为 (a), (b = b), (a); 三个子表达式——第一项仅求值丢弃、第二项自赋值、第三项仅求值丢弃，a、b 均不变，不能交换。故“不能实现交换”唯一为 D，与解析所述一致；解析中 swap(a,b) 与溢出提醒无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方卷未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "部分否决初核：初核将本维 explanation 标为 verified，但漏检了其中 B 选项的一句“连除两次，等于取第 M+1 位（1234/10/10 = 12）”——该句与自带例证自相矛盾：1234/10/10=12 是去掉低 2 位后剩下的两位数，并非第 3 位数字（第 3 位应为 2）；此为内容性错误而非文风问题，予以否决并提供修正。修正后整段解析我已独立复核通过，其余维度初核结论采纳。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 13 题：题干（“获得正整数N的第M位数，约定个位数为第1位，如N等于1234，M等于2，则输出3。假设M的值是大于等于1且小于等于N的位数。横线处应填入的代码是”）、9 行代码（int N, M, div=1;、两段 cout/cin、for (int i =0; i < (M - 1); i++) div *= 10;、cout << (______);）与网站一致，PDF 中第 6/8 行空行属排版。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A. N % div / 10、B. N / div / 10、C. N % div % 10、D. N / div % 10，与网站四项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 13 位为 D，0 起始索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析仅 B 选项一句“等于取第 M+1 位（1234/10/10 = 12）”存在数学表述错误（12 不是第 3 位数字），已修正为“连除两次相当于 N/10^M，输出去掉低 M 位后剩下的高位数（如 1234/10/10 = 12），并非某一位的数字”。修正后独立复核整段：div=10^(M-1)，先除使第 M 位落到个位、%10 截取该位，N=1234、M=2 时 1234/10%10=3 与示例一致；A（N%div 取低 M-1 位后再除 10 只会落向更低位）、C（%div%10 恒得个位）分析正确，D 正确——修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方卷未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (N / div % 10)**\n\n**核心解析：**\n前一个循环把 `div` 算成 `10^(M-1)`：M=1 时 `div=1`，M=2 时 `div=10`，M=3 时 `div=100`……\n\n要取从右往左第 M 位，分两步：\n\n1. **先整除 `div`**：`N / div` 把所有更低的位全部砍掉，第 M 位就落到了**个位**上；\n2. **再对 10 取余**：`% 10` 把个位以外的位全部去掉，剩下的正是这一位。\n\n所以顺序必须是“**先除后模**”：`N / div % 10`。\n\n**验证** N = 1234、M = 2 → `div = 10`：`1234 / 10 = 123`，`123 % 10 = 3` ✓ 与题目示例一致。\n\n**选项逐项分析：**\n- **A (N % div / 10)**：❌ 错误。先 `% div` 取的是**低 M-1 位**，再 `/ 10` 又丢掉一位，得到的是第 M-1 位甚至更低位。\n- **B (N / div / 10)**：❌ 错误。连除两次相当于 `N / 10^M`，输出的是**去掉低 M 位后剩下的高位数**（如 `1234/10/10 = 12`），并不是某一位的数字；即使再补一个 `% 10`，得到的也是第 M+1 位（2），而非第 M 位。\n- **C (N % div % 10)**：❌ 错误。`% div` 之后剩下的最低位就是原数的个位，再 `% 10` 仍然是**个位**，与 M 无关。\n- **D (N / div % 10)**：✅ 正确。先砍低位、再截高位。\n\n**易错提醒：**\n- “先除后模”与“先模后除”结果完全不同：前者能定位到任意一位，后者只会在低位里打转。\n- `div` 的初值 1 与循环 `i < M-1` 是配套的：M=1 时不循环，`div=1`，正好取个位。\n\n**知识延伸：**\n若要取最高位，则需先求出总位数 `len`，再 `N / 10^(len-1)`。数字的“按位处理”几乎都靠 `/` 与 `%` 的组合，把 `10` 换成 `k` 就能按 `k` 进制拆位。\n\n**考点：** 整数除法与取余的组合拆位、循环构造 10 的幂"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立逐轮跟踪循环（num 自增后判 ==3 时 continue 跳过打印，3 被跳过、6 在末轮被打印），输出确为 1#2#4#5#6#，与官方答案 A（索引 0）及网站 answer=0 一致，初核结论全部采纳。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 14 题题干“下面C++代码执行后输出是（ ）”及 7 行代码（num = 0;、while (num <= 5){、num += 1;、if (num == 3)、continue;、printf(\"%d#\", num);、}）与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项 A. 1#2#4#5#6#、B. 1#2#4#5#6 位于 PDF 第 4 页底部，C. 1#2#3#4#5#6#、D. 1#2#3#4#5#6 位于第 5 页顶部，四项及顺序与网站完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 14 位为 A，0 起始索引 0；网站 answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：判断时 num=0→自增 1 打印 1#；1→2 打印 2#；2→3 命中 continue 跳过打印；3→4、4→5、5→6 各打印一次，末轮自增至 6 且 6<=5 判断发生在下一轮入口前故 6 被输出，随后 6<=5 为假退出，总输出 1#2#4#5#6#，与 A 一致。对比项 B 少末位 #、C 未跳过 3、D 两者皆错的分析正确；continue 与 break 作用范围、先加后判边界的提醒无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方卷未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立复算选项 A（-999 -999 成立）、B/C 的哨兵循环正确性、D 移动语句后 -999 会先参与比较（输入 5 3 -999 时 min 被改写为 -999，原输出 3 5 变为 -999 5），并重新验证“-1000 5 -999 结果碰巧相同”的例子确系成立（-1000 > -999 为假，min 不被改写，两种写法均输出 -1000 5）。结论与官方答案 D（索引 3）及网站 answer=3 一致，采纳。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题：题干（“记录多个输入数中的最大数和最小数（输入 -999 则输入结束），相关说法错误的是”）、13 行代码（预读、min_num = max_num = now_num;、while (now_num != -999){ 两次最值 if、循环末尾 cin >> now_num;、cout << min_num << ' ' << max_num;）与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项：A“程序运行时如果第一个数输入 -999 ，则输出将是 -999 -999”、B“……待输入的数据中没有 -999 ，则程序能求出已输入整数中的最大数和最小数”、C“……成绩中不可能有 -999 ，则程序能求出已输入成绩中的最高成绩和最低成绩”、D“可以将 cin >> now_num; 移动到 while (now_num != -999) { 下面，结果不变”，文字与顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 15 位为 D，0 起始索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 首数即 -999 时 min=max=-999 且 while(-999 != -999) 为假循环零次，输出 -999 -999，说法成立；B、C 在哨兵 -999 正常收尾的前提下能持续更新并求出最值，说法成立；D 将读数移入循环体开头后，新读入的 -999 会先参与两次 if 再回到 while 判断——输入 5 3 -999 时 min 被改写为 -999，输出由原程序的 3 5 变为 -999 5，故“结果不变”错误，D 为应选项。解析中“-1000 5 -999 个别输入碰巧相同”经我复算成立（-1000 > -999 为假，min 保持 -1000，两写法均输出 -1000 5）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方卷未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核 2025-09-l1 第 11-15 题。依据：PDF 原图逐页对照 + 官方答案表独立映射 + 逐题独立推导（不依赖初核）。结果：五题官方答案依次为 C、D、D、A、D（0 起始索引 2、3、3、0、3），与网站 answer 全部一致；题干、代码、选项转录与 PDF 原图无实质差异（仅排版空行/空格差异，语义等价）。发现两处非映射问题：① 第 13 题解析中 B 选项“连除两次，等于取第 M+1 位（1234/10/10 = 12）”与自带例证自相矛盾（12 并非第 3 位数字 2），属内容性错误，已提供修正后的完整 explanation 并复核通过，故该题 verdict=revise；② 第 11 题存在源卷自身文案矛盾（提示语“请输入个位数不为0的正整数”与示例输入 120 个位为 0 互斥），网站系照录原卷，保留为 unresolved 不影响答案。对 DeepSeek 初核：第 11、12、14、15 题结论独立复核后全部接受；第 13 题 explanation 的 verified 判定予以否决并修正。五题均为单选题，referenceCode 维度不适用，tests 空置。"
+  }
+}

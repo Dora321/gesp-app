@@ -1,0 +1,168 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:37:22.906Z",
+  "completedAt": "2026-11-08T11:38:49.768Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30999,
+    "completion_tokens": 15561,
+    "total_tokens": 46560,
+    "prompt_tokens_details": {
+      "cached_tokens": 30720
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13055
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00947061,
+      "allowance": 0.00568237,
+      "tokens": {
+        "input": 279,
+        "output": 15561,
+        "reasoning": 13055,
+        "cache_read": 30720,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e96e32deeaefd6da2cc5a68a9d712491ab5defb0089a478a9319b380a28d113",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 一级”“2025 年 09 月”，与 paperId 2025-09-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 6-7 页题面完整，并给出数据范围“1 ≤ y < x ≤ 100，1 ≤ n < 10，1 ≤ p ≤ 100”；站内 question 缺少该数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内解析独立推导满减只能一次、n 折公式、整数除法风险及 fixed/setprecision(2) 输出；样例 1 得 3.00、样例 2 得 2.20，推导正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页官方参考程序用 min(a1,a2)；站内代码用 if 取较小值，逻辑等价。O(1)，在 p ≤ 100 下 double 精度足够，样例结果正确。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202509 一级] 商店折扣\n\n## 题目描述\n\n商店正在开展促销活动，给出了两种方案的折扣优惠。第一种方案是购物满 $x$ 元减 $y$ 元；第二种方案是直接打 $n$ 折，也就是说价格变为原先的 $n\\div 10$。这里的 $x, y, n$ 均是正整数，并且 $1 \\le y < x$，$1 \\le n < 10$。\n\n需要注意的是，第一种方案中满减优惠只能使用一次。例如购物满 $10$ 元减 $3$ 元时，若挑选了价格总和为 $33$ 元的物品，只能减免 $3$ 元，需要支付 $30$ 元。\n\n小明在商店挑选了价格总和为 $p$ 元的物品，结账时只能使用一种优惠方案。小明最少需要支付多少钱呢？\n\n## 输入格式\n\n四行，四个正整数 $x, y, n, p$，含义见题目描述。\n\n## 输出格式\n\n一行，一个小数，表示小明最少需要支付多少钱，保留两位小数。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le y < x \\le 100$，$1 \\le n < 10$，$1 \\le p \\le 100$。"
+        },
+        "tests": [
+          {
+            "name": "最小值且满减不可用",
+            "input": "2\n1\n1\n1",
+            "output": "0.10",
+            "reason": "x=2,y=1,n=1,p=1；方案一因 p<x 支付 1；方案二为 1×1/10=0.1；取较小值 0.1，保留两位小数为 0.10。"
+          },
+          {
+            "name": "p=x 满减门槛边界",
+            "input": "2\n1\n1\n2",
+            "output": "0.20",
+            "reason": "p=x=2；方案一支付 2-1=1；方案二为 2×1/10=0.2；取较小值 0.2，输出 0.20。"
+          },
+          {
+            "name": "p<x 边界，满减不可用",
+            "input": "100\n99\n9\n1",
+            "output": "0.90",
+            "reason": "p=1<x=100，方案一支付 1；方案二为 1×9/10=0.9；取 0.9，输出 0.90。"
+          },
+          {
+            "name": "最大价格与最大折扣边界",
+            "input": "2\n1\n9\n100",
+            "output": "90.00",
+            "reason": "方案一支付 100-1=99；方案二为 100×9/10=90；取 90，输出 90.00。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8 页题面含数据范围“1 ≤ n ≤ 50”；站内 question 缺少该数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析称 n 和 sum 都应当使用 long long、n 稍大时容易超出 int，但官方数据范围 n ≤ 50，最大平方和为 42925，int 足够；该溢出表述会误导，需按本题范围修正。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页官方参考程序为 for(i=1;i<=n;i++) ans += i*i；站内版本同样迭代平方和，long long 在 n ≤ 50 下正确，样例 2 得 5、样例 5 得 55。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202509 一级] 金字塔\n\n## 题目描述\n\n金字塔由 $n$ 层石块垒成。从塔底向上，每层依次需要 $n \\times n, (n-1) \\times (n-1), \\cdots, 2 \\times 2, 1 \\times 1$ 块石块。请问搭建金字塔总共需要多少块石块？\n\n## 输入格式\n\n一行，一个正整数 $n$，表示金字塔的层数。\n\n## 输出格式\n\n一行，一个正整数，表示搭建金字塔所需的石块数量。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n \\le 50$。",
+          "explanation": "**解析：**\n\n### 1. 题意理解\n金字塔一共有 `n` 层石块。各层所需石块数分别为 `1 * 1`、`2 * 2`、`3 * 3`、……、`n * n`（从下到上则顺序相反）。题目要求计算搭建这座金字塔总共需要的石块数量，也就是求前 `n` 个正整数的平方和：\n`sum = 1 * 1 + 2 * 2 + 3 * 3 + ... + n * n`。\n\n### 2. 算法步骤\n1. **定义变量并读入**：定义整数变量 `n` 表示层数，通过 `cin >> n;` 读入；定义累加器 `sum` 并初始化为 0。\n2. **循环累加求和**：使用 `for` 循环让 `i` 从 1 递增到 `n`，每次把 `i * i` 累加到 `sum` 中。\n3. **输出结果**：循环结束后输出 `sum`。\n\n### 3. 数据范围与类型\n本题保证 `1 ≤ n ≤ 50`。当 `n = 50` 时，平方和为 `50 × 51 × 101 / 6 = 42925`，远小于 32 位 `int` 的上限，因此使用 `int` 足够。使用 `long long` 也不会影响正确性，但并非本题必需。\n\n### 4. 样例走查\n\n**样例 1 走查（输入 `2`）：**\n- 初始 `sum = 0`。\n- `i = 1`：`sum = 0 + 1 = 1`。\n- `i = 2`：`sum = 1 + 4 = 5`。\n- 输出 `5`，与样例一致。\n\n**样例 2 走查（输入 `5`）：**\n- `i = 1`：`sum = 1`。\n- `i = 2`：`sum = 1 + 4 = 5`。\n- `i = 3`：`sum = 5 + 9 = 14`。\n- `i = 4`：`sum = 14 + 16 = 30`。\n- `i = 5`：`sum = 30 + 25 = 55`。\n- 输出 `55`，与样例一致。\n\n### 5. 易错提醒\n- **变量初始化**：累加器 `sum` 必须先赋值为 0，未初始化的局部变量值不确定。\n- **循环边界**：应写成 `i <= n`，否则会漏掉第 `n` 层的 `n * n`。\n- **类型选择**：本题 `n ≤ 50`，`int` 足够；若把 `n` 放大到几万，则需考虑 `long long` 或平方和公式。\n\n### 6. 知识延伸\n平方和也可用公式 `n * (n + 1) * (2 * n + 1) / 6` 直接算出；一级阶段重点是掌握 `for` 循环累加。"
+        },
+        "tests": [
+          {
+            "name": "最小层数",
+            "input": "1",
+            "output": "1",
+            "reason": "n=1，只有 1×1=1 块石块。"
+          },
+          {
+            "name": "最大层数",
+            "input": "50",
+            "output": "42925",
+            "reason": "平方和公式 50×51×101/6=42925，覆盖 n ≤ 50 的最大边界。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题 26、27。两题题面均缺少官方数据范围，已按 PDF 第 6-8 页提出补全；题 27 解析中的溢出警告与 n ≤ 50 的实际范围不符，已提出修正。两题参考代码算法正确，边界测试为独立计算得出，未声称已运行。"
+  }
+}

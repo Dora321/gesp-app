@@ -1,0 +1,658 @@
+{
+ "paperId": "2025-09-l1",
+ "reviewedAt": "2026-10-30",
+ "reviewedBy": {
+  "type": "AI",
+  "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+  "session": "verify/explanations-2025-09-l1"
+ },
+ "source": {
+  "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+  "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+  "shaVerified": true,
+  "fetchedAt": "2026-10-24",
+  "pages": {
+   "total": 8,
+   "note": "官方卷式：单选答案表在 p1 顶部（已裁剪放大核对），判断答案表在 p5 判断题节首，编程题解析 pp.6-8"
+  }
+ },
+ "answerTable": {
+  "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表",
+  "content": {
+   "single": [
+    "D",
+    "C",
+    "C",
+    "C",
+    "D",
+    "A",
+    "D",
+    "C",
+    "C",
+    "A",
+    "C",
+    "D",
+    "D",
+    "A",
+    "D"
+   ],
+   "judge": [
+    "×",
+    "√",
+    "×",
+    "×",
+    "√",
+    "×",
+    "×",
+    "×",
+    "×",
+    "√"
+   ]
+  },
+  "note": "判断题 √/× 为矢量图形，文本层只有表头；用 get_charbox 定位「题号」二字坐标后 6 倍放大裁剪读图逐位抄写。"
+ },
+ "questions": [
+  {
+   "id": 1,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.1 第1题：“大模型”指大语言模型。原题库题干与选项均为压缩改写，已按原文重录"
+  },
+  {
+   "id": 2,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.1 第2题：1 到 10001 偶数求和，最不合适的控制结构是“仅使用顺序结构”。原题库题干被改写，已重录"
+  },
+  {
+   "id": 3,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.1 第3题：变量名 XingMing 可改为 xingming。原题库代码块被拆散、表述改写，已重录"
+  },
+  {
+   "id": 4,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer",
+    "explanation"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对",
+    "2026-10-30 复核：按 PDF 原样（含 `%//` 与第 4 行 `a*b;`）用 clang++ 编译运行，输出 20",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "note": "官方 p.1 第4题。`//` 把第 3 行的 `b << a % b;` 变成注释，语句延续到第 4 行，实际为 `cout << a / b << a % a*b;`；`13/5=2`，`(13%13)*5=0`，输出 `20`，与官方答案表 C 一致。原先「无法编译、取 B」的判断有误，已于 2026-10-30 改回 C",
+   "evidence": {
+    "pdf": "mirrorUrl（git blob sha 41a17a499b75ee176ccf1b1e8666e8dde9cd7b21 本地复算一致）",
+    "page": "p.1 答案表第4位 = C；p.1–p.2 第4题代码与选项（150dpi 渲染读图）",
+    "compileRun": "clang++ -Wall 编译通过，运行输出 20",
+    "checkedAt": "2026-10-30"
+   },
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30"
+  },
+  {
+   "id": 5,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2 第5题：3 * 4 % 5 / 6 = 0"
+  },
+  {
+   "id": 6,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2 第6题：两次 scanf 读取 10 与 20，printf 输出 {30}。原题库把“制表符”改写为“1 个空格”、printf 格式串写错，已重录"
+  },
+  {
+   "id": 7,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2 第7题：(9 + N) % 12 求 N 个月后的月份。原题库题干与选项措辞被改写，已重录"
+  },
+  {
+   "id": 8,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2 第8题：累加 i % 2 统计 0-99 的奇数个数，得 50"
+  },
+  {
+   "id": 9,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2-p.3 第9题：i 从 -100 到 99 累加 i % 10，负数取余为负，正负抵消得 0。原题库是 abs(1.0)+floor(-1.0) 题，整题重录"
+  },
+  {
+   "id": 10,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.3 第10题：i=3 时 break，输出 1#2#，i>5 不成立故无 END。原题库是 if/赋值仿写题，整题重录"
+  },
+  {
+   "id": 11,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.3 第11题：求镜面数，错误选项是 `N = 0`（赋值而非比较）。原题库是 while 逆序输出题，整题重录"
+  },
+  {
+   "id": 12,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer",
+    "explanation"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "note": "官方 p.3-p.4 第12题：四种交换写法，不能实现的是 `a, b = b, a;`。原题库是 continue 打印奇数题，整题重录",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改"
+  },
+  {
+   "id": 13,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.4 第13题：取第 M 位应填 `N / div % 10`。原题库是 15 % 4 + 7 / 2 表达式题，整题重录"
+  },
+  {
+   "id": 14,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.4 第14题：while + continue 跳过 3，输出 1#2#4#5#6#。原题库是 while + break 求和题，整题重录"
+  },
+  {
+   "id": 15,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer",
+    "explanation"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "note": "官方 p.5 第15题：最大值/最小值哨兵程序，错误说法是 D（把读入移到循环体首行会改变结果）。原题库是空指针/野指针仿写题，整题重录",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改"
+  },
+  {
+   "id": 16,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.5 判断第1题：IDE 调试时不能修改源程序"
+  },
+  {
+   "id": 17,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.5 判断第2题：10 % 0.5 类型错误（0.5 只能是整数）"
+  },
+  {
+   "id": 18,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.5 判断第3题：for 循环首句即 break，变量 i 输出为 0 而非 9"
+  },
+  {
+   "id": 19,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.5 判断第4题：i 从 0 递减到 -9 累加 i * -1，和为 0+1+…+9 = 45，题干声称 55"
+  },
+  {
+   "id": 20,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.5 判断第5题：把 L1 行 i = 0 改为 i = 1，少加一个 0，输出不变"
+  },
+  {
+   "id": 21,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第6题：把 i < 10 改为 i <= 10 会多累加 i=10，输出改变"
+  },
+  {
+   "id": 22,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第7题：题干声称输出 45，与代码实际结果不符"
+  },
+  {
+   "id": 23,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第8题：12 + 12.12 不会报错，int 会隐式转换为 double"
+  },
+  {
+   "id": 24,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第9题：题干声称死循环，与代码实际行为不符"
+  },
+  {
+   "id": 25,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第10题：递推求斐波那契（第1项 0、第2项 1），代码正确"
+  },
+  {
+   "id": 26,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q26 explanation 升级；答案未改"
+  },
+  {
+   "id": 27,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q27 explanation 升级；答案未改"
+  }
+ ],
+ "unresolved": [],
+ "executedAt": "2026-10-24",
+ "judgeRebuild": {
+  "executedAt": "2026-10-25",
+  "answerTable": "×√××√××××√",
+  "answerTablePage": "p.5",
+  "statementPages": [
+   "p.5",
+   "p.6"
+  ],
+  "questionIds": [
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25
+  ],
+  "answerEncoding": "0 = 正确(√)，1 = 错误(×)",
+  "method": "判断题答案表在 PDF 里是矢量图形，文本层只有「题号 1..10 / 答案」表头；用 pypdfium2 的 get_charbox 定位「题号」二字坐标后按 6 倍放大裁剪读图逐位核对。题面取自官方文本层，公式或图缺失处渲染整页读图补全。",
+  "reason": "原题库第 16-25 题是通用知识点陈述（「变量名必须以字母或下划线开头」「while 循环可能一次都不执行」一类），与官方判断题逐题不符；官方第 1 题为「在集成开发环境里调试程序时…不能修改源程序…」。"
+ },
+ "singleRebuild": {
+  "executedAt": "2026-10-25",
+  "questionIds": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "answerTable": [
+   "D",
+   "C",
+   "C",
+   "C",
+   "D",
+   "A",
+   "D",
+   "C",
+   "C",
+   "A",
+   "C",
+   "D",
+   "D",
+   "A",
+   "D"
+  ],
+  "answerTablePage": "p.1",
+  "reason": "原题库 15 道单选全部是改写版：Q1/Q2/Q6/Q7 措辞被压缩，Q3 代码块被拆散、Q4 代码抄错成 `cout << a / b << a % a * b;`，Q10-Q15 更是完全不同题的仿写（if/赋值、while 逆序、continue 奇数、15 % 4 + 7 / 2、while + break 求和）。",
+  "method": "官方文本层顺序错乱（代码块被甩到页尾），逐页渲染读图转录。",
+  "note": "Q4 答案已于 2026-10-30 按官方答案表改为 C（见 questions[3].evidence）。"
+ },
+ "rebuild": true,
+ "rebuildNote": "2026-10-25 按官方 PDF 整卷重建：15 道单选 + 10 道判断全部逐字重录，题面/选项/答案/解析回到原文。",
+ "answerFix": {
+  "executedAt": "2026-10-30",
+  "questionIds": [
+   4
+  ],
+  "from": "B",
+  "to": "C",
+  "reason": "复核发现 `//` 注释使第 3、4 行拼成 `cout << a / b << a % a*b;`，可编译且输出 20，官方答案 C 正确；题库原收 B 有误。"
+ }
+}

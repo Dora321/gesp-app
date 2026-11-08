@@ -1,0 +1,234 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:15:48.509Z",
+  "completedAt": "2026-11-08T11:17:10.081Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45755,
+    "completion_tokens": 6281,
+    "total_tokens": 52036,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4316
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01000375,
+      "allowance": 0.01000375,
+      "tokens": {
+        "input": 45755,
+        "output": 6281,
+        "reasoning": 4316,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e96e32deeaefd6da2cc5a68a9d712491ab5defb0089a478a9319b380a28d113",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头图片显示“CCF 编程能力等级认证 GESP”“C++ 一级”“2025 年 09 月”，与 id 2025-09-l1（level=1, year=2025, month=9）一致；单选答案表第 1—5 题为 D C C C D。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：官方答案表第 1 题 D 与站点 answer=3 映射正确，题干、选项经图片比对一致，解析可独立成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干“人工智能现在非常火……这里说的‘大模型’最贴切是指 ( )”与站点题干逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页图片中四项依次为 A.大电脑模型、B.大规模智能、C.智能的单位、D.大语言模型，与站点四项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 D，0 起始索引为 3；站点 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：“大模型”确为“大语言模型（LLM）”的简称，核心在参数与语料规模；站点对 A（硬件无关）、B（业界无此说法）、C（智能无计量单位）的排除理由均成立，D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：答案表第 2 题 C 与站点 answer=2 一致；独立推导确认“仅使用顺序结构”最不合适，解析正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干为“计算1到10001之间所有偶数的和……哪个说法最不合适”，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页图片四项依次为 A.使用循环结构、B.使用循环和分支的组合、C.仅使用顺序结构、D.不使用分支结构，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 2 题为 C，索引 2；站点 answer=2，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：累加约 5000 个偶数需重复执行，顺序结构无法实现，故 C 最不合适；A（循环）、B（循环+分支如 i%2==0 筛选）、D（如 for(i=2;i<=10000;i+=2) 无分支遍历偶数，i=10001 为奇数不影响）均可行，站点解析与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：代码与四选项经图片比对一致，官方答案 C 对应站点 answer=2，标识符规则解析独立验证无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码四行 string XingMing; / cout << \"请输入您的姓名：\"; / cin >> XingMing; / cout << XingMing; 与站点代码一致（字符串内首尾空白差异不影响语义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页图片四项为 A.XingMing 是汉语拼音，不能作为变量名称；B.可以改为 Xing Ming；C.可以改为 xingming；D.可以改为 Xing-Ming，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 3 题为 C，索引 2；站点 answer=2，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：C++ 标识符仅允许字母/数字/下划线且区分大小写——拼音 XingMing 合法（A 错）；Xing Ming 含空格非法（B 错）；xingming 全小写合法（C 正确）；Xing-Ming 含连字符会被解析为减号（D 错）。站点解析与规则推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：代码（含第 3 行 // 与第 4 行拼接）与图片一致，官方答案 C 对应 answer=2；独立执行路径推导得输出 20，解析成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页代码 a = 13; / b = 5; / cout << a / b << a %// b << a % b; / a*b; 与站点代码逐行一致；题干“a和b都是整型变量，执行后，其结果是( )”一致，选项 B—D 延续至第 2 页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页图片选项 A. 2 3，第 2 页图片选项 B. 23、C. 20、D. 以上都不准确，与站点顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 4 题为 C，索引 2；站点 answer=2，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：// 为单行注释，第 3 行有效部分为 cout << a / b << a %，因无分号接续第 4 行 a*b;，完整表达式为 cout << a / b << a % a*b;；a/b=13/5=2，%与*同优先级左结合得 (13%13)*5=0，无分隔符输出 \"20\"。站点注释陷阱、拼接与优先级分析均与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：表达式与各选项图片一致，官方答案 D 对应 answer=3，同级左结合与整数除法截断的独立计算得 0，解析正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题“C++表达式 3 * 4 % 5 / 6 的值是( )”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页图片四项为 A. 10、B. 5、C. 2、D. 0，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 5 题为 D，索引 3；站点 answer=3，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：*、%、/ 同优先级从左到右——3*4=12，12%5=2，2/6 整型除法商 0，结果为 0（D）。站点逐步表格与易错点（不能先算右边的 /6、整除截断）均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "独立复核覆盖题号 1—5（其余题目按要求未核验）。来源身份经第 1 页卷头图片确认匹配（C++ 一级、2025 年 09 月）。五题的题干、选项、代码均与 PDF 页图逐项比对一致；官方答案表 D C C C D 与站点 answer（3/2/2/2/3，0 起始）映射全部正确；每题解析均经独立推导验证成立（Q3 标识符规则、Q4 注释拼接得 20、Q5 同级左结合与整除截断得 0）。五题均为单选题，referenceCode 不适用，无编程题边界测试需求。未发现任何需修改字段，无否决初核之处，全部 approve。"
+  }
+}
