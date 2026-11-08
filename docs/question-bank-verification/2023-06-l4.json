@@ -1,163 +1,794 @@
 {
   "paperId": "2023-06-l4",
-  "executedAt": "2026-10-25",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-06-l4"
-  },
+  "reviewedAt": "2026-11-08",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
     "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
     "pages": {
-      "judge": "pp.8-10（解析版内联【答案】）",
-      "single": "pp.1-7"
-    }
+      "total": 16,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-08",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-06-l4/source.pdf"
   },
   "answerTable": {
     "format": "真题解析版，逐题内联【答案】（判断题答案以红色文本/图片标注），无集中答案表",
     "judge": "×√××√×××√√",
     "judgePage": "pp.8-10（第1-8题在 p8-9，第9-10题在 p10）",
-    "single": "D C C D A D D B C C A A B C A（逐题内联，与题库一致）"
+    "single": "D C C D A D D B C C A A B D A（本次逐题内联核对，Q14题库C保持隔离）"
   },
   "questions": [
     {
-      "id": 3,
+      "id": 1,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q3 explanation 升级；答案未改"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "在题目给出的四种操作中，编译负责把高级语言源程序翻译为目标代码，并结合所需链接步骤形成可执行程序，因此选D。编辑与保存只是组织和存储源文件，调试是检查程序运行与定位错误，单独进行这些操作不能把C++源代码翻译成可执行文件。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "稳定排序保留相同关键字记录的原相对顺序。通常的冒泡排序只交换严格逆序的相邻项，插入排序只移动严格更大的项，二者稳定。普通直接选择排序将最小项与当前位置交换，可能越过相等项，例如2a、2b、1变为1、2b、2a，因此C正确。这里按这些排序的常见实现讨论。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "指针可以指向基本类型对象，也可以指向另一个指针对象。例如int x=1、int *p=&x，再用int **pp=&p即构成二级指针，所以C错误。指针的静态类型决定所指类型，包括void等类型。空指针、悬空指针等不能被合法解引用，存有地址形式的值并不保证对应对象可访问。"
     },
     {
       "id": 4,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "内置二维数组是行数组组成的外层数组，外层与每行数组的元素都连续存放。对int a[r][c]，每行含c个连续int，后面一行接在前一行之后，因此D声称可以不连续不正确。分别分配各行再用指针数组连接，是另一种数据结构，不能把它当作本题的内置二维数组。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "按题源讨论的普通函数声明，函数具有用于声明和调用的函数名，因此A正确。函数可以没有形参，void函数可以不返回数值，函数只需在使用前有可见的适当声明，定义可以放到调用之后。题源另注lambda表达式产生闭包对象，不能仅因常称“匿名函数”就把普通函数与可调用对象混为一谈。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "不同作用域中的变量可以重名且可以同型，例如外层int x与内层int x是两个不同对象，内层名称遮蔽外层名称，离开内层后重新可见外层。变量能否使用受作用域和生命周期限制，因此A错误。B禁止一切重名、C要求类型不同均不符合嵌套作用域规则，选择D。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3,
+        4
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "数组有3×10=30个double元素，sizeof(array)=30*sizeof(double)。本机sizeof(double)=8，所以实际测得240，对应题源D。但C++标准没有把所有平台的double固定为8字节，原题也没提供这一前提，不能把本机观测当作普遍保证。保留answer=3，记录ANSWER-DOUBT并暂停计分，等待运行环境说明。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "p的变量类型是int*，所指类型是int，所以B正确。nullptr将其初始化为空指针，值并非未初始化的随机地址。解引用空指针不是必然的编译错误，而是在求取对象值时违反有效对象要求，不能通过实际运行偶然表现判断。也不能把空指针的表示泛化为所有实现的整数地址0。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "按行主序，array[1][2]的元素序号为1×3+2=5，array[2][1]为2×3+1=7，两者相差2个int元素，字节距离为2*sizeof(int)。本机int为4字节时距离为8，对应题源C。但题目没有给出int大小，也提供了“无法确定”选项，标准层面只能确定公式。保留answer=2，记录ANSWER-DOUBT，等待平台约定。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "复合按位与赋值a&=3把a与3逐位相与后存回a。6的二进制低位为110，3为011，同时为1的位只有中间一位，所以结果为010，即十进制2。它不是逻辑与，也不是把两个整数相加，执行后a保持int类型，选择C。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "p=&a[2]使p指向下标2的第三个元素，*p读取其值3。a[1]=*p把第二个元素改为3，其他项保持原值，最终为{1,3,3,4,5}，选择A。对*p进行读取不会移动指针，也不会自动交换两个元素，数组下标从0开始。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5,
+        6
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "二维int数组实参会转换为指向首行的指针。对int array[r][4]，转换类型为int (*)[4]，与A的形参调整后类型相同。B/C缺失必需的内层界限，声明不合法。D是指向int指针的指针，不能直接接收真正二维数组的首行指针，形状看起来相似不代表类型等价。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "调用xchg(&a,&b)传入两个int对象地址，需要以int*形参x、y接收。函数先保存*x，再用*y覆盖*x，最后把旧值赋给*y，实际修改调用者的a、b，所以输出20 10，选B。其他选项不是所需指针类型或没有声明函数体使用的x、y名称，无法匹配原代码。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "resolved": false,
+      "match": false,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6,
+        7
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 2,
+      "evidence": "登记mirror解析版p7明确使用int sum，未初始化，并将答案标为D。原循环给数组对角线0、11、22赋值，但随后sum+=...首次就读取sum的不确定值，程序不能保证输出33。题库此前把sum改成0并保存answer=2即C，与原代码及题源答案冲突。本轮恢复原代码，严格保留answer=2，证据officialAnswer记D、match=false，记录ANSWER-DOUBT并暂停计分，等待澄清。原未初始化程序只编译不执行。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        7,
+        8
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "外层从位置i开始确定下一个最小元素，min先指向i，内层j遍历i+1到n−1。只有array[j]比当前array[min]更小才更新min，因此条件为array[min]>array[j]，选A。完成扫描后把最小项与array[i]交换，再处理后续区间。应比较数组元素值，而非把下标min与数值混比。"
     },
     {
       "id": 16,
-      "official": "×",
-      "bank": "×",
-      "changed": false,
-      "note": "顶级域名是 gesp → 错（应为 cn）"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        8
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "域名按点号形成从具体名称到上层域的层级，gesp.ccf.org.cn中最右边的cn是顶级域，gesp是最左侧的子域标签，因此原说法错误。判断顶级域不取第一个单词，名字长度及其在网址中的视觉位置也不会改变域名层级。"
     },
     {
       "id": 17,
-      "official": "√",
-      "bank": "√",
-      "changed": false,
-      "note": "斐波那契递推思想"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        8
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "先给出fib(1)=fib(2)=1，再按i=3、4直到n的顺序，用前两项计算当前项，体现从已知状态逐步推出后继状态的递推思想。它与函数调用自身的递归实现不同。题源解析末句把递推说成递归不准确，本轮按原题明确的循环步骤说明，判断正确。"
     },
     {
       "id": 18,
-      "official": "×",
-      "bank": "×",
-      "changed": false,
-      "note": "函数参数默认值传递"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        8,
+        9
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "普通形参如void f(int x)使用值传递，在函数内修改x不会直接改变调用者的int变量。使用int&等引用形参才表示引用传递。传入指针也属于按值传递指针值，只是函数可通过指针访问外部对象，所以原文声称默认引用传递错误。"
     },
     {
       "id": 19,
-      "official": "×",
-      "bank": "×",
-      "changed": false,
-      "note": "四维数组可能用到"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        9
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "数组维度是组织索引的数学结构，与现实空间只有三维没有必然约束。比如按时间、楼层、房间、传感器编号记录数据就可使用四个索引。C++支持多维数组，实际计算也能使用四维或更多维，因此“不可能用到”的绝对判断错误。"
     },
     {
       "id": 20,
-      "official": "√",
-      "bank": "√",
-      "changed": false,
-      "note": "未调用的函数参数不占内存"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        9
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "题目讨论形参对象的生命周期，普通函数尚未发生调用时，没有为该次调用创建形参对象。调用时根据实参初始化形参，函数退出时相应生命周期结束，题源判断正确。不能把这句话扩展为所有形参都必须占一块固定的栈内存，实际实现还可使用寄存器或优化掉对象存储。"
     },
     {
       "id": 21,
-      "official": "×",
-      "bank": "×",
-      "changed": false,
-      "note": "不一定要在 try 子句里调用"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        9
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "函数可能抛出异常并不要求每个直接调用点都在try内。它可以正常返回，也可以把异常继续传播给上层，在外层try/catch捕获。如果异常最终没有处理，则按语言规则终止，但这不使普通调用语法变成非法。因此原文“一定要在try子句里调用”错误。"
     },
     {
       "id": 22,
-      "official": "×",
-      "bank": "×",
-      "changed": false,
-      "note": "应为 char s[10][100]"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        9
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "二维char数组的第一维表示有多少行字符串，第二维表示每行容量。最长99字节内容还需1个空字符作为结束符，单行需100个char。记录10个此类字符串可用char s[10][100]。原s[100][10]每行只有10项，不能容纳99字节内容，整体判断错误。"
     },
     {
       "id": 23,
-      "official": "×",
-      "bank": "×",
-      "changed": false,
-      "note": "'0' 与 '\\0' 不等价"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        9,
+        10
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原题的两个字符常量是'0'和'\\0'。前者是数字字符0，在ASCII中编码为48，后者是值为0的空字符，常用来结束C字符串。两者类型都可为char但值不同，因此判断错误。此前题库误录为@及双引号字符串，本轮按PDF恢复单引号字符常量。"
     },
     {
       "id": 24,
-      "official": "√",
-      "bank": "√",
-      "changed": false,
-      "note": ">= 与 >>= 都是运算符"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        10
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": ">=是大于等于关系运算符，比较两个操作数并产生布尔结果。>>=是右移复合赋值运算符，按规定把左操作数右移后存回原对象，所以两者都是C++运算符，判断正确。移位的合法位数、类型和负值规则仍需另行满足，题目只问是否属于运算符。"
     },
     {
       "id": 25,
-      "official": "√",
-      "bank": "√",
-      "changed": false,
-      "note": "文件重定向导致输出目标不确定"
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        10
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "cout关联标准输出流，运行程序时可以由环境把标准输出重定向到文件或管道。仅由源代码中的cout写法不能断定运行时输出一定出现在屏幕上，所以题源判断正确。流的实际去向受启动方式和流缓冲区配置影响，不能只凭输出语句判断显示位置。"
     },
     {
       "id": 26,
-      "resolved": true,
+      "type": "programming",
+      "resolved": false,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        10,
+        11,
+        12
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": "从个位算起，偶数位数码直接累加，奇数位先乘7再反复做数位求和，直到0..9。非零数码的结果等于(t*7−1)%9+1，零需单独返回0。最终和是8倍数就输出T，否则F。16347变换为76344，和24符合，76344则不符合。N<=20、x<10^12，long long能容纳，最多12位，和不超过108。时间O(N乘数位数)，单个数额外空间O(1)。独立预言机按十进制字符串和反复数位求和处理，不复用参考取模公式。"
     },
     {
       "id": 27,
-      "resolved": true,
+      "type": "programming",
+      "resolved": false,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        12,
+        13,
+        14,
+        15,
+        16
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": "统计256种灰阶频次，按频次降序、灰阶升序选16项，随后对每个像素找绝对差最小的入选灰阶，距离相同选编号较小者。当前题库参考以his=0、mx=−1实现，可正确选中只出现一次的灰阶，两参考程序本轮保持。来源解析版p15-16却把his置−1并让选择阈值max=0，单次灰阶的计数变成0，合法的20个不同像素各出现一次时第一次就得max_id=−1，随后将越界。本轮只运行访问之前的有界诊断，标SOURCE-DOUBT等待来源澄清，保留题意与answer空字段及现有安全参考。约定10<=N<=20、等宽且每行至多20像素、至少16灰阶，当前数组容量足够。时间O(NM乘16+256乘16)，空间O(NM+256)。独立预言机排序完整频次表并对距离/编号二元组排序。"
     }
   ],
-  "unresolved": [],
-  "reviewedAt": "2026-10-30"
+  "unresolved": [
+    {
+      "id": 7,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q7。原题没有限定sizeof(double)或平台，数组大小只能确定为30*sizeof(double)。题源D=240需要double占8字节的附加前提，保持D等待澄清。"
+    },
+    {
+      "id": 9,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q9。行主序位置差是2*sizeof(int)字节，原题未限定int占4字节，题源C=8与D无法确定之间缺平台前提。保持answer=2等待澄清。"
+    },
+    {
+      "id": 14,
+      "type": "answer-key-conflict",
+      "note": "ANSWER-DOUBT Q14。登记mirror解析版p7明确答案D，原代码int sum未初始化；题库现有answer=2即C，且此前加了=0改写原程序。恢复原代码，严格保持answer=2并暂停计分，等待来源澄清。"
+    },
+    {
+      "id": 27,
+      "type": "official-source-defect",
+      "note": "SOURCE-DOUBT Q27。登记mirror为真题解析版，其p15-16参考程序将his初始化-1且选最大值初始max=0，出现一次的灰阶计数0不会被选中，合法输入可使max_id=-1并越界。题库现有参考已采用0计数/mx=-1修正，本轮保留并独立验证，来源参考缺陷等待澄清，不冒称缺陷来自独立官方原始卷。"
+    },
+    {
+      "id": 26,
+      "type": "execution-incomplete",
+      "note": "本轮运行核验两次中断，未形成完整JSON，参考代码执行证据待下一轮补齐。题面及answer没有来源冲突。"
+    }
+  ],
+  "supplementarySources": [
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.fundamental",
+      "note": "基本类型大小与实现相关，不能无条件指定int四字节/double八字节。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.array",
+      "note": "内置多维数组由连续行数组构成。"
+    }
+  ],
+  "notes": "AI-Codex逐页对照登记mirror真题解析版PDF全部16页，Git blob SHA e56797ac791cc0ee858102eb4e9919e0bd516353一致。来源答案逐题内联，没有独立原始卷或集中答案表。27个answer字段保持，Q14库C与题源D冲突隔离，Q7/Q9类型大小前提及Q27来源参考缺陷保持未决。恢复代码/判断原文与完整编程范围，两份现有参考及模板独立编译核验。 本轮运行核验连续两次中断，遵守TASK不做第三次，没有形成programming-run.json，本卷五维核验尚待完成，不能计入完成卷。外部脚本已修正，留待下一轮执行。",
+  "history": [
+    {
+      "paperId": "2023-06-l4",
+      "executedAt": "2026-10-25",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2023-06-l4"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+        "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-25",
+        "pages": {
+          "judge": "pp.8-10（解析版内联【答案】）",
+          "single": "pp.1-7"
+        }
+      },
+      "answerTable": {
+        "format": "真题解析版，逐题内联【答案】（判断题答案以红色文本/图片标注），无集中答案表",
+        "judge": "×√××√×××√√",
+        "judgePage": "pp.8-10（第1-8题在 p8-9，第9-10题在 p10）",
+        "single": "D C C D A D D B C C A A B C A（逐题内联，与题库一致）"
+      },
+      "questions": [
+        {
+          "id": 3,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q3 explanation 升级；答案未改"
+        },
+        {
+          "id": 4,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q4 explanation 升级；答案未改"
+        },
+        {
+          "id": 16,
+          "official": "×",
+          "bank": "×",
+          "changed": false,
+          "note": "顶级域名是 gesp → 错（应为 cn）"
+        },
+        {
+          "id": 17,
+          "official": "√",
+          "bank": "√",
+          "changed": false,
+          "note": "斐波那契递推思想"
+        },
+        {
+          "id": 18,
+          "official": "×",
+          "bank": "×",
+          "changed": false,
+          "note": "函数参数默认值传递"
+        },
+        {
+          "id": 19,
+          "official": "×",
+          "bank": "×",
+          "changed": false,
+          "note": "四维数组可能用到"
+        },
+        {
+          "id": 20,
+          "official": "√",
+          "bank": "√",
+          "changed": false,
+          "note": "未调用的函数参数不占内存"
+        },
+        {
+          "id": 21,
+          "official": "×",
+          "bank": "×",
+          "changed": false,
+          "note": "不一定要在 try 子句里调用"
+        },
+        {
+          "id": 22,
+          "official": "×",
+          "bank": "×",
+          "changed": false,
+          "note": "应为 char s[10][100]"
+        },
+        {
+          "id": 23,
+          "official": "×",
+          "bank": "×",
+          "changed": false,
+          "note": "'0' 与 '\\0' 不等价"
+        },
+        {
+          "id": 24,
+          "official": "√",
+          "bank": "√",
+          "changed": false,
+          "note": ">= 与 >>= 都是运算符"
+        },
+        {
+          "id": 25,
+          "official": "√",
+          "bank": "√",
+          "changed": false,
+          "note": "文件重定向导致输出目标不确定"
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "unresolved": [],
+      "reviewedAt": "2026-10-30"
+    }
+  ],
+  "referenceCodeSourceAudit": {
+    "id": 27,
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-08",
+    "sourcePages": [
+      15,
+      16
+    ],
+    "currentReferenceChanged": false,
+    "note": "原题库已经使用0初始化频次/mx=-1，保留既有安全实现。mirror解析版-1初始化/max=0在单次灰阶输入有缺陷，另存有界见证，不运行来源负下标访问。"
+  },
+  "executionCheckpoint": {
+    "status": "retry-limit",
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-08",
+    "complete": false,
+    "attempts": 2,
+    "failures": [
+      {
+        "attempt": 1,
+        "note": "独立图像测试生成器产生256..259的非法灰阶值，修正为模256并加输入域断言。"
+      },
+      {
+        "attempt": 2,
+        "note": "客观Q10/Q11运行脚本的JavaScript字符串将换行写进C++引号，导致编译错误。已改endl，并同时修正同类Q15代码，未第三次运行。"
+      }
+    ],
+    "nextAction": "下一轮先执行run-2023-06-l4.mjs，再check-batch-twenty.mjs并完成逐卷门禁，之后才能记录本卷核验完成。"
+  }
 }
