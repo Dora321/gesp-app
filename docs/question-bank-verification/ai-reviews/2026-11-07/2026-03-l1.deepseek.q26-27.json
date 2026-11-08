@@ -1,0 +1,178 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:15:12.619Z",
+  "completedAt": "2026-11-08T13:18:40.879Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35552,
+    "completion_tokens": 19128,
+    "total_tokens": 54680,
+    "prompt_tokens_details": {
+      "cached_tokens": 35456
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17463
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01159757,
+      "allowance": 0.00695854,
+      "tokens": {
+        "input": 96,
+        "output": 19128,
+        "reasoning": 17463,
+        "cache_read": 35456,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "af4d869a27cf54d4ff1467c2ba11bfcc2e8b7f33fb59ab95c77e9f5f719414e8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 一级 2026 年 03 月”，共10页，与 paperId 2026-03-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7-8页题面、输入输出格式、样例（150/165/135/133→135）及数据范围100≤Hi≤199且Hi互不相同，均与站内记录一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，PDF答案表不适用。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按|H1-Hi|最小、同距取较矮者的规则推导，样例中的H2/H3同距15并取135、H4差距17不更新的走查正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第8页参考程序与站内代码逻辑一致；站内仅将逗号赋值改为花括号，最后H4分支不再更新mnd但不影响输出，时间复杂度O(1)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值与最近较高者",
+            "input": "100\n101\n102\n103\n",
+            "output": "101",
+            "reason": "H1=100；H2、H3、H4与H1差距分别为1、2、3，最近者为101，覆盖数据范围下界100。"
+          },
+          {
+            "name": "同距选择较矮",
+            "input": "150\n165\n135\n133\n",
+            "output": "135",
+            "reason": "官方样例：H2与H3距H1均为15，按规则取较矮的135；H4差距17。"
+          },
+          {
+            "name": "后位同距且更矮需更新",
+            "input": "150\n160\n170\n140\n",
+            "output": "140",
+            "reason": "H2差距10暂存160；H3差距20；H4差距10且140<160，按同距选较矮更新为140。"
+          },
+          {
+            "name": "最大值与最近较矮者",
+            "input": "199\n198\n197\n196\n",
+            "output": "198",
+            "reason": "H1=199；其余三人距H1分别1、2、3，最近者为198，覆盖数据范围上界199。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9-10页题面、两组样例（8459045→8859085、123→123）、样例解释及0≤A≤10^8，均与站内记录一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，PDF答案表不适用。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "算法主体和样例走查正确，但解析中“替换后最大值为88888888”不准确，本题范围内最大值应为100000000；“权值t最大为10^8”也不完整，循环末尾t可到10^9。已给出修正草稿。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第10页参考程序与站内代码一致；逐位取模并按位权重构，A=0时输出0，A≤10^8时不会溢出。"
+          }
+        },
+        "changes": {
+          "explanation": "**解析：**\n\n**题意与算法**：输入非负整数 A，将十进制表示中的每个 4 替换为 8。参考程序从低位到高位拆位：用 a % 10 取当前末位，若为 4 则累加 t * 8，否则累加 t * (a % 10)；然后 a /= 10 去掉末位，t *= 10 进入下一位权值。循环结束时 b 即为替换后的数，直接输出。\n\n**边界与样例**：A=0 时 while(a) 不进入，输出 0；A 不含 4 时 b 还原为原数。样例 8459045 的两个 4 分别变为 8，输出 8859085；样例 123 无 4，输出 123。\n\n**易错点**：必须乘以当前位权 t 后累加，不能写成反转拼接 b = b * 10 + d，否则数字顺序会颠倒；A=0 需由初始化 b=0 正确输出。\n\n**数据范围**：0 <= A <= 10^8。本题范围内替换后的整数最大为 100000000（即输入 100000000 本身，不含 4）；参与运算的最高位权为 10^8，循环末尾 t 可到 10^9，均小于 32 位有符号 int 上限，不会溢出。时间 O(位数)（至多9位），空间 O(1)。"
+        },
+        "tests": [
+          {
+            "name": "最小值零",
+            "input": "0\n",
+            "output": "0",
+            "reason": "A=0时while(a)不进入，b保持0，覆盖数据范围下界。"
+          },
+          {
+            "name": "最大输入无4",
+            "input": "100000000\n",
+            "output": "100000000",
+            "reason": "A=10^8覆盖上界；无数字4，替换后仍为100000000。"
+          },
+          {
+            "name": "全部数字4",
+            "input": "4444\n",
+            "output": "8888",
+            "reason": "每一位4均替换为8，检验逐位乘位权重组。"
+          },
+          {
+            "name": "多处4替换样例",
+            "input": "8459045\n",
+            "output": "8859085",
+            "reason": "官方样例1：两个4均替换为8，非4位保持。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号26、27。题26的题面、解析、参考程序与样例均通过，并补充了最小值、最大值、同距选矮测试；题27的题面、样例和参考程序通过，但解析中替换后最大值及位权最大值表述有误，已提供修正后的解析草稿。测试期望值为独立推导，未声称已运行。"
+  }
+}

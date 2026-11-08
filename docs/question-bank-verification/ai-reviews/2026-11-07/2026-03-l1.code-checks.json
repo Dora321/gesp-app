@@ -1,0 +1,138 @@
+{
+  "executedAt": "2026-11-08T13:30:30.087Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "150\n165\n135\n133",
+          "output": "135",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "135\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围下界与最近较高者",
+          "input": "100\n101\n102\n103\n",
+          "output": "101",
+          "reason": "H1=100（下界），H2/H3/H4 距 H1 依次为 1/2/3，ans 初始化为 H2=101 后无人更近；独立手推输出 101。",
+          "kind": "boundary",
+          "actual": "101\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例（同距取较矮）",
+          "input": "150\n165\n135\n133\n",
+          "output": "135",
+          "reason": "官方样例：H2/H3 距 H1 均为 15，并列取较矮的 135；H4 距 17 不更新。",
+          "kind": "boundary",
+          "actual": "135\n",
+          "passed": true
+        },
+        {
+          "name": "后位候选同距且更矮需更新",
+          "input": "150\n160\n170\n140\n",
+          "output": "140",
+          "reason": "H2=160 存为答案（mnd=10）；H3 距 20 不更新；H4 距 10 与之并列且 140<160，按同距取较矮更新，输出 140。",
+          "kind": "boundary",
+          "actual": "140\n",
+          "passed": true
+        },
+        {
+          "name": "同距但新候选更高不更新",
+          "input": "150\n100\n140\n160\n",
+          "output": "140",
+          "reason": "H2=100 距 50 起步；H3=140 距 10 更小更新为 ans=140、mnd=10；H4=160 距 10 并列但更高，不更新；独立手推输出 140，覆盖并列不更新分支。",
+          "kind": "boundary",
+          "actual": "140\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围上界与最近较矮者",
+          "input": "199\n198\n197\n196\n",
+          "output": "198",
+          "reason": "H1=199（上界），三者距离依次 1/2/3，最近者为 198。",
+          "kind": "boundary",
+          "actual": "198\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f8784d1cb734901ab95130edeb4b7379a8663874c575260cab5960300e08820c"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "8459045",
+          "output": "8859085",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "8859085",
+          "passed": true
+        },
+        {
+          "input": "123",
+          "output": "123",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "123",
+          "passed": true
+        },
+        {
+          "name": "最小边界 0",
+          "input": "0\n",
+          "output": "0",
+          "reason": "A=0 时 while(a) 不进入，直接输出初始值 b=0；覆盖数据范围下界。",
+          "kind": "boundary",
+          "actual": "0",
+          "passed": true
+        },
+        {
+          "name": "范围上界 10^8",
+          "input": "100000000\n",
+          "output": "100000000",
+          "reason": "A=10^8 共 9 位且无数字 4，逐位乘位权重构原样输出 100000000；t 末值 10^9 仍在 int 内，覆盖上界。",
+          "kind": "boundary",
+          "actual": "100000000",
+          "passed": true
+        },
+        {
+          "name": "全 4 数字",
+          "input": "4444\n",
+          "output": "8888",
+          "reason": "各位均为 4，逐位替换为 8 后按位权累加得 8888，检验替换分支与位权重构。",
+          "kind": "boundary",
+          "actual": "8888",
+          "passed": true
+        },
+        {
+          "name": "官方样例 1",
+          "input": "8459045\n",
+          "output": "8859085",
+          "reason": "官方样例：十位与十万位的 4 替换为 8，其余位不变；期望值经独立逐位手推确认。",
+          "kind": "boundary",
+          "actual": "8859085",
+          "passed": true
+        },
+        {
+          "name": "多个内部 4",
+          "input": "45004\n",
+          "output": "85008",
+          "reason": "万位与个位的 4 替换为 8，千位/百位/十位保持，独立手推输出 85008，覆盖多处替换。",
+          "kind": "boundary",
+          "actual": "85008",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d4b24536d14d831fce8f94e1f1feb8bd7f78479dbb0fe2d4df086e54a4370173"
+    }
+  ]
+}

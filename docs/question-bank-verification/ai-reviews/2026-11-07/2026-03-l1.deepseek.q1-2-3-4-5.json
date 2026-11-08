@@ -1,0 +1,223 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:40:55.165Z",
+  "completedAt": "2026-11-08T11:42:56.867Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35558,
+    "completion_tokens": 10380,
+    "total_tokens": 45938,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8549
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0115617,
+      "allowance": 0.00693702,
+      "tokens": {
+        "input": 35558,
+        "output": 10380,
+        "reasoning": 8549,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "af4d869a27cf54d4ff1467c2ba11bfcc2e8b7f33fb59ab95c77e9f5f719414e8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2026 年 03 月”，与 paperId 2026-03-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干与网站内容一致，仅存在空格和标点排版差异，机器人系统与输入设备语境未改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四个选项依次为重力传感器、预装 AI 算法程序、接收动作指令的遥控器、拍摄其他机器人的摄像头，与网站顺序及含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题标为 B，对应 0 起始选项索引 1；独立判断：AI 算法程序属于软件，不是输入设备硬件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核对：A、C、D 均承担采集或接收外部信号的功能，B 为运行于处理器上的算法程序，属于软件，因此不能作为输入设备；结论与官方答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题题干与网站内容等价；网站将“学习编程有一段时间了”“名字改一下”简写为“改名”，未改变操作对象、条件和所问内容。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项 A 为右键菜单选择“重命名”、B 为双击左键、C 为 F1、D 为回车键，与网站四个选项顺序和含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题标为 A，对应索引 0；按 Windows 图形界面通行操作，选中文件后通过右键菜单选择“重命名”可进入输入新文件名状态。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核对：右键菜单“重命名”可直接进入文件名编辑状态；双击通常为打开，F1 通常为帮助，回车通常为打开或确认；答案 A 与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题代码为 `double PI = 3.1415926;` 与 `cout << (PI);`，题干与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四个选项分别讨论大小写不敏感、改为 `Pi`、`PI` 作变量名、全部改为 `Pai`，与网站选项顺序和含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题标为 D，对应索引 3；独立判断：C++ 大小写敏感，`PI` 非关键字，全部改写为合法标识符 `Pai` 后可正常执行。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核对：`PI` 与 `pi`、`Pi` 是不同标识符；`PI` 不是关键字；将声明和引用全部改为 `Pai` 后仍为合法代码，故 D 正确，A、B、C 错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题表达式为 `3 * 3 % 2`，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 81、27、4、1，与网站选项顺序和值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题标为 D，对应索引 3；独立计算：`*` 与 `%` 同级且左结合，`3 * 3 = 9`，`9 % 2 = 1`。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核对：乘法先于取模按同优先级左结合执行，得到 `(3 * 3) % 2 = 9 % 2 = 1`；与官方答案 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题题干、`a` 与 `b` 初值均为 4、三行代码与网站一致，仅有行号排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项均为两行输出，依次为 61/43、52/34、62/44、62/32，与网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题标为 A，对应索引 0；按逗号表达式解析，`a` 保持 4，`b = 3`，末尾 4 被丢弃。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核对：`a, b = 3, 4` 解析为逗号表达式，`a` 不变、`b` 变为 3；第一行输出 `a+2=6` 与 `b-2=1` 拼成 61，第二行输出 `a`、`b` 拼成 43，故 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 页图与答案表初核第1至5题：卷头身份一致；5题的题干、选项、官方答案和解析均与网站数据相符，未发现需要修改的字段；单选题不适用参考代码与编程边界测试。"
+  }
+}

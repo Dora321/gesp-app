@@ -1,0 +1,243 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:22:51.953Z",
+  "completedAt": "2026-11-08T12:30:36.521Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54816,
+    "completion_tokens": 35300,
+    "total_tokens": 90116,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 30978
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0258724,
+      "allowance": 0.0258724,
+      "tokens": {
+        "input": 54816,
+        "output": 35300,
+        "reasoning": 30978,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "af4d869a27cf54d4ff1467c2ba11bfcc2e8b7f33fb59ab95c77e9f5f719414e8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头原图为「CCF 编程能力等级认证 / GESP / Grade Examination of Software Programming」「C++ 一级」「2026 年 03 月」，全卷共 10 页；第 1 页含单选 15 题答案表（B A D D A A B D D B B B D B A）、第 6 页含判断 10 题答案表（√√××√√√×√×）、第 7-10 页为两道各 25 分编程题，题量与分值结构（15×2+10×2+2×25）与网站数据一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维逐一独立复核一致，无修改需求。初核对 3.14 截取整数、ABC 仅置失败位不报错、-10 合法的推导正确，予以采纳。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干「下面C++代码的相关说法，正确的是（ ）」，代码三行 int N = 0; / cin >> N; / cout << (N); 与网页逐行一致，无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 依次为：输入 10 则输出 10；输入 3.14 将报错；输入 ABC 将报错；输入 -10 将报错。与网页选项文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 6 题为 A，网页 answer=0 对应 A，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：cin >> int 读 3.14 只取前缀 3 不报错；读 ABC 使流置 failbit，不属「报错」（N 保持初始化的 0，输出 0）；-10 为合法整数正常输出。仅 A 成立，与现有解析结论一致；其中对 C 的措辞稍有含糊但结论无误，不构成修改理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "采纳初核判断：A 按字面同样成立、网站解析以相等输入反驳 A 的做法无效，需改写解析并保留官方答案 B；未发现初核遗漏的新问题，接受该方案。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干与代码一致：int M = 0, N = 0; 两次 cin；if (N > M) 输出 (N - M)，else 输出 (M - N)，行序与网页相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 文字与网页一致；A「一正一负肯定大于 0」按字面为真属源卷层面问题，不影响选项转录核验，已在 answer 与 unresolved 记录。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "官方答案表（第 1 页）第 7 题为 B，网页 answer=1 转录无误。但独立推导发现 A 亦成立：正数与负数必不相等，输出 |M - N| = |M| + |N| > 0，与 B 并存；多解争议源自试卷选项设置本身，保留官方答案不擅改，待裁定。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站现解析用「输入 -10 和 -10 结果为 0」反驳 A，违反 A 的「一正一负」前提，属无效反例；对 D 的小数输入解释不完整（第一个数带小数部分时，残留小数点会使下一次读取失败）。需整体改写，见 changes。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（官方答案表为 B；本题 A、B 按字面均可成立，存在多解争议）**\n\n**核心解析：**\n代码语义等价于输出两数差的绝对值：`N > M` 时输出 `N - M`（正数）；否则（`N <= M`，含相等）输出 `M - N`（非负）。因此对任意整数输入，输出都满足大于等于 0，B 成立。\n\n**选项逐项分析：**\n- **A（一正一负时输出肯定大于 0）**：按字面同样成立——正数与负数必不相等，输出为 `|M - N| = |M| + |N| > 0`，且与正数赋给 M 还是 N 无关。官方答案为 B，A 与 B 并存属选项设置的多解歧义，此处保留官方答案并如实注明，不把 A 判为错误。\n- **B（结果肯定大于等于 0）**：✅ 与官方答案一致。if-else 保证永远用较大数减较小数，最小值为 0（`N == M` 时）。\n- **C（N、M 相等将不会有输出）**：❌ `N == M` 时走 else 分支，输出 `M - N = 0`，程序有输出。\n- **D（带小数点的数将按整数部分计算）**：❌ 若第一个数带小数部分（如输入 `3.14`），`cin >> M` 只截取整数部分 3，残留的 `.14` 会使下一次 `cin >> N` 解析失败（流进入 fail 状态，失败后 N 置为 0），第二个数并不会按其整数部分参与计算，该说法不成立。\n\n**易错提醒：**\n- 反驳 A 不能用「输入 -10 和 -10」这类相等的输入，因为那不满足「一正一负」的前提。\n- else 分支覆盖 `N == M`，此时输出 0 而并非没有输出。\n\n**考点：** 分支结构实现绝对值语义与选项完备性争议的识别"
+        },
+        "tests": [],
+        "unresolved": [
+          "第 7 题选项 A 按字面同样成立（一正一负时输出必大于 0），官方答案表给 B；保留官方答案并保留争议，待后续裁定。"
+        ]
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立追踪（首轮 i=0 使 tnt 归零、退出时 i=5、%2d 右对齐补空格得空格+0+空格+5）与现有解析一致，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 题题干在第 2 页末，代码与选项在第 3 页：int i, tnt = 1; for (i = 0; i < 5; i++) tnt *= i; printf(\"%2d%2d\\n\", tnt, i);，与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项框依次为 24 5 / 10 5 / 0 4 / 0 5，与网页一致；%2d 实际输出含前导空格（单数字字段左补空格），选项框按 PDF 渲染省略该空格，选项与答案映射不受影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 D，网页 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立追踪：首轮 i=0 执行 tnt *= 0 使 tnt 归零，其后恒为 0；退出时 i=5；两个 %2d 字段宽度 2、右对齐，输出为「 0 5」（含前导空格）。现有解析逐轮表格与结论均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "采纳初核：题干漏句与 C 项解析自相矛盾经独立验证属实，已按官方原文补全重写；未发现初核遗漏的新问题。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页题干含内联示例「例如输入 4，则计算序列前 4 项的值，规律如序列所示，输出为 0」，网页题干缺失该句；代码部分（含 L1/L2 注释）与 PDF 一致。示例已独立验证：-1+2+3-4=0。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A（应该修为 i < N）、B（应修改为 i % 3 == 0）、C（修改为 i % 3 与当前程序效果相同）、D（当前代码能实现题目所描述计算目标）与网页一致；「修为/改为」为无实质影响的同义差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 D，网页 answer=3；独立验证：i 取 1..N 且 i%3==1 者取负，恰生成目标序列前 N 项，含官方样例前 4 项和为 0，D 成立。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站现解析 C 项先写「i=3 时 i%3=0 为 false 不执行 += -i」，随后又写「这导致位置 3、6、9 带负号」，自相矛盾且结论错误：改为 i%3 后真正发生差异的是余 2 的项（2、5、8……）取负，3、6、9 的符号不变。需改写，见 changes。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "执行下面 C++ 代码段求序列 `-1+2+3-4+5+6-7+8+9-10+11+12...` 之值。例如输入 `4`，则计算序列前 4 项的值，规律如序列所示，输出为 `0`。下面说法中正确的是（ ）。\n```cpp\nint N, tnt, i;\ncout << \"请输入正整数：\";\ncin >> N;\ntnt = 0;\nfor (i = 1; i < N + 1; i++) // L1\n    if (i % 3 == 1) // L2\n        tnt += -i;\n    else\n        tnt += i;\ncout << tnt;\n```",
+          "explanation": "**答案：D（当前代码能实现题目所描述计算目标）**\n\n**核心解析：**\n序列 `-1+2+3-4+5+6-7+8+9-10+11+12...` 的规律：序号满足 `i % 3 == 1`（1、4、7、10……）的项取负，其余项取正，即每 3 项一组、组内第 1 项为负、后两项为正。\n\n代码验证：`for (i = 1; i < N + 1; i++)` 等价于 `i` 取 1…N，恰好处理前 N 项；`if (i % 3 == 1) tnt += -i; else tnt += i;` 与上述符号规律一致。\n\n示例验证：输入 4 时前 4 项为 `-1 + 2 + 3 - 4 = 0`，与题面「输出为 0」一致，当前代码达成目标。\n\n**选项逐项分析：**\n- **A**：❌ 改为 `i < N` 后只处理第 1 到第 N-1 项，漏掉第 N 项。\n- **B**：❌ 改为 `i % 3 == 0` 会使第 3、6、9……项带负号，与序列规律不符。\n- **C**：❌ 条件改为 `i % 3` 后非零即真：余 1 或余 2 的项取负、余 0 的项取正；而当前程序中余 2 的项（2、5、8……）取正，两者在余 2 的项上效果不同。\n- **D**：✅ 当前实现与题目目标一致。\n\n**易错提醒：**\n- 混淆「能被 3 整除」（`i % 3 == 0`）与「除以 3 余 1」（`i % 3 == 1`）的判定对象。\n- 循环上界写成 `i < N` 会少算一项，写成 `i < N + 1` 才包含第 N 项。\n\n**考点：** 周期性符号序列的取模建模与条件等价性判断"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "采纳初核：原解析对 C、D 的两处推理错误经独立验证属实（C 中输出不可达；D 中退出时 i=10，10END 不输出），已给出修正；B 的等价性论证独立推导成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题代码 if (i % 2 == 0){ continue; // L1 } else 输出 i#，循环后输出 i 与 END，与网页语义一致；网页将 else 体写作花括号块属等价排版。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 依次与网页一致：A 输出 1#3#5#7#9#9END；B 删除 else 后效果相同；C 删除 else 且把输出移入 L1 行下面；D 在末尾输出前增加 if(i > 10)。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 B，网页 answer=1；独立验证：删除 else 后偶数仍 continue、奇数直接输出，完整输出仍为 1#3#5#7#9#10END，等价成立。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站现解析对 C 称「移到 L1 下后，即使 continue 执行，也会输出 i 的值」——该语句位于 continue 之后同一分支内，不可达，实际任何奇偶数都不会再输出 i#；对 D 先写「结果与原代码相同」又自我否定，而事实是退出时 i=10，if(i>10) 为假，10END 不会输出，效果不同。均需修正，见 changes。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（删除 else 后的执行效果与当前代码相同）**\n\n**核心解析：**\n原始代码逐轮追踪：\n\n| i | i % 2 == 0 ? | 行为 |\n|---|---|---|\n| 1 | 假 | 输出 `1#` |\n| 2 | 真 | `continue` |\n| 3 | 假 | 输出 `3#` |\n| 4 | 真 | `continue` |\n| 5 | 假 | 输出 `5#` |\n| 6 | 真 | `continue` |\n| 7 | 假 | 输出 `7#` |\n| 8 | 真 | `continue` |\n| 9 | 假 | 输出 `9#` |\n\n循环退出时 `i = 10`（`10 < 10` 首次为假），因此完整输出为 `1#3#5#7#9#10END`。\n\n**选项逐项分析：**\n- **A**：❌ 声称输出 `1#3#5#7#9#9END`，误认为退出时 `i = 9`；实际退出时 `i = 10`。\n- **B**：✅ 删除 `else` 后，偶数仍被 `continue` 跳过输出，奇数直接执行 `cout << i << \"#\"`，相当于把原 else 的输出变为「条件不满足时的直落语句」，与原代码效果完全相同。\n- **C**：❌ 把 `cout` 移到 `continue` 之后的同一分支内，该语句不可达：偶数先执行 `continue`，永远到不了输出；奇数又不进入该分支，因此不会再输出任何 `i#`，效果不同。\n- **D**：❌ 循环退出时 `i = 10`，`if (i > 10)` 为假，末尾的 `10END` 不会被输出，与原代码效果不同。\n\n**易错提醒：**\n- `continue` 跳过本轮剩余语句，紧跟在同一分支内 continue 之后的输出属于不可达代码。\n- 循环变量的退出值是「条件首次为假」时的值（10），不是最后一次进入循环体的值（9）。\n\n**考点：** continue 的流程特性、不可达代码与循环退出变量判定"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅按委托独立复核第 6-10 题并逐条审查初核草稿：第 6、8 题五维全部通过、无修改，接受初核结论。第 9 题确认题干漏掉官方内联示例（输入 4 → 输出 0）且现解析 C 项自相矛盾（真实差异在余 2 的项 2、5、8……，而非 3、6、9），已按官方原文回填并改写解析。第 10 题确认现解析对 C（continue 后语句不可达，实无任何 i# 输出）与 D（退出时 i=10，if(i>10) 为假，10END 不输出）的推理错误，已改写。第 7 题官方答案表与网站同为 B，但独立推导发现 A 按字面同样成立（一正一负时 |M-N|=|M|+|N| 必大于 0），属源卷选项多解争议：仅改写解析、保留官方答案并记入 unresolved，不擅自定案。初核第 7、9、10 题的修改方向均经独立验证后采纳，无需否决；第 6、8 题通过结论采纳。全部结论基于原卷落纸独立推导，未运行任何程序。"
+  }
+}

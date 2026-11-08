@@ -1,0 +1,233 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:42:56.884Z",
+  "completedAt": "2026-11-08T11:44:09.573Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53672,
+    "completion_tokens": 5174,
+    "total_tokens": 58846,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2988
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0106378,
+      "allowance": 0.0106378,
+      "tokens": {
+        "input": 53672,
+        "output": 5174,
+        "reasoning": 2988,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "af4d869a27cf54d4ff1467c2ba11bfcc2e8b7f33fb59ab95c77e9f5f719414e8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确显示“CCF 编程能力等级认证 GESP”“C++ 一级”“2026 年 03 月”，与 paperId 2026-03-l1（2026 年 3 月 GESP C++ 一级）一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干逐句对照网站一致：《武 BOT》机器人空翻落地踉跄后调整姿态、移动保持队列，问哪项不能作为输入设备，仅存在空格/标点排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A 检测重心的重力传感器、B 预装的AI算法程序、C 接收动作指令的遥控器、D 拍摄其他机器人的摄像头，与网站顺序及含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 B（对应 0 起始索引 1），与网站 answer=1 一致；独立判断：传感器、遥控器、摄像头均为采集/接收外部信号的输入硬件，预装的 AI 算法程序是运行在处理器上的软件，不属于输入设备。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：AI 算法程序属软件层面处理逻辑，其余三项均承担向系统输入外界状态或指令的硬件功能；网站解析的选项分析（A/C/D 为输入设备、B 为软件）、易错提醒（硬件与软件混淆）与该推导相符，结论 B 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立依据页图与答案表重新核对题干、选项、官方答案 B 及解析推导，结果与 DeepSeek 一致，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干为“小明学习编程有一段时间了，他想在图形环境下把当前目录（或文件夹）下的文本文件 20260314.txt 的名字改一下……”。网站省略了无关背景句“学习编程有一段时间了”，并将“名字改一下”等价简写为“改名”，操作对象（20260314.txt）、前提（左键选中）、所问（进入输入新文件名状态）均未变，属不影响语义的等价转写。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四选项为 A 单击右键并选择弹出菜单中的“重命名”、B 双击左键、C 按功能键 F1、D 按回车键，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 A（索引 0），与网站 answer=0 一致；独立判断：图形界面中选中文件后经右键菜单选择“重命名”进入文件名编辑状态，双击为打开、F1 为帮助、回车为打开/确认。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对该解析：A 为标准重命名路径；双击=F 打开、F1=帮助、回车=打开/运行，均不进入改名状态；解析另指出 Windows 可用 F2 重命名的补充说明不与题干冲突（题干仅在给出的四个操作中选）。结论 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：初核已如实标注题干简写差异且判定不影响语义，我独立复核确认省略部分为非必要背景信息，题目条件与答案映射未变，approve。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码框为 `double PI = 3.1415926;`、`cout << (PI);`，题干“下面C++代码可以执行，有关说法正确的是”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四选项依次讨论：A 大小写不敏感（PI 与 pi 效果相同）、B 改为 Pi 能正常执行、C 不能用 PI 做变量名、D 全部 PI 改写为 Pai 能正常执行不报错，与网站顺序及含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 D（索引 3），与网站 answer=3 一致；独立判断：C++ 标识符大小写敏感，PI、Pi、pi 是不同标识符；将声明与引用中的全部 PI 统一改为合法标识符 Pai 后代码不变语义且可正常执行；PI 非关键字可作变量名。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：解析指出 C++ 大小写敏感（A/B 错）、PI 非关键字（C 错）、标识符符合命名规则即可随意命名（D 对），与独立推导完全相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立核对代码、四个选项及答案 D 的推导，均与 DeepSeek 判断一致。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题表达式为 `3 * 3 % 2`，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 81、27、4、1，与网站选项顺序和数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 D（索引 3），与网站 answer=3 一致；独立计算：* 与 % 同优先级且左结合，3 * 3 = 9，9 % 2 = 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：解析按同优先级左结合推出 (3*3)%2=9%2=1，并解释 A（误当幂运算）、B、C（混淆取模与整除 9/2=4）的成因，与官方答案 D 及独立计算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立计算结果 1 与官方答案 D 相符，解析逻辑完整，无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干及三行代码 `a, b = 3, 4;`、`cout << (a + 2) << (b - 2) << endl;`、`cout << a << b << endl;` 与网站一致（a、b 初值均为 4），仅行号排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四选项均为两行输出：A 61/43、B 52/34、C 62/44、D 62/32，与网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 A（索引 0），与网站 answer=0 一致；独立推导：赋值优先级高于逗号，`a, b = 3, 4;` 解析为 (a), (b=3), (4)，a 保持初值 4，b 变为 3，末项 4 被丢弃。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对解析与执行结果：输出 a+2=6、b-2=1 拼为 61，随后输出 a、b 拼为 43，即 61 换行 43，选 A；解析对 B/C/D 分歧成因（误解逗号表达式、漏看 b 被赋值）的说明与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：我独立沿逗号表达式语义逐步推演出 a=4、b=3 及两行输出 61/43，与官方答案 A 和网站解析完全吻合。"
+      }
+    ],
+    "summary": "本次独立复核 2026-03-l1 第 1–5 题：卷头身份匹配；答案表（B A D D A …）与网站 answer 1/0/3/3/0 逐题映射一致；五题题干、选项均与 PDF 页图相符（第 2 题网站省略无关背景句并与原句等价，不影响语义与答案）；各题解析均经独立推导确认（1 软件/硬件、2 右键重命名、3 大小写敏感、4 3*3%2=1、5 逗号表达式 a=4,b=3 输出 61/43），无一需要修改。DeepSeek 初核全部五题 approve 且无 changes，经独立复核全部接受。单选题不适用参考代码与 tests。"
+  }
+}

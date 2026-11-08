@@ -1,0 +1,229 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:36:19.221Z",
+  "completedAt": "2026-11-08T12:42:01.664Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35620,
+    "completion_tokens": 31601,
+    "total_tokens": 67221,
+    "prompt_tokens_details": {
+      "cached_tokens": 35456
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 28914
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01909157,
+      "allowance": 0.01145494,
+      "tokens": {
+        "input": 164,
+        "output": 31601,
+        "reasoning": 28914,
+        "cache_read": 35456,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "af4d869a27cf54d4ff1467c2ba11bfcc2e8b7f33fb59ab95c77e9f5f719414e8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为‘CCF 编程能力等级认证 GESP / C++ 一级 / 2026 年 03 月’，与 paperId 2026-03-l1 的等级、年月一致；第1页单选题答案表列出第11-15题答案依次为 B、B、D、B、A。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第11题题干、代码框和两处横线一致；当前题面省略‘简称数位和’及123示例的说明性文字，保留算法目标与代码，不改变设问。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D四项与当前内容及顺序一致；选项末尾分号与横线后的分号属排版重复，可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为B，对应0起始索引1；独立验证：N%10取末位、N/=10删末位，B能正确累加所有数位。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析以N=123走查并逐项排除A/C/D，结论与独立推导一致；未发现影响答案的技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第12题题干、代码、两处横线及odd_count更新语句一致；当前仅省略两处注释并为输出串增加空格，属排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D四项与当前内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为B，对应0起始索引1；独立验证：N%10取当前最低位，再%2==1判断奇数，N更新去掉该位，B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析逐项说明A为偶数、B为奇数、C/D误用除法，独立推导结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4-5页第13题的核心规则、代码和选项均保留；内联85/79示例与Y/N说明未在现题面展示，但完整拼接、取余、判断规则及代码仍在，按等价题面处理。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A-D四项与当前内容和顺序一致；D项‘可不使用Q’的表述与官方一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为D，对应0起始索引3；独立验证：Q为较大数在前拼成的四位数，Q%3为余数，五位数Q*10+Q%3再%14==0即为正确判断，Q可由M、N表达式替代，D正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析结论与独立推导一致；虽将拼接后的高低位简称为‘百位/个位’，但公式和D项判断正确，不影响答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第14题题干、代码、628314示例与当前一致；当前输出串多一个空格，属排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A-D四项与当前内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为B，对应0起始索引1；独立验证：N/1000取高三位，N%1000取低三位，差对314取模为0才表示整除，B正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析把C、D这类未与0比较的整数表达式说成‘无法用于if条件’，与C++中非零即真的规则不符；结论B仍正确，需修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**核心解析：** 六位正整数 `N` 的高三位是 `N / 1000`，低三位是 `N % 1000`。题目要求判断高三位与低三位的差是否为 314 的倍数。判断整数 `x` 是否为 314 的倍数，应使用余数条件 `x % 314 == 0`，不能用 `x / 314 == 0`。B 先计算高三位减低位，再对 314 取模并判断是否为 0；若差为负，负数能被 314 整除时余数仍为 0，所以写法成立。以 `N=628314` 验证：`628 - 314 = 314`，`314 % 314 == 0`，条件为真。\n\n**选项逐项分析：**\n- A：用低三位减高三位后整除 314，判断的是商是否为 0，不能判定整除，且高低位顺序也与题干不一致。\n- B：正确。\n- C：只计算差值除以 314 的商，没有与 0 比较；作为 `if` 条件时非零商会被转换为真，不能正确判断倍数。\n- D：只计算差值对 314 的余数，没有与 0 比较；作为 `if` 条件时余数非零反而为真，与“余数为 0 才是倍数”相反。\n\n**易错提醒：** 判断倍数必须看余数是否为 0；C++ 的 `if` 条件可使用整数表达式，非零即真，因此 C、D 的错误在于判断对象不对，而不是语法上不能作条件。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5-6页第15题题干、定义、代码与两处空白一致；当前输出串多空格、示例结论省略，属非实质差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5-6页A-D四项与当前内容和顺序一致；选项中的取模、整除写法与官方一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第15题为A，对应0起始索引0；独立验证：A用两次N%10和两次N/=10交替取数位，可分别累加两组数位和，A正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析将同一轮循环中的两条交替取位语句拆成多次循环，12375的走查过程不准确；A答案仍正确，需按实际循环重写解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**核心解析：** 题目要求分别求奇数位与偶数位的数位和。选项 A 在每轮循环中做两次“取末位并累加、再删末位”：第一次把当前最低位数加入 `N1`，第二次把新的最低位数加入 `N2`。这样从右向左交替处理数位，`N1`、`N2` 分别得到两组交替数位的和；若 `N` 的位数为偶数，`N1`、`N2` 对应的奇偶位置会交换，但判断 `N1 == N2` 仍等价于两组数位和相等。\n\n以 `N=12375` 为例：\n- 第 1 轮：`N1 += 5`，`N` 变为 1237；`N2 += 7`，`N` 变为 123。\n- 第 2 轮：`N1 += 3`，`N` 变为 12；`N2 += 2`，`N` 变为 1。\n- 第 3 轮：`N1 += 1`，`N` 变为 0；`N2 += 0`，`N` 仍为 0。\n最终 `N1=9`、`N2=9`，判定为双螺旋数。\n\n**选项逐项分析：**\n- A：正确。两次取 `N % 10` 并用 `N /= 10` 去掉末位，实现交替取位。\n- B：用 `N / 10` 取的是去掉末位后的高位部分，不是当前末位，累加结果错误。\n- C：`N %= 10` 只保留末位，`N` 不能正常缩短（末位非 0 时会反复处理同一位；末位为 0 时会提前结束并漏位），错误。\n- D：同样使用 `N %= 10`，既取错数位又无法正确遍历全部数位，错误。\n\n**易错提醒：** 取末位用 `% 10`，删除末位用 `/ 10`；`%= 10` 不会删除数位，反而会破坏原数。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按PDF第1页答案表及第4-6页题面核对第11-15题。五题题面（允许等价压缩）、选项顺序和官方答案映射均一致：11 B、12 B、13 D、14 B、15 A。第14、15题解析存在技术性表述错误，已在changes中给出完整修正解析；其余解析可独立复核。本批无编程题，故tests均为空。"
+  }
+}

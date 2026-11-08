@@ -1,0 +1,246 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:11:15.429Z",
+  "completedAt": "2026-11-08T13:15:12.615Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54410,
+    "completion_tokens": 19050,
+    "total_tokens": 73460,
+    "prompt_tokens_details": {
+      "cached_tokens": 54400
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15859
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0111585,
+      "allowance": 0.0111585,
+      "tokens": {
+        "input": 10,
+        "output": 19050,
+        "reasoning": 15859,
+        "cache_read": 54400,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "af4d869a27cf54d4ff1467c2ba11bfcc2e8b7f33fb59ab95c77e9f5f719414e8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP / C++ 一级 / 2026 年 03 月”，全卷共 10 页，含单选 15 题、判断 10 题、编程 2 题，与网站 2026-03-l1（level=1、year=2026、month=3、timeLimit=5400）一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 6 页判断第 6 题原文为“……它能用于判断输入的正整数是否为对称数。所谓对称数是指从左到右和从右到左读该数，其值相同。例如，121 和 414 都是对称数，而 123 不是对称数。（ ）”，网站原 question 缺失该定义与例句；修复稿已逐字补入，代码与 PDF 第 7 页（old_number/new_number 反转逻辑）逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 6 题为√，映射正确=索引 0，网站 answer=0 一致；独立验证：反转算法（new_number*10+n%10、n/=10）对 121 得 121 对称、对 123 得 321 非对称，命题成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的备份原数、逐位反转再比较的要点正确，n=121 演算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面的 C++ 代码段的变量都是整型，它能用于判断输入的正整数是否为对称数。所谓对称数是指从左到右和从右到左读该数，其值相同。例如，121 和 414 都是对称数，而 123 不是对称数。\n```cpp\ncout << \"请输入正整数:\";\ncin >> n;\n\nold_number = n;\nnew_number = 0;\nwhile (n != 0) {\n    new_number = new_number * 10 + n % 10;\n    n /= 10;\n}\n\nif (old_number == new_number)\n    cout << \"对称数\";\nelse\n    cout << \"非对称数\";\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：已按第 6 页图核确认网站题面确实漏掉“所谓对称数……123 不是对称数”定义与示例句，初核修复文字与 PDF 原文逐字一致；答案（√→0）与解析均通过。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 7 题题干与代码（for (i = -N; i < N; i +=2)）逐字一致，仅排版空格差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 7 题为√，映射正确=0，网站 answer=0；独立推导：项为 -N,-N+2,…,N-2 共 N 项，Σ(-N+2k)（k=0..N-1）=-N²+N(N-1)=-N；N=4 时序列 -4,-2,0,2 和为 -4，N=1 时和为 -1，“输出一定为 -N”成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析“其余各项均可两两配对抵消”在偶数 N 时含 0 项且无另一配对项，表述不严密；修正稿以 Σ(-N+2k)=-N²+N(N-1)=-N 的求和推导覆盖奇/偶 N 两类情形，公式与结论均经独立验证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n循环变量 i 的取值为 -N, -N+2, -N+4, ..., N-2，共 N 项。设 i = -N + 2k（k=0,1,...,N-1），则总和为 Σ(-N+2k) = -N² + N(N-1) = -N。\n因此无论 N 为奇数还是偶数，输出都为 -N。N 为偶数时序列中会出现 0，但 0 不影响总和；N 为奇数时各项除 -N 外可两两抵消。\n\n**易错提醒：**\n- 不能只验证 N=5 等奇数；偶数 N 时序列含 0，需要说明 0 不影响结果。\n- 循环终点是 i < N，不包含 N。\n\n**知识延伸：**\n等差数列求和也可用 (首项+末项)×项数÷2 验证。\n\n**考点：** 镜像区间等差数列的累加抵消规律"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：用 N=4 独立验证发现原“两两配对”表述对含 0 的偶数 N 不成立；对修正稿公式 Σ(-N+2k)=-N 逐步复算无误，结论“输出一定为 -N”不变。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 8 题“执行C++语句 printf(\"%d\\n\", 3.14) 将报错。”与网站一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 8 题为×，映射错误=1，网站 answer=1；独立分析：%d 期望 int 而实参为 double，属未定义行为，主流编译器默认仅警告、不产生编译错误，运行时输出无意义值而非“报错”，× 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析“printf 不会因为类型不匹配而报错或崩溃”中“不会崩溃”过于绝对（未定义行为允许崩溃）；修正稿改为“属于未定义行为……运行时输出不可预测，也可能崩溃，但不能断言‘将报错’”，保留命题为错的结论且符合标准表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n`printf` 的 `%d` 要求对应参数为 `int`，而 `3.14` 是 `double`，格式说明符与实参类型不匹配。该调用属于未定义行为：编译器可能给出警告，但通常不会因此产生编译错误；运行时输出不可预测，也可能崩溃，但不能断言“将报错”。因此命题“将报错”错误。\n\n**易错提醒：**\n- 格式不匹配不是必然的编译错误或运行时错误，不能把“未定义行为”简单等同于“报错”。\n- 使用 `printf` 时应保证格式符与参数类型严格匹配；C++ 中可用 `cout` 获得类型安全输出。\n\n**知识延伸：**\n可变参数函数不检查实参类型，类型安全由程序员负责。\n\n**考点：** printf 格式控制符与参数类型不匹配的行为（未定义行为）"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：类型不匹配属未定义行为，“不会崩溃”断言不成立；修正稿未改变“命题‘将报错’错误”的考试结论，表述与标准一致。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 9 题题干“……将输出 2500”及代码（for (int i = 1; i < 100; i++) cnt += i++;）与网站逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 9 题为√，映射正确=0，网站 answer=0；独立追踪：循环体内 i++ 与 for 步进 i++ 共两次自增，执行循环体时 i 依次为 1,3,5,…,99，i=99 时 99<100 成立、cnt=1+3+…+99=(1+99)×50/2=2500，随后 i=101 退出，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对双重自增（后置先用后加）、步进与循环体各一次的追踪，以及各项为 1..99 奇数、共 50 项、和为 2500 的推导均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核未提修改，本站独立复核结果一致：题面与代码、答案（√→0）、2500 的推导均无问题，无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 10 题“printf(\"%-5d\\n\", 314)……结果是 -5314”与网站一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 10 题为×，映射错误=1，网站 answer=1；独立分析：%-5d 为左对齐、最小宽度 5，实输出“314␣␣”（后补 2 空格）而非 -5314，命题错误，× 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析“左侧补 2 个空格（若没有 - 则右侧补空格）”把补空格方向写反，且与其自身给出的“314 后面跟 2 个空格”自相矛盾；修正稿更正为“- 表示左对齐、右侧补空格；无 - 时右对齐、左侧补空格”，与实际输出一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n`%-5d` 中 `%d` 表示以十进制整数输出，`-` 表示左对齐，`5` 表示最小字段宽度为 5。数值 `314` 占 3 个字符，左对齐时应在右侧补 2 个空格，即先输出 `314`，再输出两个空格和换行。`-` 和 `5` 是格式控制指令，不会作为字符输出，因此结果不是 `-5314`。\n\n**易错提醒：**\n- `-` 标志表示左对齐，补空格在右侧；没有 `-` 时默认右对齐，补空格在左侧。\n- 不要把格式控制符中的 `-5` 误当成要输出的负数和数字。\n\n**知识延伸：**\n`printf` 的字段宽度只规定最小宽度，实际内容更长时不会被截断。\n\n**考点：** printf 格式控制符中左对齐标志与字段宽度的正确理解"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：方向性错误属实（%-5d 左对齐应在右侧补空格，原稿写成左侧且与自身结论矛盾）；修正稿保留“实输出 314 后跟两空格、非 -5314”的正确结论。"
+      }
+    ],
+    "summary": "本次依分工仅独立核验判断题第 6-10 题（网站 id 21-25）。依据 PDF 第 6 页判断题答案表，第 6-10 题依次为 √√×√×，映射 0/0/1/0/1，与网站 5 题 answer 全部一致，并均经独立推导支持（id22 求和 Σ(-N+2k)=-N 对奇、偶 N 均成立；id23 类型不匹配属未定义行为而非必然报错；id24 双重自增使 cnt=1+3+…+99=2500；id25 实际输出为 314 右补两空格）。确认 4 处实质性缺陷并采纳初核修复：id21 题面按 PDF 原文补入“对称数”定义与例句（statement 修复后核验通过）；id22 解析改为等差数列求和推导并明确偶数 N 含 0 情形；id23 解析取消“不会崩溃”绝对断言改为未定义行为表述；id25 解析更正左对齐补空格方向为右侧。三处解析修复后核验通过；id24 题面、答案、解析均无修改 approve。初核 4 项修改建议经逐字与数学复核全部接受，无否决项，无未决问题。"
+  }
+}

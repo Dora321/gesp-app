@@ -1,0 +1,233 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:14:43.522Z",
+  "completedAt": "2026-11-08T12:17:20.886Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35558,
+    "completion_tokens": 13231,
+    "total_tokens": 48789,
+    "prompt_tokens_details": {
+      "cached_tokens": 35456
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10657
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00806027,
+      "allowance": 0.00483616,
+      "tokens": {
+        "input": 102,
+        "output": 13231,
+        "reasoning": 10657,
+        "cache_read": 35456,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "af4d869a27cf54d4ff1467c2ba11bfcc2e8b7f33fb59ab95c77e9f5f719414e8",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头原图显示“CCF 编程能力等级认证”“C++ 一级”“2026 年 03 月”，全卷共 10 页，与 paperId 2026-03-l1 及其来源卷头一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题的题干、`int N = 0;`、`cin >> N;`、`cout << (N);` 三行代码与网页一致，未漏必要代码。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 四项分别为输入 `10`、`3.14`、`ABC`、`-10` 时的说法，与网页选项逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 A，网页 `answer=0`，对应 A，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：输入 `10` 输出 `10`；单个 `int` 读取 `3.14` 只提取整数前缀 `3` 且不抛异常；输入 `ABC` 仅使流进入失败状态，默认不抛运行时错误；`-10` 是合法整数。故只有 A 正确，现有解析结论与推导方向一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题题干、`M` 与 `N` 初始化为 0、两次 `cin`、`if (N > M)` 分支及两条输出语句，均与网页题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 四项文字与网页选项逐项一致；但选项内容本身存在多解风险，详见 answer 维度。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第 1 页官方答案表第 7 题为 B（网页 `answer=1`，当前保留官方答案）。但按字面，A 也成立：输入一个正数和一个负数时两数不相等，其差的绝对值必大于 0。A、B 可同时为真，官方选项设置存在歧义。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析用“-10 和 -10”反驳 A，违背 A 的“一正一负”前提，且未指出 A 按字面也成立；对 D 的小数输入解释也不完整。需改写解析以保留官方 B，并明确选项多解争议。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（按官方答案表）**\n\n代码在 `N > M` 时输出 `N - M`，否则输出 `M - N`，本质上输出 `|N - M|`，所以对任意整数结果都满足大于等于 0，B 正确。\n\n但 A 按字面也成立：输入一个正数和一个负数时，两数不相等，其差的绝对值必然大于 0。因此本题选项设置存在多解/歧义；官方答案取 B，不应据此把 A 说成错误。\n\nC 错：`N == M` 时走 `else`，会输出 0。D 错：`cin >> int` 读到小数点会停止，若连续读取两个这样的输入，后一次读取还可能失败，不能概括为两个数都按整数部分参与计算。"
+        },
+        "tests": [],
+        "unresolved": [
+          "第 7 题 A、B 按字面均可成立，官方仅给 B；保留争议，不擅自改答案。"
+        ]
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末引出第 8 题，第 3 页给出 `i=0`、`tnt=1`、`i<5`、`tnt *= i` 及 `printf(\"%2d%2d\\n\", tnt, i);`；网页代码与官方一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 为 `24 5`、`10 5`、`0 4`、`0 5`；网页省略代码框中的前导空格，但数值与选项顺序一致，不影响答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 D，网页 `answer=3`，对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立追踪：第一轮 `i=0` 使 `tnt` 由 1 变为 0，之后始终为 0；循环结束时 `i=5`。`printf(\"%2d%2d\")` 输出 `0` 和 `5`，现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页第 9 题还包含“例如输入 4，则计算序列前 4 项的值，规律如序列所示，输出为 0”的说明，网页题干漏掉该示例；代码本身与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 四项关于 L1、L2 的表述与网页选项逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 D，网页 `answer=3`。独立验证：`i=1` 到 `N` 时，`i%3==1` 的 1、4、7……取负，其余取正，生成目标序列前 N 项。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析在分析 C 时先称 `i=3` 会走 `else`，后又称“位置 3、6、9 带负号”，前后自相矛盾。实际把条件改为 `i%3` 后，余 1 或 2 为真而取负，余 0 为假而取正，故效果不同。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "执行下面 C++ 代码段求序列 `-1+2+3-4+5+6-7+8+9-10+11+12...` 之前 `N` 项的值。例如输入 `4`，则计算序列前 4 项的值，规律如序列所示，输出为 `0`。下面说法中正确的是（ ）。\n```cpp\nint N, tnt, i;\ncout << \"请输入正整数：\";\ncin >> N;\ntnt = 0;\nfor (i = 1; i < N + 1; i++) // L1\n if (i % 3 == 1) // L2\n tnt += -i;\n else\n tnt += i;\ncout << tnt;\n```",
+          "explanation": "**答案：D**\n\n代码中 `i` 从 1 开始，循环条件 `i < N + 1` 等价于 `i <= N`，恰好处理前 N 项；`i % 3 == 1` 的项（1、4、7……）累加 `-i`，其余项累加 `i`，正好得到 `-1+2+3-4+5+6...`，所以 D 正确。\n\nA 错：改为 `i < N` 会漏掉第 N 项。B 错：改为 `i % 3 == 0` 会使第 3、6、9……项带负号，不符合序列。C 错：条件改为 `i % 3` 后，非零即真，余 1 或 2 的项都为负、余 0 的项为正，与当前程序效果不同。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题题干及 `for`、`continue`、`else`、末尾 `cout` 代码与网页一致；网页将 `else` 后的单条输出写成花括号块，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 四项与网页选项逐项一致，包括 A 的 `9END`、C 的移入 L1 行下、D 的 `if(i > 10)`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 B，网页 `answer=1`。删除 `else` 后，偶数仍 `continue`，奇数直接输出，故效果相同。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析对 C、D 的说明有误：把 `cout` 放到 `continue` 之后会不可达；D 中循环结束时 `i=10`，`if(i > 10)` 为假会漏掉 `10END`，二者均不等价。应改写为 B 的等价性论证。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n原循环中偶数执行 `continue`，奇数输出 `i#`；循环结束后 `i=10`，再输出 `10END`，所以完整输出为 `1#3#5#7#9#10END`。删除 `else` 后，`continue` 对偶数仍然跳过后续输出，奇数则直接执行 `cout << i << \"#\"`，与原代码等价，故 B 正确。\n\nA 错在末尾写成 `9END`，实际循环退出时 `i=10`。C 错在把 `cout` 放到 `continue` 所在分支之后：偶数会先 `continue`，该输出不可达；奇数又不会进入该分支，因此不会得到原输出。D 错在增加了 `if (i > 10)` 后，循环结束时 `i=10`，条件为假，会漏掉 `10END`，与原效果不同。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 6-10 题。第 6、8 题五维均通过；第 9 题漏掉官方内联示例且 C 项解析矛盾，第 10 题解析对 C、D 的说明错误，均已给出修正草稿。第 7 题官方答案表为 B，网页答案也保留 B，但 A 按字面同样成立，存在多解歧义；仅修正解析，未擅自改答案。"
+  }
+}
