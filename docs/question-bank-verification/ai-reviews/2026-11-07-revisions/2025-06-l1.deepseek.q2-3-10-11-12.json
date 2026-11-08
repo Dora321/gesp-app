@@ -1,0 +1,226 @@
+{
+  "paperId": "2025-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    3,
+    10,
+    11,
+    12
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:22:52.617Z",
+  "completedAt": "2026-11-08T11:26:35.119Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 26947,
+    "completion_tokens": 14539,
+    "total_tokens": 41486,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12392
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01276545,
+      "allowance": 0.00765927,
+      "tokens": {
+        "input": 26947,
+        "output": 14539,
+        "reasoning": 12392,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bf1f039f2e21678278791b9f1c73520fc141e5462f6ec84c0555de2e6ff2a536",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++1级.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "mirrorBytes": 1127367,
+    "shaVerified": true,
+    "sha256": "a279bfe780869dafe614c3f09f52027e900d3d4a87d020e83a49840a0fde4c77"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证 GESP”“C++ 一级”“2025 年 06 月”，与 paperId 2025-06-l1 对应的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题原图代码为 `int i,N = 0; // L1`、`cin >> N; // L2`、`for (i = 1; i < 9; i++)`、`if (N % i == 0) break; // L3`、`if (i < 9)`、`printf(\"N不能大于9\\n\"); // L4`，与候选逐行一致；题干“设置断点和检查局部变量”也一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页四个选项依次为：A“断点不可以设在L1标记的代码行”、B“执行暂停在L2标记的代码行时，可以检测i的值”、C“执行暂停在L3标记的代码行时，可以修改i的值”、D“执行有可能暂停在L4标记的代码行”。候选顺序和含义均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题为A，0起始索引为0，与候选 answer=0 一致。独立判断：L1包含 `N = 0` 初始化，可设置断点，因此A所述“不可设断点”是错误说法；B、C、D均可成立，答案A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立成立：L1有初始化动作可设断点；暂停在L2时i虽未赋有效值仍可被调试器查看；L3处可修改i；`N % 1 == 0` 恒真使首轮在L3处break，此时i=1<9，故L4可能到达。解析与官方答案A相容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题代码第1行为 `int first = 10;`，第2行为 `printf(\"{%d}\\n\", First)` 且行末无分号；候选照录了花括号、`%d`、`\\n` 及缺分号情况，未改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页四个选项依次为：输出10、输出 {First}、输出“{First}”、编译报错因为First应该是first；候选四项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题为D，0起始索引3，与候选 answer=3 一致。独立判断：C++区分大小写，第1行声明 `first`，第2行使用未声明的 `First`，编译报错，应选D；缺分号也是编译错误，但不改变最佳选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出大小写敏感、`First`未声明、`{%d}` 中只有 `%d` 是格式占位符而花括号原样输出；候选还注明第2行缺分号属于源卷排版问题。文中“把First改成first则输出{10}”应以补上分号使代码合法为前提，不影响答案D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第2行 `printf(\"{%d}\\n\", First)` 末尾未印分号；按原卷照录，属源卷排版问题，官方答案仍为D。"
+        ]
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题代码为 `int N, M, D;`，读取当前星期N和天数M，`D = ____________;`，`if (____________)` 后分别输出“是星期日”或“是星期%d”；注释“星期日是0”也存在。候选与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项A、B、C、D的两空内容依次为：`(N + M) / 7`与`D == 0`；`(N + M) % 7`与`D == 0`；`(N + M) / 7`与`D <= 0`；`(N + M) % 7`与`D = 0`。候选四组顺序和内容一致，尤其D第二空为赋值 `D = 0`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题为B，0起始索引1，与候选 answer=1 一致。独立判断：星期序号按7循环，`(N + M) % 7` 得到0～6，星期日为0，故用 `D == 0` 判星期日，B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确：`/` 得整周数而非星期序号，`%` 得余数；D用赋值 `D = 0`，赋值表达式为0使if条件恒假并覆盖D，无法正确判断星期日。解析独立推导与官方答案B一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题代码为 `int i;`、`for (i = 1; i < 11; i += 3){`、`continue;`、`if (i % 2 == 0) break;`、`printf(\"%d#\", i);`、`}`、`if (i >= 11) printf(\"END\");`，候选逐行一致；A～C选项在第3页，D选项续于第4页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3～4页选项依次为A. END、B. 1#、C. 1#4#END、D. 1#4#7#10#END，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为A，0起始索引0，与候选 answer=0 一致。独立跟踪：i依次为1、4、7、10，循环体首句无条件continue，条件更新后i变为13；13<11不成立退出，i=13≥11，仅输出END，答案A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出continue跳到for更新表达式，continue之后的if、break、printf不可达；逐轮i=1→4→7→10→13，退出后满足i>=11，仅输出END。与官方答案A一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第12题代码为 `int i, N;`、`cin >> N;`、`i = N;`、`while (_______){ if (N % i == 0) printf(\"%d,\", i); i -= 1; }`、`printf(\"1\");`；题干示例输入12输出12,6,4,3,2,1。候选代码和示例一致；候选把设问明确为“横线处应填入”，属等价表述。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为A. `i -= 1`、B. `i == 1`、C. `i > 1`、D. `i >= 1`，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为C，0起始索引2，与候选 answer=2 一致。独立跟踪N=12：`i > 1` 时依次输出12,6,4,3,2，i=1退出，循环外`printf(\"1\")`补出1，合计12,6,4,3,2,1，C正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立成立：C与D差一个等号，D会让i=1也进入循环并在循环外多输出一个1；B在N>1时一次也不进入；A的条件在判断前先自减，循环体又自减，以N=12跟踪会错过初始N并进入负数死循环。解析与答案C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验的5题均为单选题。逐题对照PDF页图与答案表：题面、代码、选项顺序及官方答案映射均与候选一致；各解析经独立推导成立。无需提交字段修改。题3保留源卷第2行缺分号的备注，但不影响官方答案D。"
+  }
+}

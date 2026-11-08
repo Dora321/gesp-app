@@ -1,0 +1,209 @@
+{
+  "paperId": "2025-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    17,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:29:17.499Z",
+  "completedAt": "2026-11-08T11:31:50.673Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 26943,
+    "completion_tokens": 10861,
+    "total_tokens": 37804,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9223
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01055805,
+      "allowance": 0.00633483,
+      "tokens": {
+        "input": 26943,
+        "output": 10861,
+        "reasoning": 9223,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bf1f039f2e21678278791b9f1c73520fc141e5462f6ec84c0555de2e6ff2a536",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++1级.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "mirrorBytes": 1127367,
+    "shaVerified": true,
+    "sha256": "a279bfe780869dafe614c3f09f52027e900d3d4a87d020e83a49840a0fde4c77"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证 C++ 一级 2025 年 06 月”，与 2025-06-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文为“如果N是C++的整型变量，值为5，则表达式 (N + !N) 的值为4。 ( )”，候选题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，源卷无A-D选项；候选以“正确/错误”表示判断结果，不影响题目内容。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2题为×，按正确=0、错误=1得 officialAnswer=1；独立计算 N=5 时 !N=0，N+!N=5≠4，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出 !5 为 false（整数语境为0）、5+0=5、~5=-6，并说明 ! 的布尔转换规则；独立复核无技术性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6-7页的题名、题目描述、三行输入格式、输出格式及数据范围“n,k,t 均不超过1000”与候选一致；两组样例 8/3/2→6、19/3/30→19 也一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导答案为 min(n, k*t)，两样例复算正确；候选指出 k*t≤10^6、int 足够而 long long 为稳健写法，符合本题约束，无错误结论。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码读入 n,k,t 后输出 min(n,k*t)，与 PDF 第7页官方参考程序（ans=k*t; if(n<ans) ans=n）逻辑等价；long long 在本题无溢出，时间复杂度 O(1)，样例复现正确（依据代码与推演，未声称运行）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\n1\n1\n",
+            "output": "1",
+            "reason": "n=k=t=1，k*t=1，min(1,1)=1。"
+          },
+          {
+            "name": "假期只能读一天一页",
+            "input": "1000\n1\n1\n",
+            "output": "1",
+            "reason": "k*t=1<n=1000，受假期阅读能力限制输出1。"
+          },
+          {
+            "name": "恰好读完",
+            "input": "1000\n10\n100\n",
+            "output": "1000",
+            "reason": "k*t=1000=n，min(n,k*t)=1000。"
+          },
+          {
+            "name": "全参数上限",
+            "input": "1000\n1000\n1000\n",
+            "output": "1000",
+            "reason": "k*t=10^6>n=1000，只能读完整本1000页。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7-8页的题名、题目描述、两行输入格式、输出格式及数据范围“1 ≤ m,n ≤ 100”与候选一致；样例 4/6→12 也一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导所求为 lcm(m,n)；候选 gcd 递归步骤 gcd(4,6)=2、lcm=(4/2)*6=12 均正确；long long 在 1≤m,n≤100 下非必需但无害。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "gcd 递归以 b==0 为终止，输出 (m/gcd(m,n))*n，与 PDF 第8页枚举首个公倍数的参考程序结果一致；lcm≤9900 无溢出，复杂度 O(log min(m,n))，样例 4/6→12 独立复现（未声称运行）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小周期",
+            "input": "1\n1\n",
+            "output": "1",
+            "reason": "lcm(1,1)=1，至少1天后再次同一天值日。"
+          },
+          {
+            "name": "一方每日值日",
+            "input": "1\n100\n",
+            "output": "100",
+            "reason": "lcm(1,100)=100。"
+          },
+          {
+            "name": "周期相同",
+            "input": "100\n100\n",
+            "output": "100",
+            "reason": "lcm(100,100)=100。"
+          },
+          {
+            "name": "互质且接近上限",
+            "input": "99\n100\n",
+            "output": "9900",
+            "reason": "gcd(99,100)=1，lcm=99×100=9900，为本数据范围内最大量级答案。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题17、26、27：第17题判断为错误；第26题答案为 min(n,k*t)；第27题答案为 lcm(m,n)。三题题面、答案、解析与参考代码均与 PDF 一致，无需修改字段；编程题已补充最小值及边界测试。"
+  }
+}

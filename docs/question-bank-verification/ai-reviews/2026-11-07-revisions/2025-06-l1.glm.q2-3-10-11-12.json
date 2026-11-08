@@ -1,0 +1,236 @@
+{
+  "paperId": "2025-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    3,
+    10,
+    11,
+    12
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T11:26:35.129Z",
+  "completedAt": "2026-11-08T11:29:17.490Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42203,
+    "completion_tokens": 13749,
+    "total_tokens": 55952,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10549
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01320495,
+      "allowance": 0.01320495,
+      "tokens": {
+        "input": 42203,
+        "output": 13749,
+        "reasoning": 10549,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bf1f039f2e21678278791b9f1c73520fc141e5462f6ec84c0555de2e6ff2a536",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++1级.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "mirrorBytes": 1127367,
+    "shaVerified": true,
+    "sha256": "a279bfe780869dafe614c3f09f52027e900d3d4a87d020e83a49840a0fde4c77"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示『CCF 编程能力等级认证 GESP』『C++ 一级』『2025 年 06 月』，与 paperId 2025-06-l1 的等级、年份、月份一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 2 题代码为 `int i,N = 0; // L1`、`cin >> N; // L2`、`for (i = 1; i < 9; i++)`、`if (N % i == 0) break; // L3`、`if (i < 9)`、`printf(\"N不能大于9\\n\"); // L4`，候选逐行一致，行号与 L1–L4 标记齐全；题干『在某集成开发环境中调试下面代码段时尝试设置断点和检查局部变量，下面哪个说法是错误的』与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四选项依次为：A 断点不可以设在L1标记的代码行、B 执行暂停在L2标记的代码行时可以检测i的值、C 执行暂停在L3标记的代码行时可以修改i的值、D 执行有可能暂停在L4标记的代码行，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 A（0 起始索引 0），与候选 answer=0 一致。独立推理：L1 含 `N = 0` 初始化副作用，编译后该行存在可执行代码，可设断点，故『断点不可以设在L1』是唯一错误说法，符合『哪个说法是错误的』设问；B（L2 暂停时i、N为可查看的局部变量）、C（L3 断点处可修改i）、D（`N % 1 == 0` 对任意整数恒成立，首轮即在 L3 break，i=1<9 必执行 L4，暂停可能发生）均成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析四条分述经独立复核成立：L1 含可执行初始化故可设断点；暂停 L2 时 i 虽未赋有效值仍可被调试器查看；L3 断点处可修改 i；`N % 1 == 0` 恒真使循环首轮 break，i=1<9 进入 L4，『有可能暂停在 L4』成立。末尾提示『A 是被选中的错误说法』与设问相符，无技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照第 1 页页图与答案表：题面代码、四个选项、答案 A（索引 0）均与原卷一致，解析各分述经独立验证无误。DeepSeek 本题未提出修改，经复核确无问题，接受其结论并维持无修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 3 题代码为 `int first = 10;` 与 `printf(\"{%d}\\n\", First)`，第 2 行末尾无分号（页图与文本层共同确认）；候选照录了格式串花括号、%d、\\n 及缺分号状态，未改变题面含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为：A 执行后输出10、B 执行后输出 {First}、C 执行后输出 \"{First}\"（含引号）、D 编译报错，因为First应该是first；候选四项一致，符号与引号无出入。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 3 题为 D（0 起始索引 3），与候选 answer=3 一致。独立判断：C++ 标识符大小写敏感，第 1 行声明 first，第 2 行使用未声明的 First，编译期即报错，D 为正确描述；缺分号亦构成编译错误，不改变最佳选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核成立：First 未声明导致编译错误；格式串 `{%d}` 中花括号为普通字符原样输出，仅 %d 被替换（若改为 first 并补上分号则输出 `{10}` 并换行，非选项 B/C 的未替换字面文本）；并如实备注原卷第 2 行缺分号本身也是编译错误，不影响官方答案 D 的判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 2 行 `printf(\"{%d}\\n\", First)` 末尾未印分号（第 1 页页图确认），属源卷排版层面的语法瑕疵；官方答案仍为 D，此备注仅作争议记录，不改动照录的题面。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立确认原卷第 2 行无分号、选项 C 含引号与花括号，答案表为 D；解析技术内容（大小写敏感、花括号原样输出）复核无误。DeepSeek 未提出修改，结论成立；其保留的缺分号备注与页图事实相符，予以保留。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页页图与文本层一致：代码为 `int N, M, D;`、`cout << \"当前星期几? \"; // 星期日是0`、`cin >> N;`、`cout << \"求多少天后? \"; // 输入正整数`、`cin >> M;`、`D = ____________;`、`if (____________)` 及 `printf(\"%d天后是星期日\", M);`/`printf(\"%d天后是星期%d\", M, D);` 两分支；候选一致（仅省略原卷第 6 行空行，无实质影响）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图四组选项依次为：A `(N + M) / 7` 与 `D == 0`、B `(N + M) % 7` 与 `D == 0`、C `(N + M) / 7` 与 `D <= 0`、D `(N + M) % 7` 与 `D = 0`（第二空为赋值号，页图与文本层均确认）；候选逐组一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 10 题为 B（0 起始索引 1），与候选 answer=1 一致。独立推导：星期按 7 为周期循环，`(N + M) % 7` 得 0～6 的星期序号（星期日为 0），第一空应取模；第二空判星期日应写 `D == 0`，故 B 正确，C 的 `/` 与 D 的赋值均不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核成立：`/` 得整周数而非星期序号、`%` 得余数的辨析正确；D 项第二空 `D = 0` 为赋值，if 条件中该赋值表达式值为 0 使条件恒假，且 D 被覆盖为 0，即使确为星期日也走 else 并输出『星期0』；易错提醒与考点归纳无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第 3 页页图：选项 D 第二空确为赋值 `D = 0` 而非比较，与候选一致；答案表 B 与第一/二空的独立推导吻合。DeepSeek 未提出修改，经复核结论成立，维持无修改。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页页图第 11 题代码为 `int i;`、`for (i = 1; i < 11; i += 3){`、`continue;`、`if (i % 2 == 0)`、`break;`、`printf(\"%d#\", i);`、`}`、`if (i >= 11)`、`printf(\"END\");`，候选逐行一致；选项 A/B/C 位于第 3 页，D 续于第 4 页顶部。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3～4 页选项依次为 A END、B 1#、C 1#4#END、D 1#4#7#10#END，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 11 题为 A（0 起始索引 0），与候选 answer=0 一致。独立跟踪：循环体首句为无条件 continue，直接跳到 for 更新表达式 `i += 3`，continue 之后的 if/break/printf 均不可达；i 依次 1→4→7→10→13，13<11 为假退出，i=13≥11，仅输出 END，答案 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核成立：continue 位于循环体首句使后续语句不可达，逐轮 i 值 1、4、7、10、13 及退出条件跟踪无误；B/C/D 因输出语句永不执行而全部不可能的分析正确；易错提醒（continue 在 for 中跳往更新表达式再判条件）符合 C++ 语义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，官方原卷无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立跟踪官方代码得输出 END（选项 A），与第 1 页答案表及候选 answer=0 一致；候选题面与第 3～4 页页图逐行一致。DeepSeek 未提出修改，经复核结论成立，维持无修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页页图代码为 `int i, N;`、`cin >> N;`、`i = N;`、`while (_______){`、`if (N % i == 0)`、`printf(\"%d,\", i);`、`i -= 1;`、`}`、`printf(\"1\");`，与候选一致；题干示例『如输入12则将输出 12,6,4,3,2,1』一致，候选补写的设问『横线处应填入（　）』与原卷括号位语义等价，未漏必要信息。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图选项依次为 A `i -= 1`、B `i == 1`、C `i > 1`、D `i >= 1`，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 12 题为 C（0 起始索引 2），与候选 answer=2 一致。独立跟踪 N=12：填 `i > 1` 时依次输出 12,6,4,3,2,，i 减到 1 时条件为假退出，由循环外 `printf(\"1\")` 补出 1，合计 12,6,4,3,2,1，与题干一致，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核成立：D 项 `i >= 1` 使 i=1 进入循环额外输出 `1,` 后再由循环外补 1，结果为 12,6,4,3,2,1,1 多一个 1；B 项在 N>1 时条件一次不成立仅输出 1；A 项 `i -= 1` 作 while 条件先自减再以新值判断、循环体又自减，以 N=12 跟踪条件处读到 11,9,7,5,3,1，i 进入负数后条件恒真并输出 -1,、-3, 等陷入死循环，死循环结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，官方原卷无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第 4 页页图与答案表 C：候选题面、选项与原卷一致，设问句属等价转换；N=12 下对四个候选的输出对照经独立验证无误，A 项死循环分析确认成立。DeepSeek 未提出修改，经复核结论成立，维持无修改。"
+      }
+    ],
+    "summary": "本次独立复核仅覆盖单选第 2、3、10、11、12 题（其余题目不在本轮范围）。逐题对照第 1、3、4 页页图与第 1 页官方答案表：题面代码、选项符号（题 3 的 {First} 与引号、题 10 选项 D 的赋值 D = 0、题 11 的 1#4#7#10#END）、答案映射（2→A/0、3→D/3、10→B/1、11→A/0、12→C/2）全部与原卷一致；五题解析均经独立推导复核（断点与局部变量检查、continue 跳转 for 更新表达式、while 条件自减导致负数死循环、取模周期性），未发现事实性错误，无需提交字段修改，全部 approve。题 3 保留原卷第 2 行末尾缺分号的源卷排版备注，不影响官方答案 D。"
+  }
+}
