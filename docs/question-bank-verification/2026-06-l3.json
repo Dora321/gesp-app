@@ -1,147 +1,768 @@
 {
   "paperId": "2026-06-l3",
-  "reviewedAt": "2026-10-30",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2026-06-l3"
-  },
+  "reviewedAt": "2026-11-08",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
     "mirrorBytes": 811368,
     "shaVerified": true,
     "fetchedAt": "2026-11-03",
-    "note": "2026-11-03 重新下载镜像 PDF，git hash-object 复算 blob sha 与字节数，均与 src/data/gesp/paperSources.js 登记一致。"
+    "note": "2026-11-03 重新下载镜像 PDF，git hash-object 复算 blob sha 与字节数，均与 src/data/gesp/paperSources.js 登记一致。",
+    "verifiedAt": "2026-11-08",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2026-06-l3/source.pdf",
+    "pages": {
+      "total": 9,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    }
   },
-  "session": 14,
   "answerTable": {
     "content": {
       "single": "ABCBACCABDDBCBB",
       "judge": "√√×√√×√×××"
     }
   },
-  "verification": {
-    "method": "收录时同步核验：官方答案表200dpi渲染逐格读取；单选15题+判断10题程序化正则提取比对；判断题逐题代码级逻辑复核；编程题样例程序化验证（跑参考算法）；pypdf文本层粘连数字（样例输出+行号）全部渲染核对纠正",
-    "answerKeySource": "官方PDF答案表程序化提取（非手工转录）",
-    "singleChoice": "15/15官方答案表比对一致",
-    "judge": "10/10官方答案表比对一致 + 逐题代码级逻辑复核通过",
-    "programming": "加密（keys查表20000个）、字符转换（大小写互换ASCII±32）"
-  },
-  "note": "J8：学生敲代码带行号无法编译→×",
-  "resolved": true,
   "questions": [
     {
-      "id": 4,
-      "resolved": true,
+      "id": 1,
+      "type": "single",
+      "resolved": false,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "机器位串的真值由编码约定决定，10001101 按原码是符号位 1、绝对值 13，表示 −13，按无符号数是 128+8+4+1=141，故 A 成立。B把便于书写的八/十六进制当成底层存储形式，C称字节最小也不准确。但 D 的 k=1000 符合 SI 前缀定义，而题面没有约定按 1024 使用 k。官方只给 A，单选唯一性存在单位语境歧义，记录 ANSWER-DOUBT，保留答案并暂停计分。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "厂商 1 TB 按十进制容量为 10^12 字节，等于 1000 GB。除以 1024^3 的结果约为 931.322574615，单位应是 GiB，不能直接把实际容量说成精确的 931 GB。官方 B 的计算方向对应常见二进制显示口径，但同时使用 GB 与等号且省略近似或取整约定，来源表述不准确。保留 B 和原选项，记录 ANSWER-DOUBT，等待单位与舍入方式澄清。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "每两个相邻的 4 位值合成一个 8 位字节，先来的数占高四位。0x1 与 0x2 合成 00010010，即 0x12，0x3 与 0x4 合成 00110100，即 0x34。H 表示十六进制，故选择 12H、34H。D给出的位串分别是 0x13、0x35，不符合输入顺序。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "固定 n 位补码范围是 −2^(n−1) 到 2^(n−1)−1，反码范围是 −(2^(n−1)−1) 到 2^(n−1)−1。B给的负下界 −2^(n−1)−1 超出两者。A为固定位宽下取负的补码技巧，C说明反码加减可统一且带符号运算，D列出8位反码的正零与负零，因此错误项为 B。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "密钥2026按给出的计算顺序从个位开始对应6、2、0、2。ASCII中G=71，71|6=71仍为G。E=69，减2得67为C。S与0异或不变，P=80加2得82为R。依次得到GCSR，选择A。各运算已经由题目明确给出，不应自行把密钥从千位开始对应。"
     },
     {
       "id": 6,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q6 explanation 升级；答案未改"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "异或能抵消成对相同值，因此A的示例得到9。独立变量的三步异或交换可交换两值。D在补码数值模型下给出取反的数学恒等式。C把丢弃高位后的位模式运算仍说成无条件的数学乘法，忽略范围与类型，因而错误。有符号移位还需满足C++标准的合法性前提，不能用一次偶然回绕输出作为保证。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "A中str容量为5，包含末尾结束符，而strlen为4，两者不相等。B以4项数组容纳GESP加结束符共5项，标准C++编译失败。C把含结束符共11项的HELLO,GESP复制到4项数组，写越界风险正是其描述，所以C正确。D的dest既无初始结束符又无足够追加容量，strcat不能保证安全。本轮只编译风险代码，不执行越界读写。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2,
+        3
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "若沿用题源的二进制教学约定1KB=1024B，则2×1024×8=16384bit，对应官方A。若按SI十进制kB=1000B，则应得到16000bit，而原四选项都没有。KB没有给出其在本题中的换算约定，不能把一种历史写法当作唯一标准。保留A，记录ANSWER-DOUBT并暂停计分，等待明确单位口径。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "在补码数值模型中，逐位取反的数学结果是−n−1，所以B符合题源意图，~6=−7、~0=−1、~(−2)=1，其余项均错。这里的等式按数学整数理解。若写成C++ int表达式并让n为INT_MIN，单独计算−n会越界，应先扩大类型或改写计算，不能据数学恒等式宣称原int表达式在所有边界都安全。"
     },
     {
       "id": 10,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q10 explanation 升级；答案未改"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "固定n位补码有2^n种位型，范围为−2^(n−1)到2^(n−1)−1。D把正上界写为2^(n−1)，多出1且总数变为2^n+1，错误。正数与零的原/反/补表示相同，负数补码可用对应正数按位取反再加1，或保留最低1及其右侧各位、翻转左侧各位得到。"
     },
     {
       "id": 11,
+      "type": "single",
       "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q11 explanation 升级；答案未改"
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "变量限定为正整数，num&1读取最低位，num&0xFF保留低8位，num&b只会清除num中的部分1位，结果不会超过num。D称左移高位溢出后仍符合普通乘法，缺少数值范围保证，错误。实际计算应先确认位数和类型，不能把被截去的高位视作仍参与数学乘积。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "优先级从高到低依次为逻辑非、移位、按位与、按位异或、按位或。表达式分组为 (((!a)<<b)&c)^d|e。a=7非零，!a=0，左移后仍0，与14得0，异或15得15，再或8仍15，因此选B。这里!是逻辑非，不能混成按位取反~。"
     },
     {
       "id": 13,
-      "resolved": true,
+      "type": "single",
+      "resolved": false,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q13 explanation 升级；答案未改"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "官方C把empty含义颠倒，实际空串返回true，非空返回false。但D也缺少s2长度至少3的条件，append(s2,0,3)会把至多3个字符追加到s，s2=\"ab\"时只追加2个，空串追加0个，并不产生独立的截取结果。size与length相同，统计string所含char元素，末尾额外的终止符不计入，但内容中的NUL仍会计入。原文没说明这些前提，保留C并记录ANSWER-DOUBT，暂停计分。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "数组声明需把变量名放在类型与方括号之间，A位置错误。字符常量&属于整型常量表达式，在ASCII中值为38，因此B定义38个int元素，语法合法。C的星号不是这里允许的已确定数组界限，D使用浮点界限也不合法。数组长度要求整数常量表达式，字符值可经整数提升参与。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "若输入仅含ASCII数字和大写A..F，最大字符可代表是否超出各进制允许的最大数码，B的四个<=判断能给出预期结果，等于上界必须允许。但原题只给字符串长度，没有限定字符集合。小写a本身可表示十六进制10，B因a大于F输出全0；对/等非数码，max初值0又可能使其被全部接受。A方向反了，C为赋值并输出字符，D排除边界。保留官方B及程序，记录ANSWER-DOUBT，等待输入域说明。"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在固定位宽反码加法中，最高位产生的进位要加回最低位，这叫循环进位。以8位模型为例，+5与−3分别表示00000101与11111100，直接相加为1 00000001，将最高进位加回低位得到00000010，即+2。题目所说反码运算指这一算术规则，判断正确。"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "选定8位，+11为00001011。从右往左遇到最低的1后，保留该1和右侧位，翻转其左侧位，得到11110101。它的无符号值为245，按8位补码解释245−256=−11。该方法等价于全位取反再加1，使用相同位宽才有明确的左侧各位范围。"
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "8位补码的范围为−128到+127，共256个值。−127到+127只有255个不同整数，漏掉位串10000000对应的−128。补码没有正零/负零两种编码，所节省的位型用于额外表示一个负数，所以负方向比正方向多一个数，原说法错误。"
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "合数i若有因子d大于sqrt(i)，其配对因子i/d必小于sqrt(i)，所以从2枚举到sqrt(i)即可发现至少一个非平凡因子。小于2的值需先排除，平方根端点应包含。实现中可用d<=i/d避免d*d潜在溢出，原文说可缩小范围提升效率，判断正确。"
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在题源所采用的补码整数环境中，按位与1只保留最低位。最低位为1对应奇数，负奇数同样如此，例如−3&1为1。判断条件只涉及最低一位，不要求其他位为0。将其与a%2!=0对照可验证正负边界，不能用a%2==1来覆盖所有负奇数。"
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "十六进制CCF逐位换成4位二进制为1100 1100 1111，按三位分组为110 011 001 111，八进制确为6317。但十进制为12×256+12×16+15=3279，原句写3269，差10，因此整体判断错误。不能因前两个转换正确而忽略最后的十进制值。"
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4,
+        5
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "false提升为整数0，true提升为1，1<<1为2，7>>1为3。依次访问name[0]、name[1]、name[2]、name[3]，正好输出G、E、S、P，再换行，结论正确。所有下标都在长度4的有效元素范围内，题目已用“如果能够正确执行”说明片段外围环境。"
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原代码每行开头的1到6是学生实际输入的内容，而非展示工具附加的行号。首行1 #include不能构成合法的预处理指令，其他行的数字也不是所需的声明或语句，故整段不能正常编译。判断错误，本轮实际保留这些数字做编译诊断，不能先删除数字再评价原题。"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "模拟算法按问题规则推进状态，每一步可以根据条件选择动作、处理边界或决定是否终止。加入if等判断并不会使其失去模拟性质。比如字符转换需先区分大写、小写和数字，才能执行对应规则。因此“中间不能增加任何判断逻辑”的绝对说法错误。"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "题目说s[i]是int型数字，检测数值0..9应与整数0、9比较。字符常量0、9的ASCII编码是48、57，原条件实际上接受48..57，对数值5反而返回false。只有存放数字字符编码时才适合与'0'、'9'比较，所以原判断错误。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5,
+        6,
+        7
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": "先存下原数字序列，再读取10项密码本。密码本第k项表示数字k的替换结果，逐项输出keys[a[i]]即可。n<=20000，数组20010项足够，下标来自0..9不会越界，密码本为0..9的排列。样例0、2、0、3、4、1、9依次映射为9、1、9、2、3、0、8。时间O(n+10)，额外数组空间O(n)。参考程序仅调整数字之间的空格，去掉原实现最后多出的空格，以符合样例逐字符格式。独立预言机通过排列逆像分类后恢复各位置，覆盖身份、逆序、全部源数字与最大长度。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        7,
+        8,
+        9
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": "逐个读取原字符，小写字母转为相应大写，大写转小写，数字输出星号，三种情形互斥。ASCII大小写差为32，参考代码用字符差a−A表达转换，n<=1000，数组1010项能容纳字符及结束符。样例aBc98变成AbC**，输出不加内部空格。时间O(n)，输入存储O(n)，除输入数组外只需常数额外变量。独立预言机用显式两行字母对照表建立映射，并覆盖全部62个合法字符、混合顺序及1000项边界。"
     }
-  ]
+  ],
+  "unresolved": [
+    {
+      "id": 1,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q1。A正确，但D的k=1000符合SI十进制前缀，题目未约定二进制存储口径，不能据通常教学习惯排除D。官方A保留，等待单位约定澄清。"
+    },
+    {
+      "id": 2,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q2。1 TB=10^12 B=1000 GB，约931.322574615 GiB。官方B将二进制商标成GB且等号写成931，缺少单位及取整约定，原答案保持隔离。"
+    },
+    {
+      "id": 8,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q8。未约定KB=1024B，按十进制kB计算为16000bit，选项无此值；官方A采用2×1024×8。保持原题与答案等待单位口径澄清。"
+    },
+    {
+      "id": 13,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q13。C把empty返回值颠倒，但D声称append固定截取3字符，实际取min(3,s2.size())并追加到s，短串或空串不足3。A的空字符表述也未区分末尾终止符和内容内嵌NUL。官方C保持，等待完整前提。"
+    },
+    {
+      "id": 15,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q15。原输入仅限定字符串长度，没有限定只含0..9/A..F或排除小写。B只看最大字符，输入a会输出0000却可作十六进制数；非数码符号也可能被错误接受。官方B和原代码保持隔离。"
+    }
+  ],
+  "supplementarySources": [
+    {
+      "url": "https://physics.nist.gov/cuu/Units/binary.html",
+      "note": "SI十进制前缀与Ki/Mi/Gi二进制前缀的区分。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.capacity",
+      "note": "size/length统计内容元素及empty返回size()==0。"
+    },
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.append",
+      "note": "append(str,pos,n)追加min(n,str.size()-pos)个元素。"
+    }
+  ],
+  "notes": "AI-Codex逐页对照登记mirror PDF全部9页，Git blob SHA 015d4a7d322082d8fba5c018c963f9efa9100e02一致。27个answer字段保持，单位与字符串输入/长度前提疑点Q1/Q2/Q8/Q13/Q15隔离，重写27解析并恢复完整代码选项。两参考程序独立编译运行，Q26仅修正末尾多余空格。",
+  "history": [
+    {
+      "paperId": "2026-06-l3",
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2026-06-l3"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+        "mirrorBytes": 811368,
+        "shaVerified": true,
+        "fetchedAt": "2026-11-03",
+        "note": "2026-11-03 重新下载镜像 PDF，git hash-object 复算 blob sha 与字节数，均与 src/data/gesp/paperSources.js 登记一致。"
+      },
+      "session": 14,
+      "answerTable": {
+        "content": {
+          "single": "ABCBACCABDDBCBB",
+          "judge": "√√×√√×√×××"
+        }
+      },
+      "verification": {
+        "method": "收录时同步核验：官方答案表200dpi渲染逐格读取；单选15题+判断10题程序化正则提取比对；判断题逐题代码级逻辑复核；编程题样例程序化验证（跑参考算法）；pypdf文本层粘连数字（样例输出+行号）全部渲染核对纠正",
+        "answerKeySource": "官方PDF答案表程序化提取（非手工转录）",
+        "singleChoice": "15/15官方答案表比对一致",
+        "judge": "10/10官方答案表比对一致 + 逐题代码级逻辑复核通过",
+        "programming": "加密（keys查表20000个）、字符转换（大小写互换ASCII±32）"
+      },
+      "note": "J8：学生敲代码带行号无法编译→×",
+      "resolved": true,
+      "questions": [
+        {
+          "id": 4,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q4 explanation 升级；答案未改"
+        },
+        {
+          "id": 6,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q6 explanation 升级；答案未改"
+        },
+        {
+          "id": 10,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q10 explanation 升级；答案未改"
+        },
+        {
+          "id": 11,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q11 explanation 升级；答案未改"
+        },
+        {
+          "id": 13,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q13 explanation 升级；答案未改"
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ]
+    }
+  ],
+  "referenceCodeFixAudit": {
+    "id": 26,
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-08",
+    "reason": "原程序每个数字后输出空格，样例没有尾空格，仅把分隔空格改为从第二个数字起在数字前输出。",
+    "beforeEvidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2026-06-l3/q26-before-output.json",
+    "algorithmChanged": false
+  },
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-08",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 853,
+    "objectiveCaseCount": 851,
+    "templateCompileCount": 2,
+    "diagnosticCount": 7,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2026-06-l3/programming-run.json"
+  }
 }
