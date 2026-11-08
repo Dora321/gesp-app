@@ -1,0 +1,229 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T20:39:37.804Z",
+  "completedAt": "2026-11-07T20:41:34.643Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31937,
+    "completion_tokens": 14482,
+    "total_tokens": 46419,
+    "prompt_tokens_details": {
+      "cached_tokens": 31872,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12379
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00879457,
+      "allowance": 0.00527674,
+      "tokens": {
+        "input": 65,
+        "output": 14482,
+        "reasoning": 12379,
+        "cache_read": 31872,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7fe9bda890846c27d623dd1f7dbabaf4eb4638c189d1f6b82040e28157a6f513",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 一级 2023 年 9 月”，与 paperId 2023-09-l1 一致；单选答案表第10—14题依次为 C/B/B/D/D。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题题干为“下面C++代码段执行后的输出是（ ）。”，代码为 int cnt=0; for(int i=1;i<=5;i++) cnt=cnt+1; cout<<cnt;，与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 A.1、B.4、C.5、D.10，与候选 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题为 C（索引2）。独立推导：循环执行5次，cnt 由0逐次加1到5，输出5，对应选项C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 i=1..5、循环体每次执行 cnt=cnt+1 独立推导，得 cnt=5；并正确区分“每次加常量1”与“累加 i 值”，与答案C自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题代码为 int tnt=0; for(int i=1;i<5;i+=2) tnt=tnt+i; cout<<tnt;，与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 A.2、B.4、C.9、D.10，与候选 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为 B（索引1）。独立推导：i取1、3，tnt=0+1+3=4，对应选项B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 i=1、3 两轮累加得 tnt=4，i=5 时条件 i<5 不成立退出；与答案B一致，选项排除正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第12题题干为“下面C++代码执行后的输出是（ ）。”；第4页代码为 int n=5; int cnt=1; while(n>=0){ cnt+=1; n-=2; } cout<<cnt;，与候选一致（仅换行排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A.3、B.4、C.6、D.7，与候选 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为 B（索引1）。独立追踪：n=5→3→1→-1，共3轮，cnt=1+3=4，输出4，对应B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体逐轮追踪正确，但“选项 A 的 3 相当于少算了两轮累加”有误：实际3轮累加得4，输出3只对应2轮累加，即少1轮；已在 changes 修正该句。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（4）**\n\n初始 `n = 5`，`cnt = 1`。while 为先判断后执行，每轮先 `cnt += 1`，再 `n -= 2`：\n\n| 轮次 | 进入判断时 n | 条件 n >= 0 | 执行后 cnt | 执行后 n |\n|------|-------------|-------------|------------|----------|\n| 第1轮 | 5 | 真 | 2 | 3 |\n| 第2轮 | 3 | 真 | 3 | 1 |\n| 第3轮 | 1 | 真 | 4 | -1 |\n| 退出判断 | -1 | 假 | — | — |\n\n共执行 3 轮，`cnt` 由 1 增至 4，输出 4，对应选项 B。选项 A 的 3 相当于只执行了 2 轮累加（比实际少 1 轮）；C 的 6、D 的 7 均与逐轮追踪结果不符。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第13题题面、示例、代码与候选一致：代码含 int n=0; cout<<\"请输入一个正整数：\"; cin>>n; for(____) if(n%i==0) cout<<i<<endl;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A. int i=1;i<n;i+1、B. int i=1;i<n+1;i+1、C. int i=1;i<n;i++、D. int i=1;i<n+1;i++，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为 D（索引3）。独立验证：D 的 i++ 能递增，i<n+1 覆盖 i=1..n，可输出全部因数；A/B 不更新 i，C 漏掉 n 本身。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析核心选D正确，但“A、B……程序将陷入死循环”对A在n=1时不成立（A直接跳过循环，输出为空，仍不能完整输出因数）；需按n=1边界精确化，已在 changes 修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n求正整数 `n` 的所有因数，需枚举 1 到 `n`（因数包含 1 与 `n` 本身），对每个 `i` 判断 `n % i == 0`。\n\n- A、B：步进表达式写作 `i + 1`，只计算新值而未赋回 `i`，循环变量不会递增；B 在 n≥1 时死循环，A 在 n>1 时死循环，n=1 时 A 直接跳过循环，二者均不能完整输出因数。\n- C：条件 `i < n` 使枚举止于 n-1，漏掉因数 `n` 本身（如输入 17 应输出 1、17，该写法只会输出 1）。\n- D：`i < n + 1` 等价于 `i <= n`（本题范围内），且步进 `i++` 能正确递增，可完整输出包括 1 和 `n` 在内的所有因数。\n\n故选 D。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第14题题干为“在下列代码的横线处填写（ ），可以使得输出是正整数 1234 各位数字的平方和。”，代码为 int n=1234,s=0; for(;n;n/=10) s+=____; cout<<s<<endl;，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A.n/10、B.(n/10)*(n/10)、C.n%10、D.(n%10)*(n%10)，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为 D（索引3）。独立推导：每轮取个位 n%10，平方后累加，1234 得 4²+3²+2²+1²=30，D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 n/=10 去末位、n%10 取当前个位、平方累加独立推导；A/B 取的是去掉末位后的数，C 只累加个位本身，均不符，与答案D自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "共核验题10—14。题10、11、14的题面、选项、答案与解析均与PDF一致；题12解析“少算了两轮累加”应为“少算1轮”，题13解析“A、B均死循环”需按 n=1 边界精确化，两处均已给出修正且不影响答案索引；未发现答案表冲突。"
+  }
+}

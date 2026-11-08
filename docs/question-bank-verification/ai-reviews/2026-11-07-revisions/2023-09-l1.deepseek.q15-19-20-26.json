@@ -1,0 +1,225 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    15,
+    19,
+    20,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T20:48:10.899Z",
+  "completedAt": "2026-11-07T20:50:14.679Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31935,
+    "completion_tokens": 15448,
+    "total_tokens": 47383,
+    "prompt_tokens_details": {
+      "cached_tokens": 31872,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13272
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00937387,
+      "allowance": 0.00562432,
+      "tokens": {
+        "input": 63,
+        "output": 15448,
+        "reasoning": 13272,
+        "cache_read": 31872,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7fe9bda890846c27d623dd1f7dbabaf4eb4638c189d1f6b82040e28157a6f513",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页图卷头为“CCF 编程能力等级认证 GESP”“C++ 一级”“2023年9月”，与 paperId 2023-09-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页末给出第15题题干，第5页页图代码为 `int n = 5, s = 1; for (; n = 0; n--) s *= n; cout << s << endl;`，与候选代码和题干逐行一致，仅空白排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页页图选项依次为 A.1、B.0、C.120、D.无法确定；候选 options 依次为 1、0、120、无法确定，顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为 A，对应索引0；独立推导：for 中间子句 `n = 0` 是赋值表达式，值为0，首次判断为假，循环体零次执行，s 保持1，输出1，故选A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出 `n = 0` 为赋值而非比较、赋值表达式值为0按假处理、循环体不执行、s保持1；并正确排除120是误当5!的结果。未发现技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页页图判断题第4题原文为 C++语句 cout << (2, 3, \"23\") 的输出为 2, 3, 23。候选写作 2,3,23，仅逗号后空格被规范化；实际输出为 23，两种写法均使命题为假，核心含义和考点不变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；网站以“正确/错误”二选实现判定，不适用本维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第4题为 ×，对应错误=1；独立推导：(2, 3, \"23\") 是逗号表达式，取最后一个子表达式 \"23\" 的值，cout 实际输出 23，而非 2, 3, 23，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明逗号表达式从左到右求值、整个表达式取最后一个子表达式的值、cout 实际输出 23；知识延伸中 for 的初始化/迭代表达式内逗号属于逗号运算符、声明列表逗号才是分隔符的表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页页图判断题第5题原文与候选一致，仅空格排版差异：for (int i = 0; i < 10; i += 2) 表示 i 从 0 开始到 10 结束但不包含 10，间隔为 2。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；网站以“正确/错误”二选实现判定，不适用本维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第5题为 √，对应正确=0；独立推导：i 取 0、2、4、6、8，i=8 一轮后自增为10，10<10 为假退出，循环体不含10，间隔2，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出的循环体序列 0→2→4→6→8、退出时 i=10、以及改为 i<=10 才包含10的说明均正确；未发现原解析中把取值写成0,1,...,9的错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题名“买文具”，第6页问题描述、输入描述、输出描述及两组样例与候选一致；X、Y、Z 的约束 1≤X,Y,Z≤10 完整，Q 仅称正整数，候选未添加额外上界；Markdown/LaTeX 为等价排版。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题按测试点评分，PDF无客观题答案索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导总价 cost=2X+5Y+3Z；q≥cost 时输出 Yes 与 q-cost，否则输出 No 与 cost-q。样例1 cost=10，20≥10 得 Yes/10；样例2 5<10 得 No/5。X,Y,Z≤10 时 cost≤100，官方参考程序同用 int。候选解析与上述推导一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第6—7页参考程序逐行对照：均读入4个 int，候选 cost=2*x+5*y+3*z 与官方 t=x*2+y*5+z*3 等价，if/else 两分支分别输出 Yes 与 q-cost、No 与 cost-q；候选把两行 cout 合并为链式输出，语义和输出完全一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小数量且钱不足",
+            "input": "1\n1\n1\n1",
+            "output": "No\n9",
+            "reason": "cost=2+5+3=10，Q=1<10，输出 No 与差额 9；覆盖 X/Y/Z 最小值和 No 分支。"
+          },
+          {
+            "name": "最大数量且恰好够",
+            "input": "10\n10\n10\n100",
+            "output": "Yes\n0",
+            "reason": "cost=20+50+30=100，Q=100 走 Yes 分支，余额 0；覆盖最大数量和 q==cost 边界。"
+          },
+          {
+            "name": "最大数量差一元",
+            "input": "10\n10\n10\n99",
+            "output": "No\n1",
+            "reason": "cost=100，Q=99<100，输出 No 与差额 1；覆盖 q=cost-1 边界。"
+          },
+          {
+            "name": "混合数量且钱足够",
+            "input": "10\n1\n1\n100",
+            "output": "Yes\n72",
+            "reason": "cost=20+5+3=28，Q=100≥28，余额 72；验证三种单价系数和 Yes 分支。"
+          },
+          {
+            "name": "Q 接近 int 上界",
+            "input": "1\n1\n1\n2147483647",
+            "output": "Yes\n2147483637",
+            "reason": "cost=10，Q=2147483647≥10，余额 2147483637，仍在 32 位 int 范围内；验证大 Q 的差值输出不溢出。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按页图核验指定4题。第15、20题题面、选项、答案和解析均与源卷一致；第19题题面仅将断言中逗号后的空格规范化，不改变命题为假及逗号表达式考点，答案×=1正确；第26题题面、约束、样例和参考程序与官方一致，参考程序与官方逐行等价，并补充最小、最大、q=cost、q=cost-1、大Q等边界测试。未发现需修改字段。"
+  }
+}
