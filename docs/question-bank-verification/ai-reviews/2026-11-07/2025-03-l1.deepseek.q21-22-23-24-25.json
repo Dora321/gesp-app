@@ -1,0 +1,231 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:44:21.782Z",
+  "completedAt": "2026-11-08T05:46:02.280Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30762,
+    "completion_tokens": 12280,
+    "total_tokens": 43042,
+    "prompt_tokens_details": {
+      "cached_tokens": 30592,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10258
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00748528,
+      "allowance": 0.00449117,
+      "tokens": {
+        "input": 170,
+        "output": 12280,
+        "reasoning": 10258,
+        "cache_read": 30592,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1a4dcacaa2fa42d53bef043cfd863698c43b7724f3a0ad1d2c065913d739238a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证、C++ 一级、2025 年 03 月，与 2025-03-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第6题题面与代码一致：for (int i = 3; i < 5; i += 2) 后输出 i，题干称将先后输出3和5。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A-D 选项；网站以正确/错误表示判定结果，按规则 options 仅适用于单选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第6项为×，对应索引1，与网站答案1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析追踪 for 循环：i=3 时输出3，i 更新为5后 5<5 为假，只输出3；结论错误与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第7题题面与代码一致：for (int i = 0; i < 10; i++) 输出 (i * 2 < i * i)，题干称将先后输出7个true。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A-D 选项；网站以正确/错误表示判定结果，按规则 options 仅适用于单选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第7项为×，对应索引1，与网站答案1一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析虽结论正确，但将不等式成立范围误写为 i>=2 和 2到8；实际 i=2 为假、i=3..9 为真。默认输出也是1/0而非true。已给出修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n1. C++ 的 `cout` 默认把 `bool` 值按整数输出：`true` 输出 `1`，`false` 输出 `0`，不会直接输出单词 `true`。\n2. 表达式 `(i * 2 < i * i)` 在 `i=0` 时为 `0<0`（假），`i=1` 时为 `2<1`（假），`i=2` 时为 `4<4`（假）；当 `i=3` 到 `9` 时不等式成立，共 7 次为真。\n3. 因此默认输出序列是 `0 0 0 1 1 1 1 1 1 1`，不是“先后输出7个true”。即使使用 `boolalpha`，也会先输出 3 个 `false`，再输出 7 个 `true`，同样不是只输出 7 个 `true`。\n\n**易错提醒：**\n- 不要忽略 `cout` 对 `bool` 的默认整数输出。\n- `i=2` 时 `i*2` 与 `i*i` 相等，不等式不成立；成立范围是 `i=3..9`，不是 `2..8`。\n\n**知识延伸：**\n使用 `cout << boolalpha;` 可以让布尔值以 `true`/`false` 形式输出；恢复默认整数输出可用 `cout << noboolalpha;`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第8题题面一致：user_Name、_userName、user-Name、userName_ 都是合法的变量名。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A-D 选项；网站以正确/错误表示判定结果，按规则 options 仅适用于单选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第8项为×，对应索引1，与网站答案1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 user-Name 中的 '-' 不是标识符合法字符，故并非全部合法；结论错误与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第9题题面一致：C++语言中 continue 语句可以来提前结束循环。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A-D 选项；网站以正确/错误表示判定结果，按规则 options 仅适用于单选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第9项为×，对应索引1，与网站答案1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 continue 仅跳过本次迭代，break 才结束整个循环；结论错误与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第10题题面一致：整型 N 经 scanf 的 %d 读取，输入 3.6 后执行 cout << N / 3 * 5，题干称输出6。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未列 A-D 选项；网站以正确/错误表示判定结果，按规则 options 仅适用于单选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第10项为×，对应索引1，与网站答案1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 %d 只读入3，3/3*5=5，不是6；结论错误与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第4页判断题答案表和第5页第6-10题原图核验21-25题：五题官方答案均为×（索引1），与网站答案一致；题面均一致。第22题解析存在事实性错误，已给出修正草稿；其余题解析可独立支持答案。未发现需修改题面、答案或参考代码的问题。"
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:37:53.765Z",
+  "completedAt": "2026-11-08T05:40:48.481Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45573,
+    "completion_tokens": 17705,
+    "total_tokens": 63278,
+    "prompt_tokens_details": {
+      "cached_tokens": 43520
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14070
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01046605,
+      "allowance": 0.01046605,
+      "tokens": {
+        "input": 2053,
+        "output": 17705,
+        "reasoning": 14070,
+        "cache_read": 43520,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1a4dcacaa2fa42d53bef043cfd863698c43b7724f3a0ad1d2c065913d739238a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 / C++ 一级 / 2025 年 03 月”，与 2025-03-l1 匹配；第1页单选答案表 15 位答案为 D D D C C B C D D D D C A A C，本次范围第 11–15 位对应 D、C、A、A、C。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第3页第11题代码包含两行提示输出（cout << \"请输入第1个正整数：\"; 与 cout << \"请输入第2个正整数：\";）并分两次 cin 读取；网站代码删除了提示行并合并为 cin >> first >> second，属对原卷代码的非等价删改（程序可见输出不同），需按原卷恢复。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 200、100、1、0，与网站 options 完全一致、顺序相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第 11 位为 D；网站 answer=3 对应 D（输出 0），映射正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析 C 项称“误以为 100/200≈0.5，再乘以 200 取整得到 1”：0.5×200=100 而非 1，该推演存在数学错误；答案 D 本身正确，需重写解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "执行下面的C++代码，在键盘上先后输入100和200，输出是（ ）。\n```cpp\nint first, second;\ncout << \"请输入第1个正整数：\";\ncin >> first;\ncout << \"请输入第2个正整数：\";\ncin >> second;\ncout << (first / second * second) << endl;\n```",
+          "explanation": "**答案：D (0)**\n\n**核心解析：**\n1. 依次读入：first = 100，second = 200。\n2. 先计算 first / second：两者均为 int，整数除法 100 / 200 截断小数部分，结果为 0。\n3. 再计算 0 * second：0 × 200 = 0，最终输出 0。\n\n**选项逐项分析：**\n- A (200)：❌ 错误。100 / 200 已被整数除法截断为 0，再乘 200 不能恢复原值。\n- B (100)：❌ 错误。误以为 first / second * second 等价于 first；实际先发生整数除法截断，原值信息已丢失。\n- C (1)：❌ 错误。可能误以为 100 / 200 按四舍五入取整为 1 后参与运算，或混淆了运算顺序；C++ 整数除法直接截断为 0，不会四舍五入。\n- D (0)：✅ 正确。按从左到右结合：(100 / 200) * 200 = 0 * 200 = 0。\n\n**易错提醒：**\n- 表达式 first / second * second 等价于 (first / second) * second，先除后乘，不能颠倒。\n- 整数除法的截断是单向的：一旦得到 0，后续任何运算都无法恢复原始信息。\n\n**考点：** 整数除法的截断规则与表达式求值顺序"
+        },
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "否决初核对 statement 的 verified 结论：网站删去原卷两条提示输出并合并输入，属非等价删改，已按 PDF 第3页恢复代码；接受初核对 explanation 标 needs_fix 的判断，但否决沿用原解析思路，重写为独立推导（原“0.5×200 得 1”的推演数学错误）。answer/options 映射经独立核对与 PDF 一致。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码为 for 循环加“if _______________________”空白；网站写成 if (_____)，插入各选项（自带括号）后为双层括号仍合法，语义等价；循环范围 0–99 与输出语句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A–D 四项条件表达式与网站 options 文字及顺序完全一致，无影响答案的差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第 12 位为 C；网站 answer=2 对应 C。独立验证：C 条件 (!(i%2))&&(!(i%7)) 实际筛选 14 的倍数，确实“不能实现”题意。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核各选项：A 标准写法正确；B 中 !(i%2) 等价于 i%2==0，正确；C 筛选 14 的倍数，不能实现，与官方答案一致；D 中 i∈[0,99] 非负，i%2 只有 0/1 两种取值，i%2!=1 等价于 i%2==0，正确。解析推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "接受初核结论。括号差异属等价转换，选项、答案、解析均经独立复核无误，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码与网站逐行一致：tnt=0；for (int i = -1000; i < 1000; i++) tnt += i; 最后 cout << tnt << endl;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 -1000、0、999、1000，与网站 options 完全一致、顺序相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第 13 位为 A；网站 answer=0 对应 A（-1000）。独立推导：-999..999 成对抵消为 0，剩 -1000，总和 -1000，与答案一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析称求和“共 2001 个数”且把项数写成 2001；实际 i 取 -1000 到 999，共 999−(−1000)+1=2000 项。答案 -1000 正确但计数说明错误，需重写解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (-1000)**\n\n**核心解析：**\n1. 循环范围：i 从 -1000 开始（含），到 i < 1000 结束（不含 1000），参与求和的数为 -1000, -999, …, 0, …, 999，共 999 − (−1000) + 1 = 2000 项。\n2. 配对抵消：-999 与 999、-998 与 998、…、-1 与 1 每对之和均为 0，0 自身对总和无贡献。\n3. 剩余项：-1000 找不到配对的 +1000（1000 因 i < 1000 不参与求和），是唯一未被抵消的数。\n4. 总和 = 0 + (−1000) = -1000。\n\n**选项逐项分析：**\n- A (-1000)：✅ 正确。区间 [-1000, 1000) 中，-1000 是唯一无法配对抵消的“孤岛”。\n- B (0)：❌ 错误。仅当求和区间两端对称（如 -1000 到 1000 或 -999 到 999）才会完全抵消；本题恰好多出 -1000 一个数。\n- C (999)：❌ 错误。与循环边界或部分和的计算错误有关。\n- D (1000)：❌ 错误。1000 因条件 i < 1000 不满足而未参与运算。\n\n**易错提醒：**\n- 循环条件 i < 1000 是严格小于，1000 本身不参与求和。\n- 项数 = 末项 − 首项 + 1 = 999 − (−1000) + 1 = 2000，注意不要按 1000 − (−1000) 再错误地多计 1。\n\n**考点：** for 循环边界条件（含起点不含终点）与等差数列对称抵消"
+        },
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "接受初核对 explanation 标 needs_fix 的判断；重写时修正原解析“2001 个数”的计数错误（实为 2000 项），配对抵消推导经独立复核成立。其余维度与初核一致。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码与网站逐行一致：int i; for (i = 1; i < 100; i += 5) continue; cout << i << endl;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 101、100、99、96，与网站 options 完全一致、顺序相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第 14 位为 A；网站 answer=0 对应 A。独立追踪：i 序列为 1,6,11,…,96,101；96<100 成立进入循环，continue 后仍执行 i+=5 得 101；101<100 不成立退出，输出 101，与答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 i 序列 1→…→96→101 的追踪、continue 后步进表达式仍执行、以及“A 为导致条件为假的第一个值”的表述均正确；对选项 C 的措辞较弱（i 实际不经过 99）但不含事实错误，按规范不作纯文风改写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "接受初核结论。代码、选项、答案与 PDF 第4页核对一致；解析核心追踪正确，无事实性错误，维持原样。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "revise",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码与网站逐行一致：i 从 5 到 99 每次加 5；i%2==0 时 continue；tnt += 1；满足 i%3==0 && i%7==0 时 break；最后输出 tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 500、450、10、1，与网站 options 完全一致、顺序相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第 15 位为 C；网站 answer=2 对应 C（10）。独立推导：奇数形式的 5 的倍数共 10 个被累加，break 因需同时为 5 与 21 的公倍数（最小公倍数 105>99）而不触发，输出 10，与答案一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析称 21 的倍数 42、63、84“都是偶数”——63 为奇数，事实错误；且这三个数均不是 5 的倍数，在循环取值序列中根本不会出现，原解析未指出这一点。break 不触发的正确理由是需为 5 与 21 的公倍数（105>99）。需重写解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (10)**\n\n**核心解析：**\n1. 循环遍历：i 取 5, 10, 15, …, 95，即 100 以内全部 5 的倍数，共 19 个。\n2. 第一层过滤：if (i % 2 == 0) continue; 跳过其中全部偶数（10, 20, …, 90，共 9 个），剩下尾数为 5 的奇数：5, 15, 25, 35, 45, 55, 65, 75, 85, 95，共 10 个。\n3. 累加：每处理一个这样的 i，tnt += 1，故 tnt 最终为 10。\n4. break 条件分析：i % 3 == 0 && i % 7 == 0 等价于 i 是 21 的倍数。循环内的 i 必须同时是 5 的倍数，因此需为 5 和 21 的公倍数，最小公倍数为 105；105 > 99，本题范围内不存在这样的 i，break 永远不会执行，循环自然结束。\n5. 输出 tnt = 10。\n\n**选项逐项分析：**\n- A (500)：❌ 错误。与本题计数逻辑无关的错误结果。\n- B (450)：❌ 错误。可能是把某些 5 的倍数求和类计算与计数 tnt 混淆。\n- C (10)：✅ 正确。10 个奇数形式的 5 的倍数全部被累加，break 未触发。\n- D (1)：❌ 错误。可能误以为 break 在第一次有效迭代就触发，或只统计了 i = 5。\n\n**易错提醒：**\n- continue 只跳过本次循环剩余语句并进入下一次迭代，break 才终止整个循环。\n- 21 的倍数 21、42、63、84 都不是 5 的倍数，在本循环的取值序列中根本不会出现，不要把它们代入循环体讨论。\n\n**考点：** 多重控制流（continue/break）叠加分析、整除与最小公倍数的综合应用"
+        },
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "接受初核对 explanation 标 needs_fix 的判断，但重写理由并补充关键事实：原解析称 42/63/84“都是偶数”有误（63 为奇数），且这些值均非 5 的倍数、不会出现在循环取值队列中；修正为以最小公倍数 105>99 说明 break 不触发。其余维度与初核一致。"
+      }
+    ],
+    "summary": "本次独立复核第 11–15 题（均为单选题）。五题答案与 PDF 第1页答案表逐位核对一致（11=D、12=C、13=A、14=A、15=C），选项文字与顺序均与原卷一致。第 11 题题面省略了原卷两条输入提示语句并合并输入，属非等价删改，已在 changes 中按 PDF 第3页恢复完整代码并同时重写解析；第 13、15 题解析存在事实性错误（13：项数误记为 2001，实为 2000；15：称 21 的倍数 42/63/84“都是偶数”且未指出它们均非 5 的倍数、不会在循环中出现），均已重写为独立推导的解析。第 12、14 题题面、选项、答案、解析复核无误，维持原样（changes={}）。全部为单选题，tests 为空；无 unresolved 项。"
+  }
+}

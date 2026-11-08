@@ -1,0 +1,239 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:29:15.890Z",
+  "completedAt": "2026-11-08T05:30:46.182Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45878,
+    "completion_tokens": 8852,
+    "total_tokens": 54730,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6118
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0113077,
+      "allowance": 0.0113077,
+      "tokens": {
+        "input": 45878,
+        "output": 8852,
+        "reasoning": 6118,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1a4dcacaa2fa42d53bef043cfd863698c43b7724f3a0ad1d2c065913d739238a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP C++ 一级，2025 年 03 月」，与 paperId 2025-03-l1、level=1、year=2025、month=3 一致；第 1 页单选题答案表前 5 题为 D D D C C，第 4 页判断题答案表首行为 √ × × √ ×……（本题只涉单选前 5 题）。",
+      "reviewNote": "日期与等级可信，无需澄清。"
+    },
+    "verifications": [],
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干逐字对照网站：'2025年春节有两件轰动全球的事件……下面关于DeepSeek与《哪吒2》的描述成立的是( )'，含'入了全球票房榜'等细节均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D 依次为：《哪吒2》是一款新型操作系统 / DeepSeek是深海钻探软件 / 《哪吒2》可以生成新的软件 / DeepSeek可以根据《哪吒2》的场景生成剧情脚本，与网站 options 顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 D → 0 起始索引 3；网站 answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：DeepSeek 为生成式大语言模型，可依场景描述生成剧本类文本，D 成立；A 混淆电影与操作系统，B 混淆 AI 与钻探软件，C 混淆电影与软件生成，均不成立。网站解析逐项分析正确，'深度求索'释义无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案映射与页图逐一核对一致，独立推导与解析相符，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干'在某集成开发环境中编辑一个源代码文件时不可以执行下面（ ）操作'与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D：修改变量定义 / 保存代码修改 / 撤销代码修改 / 插入执行截图，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 D → 索引 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：源代码文件为纯文本，编辑/保存/撤销均为 IDE 文本操作；截图为二进制图像数据，嵌入会破坏文本结构导致无法编译，'不可执行'的是 D。网站解析与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：四选项与答案表 D 逐一映射无误，解析推理成立。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题题干'在C++中，下列可以做变量的是( )'与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D：Var-1 / $1 / %%1 / _Var_1，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 D → 索引 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 含 '-'、B 含 '$'、C 含 '%'，均非 C++ 标识符合法字符；D 由下划线、字母、数字组成且首字符为下划线，合法。网站解析另提示 '$' 在 GCC 属扩展、下划线开头名称可能被保留，均为准确补充，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：标识符规则分析正确，答案映射无误。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题题干'以下哪个是C++语言的关键字？（ ）'与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D：abs / cin / do / endl，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 C → 索引 2；网站 answer=2，一致。独立推导：do 为语言关键字，abs 为 <cstdlib>/<cmath> 库函数，cin 为标准输入流对象，endl 为流操纵符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。网站解析主体（库函数/流对象/操纵符与关键字区别）推导正确，但知识延伸'约 30+ 个关键字'为事实错误——C++98/03 标准已定义 63 个关键字，后续标准更多；修正稿将数量描述改为'C++98 已有 60 余个，后续标准更多'，其余内容经复核无新增错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (do)**\n\n**核心解析：**\n1. C++ 关键字是语言语法层面定义的保留词，具有特定语法功能，编译器根据这些词汇构建语法树。\n2. 关键字不能被用作变量名、函数名等用户自定义标识符。\n3. 库函数名、标准流对象、操纵符等虽然功能明确，但它们属于标准库提供的内容，而非语言本身的关键字。\n\n**选项逐项分析：**\n- **A (abs)**：❌ 错误。`abs` 是 `<cstdlib>` 或 `<cmath>` 头文件中定义的库函数（求绝对值），属于标准库提供的函数名，不是语言关键字。\n- **B (cin)**：❌ 错误。`cin` 是 `<iostream>` 中预定义的标准输入流全局对象，属于标准库设施，不是语言关键字。没有包含头文件或 `using namespace std;` 时，编译器不识别 `cin`。\n- **D (endl)**：❌ 错误。`endl` 是流操纵符，用于输出换行并刷新缓冲区，属于 `<iostream>` 库提供的功能，不是语言关键字。\n- **C (do)**：✅ 正确。`do` 是 C++ 的循环关键字，与 `while` 配合构成 do-while 循环语法结构，是编译器词法分析阶段识别的保留字。\n\n**易错提醒：**\n- 常见混淆：把库函数名、标准流对象误认为“关键字”。关键字是语言语法层面的概念，与标准库无关。\n- `do` 作为关键字只用于 do-while 循环，形成 `do { ... } while (condition);` 结构。\n- 判断一个词是否为关键字，可以尝试将其用作变量名——若编译器报错“不能将关键字用作标识符”，则说明它是关键字。\n\n**知识延伸：**\nC++ 的关键字数量随标准版本增加：C++98/03 标准已定义 63 个关键字，后续标准（如 C++11 起新增 `constexpr`、`nullptr` 等，C++20/23 更多）远不止 30 个；常见关键字包括 `if`、`else`、`for`、`while`、`switch`、`case`、`break`、`continue`、`return`、`int`、`double`、`char`、`void`、`class`、`public`、`private` 等。考生应熟悉这些保留词的名称和用途。\n\n**考点：** C++ 原生关键字与标准库保留标识符的区分",
+          "changesNote": "仅修正知识延伸中的关键字数量事实错误（'约30+个'改为 C++98/03 已有 63 个），并微调 do 用途表述；其余逐项解析保持原状，经复核无误。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的 needs_fix 判定并独立确认：'C++ 约有 30+ 个关键字'确实错误（C++98 即有 63 个），事实性错误非文风问题，允许修改；修正稿逐句复核无新增错误，修复后该维度核验通过。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干'哪组不能通过编译'（'不能'红色强调），第 2 页代码框为 int main(){ int i=0; [L1空行] break; [L2空行] return 0; }，与网站题面代码一致（仅缩进排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四个代码框：A=do{ / }while(i!=0);，B=for(; i<10; i++){ / }，C=if(i==0){ / }，D=switch(i){ / }；网站以 '(L1) 和 ... (L2)' 文本线性化表达，含义与顺序一致，答案映射不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 C → 索引 2；网站 answer=2，一致。独立代入验证：A 代入为 do{break;}while(i!=0);、B 为 for 循环、D 为 switch，break 均在循环/switch 作用域内可编译；C 代入为 if(i==0){break;}，break 不属于任何循环或 switch，编译报错（如 GCC 'break statement not within loop or switch'），故 C 不能通过编译。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析与独立推导一致：break 目标限于最内层循环或 switch，逐项分析正确；对 break/continue 适用范围（continue 不能用于 switch）的补充陈述也正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干跨页（第 1 页题干 + 第 2 页框架与选项）已分别核对，四选项代入逐一验证编译结果与答案 C 吻合，解析无误。"
+      }
+    ],
+    "summary": "本次复核 2025-03-l1 第 1-5 题（均为单选题，来源页 1-2）。卷头'CCF 编程能力等级认证 C++ 一级 2025年03月'与 paperId 匹配。第 1 页答案表 D D D C C 与网站 answer=3/3/3/2/2 的映射全部一致，且每个答案均经独立推导复核（第 5 题对四个选项逐一代入验证 break 作用域）。唯一需修改：第 4 题解析知识延伸的'C++ 约有 30+ 个关键字'为事实错误（C++98/03 已有 63 个关键字，后续标准更多），已提供修正全文并复核通过；第 1、2、3、5 题题面、选项、答案、解析均与页图逐字核对一致，无实质问题，不作文风改写。所有证据来自所给 PDF 页图与文本层，未使用外部资源。"
+  }
+}

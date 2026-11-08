@@ -1,0 +1,182 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:48:21.486Z",
+  "completedAt": "2026-11-08T05:51:29.745Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30756,
+    "completion_tokens": 17353,
+    "total_tokens": 48109,
+    "prompt_tokens_details": {
+      "cached_tokens": 30592,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15346
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01052818,
+      "allowance": 0.00631691,
+      "tokens": {
+        "input": 164,
+        "output": 17353,
+        "reasoning": 15346,
+        "cache_read": 30592,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1a4dcacaa2fa42d53bef043cfd863698c43b7724f3a0ad1d2c065913d739238a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP”“C++ 一级”“2025年03月”，与 paperId 2025-03-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页数据范围明确为 1 ≤ n,x,y ≤ 1000，并保证 y 小时后至少剩一本完整的书；当前网站写 n ≤ 10^5、x ≤ 100、y ≤ 10^7，且未写该保证，输入格式约束需修正。PDF样例 10/2/3→8、5/2/4→3 与当前 samples 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF答案表仅覆盖单选题和判断题。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析按网站错误约束加入“y 可能超过 n”的防负数边界说明，与 PDF“保证至少剩一本”冲突；需改为按 ceil(y/x) 计算，并说明合法输入下 remain ≥ 1。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码用 (y+x-1)/x 实现向上取整，与 PDF 官方公式 n-y/x-1+(y%x==0) 在 y>0 时等价；官方范围 1 ≤ n,x,y ≤ 1000 内无溢出；clamp 在题目保证下不触发。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 一级] 图书馆里的老鼠\n\n## 题目描述\n\n图书馆里有 $n$ 本书，不幸的是，还混入了一只老鼠，老鼠每 $x$ 小时能啃光一本书，假设老鼠在啃光一本书之前，不会啃另一本。请问 $y$ 小时后图书馆里还剩下多少本完整的书。\n\n## 输入格式\n\n三行，第一行一个正整数 $n$，表示图书馆里书的数量；\n\n第二行，一个正整数 $x$，表示老鼠啃光一本书需要的时间；\n\n第三行，一个正整数 $y$，表示经过的总时间；\n\n输入数据保证 $y$ 小时后至少会剩下一本完整的书。\n\n## 输出格式\n\n一行，一个整数，表示 $y$ 小时后图书馆里还剩下多少本完整的书。\n\n## 数据范围\n\n对于所有测试点，保证 1 ≤ n,x,y ≤ 1000。保证 $y$ 小时后至少会剩下一本完整的书。",
+          "explanation": "**解析：**\n\n本题要求计算经过 $y$ 小时后还剩多少本完整的书。关键规则：老鼠在啃光一本书之前不会换书；只要一本书开始被啃（即使还没啃光），它就不再完整。\n\n1. 计算不再完整的书本数 `eaten`：\n   - 若 `y % x == 0`，老鼠恰好啃完 `y / x` 本，没有正在啃的书，`eaten = y / x`。\n   - 若 `y % x != 0`，老鼠已啃完 `y / x` 本，并且正在啃下一本，`eaten = y / x + 1`。\n   合并即 `eaten = ceil(y / x)`。C++ 整数运算可用 `(y + x - 1) / x` 实现向上取整。\n\n2. 剩余完整书本数：`remain = n - eaten`。题目保证 $y$ 小时后至少剩下一本完整的书，因此合法输入下 `remain ≥ 1`。参考代码中的 `if (remain < 0) remain = 0;` 只是防御性处理，在题目保证下不会改变结果。\n\n**样例 1：** $n=10,x=2,y=3$，`eaten=(3+2-1)/2=2`，`remain=8`。\n\n**样例 2：** $n=5,x=2,y=4$，`eaten=(4+2-1)/2=2`，`remain=3`。\n\n**考点：** 向上取整、整数除法、剩余量计算。"
+        },
+        "tests": [
+          {
+            "name": "最小合法规模",
+            "input": "2\n1\n1",
+            "output": "1",
+            "reason": "n=2,x=1,y=1，1本被啃光，剩1本完整；满足至少剩1本的保证。"
+          },
+          {
+            "name": "y整除x",
+            "input": "10\n3\n6",
+            "output": "8",
+            "reason": "6小时恰好啃光2本，10-2=8本完整。"
+          },
+          {
+            "name": "y不整除x",
+            "input": "10\n3\n7",
+            "output": "7",
+            "reason": "7小时啃完2本且第3本正在被啃，3本不完整，10-3=7本完整。"
+          },
+          {
+            "name": "仅剩一本的保证边界",
+            "input": "1000\n1\n999",
+            "output": "1",
+            "reason": "999小时啃光999本，剩1本；n=1000,y=999均在官方范围内且满足保证。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第8页数据范围明确为 1 ≤ n ≤ 100、1 ≤ a_i ≤ 10000；当前网站写 n ≤ 10^5、a_i ≤ 10^9 且缺下界，需修正。PDF样例5个及输出与当前 samples 一致；题面中“个位5向上取整，25→30”与样例25→30一致，不构成含义改变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF答案表仅覆盖单选题和判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按个位 rem=a%10 分 rem<5 减 rem、rem≥5 加 10-rem，并走查43、58、25、67、90，与PDF样例和参考程序一致；未依赖错误约束。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "逐个数取模10；rem<5 时 a-=rem，rem≥5 时 a+=10-rem；对官方正数范围 1 ≤ a_i ≤ 10000 正确，时间复杂度 O(n)、空间 O(1)，无溢出。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 一级] 四舍五入\n\n## 题目描述\n\n四舍五入是一种常见的近似计算方法。现在，给定 $n$ 个整数，你需要将每个整数四舍五入到最接近的整十数。例如，$43$ 四舍五入后为 $40$，$58$ 四舍五入后为 $60$；如果个位是 $5$，向上取整，例如 $25$ 变为 $30$。\n\n## 输入格式\n\n共 $n+1$ 行，第一行，一个整数 $n$（1 ≤ n ≤ 100），表示接下来输入的整数个数。\n\n接下来 $n$ 行，每行一个整数 $a_i$（1 ≤ a_i ≤ 10000），表示需要四舍五入的整数。\n\n## 输出格式\n\n$n$ 行，每行一个整数，表示每个整数四舍五入后的结果。\n\n## 数据范围\n\n对于所有测试点，保证 1 ≤ n ≤ 100，1 ≤ a_i ≤ 10000。"
+        },
+        "tests": [
+          {
+            "name": "最小规模且舍入到0",
+            "input": "1\n1",
+            "output": "0",
+            "reason": "n=1,a=1，个位1<5，舍入到0；官方参考程序 (1+5)/10*10=0。"
+          },
+          {
+            "name": "个位为5向上进位",
+            "input": "1\n5",
+            "output": "10",
+            "reason": "个位5按题目25→30的规则向上进位，5→10。"
+          },
+          {
+            "name": "个位4与9的边界",
+            "input": "2\n4\n9",
+            "output": "0\n10",
+            "reason": "4<5舍为0，9≥5入为10。"
+          },
+          {
+            "name": "最大值10000",
+            "input": "1\n10000",
+            "output": "10000",
+            "reason": "官方上限 a_i=10000，已是整十数，应保持不变。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验26、27题。两题均为编程题，options/answer 不适用；Q26、Q27 题面数据范围与官方PDF不一致，已分别给出修正后的 question；Q26 解析需删除与“至少剩一本”保证冲突的防负数说明并修正；两题参考代码在官方范围内算法正确，边界测试已按独立计算列出，未运行源码。"
+  }
+}

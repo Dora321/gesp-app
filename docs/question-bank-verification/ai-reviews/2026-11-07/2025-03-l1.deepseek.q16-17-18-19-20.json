@@ -1,0 +1,230 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:40:48.489Z",
+  "completedAt": "2026-11-08T05:42:44.794Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30762,
+    "completion_tokens": 14235,
+    "total_tokens": 44997,
+    "prompt_tokens_details": {
+      "cached_tokens": 30592,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12828
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00865828,
+      "allowance": 0.00519497,
+      "tokens": {
+        "input": 170,
+        "output": 14235,
+        "reasoning": 12828,
+        "cache_read": 30592,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1a4dcacaa2fa42d53bef043cfd863698c43b7724f3a0ad1d2c065913d739238a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 一级 2025 年 03 月”，与 paperId 2025-03-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题第1题题面为“C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。（ ）”，与网站 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”标签，不适用选项顺序或内容核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第1题符号为√；网站 answer=0，按正确=0 的映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：高级语言源码需经编译或解释，最终由 CPU 机器指令执行；C++ 编译为机器码，Python 由解释器执行，故命题为真。网站解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题题面为“在C++中表达式 N * 2 % N 中如果 N 的值为正整数，则其值为2。（ ）”，与网站 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”标签，不适用选项顺序或内容核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第2题符号为×；网站 answer=1，按错误=1 的映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：乘法和取模同级且左结合，N*2 是 N 的倍数，正整数 N 下 (N*2)%N=0，不可能为 2，故命题错误；网站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页第3题代码在 cin >> N; 前还有一行 printf(\"请输入正整数：\");，网站题面代码漏掉该行；虽不改变答案，但代码不完整且实际输出会多出提示文本，应补全。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”标签，不适用选项顺序或内容核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第3题符号为×；网站 answer=1，按错误=1 的映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：char N 读入字符 '1'（ASCII 49），N*2=98，不是 20；网站解析的核心数值结论正确，提示行缺失不影响该判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "执行如下C++代码如果在键盘上输入10，执行后将输出20。\n```cpp\nchar N;\nprintf(\"请输入正整数：\");\ncin >> N;\nprintf(\"%d\\n\", N * 2);\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第4题题面及代码与网站 question 一致；代码为 if-else 结构，continue 位于 if 分支内。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”标签，不适用选项顺序或内容核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第4题符号为√；网站 answer=0，按正确=0 的映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：if-else 本身互斥，偶数分支打印后直接结束本次循环；删除 continue 后 else 仍不会执行，输出完全相同，故命题正确。网站解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第5题题面为“下面C++代码执行时将报错，因为所在位置应该是变量名，而不可以做变量名。（ ）”，代码中使用 _ 作为循环变量；网站用反引号标出 _，语义与 PDF 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项；网站 options 仅为“正确/错误”标签，不适用选项顺序或内容核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第5题符号为×；网站 answer=1，按错误=1 的映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：_ 由下划线组成、不以数字开头且不是关键字，在该块作用域中可作为变量名，代码不会因该名称报错；命题错误。网站解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题16-20（判断题第1-5题）。卷头与来源一致；五题官方答案与网站答案映射均一致。题18题面代码漏掉 PDF 中的提示输出行，已在 changes 中补全；其余题干与解析未发现需修正项。判断题的 options 和 referenceCode 不适用。"
+  }
+}

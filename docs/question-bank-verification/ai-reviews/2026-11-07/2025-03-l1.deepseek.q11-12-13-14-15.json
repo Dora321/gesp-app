@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:34:59.195Z",
+  "completedAt": "2026-11-08T05:36:55.194Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30762,
+    "completion_tokens": 13131,
+    "total_tokens": 43893,
+    "prompt_tokens_details": {
+      "cached_tokens": 30592,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11434
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00799588,
+      "allowance": 0.00479753,
+      "tokens": {
+        "input": 170,
+        "output": 13131,
+        "reasoning": 11434,
+        "cache_read": 30592,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1a4dcacaa2fa42d53bef043cfd863698c43b7724f3a0ad1d2c065913d739238a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标明“CCF 编程能力等级认证 C++ 一级 2025年03月”，与 2025-03-l1 匹配；第1页答案表第11至15题依次为 D、C、A、A、C。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码包含两处输入提示，并分两次用 cin 读取；当前题面省略提示、合并为一次读取。变量 first/second 的赋值和最终表达式 first / second * second 均未改变，不影响数值答案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 200、100、1、0，与当前 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题标 D；当前 answer=3，对应 D（0）。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析中关于 C 项“得到 1”的推演错误：100/200≈0.5，再乘 200 不会得到 1；答案 D 正确，但该段推导需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：D（0）。first=100、second=200；先算 first / second，即整数除法 100 / 200，小数部分被截断，结果为 0；再算 0 * 200，结果仍为 0。A、B 误以为除法结果能保留 100 或 200；C 误以为中间结果不是 0；D 正确。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码为 for 循环，条件空白处后输出 i；当前题面仅在空白外加一对括号，插入选项后条件等价，循环范围 0 至 99 和输出语句不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A 至 D 四项条件表达式与当前 options 一致，顺序相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题标 C；当前 answer=2，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项判断：A、B、D 都能表达“偶数且模 7 余 2”，C 实际表达“同时被 2 和 7 整除”，即 14 的倍数，与官方答案 C 一致；推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码与当前题面逐行一致：tnt=0；for(i=-1000;i<1000;i++) tnt+=i；最后输出 tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 -1000、0、999、1000，与当前 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题标 A；当前 answer=0，对应 A（-1000）。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析称共有 2001 个数，并把“含起点不含终点”的数量算成 2001；实际 -1000 到 999 共 2000 项，答案虽为 -1000，但计数与说明错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：A（-1000）。i 依次取 -1000、-999、…、0、…、999，共 2000 项。除 -1000 外，-999 到 999 关于 0 成对抵消，其和为 0；因此总和为 -1000。循环条件 i < 1000 不包含 1000。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码与当前题面逐行一致：for(i=1;i<100;i+=5) continue；循环后输出 i。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 101、100、99、96，与当前 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题标 A；当前 answer=0，对应 A（101）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析追踪 i=1、6、…、96、101；i=96 时 continue 后仍执行 i+=5，101 使条件失败，输出 101，与答案 A 一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码与当前题面逐行一致：i 从 5 到 99 每次加 5，偶数 continue，tnt 累加，满足 3 和 7 的公倍数时 break。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 500、450、10、1，与当前 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题标 C；当前 answer=2，对应 C（10）。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析称 21 的倍数 42、63、84 都是偶数，但 63 不是偶数；且这些数并不都是循环中的 5 的倍数。break 实际因 5 与 21 的最小公倍数 105 超过 99 而不触发。答案 C 正确，但该段事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：C（10）。i 取 5、10、15、…、95。偶数（10、20、…、90）被 continue 跳过，剩下 5、15、25、35、45、55、65、75、85、95 共 10 个，tnt 累加为 10。break 条件要求 i 同时是 3 和 7 的倍数，即 21 的倍数；而循环中的 i 都是 5 的倍数，5 与 21 的最小公倍数是 105，超过 99，因此 break 不会触发。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第11至15题。五题答案均与 PDF 答案表一致；第11、13、15题解析存在事实性错误，已在 changes 中给出完整修正。第11题题面省略输入提示但核心赋值与表达式等价，第12题仅条件空白处括号形式不同，其余题面、选项、答案通过；本批均为单选题，tests 为空。"
+  }
+}

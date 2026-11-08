@@ -1,0 +1,239 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:42:44.802Z",
+  "completedAt": "2026-11-08T05:44:21.774Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45228,
+    "completion_tokens": 6621,
+    "total_tokens": 51849,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4639
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0100947,
+      "allowance": 0.0100947,
+      "tokens": {
+        "input": 45228,
+        "output": 6621,
+        "reasoning": 4639,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1a4dcacaa2fa42d53bef043cfd863698c43b7724f3a0ad1d2c065913d739238a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP C++ 一级 2025年03月”，与 2025年3月一级（2025-03-l1）对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页末行判断题第1题题面为“C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。（ ）”，与网站 question 逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A/B/C/D 选项；网站 options 为“正确/错误”标签对，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第1题符号√，按正确=0 映射为 0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 源码经编译转为机器码执行，Python 由解释器翻译执行，最终均由 CPU 以机器指令完成；命题正确。网站解析的编译型/解释型区分及结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、√→0 映射与解析推导均经独立复核确认，无需修改。",
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题题面为“在C++中表达式 N * 2 % N 中如果 N 的值为正整数，则其值为2。（ ）”，与网站 question 语义一致（代码片段排版等价）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A/B/C/D 选项；网站 options 为“正确/错误”标签对，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第2题符号×，按错误=1 映射为 1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：* 与 % 同优先级且左结合，N*2 恒为 N 的倍数，(N*2)%N=0，不可能为 2，命题错误。网站解析举例（N=1、3、10 均得 0）推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：取模运算为 0 的推导独立成立，×→1 映射一致，无需修改。",
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第3题代码共 4 行：char N; / printf(\"请输入正整数：\");（红色提示文本，为第 2 行）/ cin >> N; / printf(\"%d\\n\", N * 2);。网站 question 漏掉提示输出行；changes 已补全该行，修复后核验通过，其余文字与卷面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A/B/C/D 选项；网站 options 为“正确/错误”标签对，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第3题符号×，按错误=1 映射为 1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：cin >> N 对 char 仅读入首字符 '1'（ASCII 49），N*2=98，实际输出 98（另含提示文本）而非 20，命题错误。网站解析核心数值结论正确，提示行缺失不影响该结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "执行如下C++代码如果在键盘上输入10，执行后将输出20。\n```cpp\nchar N;\nprintf(\"请输入正整数：\");\ncin >> N;\nprintf(\"%d\\n\", N * 2);\n```"
+        },
+        "tests": [],
+        "verdict": "revise",
+        "reviewNote": "初核提出的补全 printf(\"请输入正整数：\"); 经对照 PDF 第5页原图确认属实（代码第 2 行为红色提示文本），修改必要且不改变 ×→1 答案，接受该修改；字符输入截断与 ASCII 换算独立复算无误。",
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第4题题面“删除下面C++代码中的continue不影响程序的执行效果。（ ）”及 8 行循环代码（if 块内 printf(\"偶数\") 后接 continue，else 分支 printf(\"奇数\")）与网站 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A/B/C/D 选项；网站 options 为“正确/错误”标签对，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第4题符号√，按正确=0 映射为 0，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：if-else 结构互斥，偶数分支 printf(\"偶数\") 后 continue 之后无剩余语句，删除 continue 后流程仍到达 if-else 语句末尾再自增，else 不可能执行，输出完全相同，命题正确。与网站解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：continue 冗余性分析（if-else 互斥保证）经独立推导确认，√→0 映射一致，无需修改。",
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第5题题面为“下面C++代码执行时将报错，因为（该符号）所在位置应该是变量名，而不可以做变量名。（ ）”，句中内联符号在图/文本层未能清晰辨认，网站以 `_` 标注并与代码中循环变量对应，语义一致不改变命题；代码 for (int _ = 0; _ < 100; _++) cout << \"*\" << endl; 与卷面代码框一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A/B/C/D 选项；网站 options 为“正确/错误”标签对，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第5题符号×，按错误=1 映射为 1，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：`_` 仅由下划线组成、不以数字开头、非关键字，语法上是合法标识符，代码可正常编译执行，不因该名称报错，命题错误。网站解析结论一致，并恰当提示了下划线开头标识符与保留名的进阶风险。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：`_` 的标识符合法性独立确认，×→1 映射一致；题面内联符号排版还原为 `_` 属语义等价，不构成修改。",
+        "unresolved": []
+      }
+    ],
+    "summary": "本次复核范围仅限判断题第 1–5 题（网站 id 16–20），其余题目未核验。来源卷头“GESP C++ 一级 2025年03月”与 2025-03-l1 匹配。PDF 第4页判断题答案表为 √ × × √ × × × × × ×，五题官方答案经映射（正确=0、错误=1）与网站 answer 逐一吻合（16→0、17→1、18→1、19→0、20→1）。题 18 题面代码漏掉卷面第 2 行提示输出 printf(\"请输入正整数：\");，已按 DeepSeek 初核建议补全并复核通过（answer 维度不受影响）；其余四题题面、解析均独立推导确认正确，无修改。判断题的 options 与 referenceCode 维度不适用。五题 verdict：题 18 为 revise（修复已复验），其余 approve。"
+  }
+}
