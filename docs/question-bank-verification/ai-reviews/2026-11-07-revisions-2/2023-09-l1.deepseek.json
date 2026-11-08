@@ -1,0 +1,156 @@
+{
+  "paperId": "2023-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    12,
+    13
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T00:56:21.603Z",
+  "completedAt": "2026-11-08T00:57:31.327Z",
+  "finishReason": "stop",
+  "inputSha256": "84effd914027658b27c81284ff89bf8f8a0c86e5b19a0a78486708a3e9afdee1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++1级.pdf",
+    "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
+    "mirrorBytes": 1279999,
+    "shaVerified": true,
+    "sha256": "53bb75f3bad284f253cd824301edabde4358af907f895e10a428530e755ffe96"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页眉为“C++ 一级 2023 年 9 月”，与 2023 年 9 月 C++ 一级相符；同页单选题答案表第 12 题为 B、第 13 题为 D。"
+    },
+    "questions": [
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图代码为 `int n = 5; int cnt = 1; while (n >= 0) { cnt += 1; n -= 2; } cout << cnt;`；候选将两条声明合并为一行、题干将原卷“代码”写作“代码段”，均属等价排版，不改变题意。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 4 页页图选项依次为 A. 3、B. 4、C. 6、D. 7；候选当前写成 `[\"3\",\"4\",\"5\",\"2\"]`，C、D 两项误写，必须恢复为 6、7。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 B（0 起始索引 1）。独立追踪：n 依次为 5→3→1→-1，循环体执行 3 轮，cnt 由 1 增至 4，输出 4，对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐轮追踪表与主结论正确；A=3 相当于只执行 2 轮累加，C=6、D=7 均与逐轮结果不符。该解析表述对应原卷选项；修正 options 后即可直接使用。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "3",
+            "4",
+            "6",
+            "7"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 4 页页图题干包含“即输出所有能整除一个正整数的数”及输入 10、12、17 的示例，代码含 `int n = 0; cout << \"请输入一个正整数：\"; cin >> n;` 与 `// 此处填写代码` 注释；候选省略示例和输入提示代码，并把 for 体内单条 if 改写成花括号形式，未完整复现原卷。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 4 页页图选项为 A. `int i = 1; i < n; i + 1`、B. `int i = 1; i < n + 1; i + 1`、C. `int i = 1; i < n; i++`、D. `int i = 1; i < n + 1; i++`；候选把 C 的 `i++` 改成 `i = i+1`，把 D 改成 `i <= n; i = i+1`，虽语义近似但未按原卷复现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 D（0 起始索引 3）。独立验证：D 的条件覆盖 i=1..n，且 `i++` 能使循环变量递增，可输出包括 1 和 n 在内的全部因数；A/B 因 `i + 1` 未回写而循环变量不递增，C 因 `i < n` 漏掉 n 本身。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析选 D 正确；A、B 的死循环/跳过边界分析成立，C 漏 n、D 覆盖 1..n 的推导正确。该解析对应原卷选项，修正 question 与 options 后完全一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面C++代码用于求正整数的所有因数，即输出所有能整除一个正整数的数。如，输入10，则输出为1、2、5、10；输入12，则输出为1、2、3、4、6、12；输入17，则输出为1、17。在横线处应填入代码是（ ）。\n```cpp\nint n = 0;\ncout << \"请输入一个正整数：\";\ncin >> n;\n\nfor (__________________) // 此处填写代码\n    if (n % i == 0)\n        cout << i << endl;\n```",
+          "options": [
+            "int i = 1; i < n; i + 1",
+            "int i = 1; i < n + 1; i + 1",
+            "int i = 1; i < n; i++",
+            "int i = 1; i < n + 1; i++"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        12,
+        13
+      ],
+      "usage": {
+        "prompt_tokens": 13982,
+        "completion_tokens": 11574,
+        "total_tokens": 25556,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 10119,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0090417,
+          "allowance": 0.00542502,
+          "tokens": {
+            "input": 13982,
+            "output": 11574,
+            "reasoning": 10119,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T00:56:21.603Z",
+      "completedAt": "2026-11-08T00:57:31.327Z"
+    }
+  ]
+}
