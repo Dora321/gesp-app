@@ -1,0 +1,241 @@
+{
+  "paperId": "2024-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    7,
+    8,
+    9,
+    11,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T06:15:20.336Z",
+  "completedAt": "2026-11-08T06:16:27.616Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34293,
+    "completion_tokens": 5606,
+    "total_tokens": 39899,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2978
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00794695,
+      "allowance": 0.00794695,
+      "tokens": {
+        "input": 34293,
+        "output": 5606,
+        "reasoning": 2978,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d705fe5a4a5c01dfb954da1de41b995fe0f0fcfa2e71243fcad2511519393dcd",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++1级.pdf",
+    "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
+    "mirrorBytes": 443536,
+    "shaVerified": true,
+    "sha256": "4315e07e1575056207fac7ec81a501add5415159ff12d78f2c8aef0f58774293"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页页图卷头显示「CCF 编程能力等级认证 GESP」「C++ 一级」「2024 年 12 月」，与 paperId 2024-12-l1 的年月、等级、卷种一致；同页含第1—15题单选答案表。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页页图第7题代码逐行对照：int N, nowDay, afterDays; 两处 cout 提示（「今天星期几？ 」「求几天后星期几？ 」）与两次 cin、N = nowDay+afterDays;、if(横线) 分支 printf(\"星期天\") 与 else printf(\"星期%d\", N%7)，均与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页页图选项依次为 A N % 7 != 0、B N % 7 == 0、C N == 0、D N % 7，与候选顺序及文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表序列 C C D B B D B C C C D C D B D，第7题为 B（0起始索引1）。独立推导：余0对应星期天、余1—6对应星期1—6，只有 N%7==0 能在余0时进入星期天分支；A/D 在余非0时为真会误入星期天分支，C 仅覆盖 N=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选修正稿：D (N % 7) 是求余表达式而非关系比较，余非0时为真、余0时为假，在 if 条件中与 A (N%7!=0) 行为完全相同而非相反——该修正与语义一致，原「反向逻辑」误述已清除；A 方向反、C 仅 N=0、B 正确，123 类追踪与星期循环逻辑均成立，解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认候选已包含对 D 项的修正（`if(N%7)` 与 `N%7!=0` 行为等价，与 A 相同而非相反），修正前后答案映射不变；初核 approve 结论经原卷页图与答案表复核对得上，予以接受。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页页图第8题代码为 int N=0,i; for (i = 1; i < 10; i++) N += 1; cout << (N + i);，与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页页图选项依次为 A 54、B 20、C 19、D 18，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 C（索引2）。独立复算：i=1..9 共执行9次 N+=1，N=9；正常退出时 i 自增至 10；输出 9+10=19。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选修正稿：A(54) 自洽来源为「误用 N+=i 得 1+2+…+9=45，再误以为退出时 i 仍为 9，45+9=54」，可完整解释干扰项；B(20) 为误把 N 计作 10 次（10+10=20）；D(18) 为误以为退出时 i=9（9+9=18）；候选解析其余推导（9次循环、退出 i=10、19）经复算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认候选对 A(54) 的归因修复（45+9=54，替换原稿对不上的「45 再加 10 得 55」）自洽且与本题代码语境相符；答案 C=19 经独立复算无误，接受初核 approve。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页页图第9题代码为 int tnt = 0; for (i = 0; i < 100; i++) tnt += i % 10; cout << tnt;，与候选逐字一致；页图确实未声明 i，候选如实保留原貌，转录忠实；源卷瑕疵登记于 unresolved，不降级转录维度。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页页图选项依次为 A 4950、B 5050、C 450、D 100，与候选一致（C 选项勾选框样式上的差异不影响选项文字核对）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 C（索引2）。按题意把 i 视为整型循环变量独立复算：i%10 以 10 为周期，0+1+…+9=45，0—99 共 10 组，10×45=450。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：450 正确；干扰项归因 4950=0+1+…+99（忘取个位直接累加 i）、5050=1+2+…+100 均成立；i 未声明的源卷瑕疵不改变按题意的解析结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第9题代码使用未声明的循环变量 i（缺少 int i; 等声明），严格按 C++ 编译不通过；该瑕疵来自官方原卷而非候选转录（候选逐字保留原貌），按题意把 i 视为整型循环变量时答案 450 无歧义，题目保留原样不改。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "维持初核裁定：statement 维度核验对象是转录忠实性，页图证实候选与原卷逐字一致（含瑕疵原貌），故不因源卷瑕疵降级；答案 C=450 经独立复算确认；源卷 i 未声明问题完整保留于 unresolved。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第3页页图第11题代码中 cout << \"能被3整除的偶数 \" << endl; 与 cout << \"其他情形 \" << endl; 引号内末尾确各有一个空格，候选已含该空格；int N; cin >> N; if(横线)…else…、末尾单独一行 cout << endl; 及空行结构均与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页页图选项依次为 A (N%2)&&(N%3)、B (N%2==0)&&(N%3)、C (N%2)&&(N%3==0)、D (N%2==0)&&(N%3==0)，与候选顺序及文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 D（索引3）。独立验证：能被3整除的偶数须同时满足 N%2==0 且 N%3==0，即 D；A 真值为「奇数且非3倍数」、B 后半为「不能被3整除」、C 前半为「奇数」，均不符合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核解析：D 两个 ==0 子条件方向均正确；A/B/C 各有一处真假方向颠倒，逐项排除成立，解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认候选题面已按页图补齐两个输出字符串引号内末尾空格，修复与原卷一致；答案 D、解析逐项排除均经独立推导核对无误，接受初核 approve。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4—5页页图第15题代码跨页对照：int N; int n1,n2; 空行；cin >> N; 空行；第6行横线；while(N){ 内 n1 = N % 10、if(n1 >= n2){ cout << 0; return 1; }、n2 = n1, N /=10; }；循环后 cout << 1; 空行 cout << endl; return 0;，行号 1—19 与候选结构与内容逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图选项依次为 A n2 = N%10、B N /= 10、C n2 = N/10, N %= 10、D n2 = N%10, N /= 10，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 D（索引3）。独立追踪：填 D 后 123 预处理得 n2=3、N=12，循环内 2<3、1<2 依次通过，N=0 退出输出 1；132 会因 3>=2 在首轮输出 0，与位增数定义一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选修正稿：A 下 N 未缩小，首轮 n1=N%10 与 n2 相等，n1>=n2 立即成立并输出 0 后 return 1，对任意正整数输入均如此，并非死循环——修正表述与追踪一致；B 的 n2 未初始化行为不可预期；C 方向颠倒（132 误判输出 1）；D 经 123/132 双例追踪确认正确；解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立追踪确认候选对 A 项的修正（首轮 n1==n2 即输出 0 返回，替换原稿错误的「死循环」说法）成立，且 C 项的 132 误判追踪正确；题面跨页代码、选项与答案 D 均与页图一致，接受初核 approve。"
+      }
+    ],
+    "summary": "本轮独立复核题号 7、8、9、11、15：五题题面（含第11题输出字符串末尾空格、第15题跨页代码结构与空行）、选项顺序与文字均对照 PDF 页图逐字一致；答案映射依据第1页答案表（…第7题B、第8题C、第9题C、第11题D、第15题D）与独立推导（19、450、D、D 等）全部吻合；候选中已应用的四处解析/题面修复（第7题 D 项等价性、第8题 A=54 归因、第11题空格、第15题 A 项非死循环）经独立追踪确认正确且不影响答案，故五题均 approve，changes 为空；第9题原卷自带的循环变量 i 未声明瑕疵按源卷原貌保留于 unresolved。"
+  }
+}
