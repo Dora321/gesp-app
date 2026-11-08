@@ -1,0 +1,242 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:21:09.992Z",
+  "completedAt": "2026-11-08T01:23:57.829Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42493,
+    "completion_tokens": 13379,
+    "total_tokens": 55872,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10701
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01306345,
+      "allowance": 0.01306345,
+      "tokens": {
+        "input": 42493,
+        "output": 13379,
+        "reasoning": 10701,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32c0f20b44f21827d5de40ab9ad4a0448591895de55bc321f54115eba98505f7",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为「CCF 编程能力等级认证 Grade Examination of Software Programming」，标题「C++ 一级」，副标题「2023 年 12 月」；整卷结构为单选题15题（每题2分共30分）、判断题10题（每题2分共20分）、编程题2题（各25分共50分），与 paperId 2023-12-l1（2023年12月，一级）一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论。本人按PDF第1页原图独立复核：题干、A-D四选项及答案表第1题A（0起始索引0）均与网站数据一致，无修复项。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题题干「以下C++不可以作为变量的名称的是( )。」，网站题面仅存在排版空格差异，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页图示选项依次为 A.CCF GESP、B.ccfGESP、C.CCFgesp、D.CCF_GESP，与网站数组的内容与顺序逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第1题标A；A项「CCF GESP」中间含空格，空格是分隔符，不能构成单个标识符，0起始索引为0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析依据C++标识符规则（仅字母/数字/下划线构成、不用关键字、区分大小写）逐项判定A因含空格非法、B/C/D合法，独立推导与源题及语法事实一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "采纳初核修改结论并独立确认：PDF第1页原图第2题选项为 A.0、B.1、C.2、D.3，网站的「7」「10」两项与源卷不符，options须修正；网站解析按 C(7)/D(10) 展开的逐项分析随之作废，需改写。答案表第2题标B，索引1，修正后选项B仍为「1」，answer=1无需改动。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干「C++表达式 10 - 3 * (2 + 1) % 10 的值是( )。」，网站题面仅在数字与运算符间距上略有不同，语义一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第1页图示选项 A.0、B.1、C.2、D.3；网站当前数组为[0,1,7,10]，C/D两项（7、10）均非源卷内容，须改为[0,1,2,3]。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第2题标B；独立计算：括号(2+1)=3，3*3=9，9%10=9，10-9=1，0起始索引为1，与网站answer=1一致；修正选项后索引1仍对应「1」，映射不变。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析的逐项分析引用「C (7)、D (10)」，与源卷选项C=2、D=3不符（且原文对C的推导「7*3%10=1」自相矛盾），须按[0,1,2,3]重写逐项分析；核心计算结论1不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "explanation": "**答案：B（1）**\n\n**核心解析：**\n根据 C++ 运算符优先级：括号 `()` 最高；`*`、`/`、`%` 同级且高于 `+`、`-`，同级遵循左结合律。\n\n对表达式 `10 - 3 * (2+1) % 10` 逐步求值：\n1. **括号**：`(2+1) = 3`，原式化为 `10 - 3 * 3 % 10`；\n2. **乘除取模（左结合）**：先算 `3 * 3 = 9`，再算 `9 % 10 = 9`（9 除以 10 余 9）；\n3. **加减**：`10 - 9 = 1`。\n\n最终结果为 `1`。\n\n**选项逐项分析：**\n- **A（0）**：❌ 与按正确优先级算得的结果不符。\n- **B（1）**：✅ 正确。严格按「括号 > 乘除模 > 加减、同级左结合」的顺序计算得 1。\n- **C（2）**：❌ 与按正确优先级算得的结果不符。\n- **D（3）**：❌ 与按正确优先级算得的结果不符。\n\n**易错提醒：**\n- `*`、`/`、`%` 优先级相同，均高于加减，同级运算从左到右进行。\n- 本题中 `3 * 3 % 10` 的正确顺序是先乘后取模，不能先算减法或打乱顺序，否则可能得到 A/C/D 这类错误值。\n\n**考点：** 运算符优先级（括号 > 乘除模 > 加减）与左结合性"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论。本人独立复核：题干、9行代码、四个选项与PDF第1页一致；对给定样例试算N=20（30/24=1，30%24=6，输出「第2天6点」）与N=4（14/24=0，14%24=14，输出「今天14点」）均成立，答案表标B与网站answer=1一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题题干含「假设现在是上午十点……输入20小时则为第2天6点，如N输入4则为今天14点」，代码块（int N, dayX, hourX; cin >> N; dayX = ________, hourX = ________; if (dayX == 0)…else…）与网站题面代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页图示选项依次为 (10 + N) % 24 , (10 + N) / 24；(10 + N) / 24 , (10 + N) % 24；N % 24 , N / 24；10 / 24 , 10 % 24，与网站数组一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第3题标B；dayX=(10+N)/24 求完整天数、hourX=(10+N)%24 求当天时刻，独立代入N=20与N=4均与题干示例吻合，0起始索引为1，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析用N=20、N=4两组数据独立验证，并指出A项两空填反、C项漏加起点10、D项完全未用N，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论。题干在第1页末、代码与选项在第2页，sourcePages [1,2] 登记正确；答案表第4题标A，三个干扰项性质（赋值非法、非零即真反判、奇数条件）均经独立验证成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页末第4题题干「下面的程序用于判断N是否为偶数，横线处应填写代码是（ ）」，PDF第2页代码块（cin >> N; if (______) cout << \"偶数\"; else cout << \"奇数\";）与网站题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页图示选项依次为 N % 2 == 0、N % 2 = 0、N % 2、N % 2 != 0，与网站数组一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第4题标A；偶数即 N 除以2余数为0，条件应为 N % 2 == 0，0起始索引为0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立验证：B项赋值表达式左操作数 N%%2 为临时右值，无法通过编译；C项 N%%2 在奇数时非零（会反向输出）；D项为奇数条件；A项正确。推导与C++语义相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论。本人独立推演 for(int i=1; i<N; i++) 循环体执行 N-1 次（N≥2 时），输出 N-1，与答案表第5题标B一致；边界值N=2试算输出1，可排除A。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题代码（cin >> N; cnt = 0; for(int i = 1; i < N; i++) cnt += 1; cout << cnt;）与网站题面代码一致，「第5行」对应 cout << cnt; 无误。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页图示四个描述（N小于等于2输出0；N大于等于2输出N-1；N大于等于2输出N；以上均不正确）与网站数组逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第5题标B；循环变量 i 取1…N-1共执行N-1轮（N≥2），cnt最终为N-1，0起始索引为1，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立代入N=3（输出2）、N=2（输出1）验证，指出A在N=2时输出1而非0、C计数起点与次数不符，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅独立复核第1-5题：第1、3、4、5题的题面、选项、答案与解析均与PDF页图逐项一致，判定approve；第2题PDF第1页原图选项为A.0、B.1、C.2、D.3，网站选项C/D误录为「7」「10」、解析亦按错误选项展开，已提供修正后的options与explanation，官方答案B（索引1）不变。PDF答案表前5题 A B B A B 与网站answer（0,1,1,0,1）逐题吻合，无冲突。第6-27题及编程题不在本次处理范围。"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:33:06.906Z",
+  "completedAt": "2026-11-08T01:35:19.990Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 27685,
+    "completion_tokens": 15443,
+    "total_tokens": 43128,
+    "prompt_tokens_details": {
+      "cached_tokens": 27520,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13849
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00937311,
+      "allowance": 0.00562387,
+      "tokens": {
+        "input": 165,
+        "output": 15443,
+        "reasoning": 13849,
+        "cache_read": 27520,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32c0f20b44f21827d5de40ab9ad4a0448591895de55bc321f54115eba98505f7",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证 / C++ 一级 / 2023年12月”，与paperId 2023-12-l1一致；第5-8页编程题标题、题面和参考程序均与本题对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页3.1.1-3.1.3的核心描述、输入输出格式、X/N范围及样例均与当前题面一致；但PDF第5页标有“时间限制：1.0 s、内存限制：128.0 MB”，第6页3.1.4有“特别提醒”，当前question未收录，已补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无PDF答案表项，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析在“扩展样例”处停在“3 + 15 = 18”，未给出18%7=4及最终输出，属于截断；已补全完整推导。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前代码用(x+n)%7并将余数0映射为7；与PDF第6页参考程序(x-1+n%7)%7+1在1≤X≤7、1≤N≤364范围内等价，x+n≤371无溢出，时间复杂度O(1)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202312 一级] 小杨的考试\n\n时间限制：1.0 s；内存限制：128.0 MB\n\n## 题目描述\n\n今天是星期 X，小杨还有 N 天就要考试了，你能推算出小杨考试那天是星期几吗？（本题中使用 7 表示星期日）\n\n## 输入格式\n\n输入 2 行，第一行一个整数 X(1≤X≤7)；第二行一个整数 N(1≤N≤364)。\n\n## 输出格式\n\n输出一个整数，表示小杨考试那天是星期几。\n\n## 特别提醒\n\n在常规程序中，输入、输出时提供提示是好习惯。但在本场考试中，由于系统限定，请不要在输入、输出中附带任何提示信息。",
+          "explanation": "**思路：** 星期按 7 天循环，考试在 N 天后，因此从今天的星期 X 向后推 N 天，计算 `(X + N) % 7`。余数 1~6 对应星期一到星期六，余数 0 对应星期日；题目要求用 7 表示星期日，所以余数为 0 时改为 7。时间复杂度 O(1)，空间复杂度 O(1)。\n\n**样例 1：** X=1，N=6，`(1+6)%7=0`，改为 7，输出 7。  \n**样例 2：** X=5，N=3，`(5+3)%7=1`，输出 1。  \n**边界：** X=1，N=1 时输出 2；X=7，N=364 时 `(7+364)%7=0`，输出 7。PDF 参考程序使用 `(X-1+N%7)%7+1`，与上述写法等价。参考代码已给出。"
+        },
+        "tests": [
+          {
+            "name": "最小N与跨日",
+            "input": "1\n1",
+            "output": "2",
+            "reason": "星期一过1天为星期二，验证N=1边界。"
+          },
+          {
+            "name": "整周映射星期日",
+            "input": "1\n6",
+            "output": "7",
+            "reason": "星期一过6天为星期日，余数0需映射为7；与样例1一致。"
+          },
+          {
+            "name": "最大N整周",
+            "input": "7\n364",
+            "output": "7",
+            "reason": "364=52×7，星期日过整周仍为星期日，验证N上限和取模0处理。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第7页3.2.1-3.2.3的核心描述、输入输出格式、N/M范围及样例均与当前题面一致；但PDF第7页标有“时间限制：1.0 s、内存限制：128.0 MB”，3.2.4有“特别提醒”，当前question未收录，已补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无PDF答案表项，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析完整，逐步说明遍历1~N、用i%M!=0筛除M的倍数，样例走查和易错提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前代码遍历1~N，i%M!=0时逐行输出；与PDF第8页参考程序逻辑一致，时间复杂度O(N)，N≤1000，无溢出。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202312 一级] 小杨报数\n\n时间限制：1.0 s；内存限制：128.0 MB\n\n## 题目描述\n\n小杨需要从 1 到 N 报数。在报数过程中，小杨希望跳过 M 的倍数。例如，如果 N=5，M=2，那么小杨就需要依次报出 1、3、5。\n\n现在，请你依次输出小杨报的数。\n\n## 输入格式\n\n输入 2 行，第一行一个整数 N（1≤N≤1,000）；第二行一个整数 M（2≤M≤100）。\n\n## 输出格式\n\n输出若干行，依次表示小杨报的数。\n\n## 特别提醒\n\n在常规程序中，输入、输出时提供提示是好习惯。但在本场考试中，由于系统限定，请不要在输入、输出中附带任何提示信息。"
+        },
+        "tests": [
+          {
+            "name": "最小N",
+            "input": "1\n2",
+            "output": "1",
+            "reason": "N=1时只有1，且1不是2的倍数，输出1。"
+          },
+          {
+            "name": "M等于N",
+            "input": "6\n6",
+            "output": "1\n2\n3\n4\n5",
+            "reason": "跳过6，输出1~5；验证范围内最后一个M的倍数被排除。"
+          },
+          {
+            "name": "M大于N",
+            "input": "5\n100",
+            "output": "1\n2\n3\n4\n5",
+            "reason": "M在允许上限且M>N时，范围内无M的倍数，全部输出。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验26、27题。卷头身份匹配；两题核心题面、输入输出、约束、样例和参考代码与PDF一致。发现26题解析末尾截断；两题题面未收录PDF的1.0s/128MB限制及“特别提醒”，已给出补全草稿。两题参考代码算法正确，边界测试见tests。"
+  }
+}

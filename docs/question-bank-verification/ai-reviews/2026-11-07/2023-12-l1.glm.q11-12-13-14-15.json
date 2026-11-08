@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:26:19.024Z",
+  "completedAt": "2026-11-08T01:27:18.710Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42290,
+    "completion_tokens": 4538,
+    "total_tokens": 46828,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2523
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0086125,
+      "allowance": 0.0086125,
+      "tokens": {
+        "input": 42290,
+        "output": 4538,
+        "reasoning": 2523,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32c0f20b44f21827d5de40ab9ad4a0448591895de55bc321f54115eba98505f7",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为「CCF 编程能力等级认证 GESP · C++ 一级 · 2023 年 12 月」，与目标 2023-12-l1（2023 年 12 月 GESP C++ 一级）完全一致；图片与文本层内容对应，git-blob 来源可信。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 11 题题干为「执行下面C++代码后输出是（ ）」，代码逐行为 cnt = 0; for (i = 10; i > 3; i -= 3) cnt = cnt + i; cout << cnt;，与网站题干及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A. 3、B. 21、C. 27、D. 49，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 B（0 起始索引 1）。独立跟踪：i=10 满足 10>3，cnt=10，i→7；7>3，cnt=17，i→4；4>3，cnt=21，i→1；1>3 不成立退出。输出 21，与 B 及网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析表格逐轮列出 i 取 10/7/4、cnt 依次为 10/17/21，i=1 时退出，与独立跟踪完全一致；易错提示指出条件为严格大于、i=4 后直接跳到 1，无结论性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面、四个选项、答案映射（B→1）与解析推导均经我独立跟踪 cnt=10+7+4=21 确认无误。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 12 题题干为「定义变量 char c ，下面对 c 赋值的语句，不符合语法的是( )」，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A. c = (char)66;、B. c = (char)(66);、C. c = char(66);、D. c = char 66;，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 D（索引 3）。独立判断：A/B 为 C 风格转换、C 为函数风格转换均合法；D 的「char 66」既无类型括号也无数值括号，不构成合法表达式，与 D 及网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确区分 (char)66、(char)(66)、char(66) 三种合法写法并说明 char 66 因缺少强制转换所必需的括号而非法，推导链完整，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：D 项语法错误经独立确认，答案映射 D→3 正确，解析无事实错误。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 13 题题干为对大写字母 'A' 到 'Z' 分组并问输入 'C' 时输出的组号；代码逐行核对：case 'A' 输出 \"1 \" 后 break，case 'B'、case 'C' 输出 \"3 \" 后无 break，case 'D' 输出 \"5 \" 后 break，case 'E' 输出 \"5 \" 后 break，default 输出 \"9 \"，与网站代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A. 3、B. 3 5、C. 3 5 9、D. 以上都不对，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 B（索引 1）。独立跟踪：输入 'C' 进入 case 'C' 输出「3 」，该分支无 break 发生穿透，继续执行 case 'D' 输出「5 」后遇 break 跳出，本次输出「3 5」，与 B 及网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析准确说明 switch 穿透行为，并指出 case 'D' 的 break 阻止执行到 default（排除 C 项），与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：穿透逻辑独立复演为「3 5」，答案映射 B→1 正确。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 14 题题干为声控无人驾驶小汽车自动选择优化路线并告知乘客，问哪项不是驾驶系统完成选路所必须的，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A. 麦克风、B. 扬声器、C. 油量表、D. 传感器，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C（索引 2）。独立分析：选路链路需麦克风（采集语音指令）、传感器（定位感知）、处理器规划、扬声器（播报路线），油量表仅指示剩余油量、不参与路径规划，与 C 及网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按输入（麦克风/传感器）—处理与规划—输出（扬声器）三环节论证各设备必要性并排除油量表，逻辑完整，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：油量表不参与选路的判断独立成立，答案映射 C→2 正确。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题题干为「现代计算机是指电子计算机，它所基于的是（ ）体系结构」，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A. 艾伦·图灵、B. 冯·诺依曼、C. 阿塔纳索夫、D. 埃克特-莫克利，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 B（索引 1）。现代电子计算机普遍基于冯·诺依曼存储程序体系结构，与 B 及网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析区分图灵（理论模型）、阿塔纳索夫（早期电子计算探索）、埃克特-莫克利（ENIAC 制造者）与冯·诺依曼（体系结构奠基），并围绕题干关键词「体系结构」作答，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：冯·诺依曼对应体系结构为公认史实，答案映射 B→1 正确，解析人物区分无误。"
+      }
+    ],
+    "summary": "本次独立复核第 11-15 题：五题题面、选项、PDF 第 1 页答案表映射（B/D/B/C/B→索引 1/3/1/2/1）及解析均与 PDF 第 4-5 页原图逐题对照一致；第 11 题累加结果 21、第 13 题 switch 穿透输出「3 5」等关键结论均经独立推导确认。DeepSeek 初核对这五题的核验意见全部成立，未发现任何需要修改的字段，故 changes 均为空，五题均为 approve。五题均为单选题，无编程题，tests 不适用。"
+  }
+}

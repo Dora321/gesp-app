@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:25:30.350Z",
+  "completedAt": "2026-11-08T01:26:19.016Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 27691,
+    "completion_tokens": 5687,
+    "total_tokens": 33378,
+    "prompt_tokens_details": {
+      "cached_tokens": 27520,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4248
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00352041,
+      "allowance": 0.00211225,
+      "tokens": {
+        "input": 171,
+        "output": 5687,
+        "reasoning": 4248,
+        "cache_read": 27520,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32c0f20b44f21827d5de40ab9ad4a0448591895de55bc321f54115eba98505f7",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 一级 2023年12月”，与 2023-12-l1 一致；第1页单选题答案表第11-15题依次为 B、D、B、C、B。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第11题题干为“执行下面C++代码后输出是（ ）。”，代码为 cnt = 0; for (i = 10; i > 3; i -= 3) cnt = cnt + i; cout << cnt;，与网站题面及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项为 A. 3、B. 21、C. 27、D. 49，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为 B，映射为索引1；独立计算 i 取10、7、4时累加，10+7+4=21，i变为1后条件不成立，答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按循环变量递减过程推导，10→7→4→1，累加值为21，与官方答案及独立计算一致；未发现结论性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第12题题干为“定义变量 char c，下面对 c 赋值的语句，不符合语法的是( )。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项为 A. c = (char)66;、B. c = (char)(66);、C. c = char(66);、D. c = char 66;，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为 D，映射为索引3；D 的“char 66”缺少类型转换所需括号，不能构成合法赋值表达式，答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 C 风格转换 (char)66、(char)(66) 与函数风格转换 char(66)，并指出 char 66 语法不合法，推导与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第13题题干为对大写字母分组并询问输入 'C' 时输出的组号，所附 switch 代码中 case 'C' 后无 break，case 'D' 后有 break，与网站代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项为 A. 3、B. 3 5、C. 3 5 9、D. 以上都不对，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为 B，映射为索引1；输入 C 后执行 case 'C' 输出“3 ”，穿透到 case 'D' 输出“5 ”，随后 break，结果为“3 5”，答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析准确说明 switch 穿透：case 'C' 无 break 会继续执行 case 'D'，case 'D' 的 break 阻止进入 default，独立推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第14题描述声控无人驾驶汽车选路，并问哪项不是完成选路所必须的，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A. 麦克风、B. 扬声器、C. 油量表、D. 传感器，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为 C，映射为索引2；油量表不参与目的地输入、环境/位置感知和路线规划，答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“声控输入—传感器感知—计算选路—语音告知”的题干流程说明麦克风、传感器、扬声器的作用，并指出油量表不参与选路；与官方答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第15题题干为“现代计算机是指电子计算机，它所基于的是（ ）体系结构。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A. 艾伦·图灵、B. 冯·诺依曼、C. 阿塔纳索夫、D. 埃克特-莫克利，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为 B，映射为索引1；现代电子计算机基于冯·诺依曼体系结构，答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出冯·诺依曼提出存储程序思想并奠定现代电子计算机体系结构，且正确区分图灵、阿塔纳索夫、埃克特-莫克利，结论与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第11-15题：题面、选项、官方答案映射和解析均与PDF第4-5页及第1页答案表一致，未发现需要纠错的内容；五题均为单选题，无编程题测试项。"
+  }
+}

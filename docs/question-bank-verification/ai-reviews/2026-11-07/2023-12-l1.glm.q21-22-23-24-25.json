@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:30:50.369Z",
+  "completedAt": "2026-11-08T01:33:06.898Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42053,
+    "completion_tokens": 10516,
+    "total_tokens": 52569,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8176
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01156595,
+      "allowance": 0.01156595,
+      "tokens": {
+        "input": 42053,
+        "output": 10516,
+        "reasoning": 8176,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32c0f20b44f21827d5de40ab9ad4a0448591895de55bc321f54115eba98505f7",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP / C++ 一级 / 2023 年 12 月”，单选答案表 15 格与站点题目定位一致，来源 blob SHA fc1710d… 匹配 2023-12-l1。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立读取第 5 页判断题答案表第 6 格为“√”（符号在文本层缺失，以页图为准），对应 正确=0，与站点 answer 0 一致；while(1) 条件恒真、continue 无条件跳回条件判断、循环体无更新机制且无 break/return，死循环结论独立推导成立；题面与解析逐条核对无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题原文“在下面的C++代码 while(1) continue; 中，由于循环中的 continue 是无条件被执行，因此将导致死循环。（ ）”，站点题面逐字一致（代码按行内代码排版，属允许转换）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断答案表第 6 格页图为“√”，即 正确=0；while(1) 恒真 + continue 仅跳回条件判断 + 无任何退出语句 = 死循环，命题正确，与站点 answer 0 完全一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析独立推导成立：条件恒真且 continue 跳转后无变量变化、while 无更新子句；与 for (int i=1;i<10;i++) continue; 的对比正确（for 的 continue 不跳过更新子句 i++），与官方结果无冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核指出站点把官方外层括号 `('1'+'1'=='2'? flag=1:flag=2)` 改写为 `('1'+'1'=='2') ? flag=1 : flag=2` 属语义等价，我独立验证：两种写法条件均为 '1'+'1'=='2'（98==50 为假），取 flag=2，表达式值均为 2，求值完全相同，不构成含义改变，statement 不需修复。答案 ×=1 与答案表第 7 格页图一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文“C++表达式 ('1'+'1'=='2'? flag=1:flag=2) 的结果值和表达式 (flag==2) 的相同。（ ）”。站点写作 ('1'+'1'=='2') ? flag=1 : flag=2：括号分组位置不同，但条件、两分支及表达式取值完全一致，属语义等价转换，含义未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 7 格页图为“×”，即 错误=1，与站点 answer 1 一致。独立推导：'1'=49，'1'+'1'=98，'2'=50，98==50 为假 → 执行 flag=2，第一式结果值为 2；(flag==2) 为 true，数值 1；2≠1，“结果值相同”不成立，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 ASCII 49+49=98 与 50 比较判断条件为假，并正确区分赋值表达式的值 2 与布尔 true 的数值 1；易错提醒中无括号写法 cout<<2*3<<\",\"<<3%10<<\",\"<<2+3 输出 6,3,5 的说明经独立核算也正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：第 5 页答案表第 8 格页图为“×”（=1），与站点 answer 1 一致；scanf 是标准库函数名而非 C++ 关键字，可作变量名（未包含 <cstdio> 时无冲突，局部作用域声明则遮蔽库函数），绝对化命题“不能用”为错误，独立推导与初核结论及官方符号一致；题面“作变量名”与原文“作为变量名”同义，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文“在C++的程序中，不能用 scanf 作为变量名。（ ）”；站点作“不能用 scanf 作变量名”，“作/作为”同义，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 8 格页图为“×”，即 错误=1，与站点 answer 1 一致。scanf 非关键字而是库函数名，变量可与库函数同名（未引入 <cstdio> 时合法；局部作用域声明则遮蔽全局函数名），故“不能用”的绝对化命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确给出 int scanf=5; 合法示例、说明局部遮蔽机制及 ::scanf 调用方式，与“关键字才不能作变量名”的考点一致，独立推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：第 5 页答案表第 9 格页图为“×”（=1），与站点 answer 1 一致；Dev C++ 是集成开发环境（IDE，应用软件），需运行于操作系统之上，不是操作系统，命题错误成立；题面站点较原文少一“的”字（他用的→他用），语义不变，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原文“小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）”，站点为“他用Dev C++来练习和运行程序”，仅少一字“的”，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 9 格页图为“×”，即 错误=1，与站点 answer 1 一致。Dev C++ 为 IDE（编辑器+编译器+调试器），属应用软件，不具备管理硬件资源与调度进程的职能，不是操作系统。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分操作系统与 IDE 的系统/应用软件属性，并给出同类辨析（VS、Code::Blocks 均非操作系统），与官方结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：第 5 页答案表第 10 格页图为“√”（=0），与站点 answer 0 一致；while(cond) body 可机械改写为 for(;cond;) body，更新子句为空时 continue 落在空子句后回条件判断，行为与原 while 完全一致，三子句均可省略（for(;;) ⇔ while(true)），等价转换命题正确，独立推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 10 题原文“任何一个 while 循环都可以转化为等价的 for 循环（ ）”，站点题面一致（仅末尾句号等标点差异，可忽略）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第 10 格页图为“√”，即 正确=0，与站点 answer 0 一致。while(A) B ⇔ for(;A;) B：转换后更新子句为空，continue 跳至空更新子句再回条件判断，与 while 中跳回条件判断行为相同；for 三子句可留空，故任何 while 循环均可等价转换。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出标准转换模板（初始化入 for 首子句、更新入第三子句），说明 for(;;) ⇔ while(true)，并提示 for(int i=…) 循环内可转换）见后的作用域差异，独立推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核 id 21-25（判断题第 6-10 题）。判断题答案符号在文本层缺失，以第 5 页页图为准：第 6-10 格为 √、×、×、×、√，对应 0,1,1,1,0，与站点答案逐题一致。题面仅有等价性差异：(22) 官方外层括号在站点改为条件括号，三元表达式求值完全相同；(23)“作变量名”与“作为变量名”同义；(24) 较原文少一“的”字；(21)(25) 逐字一致。五题解析均经独立推导确认（'1'+'1'=98≠'2'50、赋值表达式值 2 vs true 的 1、库函数名可遮蔽/非关键字、IDE 非操作系统、while⇔for 等价转换且空更新子句下 continue 行为一致），与官方符号无冲突。初核结论全部可靠，予以接受；无修改，判断题不适用 tests，无遗留未决问题。"
+  }
+}

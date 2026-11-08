@@ -1,0 +1,119 @@
+{
+  "executedAt": "2026-11-08T01:41:53.284Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "1\n6",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "input": "5\n3",
+          "output": "1",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小N跨日",
+          "input": "1\n1",
+          "output": "2",
+          "reason": "星期一过 1 天为星期二，(1+1)%7=2；覆盖 N 最小值，官方程序 (1-1+1%7)%7+1=2 同值。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "余0映射星期日",
+          "input": "1\n6",
+          "output": "7",
+          "reason": "(1+6)%7=0 必须按题意映射为 7；即官方样例 1，验证特判分支，官方程序 (0+6)%7+1=7 同值。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "星期日起点归一",
+          "input": "7\n1",
+          "output": "1",
+          "reason": "(7+1)%7=1，验证 X=7 起点输出 1 而非 0；官方程序 (6+1)%7+1=1 同值。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最大N整周",
+          "input": "7\n364",
+          "output": "7",
+          "reason": "7+364=371=53×7，余 0 映射为星期日；覆盖 X、N 同时取上限。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "bc44a0f38a867856cd49b35487e9f33705319eb57e77652747d43ea888bec1b2"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5\n2",
+          "output": "1\n3\n5",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n3\n5\n",
+          "passed": true
+        },
+        {
+          "input": "10\n3",
+          "output": "1\n2\n4\n5\n7\n8\n10",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1\n2\n4\n5\n7\n8\n10\n",
+          "passed": true
+        },
+        {
+          "name": "最小N",
+          "input": "1\n2",
+          "output": "1",
+          "reason": "N=1 时仅报数 1 且 1 不是 2 的倍数；覆盖 N 下界，官方程序输出 1 同值。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "区间末端恰为M的倍数",
+          "input": "6\n6",
+          "output": "1\n2\n3\n4\n5",
+          "reason": "6%6==0 被跳过；验证 i<=n 边界处的 M 的倍数同样被排除，官方程序同结果。",
+          "kind": "boundary",
+          "actual": "1\n2\n3\n4\n5\n",
+          "passed": true
+        },
+        {
+          "name": "M大于N且取上限",
+          "input": "5\n100",
+          "output": "1\n2\n3\n4\n5",
+          "reason": "M=100 为允许上限且大于 N，范围内无 M 的倍数，1~5 全部输出；验证 M 上界与 M>N 合法组合。",
+          "kind": "boundary",
+          "actual": "1\n2\n3\n4\n5\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6d218652407904eb4ae938b1075c40cb90baf896a250b5e503d50d524ca247d4"
+    }
+  ]
+}

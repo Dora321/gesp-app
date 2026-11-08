@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:23:57.837Z",
+  "completedAt": "2026-11-08T01:24:32.561Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 27691,
+    "completion_tokens": 3825,
+    "total_tokens": 31516,
+    "prompt_tokens_details": {
+      "cached_tokens": 27520,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2363
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00240321,
+      "allowance": 0.00144193,
+      "tokens": {
+        "input": 171,
+        "output": 3825,
+        "reasoning": 2363,
+        "cache_read": 27520,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32c0f20b44f21827d5de40ab9ad4a0448591895de55bc321f54115eba98505f7",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头标明“C++ 一级 2023 年 12 月”，与目标 2023-12-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页代码为 cnt=0; for(int i=1; i<10; i++){ cnt+=1; i+=2; } cout<<cnt;，与当前题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A.10、B.9、C.3、D.1，顺序和内容与当前数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 单选答案表第 6 题对应 C，即 0 起始索引 2，与当前 answer=2 一致；按 i 每轮实际增加 3 推导，执行 3 轮后 cnt=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立跟踪 i=1→4→7→10，循环体执行 3 次，cnt 最终为 3，与答案 C 相符，未发现逻辑错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2—3 页代码为 cnt=0; for(int i=1;i<20;i++){ if(i%2) continue; else if(i%3==0 && i%5==0) break; cnt+=i; } cout<<cnt;，与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A.90、B.44、C.20、D.10，与当前数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 7 题为 A，即索引 0；偶数 2 至 18 全部累加，和为 90；15 为奇数先被 continue 跳过，break 不触发。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 i%2 为真时 continue，15 不会进入 else if，累加 2+4+…+18=90，推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页代码为 N=10; cnt=0; while(1){ if(N==0) break; cnt+=1; N-=2; } cout<<cnt;，与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A.11、B.10、C.5、D.4，与当前数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 8 题为 C，即索引 2；N 从 10 每次减 2，共执行 5 次累加，第 6 次进入循环时 N=0 触发 break，cnt=5。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的逐轮表格和数学推导均正确，输出为 5，与答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页代码为 cin>>N; cnt=0; for(int i=1;i<N+1;i++) if(N%i==0) ________; if(cnt==2) ...，横线位置与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A.cnt=1、B.cnt=2、C.cnt=+1、D.cnt+=1，与当前数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 9 题为 D，即索引 3；每找到一个因数应执行 cnt+=1，最后以因数个数是否为 2 判断质数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分赋值、直接赋 2、cnt=+1 的一元正号写法与 cnt+=1 的累加语义，结论与答案 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3—4 页代码包含 #include <stdlib.h>、using namespace std;、for(int i=0;i<10;i++) 后循环外 cout<<i，以及 cout/endl 的使用，与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A.输出2 6 3 5 4 8 1 0 9 10 10、B.输出2 6 3 5 4 8 1 0 9 9、C.输出2 6 3 5 4 8 1 0 9 10、D.提示有编译错误，与当前数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 10 题为 D，即索引 3；循环变量 i 在 for 语句结束后超出作用域，且仅包含 <stdlib.h> 时 cout/endl 未声明，均会导致编译错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立指出 i 的作用域越界与缺少 <iostream> 两处编译问题，因此 A/B/C 的任何输出均不会发生，结论与答案 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 6—10 题。五题题面代码、选项顺序与 PDF 页图一致，答案均与 PDF 答案表映射一致；解析经独立推导未发现错误，故全部标为 verified，无需 changes，亦无未决问题。"
+  }
+}

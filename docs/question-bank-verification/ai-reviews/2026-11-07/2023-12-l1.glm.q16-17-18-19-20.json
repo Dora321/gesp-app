@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:28:34.498Z",
+  "completedAt": "2026-11-08T01:29:26.343Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42124,
+    "completion_tokens": 4014,
+    "total_tokens": 46138,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2142
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0083256,
+      "allowance": 0.0083256,
+      "tokens": {
+        "input": 42124,
+        "output": 4014,
+        "reasoning": 2142,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32c0f20b44f21827d5de40ab9ad4a0448591895de55bc321f54115eba98505f7",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP / C++ 一级 / 2023年12月”，且单选15题、判断10题、编程题“小杨的考试”“小杨报数”的题量与主题均与 paperId 2023-12-l1（2023年12月一级）吻合；git-blob SHA fc1710d… 来源页码对应关系一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第1题原文“C++表达式 int(3.14) 的值为3。(  )”，与网站题面 “C++ 表达式 int(3.14) 的值为 3。” 仅空格排版差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无A/B/C/D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断答案表第1项为√，映射到0起始索引为0；网站 answer=0，且独立推导 int(3.14) 浮点转整数截断小数部分=3，命题为真，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：int(3.14) 为函数式显式转换，浮点转 int 向零取整（截断非四舍五入），int(3.99) 同为3、int(-3.14)=-3，结论3正确；网站解析逻辑与此一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：草稿对题面、√→0 映射与截断推导的描述均与我对PDF原图及文字层的独立核对一致，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第2题原文“C++语句 cout << (2 * 3, 3 % 10, 2+3) 的输出为 6,3,5 。(  )”，网站仅调整空格，表达式与命题“输出为 6,3,5”一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无A/B/C/D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断答案表第2项为×，映射为1；网站 answer=1。独立推导：括号内为逗号表达式，逐项求值6、3、5但整体取最后一项5，实际输出5而非“6,3,5”，命题为假，与表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核解析：逗号表达式取最右项值5，cout<<5 输出5；并正确指出若去括号分三次<<才会输出6,3,5，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案×→1与PDF答案表一致，逗号表达式取值说明经独立推导无误。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第3题原文“for(int i = 1; i < 10; i += 3;) ; 表示i从1开始到10结束间隔为3，相当于1、4、7、10。( )”，网站写为 “for (int i = 1; i < 10; i += 3);”，for头后跟分号即同一空语句写法，命题语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无A/B/C/D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断答案表第3项为×，映射为1；网站 answer=1。独立推导：i 依次取1、4、7，i=10 时 10<10 不成立，空循环体不再执行，10 取不到，“相当于1、4、7、10”为假，与表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核解析：逐轮取值1、4、7并指出 10<10 为假取不到10，且类比例推 0,2,4,6,8，逻辑无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：×→1映射与循环取值序列推导均与我独立计算一致。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第4题原文“C++表达式010+100+001的值为111。（ ）”，网站加空格为 “C++ 表达式 010 + 100 + 001 的值为 111。”，仅排版差异，命题语义不变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无A/B/C/D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断答案表第4项为×，映射为1；网站 answer=1。独立推导：010/001 为0前缀八进制，值分别为8和1，100为十进制100，合计109≠111，命题为假，与表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核解析：0前缀八进制识别、109 与 111 的对比及“008/009 编译报错”的延伸说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：×→1映射与八进制字面量求和推导经独立验证无误。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第5题原文“if 语句中的条件表达式的结果可以为 int 类型。”，与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无A/B/C/D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断答案表第5项为√，映射为0；网站 answer=0。独立推导：C++ if 条件按布尔语境转换，算术类型合法、非零即真，int 完全可作为条件，命题为真，与表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核解析：给定 n、n%2 示例演示非零即真规则，并区分 if(n==3) 与 if(n=3)，无技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：√→0映射与 if 条件类型规则推导均正确。"
+      }
+    ],
+    "summary": "本次独立复核第16—20题（对应PDF第5页判断题第1—5题）。以页面原图核对：PDF判断答案表第1—5项依次为√、×、×、×、√，映射为0、1、1、1、0，与网站 answer 完全一致；五道题面与PDF原文仅有空格/排版等价差异，未漏内容、未改语义；五段解析均经独立推导（截断转整、逗号表达式取末项、for取1/4/7不含10、八进制010+001与十进制100合计109、if条件int非零即真）确认正确。单选 options 与编程题 referenceCode 维度对判断题不适用，本批无编程题故无 tests。DeepSeek 初核草稿与我的独立核对结论全部吻合，5题均 approve、changes 为空，无未决项。"
+  }
+}
