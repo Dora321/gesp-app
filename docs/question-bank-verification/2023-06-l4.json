@@ -521,7 +521,7 @@
     {
       "id": 26,
       "type": "programming",
-      "resolved": false,
+      "resolved": true,
       "match": true,
       "dimensions": [
         "statement",
@@ -579,11 +579,6 @@
       "id": 27,
       "type": "official-source-defect",
       "note": "SOURCE-DOUBT Q27。登记mirror为真题解析版，其p15-16参考程序将his初始化-1且选最大值初始max=0，出现一次的灰阶计数0不会被选中，合法输入可使max_id=-1并越界。题库现有参考已采用0计数/mx=-1修正，本轮保留并独立验证，来源参考缺陷等待澄清，不冒称缺陷来自独立官方原始卷。"
-    },
-    {
-      "id": 26,
-      "type": "execution-incomplete",
-      "note": "本轮运行核验两次中断，未形成完整JSON，参考代码执行证据待下一轮补齐。题面及answer没有来源冲突。"
     }
   ],
   "supplementarySources": [
@@ -596,7 +591,7 @@
       "note": "内置多维数组由连续行数组构成。"
     }
   ],
-  "notes": "AI-Codex逐页对照登记mirror真题解析版PDF全部16页，Git blob SHA e56797ac791cc0ee858102eb4e9919e0bd516353一致。来源答案逐题内联，没有独立原始卷或集中答案表。27个answer字段保持，Q14库C与题源D冲突隔离，Q7/Q9类型大小前提及Q27来源参考缺陷保持未决。恢复代码/判断原文与完整编程范围，两份现有参考及模板独立编译核验。 本轮运行核验连续两次中断，遵守TASK不做第三次，没有形成programming-run.json，本卷五维核验尚待完成，不能计入完成卷。外部脚本已修正，留待下一轮执行。",
+  "notes": "AI-Codex逐页对照登记mirror真题解析版PDF全部16页，Git blob SHA e56797ac791cc0ee858102eb4e9919e0bd516353一致。来源答案逐题内联，没有独立原始卷或集中答案表。27个answer字段保持，Q14库C与题源D冲突隔离，Q7/Q9类型大小前提及Q27来源参考缺陷保持未决。恢复代码/判断原文与完整编程范围，两份现有参考及模板独立编译核验。 此前运行核验两次中断的历史保留于执行断点，后续轮已补齐参考/客观代码运行及编译诊断，完整证据见programming-run.json，来源未决题仍保持隔离。",
   "history": [
     {
       "paperId": "2023-06-l4",
@@ -774,10 +769,10 @@
     "note": "原题库已经使用0初始化频次/mx=-1，保留既有安全实现。mirror解析版-1初始化/max=0在单次灰阶输入有缺陷，另存有界见证，不运行来源负下标访问。"
   },
   "executionCheckpoint": {
-    "status": "retry-limit",
+    "status": "completed-after-checkpoint",
     "reviewedBy": "AI-Codex",
     "reviewedAt": "2026-11-08",
-    "complete": false,
+    "complete": true,
     "attempts": 2,
     "failures": [
       {
@@ -789,6 +784,20 @@
         "note": "客观Q10/Q11运行脚本的JavaScript字符串将换行写进C++引号，导致编译错误。已改endl，并同时修正同类Q15代码，未第三次运行。"
       }
     ],
-    "nextAction": "下一轮先执行run-2023-06-l4.mjs，再check-batch-twenty.mjs并完成逐卷门禁，之后才能记录本卷核验完成。"
+    "previousNextAction": "下一轮先执行run-2023-06-l4.mjs，再check-batch-twenty.mjs并完成逐卷门禁，之后才能记录本卷核验完成。",
+    "nextAction": "本卷运行证据和逐卷门禁已补齐，无需重复核验；来源Q7/Q9/Q14/Q27等待澄清，按级别顺序继续后续未核验卷。",
+    "note": "此前两次失败历史保持，后续轮已成功补齐运行证据。"
+  },
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-08",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 836,
+    "objectiveCaseCount": 55,
+    "templateCompileCount": 2,
+    "diagnosticCount": 9,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2023-06-l4/programming-run.json"
   }
 }

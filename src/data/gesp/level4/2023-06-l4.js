@@ -18,7 +18,7 @@ export const paperData = {
         reviewedBy: "AI-Codex",
         reviewedAt: "2026-11-08",
         scope: "全卷五维逐题对照mirror PDF，参考程序独立编译运行，源疑点保持隔离。",
-        notes: "AI-Codex逐页对照登记mirror真题解析版PDF全部16页，Git blob SHA e56797ac791cc0ee858102eb4e9919e0bd516353一致。来源答案逐题内联，没有独立原始卷或集中答案表。27个answer字段保持，Q14库C与题源D冲突隔离，Q7/Q9类型大小前提及Q27来源参考缺陷保持未决。恢复代码/判断原文与完整编程范围，两份现有参考及模板独立编译核验。 本轮运行核验连续两次中断，遵守TASK不做第三次，没有形成programming-run.json，本卷五维核验尚待完成，不能计入完成卷。外部脚本已修正，留待下一轮执行。",
+        notes: "AI-Codex逐页对照登记mirror真题解析版PDF全部16页，Git blob SHA e56797ac791cc0ee858102eb4e9919e0bd516353一致。来源答案逐题内联，没有独立原始卷或集中答案表。27个answer字段保持，Q14库C与题源D冲突隔离，Q7/Q9类型大小前提及Q27来源参考缺陷保持未决。恢复代码/判断原文与完整编程范围，两份现有参考及模板独立编译核验。 此前运行核验两次中断的历史保留于执行断点，后续轮已补齐参考/客观代码运行及编译诊断，完整证据见programming-run.json，来源未决题仍保持隔离。",
         dimensions: {
             statement: "partial",
             options: "partial",
