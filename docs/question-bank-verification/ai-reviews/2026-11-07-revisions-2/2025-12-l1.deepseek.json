@@ -1,0 +1,102 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    7
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:50:39.652Z",
+  "completedAt": "2026-11-08T13:51:47.139Z",
+  "finishReason": "stop",
+  "inputSha256": "fbc11a793c0f9f74d1b55213da681075b627f647601d06c300e44e55f766a7af",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页眉显示“C++ 一级”“2025 年 12 月”，与 paperId 2025-12-l1 的年月、等级相符；第1页答案表第7题为 C（索引2）。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第2页第7题L6原句为 printf(\"%%(N+M)=%d\", N+M, int(N+M));；候选题面L6只有 printf(\"%%(N+M)=%d\", N+M);，漏掉第二实参 int(N+M)，与原卷页图不一致。其余题干文字与代码行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四选项依次为 A 30=30、B 10+20=30、C %(N+M)=30、D 错误提示，与候选选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为 C（0起始索引2），候选 answer=2。按原卷L6独立推导：%%输出%，(N+M)=原样输出，%d消耗N+M=30，第二个实参int(N+M)求值后被忽略，输出%(N+M)=30，对应C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析已按原卷完整L6（含 int(N+M)）推导：%%转义、普通文本照印、%d取N+M=30、多余实参求值后忽略，并说明D不会报错；结论%(N+M)=30与官方答案C一致，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第7题为单选题，不适用参考程序。"
+          }
+        },
+        "changes": {
+          "question": "下面的C++代码执行时如果先输入 10 回车后输入 20 并回车，其输出是 ( )。\n```cpp\nint N, M;\nprintf(\"第一个数:\");\nscanf(\"%d\", &N);\nprintf(\"第二个数:\");\nscanf(\"%d\", &M);\nprintf(\"%%(N+M)=%d\", N+M, int(N+M));\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        7
+      ],
+      "usage": {
+        "prompt_tokens": 16877,
+        "completion_tokens": 12653,
+        "total_tokens": 29530,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12048
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01012335,
+          "allowance": 0.00607401,
+          "tokens": {
+            "input": 16877,
+            "output": 12653,
+            "reasoning": 12048,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T13:50:39.652Z",
+      "completedAt": "2026-11-08T13:51:47.139Z"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    7
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:51:47.142Z",
+  "completedAt": "2026-11-08T13:54:07.208Z",
+  "finishReason": "stop",
+  "inputSha256": "fbc11a793c0f9f74d1b55213da681075b627f647601d06c300e44e55f766a7af",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "已校验来源 git-blob SHA 1f798b8619325cbf9c9178b067276e921ecb1c4f 对应的 PDF 第1页页眉为 'CCF 编程能力等级认证 GESP'，卷头为 'C++ 一级 / 2025 年 12 月'，与 paperId 2025-12-l1 的年份 2025、月份 12、等级 1 相符；第1页含单选题答案表（15题）与判断题、编程题结构完整。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题页图代码共6行，L6 为 printf(\"%%(N+M)=%d\", N+M, int(N+M));，第二实参 int(N+M) 在页图中清晰可见（红色高亮），文本层同句可佐证；候选题面 L6 仅 printf(\"%%(N+M)=%d\", N+M);，漏掉该实参，且候选解析自称引用'题面 L6 原句'形成题面与解析不同步。已在 changes 提供修复稿补回 ', int(N+M)'，其余各行（int N,M 声明、printf(\"第一个数:\")/printf(\"第二个数:\") 半角冒号提示、两次 scanf）逐行与页图一致，仅 'int N, M;' 的空格属排版等价差异。修复后与页图逐行比对一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题四选项依次为 A 30=30、B 10+20=30、C %(N+M)=30、D 错误提示，与候选选项内容、顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为 C（0起始索引2），候选 answer=2。独立推导：格式串开头的 %% 转义输出一个 %；'(N+M)=' 为普通文本照原样输出；%d 被第一个实参 N+M=10+20=30 替换；第二个实参 int(N+M)=30 因格式串中已无后续转换说明而被求值后忽略（C/C++ 对 printf 多余实参的既定行为，不构成错误提示）。完整输出 %(N+M)=30，对应选项 C。另：无论题面是否含第二实参，输出均为 %(N+M)=30，答案映射不受题面修复影响。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析已按原卷完整 L6（含 int(N+M)）引用并逐步推导：%% 转义、普通文本照印、%d 取 N+M=30、第二实参 int(N+M)（函数式显式转换，等价 (int)(N+M)）求值后被忽略；对选项 D 的排除已覆盖核心诱因——格式串仅含一个 %d 却提供两个实参，多余实参合法、求值后忽略，既不编译报错也不运行报错；'易错提醒'正确区分了实参数量多于转换说明（合法）与少于（未定义行为）。独立复核完整输出仍为 %(N+M)=30，与官方答案 C 一致；题面修复后解析中'（即题面 L6 原句）'的引用与题面同步，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第7题为单选题，不适用参考程序。"
+          }
+        },
+        "changes": {
+          "question": "下面的C++代码执行时如果先输入 10 回车后输入 20 并回车，其输出是 ( )。\n```cpp\nint N, M;\nprintf(\"第一个数:\");\nscanf(\"%d\", &N);\nprintf(\"第二个数:\");\nscanf(\"%d\", &M);\nprintf(\"%%(N+M)=%d\", N+M, int(N+M));\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对 statement 的判定：候选题面 L6 确缺第二实参 int(N+M)，其修复稿经本人对照第2页页图与文本层逐字核对正确（仅补回 ', int(N+M)'，其余行一致，'int N, M;' 空格为可忽略排版差异），予以采纳；options、answer、explanation 的通过结论经本题独立推导后维持：输出 %(N+M)=30，对应答案表 C（索引2）。候选需应用 changes.question 后方与原卷一致，故 verdict=revise；无未决问题。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        7
+      ],
+      "usage": {
+        "prompt_tokens": 32444,
+        "completion_tokens": 9935,
+        "total_tokens": 42379,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8526
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0098341,
+          "allowance": 0.0098341,
+          "tokens": {
+            "input": 32444,
+            "output": 9935,
+            "reasoning": 8526,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T13:51:47.142Z",
+      "completedAt": "2026-11-08T13:54:07.208Z"
+    }
+  ]
+}

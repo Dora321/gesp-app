@@ -1,0 +1,20 @@
+{
+  "paperId": "2025-12-l1",
+  "integratedAt": "2026-11-08T13:58:49.046Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 7,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下面的C++代码执行时如果先输入 10 回车后输入 20 并回车，其输出是 ( )。\n```cpp\nint N, M;\nprintf(\"第一个数:\");\nscanf(\"%d\", &N);\nprintf(\"第二个数:\");\nscanf(\"%d\", &M);\nprintf(\"%%(N+M)=%d\", N+M, int(N+M));\n```"
+      }
+    }
+  ],
+  "codeChecks": []
+}
