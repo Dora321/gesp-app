@@ -1,275 +1,1074 @@
 {
   "paperId": "2024-06-l1",
-  "reviewedAt": "2026-10-30",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2024-06-l1"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "Codex（资料、队列、自动校验与发布）"
   },
   "source": {
+    "officialUrl": null,
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
     "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
     "shaVerified": true,
-    "localFile": "tmp/official-2024-06-l1.pdf",
-    "fetchedAt": "2026-10-25",
-    "pages": {
-      "单选答案表": "p.1",
-      "判断答案表+判断题全文": "p.5"
-    }
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59",
+    "pages": 7
   },
-  "answerTable": {
-    "single": {
-      "page": 1,
-      "content": "A D B C B C B C C C C D C C B",
-      "matchesBank": true
-    },
-    "judge": {
-      "page": 5,
-      "content": "× × √ × √ √ × × × √",
-      "note": "答案表为图片（红色 √/×），已 4 倍放大逐位核对"
-    }
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2024-06-l1.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2024-06-l1.glm.json",
+    "previous": "ai-reviews/2026-11-07/2024-06-l1.previous-evidence.json"
   },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
   "questions": [
     {
       "id": 1,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q1 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第1页第1题原文为“在C++中，下列不可做变量的是( )。”，站内题面仅作空格与Markdown等价排版。",
+          "review": "PDF第1页第1题原文“在C++中，下列不可做变量的是( )。”，站内题面仅空格/括号排版等价。"
+        },
+        "options": {
+          "initial": "第1页A—D依次为five-Star、five_star、fiveStar、_fiveStar，顺序、下划线与大小写均一致。",
+          "review": "第1页A—D依次为five-Star（five与Star之间为连字符“-”）、five_star、fiveStar、_fiveStar，顺序与字符构成一致。"
+        },
+        "answer": {
+          "initial": "第1页答案表题号1为A，按0起始索引为0，与站内answer=0一致。",
+          "review": "第1页答案表第1题为A，按0起始索引为0，与站内answer=0一致。"
+        },
+        "explanation": {
+          "initial": "连字符“-”不能出现在标识符中；B、C、D均只含字母或下划线，且不以数字开头，解析独立推导正确。",
+          "review": "独立推导：标识符仅允许字母、数字、下划线且首字符非数字；“-”是减号运算符不能作为标识符字符，故A不可做变量，B/C/D均合法；站内解析的核心规则与逐项结论正确。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 2,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q2 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第1页第2题原文为“C++表达式 3 - 3 * 3 / 5 的值是( )。”，站内题面与代码运算符一致。",
+          "review": "第1页第2题原文“C++表达式 3 - 3 * 3 / 5 的值是( )。”，运算符、空格与站内题面一致。"
+        },
+        "options": {
+          "initial": "第1页A—D依次为-1.2、1、0、2，顺序与数值一致。",
+          "review": "第1页A—D依次为-1.2、1、0、2，顺序与数值一致。"
+        },
+        "answer": {
+          "initial": "第1页答案表题号2为D，按0起始索引为3，与站内answer=3一致。",
+          "review": "第1页答案表第2题为D，按0起始索引为3，与站内answer=3一致。"
+        },
+        "explanation": {
+          "initial": "按乘法、除法同级左结合及整数除法，3*3=9，9/5=1，3-1=2；解析主推导和结论正确。",
+          "review": "独立推导：*/%同级左结合，3*3=9，9/5为整数除法得1，3-1=2；站内解析的分步计算与四个错误选项成因分析均正确。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 3,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q3 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第1页第3题原文包含“假设N为正整数”“cout << (N % 3 + N % 7) 可能输出的最大值”，站内题面语义一致。",
+          "review": "第1页第3题原文含“假设N为正整数”“cout << (N % 3 + N % 7) 可能输出的最大值是( )”，站内题面等价。"
+        },
+        "options": {
+          "initial": "第1页A—D依次为6、8、9、10，顺序一致。",
+          "review": "第1页A—D依次为6、8、9、10，顺序一致。"
+        },
+        "answer": {
+          "initial": "第1页答案表题号3为B，按0起始索引为1，与站内answer=1一致。",
+          "review": "第1页答案表第3题为B，按0起始索引为1，与站内answer=1一致。"
+        },
+        "explanation": {
+          "initial": "N%3最大为2、N%7最大为6，理论上限8；N=20时20%3=2且20%7=6，确可取得8，解析正确。",
+          "review": "独立推导：正整数N%3最大为2、N%7最大为6，理论上限8；检验可达性，N=13时13%7=6但13%3=1，N=20时20%3=2且20%7=6，8可实际取到且不可能为9或10；站内解析的枚举（6、13、20）与结论正确。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 4,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第1页第4题代码为printf(\"5%%2={%d}\\n\",5 % 2)，站内题面中的%%、%d、\\n均一致。",
+          "review": "第1页第4题代码为printf(\"5%%2={%d}\\n\",5 % 2)，站内题面字符串中%%、%d、\\n及参数5 % 2均一致。"
+        },
+        "options": {
+          "initial": "第1页A—D依次为1={1}、5%2={5%2}、5%2={1}、5 ={1}，站内选项顺序一致。",
+          "review": "第1页A—D依次为1={1}、5%2={5%2}、5%2={1}、5 ={1}（D项含一个空格），站内一致。"
+        },
+        "answer": {
+          "initial": "第1页答案表题号4为C，按0起始索引为2，与站内answer=2一致。",
+          "review": "第1页答案表第4题为C，按0起始索引为2，与站内answer=2一致。"
+        },
+        "explanation": {
+          "initial": "printf中%%输出一个%、%d由5%2=1填入，故输出5%2={1}；解析正确。",
+          "review": "独立推导：printf格式串中%%转义输出一个%，故前缀输出5%2；%d由参数5%2=1替换得{1}；\\n为换行；故输出5%2={1}；站内解析正确。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 5,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1,
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q5 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第1页第5题题干为整型变量i执行cin >> i, cout << i并输入5+2；站内题干文字及输入形式一致。",
+          "review": "第1页第5题题干“对整型变量i，执行C++语句 cin >> i, cout << i 时如果输入 5+2 ，下述说法正确的是（ ）”，选项A“将输出整数7”亦在第1页。"
+        },
+        "options": {
+          "initial": "选项A见第1页，B—D见第2页；四项依次为输出7、输出5、执行报错、输出不确定，站内顺序一致。",
+          "review": "第2页续B. 将输出 5、C. 语句执行将报错，输入表达式不能作为输出的参数、D. 语句能执行，但输出内容不确定；A—D顺序与站内一致。"
+        },
+        "answer": {
+          "initial": "第1页答案表题号5为B，按0起始索引为1，与站内answer=1一致。",
+          "review": "第1页答案表第5题为B，按0起始索引为1，与站内answer=1一致。"
+        },
+        "explanation": {
+          "initial": "cin按int提取时读取5，遇“+”停止并保留+2；逗号表达式随后输出i的值，故为5；解析正确。",
+          "review": "独立推导：cin按int提取遇到'5'后遇'+'停止，i=5，'+2'留在缓冲区；逗号表达式使右边cout << i输出5；站内解析的截断机制与缓冲区说明正确，且未误把输入当表达式求值。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 6,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q6 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第2页题6题干为“下面C++代码执行后的输出是”，代码依次为 float a、a=101.101、a=101、printf 格式串 a+1={%.0f} 输出 a+1，与站内题面和代码字段一致。",
+          "review": "第2页题6题干「下面C++代码执行后的输出是（ ）」及其下4行代码 float a; / a = 101.101; / a = 101; / printf(\"a+1={%.0f}\",a+1); 与站内题面及代码逐句一致（仅排版空格差异）。"
+        },
+        "options": {
+          "initial": "第2页 A-D 依次为 102={102}、a+1={a+1}、a+1={102}、a 先被赋值为浮点数后被赋值为整数会报错；顺序和含义与站内选项一致。",
+          "review": "第2页A-D依次为 102={102}、a+1={a+1}、a+1={102}、a先被赋值为浮点数，后被赋值为整数，执行将报错，顺序与内容同站内options一致。"
+        },
+        "answer": {
+          "initial": "第1页单选答案表第6题标 C，即0起始索引2；站内 answer 为2。",
+          "review": "第1页答案表第6题为C（0起始索引2），与站内answer=2一致；独立推导：a重新赋值为101（int→float得101.0），a+1=102.0，%.0f保留0位小数输出102，整串输出 a+1={102}，命中C。"
+        },
+        "explanation": {
+          "initial": "独立推导：a=101后为101.0，a+1=102.0；%.0f不显示小数，得 a+1={102}；站内解析结论与推导一致。",
+          "review": "独立推导与站内解析一致：多次赋值合法且隐式转换不报错（排除D），格式串前缀 a+1= 为普通文本（排除A），%.0f 被102.0替换而非原样输出（排除B）；站内解析结论与各选项错因分析均成立。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 7,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q7 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第2页题7题干为表达式 9/4 - 6 % (6 - 2) * 10 的值是，与站内表达式完全一致。",
+          "review": "第2页题7题干「表达式 9/4 - 6 % (6 - 2) * 10 的值是( )」与站内表达式一致。"
+        },
+        "options": {
+          "initial": "第2页 A-D 依次为 -17.75、-18、-14、-12.75，与站内选项顺序和值一致。",
+          "review": "第2页A-D依次为 -17.75、-18、-14、-12.75，与站内options一致。"
+        },
+        "answer": {
+          "initial": "第1页单选答案表第7题标 B，即0起始索引1；站内 answer 为1。",
+          "review": "第1页答案表第7题为B（索引1），与站内answer=1一致；独立推导：括号内 6-2=4，9/4整数除法得2，6%4得2，2*10=20，2-20=-18，选B。"
+        },
+        "explanation": {
+          "initial": "独立推导：9/4=2，6-2=4，6%4=2，2*10=20，2-20=-18，故选B；站内解析与推导一致。",
+          "review": "站内解析分步（括号→同级 */% 自左向右→减法）与我的推导一致；A项对应误用实数除法2.25的错因、C/D项错因分析均合理。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 8,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q8 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第2页题8题干为输入10后的输出，代码含 if (N % 3) 与两个 printf 分支，分别输出第5行代码%2d和第6行代码%2d，与站内代码一致。",
+          "review": "第2页题8题干「下面C++代码执行时输入10后，正确的输出是（ ）」，代码7行：int N; / cout << \"请输入正整数：\"; / cin >> N; / if (N % 3) / printf(\"第5行代码%2d\", N % 3); / else / printf(\"第6行代码%2d\", N % 3);，与站内代码一致。"
+        },
+        "options": {
+          "initial": "第2页 A-D 为 第5行代码1、第6行代码1、第5行代码 1、第6行代码 1，C/D 的数字1前有一个空格；站内以代码块排版，但文字及空格含义一致。",
+          "review": "第2页A-D依次为 第5行代码1、第6行代码1、第5行代码 1、第6行代码 1，原图中C、D数字1前确有一个空格；站内options以text代码块呈现，文字及空格含义一致。"
+        },
+        "answer": {
+          "initial": "第1页单选答案表第8题标 C，即0起始索引2；站内 answer 为2。",
+          "review": "第1页答案表第8题为C（索引2），与站内answer=2一致；独立推导：10%3=1非零为真走第5行分支，%2d最小宽度2右对齐左补1个空格，输出「第5行代码 1」，选C。"
+        },
+        "explanation": {
+          "initial": "独立推导：10%3=1为真，执行第5行分支；%2d宽度为2，输出1时左侧补一个空格，得第5行代码 1；站内解析与推导一致。",
+          "review": "站内解析对非零为真、%2d宽度左补空格的说明与我的推导一致；其知识延伸（%-2d左对齐、%02d补零）表述准确，四选项逐项错因成立。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        2,
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第2页题9给出代码 int Sum=0,i=0; for(;i<10;) Sum += i++; cout << i << 空格 << Sum；第3页给出B-D选项，A在页2，与站内题面一致。",
+          "review": "第2页题9题干「下面C++代码执行后输出是（ ）」及4行代码 int Sum = 0, i = 0; / for ( ; i < 10; ) / Sum += i++; / cout << i << \" \" << Sum; 与站内一致；选项A在第2页末，B-D在第3页。"
+        },
+        "options": {
+          "initial": "第2-3页 A-D 依次为 9 45、10 55、10 45、11 55，与站内选项顺序和值一致。",
+          "review": "第2-3页A-D依次为 9 45、10 55、10 45、11 55，与站内options一致。"
+        },
+        "answer": {
+          "initial": "第1页单选答案表第9题标 C，即0起始索引2；站内 answer 为2。",
+          "review": "第1页答案表第9题为C（索引2），与站内answer=2一致；独立模拟：i++先取旧值累加，Sum=0+1+…+9=45，循环退出时i=10，输出「10 45」，选C。"
+        },
+        "explanation": {
+          "initial": "独立推导：i++为后置自增，Sum累加0至9得45；退出循环时i=10，输出10 45，故选C；站内解析与推导一致。",
+          "review": "站内解析「i++先使用旧值再自增，Sum累加0+1+...+9=45，循环结束时i=10，输出10 45」与我的逐步模拟结果一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 10,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "第3页题10代码含 bool Flag=false、if(N>=2)内先置Flag=true、for(int i=2;i<N;i++)检测因子，最后按Flag输出是/不是质数；与站内代码一致。",
+          "review": "第3页题10题干「下面C++代码用于判断N是否为质数…下面有关描述正确的是（ ）」及代码（bool Flag = false; if (N >= 2){Flag = true; for (int i=2; i < N; i++) if (N % i == 0){Flag = false; break;} } 按 Flag 输出是/不是质数）与站内题面一致；站内省略空行不改变代码语义。"
+        },
+        "options": {
+          "initial": "第3页 A-D 依次为负整数可能输出是质数、输入2输出不是质数因循环不起作用、输入2输出是质数即便循环体未执行、将N>=2改为N>2可正确判断；顺序和含义与站内一致。",
+          "review": "第3页A-D依次为：输入负整数可能输出「是质数」；输入2将输出「不是质数」因循环不起作用；输入2将输出「是质数」即便循环体未被执行；将 if (N >= 2) 改为 if (N > 2) 将能正确判断N是否质数。与站内options一致。"
+        },
+        "answer": {
+          "initial": "第1页单选答案表第10题标 C，即0起始索引2；站内 answer 为2。",
+          "review": "第1页答案表第10题为C（索引2），与站内answer=2一致；独立分析：N=2时 N>=2 成立置 Flag=true，i=2 不满足 i<N，循环体不执行，输出「是质数」→C；负整数输入 Flag 保持 false 走 else（A错），称输入2输出「不是质数」与事实相反（B错），改 N>2 会漏判质数2（D错）。"
+        },
+        "explanation": {
+          "initial": "独立推导：输入2时N>=2成立，Flag置true；for初值为2且2<2为假，循环体不执行，Flag保持true，输出是质数，故C；站内解析与推导一致。",
+          "review": "站内解析对输入2的执行流程（Flag置true、循环条件2<2为假、循环体未执行、输出是质数）与我的独立推导一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        3,
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第3-4页题干为求1~N奇数之和、N为奇数时包括N，并问“有关描述错误的是”；站内题干及while循环代码与页图一致。",
+          "review": "PDF 第 3 页题干「下面的C++代码用于求1~N之间所有奇数之和，其中N为正整数，如果N为奇数，则求和时包括N。有关描述错误的是」及 13 行 while 循环代码与第 4 页选项续排内容，逐行与站内题面、代码一致（含行内代码 i += 1、if (i % 2 == 1)）。"
+        },
+        "options": {
+          "initial": "四个选项依次为A“输入10输出11 25”、B“输入5输出6 9”、C“将i += 1移到if前一行同样能实现”、D“删除if并将i += 1改为i += 2同样可以实现”，与页图一致。",
+          "review": "页图选项 A「输入10输出11 25」、B「输入5输出6 9」、C「将 i += 1 移到 if (i % 2 == 1) 前一行，同样能实现题目要求」、D「删除 if (i % 2 == 1)，并将 i += 1 改为 i += 2，同样可以实现题目要求」，与站内四项完全一致，顺序无差异。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第11题对应C，0起始索引为2，与站内answer=2一致。",
+          "review": "第 1 页答案表第 11 题为 C，0 起始索引 2，与站内 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "独立推演：原程序输入10累加1+3+5+7+9=25，退出i=11；输入5累加1+3+5=9，退出i=6，A、B成立。将自增移到if前会跳过1并可能累加N+1，例如N=5只加3+5=8，C不成立；D按步长2枚举奇数可完成求和，故错误项为C。",
+          "review": "独立复算：输入 10 时累加 1+3+5+7+9=25，退出时 i=11，A 成立；输入 5 时累加 1+3+5=9，退出 i=6，B 成立。若把 i += 1 移到 if 前，判断值为 2..N+1：奇数 1 被跳过，且 i=N 进入循环后会把 i 增到 N+1 参与判断（N=10 时奇数 11 被误加，N=5 时只加 3+5=8、输出 6 8），故 C 为错误描述；D 从 1 起步长 2 只访问奇数，求和结果不变，描述正确。站内解析的数值（25、11、8）与结论均与独立推导一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第4页题干为判断整数N是否完全平方数，代码用for(i=0;i<=N;i++)并在if横线处填空；站内题干、代码和横线位置与页图一致。",
+          "review": "PDF 第 4 页题干「如果一个整数N能够表示为 X*X 的形式……在横线处应填入的代码是」及 6 行代码（int N;、cin >> N;、for(int i = 0; i <= N; i++)、if(____ )、cout << N << \"是一个完全平方数\\n\";）与站内题面一致；站内省略页图空行属排版等价，未丢失代码内容与横线位置。"
+        },
+        "options": {
+          "initial": "选项A i == N*N、B i*10 == N、C i+i == N、D i*i == N，与页图一致。",
+          "review": "页图选项 A i == N*N、B i*10 == N、C i+i == N、D i*i == N，与站内一致。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第12题对应D，0起始索引为3，与站内answer=3一致。",
+          "review": "第 1 页答案表第 12 题为 D，0 起始索引 3，与站内 answer=3 一致。"
+        },
+        "explanation": {
+          "initial": "完全平方数需存在整数i满足i*i==N，故填D；A表示i等于N的平方，B表示10i=N，C表示2i=N，均不等价。循环从0到N可覆盖正整数的平方根。",
+          "review": "独立推导：完全平方数定义要求存在整数 i 使 i*i==N，横线在 if 中应为 i*i==N，选 D；A 误将候选根与 N² 比较、B 表示 10i==N、C 表示 2i==N，均不等价，与站内解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 13,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第4页代码为cnt=0，for(i=0;i*i<64;i+=2) cnt++，最后输出cnt；站内题干及代码一致。",
+          "review": "PDF 第 4 页 5 行代码（int cnt=0;、for(int i = 0; i*i < 64; i+=2)、cnt++;、cout << cnt;）与站内代码逐字一致。"
+        },
+        "options": {
+          "initial": "选项A 8、B 7、C 4、D 1，与页图一致。",
+          "review": "页图选项 A 8、B 7、C 4、D 1，与站内一致。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第13题对应C，0起始索引为2，与站内answer=2一致。",
+          "review": "第 1 页答案表第 13 题为 C，0 起始索引 2，与站内 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "i依次取0、2、4、6时i*i<64成立，cnt累加到4；i=8时8*8=64，不满足严格小于，循环结束，因此cnt=4，选C。",
+          "review": "独立复算：i 依次取 0、2、4、6，i*i 为 0、4、16、36 均满足 <64，cnt 增至 4；i=8 时 8*8=64 不满足严格小于，循环终止，输出 4，选 C。与站内解析一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第4页题干为报名参加CCF GESP认证考试第1级时可选择的认证语言有几种；站内题干一致。",
+          "review": "PDF 第 4 页题干「小杨父母带他到某培训机构给他报名参加CCF组织的GESP认证考试的第1级，那他可以选择的认证语言有几种？」与站内题面一致。"
+        },
+        "options": {
+          "initial": "选项A 1、B 2、C 3、D 4，与页图一致。",
+          "review": "页图选项 A 1、B 2、C 3、D 4，与站内一致。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第14题对应C，0起始索引为2，与站内answer=2一致。",
+          "review": "第 1 页答案表第 14 题为 C，0 起始索引 2，与站内 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "GESP认证语言为Scratch、Python、C++三类，共3种，故选C；题干中的“第1级”是认证等级，不是语言数量。",
+          "review": "该次考试（2024 年 6 月）GESP 认证语言为 Scratch、Python、C++ 三类，可选 3 种，选 C；第 1 级是能力等级而非语言数量，与站内解析按原题考试背景的理解一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第4-5页题干为ENIAC于1946年投入运行、其主要部件由什么组成；站内题干与页图一致。",
+          "review": "题干及选项 A 感应线圈、B 电子管、C 晶体管在第 4 页，选项 D 集成电路跨排在第 5 页页首，站内题面与四选项完整一致。"
+        },
+        "options": {
+          "initial": "选项A感应线圈、B电子管、C晶体管、D集成电路，与页图一致。",
+          "review": "页图四选项依次为感应线圈、电子管、晶体管、集成电路，与站内顺序一致。"
+        },
+        "answer": {
+          "initial": "PDF第1页答案表第15题对应B，0起始索引为1，与站内answer=1一致。",
+          "review": "第 1 页答案表第 15 题为 B，0 起始索引 1，与站内 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "ENIAC属于电子管时代的早期电子计算机，主要部件为电子管；晶体管和集成电路属于后续计算机代际，故选B。",
+          "review": "ENIAC（1946 年）属第一代电子管计算机，主要电子器件为电子管；晶体管对应第二代、集成电路对应更后期代际，站内解析的代际划分与结论一致，选 B。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 16,
-      "paperJudgeNo": 1,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第1题原文为“在C++代码中变量 X 被赋值为16.44，则 cout << X / 10 执行后输出的一定是 1。”网站题面与之一致。",
+          "review": "PDF第5页判断题第1题原文“在C++代码中变量 X 被赋值为16.44，则 cout << X / 10 执行后输出的一定是 1。(　)”，与网站题面文字逐字一致。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第1格为“×”，对应错误（index 1）；网站 answer=1 与答案表一致。",
+          "review": "PDF第5页判断题答案表第1格为“×”；对应错误(索引1)，网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "解析独立指出变量类型未限定：若X为浮点型，16.44/10约为1.644，并非一定输出1；只有X为整型且先截断为16时才会得到1。因此“一定是1”为错误，解析与官方答案一致。",
+          "review": "独立推导：网站题面未限定X类型。若X为double则16.44/10≈1.644，若X为int则先截断16.44→16再16/10=1。由于类型未知，“一定输出1”不成立，答案应为“错误”，与官方答案一致，且网站解析思考方向正确。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 17,
-      "paperJudgeNo": 2,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第2题原文为“C++的整型变量 N 被赋值为10，则语句 cout << N / 4 << \"->\" << N % 4 << \"->\" << N / 4.0 执行后输出是 2->2->2.0。”网站题面与源图一致。",
+          "review": "PDF第5页判断题第2题原文“C++的整型变量 N 被赋值为10，则语句 cout << N / 4 << \"->\" << N % 4 << \"->\" << N / 4.0 执行后输出是 2->2->2.0。(　)”，与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第2格为“×”，对应错误（index 1）；网站 answer=1 与答案表一致。",
+          "review": "PDF第5页判断题答案表第2格为“×”；对应错误(索引1)，网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "解析独立推导：N/4为整数除法得2，N%4得2，N/4.0因4.0为double而进行浮点除法得2.5；完整输出应为2->2->2.5，而非2->2->2.0，故原判断错误。",
+          "review": "独立推导：N为int，10/4=2、10%4=2；N/4.0 中4.0为double，N提升为浮点除法得2.5，默认cout输出2.5。完整输出 2->2->2.5 而非 2->2->2.0，故题述“输出为2->2->2.0”错误，答案应为“错误”，与网站解析一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 18,
-      "paperJudgeNo": 3,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第3题原文为“定义C++的 float 型变量 N，则语句 cin >> N; cout << int(float(N)) 可以输入正负整数和浮点数，并将其转换为整数后输出。”网站题面与源图一致。",
+          "review": "PDF第5页判断题第3题原文“定义C++的 float 型变量 N，则语句 cin >> N; cout << int(float(N)) 可以输入正负整数和浮点数，并将其转换为整数后输出。(　)”，与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第3格为“√”，对应正确（index 0）；网站 answer=0 与答案表一致。",
+          "review": "PDF第5页判断题答案表第3格为“√”；对应正确(索引0)，网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "解析独立说明：float变量可读入整数或小数形式，int(float(N))向零截断，如3.8转为3、-3.8转为-3；正常可表示范围内可完成转换输出，故判断正确。",
+          "review": "独立推导：cin向float可读入整数或小数形式；int转换向零截断，3.8→3、-3.8→-3（非向下取整）；在可表示范围内转换为整数后输出，故题述成立，答案“正确”，与网站解析一致；解析已附带范围前提说明。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 19,
-      "paperJudgeNo": 4,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第4题原文为“C++的整型 N 被赋值为5，语句 printf(\"%d*2\",N) 执行后将输出 10。”网站题面与源图一致。",
+          "review": "PDF第5页判断题第4题原文“C++的整型 N 被赋值为5，语句 printf(\"%d*2\",N) 执行后将输出 10。(　)”，与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第4格为“×”，对应错误（index 1）；网站 answer=1 与答案表一致。",
+          "review": "PDF第5页判断题答案表第4格为“×”；对应错误(索引1)，网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "解析独立指出：%d被替换为5，随后的*2属于格式字符串中的普通字符，原样输出；实际输出为5*2而非10，故判断错误。",
+          "review": "独立推导：%d是格式说明符，被参数N=5替换;“*2”为格式字符串中的普通字符原样输出；printf不解释字符串内的语言表达式，实际输出为 5*2 而非 10，故题述错误，答案“错误”，与网站解析一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 20,
-      "paperJudgeNo": 5,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第5题原文为“在C++中， break 语句用于终止当前层次的循环，循环可以是 for 循环，也可以是 while 循环。”网站题面与源图一致。",
+          "review": "PDF第5页判断题第5题原文“在C++中， break 语句用于终止当前层次的循环，循环可以是 for 循环，也可以是 while 循环。(　)”，与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第5格为“√”，对应正确（index 0）；网站 answer=0 与答案表一致。",
+          "review": "PDF第5页判断题答案表第5格为“√”；对应正确(索引0)，网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "解析独立说明break用于立即终止包含它的最内层循环，适用于for、while及do-while；题干只列举for和while且未排除其他，故判断正确。",
+          "review": "独立推导：break 立即终止包含它的最内层for/while(含do-while)循环并跳到循环后继续执行；题干列举for/while为示例，未排除其他循环，故题述正确，答案“正确”，与网站解析一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 21,
-      "paperJudgeNo": 6,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第6题原文为“在C++，continue 语句通常与 if 语句配合使用。（ ）”，网站题面语义、关键词和判断对象一致，仅有空格、代码标记和个别虚词差异，未改变含义。",
+          "review": "PDF 第5页判断题第6题原文“在C++， continue 语句通常与 if 语句配合使用。（ ）”，网站题面“在 C++，`continue` 语句通常与 `if` 语句配合使用。（ ）”语义一致，仅代码标记与标点的等价排版差异，无遗漏、无含义改变。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第6题为√，按正确=0、错误=1 映射为 0；网站 answer=0，一致。",
+          "review": "第5页判断题答案表整行读作 × × √ × √ √ × × × √，第6项为√，按 正确=0、错误=1 映射为 0；网站 answer=0 一致。独立推演：continue 在循环内常配 if 用于跳过本轮剩余语句，但语法上并不要求必须写在 if 中，“通常……配合使用”的表述成立。"
+        },
+        "explanation": {
+          "initial": "独立推导：continue 的作用是跳过本轮循环剩余语句并进入下一轮，实际编码中常由 if 判断是否跳过，但语法并不要求必须与 if 绑定；题目表述“通常配合使用”成立。网站解析与之一致，未发现事实错误。",
+          "review": "独立推演与网站解析逐点相符：continue 触发后 for 先执行更新表达式再查条件、while 直接重查条件；多层嵌套仅作用于最内层；题干“通常”不限死必须置于 if 之中。解析技术表述无错误，且结论与官方√一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 22,
-      "paperJudgeNo": 7,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第7题原文为“在C++代码中，不可以将变量命名为 printf ，因为 printf 是C++语言的关键字。（ ）”，网站题面一致，未漏关键字和判断关系。",
+          "review": "PDF 第5页判断题第7题原文“在C++代码中，不可以将变量命名为 printf ，因为 printf 是C++语言的关键字。（ ）”，网站题面一致（仅加代码标记），关键字判断关系完整保留。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第7题为×，按正确=0、错误=1 映射为 1；网站 answer=1，一致。",
+          "review": "第5页判断题答案表第7项为×，映射为 1；网站 answer=1 一致。独立推演：C++ 关键字表（int、while、for、return 等）不含 printf，printf 是标准库函数标识符，局部作用域可声明同名变量，故“不可以命名、因为是关键字”的论断错误。"
+        },
+        "explanation": {
+          "initial": "独立推导：printf 是标准库函数标识符，不是 C++ 关键字；关键字表中不含 printf。局部作用域声明同名变量会遮蔽函数名，但不能据此把 printf 认定为关键字，因此原判断错误。网站解析与之一致。",
+          "review": "独立推演与网站解析一致：printf 不在关键字列表；同名局部变量会遮蔽函数名，之后以 printf(...) 调用可能报错，但遮蔽冲突本身不能作为判定关键字的依据。解析无事实错误，结论与官方×一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 23,
-      "paperJudgeNo": 8,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第8题原文为“在C++中有整型变量N，则表达式 N += 8/4//2 相当于 N += 8/(4/2) 。（ ）”，网站题面保留了完整表达式和判断关系。",
+          "review": "PDF 第5页判断题第8题原文“在C++中有整型变量N，则表达式 N += 8/4//2 相当于 N += 8/(4/2) 。（ ）”，网站题面保留完整表达式与判断关系，等价呈现。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第8题为×，按正确=0、错误=1 映射为 1；网站 answer=1，一致。",
+          "review": "第5页判断题答案表第8项为×，映射为 1；网站 answer=1 一致。独立推演：C++ 中 // 起为单行注释，//2 被注释掉，语句实际只剩 N+=8/4；即便假想为 8/4/2，左结合得 1，而 8/(4/2)=4，两种分组亦不等价，判断为错误。"
+        },
+        "explanation": {
+          "initial": "独立推导：C++ 中 // 开始单行注释，因此 `8/4//2` 实际可解析部分为 `8/4`，`//2` 不是第二个除法；即使设想为 `8/4/2`，除法左结合得 1，而 `8/(4/2)` 得 4，也不等价。故原判断错误。网站解析与之一致。",
+          "review": "独立推演与网站解析一致：//2 不是第二个除法而是注释；注释语义下还牵涉语句结束符问题；假想分组下 1≠4。解析层次清楚、无错误，结论与官方×一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 24,
-      "paperJudgeNo": 9,
-      "official": "×",
-      "bank": "×",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第9题原文为“C++中定义变量 int N ，则表达式 (!!N) 的值也是 N 的值。 ( )”，网站题面一致，表达式符号完整。",
+          "review": "PDF 第5页判断题第9题原文“C++中定义变量 int N ，则表达式 (!!N) 的值也是 N 的值。（ ）”，第5页原图可见（!!N）完整，网站题面一致，无符号缺失。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第9题为×，按正确=0、错误=1 映射为 1；网站 answer=1，一致。",
+          "review": "第5页判断题答案表第9项为×，映射为 1；网站 answer=1 一致。独立推演：!!N 先后两次取逻辑非，结果为 bool，仅取 0/1；!!5=1≠5，!!0=0、!!1=1 仅在 N 为 0 或 1 时数值碰巧相同，题述“值也是 N 的值”不成立。"
+        },
+        "explanation": {
+          "initial": "独立推导：`!N` 先把 N 转换为逻辑真假并取反，`!!N` 再取反，结果只保留“N 是否非零”的信息，类型为 bool；例如 N=5 时 `!!N` 为 true，输出为 1，并非 5。只有 N 为 0 或 1 时数值碰巧相同，故原判断错误。网站解析与之一致。",
+          "review": "独立推演与网站解析一致：两次取反只保留“是否非零”的信息，N=5 时结果 1 无法还原原值，且不能由特例推广到所有整数。解析无错误，结论与官方×一致。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 25,
-      "paperJudgeNo": 10,
-      "official": "√",
-      "bank": "√",
-      "textMatch": true,
-      "changed": false
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF第5页判断题第10题原文为“GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。（ ）”，网站题面一致，未改变“基本上”这一限定。",
+          "review": "PDF 第5页判断题第10题原文“GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。（ ）”，网站题面一致，限定词“基本上”完整保留，未改变含义。"
+        },
+        "answer": {
+          "initial": "PDF第5页判断题答案表第10题为√，按正确=0、错误=1 映射为 0；网站 answer=0，一致。",
+          "review": "第5页判断题答案表第10项为√，映射为 0；网站 answer=0 一致，与官方判定相符。"
+        },
+        "explanation": {
+          "initial": "独立推导：按题目表述，GESP 同一级别认证的是核心编程能力等级，语言是实现和表达工具；换用不同编程语言不应直接改变该级别要求的能力定位，因此“基本上与编程语言无关”成立。网站解析与之一致。",
+          "review": "独立核对网站解析：该题为官方口径的概念题，解析围绕“认证的是能力等级、语言为表达载体”论证“基本上无关”成立，并指出“基本上”并非要求各语言知识点逐项相同，论证与官方√不冲突，未发现事实性错误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [
+        "statement"
+      ],
+      "sourcePages": [
+        5,
+        6
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第5—6页题面给出 h、m、s、k 的数据范围：1≤h≤12，0≤m≤59，0≤s≤59，1≤k≤3600；当前 question 保留题面、输入格式和输出格式，但未写入“数据范围”，需补全约束。标题、样例及题意与 PDF 一致。",
+          "review": "PDF 第5页 3.1.2 输入格式括号内给出 h、m、s 的约束（图片层清晰：1≤h≤12, 0≤m≤59, 0≤s≤59）及“注：k 的值符合 1≤k≤3600”，第6页 3.1.6 数据范围重申同一组约束；网站原 question 仅有题面描述、输入格式、输出格式，两处约束均缺失，属必要约束遗漏。已按 changes 补全“数据范围”小节，修复后核验通过；题面描述、输入/输出格式及样例1（12/59/59/10→13 0 9）与原卷图片层逐项一致，样例解释（12:59:59 学习 10 秒后于 13:0:9 休息）一致。"
+        },
+        "explanation": {
+          "initial": "解析按“总秒数换算—累加 k—整除/取模还原”独立推导；样例 12:59:59 加 10 秒得 13:0:9，与 PDF 第6页样例及参考程序一致。",
+          "review": "解析按“折算总秒数→累加 k→整除/取模还原”独立推演，与参考程序思路一致；样例走查 now=12*3600+3540+59=46799，+10=46809，hh=13、余 9、mm=0、ss=9，输出 13 0 9，与原卷 3.1.5 样例解释吻合；解析中“12:59:59 加 3600 秒得 13:59:59”经独立验算成立（now 上界 50399，无需 24 小时回绕）。"
+        },
+        "referenceCode": {
+          "initial": "当前参考程序与 PDF 第6页 3.1.7 参考程序逻辑逐行一致，仅增加 return 0 与空格；在给定约束下 int 范围安全，可正确处理分钟、小时进位，最大 12:59:59 加 3600 秒得到 13:59:59。",
+          "review": "与 PDF 第6页 3.1.7 参考程序逐行同构（仅空格排版及补 return 0，属等价差异）；独立验算：now=h*3600+m*60+s+k 在约束下最大 h=12,m=59,s=59,k=3600 时为 50399，远小于 INT_MAX 无溢出；逐级 /3600、%3600、/60、%60 的拆分顺序正确（先小时后分钟），样例 46799+10=46809→“13 0 9”复现成功；O(1) 复杂度满足 1.0s 限制。"
+        }
+      },
+      "unresolved": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [
+        "statement"
+      ],
+      "sourcePages": [
+        6,
+        7
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页明确给出数据范围 1≤n≤1000；当前 question 有题面、输入格式和输出格式，但缺少该“数据范围”约束，需补全。立方数定义、样例及输出要求与 PDF 一致。",
+          "review": "PDF 第7页 3.2.7 数据范围图片层清晰：1≤n≤1000；网站原 question 缺失该约束，属必要约束遗漏。已按 changes 补全“数据范围”小节，修复后核验通过；题面描述（立方数定义“存在正整数 x 满足 x×x×x=n”）、输入/输出格式（输出 Yes/No）、样例 8→Yes 与 9→No 及样例解释 8=2×2×2 均与原卷第6—7页一致。"
+        },
+        "explanation": {
+          "initial": "解析以正整数 i 从 1 枚举并用 i*i*i==n 判断，独立说明了标记与提前退出的正确性；在 n≤1000 的约束下枚举范围足够。",
+          "review": "解析独立推导“枚举+打标记”方法，样例1走查 i=2 时 2*2*2=8 命中置 fl=1 输出 Yes，样例2走查枚举至 i=n=9（9*9*9=729≠9）无命中输出 No，两例均与原卷 3.2.6 样例解释结论一致；解析指出枚举上界 i<=n 冗余、可优化为 i*i*i<=n 的说法经核对成立。"
+        },
+        "referenceCode": {
+          "initial": "当前参考程序与 PDF 第7页 3.2.8 参考程序逻辑逐行一致，仅增加 return 0 与空格；n≤1000 时最大 i*i*i 为 10^9，仍在 int 安全范围内，算法正确。",
+          "review": "与 PDF 第7页 3.2.8 参考程序逐行同构（仅排版及补 return 0）；独立验算：n≤1000 时 i 最大取 1000，i*i*i 最大为 10^9=1000000000 < INT_MAX(2147483647)，无溢出；枚举从 i=1 起满足“正整数”定义（1=1^3 判 Yes 正确），fl 标记+break 结构正确；O(n) 循环 n≤1000 完全满足 1.0s 限制。"
+        }
+      },
+      "unresolved": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     }
   ],
-  "unresolved": []
+  "unresolved": [
+    {
+      "id": 26,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 27,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    }
+  ],
+  "pendingChanges": [
+    {
+      "id": 26,
+      "changes": {
+        "question": "# [GESP202406 一级] 休息时间\n\n## 题目描述\n\n小杨计划在某个时刻开始学习，并决定在学习 $k$ 秒后开始休息。小杨想知道自己开始休息的时刻是多少。\n\n## 输入格式\n\n前三行每行包含一个整数，分别表示小杨开始学习时刻的时 $h$、分 $m$、秒 $s$。第四行包含一个整数 $k$，表示小杨学习的总秒数。\n\n## 输出格式\n\n输出一行，包含三个整数，分别表示小杨开始休息时刻的时、分、秒。\n\n## 数据范围\n\n对于全部数据，保证有 1 ≤ h ≤ 12，0 ≤ m ≤ 59，0 ≤ s ≤ 59，1 ≤ k ≤ 3600。"
+      },
+      "status": "approved-not-applied"
+    },
+    {
+      "id": 27,
+      "changes": {
+        "question": "# [GESP202406 一级] 立方数\n\n## 题目描述\n\n小杨有一个正整数 $n$，他想知道 $n$ 是否是一个立方数。一个正整数是立方数，当且仅当存在一个正整数 $x$ 满足 $x \\times x \\times x = n$。\n\n## 输入格式\n\n第一行包含一个正整数 $n$。\n\n## 输出格式\n\n如果正整数 $n$ 是一个立方数，输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于全部数据，保证有 1 ≤ n ≤ 1000。"
+      },
+      "status": "approved-not-applied"
+    }
+  ],
+  "programmingChecks": "ai-reviews/2026-11-07/2024-06-l1.code-checks.json"
 }

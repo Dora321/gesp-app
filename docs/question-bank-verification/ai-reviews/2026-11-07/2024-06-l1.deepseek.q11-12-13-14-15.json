@@ -1,0 +1,231 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:41:43.704Z",
+  "completedAt": "2026-11-08T04:43:27.719Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25113,
+    "completion_tokens": 8252,
+    "total_tokens": 33365,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 24576,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 6923,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00510548,
+      "allowance": 0.00306329,
+      "tokens": {
+        "input": 537,
+        "output": 8252,
+        "reasoning": 6923,
+        "cache_read": 24576,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级 / 2024年06月”，与 paperId 2024-06-l1 的年月、等级一致；第1页答案表及第3-5页题目页图可读。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3-4页题干为求1~N奇数之和、N为奇数时包括N，并问“有关描述错误的是”；站内题干及while循环代码与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项依次为A“输入10输出11 25”、B“输入5输出6 9”、C“将i += 1移到if前一行同样能实现”、D“删除if并将i += 1改为i += 2同样可以实现”，与页图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题对应C，0起始索引为2，与站内answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：原程序输入10累加1+3+5+7+9=25，退出i=11；输入5累加1+3+5=9，退出i=6，A、B成立。将自增移到if前会跳过1并可能累加N+1，例如N=5只加3+5=8，C不成立；D按步长2枚举奇数可完成求和，故错误项为C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为判断整数N是否完全平方数，代码用for(i=0;i<=N;i++)并在if横线处填空；站内题干、代码和横线位置与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项A i == N*N、B i*10 == N、C i+i == N、D i*i == N，与页图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题对应D，0起始索引为3，与站内answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "完全平方数需存在整数i满足i*i==N，故填D；A表示i等于N的平方，B表示10i=N，C表示2i=N，均不等价。循环从0到N可覆盖正整数的平方根。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页代码为cnt=0，for(i=0;i*i<64;i+=2) cnt++，最后输出cnt；站内题干及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项A 8、B 7、C 4、D 1，与页图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题对应C，0起始索引为2，与站内answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "i依次取0、2、4、6时i*i<64成立，cnt累加到4；i=8时8*8=64，不满足严格小于，循环结束，因此cnt=4，选C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为报名参加CCF GESP认证考试第1级时可选择的认证语言有几种；站内题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项A 1、B 2、C 3、D 4，与页图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题对应C，0起始索引为2，与站内answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "GESP认证语言为Scratch、Python、C++三类，共3种，故选C；题干中的“第1级”是认证等级，不是语言数量。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4-5页题干为ENIAC于1946年投入运行、其主要部件由什么组成；站内题干与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项A感应线圈、B电子管、C晶体管、D集成电路，与页图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题对应B，0起始索引为1，与站内answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "ENIAC属于电子管时代的早期电子计算机，主要部件为电子管；晶体管和集成电路属于后续计算机代际，故选B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题号11-15：题面、代码、选项、答案表映射及解析均与PDF页图一致；5题均为单选题，referenceCode不适用。未发现需要修改的字段，无测试用例。"
+  }
+}

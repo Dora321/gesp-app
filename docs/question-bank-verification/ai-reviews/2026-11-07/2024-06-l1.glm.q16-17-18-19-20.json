@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:46:14.355Z",
+  "completedAt": "2026-11-08T04:46:51.275Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38149,
+    "completion_tokens": 1707,
+    "total_tokens": 39856,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00657585,
+      "allowance": 0.00657585,
+      "tokens": {
+        "input": 38149,
+        "output": 1707,
+        "reasoning": 0,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确标示“CCF 编程能力等级认证 GESP / C++ 一级 2024年06月”，与网站 title、level、year、month 完全对应，来源 PDF 即 2024年6月 C++ 一级真题。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第1题原文“在C++代码中变量 X 被赋值为16.44，则 cout << X / 10 执行后输出的一定是 1。(　)”，与网站题面文字逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无ABC/D选项，固定为正确/错误两项，options维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第1格为“×”；对应错误(索引1)，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：网站题面未限定X类型。若X为double则16.44/10≈1.644，若X为int则先截断16.44→16再16/10=1。由于类型未知，“一定输出1”不成立，答案应为“错误”，与官方答案一致，且网站解析思考方向正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受DeepSeek初核：题面、答案表、解析核验均一致，无需修改，维度判定和 sheep 引言均准确。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第2题原文“C++的整型变量 N 被赋值为10，则语句 cout << N / 4 << \"->\" << N % 4 << \"->\" << N / 4.0 执行后输出是 2->2->2.0。(　)”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项，正确/错误两项，该维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第2格为“×”；对应错误(索引1)，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：N为int，10/4=2、10%4=2；N/4.0 中4.0为double，N提升为浮点除法得2.5，默认cout输出2.5。完整输出 2->2->2.5 而非 2->2->2.0，故题述“输出为2->2->2.0”错误，答案应为“错误”，与网站解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受DeepSeek初核：独立计算 2->2->2.5 与解析一致，答案标错/正确，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第3题原文“定义C++的 float 型变量 N，则语句 cin >> N; cout << int(float(N)) 可以输入正负整数和浮点数，并将其转换为整数后输出。(　)”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项，正确/错误两项，该维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第3格为“√”；对应正确(索引0)，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：cin向float可读入整数或小数形式；int转换向零截断，3.8→3、-3.8→-3（非向下取整）；在可表示范围内转换为整数后输出，故题述成立，答案“正确”，与网站解析一致；解析已附带范围前提说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受DeepSeek初核：向零截断的正确说明与解析一致，答案√，无需修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第4题原文“C++的整型 N 被赋值为5，语句 printf(\"%d*2\",N) 执行后将输出 10。(　)”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项，正确/错误两项，该维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第4格为“×”；对应错误(索引1)，网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：%d是格式说明符，被参数N=5替换;“*2”为格式字符串中的普通字符原样输出；printf不解释字符串内的语言表达式，实际输出为 5*2 而非 10，故题述错误，答案“错误”，与网站解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受DeepSeek初核：分析%s原样输出的结论正确，答案×，无需修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第5题原文“在C++中， break 语句用于终止当前层次的循环，循环可以是 for 循环，也可以是 while 循环。(　)”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项，正确/错误两项，该维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第5格为“√”；对应正确(索引0)，网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：break 立即终止包含它的最内层for/while(含do-while)循环并跳到循环后继续执行；题干列举for/while为示例，未排除其他循环，故题述正确，答案“正确”，与网站解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受DeepSeek初核：break作用范围说明与解析及官方答案一致，无需修改。"
+      }
+    ],
+    "summary": "仅核验题16-20（对应PDF第5页判断题第1-5题）。五题题面均与PDF第5页原文一致，答案依次对应判断题答案表 ×/×/√/×/√，即索引1/1/0/1/0，网站 answer 字段全部一致；五题解析均可独立推导出与官方相同的结论。未发现需修改之处，changes 均为空；判断题的 options 与 referenceCode 维度不适用，非编程题无 tests，未发现未决冲突，全部五题判定 approve。"
+  }
+}

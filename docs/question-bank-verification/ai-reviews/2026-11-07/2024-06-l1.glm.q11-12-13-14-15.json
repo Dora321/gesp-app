@@ -1,0 +1,235 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:43:27.727Z",
+  "completedAt": "2026-11-08T04:45:16.071Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38022,
+    "completion_tokens": 6652,
+    "total_tokens": 44674,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4465
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0090293,
+      "allowance": 0.0090293,
+      "tokens": {
+        "input": 38022,
+        "output": 6652,
+        "reasoning": 4465,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 一级 / 2024 年 06 月」，与 paperId 2024-06-l1 的年份、月份、级别一致；第 1 页单选答案表（1-15 题为 A D B C B C B C C C C D C C B）与第 3-5 页题目页图清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干「下面的C++代码用于求1~N之间所有奇数之和，其中N为正整数，如果N为奇数，则求和时包括N。有关描述错误的是」及 13 行 while 循环代码与第 4 页选项续排内容，逐行与站内题面、代码一致（含行内代码 i += 1、if (i % 2 == 1)）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A「输入10输出11 25」、B「输入5输出6 9」、C「将 i += 1 移到 if (i % 2 == 1) 前一行，同样能实现题目要求」、D「删除 if (i % 2 == 1)，并将 i += 1 改为 i += 2，同样可以实现题目要求」，与站内四项完全一致，顺序无差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 C，0 起始索引 2，与站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：输入 10 时累加 1+3+5+7+9=25，退出时 i=11，A 成立；输入 5 时累加 1+3+5=9，退出 i=6，B 成立。若把 i += 1 移到 if 前，判断值为 2..N+1：奇数 1 被跳过，且 i=N 进入循环后会把 i 增到 N+1 参与判断（N=10 时奇数 11 被误加，N=5 时只加 3+5=8、输出 6 8），故 C 为错误描述；D 从 1 起步长 2 只访问奇数，求和结果不变，描述正确。站内解析的数值（25、11、8）与结论均与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：DeepSeek 对四个选项的独立推演（含 N=5 时 C 方案 Sum=8、跳过 1、可能处理超过 N 的值）与我复算完全一致，答案映射 C→2 正确，无需修改。D 项求和结果不变而 i 终值可能不同，官方判 D 为正确描述，站内解析只主张求和结果不变，未越界，遵循官方定案。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干「如果一个整数N能够表示为 X*X 的形式……在横线处应填入的代码是」及 6 行代码（int N;、cin >> N;、for(int i = 0; i <= N; i++)、if(____ )、cout << N << \"是一个完全平方数\\n\";）与站内题面一致；站内省略页图空行属排版等价，未丢失代码内容与横线位置。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A i == N*N、B i*10 == N、C i+i == N、D i*i == N，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 D，0 起始索引 3，与站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：完全平方数定义要求存在整数 i 使 i*i==N，横线在 if 中应为 i*i==N，选 D；A 误将候选根与 N² 比较、B 表示 10i==N、C 表示 2i==N，均不等价，与站内解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：填空逻辑、选项含义辨析与答案映射 D→3 均经独立验证一致，无修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 5 行代码（int cnt=0;、for(int i = 0; i*i < 64; i+=2)、cnt++;、cout << cnt;）与站内代码逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A 8、B 7、C 4、D 1，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 C，0 起始索引 2，与站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：i 依次取 0、2、4、6，i*i 为 0、4、16、36 均满足 <64，cnt 增至 4；i=8 时 8*8=64 不满足严格小于，循环终止，输出 4，选 C。与站内解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：循环边界（0 起点、步长 2、严格小于 64）复核与站内解析数值一致，答案映射 C→2 正确，无修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干「小杨父母带他到某培训机构给他报名参加CCF组织的GESP认证考试的第1级，那他可以选择的认证语言有几种？」与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A 1、B 2、C 3、D 4，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 C，0 起始索引 2，与站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "该次考试（2024 年 6 月）GESP 认证语言为 Scratch、Python、C++ 三类，可选 3 种，选 C；第 1 级是能力等级而非语言数量，与站内解析按原题考试背景的理解一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：常识性结论（Scratch/Python/C++ 三种语言）与官方答案 C 相符，站内解析未把「第1级」误当语言数量，思路合理，无修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干及选项 A 感应线圈、B 电子管、C 晶体管在第 4 页，选项 D 集成电路跨排在第 5 页页首，站内题面与四选项完整一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四选项依次为感应线圈、电子管、晶体管、集成电路，与站内顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 B，0 起始索引 1，与站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "ENIAC（1946 年）属第一代电子管计算机，主要电子器件为电子管；晶体管对应第二代、集成电路对应更后期代际，站内解析的代际划分与结论一致，选 B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干跨页（第 4-5 页）完整性已核对，概念对应与答案映射 B→1 正确，无修改。"
+      }
+    ],
+    "summary": "本次独立复核题号 11-15（均为单选题）：五题题面、代码、选项与 PDF 第 3-5 页页图逐项一致；答案表映射（11→C、12→D、13→C、14→C、15→B，即索引 2、3、2、2、1）全部吻合；各题站内解析经独立推演/复算（含题 11 的 N=10、N=5 三种方案走查、题 13 的循环边界走查）数值与结论均正确，referenceCode 对单选题不适用。未发现需要修改的字段，changes 全部为空，无测试用例需求；DeepSeek 初核结论全部接受，未发现否决项。"
+  }
+}

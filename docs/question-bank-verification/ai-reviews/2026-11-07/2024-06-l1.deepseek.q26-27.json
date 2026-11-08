@@ -1,0 +1,174 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:50:18.629Z",
+  "completedAt": "2026-11-08T04:52:39.482Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25107,
+    "completion_tokens": 10271,
+    "total_tokens": 35378,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 24576,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 8847,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00631598,
+      "allowance": 0.00378959,
+      "tokens": {
+        "input": 531,
+        "output": 10271,
+        "reasoning": 8847,
+        "cache_read": 24576,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2024 年 06 月”，与 paperId 的年份、月份及 level=1 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5—6页题面给出 h、m、s、k 的数据范围：1≤h≤12，0≤m≤59，0≤s≤59，1≤k≤3600；当前 question 保留题面、输入格式和输出格式，但未写入“数据范围”，需补全约束。标题、样例及题意与 PDF 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无客观选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，PDF 客观题答案表不包含第26题，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“总秒数换算—累加 k—整除/取模还原”独立推导；样例 12:59:59 加 10 秒得 13:0:9，与 PDF 第6页样例及参考程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前参考程序与 PDF 第6页 3.1.7 参考程序逻辑逐行一致，仅增加 return 0 与空格；在给定约束下 int 范围安全，可正确处理分钟、小时进位，最大 12:59:59 加 3600 秒得到 13:59:59。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 一级] 休息时间\n\n## 题目描述\n\n小杨计划在某个时刻开始学习，并决定在学习 $k$ 秒后开始休息。小杨想知道自己开始休息的时刻是多少。\n\n## 输入格式\n\n前三行每行包含一个整数，分别表示小杨开始学习时刻的时 $h$、分 $m$、秒 $s$。第四行包含一个整数 $k$，表示小杨学习的总秒数。\n\n## 输出格式\n\n输出一行，包含三个整数，分别表示小杨开始休息时刻的时、分、秒。\n\n## 数据范围\n\n对于全部数据，保证有 1 ≤ h ≤ 12，0 ≤ m ≤ 59，0 ≤ s ≤ 59，1 ≤ k ≤ 3600。"
+        },
+        "tests": [
+          {
+            "name": "最小边界",
+            "input": "1\n0\n0\n1",
+            "output": "1 0 1",
+            "reason": "起始为 1:0:0，学习 1 秒后为 1:0:1；覆盖 h、m、s、k 的最小约束。"
+          },
+          {
+            "name": "最大边界跨小时",
+            "input": "12\n59\n59\n3600",
+            "output": "13 59 59",
+            "reason": "12:59:59 加 3600 秒等于 13:59:59；覆盖 h=12、k=3600 上界。"
+          },
+          {
+            "name": "秒进位到整点",
+            "input": "12\n59\n50\n10",
+            "output": "13 0 0",
+            "reason": "12:59:50 加 10 秒得 13:00:00，验证秒进位及分钟、秒钟输出为 0。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页明确给出数据范围 1≤n≤1000；当前 question 有题面、输入格式和输出格式，但缺少该“数据范围”约束，需补全。立方数定义、样例及输出要求与 PDF 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无客观选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，PDF 客观题答案表不包含第27题，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以正整数 i 从 1 枚举并用 i*i*i==n 判断，独立说明了标记与提前退出的正确性；在 n≤1000 的约束下枚举范围足够。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前参考程序与 PDF 第7页 3.2.8 参考程序逻辑逐行一致，仅增加 return 0 与空格；n≤1000 时最大 i*i*i 为 10^9，仍在 int 安全范围内，算法正确。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 一级] 立方数\n\n## 题目描述\n\n小杨有一个正整数 $n$，他想知道 $n$ 是否是一个立方数。一个正整数是立方数，当且仅当存在一个正整数 $x$ 满足 $x \\times x \\times x = n$。\n\n## 输入格式\n\n第一行包含一个正整数 $n$。\n\n## 输出格式\n\n如果正整数 $n$ 是一个立方数，输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于全部数据，保证有 1 ≤ n ≤ 1000。"
+        },
+        "tests": [
+          {
+            "name": "最小边界",
+            "input": "1",
+            "output": "Yes",
+            "reason": "1=1×1×1，按定义是立方数；覆盖 n=1 最小值。"
+          },
+          {
+            "name": "最大边界且为立方数",
+            "input": "1000",
+            "output": "Yes",
+            "reason": "1000=10×10×10，且覆盖 n=1000 上界。"
+          },
+          {
+            "name": "上界附近非立方数",
+            "input": "999",
+            "output": "No",
+            "reason": "9^3=729，10^3=1000，999 不是立方数；验证非立方数判断。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第26、27题。两题的题面主体、样例、解析和参考程序均与 PDF 一致；共同问题是题面遗漏了 PDF 中的数据范围，已分别在 changes 中拟补全第26题的 1≤h≤12、0≤m≤59、0≤s≤59、1≤k≤3600，以及第27题的 1≤n≤1000。参考程序在给定约束下未发现算法、边界或溢出问题。"
+  }
+}

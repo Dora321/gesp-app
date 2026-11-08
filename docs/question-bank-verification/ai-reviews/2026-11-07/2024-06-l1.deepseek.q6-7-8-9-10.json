@@ -1,0 +1,230 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:36:40.955Z",
+  "completedAt": "2026-11-08T04:37:44.062Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25113,
+    "completion_tokens": 7807,
+    "total_tokens": 32920,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 24576,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 5979,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00483848,
+      "allowance": 0.00290309,
+      "tokens": {
+        "input": 537,
+        "output": 7807,
+        "reasoning": 5979,
+        "cache_read": 24576,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头显示“CCF 编程能力等级认证 C++ 一级 2024年06月”；第1页含单选题1-15及答案表，与 paperId 对应的2024年6月C++一级一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页题6题干为“下面C++代码执行后的输出是”，代码依次为 float a、a=101.101、a=101、printf 格式串 a+1={%.0f} 输出 a+1，与站内题面和代码字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A-D 依次为 102={102}、a+1={a+1}、a+1={102}、a 先被赋值为浮点数后被赋值为整数会报错；顺序和含义与站内选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第6题标 C，即0起始索引2；站内 answer 为2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a=101后为101.0，a+1=102.0；%.0f不显示小数，得 a+1={102}；站内解析结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页题7题干为表达式 9/4 - 6 % (6 - 2) * 10 的值是，与站内表达式完全一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A-D 依次为 -17.75、-18、-14、-12.75，与站内选项顺序和值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第7题标 B，即0起始索引1；站内 answer 为1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：9/4=2，6-2=4，6%4=2，2*10=20，2-20=-18，故选B；站内解析与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页题8题干为输入10后的输出，代码含 if (N % 3) 与两个 printf 分支，分别输出第5行代码%2d和第6行代码%2d，与站内代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A-D 为 第5行代码1、第6行代码1、第5行代码 1、第6行代码 1，C/D 的数字1前有一个空格；站内以代码块排版，但文字及空格含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第8题标 C，即0起始索引2；站内 answer 为2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：10%3=1为真，执行第5行分支；%2d宽度为2，输出1时左侧补一个空格，得第5行代码 1；站内解析与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页题9给出代码 int Sum=0,i=0; for(;i<10;) Sum += i++; cout << i << 空格 << Sum；第3页给出B-D选项，A在页2，与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2-3页 A-D 依次为 9 45、10 55、10 45、11 55，与站内选项顺序和值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第9题标 C，即0起始索引2；站内 answer 为2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i++为后置自增，Sum累加0至9得45；退出循环时i=10，输出10 45，故选C；站内解析与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页题10代码含 bool Flag=false、if(N>=2)内先置Flag=true、for(int i=2;i<N;i++)检测因子，最后按Flag输出是/不是质数；与站内代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页 A-D 依次为负整数可能输出是质数、输入2输出不是质数因循环不起作用、输入2输出是质数即便循环体未执行、将N>=2改为N>2可正确判断；顺序和含义与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第10题标 C，即0起始索引2；站内 answer 为2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：输入2时N>=2成立，Flag置true；for初值为2且2<2为假，循环体不执行，Flag保持true，输出是质数，故C；站内解析与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅初核题号6-10：卷面身份与2024年6月C++一级匹配。五题均为单选题，题面、选项、答案表与解析已逐题独立对照，答案依次为C、B、C、C、C，未发现需修改的内容；无编程题参考代码及边界测试，未决问题为空。"
+  }
+}

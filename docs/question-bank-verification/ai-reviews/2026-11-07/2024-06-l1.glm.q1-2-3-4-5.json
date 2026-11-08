@@ -1,0 +1,234 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:35:40.850Z",
+  "completedAt": "2026-11-08T04:36:40.947Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37945,
+    "completion_tokens": 4351,
+    "total_tokens": 42296,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2593
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00786725,
+      "allowance": 0.00786725,
+      "tokens": {
+        "input": 37945,
+        "output": 4351,
+        "reasoning": 2593,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP / C++ 一级 / 2024 年 06 月”，与题包标识 2024-06-l1（2024年6月 C++ 一级）一致；第1页单选题答案表题号1—15与站内题目顺序对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题原文“在C++中，下列不可做变量的是( )。”，站内题面仅空格/括号排版等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页A—D依次为five-Star（five与Star之间为连字符“-”）、five_star、fiveStar、_fiveStar，顺序与字符构成一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第1题为A，按0起始索引为0，与站内answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：标识符仅允许字母、数字、下划线且首字符非数字；“-”是减号运算符不能作为标识符字符，故A不可做变量，B/C/D均合法；站内解析的核心规则与逐项结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：本核验独立对照第1页原图逐字符核对选项（特别确认A项为连字符“-”而非下划线），答案映射与解析推导一致，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第2题原文“C++表达式 3 - 3 * 3 / 5 的值是( )。”，运算符、空格与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页A—D依次为-1.2、1、0、2，顺序与数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为D，按0起始索引为3，与站内answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：*/%同级左结合，3*3=9，9/5为整数除法得1，3-1=2；站内解析的分步计算与四个错误选项成因分析均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立按优先级与整数除法规则复算得2，与解析和答案一致。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第3题原文含“假设N为正整数”“cout << (N % 3 + N % 7) 可能输出的最大值是( )”，站内题面等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页A—D依次为6、8、9、10，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题为B，按0起始索引为1，与站内answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：正整数N%3最大为2、N%7最大为6，理论上限8；检验可达性，N=13时13%7=6但13%3=1，N=20时20%3=2且20%7=6，8可实际取到且不可能为9或10；站内解析的枚举（6、13、20）与结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：已独立验证上限8既不超出也可达（N=20），解析中的可达性验证这条最关键逻辑无误。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第4题代码为printf(\"5%%2={%d}\\n\",5 % 2)，站内题面字符串中%%、%d、\\n及参数5 % 2均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页A—D依次为1={1}、5%2={5%2}、5%2={1}、5 ={1}（D项含一个空格），站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第4题为C，按0起始索引为2，与站内answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：printf格式串中%%转义输出一个%，故前缀输出5%2；%d由参数5%2=1替换得{1}；\\n为换行；故输出5%2={1}；站内解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立拆解%%转义与%d占位，输出与C项吻合；D项“5 ={1}”中的空格细节也已核对。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第5题题干“对整型变量i，执行C++语句 cin >> i, cout << i 时如果输入 5+2 ，下述说法正确的是（ ）”，选项A“将输出整数7”亦在第1页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页续B. 将输出 5、C. 语句执行将报错，输入表达式不能作为输出的参数、D. 语句能执行，但输出内容不确定；A—D顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题为B，按0起始索引为1，与站内answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：cin按int提取遇到'5'后遇'+'停止，i=5，'+2'留在缓冲区；逗号表达式使右边cout << i输出5；站内解析的截断机制与缓冲区说明正确，且未误把输入当表达式求值。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：选项跨第1、2页已分别核对；独立确认输入流遇非数字字符停止提取的行为，答案映射无误。"
+      }
+    ],
+    "summary": "本次仅复核第1—5题。均已对照第1页（第5题选项B—D续见第2页）原图与答案表逐一核验：题面、选项字符与顺序、答案映射（A→0、D→3、B→1、C→2、B→1）与站内数据完全一致；四题的解析均经独立推导确认（标识符合法性、运算优先级与整数除法、余数上限及可达性、printf转义与占位、输入流提取截断行为），无一处需修正。五题皆为单选题，referenceCode不适用，未生成编程测试；changes全部为空，维度verified均有具体页面与推导依据。DeepSeek初核草稿结论与本次独立复核一致，全部接受。"
+  }
+}

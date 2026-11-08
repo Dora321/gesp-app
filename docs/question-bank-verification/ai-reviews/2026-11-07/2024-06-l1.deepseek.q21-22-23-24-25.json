@@ -1,0 +1,229 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:46:51.284Z",
+  "completedAt": "2026-11-08T04:48:32.768Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25113,
+    "completion_tokens": 7895,
+    "total_tokens": 33008,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 24960,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 6275,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00483483,
+      "allowance": 0.0029009,
+      "tokens": {
+        "input": 153,
+        "output": 7895,
+        "reasoning": 6275,
+        "cache_read": 24960,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5ae54d9185263cf09043d81c1c1e775e0b845a2a2e92d448d47f2cd09291f5f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“GESP”“C++ 一级”“2024年06月”，与 paperId 2024-06-l1 一致；第5页可见判断题答案表。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第6题原文为“在C++，continue 语句通常与 if 语句配合使用。（ ）”，网站题面语义、关键词和判断对象一致，仅有空格、代码标记和个别虚词差异，未改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "该题为判断题，PDF不设 A-D 展开选项；网站中的“正确/错误”只是判断题作答标签，按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第6题为√，按正确=0、错误=1 映射为 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：continue 的作用是跳过本轮循环剩余语句并进入下一轮，实际编码中常由 if 判断是否跳过，但语法并不要求必须与 if 绑定；题目表述“通常配合使用”成立。网站解析与之一致，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序，不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第7题原文为“在C++代码中，不可以将变量命名为 printf ，因为 printf 是C++语言的关键字。（ ）”，网站题面一致，未漏关键字和判断关系。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "该题为判断题，PDF不设 A-D 展开选项；网站中的“正确/错误”是判断题作答标签，按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第7题为×，按正确=0、错误=1 映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：printf 是标准库函数标识符，不是 C++ 关键字；关键字表中不含 printf。局部作用域声明同名变量会遮蔽函数名，但不能据此把 printf 认定为关键字，因此原判断错误。网站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序，不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第8题原文为“在C++中有整型变量N，则表达式 N += 8/4//2 相当于 N += 8/(4/2) 。（ ）”，网站题面保留了完整表达式和判断关系。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "该题为判断题，PDF不设 A-D 展开选项；网站中的“正确/错误”是判断题作答标签，按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第8题为×，按正确=0、错误=1 映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 中 // 开始单行注释，因此 `8/4//2` 实际可解析部分为 `8/4`，`//2` 不是第二个除法；即使设想为 `8/4/2`，除法左结合得 1，而 `8/(4/2)` 得 4，也不等价。故原判断错误。网站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序，不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第9题原文为“C++中定义变量 int N ，则表达式 (!!N) 的值也是 N 的值。 ( )”，网站题面一致，表达式符号完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "该题为判断题，PDF不设 A-D 展开选项；网站中的“正确/错误”是判断题作答标签，按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第9题为×，按正确=0、错误=1 映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：`!N` 先把 N 转换为逻辑真假并取反，`!!N` 再取反，结果只保留“N 是否非零”的信息，类型为 bool；例如 N=5 时 `!!N` 为 true，输出为 1，并非 5。只有 N 为 0 或 1 时数值碰巧相同，故原判断错误。网站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序，不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第10题原文为“GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。（ ）”，网站题面一致，未改变“基本上”这一限定。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "该题为判断题，PDF不设 A-D 展开选项；网站中的“正确/错误”是判断题作答标签，按规范 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第10题为√，按正确=0、错误=1 映射为 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按题目表述，GESP 同一级别认证的是核心编程能力等级，语言是实现和表达工具；换用不同编程语言不应直接改变该级别要求的能力定位，因此“基本上与编程语言无关”成立。网站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考程序，不适用 referenceCode 维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题21-25，即PDF判断题第6-10题。五题题面均与PDF第5页一致；官方答案表依次为√、×、×、×、√，映射为0、1、1、1、0，与网站答案完全一致；解析独立推导成立。判断题不适用 options 和 referenceCode 维度。未发现需修改字段，无未决问题，无编程题测试。"
+  }
+}
