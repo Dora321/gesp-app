@@ -1,0 +1,244 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T00:03:06.746Z",
+  "completedAt": "2026-11-08T00:06:51.975Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48406,
+    "completion_tokens": 17432,
+    "total_tokens": 65838,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13595
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0159769,
+      "allowance": 0.0159769,
+      "tokens": {
+        "input": 48406,
+        "output": 17432,
+        "reasoning": 13595,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6da25264c1d59968da24b3a04de2fd8b59792d0e13ef58de7944e6afe3c8381",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为\"CCF 编程能力等级认证 GESP / C++ 二级 / 2023年12月\"，与 paperId 2023-12-l2 的二级、2023 年 12 月一致；单选答案表与判断、编程题结构均在该官方卷内。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "接受初核：原解析括号内以『循环继续但 i*j 的奇偶不变』论证『每个 i 最多打印一次』，该理由与代码事实相反（i 为偶数时对多个 j 乘积均为偶，若 N 更大如 i=4 将对 j=1、2、3 连续输出多次），属事实性错误；初核替代解析与我的独立跟踪逐轮一致，采纳。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题代码：N=4; for(int i=0;i<N;i++){ for(int j=1;j<i;j++) if(i*j%2==0) cout<<i<<\"#\"; continue; } cout<<\"0\";（第 5 行输出的是变量 i 的斜体字形，与选项 2#3#0 的前提一致），网站题干代码逐行一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A.2#3#0、B.1#2#0、C.1#0#、D.2#3#，网站 options 内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表 1-15 题为 C A D D D A D C D B…，第 6 题为 A，0 起始索引 0；独立跟踪输出 2#3#0（i=2 输出 2#，i=3 经 j=2 输出 3#，末尾输出 0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论 A 正确，但原解析以『每个 i 最多打印一次，因为循环继续但 i*j 的奇偶不变』作论据：i 固定时改变 j，乘积奇偶并非不变（如 N 更大时 i=4 会对 j=1、2、3 各输出一次 4#），该理由为事实性错误，会误导外推，需替换为逐轮跟踪。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (2#3#0)**\n\n**核心解析：**\n外层 `i` 取 0、1、2、3。内层 `for(j=1; j<i; j++)` 在 `i` 为 0 或 1 时一次也不执行。`continue;` 在外层循环体的最后，执行到它时本轮本来也要结束，所以对输出没有影响。\n\n逐个 `i` 跟踪：\n- `i=0`：`j<0` 不成立，无输出。\n- `i=1`：`j<1` 不成立，无输出。\n- `i=2`：`j=1`，`2*1%2==0`，输出 `2#`；`j` 变为 2，`2<2` 不成立，结束。\n- `i=3`：`j=1`，`3*1%2=1`，跳过；`j=2`，`3*2%2=0`，输出 `3#`；`j=3`，`3<3` 不成立，结束。\n\n外层结束后执行 `cout << \"0\";`，最终输出 `2#3#0`。\n\n**选项逐项分析：**\n- **A (2#3#0)**：✅ 与跟踪一致。\n- **B (1#2#0)**：❌ `i=1` 时内层不执行，不会输出 `1#`。\n- **C (1#0#)**：❌ 既多算 `i=1`，又漏掉 `i=3` 的 `3#`。\n- **D (2#3#)**：❌ 漏掉循环外只执行一次的 `cout << \"0\";`。\n\n**易错提醒：**\n- 本题 `i` 最大只到 3，每个 `i` 至多命中一次；但若把 `N` 改大且 `i` 为偶数，`if` 后面没有 `break`，内层可能对同一个 `i` 连续输出多次。\n- `continue` 在循环体末尾等同于空操作；只有它后面还有语句时才可能改变流程。\n- 缩进要和花括号对应，`cout << \"0\";` 在外层 `for` 之外。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "接受初核：原解析跟踪表在 i=3 行列出『3×1=3、3×3=9 全奇』，但内层条件 j<i 使 j=3 从未执行（j=1 执行后 j+=2 得 3，3<3 为假退出），属对循环范围的跟踪错误，结论碰巧不受影响；替代解析经我独立核对（含 i=9 时 j=7 参与、j=9 退出）无误，采纳。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末至第 3 页第 7 题代码：cnt=0; for(i=1;i<10;i++) for(j=1;j<i;j+=2) if(i*j%2==0){cnt++;break;} if(i>=10) cout<<cnt<<\"#\"; cout<<cnt;，网站代码逐行一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A.0、B.8#8、C.4、D.4#4，网站 options 内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 D，0 起始索引 3；独立跟踪 j 恒为奇数、偶数 i=2/4/6/8 各命中一次得 cnt=4，输出 4#4，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析表格 i=3 行写『3×3=9 全奇』，j=3 受 j<i 约束未执行，描述与代码不符；跟踪表需修正以避免把未执行迭代计入枚举。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (4#4)**\n\n**核心解析：**\n`j` 从 1 开始、步长为 2，所以 `j` 始终是奇数；因此 `i*j` 的奇偶性只由 `i` 决定：`i` 为偶数时乘积为偶数，`i` 为奇数时乘积为奇数。\n\n逐轮看：\n- `i=1`：`j=1` 不满足 `j<i`，内层不执行，`cnt` 不变。\n- `i=2`：`j=1`，`2*1=2` 为偶数，`cnt++` 后 `break`，`cnt=1`。\n- `i=3`：`j` 只能取 1（`j=3` 不满足 `j<i`），`3*1=3` 为奇数，不命中，`cnt=1`。\n- `i=4`：`j=1`，`4*1=4` 为偶数，`cnt=2` 后 `break`。\n- `i=5`：`j=1,3`，`5*1=5`、`5*3=15` 均奇，不命中，`cnt=2`。\n- `i=6`：`j=1`，`6*1=6` 为偶数，`cnt=3` 后 `break`。\n- `i=7`：`j=1,3,5`，乘积均奇，不命中，`cnt=3`。\n- `i=8`：`j=1`，`8*1=8` 为偶数，`cnt=4` 后 `break`。\n- `i=9`：`j=1,3,5,7`，乘积均奇，不命中，`cnt=4`。\n\n循环结束 `i=10`，`if(i>=10)` 成立，输出 `4#`；随后无条件执行 `cout << cnt`，再输出 `4`，合起来是 `4#4`。\n\n**选项逐项分析：**\n- **A (0)**：❌ 2、4、6、8 都会各命中一次，`cnt` 不是 0。\n- **B (8#8)**：❌ 把奇数 `i` 也当成会命中；奇数 `i` 与奇数 `j` 的乘积仍为奇数。\n- **C (4)**：❌ 漏掉 `if(i>=10)` 输出的 `4#`。\n- **D (4#4)**：✅ 两处输出都计入。\n\n**易错提醒：**\n- `j += 2` 使 `j` 只取奇数，所以只需看 `i` 的奇偶。\n- `break` 只跳出内层循环，外层 `i` 继续增加。\n- 循环结束后 `i` 为 10，`if(i>=10)` 必然成立；且 `cout << cnt` 没有花括号限制，总会执行。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对题干、代码、选项、答案、解析均核验通过且无 changes。我独立复核：代码与 PDF 第 3 页逐行一致（else-if 链排版差异不影响语义）；跟踪 100→80→60→55 后因 55 为奇数 break，输出 55 与答案 C（索引 2）一致；网站解析的轮次表、选项分析与易错点均无事实错误，准予以原数据通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题代码 N=100; while(N>0) if(N%2) break; else if(N%3==0) N-=5; else N-=20; cout<<N;（9 行结构），网站题干代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A.100、B.95、C.55、D.0，网站 options 内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 C，0 起始索引 2；独立跟踪 100(减20)→80(减20)→60(减5)→55 奇数 break，输出 55，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐轮跟踪 100→80→60→55 与我的独立推导一致，正确说明 N%2 非零为真、else-if 串联、break 保持当时值，结论 C 无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核五维核验通过且无 changes。我独立复核：代码与 PDF 第 3 页一致；跟踪 x=1 输出\"1,\"后→3，x=3 走 else(x+=5)再+x2→10，x=10 输出\"10,\"→12，x=12 因 12/10=1 真 break，输出 1,10,12，与答案 D（索引 3）一致；网站解析无误，准予以原数据通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题代码 x=1; while(x<100){ if(x%3!=0) cout<<x<<\",\"; else if(x/10) break; else x+=5; x+=2; } cout<<x;，网站题干代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A.1、B.1,3、C.15,17、D.1,10,12，网站 options 内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 D，0 起始索引 3；独立跟踪输出 1,10,12，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析对 x=1→3→10→12 各轮分支与末尾 x+=2 的跟踪、x/10 作布尔条件（3/10=0 假、12/10=1 真）及 break 时机的说明，均与我的独立推导一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核核验通过且无 changes。我独立复核：代码与 PDF 第 3 页末题号、第 4 页代码一致；内层执行 0+1+2+3+4=10 次，输出 10 与答案 B（索引 1）一致；网站解析（含 j<i 边界说明与求和推导）无误，准予以原数据通过。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 10 题代码 cnt=0; for(i=0;i<5;i++) for(j=0;j<i;j++) cnt+=1; cout<<cnt;，网站题干代码逐行一致（题号在第 3 页末出现）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A.5、B.10、C.20、D.30，网站 options 内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 B，0 起始索引 1；独立计算内层总次数 0+1+2+3+4=10，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确推导内层执行 i 次、合计 10，并指出 j<i（非 j<=i）的关键边界，选项分析和易错点无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次独立复核 2023-12-l2 第 6–10 题：PDF 卷头\"CCF GESP C++ 二级 2023年12月\"与 paperId 一致（matches）。官方答案表第 6–10 题为 A/D/C/D/B（0 起始索引 0/3/2/3/1），与网站 answer 全部一致，且均与我对代码的独立跟踪相符（题6 输出 2#3#0，题7 cnt=4 输出 4#4，题8 输出 55，题9 输出 1,10,12，题10 输出 10）。五题题干代码与选项逐行对照通过，无必要修改题干、选项或答案。解析维度：题 6 原解析以\"循环继续但 i*j 的奇偶不变\"错误论证\"每个 i 至多打印一次\"、题 7 原解析在 i=3 行把未执行的 j=3 列入\"3×3=9\"枚举，两处均为事实性表述错误，采纳初核替代解析并逐句独立复核通过（修复后核验通过）；题 8、9、10 网站原解析核验通过，无修改。五题均为单选题，referenceCode 维度不适用；无测试项与未决项。"
+  }
+}

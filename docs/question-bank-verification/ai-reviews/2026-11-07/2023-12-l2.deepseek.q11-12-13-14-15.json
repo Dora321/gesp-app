@@ -1,0 +1,237 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T00:06:51.985Z",
+  "completedAt": "2026-11-08T00:11:20.661Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31210,
+    "completion_tokens": 25332,
+    "total_tokens": 56542,
+    "prompt_tokens_details": {
+      "cached_tokens": 31104
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 22328
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01530841,
+      "allowance": 0.00918505,
+      "tokens": {
+        "input": 106,
+        "output": 25332,
+        "reasoning": 22328,
+        "cache_read": 31104,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6da25264c1d59968da24b3a04de2fd8b59792d0e13ef58de7944e6afe3c8381",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 二级 2023 年 12 月”，与 paperId 2023-12-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 11 题题面与代码为 `for(i=1;i<100+1;i++) if(____) cout<<i<<\" \";`，站内改写为 `for(int i=1;i<=100;i++){ if(____) ... }`，循环范围与含义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与 PDF 第 4 页逐项一致，仅空格排版差异；C 为 `int(sqrt(i)) * int(sqrt(i)) == i`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 11 题为 C，即 0 起始索引 2；站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称 B 因浮点精度必然错误，但 B 在本题 1~100 范围内通常也能输出相同完全平方数序列，原说法不严谨，且未说明该题单选唯一性存在争议。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（官方答案表为 C，对应索引 2）**\n\n判断 i 是否为完全平方数，可先取整数平方根再平方还原：`int(sqrt(i)) * int(sqrt(i)) == i`。例如 i=16 时 sqrt(16)=4，4×4=16；i=15 时 int(sqrt(15))=3，3×3=9≠15。\n\nA、D 使用赋值号 `=`，左侧是表达式或临时值而非可赋值对象，不能作为条件；B 写成 `int(sqrt(i)) == sqrt(i)`，依赖浮点数与整数相等比较，不是稳健写法。\n\n**说明：** 在本题 1~100 的有限范围内，B 在常见实现中通常也能得到相同的完全平方数序列，因此本题作为单选题的严谨性存在争议；按官方答案应选 C。"
+        },
+        "tests": [],
+        "unresolved": [
+          "选项 B 在 1~100 范围内通常也能得到正确输出，单选题唯一性存在争议；官方答案表为 C。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 4 页左图顶部有“12”，但右图代码及选项 D 的换行输出均从 0 开始，不会输出 12；站内题面把 12 放进输出块，易误认为输出首行。应明确 12 为输入 N=12 的标注。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与 PDF 第 4 页一致：A 第 8 行下加 `cout << nowNum;`，B 第 2 行下加 `cout << endl;`，C 第 7 行下加 `cout << nowNum;`，D 第 9 行下加 `cout << endl;`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 12 题为 D，即 0 起始索引 3；站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析对 A 的后果表述为“每行多加一个数字”，但该额外输出只在 nowNum 被重置为 0 时发生；核心答案 D 正确，但解析细节需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "下面的 C++ 代码用于实现如下左图所示的效果，应在以下右图 C++ 代码中填入（ ）。\n\n左图示意（输入 N=12；顶部 12 为输入标注，输出效果如下）：\n```\n0\n01\n012\n0123\n01234\n012345\n0123456\n01234567\n012345678\n0123456789\n01234567890\n012345678901\n```\n\n```cpp\ncin >> N;\nfor (i = 0; i < N; i++){\n    nowNum = 0;\n    for (j = 0; j < i+1; j++){\n        cout << nowNum << \" \";\n        nowNum += 1;\n        if (nowNum == 10)\n            nowNum = 0;\n    }\n}\n```\n\n（代码行号从第 1 行 `cin >> N;` 起计。）",
+          "explanation": "**答案：D**\n\n左图每行输出从 0 开始的递增个位数，行末需要换行；现有代码只在内层循环中输出数字，缺少行末换行。内层 `for` 结束后就是每行结束的位置，对应第 9 行 `}` 之后（外层循环体内），补 `cout << endl;` 才能得到左图。\n\nA 把 `cout << nowNum;` 放在第 8 行 if 内，只在 `nowNum` 被重置为 0 时额外输出 0，会改变部分行长度；B 在外层循环开头换行，会多出空行；C 在第 7 行 if 内输出，会在条件成立时额外输出 0。D 位置正确。\n\n**说明：** 左图顶部 12 为输入 N=12 的标注，不参与输出。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 4 页原题包含关键情境“乘客只要告诉汽车目的地，车子就能自动选择一条优化路线，告诉乘客后驶达那里”，站内题面省略了目的地交互与“告诉乘客”的反馈过程，影响对扬声器必要性的判断依据。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项 A 麦克风、B 扬声器、C 油量表、D 传感器与 PDF 第 4~5 页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 13 题为 C，即 0 起始索引 2；站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按输入、输出、环境感知与状态监测区分设备，结论 C 油量表不是选路所必须，和官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "某公司新出了一款无人驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车目的地，车子就能自动选择一条优化路线，告诉乘客后驶达那里。请问下面哪项不是驾驶系统完成选路所必须的？（ ）"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 14 题题面为“现代计算机是指电子计算机，它所基于的是（ ）体系结构。”站内题面与图内文字一致；PDF 文本层缺“子”为 OCR 问题，页图可确认。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项 A 艾伦·图灵、B 冯·诺依曼、C 阿塔纳索夫、D 埃克特-莫克利与 PDF 第 5 页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 14 题为 B，即 0 起始索引 1；站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出现代电子计算机基于冯·诺依曼存储程序体系结构，并区分图灵机、ABC、ENIAC 等历史概念，结论与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题题面与站内一致：输入正整数 N，找相邻因数对，以 N=12 的 (1,2)、(2,3)、(3,4) 为例，问哪段代码找不到所有因数对。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项的循环起点、上界和 printf 输出与 PDF 第 5 页逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 15 题为 B，即 0 起始索引 1；站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称 C 能找出全部因数对，但 C 的 `i < N/2` 在 N=4、6 等情况下会漏掉边界对（如 N=6 的 (2,3)）；需保留官方答案 B，同时说明题目对任意 N 的严谨性争议。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（官方答案表，对应索引 1）**\n\n以题面示例 N=12 检验：相邻因数对为 (1,2)、(2,3)、(3,4)。B 的循环从 i=2 开始，只能检查 (2,3)、(3,4)，漏掉必须以 i=1 检查的 (1,2)，所以按题意选 B。A 从 i=1 开始可覆盖；C 在 N=12 时可由 i=2、3、4 输出 (1,2)、(2,3)、(3,4)；D 从 i=1 开始，在 N=12 时也可覆盖。\n\n**严谨性说明：** 题目说“输入一个正整数 N”，若要求对任意 N 都成立，C 的上界 `i < N/2` 在 N=4、6 等情况下也会漏掉边界对（如 N=6 的 (2,3)），因此本题的单选唯一性存在争议；官方答案仍为 B。"
+        },
+        "tests": [],
+        "unresolved": [
+          "题干未限定 N=12；若按任意正整数 N 理解，C 在 N=4、6 等情况下也会漏掉边界因数对，存在多个代码不满足题意的争议；官方答案表仍为 B。"
+        ]
+      }
+    ],
+    "summary": "本次核验第 11~15 题：官方答案表依次为 C、D、C、B、B，站内 objective answer 均一致。第 14 题五维通过；第 11、15 题解析存在单选唯一性/边界说明问题，已给修正草稿并保留争议；第 12 题左图顶部 12 应作为输入 N=12 标注而非输出，且解析对 A 的后果需校正；第 13 题题面漏掉原题关键情境，已补全。编程题不在本次范围。"
+  }
+}

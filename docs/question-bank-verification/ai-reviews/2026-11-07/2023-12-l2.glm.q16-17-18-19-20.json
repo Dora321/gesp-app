@@ -1,0 +1,235 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T00:26:25.873Z",
+  "completedAt": "2026-11-08T00:29:04.747Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47316,
+    "completion_tokens": 14378,
+    "total_tokens": 61694,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12276
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0142864,
+      "allowance": 0.0142864,
+      "tokens": {
+        "input": 47316,
+        "output": 14378,
+        "reasoning": 12276,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6da25264c1d59968da24b3a04de2fd8b59792d0e13ef58de7944e6afe3c8381",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 GESP / C++ 二级 / 2023 年 12 月』，年月与级别均与 paperId 2023-12-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第1题原文为『C++表达式 -7/2 的值为整数-3。（ ）』；网站 question 仅将代码以行内代码格式呈现，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "官方判断题不设 A/B/C/D 选项，仅在（ ）作答并以 √/× 记入答案表；网站 options ['正确','错误'] 仅为答题载体格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1题符号为 √（正确，索引 0），网站 answer=0 一致；独立推导：C++11 起整数除法向零截断，-7/2=-3，题干为真，答『正确』成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：-7/2 向零截断得 -3（非 floor 的 -4）；补充说明 -7%2=-1（C++11 起余数符号随被除数）亦正确：-7-(-3)*2=-1。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、答案映射与解析均经独立推导确认与官方卷一致，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文为『C++表达式 2*int('9')*2 的值为36。（ ）』；网站 question 等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "官方判断题不设 A/B/C/D 选项；网站 options 为『正确/错误』载体。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2题符号为 ×（错误，索引 1），网站 answer=1 一致；独立推导：int('9') 取 ASCII 编码 57，2*57*2=228≠36，题干为假，答『错误』成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：'9' 的 ASCII 为 57、'0' 为 48，表达式值 228；『'9'-'0' 才得 9』的补充正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：字符编码推导独立成立，答案与官方 × 一致，无修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第3题原文为『C++表达式 3+2 && 5-5 的值为false。（ ）』；网站 question 等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "官方判断题不设 A/B/C/D 选项；网站 options 为『正确/错误』载体。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第3题符号为 √（正确，索引 0），网站 answer=0 一致；独立推导：优先级等价于 (3+2)&&(5-5)=5&&0，非零为 true、0 为 false，结果 false，题干为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：算术优先级高于 &&；&& 结果类型为 bool，值为 false；短路特性说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：优先级与逻辑转换推导独立成立，无修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第4题原文为『在C++代码中，执行 srand(0) 后连续两次执行 rand() 的结果相等。（ ）』（文本层『执行』存在拆字噪声，页面图像可辨认为正常连写）；网站 question 等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "官方判断题不设 A/B/C/D 选项；网站 options 为『正确/错误』载体。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4题符号为 ×（错误，索引 1），网站 answer=1 一致；独立判定：srand(0) 固定的是序列本身，两次调用取序列第 1、第 2 个值，在常见实现中二者不相等，题干不成立，判『错误』。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析『同一个序列里相邻的两个数是不同的值』属标准不保证的绝对化表述（C 标准仅保证同种子序列可重现，未承诺相邻取值必同或必异），已替换为『常见实现中通常不相等』并注明标准边界，判定结论『错误』保持不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n`srand(0)` 的作用是设定随机数种子，使之后 `rand()` 产生的伪随机序列在同一实现下可重现；连续两次调用 `rand()` 取的是序列里第 1 个和第 2 个值，在常见实现中这两次结果通常不相等，因此题干「结果相等」不成立。需要说明的是，C++ 标准并未保证相邻两次 `rand()` 的值必然相同或必然不同，本题按考试环境的常见实现判定为「错误」。\n\n**易错点：**\n- 混淆「两次运行的序列相同」与「序列内两个数相同」。`srand(0)` 保证的是前者：每次程序重新运行都会得到同一串数。\n- 不调用 `srand` 时等价于 `srand(1)`，序列同样是固定的；想要每次运行不同，通常用 `srand(time(0))`。\n- `rand()` 有上界 `RAND_MAX`，需要指定范围时用 `rand() % n`（注意取模会引入轻微偏差）。\n\n**考点：** 随机数 · srand 与 rand"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对解析的修正并独立复核通过：绝对化表述『相邻两个数是不同的值』替换为『常见实现通常不相等』，官方判定『错误』不变；题干与答案无需改动。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第5题原文为『C++代码中 while(1){...} 的判断条件不是逻辑值，将导致语法错误。（ ）』；网站 question 等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "官方判断题不设 A/B/C/D 选项；网站 options 为『正确/错误』载体。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第5题符号为 ×（错误，索引 1），网站 answer=1 一致；独立判定：条件上下文接受可转换为 bool 的算术类型，1 转换为 true，while(1) 语法合法（等价 while(true)），『导致语法错误』不成立，判『错误』。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：1 可隐式转换为 true，while(1) 合法且为死循环，需 break 退出；关于指针条件 `while(\"abc\")` 判非空的补充亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：while(1) 合法性的推导独立成立，答案与官方 × 一致，无修改。"
+      }
+    ],
+    "summary": "本次仅复核 PDF 第5页判断题第1—5题（网站题号16—20）。五题题干与官方原文等价（仅代码排版差异），官方答案表符号依次为 √、×、√、×、×，对应索引 0、1、0、1、1，与网站 answer 完全一致；题16—18、20 的解析经独立推导确认无误，题19 解析中『相邻两次 rand() 必不同』的绝对化表述按初核建议修正（保留官方判定『错误』），修复后核验通过。五题均为判断题，options 与 referenceCode 维度不适用，不生成 tests，无未决事项。判定：16、17、18、20 approve，19 revise（解析修正已提供）。"
+  }
+}

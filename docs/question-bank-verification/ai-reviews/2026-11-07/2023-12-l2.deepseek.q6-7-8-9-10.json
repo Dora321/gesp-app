@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T00:00:48.079Z",
+  "completedAt": "2026-11-08T00:03:06.737Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31210,
+    "completion_tokens": 15028,
+    "total_tokens": 46238,
+    "prompt_tokens_details": {
+      "cached_tokens": 31104
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12383
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00912601,
+      "allowance": 0.00547561,
+      "tokens": {
+        "input": 106,
+        "output": 15028,
+        "reasoning": 12383,
+        "cache_read": 31104,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6da25264c1d59968da24b3a04de2fd8b59792d0e13ef58de7944e6afe3c8381",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF GESP C++ 二级 2023年12月”，与paperId“2023-12-l2”及二级、2023年12月信息一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干为“下面C++代码执行后的输出是（ ）”，代码包含N=4、双层for、continue及末尾cout<<\"0\"；网站题干中的代码与PDF逐行一致，仅行号和空格排版不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A-D依次为2#3#0、1#2#0、1#0#、2#3#；网站options顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题为A，即0起始索引0；独立跟踪输出为2#3#0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论A正确，但原解析称“每个i最多打印一次，因为i*j的奇偶不变”不准确：if后没有break，若i为较大偶数，多个j都可能输出。本题i≤3未暴露该问题，但表述会误导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (2#3#0)**\n\n**核心解析：**\n外层 `i` 取 0、1、2、3。内层 `for(j=1; j<i; j++)` 在 `i` 为 0 或 1 时一次也不执行。`continue;` 在外层循环体的最后，执行到它时本轮本来也要结束，所以对输出没有影响。\n\n逐个 `i` 跟踪：\n- `i=0`：`j<0` 不成立，无输出。\n- `i=1`：`j<1` 不成立，无输出。\n- `i=2`：`j=1`，`2*1%2==0`，输出 `2#`；`j` 变为 2，`2<2` 不成立，结束。\n- `i=3`：`j=1`，`3*1%2=1`，跳过；`j=2`，`3*2%2=0`，输出 `3#`；`j=3`，`3<3` 不成立，结束。\n\n外层结束后执行 `cout << \"0\";`，最终输出 `2#3#0`。\n\n**选项逐项分析：**\n- **A (2#3#0)**：✅ 与跟踪一致。\n- **B (1#2#0)**：❌ `i=1` 时内层不执行，不会输出 `1#`。\n- **C (1#0#)**：❌ 既多算 `i=1`，又漏掉 `i=3` 的 `3#`。\n- **D (2#3#)**：❌ 漏掉循环外只执行一次的 `cout << \"0\";`。\n\n**易错提醒：**\n- 本题 `i` 最大只到 3，每个 `i` 至多命中一次；但若把 `N` 改大且 `i` 为偶数，`if` 后面没有 `break`，内层可能对同一个 `i` 连续输出多次。\n- `continue` 在循环体末尾等同于空操作；只有它后面还有语句时才可能改变流程。\n- 缩进要和花括号对应，`cout << \"0\";` 在外层 `for` 之外。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页末第7题题干为“下面C++代码执行后的输出是（ ）”，第3页为完整代码；网站题干和代码逐行一致，仅空格排版不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A-D依次为0、8#8、4、4#4；网站options顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为D，即0起始索引3；独立计算cnt=4，输出4#4，与网站answer=3一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案D正确，但原解析表格在i=3行列出“3×3=9”；实际内层条件为j<i，i=3时j=3不执行，只检查j=1。跟踪表需纠正，避免把未执行的j值算进去。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (4#4)**\n\n**核心解析：**\n`j` 从 1 开始、步长为 2，所以 `j` 始终是奇数；因此 `i*j` 的奇偶性只由 `i` 决定：`i` 为偶数时乘积为偶数，`i` 为奇数时乘积为奇数。\n\n逐轮看：\n- `i=1`：`j=1` 不满足 `j<i`，内层不执行，`cnt` 不变。\n- `i=2`：`j=1`，`2*1=2` 为偶数，`cnt++` 后 `break`，`cnt=1`。\n- `i=3`：`j` 只能取 1（`j=3` 不满足 `j<i`），`3*1=3` 为奇数，不命中，`cnt=1`。\n- `i=4`：`j=1`，`4*1=4` 为偶数，`cnt=2` 后 `break`。\n- `i=5`：`j=1,3`，`5*1=5`、`5*3=15` 均奇，不命中，`cnt=2`。\n- `i=6`：`j=1`，`6*1=6` 为偶数，`cnt=3` 后 `break`。\n- `i=7`：`j=1,3,5`，乘积均奇，不命中，`cnt=3`。\n- `i=8`：`j=1`，`8*1=8` 为偶数，`cnt=4` 后 `break`。\n- `i=9`：`j=1,3,5,7`，乘积均奇，不命中，`cnt=4`。\n\n循环结束 `i=10`，`if(i>=10)` 成立，输出 `4#`；随后无条件执行 `cout << cnt`，再输出 `4`，合起来是 `4#4`。\n\n**选项逐项分析：**\n- **A (0)**：❌ 2、4、6、8 都会各命中一次，`cnt` 不是 0。\n- **B (8#8)**：❌ 把奇数 `i` 也当成会命中；奇数 `i` 与奇数 `j` 的乘积仍为奇数。\n- **C (4)**：❌ 漏掉 `if(i>=10)` 输出的 `4#`。\n- **D (4#4)**：✅ 两处输出都计入。\n\n**易错提醒：**\n- `j += 2` 使 `j` 只取奇数，所以只需看 `i` 的奇偶。\n- `break` 只跳出内层循环，外层 `i` 继续增加。\n- 循环结束后 `i` 为 10，`if(i>=10)` 必然成立；且 `cout << cnt` 没有花括号限制，总会执行。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第8题代码为N=100、while(N>0)内嵌if-else if-else，末尾cout<<N；网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A-D依次为100、95、55、0；网站options顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为C，即0起始索引2；独立跟踪100→80→60→55后break，输出55，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐轮跟踪100→80→60→55，并说明55为奇数触发break，结论C正确；未发现影响本题结论的事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第9题代码为x=1、while(x<100)，含if/else-if/else及末尾x+=2；网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A-D依次为1、1,3、15,17、1,10,12；网站options顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为D，即0起始索引3；独立跟踪输出1,10,12，与网站answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确跟踪x=1→3→10→12，并说明12时x/10为真而break，输出1,10,12；与代码执行一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第10题代码为cnt=0、i从0到4、j从0到i-1并累加cnt；网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A-D依次为5、10、20、30；网站options顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题为B，即0起始索引1；内层总执行次数0+1+2+3+4=10，与网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明内层执行i次，并求和0+1+2+3+4=10，结论B正确；未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第6-10题：卷头年月、等级与paperId一致；五题题干代码、选项顺序和官方答案均通过对照。题6、题7解析存在跟踪或表述上的事实性问题，已提供纠错草稿；题8、9、10解析通过。五题均为单选题，referenceCode维度不适用；无未决项。"
+  }
+}

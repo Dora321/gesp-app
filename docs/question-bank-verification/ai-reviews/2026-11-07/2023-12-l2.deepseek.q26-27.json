@@ -1,0 +1,162 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T00:35:20.223Z",
+  "completedAt": "2026-11-08T00:38:58.540Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31204,
+    "completion_tokens": 20226,
+    "total_tokens": 51430,
+    "prompt_tokens_details": {
+      "cached_tokens": 31104
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18456
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01224391,
+      "allowance": 0.00734635,
+      "tokens": {
+        "input": 100,
+        "output": 20226,
+        "reasoning": 18456,
+        "cache_read": 31104,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6da25264c1d59968da24b3a04de2fd8b59792d0e13ef58de7944e6afe3c8381",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 二级 2023年12月”，与 2023-12-l2 的年份、月份、级别一致；编程题位于第6-9页。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页输入描述/约束显示“保证 0 ≤ a,b ≤ 10；a,b < M ≤ 1,000,000；3 ≤ N ≤ 364”。网站题面写成 m ≤ 1000，缩小了官方范围，需更正。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不以选项答案表判定；PDF 第1页客观题答案表不含第26题。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析的递推过程、停止时机和样例走查与官方参考程序一致；但“易错提醒”写“m <= 1000”，与 PDF 第6页 m ≤ 1,000,000 冲突，应同步更正。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码先令 sum=a+b，第3天起 cur=p1+p2 并累加，cur>=m 的当天计入后 stopped=true，后续不再累加；与 PDF 第7页官方参考程序“先 ans+=c，再 if(c>=m) break”等价。m≤1,000,000 时停止前 cur 小于 2m，int 足够；sum 用 long long 安全。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202312 二级] 小杨做题\n\n## 题目描述\n\n为了准备考试，小杨每天都要做题。第 1 天，小杨做了 $a$ 道题；第 2 天，小杨做了 $b$ 道题；从第 3 天起，小杨每天做的题目数量是前两天的总和。\n\n此外，小杨还规定，当自己某一天做了大于或等于 $m$ 题时，接下来的所有日子里，他就再也不做题了。\n\n请问，到了第 $N$ 天，小杨总共做了多少题呢？\n\n## 输入格式\n\n总共 4 行。第一行一个整数 $a$，第二行一个整数 $b$，第三行一个整数 $m$，第四行一个整数 $N$。\n\n保证 $0 \\le a, b \\le 10$；$a, b < m \\le 1{,}000{,}000$；$3 \\le N \\le 364$。\n\n## 输出格式\n\n一行一个整数，表示小杨 $N$ 天里总共做了多少题目。",
+          "explanation": "**解析：**\n\n按题意逐日模拟。第 1、2 天题数分别为 $a$、$b$；第 3 天起每天题数为前两天之和。若某天题数大于或等于 $m$，当天仍计入总数，从次日起不再做题。\n\n设 `sum = a + b`，`p2 = a`、`p1 = b`。令 `i` 从 3 到 $N$：若未停止，则 `cur = p1 + p2`，`sum += cur`；若 `cur >= m`，标记 `stopped = true`；然后滚动 `p2 = p1`、`p1 = cur`。停止后剩余天数题数为 0，可跳过或提前结束循环。\n\n样例 1：序列为 1、2、3、5、8，总和 19。样例 2：序列为 1、1、2、3、5，第 5 天达到 5 后停止，总和 12。\n\n注意：达到阈值的当天必须计入；更新 `p2`、`p1` 的顺序不能颠倒；`sum` 建议用 `long long`。官方约束为 $m \\le 1{,}000{,}000$、$N \\le 364$，停止前 `cur` 小于 $2m$，`int` 可容纳。\n\n**参考实现见 referenceCode。**"
+        },
+        "tests": [
+          {
+            "name": "最小天数与全零",
+            "input": "0\n0\n1\n3",
+            "output": "0",
+            "reason": "N=3 为最小天数；a=b=0 时每天均为 0，永远达不到 m=1，累计为 0。"
+          },
+          {
+            "name": "阈值当天计入并停止",
+            "input": "1\n2\n3\n10",
+            "output": "6",
+            "reason": "第3天 cur=3 达到 m=3，当天计入；前3天为 1+2+3=6，第4~10天不再做题。"
+          },
+          {
+            "name": "最大 m 与最大 N",
+            "input": "10\n10\n1000000\n364",
+            "output": "3178100",
+            "reason": "d_n=10F_n；第25天750250<m，第26天1213930≥m，计入后停止；前26天和=10(F28-1)=3178100，N=364 其余天为0。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7-8页题面规定 N×N、N 为奇数，最左/最右列为 |，中间第 (N+1)/2 行第 2~N-1 个字符为 -，其余为 a；约束 5≤N≤49。网站题面、N=5 与 N=7 样例均一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不以选项答案表判定；PDF 第1页客观题答案表不含第27题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 0 起点将中间行定位为 N/2，并强调先判左右列、再判中间行，与官方参考程序的分段输出等价；样例走查正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第8-9页官方参考程序按上、中、下三段输出；网站代码用双重循环逐坐标判断，先判 j==0||j==n-1，再判 i==n/2，否则输出 a。N 为奇数时中间行下标正确，输出无多余空格，复杂度 O(N^2)，N≤49 无越界。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 N=5（样例1）",
+            "input": "5",
+            "output": "|aaa|\n|aaa|\n|---|\n|aaa|\n|aaa|",
+            "reason": "PDF 第8页样例1；验证左右列优先于中间行、中间行两端仍为 |。"
+          },
+          {
+            "name": "非样例奇数 N=9",
+            "input": "9",
+            "output": "|aaaaaaa|\n|aaaaaaa|\n|aaaaaaa|\n|aaaaaaa|\n|-------|\n|aaaaaaa|\n|aaaaaaa|\n|aaaaaaa|\n|aaaaaaa|",
+            "reason": "N=9 时中间行为第5行，内部7个 -；上下各4行，内部7个 a，验证行数与奇偶定位。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验26、27题。26题：PDF 约束 m≤1,000,000 与网站 m≤1000 不符，题面和解析需修正；参考程序逻辑与官方程序等价，已用最小、阈值、最大m/N三类手算用例复核。27题：题面、样例、解析、参考程序与 PDF 一致，未发现需改。所有期望输出均为独立推导，未声称实际运行。"
+  }
+}

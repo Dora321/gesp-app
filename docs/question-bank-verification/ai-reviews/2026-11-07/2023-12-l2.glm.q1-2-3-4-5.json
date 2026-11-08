@@ -1,0 +1,236 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T23:58:23.245Z",
+  "completedAt": "2026-11-08T00:00:48.069Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47907,
+    "completion_tokens": 16287,
+    "total_tokens": 64194,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13537
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01532955,
+      "allowance": 0.01532955,
+      "tokens": {
+        "input": 47907,
+        "output": 16287,
+        "reasoning": 13537,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6da25264c1d59968da24b3a04de2fd8b59792d0e13ef58de7944e6afe3c8381",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 GESP C++ 二级 2023年12月」，与 paperId 2023-12-l2、level=2、year=2023、month=12 完全一致；第1页单选答案表「C A D D D A D C D B C D C B B」清晰可读，前五题对应 C/A/D/D/D。来源 SHA 8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446 已比对。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题「以下不可以做为C++变量的是( )。」与网站题干逐字一致（仅括号间距差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A FiveStar、B fiveStar、C 5Star、D Star5 与网站选项文字及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题为 C，0 起始索引 2，与网站 answer=2 一致；独立核验 5Star 以数字开头确为非法标识符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按 C++ 标识符规则推导：仅 5Star 数字开头非法，A/B/D 合法；网站解析的规则表述、逐项分析与易错点均无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核未提修改；独立复核题干、选项、答案 C 及解析均与 PDF 一致且推导正确，无需改动。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题原循环 for(int i = 10; i < 20; i += 2) cout << i; 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四个选项逐字一致：A i<19、B 起始 11 且 i<19、C i<21、D 以上均不对，顺序无差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举：原循环输出 10,12,14,16,18；A 中 i=18 后变 20 不满足 i<19，序列相同；B 从 11 起；C 多输出 20。结论 A 成立，解析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核未提修改；独立跟踪原循环与三个选项的输出序列，均与网站解析一致，无需改动。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题题干、N=18 输出示例 1 2 3 6 9 18 及四行代码（for 横线、if(N % i == 0)、cout）与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四个 for 头部选项（0/1 起、i<N / i<N+1）与网站文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 D，0 起始索引 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：起点须为 1（N%0 未定义行为），终点须含 N 本身（i <= N 即 i < N+1），仅 D 同时满足；网站对除零与边界的论述准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核未提修改；独立复核边界分析（0 起点、漏 N 本身）均成立，无需改动。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在 PDF 第1页末，8 行代码与选项在 PDF 第2页；代码逐行（cin>>N、newNum=0、while(N) 反转、if(newNum == N) 输出）与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项逐字一致；选项 A提到的「第8行」与代码第 8 行 cout 语句对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题为 D，0 起始索引 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪 N=1221：循环结束 newNum=1221、N=0，比较恒假；负数按 C++ 截断除法 -12→-1→0 收敛，不会死循环；代码可编译。D 论断成立，解析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核未提修改；独立跟踪正数与负数路径后确认 D 正确、B 的死循环说法不成立，解析无误。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题题干与 8 行代码逐行一致（for(i = 2; i < N/2; i++)、if(N % i == 0)、第5行 break、第7行 if(i >= N/2)），行号引用均可对应。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项逐字一致，D 项「应将第2行和第7行的 N / 2 改为 N / 2 + 1」无差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题为 D，0 起始索引 3，与网站 answer=3 一致；独立枚举 N≥2 确认仅 N=4 误判，D 的修法（两处 N/2+1）对 N=2,3,4,5,6,9 等逐一跟踪均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析「只有 N=2p（p 为最小因子）这类边界会错」不成立——N=2p 为偶数必在 i=2 命中，N≥2 范围内唯一误判是 N=4（N/2=2 时 i<2 循环不执行，i=2 满足 i>=N/2 误输出「是质数」；合数最小质因子 ≤ √N，N>4 时 √N < N/2 故必落在检查区间）；原解析「删 break 只会重复输出不是质数」也不完整——循环正常结束后 i=N/2 仍满足 i>=N/2，会再输出「是质数」；且 N=4 仍误判。已替换为逐点独立核验的修订解析：N=4 跟踪、修复后 N=2/3/4/5/6/9 跟踪、C 项行为均验证无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**核心解析：**\n漏洞出在 `N / 2` 这个边界上，拿 `N = 4` 一试就暴露：\n- `N/2 = 2`，循环条件 `i < 2` 不成立，`i` 从 2 开始一次都不执行；\n- 循环后 `i` 仍是 2，判断 `i >= N/2`，即 `2 >= 2` 成立，输出「4 是质数」，这是错的。\n\n在题目范围 `N >= 2` 内，这段代码只有 `N = 4` 会误判。其他素数都能正常结束循环并输出「是质数」；大于 4 的合数，其最小质因子一定小于 `N/2`：偶数合数在 `i = 2` 时即可命中，奇数合数的最小质因子不超过 `√N < N/2`，循环能发现因子并 `break`。\n\n原因是 `i < N/2` 实际上只试除到 `N/2 - 1`，漏掉了因数 `N/2` 本身。把两处都改成 `N/2 + 1`（等价于 `i <= N/2`）就能覆盖到 `i = N/2`：\n`N = 4` 时 `i = 2`，`2 < 3` 成立，`4 % 2 == 0`，输出「不是质数」并 `break`，正确。\n\n**选项逐项分析：**\n- **A**：❌ `N = 4` 会误判为质数。\n- **B**：❌ 并非总是不能判断；在 `N >= 2` 中只有 `N = 4` 会误判，`N = 6` 等合数能正确判断。\n- **C**：❌ 删掉 `break` 后，命中因数也不会立即停止，可能继续执行并在循环后再次输出「是质数」，不能正确判断。\n- **D**：✅ 准确点出边界少算一位，并给出正确修法。\n\n**易错提醒：**\n- `i < N/2` 的试除范围看似安全，其实端点差一：`N/2` 本身没被检查。\n- `for` 正常走完时 `i` 是第一个不满足条件的值；若中途 `break`，`i` 保留命中的值。利用终值判断是否提前退出时，要把这两种情况分清。\n\n**知识延伸：**\n标准写法是 `for (i = 2; i * i <= N; i++)`，试除到 `√N` 即可，复杂度从 `O(N)` 降到 `O(√N)`。\n\n**考点：** 循环边界、质数判定、for 循环结束后计数器的值"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的解析替换：独立枚举 N≥2 证实代码仅在 N=4 误判（所有 N=2p 型偶合数都在 i=2 命中），且删 break 后合数会在循环结束后额外输出「是质数」，原解析两处论断确有错误。修订稿中 N=4 跟踪、修复后多点跟踪及 C 项行为均经独立验证，故采纳其文本；答案 D 与题干选项不受影响。"
+      }
+    ],
+    "summary": "本轮仅复核第 1–5 题。五题题干、选项均与 PDF 第1–2页页面一致，答案映射与第1页答案表（C A D D D）逐题核对无误（2/0/3/3/3）。第1–4题解析经独立推导全部通过；第5题解析存在两处与代码实际行为不符的论断（「只有 N=2p 这类边界会错」实为仅 N=4 误判、「删 break 只会重复输出不是质数」遗漏循环后仍会输出「是质数」），已应用经独立核验的修订解析并确认修复后核验通过，答案 D 不变。本批均为单选题，无编程题测试需求，无未决事项。"
+  }
+}

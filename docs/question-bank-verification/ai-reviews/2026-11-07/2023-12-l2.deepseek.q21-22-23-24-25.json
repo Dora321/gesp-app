@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T00:29:04.756Z",
+  "completedAt": "2026-11-08T00:30:39.295Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31210,
+    "completion_tokens": 9159,
+    "total_tokens": 40369,
+    "prompt_tokens_details": {
+      "cached_tokens": 31104
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7675
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00560461,
+      "allowance": 0.00336277,
+      "tokens": {
+        "input": 106,
+        "output": 9159,
+        "reasoning": 7675,
+        "cache_read": 31104,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6da25264c1d59968da24b3a04de2fd8b59792d0e13ef58de7944e6afe3c8381",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 二级”“2023 年 12 月”，与 paperId 2023-12-l2 的等级2、年月一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页判断题第6题代码含首行 `Sum = 0;`，当前网站独立 `code` 字段从 `for` 开始，缺少该初始化行，与页图不一致，影响独立执行和求值。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页该题为判断题，作答形式为括号内判断正误；网站 options 为“正确/错误”，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第6题符号为 ×，对应错误=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析误把 `Sum += i` 写成每轮 `Sum += 1`，并据此称输出 1000；按页图代码实际求和为 -500，故解析需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "code": "Sum = 0;\nfor (i = -500; i < 500; i++)\n    Sum += i;\ncout << Sum;",
+          "explanation": "**答案：错误**\n\n**判定依据：**\nPDF 第5页第6题代码为 `Sum = 0; for (i = -500; i < 500; i++) Sum += i; cout << Sum;`。循环变量 `i` 依次取 -500, -499, …, 499，共 1000 项。求和：(-500)+(-499)+…+(-1)+0+1+…+499 = -500。因此程序输出 -500，不是 0，题面说法错误。\n\n**易错点：**\n- 本题是 `Sum += i`，不是 `Sum += 1`；不能把循环执行次数 1000 当作累加结果。\n- 从 -500 到 499 共 1000 个整数，可配对为 (-500,499)、(-499,498)、…、(-1,0)，每对和为 -1，共 500 对，总和 -500。\n\n**考点：** 循环求和、负数区间、循环变量初值与终值。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第7题原文与网站 question 一致：运算符只能处理相同数据类型、不同类型必须转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页该题为判断题，作答形式为判断正误；网站 options 为“正确/错误”，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7题符号为 ×，对应错误=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 允许不同算术类型经隐式转换后参与运算（如 1+2.5），故原命题错误；网站解析结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第8题原文与网站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页该题为判断题，作答形式为判断正误；网站 options 为“正确/错误”，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第8题符号为 √，对应正确=0；网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：变量类型定义后固定，但赋值允许不同类型值经隐式转换存入，如 int a; a=3.9; 得 3；命题正确，解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第9题原文与网站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页该题为判断题，作答形式为判断正误；网站 options 为“正确/错误”，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题符号为 ×，对应错误=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：Dev C++ 是运行于操作系统之上的 IDE，不具备进程调度、内存管理、文件系统等 OS 核心功能；命题错误，解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第10题原文与网站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页该题为判断题，作答形式为判断正误；网站 options 为“正确/错误”，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题符号为 √，对应正确=0；网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：while(条件){循环体} 可等价写成 for(;条件;){循环体}，for 三部分允许为空；命题正确，解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核题21-25：题21的独立 code 字段缺少 PDF 中的 `Sum = 0;`，且原解析把 `Sum += i` 误作 `Sum += 1`，需修正代码与解析；题22-25的题面、选项、答案、解析均与 PDF 页图及判断题答案表一致。五题均为判断题，无参考程序。"
+  }
+}
