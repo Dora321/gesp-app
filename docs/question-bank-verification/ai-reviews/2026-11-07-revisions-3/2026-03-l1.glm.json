@@ -1,0 +1,143 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    7,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T14:44:39.023Z",
+  "completedAt": "2026-11-08T14:49:55.985Z",
+  "finishReason": "stop",
+  "inputSha256": "bc90fed8b84d6a6d728426966b80fdddb6e0e956797827eace63d1b20e530ee3",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 / Grade Examination of Software Programming」，标题「C++ 一级」「2026 年 03 月」，全卷共 10 页；与候选 level=1、year=2026、month=3 的 C++ 一级真题定位一致，官方答案表（单选 15 题＋判断 10 题）与编程题 2 道（交朋友、数字替换）结构相符。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题题干「下面C++代码执行时，其说法正确的是（）。」及代码 int M = 0, N = 0; / cin >> M; / cin >> N; /（第 4 行空行）/ if (N > M) cout << (N - M); / else cout << (M - N); 与候选一致；候选省略空行属排版等价，未丢任何语句。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A「如果输入一个正数和一个负数，其输出结果肯定是大于0」、B「不管是负整数、正整数亦或0，其结果肯定是大于等于0」、C「如果 N 和 M 是相等的整数，将不会有输出」、D「如果 N 和 M 输入带有小数点的数，将按整数部分计算」，与候选逐项一致（仅「大于0/大于 0」等空格差异），选项顺序与答案映射未变。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "官方答案表（第 1 页）第 7 题为 B（索引 1），候选 answer=1 转录无误。独立推导：代码对成功读入的整数恒输出 |M-N|（N>M 时 N-M，否则含 N==M 时 M-N）。按程序语境（M、N 均为 int）把 A 的「一正一负」理解为整数时，两数必不相等，输出 |M-N|=|M|+|N|>0，A 亦成立，与官方答案 B 并存，属多解；若把 A 的「正数/负数」按字面允许小数，输入 0.5 与 -0.5 时 M 被截为 0 并停在小数点，第二次 cin>>N 提取失败、N 保持初值 0，输出 0 并不大于 0，此时 A 不成立而 B 唯一成立。卷面未限定 A 中的数为整数，歧义系原卷固有，保留官方答案 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：输出恒为 |M-N|≥0，N==M 走 else 输出 0（有输出，C 的「不会有输出」为错）；B 非负性成立；D 中首个带小数点的数被截为整数部分（3.14→3）且小数点滞留输入流致第二次提取失败、N 保持 0，第二个带小数点的数不会按其整数部分参与计算，整体描述不成立；A 的整数解读成立（不能用 -10/-10 这类不合前提的反例）、全字面解读的 0.5/-0.5 反例亦经独立推导成立。候选解析与上述推导逐项一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第 7 题：整数输入解读下 A（一正一负输出必大于 0）与官方答案 B 同时成立，属多解；全字面（允许小数）解读下 A 有 0.5/-0.5 反例（M、N 均读为 0、输出 0）而 B 唯一成立。官方答案 B 保留，歧义待裁定。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受 DeepSeek 初核第 7 题的全部维度判断并逐项独立重推：题面、选项与 PDF 第 2 页一致；answer 维持 unresolved 并保留官方 B（整数解读下 A 与 B 并存、全字面解读下 B 唯一，系原卷固有歧义而非转录错误）；解析中 C 走 else 输出 0、D 第二次提取失败机制均验证成立。不上线修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 5 页题面为「N 是一个正整数。如果 N 的所有奇数位的数位和等于所有偶数位的数位和，则称它是一个“双螺旋数”。例如 12375 的所有奇数位的数位和是9，同时它的所有偶数位的数位和也是9，则 12375 就是一个双螺旋数。下面的C++代码用于判断输入的 N 是否为双螺旋数。空白处应该填入的代码是（）。」，代码 int i, N, N1=0, N2=0, N0; / cin >> N; / N0 = N; / while (N){ 两条空白 } / if(N1 == N2) cout << N0 << \"是双螺旋数\" << endl;，输出串无前导空格，选项 C、D 位于第 6 页。候选原题面遗漏开头「N 是一个正整数。」、例句尾「，则 12375 就是一个双螺旋数」，且输出串误作\" 是双螺旋数\"（前导空格属字符串内容差异而非排版差异）；changes.question 已按原卷补全并修正输出串，逐字核对一致，反引号/空格为 Markdown 等价转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页 A-D 四组两行语句：A 均 N%10 累加、N/=10（A、B 在第 5 页）；B 均 N/10 与 N/=10；C 均 N%10 与 N%=10（第 6 页）；D 均 N/10 与 N%=10，与候选一致（仅空格排版差异），选项顺序与答案映射未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 15 题为 A（索引 0）。独立按轮走查（while 每轮先执行第一行再执行第二行）N=12375：第 1 轮 N1=0+12375%10=5、N=1237，N2=1237%10=7、N=123；第 2 轮 N1=5+3=8、N=12，N2=7+2=9、N=1；第 3 轮 N1=8+1=9、N=0，N2=9+0=9、N=0；得 N1=N2=9，与题面左起第 1/3/5 位和 1+3+5=9、第 2/4 位和 2+7=9 相符；位数为偶数时 N1/N2 收集的奇偶位互换，但代码只比较 N1==N2，判定结果不变。A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：候选解析按轮走查与 C++ 语义一致（每轮同时执行两行），12375 得 N1=9、N2=9；B 项 N/10 为去尾后的整体数值（12375/10=1237）而非数位；C 项 N%=10 不删位——个位非 0 时 N 恒等于该位数字、循环永不终止，个位为 0（如 120）时首轮即退出且全部高位未统计、会把 120 误判为双螺旋数；D 项同样不删位且 N1 首轮累加 N/10 的整体值。各选项分析与独立推导一致，可支持答案 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "N 是一个正整数。如果 `N` 的所有奇数位的数位和等于所有偶数位的数位和，则称它是一个“双螺旋数”。例如 `12375` 的所有奇数位的数位和是 9，同时它的所有偶数位的数位和也是 9，则 `12375` 就是一个双螺旋数。下面的 C++ 代码用于判断输入的 `N` 是否为双螺旋数。空白处应该填入的代码是（ ）。\n```cpp\nint i, N, N1 = 0, N2 = 0, N0;\ncin >> N;\nN0 = N;\nwhile (N) {\n _________________________\n _________________________\n}\nif (N1 == N2)\n cout << N0 << \"是双螺旋数\" << endl;\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核的题面修复并独立逐字复核 PDF 第 5 页原图：候选确实遗漏「N 是一个正整数。」与例尾句「，则 12375 就是一个双螺旋数」，且输出串多一个前导空格（会改变程序输出，非排版等价），修复文本与原卷一致，采纳为 changes.question。（注：上一轮意见称候选题面已含「N 是一个正整数」并与 PDF 一致，经对候选原文核对该说法不成立，本轮以原卷为准予以否决。）选项、官方答案 A 与解析（含 C/D 不删位导致的死循环与提前退出漏统计分支）经独立走查复核通过，无其他修改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        7,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 38749,
+        "completion_tokens": 24064,
+        "total_tokens": 62813,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21664
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01784435,
+          "allowance": 0.01784435,
+          "tokens": {
+            "input": 38749,
+            "output": 24064,
+            "reasoning": 21664,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T14:44:39.023Z",
+      "completedAt": "2026-11-08T14:49:55.985Z"
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "paperId": "2026-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    7,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T14:42:22.548Z",
+  "completedAt": "2026-11-08T14:44:39.012Z",
+  "finishReason": "stop",
+  "inputSha256": "bc90fed8b84d6a6d728426966b80fdddb6e0e956797827eace63d1b20e530ee3",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++1级.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "mirrorBytes": 1071789,
+    "shaVerified": true,
+    "sha256": "cdcb4545778c07461ca32577bb0ad96e5a4db791d04b0e3127738e7023aadaf6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证」「C++ 一级」「2026 年 03 月」，全套共 10 页；与候选的 level=1、year=2026、month=3、C++ 一级真题信息一致。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题题干「下面C++代码执行时，其说法正确的是（ ）」及代码 int M = 0, N = 0; / cin >> M; / cin >> N; / if (N > M) cout << (N - M); / else cout << (M - N); 与候选一致；候选省略第 4 行空行属排版等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A-D 四项与候选逐项一致：A 一正一负输出肯定大于 0；B 负整数、正整数或 0 结果肯定大于等于 0；C 相等整数将不会有输出；D 带小数点的数将按整数部分计算。仅存在「大于0/大于 0」等空格排版差异。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "官方答案表第 7 题为 B（索引 1），候选 answer=1 与官方表一致。独立核对：若只按整数输入理解，一正一负必不相等，输出 |M-N|>0，A 也成立，与 B 并存；若按 A 的字面把「正数/负数」允许为小数，输入 0.5 与 -0.5 时 cin>>M 读入 0 并在小数点处停止，cin>>N 失败、N 保持 0，输出 0，A 不成立而 B 唯一。卷面未明确 A 中的数是否限定为整数，故保留官方 B，存在多解争议。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的核心绝对值判断正确：N>M 输出 N-M，否则输出 M-N；B 的非负性、C 走 else 输出 0、D 的小数截断及后续输入失败机制均与 C++ 语义一致；候选给出的 0.5 与 -0.5 反例也成立，并明确保留官方 B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第 7 题：官方答案为 B。按整数输入理解时 A（一正一负输出必大于 0）与 B 同时成立，存在多解；按字面允许小数时，0.5 与 -0.5 会使第二次 cin 读取失败并输出 0，A 不成立而 B 唯一。卷面未限定 A 中的数是否为整数，保留官方 B 并记为争议。"
+        ]
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页第 15 题题面以「N 是一个正整数。」开头，示例句末尾还有「则 12375 就是一个双螺旋数。」；原代码输出串为 cout << N0 << \"是双螺旋数\" << endl;，无前导空格。候选遗漏「N 是一个正整数」这一约束，并把代码写成 \" 是双螺旋数\"，输出串不一致，需修正。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页 A-D 四组赋值语句与候选一致：A 均为 N%10 与 N/=10；B 均为 N/10 与 N/=10；C 均为 N%10 与 N%=10；D 均为 N/10 与 N%=10。仅空格排版差异，选项顺序与答案映射未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 15 题为 A（索引 0）。按 while 每轮同时执行两行独立走查 N=12375：第 1 轮得 N1=5、N2=7、N=123；第 2 轮得 N1=8、N2=9、N=1；第 3 轮得 N1=9、N2=9、N=0，判定成立。位数为偶数时两组收集的奇偶位互换，但只比较 N1==N2，互换不影响结果，故 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按轮走查 N=12375 的结果正确；对 B（累加 N/10 不是数位）、C（N%=10 不删位，个位非 0 时死循环、个位为 0 时提前退出）、D（同样不删位且累加 N/10 的整体数值）的分析均与 C++ 语义一致，解析可支持答案 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "N 是一个正整数。如果 `N` 的所有奇数位的数位和等于所有偶数位的数位和，则称它是一个“双螺旋数”。例如 `12375` 的所有奇数位的数位和是 9，同时它的所有偶数位的数位和也是 9，则 `12375` 就是一个双螺旋数。下面的 C++ 代码用于判断输入的 `N` 是否为双螺旋数。空白处应该填入的代码是（ ）。\n```cpp\nint i, N, N1 = 0, N2 = 0, N0;\ncin >> N;\nN0 = N;\nwhile (N) {\n _________________________\n _________________________\n}\nif (N1 == N2)\n cout << N0 << \"是双螺旋数\" << endl;\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        7,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 20803,
+        "completion_tokens": 23527,
+        "total_tokens": 44330,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21918
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01723665,
+          "allowance": 0.01034199,
+          "tokens": {
+            "input": 20803,
+            "output": 23527,
+            "reasoning": 21918,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T14:42:22.548Z",
+      "completedAt": "2026-11-08T14:44:39.012Z"
+    }
+  ]
+}
