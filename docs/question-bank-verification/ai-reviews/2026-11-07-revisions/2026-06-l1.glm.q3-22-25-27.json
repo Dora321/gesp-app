@@ -1,0 +1,231 @@
+{
+  "paperId": "2026-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    3,
+    22,
+    25,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:38:00.292Z",
+  "completedAt": "2026-11-08T13:41:14.282Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40687,
+    "completion_tokens": 15746,
+    "total_tokens": 56433,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12203
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01397605,
+      "allowance": 0.01397605,
+      "tokens": {
+        "input": 40687,
+        "output": 15746,
+        "reasoning": 12203,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "917a5829f843ad2fcca4b874a5f401c927bf1d03cba6a58d723485c4610dd659",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295253143584.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++1级.pdf",
+    "mirrorSha": "e771e576ce589f0c1c56efd0da05d815fe35c62a",
+    "mirrorBytes": 928657,
+    "shaVerified": true,
+    "sha256": "a420618458a7cf0afe57e8c13172dd7ba0c13f4ffdb6bfb84dc229f31df52efe"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP」，标题「C++ 一级」与日期「2026 年 06 月」，与 paperId 2026-06-l1 的年月（2026-06）和等级（一级）一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题题干「有关如下 C++ 代码的说法，正确的是（ ）。」，代码框两行依次为 `float a = 3 + 3.5;` 与 `cout << a;`，与候选题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四项：A 代码执行将报错、改 `a = 3 + 3 + 1/2` 将能正常执行；B 代码执行将报错、改 `a = 3.0 + 3.5` 将能正常执行；C 正常执行输出 6；D 正常执行输出 6.5，顺序与内容与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表单选第 3 题为 D，对应 0 起始索引 3，候选 answer=3 一致；独立推导：3 与 3.5（double 字面量）运算，3 提升为 double 得 6.5，赋给 float 无损（6.5=110.1₂ 可被 float 精确表示），cout 默认精度输出 6.5，D 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "对候选解析逐条独立核算：`1/2` 为整数除法得 0，改写式 `3 + 3 + 1/2` 整体为 6（旧稿『结果为 3』的算误在本版已修正）；A 前半句『代码执行将报错』为假故整项不成立（后半句改写确能执行、输出 6）；B 同因前提错误不成立；C 的 6.5 不会被截断为 6；D 正确。核心推导（double 6.5 赋 float 无损、输出 6.5）复核无误。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，本维不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核与上轮对解析算误（1/2 得 0，改写式结果为 6 而非 3）的修正方向正确；本轮独立重算确认候选解析已无误且与原卷题面、选项逐字一致，答案 D 与官方答案表相符，无需再改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 7 题原文「C++ 代码 cout << (2.5 % 2) 能够生成可执行代码，但执行时将报错，因为 % 只能适用于正整数。」与候选题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项，官方以 √/× 答案表呈现；网站为【正确/错误】二选项，不计入本维。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页判断题答案表横排为 √ √ × × √ √ × × × ×，第 7 题为 ×，即「错误」对应索引 1；候选 answer=0 既与官方答案表冲突，也与候选自身解析首行「**答案：错误**」自相矛盾，须改为 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判定：2.5 为 double 字面量，% 要求两个操作数为整型，`2.5 % 2` 属编译错误，根本生成不了可执行代码，谈不上『执行时报错』；且 % 适用于整数（含负整数，C++11 起符号随被除数），『只能适用于正整数』表述亦失准，浮点取余需 fmod。整句陈述为假，候选解析两条依据均成立，结论「错误」正确，仅答案键有误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，本维不适用。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核 answer→1：独立读表确认判断第 7 题为 ×，与解析「错误」自洽。另须提示：上一轮意见所称 id22 的题面是判断第 2 题（n>100，答案 √→0），与当前候选 id22 实际内容（第 7 题 2.5%2）不一致，疑为上轮修正按错位 id 套用所致；本轮以当前候选内容依原卷独立核验为准，答案应为 1，上轮的修正值 0 不予沿用。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 10 题原文「删除下面 C++ 代码中的 continue 后，其输出与原来相同。」及代码 `int x = 0; while (x < 4) { x++; if (x == 2) continue; cout << x << \",\"; }` 与候选逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项，官方以 √/× 答案表呈现；网站为【正确/错误】二选项，不计入本维。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页判断题答案表第 10 题为 ×，即「错误」对应索引 1；候选 answer=0 与官方答案表及候选自身解析首行「**答案：错误**」矛盾，须改为 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：原代码 x=1→2 时触发 continue 跳过本轮输出，得 `1,3,4,`；删除 continue 后 if 体为空、每轮都执行输出，得 `1,2,3,4,`，相差一个 `2,`，输出不相同，原陈述为假；x++ 位于 continue 之前，删除后循环推进不受影响、不会死循环。候选解析结论正确，仅答案键有误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，本维不适用。"
+          }
+        },
+        "changes": {
+          "answer": 1
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核 answer→1：独立读表确认判断第 10 题为 ×，并独立模拟两种输出（1,3,4, 与 1,2,3,4,）确认原陈述为假。同样提示：上一轮意见针对的判断第 5 题（输出各位数字，√→0）与当前候选 id25 实际内容（第 10 题删 continue）不一致，属错位套用，不予沿用；本轮按当前候选独立核验，答案应为 1。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 3.2.1 两档计税规则（不超过 800 免税；超过 800 的部分按 20% 即 0.2）、示例 (1000.0 − 800.0) × 20% = 40.00、输入 12 行恰好一位小数、输出 1 行保留两位小数，与候选一致；第 9 页样例 12 个数及输出 2584.76 逐项一致；3.2.8 数据范围原图为「小杨同学每月劳务报酬收入均为正，且恰好有一位小数，且不超过 4000.0。」，候选数据范围已是 4000.0，与官方一致（此前 10000 误录已修正）。修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，本维不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算 12 个月税额：26.40、166.86、198.08、274.58、0、0、392.38、556.70、0、304.98、62.32、602.46，累计依次 193.26、391.34、665.92、1058.30、1615.00、1919.98、1982.30、2584.76，与 PDF 3.2.7 样例解释及输出 2584.76 一致；仅对超额部分按 0.2 计税（勿全额计税）、double 选型与 %.2f/setprecision(2) 输出说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页 3.2.9 参考程序 18 行与候选逐行一致：double ans=0.0 累计，for 循环 12 次读入 double a，a<=800.0 时 ans += 0.0 否则 ans += (a - 800.0) * 0.2，最后 printf(\"%.2f\\n\", ans)。复杂度 O(12) 常数级；官方上界 4000.0 下单月最大税额 640.00、总和最大 7680.00，double 精度与范围均充裕，无溢出风险。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "收入下界",
+            "input": "0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1\n0.1",
+            "output": "0.00",
+            "reason": "0.1 为官方范围内最小正数，12 个月均不超过 800 免税档，总和 0.00；覆盖最小值边界。"
+          },
+          {
+            "name": "恰为起征点",
+            "input": "800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0\n800.0",
+            "output": "0.00",
+            "reason": "规则为「不超过 800」免税，800.0 属免税档不纳税，12 个月合计 0.00；验证分支含等号方向。"
+          },
+          {
+            "name": "刚超起征点最小税额",
+            "input": "800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1\n800.1",
+            "output": "0.24",
+            "reason": "每月税额 (800.1−800.0)×0.2=0.02，12 个月合计 0.24；覆盖刚跨境的最小应税差额。"
+          },
+          {
+            "name": "数据范围上界",
+            "input": "4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0\n4000.0",
+            "output": "7680.00",
+            "reason": "每月税额 (4000.0−800.0)×0.2=640.00，12 个月合计 7680.00；覆盖官方数据范围上界 4000.0。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受上轮数据范围 4000.0 修正并于本轮第 9 页原图复核确认；题面、样例、解析与第 10 页参考程序逐行对照无误，样例累计 2584.76 独立复算吻合。初核 4 条 tests 期望输出（0.00、0.00、0.24、7680.00）我方逐条独立重算一致，全部保留登记，未声称已运行；除上轮已落实的 4000.0 外本轮无新增修改。"
+      }
+    ],
+    "summary": "本轮仅复核题 3、22、25、27：题 3（单选）题面、选项与官方答案表 D（索引 3）一致，候选解析已修正旧稿『1/2 使结果为 3』的算误（独立重算 1/2=0、改写式为 6），全维核验通过，approve 无修改。题 22 与题 25（判断第 7、10 题）题面与解析结论（错误）均正确，但候选 answer 均为 0，与第 5 页答案表（√√××√√××××，第 7、10 题均为 ×，索引 1）及其自身解析矛盾，独立确认改为 1；上一轮意见针对的判断第 2、5 题（√→0）与当前两题实际内容错位，其修正值不予沿用。题 27（交税）题面含 4000.0 数据范围、样例、解析及第 10 页参考程序逐行核验一致，样例累计 2584.76 与四条边界测试期望（0.00/0.00/0.24/7680.00）独立重算无误，approve。"
+  }
+}
