@@ -1,0 +1,236 @@
+{
+  "paperId": "2025-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T06:05:49.664Z",
+  "completedAt": "2026-11-08T06:08:18.455Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29615,
+    "completion_tokens": 16937,
+    "total_tokens": 46552,
+    "prompt_tokens_details": {
+      "cached_tokens": 29568,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14668
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01025795,
+      "allowance": 0.00615477,
+      "tokens": {
+        "input": 47,
+        "output": 16937,
+        "reasoning": 14668,
+        "cache_read": 29568,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "29de8898c22b3233242112c9f3cd9c9de65343580349334d3b96c21f905eb29b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++1级.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "mirrorBytes": 1127367,
+    "shaVerified": true,
+    "sha256": "a279bfe780869dafe614c3f09f52027e900d3d4a87d020e83a49840a0fde4c77"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 一级 2025 年 06 月”，与 paperId 2025-06-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页第 11 题是 `for (i = 1; i < 11; i += 3)` 且循环体首句为无条件 `continue` 的代码；网站当前题面却是 `n = 10, i = 1` 的 while 循环题，属于另一道题。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页第 11 题选项为 A. END、B. 1#、C. 1#4#END、D. 1#4#7#10#END；网站当前选项为 5 6、6 5、6 6、5 5，与官方题不符。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 A；网站 answer=0，索引仍对应 A。修正 options 后 A 项应为 END。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析针对的是 while 计数题，与 PDF 第 3 页第 11 题无关，需按官方代码重新推导为只输出 END。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后输出是（　）。\n\n```cpp\nint i;\nfor (i = 1; i < 11; i += 3){\n    continue;\n    if (i % 2 == 0)\n        break;\n    printf(\"%d#\", i);\n}\nif (i >= 11)\n    printf(\"END\");\n```",
+          "options": [
+            "END",
+            "1#",
+            "1#4#END",
+            "1#4#7#10#END"
+          ],
+          "explanation": "**答案：A（END）**\n\n循环体第一条语句是无条件 `continue`，其后的 `if`、`break` 和 `printf` 永远不会执行。`i` 初值为 1，每轮执行完 `continue` 后执行更新 `i += 3`，依次经过 1、4、7、10、13；当 `i = 13` 时 `i < 11` 为假，退出循环。退出后 `i = 13 >= 11` 成立，执行 `printf(\"END\")`，所以只输出 `END`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 12 题代码、`输入 12 则将输出 12,6,4,3,2,1` 的说明及横线位置与网站一致；网站把“横线处应填入”显式写出，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A. `i -= 1`、B. `i == 1`、C. `i > 1`、D. `i >= 1`，与网站 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 C；网站 answer=2，对应 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体正确，但 A 项称“作为条件时 i 变成 0 时才为假”不准确：`i -= 1` 作为条件会先自减，循环体内又自减，每轮净减 2，可能跳过边界并在某些 N 下进入负数循环。已改写该段。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（i > 1）**\n\n循环外还有 `printf(\"1\");`，因此循环只应处理 N 到 2 的因数，1 留给循环外输出。初始 `i = N`，每轮先判断 `N % i == 0` 输出 i，再执行 `i -= 1`。条件应填 `i > 1`；当 i 减到 1 时退出，最后由循环外的 `printf(\"1\")` 输出 1。\n\n以 N = 12 验证：`i > 1` 时循环输出 `12,6,4,3,2,`，循环外再输出 `1`，得到 `12,6,4,3,2,1`。\n\n- A `i -= 1`：它是赋值表达式，作为条件会先使 i 自减；循环体内又执行一次 `i -= 1`，每轮净减 2；初始 i=N 从未被检查，边界也被打乱，不能得到题目要求的因数序列；某些 N 下还会进入负数而无法正常结束。\n- B `i == 1`：初始 i = N（N > 1 时）不成立，循环一次也不执行，只输出 `1`。\n- C `i > 1`：正确。\n- D `i >= 1`：会多处理 i = 1，循环内输出 `1,`，循环外再输出 `1`，末尾重复。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 13 题代码、题干与网站一致，均从 `Sum = 0` 开始，循环内含 `continue` 和 `break`。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A. 55、B. 15、C. 9、D. 4，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 D；网站 answer=3，对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i=0、2、4 被 continue；i=1、3 累加得 4；i=5 时 `i % 5 == 0` 触发 break，不再执行 `Sum += i`；最终输出 4，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 14 题代码为 `float x; x = 101; x++; cout << ++x;`，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A. 输出 101、B. 输出 102、C. 输出 103、D. 编译将报错，无法执行，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C；网站 answer=2，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：x 初始化为 101；`x++` 后为 102；`++x` 先自增到 103 再输出，因此输出 103；float 支持自增，不会因此报错。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4-5 页第 15 题代码、横线位置和题干与网站一致；百位已由 `int a = i / 100;` 取得，个位由 `int c = i % 10;` 取得。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A. `int b = (i / 10) / 10;`、B. `int b = (i / 10) % 10;`、C. `int b = (i % 10) / 10;`、D. `int b = (i % 10) % 10;`，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 B；网站 answer=1，对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：十位应先用 `i / 10` 去掉个位，再对 10 取余，即 `(i / 10) % 10`；例如 345 得 `34 % 10 = 4`。A 得百位，C 得 0，D 得个位，均不符合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次审查第 11-15 题。第 11 题网站题面、选项和解析对应的是另一道 while 题，与 PDF 第 3 页第 11 题不符，已给出完整修正；第 12 题题面、选项、答案正确，但解析中 A 项说明不准确，已修正；第 13-15 题题面、选项、答案和解析均与 PDF 及官方答案表一致。官方答案表第 11-15 题依次为 A、C、D、C、B，对应索引 0、2、3、2、1。"
+  }
+}

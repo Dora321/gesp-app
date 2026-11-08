@@ -1,0 +1,254 @@
+{
+  "paperId": "2025-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:58:58.021Z",
+  "completedAt": "2026-11-08T06:01:02.595Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 44925,
+    "completion_tokens": 9038,
+    "total_tokens": 53963,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6131
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01125775,
+      "allowance": 0.01125775,
+      "tokens": {
+        "input": 44925,
+        "output": 9038,
+        "reasoning": 6131,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "29de8898c22b3233242112c9f3cd9c9de65343580349334d3b96c21f905eb29b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++1级.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "mirrorBytes": 1127367,
+    "shaVerified": true,
+    "sha256": "a279bfe780869dafe614c3f09f52027e900d3d4a87d020e83a49840a0fde4c77"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级”“2025 年 06 月”（CCF 编程能力等级认证 GESP），与 paperId 2025-06-l1 对应；第1页单选答案表前5题为 C A D D C，与题目主题（机器人马拉松、调试断点、first/First 等）逐一对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题保留核心设定：2025年4月19日北京人形机器人半程马拉松、利用多个传感器反馈的数据调整姿态保持平衡、问这类传感器类似于计算机的什么；网站为等价改写（“获取姿态、平衡及周围环境的信息”），未改变含义与设问。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四项为 A 处理器、B 存储器、C 输入设备、D 输出设备，与网站完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题标为 C，0 起始索引 2，与网站 answer=2 一致；解析独立判定“传感器把物理量转为数据送入计算机”属输入设备，结论吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按冯·诺依曼架构数据流向独立推导：传感器向计算机输入数据（输入设备），马达为输出；逐项排除处理器、存储器、输出设备的理由均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核无修改；题面为允许的等价改写，选项、答案映射（C→2）经 PDF 第1页原图独立核对无误。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原网站题面代码为 `int N = 0;` + `if (N < 9)`，缺失原卷的 `int i,N = 0;`、`for (i = 1; i < 9; i++)`、`if (N % i == 0) break; // L3` 及 L4 文本“N不能大于9\\n”，关键控制流被改写，需修复；已按 PDF 第1页原图照录原卷代码，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原网站选项 B/C 写成检测/修改 N，与原卷不符；PDF 第1页原图选项为 A 断点不可以设在L1标记的代码行、B 暂停在L2时可检测 i、C 暂停在L3时可修改 i、D 有可能暂停在L4，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题标为 A，0 起始索引 0，与网站 answer=0 一致；按原题独立验证：L1 含初始化动作可设断点故“A 说法错误”，B/C/D 说法正确，答案 A 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析基于被简化的 `if (N < 9)` 版本，无法解释变量 i 与 for 循环；重写后按原卷逐项验证（i 未初始化可查看、L3 可修改 i、N%1==0 使循环首轮即 break 且 i=1<9 故 L4 可能暂停），与官方答案 A 相容，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在某集成开发环境中调试下面代码段时尝试设置断点和检查局部变量，下面哪个说法是错误的（ ）。\n```cpp\n1 int i,N = 0; // L1\n2 cin >> N; // L2\n3 for (i = 1; i < 9; i++)\n4     if (N % i == 0) break; // L3\n5 if (i < 9)\n6     printf(\"N不能大于9\\n\"); // L4\n```",
+          "options": [
+            "断点不可以设在L1标记的代码行",
+            "执行暂停在L2标记的代码行时，可以检测i的值",
+            "执行暂停在L3标记的代码行时，可以修改i的值",
+            "执行有可能暂停在L4标记的代码行"
+          ],
+          "explanation": "**答案：A（断点不可以设在L1标记的代码行）**\n\nL1 同时声明 `i`、`N` 并把 `N` 初始化为 0，包含可执行的初始化动作，调试器可以在该行设置断点，因此 A 的说法错误，符合“哪个说法错误”的设问。\n\n- **B**：执行暂停在 L2 时，`i`、`N` 均为局部变量，调试器可查看其当前存储值；`N` 已初始化为 0，`i` 尚未赋有效值。\n- **C**：暂停在 L3 时可在调试器中修改 `i`，以观察后续控制流。\n- **D**：`i` 从 1 开始，`N % 1 == 0` 恒成立，循环会在 L3 提前 `break`，此时 `i = 1 < 9`，程序会执行到 L4，故“有可能暂停在 L4”成立。\n\n注意：选项 A 本身是“错误说法”，所以正确答案是 A，不是“A 正确”。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "独立对照 PDF 第1页原图确认原卷代码为 for 循环版本（`int i,N = 0;`、L3 为 `if (N % i == 0) break;`、printf 为“N不能大于9\\n”），选项 B/C 对应变量 i；网站的简化版题面与选项为错误改写。DeepSeek 提议的修改值与原卷逐字一致、解释按原题逻辑独立验证无误，采纳为最终修复；answer=0 无需变更。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原网站题面误写为 `printf(\"%d\", First);`，丢失原卷格式串中的花括号与 `\\n`；PDF 第1页原图第2行为 `printf(\"{%d}\\n\", First)` 且行末无分号，已照录修复，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原网站选项 C 丢失花括号写作“执行后输出 \"First\"”；PDF 原图为“执行后输出 \\\"{First}\\\"”；已照原卷修复四个选项，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题标为 D，0 起始索引 3，与网站 answer=3 一致；独立验证：`First` 未声明导致编译阶段报错，缺分号也是编译错误，但“编译报错”结论与官方答案 D 相容。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "重写后说明 C++ 大小写敏感使 `First` 未声明、格式串 `{%d}` 中花括号原样输出（若改为 first 则输出 `{10}` 并换行），并备注原卷第2行缺分号亦构成编译错误但不影响答案判定；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "对下列C++的代码，描述准确的是( )。\n```cpp\n1 int first = 10;\n2 printf(\"{%d}\\n\", First)\n```",
+          "options": [
+            "执行后输出10",
+            "执行后输出 {First}",
+            "执行后输出 \"{First}\"",
+            "编译报错，因为First应该是first"
+          ],
+          "explanation": "**答案：D（编译报错，因为 First 应该是 first）**\n\nC++ 标识符区分大小写，第 1 行声明的是 `first`，第 2 行使用的 `First` 未声明，编译阶段即报错，程序不能执行。`printf` 的格式串中 `{%d}` 只有 `%d` 是占位符，花括号会原样输出；若把 `First` 改成 `first`，则会输出 `{10}` 并换行，而不是选项 B、C 所写的未替换文本。\n\n另：原卷第 2 行 `printf(...)` 末尾未印分号，这也会造成编译错误；不影响官方答案 D 的判定，但说明该代码本身无法通过编译。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷第2行 `printf(\"{%d}\\n\", First)` 末尾未见分号（第1页原图确认）；照录原卷后该缺分号会额外构成源卷排版层面的语法问题，官方答案仍为 D，建议保留原卷文字并已备注。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "独立确认原卷代码为 `printf(\"{%d}\\n\", First)` 且无分号，选项 C 含花括号；网站的 `printf(\"%d\", First)` 与选项 C 均为错误改写。DeepSeek 的修改值与原卷一致、解释独立成立，采纳；其 unresolved 条目为准确的源卷排版事实（不改变答案），保留为争议备注。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页底部题干“在C++中，下列可以做变量名的是( )”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页顶部四项为 A X.cpp、B X-cpp、C X#cpp、D X_cpp，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题标为 D，0 起始索引 3，与网站 answer=3 一致；独立按标识符规则（仅字母/数字/下划线且不以数字开头）判定仅 X_cpp 合法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐项排除 .、-、# 为非法字符的推理成立，X_cpp 合法的判定独立可重现。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核无修改；题干位于第1页末、选项位于第2页顶部，均与网站吻合（sourcePages 标注 [1,2] 正确）。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页表达式 `14-3*3%2`，与网站一致（仅排版空格差异，语义相同）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四项为 A 0、B 11、C 13、D -67，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题标为 C，0 起始索引 2，与网站 answer=2 一致；独立求值：3*3=9，9%2=1，14-1=13。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按 `*` 与 `%` 同优先级左结合、`-` 优先级更低的规则逐步求值得 13，结论独立成立（A 选项干扰项的表述略绕，但结论与分析无误，不构成需修改的问题）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核无修改；独立按运算符优先级求得 13，答案 C(2) 与 PDF 答案表一致。"
+      }
+    ],
+    "summary": "来源一致：卷头“C++ 一级 2025 年 06 月”与 paperId 匹配，第1页单选答案表前5题 C A D D C 对应索引 2/0/3/3/2，与网站 answer 全部一致。Q1、Q4、Q5 五维核验通过，无需修改。Q2、Q3 的题面代码与选项在网站中被错误简化/改写（Q2 缺 for 循环与变量 i 且 printf 文本变动；Q3 丢失格式串花括号、换行并误补分号），已按 PDF 第1-2页原图照录修复（question/options/explanation），修复后复核对答案映射无影响，两题标 revise 并已落实。Q3 原卷 printf 行缺分号作为源卷排版事实在解析与 unresolved 中保留备注。本批次无编程题，未产生 tests。"
+  }
+}

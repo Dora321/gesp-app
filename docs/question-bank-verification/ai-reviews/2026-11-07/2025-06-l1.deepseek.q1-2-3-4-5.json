@@ -1,0 +1,245 @@
+{
+  "paperId": "2025-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:57:06.775Z",
+  "completedAt": "2026-11-08T05:58:58.012Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29615,
+    "completion_tokens": 14426,
+    "total_tokens": 44041,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12208
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01309785,
+      "allowance": 0.00785871,
+      "tokens": {
+        "input": 29615,
+        "output": 14426,
+        "reasoning": 12208,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "29de8898c22b3233242112c9f3cd9c9de65343580349334d3b96c21f905eb29b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++1级.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "mirrorBytes": 1127367,
+    "shaVerified": true,
+    "sha256": "a279bfe780869dafe614c3f09f52027e900d3d4a87d020e83a49840a0fde4c77"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级”“2025 年 06 月”，与 paperId 2025-06-l1 对应；第1页单选答案表第1–5题为 C A D D C。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题保留了“2025年4月19日”“人形机器人半程马拉松”“多个传感器反馈数据调整姿态、保持平衡”等核心设定；网站为压缩改写，设问“传感器类似于计算机的什么”未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四项为 A 处理器、B 存储器、C 输入设备、D 输出设备，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题标为 C；0 起始索引为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“传感器把物理量转为数据送入计算机”的数据流向判定为输入设备，并逐项排除处理器、存储器、输出设备，结论独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页第2题代码为 `int i,N = 0;`、`cin >> N;`、`for (i = 1; i < 9; i++)`、`if (N % i == 0) break; // L3`、`if (i < 9)`、`printf(\"N不能大于9\\n\"); // L4`；网站误改为 `if (N < 9)` 且缺少 for 循环和 L3，关键控制流缺失。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页选项 B/C 检测和修改的是 `i`，网站写成 `N`；选项 A/D 文字也应按原卷恢复。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题标为 A；0 起始索引为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析按被简化的 `if (N < 9)` 版本展开，未解释原题的 for 循环、L3、变量 i 的检测/修改，以及 `N % 1 == 0` 使 L4 可执行等关键点，需按原题重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在某集成开发环境中调试下面代码段时尝试设置断点和检查局部变量，下面哪个说法是错误的（ ）。\n```cpp\n1 int i,N = 0; // L1\n2 cin >> N; // L2\n3 for (i = 1; i < 9; i++)\n4     if (N % i == 0) break; // L3\n5 if (i < 9)\n6     printf(\"N不能大于9\\n\"); // L4\n```",
+          "options": [
+            "断点不可以设在L1标记的代码行",
+            "执行暂停在L2标记的代码行时，可以检测i的值",
+            "执行暂停在L3标记的代码行时，可以修改i的值",
+            "执行有可能暂停在L4标记的代码行"
+          ],
+          "explanation": "**答案：A（断点不可以设在L1标记的代码行）**\n\nL1 同时声明 `i`、`N` 并把 `N` 初始化为 0，包含可执行的初始化动作，调试器可以在该行设置断点，因此 A 的说法错误，符合“哪个说法错误”的设问。\n\n- **B**：执行暂停在 L2 时，`i`、`N` 均为局部变量，调试器可查看其当前存储值；`N` 已初始化为 0，`i` 尚未赋有效值。\n- **C**：暂停在 L3 时可在调试器中修改 `i`，以观察后续控制流。\n- **D**：`i` 从 1 开始，`N % 1 == 0` 恒成立，循环会在 L3 提前 `break`，此时 `i = 1 < 9`，程序会执行到 L4，故“有可能暂停在 L4”成立。\n\n注意：选项 A 本身是“错误说法”，所以正确答案是 A，不是“A 正确”。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页第3题代码为 `int first = 10;` 与 `printf(\"{%d}\\n\", First)`（原卷该行末尾未见分号）；网站改成 `printf(\"%d\", First);`，丢失花括号和换行，并自行补了分号。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页选项 C 为“执行后输出 \"{First}\"”，网站写成“执行后输出 \"First\"”，丢失花括号；其余选项对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题标为 D；0 起始索引为 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析未说明格式串 `{%d}` 中花括号会原样输出、只有 `%d` 是占位符，也未解释 C 选项与原卷的差异；同时未交代原卷第2行缺分号会额外造成编译错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "对下列C++的代码，描述准确的是( )。\n```cpp\n1 int first = 10;\n2 printf(\"{%d}\\n\", First)\n```",
+          "options": [
+            "执行后输出10",
+            "执行后输出 {First}",
+            "执行后输出 \"{First}\"",
+            "编译报错，因为First应该是first"
+          ],
+          "explanation": "**答案：D（编译报错，因为 First 应该是 first）**\n\nC++ 标识符区分大小写，第 1 行声明的是 `first`，第 2 行使用的 `First` 未声明，编译阶段即报错，程序不能执行。`printf` 的格式串中 `{%d}` 只有 `%d` 是占位符，花括号会原样输出；若把 `First` 改成 `first`，则会输出 `{10}` 并换行，而不是选项 B、C 所写的未替换文本。\n\n另：原卷第 2 行 `printf(...)` 末尾未印分号，这也会造成编译错误；不影响官方答案 D 的判定，但说明该代码本身无法通过编译。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷第2行 `printf(\"{%d}\\n\", First)` 末尾未见分号；照录会额外产生语法错误，官方答案仍为 D，建议保留原卷文字并备注。"
+        ]
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题题干为“在C++中，下列可以做变量名的是( )”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四项为 A X.cpp、B X-cpp、C X#cpp、D X_cpp，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题标为 D；0 起始索引为 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 C++ 标识符只能含字母、数字、下划线且不能以数字开头的规则，逐项排除含点号、减号、井号的选项，判定 X_cpp 合法，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页表达式为 `14-3*3%2`，网站仅增加空格，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四项为 A 0、B 11、C 13、D -67，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题标为 C；0 起始索引为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按乘法和取模同优先级、从左到右结合，先算 3*3=9，再算 9%2=1，最后 14-1=13，独立得到答案 C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "卷头、等级、年月和单选答案表与来源匹配；本次核验的 5 题中，Q1、Q4、Q5 五维通过，Q2、Q3 的题面代码/选项/解析需修正，Q2、Q3 的答案索引仍与官方答案表一致。Q3 原卷缺分号作为源卷排版问题保留说明；未对编程题做测试。"
+  }
+}

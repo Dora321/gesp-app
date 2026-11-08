@@ -1,0 +1,238 @@
+{
+  "paperId": "2025-06-l1",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T06:18:25.162Z",
+  "completedAt": "2026-11-08T06:20:37.898Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 44179,
+    "completion_tokens": 11663,
+    "total_tokens": 55842,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9344
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01245835,
+      "allowance": 0.01245835,
+      "tokens": {
+        "input": 44179,
+        "output": 11663,
+        "reasoning": 9344,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "29de8898c22b3233242112c9f3cd9c9de65343580349334d3b96c21f905eb29b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++1级.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "mirrorBytes": 1127367,
+    "shaVerified": true,
+    "sha256": "a279bfe780869dafe614c3f09f52027e900d3d4a87d020e83a49840a0fde4c77"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为“CCF 编程能力等级认证 GESP / C++ 一级 / 2025 年 06 月”，与 paperId 2025-06-l1 的年份 2025、月份 6、等级一级一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题第 6 题题干“交换下面C++代码中的 i += 2 和 cnt += 1 ，交换前后分别运行的两次输出相同。（ ）”，所附代码共 7 行：int i, cnt = 0; / cnt = 0; / while (i < 10){ / i += 2; / cnt += 1; / } / cout << cnt;，与网站题干及代码块逐字一致，含“int i, cnt = 0; 仅初始化 cnt”这一关键细节。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定两项，网站 options 为[“正确”,“错误”]；answer 索引 0=正确(√)、1=错误(×)，与官方符号映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图判断题答案表第 6 题为×（0 起始索引=1）。独立推导：第 1 行只初始化 cnt，i 未初始化；while (i < 10) 与 i += 2 均要读取未初始化变量，属未定义行为，交换前后两次独立运行的输出无法保证相同，“两次输出相同”不成立，应为“错误”，与×一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立指出 i 未初始化导致未定义行为、输出不可预测，并补充若 i 初始化为 0 则交换循环体内两条无条件语句不改变 cnt=5，据以否证命题；推理链完整，结论“错误”与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，官方卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案映射（×→1）、题干与代码均经第 5、6 页原图独立复核成立；i 未初始化是题设本身的判断点，解析已明确 UB，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题第 7 题题干“下面的C++代码执行后将输出45。（ ）”，代码：int cnt; / for (int i = 0; i < 10; i++) / cnt += 1; / cout << cnt;，与网站逐字一致，cnt 声明未初始化。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定两项，网站 options 为[“正确”,“错误”]；索引映射与官方符号一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图判断题答案表第 7 题为×（=1）。独立推导：cnt 未初始化，cnt += 1 读取未初始化变量属未定义行为，输出不可预测；即使退一步按 cnt 初值 0 计，循环 10 轮每次加常量 1，cnt=10≠45（45 是累加 i 值的结果），命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析同时给出未初始化 UB 与“若初值为 0 则输出 10”两层结论，并指出 45 的错觉来自 cnt += i 与 cnt += 1 一字之差；结论“错误”与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，官方卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：UB 与“10≠45”的独立推演均正向支持官方×；题干、代码与页图一致，无需修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题第 8 题题干“执行C++代码 cout << (12 + 12.12) 将报错，因为12是int类型，而12.12是float类型，不同类型不能直接运算。（ ）”；网站写作“int型/float型”，仅措辞差异（“类型”二字省略），语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定两项，网站 options 为[“正确”,“错误”]；索引映射与官方符号一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图判断题答案表第 8 题为×（=1）。独立推导：小数字面量 12.12 默认为 double（float 需写 12.12f），int+double 触发隐式算术提升，12+12.12=24.12 可正常编译运行，不报错，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出混合算术的隐式类型提升、字面量默认 double、会正常输出 24.12 且“报错”仅发生在不存在该转换的场合；结论“错误”与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，官方卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：隐式类型提升分析独立成立，官方×正确；题干措辞差异属等价转换，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题第 9 题题干“在C++代码中，不可以将变量命名为false，因为false是C++语言的关键字。（ ）”与网站逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定两项，网站 options 为[“正确”,“错误”]；answer=0 对应“正确”，与官方√映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图判断题答案表第 9 题为√（=0）。独立推导：false 与 true 是 C++ 布尔字面量关键字，属保留字，不能用作标识符（如 int false = 0; 无法编译），命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 false 为关键字故不能作变量名，并对比 cout/cin 之类的库名可用作变量名的区别，强调本题语境是 C++；结论与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，官方卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：关键字保留性结论独立成立，官方√（答案表第 9 位）经原图核对无误；无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题第 10 题题干“X是C++的整型变量，则表达式 3 < X < 5 求值结果是4。（ ）”与网站一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定两项，网站 options 为[“正确”,“错误”]；索引映射与官方符号一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图判断题答案表第 10 题为×（=1）。独立推导：< 满足左结合，3 < X < 5 即 (3 < X) < 5；(3 < X) 为 bool 按运算取 0/1，0<5 与 1<5 均为 true，最终结果恒为 1，无论 X 取何值均不可能得 4，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按左结合与 bool 提升（0/1）分步推导，最终结论“恒为 1、不可能为 4”正确，并提示连不等式应写作 X > 3 && X < 5；中间一句表述略含混（区分中间 0/1 与最终 1）但未引入事实性错误，属文风微瑕不作修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，官方卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：关系运算符左结合与 0/1 提升的独立推演支持官方×；解析结论正确，仅个别句子行文略绕，按“不做纯文风改写”处理不修改。"
+      }
+    ],
+    "summary": "本次仅复核判断题 id 21–25（卷面判断第 6–10 题），其余题目未核验、未输出。卷头（PDF 第 1 页原图）确认“C++ 一级 2025 年 06 月”，来源身份一致。PDF 第 5 页判断题答案表经原图核对为 √ × √ × × × × × √ ×，其中第 6–10 题对应 × × × √ ×，即 officialAnswer 21=1、22=1、23=1、24=0、25=1，与网站 answer 全部相符。五题题干与代码均与第 6 页原图逐字（或语义等价，id 23 仅“类型/型”措辞差异）一致；判断题 options 与 referenceCode 维度不适用但均有记录。每题均完成独立语义推演：未初始化局部变量属未定义行为（21、22）、int 与 double 混合运算的隐式提升（23）、false 为关键字不能作标识符（24）、3<X<5 左结合恒为 1（25），官方答案表与语义推演完全一致。无必须修改字段，changes 均为空，unresolved 均为空；DeepSeek 初核结论经独立复核全部成立，予以接受。"
+  }
+}
