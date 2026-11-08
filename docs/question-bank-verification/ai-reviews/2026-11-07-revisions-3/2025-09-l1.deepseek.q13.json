@@ -1,0 +1,91 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    13
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:52:59.728Z",
+  "completedAt": "2026-11-08T12:53:37.069Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 15833,
+    "completion_tokens": 6864,
+    "total_tokens": 22697,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6135
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00649335,
+      "allowance": 0.00389601,
+      "tokens": {
+        "input": 15833,
+        "output": 6864,
+        "reasoning": 6135,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5e991112515b9168791dac8a9f5b78d32364aa2674d0b160c61fc84407574e3e",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 一级 2025年09月”，年份、月份和等级均与 paperId 2025-09-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页页图第13题题干为“下面C++代码用于获得正整数N的第M位数，约定个位数为第1位，如N等于1234，M等于2，则输出3。假设M的值是大于等于1且小于等于N的位数。横线处应填入的代码是( )。”候选题干和代码块与页图逐行对应：int N, M, div=1; 两组输入提示及 cin，for (int i =0; i < (M - 1); i++) div *= 10; cout << (______________); 候选省略页图第6、8行空行及行号，属排版等价，无代码或语义缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图选项依次为 A. N % div / 10、B. N / div / 10、C. N % div % 10、D. N / div % 10；候选 options 的文本和顺序均与页图完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表单选题第13题为 D，按0起始选项索引为3，与候选 answer=3 一致。独立推导：循环后 div=10^(M-1)，第M位为 floor(N/div)%10，即 N / div % 10；以 N=1234、M=2 验算，div=10，1234/10=123，123%10=3，与题例“输出3”一致，唯一符合的是 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐项验算：div 构造正确（M=1、2、3 时分别为1、10、100）；A 的 N%div/10 在 M=1、2 时为0，M≥3 时为低 M-1 位去掉个位后的数，非第M位；B 的 N/div/10 等于 N/10^M，为去掉低M位后的高位部分，非第M位；C 的 N%div%10 在 M≥2 时恒为原个位，M=1 时为0，不能普遍取得第M位；D 先除后模可定位第M位，题例验算通过。候选解析关于先除后模、边界和易错点的说明无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第13题为单选题，原卷第4页无参考程序，该维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验第13题：题面、代码和四个选项均与第4页页图一致；第1页答案表第13题为 D，对应索引3；答案 D（N / div % 10）经独立推导和题例验算成立；解析无实质错误；无待核验项。"
+  }
+}

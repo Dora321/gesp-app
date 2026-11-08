@@ -1,0 +1,93 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    13
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:53:37.072Z",
+  "completedAt": "2026-11-08T12:55:06.205Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29776,
+    "completion_tokens": 7254,
+    "total_tokens": 37030,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5845
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0080934,
+      "allowance": 0.0080934,
+      "tokens": {
+        "input": 29776,
+        "output": 7254,
+        "reasoning": 5845,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5e991112515b9168791dac8a9f5b78d32364aa2674d0b160c61fc84407574e3e",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 / C++ 一级 / 2025年09月』，等级（1级）、年份（2025）、月份（09）均与 paperId 2025-09-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页页图第13题题干『下面C++代码用于获得正整数N的第M位数，约定个位数为第1位，如N等于1234，M等于2，则输出3。假设M的值是大于等于1且小于等于N的位数。横线处应填入的代码是( )』与候选逐字一致；页图共9行代码与候选逐行对应：int N, M, div=1;、cout << \"请输入一个正整数：\";、cin >> N;、cout <<\"请输入从右到左取第几位数：\";、cin >> M;、for (int i =0; i < (M - 1); i++) div *= 10;、cout << (______________);，页图第6、8行为空行，候选紧凑展示属排版等价，提示字符串与代码逐字符核对无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图选项依次为 A. N % div / 10、B. N / div / 10、C. N % div % 10、D. N / div % 10，与候选 options 文本及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表单选题第13题为 D，按0起始选项索引为3，与候选 answer=3 一致。独立推导：循环后 div=10^(M-1)，第M位=floor(N/div)%10，即 N / div % 10；N=1234、M=2 时 div=10，1234/10=123，123%10=3，与题例『输出3』吻合；同输入下 A 得 1234%10/10=0、B 得 1234/10/10=12、C 得 1234%10%10=4，均非3，唯一成立项为 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。对候选解析全部断言独立验算：div 构造（M=1/2/3 时分别得 1/10/100）正确；A 中 N%div/10 在 M=1 时 N%1=0、M=2 时 N%10∈[0,9] 再除10必得0，M≥3 时得第2..M-1位组成的数（1234、M=4 得 23），非第M位；B 中 (N/10^(M-1))/10 两次取整等价于 floor(N/10^M)，为去掉低M位的高位部分，M=3 时得1（一位数）、M=4 时得0，『不一定是多位数』表述准确，补注『若存在』的 %10 得第 M+1 位（1234、M=2 时 1234/100=12、12%10=2 正确）；C 中 M≥2 时 N%div 含个位、再 %10 仍得原个位，M=1 时 N%1%10=0，均取不到目标位；D 先除后模定位第M位，题例验算通过。易错提醒『结果一般不同』的『一般』限定恰当（N=10、M=1 时两种顺序同为0），div 初值1与循环 i<M-1 配套（M=1 不循环取个位）的说明正确，知识延伸（最高位取 N/10^(len-1)、k 进制换基数）无误。上一轮关于 B 项边界表述和『结果不同』绝对化的修复已完整落入本候选，无残留错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第13题为单选题，原卷第4页无参考程序，该维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认上一轮修订已正确落入本候选：B 项改为『高位部分（不一定是多位数；当 M 接近总位数时也可能是 0 或一位数）』并标注补 %10『若存在』、提醒句改为『结果一般不同』，本人逐项验算（N=1234 时 M=3 得1、M=4 得0；N=10、M=1 时两顺序同为0）均成立，解析迁移完整无新错误，予以采纳。同时独立对照第4页页图：题干逐字一致、9行代码逐行一致（空行省略属排版等价）、四选项文本与顺序一致；第1页答案表第13题为 D，索引3，与独立推导及题例验算吻合。全部维度 verified，无否决项、无新增问题，候选可直接上线。"
+      }
+    ],
+    "summary": "仅核验第13题：题面与9行代码逐行对应第4页页图（页图第6、8行空行省略属排版等价），四个选项『N % div / 10、N / div / 10、N % div % 10、N / div % 10』的文本与顺序一致；第1页答案表第13题为 D（0起始索引3）。独立推导确认 D（N / div % 10）为唯一正确项：div=10^(M-1)，N=1234、M=2 时 1234/10%10=3 与题例一致，而 A、B、C 在同输入下分别得 0、12、4。候选解析为上一轮边界修正后的版本，div 构造、A/B/C 各自行为（含 A 的 M=1/2 得0、B 的高位部分可为0或一位数及补 %10 得第 M+1 位『若存在』、C 的恒取个位）及『一般不同』的限定表述经本人逐项验算全部成立，explanation 修复后核验通过。无新问题、无待核验项，verdict=approve。"
+  }
+}
