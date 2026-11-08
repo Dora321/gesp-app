@@ -1,0 +1,726 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    3,
+    5,
+    7,
+    8,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    18,
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:20:07.261Z",
+  "completedAt": "2026-11-08T13:33:12.655Z",
+  "finishReason": "stop",
+  "inputSha256": "db9f8c9763b95f2648bdc388cfac00df20f9c255273290bc041dab008239cdd0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为 CCF 编程能力等级认证（Grade Examination of Software Programming），C++ 一级，2025 年 12 月，页脚'第 1 页 / 共 9 页'，与 paperId 2025-12-l1（2025年12月 C++ 一级）完全对应。\nPDF第1页卷头为“CCF 编程能力等级认证 Grade Examination of Software Programming”“C++ 一级”“2025 年 12 月”，与候选 title（2025年12月 GESP C++ 一级真题）、level=1、year=2025、month=12 一致。\nPDF第1页卷头为“CCF 编程能力等级认证”“C++ 一级”“2025 年 12 月”，页脚第1页/共9页至第9页/共9页，与 2025-12-l1（2025年12月 GESP C++ 一级）一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题代码共4行，第2行为 'a=3，b = 4; // L1'，其中 a=3 后确为全角中文逗号（页图与文本层一致）；候选题面保留该全角逗号，其余代码行、注释 L1/L2/L3 与题干措辞均与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四选项依次为：A L1行逗号很可能是中文逗号应改英文逗号、B L1行应分两行 a=3 和 b=4、C 代码运行前没有保存到文件、D L2和L3不能分为两行应合并为一行；候选四项内容与顺序逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为 A（0起始索引0），候选 answer=0 一致。独立分析：全角逗号 U+FF0C 不属 C++ 合法字符集，词法扫描时报 Invalid Character，A 成立；B 中 a=3, b=4; 为逗号表达式合法写法、C 未保存文件不产生词法错误、D 代码中换行等效空白，均排除。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以'全角逗号非合法词法字符触发 Invalid Character'为主线，B/C/D 的排除理由（逗号运算符写法合法、未保存与词法扫描无关、换行等效空白）均经独立推敲成立；上轮旧解析'A 项自相矛盾句'的缺陷已消除，无残留。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核并独立复核：页图第1页确认 L1 为全角逗号，候选题面较源网站已恢复该关键字符，与原卷一致；答案表 A 对应索引0，四选项顺序与内容一致；重写后的解析逐项排除理由经独立验证均成立。无需再修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题题干'下面有关C++变量的说法，正确的是()。'与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四选项依次为：A 不可以用 for 作变量名因其是关键字、B _tnt 不可以作变量名因首字符必须是英文字母、C _tnt_ 不可以作变量名因末字符易与减号混淆、D 可以用 printf 作变量名因其是关键字但这不是好习惯；候选与源卷逐字一致（上轮错误选项已替换）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题为 A（索引0），候选 answer=0。独立分析：for 为关键字不能作标识符；标识符首字符可用下划线故 _tnt 合法；下划线可作末字符且异于减号故 _tnt_ 合法；printf 是标准库函数名而非 C++ 关键字，选项 D 的断言本身为假。仅 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对 B（下划线可作首字符）、C（末字符为下划线非减号且下划线任意位置合法）、D（printf 非关键字，选项理由为假）的分析均与 C++ 标识符规则相符；对部分下划线开头名称的标准保留规则的补充说明也准确、未影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对页图第1页，C/D 选项确为 '_tnt_' 与 'printf' 两项，候选已按源卷还原；D 选项自身含'printf 是关键字'的假断言，正是不选 D 的原因，候选解析已如实说明。答案 A 与逐项分析核验通过，无需再修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题'C++表达式 2 + 3 * 4 % 5 的值为( )。'与候选表达式一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四选项依次为 A 0、B 4、C 14、D 50，与候选内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题为 B（索引1），候选 answer=1。独立计算：* 与 % 同级且高于 +、左结合，3×4=12→12%5=2→2+2=4，选项 B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按优先级与左结合得 4；A 归因为全同级从左到右误算 ((2+3)*4)%5=20%5=0（验算成立）；C 归因为漏算 %5 得 2+12=14（成立）；D '任何固定运算顺序均得不到 50'经枚举验证成立（正确优先级得4、全同级左结合得0、(2+3)*(4%5)=20 等），旧解析不成立的 C/D 成因举例（(2+3*4)%5 实为4、从左到右实为0）已被替换。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：候选已替换旧解析中经不起验算的 C/D 成因举例；新归因（C 为漏算 %5 得 14、D 为无固定顺序可得的干扰项）经独立枚举验算成立。题面、选项与答案 B=1 核验通过，无需再修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题代码共6行，L6 为 printf(\"%%(N+M)=%d\", N+M, int(N+M));；候选题面代码已按页图逐行一致（保留第二实参 int(N+M)），题干'先输入 10 回车后输入 20 并回车'措辞一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图四选项依次为 A 30=30、B 10+20=30、C %(N+M)=30、D 错误提示，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题为 C（索引2），候选 answer=2。独立推导：%% 输出一个 %，(N+M)= 普通文本照印，%d 被第一个实参 N+M=30 替换；第二个实参 int(N+M) 被求值后因格式串再无转换说明而被忽略（C 标准对 printf 多余实参的规定），不报错，故输出 %(N+M)=30，C 正确、D 不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析存在与修复后题面不同步的遗留缺陷——'逐行推导'引用写成 printf(\"%%(N+M)=%d\", N+M); 缺少题面 L6 的第二实参 int(N+M)；且对选项 D 的排除只说'%% 与 %d 均为合法格式说明符'，未回应 D 的核心诱因（格式串仅一个 %d 却提供两个实参，多余实参求值后被忽略、不会报错）。已提供修复稿：引用补回 int(N+M)，推导补'第二实参求值后被忽略'步骤，D 分析补完整依据；修复后输出推导仍为 %(N+M)=30，与官方答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (%(N+M)=30)**\n\n**核心解析：**\n本题考察 printf 格式字符串两个要点：一是输出字面百分号必须写成 `%%`；二是当实参数量多于转换说明数量时，多余实参会被求值并忽略，不会导致错误。\n\n**逐行推导 printf 输出过程：**\n`printf(\"%%(N+M)=%d\", N+M, int(N+M));`（即题面 L6 原句）\n- 格式串开头的 `%%` 转义输出一个字符 `%`；\n- `(N+M)=` 是普通文本，照原样输出；\n- `%d` 被第一个实参 `N+M`（10+20=30）替换；\n- 第二个实参 `int(N+M)`（C++ 函数风格的显式类型转换，求值得 30）因格式串中已无后续转换说明而被忽略——多余实参不影响输出，也不会引发错误。\n\n完整输出：`%(N+M)=30`\n\n**选项逐项分析：**\n- **A (30=30)**：❌ 错误。该结果漏掉了 `%%` 转义输出的百分号，也丢失了格式串中的原样文本。\n- **B (10+20=30)**：❌ 错误。格式串中的 `N+M` 只是普通文本，括号与加号按字符打印，实参值只出现在 `%d` 的位置，输出是 30 而非\"10+20\"。\n- **C (%(N+M)=30)**：✅ 正确。`%%` 输出 `%`，`(N+M)=` 照原样输出，`%d` 被 30 替换。\n- **D (错误提示)**：❌ 错误。`%%` 与 `%d` 都是合法格式说明符；实参 `N+M` 与 `int(N+M)` 也都合法（`int(N+M)` 等价于 `(int)(N+M)`）。printf 按 `%d` 消耗第一个实参，第二个实参求值后被忽略，因此既不会编译报错也不会运行报错。\n\n**易错提醒：**\n- 在 printf 中输出百分号必须写成 `%%`，单个 `%` 会被当作格式说明符的开始。\n- 格式字符串中的普通文本（包括括号、字母等）会照原样输出。\n- 实参数量多于转换说明数量时多余实参被求值并忽略（合法）；实参数量少于转换说明数量才是问题（未定义行为），两种情形要区分。\n\n**知识延伸：**\nprintf 的可变参数机制按格式串中的转换说明依次消耗实参；多余实参照样参与求值（若带副作用会执行副作用），只是不用于输出。\n\n**考点：** printf 格式字符串中 `%%` 转义、普通文本照印与多余实参的求值与忽略"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分否决初核：初核对第 7 题全维度通过，但其 explanation 证据所称'多余实参 int(N+M) 求值后被忽略'在候选解析文字中并不存在——候选解析'逐行推导'引用写的是 printf(\"%%(N+M)=%d\", N+M);，丢失了修复后题面 L6 的第二实参，与上一轮已按原卷补回 int(N+M) 的题面不同步；同时候选对选项 D 的排除只提'格式说明符合法'，未覆盖 D 的真正设计诱因（两个实参、一个 %d）。statement、options、answer 维持初核结论不变（页图、答案表均核对一致）；仅对 explanation 提供修复稿并在独立复核后通过，输出仍为 %(N+M)=30，与官方答案 C（索引2）一致。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第8题题干（含'从1开始逐一升高到3然后逐一降低到1……假设最高位编号为1,要求判断从左边最高位开始的第N位数是几'的定义）与9行代码（int N, M; cout << \"请输入编号:\"; cin >> N; M = ____; 空行; if (M != 0) cout << M; else cout << 2;）与候选一致（候选'编号为1，'的全角顿逗属纯标点差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页底部 A N % 4、B N / 4、C N % 3，第3页顶部 D N / 3；候选内容与顺序一致，D 选项跨页位置不影响映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为 A（索引0），候选 answer=0。独立推导：数列 1,2,3,2,1,2,3,2,1... 以 4 为周期（{1,2,3,2}）；N%4 余 1/2/3 对应数字 1/2/3，余 0 对应周期第 4 位的数字 2，与代码 if (M != 0) 输出 M 否则输出 2 完全吻合。以 N=1..5 手算验证：M=N%4 得 1,2,3,0,1，对应输出第位数 1,2,3,2,1，与题面数列 123212321 前五位一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出周期 4 建模与余数映射、余 0 特判输出 2；B/D 归因于整除只得完整周期数而非周期内位置、C 归因于周期 3 无法呈现'升到3再降到1'的对称结构，均与题面数列独立验证相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对第 2-3 页页图，题干编号定义、9 行代码结构与四选项与候选一致；以 N=1..5 手算验证 M=N%4 的映射与题面数列前五位吻合、余 0 恰落第 4 位的 2，答案 A（索引0）成立，周期建模与选项归因无误。无需再修改。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题题干“下面C++代码执行后输出是（ ）”，代码为 int i; for (i = 10; i < 100; i += 10){ if (i % 10 == 0) continue; printf(\"%d#\",i); } if(i >= 100) printf(\"%d END\",i);，与候选逐行语义一致，仅空格与换行排版差异，无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页页图四项依次为 A 10#20#30#40#50#60#70#80#90#100 END、B 100#100 END、C 100 END、D 没有输出，与候选内容及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11格为C（0起索引2），候选answer=2；独立推演：i=10…90 时 i%10==0 恒成立，每轮都执行 continue 跳过 printf(\"%d#\",i)，循环内零输出；i=90 轮后经 i+=10 变为100，i<100 不成立退出循环，此时 i=100，循环外 if(i>=100) 成立输出“100 END”，正是选项C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的三个关键事实（循环内输出全部被 continue 跳过、退出时 i=100、循环外输出 100 END）与独立推演一致；对A（误当作循环内正常输出）、B（误以为 i=100 仍进循环体，实际此时循环已结束）、D（忽略循环后还有一次 printf）的成因分析均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：对第3页原图与文本层独立复核，确认候选题面、四个选项（含D“没有输出”）与原卷一致，答案C=2经独立推演无误，解析各错误成因分析成立，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3—4页题干描述“最大数减去最小数……该值和两个数的最小数构成新的两个正整数……直到两个数相等，此时输出该数”；第4页代码含 int N, M; cin >> N >> M; while (N != M){ if (N > M) 空一; else 空二; } cout << N;，与候选题面及代码一致，空行缩进属排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图：A 两行 N = N - M / M = M - N；B 两行 M = M - N / N = N - M；C 两行 M = N - M / N = M - N；D 两行 N, M = M, N / M, N = N, M，与候选四组两行内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12格为A（索引0），候选answer=0；独立逐分支推演：if(N>M) 空应填 N=N-M（新对为差与最小数M），else 空应填 M=M-N，仅A两行与两个空一一对应；用(5,2)类输入模拟：B使M立即变负且N不变、大数恒大不收敛，C得到（大数，差）而非（差，最小数）且在(5,2)/(5,3)间震荡，D两行均为无效果逗号表达式（M=M、N=N自赋值）、二数不变死循环。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对A正确性（第一空对应if分支减N、第二空对应else分支减M）及B变负发散、C震荡、D逗号表达式无效果导致死循环的说明，与逐分支模拟结果一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：第4页页图确认四组固定选项与候选一致，答案表第12格为A；按if/else两空独立模拟确认A正确、B/C/D均无法终止；题面代码完整补齐，解析与推演一致，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页第13题题干（能被3整除或某一位能被3整除称“漂亮数”，判断L1行填空）与15行代码（int N, Flag; cin >> N; Flag = 0; if (N % 3 == 0) Flag = 1; else while (N != 0){ if (空){ Flag = 1; break; } N /= 10; } cout << (Flag? \"漂亮数\" : \"非漂亮数\");）与候选一致；候选省略两条非功能性注释、“其某一位”等措辞与标点微调不改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图选项 A N % 10 == 0、B N % 3 % 10 == 0、C N % 10 % 3、D N % 10 % 3 == 0，与候选四项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13格为D（索引3），候选answer=3；独立推导：L1需判断当前最低位能否被3整除，即 (N%10)%3==0，% 同级左结合故 N%10%3==0 完全等价。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐项分析经独立核算成立：A只判断个位是否为0、漏判3/6/9；B在else分支中 N%3 必为1或2，再%10仍为1或2、恒假；C是合法整数条件表达式（非0为真），为真恰表示最低位不能被3整除、方向与题意相反；D正确。0、3、6、9为可被3整除的数位。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与第4页一致（仅省略注释与个别措辞/标点等价转换），四个选项与页图一致，答案D=3经独立推导确认，解析无误，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4—5页第14题题干（N的所有奇因数即能将N整除的正奇数之和为27倍数称27的神秘数；输入53有两个奇因数1和53则输出Y）及第5页8行代码（int i, N, cnt = 0; cin >> N; for (i=1; i <=N; i++){ if (空) cnt += i; } if(cnt % 27 == 0) cout << 'Y';）与候选一致；候选将卷尾“（ ）”明确为“横线处应填入的代码是（ ）”，题意未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页页图选项 A (N % i) && (i % 2)、B (N % i == 0) && (i % 2 == 0)、C (N % i == 0) && (i % 2)、D (N % i) && (i % 2 == 0)，与候选四项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14格为C（索引2），候选answer=2；独立推导：条件须同时满足 i 整除 N（N%i==0）与 i 为奇数（i%2 非0即真），选项C完整表达两者；N=53时奇因数为1和53，cnt=54，54%27==0 输出Y，与题面示例吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐项分析经独立核算成立：A的 N%i 非0恰说明 i 不是因数（统计非因数的奇数）；B的 i%2==0 是偶数条件（统计偶因数）；D既非因数又为偶数；C筛选奇因数，53算例（1+53=54为27倍数）结果一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与第5页8行代码（止于 cout << 'Y';，无多余分支）一致，四个选项与页图一致，答案C=2经53算例独立复核成立，解析无误，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页第15题题干“执行下面C++代码可以找出千位与个位的和恰好等于中间两位的四位数，横线处应该填入”及12行代码（int count = 0; int a, bc, d, tmp; for (int i = 1000; i <= 9999; i++) { a = (tmp = i) / 1000; 空行; bc = tmp / 10; d = tmp - bc * 10; if ( a + d == bc) { count++; } } cout << count;）与候选一致，仅空格与减号两侧排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页页图选项 A tmp = i / 10;、B tmp = i % 100;、C tmp -= a * 1000;、D tmp = i - i%1000;，与候选四项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15格为C（索引2），候选answer=2；独立走查 i=1109：a=1，仅C执行后 tmp=109，bc=10、d=9，a+d=10==bc 计数；A使tmp=i/10=110（bc、d随之出错），B使tmp只剩最后两位丢失百位，D得 tmp=i-i%1000=1000（bc=100、d=0 均错）；仅C能使tmp保留后三位以供bc、d正确提取。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对A得去掉个位的前三位、B只留最后两位、D得千位×1000（1109→1000）、C正确剥离千位使tmp保留后三位的说明成立，i=1109走查与代码逻辑一致，1109确为千位1+个位9=10等于中间两位的计数对象。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：第5页页图确认四个选项与候选一致，答案表第15格为C；经 i=1109 独立走查确认C正确、A/B/D均无法使tmp保留后三位；解析无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断题第2题原文为“C++表达式 10 * 4 % 6 和 10 * 2 % 3 的结果相同。( )”，候选题面逐字一致（仅代码反引号排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第2格为红色×，对应 0 起始索引 1，与候选 answer=1 一致；独立计算：10*4%6 → 40%6=4；10*2%3 → 20%3=2；4≠2，两表达式结果不同，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正文与易错提醒均按“* / % 同级、从左到右结合”表述（同级左结合故先算乘法再取模），分别推得 4 与 2 并判定命题错误；优先级表述与数值推导独立复核正确，此前“乘法优先于取模”的错误说法已不在候选中。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对第5页页图与答案表，题面文字与答案符号“×”均确认；独立计算 4 与 2 支持命题为假；候选解析已采用同优先级左结合的正确表述（上轮指出的表述问题经查已修复），全部通过，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断题第3题代码共7行，第5-6行为 else / break;，候选题面完整保留该七行代码（int i; for 循环、if/continue、else/break、cout << i;），与页图逐行一致，缺失 else break; 的旧版已修正。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第3格为×，对应 officialAnswer=1，与候选 answer=1 一致；独立推演：i=0 时 0%3==0 成立执行 continue，i++ 变 1；i=1 时条件为假进入 else 执行 break 终止循环；终值 i=1，输出 1≠0，命题“输出 0”为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按原卷含 else break 的完整代码推导：第一轮 continue、第二轮 break，输出 1，并提醒勿误看为无 else break 的版本；continue/break 控制流说明与独立推演一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：第5页页图独立确认原卷代码含 else break;，候选题面与之一致；答案表第3格“×”与 answer 符号一致；解析推导链（输出 1、命题为假）独立复核正确，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第9题代码为 cout << ( x? 1227 : 12.27);，候选代码部分与之一致；卷面正文写作“1227 和 12.12”，其中 12.12 与代码 12.27 自相矛盾，系官方排版笔误，两值均为 double 字面量，对命题（int 与 double 导致编译报错）真假及答案无影响；候选按代码统一为 12.27 属合理勘误，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第9格为×，对应 officialAnswer=1，与候选 answer=1 一致；独立分析：条件运算符两分支为 int 1227 与 double 12.27，按通常算术转换 int 提升为 double，整个表达式类型为 double，编译不会报错，命题“编译时将报错”为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确给出三目运算符的通常算术转换与类型提升，结论“编译完全通过、不存在错误”与答案符号一致；正文“1227 会被隐式提升为 double 类型的 1227.0”表述的是提升后的值，无误；易错提醒引用题面常量 12.27（上轮指出的 1227.0 笔误已修正），修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立确认原卷正文 12.12 与代码 12.27 的矛盾系官方笔误，候选按代码统一的处理合理且不改变命题真假；第5页答案表第9格“×”确认；候选解析已包含上轮要求的易错提醒修正，无需再修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页题头时间限制 1.0 s、内存限制 512.0 MB，第7页3.1.1—3.1.3 题目描述、输入输出格式（含原卷“分别代表，”标点），第8页3.1.5 数据范围“对于所有测试点，保证给出的浮点数不超过 1000。”候选全部保留且文字一致（公式为 LaTeX 等价转换，“价格较低”加粗对应原卷黑体）；3.1.4 两组样例（100.4/300.2/60.6/70.5→50.2；99.8/200.9/60.2/70.1→49.9）与候选 samples 一致；3.1.4.5 样例解释属推导性内容，省略不改变题意。修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无A-D选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF答案表仅覆盖单选（第1页）与判断（第5页），编程题无官方选项答案，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：体积费 0.5×V；重量费 G<300 取 M、G≥300 取 N；最终取两者较小值并保留一位小数。样例1 min(50.2,70.5)=50.2，样例2 min(49.9,60.2)=49.9；临界 G=300 归入 N 档与题面“达到或超过”规则一致；解析中勿写 G<=300 的提醒正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码（cin 读入四个 double、f1=0.5*v、f2=(g<300)?m:n、取较小者后 fixed setprecision(1) 输出）与第8页官方参考程序（scanf、V/2.0、(G<300)?M:N、printf(\"%.1f\\n\")）语义等价；G=300 时两版均取 N；数据范围≤1000 下 double 无溢出；输出格式与 %.1f 等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "小数值正案例",
+            "input": "0.2\n300.0\n50.0\n60.0",
+            "output": "0.1",
+            "reason": "体积费 0.5×0.2=0.1；G=300.0 不满足 G<300，f2=N=60.0；取较小值 0.1，按一位小数输出；覆盖最小量级并验证浮点格式。"
+          },
+          {
+            "name": "重量阈值 G=300",
+            "input": "1000.0\n300.0\n1.0\n100.0",
+            "output": "100.0",
+            "reason": "体积费 500.0；G=300.0 应落入 G≥300 档取 N=100.0，较小值为 100.0；若误写 G<=300 将错误输出 1.0，可检出该分支错误。"
+          },
+          {
+            "name": "两种计费相等",
+            "input": "100.0\n299.9\n50.0\n10.0",
+            "output": "50.0",
+            "reason": "体积费 50.0；G=299.9<300 取 M=50.0；两方案相等，应输出 50.0，验证相等情形。"
+          },
+          {
+            "name": "数据范围上限",
+            "input": "1000.0\n1000.0\n1000.0\n1000.0",
+            "output": "500.0",
+            "reason": "体积费 500.0；G=1000≥300 取 N=1000.0；较小值为 500.0，验证上限输入无溢出。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面限制与数据范围补全（上轮修订）已在候选落实并经第6、7、8页页图逐项确认；四条 tests 的期望输出（0.1、100.0、50.0、500.0）均由本人独立推导核对成立；参考代码与官方参考程序语义等价，全部通过，无需修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8页题头时间限制 1.0 s、内存限制 512.0 MB，3.2.1 三条电量规则含“电量有点Low啦！”“比如直接显示 50，表示还有 50 的电量”两处提示语，第9页3.2.5 数据范围“保证 1≤T≤20,1≤P≤100”，候选全部保留且与页图文字一致（LaTeX 等价转换）；第9页样例 5 组（10/1/20/99/19→R/R/L/99/L）与候选 samples 一致。修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无A-D选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF答案表仅覆盖单选与判断题，编程题无官方选项答案，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算：P≤10 输出 R，10<P≤20 输出 L，P>20 直接输出 P 本身；样例逐组 10→R、1→R、20→L、99→99、19→L 与第9页样例解释一致；解析对“不超过”含等于、else-if 链排他性及输出字符与输出变量区别的提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码读入 T 后执行 T 次（for 循环），按 P<=10 输出 R、P<=20 输出 L、否则输出 P 的三分支处理，与第9页官方参考程序（while(T--) 加相同分支结构）语义等价；P=10、20 两处边界均归入正确分支；T≤20、P≤100 下 int 无越界或溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 T=1 且 P=1",
+            "input": "1\n1",
+            "output": "R",
+            "reason": "T 与 P 均取数据范围最小值，P=1 满足 P≤10，应输出 R。"
+          },
+          {
+            "name": "P=10/11/20/21 四个边界",
+            "input": "4\n10\n11\n20\n21",
+            "output": "R\nL\nL\n21",
+            "reason": "P=10 属 P≤10 输出 R；P=11 属 10<P≤20 输出 L；P=20 属 P≤20 输出 L；P=21 属 P>20 输出数字本身 21，完整覆盖两处区间端点。"
+          },
+          {
+            "name": "P 取上限 100",
+            "input": "1\n100",
+            "output": "100",
+            "reason": "P=100>20，应直接输出电量数字 100，验证最大电量情形。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面提示语与数据范围补全（上轮修订）已在候选落实并经第8、9页页图逐项确认；三条 tests 的期望输出（R；R/L/L/21；100）由本人独立推导核对成立；参考代码与官方参考程序等价，全部通过，无需修改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "usage": {
+        "prompt_tokens": 54592,
+        "completion_tokens": 19680,
+        "total_tokens": 74272,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 15896
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0180288,
+          "allowance": 0.0180288,
+          "tokens": {
+            "input": 54592,
+            "output": 19680,
+            "reasoning": 15896,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T13:20:07.261Z",
+      "completedAt": "2026-11-08T13:24:23.080Z"
+    },
+    {
+      "questionIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 55079,
+        "completion_tokens": 14805,
+        "total_tokens": 69884,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11882
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01566435,
+          "allowance": 0.01566435,
+          "tokens": {
+            "input": 55079,
+            "output": 14805,
+            "reasoning": 11882,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T13:25:25.201Z",
+      "completedAt": "2026-11-08T13:28:41.306Z"
+    },
+    {
+      "questionIds": [
+        17,
+        18,
+        24,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 55340,
+        "completion_tokens": 16231,
+        "total_tokens": 71571,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13054
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0164165,
+          "allowance": 0.0164165,
+          "tokens": {
+            "input": 55340,
+            "output": 16231,
+            "reasoning": 13054,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T13:29:55.455Z",
+      "completedAt": "2026-11-08T13:33:12.655Z"
+    }
+  ]
+}

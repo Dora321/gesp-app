@@ -1,0 +1,219 @@
+{
+  "paperId": "2025-12-l1",
+  "integratedAt": "2026-11-08T13:36:28.662Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 3,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 17,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 7,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：C (%(N+M)=30)**\n\n**核心解析：**\n本题考察 printf 格式字符串两个要点：一是输出字面百分号必须写成 `%%`；二是当实参数量多于转换说明数量时，多余实参会被求值并忽略，不会导致错误。\n\n**逐行推导 printf 输出过程：**\n`printf(\"%%(N+M)=%d\", N+M, int(N+M));`（即题面 L6 原句）\n- 格式串开头的 `%%` 转义输出一个字符 `%`；\n- `(N+M)=` 是普通文本，照原样输出；\n- `%d` 被第一个实参 `N+M`（10+20=30）替换；\n- 第二个实参 `int(N+M)`（C++ 函数风格的显式类型转换，求值得 30）因格式串中已无后续转换说明而被忽略——多余实参不影响输出，也不会引发错误。\n\n完整输出：`%(N+M)=30`\n\n**选项逐项分析：**\n- **A (30=30)**：❌ 错误。该结果漏掉了 `%%` 转义输出的百分号，也丢失了格式串中的原样文本。\n- **B (10+20=30)**：❌ 错误。格式串中的 `N+M` 只是普通文本，括号与加号按字符打印，实参值只出现在 `%d` 的位置，输出是 30 而非\"10+20\"。\n- **C (%(N+M)=30)**：✅ 正确。`%%` 输出 `%`，`(N+M)=` 照原样输出，`%d` 被 30 替换。\n- **D (错误提示)**：❌ 错误。`%%` 与 `%d` 都是合法格式说明符；实参 `N+M` 与 `int(N+M)` 也都合法（`int(N+M)` 等价于 `(int)(N+M)`）。printf 按 `%d` 消耗第一个实参，第二个实参求值后被忽略，因此既不会编译报错也不会运行报错。\n\n**易错提醒：**\n- 在 printf 中输出百分号必须写成 `%%`，单个 `%` 会被当作格式说明符的开始。\n- 格式字符串中的普通文本（包括括号、字母等）会照原样输出。\n- 实参数量多于转换说明数量时多余实参被求值并忽略（合法）；实参数量少于转换说明数量才是问题（未定义行为），两种情形要区分。\n\n**知识延伸：**\nprintf 的可变参数机制按格式串中的转换说明依次消耗实参；多余实参照样参与求值（若带副作用会执行副作用），只是不用于输出。\n\n**考点：** printf 格式字符串中 `%%` 转义、普通文本照印与多余实参的求值与忽略"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "100.4\n300.2\n60.6\n70.5",
+          "output": "50.2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "50.2\n",
+          "passed": true
+        },
+        {
+          "input": "99.8\n200.9\n60.2\n70.1",
+          "output": "49.9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "49.9\n",
+          "passed": true
+        },
+        {
+          "name": "小数值正案例",
+          "input": "0.2\n300.0\n50.0\n60.0",
+          "output": "0.1",
+          "reason": "体积费 0.5×0.2=0.1；G=300.0 不满足 G<300，f2=N=60.0；取较小值 0.1，按一位小数输出；覆盖最小量级并验证浮点格式。",
+          "kind": "boundary",
+          "actual": "0.1\n",
+          "passed": true
+        },
+        {
+          "name": "重量阈值 G=300",
+          "input": "1000.0\n300.0\n1.0\n100.0",
+          "output": "100.0",
+          "reason": "体积费 500.0；G=300.0 应落入 G≥300 档取 N=100.0，较小值为 100.0；若误写 G<=300 将错误输出 1.0，可检出该分支错误。",
+          "kind": "boundary",
+          "actual": "100.0\n",
+          "passed": true
+        },
+        {
+          "name": "两种计费相等",
+          "input": "100.0\n299.9\n50.0\n10.0",
+          "output": "50.0",
+          "reason": "体积费 50.0；G=299.9<300 取 M=50.0；两方案相等，应输出 50.0，验证相等情形。",
+          "kind": "boundary",
+          "actual": "50.0\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围上限",
+          "input": "1000.0\n1000.0\n1000.0\n1000.0",
+          "output": "500.0",
+          "reason": "体积费 500.0；G=1000≥300 取 N=1000.0；较小值为 500.0，验证上限输入无溢出。",
+          "kind": "boundary",
+          "actual": "500.0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "c5261747104d56f81b5b7188ef7d5148c9890bf52c574d3e616393245d6f3e43"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5\n10\n1\n20\n99\n19",
+          "output": "R\nR\nL\n99\nL",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "R\nR\nL\n99\nL\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 T=1 且 P=1",
+          "input": "1\n1",
+          "output": "R",
+          "reason": "T 与 P 均取数据范围最小值，P=1 满足 P≤10，应输出 R。",
+          "kind": "boundary",
+          "actual": "R\n",
+          "passed": true
+        },
+        {
+          "name": "P=10/11/20/21 四个边界",
+          "input": "4\n10\n11\n20\n21",
+          "output": "R\nL\nL\n21",
+          "reason": "P=10 属 P≤10 输出 R；P=11 属 10<P≤20 输出 L；P=20 属 P≤20 输出 L；P=21 属 P>20 输出数字本身 21，完整覆盖两处区间端点。",
+          "kind": "boundary",
+          "actual": "R\nL\nL\n21\n",
+          "passed": true
+        },
+        {
+          "name": "P 取上限 100",
+          "input": "1\n100",
+          "output": "100",
+          "reason": "P=100>20，应直接输出电量数字 100，验证最大电量情形。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "385418fd21aa079ec4e80bf265eb9f5f523f97f97eb37a86f1a7f68b127dde10"
+    }
+  ]
+}

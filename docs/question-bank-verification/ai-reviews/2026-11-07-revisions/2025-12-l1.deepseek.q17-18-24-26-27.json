@@ -1,0 +1,270 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    17,
+    18,
+    24,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:28:41.310Z",
+  "completedAt": "2026-11-08T13:29:55.451Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38240,
+    "completion_tokens": 13948,
+    "total_tokens": 52188,
+    "prompt_tokens_details": {
+      "cached_tokens": 38144
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11822
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00849763,
+      "allowance": 0.00509858,
+      "tokens": {
+        "input": 96,
+        "output": 13948,
+        "reasoning": 11822,
+        "cache_read": 38144,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "db9f8c9763b95f2648bdc388cfac00df20f9c255273290bc041dab008239cdd0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 一级 2025 年 12 月”，页脚为第1/9页至第9/9页，与 2025-12-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第2题原文为“C++表达式 10 * 4 % 6 和 10 * 2 % 3 的结果相同。( )”，与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第2列为“×”，对应0起始索引1；独立计算10*4%6=40%6=4，10*2%3=20%3=2，4≠2，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按*与%同级、从左到右结合，分别得4和2，并据此判定命题错误；数值推导与优先级说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第3题代码第3-6行为 if (i % 3 == 0) continue; else break;，候选题面完整保留该分支，与页图逐行对应。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第3列为“×”，对应officialAnswer=1；独立推演：i=0时执行continue，步进后i=1；i=1时条件为假执行else break，循环结束，i=1，输出1≠0，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析明确区分continue与break，按原卷else break分支推得输出1，正确说明命题“输出0”为假；未沿用缺行版本的错误推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第9题代码为 cout << ( x? 1227 : 12.27);，候选代码部分与之一致；官方正文写“1227 和 12.12”，其中12.12与代码12.27不一致，属明显排版笔误，候选按代码统一为12.27，二者均为double字面量，不改变命题含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第9列为“×”，对应officialAnswer=1；独立分析：条件运算符两个分支为int与double，按通常算术转换int 1227提升为double，整个表达式类型为double，编译通过，命题“编译时将报错”为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明条件运算符的隐式类型提升、表达式结果为double、不会报错；类型转换结论与答案符号一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题头时间限制1.0 s、内存限制512.0 MB，第7页3.1.1—3.1.4题目描述、输入输出格式及两组样例，第8页3.1.5数据范围“对于所有测试点，保证给出的浮点数不超过1000”，候选均已保留；样例1为100.4/300.2/60.6/70.5→50.2，样例2为99.8/200.9/60.2/70.1→49.9，与页图一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无A-D选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：体积费0.5×V；重量费在G<300时取M，否则取N；最终取两者较小值并保留一位小数。样例1min(50.2,70.5)=50.2，样例2min(49.9,60.2)=49.9；临界G=300归入N档，解析说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码读入四个double，以0.5*v计算体积费，以(g<300)?m:n计算重量费，再取较小值并用fixed setprecision(1)输出；与PDF第8页参考程序的V/2.0、(G<300)?M:N、printf(\"%.1f\")在本题范围内等价，G=300时同样取N。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "小数值正案例",
+            "input": "0.2\n300.0\n50.0\n60.0",
+            "output": "0.1",
+            "reason": "体积费0.5×0.2=0.1；G=300.0不满足G<300，取N=60.0；较小值为0.1，输出一位小数。"
+          },
+          {
+            "name": "重量阈值G=300",
+            "input": "1000.0\n300.0\n1.0\n100.0",
+            "output": "100.0",
+            "reason": "体积费500.0；G=300.0应归入G≥300档取N=100.0，较小值为100.0；若误写G<=300会输出1.0。"
+          },
+          {
+            "name": "两种计费相等",
+            "input": "100.0\n299.9\n50.0\n10.0",
+            "output": "50.0",
+            "reason": "体积费50.0；G=299.9<300取M=50.0；两方案相等，应输出50.0。"
+          },
+          {
+            "name": "数据范围上限",
+            "input": "1000.0\n1000.0\n1000.0\n1000.0",
+            "output": "500.0",
+            "reason": "体积费500.0；G=1000≥300取N=1000.0；较小值为500.0，验证上限输入。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页题头时间限制1.0 s、内存限制512.0 MB，3.2.1三条电量规则及输入输出格式，第9页3.2.5数据范围1≤T≤20、1≤P≤100，候选均保留；候选样例输入5/10/1/20/99/19与输出R/R/L/99/L与PDF第9页一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无A-D选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算规则：P≤10输出R，10<P≤20输出L，P>20输出P本身；样例逐组为10→R、1→R、20→L、99→99、19→L，与PDF第9页样例解释一致；解析对“不超过”含等号及else-if排他性的说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码读入T后循环T次，按P<=10、P<=20、否则输出P的三分支处理；与PDF第9页参考程序while(T--)及相同分支结构语义等价，P=10、20边界归入正确分支。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模T=1且P=1",
+            "input": "1\n1",
+            "output": "R",
+            "reason": "T与P均取数据范围最小值，P=1满足P≤10，应输出R。"
+          },
+          {
+            "name": "P=10/11/20/21边界",
+            "input": "4\n10\n11\n20\n21",
+            "output": "R\nL\nL\n21",
+            "reason": "P=10属P≤10输出R；P=11属10<P≤20输出L；P=20属P≤20输出L；P=21属P>20输出数字本身21，覆盖两处区间端点。"
+          },
+          {
+            "name": "P取上限100",
+            "input": "1\n100",
+            "output": "100",
+            "reason": "P=100>20，应直接输出电量数字100，验证最大电量情形。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验17、18、24、26、27五题。17、18、24均为判断题，PDF答案表对应列均为“×”，候选answer=1正确；18题已包含原卷else break分支，24题官方正文12.12为12.27的排版笔误但答案与解析不受影响。26、27题题面约束、样例、参考程序与边界测试均独立核对通过，未提出修改。"
+  }
+}

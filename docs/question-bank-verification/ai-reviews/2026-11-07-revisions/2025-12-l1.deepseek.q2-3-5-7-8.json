@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-12-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    3,
+    5,
+    7,
+    8
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T13:12:36.700Z",
+  "completedAt": "2026-11-08T13:13:24.987Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38240,
+    "completion_tokens": 8450,
+    "total_tokens": 46690,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7070
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.010806,
+      "allowance": 0.0064836,
+      "tokens": {
+        "input": 38240,
+        "output": 8450,
+        "reasoning": 7070,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "db9f8c9763b95f2648bdc388cfac00df20f9c255273290bc041dab008239cdd0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++1级.pdf",
+    "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
+    "mirrorBytes": 1004362,
+    "shaVerified": true,
+    "sha256": "2a1b1e7dc1581f3b75ab6d35fbc22ad18f8d6471c451d588eb1192d1329f0028"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为GESP/CCF编程能力等级认证，C++一级，2025年12月，共9页；与paperId及2025-12-l1对应。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题代码第2行为 a=3，b = 4; // L1，其中逗号为全角中文逗号；候选题面已保留该关键字符，代码行与选项语义与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题A-D依次为：中文逗号应改英文逗号、应分两行、未保存到文件、L2与L3应合并；候选四项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第2题为A，0起始索引为0；全角逗号不是C++合法标点，会触发Invalid Character，A正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出全角逗号触发词法错误；B的逗号表达式写法合法，C未保存不会产生该词法错误，D换行合法，逐项分析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题题干为“下面有关C++变量的说法，正确的是( )。”，候选题干与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题A-D依次为for关键字、_tnt首字符、_tnt_末字符、printf关键字说法；候选四项与页图逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第3题为A，索引0；for是C++关键字不能作变量名，_tnt与_tnt_均为合法标识符，printf不是关键字，故仅A正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对A、B、C、D的分析与C++标识符规则一致：下划线可作首字符或末字符，printf是标准库函数名而非关键字，D的理由错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题表达式为 2 + 3 * 4 % 5，候选题面表达式相同，仅空格与Markdown排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题A-D依次为0、4、14、50；候选选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第5题为B，索引1；独立计算 3*4=12，12%5=2，2+2=4，故B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按优先级与左结合逐步算出4，并说明A对应从左到右误算、C对应漏算取模、D为无明确成因干扰项，结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题代码第6行为 printf 格式串 %%(N+M)=%d，并含实参 N+M 与 int(N+M)；候选代码已按页图保留该实参。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题A-D依次为30=30、10+20=30、%(N+M)=30、错误提示；候选选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第7题为C，索引2；%%输出一个百分号，(N+M)=原样输出，%d代入30，输出 %(N+M)=30，故C正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明%%转义、普通文本照印、%d替换为30；多余实参int(N+M)求值后被忽略，不会报错，故排除D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第8题题干、编号说明与9行代码与候选项对应，D选项位于第3页顶部；候选题面与代码结构一致，仅个别标点排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页底部及第3页顶部A-D依次为N%4、N/4、N%3、N/3；候选选项顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF答案表第8题为A，索引0；第N位按{1,2,3,2}周期4循环，N%4余1/2/3对应1/2/3，余0对应第4位2，代码else输出2，A正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明周期为4及余数映射，并逐一排除B/C/D，独立推导与页图代码 if(M!=0)输出M否则输出2 完全吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号2、3、5、7、8五题已逐项对照PDF页图、文本层及答案表：题面代码、选项、答案索引与解析均一致，候选已包含必要修正，未发现需再修改项。"
+  }
+}
