@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T06:12:56.806Z",
+  "generatedAt": "2026-11-08T06:22:21.903Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -1951,27 +1951,31 @@
       },
       "dimensions": {
         "statement": "partial",
-        "options": "unverified",
-        "answer": "verified",
+        "options": "partial",
+        "answer": "partial",
         "explanation": "partial",
-        "referenceCode": "unverified"
+        "referenceCode": "partial"
       },
       "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
       "correctionsOverlay": {
         "present": true,
-        "reviewedAt": "2026-08-25",
+        "reviewedAt": "2026-11-08",
         "questionIds": [
           3
         ]
       },
       "gaps": {
-        "integrityFlagged": 0,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {}
+        "perQuestion": {
+          "22": [
+            "sourceIntegrity:official-source-defect"
+          ]
+        }
       },
       "priority": "P2",
       "processingState": "pending"

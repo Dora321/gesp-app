@@ -606,15 +606,16 @@ while (count < 5){
   },
   '2025-12-l3': {
     sourceUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf',
-    reviewedAt: '2026-08-25',
+    reviewedAt: '2026-11-08',
     questions: {
-      3: q(1, `int sum = 0;
+      3: q(1, `{
+    int sum = 0;
     for (int i = 1; i <= 10; i++) {
-        if (i % 3 == 8>>2)
+        if (i % 3 == 8 >> 2)
             continue;
         sum += i;
     }
-}`),
+}`, { reviewedBy: 'AI-Codex', reviewedAt: '2026-11-08' }),
     },
   },
   '2025-12-l5': {

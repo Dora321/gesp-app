@@ -1,18 +1,18 @@
 {
   "paperId": "2025-12-l3",
-  "reviewedAt": "2026-10-30",
-  "executedAt": "2026-10-24",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2025-12-l3"
-  },
+  "reviewedAt": "2026-11-08",
+  "reviewedBy": "AI-Codex",
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": 10
+    "pages": {
+      "total": 10,
+      "note": "全部文本与渲染逐页核对，代码、图像及数学范围以渲染原卷为准。"
+    },
+    "verifiedAt": "2026-11-08",
+    "localPath": "C:/Users/0/gesp-codex-fivedim/evidence/2025-12-l3/source.pdf"
   },
   "answerTable": {
     "location": "单选答案表 p.1「1 单选题」节首；判断答案表 p.5「2 判断题」节首",
@@ -25,224 +25,811 @@
     {
       "id": 1,
       "type": "single",
-      "official": "B",
-      "bank": "B",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "按二进制位权展开，整数部分为 8+4+1=13，小数部分为 1/2+1/8=0.625，所以结果为 13.625。小数点后的第一、二、三位分别对应 1/2、1/4、1/8。"
     },
     {
       "id": 2,
       "type": "single",
-      "official": "C",
-      "bank": "C",
-      "changed": false,
+      "resolved": true,
+      "match": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q2 explanation 升级；答案未改"
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "内置一维数组下标从 0 开始，元素连续存放，非 const 元素可以通过下标修改。固定长度数组的界限需要常量表达式，定义时即可确定，因此“只能在运行时确定”错误。动态分配数组可以在运行时选定长度，也不能据此支持“只能”这一说法。"
     },
     {
       "id": 3,
       "type": "single",
-      "official": "D",
-      "bank": "D",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "移位优先级高于相等比较，先算 8>>2 得 2，再比较 i%3 是否等于 2。i=2、5、8 时 continue 跳过累加，其余数相加为 55−2−5−8=40。continue 后仍执行 for 的 i++，循环可以正常结束。"
     },
     {
       "id": 4,
       "type": "single",
-      "official": "B",
-      "bank": "B",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "右移优先级高于 ==，条件相当于 x==(3>>2)。3>>2 为 0，初值 5 与 0 不相等，赋值语句不执行。输出仍为 5。8>>3 本身为 1，但本题不会执行这一赋值。"
     },
     {
       "id": 5,
       "type": "single",
-      "official": "B",
-      "bank": "B",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "C++ 有 3 个字符，加 1 个空格和 Programming 的 11 个字符，s.length() 为 15。15 的低四位全是 1，与 3 按位或仍为 15，转换成 int 后输出 15。空格也计入字符串长度。"
     },
     {
       "id": 6,
       "type": "single",
-      "official": "D",
-      "bank": "D",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "数组下标从 0 开始，arr[1] 为第二个元素 2。p 保存这个整数值，所以 p+2 为 4。这段代码没有声明指针，也没有执行指针偏移。选项 A 把下标误当成元素值，选项 B 只取到了 p 自身的值，选项 C 相当于忽略数组从 0 起算的规则。整个计算中数组内容保持不变，表达式 p+2 只产生加法结果。"
     },
     {
       "id": 7,
       "type": "single",
-      "official": "D",
-      "bank": "D",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "这里讨论标准库求最小值函数 std::min。常见重载需要两个待比较值，也可以使用非空初始化列表。min(5) 没有匹配重载，min() 同样没有匹配重载，更不会自动返回 0。嵌套 min(5,min(2,3)) 合法，返回最小值 2，因此不正确的是 D。"
     },
     {
       "id": 8,
       "type": "single",
-      "official": "A",
-      "bank": "A",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "题设明确 2 字节、每字节 8 位，共 16 位无符号数。全部位用于表示非负数，一共有 2^16 个值，从 0 到 2^16−1，即 65535。此处按题设计算，不以本机 unsigned int 的实际宽度替代。"
     },
     {
       "id": 9,
       "type": "single",
-      "official": "A",
-      "bank": "A",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        2,
+        3
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "每轮处理相邻一对。设原值为 u、v，先变为 u+v、v，再变为 u+v、u，最后变为 v、u。三对 (1,2)、(3,4)、(5,6) 交换后得到 {2,1,4,3,6,5}。本题给定的小整数相加不会溢出，不能把这一技巧无条件推广到任意 int。"
     },
     {
       "id": 10,
       "type": "single",
-      "official": "A",
-      "bank": "A",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "按位与优先级高于按位或，原式为 (a&b)|(c^d)。3&7=3，15^4=11，3|11=11。选项 A 的十进制 11 符合，二进制 11、八进制 11、十六进制 11 分别表示十进制 3、9、17。"
     },
     {
       "id": 11,
       "type": "single",
-      "official": "C",
-      "bank": "C",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3
+      ],
+      "officialAnswer": "C",
+      "bankAnswer": 2,
+      "evidence": "后缀自减先提供旧值再改变变量。int t=x-- 之后 t=10、x=9，接着 t-=x 得 1，所以输出 1。两个语句分开执行，没有同一完整表达式多次修改 x 的求值问题。"
     },
     {
       "id": 12,
       "type": "single",
-      "official": "B",
-      "bank": "B",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        3,
+        4
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "流程图先判断 score≥90。60 不满足，沿“否”分支进入 score≥60，等号使 60 满足条件，沿“是”分支输出及格，然后结束。边界 59、60、89、90 分别进入不及格、及格、及格、优秀。"
     },
     {
       "id": 13,
       "type": "single",
-      "official": "B",
-      "bank": "B",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        4,
+        5
+      ],
+      "officialAnswer": "B",
+      "bankAnswer": 1,
+      "evidence": "1|2 是按位或，结果为 3。数组元素 2、4、6、8、10 除以 3 的余数依次为 2、1、0、2、1，对应给 sum 加 3、2、1、3、2，总和为 11。每个 case 末尾都有 break，不会继续落入后面的分支。"
     },
     {
       "id": 14,
       "type": "single",
-      "official": "A",
-      "bank": "A",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "A",
+      "bankAnswer": 0,
+      "evidence": "使用适当的标准头文件及 std::abs 重载可以求 int 绝对值，所以 A 正确。浮点重载 abs(3.14) 返回 3.14，abs(-3.14) 返回 3.14，不负责四舍五入或截断。abs(-1,-2) 没有双参数重载。对最小负整数取绝对值还必须注意结果是否能由返回类型表示。"
     },
     {
       "id": 15,
       "type": "single",
-      "official": "D",
-      "bank": "D",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "D",
+      "bankAnswer": 3,
+      "evidence": "在题目使用的 ASCII 字符编码下，依次把 G、E、S、P 的字符值加 0、1、2、3，得到 G、F、U、S。这些字母已经大写，toupper 不再改变它们，最终字符串为 GFUS。循环只修改元素值，字符串长度不变。"
     },
     {
       "id": 16,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "这里的数组名表示已定义的数组对象，不能像指针变量那样改为指向另一块存储，也不能通过 a=b 给整个内置数组赋值。数组中的可修改元素仍然可以逐个赋值，不应把数组名不可赋值理解成所有元素都不可修改。"
     },
     {
       "id": 17,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "a 的声明类型仍为 int。a*=b 先按浮点运算得到 10.5，再转换为 int 存回 a，小数部分舍弃，最后输出 10。复合赋值不会把 a 的类型自动改成浮点类型，所以原说法错误。"
     },
     {
       "id": 18,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "strcmp 按字符序列进行字典序比较，结果为 0 表示内容相等，正数表示第一个字符串较大，负数表示第一个字符串较小。结果只保证符号，不保证差值一定等于 1 或 −1，原文把 0 与正数的意义颠倒。"
     },
     {
       "id": 19,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原 PDF 明确写作 a++ + ++b，三个运算之间有空格。a++ 提供旧值 5，++b 把 b 从 3 增加到 4 并提供 4，c=9，随后 a=6、b=4。输出 9，因此“输出 8”错误。若删去间隔写成 a+++++b，词法分组会改变并导致编译错误，题面必须保留原分词。"
     },
     {
       "id": 20,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "原说法把四种位运算一并断言为高于算术运算，错误。单目 ~ 的优先级确实较高，但二元 &、^、| 都低于 +、−、*、/。例如 1|2+1 按 1|(2+1) 计算为 3，加括号成为 (1|2)+1 才是 4。"
     },
     {
       "id": 21,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "省略数组界限而提供完整初始化列表时，编译器依据初始化项数量推导长度。这里有 5 个 int 初始化项，得到长度 5 的数组，有效下标为 0..4。sizeof(a)/sizeof(a[0]) 可在数组尚未退化为指针的当前位置得到 5。"
     },
     {
       "id": 22,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "changed": false
+      "resolved": false,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        5,
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "官方判断为正确，后附数组代码也确实输出 2，因为 3>2 为真，选中下标 1。前半句若默认 x、y 为同型普通整数，分支选择与 if/else 一致，但原文未声明类型，不能一般化保证赋值结果相同。条件运算符会先为两个候选操作数确定共同类型，例如 int x=-1、unsigned int y=1，条件为真且以 double z 接收时，条件表达式先将 x 转为 unsigned int，再转为 double，而 if 分支直接将 −1 转为 double，结果不同。本机 32 位 unsigned int 实际得到 4294967295 与 −1。保留官方 answer，记录 ANSWER-DOUBT 并暂停计分，等待来源明确类型前提。"
     },
     {
       "id": 23,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "前缀和后缀 ++、-- 都可用于可修改的浮点变量。例如 double x=1.5，++x 后为 2.5，x-- 后回到 1.5。因此“只能用于整型，不能用于浮点数”错误。类型是否可修改与是否支持这些运算同样需要满足。"
     },
     {
       "id": 24,
       "type": "judge",
-      "official": "√",
-      "bank": "√",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "√",
+      "bankAnswer": 0,
+      "evidence": "在选定的固定二进制位宽下，负数补码可由按位取反再加 1 得到。加 1 会把最低位开始连续的 1 变回 0，并把第一个 0 变成 1，对应原正数最低的 1 及其右侧各位保持不变，左侧所有位取反。例如 8 位的 12 为 00001100，按规则得到 11110100，即 −12 的补码。计算应保留同一位宽及前导位。"
     },
     {
       "id": 25,
       "type": "judge",
-      "official": "×",
-      "bank": "×",
-      "changed": false
+      "resolved": true,
+      "match": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6
+      ],
+      "officialAnswer": "×",
+      "bankAnswer": 1,
+      "evidence": "for 行末的分号构成空循环体。i 从 0 递增到 5，循环结束后，后面的独立花括号块只执行一次，因此 Hello 只输出一次。块中的输出不依赖循环变量 i，不会因为 i 已离开作用域而出错。"
     },
     {
       "id": 26,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        6,
+        7,
+        8
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": "对每个密码独立记录是否出现大写字母和数字，并检查长度是否至少为 8，三个条件全部成立才输出 Y。遍历当前串时只把两个布尔标记设为真，每组开始重新置为假，避免上一组状态泄漏。样例六组依次为 Y、Y、Y、N、N、N。原范围为 T≤100、串长 1..100 且仅含英文字母和数字，均为字符分类函数的合法 ASCII 输入。参考程序逐组遍历，总时间 O(全部字符数)，除输入字符串外额外空间 O(1)。独立核验以正则存在性谓词判定，覆盖 7/8/9/100 长度、字母数字边界和多组重置。"
     },
     {
       "id": 27,
+      "type": "programming",
       "resolved": true,
+      "match": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
+      "sourcePages": [
+        8,
+        9,
+        10
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-30",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": "每个种类独立挑最便宜的一件。读入时维护 min_price[K]=min(min_price[K],P)，结束后对种类 1..M 的最低价求和。循环不变量是每个数组项保存该种类目前读到的最低价，初值 10^9 大于价格上界 1000，而题设保证每类存在，因此最终都被有效价格替换。样例两类最低价为 1 和 3，总价 4。原范围 M≤N≤10^5，最大总价为 10^5×1000=10^8，在本题常用 32 位 int 范围内，现有 int 累加安全。时间 O(M+N)，有效辅助空间 O(M)，参考数组固定分配 100005 项。独立预言机按价格排序后首次选取各类，覆盖相同最低价、最便宜商品最后出现及最大种类数。"
     }
   ],
-  "notes": "题库 judge 约定 answer 0=√、1=×，比对时已换算（题库 0,1,1,1,1,0,0,1,0,1 = √××××√√×√×）。两张答案表均放大裁剪复核，√/× 无误读。单选 15 题、判断 10 题与官方答案全部一致，未做任何修改。编程题不在本次答案核对范围。",
-  "unresolved": []
+  "unresolved": [
+    {
+      "id": 22,
+      "type": "official-source-defect",
+      "note": "ANSWER-DOUBT Q22。条件表达式与if/else等价缺少操作数类型前提，混合int负值与unsigned int时的共同类型转换会改变赋给double的结果。官方√保持，等待来源澄清。"
+    }
+  ],
+  "supplementarySources": [
+    {
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.cond",
+      "note": "C++17草案expr.cond/7.2，条件操作数先进行通常算术转换以确定共同类型。"
+    }
+  ],
+  "notes": "AI-Codex逐页对照登记mirror PDF全部10页及答案表，Git blob SHA 0e53148a247d948c01155e55b49c20fe737ed6ed一致。27个answer字段保持，Q22类型前提疑点隔离，补Q12原流程图、Q19原分词、Q22漏录程序和两编程题范围，逐题重写解析并独立运行参考。",
+  "history": [
+    {
+      "paperId": "2025-12-l3",
+      "reviewedAt": "2026-10-30",
+      "executedAt": "2026-10-24",
+      "reviewedBy": {
+        "type": "AI",
+        "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+        "session": "verify/explanations-2025-12-l3"
+      },
+      "source": {
+        "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+        "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+        "shaVerified": true,
+        "fetchedAt": "2026-10-24",
+        "pages": 10
+      },
+      "answerTable": {
+        "location": "单选答案表 p.1「1 单选题」节首；判断答案表 p.5「2 判断题」节首",
+        "content": {
+          "single": "BCDBBDDAAACBBAD",
+          "judge": "√××××√√×√×"
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "type": "single",
+          "official": "B",
+          "bank": "B",
+          "changed": false
+        },
+        {
+          "id": 2,
+          "type": "single",
+          "official": "C",
+          "bank": "C",
+          "changed": false,
+          "dimensions": [
+            "explanation"
+          ],
+          "resolved": true,
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q2 explanation 升级；答案未改"
+        },
+        {
+          "id": 3,
+          "type": "single",
+          "official": "D",
+          "bank": "D",
+          "changed": false
+        },
+        {
+          "id": 4,
+          "type": "single",
+          "official": "B",
+          "bank": "B",
+          "changed": false
+        },
+        {
+          "id": 5,
+          "type": "single",
+          "official": "B",
+          "bank": "B",
+          "changed": false
+        },
+        {
+          "id": 6,
+          "type": "single",
+          "official": "D",
+          "bank": "D",
+          "changed": false
+        },
+        {
+          "id": 7,
+          "type": "single",
+          "official": "D",
+          "bank": "D",
+          "changed": false
+        },
+        {
+          "id": 8,
+          "type": "single",
+          "official": "A",
+          "bank": "A",
+          "changed": false
+        },
+        {
+          "id": 9,
+          "type": "single",
+          "official": "A",
+          "bank": "A",
+          "changed": false
+        },
+        {
+          "id": 10,
+          "type": "single",
+          "official": "A",
+          "bank": "A",
+          "changed": false
+        },
+        {
+          "id": 11,
+          "type": "single",
+          "official": "C",
+          "bank": "C",
+          "changed": false
+        },
+        {
+          "id": 12,
+          "type": "single",
+          "official": "B",
+          "bank": "B",
+          "changed": false
+        },
+        {
+          "id": 13,
+          "type": "single",
+          "official": "B",
+          "bank": "B",
+          "changed": false
+        },
+        {
+          "id": 14,
+          "type": "single",
+          "official": "A",
+          "bank": "A",
+          "changed": false
+        },
+        {
+          "id": 15,
+          "type": "single",
+          "official": "D",
+          "bank": "D",
+          "changed": false
+        },
+        {
+          "id": 16,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "changed": false
+        },
+        {
+          "id": 17,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "changed": false
+        },
+        {
+          "id": 18,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "changed": false
+        },
+        {
+          "id": 19,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "changed": false
+        },
+        {
+          "id": 20,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "changed": false
+        },
+        {
+          "id": 21,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "changed": false
+        },
+        {
+          "id": 22,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "changed": false
+        },
+        {
+          "id": 23,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "changed": false
+        },
+        {
+          "id": 24,
+          "type": "judge",
+          "official": "√",
+          "bank": "√",
+          "changed": false
+        },
+        {
+          "id": 25,
+          "type": "judge",
+          "official": "×",
+          "bank": "×",
+          "changed": false
+        },
+        {
+          "id": 26,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q26 explanation 升级；答案未改"
+        },
+        {
+          "id": 27,
+          "resolved": true,
+          "dimensions": [
+            "explanation"
+          ],
+          "method": [
+            "官方答案对照",
+            "解析质量审校",
+            "Gemini 3.8 Flash 草稿校对落地"
+          ],
+          "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+          "reviewedAt": "2026-10-30",
+          "evidence": "官方答案表/解析审校；答案未改",
+          "note": "Q27 explanation 升级；答案未改"
+        }
+      ],
+      "notes": "题库 judge 约定 answer 0=√、1=×，比对时已换算（题库 0,1,1,1,1,0,0,1,0,1 = √××××√√×√×）。两张答案表均放大裁剪复核，√/× 无误读。单选 15 题、判断 10 题与官方答案全部一致，未做任何修改。编程题不在本次答案核对范围。",
+      "unresolved": []
+    }
+  ],
+  "programmingSampleAudit": {
+    "reviewedBy": "AI-Codex",
+    "reviewedAt": "2026-11-08",
+    "compiler": "g++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0",
+    "standard": "c++17",
+    "caseCount": 717,
+    "objectiveCaseCount": 325,
+    "templateCompileCount": 2,
+    "diagnosticCount": 5,
+    "passed": true,
+    "evidencePath": "C:/Users/0/gesp-codex-fivedim/evidence/2025-12-l3/programming-run.json"
+  }
 }
