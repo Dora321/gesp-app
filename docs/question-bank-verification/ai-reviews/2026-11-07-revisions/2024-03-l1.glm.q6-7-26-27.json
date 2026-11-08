@@ -1,0 +1,243 @@
+{
+  "paperId": "2024-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:10:00.248Z",
+  "completedAt": "2026-11-08T05:12:45.184Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34128,
+    "completion_tokens": 13673,
+    "total_tokens": 47801,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9696
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0119557,
+      "allowance": 0.0119557,
+      "tokens": {
+        "input": 34128,
+        "output": 13673,
+        "reasoning": 9696,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "396c8d379988ea266776ef9e2d8b1e5d7cb7c2540efae2d8c12bdc62cde60bc4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++1级.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "mirrorBytes": 1147617,
+    "shaVerified": true,
+    "sha256": "6777789043bfb632d8ef33ddfe8dde002619413192e2367f599421cc3d000d4c"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头清晰可见「CCF 编程能力等级认证」「C++ 一级」「2024 年 03 月」，与 2024-03-l1（2024 年 3 月 C++ 一级）一致；卷内结构为单选题 15 题（每题 2 分共 30 分）、判断题 10 题（每题 2 分共 20 分）、编程题 2 题（每题 25 分共 50 分），与候选元信息相符。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题原图逐行对照：题干“下面C++代码执行时输入21后，有关描述正确的是（ ）。”与第 1–9 行代码（int N; / cin >> N; / if(N% 3 == 0) / 输出“能被3整除” / else if (N % 7 == 0) / 输出“能被7整除” / else / 输出“不能被3和7整除” / cout << endl;）与候选题面一致，仅空格排版差异，无漏行。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页原图选项 A“代码第4行被执行”、B“第4和第7行代码都被执行”、C“仅有代码第7行被执行”、D“第8行代码将被执行，因为input()输入为字符串”，与候选四项内容、顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表（B D D A B A C D B B D B C C C）第 6 位为 A，对应 0 起始索引 0，候选 answer=0 一致。独立推演：输入 21 时第 3 行 21%3==0 成立，执行第 4 行输出“能被3整除”；if-else if-else 互斥，第 5–8 行不执行，随后执行第 9 行换行，A 正确；虽然 21%7==0 也成立，但 else if 分支不会被检测，故 B 错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：前轮定位的“末尾未闭合代码块截断”已在候选中补全——保留原有执行流程分析、互斥特性说明与 A/B/C/D 逐项排除，末尾补两个独立 if 示例并正确闭合代码块。本次逐一复核：21%3 计算结果为 0、互斥跳过 else if 与 else、第 9 行换行、B 中第 7 行为 else 关键字、D 中 input() 为 Python 概念且第 8 行不会执行等说法均正确；补全的独立 if 示例独立推演无误，与答案 A 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受前轮“保留原文＋补全末尾两个独立 if 示例并闭合代码块”的最小修复方案；候选解析已完整无截断，题面、选项、答案均与 PDF 第 2 页原图及第 1 页答案表一致，所有推导独立复核通过，无需再改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题原图对照：题干“下面C++代码第2行，总共被执行次数是（ ）。”；两行代码 for(int i=-10; i<10; i++) 与输出 i 加空格的语句与候选一致；候选 Markdown 写法未带行号，不影响与原图的对应关系。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页原图选项 A.10 / B.19 / C.20 / D.21，与候选四项内容和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 7 位为 C，对应 0 起始索引 2，候选 answer=2 一致。独立推演：循环变量 i 依次取 -10, -9, …, 9，当 i 自增至 10 时 10<10 为假退出，第 2 行共执行 9-(-10)+1=20 次。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：前轮定位的“末尾空标题‘知识延伸：’截尾”已在候选中补全 for 三段式执行顺序与实际输出（-10 至 9 各数后跟空格）说明；本次复核原有内容：项数公式 9-(-10)+1=20、分段统计 10+1+9=20、第 20 次循环 i=9、D 项需 i<=10 才得 21 次等推导均正确，易错提醒（左闭右开区间、勿漏 0、公式加 1）无误，与答案 C 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受前轮“保留原文＋补全知识延伸段落”的最小修复方案；候选解析已完整，循环次数 20 的计算与官方答案 C 经独立推演吻合，题面与选项与 PDF 第 2 页原图一致，无需再改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 5 页 3.1.1 题面（单价 13 元、求最多购买本数与剩余零用钱）、3.1.2 输入正整数 m、3.1.3 输出含两行（第一行本数、第二行剩余）、3.1.4/3.1.5 样例 100→7/9、199→15/4 均与候选题面一致；样例 2 之后原文确有“对于全部数据，保证有 0 < m < 200。”（原图可见），候选题面末尾已补录该约束；官方“购买图书的本书”为笔误，候选写“本数”属等价修正。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF 中无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 第 1 页答案表仅覆盖单选题、第 4 页答案表仅覆盖判断题，编程题无官方答案行，officialAnswer 记 null 合理，候选 answer 为空。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：整数除法 m/13 自动向下取整，恰为整本购买时的最多本数；m%13 取余即剩余零钱；恒等式 m=13*(m/13)+(m%13) 成立且 0≤余数<13。验算 100/13=7（13×7=91，13×8=104 超额）、余 9；199/13=15（13×15=195）、余 4，均与官方样例一致；解析中 / 与 % 功能区分、两行输出须换行、浮点型不可用 % 的提醒均正确，推导未依赖答案表。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 5 页 3.1.6 参考程序逐行等价（仅“# include”多一空格的排版差异）：定义 int m，cin 读入，依次输出 m/13 与 m%13 并各带 endl 换行，return 0 结束。在 0<m<200 约束下 int 远无溢出，除数为常量 13 无除零风险，复杂度 O(1)，两行输出格式符合题意。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 m=1",
+            "input": "1\n",
+            "output": "0\n1",
+            "reason": "约束 0<m<200 的最小正整数；1 元买不起书，整数除法商为 0、余数为 1，独立验算成立。"
+          },
+          {
+            "name": "恰差一本 m=12",
+            "input": "12\n",
+            "output": "0\n12",
+            "reason": "略低于单价 13 的边界值，验证买 0 本且 12%13=12，独立验算成立。"
+          },
+          {
+            "name": "整除边界 m=13",
+            "input": "13\n",
+            "output": "1\n0",
+            "reason": "恰好买 1 本且无剩余，验证 / 与 % 在整除点上的结果，独立验算成立。"
+          },
+          {
+            "name": "上界 m=199",
+            "input": "199\n",
+            "output": "15\n4",
+            "reason": "约束内最大整数，13×15=195、199-195=4，与官方样例 2 一致，独立验算成立。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受前轮补录数据范围“0 < m < 200”的修复——该行确为 PDF 第 5 页样例 2 之后的原文内容，候选题面已包含且表述一致；官方“本书”笔误按“本数”等价处理不影响题意。参考程序逐行等价、无溢出与除零风险，解析独立推导正确，4 项测试期望均由本人独立验算，无需再改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 6 页 3.2.1 问题描述（因数定义、从小到大输出 a 的所有因数）、3.2.2 输入 a≤1,000、3.2.3 输出若干行从小到大排列、3.2.4 特别提醒（本场考试不要在输入输出中附带任何提示信息，原文确在且候选已补录）、三组样例 1→1、6→1/2/3/6、10→1/2/5/10 均与候选一致；官方“约数”与候选“因数”同义等价，3.2.10 标题误写“样例输出 2”系原卷排版笔误，不影响内容；候选省略“小 A 最近学习因数概念”背景句不改变题意与约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF 中无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 答案表仅覆盖单选题与判断题，编程题无官方答案行，officialAnswer 记 null 合理，候选 answer 为空。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a≤1000 规模下枚举 i=1..a，以 a%i==0 判定因数并按 i 递增天然升序输出。逐项验算：a=1 仅 i=1 命中；a=6 时 i=1,2,3,6 余 0，i=4 余 2、i=5 余 1 跳过，输出 1/2/3/6；a=10 时 i=5、10 命中，i=3,4 余 1,2、i=6..9 余 4,3,2,1 跳过，输出 1/2/5/10，均与样例一致；关于 i 从 1 起避免 a%0 除零、上界须含 a 自身、每因数独立换行的提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 7 页 3.2.11 参考程序逐行等价（仅空行排版差异）：for (int i = 1; i <= a; ++i) 枚举，if (a % i == 0) 时 cout << i << endl。i≥1 保证无除零，a≤1000 时 i 与 a 均在 int 范围内无溢出，复杂度 O(a) 约 1000 次迭代实际可行，输出符合题意。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 a=1",
+            "input": "1\n",
+            "output": "1",
+            "reason": "1 的正因数只有 1 本身，验证下界不漏自身且无除零，独立验算成立。"
+          },
+          {
+            "name": "质数 a=997",
+            "input": "997\n",
+            "output": "1\n997",
+            "reason": "逐个用质数 2,3,5,7,11,13,17,19,23,29,31（均≤√997≈31.6）试除 997 均有余数，确证 997 为质数，因数仅 1 与自身，独立验算成立。"
+          },
+          {
+            "name": "上界 a=1000",
+            "input": "1000\n",
+            "output": "1\n2\n4\n5\n8\n10\n20\n25\n40\n50\n100\n125\n200\n250\n500\n1000",
+            "reason": "1000=2³×5³，正因数为 2^i×5^j（i,j∈0..3）共 (3+1)(3+1)=16 个，按 2 次幂序列 1,2,4,8 与 5 次幂序列 1,5,25,125 独立枚举乘积后排序得上述升序序列，独立验算成立。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受前轮补录 3.2.4 特别提醒的修复——PDF 第 6 页原文确有该段，候选题面已完整收录；三处官方排版问题（约数用词、样例输出 2 编号、背景句省略）均按等价转换处理不影响题意。参考程序逐行等价、无除零与溢出风险，解析独立推导正确，3 项测试（含 997 质性逐素检验与 1000 的 16 因数升序）均由本人独立验算，无需再改。"
+      }
+    ],
+    "summary": "本轮独立复核 2024-03-l1 的第 6、7、26、27 四题。第 6 题官方答案表第 6 位为 A（0 起始索引 0）、第 7 题为 C（索引 2），与候选 answer 及独立推演（输入 21 时 21%3==0 触发第 4 行互斥分支、else if 与 else 均不执行；i 取 -10..9 共 20 个值使第 2 行执行 20 次）一致；两题解析经前轮截断补全后内容完整，本次逐段复核通过并确认知识延伸部分正确。编程题 26 的数据范围 0<m<200 与 27 的特别提醒确为 PDF 原文（分别在第 5 页样例 2 之后、第 6 页 3.2.4），候选均已包含；官方“本书”“约数”“样例输出 2”等排版笔误按等价方式处理，不影响题意；两题参考程序与第 5、7 页原图逐行等价，算法正确、复杂度可行、无溢出与除零风险，测试期望（m=1/12/13/199，a=1/997/1000）均由本人独立计算验证。四题全部 approve，无需新增修改。"
+  }
+}

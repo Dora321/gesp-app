@@ -1,0 +1,154 @@
+{
+  "paperId": "2024-03-l1",
+  "integratedAt": "2026-11-08T05:12:48.281Z",
+  "accepted": [
+    {
+      "id": 6,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "100",
+          "output": "7\n9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n9\n",
+          "passed": true
+        },
+        {
+          "input": "199",
+          "output": "15\n4",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "15\n4\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 m=1",
+          "input": "1\n",
+          "output": "0\n1",
+          "reason": "约束 0<m<200 的最小正整数；1 元买不起书，整数除法商为 0、余数为 1，独立验算成立。",
+          "kind": "boundary",
+          "actual": "0\n1\n",
+          "passed": true
+        },
+        {
+          "name": "恰差一本 m=12",
+          "input": "12\n",
+          "output": "0\n12",
+          "reason": "略低于单价 13 的边界值，验证买 0 本且 12%13=12，独立验算成立。",
+          "kind": "boundary",
+          "actual": "0\n12\n",
+          "passed": true
+        },
+        {
+          "name": "整除边界 m=13",
+          "input": "13\n",
+          "output": "1\n0",
+          "reason": "恰好买 1 本且无剩余，验证 / 与 % 在整除点上的结果，独立验算成立。",
+          "kind": "boundary",
+          "actual": "1\n0\n",
+          "passed": true
+        },
+        {
+          "name": "上界 m=199",
+          "input": "199\n",
+          "output": "15\n4",
+          "reason": "约束内最大整数，13×15=195、199-195=4，与官方样例 2 一致，独立验算成立。",
+          "kind": "boundary",
+          "actual": "15\n4\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "dd4a48b97ce2debbdb181d8c643bfb61a315e3e35bef82ed3bb386bb8ae6893d"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "1",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "input": "6",
+          "output": "1\n2\n3\n6",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1\n2\n3\n6\n",
+          "passed": true
+        },
+        {
+          "input": "10",
+          "output": "1\n2\n5\n10",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "1\n2\n5\n10\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 a=1",
+          "input": "1\n",
+          "output": "1",
+          "reason": "1 的正因数只有 1 本身，验证下界不漏自身且无除零，独立验算成立。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "质数 a=997",
+          "input": "997\n",
+          "output": "1\n997",
+          "reason": "逐个用质数 2,3,5,7,11,13,17,19,23,29,31（均≤√997≈31.6）试除 997 均有余数，确证 997 为质数，因数仅 1 与自身，独立验算成立。",
+          "kind": "boundary",
+          "actual": "1\n997\n",
+          "passed": true
+        },
+        {
+          "name": "上界 a=1000",
+          "input": "1000\n",
+          "output": "1\n2\n4\n5\n8\n10\n20\n25\n40\n50\n100\n125\n200\n250\n500\n1000",
+          "reason": "1000=2³×5³，正因数为 2^i×5^j（i,j∈0..3）共 (3+1)(3+1)=16 个，按 2 次幂序列 1,2,4,8 与 5 次幂序列 1,5,25,125 独立枚举乘积后排序得上述升序序列，独立验算成立。",
+          "kind": "boundary",
+          "actual": "1\n2\n4\n5\n8\n10\n20\n25\n40\n50\n100\n125\n200\n250\n500\n1000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "602f6b69d6a9cbe2ebd2b64b313f81cd1877054769c90ffaad079890770e0b59"
+    }
+  ]
+}
