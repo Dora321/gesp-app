@@ -1,0 +1,170 @@
+{
+  "paperId": "2024-06-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:08:31.286Z",
+  "completedAt": "2026-11-08T05:10:21.265Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 16292,
+    "completion_tokens": 12798,
+    "total_tokens": 29090,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 11207,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0101226,
+      "allowance": 0.00607356,
+      "tokens": {
+        "input": 16292,
+        "output": 12798,
+        "reasoning": 11207,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "569ce1ef26a745a2c65902bb19bc79ed65433614a68f313e3cd25b9b6afcd3f0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++1级.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "mirrorBytes": 1071819,
+    "shaVerified": true,
+    "sha256": "b651e276b2b8d87dceea1551113fb609bbe4696bee346256682e5b03fa7c6d59"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2024-06-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级 2024年06月”，与候选的 level=1、year=2024、month=6 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页 3.1.2 图片层明确给出 h、m、s 的约束及 k 的约束；第6页 3.1.3 输出格式、3.1.4 样例1、3.1.5 样例解释与候选一致。候选将原输入格式括号内约束合并为“数据范围”，信息等价且未漏必要约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，原卷无 A-D 客观选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在 PDF 第1页单选答案表和第5页判断答案表内，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用“统一折算为总秒数→累加 k→整除/取模还原”的方法；独立复算样例：12*3600+59*60+59=46799，加10得46809，46809/3600=13、余9，9/60=0、9%60=9，得到13 0 9，与 PDF 第6页样例解释一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第6页 3.1.7 参考程序逐行同构，仅显式补 return 0。独立检查约束下最大 now=12*3600+59*60+59+3600=50399，不溢出且无需24小时回绕；先 /3600、再 %3600、再 /60、再 %60 的拆分顺序正确，O(1) 满足 1.0s。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小边界",
+            "input": "1\n0\n0\n1",
+            "output": "1 0 1",
+            "reason": "按参考代码独立计算：now=1*3600+0+0=3600，加1得3601；hh=3601/3600=1，余1，mm=0，ss=1。"
+          },
+          {
+            "name": "最大边界跨小时",
+            "input": "12\n59\n59\n3600",
+            "output": "13 59 59",
+            "reason": "独立计算：now=12*3600+59*60+59=46799，加3600得50399；hh=13，余3599，mm=59，ss=59，未发生24小时回绕。"
+          },
+          {
+            "name": "秒进位到整点",
+            "input": "12\n59\n50\n10",
+            "output": "13 0 0",
+            "reason": "独立计算：now=12*3600+59*60+50=46790，加10得46800；hh=13，余0，mm=0，ss=0。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页 3.2.1 给出立方数定义；第7页 3.2.2 输入格式、3.2.3 输出格式、3.2.4/3.2.5 样例、3.2.6 样例解释、3.2.7 数据范围 1≤n≤1000 均与候选一致。候选定义句中 n 的指代由前句明确，不改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，原卷无 A-D 客观选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在 PDF 第1页单选答案表和第5页判断答案表内，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用枚举正整数 i 并用 fl 标记命中，思路成立；独立复算样例1 n=8 时 i=2 命中 2^3=8，输出 Yes；样例2 n=9 时 i=1..9 均无 9=i^3，输出 No，与 PDF 第7页 3.2.6 解释一致。指出 i<=n 可优化为 i*i*i<=n 也正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第7页 3.2.8 参考程序逐行同构，仅补 return 0。n≤1000 时 i≤1000，i^3 最大 10^9，小于 INT_MAX，无溢出；i 从1开始符合正整数定义，fl+break 逻辑正确，O(n) 在 n≤1000 下满足 1.0s。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小边界",
+            "input": "1",
+            "output": "Yes",
+            "reason": "按参考代码独立计算：i=1 时 1*1*1==1 命中，fl=1 并 break，输出 Yes；1 是 1 的立方。"
+          },
+          {
+            "name": "最大边界且为立方数",
+            "input": "1000",
+            "output": "Yes",
+            "reason": "独立计算：i=10 时 10*10*10==1000 命中并 break，输出 Yes；该值在上界 1000 内。"
+          },
+          {
+            "name": "上界附近非立方数",
+            "input": "999",
+            "output": "No",
+            "reason": "独立判断：9^3=729<999<1000=10^3，不存在正整数 i 使 i^3=999；参考代码枚举 1..999 均不命中，fl 保持0，输出 No。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 26、27；两题的题面、约束、样例、解析与参考程序均与原卷一致，未发现需要修订的实质问题。测试期望输出均依据代码逻辑独立推算，未声称实际运行。"
+  }
+}
