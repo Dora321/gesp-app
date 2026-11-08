@@ -1,0 +1,198 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T16:48:48.620Z",
+  "completedAt": "2026-11-08T16:50:39.311Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38581,
+    "completion_tokens": 19351,
+    "total_tokens": 57932,
+    "prompt_tokens_details": {
+      "cached_tokens": 38528
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17493
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01173413,
+      "allowance": 0.00704048,
+      "tokens": {
+        "input": 53,
+        "output": 19351,
+        "reasoning": 17493,
+        "cache_read": 38528,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 3 月 GESP C++ 二级试卷解析”，与 paperId=2023-03-l2、level=2、year=2023、month=3 一致；编程题1在PDF第12-13页，编程题2在PDF第13-15页。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第12页题名为“画三角形”，明确第1行1个字母、第2行2个字母、依此类推，并给出样例2（n=7，输出至VWXYZAB）；当前数据题名为“字母金字塔”，samples仅有样例1，outputDescription也未写“每行三角形图案的右侧不要有多余的空格”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引，PDF未提供选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析给出双重循环、输出后自增ch、超过Z回到A，并按n=3逐步走查出A/BC/DEF；与PDF第13页参考程序使用(int ch, ('A'+(ch++)%26))的循环逻辑等价。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "代码按第i行输出i个字符，内层j<=i；每输出一个字符执行if(++ch>'Z') ch='A'，可正确回绕。n最大40时共820个字符，ch始终限制在A-Z，无数组越界或整数溢出。"
+          }
+        },
+        "changes": {
+          "title": "画三角形",
+          "description": "输入一个正整数 n，请使用大写字母拼成一个这样的三角形图案（参考样例输入输出）：三角形图案的第 1 行有 1 个字母，第 2 行有 2 个字母，以此类推；在三角形图案中，由上至下、由左至右依次由大写字母 A-Z 填充，每次使用大写字母 Z 填充后，将从头使用大写字母 A 填充。",
+          "outputDescription": "输出符合要求的三角形图案。注意每行三角形图案的右侧不要有多余的空格。",
+          "samples": [
+            {
+              "input": "3",
+              "output": "A\nBC\nDEF"
+            },
+            {
+              "input": "7",
+              "output": "A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB"
+            }
+          ]
+        },
+        "tests": [
+          {
+            "name": "最小值 n=2",
+            "input": "2\n",
+            "output": "A\nBC\n",
+            "reason": "n最小为2；第1行1个A，第2行2个连续字母B、C。"
+          },
+          {
+            "name": "官方样例1 n=3",
+            "input": "3\n",
+            "output": "A\nBC\nDEF\n",
+            "reason": "PDF第12页样例1；前三行分别为1、2、3个连续大写字母。"
+          },
+          {
+            "name": "官方样例2 跨Z回绕",
+            "input": "7\n",
+            "output": "A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB\n",
+            "reason": "PDF第12页样例2；第7行输出VWXYZAB，Z之后回绕到A。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第14页输入描述明确约定1≤x,y,z≤10、1≤n,m≤1000，并给出样例2“1 1 1 100 100 → 5151”；当前inputDescription只写“五个正整数”，未写约束，samples也仅有样例1。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引，PDF未提供选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析用k=m-i-j降维，将x*i+y*j+k/z=n两边乘z得z*x*i+z*y*j+k=z*n；样例1可枚举出4组解，样例2在z=1时任意非负i+j≤100均满足，方案数为C(102,2)=5151，推导正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "二重枚举i≤m、j≤m-i，k=m-i-j；乘z后的整数等式既判断总价又保证k能被z整除；m≤1000时约5×10^5次枚举，LHS最大约2×10^5且cnt最大501501，int安全。"
+          }
+        },
+        "changes": {
+          "inputDescription": "输入一行，包含五个整数，分别为 x、y、z、n、m。约定 1≤x, y, z ≤10，1≤ n, m ≤1000。",
+          "outputDescription": "输出一行，包含一个整数 C，表示有 C 种方案。",
+          "samples": [
+            {
+              "input": "5 3 3 100 100",
+              "output": "4"
+            },
+            {
+              "input": "1 1 1 100 100",
+              "output": "5151"
+            }
+          ]
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1 1 1 1\n",
+            "output": "3\n",
+            "reason": "n=m=1、z=1时，1元买1只鸡，买公鸡、母鸡或小鸡各有1种方案，共3种。"
+          },
+          {
+            "name": "官方样例1",
+            "input": "5 3 3 100 100\n",
+            "output": "4\n",
+            "reason": "PDF第14页样例1；化为7i+4j=100后，在i,j非负且i+j≤100下有(0,25)、(4,18)、(8,11)、(12,4)四组解。"
+          },
+          {
+            "name": "官方样例2 z=1",
+            "input": "1 1 1 100 100\n",
+            "output": "5151\n",
+            "reason": "PDF第14页样例2；三鸡单价均折合1元，任意非负i+j≤100均合法，方案数为C(102,2)=5151。"
+          },
+          {
+            "name": "最大范围 z=1",
+            "input": "1 1 1 1000 1000\n",
+            "output": "501501\n",
+            "reason": "n=m=1000、z=1且单价均为1，任意非负i+j≤1000均合法，方案数为C(1002,2)=501501，覆盖最大m和计数上限。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮仅核验题号26、27。题26需补正题名、完整题面说明、输出格式及官方样例2；题27需补入输入约束、精确输出描述及官方样例2。两题现有referenceCode在PDF给定约束下算法均正确；本记录中的测试为静态推演，未声称已运行。"
+  }
+}

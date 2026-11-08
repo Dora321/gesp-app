@@ -1,0 +1,209 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T18:01:50.766Z",
+  "completedAt": "2026-11-08T18:07:40.386Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64604,
+    "completion_tokens": 24381,
+    "total_tokens": 88985,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 21112
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0218811,
+      "allowance": 0.0218811,
+      "tokens": {
+        "input": 64604,
+        "output": 24381,
+        "reasoning": 21112,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『2023 年 3 月 GESP C++ 二级试卷解析』，第 12 页编程题章节标题为『三、编程题（每题 25 分，共 50 分）』，两道编程题分别在 PDF 第 12-13 页（画三角形）与第 13-15 页（百鸡问题），与 paperId 对应的 2023 年 3 月、C++ 二级一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页题名为『画三角形』，【问题描述】为『输入一个正整数 n，请使用大写字母拼成……每次使用大写字母 Z 填充后，将从头使用大写字母 A 填充。』；【输出描述】含格式约束『注意每行三角形图案的右侧不要有多余的空格』，并给出两个官方样例（3→A/BC/DEF；7→A/BC/DEF/GHIJ/KLMNO/PQRSTU/VWXYZAB）。原网站 title『字母金字塔』与卷面不符，outputDescription 缺右侧无多余空格约束，samples 缺官方样例 2。按 changes 补正后与卷面逐句对照一致（修复后核验通过）；inputDescription『一个正整数 n (2≤n≤40)。』已完整传达『约定 2≤n≤40』的约束，属等价表述，予以保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，卷面无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项答案索引，PDF 未提供选项答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析（双重循环控制行列、输出后自增 ch、超过 'Z' 回绕 'A'、每行末换行）与 PDF 第 13 页解题思路（把字母看作 0-25 加上 %26 确保到 'Z' 后回 'A'）语义等价；按解析对 n=3 逐步走查得 A/BC/DEF，与卷面样例一致，独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立推演站内代码：外层 i=1..n、内层 j=1..i，第 i 行恰好输出 i 个字符；每输出一字符执行 if(++ch > 'Z') ch='A'，'Z'(90) 自增变 '{'(123) 后被重置为 'A'，回绕正确。手工模拟 n=2 得 A/BC，n=3 得 A/BC/DEF，n=7 时共 1+2+...+7=28 字符、第 27/28 字符回绕为 A/B，末行 VWXYZAB，与卷面两个样例一致。n 上限 40 时共输出 820 字符，O(n²) 且无下标越界、无整型溢出。与官方参考程序（int ch=0，输出 (char)('A'+(ch++)%26)）实现不同但算法等价、输出相同。"
+          }
+        },
+        "changes": {
+          "title": "画三角形",
+          "description": "输入一个正整数 n，请使用大写字母拼成一个这样的三角形图案（参考样例输入输出）：三角形图案的第 1 行有 1 个字母，第 2 行有 2 个字母，以此类推；在三角形图案中，由上至下、由左至右依次由大写字母 A-Z 填充，每次使用大写字母 Z 填充后，将从头使用大写字母 A 填充。",
+          "outputDescription": "输出符合要求的三角形图案。注意每行三角形图案的右侧不要有多余的空格。",
+          "samples": [
+            {
+              "input": "3",
+              "output": "A\nBC\nDEF"
+            },
+            {
+              "input": "7",
+              "output": "A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB"
+            }
+          ]
+        },
+        "tests": [
+          {
+            "name": "最小值 n=2",
+            "input": "2\n",
+            "output": "A\nBC\n",
+            "reason": "约束下限 2≤n≤40 的最小值；独立模拟参考代码：第 1 行 1 个字母 A，第 2 行 2 个连续字母 B、C。"
+          },
+          {
+            "name": "官方样例1 n=3",
+            "input": "3\n",
+            "output": "A\nBC\nDEF\n",
+            "reason": "PDF 第 12 页样例 1；按第 i 行 i 个连续字母独立核对该输出。"
+          },
+          {
+            "name": "边界跨 Z 回绕 n=7",
+            "input": "7\n",
+            "output": "A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB\n",
+            "reason": "PDF 第 12 页样例 2；共 28 个字符，第 27、28 个字符越过 Z 后回绕为 A、B，末行 VWXYZAB，验证回绕与边界。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对题名、题面、输出格式约束与补官方样例 2 的修改：上述缺口经与 PDF 第 12 页逐项对照后确认属实，样例 2 的 VWXYZAB 亦由 28 字符序列独立复算验证。初核对 explanation 与 referenceCode 的通过结论经独立模拟（n=2/3/7）维持正确，官方参考程序与站内代码算法等价，故无再改动。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 13-14 页题名为『百鸡问题』；【输入描述】为『输入一行，包含五个整数，分别为问题描述中的 x、y、z、n、m。约定 1≤x, y, z ≤10，1≤ n, m ≤1000。』，该范围约束直接决定枚举量级与溢出分析，不可省略；【输出描述】为『输出一行，包含一个整数 C，表示有 C 种方案。』；卷面给出样例 2（1 1 1 100 100→5151）。原网站 title『扩展百鸡问题』与卷面不符，inputDescription 缺范围约束，outputDescription 过简，samples 缺官方样例 2。按 changes 补正后与卷面一致（修复后核验通过）；description 为卷面背景故事与扩展问题的等价压缩表述，参数与所求完整，予以保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，卷面无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项答案索引，PDF 未提供选项答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：设公鸡 i、母鸡 j，小鸡 k=m-i-j；把 x*i+y*j+k/z=n 两边同乘 z 得 z*x*i+z*y*j+k=z*n，其余项均为 z 的倍数，故等式成立即自动保证 k 能被 z 整除，并同时蕴含恰好花完 n 元。样例 1 化为 14i+8j=200 即 7i+4j=100，非负整数解恰 4 组：(0,25,75)、(4,18,78)、(8,11,81)、(12,4,84)，与 PDF 第 14 页样例解释逐一吻合；样例 2 z=1 时对任意 0≤i+j≤100 恒成立，方案数 101×102/2=5151。与网站解析及官方『表示出小鸡数量再判断总数』的思路一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站内代码二重枚举 i≤m、j≤m-i（隐含 k=m-i-j≥0），整数判断 z*x*i+z*y*j+k==z*n，与官方参考程序 xj=(n-gj*x-mj*y)*z 后判 gj+mj+xj==m 语义一致：均要求恰好花完 n 元、总数恰为 m、小鸡按 z 只一组购买。用 z=2（1 1 2 5 5）手工分别枚举两版程序均得 6 组解，样例 1 均 4、样例 2 均 5151，结果一致。规模与溢出：m≤1000 时循环约 (m+1)(m+2)/2≈5.02×10⁵ 次；表达式上界 201000，cnt 上界 501501，均远小于 int 上限，无溢出。"
+          }
+        },
+        "changes": {
+          "title": "百鸡问题",
+          "inputDescription": "输入一行，包含五个整数，分别为问题描述中的 x、y、z、n、m。约定 1≤x, y, z ≤10，1≤ n, m ≤1000。",
+          "outputDescription": "输出一行，包含一个整数 C，表示有 C 种方案。",
+          "samples": [
+            {
+              "input": "5 3 3 100 100",
+              "output": "4"
+            },
+            {
+              "input": "1 1 1 100 100",
+              "output": "5151"
+            }
+          ]
+        },
+        "tests": [
+          {
+            "name": "最小规模 n=m=1",
+            "input": "1 1 1 1 1\n",
+            "output": "3\n",
+            "reason": "约束下限；1 元买 1 只鸡，公鸡、母鸡、小鸡（z=1 时 1 只 1 元）各有一种买法，独立枚举 i,j 三个有效组合得 3。"
+          },
+          {
+            "name": "官方样例1",
+            "input": "5 3 3 100 100\n",
+            "output": "4\n",
+            "reason": "PDF 第 14 页样例 1；乘 z 化简为 7i+4j=100，独立解得 (0,25)、(4,18)、(8,11)、(12,4) 四组非负解。"
+          },
+          {
+            "name": "官方样例2 z=1",
+            "input": "1 1 1 100 100\n",
+            "output": "5151\n",
+            "reason": "PDF 第 14 页样例 2；z=1 时任意 0≤i+j≤100 均满足方程，方案数 101×102/2=5151。"
+          },
+          {
+            "name": "小鸡成组约束 z=2",
+            "input": "1 1 2 5 5\n",
+            "output": "6\n",
+            "reason": "代入 z=2 后条件化为 i+j=5 且 k=0，独立枚举得 6 组解；验证恰好花完 n 元且小鸡数 k 须为 z 的倍数这一语义，站内代码与官方参考程序结果一致。"
+          },
+          {
+            "name": "最大范围 z=1",
+            "input": "1 1 1 1000 1000\n",
+            "output": "501501\n",
+            "reason": "n=m=1000 覆盖上限，任意 i+j≤1000 均合法，方案数 (1001)×1002/2=501501，同时检验循环量约 5×10⁵ 与计数值均在 int 范围内。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对输入约束、输出描述与补官方样例 2 的修改：约束与样例 2 均在 PDF 第 14 页核实，5151 与 4 经独立推导复核后采纳；新增的 z=2 与 m=1000 边界用例也经手工枚举确认。初核遗漏题名与卷面『百鸡问题』不一致的问题（其已在题 26 修正同类差异），本次补充将 title 改为『百鸡问题』并否决旧题名『扩展百鸡问题』。explanation 与 referenceCode 的通过结论经独立枚举与溢出分析维持，无需改动。"
+      }
+    ],
+    "summary": "本轮仅核验编程题 26（画三角形）与 27（百鸡问题），各五维度均有记录，两题 officialAnswer 均为 null（编程题无选项答案）。两题题面与卷面存在实质缺漏：题 26 题名不符、缺官方样例 2 与『右侧不要有多余空格』的输出约束；题 27 输入缺 1≤x,y,z≤10、1≤n,m≤1000 的范围约束、缺官方样例 2、题名不符，均按卷面补正后核验通过。两题解析与参考代码经独立推演和复杂度/溢出分析判定正确：题 26 的回绕逻辑在 n=2、3、7 上与卷面两个官方样例及最小值一致；题 27 的乘 z 整式判断与官方参考程序语义一致，官方样例 4、5151 及自拟用例（3、6、501501）均吻合。两题 verdict 均为 revise（题面需补正），tests 为静态独立推演结果，未声称实际运行。"
+  }
+}

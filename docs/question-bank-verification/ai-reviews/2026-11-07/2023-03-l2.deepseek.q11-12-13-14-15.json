@@ -1,0 +1,225 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:08:15.471Z",
+  "completedAt": "2026-11-08T15:08:57.555Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38587,
+    "completion_tokens": 7415,
+    "total_tokens": 46002,
+    "prompt_tokens_details": {
+      "cached_tokens": 38528
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6062
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00457343,
+      "allowance": 0.00274406,
+      "tokens": {
+        "input": 59,
+        "output": 7415,
+        "reasoning": 6062,
+        "cache_read": 38528,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023年3月 GESP C++ 二级试卷解析”，与paperId中的2023-03、C++、二级信息吻合。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干为“如果 a 和 b 均为 int 类型的变量，下列表达式能正确判断‘a 等于 0 或 b 等于 0’的是（）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A-D依次为 (!a) || (!b)、(a == b == 0)、(a == 0) && (b == 0)、(a == 0) - (b == 0) == 0，顺序和符号与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页【答案】A，对应0起始索引0；网站answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析逐项说明A为逻辑或、B为链式比较、C为逻辑与、D为两个比较结果相减；网站解析独立复算结论一致，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干为“如果 a 为 char 类型的变量，下列哪个表达式可以正确判断‘a 是小写字母’？”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6-7页A-D依次为 a <= a <= z、a - 'a' <= 'z' - 'a'、'a' <= a <= 'z'、a >= 'a' && a <= 'z'，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页【答案】D，对应0起始索引3；网站answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出A为链式比较、B只得到a<='z'的上界、C链式比较恒真、D用双边界判断小写字母；网站解析结论与之一致，补充说明z未声明不改变选项判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页代码含 int a = 10, b = 50; 空行、b -= a、a += b、输出a和b，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页A-D依次为 a -= b、a += b、a = b - a、a = b，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页【答案】C，对应0起始索引2；网站answer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析提示逐项代入；网站分别演算四选项得到“50 90”“50 -10”“50 10”“50 0”，仅C符合输出50 10，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页代码为 cnt=0、for(char ch='1'; ch<='9'; ch++)、条件满足时cnt++并输出cnt，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第8页A-D依次为 ch < '5'、ch >= 5、ch >= '4'、ch % 2 == 1，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页【答案】D，对应0起始索引3；网站answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析强调B中5无单引号，D按ASCII码筛出5个奇数；网站复算A为4个、B为9个、C为6个、D为5个，与官方结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8-9页程序含 n=17、isprime=true、for(i=2;i<=n;i++)、n%i==0时置false及cout<<isprime；网站保留核心逻辑，省略include/main和endl，不影响本题输出值判定。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第9页A-D依次为 false、true、0、1，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页【答案】C，对应0起始索引2；网站answer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出循环i最终到达n，17%17==0使isprime=false，且bool默认输出为0；网站逐步分析一致，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题11-15：均为单选题，题干、选项顺序、官方答案映射及解析均与PDF一致，未发现需要修改的实质问题，changes均为空；本批无编程题，故tests为空。"
+  }
+}

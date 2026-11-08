@@ -1,0 +1,223 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:54:34.018Z",
+  "completedAt": "2026-11-08T15:55:10.893Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38649,
+    "completion_tokens": 6656,
+    "total_tokens": 45305,
+    "prompt_tokens_details": {
+      "cached_tokens": 38528
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5106
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00412733,
+      "allowance": 0.0024764,
+      "tokens": {
+        "input": 121,
+        "output": 6656,
+        "reasoning": 5106,
+        "cache_read": 38528,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023年3月 GESP C++ 二级试卷解析”；第10页为判断题第6题，第11页为判断题第7至10题，分别对应题21至25。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题6原文与网站题面一致，均讨论 if...else 中 if 子句能否嵌套 if...else 及是否造成二义性。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选题 options；网站的正确/错误仅用于答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF该题答案标为 ×，对应错误索引1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出 if 语句可以嵌套 if...else，并可用复合语句消除歧义；网站解析同样说明 if 分支和 else 分支均可嵌套合法语句，结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题7原文为“while 语句的循环体至少会执行一次”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选题 options；网站的正确/错误仅用于答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF该题答案标为 ×，对应错误索引1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析说明 while 是否执行循环体取决于首次条件判断，初始不成立时可一次都不执行；网站解析给出入口条件判断机制并与 do-while 对比，独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题8原文为“C++语言中>=是运算符，但=>不是”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选题 options；网站的正确/错误仅用于答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF该题答案标为 √，对应正确索引0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出 >= 是“大于等于”关系运算符而 => 不是 C++ 运算符；网站解析进一步列出关系运算符并说明 => 在其他语言中的用法，结论无冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题9原文为：若 a 为 char 类型且取值为小写字母，执行 a = a - 'a' + 'A'; 后会变为对应大写字母，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选题 options；网站的正确/错误仅用于答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF该题答案标为 √，对应正确索引0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析说明小写字母减去 'a' 得到 0 至 25，再加 'A' 得到对应大写字母；网站用 ASCII 码 97/65 及偏移量独立推导，结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题10原文为“表达式(10.0 / 2)的计算结果为 5.0，且结果类型为 double”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用单选题 options；网站的正确/错误仅用于答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF该题答案标为 √，对应正确索引0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出浮点数与整数运算的结果类型为浮点型；网站解析说明 10.0 为 double、整数 2 被提升为 double，结果 5.0 为 double，独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题21至25，均为判断题。五题的题面、PDF答案符号及解析均与网站数据一致；答案映射按 ×=1、√=0 核对通过，无需修改。判断题不涉及 options 与 referenceCode，故相应维度记为不适用；无编程题测试项。"
+  }
+}

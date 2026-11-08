@@ -1,0 +1,227 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:10:39.536Z",
+  "completedAt": "2026-11-08T15:11:26.624Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38587,
+    "completion_tokens": 7640,
+    "total_tokens": 46227,
+    "prompt_tokens_details": {
+      "cached_tokens": 38528
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5747
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00470843,
+      "allowance": 0.00282506,
+      "tokens": {
+        "input": 59,
+        "output": 7640,
+        "reasoning": 5747,
+        "cache_read": 38528,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“2023 年 3 月 GESP C++ 二级试卷解析”；第 9—10 页为判断题第 1—10 题，与 paperId 的年份、月份和二级信息一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题第 1 题原文与网站题干一致，均讨论 4GB 和 4096MB 的 U 盘及“容量大的盘是笑笑的”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以判断题【答案】x 呈现；网站使用“正确/错误”二元选项，与判断题形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页标注【答案】x，即“错误”，对应网站 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF 解析说明 1GB=1024MB、4GB 与 4096MB 容量一样大，网站主体推导正确；但网站解析末尾称题干未指明谁抽到 4GB、谁抽到 4096MB，与题干“分别”所表达的对应关系矛盾，需要修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n计算机存储单位通常按 1024 进制换算：`1GB = 1024MB`。因此 `4GB = 4 × 1024MB = 4096MB`。明明抽到 4GB，笑笑抽到 4096MB，两人的 U 盘容量完全相同，不存在“笑笑的容量更大”，所以题干判断错误。\n\n**易错提醒：**\n- 误按 `1GB = 1000MB` 会把 4GB 算成 4000MB，从而误判大小；本题应按考试约定的 1024 进制换算。\n- 不能只比较数字 4 和 4096，必须先统一单位。\n- 题干中的“分别”已经对应了分配关系：明明 4GB，笑笑 4096MB；关键是二者容量相等，而不是分配关系不明。\n\n**知识延伸：**\n常见换算为 `1KB = 1024B`、`1MB = 1024KB`、`1GB = 1024MB`、`1TB = 1024GB`。实际存储设备标称容量还可能受十进制定义或文件系统开销影响，但本题按试卷约定的二进制换算判断。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题第 2 题原文与网站题干一致，均写 IPv4 点分十进制形如 a.b.c.d，并称各段为 1~255。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以判断题【答案】x 呈现；网站“正确/错误”选项等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页标注【答案】x，即“错误”，对应网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 解析指出每段应为 0~255；网站解析同样说明 8 位无符号数范围为 0~255，并指出 0 是合法取值，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 3 题原文与网站题干一致，均为“在 C++ 语言中，一个程序不能有多个 main 函数”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以判断题【答案】√ 呈现；网站“正确/错误”选项等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页标注【答案】√，即“正确”，对应网站 answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF 解析只说明一个程序只能有一个 main 函数；网站解析称同一源文件定义多个 main“编译阶段可能通过”不准确：同一翻译单元内重复定义会编译报错，跨源文件才是链接时多重定义。需修正表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n标准 C++ 程序必须且只能有一个位于全局作用域的 `main` 函数，作为程序执行入口。若在同一个源文件中重复定义 `main`，编译器会报重定义错误；若在多个源文件中分别定义 `main`，各源文件可分别编译，但链接时会出现多重定义错误，无法生成正常的可执行程序。因此“一个程序不能有多个 main 函数”的说法正确。\n\n**易错提醒：**\n- 命名空间中可以出现名为 `main` 的普通函数（如 `ns::main`），但它不是程序入口；程序入口要求是全局作用域的 `main`。\n- “一个项目可以包含多个源文件”不等于“可以有多个 `main` 函数”；多文件程序仍然只能有一个 `main` 定义。\n- 某些平台或框架可能使用非标准入口或重命名入口，但这不改变标准 C++ 对全局 `main` 唯一性的要求。\n\n**知识延伸：**\n`main` 的常见标准形式为 `int main()` 或 `int main(int argc, char* argv[])`；程序从 `main` 开始执行，`return 0;` 通常表示正常结束。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 4 题原文与网站题干一致，均为“标识符中可以有下划线，但不能以下划线开头”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以判断题【答案】x 呈现；网站“正确/错误”选项等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页标注【答案】x，即“错误”，对应网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 解析指出标识符不能以数字开头，但未禁止下划线开头；网站解析正确说明标识符可以以下划线开头，题干“不能以下划线开头”错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题第 5 题原文与网站题干一致，均讨论 int 变量 a 的值为 1 时表达式 'a' 的值是否为 '1'。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 以判断题【答案】x 呈现；网站“正确/错误”选项等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页标注【答案】x，即“错误”，对应网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 解析指出带单引号的 'a' 是字符常量，与变量 a 无关，且与 '1' 不同；网站进一步用 ASCII 码 97 和 49 说明，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题号 16—20。五题的题面、选项形式、官方答案均与 PDF 第 9—10 页一致；其中第 16 题解析末句关于“未指明谁抽到哪个盘”的说法错误，第 18 题解析关于多个 main 在编译/链接阶段的表述不严谨，均已给出完整修正草稿。其余题目的解析未发现实质性问题。本批均为判断题，无编程题参考代码或边界测试。"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "executedAt": "2026-11-08T18:07:41.233Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3",
+          "output": "A\nBC\nDEF",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "A\nBC\nDEF\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 n=2",
+          "input": "2\n",
+          "output": "A\nBC\n",
+          "reason": "约束下限 2≤n≤40 的最小值；独立模拟参考代码：第 1 行 1 个字母 A，第 2 行 2 个连续字母 B、C。",
+          "kind": "boundary",
+          "actual": "A\nBC\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例1 n=3",
+          "input": "3\n",
+          "output": "A\nBC\nDEF\n",
+          "reason": "PDF 第 12 页样例 1；按第 i 行 i 个连续字母独立核对该输出。",
+          "kind": "boundary",
+          "actual": "A\nBC\nDEF\n",
+          "passed": true
+        },
+        {
+          "name": "边界跨 Z 回绕 n=7",
+          "input": "7\n",
+          "output": "A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB\n",
+          "reason": "PDF 第 12 页样例 2；共 28 个字符，第 27、28 个字符越过 Z 后回绕为 A、B，末行 VWXYZAB，验证回绕与边界。",
+          "kind": "boundary",
+          "actual": "A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "02d2df3da40e622e4f98f3e6756449f17a1017791d2bd9c4654dc1409d86c88e"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "5 3 3 100 100",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=m=1",
+          "input": "1 1 1 1 1\n",
+          "output": "3\n",
+          "reason": "约束下限；1 元买 1 只鸡，公鸡、母鸡、小鸡（z=1 时 1 只 1 元）各有一种买法，独立枚举 i,j 三个有效组合得 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例1",
+          "input": "5 3 3 100 100\n",
+          "output": "4\n",
+          "reason": "PDF 第 14 页样例 1；乘 z 化简为 7i+4j=100，独立解得 (0,25)、(4,18)、(8,11)、(12,4) 四组非负解。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例2 z=1",
+          "input": "1 1 1 100 100\n",
+          "output": "5151\n",
+          "reason": "PDF 第 14 页样例 2；z=1 时任意 0≤i+j≤100 均满足方程，方案数 101×102/2=5151。",
+          "kind": "boundary",
+          "actual": "5151\n",
+          "passed": true
+        },
+        {
+          "name": "小鸡成组约束 z=2",
+          "input": "1 1 2 5 5\n",
+          "output": "6\n",
+          "reason": "代入 z=2 后条件化为 i+j=5 且 k=0，独立枚举得 6 组解；验证恰好花完 n 元且小鸡数 k 须为 z 的倍数这一语义，站内代码与官方参考程序结果一致。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "最大范围 z=1",
+          "input": "1 1 1 1000 1000\n",
+          "output": "501501\n",
+          "reason": "n=m=1000 覆盖上限，任意 i+j≤1000 均合法，方案数 (1001)×1002/2=501501，同时检验循环量约 5×10⁵ 与计数值均在 int 范围内。",
+          "kind": "boundary",
+          "actual": "501501\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "b72619f1875b6a3c2fbd7a63b307d95ad696cac8520248315b15929277e770a6"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:05:53.808Z",
+  "completedAt": "2026-11-08T15:08:15.460Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64297,
+    "completion_tokens": 9444,
+    "total_tokens": 73741,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6856
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01436655,
+      "allowance": 0.01436655,
+      "tokens": {
+        "input": 64297,
+        "output": 9444,
+        "reasoning": 6856,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『2023年3月 GESP C++ 二级试卷解析』，单选判 断编程三部分及各题考纲均标注二级，与试卷编号 2023-03-l2（2023年3月 C++ 二级）一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "否决 DeepSeek 初核第6题条目：其把第5题『关键字』题（return/max/else/case，标答 B）的题干、选项和页码证据误写进第6题，张冠李戴。按 PDF 第3—4页原图独立核验：第6题为『运算符』题（A \\=、B /=、C -=、D !=），标答 A 即索引 0，与官网数据完全一致，维持官网原数据、零修改。官网 sourcePage=4 未覆盖第3页题干起始，因该字段不在可修改字段清单内，仅在此备注。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页末行题干『以下哪个不是 C++语言的运算符？』，第4页继以选项与标答；官网 question 与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项 A 为反斜杠加等号（\\=），第4页原图首三行依次为 B. /=、C. -=、D. !=；官网 options 顺序与内容一致（JSON 中 '\\\\=' 解码即字面 \\=）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页第6题【答案】A，按 A/B/C/D 顺序映射 0 起始索引为 0；官网 answer=0 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：C++ 中不存在 \\= 运算符；/= 与 -= 为复合赋值（a/=b 等价 a=a/b，a-=b 等价 a=a-b）；!= 为不等于关系运算符。官网解析各项判定与 PDF 第4页【解析】一致，并正确补充复合赋值需双目运算符粘合 '=' 等要点，结论无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核：DeepSeek 对第7题页码、题干、选项与标答的核对正确。另注意 PDF 原文 D 项解析把变量 a 误称『char 类型常量』属原卷措辞瑕疵，官网解析已正确表述为变量并用左值/右值说理，更严谨，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第7题题干『如果 a 和 b 都是 char 类型的变量，下列哪个语句不符合 C++语法？』；官网一致（空格排版差异不影响语义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页依次 A. b = a + 1;、B. b = a + '1';、C. b = 'a'++;、D. b = a++;；官网 options 顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页第7题【答案】C，映射 0 起始索引 2；官网 answer=2 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：'a' 是字符字面量（右值），++ 要求可修改左值，故 b = 'a'++ 为编译错误，符合题意；变量 a 作后置自增合法且原值赋给 b；b = a+1、b = a+'1' 中 char 参与运算提升为 int 后截断赋回 b，均合法。官网各选项判定与独立结论及 PDF【解析】一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、四个选项、标答 C（索引2）及页码均与 PDF 第5页原图一致；官网解析经独立推导无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第8题题干『如果 a、b、c 和 d 都是 int 类型的变量，则下列哪个表达式能够正确计算它们的平均值？』；官网一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页依次 A. (a+b+c+d)/4、B. (a+b+c+d)%4、C. (a+b+c+d)/4.0、D. (a+b+c+d)%4.0；官网 options 顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页第8题【答案】C，映射 0 起始索引 2；官网 answer=2 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：整数和除以整数 4 属整型除法会截断（如和为 7 时 7/4=1）；%4 求余与平均无关；与 4.0 混合运算时 int 提升 double 得到小数；% 运算符不能作用于浮点操作数，% 4.0 编译报错。官网解析与该结论及 PDF【解析】一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、选项、标答 B（索引1）与 PDF 第5页原图一致；官网解析（含警告层面的补充说明）经独立推导无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第9题题干『如果 a 为 char 类型的变量，且 a 的值为'2'，则下列哪条语句执行后，a 的值不会变为'3'?』；官网一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页依次 A. a = a + 1;、B. a + 1;、C. a = 1 + a;、D. ++a;；官网 options 顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页第9题【答案】B，映射 0 起始索引 1；官网 answer=1 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：'2' 与 '3' 的 ASCII 码为 50、51；A 与 C 均把加 1 结果赋回 a，a 变 '3'；D 前置自增等价自加后使用，a 同样变为 '3'；B 仅求值并丢弃结果、无副作用，a 保持 '2'。官网逐项判定与此及 PDF【解析】一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干位于第5页末、选项与标答在第6页，页码划分正确；官网数据与解析经独立推导无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页末题干『如果 a 为 int 类型的变量，且 a 的值为 9，则执行 a -= 3;之后，a 的值会是（）。』；官网一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页原图依次 A. 3、B. 6、C. 9、D. 12；官网 options 顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页第10题【答案】B，映射 0 起始索引 1；官网 answer=1 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：复合赋值 a -= 3 等价于 a = a - 3，9-3=6 即选 B；官网解析还正确提示 -3≠除法行为及 a=-b 类笔误陷阱，与 PDF【解析】结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核题6—10共5题，全部独立核验通过（verdict=approve），官网原数据无实质问题、零修改（changes 均为空）。标答映射：第6题 A→0、第7题 C→2、第8题 C→2、第9题 B→1、第10题 B→1，与官网 answer 逐一相符；题干、选项顺序与内容逐项对照 PDF 第3—6页原图无出入，解析均经独立推导确认。特别否决 DeepSeek 初核第6题条目：其误用第5题『关键字』题的内容与证据、仅因两个索引同为 0 而侥幸未露错，已按原卷重新核验；其余四题接受初核。本批均为单选题，referenceCode 记 not_applicable；无编程题，故不提供 tests。"
+  }
+}

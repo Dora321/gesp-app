@@ -1,0 +1,235 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:08:57.568Z",
+  "completedAt": "2026-11-08T15:10:39.529Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64311,
+    "completion_tokens": 6960,
+    "total_tokens": 71271,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4404
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01312665,
+      "allowance": 0.01312665,
+      "tokens": {
+        "input": 64311,
+        "output": 6960,
+        "reasoning": 4404,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标题为“2023 年 3 月 GESP C++ 二级试卷解析”，且多数题目【考纲知识点】标注二级，与 paperId 2023-03-l2（2023 年 3 月、C++、二级）一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其 statement/options/answer 证据与我从第 6 页页图独立识别的原文逐字相符；解析维度我另行独立推演（A 为逻辑或、B 为链式比较判“a 与 b 是否不相等”、C 为逻辑与、D 差值为 0 判“同为 0 或同非 0”），结论与其一致，无否决项。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干“如果 a 和 b 均为 int 类型的变量, 下列表达式能正确判断“a 等于 0 或 b 等于 0” 的是（）”，与网站题干仅存标点等价差异，含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页页图 A-D 依次为 (!a) || (!b)、(a == b == 0)、(a == 0) && (b == 0)、(a == 0) - (b == 0) == 0，顺序与符号和网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页【答案】A，对应 0 起始索引 0；网站 answer=0，映射一致。我的独立推导亦确认仅 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：0 为假非 0 为真，!a 即 a==0；B 中 a==b 先得 0/1 再与 0 比较，整体在 a、b 不相等时为真；C 要求两者同时为 0；D 中 (a==0)-(b==0) 取 -1/0/1，为 0 当且仅当两者同为 0 或同非 0。网站解析各选项结论与官方红字解析（第 6 页）及我的推演完全一致，且无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题干与选项分布（A 在第 6 页末、B-D 在第 7 页）与其登记的 sourcePages[6,7] 相符，我按页图独立核对一致；解析维度我独立验证了 97~122 区间判断及 A/B/C 三项失效原因，接受其结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页末题干“12. 如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a 是小写字母”？”与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页末 A 为 a <= a <= z，第 7 页 B-D 依次为 a - 'a' <= 'z' - 'a'、'a' <= a <= 'z'、a >= 'a' && a <= 'z'，与网站 options 顺序内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页【答案】D，对应 0 起始索引 3；网站 answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：小写字母 ASCII 连续（'a'=97~'z'=122），需双边界与 && 连接，即 D。A 中 z 未声明（且 1<=z 恒真）非法；B 等价于 a<='z' 只给上界，大写字母、数字等也满足；C 链式比较 0/1 恒小于 'z' 恒真。网站解析与官方解析（第 7 页）及我的推演一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 7 页页图代码（含第 5 行下划线及注释“// 在此处填入代码”）与网站代码逐行一致；答案映射 C→2 一致。四个选项我全部独立代入复算（A 输出 50 90、B 输出 50 -10、C 输出 50 10、D 输出 50 0），仅 C 正确，与其解析一致，无否决。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页代码为 int a = 10, b = 50; → 下划线行; → b -= a; → a += b; → cout << a << \" \" << b << endl;，与网站题面代码一致，填空位置与注释相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 A-D 依次为 a -= b、a += b、a = b - a、a = b，与网站 options 一致（均无分号，等价）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页【答案】C，对应 0 起始索引 2；网站 answer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：A a=10-50=-40，得输出 50 90；B a=60 得 50 -10；C a=40 后 b=10、a=50，得 50 10；D a=50 得 50 0。仅 C 满足目标输出 50 10。网站解析倒推 x=40 及四选项演算与我的结果完全一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图程序（cnt=0、for(char ch='1'; ch<='9'; ch++)、if 条件 cnt++、输出 cnt）与网站代码一致；选项与答案 D→3 一致。四个条件计数我独立复算为 4、9、6、5，与解析一致，无否决。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页代码为 int cnt = 0;、for (char ch = '1'; ch <= '9'; ch++)、if (________) cnt++;、cout << cnt << endl;，与网站题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 A-D 依次为 ch < '5'、ch >= 5、ch >= '4'、ch % 2 == 1，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页【答案】D，对应 0 起始索引 3；网站 answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：ch 依 ASCII 49~57 取 '1'~'9' 共 9 个。A 筛 <'5' 得 4 个；B 恒真（int 5 小于 49）得 9 个；C 从 '4' 起得 6 个；D 奇 ASCII 49/51/53/55/57 对应 5 个字符，cnt=5。网站解析数值与官方解析（第 8 页，5 个奇数）一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核，但对其 statement 结语另行独立评估：PDF 第 8 页为完整程序，网站截为片段（省略 iostream 外壳、main 与 << endl）。经逐句比对，影响输出的全部语句（n=17、isprime=true、i<=n 循环至 17、17%17==0 置 false、cout<<isprime）均被保留，缺失部分不改变输出值 0，也不改变 A-D 选项映射，故判定为不影响题意的等价截取而非漏必要代码，接受其 verified 结论。解析维度我独立复算（i=17 时进入分支，bool 输出数值 0），与官方解析一致，接受。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页完整程序含 int n = 17;、bool isprime = true;、for (int i = 2; i <= n; i++)、n % i == 0 时 isprime = false、cout << isprime << endl;；网站片段保留全部决定输出的语句，仅省略预处理器/函数外壳与 endl，不改变本题输出值判定（0）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页末 A 为 false，第 9 页 B-D 为 true、0、1，与网站 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页【答案】C，对应 0 起始索引 2；网站 answer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：循环上界 i<=n 使 i=17 时 17%17==0，isprime=false；C++ 中 cout 输出 bool 转 int，false 输出 0。网站逐步走查与官方解析（第 9 页）一致，其“判断素数正确上界应为 i<n”的提示亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "独立复核题 11-15（均为单选题）：题干、选项顺序、官方答案映射均与 PDF 第 6-9 页页图逐字核对一致（officialAnswer 分别为 0/3/2/3/2）；解析维度对每题独立推演——题 11 验证逻辑或与 D 选项差值语义，题 12 验证 97~122 区间判断与 A/B/C 失效原因，题 13 对四个选项全部代入复算（仅 C 输出 50 10），题 14 复算各条件命中数为 4/9/6/5，题 15 验证 i<=n 使 i=17 命中且 bool 输出 0——均未发现事实错误，changes 全部为空。题 15 网站将原卷完整程序截为片段，经逐句比对不影响输出判定，属可接受等价呈现；对 DeepSeek 初核五条记录均予接受，无否决项。本批无编程题，tests 为空，无 unresolved。"
+  }
+}

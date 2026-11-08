@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T16:46:57.452Z",
+  "completedAt": "2026-11-08T16:48:48.611Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64209,
+    "completion_tokens": 8635,
+    "total_tokens": 72844,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6414
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01394885,
+      "allowance": 0.01394885,
+      "tokens": {
+        "input": 64209,
+        "output": 8635,
+        "reasoning": 6414,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "11b3b31ca3289919be46c06025966d0d64268247d37ece8b52df77161f3ef758",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 3 月 GESP C++ 二级试卷解析”，正文明确“本次为大家带来的是 2023 年 3 月份，C++ 二级考试真题解析”，与网站 title（2023年3月 GESP C++ 二级真题）、level=2、year=2023、month=3 完全一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题6原文为“在 if ... else 语句中，else 子句可以嵌套 if ... else 语句，但 if 子句不可以，因为会造成二义性。”，与网站题面逐字一致（仅PDF内换行排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设单选选项；网站 options 中的 正确/错误 仅用于答案映射，选项维度对本题不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页【答案】标为 ×，按 错误=索引1 映射得 1，网站 answer=1 一致。独立推导：C++ 中 if 真分支与 else 假分支均可嵌套 if...else，悬挂 else 由文法规则（与最近的未匹配 if 结合）消解，题干“if 子句不可以嵌套”的说法不成立，确为错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出“if 语句可以嵌套 if...else。如果嵌套后与预期语义不符，可以使用复合语句{…}加以区别”。网站解析独立阐述控制结构可自由嵌套、if 子句与 else 子句均可包含 if-else，并给出闰年判断嵌套示例与 switch 重构建议，技术上正确且可独立成立，结论与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照 PDF 第10页原题与答案符号（×→索引1），并独立验证嵌套语法结论，DeepSeek 草稿各维度判断属实，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题7原文为“while 语句的循环体至少会执行一次。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设单选选项；网站 options 中的 正确/错误 仅用于答案映射，选项维度对本题不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第11页【答案】标为 ×，映射为索引1，网站 answer=1 一致。独立推导：while 为入口条件判断，首次条件求值为假时循环体一次都不执行，只有 do-while 保证至少执行一次，题干说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析说明“while()语句是否会执行循环体，取决于小括号中的条件是否成立，若最开始条件不成立，则一次都不会执行循环体”。网站解析阐述入口条件判断机制、与 do-while 出口条件判断对比，并延伸说明 for 同为入口测试，独立推导一致、内容完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对 PDF 第11页原文与 ×→索引1 映射，并对 while/do-while 语义自行推导，与草稿结论一致，无修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题8原文为“C++语言中>=是运算符，但=>不是。”，与网站题面一致（空格排版差异不影响含义）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设单选选项；网站 options 中的 正确/错误 仅用于答案映射，选项维度对本题不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第11页【答案】标为 √，按 正确=索引0 映射得 0，网站 answer=0 一致。独立推导：>= 是合法关系运算符，=>（及 =<）不是 C++ 运算符，题干正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出“>=是表示‘大于等于’的关系运算符，=>不是 C++中的运算符”。网站解析补充 C++ 六个关系运算符列表、=> 在 C#/TypeScript 中的他语言用法、优先级关系（关系运算符低于算术、高于赋值，a + b >= c 等价于 (a + b) >= c），技术上正确且独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对 PDF 第11页原文与 √→索引0 映射，并对运算符合法性自行验证（=> 非 C++ 运算符），与草稿一致，无修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题9原文为“如果 a 为 char 类型的变量，且取值为小写字母，则执行语句 a = a - 'a' + 'A'; 后，a 的值会变为与原值对应的大写字母。”，与网站题面一致，关键代码 a = a - 'a' + 'A'; 完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设单选选项；网站 options 中的 正确/错误 仅用于答案映射，选项维度对本题不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第11页【答案】标为 √，映射为索引0，网站 answer=0 一致。独立推导：小写字母 ASCII 码 97~122，a 减 'a'(97) 得偏移 0~25，加 'A'(65) 得 65~90，恰为对应大写字母，题干正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析说明“小写字母减去'a'会得到0~25，加上'A'后刚好就是对应从'A'~'Z'”。网站解析以码值 97/65 逐步推演并说明减法消除相对位置差异，同时提示该式仅适用于小写字母、延伸 toupper/tolower 知识，独立推导一致且更完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对 PDF 第11页原文、√→索引0 映射，并按 ASCII 码独立验证大小写转换公式，与草稿一致，无修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          11
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第11页判断题10原文为“表达式(10.0 / 2)的计算结果为 5.0，且结果类型为 double。”，与网站题面一致（题面 5.0 处 PDF 有高亮标记，内容相同）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设单选选项；网站 options 中的 正确/错误 仅用于答案映射，选项维度对本题不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第11页【答案】标为 √，映射为索引0，网站 answer=0 一致。独立推导：10.0 为 double 字面量，int 型 2 在除法前经寻常算术转换提升为 double，10.0/2 结果为 5.0 且类型为 double，题干正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出“浮点数与整数的计算结果类型为浮点型”。网站解析按寻常算术转换给出 int→long→float→double 提升序列、演示 (10.0/2) 即 10.0/2.0 的过程，并以 10/3 与 10.0/3 的对比区分整型除法截断，独立推导一致且可独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对 PDF 第11页原文、√→索引0 映射，并按混合类型提升规则独立验证 10.0/2 的结果与类型，与草稿一致，无修改。"
+      }
+    ],
+    "summary": "本次独立复核题21~25（对应原卷判断题第6~10题，位于PDF第10~11页）。五题题面均与PDF原文逐字一致；答案符号（×、×、√、√、√）按 正确=0/错误=1 映射为 1、1、0、0、0，与网站 answer 全部吻合，且经独立语义推导确认：if/else 分支均可嵌套 if...else（悬挂 else 由文法规则消解）、while 首测条件为假时不执行循环体、>= 合法而 => 非法、a-'a'+'A' 完成小写转大写、10.0/2 结果 5.0 且类型为 double。五题解析均能与官方解析互证且各自独立成立。判断题的 options 与 referenceCode 维度记为 not_applicable；无编程题，tests 为空。未发现任何需要修改的字段，changes 均为空，初核草稿结论全部接受，五题 verdict 均为 approve。"
+  }
+}
