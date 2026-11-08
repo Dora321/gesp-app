@@ -1,0 +1,249 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    7,
+    13,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:14:43.590Z",
+  "completedAt": "2026-11-08T12:16:58.992Z",
+  "finishReason": "stop",
+  "inputSha256": "a5f7c399dbedff55a52cab5ecfe407ecbea9b66463db131a795d4aef0569d0b9",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 一级 2025年09月”，与 paperId 2025-09-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题题干、代码框架（含 if(M==0) 分支及两处 printf 字符串）与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A.N % 12、B.9 + N % 12、C.(9 + N) / 12、D.(9 + N) % 12，顺序与写法一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 D，0起始索引3；候选 answer=3。独立验证 N=3 时 (9+3)%12=0 应输出12月，N=5 时 14%12=2 应输出2月，均与 D 吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核取余映射及 0→12月 分支成立；B 选项在 N%12 为4~11时得13~20、且任何情况下不为0的失效说明已修正，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第13题题干、9行代码、div 的循环构造及 cout 占位符与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A.N % div / 10、B.N / div / 10、C.N % div % 10、D.N / div % 10，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 D，0起始索引3；候选 answer=3。独立验证 N=1234、M=2 时 1234/10%10=3，与题例一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选核心公式 D 正确，但 A、C 两项说明仍不精确：A 在 M≥3 时得到的是第2位至第M-1位组成的数，不是单一位；C 在 M=1 时 N%1%10=0，并非原数个位。已提供修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (N / div % 10)**\n\n**核心解析：**\n循环把 `div` 算成 `10^(M-1)`：M=1 时 `div=1`，M=2 时 `div=10`，M=3 时 `div=100`……\n\n要取从右往左第 M 位，分两步：\n\n1. **先整除 `div`**：`N / div` 去掉低 M-1 位，第 M 位落到个位；\n2. **再对 10 取余**：`% 10` 取个位，即第 M 位。\n\n所以顺序必须是“先除后模”：`N / div % 10`。\n\n**验证：** N = 1234、M = 2 → `div = 10`：`1234 / 10 = 123`，`123 % 10 = 3`，与题例一致。\n\n**选项逐项分析：**\n- **A (N % div / 10)**：❌ 错误。`N % div` 只保留低 M-1 位，再 `/10` 去掉个位；M=1 或 2 时得 0，M≥3 时得到第 2 位到第 M-1 位组成的数，不是第 M 位。\n- **B (N / div / 10)**：❌ 错误。连除两次相当于 `N / 10^M`，得到的是去掉低 M 位后剩下的高位数（如 `1234/10/10 = 12`），不是一位数字；再补 `%10` 得到的是第 M+1 位（2），不是第 M 位。\n- **C (N % div % 10)**：❌ 错误。M≥2 时 `N % div` 的个位就是原数个位，再 `%10` 仍是个位；M=1 时 `N%1%10=0`；不能正确得到第 M 位（M=1 的目标是个位）。\n- **D (N / div % 10)**：✅ 正确。先砍低位，再取个位。\n\n**易错提醒：**\n- “先除后模”与“先模后除”结果不同：前者能定位到第 M 位，后者只会在低位里打转。\n- `div` 的初值 1 与循环 `i < M-1` 配套：M=1 时不循环，`div=1`，正好取个位。\n\n**知识延伸：**\n若要取最高位，可先求总位数 `len`，再用 `N / 10^(len-1)`；按 `k` 进制拆位时把 10 换成 `k`。\n\n**考点：** 整数除法与取余的组合拆位、循环构造 10 的幂"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6-7页题目描述、满减仅一次及33元示例、输入输出格式和 3.1.5 数据范围（1≤y<x≤100，1≤n<10，1≤p≤100）与候选一致；候选已包含数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表条目，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例1得3.00、样例2得2.20；满减仅一次、p<x 不减免、p*n/10 整数截断风险、fixed 与 setprecision(2) 保留两位小数的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与官方参考程序等价：a1=p; if(a1>=x) a1-=y; a2=p*0.1*n; min(a1,a2)。p≤100、n<10 下无溢出，double 输出两位小数正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小数据且满减不可用",
+            "input": "2\n1\n1\n1",
+            "output": "0.10",
+            "reason": "p=1<x=2 时方案一支付1；方案二 1×1/10=0.1；取较小值并保留两位小数。"
+          },
+          {
+            "name": "p=x 满减门槛边界",
+            "input": "2\n1\n1\n2",
+            "output": "0.20",
+            "reason": "p=x=2 时方案一支付 2-1=1；方案二 2×1/10=0.2；取较小值。"
+          },
+          {
+            "name": "p<x 上界边界",
+            "input": "100\n99\n9\n1",
+            "output": "0.90",
+            "reason": "x=100 为范围上界，p=1<x 时方案一支付1；方案二 1×9/10=0.9；取较小值。"
+          },
+          {
+            "name": "最大价格与最大折扣",
+            "input": "2\n1\n9\n100",
+            "output": "90.00",
+            "reason": "p=100 为范围上界，方案一 100-1=99；方案二 100×9/10=90；取较小值90。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页题目描述、输入输出格式和 3.2.5 数据范围（1≤n≤50）与候选一致；候选已包含数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表条目，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例1得5、样例2得55；n=50 时平方和为 50×51×101/6=42925，int 足够，候选修订后的类型说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选以 long long 累加 1^2 至 n^2，与官方 int ans、for(i=1;i<=n;i++) ans+=i*i 等价；n≤50 时最大42925，无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小层数",
+            "input": "1",
+            "output": "1",
+            "reason": "n=1 时仅一层，石块数为 1×1=1。"
+          },
+          {
+            "name": "中间层数",
+            "input": "7",
+            "output": "140",
+            "reason": "独立累加 1+4+9+16+25+36+49=140，覆盖非样例的中间取值。"
+          },
+          {
+            "name": "最大层数",
+            "input": "50",
+            "output": "42925",
+            "reason": "n≤50 的上界，平方和公式 50×51×101/6=42925。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        7,
+        13,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 23003,
+        "completion_tokens": 21912,
+        "total_tokens": 44915,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 19223
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01659765,
+          "allowance": 0.00995859,
+          "tokens": {
+            "input": 23003,
+            "output": 21912,
+            "reasoning": 19223,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T12:14:43.590Z",
+      "completedAt": "2026-11-08T12:16:58.992Z"
+    }
+  ]
+}

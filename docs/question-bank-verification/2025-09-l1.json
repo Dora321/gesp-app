@@ -265,40 +265,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "第2页第7题题干、月份计算代码框架、if(M==0) 分支及输出语句均与网页一致。",
-          "review": "第2页第7题题干「当前是9月…求N个月后的月份」及代码框架（int N,M; cin>>N; M=____; if (M==0) printf(\"%d个月后12月\",N); else printf(\"%d个月后是%d月\",N,M);）与网站题面逐字一致。"
+          "initial": "PDF 第2页第7题题干、代码框架（含 if(M==0) 分支及两处 printf 字符串）与候选一致。",
+          "review": "第 2 页页图第 7 题题干「当前是9月，编写C++代码求N个月后的月份。横线处应填入的代码是（ ）。」及代码框 7 行（int N, M; / cin >> N; / M = ____; / if (M == 0) / printf(\"%d个月后12月\", N); / else / printf(\"%d个月后是%d月\", N, M);）与候选逐字一致。"
         },
         "options": {
-          "initial": "第2页选项依次为 A.N % 12、B.9 + N % 12、C.(9 + N) / 12、D.(9 + N) % 12；网页顺序一致。",
-          "review": "第2页图片选项依次为 A.N % 12、B.9 + N % 12、C.(9 + N) / 12、D.(9 + N) % 12，与网站一致。"
+          "initial": "PDF 第2页选项依次为 A.N % 12、B.9 + N % 12、C.(9 + N) / 12、D.(9 + N) % 12，顺序与写法一致。",
+          "review": "第 2 页页图第 7 题选项依次为 A. N % 12、B. 9 + N % 12、C. (9 + N) / 12、D. (9 + N) % 12，顺序与写法与候选一致。"
         },
         "answer": {
-          "initial": "第1页答案表第7题为 D，对应0起始索引3；网页 answer=3 一致。",
-          "review": "第1页答案表第7题为 D，对应0起始索引3；网站 answer=3 一致。独立验证：N=3 时 (9+3)%12=0 走 if 分支输出「3个月后12月」√；N=5 时 14%12=2 输出「5个月后是2月」√；C 取商、A 漏起点 9，均确为错项。"
+          "initial": "PDF 第1页答案表第7题为 D，0起始索引3；候选 answer=3。独立验证 N=3 时 (9+3)%12=0 应输出12月，N=5 时 14%12=2 应输出2月，均与 D 吻合。",
+          "review": "第 1 页答案表第 7 题为 D（0 起始索引 3），候选 answer=3。独立验证：N=3 时 (9+3)%12=0 走 if 分支输出「3个月后12月」，N=5 时 14%12=2 输出「5个月后是2月」，均与题意吻合；A 漏掉起点 9、C 取商、B 仅 N 参与取余，均确为错项。"
         },
         "explanation": {
-          "initial": "独立推导：从9月起过N个月，月份由 (9+N) 对12取余得到，余数0需单独映射为12月。如N=3得0，输出12月；N=5得2，输出2月。解析与答案一致。",
-          "review": "核心推导（9+N 对 12 取余、余 0 映射 12 月）独立复核成立；但原解析对 B 选项的示例「结果可能超过 12（如 N=15 得 12），不是合法月份」存在事实矛盾：9+(15%12)=12 恰为合法月份且未超过 12，B 实际失效情形是 N%12∈4~11 时得 13~20（如 N=4 得 13），且 N%12=3 时 M 永不为 0、12 月专用 if 分支走不到。已提供修复后的完整 explanation 字段，修复后核验通过。"
+          "initial": "独立复核取余映射及 0→12月 分支成立；B 选项在 N%12 为4~11时得13~20、且任何情况下不为0的失效说明已修正，无事实错误。",
+          "review": "独立复核候选解析：D 的取余映射（余 1~11 对应月份、余 0 经 if(M==0) 映射 12 月）成立，验证例 N=3→0、N=5→2 正确；对 B 的失效分析经本人补充推演（N%12=0/1/2 时 B 与 D 恰同值，N%12=3 时 B=12 虽为合法数字但 M 不为 0、走不到 12 月专用 if 分支且输出格式不符，N%12∈4~11 时得 13~20 非法）确认无误；环形映射通式 ((起点+偏移-1)%周期)+1 亦验算正确。未再发现事实错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l1.glm.json"
       ]
     },
     {
@@ -968,92 +972,88 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 6-7 页题面完整，并给出数据范围“1 ≤ y < x ≤ 100，1 ≤ n < 10，1 ≤ p ≤ 100”；站内 question 缺少该数据范围。",
-          "review": "逐句对照 PDF 第 6-7 页 3.1.1-3.1.3：题面（含满减仅一次、33 元物品支付 30 元示例）、输入输出格式与站内完全一致；PDF 第 7 页 3.1.5 数据范围为「1 ≤ y < x ≤ 100，1 ≤ n < 10，1 ≤ p ≤ 100」（页图可见），站内 question 缺失该节。已在 changes.question 末尾补全「## 数据范围」，修复后核验通过。"
+          "initial": "PDF 第6-7页题目描述、满减仅一次及33元示例、输入输出格式和 3.1.5 数据范围（1≤y<x≤100，1≤n<10，1≤p≤100）与候选一致；候选已包含数据范围。",
+          "review": "第 6-7 页页图：3.1.1 题目描述（满 x 减 y、打 n 折为原先 n÷10、1≤y<x、1≤n<10、「满减优惠只能使用一次」及满 10 减 3 买 33 元物品付 30 元示例）、3.1.2/3.1.3 输入输出格式、3.1.4 两组样例（8 7 9 10→3.00；8 7 2 11→2.20）与候选 question/samples 一致；3.1.5 数据范围 1≤y<x≤100、1≤n<10、1≤p≤100 与候选「### 数据范围」一字不差（候选已含该节）。"
         },
         "explanation": {
-          "initial": "站内解析独立推导满减只能一次、n 折公式、整数除法风险及 fixed/setprecision(2) 输出；样例 1 得 3.00、样例 2 得 2.20，推导正确。",
-          "review": "独立复算：样例1（x=8,y=7,n=9,p=10）方案一 10-7=3、方案二 10×9/10=9，取 3 输出 3.00；样例2（x=8,y=7,n=2,p=11）方案一 4、方案二 2.2，取 2.2 输出 2.20。解析中「满减只能一次、p<x 不减、整数运算 p*n/10 截断（11*2/10=2）、fixed+setprecision(2) 补齐末尾 0」各点均与官方题意和参考程序一致，无事实错误。"
+          "initial": "独立复算样例1得3.00、样例2得2.20；满减仅一次、p<x 不减免、p*n/10 整数截断风险、fixed 与 setprecision(2) 保留两位小数的说明均正确。",
+          "review": "独立复算：样例 1（x=8,y=7,n=9,p=10）方案一 10-7=3、方案二 10×9/10=9，取 3 输出 3.00；样例 2（x=8,y=7,n=2,p=11）方案一 4、方案二 2.2，输出 2.20。解析中「满减仅一次非每满减、p<x 不减免、p*n/10 整数截断（11*2/10=2）、fixed+setprecision(2) 补齐末尾 0」各点均与官方题意相符，无事实错误。"
         },
         "referenceCode": {
-          "initial": "PDF 第 7 页官方参考程序用 min(a1,a2)；站内代码用 if 取较小值，逻辑等价。O(1)，在 p ≤ 100 下 double 精度足够，样例结果正确。",
-          "review": "PDF 第 7 页官方参考程序为 a1=p; if(a1>=x) a1-=y; a2=p*0.1*n; printf(\"%.2lf\\n\", min(a1,a2))；站内版本（p1=p; if(p>=x) p1-=y; p2=p*n/10.0; if-else 输出 fixed setprecision(2)）与之逐条等价，if-else 即取 min。p≤100、n<10 下 p*n≤900 无溢出，浮点精度足以正确舍入两位小数，样例复算一致。"
+          "initial": "候选代码与官方参考程序等价：a1=p; if(a1>=x) a1-=y; a2=p*0.1*n; min(a1,a2)。p≤100、n<10 下无溢出，double 输出两位小数正确。",
+          "review": "第 7 页页图官方参考程序为 a1=p; if(a1>=x) a1-=y; a2=p*0.1*n; printf(\"%.2lf\\n\", min(a1,a2))；候选（long long 读入、p1=p、if(p>=x) p1-=y、p2=p*n/10.0、if-else 输出 fixed setprecision(2)）逐条等价：if-else 即取 min；p*n≤900 无溢出；p*n/10.0 与 p*0.1*n 均为 double 且精确值至多一位小数，保留两位输出无舍入歧义。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l1.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement",
-        "explanation"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页题面含数据范围“1 ≤ n ≤ 50”；站内 question 缺少该数据范围。",
-          "review": "逐句对照 PDF 第 8 页 3.2.1-3.2.3：题面、输入输出格式与站内一致；PDF 3.2.5 数据范围为「1 ≤ n ≤ 50」（页图可见），站内 question 缺失该节。已在 changes.question 末尾补全，修复后核验通过。"
+          "initial": "PDF 第8页题目描述、输入输出格式和 3.2.5 数据范围（1≤n≤50）与候选一致；候选已包含数据范围。",
+          "review": "第 8 页页图：3.2.1 题目描述（n 层、塔底向上每层 n×n,(n-1)×(n-1),…,2×2,1×1 块石块）、3.2.2/3.2.3 输入输出格式、两组样例（2→5；5→55）与候选 question/samples 一致；3.2.5 数据范围 1≤n≤50 与候选「### 数据范围」一致（候选已含该节）。"
         },
         "explanation": {
-          "initial": "当前解析称 n 和 sum 都应当使用 long long、n 稍大时容易超出 int，但官方数据范围 n ≤ 50，最大平方和为 42925，int 足够；该溢出表述会误导，需按本题范围修正。",
-          "review": "原解析称「n 稍大时很容易超出 int、n 和 sum 都应当使用 long long」并列入必错提醒，但官方数据范围 n≤50，最大平方和 50×51×101/6=42925，int 完全足够，该溢出论断与本题范围不符，属事实性误导。changes.explanation 已改写为按 n≤50 说明 int 足够、long long 非必需；重算样例 2→5、5→55（1,5,14,30,55）与公式 n(n+1)(2n+1)/6 均正确，修复后核验通过。"
+          "initial": "独立复算样例1得5、样例2得55；n=50 时平方和为 50×51×101/6=42925，int 足够，候选修订后的类型说明正确。",
+          "review": "独立复算：样例 1 得 5、样例 2 序列 1,5,14,30,55 得 55；类型论述经独立验算成立——n=50 时平方和 50×51×101/6=42925，远小于 int 上限约 2.1×10⁹，故 int 足够、long long 并非必需（与官方 int ans 参考程序一致），已纠正旧版「必须 long long」的溢出误导；公式 n(n+1)(2n+1)/6 正确。"
         },
         "referenceCode": {
-          "initial": "PDF 第 8 页官方参考程序为 for(i=1;i<=n;i++) ans += i*i；站内版本同样迭代平方和，long long 在 n ≤ 50 下正确，样例 2 得 5、样例 5 得 55。",
-          "review": "PDF 第 8 页官方参考程序为 for(i=1;i<=n;i++) ans+=i*i; printf(\"%d\\n\",ans)（ans 为全局 int 自动初始化为 0）；站内版本以 long long 逐层累加 i*i，算法与循环边界 i<=n 一致。n≤50 时最大和 42925，int 与 long long 均正确，样例 2→5、5→55 复算通过。"
+          "initial": "候选以 long long 累加 1^2 至 n^2，与官方 int ans、for(i=1;i<=n;i++) ans+=i*i 等价；n≤50 时最大42925，无溢出。",
+          "review": "第 8 页页图官方参考程序为 for(int i=1;i<=n;i++) ans+=i*i; printf(\"%d\\n\", ans)（全局 int 自动置 0）；候选以 long long 逐层累加 i*i 并显式初始化 sum=0，循环边界 i<=n 一致；n≤50 时最大和 42925，两种类型均无溢出，算法等价。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l1.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l1.glm.json"
       ]
     }
   ],
   "unresolved": [
-    {
-      "id": 7,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流"
-      ]
-    },
     {
       "id": 13,
       "dimensions": [
@@ -1062,31 +1062,9 @@
       "reasons": [
         "修改 explanation 未获得两模型一致批准，待回流"
       ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l1.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l1.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-09-l1.integration.json"
 }

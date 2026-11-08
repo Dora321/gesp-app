@@ -1,0 +1,245 @@
+{
+  "paperId": "2025-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    7,
+    13,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T12:22:50.158Z",
+  "completedAt": "2026-11-08T12:27:36.367Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38527,
+    "completion_tokens": 21351,
+    "total_tokens": 59878,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16955
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01645455,
+      "allowance": 0.01645455,
+      "tokens": {
+        "input": 38527,
+        "output": 21351,
+        "reasoning": 16955,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a5f7c399dbedff55a52cab5ecfe407ecbea9b66463db131a795d4aef0569d0b9",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++1级.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "mirrorBytes": 964282,
+    "shaVerified": true,
+    "sha256": "3037786e3622cae3d17c529849d9e2386657479b5944287ffde124f4b2a701a5"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "页图第 1 页卷头为「GESP·CCF 编程能力等级认证」「C++ 一级」「2025 年 09 月」，与 paperId 2025-09-l1 对应的等级与年月一致。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页页图第 7 题题干「当前是9月，编写C++代码求N个月后的月份。横线处应填入的代码是（ ）。」及代码框 7 行（int N, M; / cin >> N; / M = ____; / if (M == 0) / printf(\"%d个月后12月\", N); / else / printf(\"%d个月后是%d月\", N, M);）与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图第 7 题选项依次为 A. N % 12、B. 9 + N % 12、C. (9 + N) / 12、D. (9 + N) % 12，顺序与写法与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 D（0 起始索引 3），候选 answer=3。独立验证：N=3 时 (9+3)%12=0 走 if 分支输出「3个月后12月」，N=5 时 14%12=2 输出「5个月后是2月」，均与题意吻合；A 漏掉起点 9、C 取商、B 仅 N 参与取余，均确为错项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：D 的取余映射（余 1~11 对应月份、余 0 经 if(M==0) 映射 12 月）成立，验证例 N=3→0、N=5→2 正确；对 B 的失效分析经本人补充推演（N%12=0/1/2 时 B 与 D 恰同值，N%12=3 时 B=12 虽为合法数字但 M 不为 0、走不到 12 月专用 if 分支且输出格式不符，N%12∈4~11 时得 13~20 非法）确认无误；环形映射通式 ((起点+偏移-1)%周期)+1 亦验算正确。未再发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其对题面、选项、答案映射及解析（含上轮已修复的 B 选项论述）全维度 verified 与无修改的判断，经本人独立推演复核成立（含 B 选项分段失效情形与通式验算），故 approve。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页页图第 13 题题干（「获得正整数N的第M位数，约定个位数为第1位，如N等于1234，M等于2，则输出3。假设M的值是大于等于1且小于等于N的位数」）与 9 行代码（int N, M, div=1;、两段 cout/cin、for (int i =0; i < (M - 1); i++) div *= 10;、cout << (______);）与候选一致；页图第 6/8 行为空行，候选合并属排版等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图选项依次为 A. N % div / 10、B. N / div / 10、C. N % div % 10、D. N / div % 10，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 D（0 起始索引 3），候选 answer=3。独立验证 N=1234、M=2：div=10，1234/10=123，123%10=3，与题例一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选 B 选项论述（连除两次等于 floor(N/10^M)，得去掉低 M 位后的高位数如 1234/10/10=12；再补 %10 得第 M+1 位）与 D 的核心推导经独立验算正确；但 A、C 两项仍有边界性错误：C 称「% div 之后……再 % 10 仍然是个位，与 M 无关」，而 M=1 时 div=1、N%1%10=0，得 0 并非个位（题目允许 M≥1）；A 称「得到的是第 M-1 位甚至更低位」，M≥4 时 N%div/10 实为第 2..M-1 位组成的多位数（如 N=1234、M=4 得 23），并非单个位的数字。已提交修正版解析：修正后各项断言（A 在 M=1/2 时得 0、M≥3 时得第 2..M-1 位组成的数；C 在 M≥2 时恒得个位、M=1 时得 0；B、D 论述保留）经本人逐项验算无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (N / div % 10)**\n\n**核心解析：**\n循环把 `div` 算成 `10^(M-1)`：M=1 时 `div=1`，M=2 时 `div=10`，M=3 时 `div=100`……\n\n要取从右往左第 M 位，分两步：\n\n1. **先整除 `div`**：`N / div` 去掉低 M-1 位，第 M 位落到个位；\n2. **再对 10 取余**：`% 10` 取个位，即第 M 位。\n\n所以顺序必须是“先除后模”：`N / div % 10`。\n\n**验证：** N = 1234、M = 2 → `div = 10`：`1234 / 10 = 123`，`123 % 10 = 3`，与题例一致。\n\n**选项逐项分析：**\n- **A (N % div / 10)**：❌ 错误。`N % div` 只保留低 M-1 位，再 `/10` 去掉个位；M=1 或 2 时得 0，M≥3 时得到第 2 位到第 M-1 位组成的数，不是第 M 位。\n- **B (N / div / 10)**：❌ 错误。连除两次相当于 `N / 10^M`，得到的是去掉低 M 位后剩下的高位数（如 `1234/10/10 = 12`），不是一位数字；再补 `%10` 得到的是第 M+1 位（2），不是第 M 位。\n- **C (N % div % 10)**：❌ 错误。M≥2 时 `N % div` 的个位就是原数个位，再 `%10` 仍是个位；M=1 时 `N%1%10=0`；不能正确得到第 M 位（M=1 的目标是个位）。\n- **D (N / div % 10)**：✅ 正确。先砍低位，再取个位。\n\n**易错提醒：**\n- “先除后模”与“先模后除”结果不同：前者能定位到第 M 位，后者只会在低位里打转。\n- `div` 的初值 1 与循环 `i < M-1` 配套：M=1 时不循环，`div=1`，正好取个位。\n\n**知识延伸：**\n若要取最高位，可先求总位数 `len`，再用 `N / 10^(len-1)`；按 `k` 进制拆位时把 10 换成 `k`。\n\n**考点：** 整数除法与取余的组合拆位、循环构造 10 的幂"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：其指出候选 A、C 选项说明不精确，经本人独立验证确认为边界性事实错误（C 在 M=1 时 N%1%10=0 而非个位；A 在 M≥4 时结果为多位数而非单一位），初核修正文本各断言已逐项验算无误，故采纳并在 changes.explanation 提交，explanation 标 verified（修复后核验通过）；其余维度（statement/options/answer）独立对照页图与答案表核验通过，予以采纳。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6-7 页页图：3.1.1 题目描述（满 x 减 y、打 n 折为原先 n÷10、1≤y<x、1≤n<10、「满减优惠只能使用一次」及满 10 减 3 买 33 元物品付 30 元示例）、3.1.2/3.1.3 输入输出格式、3.1.4 两组样例（8 7 9 10→3.00；8 7 2 11→2.20）与候选 question/samples 一致；3.1.5 数据范围 1≤y<x≤100、1≤n<10、1≤p≤100 与候选「### 数据范围」一字不差（候选已含该节）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表条目，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：样例 1（x=8,y=7,n=9,p=10）方案一 10-7=3、方案二 10×9/10=9，取 3 输出 3.00；样例 2（x=8,y=7,n=2,p=11）方案一 4、方案二 2.2，输出 2.20。解析中「满减仅一次非每满减、p<x 不减免、p*n/10 整数截断（11*2/10=2）、fixed+setprecision(2) 补齐末尾 0」各点均与官方题意相符，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "第 7 页页图官方参考程序为 a1=p; if(a1>=x) a1-=y; a2=p*0.1*n; printf(\"%.2lf\\n\", min(a1,a2))；候选（long long 读入、p1=p、if(p>=x) p1-=y、p2=p*n/10.0、if-else 输出 fixed setprecision(2)）逐条等价：if-else 即取 min；p*n≤900 无溢出；p*n/10.0 与 p*0.1*n 均为 double 且精确值至多一位小数，保留两位输出无舍入歧义。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小数据且满减不可用",
+            "input": "2\n1\n1\n1",
+            "output": "0.10",
+            "reason": "x=2,y=1,n=1,p=1 均在数据范围内；p=1<x 时方案一支付 1，方案二 1×1/10.0=0.1，取较小值输出 0.10。"
+          },
+          {
+            "name": "p=x 满减门槛边界",
+            "input": "2\n1\n1\n2",
+            "output": "0.20",
+            "reason": "p=x=2 恰达门槛，方案一 2-1=1，方案二 2×1/10.0=0.2，取较小值输出 0.20。"
+          },
+          {
+            "name": "x 取上界且 p<x",
+            "input": "100\n99\n9\n1",
+            "output": "0.90",
+            "reason": "x=100 为范围上界，p=1<x 时方案一支付 1，方案二 1×9/10.0=0.9，取较小值输出 0.90。"
+          },
+          {
+            "name": "最大价格与最大折扣",
+            "input": "2\n1\n9\n100",
+            "output": "90.00",
+            "reason": "p=100 为范围上界，方案一 100-1=99，方案二 100×9/10.0=90，取较小值输出 90.00。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面已含数据范围节与页图 3.1.5 一致属实；其参考代码等价性与解析各说明经本人独立复算确认成立；四条 tests 期望输出（0.10、0.20、0.90、90.00）由本人独立推导核对一致。无新增修改，approve。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图：3.2.1 题目描述（n 层、塔底向上每层 n×n,(n-1)×(n-1),…,2×2,1×1 块石块）、3.2.2/3.2.3 输入输出格式、两组样例（2→5；5→55）与候选 question/samples 一致；3.2.5 数据范围 1≤n≤50 与候选「### 数据范围」一致（候选已含该节）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表条目，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：样例 1 得 5、样例 2 序列 1,5,14,30,55 得 55；类型论述经独立验算成立——n=50 时平方和 50×51×101/6=42925，远小于 int 上限约 2.1×10⁹，故 int 足够、long long 并非必需（与官方 int ans 参考程序一致），已纠正旧版「必须 long long」的溢出误导；公式 n(n+1)(2n+1)/6 正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "第 8 页页图官方参考程序为 for(int i=1;i<=n;i++) ans+=i*i; printf(\"%d\\n\", ans)（全局 int 自动置 0）；候选以 long long 逐层累加 i*i 并显式初始化 sum=0，循环边界 i<=n 一致；n≤50 时最大和 42925，两种类型均无溢出，算法等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小层数",
+            "input": "1",
+            "output": "1",
+            "reason": "n=1 时仅一层，石块数为 1×1=1。"
+          },
+          {
+            "name": "中间层数",
+            "input": "7",
+            "output": "140",
+            "reason": "独立累加 1+4+9+16+25+36+49=140，覆盖非样例中间取值。"
+          },
+          {
+            "name": "最大层数",
+            "input": "50",
+            "output": "42925",
+            "reason": "n≤50 的上界，平方和公式 50×51×101/6=42925。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与 3.2.5 数据范围（1≤n≤50）对照页图一致属实；解析中 42925、样例序列与类型论述经本人独立复算无误；三条 tests 期望输出（1、140、42925）由本人独立核算一致。参考代码与官方程序等价。无新增修改，approve。"
+      }
+    ],
+    "summary": "仅核验题 7、13、26、27：题 7 单选题题面/选项/答案（答案表第 7 题 D→索引 3）与解析（含上轮已修复的 B 选项论述）经独立推演全部通过，approve；题 13 答案 D 与核心推导正确，但解析 A、C 两项存在边界性事实问题（C 在 M=1 时 N%1%10=0 并非个位、A 在 M≥4 时结果为第 2..M-1 位组成的多位数），已提交修正解析并复核通过，revise；题 26、27 题面（含数据范围）、参考代码与解析经独立复算核验通过，tests 期望输出均由本人独立推导核算（0.10/0.20/0.90/90.00；1/140/42925），均 approve。全部结论均以页图为准核对，测试未实际运行。"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "paperId": "2025-09-l1",
+  "integratedAt": "2026-11-08T12:27:37.174Z",
+  "accepted": [
+    {
+      "id": 7,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 13,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：D (N / div % 10)**\n\n**核心解析：**\n循环把 `div` 算成 `10^(M-1)`：M=1 时 `div=1`，M=2 时 `div=10`，M=3 时 `div=100`……\n\n要取从右往左第 M 位，分两步：\n\n1. **先整除 `div`**：`N / div` 去掉低 M-1 位，第 M 位落到个位；\n2. **再对 10 取余**：`% 10` 取个位，即第 M 位。\n\n所以顺序必须是“先除后模”：`N / div % 10`。\n\n**验证：** N = 1234、M = 2 → `div = 10`：`1234 / 10 = 123`，`123 % 10 = 3`，与题例一致。\n\n**选项逐项分析：**\n- **A (N % div / 10)**：❌ 错误。`N % div` 只保留低 M-1 位，再 `/10` 去掉个位；M=1 或 2 时得 0，M≥3 时得到第 2 位到第 M-1 位组成的数，不是第 M 位。\n- **B (N / div / 10)**：❌ 错误。连除两次相当于 `N / 10^M`，得到的是去掉低 M 位后剩下的高位数（如 `1234/10/10 = 12`），不是一位数字；再补 `%10` 得到的是第 M+1 位（2），不是第 M 位。\n- **C (N % div % 10)**：❌ 错误。M≥2 时 `N % div` 的个位就是原数个位，再 `%10` 仍是个位；M=1 时 `N%1%10=0`；不能正确得到第 M 位（M=1 的目标是个位）。\n- **D (N / div % 10)**：✅ 正确。先砍低位，再取个位。\n\n**易错提醒：**\n- “先除后模”与“先模后除”结果不同：前者能定位到第 M 位，后者只会在低位里打转。\n- `div` 的初值 1 与循环 `i < M-1` 配套：M=1 时不循环，`div=1`，正好取个位。\n\n**知识延伸：**\n若要取最高位，可先求总位数 `len`，再用 `N / 10^(len-1)`；按 `k` 进制拆位时把 10 换成 `k`。\n\n**考点：** 整数除法与取余的组合拆位、循环构造 10 的幂"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "8\n7\n9\n10",
+          "output": "3.00",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3.00\n",
+          "passed": true
+        },
+        {
+          "input": "8\n7\n2\n11",
+          "output": "2.20",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2.20\n",
+          "passed": true
+        },
+        {
+          "name": "最小数据且满减不可用",
+          "input": "2\n1\n1\n1",
+          "output": "0.10",
+          "reason": "x=2,y=1,n=1,p=1 均在数据范围内；p=1<x 时方案一支付 1，方案二 1×1/10.0=0.1，取较小值输出 0.10。",
+          "kind": "boundary",
+          "actual": "0.10\n",
+          "passed": true
+        },
+        {
+          "name": "p=x 满减门槛边界",
+          "input": "2\n1\n1\n2",
+          "output": "0.20",
+          "reason": "p=x=2 恰达门槛，方案一 2-1=1，方案二 2×1/10.0=0.2，取较小值输出 0.20。",
+          "kind": "boundary",
+          "actual": "0.20\n",
+          "passed": true
+        },
+        {
+          "name": "x 取上界且 p<x",
+          "input": "100\n99\n9\n1",
+          "output": "0.90",
+          "reason": "x=100 为范围上界，p=1<x 时方案一支付 1，方案二 1×9/10.0=0.9，取较小值输出 0.90。",
+          "kind": "boundary",
+          "actual": "0.90\n",
+          "passed": true
+        },
+        {
+          "name": "最大价格与最大折扣",
+          "input": "2\n1\n9\n100",
+          "output": "90.00",
+          "reason": "p=100 为范围上界，方案一 100-1=99，方案二 100×9/10.0=90，取较小值输出 90.00。",
+          "kind": "boundary",
+          "actual": "90.00\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "32fe08f93bd9c9af60c99808deb91263f175d867e8a7d4a5b39da8007712adb6"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2",
+          "output": "5",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "input": "5",
+          "output": "55",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "55\n",
+          "passed": true
+        },
+        {
+          "name": "最小层数",
+          "input": "1",
+          "output": "1",
+          "reason": "n=1 时仅一层，石块数为 1×1=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "中间层数",
+          "input": "7",
+          "output": "140",
+          "reason": "独立累加 1+4+9+16+25+36+49=140，覆盖非样例中间取值。",
+          "kind": "boundary",
+          "actual": "140\n",
+          "passed": true
+        },
+        {
+          "name": "最大层数",
+          "input": "50",
+          "output": "42925",
+          "reason": "n≤50 的上界，平方和公式 50×51×101/6=42925。",
+          "kind": "boundary",
+          "actual": "42925\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ade7233840ecc00f57efb60d342d4d0c6ba4b709607bc1eaf295a54f849a7245"
+    }
+  ]
+}
