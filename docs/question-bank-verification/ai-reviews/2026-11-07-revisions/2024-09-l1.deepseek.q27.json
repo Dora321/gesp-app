@@ -1,0 +1,123 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:44:25.159Z",
+  "completedAt": "2026-11-08T05:46:36.912Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32524,
+    "completion_tokens": 13202,
+    "total_tokens": 45726,
+    "prompt_tokens_details": {
+      "cached_tokens": 32384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12172
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00803935,
+      "allowance": 0.00482361,
+      "tokens": {
+        "input": 140,
+        "output": 13202,
+        "reasoning": 12172,
+        "cache_read": 32384,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6e0d972effaf80e871ed6eb4ab257984335c529464220eb2545fce096bbaf8b4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 Grade Examination of Software Programming」「C++ 一级」「2024 年 09 月」，与核验目标 2024-09-l1 一致。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页题面：小杨有 n 个正整数，美丽数字是 9 的倍数但不是 8 的倍数；输入第一行 n、第二行 n 个正整数；输出美丽数字数量；样例为 3、1、9、72 → 1；数据范围 1≤n≤10^5、1≤a_i≤10^5。候选均已包含。候选样例将 1、9、72 放在同一行，PDF 样例逐 token 分行排版，token 顺序和值一致，且 cin 按空白分隔读入，属等价排版。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案；PDF 第1、5页答案表仅覆盖单选15题和判断10题，本题 officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：逐个读入 a_i，判定 a_i%9==0 且 a_i%8!=0；样例 1 不满足、9 满足、72 因同时为8的倍数不满足，计数1；易错提醒中的 ==/!= 与 &&/|| 辨析正确。解析正文写 cout<<count<<endl，与参考代码的换行输出语义等价，不构成事实错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第8页官方参考程序用 for(i=1;i<=n;i++) 读入 x 并判断 x%9==0&&x%8!=0 后 ans++，输出 ans；候选用 while(n--) 逐个读入 val 执行同一条件并输出 count，逻辑等价。复杂度 O(n)、额外空间 O(1)，满足 n≤10^5、1.0s；count 最大 10^5，int 无溢出；n 为正整数时 while(n--) 恰好循环 n 次。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模取最小美丽数",
+            "input": "1\n9",
+            "output": "1",
+            "reason": "n=1、a_1=9；9%9=0 且 9%8=1，计数1。"
+          },
+          {
+            "name": "同时为8和9的倍数",
+            "input": "1\n72",
+            "output": "0",
+            "reason": "72%9=0 但 72%8=0，不满足「不是8的倍数」。"
+          },
+          {
+            "name": "最小正整数",
+            "input": "1\n1",
+            "output": "0",
+            "reason": "1%9=1，不是9的倍数。"
+          },
+          {
+            "name": "混合边界",
+            "input": "5\n9 18 72 144 8",
+            "output": "2",
+            "reason": "9、18满足；72、144同时为8和9的倍数被排除；8不是9的倍数，计数2。"
+          },
+          {
+            "name": "取值上界边界",
+            "input": "2\n99999 100000",
+            "output": "1",
+            "reason": "99999=9×11111 且 99999%8=7，满足；100000 非9的倍数，不满足，计数1。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验第27题：题面、样例与数据范围同原卷一致（样例分行排版差异不影响 cin 读入）；编程题无客观答案和选项；解析独立推导正确；参考代码 while(n--) 与官方 for 循环逻辑等价，复杂度、边界与溢出均满足 n≤10^5、a_i≤10^5；未发现需修改项。"
+  }
+}

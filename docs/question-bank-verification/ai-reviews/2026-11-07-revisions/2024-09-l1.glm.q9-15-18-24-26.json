@@ -1,0 +1,273 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    9,
+    15,
+    18,
+    24,
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:42:31.386Z",
+  "completedAt": "2026-11-08T05:44:25.150Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48042,
+    "completion_tokens": 9919,
+    "total_tokens": 57961,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6449
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0121658,
+      "allowance": 0.0121658,
+      "tokens": {
+        "input": 48042,
+        "output": 9919,
+        "reasoning": 6449,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6e0d972effaf80e871ed6eb4ab257984335c529464220eb2545fce096bbaf8b4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示『CCF 编程能力等级认证 GESP』『C++ 一级』『2024 年 09 月』，与 paperId 2024-09-l1、year=2024、month=9、level=1 对应。"
+    },
+    "questions": [
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页页图第 9 题题干『下面C++代码执行后输出的是（ ）』，代码为 int N = 0; for (int i = 0; i < 10; i++) N += 1; cout << N;；站内题面、循环边界（i<10）、循环体（N += 1）与输出对象（N）逐句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项跨第 2—3 页页图：第 2 页末行 A.55，第 3 页顶部 B.45、C.10、D.9；站内 options [\"55\",\"45\",\"10\",\"9\"] 顺序与内容逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选题答案表第 9 题为 C；C 对应 0 起始索引 2，站内 answer=2 一致。独立验算：循环执行 10 次、每次 N 加常数 1，N 最终为 10，即选项 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i 取 0..9 共 10 次，循环体 N+=1 与 i 无关，N 依次为 1..10，输出 10。解析对 A=55（1+2+…+10 或 0+…+10 之和）、B=45（若循环体为 N+=i 时 0..9 之和，即第 8 题）、D=9（i 的最后取值）的排除与独立计算一致；易错提醒中『Sum += i 得 45、N += 1 得 10』的对比及『i 终值 10 与 N 结果巧合』的辨析均无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "经独立复核，初核各维度 verified 判断成立：题面/选项与第 2—3 页页图一致，答案映射 C=2 正确，解析（含上一轮重写后的 A/B 排除论证）经独立计算无事实错误，故接受 approve，无 changes。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页末题干『如果一个正整数N能够表示为X*(X+1)的形式……在横线处应填入的代码可从i)-iv)中选择，则有几个能完成功能？（ ）』与第 5 页页图代码 int N; cin >> N; for(int i = 0; i <= N; i++) if(_____) cout << N << \"是一个兄弟数\\n\"; 及第 8 行 i) N==i*(i+1)　ii) N==i*(i-1)　iii) N/(i+1)==i　iv) N/(i-1)==i 一致（文本层该行 OCR 噪声 N=1*(i+1) 已按页图核正为 N==i*(i+1)）；站内 question 与 code 字段（修订候选）均包含循环及 i)-iv) 候选行，无必要信息缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页页图 A.1、B.2、C.3、D.4，与站内 options [\"1\",\"2\",\"3\",\"4\"] 顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表单选第 15 题为 B，索引 1；站内 answer=1 一致。独立判定：i) 与定义直接等价；ii) 对任意兄弟数 N=X(X+1)（X≥1），取 i=X+1 时 i(i-1)=X(X+1)=N，且 X(X+1)≥X+1 保证 i=X+1≤N 在枚举范围内命中；iii) 存在截断假阳性（N=8,i=2 时 8/3==2 为真但 8≠2×3）；iv) i=1 时除以零且同样有截断假阳性（N=7,i=3 时 7/2==3 但 7≠3×2）。可用者共 2 个，选 B，与站内一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与站内解析结论一致：i、ii 可用共 2 个；iii、iv 因整数除法截断不可逆丢失余数信息而不可靠，站内所举 iii 反例（N=8,i=2：8/3=2==2 但 8≠6）与 iv 除零例（i=1 时 i-1=0）均正确。ii 项『在完整枚举下 N==i*(i-1) 也能命中兄弟数』的论证结论成立（取 i=X+1 即命中），虽表述略绕但无事实错误，不构成修改理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方 PDF 未提供参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "经独立复核，初核各维度 verified 判断成立：题面与 code 字段（含 i)-iv) 候选行）与第 4—5 页页图一致，答案映射 B=1 正确，解析的 ii 覆盖论证与 iii/iv 否定例经独立验证成立，接受 approve，无 changes。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 3 题原文『N是C++程序中的整型变量，则语句 scanf(\"%d\", &N) 能接收形如正整数、负整数和0输入，但如果输入含字母或带小数点数，将导致无法执行。（）』；站内省略『形如』、『带小数点数』写作『带小数点的数』并补出主语『程序』（原文该句本缺主语），语义等价，无实质差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为括号作答，无 A-D 选项；站内固定『正确/错误』二项，映射在 answer 维度确认。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 3 题为 ×，按 错误=1 映射为 1；站内 answer=1 一致。独立判断：scanf 匹配失败或部分读取都不会使程序终止，题干『将导致（程序）无法执行』说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验 %d 行为：输入 abc 时首字符无法构成整数，scanf 返回 0、N 保持原值、程序继续执行；输入 3.14 或 12abc 时成功读取数字前缀（N=3 或 12）、返回 1，余下字符留在缓冲区，程序继续执行。两种情形均不导致程序无法执行，故判断为错误。站内分情况解析并区分返回值 0/1/EOF 的表述与此一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "经独立复核，初核各维度 verified 判断成立：题面语义等价、×与错误=1 的映射正确、分情况解析（abc 返回 0 与 3.14 部分成功返回 1）符合 C 标准 %d 行为，接受 approve，无 changes。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 9 题原文『在C++语言中，整型、实数型、字符型、布尔型是不同数据类型，但这四种类型的变量间都可以比较大小。（ ）』；站内『是不相同的数据类型』措辞与原文等价，无实质差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为括号作答，无 A-D 选项；站内固定『正确/错误』二项，映射在 answer 维度确认。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 9 题为 √，按 正确=0 映射为 0；站内 answer=0 一致。独立判断：int、float/double、char、bool 均属算术类型，混合比较时经常规算术转换转为共同类型后可用关系运算符比较，『都可以比较大小』成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：站内解析表述与语言规则一致——四类型均属算术类型、按 usual arithmetic conversions 转换后比较；字符按编码值比较且 '0'(48) < 'A'(65) < 'a'(97) 数值正确；bool→0/1 属隐式整型提升；知识延伸 cout << ('A' < 'a') << ('a' < 'A') 输出 10 的验证（true 输出 1、false 输出 0）正确。未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "经独立复核，初核各维度 verified 判断成立：题面等价、√与正确=0 映射正确、解析（ASCII 数值 48/65/97、常规算术转换、隐式提升、输出 10 验证）经独立核对无误，接受 approve，无 changes。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页题面描述（购买相同数量的商品 A 和 B、求最多购买数）、输入三行 n/a/b、输出一行、样例1（12/1/2→4）与样例2（13/1/2→4）均与站内一致；第 6 页末尾数据范围『对于全部数据，保证有 1≤n,a,b≤10^5』已包含于站内题面（『保证有』与站内『保证』为等价措辞）；站内题干省略『帮小杨』数字样属纯措辞差异，题意不变。样例说明（4×1+4×2=12 元；5 套需 15 元超预算 13 元）经独立验算成立。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案；PDF 第 1、5 页答案表仅覆盖单选 15 题与判断 10 题，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：买 k 套（每套 1 件 A + 1 件 B）花费 k(a+b)≤n，最大 k=⌊n/(a+b)⌋；样例 ⌊12/3⌋=4、⌊13/3⌋=4 与解析走查及官方样例说明一致；解析对『必须写 n/(a+b) 否则优先级出错』『整数除法截断、无需浮点』的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "第 7 页官方参考程序读入 n,a,b 后输出 n/(a+b)；站内代码仅将 bits/stdc++.h 换为 iostream 并补 return 0，逻辑等价。独立核验：n,a,b≤10^5 时 a+b≤2×10^5、结果≤50000，均在 int 范围无溢出；a+b>n 时整除输出 0 正确；O(1) 计算满足 1.0s/512MB 限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小预算不足一对",
+            "input": "1\n1\n1",
+            "output": "0",
+            "reason": "n=1，a+b=2，⌊1/2⌋=0，剩余钱不足一套。"
+          },
+          {
+            "name": "预算恰好购买一对",
+            "input": "2\n1\n1",
+            "output": "1",
+            "reason": "⌊2/2⌋=1。"
+          },
+          {
+            "name": "预算小于单价之和",
+            "input": "5\n3\n4",
+            "output": "0",
+            "reason": "a+b=7>n=5，⌊5/7⌋=0，验证不足一套时输出 0。"
+          },
+          {
+            "name": "最大预算与最小单价",
+            "input": "100000\n1\n1",
+            "output": "50000",
+            "reason": "⌊100000/2⌋=50000，int 无溢出。"
+          },
+          {
+            "name": "单价和恰等于最大预算",
+            "input": "100000\n99999\n1",
+            "output": "1",
+            "reason": "a+b=100000=n，⌊100000/100000⌋=1。"
+          },
+          {
+            "name": "两单价均取上界",
+            "input": "100000\n100000\n100000",
+            "output": "0",
+            "reason": "a=b=100000 均为上界，a+b=200000>n，⌊100000/200000⌋=0。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "经独立复核，初核各维度判断成立：题面（含数据范围）与第 6 页一致，⌊n/(a+b)⌋ 算法推导正确，参考代码与第 7 页官方程序逻辑等价且经溢出/边界分析无问题；其 6 条 tests 的期望输出已由我独立重算全部正确（0/1/0/50000/1/0），接受 approve，无 changes。"
+      }
+    ],
+    "summary": "本次复核题号 9、15、18、24、26 共 5 题，均基于 PDF 页图与答案表独立推导后再比对 DeepSeek 初核草稿。客观题答案映射全部核对无误（单选第 9 题=C=2、第 15 题=B=1；判断第 3 题=×=1、第 9 题=√=0；编程题 26 无官方答案）。题 9 的循环计数推导、题 15 的 ii 枚举覆盖与 iii/iv 截断否定例、题 18 的 scanf 分情况行为、题 24 的算术类型转换与 ASCII 数值、题 26 的 ⌊n/(a+b)⌋ 算法及参考代码溢出/复杂度分析均经独立验算成立，解析无事实错误。题 26 的 6 条边界测试期望输出已逐一独立重算正确。当前修订候选与原卷一致，五题均 approve，changes 均为空，无未决问题。"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    5,
+    6,
+    7,
+    8
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:33:30.078Z",
+  "completedAt": "2026-11-08T05:36:30.373Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32532,
+    "completion_tokens": 14961,
+    "total_tokens": 47493,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13204
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0138564,
+      "allowance": 0.00831384,
+      "tokens": {
+        "input": 32532,
+        "output": 14961,
+        "reasoning": 13204,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6e0d972effaf80e871ed6eb4ab257984335c529464220eb2545fce096bbaf8b4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确为“CCF 编程能力等级认证 C++ 一级 2024年09月”，与 paperId 2024-09-l1 一致；第1页单选答案表给出题2、5、6、7、8的官方答案。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原卷第1页第2题题干为“C++程序执行出现错误，不太常见的调试手段是（ ）”；候选仅增加空格和Markdown排版，语义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷选项依次为A.阅读源代码、B.单步调试、C.输出执行中间结果、D.跟踪汇编码；候选四项内容及顺序一致，仅省略字母前缀。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第2题为D，对应0起始索引3；候选 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：A、B、C均属源码级常见调试手段；D需查看编译器生成的汇编层信息，属于专门/底层手段，在C++一级入门阶段不常见，故D成立。候选解析未再断言具体IDE快捷键。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原卷第2页第5题题干为“在C++中，假设N为正整数10，则 cout <<(N / 3 + N % 3) 将输出(   )。”候选以Markdown/空格排版，表达式、条件与设问一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷第2页选项依次为A.6、B.4.3、C.4、D.2；候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第5题为C，对应0起始索引2；候选 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：N=10时 N/3=3、N%3=1，3+1=4；A若把余数误算成3得6，B若把10/3误当浮点除法得约4.3，D不符合表达式；候选对A、B、D错误路径的说明成立，整数除法与取模恒等式10=3×3+1正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原卷第2页第6题页图与文本层均显示 printf 格式串为 6%2={%d}、实参为 6%2，格式串中只有单个 %；候选 question 保留单 %，未改写成 %%。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷选项为A项带双引号的6%2={6%2}、B项6%2={6%2}、C项0=0、D项6%2={0}；候选四项顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第6题为D，对应0起始索引3；候选 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按原卷单%解析：实参6%2的值为0，%d替换为0，官方答案D对应6%2={0}；同时指出格式串中%2=并非合法转换说明、严格按标准属未定义行为，实际表现取决于运行库。该说明与修订后的题面及官方答案一致，且未把%%误当作原卷写法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第6题格式串 printf(\"6%2={%d}\", 6%2) 中 %2= 不是合法 printf 转换说明，严格按 C 标准属未定义行为；官方答案 D 与常见实现按字面输出 %2= 的预期一致，但不能排除原卷本意为 %% 而排版遗漏，仅凭原卷无法彻底定案，保留争议。"
+        ]
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原卷第2页第7题题干为“成功执行下面的C++代码，先后从键盘上输入5回车和2回车，输出是（ ）。”代码为 cin >> a; cin >> b; cout << a + b;；候选题面与代码逐句一致，“从键盘输入”与“从键盘上输入”属排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷选项依次为A.将输出整数7、B.将输出52，5和2之间没有空格、C.将输出5和2，5和2之间有空格、D.执行结果不确定，因为代码段没有显示a和b的数据类型；候选顺序、内容一致，仅增加排版空格。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第7题为D，对应0起始索引3；候选 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：若a、b均为int，输入5、2后输出7；若均为std::string，拼接输出52；若一个int、一个std::string，则无匹配的operator+，必然无法通过编译，不存在运行期未定义行为；C项只执行一次输出，不会分别输出5和2。类型未给出故D成立，候选已纠正混合类型为必然编译错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原卷第2页第8题代码为 int Sum = 0; for (int i = 0; i < 10; i++) Sum += i; cout << Sum;；候选代码、循环边界与输出语句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷第2页选项依次为A.55、B.45、C.10、D.9；候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第8题为B，对应0起始索引1；候选 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立求和：i取0到9，0+1+…+9=45；A的55对应1到10（或0到10）之和，多算了10；C的10是循环终止时i的值而非Sum；D的9是最后一个i值。候选对Sum逐次变化和公式9×10÷2=45的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核仅覆盖题2、5、6、7、8，五题均为单选题且五维均有记录。题2、5、7、8的题面、选项、答案与解析经独立核对均与源卷及官方答案一致；题6候选题面已恢复原卷单%，选项和答案正确，解析已说明%2=属未定义行为并保留源卷争议，未声称标准下输出唯一确定。五题均不涉及编程题，tests为空；未发现需要通过changes修改的候选字段。"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "paperId": "2024-09-l1",
+  "integratedAt": "2026-11-08T05:50:03.848Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "12\n1\n2",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "13\n1\n2",
+          "output": "4",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "最小预算不足一对",
+          "input": "1\n1\n1",
+          "output": "0",
+          "reason": "n=1，a+b=2，⌊1/2⌋=0，剩余钱不足一套。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "预算恰好购买一对",
+          "input": "2\n1\n1",
+          "output": "1",
+          "reason": "⌊2/2⌋=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "预算小于单价之和",
+          "input": "5\n3\n4",
+          "output": "0",
+          "reason": "a+b=7>n=5，⌊5/7⌋=0，验证不足一套时输出 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "最大预算与最小单价",
+          "input": "100000\n1\n1",
+          "output": "50000",
+          "reason": "⌊100000/2⌋=50000，int 无溢出。",
+          "kind": "boundary",
+          "actual": "50000\n",
+          "passed": true
+        },
+        {
+          "name": "单价和恰等于最大预算",
+          "input": "100000\n99999\n1",
+          "output": "1",
+          "reason": "a+b=100000=n，⌊100000/100000⌋=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两单价均取上界",
+          "input": "100000\n100000\n100000",
+          "output": "0",
+          "reason": "a=b=100000 均为上界，a+b=200000>n，⌊100000/200000⌋=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "35f5cab09b8d733beae2ad61f82fff277e9ed0faf8109e01e091e7851c21106e"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3\n1 9 72",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小n且样本美丽数字",
+          "input": "1\n9",
+          "output": "1",
+          "reason": "n=1 为 n 的下界；独立验算 9%9=0 且 9%8=1≠0，满足两个条件，计数 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "同时为8和9的倍数被排除",
+          "input": "1\n72",
+          "output": "0",
+          "reason": "72%9=0 但 72%8=0，不满足「不是8的倍数」，计数 0，对应官方样例说明中 72 被排除的判定。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "a_i 下界值",
+          "input": "1\n1",
+          "output": "0",
+          "reason": "a_i=1 为取值下界；1%9=1≠0，不是 9 的倍数，计数 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "混合场景计数",
+          "input": "5\n9 18 72 144 8",
+          "output": "2",
+          "reason": "独立逐项验算：9（%9=0，%8=1）与 18（%9=0，%8=2）满足；72（%8=0）、144（%9=0 且 %8=0）同为 8 的倍数被排除；8（%9=8）非 9 的倍数；计数 2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "a_i 上界边界",
+          "input": "2\n99999 100000",
+          "output": "1",
+          "reason": "99999=9×11111 且 99999%8=7，满足；100000=99999+1，99999 可被 9 整除故 100000%9=1，不是 9 的倍数；计数 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "7e0eb45478b85d93b10add879047bfa96fe0169db09534d32ba872856a5769f3"
+    }
+  ]
+}
