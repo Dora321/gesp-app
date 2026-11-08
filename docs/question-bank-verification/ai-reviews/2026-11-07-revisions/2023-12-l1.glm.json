@@ -1,0 +1,220 @@
+{
+  "paperId": "2023-12-l1",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T01:50:18.737Z",
+  "completedAt": "2026-11-08T01:52:31.620Z",
+  "finishReason": "stop",
+  "inputSha256": "9048f968b3cb6207995d5aff785f31fab48cecbc30cd4020d67afc4180c4f8a0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++1级.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "mirrorBytes": 1684791,
+    "shaVerified": true,
+    "sha256": "1742ecd736cc3b5d4e7ac940e1387613f8723adde5706ad8034f62b239d39005"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-12-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头清晰标注「GESP / CCF 编程能力等级认证 / C++ 一级 / 2023 年 12 月」，与 paperId 2023-12-l1 的年份 2023、月份 12、等级 1 一致；第 1 页单选题号 1–15 答案表、第 5 页判断题答案表及第 5–8 页编程题（小杨的考试、小杨报数）结构与候选题目对应。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图第 2 题题干为「C++表达式 10 - 3 * (2 + 1) % 10 的值是( )。」，候选题面仅在数字与运算符间距上不同，数值与运算符语义完全一致，未丢失或改变内容。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图第 2 题选项自上而下为 A. 0、B. 1、C. 2、D. 3，候选 [\"0\",\"1\",\"2\",\"3\"] 逐项一致；网站旧版错误项「7」「10」已不在候选中，无顺序差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表序列「A B B A B C A C D D B D B C B」第 2 位为 B，0 起始索引为 1；独立按优先级计算：(2+1)=3，照 3*(2+1)=9，9%10=9，10-9=1，结果 1 即选项 B，与候选 answer=1 映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算候选解析：括号(2+1)=3→3*3=9→9%10=9→10-9=1，得 B(1)；逐项分析按 A(0)/B(1)/C(2)/D(3) 展开，与修正后的原卷选项一一对应，旧版引用「C(7)/D(10)」的内容已不存在；易错提醒中「*/%同级高于加减、左结合、先乘后取模」符合 C++ 规则，无事实错误或截断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照第 1 页原图确认：源卷选项确为 A.0、B.1、C.2、D.3，候选已正确落实上一轮要求的修正，另经我独立按优先级与左结合律复算结果为 1，答案索引 1 与答案表 B 的映射在修正后保持有效。上一轮的 options/explanation needs_fix 在当前候选中已解决且经我验算成立，无需再提交 changes，判定 approve。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 5 页 3.1 标头（试题名称：小杨的考试；时间限制：1.0 s；内存限制：128.0 MB）与第 6 页 3.1.1–3.1.4：问题描述「今天是星期 X…本题中使用 7 表示星期日」、输入 2 行 X（1≤X≤7）/N（1≤N≤364）、输出描述、特别提醒逐句核对一致；样例 1（输入 1、6→7，样例解释『6 天后就是星期日，用 7 表示』）与样例 2（输入 5、3→1，解释『3 天后就是星期 1』）与候选 samples 一致；候选题面已包含时限/内存与特别提醒，LaTeX 记号属等价排版。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表项，卷面无该题答案字母，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：星期 1–7 循环，N 天后取 (X+N)%7，余 0 映射为 7。样例 1：1+6=7，7%7=0 特判输出 7，星期一过 6 天为星期日；样例 2：5+3=8，8%7=1，星期五过 3 天进入下周一；扩展样例 3+15=18，18%7=4，星期三过两周零一天为星期四。候选解析含上述全部推导且此前在「3 + 15 = 18」处截断的扩展样例已补全为完整结论，无内容缺陷。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "第 6 页官方参考程序为 printf(\"%d\\n\", (x-1+n%7)%7+1)。等价性独立证明：(x-1+n%7)%7=(x+n-1)%7（取模对加法分配，且 x+n-1≥1>0 无负数问题），故官方输出为 (x+n-1)%7+1；设 r=(x+n)%7，r≠0 时官方输出=r，r=0 时官方输出=7，与候选『res==0 改 7』在全定义域 1≤X≤7、1≤N≤364 同值。抽查 X=1,N=1→2；X=7,N=1→1；X=1,N=6→7；X=7,N=364→7 均一致；x+n≤371 无溢出，复杂度 O(1)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小N跨日",
+            "input": "1\n1",
+            "output": "2",
+            "reason": "星期一过 1 天为星期二；候选 (1+1)%7=2，官方 (1-1+1%7)%7+1=2，同值；覆盖 N=1 下界。"
+          },
+          {
+            "name": "余0映射星期日",
+            "input": "1\n6",
+            "output": "7",
+            "reason": "7%7=0 须按题意映射为 7（即官方样例 1），验证特判分支；官方 (0+6)%7+1=7 同值。"
+          },
+          {
+            "name": "星期日起点归一",
+            "input": "7\n1",
+            "output": "1",
+            "reason": "星期日(7)过 1 天为星期一；候选 (7+1)%7=1，官方 (6+1)%7+1=1，同值。"
+          },
+          {
+            "name": "最大N整周",
+            "input": "7\n364",
+            "output": "7",
+            "reason": "7+364=371=53×7，余 0 映射为星期日；覆盖 X、N 同时取上限，官方 (6+364%7)%7+1=(6+0)%7+1=7 同值。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "对照 PDF 第 5、6 页原图独立确认：上一轮指出的题面缺时限/内存与特别提醒、解析扩展样例截断两处缺陷均已在当前候选中补全，且题面与卷面 3.1.1–3.1.10 逐句一致；参考代码等价性由我独立推导（含 (x+n-1)%7+1 恒等变形与 4 组抽查）确认。接受上一轮 approve，changes 无需再提交。tests 四条期望输出均为独立推算，未声称已运行。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 7 页 3.2 标头（试题名称：小杨报数；时间限制：1.0 s；内存限制：128.0 MB）与 3.2.1–3.2.4：问题描述（含 N=5、M=2 依次报 1、3、5 的示例）、输入 2 行 N（1≤N≤1,000）/M（2≤M≤100）、输出「若干行」、特别提醒逐句一致；样例 1（5、2→1/3/5）与样例 2（10、3→1/2/4/5/7/8/10）与候选 samples 逐行一致；候选题面已包含时限/内存与特别提醒。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表项，卷面无该题答案字母，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：遍历 1..N，仅当 i%M≠0 时逐行输出。样例 1（n=5,m=2）逐点走查：i=2、4 跳过，输出 1/3/5；样例 2（n=10,m=3）：3、6、9 跳过，输出 1/2/4/5/7/8/10，均与卷面样例一致；易错提醒（误写 i%m==0、漏 i<=n 等号、缺换行）三条均属实，continue 等价写法经复算与主逻辑等价，解析完整无截断，无需修改。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "第 8 页官方参考程序为 for(i=1;i<=n;i++) if(i%m!=0) printf(\"%d\\n\",i);。候选代码与其逐句等价：循环 1 到 n 含 i<=n 边界、仅输出非 M 倍数、每数一行；M≥2 无除零风险，N≤1000、M≤100 下复杂度 O(N) 无溢出，实际题目范围内行为与官方一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小N",
+            "input": "1\n2",
+            "output": "1",
+            "reason": "N=1 时仅遍历 1，1 不是 2 的倍数，输出 1；覆盖 N 下界，官方程序同结果。"
+          },
+          {
+            "name": "区间末端恰为M的倍数",
+            "input": "6\n6",
+            "output": "1\n2\n3\n4\n5",
+            "reason": "i=6 时 6%6=0 被跳过，验证 i<=n 边界处的 M 的倍数同样被正确排除；逐数一行输出。"
+          },
+          {
+            "name": "M大于N且取上限",
+            "input": "5\n100",
+            "output": "1\n2\n3\n4\n5",
+            "reason": "M=100 为允许上限且大于 N，1~5 中无 100 的倍数，全部输出；覆盖 M 上界与 M>N 的合法组合。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "对照 PDF 第 7、8 页原图独立确认：候选题面缺失时限/内存与特别提醒的问题已在当前候选中补全，题面与 3.2.1–3.2.8 逐句一致；解析与参考代码经我独立复推（含 i=n 边界处若为 M 的倍数被跳过、M≥2 无除零、O(N) 复杂度）确认无误。tests 三条期望输出由我按 i%m!=0 规则独立推算并与官方参考程序对照，非沿用初核、未声称已运行。接受上一轮 approve，无需 changes。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 34393,
+        "completion_tokens": 10860,
+        "total_tokens": 45253,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7954
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01058895,
+          "allowance": 0.01058895,
+          "tokens": {
+            "input": 34393,
+            "output": 10860,
+            "reasoning": 7954,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T01:50:18.737Z",
+      "completedAt": "2026-11-08T01:52:31.620Z"
+    }
+  ]
+}
