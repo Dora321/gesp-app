@@ -1,0 +1,235 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:00:58.280Z",
+  "completedAt": "2026-11-08T05:04:27.837Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47186,
+    "completion_tokens": 14399,
+    "total_tokens": 61585,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11702
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0142774,
+      "allowance": 0.0142774,
+      "tokens": {
+        "input": 47186,
+        "output": 14399,
+        "reasoning": 11702,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 GESP C++ 一级 2024年09月」，与 paperId=2024-09-l1（2024年9月·一级）一致；判断题部分位于 PDF 第5页，含题号1-10答案表，与网站判断题 id 16-25 顺序对应；来源 git-blob SHA 013db5576f8e687d6bf7a167e48f8621190e6d15 已校验。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第1题原文：「小杨最近开始学习C++编程，老师说C++是一门面向对象的编程语言，也是一门高级语言。（ ）」。网站仅增补空格、统一标点，语义完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定「正确/错误」两项，与卷面括号判断形式对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1题为√，按 正确=0 映射官方答案为 0；网站 answer=0，一致（已在页图中确认符号√而非×）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 由 Stroustrup 自1979年在 C 基础上开发、1983年命名，引入类/封装/继承/多态等 OOP 特性，且在语言分类中属高级语言，可支撑「正确」结论；解析事实与逻辑无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面、答案映射、解析均与卷面一致，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文：「在C++中，表达式 10/4 和 10%4 的值相同，都是整数2，说明 / 和 % 可以互相替换。()」。网站仅加空格与代码行内标记，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定「正确/错误」两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2题为×，按 错误=1 映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：10/4 整除得 2，10%4 余亦为 2，二者相等纯属 10=4×2+2 的巧合；反例 11/4=2、11%4=3，说明 / 求商、% 求余语义不同不可互换，与官方答案「错误」相符，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：解析的反例论证（11/4 与 11%4）独立复核成立，答案映射无误。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第3题原文：「N是C++程序中的整型变量，则语句 scanf(\"%d\", &N) 能接收形如正整数、负整数和0输入，但如果输入含字母或带小数点数，将导致无法执行。()」。网站补「程序」二字、省略「形如」，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定「正确/错误」两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第3题为×，按 错误=1 映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析主体正确（读取失败不等于程序无法执行），但把含字母与小数点的输入一概断言为返回 0/EOF 且 N 保持不变，与 %d 实际行为不符：输入 3.14 时成功读取 3、返回 1、N=3，仅 .14 残留缓冲区；且原解析易错提醒「读到 3 就停止」与正文自相矛盾。修正稿按 abc（返回 0、N 不变）与 3.14/12abc（成功读取数字前缀、返回 1、余部留缓冲区）分情况说明；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n`scanf(\"%d\", &N)` 能正常接收正整数、负整数和 0。当输入不合法时，程序同样会继续执行，不会崩溃，更不会\"无法执行\"，但具体行为需分两种情况：\n\n1. **输入开头就无法构成整数（如字母开头 `abc`）**：`%d` 匹配失败，`scanf` 返回 `0`（本次调用成功赋值的项目数为 0），`N` 保持原值（若原本未初始化，则值不确定），非法字符残留在输入缓冲区，程序继续向下执行。\n2. **输入以数字开头但混入其他字符（如 `3.14`、`12abc`）**：`%d` 会先成功读取数字前缀再停止——输入 `3.14` 时读到 `3`，`scanf` 返回 `1`，`N` 被赋值为 `3`，剩余的 `.14` 留在缓冲区；`12abc` 同理读到 `12`。这属于\"部分读取成功\"，并非整体匹配失败，更不会使程序无法运行。\n\n两种情况下程序都继续正常执行，只是可能没有按预期完整读入输入。因此题干\"将导致程序无法执行\"的说法是错误的。\n\n**易错提醒：**\n- `scanf` 通过返回值报告读取情况：成功赋值的项目数、`0`（首个字符即无法构成整数）或 `EOF`（流结束/输入失败），\"匹配失败\"不等于程序崩溃或无法执行。\n- 小数输入 `3.14` 并不会让 `%d` 整体失败：它会读取整数部分 `3` 并赋给 `N`，余下部分留在缓冲区；只有开头就无法构成整数（如字母开头）时才返回 `0` 且 `N` 不被赋值。\n- 注意区分两种情形下 `N` 的结果：输入 `3.14` 时 `N` 变为 `3`；输入 `abc` 时 `N` 保持原值。\n\n**知识延伸：**\n严谨的程序应检查 `scanf` 的返回值，例如 `if (scanf(\"%d\", &N) != 1) { /* 处理错误输入或清理缓冲区 */ }`。C++ 中可用 `cin` 的状态机制（`cin.fail()`、`cin.clear()`、`cin.ignore()`）实现类似的输入校验与恢复。\n\n**考点：** `scanf` 函数遇到非法输入时的行为特性"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的 needs_fix 判断并经独立验证：C 标准下 %d 对 3.14/12abc 这类输入为部分成功（返回 1、赋值整数前缀），仅对字母开头返回 0；原解析技术细节失实且前后矛盾。采纳其修正方向，按站内既有结构重写完整解析后复核通过。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第4题原文「下面C++代码能够执行，则将输出45。（ ）」，附3行代码 for 循环累加 Sum；网站代码逐行一致（Sum 均未声明）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定「正确/错误」两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4题为×，按 错误=1 映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：题面代码 Sum 未声明，编译报 '\"Sum' was not declared in this scope\"，无法生成可执行程序，「能够执行」前提不成立；另按补充假设声明并初始化 Sum=0 时 0+1+…+9=45。两条路径与官方答案「错误」一致，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：变量未声明导致编译失败这一核心判断正确，解析同时给出反事实推演，逻辑完整。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第5题原文：「在C++代码中整型变量X被赋值为20.24，则 cout << (X++, X+1) / 10 执行后输出的是 2.124。」；网站表述与代码行内标记等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定「正确/错误」两项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第5题为×，按 错误=1 映射为 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：X=20.24 赋给整型截断为 20；逗号表达式 (X++, X+1) 取最后子表达式值：X++ 返回 20 后 X=21，X+1=22；/ 优先级高于 <<，故为 cout << (22/10)，整除得 2，输出 2 而非 2.124，推翻题干说法，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：逗号表达式求值与整数除法截断的独立推导均成立，无事实错误。"
+      }
+    ],
+    "summary": "本次独立复核仅涉及判断题16-20（对应卷面判断题第1-5题，均在 PDF 第5页）。卷头「C++ 一级 2024年09月」与 paperId 匹配，来源 SHA 已校验。第5页答案表第1题为√、第2-5题为××××，按 正确=0/错误=1 映射后与网站 answer 全部一致。五题题面均与卷面语义等价；判断题不适用单选 options 与 referenceCode 维度。唯一修正是第18题解析：原解析把含小数点输入也归入返回0/EOF且N不变的整体匹配失败，与 %d 实际行为（3.14→读到3、返回1、N=3、.14留缓冲区）不符，且与其自身易错提醒相矛盾；已按「字母开头返回0/N不变」与「数字开头部分成功返回1」分情况重写完整解析并在本回合复核通过（explanation 已可标 verified）。第16/17/19/20题解析独立推演无误，全部 approve；tests 维度对该批判断题不适用。无未决问题，未发现答案表与题面冲突。"
+  }
+}

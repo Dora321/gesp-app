@@ -1,0 +1,256 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:53:52.880Z",
+  "completedAt": "2026-11-08T04:57:46.958Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47000,
+    "completion_tokens": 17135,
+    "total_tokens": 64135,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14085
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0156175,
+      "allowance": 0.0156175,
+      "tokens": {
+        "input": 47000,
+        "output": 17135,
+        "reasoning": 14085,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP / C++ 一级 / 2024年09月”，同页单选题答案表覆盖第1—15题（题号1-15答案 A D D B C D D B C D A D C D B），与paperId=2024-09-l1一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题题干“下面C++代码执行时输入 14+7 后，正确的输出是（ ）”及代码1—7行（int P; printf(\"请输入正整数P: \"); scanf(\"%d\", &P); if (P % 3 || P % 7) printf(\"第5行代码%d, %d\", P % 3, P % 7); else printf(\"第7行代码%2d\", P % 3 && P % 7);）与网站逐行一致，仅行号/空白排版差异。",
+            "confidence": 1
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A—D依次为“第5行代码2, 0”“第5行代码1, 0”“第7行代码 1”“第7行代码 0”（C/D中空格对应%2d宽度），与网站选项顺序、文本一致。",
+            "confidence": 1
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为A，0起始索引0。独立推导：scanf读入14后遇'+'停止，P=14；14%3=2、14%7=0；条件2||0为真，走第5行分支输出“第5行代码2, 0”，即选项A。网站answer=0正确。",
+            "confidence": 1
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算与网站解析一致：%d遇非数字字符终止（截取14）；14%3=2、14%7=0；逻辑或短路后整体为真；printf占位符替换得“第5行代码2, 0”。对B/C/D的排除理由（14%3≠1、15不成立；else分支不执行）均成立，无事实错误。",
+            "confidence": 1
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：五维均与PDF一致，独立推导结果“第5行代码2, 0”与答案A吻合，网站解析推导正确，无修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第12题题干及代码“int count= 0, i, s; / for (i = 0, s = 0 ; i < 20; i++, count++) / s += i++; / cout << s << \" \" << count;”与网站一致，仅空白差异。",
+            "confidence": 1
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A—D依次为“190 20”“95 10”“90 19”“90 10”，与网站一致。",
+            "confidence": 1
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为D，索引3。独立模拟：循环体与增量各含一次i++，每轮i增2、count增1；进入循环体的i为0,2,4,…,18共10轮；s=0+2+…+18=90；输出“90 10”，即D。网站answer=3正确。",
+            "confidence": 1
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐步模拟与网站解析一致：后置i++先取值后自增，count仅在循环头增量处累加（共10次）；i终值20不进入循环；输出90 10。对A/B/C错误的归因（20次全累加、奇数列累加、count误计19）均合理。",
+            "confidence": 1
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立模拟得s=90、count=10，与官方答案D及网站解析一致，无修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第13题题干（“比如对 123 则输出 123是3位整数 ，但代码中可能存在bug”）及代码1—11行（N0=N; while(N){rc++; N/=10;} printf(\"%d是%d位整数\\n\", N, rc); // L11）与网站一致；提示语中冒号全角/半角为等价排版差异，不影响判定。",
+            "confidence": 1
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A—D依次为“变量N0占用额外空间，可以去掉”“代码对所有整数都能计算出正确位数”“L11标记的代码行简单修改后可以对正整数给出正确输出”“L11标记的代码行的输出格式有误”，与网站一致。",
+            "confidence": 1
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为C，索引2。独立确认：while循环后N已改写为0，L11以N输出会把非零整数显示为“0是x位整数”；将printf中的N改为N0即可对正整数给出正确输出，故C为唯一正确描述。网站answer=2正确。",
+            "confidence": 1
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证网站解析：A去掉N0则无法修复L11；B不成立（非零数输出显示为0、输入0时rc=0）；负数如-123的while轮数（3轮）本身正确，错误源于L11输出被改写的N；D格式串两个%d与int参数匹配、数量正确，格式无误，bug在传参值。逐项归因正确。",
+            "confidence": 1
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立确认L11用了被循环改写为0的N，改用N0可对正整数正确输出，C正确，网站解析无事实错误，无修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第14题题干（示例输入 32488 25731 41232 0 输出 3个正五位数的百位数之和为13）及代码1—12行（含第6行 M = (M / 100 % 10); // L6、末行 cout << rc << \"个正五位数的百位数之和为\" << Sum;）与网站一致；按示例独立验算百位4+7+2=13、rc=3，与题干输出一致。",
+            "confidence": 1
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A—D依次为：A输入 23221 23453 12345 11111 0 时Sum为10；B输入 2322 2345 1234 1111 0 程序也能运行；C改为 M = (M % 1000 / 100);；D改为 M = (M % 100 / 10);。网站省略“执行代码时”等前缀，含义等价，顺序一致。",
+            "confidence": 1
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为D，索引3。独立验算：23221/23453/12345/11111百位为2/4/3/1，Sum=2+4+3+1=10（A成立）；while(M)对四位数亦正常（B成立）；M%1000/100=488/100取百位（C成立）；M%100/10=88/10=8取十位而非百位（D不成立）。描述错误的为D。网站answer=3正确。",
+            "confidence": 1
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立演算与网站解析一致：/10^k砍低位、%10^k截低位的两条提位公式分析正确，对A/B/C/D的逐项结论均成立；对“%100/10提取十位”的辨析准确。",
+            "confidence": 1
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：四个描述均独立验算通过（A的Sum=10、C取百位、D取十位），答案D及网站解析正确，无修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4—5页题干与代码（int N; cin >> N; for(int i = 0; i <= N; i++) if(___________________) cout << N << \"是一个兄弟数\\n\";）与网站一致；但站点code字段遗漏PDF第5页第8行候选表达式 i) N==i*(i+1)  ii) N==i*(i-1)  iii) N/(i+1)==i  iv) N/(i-1)==i，而题干明示“可从i)-iv)中选择”，该行是作答必要信息。已按PDF原图补全code字段（依题干X*(X+1)校正文本层OCR噪声“N=1*(i+1)”为N==i*(i+1)），修复后核验通过。",
+            "confidence": 1
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A—D为1/2/3/4，网站[\"1\",\"2\",\"3\",\"4\"]一致。",
+            "confidence": 1
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为B，索引1。独立判定：i)与定义直接等价；ii)取i=X+1时N==i*(i-1)覆盖全部兄弟数X(X+1)（X≥1时X+1≤N，在枚举范围内）；iii)整数除法截断致误判（N=8,i=2时8/3==2为真但8≠2×3）；iv)i=1时除零，且floor(N/(i-1))==i对区间[i²-i, i²-1)均为真（如N=7,i=3时7/2==3但7≠2×3），不可用。可用者共2个，选B。网站answer=1正确。",
+            "confidence": 1
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判定与网站解析结论一致：i、ii可用共2个；iii、iv因整数除法截断不可逆丢失余数信息而失效（网站所举N=8,i=2的iii误判例与i=1除零例均正确）。ii的“枚举等价”论证虽简略但结论成立。",
+            "confidence": 1
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序，维度不适用。"
+          }
+        },
+        "changes": {
+          "code": "int N;\n\ncin >> N;\nfor(int i = 0; i <= N; i++)\n    if(___________________)\n        cout << N << \"是一个兄弟数\\n\";\n\ni) N==i*(i+1)   ii) N==i*(i-1)   iii) N/(i+1)==i   iv) N/(i-1)==i"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分否决初核：初核将statement标verified不成立——站点code字段遗漏PDF第5页第8行的候选表达式i)-iv)，属题面必要信息缺失，初核未发现；已按PDF原图补全，修复后核验通过。其余维度（options/answer/explanation）初核结论经独立推导（ii在i=X+1覆盖、iii截断误判N=8、iv除零及区间误判N=7）成立，予以接受。"
+      }
+    ],
+    "summary": "本次复核2024年09月GESP C++一级第11—15题：来源身份与PDF卷头一致；11—14题题干、代码、选项顺序与官方PDF逐项吻合，答案表映射（A/D/C/D/D→0/3/2/3/1）均经独立推导确认，网站解析无事实错误，四题approve。第15题发现站点code字段遗漏题干所示i)-iv)候选表达式的必要题面信息，已按PDF第5页原图补全并核验通过，判revise（含修复）；其答案B（2个可用）经独立判定（i、ii可用，iii整数除法截断误判例N=8/i=2，iv除零及N=7/i=3误判）确认。5题均为单选题，referenceCode维度不适用；无未决争议事项。"
+  }
+}

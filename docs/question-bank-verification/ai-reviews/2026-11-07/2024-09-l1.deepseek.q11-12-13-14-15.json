@@ -1,0 +1,230 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:51:53.853Z",
+  "completedAt": "2026-11-08T04:53:52.872Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32328,
+    "completion_tokens": 13705,
+    "total_tokens": 46033,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 32256,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 12176,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00833057,
+      "allowance": 0.00499834,
+      "tokens": {
+        "input": 72,
+        "output": 13705,
+        "reasoning": 12176,
+        "cache_read": 32256,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 / C++ 一级 / 2024年09月”，与paperId=2024-09-l1一致；同页单选题答案表覆盖第1—15题。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题题干、代码行号1—7及输入14+7均与网站一致；printf/scanf格式串无缺漏，仅有空格等排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A—D依次为“第5行代码2, 0”“第5行代码1, 0”“第7行代码 1”“第7行代码 0”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为A，对应0起始索引0；网站answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算：scanf读入14后遇+停止，P=14；14%3=2，14%7=0；2||0为真，进入第5行分支，输出“第5行代码2, 0”。网站解析的核心推导与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序；referenceCode不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第12题代码与网站一致：int count=0,i,s; for(i=0,s=0;i<20;i++,count++) s += i++; cout << s << \" \" << count; 仅空白排版有差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A—D依次为“190 20”“95 10”“90 19”“90 10”，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为D，对应0起始索引3；网站answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：循环体取i为0,2,4,...,18共10轮，s=0+2+...+18=90；count在for增量中累加10次，输出“90 10”。网站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序；referenceCode不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第13题题干、代码行1—11及L11标记与网站一致；N0=N、while(N){rc++;N/=10;}等关键语句无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A—D四项描述与网站顺序和含义一致，仅个别标点差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为C，对应0起始索引2；网站answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：循环结束后N已变为0，L11用N输出会导致非零整数显示成0；将printf参数N改为保存的N0即可修复正整数输出，故C正确。输入0时rc=0，B所称“所有整数”不成立；格式串本身无误，D不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序；referenceCode不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第14题题干、示例及代码行1—12与网站一致；L6为M=(M/100%10);，输入输出描述完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A—D依次对应四个描述，网站顺序与含义一致；C为M=(M%1000/100);，D为M=(M%100/10);。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为D，对应0起始索引3；网站answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立演算：输入23221、23453、12345、11111时百位分别为2、4、3、1，Sum=10；四位数输入也能运行；M%1000/100同样取百位；M%100/10取的是十位，故D描述错误。网站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序；referenceCode不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页末开始第15题题干，第5页给出完整代码及i)—iv)候选；网站code中的循环、判断和输出语句与PDF一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A—D为1、2、3、4，且候选为i)N==i*(i+1)、ii)N==i*(i-1)、iii)N/(i+1)==i、iv)N/(i-1)==i；网站顺序与文本一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为B，对应0起始索引1；网站answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：i)直接判断N=X(X+1)；ii)在i=X+1时等价于N=(i-1)i，也能覆盖全部兄弟数；iii)受整数除法截断影响可误判，如N=8、i=2时8/3==2但8≠6；iv)同样会截断且i=1时除零。能完成功能的只有i)、ii)，共2个，选B。网站解析与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，官方PDF未提供参考程序；referenceCode不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核对2024年09月C++一级第11—15题：卷头身份匹配；题干、代码、选项顺序与官方PDF一致；答案表映射正确；解析经独立推导未发现事实性错误；五题均为单选题，参考代码维度不适用。未发现需要修改的字段。"
+  }
+}

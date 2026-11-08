@@ -1,0 +1,192 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:09:12.912Z",
+  "completedAt": "2026-11-08T05:12:06.094Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32322,
+    "completion_tokens": 15088,
+    "total_tokens": 47410,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 32256,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 13275,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00915947,
+      "allowance": 0.00549568,
+      "tokens": {
+        "input": 66,
+        "output": 15088,
+        "reasoning": 13275,
+        "cache_read": 32256,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为CCF GESP C++ 一级、2024年09月；第6-8页编程题名称与题号26“小杨购物”、27“美丽数字”一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "网站question中的题意、输入输出格式和两个样例与PDF第6页一致；但PDF第6页末尾有“对于全部数据，保证有1≤n,a,b≤10^5”，网站question未包含该数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案，PDF无对应答案表项，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "每对A+B花费a+b，设购买x对，则x(a+b)≤n，最大x=⌊n/(a+b)⌋；样例12/(1+2)=4、13/(1+2)=4均吻合，解析中的括号优先级说明也正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第7页参考程序读取n,a,b并输出n/(a+b)；网站代码逻辑相同，仅使用iostream和显式return 0，合法等价。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202409 一级] 小杨购物\n\n## 题目描述\n\n小杨有 $n$ 元钱用于购物。商品 A 的单价是 $a$ 元，商品 B 的单价是 $b$ 元。小杨想购买**相同数量**的商品 A 和商品 B。请你编写程序，计算他最多能够购买多少个商品 A 和多少个商品 B。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，表示小杨用于购物的钱数。\n\n第二行包含一个正整数 $a$，表示商品 A 的单价。\n\n第三行包含一个正整数 $b$，表示商品 B 的单价。\n\n## 输出格式\n\n输出一行，包含一个整数，表示小杨最多能够购买的商品 A 和商品 B 的数量。\n\n## 数据范围\n\n对于全部数据，保证 $1 \\le n,a,b \\le 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "最小规模：一对也买不起",
+            "input": "1\n1\n1",
+            "output": "0",
+            "reason": "n=1，a+b=2，按公式⌊1/2⌋=0。"
+          },
+          {
+            "name": "预算恰好购买一对",
+            "input": "2\n1\n1",
+            "output": "1",
+            "reason": "n=2，a+b=2，按公式⌊2/2⌋=1。"
+          },
+          {
+            "name": "预算小于一对",
+            "input": "5\n3\n4",
+            "output": "0",
+            "reason": "a+b=7>5，按公式⌊5/7⌋=0。"
+          },
+          {
+            "name": "最大预算与最小单价",
+            "input": "100000\n1\n1",
+            "output": "50000",
+            "reason": "n/(a+b)=100000/2=50000，结果在int范围内。"
+          },
+          {
+            "name": "单价和等于最大预算",
+            "input": "100000\n99999\n1",
+            "output": "1",
+            "reason": "a+b=100000，按公式⌊100000/100000⌋=1。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "网站题意、输入输出和样例与PDF第7页一致，样例中的3、1、9、72 token相同，空白分隔方式属于等价排版；但PDF第7页有数据范围1≤n≤10^5、1≤a_i≤10^5，网站question未包含该数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案，PDF无对应答案表项，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐个数检查val%9==0且val%8!=0；样例中1不满足，9满足，72因同时为8的倍数而不满足，计数为1，与官方样例和参考程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第8页参考程序用for循环逐个读入并执行同一条件；网站使用while(n--)读入n个数，逻辑等价，计数不超过n，合法正确。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202409 一级] 美丽数字\n\n## 题目描述\n\n小杨有 $n$ 个正整数。他认为一个正整数是美丽数字，当且仅当这个正整数是 **9 的倍数但不是 8 的倍数**。请你编写程序，计算这 $n$ 个正整数中美丽数字的数量。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，表示正整数的个数。\n\n第二行包含 $n$ 个正整数 $a_1, a_2, ..., a_n$。\n\n## 输出格式\n\n输出一个整数，表示其中美丽数字的数量。\n\n## 数据范围\n\n对于全部数据，保证 $1 \\le n \\le 10^5$，$1 \\le a_i \\le 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "最小规模：单个美丽数字",
+            "input": "1\n9",
+            "output": "1",
+            "reason": "9%9=0且9%8=1，满足美丽数字条件。"
+          },
+          {
+            "name": "单个同时为8和9的倍数",
+            "input": "1\n72",
+            "output": "0",
+            "reason": "72%9=0但72%8=0，不满足“不是8的倍数”。"
+          },
+          {
+            "name": "最小正整数",
+            "input": "1\n1",
+            "output": "0",
+            "reason": "1%9≠0，不满足。"
+          },
+          {
+            "name": "混合边界",
+            "input": "5\n9 18 72 144 8",
+            "output": "2",
+            "reason": "9、18满足；72、144是8的倍数；8不是9的倍数，因此计数为2。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验26-27题：主体题意、样例与参考程序均与PDF第6-8页一致，两题参考代码算法正确；但网站题面均漏列PDF中的数据范围，已提出question补全。26题为O(1)整除计算，27题为O(n)逐项筛选，均在给定范围下无溢出风险；边界测试为独立推导，覆盖最小规模、买不起、整除边界以及72、144等8和9的公倍数。其余题号按要求未处理。"
+  }
+}

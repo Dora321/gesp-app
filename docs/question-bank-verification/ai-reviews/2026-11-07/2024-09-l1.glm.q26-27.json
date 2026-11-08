@@ -1,0 +1,202 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:12:06.105Z",
+  "completedAt": "2026-11-08T05:18:19.411Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 46988,
+    "completion_tokens": 29523,
+    "total_tokens": 76511,
+    "prompt_tokens_details": {
+      "cached_tokens": 43520
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 26717
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0165873,
+      "allowance": 0.0165873,
+      "tokens": {
+        "input": 3468,
+        "output": 29523,
+        "reasoning": 26717,
+        "cache_read": 43520,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为『CCF 编程能力等级认证 GESP C++ 一级 / 2024年09月』，与目标 2024-09-l1 一致；第6-8页为编程题部分（每题25分、共50分），试题名称『小杨购物』与『美丽数字』分别对应网站题号26、27。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题面描述（等量购买）、输入三行/输出一行格式及两个样例 12/1/2→4、13/1/2→4 与网站一致，样例经独立验算 ⌊12/(1+2)⌋=⌊13/(1+2)⌋=4 成立，PDF样例说明（4件A+4件B花费4×1+4×2=12元；购5件需5×1+5×2=15元超预算13元）亦吻合；但PDF第6页末尾明示『对于全部数据，保证有 1≤n,a,b≤10^5』，网站题面缺失该数据范围，补全修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案；PDF第1、5页答案表仅覆盖单选15题与判断10题，编程题无对应表项，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导（非仅比对样例）：A、B 须等量购买，每套（1件A+1件B）花费 a+b，设买 k 套则 k(a+b)≤n，最大 k=⌊n/(a+b)⌋；样例 ⌊12/3⌋=4、⌊13/3⌋=4 与解析走查及官方样例说明一致；解析关于『/ 优先于 + 必须写成 n/(a+b)』『整数除法截断、无需浮点』的易错说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第7页参考程序读入 n,a,b 后输出 n/(a+b)；网站代码仅将 bits/stdc++.h 换为 iostream 并补 return 0，逻辑等价。独立核验（不依赖样例）：题目范围内 a+b≤2×10^5、结果≤50000，均在 int 表示范围内无溢出；a+b>n 时整除结果为 0 正确（零钱不足以购一套）；O(1) 计算满足 1.0s/512MB 限制。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202409 一级] 小杨购物\n\n## 题目描述\n\n小杨有 $n$ 元钱用于购物。商品 A 的单价是 $a$ 元，商品 B 的单价是 $b$ 元。小杨想购买**相同数量**的商品 A 和商品 B。请你编写程序，计算他最多能够购买多少个商品 A 和多少个商品 B。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，表示小杨用于购物的钱数。\n\n第二行包含一个正整数 $a$，表示商品 A 的单价。\n\n第三行包含一个正整数 $b$，表示商品 B 的单价。\n\n## 输出格式\n\n输出一行，包含一个整数，表示小杨最多能够购买的商品 A 和商品 B 的数量。\n\n## 数据范围\n\n对于全部数据，保证 $1 \\le n,a,b \\le 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "最小预算不足一对",
+            "input": "1\n1\n1",
+            "output": "0",
+            "reason": "数据范围下界输入；a+b=2>n=1，⌊1/2⌋=0。"
+          },
+          {
+            "name": "预算恰好购买一对",
+            "input": "2\n1\n1",
+            "output": "1",
+            "reason": "⌊2/2⌋=1。"
+          },
+          {
+            "name": "预算小于单价之和",
+            "input": "5\n3\n4",
+            "output": "0",
+            "reason": "a+b=7>n=5，⌊5/7⌋=0，验证剩余钱不足一套时输出 0。"
+          },
+          {
+            "name": "最大预算与最小单价",
+            "input": "100000\n1\n1",
+            "output": "50000",
+            "reason": "⌊100000/2⌋=50000，int 无溢出。"
+          },
+          {
+            "name": "单价和恰等于最大预算",
+            "input": "100000\n99999\n1",
+            "output": "1",
+            "reason": "a+b=100000=n，⌊100000/100000⌋=1。"
+          },
+          {
+            "name": "两单价均取上界",
+            "input": "100000\n100000\n100000",
+            "output": "0",
+            "reason": "a=100000、b=100000 均为范围上界；a+b=200000>n，⌊100000/200000⌋=0。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核指出『网站题面漏列 PDF 第6页末尾数据范围 1≤n,a,b≤10^5』，经本人独立对照确认属实，其补全文本与原文逐字对应，予以接受并作为本报告 changes；其5个tests期望输出经本人独立重算全部正确，本人另补『两单价均取上界』边界用例。初核对解析与参考代码的 verified 结论亦经独立推导/逐行比对复核成立，接受。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页题面（是9的倍数但不是8的倍数）、输入/输出格式及样例 3 与 1/9/72→1 与网站一致（PDF样例各数占一行、网站第二行空格分隔，token 顺序相同，属等价排版，cin 空白分隔读入不影响题意）；官方样例说明（1均不是；9是9的倍数不是8的倍数；72既是9的倍数也是8的倍数→答案1）经独立验算 72%9=0、72%8=0 成立；但PDF第7页末尾明示『对于全部数据，保证有 1≤n≤10^5, 1≤a_i≤10^5』，网站题面缺失，补全修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案；PDF答案表仅覆盖单选与判断题，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：判定条件为 val%9==0 && val%8!=0；样例逐一验算 1%9=1（否）、9%9=0 且 9%8=1（是）、72%9=0 但 72%8=0（否），计数为1，与解析走查及PDF样例说明一致；解析对『必须用==/!=而非=』『须用 && 不能用 ||』的易错提醒正确。解析行文提及 cout<<count<<endl 与其内嵌参考代码的换行转义（\\n）输出效果等价，非实质问题，不修改。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第8页参考程序为 for 循环内 if(x%9==0&&x%8!=0)ans++；网站代码以 while(n--) 逐个读入 n 个数执行同一判定，逻辑等价（局部变量 count 合法遮蔽 std::count，可正常编译）。独立核验（不依赖样例）：n≤10^5 时 O(n) 读入与判定满足 1.0s 限制；count≤10^5、每个 ai≤10^5 均在 int 范围无溢出；while(n--) 在 n≥1 时恰好循环 n 次，无死循环或漏读风险。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202409 一级] 美丽数字\n\n## 题目描述\n\n小杨有 $n$ 个正整数。他认为一个正整数是美丽数字，当且仅当这个正整数是 **9 的倍数但不是 8 的倍数**。请你编写程序，计算这 $n$ 个正整数中美丽数字的数量。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，表示正整数的个数。\n\n第二行包含 $n$ 个正整数 $a_1, a_2, ..., a_n$。\n\n## 输出格式\n\n输出一个整数，表示其中美丽数字的数量。\n\n## 数据范围\n\n对于全部数据，保证 $1 \\le n \\le 10^5$，$1 \\le a_i \\le 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "最小规模取最小美丽数",
+            "input": "1\n9",
+            "output": "1",
+            "reason": "9%9=0 且 9%8=1，满足条件。"
+          },
+          {
+            "name": "同时为8和9的倍数",
+            "input": "1\n72",
+            "output": "0",
+            "reason": "72%9=0 但 72%8=0，不满足『不是8的倍数』。"
+          },
+          {
+            "name": "最小正整数",
+            "input": "1\n1",
+            "output": "0",
+            "reason": "1%9=1，不是 9 的倍数。"
+          },
+          {
+            "name": "混合边界",
+            "input": "5\n9 18 72 144 8",
+            "output": "2",
+            "reason": "9（9%8=1）、18（18%9=0 且 18%8=2）满足；72、144 均为 8 的倍数被排除（144%9=0 但 144%8=0）；8 非 9 的倍数，计数为2。"
+          },
+          {
+            "name": "取值上界边界",
+            "input": "2\n99999 100000",
+            "output": "1",
+            "reason": "a_i 上界附近：99999=9×11111 且 99999%8=7，满足；100000 各位数字和为1，非 9 的倍数，不满足，计数为1。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核指出『网站题面漏列 PDF 第7页末尾数据范围 1≤n≤10^5、1≤ai≤10^5』，经本人独立对照确认属实，补全文本忠实原文，予以接受并作为本报告 changes；其4个tests期望输出经本人独立重算正确，本人另补 99999/100000 取值上界用例。初核对参考代码（while(n--) 与官方 for 循环等价、O(n)）与解析走查的 verified 结论经独立复核成立，接受；解析中 endl 与换行转义（\\n）的行文差异属等价输出，不判为问题；PDF 样例分行与网站空格分隔为等价排版，无需修改。"
+      }
+    ],
+    "summary": "本次仅独立复核编程题26、27（网站此前 referenceCode 维度 0/2 未核）。来源一致：卷头『CCF GESP C++ 一级 2024年09月』。两题题面、输入输出格式与样例均与 PDF 第6-7页一致且样例验算通过，但网站题面均漏列 PDF 明示的数据范围（26：1≤n,a,b≤10^5；27：1≤n≤10^5、1≤ai≤10^5），已按原文补全（changes 仅含 question 字段）并核验通过；解析经独立推导复核，参考代码与官方参考程序逻辑等价：26题 O(1) 整除计算、27题 O(n) 逐项筛选，在题目实际范围内均无溢出与超时风险。全部 tests 期望输出由本人独立计算，覆盖最小值、整除边界（⌊1/2⌋、⌊5/7⌋、两单价上界）与取值上界（99999/100000、72/144），未声称已运行。DeepSeek 初核的两处修改及既有 tests 经独立确认后全部接受，另新增2个上界用例；未发现需否决的初核结论，无未决问题。"
+  }
+}

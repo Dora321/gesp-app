@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:33:04.952Z",
+  "completedAt": "2026-11-08T04:36:57.060Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32328,
+    "completion_tokens": 17230,
+    "total_tokens": 49558,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 14810,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0151872,
+      "allowance": 0.00911232,
+      "tokens": {
+        "input": 32328,
+        "output": 17230,
+        "reasoning": 14810,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 一级”“2024 年 09 月”，与 paperId 2024-09-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干核心为“山东大学于1972年研制成功DJL-1计算机……该磁心存储元件相当于现代计算机的（）”；网站省略了“综合性能居当时全国第三位”和“设计存贮周期为2μs”等背景补充，设问对象和含义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题选项依次为 A.内存、B.磁盘、C.CPU、D.显示器；网站选项顺序和文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第1题为A，对应0起始索引0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明磁心存储器属于主存储器/内存，并逐项排除磁盘、CPU和显示器，独立推导结论为A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干为“C++程序执行出现错误，不太常见的调试手段是（）”，网站文字和含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题选项依次为 A.阅读源代码、B.单步调试、C.输出执行中间结果、D.跟踪汇编码；网站顺序和文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题为D，对应0起始索引3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心推导正确，但“知识延伸”称Dev-C++/Code::Blocks按F10/F11单步调试、按F7查看反汇编，这些快捷键既不通用也不准确，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及编程题参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (跟踪汇编代码)** **核心解析：** 软件调试是通过观察和检查程序来定位错误原因的过程。常用手段包括阅读源代码、单步调试、设置断点、输出中间变量等，它们都在高级语言或源代码层面工作。跟踪汇编代码需要查看编译器生成的汇编指令，理解寄存器、指令集和调用约定，属于较底层、较专门的调试方式，在GESP一级和C++入门调试中不常见。 **选项逐项分析：** - A (阅读源代码)：是常见调试手段，通过审查代码定位语法或逻辑问题，不是本题答案。 - B (单步调试)：是常见调试手段，借助IDE逐语句执行并观察变量变化，不是本题答案。 - C (输出执行中间结果)：是常见调试手段，用cout或printf打印关键变量，不是本题答案。 - D (跟踪汇编码)：正确。查看并跟踪汇编代码需要底层知识，通常在逆向工程、内核调试或编译器开发中使用，不是C++初学者调试的常见手段。 **易错提醒：** 题干问的是“不太常见”，不是问“不合法”或“没有用”；A、B、C本身都是正常调试方法。不要把“查看反汇编”与普通单步调试混为一谈。 **知识延伸：** 现代IDE通常提供断点、单步执行和变量观察功能；不同IDE的快捷键并不统一，反汇编窗口也往往需要额外配置。GESP一级阶段掌握前三种常见调试手段即可。 **考点：** 调试的基本概念与常用方法"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题题干为“在C++中，下列表达式错误的是（）”，网站文字和含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题四个选项分别为双引号字符串、单引号多字符常量、三个连续双引号形式、以双引号开头但以单引号结尾的残缺字符串；网站逐项对应，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题为D，对应0起始索引3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项区分双引号字符串、单引号多字符常量、相邻字符串字面量拼接和未闭合双引号的词法错误，最终选D，推导与C++词法规则一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第4题题干为“C++表达式 10 - 3 * 2 的值是（）”，网站表达式和设问一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页第4题选项依次为 A.14、B.4、C.1、D.0；网站顺序和值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第4题为B，对应0起始索引1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按乘法优先于减法计算，先算3*2=6，再算10-6=4，并解释误选14来自错误的运算顺序，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题题干为“在C++中，假设N为正整数10，则 cout <<(N / 3 + N % 3) 将输出（）”，网站表达式、条件和设问一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题选项依次为 A.6、B.4.3、C.4、D.2；网站顺序和值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页答案表第5题为C，对应0起始索引2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析核心答案C正确，但对A项称“误认为10/3=3.3，再用10+3.3+1=14.3”既不是本题可选错误路径，也不能解释6的来源，属于明显错误推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及编程题参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (4)** **核心解析：** N=10 且为整型。`N / 3` 是整数除法，10/3 的商为3；`N % 3` 是取模，10%3 的余数为1；因此 `N / 3 + N % 3` = 3 + 1 = 4，输出4。 **选项逐项分析：** - A (6)：错误。若把 `10 % 3` 误算为3，才会得到3+3=6；实际余数为1。 - B (4.3)：错误。把 `10 / 3` 误当作浮点除法得到约3.3，再与1相加才会得到约4.3；但两个操作数都是整数，执行整数除法。 - C (4)：正确。3+1=4。 - D (2)：错误。按题中表达式无法得到2；可能是只取了余数相关结果后误加1，改变了原表达式。 **易错提醒：** 整数除法 `/` 会截断小数部分；取模 `%` 求余数；本题没有浮点运算，输出不可能是4.3。 **知识延伸：** 整数除法和取模满足 `a = (a / b) * b + (a % b)`；本题10 = 3×3 + 1。 **考点：** 整数除法、取模运算及运算顺序"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题1-5，均为单选题。官方答案索引依次为0、3、3、1、2，与PDF答案表一致；题面和选项已完成逐项对照。发现两处解析问题：题2“知识延伸”中的IDE快捷键说明不准确，题5 A项的错误路径推演有误，均已给出完整替换草稿。未进行源码运行验证；题6及以后未纳入本次核验。"
+  }
+}

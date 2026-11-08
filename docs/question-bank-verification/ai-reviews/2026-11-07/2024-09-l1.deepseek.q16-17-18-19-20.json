@@ -1,0 +1,231 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:57:46.968Z",
+  "completedAt": "2026-11-08T05:00:58.269Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32328,
+    "completion_tokens": 14526,
+    "total_tokens": 46854,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 32256,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 12824,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00882317,
+      "allowance": 0.0052939,
+      "tokens": {
+        "input": 72,
+        "output": 14526,
+        "reasoning": 12824,
+        "cache_read": 32256,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 一级 2024年09月”，与 paperId=2024-09-l1 对应；来源 git-blob SHA 013db5576f8e687d6bf7a167e48f8621190e6d15 已校验。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "卷面第5页判断题第1题：“小杨最近开始学习C++编程，老师说C++是一门面向对象的编程语言,也是一门高级语言。”网站仅调整空格与标点，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定使用“正确/错误”判断项，符合卷面括号判断形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第1题为√，按正确=0映射，官方答案为0；网站answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明C++支持类、封装、继承、多态并具备高级语言抽象特征，能独立推出“正确”，未见事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "卷面第5页判断题第2题：“在C++中，表达式 10/4 和 10%4 的值相同，都是整数2，说明 / 和 % 可以互相替换。”网站表述与代码等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站使用固定“正确/错误”判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第2题为×，按错误=1映射，官方答案为1；网站answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析分别计算10/4=2、10%4=2，并用11/4=2、11%4=3说明二者语义不同、不可替换，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "卷面第5页判断题第3题考查scanf(\"%d\", &N)对正整数、负整数、0及非法输入的行为；网站表述增加“程序”二字、省略“形如”，未改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定使用“正确/错误”判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第3题为×，按错误=1映射，官方答案为1；网站answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体正确指出读取失败不等同于程序无法执行，但把“带小数点的数”也一概说成格式匹配失败，并称返回0/EOF；实际输入3.14时%d会成功读取3并返回1，仅把.14留在缓冲区，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n`scanf(\"%d\", &N)` 对正整数、负整数和 0 可以成功读取；遇到不能匹配 `%d` 的输入时，不会导致程序“无法执行”或崩溃，但具体行为要分情况：\n- 若输入以字母等不能开始整数的字符开头（如 `abc`），转换失败，`scanf` 返回 0，`N` 不会被赋值（若 `N` 原本未初始化，则其值不确定），字符留在缓冲区，程序继续执行。\n- 若输入为 `3.14` 或 `12abc`，`%d` 会先成功读取前面的整数 `3` 或 `12`，返回 1，并把 `.14` 或 `abc` 留在缓冲区；程序同样继续执行。\n因此题中“将导致程序无法执行”的说法错误。工程中应检查 `scanf` 的返回值，并在失败时处理残留输入。\n\n**易错提醒：**\n- `scanf` 读取失败不等于程序崩溃；它通过返回值报告成功读取的项数。\n- 小数输入 `3.14` 不一定会使 `%d` 整体失败，它会读取整数部分 `3`。\n\n**知识延伸：**\n通常用 `if (scanf(\"%d\", &N) != 1) { /* 处理错误输入 */ }` 检查读取是否成功；C++ 的 `cin` 也可通过 `cin.fail()` 检查。\n\n**考点：** `scanf` 函数遇到非法输入时的行为特性"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "卷面第5页判断题第4题给出for循环累加并输出Sum的代码，题面为“下面C++代码能够执行，则将输出45”；网站代码与题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定使用“正确/错误”判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第4题为×，按错误=1映射，官方答案为1；网站answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按卷面独立代码，Sum未声明，代码无法通过编译，“将输出45”不成立；解析还说明若声明并初始化为0才会得到45，推导与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "卷面第5页判断题第5题：“在C++代码中整型变量X被赋值为20.24，则 cout << (X++, X+1) / 10 执行后输出的是 2.124。”网站表述与代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D单选选项；网站固定使用“正确/错误”判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第5题为×，按错误=1映射，官方答案为1；网站answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按X被截断为20、逗号表达式取X+1=22、22/10执行整数除法得2推导，说明不会输出2.124，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验判断题16-20。卷头年月与等级匹配；5题答案映射均与PDF答案表一致。题面均与卷面等价；判断题不适用单选options与编程题referenceCode维度。Q18解析对scanf读取小数输入的行为表述不准确，已提供修正草稿；其余解析通过。未发现答案冲突或未决问题。"
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T05:04:27.848Z",
+  "completedAt": "2026-11-08T05:05:44.836Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32328,
+    "completion_tokens": 8530,
+    "total_tokens": 40858,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 32256,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 6874,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00522557,
+      "allowance": 0.00313534,
+      "tokens": {
+        "input": 72,
+        "output": 8530,
+        "reasoning": 6874,
+        "cache_read": 32256,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 一级 2024 年 09 月”，与 paperId=2024-09-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题原文：“下面C++代码执行后，最后一次输出是10。（ ）”，代码为 for (int i = 1; i < 10; i+=3) cout << i << endl; 本站题面与代码等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以括号作答；本站 options 为“正确/错误”，与 PDF 判断语义一致，无选项顺序冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 列为“×”，即错误；本站 answer=1（错误）与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 i=1,4,7 依次输出，i=10 时条件不成立，故最后一次输出为 7，可独立推出官方“错误”结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 7 题原文：“在C++， break 语句通常与if语句配合使用。（ ）”本站仅补“中”和代码标记，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为“正确/错误”，本站未改变判断方向或顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 7 列为“×”；本站 answer=1（错误）与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 break 可独立用于 switch 的 case 末尾，因此“通常与 if 配合使用”的说法不成立；与官方“错误”结论一致，未发现新的事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 8 题原文：“在C++代码中，不可以将变量命名为 five-star ，因为变量名中不可以出现 - （减号）符号。（ ）”本站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为“正确/错误”，与 PDF 判断作答方式一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 8 列为“√”；本站 answer=0（正确）与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据 C++ 标识符只能包含字母、数字、下划线，five-star 含减号不合法；结论与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 9 题原文：“在C++语言中，整型、实数型、字符型、布尔型是不同数据类型，但这四种类型的变量间都可以比较大小。（ ）”本站“不相同的数据类型”措辞等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为“正确/错误”，本站未改变判断方向或顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 9 列为“√”；本站 answer=0（正确）与官方一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析有两处事实错误：写成 'A'(65) > 'a'(97) > '0'(48)，实际 ASCII 顺序应为 '0'(48) < 'A'(65) < 'a'(97)；又称 bool 到 int 是显式转换，实际为隐式整型提升。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nC++ 中，整型、实数型（float/double）、字符型和布尔型都属于算术类型。进行大小比较时，若两侧类型不同，会按常规算术转换（usual arithmetic conversions）转换为共同的算术类型后再比较：\n- 整型按整数值比较；\n- 实数型按浮点数值比较；\n- 字符型按其字符编码（如 ASCII）对应的整数值比较，`'0'`(48) < `'A'`(65) < `'a'`(97)；\n- 布尔型 `false` 转为 0、`true` 转为 1 后参与比较（这是隐式整型提升，不是显式转换）。\n\n因此，这四种类型的变量之间都可以使用关系运算符比较大小，题干说法正确。\n\n**易错提醒：**\n- 字符型比较的是字符编码值，不是按字典中的字母形状比较。\n- `bool` 参与算术或比较时按 0/1 处理，该转换是隐式的。\n\n**知识延伸：**\n关系运算的结果类型是 `bool`；混合类型比较时要注意浮点精度和有符号/无符号转换规则。\n\n**考点：** 不同基本数据类型之间的比较运算与隐式类型转换"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 10 题原文：“C++中，定义变量 int a=5,b=4,c=3 ，则表达式 (a<b<c) 的值为逻辑假。 ( )”本站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为“正确/错误”，本站未改变判断方向或顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 10 列为“×”；本站 answer=1（错误）与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按左结合计算 (5<4) 得 0，再计算 0<3 得 1，说明表达式值为逻辑真，题干“逻辑假”错误；与官方“×”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核仅覆盖判断题 21—25。PDF 第 5 页答案表对应 21—25 为 ×、×、√、√、×，与本站答案映射一致；题面和选项均无实质差异。第 24 题解析存在 ASCII 大小顺序及 bool→int 转换方式两处事实错误，已提交完整修正草稿。五题均为判断题，无编程参考代码，未产生运行测试。"
+  }
+}

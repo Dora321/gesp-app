@@ -1,0 +1,240 @@
+{
+  "paperId": "2024-09-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T04:39:44.588Z",
+  "completedAt": "2026-11-08T04:45:42.404Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32328,
+    "completion_tokens": 32144,
+    "total_tokens": 64472,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 32256,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 29431,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01939397,
+      "allowance": 0.01163638,
+      "tokens": {
+        "input": 72,
+        "output": 32144,
+        "reasoning": 29431,
+        "cache_read": 32256,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7cbb0659b5a53440cf2f87a766652a9f681aa63c159347a02da0c981b261f5d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++1级.pdf",
+    "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
+    "mirrorBytes": 965000,
+    "shaVerified": true,
+    "sha256": "91e3644262d99cc6194f6b042d981576b187be504a8add1254d229b7f3216aaf"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证 GESP，C++ 一级，2024 年 09 月；与 paperId 2024-09-l1 对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第2页第6题文本层显示格式串为 `printf(\"6%2={%d}\", 6%2)`（单个 `%`），页图该处也未见第二个 `%`；站内题面为 `printf(\"6%%2={%d}\", 6 % 2)`。两者不一致，需人工放大原图确认是原卷漏排还是站内改写。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第2页原图一致，顺序一致：A `\"6%2={6%2}\"`、B `6%2={6%2}`、C `0=0`、D `6%2={0}`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第6题答案为 D；站内 answer=3，映射为 D。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析核心按 `%%` 输出 `%` 推导 D；若原卷为单 `%`，则 `%2=` 不是合法的 printf 转换说明，标准 C++ 下行为未定义，不能仅由题面独立推出 D。另有“printf 格式串中反斜杠转义”的表述混淆了 C++ 字符串字面量转义与 printf 转义，需修正并保留原卷疑点。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (6%2={0})**\n\n**核心解析：** 按站内题面 `printf(\"6%%2={%d}\", 6 % 2)`，`%%` 输出一个字面量 `%`，因此 `6%%2` 输出 `6%2`；`%d` 用参数 `6 % 2` 的值 0 替换，花括号原样输出，得到 `6%2={0}`。\n\n**注意：** PDF 文本层/页图第 6 题的格式串疑似为单 `%`（`printf(\"6%2={%d}\", 6%2)`）。若严格按单 `%`，`%2=` 不是合法的 printf 转换说明，标准 C++ 下行为未定义（常见实现可能原样输出）；此时不能仅由题面独立推出 D，需以原卷为准。\n\n**知识延伸：** `%%` 是 printf 格式串中输出 `%` 的写法；C++ 字符串字面量中的 `\\\\` 表示一个反斜杠，但 printf 格式串本身不使用反斜杠转义，二者不要混淆。"
+        },
+        "tests": [],
+        "unresolved": [
+          "第6题格式串百分号数量：PDF 文本层/页图疑似为单个 `%`，站内为 `%%`；需人工确认原卷是否漏排。"
+        ]
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页原图第7题题干为“成功执行下面的C++代码，先后从键盘上输入5回车和2回车，输出是”，代码为 `cin >> a; cin >> b; cout << a + b;`；站内题面与代码等价，未改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第2页原图一致，顺序一致：A 输出整数7、B 输出52、C 输出5和2、D 因未显示 a 和 b 的数据类型而不确定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第7题答案为 D；站内 answer=3，映射为 D。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心答案 D 正确，但原解析把 `int + std::string` 说成“可能编译报错或产生未定义行为”，应明确为无法通过编译；已修正为按类型分别讨论并说明不确定性的来源。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D。** 代码片段未给出 `a`、`b` 的声明，`cin >> a`、`cin >> b`、`a + b` 和 `cout << a + b` 的含义由类型决定：若均为 `int`，输入 5、2 后输出 7；若均为 `std::string`，`+` 为拼接，输出 `52`；若类型不匹配（如 `int` 与 `std::string`），`a + b` 无法通过编译。因此仅凭题面无法确定输出。A、B 分别假设了 `int`、`string`，C 描述的是分两次输出，均不符合题意。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页原图第8题代码为 `int Sum = 0; for (int i = 0; i < 10; i++) Sum += i; cout << Sum;`；站内代码与条件、边界一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第2页原图一致：A 55、B 45、C 10、D 9。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第8题答案为 B；站内 answer=1，映射为 B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心答案 B 正确，但“知识延伸”把 0 到 9 的和写成 10×11÷2=55，公式与区间错位；应改为 0+1+...+9=9×10/2=45。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (45)。** 循环 `i` 取 0 到 9（`i < 10`），`Sum` 累加 `0+1+...+9 = 9×10/2 = 45`。A 的 55 是 `1+...+10` 或 `0+...+10` 的和；C 的 10 是循环结束后 `i` 的值；D 的 9 是最后一次参与累加的 `i` 值。注意 `i < 10` 不包含 10。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页原图第9题代码为 `int N = 0; for (int i = 0; i < 10; i++) N += 1; cout << N;`，选项延续到第3页；站内代码与条件、边界一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第2-3页原图一致：A 55、B 45、C 10、D 9。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第9题答案为 C；站内 answer=2，映射为 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心答案 C 正确，但 A 项解析误称 `N += i` 会得到 55（实际为 45），与同解析 B 项自相矛盾；需改为 55 对应 1+...+10 或 0+...+10 的和。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (10)。** 循环体是 `N += 1`，不是 `N += i`；`i` 从 0 到 9 共执行 10 次，每次 `N` 加 1，故 `N = 10`。A 的 55 是 `1+...+10` 或 `0+...+10` 的和（若上界写成 `i <= 10` 或累加 1 到 10 才可能得到）；B 的 45 是 `0+...+9` 的和；D 的 9 是 `i` 的最后取值。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页原图第10题代码为 `int N = 0; for (int i = 1; i < 10; i +=2){ if (i % 2 == 1) continue; N += 1; } cout << N;`；站内代码与分支、步长一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与第3页原图一致：A 5、B 4、C 2、D 0。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第10题答案为 D；站内 answer=3，映射为 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项核对：i 序列为 1、3、5、7、9，均为奇数，`if (i % 2 == 1)` 每次成立，`continue` 每次都跳过 `N += 1`，N 保持 0；选项与答案 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核对第6-10题。五题的选项顺序与 PDF 答案表映射均正确。第6题因原卷百分号数量疑似不一致保留待核验；第7、8、9题解析存在事实性表述错误，已给出修正草稿；第10题五维一致。第6-10题均为单选题，无编程题，故未生成边界测试。"
+  }
+}

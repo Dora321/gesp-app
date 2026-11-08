@@ -1,0 +1,147 @@
+{
+  "executedAt": "2026-11-08T05:27:28.398Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "12\n1\n2",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "13\n1\n2",
+          "output": "4",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "最小预算不足一对",
+          "input": "1\n1\n1",
+          "output": "0",
+          "reason": "数据范围下界输入；a+b=2>n=1，⌊1/2⌋=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "预算恰好购买一对",
+          "input": "2\n1\n1",
+          "output": "1",
+          "reason": "⌊2/2⌋=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "预算小于单价之和",
+          "input": "5\n3\n4",
+          "output": "0",
+          "reason": "a+b=7>n=5，⌊5/7⌋=0，验证剩余钱不足一套时输出 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "最大预算与最小单价",
+          "input": "100000\n1\n1",
+          "output": "50000",
+          "reason": "⌊100000/2⌋=50000，int 无溢出。",
+          "kind": "boundary",
+          "actual": "50000\n",
+          "passed": true
+        },
+        {
+          "name": "单价和恰等于最大预算",
+          "input": "100000\n99999\n1",
+          "output": "1",
+          "reason": "a+b=100000=n，⌊100000/100000⌋=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两单价均取上界",
+          "input": "100000\n100000\n100000",
+          "output": "0",
+          "reason": "a=100000、b=100000 均为范围上界；a+b=200000>n，⌊100000/200000⌋=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "35f5cab09b8d733beae2ad61f82fff277e9ed0faf8109e01e091e7851c21106e"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3\n1 9 72",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模取最小美丽数",
+          "input": "1\n9",
+          "output": "1",
+          "reason": "9%9=0 且 9%8=1，满足条件。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "同时为8和9的倍数",
+          "input": "1\n72",
+          "output": "0",
+          "reason": "72%9=0 但 72%8=0，不满足『不是8的倍数』。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "最小正整数",
+          "input": "1\n1",
+          "output": "0",
+          "reason": "1%9=1，不是 9 的倍数。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "混合边界",
+          "input": "5\n9 18 72 144 8",
+          "output": "2",
+          "reason": "9（9%8=1）、18（18%9=0 且 18%8=2）满足；72、144 均为 8 的倍数被排除（144%9=0 但 144%8=0）；8 非 9 的倍数，计数为2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "取值上界边界",
+          "input": "2\n99999 100000",
+          "output": "1",
+          "reason": "a_i 上界附近：99999=9×11111 且 99999%8=7，满足；100000 各位数字和为1，非 9 的倍数，不满足，计数为1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "7e0eb45478b85d93b10add879047bfa96fe0169db09534d32ba872856a5769f3"
+    }
+  ]
+}
