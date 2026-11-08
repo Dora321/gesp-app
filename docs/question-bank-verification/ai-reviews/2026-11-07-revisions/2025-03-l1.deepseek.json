@@ -1,0 +1,466 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    4,
+    6,
+    11,
+    13,
+    15,
+    18,
+    22,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T06:11:43.504Z",
+  "completedAt": "2026-11-08T06:19:44.915Z",
+  "finishReason": "stop",
+  "inputSha256": "32812ba0f41bd96c6ab24ae2baed67760d3c0fb87a618121f40a5eecdce973cb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标明“CCF 编程能力等级认证 C++ 一级 2025年03月”，与 paperId 2025-03-l1 的年份、月份、等级一致。\nPDF第1页卷头显示“CCF 编程能力等级认证 C++ 一级 2025年03月”，与paperId 2025-03-l1一致。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题题干为“以下哪个是C++语言的关键字？（ ）”，候选 question 与之逐字一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. abs、B. cin、C. do、D. endl，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题标为 C，按 0 起始索引为 2；候选 answer=2。独立判断：do 是 C++ 语言关键字，abs、cin、endl 均非语言关键字。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分语言关键字与标准库函数/对象/操纵符；其中“C++98/03 已定义 63 个关键字”经核对成立，后续标准新增关键字的表述无误；未发现需修的事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题目标输出为 `__ 0322$$`（两个下划线、一个空格、0322、两个美元符）；候选 question 已恢复该 `$$` 并删除错误注释，符合原卷。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项的 `%2d/%02d` 顺序、下划线个数和末尾 `$` 数量与候选 options 一致：A/B 为 `$$`，C/D 为 `$$$$`，D 的下划线为四个。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 B，按 0 起始索引为 1；候选 answer=1。独立代入：A→`__  322$$`，B→`__ 0322$$`，C→`__ 0322$$$$`，D→`____ 0322$$$$`，仅 B 匹配目标输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐项代入与独立计算结果一致，正确指出 C、D 错在末尾固定 `$` 数量（D 另有下划线个数不符），并说明 22 在 `%2d` 和 `%02d` 下均输出“22”；未发现需修内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题代码含两条提示 cout、两次 cin，候选 question 已按原卷恢复；原卷 `int first,second;` 与候选 `int first, second;` 仅为空格排版差异，不改变语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 200、100、1、0，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 D，按 0 起始索引为 3；候选 answer=3。独立计算：first=100、second=200，整数除法 100/200=0，再乘 200 得 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选核心推导正确：先计算 first/second 得 0，再乘 second 仍为 0；A、B、C 均与整数除法截断规则不符，答案判断与官方答案一致，未发现需修的事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第13题代码与候选逐行一致：tnt=0；i 从 -1000 到 i<1000；tnt+=i；最后输出 tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 -1000、0、999、1000，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 A，按 0 起始索引为 0；候选 answer=0。独立推导：-999 到 999 成对抵消为 0，剩下 -1000，总和为 -1000。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选已将项数修正为 2000 项，计算式 999-(-1000)+1=2000；配对抵消后只剩 -1000，与答案一致，未发现需修内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第15题代码与候选逐行一致：i 从 5 到 99 每次加 5；偶数 continue；tnt+=1；满足 i%3==0 且 i%7==0 时 break；最后输出 tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 500、450、10、1，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 C，按 0 起始索引为 2；候选 answer=2。独立推导：5 的倍数中奇数共 5、15、…、95 十个，均累加；break 需要同时为 5 和 21 的公倍数，最小为 105，超出 i<100，故不触发，输出 10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确列出 19 个 5 的倍数，跳过 9 个偶数，累加剩余 10 个；关于 21、42、63、84 都不是 5 的倍数、不会出现在循环取值序列中的说明正确，break 不触发的结论与最小公倍数 105>99 一致；未发现需修内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第3题代码为char N; 提示输出; cin >> N; printf输出N*2；候选已补回提示行，其余文字与卷面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D选项；候选的“正确/错误”只是判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第3题为×；按错误=1映射为1，候选answer=1。独立推导：char读入输入10的首字符'1'，ASCII 49，N*2=98，不是20。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出cin>>char只取首字符、'1'的ASCII为49、49*2=98，结论为命题错误；数值推导正确。提示文本也会输出，但不改变否定结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第7题题干为“下面的C++代码执行后将先后输出7个true”，代码为for(int i=0;i<10;i++) cout << (i*2<i*i) << 空格；候选与卷面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D选项；候选的“正确/错误”只是判定标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第7题为×；按错误=1映射为1，候选answer=1。独立计算：i=0、1、2为假，i=3至9为真，且cout默认输出1/0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析实际输出为0 0 0 1 1 1 1 1 1 1，并指出设置boolalpha时也会先输出3个false再输出7个true；边界i=2及3～9判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页3.1.1至3.1.6题名、描述、三行输入、输出格式、样例10/2/3→8与5/2/4→3、数据范围1≤n,x,y≤1000及“至少剩一本完整的书”保证，均与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案；PDF答案表仅覆盖客观题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按y%x分支得eaten=ceil(y/x)，remain=n-eaten；样例1/2复算为8/3；官方保证下remain≥1，防御性clamp不改变结果。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码eaten=(y+x-1)/x，与PDF第7页官方ans=n-y/x-1+(y%x==0)逐分支等价；1≤n,x,y≤1000时y+x-1≤1999无溢出；O(1)时间O(1)空间；保证下clamp不触发。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小合法规模",
+            "input": "2\n1\n1\n",
+            "output": "1\n",
+            "reason": "n=2,x=1,y=1：ceil(1/1)=1本不再完整，剩1本；官方公式2-1-1+(1%1==0)=1，满足至少剩1本保证。"
+          },
+          {
+            "name": "y整除x",
+            "input": "10\n3\n6\n",
+            "output": "8\n",
+            "reason": "y=6=2*3，eaten=2，remain=8；官方公式10-2-1+(6%3==0)=8。"
+          },
+          {
+            "name": "y不整除x",
+            "input": "10\n3\n7\n",
+            "output": "7\n",
+            "reason": "floor(7/3)=2，ceil(7/3)=3，remain=7；官方公式10-2-1+(7%3==0)=7。"
+          },
+          {
+            "name": "y小于x（首本未读完但不完整）",
+            "input": "10\n5\n3\n",
+            "output": "9\n",
+            "reason": "ceil(3/5)=1，remain=9；官方公式10-0-1+(3%5==0)=9。"
+          },
+          {
+            "name": "上限附近仅剩一本",
+            "input": "1000\n1\n999\n",
+            "output": "1\n",
+            "reason": "eaten=999，remain=1，恰满足保证；官方公式1000-999-1+(999%1==0)=1。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7至8页3.2.8至3.2.13题名、描述、n+1行输入、n行输出、样例5/43/58/25/67/90→40/60/30/70/90、数据范围1≤n≤100且1≤a_i≤10000，均与候选一致；候选把样例25→30隐含的“个位5向上”明示，不改变原意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案；PDF答案表仅覆盖客观题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析用rem=a%10，rem<5减rem、rem≥5加10-rem，与PDF第8页官方(x+5)/10*10在1≤a_i≤10000等价；样例43/58/25/67/90复算40/60/30/70/90，上限10000时rem=0保持10000。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码逐项读入并按rem分支处理；官方范围内正确（a=1得0，a=10000保持10000），O(n)时间O(1)空间，无溢出，与官方公式等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模且舍入到0",
+            "input": "1\n1\n",
+            "output": "0\n",
+            "reason": "a=1个位1<5，舍为0；官方公式(1+5)/10*10=0。"
+          },
+          {
+            "name": "个位为5向上进位",
+            "input": "1\n5\n",
+            "output": "10\n",
+            "reason": "个位5按题面四舍五入规则进为10；官方公式(5+5)/10*10=10。"
+          },
+          {
+            "name": "个位4与9的边界",
+            "input": "2\n4\n9\n",
+            "output": "0\n10\n",
+            "reason": "4<5舍为0，9≥5入为10；官方公式(4+5)/10*10=0、(9+5)/10*10=10。"
+          },
+          {
+            "name": "最大值10000",
+            "input": "1\n10000\n",
+            "output": "10000\n",
+            "reason": "10000已是整十数应保持；官方公式(10000+5)/10*10=10000；候选代码rem=0不变。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        4,
+        6,
+        11,
+        13,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 27646,
+        "completion_tokens": 14329,
+        "total_tokens": 41975,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12663
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0127443,
+          "allowance": 0.00764658,
+          "tokens": {
+            "input": 27646,
+            "output": 14329,
+            "reasoning": 12663,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T06:11:43.504Z",
+      "completedAt": "2026-11-08T06:14:48.214Z"
+    },
+    {
+      "questionIds": [
+        18,
+        22,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 27644,
+        "completion_tokens": 18844,
+        "total_tokens": 46488,
+        "prompt_tokens_details": {
+          "cached_tokens": 27520
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16562
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01140756,
+          "allowance": 0.00684454,
+          "tokens": {
+            "input": 124,
+            "output": 18844,
+            "reasoning": 16562,
+            "cache_read": 27520,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T06:16:43.151Z",
+      "completedAt": "2026-11-08T06:19:44.915Z"
+    }
+  ]
+}

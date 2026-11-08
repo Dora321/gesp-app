@@ -1,0 +1,190 @@
+{
+  "paperId": "2025-03-l1",
+  "integratedAt": "2026-11-08T11:22:55.283Z",
+  "accepted": [
+    {
+      "id": 4,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 18,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "10\n2\n3",
+          "output": "8",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "input": "5\n2\n4",
+          "output": "3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小合法规模",
+          "input": "2\n1\n1",
+          "output": "1",
+          "reason": "ceil(1/1)=1，2-1=1，恰满足官方“至少剩一本完整的书”保证；官方公式 2-1-1+(1%1==0)=1，一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "y整除x（恰好啃完）",
+          "input": "10\n3\n6",
+          "output": "8",
+          "reason": "(6+3-1)/3=2，剩 10-2=8；官方公式 10-2-1+1=8，一致。",
+          "kind": "boundary",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "name": "y不整除x（正在啃下一本）",
+          "input": "10\n3\n7",
+          "output": "7",
+          "reason": "ceil(7/3)=3，剩 10-3=7；官方公式 10-2-1+0=7，一致。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "y小于x（首本已开始被啃、不完整）",
+          "input": "10\n5\n3",
+          "output": "9",
+          "reason": "ceil(3/5)=1，剩 10-1=9；官方公式 10-0-1+0=9，一致。",
+          "kind": "boundary",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "上限附近仅剩一本完整书",
+          "input": "1000\n1\n999",
+          "output": "1",
+          "reason": "eaten=999，剩 1，处于官方范围 1≤n,x,y≤1000 内且恰好满足保证；官方公式 1000-999-1+1=1，一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "794755b1f1bf8f2711b7b65f8df00cba44695ca57e9c222f1bb889c2cebda532"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n43\n58\n25\n67\n90",
+          "output": "40\n60\n30\n70\n90",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "40\n60\n30\n70\n90\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模向下舍入",
+          "input": "1\n1",
+          "output": "0",
+          "reason": "rem=1<5，1-1=0；官方公式 (1+5)/10*10=0，一致。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "个位为5向上进位",
+          "input": "1\n5",
+          "output": "10",
+          "reason": "rem=5≥5，5+(10-5)=10；官方公式 (5+5)/10*10=10，一致，且与样例 25→30 隐含规则吻合。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "个位4与9边界对",
+          "input": "2\n4\n9",
+          "output": "0\n10",
+          "reason": "4<5 舍为 0，9≥5 入为 10；官方公式 (4+5)/10*10=0、(9+5)/10*10=10，一致。",
+          "kind": "boundary",
+          "actual": "0\n10\n",
+          "passed": true
+        },
+        {
+          "name": "上限a_i=10000",
+          "input": "1\n10000",
+          "output": "10000",
+          "reason": "官方范围内上限值，rem=0 后 a 不变；官方公式 (10000+5)/10*10=10000，一致，验证边界不溢出。",
+          "kind": "boundary",
+          "actual": "10000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "da6cb18c34a33dfc3dfc965c3cdcd1cd26d821021b0572df7ebc0f354efe4092"
+    }
+  ]
+}

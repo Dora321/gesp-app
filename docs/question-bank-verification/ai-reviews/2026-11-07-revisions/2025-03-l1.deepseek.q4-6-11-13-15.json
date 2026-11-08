@@ -1,0 +1,226 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "deepseek",
+  "questionIds": [
+    4,
+    6,
+    11,
+    13,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T06:11:43.504Z",
+  "completedAt": "2026-11-08T06:14:48.214Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 27646,
+    "completion_tokens": 14329,
+    "total_tokens": 41975,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12663
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0127443,
+      "allowance": 0.00764658,
+      "tokens": {
+        "input": 27646,
+        "output": 14329,
+        "reasoning": 12663,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32812ba0f41bd96c6ab24ae2baed67760d3c0fb87a618121f40a5eecdce973cb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标明“CCF 编程能力等级认证 C++ 一级 2025年03月”，与 paperId 2025-03-l1 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题题干为“以下哪个是C++语言的关键字？（ ）”，候选 question 与之逐字一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. abs、B. cin、C. do、D. endl，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题标为 C，按 0 起始索引为 2；候选 answer=2。独立判断：do 是 C++ 语言关键字，abs、cin、endl 均非语言关键字。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分语言关键字与标准库函数/对象/操纵符；其中“C++98/03 已定义 63 个关键字”经核对成立，后续标准新增关键字的表述无误；未发现需修的事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题目标输出为 `__ 0322$$`（两个下划线、一个空格、0322、两个美元符）；候选 question 已恢复该 `$$` 并删除错误注释，符合原卷。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项的 `%2d/%02d` 顺序、下划线个数和末尾 `$` 数量与候选 options 一致：A/B 为 `$$`，C/D 为 `$$$$`，D 的下划线为四个。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 B，按 0 起始索引为 1；候选 answer=1。独立代入：A→`__  322$$`，B→`__ 0322$$`，C→`__ 0322$$$$`，D→`____ 0322$$$$`，仅 B 匹配目标输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐项代入与独立计算结果一致，正确指出 C、D 错在末尾固定 `$` 数量（D 另有下划线个数不符），并说明 22 在 `%2d` 和 `%02d` 下均输出“22”；未发现需修内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题代码含两条提示 cout、两次 cin，候选 question 已按原卷恢复；原卷 `int first,second;` 与候选 `int first, second;` 仅为空格排版差异，不改变语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 200、100、1、0，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 D，按 0 起始索引为 3；候选 answer=3。独立计算：first=100、second=200，整数除法 100/200=0，再乘 200 得 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选核心推导正确：先计算 first/second 得 0，再乘 second 仍为 0；A、B、C 均与整数除法截断规则不符，答案判断与官方答案一致，未发现需修的事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第13题代码与候选逐行一致：tnt=0；i 从 -1000 到 i<1000；tnt+=i；最后输出 tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 -1000、0、999、1000，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 A，按 0 起始索引为 0；候选 answer=0。独立推导：-999 到 999 成对抵消为 0，剩下 -1000，总和为 -1000。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选已将项数修正为 2000 项，计算式 999-(-1000)+1=2000；配对抵消后只剩 -1000，与答案一致，未发现需修内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第15题代码与候选逐行一致：i 从 5 到 99 每次加 5；偶数 continue；tnt+=1；满足 i%3==0 且 i%7==0 时 break；最后输出 tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 500、450、10、1，候选 options 的顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 C，按 0 起始索引为 2；候选 answer=2。独立推导：5 的倍数中奇数共 5、15、…、95 十个，均累加；break 需要同时为 5 和 21 的公倍数，最小为 105，超出 i<100，故不触发，输出 10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确列出 19 个 5 的倍数，跳过 9 个偶数，累加剩余 10 个；关于 21、42、63、84 都不是 5 的倍数、不会出现在循环取值序列中的说明正确，break 不触发的结论与最小公倍数 105>99 一致；未发现需修内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 4、6、11、13、15。五题的题面、选项、答案索引均与 PDF 页图及第1页答案表一致；修订后的第6题题干/选项/解析、第11题代码、第13题计数、第15题 break 分析均经独立复算通过，未发现需继续修改的事实性错误。五题均为单选题，无参考代码，未运行源码。"
+  }
+}

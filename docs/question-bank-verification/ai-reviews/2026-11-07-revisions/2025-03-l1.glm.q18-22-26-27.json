@@ -1,0 +1,258 @@
+{
+  "paperId": "2025-03-l1",
+  "phase": "glm",
+  "questionIds": [
+    18,
+    22,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T06:19:44.923Z",
+  "completedAt": "2026-11-08T06:22:34.761Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42529,
+    "completion_tokens": 15820,
+    "total_tokens": 58349,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12773
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01428935,
+      "allowance": 0.01428935,
+      "tokens": {
+        "input": 42529,
+        "output": 15820,
+        "reasoning": 12773,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "32812ba0f41bd96c6ab24ae2baed67760d3c0fb87a618121f40a5eecdce973cb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++1级.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "mirrorBytes": 1246248,
+    "shaVerified": true,
+    "sha256": "878bc583e7d0d7ff2a029e5a3339432b892b84b5268afdcd7b8fb1bdfa783e3f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-03-l1",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 / GESP Grade Examination of Software Programming / C++ 一级 / 2025 年 03 月”，与 paperId 2025-03-l1（2025 年 3 月 C++ 一级）逐项一致；本轮核验基于已校验来源 git-blob SHA 73dcbdb76e08af3211536ada0b83076da9ae440c。"
+    },
+    "questions": [
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 3 题题干为“执行如下C++代码如果在键盘上输入10，执行后将输出20。”，代码共 4 行：char N; / printf(\"请输入正整数：\");（页图中为红色提示行）/ cin >> N; / printf(\"%d\\n\", N * 2);。候选 question 已完整包含这 4 行，题目文字与卷面语义一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A–D 选项；候选“正确/错误”仅为作答标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 项为 ×，按错误=1 映射为 1，候选 answer=1。独立推导：输入 10 时 cin >> N 对 char 只读取首字符 '1'（ASCII 49），N*2=98，且会先输出提示行，故不会输出 20，命题为假，与 × 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐步推导：char 单字符读取、'1' 的 ASCII 为 49、49*2=98、实际输出 98（另含提示文本）而非 20，结论与我的独立复算完全一致，无新增错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，PDF 判断题部分亦未附参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复算后确认候选题面（含提示行）、官方 ×→1 映射与“实际输出 98”的解析均与 PDF 第 5/4 页相符；DeepSeek 初核草稿对本题的判断准确，全部接受，无需再修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 7 题题干为“下面的C++代码执行后将先后输出7个 true。”，代码为 for (int i = 0; i < 10; i++)\\n    cout << (i * 2 < i * i) << \" \";；候选与卷面一致（仅行首排版空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A–D 选项；候选“正确/错误”仅为作答标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 项为 ×，按错误=1 映射为 1，候选 answer=1。独立枚举 i=0..9：i*2<i*i 仅 i=3..9 为真（i=0 时 0<0 假、i=1 时 2<1 假、i=2 时 4<4 相等不满足严格小于）；且 cout 默认把 bool 输出为 1/0，屏幕不会出现单词 true，命题为假，与 × 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的默认输出 0/1 行为、i=2 边界（相等为假）、真值范围 3..9 共 7 次、实际输出 0 0 0 1 1 1 1 1 1 1，以及“即便 boolalpha 也是先 3 个 false 后 7 个 true”的补充，均经我逐项独立复算成立，无新增错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "我独立枚举 0..9 的判定结果与候选解析一致（3 个假、7 个真，实际输出为 0/1 而非 true 单词），官方答案表第 7 项为 ×；DeepSeek 初核结论准确，全部接受，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 3.1.1–3.1.6：题名“图书馆里的老鼠”；题目描述、输入格式（三行 n/x/y，末行“输入数据保证 $y$ 小时后至少会剩下一本完整的书”）、输出格式、样例 10/2/3→8 与 5/2/4→3、数据范围“保证 1 ≤ n,x,y ≤ 1,000”均与候选 question 一致（1,000 与 1000 为等价记法），修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案；PDF 答案表仅覆盖单选题与判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 y%x 分支得 eaten=ceil(y/x)，与整数式 (y+x-1)/x 合并推导正确；remain=n-eaten 在官方“至少剩一本”保证下 ≥1，防御性 clamp 恒不触发；两样例独立复算为 8、3；推导未依赖旧错误约束，无新增错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码 eaten=(y+x-1)/x、remain=n-eaten，与 PDF 第 7 页官方参考程序 ans=n-y/x-1+(y%x==0) 逐分支等价（y%x==0：remain=n-y/x；y%x≠0：remain=n-y/x-1）；官方范围 1≤n,x,y≤1000 下 y+x-1≤1999，int 无溢出，时间 O(1)、空间 O(1)；两样例复算 8、3 与 PDF 一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小合法规模",
+            "input": "2\n1\n1",
+            "output": "1",
+            "reason": "ceil(1/1)=1，2-1=1，恰满足官方“至少剩一本完整的书”保证；官方公式 2-1-1+(1%1==0)=1，一致。"
+          },
+          {
+            "name": "y整除x（恰好啃完）",
+            "input": "10\n3\n6",
+            "output": "8",
+            "reason": "(6+3-1)/3=2，剩 10-2=8；官方公式 10-2-1+1=8，一致。"
+          },
+          {
+            "name": "y不整除x（正在啃下一本）",
+            "input": "10\n3\n7",
+            "output": "7",
+            "reason": "ceil(7/3)=3，剩 10-3=7；官方公式 10-2-1+0=7，一致。"
+          },
+          {
+            "name": "y小于x（首本已开始被啃、不完整）",
+            "input": "10\n5\n3",
+            "output": "9",
+            "reason": "ceil(3/5)=1，剩 10-1=9；官方公式 10-0-1+0=9，一致。"
+          },
+          {
+            "name": "上限附近仅剩一本完整书",
+            "input": "1000\n1\n999",
+            "output": "1",
+            "reason": "eaten=999，剩 1，处于官方范围 1≤n,x,y≤1000 内且恰好满足保证；官方公式 1000-999-1+1=1，一致。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：候选题面已与 PDF 第 6 页官方约束与保证一致，参考代码与官方公式逐分支等价、无溢出；DeepSeek 草稿全部 5 组测试的期望输出我均已独立复算相符（未运行源码，静态推导）。初核无不可靠修改，全部接受，无需新改动。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 3.2.8–3.2.12：题名“四舍五入”；题目描述“将每个整数四舍五入到最接近的整十数，例如 43→40，58→60”；输入格式共 n+1 行、输出 n 行；样例 5 / 43,58,25,67,90 → 40,60,30,70,90；PDF 第 8 页 3.2.13 数据范围“保证 1 ≤ n ≤ 100，1 ≤ a_i ≤ 10000”。候选与官方一致；候选补写的“个位是 5 向上取整，例如 25 变为 30”与卷面样例 25→30 含义一致，不改变原意，予以保留。修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案；PDF 答案表仅覆盖单选题与判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析用 rem=a%10 分支（rem<5 减 rem、rem≥5 加 10-rem），与 PDF 第 8 页官方公式 (x+5)/10*10 在 1≤a_i≤10000 全区间逐分支等价（rem<5 时 (x+5)/10*10=x-rem；rem≥5 时为 x-rem+10），并完整走查 43/58/25/67/90→40/60/30/70/90，与 PDF 样例一致，推导独立成立，无新增错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码逐个读入、按 rem 分支后输出，对官方范围 1≤n≤100、1≤a_i≤10000 正确：a=1→0，a=10000（rem=0）保持 10000，均为官方范围内边界且无 int 溢出；时间 O(n)、空间 O(1)；5 个样例复算 40/60/30/70/90 与 PDF 输出样例一致，与官方公式 (x+5)/10*10 等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模向下舍入",
+            "input": "1\n1",
+            "output": "0",
+            "reason": "rem=1<5，1-1=0；官方公式 (1+5)/10*10=0，一致。"
+          },
+          {
+            "name": "个位为5向上进位",
+            "input": "1\n5",
+            "output": "10",
+            "reason": "rem=5≥5，5+(10-5)=10；官方公式 (5+5)/10*10=10，一致，且与样例 25→30 隐含规则吻合。"
+          },
+          {
+            "name": "个位4与9边界对",
+            "input": "2\n4\n9",
+            "output": "0\n10",
+            "reason": "4<5 舍为 0，9≥5 入为 10；官方公式 (4+5)/10*10=0、(9+5)/10*10=10，一致。"
+          },
+          {
+            "name": "上限a_i=10000",
+            "input": "1\n10000",
+            "output": "10000",
+            "reason": "官方范围内上限值，rem=0 后 a 不变；官方公式 (10000+5)/10*10=10000，一致，验证边界不溢出。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：候选题面已与 PDF 第 7/8 页一致（含数据范围修正），参考代码与官方 (x+5)/10*10 等价且边界正确；DeepSeek 草稿 4 组测试的期望输出我均已独立复算相符（未运行源码，静态推导）。初核无不可靠修改，全部接受，无需新改动。"
+      }
+    ],
+    "summary": "本轮仅复核判断题 18、22 与编程题 26、27。逐题对照 PDF 原卷：题 18 候选已恢复官方 4 行代码（含红色提示行），答案 ×→1，“cin 读首字符、'1'=49、N*2=98”解析独立复算正确；题 22 官方答案为 ×，独立枚举 i=0..9 得 0 0 0 1 1 1 1 1 1 1（真值区间 3..9，cout 默认输出 1 而非单词 true），候选答案与解析均正确。题 26 候选题面含官方约束 1≤n,x,y≤1000 及“至少剩一本完整的书”保证，参考代码 (y+x-1)/x 与官方 ans=n-y/x-1+(y%x==0) 逐分支等价、无溢出；题 27 约束 1≤n≤100、1≤a_i≤10000 与官方一致，取模分支法与官方 (x+5)/10*10 全区间等价。共 9 组边界 tests 的期望输出均经我独立复算相符，未运行源码；DeepSeek 初核草稿未发现不可靠或新引入错误，全部采纳。四题均为 approve，无需新增 changes。"
+  }
+}
