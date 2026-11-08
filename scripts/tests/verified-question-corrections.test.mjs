@@ -201,6 +201,10 @@ const march2026OfficialKeys = {
   '2026-03-l3': {
     sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf',
     answers: [2, 1, 2, 0, 3, 1, 1, 3, 1, 0, 1, 1, 2, 0, 3],
+    reviewStatus: 'verified',
+    reviewedBy: 'AI-Codex',
+    reviewedAt: '2026-11-08',
+    reviewScope: /全卷五维逐题对照mirror PDF/,
   },
   '2026-03-l4': {
     sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf',

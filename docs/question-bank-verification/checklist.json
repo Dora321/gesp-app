@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T06:22:21.903Z",
+  "generatedAt": "2026-11-08T06:27:01.756Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -1997,15 +1997,15 @@
         "mirrorShaVerified": "registered"
       },
       "dimensions": {
-        "statement": "unverified",
-        "options": "unverified",
+        "statement": "verified",
+        "options": "verified",
         "answer": "verified",
-        "explanation": "partial",
-        "referenceCode": "unverified"
+        "explanation": "verified",
+        "referenceCode": "verified"
       },
-      "overallStatus": "partial",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + Grok/executor 校对",
-      "reviewedAt": "2026-10-30",
+      "overallStatus": "verified",
+      "reviewedBy": "AI-Codex",
+      "reviewedAt": "2026-11-08",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
