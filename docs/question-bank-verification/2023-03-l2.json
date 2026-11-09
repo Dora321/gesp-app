@@ -67,44 +67,47 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第1页末题2题干为“下列流程图，属于计算机的哪种程序结构？（ ）”，第2页原图给出流程图：开始→判断“是否按下空格键”→是则“小猫移动100步”、否则“小猫的颜色特效增加25”→结束；网站 question 仅保留文字，未包含该流程图，题面信息缺失。",
-          "review": "PDF 第 1 页末题干「下列流程图，属于计算机的哪种程序结构？（ ）。」与网站 question 文字一致；但网站原数据未包含 PDF 第 2 页原图的流程图（开始 → 菱形判断框「是否按下空格键」→「是」分支执行「小猫移动 100 步」、「否」分支执行「小猫的颜色特效增加 25」→ 两分支汇合 → 结束），缺图则题面必要信息不完整。已按第 2 页原图以文字等价描述补全（见 changes.question），经与原图逐一对照（判断条件、两分支动作、单向下行无回边汇合），语义一致，修复后核验通过；建议站点仍补入流程图原图。"
+          "initial": "PDF 第 1 页题干为「下列流程图，属于计算机的哪种程序结构？（ ）。」；第 2 页流程图显示：开始→菱形判断框「是否按下空格键」，是分支为「小猫移动 100 步」，否分支为「小猫的颜色特效增加 25」，两分支汇合后到结束。候选的文字化描述与原图一致。",
+          "review": "PDF 第 1 页末题干「下列流程图，属于计算机的哪种程序结构？（ ）。」与候选一致；第 2 页原图流程图：开始→菱形判断框「是否按下空格键」，「是」分支为「小猫移动 100 步」、「否」分支为「小猫的颜色特效增加 25」，两分支向下汇合后到「结束」，无回边。候选的文字等价描述与原图逐项对照（判断条件、两分支动作、汇合方向）一致，修复后核验通过；建议站点后续补入流程图原图。"
         },
         "options": {
-          "initial": "PDF第2页原图选项依次为 A．顺序结构、B．循环结构、C．分支结构、D．数据结构；网站 options 顺序与内容一致。",
-          "review": "PDF 第 2 页原图选项依次为 A．顺序结构、B．循环结构、C．分支结构、D．数据结构；网站 options 顺序与内容一致。"
+          "initial": "PDF 第 2 页选项依次为 A．顺序结构、B．循环结构、C．分支结构、D．数据结构，候选的 options 顺序与内容一致。",
+          "review": "第 2 页原图选项依次为 A．顺序结构、B．循环结构、C．分支结构、D．数据结构，候选 options 顺序与内容一致。"
         },
         "answer": {
-          "initial": "PDF第2页原图题2红字标注【答案】C，对应 0 起始索引 2；网站 answer=2 一致。",
-          "review": "PDF 第 2 页原图题 2 红字【答案】C，对应 0 起始索引 2；网站 answer=2 一致。结合修复后题面：流程图含菱形判断框、两条分支、无回边，符合分支结构特征而非循环/顺序结构，答案 C 成立。"
+          "initial": "PDF 第 2 页标注【答案】C；按 0 起始索引为 2，候选 answer=2 一致。",
+          "review": "第 2 页原图红字【答案】C，按 0 起始索引为 2，候选 answer=2 一致。独立判断：流程图含菱形判断框、两条分支汇合、无回边，属分支结构而非循环/顺序结构，答案 C 成立。"
         },
         "explanation": {
-          "initial": "PDF第2页原图解析称流程图按是否按下空格键设置两个分支，符合分支结构；网站解析进一步说明菱形判断框、无回边，结论 C 与官方一致。",
-          "review": "官方解析「流程图根据是否按下空格键设置了两个分支，符合分支结构的特征」；网站解析以「含菱形判断框、有判断框且无回边」推导分支结构，与官方结论 C 一致，判断依据（有无回边区分分支与循环）独立验证成立。"
+          "initial": "官方解析指出流程图根据是否按下空格键设置两个分支，符合分支结构。候选进一步用菱形判断框、两条分支及无回边来解释，独立推导结论 C 成立。",
+          "review": "官方解析「流程图根据是否按下空格键设置了两个分支，符合分支结构的特征」。候选以菱形判断框、分支分流、无回边独立推导结论 C，并以「有无回边」区分分支与循环、排除数据结构的概念混淆，推导链独立验证成立。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.glm.json"
       ]
     },
     {
@@ -624,37 +627,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 9 页判断题第 1 题原文与网站题干一致，均讨论 4GB 和 4096MB 的 U 盘及“容量大的盘是笑笑的”。",
-          "review": "PDF 第 9 页原图判断题 1 原文‘明明和笑笑在“小庙会”上分别抽到一个 4GB 和 4096MB 的 U 盘，容量大的盘是笑笑的’与网站题干逐字一致。"
+          "initial": "PDF 第 9 页判断题 1 原文为「明明和笑笑在“小庙会”上分别抽到一个 4GB 和 4096MB 的 U 盘，容量大的盘是笑笑的（ ）。」，候选题干与之一致。",
+          "review": "PDF 第 9 页判断题 1 原文「明明和笑笑在“小庙会”上分别抽到一个 4GB 和 4096MB 的 U 盘，容量大的盘是笑笑的（ ）。」与候选题干逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 9 页标注【答案】x，即“错误”，对应网站 answer=1。",
-          "review": "第 9 页原图标注【答案】x，即错误，0 起始索引为 1，与网站 answer=1 一致。"
+          "initial": "PDF 第 9 页标注【答案】x，即错误，按正确=0、错误=1 对应索引 1，候选 answer=1 一致。",
+          "review": "第 9 页原图标注【答案】x，即错误，按正确=0、错误=1 对应索引 1，候选 answer=1 一致。"
         },
         "explanation": {
-          "initial": "PDF 解析说明 1GB=1024MB、4GB 与 4096MB 容量一样大，网站主体推导正确；但网站解析末尾称题干未指明谁抽到 4GB、谁抽到 4096MB，与题干“分别”所表达的对应关系矛盾，需要修正。",
-          "review": "PDF 第 9 页解析：1GB=1024MB，4GB 和 4096MB 容量一样大，本题错误。网站主干推导一致；但原稿‘题干未指明谁抽到哪个盘’与‘分别’的语序对应矛盾，属表述错误。已按 changes 提供修复：独立重推 4×1024=4096MB、两盘容量相同、‘笑笑的更大’不成立；修复后核验通过。"
+          "initial": "PDF 解析明确 1GB=1024MB，4GB 与 4096MB 容量一样大。候选独立换算 4×1024=4096MB，说明两盘等容量、「容量大的盘是笑笑的」不成立，推导正确。",
+          "review": "官方解析：1GB=1024MB，4GB 和 4096MB 容量一样大，本题错误。独立换算 4×1024=4096MB，两盘容量相同，「容量大的盘是笑笑的」不成立；候选解析按「分别」语序给出明明 4GB、笑笑 4096MB 的对应，并指出关键在容量相等而非分配不明，修复了旧稿对题面的误读，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.glm.json"
       ]
     },
     {
@@ -696,37 +702,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         10
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 10 页判断题第 3 题原文与网站题干一致，均为“在 C++ 语言中，一个程序不能有多个 main 函数”。",
-          "review": "PDF 第 10 页原图判断题 3 原文‘在 C++语言中，一个程序不能有多个 main 函数’与网站题干一致。"
+          "initial": "PDF 第 10 页判断题 3 原文为「在 C++语言中，一个程序不能有多个 main 函数。」，候选题干与之一致。",
+          "review": "PDF 第 10 页判断题 3 原文「在 C++语言中，一个程序不能有多个 main 函数。」与候选题干一致。"
         },
         "answer": {
-          "initial": "PDF 第 10 页标注【答案】√，即“正确”，对应网站 answer=0。",
-          "review": "第 10 页原图标注【答案】√，即正确，0 起始索引为 0，与网站 answer=0 一致。"
+          "initial": "PDF 第 10 页标注【答案】√，即正确，按正确=0 对应索引 0，候选 answer=0 一致。",
+          "review": "第 10 页原图标注【答案】√，即正确，按正确=0 对应索引 0，候选 answer=0 一致。"
         },
         "explanation": {
-          "initial": "PDF 解析只说明一个程序只能有一个 main 函数；网站解析称同一源文件定义多个 main“编译阶段可能通过”不准确：同一翻译单元内重复定义会编译报错，跨源文件才是链接时多重定义。需修正表述。",
-          "review": "PDF 解析仅说明一个程序只能有一个 main 函数。网站原稿对多 main 的编译/链接阶段描述不准确（‘编译器允许存在多个同名函数’及‘编译阶段可能通过’用于同一源文件情形是错的）。已按 changes 提供修复修正：同一源文件重复定义 main 为编译期重定义错误，跨源文件为链接期多重定义错误，均无法形成合法可执行程序；修复后核验通过。"
+          "initial": "PDF 解析说明一个程序只能有一个 main 函数。候选补充同一翻译单元重定义会在编译期报错、多个源文件分别定义会在链接期报多重定义，均无法得到合法程序，独立核对成立。",
+          "review": "官方解析说明一个程序只能有一个 main 函数。候选区分两种情形：同一翻译单元重复定义 main 为编译期重定义错误；多个源文件分别定义 main 时各文件可分别编译但链接期报符号多重定义。两种情形均无法得到合法程序，技术上准确，修复了旧稿「编译阶段可能通过」的不准确表述，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.glm.json"
       ]
     },
     {
@@ -971,148 +980,96 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
-        "explanation"
-      ],
-      "blockedDimensions": [
         "statement",
+        "explanation",
         "referenceCode"
       ],
+      "blockedDimensions": [],
       "sourcePages": [
         12,
         13
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第12页题名为“画三角形”，明确第1行1个字母、第2行2个字母、依此类推，并给出样例2（n=7，输出至VWXYZAB）；当前数据题名为“字母金字塔”，samples仅有样例1，outputDescription也未写“每行三角形图案的右侧不要有多余的空格”。",
-          "review": "PDF 第 12 页题名为『画三角形』，【问题描述】为『输入一个正整数 n，请使用大写字母拼成……每次使用大写字母 Z 填充后，将从头使用大写字母 A 填充。』；【输出描述】含格式约束『注意每行三角形图案的右侧不要有多余的空格』，并给出两个官方样例（3→A/BC/DEF；7→A/BC/DEF/GHIJ/KLMNO/PQRSTU/VWXYZAB）。原网站 title『字母金字塔』与卷面不符，outputDescription 缺右侧无多余空格约束，samples 缺官方样例 2。按 changes 补正后与卷面逐句对照一致（修复后核验通过）；inputDescription『一个正整数 n (2≤n≤40)。』已完整传达『约定 2≤n≤40』的约束，属等价表述，予以保留。"
+          "initial": "PDF 第 12 页题名为「画三角形」；问题描述、输入约束「2≤n≤40」、输出描述「每行三角形图案的右侧不要有多余的空格」及样例 3→A/BC/DEF、7→A/BC/DEF/GHIJ/KLMNO/PQRSTU/VWXYZAB 均与候选一致。",
+          "review": "PDF 第 12 页题名「画三角形」；【问题描述】（第 1 行 1 个字母、第 2 行 2 个字母、A-Z 依次填充、Z 后从头 A 填充）、【输入描述】（约定 2≤n≤40）、【输出描述】（右侧不要有多余的空格）及样例 1（3→A/BC/DEF）、样例 2（7→A/BC/DEF/GHIJ/KLMNO/PQRSTU/VWXYZAB）均与候选一致，修复后核验通过。"
         },
         "explanation": {
-          "initial": "现有解析给出双重循环、输出后自增ch、超过Z回到A，并按n=3逐步走查出A/BC/DEF；与PDF第13页参考程序使用(int ch, ('A'+(ch++)%26))的循环逻辑等价。",
-          "review": "解析（双重循环控制行列、输出后自增 ch、超过 'Z' 回绕 'A'、每行末换行）与 PDF 第 13 页解题思路（把字母看作 0-25 加上 %26 确保到 'Z' 后回 'A'）语义等价；按解析对 n=3 逐步走查得 A/BC/DEF，与卷面样例一致，独立复核成立。"
+          "initial": "PDF 第 13 页解题思路把 A-Z 看作 0-25，并用 %26 保证 Z 后回到 A。候选采用逐字符输出并在超过 Z 时回到 A，按 n=3 走查得到 A/BC/DEF，与卷面样例一致。",
+          "review": "PDF 第 13 页解题思路：把 A,B,C...Z 看作 0,1,2...25，双重 for 循环输出，转换时加 %26 确保 Z 后回到 A。候选按逐字符输出并在超过 'Z' 时重置 'A'，与该思路语义等价；按解析对 n=3 逐步走查得 A/BC/DEF，与卷面样例一致，独立推导成立。"
         },
         "referenceCode": {
-          "initial": "代码按第i行输出i个字符，内层j<=i；每输出一个字符执行if(++ch>'Z') ch='A'，可正确回绕。n最大40时共820个字符，ch始终限制在A-Z，无数组越界或整数溢出。",
-          "review": "独立推演站内代码：外层 i=1..n、内层 j=1..i，第 i 行恰好输出 i 个字符；每输出一字符执行 if(++ch > 'Z') ch='A'，'Z'(90) 自增变 '{'(123) 后被重置为 'A'，回绕正确。手工模拟 n=2 得 A/BC，n=3 得 A/BC/DEF，n=7 时共 1+2+...+7=28 字符、第 27/28 字符回绕为 A/B，末行 VWXYZAB，与卷面两个样例一致。n 上限 40 时共输出 820 字符，O(n²) 且无下标越界、无整型溢出。与官方参考程序（int ch=0，输出 (char)('A'+(ch++)%26)）实现不同但算法等价、输出相同。"
+          "initial": "候选代码外层 i=1..n、内层 j=1..i，第 i 行输出 i 个字符；每输出一个字符后执行 ++ch，超过 Z 则重置为 A。手工模拟 n=2 得 A/BC，n=3 得 A/BC/DEF，n=7 得末行 VWXYZAB，均与卷面一致；n=40 时共 820 个字符，O(n²)，无越界或溢出。",
+          "review": "独立模拟候选代码：外层 i=1..n、内层 j=1..i，第 i 行恰输出 i 个字符；每输出一字符执行 ++ch，'Z'(90) 自增为 91 严格大于 'Z' 即重置 'A'，回绕正确、无符号问题。手工推演 n=2 得 A/BC，n=3 得 A/BC/DEF，n=7 共 1+2+...+7=28 字符、第 27/28 字符越过 Z 回绕为 A/B、末行 VWXYZAB，与卷面两样例一致。n=40 时输出 820 字符，O(n²)，无越界、无整型溢出；与官方参考程序（int ch=0，输出 (char)('A'+(ch++)%26)）实现不同但算法等价、输出相同。"
         }
       },
-      "unresolved": [
-        "修改 title 未获得两模型一致批准，待回流",
-        "修改 description 未获得两模型一致批准，待回流",
-        "修改 outputDescription 未获得两模型一致批准，待回流",
-        "修改 samples 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "title",
+        "description",
+        "outputDescription",
+        "samples"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "explanation"
-      ],
-      "blockedDimensions": [
         "statement",
+        "explanation",
         "referenceCode"
       ],
+      "blockedDimensions": [],
       "sourcePages": [
         13,
         14,
         15
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第14页输入描述明确约定1≤x,y,z≤10、1≤n,m≤1000，并给出样例2“1 1 1 100 100 → 5151”；当前inputDescription只写“五个正整数”，未写约束，samples也仅有样例1。",
-          "review": "PDF 第 13-14 页题名为『百鸡问题』；【输入描述】为『输入一行，包含五个整数，分别为问题描述中的 x、y、z、n、m。约定 1≤x, y, z ≤10，1≤ n, m ≤1000。』，该范围约束直接决定枚举量级与溢出分析，不可省略；【输出描述】为『输出一行，包含一个整数 C，表示有 C 种方案。』；卷面给出样例 2（1 1 1 100 100→5151）。原网站 title『扩展百鸡问题』与卷面不符，inputDescription 缺范围约束，outputDescription 过简，samples 缺官方样例 2。按 changes 补正后与卷面一致（修复后核验通过）；description 为卷面背景故事与扩展问题的等价压缩表述，参数与所求完整，予以保留。"
+          "initial": "PDF 第 13-14 页题名为「百鸡问题」；扩展问题、输入五个整数及约束「1≤x,y,z≤10，1≤n,m≤1000」、输出方案数 C、样例 5 3 3 100 100→4 和 1 1 1 100 100→5151 均与候选一致；候选 description 为等价压缩表述。",
+          "review": "PDF 第 13-14 页题名「百鸡问题」；【输入描述】五整数 x、y、z、n、m 及约定 1≤x,y,z≤10、1≤n,m≤1000、【输出描述】输出一个整数 C、【样例输入 1】5 3 3 100 100→4、【样例输入 2】1 1 1 100 100→5151 均与候选一致；候选 description 为卷面背景与扩展问题的等价压缩表述，参数与所求完整，修复后核验通过。"
         },
         "explanation": {
-          "initial": "现有解析用k=m-i-j降维，将x*i+y*j+k/z=n两边乘z得z*x*i+z*y*j+k=z*n；样例1可枚举出4组解，样例2在z=1时任意非负i+j≤100均满足，方案数为C(102,2)=5151，推导正确。",
-          "review": "独立推导：设公鸡 i、母鸡 j，小鸡 k=m-i-j；把 x*i+y*j+k/z=n 两边同乘 z 得 z*x*i+z*y*j+k=z*n，其余项均为 z 的倍数，故等式成立即自动保证 k 能被 z 整除，并同时蕴含恰好花完 n 元。样例 1 化为 14i+8j=200 即 7i+4j=100，非负整数解恰 4 组：(0,25,75)、(4,18,78)、(8,11,81)、(12,4,84)，与 PDF 第 14 页样例解释逐一吻合；样例 2 z=1 时对任意 0≤i+j≤100 恒成立，方案数 101×102/2=5151。与网站解析及官方『表示出小鸡数量再判断总数』的思路一致。"
+          "initial": "候选将 x*i+y*j+k/z=n 两边同乘 z，并令 k=m-i-j，避免整数除法截断；样例 1 化为 7i+4j=100，非负解为 (0,25,75)、(4,18,78)、(8,11,81)、(12,4,84)，共 4 组；样例 2 在 z=1 时共有 101×102/2=5151 组，独立推导正确。",
+          "review": "独立推导：设公鸡 i、母鸡 j，则小鸡 k=m-i-j；x*i+y*j+k/z=n 两边乘 z 得 z*x*i+z*y*j+k=z*n，其余项均为 z 的倍数，故取等时 k 必为 z 的倍数，并蕴含恰好花完 n 元，化除为乘避免了整数截断与浮点误差。样例 1 代入得 14i+8j=200 即 7i+4j=100，非负解恰 4 组：(0,25,75)、(4,18,78)、(8,11,81)、(12,4,84)，金额验证 20+54+26 等均等于 100，与 PDF 第 14 页样例解释逐一吻合；样例 2 在 z=1 时任意 0≤i+j≤100 均成立，方案数 101×102/2=5151。推导正确。"
         },
         "referenceCode": {
-          "initial": "二重枚举i≤m、j≤m-i，k=m-i-j；乘z后的整数等式既判断总价又保证k能被z整除；m≤1000时约5×10^5次枚举，LHS最大约2×10^5且cnt最大501501，int安全。",
-          "review": "站内代码二重枚举 i≤m、j≤m-i（隐含 k=m-i-j≥0），整数判断 z*x*i+z*y*j+k==z*n，与官方参考程序 xj=(n-gj*x-mj*y)*z 后判 gj+mj+xj==m 语义一致：均要求恰好花完 n 元、总数恰为 m、小鸡按 z 只一组购买。用 z=2（1 1 2 5 5）手工分别枚举两版程序均得 6 组解，样例 1 均 4、样例 2 均 5151，结果一致。规模与溢出：m≤1000 时循环约 (m+1)(m+2)/2≈5.02×10⁵ 次；表达式上界 201000，cnt 上界 501501，均远小于 int 上限，无溢出。"
+          "initial": "候选代码二重枚举 i=0..m、j=0..m-i，令 k=m-i-j，并以 z*x*i+z*y*j+k==z*n 判断恰好花完 n 元且总数为 m。该整数等式与官方参考程序的「剩余钱数×z 得到小鸡数，再判断总数」等价；m≤1000 时循环约 5.02×10^5 次，表达式和计数均在 int 范围内。",
+          "review": "候选代码二重枚举 i=0..m、j=0..m-i，k=m-i-j 非负，整数判断 z*x*i+z*y*j+k==z*n，与官方参考程序（xj=(n-gj*x-mj*y)*z 后判 gj+mj+xj==m）语义等价：均要求总数恰为 m、恰好花完 n 元且小鸡按 z 只一组计。另取 z=2（1 1 2 5 5）分别按两版逻辑手工枚举均得 6 组解，交叉验证等价。规模与溢出：m≤1000 时循环约 (m+1)(m+2)/2≈5.02×10⁵ 次；表达式上界约 2×10⁵、cnt 上界 501501，均在 int 范围内，无溢出，满足时限。"
         }
       },
-      "unresolved": [
-        "修改 title 未获得两模型一致批准，待回流",
-        "修改 inputDescription 未获得两模型一致批准，待回流",
-        "修改 outputDescription 未获得两模型一致批准，待回流",
-        "修改 samples 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "title",
+        "inputDescription",
+        "outputDescription",
+        "samples"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-03-l2.glm.json"
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 2,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 16,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 18,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement",
-        "referenceCode"
-      ],
-      "reasons": [
-        "修改 title 未获得两模型一致批准，待回流",
-        "修改 description 未获得两模型一致批准，待回流",
-        "修改 outputDescription 未获得两模型一致批准，待回流",
-        "修改 samples 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement",
-        "referenceCode"
-      ],
-      "reasons": [
-        "修改 title 未获得两模型一致批准，待回流",
-        "修改 inputDescription 未获得两模型一致批准，待回流",
-        "修改 outputDescription 未获得两模型一致批准，待回流",
-        "修改 samples 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2023-03-l2.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2023-03-l2.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-03-l2.integration.json"
 }

@@ -44,7 +44,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: `下列流程图，属于计算机的哪种程序结构？（ ）。`,
+            question: "下列流程图，属于计算机的哪种程序结构？（ ）。\n\n（流程图：开始 → 判断「是否按下空格键」；「是」分支执行「小猫移动 100 步」，「否」分支执行「小猫的颜色特效增加 25」，两条分支汇合后到达「结束」。）",
             options: ["顺序结构", "循环结构", "分支结构", "数据结构"],
             answer: 2,
             score: 2,
@@ -76,7 +76,11 @@ export const paperData = {
 - **分支结构**：对应条件判断语句，如 \`if\`、\`if-else\` 以及多分支选择语句 \`switch-case\`。
 - **循环结构**：对应重复执行语句，如 \`for\`、\`while\` 和 \`do-while\` 循环。
 在流程图标准图形中：圆角矩形或椭圆表示“起止框”，矩形表示“处理框”，菱形表示“判断框”，平行四边形表示“输入/输出框”。`,
-            tags: ['流程图', '程序分析']
+            tags: ['流程图', '程序分析'],
+      "sourcePage": 1,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 3,
@@ -575,25 +579,13 @@ C++ 中 \`cout\` 输出布尔变量时，会自动将 \`false\` 转换为整数 
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-**判定依据：**
-数据单位之间是 1024 倍的关系：\`1GB = 1024MB\`。所以 \`4GB = 4 × 1024MB = 4096MB\`，两个 U 盘**容量完全一样大**，不存在“容量大”的那一个。题干说“容量大的是笑笑的”，这个判断不成立。
-
-**正确说法：**
-4GB 与 4096MB 相等，两个盘容量相同。
-
-**易错点：**
-- 误以为 \`1GB = 1000MB\`（十进制习惯）。计算机存储按二进制换算，是 1024，不是 1000；若按 1000 算，4GB = 4000MB，反而会得出“明明的更大”的另一种错误结论。
-- 误把“4”和“4096”直接比较大小。
-- 本题原文只给了单位换算，题干本身并未指明谁抽到 4GB、谁抽到 4096MB，所以无论怎么分配都推不出“笑笑的大”。
-
-**考点：** 存储单位的二进制换算（1GB = 1024MB）`,
+            explanation: "**答案：错误**\n\n**判定依据：**\n计算机存储单位按 1024 进制换算：`1GB = 1024MB`。因此 `4GB = 4 × 1024MB = 4096MB`。按题干‘分别抽到’的对应关系，明明抽到 4GB 的盘，笑笑抽到 4096MB 的盘，两个 U 盘的容量完全相同，不存在‘容量大’的那一个，所以‘容量大的盘是笑笑的’这一判断不成立。\n\n**易错提醒：**\n- 误按 `1GB = 1000MB` 换算会把 4GB 算成 4000MB，从而得出错误的比较结果；计算机内部按二进制换算，是 1024 而不是 1000。\n- 不能只比较数字 4 和 4096，必须先把单位统一或完成换算。\n- 题干中‘分别’已经给出了分配关系：明明 4GB、笑笑 4096MB；本题的关键在于二者换算后容量相等，而不是分配关系不明。\n\n**知识延伸：**\n常见存储单位换算链为 `1KB = 1024B`、`1MB = 1024KB`、`1GB = 1024MB`、`1TB = 1024GB`。实际存储设备的市场标称容量有时按十进制（如 1GB≈10⁹ 字节）标注，还会受文件系统开销影响，但本题按试卷约定的二进制换算判断。",
             sourceVerified: true,
             sourcePage: 9,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "判断题", "GESP2级"],
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 17,
@@ -633,26 +625,12 @@ a、b、c、d 都是 **0~255** 之间的十进制整数。
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
-
-**判定依据：**
-在 C++ 程序中，\`main\` 函数是程序执行的全局唯一入口点。当程序启动时，操作系统的程序加载器会查找符号名为 \`main\` 的函数作为起始地址。
-
-如果源代码中定义了多个 \`main\` 函数：
-- 在编译阶段可能通过（编译器允许存在多个同名函数，但作用域不能冲突）
-- 在链接阶段必然失败，链接器会报告"符号 main 被多次定义"的错误
-
-因此，一个可执行程序有且只能有一个全局 \`main\` 函数。
-
-**易错提醒：**
-- C++ 允许不同命名空间中存在同名函数（如命名空间 \`ns1::main\` 和 \`ns2::main\`），但全局作用域只能有一个 \`main\`
-- 在某些嵌入式系统中可能使用其他入口点（如 \`WinMain\`、\`mainCRTStartup\`），但标准 C++ 程序必须以 \`main\` 为主入口
-
-**知识延伸：**
-链接器还会查找全局对象构造顺序、异常处理等与 \`main\` 函数相关的初始化代码，确保程序在执行用户代码前完成标准库的初始化工作。
-
-**考点：** C++ 程序的基本结构、入口函数 \`main\` 的唯一性`,
-            tags: ['基础语法']
+            explanation: "**答案：正确**\n\n**判定依据：**\n标准 C++ 程序有且只能有一个位于全局作用域的 `main` 函数，作为整个程序的执行入口。\n若定义了多个 `main`，结果是：\n- 在同一个源文件（同一翻译单元）中重复定义 `main`：编译阶段直接报‘重定义’错误，程序无法通过编译；\n- 在多个不同源文件中分别定义 `main`：各源文件可以分别编译通过，但链接阶段链接器会报 `main` 符号多重定义错误，无法生成可执行程序。\n\n无论哪种情形，最终都无法得到合法的程序，因此‘一个程序不能有多个 main 函数’的说法正确。\n\n**易错提醒：**\n- 命名空间中可以出现名为 `main` 的普通函数（如 `ns::main`），但它不是全局入口，不与程序入口 `main` 冲突；程序入口要求的是全局作用域的 `main`。\n- ‘一个项目可以包含多个源文件’不等于‘可以有多个 `main` 函数’；多文件程序里全局 `main` 仍然有且仅能有一个。\n- 某些平台或框架可能使用非标准入口（如 `WinMain`）或由构建配置指定入口，但这不改变标准 C++ 对全局 `main` 唯一性的要求。\n\n**知识延伸：**\n`main` 的常见标准形式为 `int main()` 或 `int main(int argc, char* argv[])`；程序从 `main` 开始执行，`return 0;` 通常表示正常结束。",
+            tags: ['基础语法'],
+      "sourcePage": 10,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 19,
@@ -847,16 +825,11 @@ C++ 的算术运算符在处理不同类型操作数时，会遵循"寻常算术
         {
             id: 26,
             type: 'programming',
-            title: "字母金字塔",
-            description: "输入 n (2≤n≤40)，输出 n 行直角三角形。由大写字母 A-Z 按由上至下、由左至右填充，Z 后接 A。",
+            title: "画三角形",
+            description: "输入一个正整数 n，请使用大写字母拼成一个这样的三角形图案（参考样例输入输出）：三角形图案的第 1 行有 1 个字母，第 2 行有 2 个字母，以此类推；在三角形图案中，由上至下、由左至右依次由大写字母 A-Z 填充，每次使用大写字母 Z 填充后，将从头使用大写字母 A 填充。",
             inputDescription: "一个正整数 n (2≤n≤40)。",
-            outputDescription: "n 行由大写字母组成的直角三角形。",
-            samples: [
-                {
-                    input: "3",
-                    output: "A\nBC\nDEF"
-                }
-            ],
+            outputDescription: "输出符合要求的三角形图案。注意每行三角形图案的右侧不要有多余的空格。",
+            samples: [{"input":"3","output":"A\nBC\nDEF"},{"input":"7","output":"A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB"}],
             explanation: `**答案：双重循环按行输出递增字母，超过 \`Z\` 回绕到 \`A\`**
 
 **核心解析：**
@@ -925,21 +898,20 @@ int main() {
 - 除了使用条件分支 \`if (ch > 'Z') ch = 'A';\` 进行回绕，也可以利用模运算计算相对偏移：\`ch = 'A' + (ch - 'A' + 1) % 26;\`。`,
             tags: ['循环', '字符与ASCII'],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    char ch = 'A';\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++) {\n            cout << ch;\n            if (++ch > 'Z') ch = 'A';\n        }\n        cout << endl;\n    }\n    return 0;\n}"
+            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    char ch = 'A';\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++) {\n            cout << ch;\n            if (++ch > 'Z') ch = 'A';\n        }\n        cout << endl;\n    }\n    return 0;\n}",
+      "sourcePage": 12,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["title","description","outputDescription","samples","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 27,
             type: 'programming',
-            title: "扩展百鸡问题",
+            title: "百鸡问题",
             description: "公鸡 x 元，母鸡 y 元，z 只小鸡 1 元。有 n 元钱买 m 只鸡，问有多少种方案？",
-            inputDescription: "五个正整数 x, y, z, n, m。",
-            outputDescription: "方案总数。",
-            samples: [
-                {
-                    input: "5 3 3 100 100",
-                    output: "4"
-                }
-            ],
+            inputDescription: "输入一行，包含五个整数，分别为问题描述中的 x、y、z、n、m。约定 1≤x, y, z ≤10，1≤ n, m ≤1000。",
+            outputDescription: "输出一行，包含一个整数 C，表示有 C 种方案。",
+            samples: [{"input":"5 3 3 100 100","output":"4"},{"input":"1 1 1 100 100","output":"5151"}],
             explanation: `**答案：二重枚举公鸡/母鸡，小鸡用差值，整式判断钱数**
 
 **核心解析：**
@@ -983,7 +955,11 @@ int main() {
 - “百钱买百鸡”是中国古代著名数学家张丘建在《算经》中提出的经典不定方程问题。计算机通过穷举自变量来求解此类问题，是枚举法（暴力搜索）最典型的应用之一。`,
             tags: ['枚举', '模拟'],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int x, y, z, n, m;\n    cin >> x >> y >> z >> n >> m;\n    int cnt = 0;\n    for (int i = 0; i <= m; i++) {\n        for (int j = 0; j <= m-i; j++) {\n            int k = m-i-j;\n            if (k >= 0 && (z * x * i + z * y * j + k == z * n)) {\n                cnt++;\n            }\n        }\n    }\n    cout << cnt << endl;\n    return 0;\n}"
+            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int x, y, z, n, m;\n    cin >> x >> y >> z >> n >> m;\n    int cnt = 0;\n    for (int i = 0; i <= m; i++) {\n        for (int j = 0; j <= m-i; j++) {\n            int k = m-i-j;\n            if (k >= 0 && (z * x * i + z * y * j + k == z * n)) {\n                cnt++;\n            }\n        }\n    }\n    cout << cnt << endl;\n    return 0;\n}",
+      "sourcePage": 13,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["title","inputDescription","outputDescription","samples","sourcePage","reviewedBy","reviewedAt"]
         }
     ]
 };

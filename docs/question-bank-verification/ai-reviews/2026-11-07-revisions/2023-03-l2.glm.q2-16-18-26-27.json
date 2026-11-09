@@ -1,0 +1,293 @@
+{
+  "paperId": "2023-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    16,
+    18,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T11:59:53.222Z",
+  "completedAt": "2026-11-09T12:00:55.148Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 57568,
+    "completion_tokens": 10416,
+    "total_tokens": 67984,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 6934,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0138432,
+      "allowance": 0.0138432,
+      "tokens": {
+        "input": 57568,
+        "output": 10416,
+        "reasoning": 6934,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "41af47366c228939fa0c06cbad78cb6bcc440b9098c302e11a6b214178e5fd22",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年3月-C++2级.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "mirrorBytes": 1359334,
+    "shaVerified": true,
+    "sha256": "d9a39658b403faf650d4c78815fd69c75b4762998d10f27ec679fb2255b9f6a5"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「2023 年 3 月 GESP C++ 二级试卷解析」，年份 2023、月份 3、等级 C++ 二级与 paperId 2023-03-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末题干「下列流程图，属于计算机的哪种程序结构？（ ）。」与候选一致；第 2 页原图流程图：开始→菱形判断框「是否按下空格键」，「是」分支为「小猫移动 100 步」、「否」分支为「小猫的颜色特效增加 25」，两分支向下汇合后到「结束」，无回边。候选的文字等价描述与原图逐项对照（判断条件、两分支动作、汇合方向）一致，修复后核验通过；建议站点后续补入流程图原图。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页原图选项依次为 A．顺序结构、B．循环结构、C．分支结构、D．数据结构，候选 options 顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 2 页原图红字【答案】C，按 0 起始索引为 2，候选 answer=2 一致。独立判断：流程图含菱形判断框、两条分支汇合、无回边，属分支结构而非循环/顺序结构，答案 C 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析「流程图根据是否按下空格键设置了两个分支，符合分支结构的特征」。候选以菱形判断框、分支分流、无回边独立推导结论 C，并以「有无回边」区分分支与循环、排除数据结构的概念混淆，推导链独立验证成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "流程图原图尚未入库，当前为依据 PDF 第 2 页原图的文字等价描述，建议站点后续补入原图。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立查看第 2 页原图确认流程图内容与候选文字描述一致（菱形框文字、是/否两分支动作、单向下行汇合无回边），答案 C 的映射与推导均成立，接受初核结论，无需再修改。"
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题 1 原文「明明和笑笑在“小庙会”上分别抽到一个 4GB 和 4096MB 的 U 盘，容量大的盘是笑笑的（ ）。」与候选题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在卷面以括号作答形式呈现、无选项列表；网站「正确/错误」为判断题固定展示形式，与 PDF 答案符号机制等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 9 页原图标注【答案】x，即错误，按正确=0、错误=1 对应索引 1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析：1GB=1024MB，4GB 和 4096MB 容量一样大，本题错误。独立换算 4×1024=4096MB，两盘容量相同，「容量大的盘是笑笑的」不成立；候选解析按「分别」语序给出明明 4GB、笑笑 4096MB 的对应，并指出关键在容量相等而非分配不明，修复了旧稿对题面的误读，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立重推 4×1024=4096MB 确认两盘等容量、答案 x（错误）成立；候选解析对「分别」分配关系的表述与题干语序一致且结论正确，接受初核，无需再修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页判断题 3 原文「在 C++语言中，一个程序不能有多个 main 函数。」与候选题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在卷面以括号作答形式呈现、无选项列表；网站「正确/错误」为判断题固定展示形式，与 PDF 答案符号机制等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 10 页原图标注【答案】√，即正确，按正确=0 对应索引 0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析说明一个程序只能有一个 main 函数。候选区分两种情形：同一翻译单元重复定义 main 为编译期重定义错误；多个源文件分别定义 main 时各文件可分别编译但链接期报符号多重定义。两种情形均无法得到合法程序，技术上准确，修复了旧稿「编译阶段可能通过」的不准确表述，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第 10 页【答案】√，并按 C++ 编译/链接模型独立验证候选解析中编译期重定义与链接期多重定义的区分均正确，接受初核，无需再修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 12 页题名「画三角形」；【问题描述】（第 1 行 1 个字母、第 2 行 2 个字母、A-Z 依次填充、Z 后从头 A 填充）、【输入描述】（约定 2≤n≤40）、【输出描述】（右侧不要有多余的空格）及样例 1（3→A/BC/DEF）、样例 2（7→A/BC/DEF/GHIJ/KLMNO/PQRSTU/VWXYZAB）均与候选一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，卷面无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项答案索引，卷面未提供选项答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF 第 13 页解题思路：把 A,B,C...Z 看作 0,1,2...25，双重 for 循环输出，转换时加 %26 确保 Z 后回到 A。候选按逐字符输出并在超过 'Z' 时重置 'A'，与该思路语义等价；按解析对 n=3 逐步走查得 A/BC/DEF，与卷面样例一致，独立推导成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立模拟候选代码：外层 i=1..n、内层 j=1..i，第 i 行恰输出 i 个字符；每输出一字符执行 ++ch，'Z'(90) 自增为 91 严格大于 'Z' 即重置 'A'，回绕正确、无符号问题。手工推演 n=2 得 A/BC，n=3 得 A/BC/DEF，n=7 共 1+2+...+7=28 字符、第 27/28 字符越过 Z 回绕为 A/B、末行 VWXYZAB，与卷面两样例一致。n=40 时输出 820 字符，O(n²)，无越界、无整型溢出；与官方参考程序（int ch=0，输出 (char)('A'+(ch++)%26)）实现不同但算法等价、输出相同。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 n=2",
+            "input": "2\n",
+            "output": "A\nBC\n",
+            "reason": "约束下限 2≤n≤40 的最小值；独立推演参考代码：第 1 行 1 个字母 A，第 2 行 2 个连续字母 B、C。"
+          },
+          {
+            "name": "官方样例1 n=3",
+            "input": "3\n",
+            "output": "A\nBC\nDEF\n",
+            "reason": "PDF 第 12 页样例 1；第 i 行输出 i 个连续字母，逐行核对为 A/BC/DEF。"
+          },
+          {
+            "name": "边界跨 Z 回绕 n=7",
+            "input": "7\n",
+            "output": "A\nBC\nDEF\nGHIJ\nKLMNO\nPQRSTU\nVWXYZAB\n",
+            "reason": "PDF 第 12 页样例 2；共 28 个字符，第 27、28 个字符越过 Z 后回绕为 A、B，末行 VWXYZAB，验证回绕与边界。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选题名、题面、输出约束与两个官方样例已与 PDF 第 12 页逐项对照一致；参考代码经 n=2/3/7 独立手工模拟与卷面样例吻合，回绕逻辑与复杂度核验通过，接受初核，无需再修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          13,
+          14,
+          15
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 13-14 页题名「百鸡问题」；【输入描述】五整数 x、y、z、n、m 及约定 1≤x,y,z≤10、1≤n,m≤1000、【输出描述】输出一个整数 C、【样例输入 1】5 3 3 100 100→4、【样例输入 2】1 1 1 100 100→5151 均与候选一致；候选 description 为卷面背景与扩展问题的等价压缩表述，参数与所求完整，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，卷面无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项答案索引，卷面未提供选项答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：设公鸡 i、母鸡 j，则小鸡 k=m-i-j；x*i+y*j+k/z=n 两边乘 z 得 z*x*i+z*y*j+k=z*n，其余项均为 z 的倍数，故取等时 k 必为 z 的倍数，并蕴含恰好花完 n 元，化除为乘避免了整数截断与浮点误差。样例 1 代入得 14i+8j=200 即 7i+4j=100，非负解恰 4 组：(0,25,75)、(4,18,78)、(8,11,81)、(12,4,84)，金额验证 20+54+26 等均等于 100，与 PDF 第 14 页样例解释逐一吻合；样例 2 在 z=1 时任意 0≤i+j≤100 均成立，方案数 101×102/2=5151。推导正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码二重枚举 i=0..m、j=0..m-i，k=m-i-j 非负，整数判断 z*x*i+z*y*j+k==z*n，与官方参考程序（xj=(n-gj*x-mj*y)*z 后判 gj+mj+xj==m）语义等价：均要求总数恰为 m、恰好花完 n 元且小鸡按 z 只一组计。另取 z=2（1 1 2 5 5）分别按两版逻辑手工枚举均得 6 组解，交叉验证等价。规模与溢出：m≤1000 时循环约 (m+1)(m+2)/2≈5.02×10⁵ 次；表达式上界约 2×10⁵、cnt 上界 501501，均在 int 范围内，无溢出，满足时限。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 n=m=1",
+            "input": "1 1 1 1 1\n",
+            "output": "3\n",
+            "reason": "x=y=z=1、n=m=1；z=1 时条件化为 i+j+k=1 且 i+j+k=1，非负解为 (1,0,0)、(0,1,0)、(0,0,1) 共 3 组，独立枚举确认。"
+          },
+          {
+            "name": "官方样例1",
+            "input": "5 3 3 100 100\n",
+            "output": "4\n",
+            "reason": "PDF 第 14 页样例 1；乘 z 化简为 7i+4j=100，独立解得 (0,25)、(4,18)、(8,11)、(12,4) 四组非负解。"
+          },
+          {
+            "name": "官方样例2 z=1",
+            "input": "1 1 1 100 100\n",
+            "output": "5151\n",
+            "reason": "PDF 第 14 页样例 2；z=1 时任意 0≤i+j≤100 均满足方程，方案数 101×102/2=5151。"
+          },
+          {
+            "name": "小鸡成组约束 z=2",
+            "input": "1 1 2 5 5\n",
+            "output": "6\n",
+            "reason": "代入后条件化为 i+j=5 且 k=0，i=0..5 共 6 组；并按官方参考程序逻辑（xj=(5-gj*x-mj*y)*z 后判总数）独立枚举同样得 6 组，验证两版语义等价。"
+          },
+          {
+            "name": "最大范围 z=1",
+            "input": "1 1 1 1000 1000\n",
+            "output": "501501\n",
+            "reason": "n=m=1000 覆盖上限；z=1 时任意 0≤i+j≤1000 均合法，方案数 1001×1002/2=501501，同时检验循环量约 5×10⁵ 与计数值均在 int 范围内。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选题名、输入约束、输出描述与两个官方样例已与 PDF 第 13-14 页逐项对照一致；参考代码经样例 1/2 独立推导、z=2 交叉枚举与 m=1000 溢出分析核验通过，接受初核，无需再修改。"
+      }
+    ],
+    "summary": "独立复核 2023-03-l2 的 5 题（单选 1 题、判断 2 题、编程 2 题）：题 2 流程图文字描述与第 2 页原图一致且答案 C 映射正确；题 16 按 1024 进制换算两盘等容量、答案错误成立；题 18 答案正确且解析对编译期/链接期错误的区分技术上准确；题 26 题面、双样例与参考代码经 n=2/3/7 手工模拟核验通过（含 Z 回绕边界）；题 27 题面、双样例与参考代码经 7i+4j=100 四解、z=1 组合计数、z=2 交叉枚举与 m=1000 溢出分析核验通过。5 题均无需进一步修改，全部 approve；唯一遗留事项为题 2 流程图原图建议补入站点。"
+  }
+}
