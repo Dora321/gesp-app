@@ -1,0 +1,132 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:21:30.950Z",
+  "completedAt": "2026-11-09T16:22:12.430Z",
+  "finishReason": "stop",
+  "inputSha256": "3602fede79ae06fe5dad6be0ff2929de40e88eea28355d16a0a3eac3cc97b139",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头清晰显示 CCF GESP 标识、『C++ 二级』『2024 年 12 月』，与 2024-12-l2（2024年12月 GESP C++ 二级）的年月与等级一致。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 3.2 节逐项对照：试题名称『数位和』、时间限制 1.0 s、内存限制 512.0 MB；3.2.1 题面『小杨有 n 个正整数，小杨想知道这些正整数的数位和中最大值是多少』，数位和定义及示例『对于数字 12345，它的各个数位分别是 1,2,3,4,5……1+2+3+4+5=15……因此，12345 的数位和是 15』；3.2.2 输入格式『第一行包含一个正整数 n……之后 n 行，每行包含一个正整数』；3.2.3 输出格式『输出这些正整数的数位和的最大值』；3.2.4 样例输入 3/16/81/10、输出 9；约束『对于全部数据，保证有 1≤n≤10^5，每个正整数不超过 10^12』均与候选一致，候选仅做 Markdown/LaTeX 等价排版转换，无漏项、无含义改变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF 第 9—10 页无选项区块。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不参与客观题答案表（第 1 页答案表仅覆盖单选 1—15，第 6 页判断题答案表仅覆盖判断 1—10），officialAnswer 按题意记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。独立推导：样例 16→1+6=7、81→8+1=9、10→1+0=1，最大值 9 与样例输出一致；约束内每个正整数 ≤10^12（1000000000000 共 13 位、数位和为 1），最大数位和来自 999999999999=10^12−1（12 个数位均为 9），即 9×12=108，int 累加足够；输入可达 10^12 超出 int 范围须用 long long 接收；复杂度约 O(n×位数)≈10^5×13 次，满足 1.0 s 限制。候选解析（108 上界版本）与上述独立推导完全一致，原 117 错误已修正且未再发现其他错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 9—10 页参考程序第 1—24 行（跨页，第 13—24 行在第 10 页）与候选逐语句一致（仅省略原卷空行）：#include <bits/stdc++.h>、using namespace std、#define ll long long、int n 读入、int x=0、循环内 int smu=0、ll tmp 读入、while(tmp>0){smu+=tmp%10; tmp/=10;}、x=max(x,smu)、循环外 cout<<x<<endl。逻辑独立复核正确：long long 承载 ≤10^12 的输入不溢出，while(tmp>0) 对题面保证的正整数逐位取完无遗漏，max 正确维护全局最大值。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1，唯一正整数 1 的数位和为 1，最大值输出 1；独立验算成立。"
+          },
+          {
+            "name": "上界10的12次方",
+            "input": "1\n1000000000000\n",
+            "output": "1\n",
+            "reason": "10^12=1000000000000 共 13 位，数位和为 1；考察 long long 读入上界不溢出；独立验算成立。"
+          },
+          {
+            "name": "约束内最大数位和",
+            "input": "1\n999999999999\n",
+            "output": "108\n",
+            "reason": "10^12−1=999999999999 含 12 个数位均为 9，数位和 9×12=108，为『不超过 10^12』约束内的最大可能数位和；独立验算成立。"
+          },
+          {
+            "name": "多组取最大值",
+            "input": "3\n1000000000000\n999999999999\n10\n",
+            "output": "108\n",
+            "reason": "三者数位和分别为 1、108、1，最大值为 108，验证 max 维护逻辑；独立验算成立。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受上一轮对解析的修正（最大数位和上界 117→108），该修正已落实到候选。我按 PDF 第 9—10 页原图独立复核：题面、约束、样例与参考程序逐行一致；解析中样例验算（7/9/1→9）、108 上界推导（999999999999 为 10^12−1 共 12 个 9）、long long 必要性、int 充分性与复杂度估计均经独立推导确认正确；四条测试的期望输出逐一独立验算成立，未声称已运行。DeepSeek 初核本轮结论与我独立结论一致，予以接受。修订后无遗留问题，changes 为空，候选可直接上线。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 35435,
+        "completion_tokens": 6908,
+        "total_tokens": 42343,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 5468,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00876925,
+          "allowance": 0.00876925,
+          "tokens": {
+            "input": 35435,
+            "output": 6908,
+            "reasoning": 5468,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T16:21:30.950Z",
+      "completedAt": "2026-11-09T16:22:12.430Z"
+    }
+  ]
+}

@@ -1016,8 +1016,8 @@ int main() {
             sourceVerified: true,
             sourcePage: 9,
             sourcePages: [9, 10],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             sourceUrl: SOURCE_URL,
             samples: [
                 {
@@ -1057,12 +1057,7 @@ $$1+2+3+4+5=15$$
 对于全部数据，保证有 $1\\le n\\le 10^5$，每个正整数不超过 $10^{12}$。
 `,
             score: 25,
-            explanation: `**算法推导：** 逐个读入正整数，用 \`while (tmp>0){ smu += tmp%10; tmp/=10; }\` 求它的数位和，再用 \`max\` 维护全局最大值。每个数最大 $10^{12}$，需用 \`long long\` 接收；数位和最大约 $13\\times 9=117$，用 \`int\` 足够。总复杂度约 $O(n\\times 位数)$。
-**常见错误方法：**
-- 用 \`int\` 接收高达 $10^{12}$ 的输入会溢出，应改用 \`long long\`。
-- 求完一个数的数位和后忘记与当前最大值比较更新。
-**易错点：** 输入变量（\`tmp\`）要用 \`long long\`，数位和累加变量（\`smu\`）用 \`int\` 即可；\`while\` 条件是 \`tmp>0\`，把每一位取完为止。
-**最小验证：** 样例三个数 $16\\to 7$、$81\\to 9$、$10\\to 1$，最大为 9，与样例输出一致。`,
+            explanation: "**算法推导：** 逐个读入正整数，用 `while (tmp>0){ smu += tmp%10; tmp/=10; }` 求它的数位和，再用 `max` 维护全局最大值。每个数最大不超过 10^12，需用 `long long` 接收；在 1 ≤ a ≤ 10^12 范围内，最大数位和来自 999999999999（即 10^12 − 1，12 个数位均为 9），为 9 × 12 = 108（10^12 本身的数位和仅为 1），用 `int` 足够。总复杂度约 O(n × 位数)，每数最多 13 位，足够通过。\n**常见错误方法：**\n- 用 `int` 接收高达 10^12 的输入会溢出，应改用 `long long`。\n- 求完一个数的数位和后忘记与当前最大值比较更新。\n**易错点：** 输入变量（`tmp`）要用 `long long`，数位和累加变量（`smu`）用 `int` 即可；`while` 条件是 `tmp>0`，把每一位取完为止。\n**最小验证：** 样例三个数 16→7、81→9、10→1，最大为 9，与样例输出一致。",
             tags: ['编程题', '数位处理', '统计'],
             template: `#include <bits/stdc++.h>
 using namespace std;
@@ -1090,6 +1085,7 @@ int main() {
     cout << x << endl;
     return 0;
 }`,
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"],
         },
     ],
 };

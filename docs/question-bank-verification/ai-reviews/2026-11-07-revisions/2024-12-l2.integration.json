@@ -1,0 +1,68 @@
+{
+  "paperId": "2024-12-l2",
+  "integratedAt": "2026-11-09T16:33:38.130Z",
+  "accepted": [
+    {
+      "id": 27,
+      "fields": [
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n16\n81\n10",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1\n1\n",
+          "output": "1\n",
+          "reason": "n=1，唯一正整数 1 的数位和为 1，最大值输出 1；独立验算成立。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "上界10的12次方",
+          "input": "1\n1000000000000\n",
+          "output": "1\n",
+          "reason": "10^12=1000000000000 共 13 位，数位和为 1；考察 long long 读入上界不溢出；独立验算成立。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "约束内最大数位和",
+          "input": "1\n999999999999\n",
+          "output": "108\n",
+          "reason": "10^12−1=999999999999 含 12 个数位均为 9，数位和 9×12=108，为『不超过 10^12』约束内的最大可能数位和；独立验算成立。",
+          "kind": "boundary",
+          "actual": "108\n",
+          "passed": true
+        },
+        {
+          "name": "多组取最大值",
+          "input": "3\n1000000000000\n999999999999\n10\n",
+          "output": "108\n",
+          "reason": "三者数位和分别为 1、108、1，最大值为 108，验证 max 维护逻辑；独立验算成立。",
+          "kind": "boundary",
+          "actual": "108\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f28adc346e08c65a41799a63c95121a6a9c6c50b8dd40c5041d45d24ef88e659"
+    }
+  ]
+}

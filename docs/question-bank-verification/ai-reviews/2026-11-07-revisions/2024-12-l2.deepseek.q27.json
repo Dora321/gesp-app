@@ -1,0 +1,117 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:20:33.303Z",
+  "completedAt": "2026-11-09T16:21:30.947Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18107,
+    "completion_tokens": 4852,
+    "total_tokens": 22959,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4050
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00562725,
+      "allowance": 0.00337635,
+      "tokens": {
+        "input": 18107,
+        "output": 4852,
+        "reasoning": 4050,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "3602fede79ae06fe5dad6be0ff2929de40e88eea28355d16a0a3eac3cc97b139",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF GESP”“C++ 二级”“2024 年 12 月”，与 2024-12-l2 的来源标识一致。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 3.2.1—3.2.4 与候选一致：题面描述“n 个正整数的数位和最大值”，数位和示例 12345 各位 1,2,3,4,5 相加得 15；输入第一行 n、之后 n 行每行一个正整数；输出最大值；样例输入 3/16/81/10、输出 9；约束 1≤n≤10^5、每个正整数不超过 10^12。候选仅做 Markdown/公式排版转换，未改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF 第 9—10 页无选项区块。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不参与客观题答案表，官方答案不适用，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：样例 16→7、81→9、10→1，最大值为 9。候选修正后的上界正确：10^12−1=999999999999 含 12 个 9，数位和为 9×12=108；10^12 本身数位和为 1，故范围内最大数位和为 108，int 累加足够；long long 读入可避免 int 溢出。复杂度 O(n×位数)，n≤10^5 且每数最多 13 位，可通过。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 9—10 页参考程序与候选代码语句一致（仅排版空行差异）：使用 bits/stdc++.h、long long tmp 读入、int smu 累加数位和、while(tmp>0) 逐位处理、x=max(x,smu) 维护最大值；n=1、a=1、a=10^12、a=999999999999 等边界均无逻辑问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1，唯一正整数 1 的数位和为 1。"
+          },
+          {
+            "name": "上界 10^12",
+            "input": "1\n1000000000000\n",
+            "output": "1\n",
+            "reason": "10^12=1000000000000，数位和为 1；用于验证 long long 读入上界。"
+          },
+          {
+            "name": "约束内最大数位和",
+            "input": "1\n999999999999\n",
+            "output": "108\n",
+            "reason": "10^12−1 含 12 个 9，数位和为 9×12=108，是约束内最大可能值。"
+          },
+          {
+            "name": "多组取最大值",
+            "input": "3\n1000000000000\n999999999999\n10\n",
+            "output": "108\n",
+            "reason": "三者数位和分别为 1、108、1，最大值为 108，验证 max 维护逻辑。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题 27。修订后的解析已正确将最大数位和从错误的 117 修正为约束内的 108；题面、样例、参考程序和边界测试均与 PDF 第 9—10 页一致，未发现需继续修改的问题。"
+  }
+}
