@@ -1,0 +1,112 @@
+{
+  "executedAt": "2026-11-09T15:05:47.755Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "2\n5\n4",
+          "output": "Yes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 1",
+          "input": "1\n1\n",
+          "output": "No\n",
+          "reason": "x、y 均为正整数时最小平方和为 1^2+1^2=2，1 无法表示，输出 No（参考代码循环体不执行）。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "最小可表示值 2",
+          "input": "1\n2\n",
+          "output": "Yes\n",
+          "reason": "2 = 1^2+1^2，x=y=1 均为正整数。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "完全平方数但需 0",
+          "input": "1\n4\n",
+          "output": "No\n",
+          "reason": "4 = 0^2+2^2 含 0 不合法；x=1 时 y2=3 非完全平方，x*x<4 排除 x=2，输出 No。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "最大约束值",
+          "input": "1\n1000000\n",
+          "output": "Yes\n",
+          "reason": "1000000 = 280^2+960^2（78400+921600），两加数均为正整数；用于检查 a_i 上界下的枚举规模、long long 范围与开方回代验证。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "b973dee6a40af68c49ca3e99e8937d9f884c773eb4b007550721ed55cc052e2a"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "25\n2",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 1",
+          "input": "1\n1\n",
+          "output": "1\n",
+          "reason": "1 到 1 中数字 1 出现 1 次。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "目标数字不出现",
+          "input": "1\n9\n",
+          "output": "0\n",
+          "reason": "1 到 1 中不含数字 9，计数为 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "重复数字累计",
+          "input": "22\n2\n",
+          "output": "6\n",
+          "reason": "2、12、20、21 各贡献 1 次，22 含两个 2 贡献 2 次，合计 6（验证‘出现次数’而非‘含 k 的数的个数’）。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "最大 n 边界",
+          "input": "1000\n9\n",
+          "output": "300\n",
+          "reason": "000–999 按三位补齐后每个数位上 9 出现 100 次、三位共 300 次；1000 不含 9。用于检查 n 上界与 k 上界组合。",
+          "kind": "boundary",
+          "actual": "300\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ed042e5273620c7f1202b63e256d5bb5448455a155b7aa2ce729cdb2c454a08f"
+    }
+  ]
+}

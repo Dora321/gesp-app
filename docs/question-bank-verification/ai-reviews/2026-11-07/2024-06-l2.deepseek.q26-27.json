@@ -1,0 +1,180 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T14:02:45.641Z",
+  "completedAt": "2026-11-09T14:04:27.515Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34526,
+    "completion_tokens": 12487,
+    "total_tokens": 47013,
+    "prompt_tokens_details": {
+      "cached_tokens": 34432
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10819
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0076096,
+      "allowance": 0.00456576,
+      "tokens": {
+        "input": 94,
+        "output": 12487,
+        "reasoning": 10819,
+        "cache_read": 34432,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 二级 2024 年 06 月”，与 2024-06-l2 对应；本卷包含单选题 1-15、判断题 1-10、编程题 1-2，题号结构与当前试卷一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 7-8 页题面完整，包含题面描述、输入输出格式、样例、样例解释及数据范围；当前 question 缺少数据范围，且 a_1,a_2,dots,a_n 与 1 le i le n 中的反斜杠缺失，需修正排版并补全约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF 也未设置选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析中的单变量枚举 x*x<a、sqrt 后反验 y*y==y2、正整数排除 0 的说明均与 PDF 题意一致；对 a=4 判 No、a=5 判 Yes 的样例走查正确，未发现与题面或参考代码冲突。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立核对算法：x 从 1 枚举到 x*x<a，保证剩余 y2>0；sqrt 取整后回代验证平方，并排除 y=0；a=1、2、4、1000000 等边界逻辑正确。复杂度为 O(Σ√a_i)，在 n≤10、a_i≤10^6 范围内可行，long long 也避免了乘法溢出。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 二级] 平方之和\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小杨有 $n$ 个正整数 $a_1, a_2, \\dots, a_n$，他想知道对于所有的 $i$（$1 \\le i \\le n$），是否存在两个正整数 $x$ 和 $y$ 满足 $x \\times x + y \\times y = a_i$。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，代表正整数数量。\n之后 $n$ 行，每行包含一个正整数，代表 $a_i$。\n\n## 输出格式\n\n对于每个正整数 $a_i$，如果存在两个正整数 $x$ 和 $y$ 满足 $x \\times x + y \\times y = a_i$，输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于全部数据，保证有 $1 \\le n \\le 10$，$1 \\le a_i \\le 10^6$。"
+        },
+        "tests": [
+          {
+            "name": "最小值 1",
+            "input": "1\n1\n",
+            "output": "No\n",
+            "reason": "x、y 均为正整数时最小平方和为 1^2+1^2=2，1 不可能，故输出 No。"
+          },
+          {
+            "name": "最小可表示值 2",
+            "input": "1\n2\n",
+            "output": "Yes\n",
+            "reason": "2=1^2+1^2，两个加数均为正整数。"
+          },
+          {
+            "name": "完全平方数但含 0",
+            "input": "1\n4\n",
+            "output": "No\n",
+            "reason": "4 只能写成 0^2+2^2，而 0 不是正整数，枚举 x*x<a 会排除 x=2，故输出 No。"
+          },
+          {
+            "name": "最大约束值",
+            "input": "1\n1000000\n",
+            "output": "Yes\n",
+            "reason": "1000000=280^2+960^2，两个加数均为正整数，可用于检查最大 a_i 下的枚举与开方验证。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8-9 页包含题名、时间与内存限制、题面、输入输出格式、样例、样例解释和数据范围；当前 question 缺少数据范围，且 1 le k le 9 的反斜杠缺失，需修正并补全 1≤n≤1000、1≤k≤9。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF 也未设置选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按外层枚举 1..n、内层用 t%10 与 t/=10 拆位统计，和 PDF 题意一致；样例 25、k=2 的累计过程得到 9，且特别说明 22 计两次，推导正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立核对算法：将 i 拷贝到 t，逐位统计 t%10==k，再用 t/=10 推进，避免修改外层循环变量；n≤1000 时 ans 用 long long 足够，输出格式与样例一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 二级] 计数\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小杨认为自己的幸运数是正整数 $k$（注：保证 $1 \\le k \\le 9$）。小杨想知道，对于从 $1$ 到 $n$ 的所有正整数中，$k$ 出现了多少次。\n\n## 输入格式\n\n第一行包含一个正整数 $n$。\n第二行包含一个正整数 $k$。\n\n## 输出格式\n\n输出从 $1$ 到 $n$ 的所有正整数中，$k$ 出现的次数。\n\n## 数据范围\n\n对于全部数据，保证有 $1 \\le n \\le 1000$，$1 \\le k \\le 9$。"
+        },
+        "tests": [
+          {
+            "name": "最小值 1",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "1 到 1 中，数字 1 出现 1 次。"
+          },
+          {
+            "name": "最小值且不出现",
+            "input": "1\n9\n",
+            "output": "0\n",
+            "reason": "1 到 1 中没有数字 9。"
+          },
+          {
+            "name": "重复数字计数",
+            "input": "22\n2\n",
+            "output": "6\n",
+            "reason": "1 到 22 中含 2 的数位为 2、12、20、21、22（两个 2），合计 1+1+1+1+2=6。"
+          },
+          {
+            "name": "最大 n 边界",
+            "input": "1000\n9\n",
+            "output": "300\n",
+            "reason": "将 000 到 999 按三位补齐，每一位上数字 9 出现 100 次，三位共 300 次；1000 不含 9，因此 1 到 1000 中 9 共出现 300 次。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题 26、27。两题题面均遗漏 PDF 数据范围，并存在 LaTeX 反斜杠缺失，需按 changes 补全；样例、解析与参考代码经独立逻辑和边界用例核对，未发现算法错误。其余题目不在本次核验范围内。"
+  }
+}

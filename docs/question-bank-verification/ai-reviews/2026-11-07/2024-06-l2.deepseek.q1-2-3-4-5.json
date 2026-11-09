@@ -1,0 +1,228 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T12:07:32.306Z",
+  "completedAt": "2026-11-09T12:09:38.158Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34532,
+    "completion_tokens": 14475,
+    "total_tokens": 49007,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11959
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0138648,
+      "allowance": 0.00831888,
+      "tokens": {
+        "input": 34532,
+        "output": 14475,
+        "reasoning": 11959,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头为“C++ 二级 / 2024 年 06 月”；第 1 页单选题答案表题 1-5 为 C B A A A，与 paperId 2024-06-l2 的网站答案映射一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干与网页一致；“几/种”换行不改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项为 A.1、B.2、C.3、D.4，顺序与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 1 为 C；C 对应 0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：GESP 第 1 级可报图形化、Python、C++ 三种，解析结论“3 种”与答案 C 一致；延伸说明不改变本题结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页有流程图：开始→输入 yr→菱形判断框→N 输出“2月是28天”、Y 输出“2月是29天”→结束；网页 question 只有“下面流程图”文字，未包含该必要图。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四个逻辑表达式选项与网页顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 2 为 B；B 对应 0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入 2024：2024%400=24，2024%4=0，2024%100=24，选项 B 为 true；A 会误判 1900/2100，C 仅覆盖 400 的倍数，D 无可满足年份，解析逐项结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面流程图在 yr 输入 2024 时，可以判定 yr 代表闰年，并输出 2 月是 29 天，则图中菱形框中应该填入（ ）。\n\n流程图（等价文本）：\n```text\n开始\n  ↓\n输入 yr\n  ↓\n◇ 菱形判断框（待填条件）\n ├─ N → 输出“2月是28天” ─┐\n └─ Y → 输出“2月是29天” ─┴→ 结束\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干为“下列不可做变量的是”，网页作“不可做变量名”；语义等价且更明确，不改变选项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1、2 页选项为 A.five-Star、B.five_star、C.fiveStar、D._fiveStar，顺序与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 3 为 A；A 对应 0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：标识符只可由字母、数字、下划线组成且不能以数字开头；A 含连字符 '-'，不是单一标识符；B/C/D 均可构成标识符，故 A 符合题意。D 以下划线开头在局部作用域语法可用；全局命名空间保留名称的细节不影响本题按考试规则判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干“与 for(int i=0; i<10; i++) 效果相同的是”与网页一致，空格排版差异不影响含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四个 for 循环选项与网页顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 4 为 A；A 对应 0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：A 仅将 i++ 换为 i+=1，初值、条件、迭代值均一致；B 为 1..10，C 为递减，D 条件首次即假；解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干表达式为 cout << (5 % 2 && 5 % 3)，与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项为 A.1、B.2、C.true、D.false，顺序与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 5 为 A；A 对应 0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析末句“与直接输出布尔常量不同”不准确：cout << true 默认同样输出 1；应说明默认不输出字符串 true/false，使用 boolalpha 才输出 true/false。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (1)**\n\n**核心解析：**\n逐步分析表达式 `cout << (5 % 2 && 5 % 3)` 的求值过程：\n\n**第一步：计算取模运算**\n- `5 % 2` = 1（5 除以 2 余数是 1）\n- `5 % 3` = 2（5 除以 3 余数是 2）\n\n**第二步：逻辑与运算**\n- 表达式变为：`1 && 2`\n- 在 C++ 中，非零值转换为 `true`，零值转换为 `false`\n- `true && true` = `true`\n- 逻辑运算符 `&&` 的返回类型是 `bool`\n\n**第三步：cout 输出**\n- `bool` 类型值在流输出时，默认：\n  - `true` 输出为 `1`\n  - `false` 输出为 `0`\n- 因此最终输出：`1`\n\n**选项逐项分析：**\n- **A (1)**：✅ 正确。如上推导，最终输出为 1。\n- **B (2)**：❌ 错误。混淆了逻辑运算和按位与运算。若使用按位与 `5 % 2 & 5 % 3`（即 `1 & 2`），结果才是 0；题目使用的是 `&&`（逻辑与）。\n- **C (true)**：❌ 错误。虽然逻辑运算结果本质是 true，但默认 `cout` 输出 bool 时会转换为整数 1，不会输出字符串 `true`。\n- **D (false)**：❌ 错误。逻辑与 `1 && 2` 结果为 true，不是 false。只有当至少有一个操作数为 0/false 时，结果才为 false。\n\n**易错提醒：**\n- `&&` 是逻辑与，`&` 是按位与，两者完全不同。\n- `cout` 输出 bool 类型时，默认把 true 输出为 1、false 输出为 0，不会输出字符串 `true` 或 `false`；若使用 `boolalpha` 才会输出 true/false。\n- 取模运算 `%` 的结果可以是任意非零整数，不一定是 0 或 1。\n\n**知识延伸：**\n运算符优先级：`%` 的优先级高于 `&&`，但本题中取模运算已由括号整体表达式和优先级确定，逻辑与的优先级不影响结果。实际编程中可以用括号明确优先级。\n\n**考点：** 运算符优先级、逻辑真假的数值判定、布尔值的输出特性"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题 1-5：5 题答案均与 PDF 答案表一致。题 2 网页题面缺失必要流程图，已提出等价文本图补全；题 5 解析末句表述不准确，已提出修正。其余题面、选项、答案、解析通过；参考代码不适用于单选题。"
+  }
+}

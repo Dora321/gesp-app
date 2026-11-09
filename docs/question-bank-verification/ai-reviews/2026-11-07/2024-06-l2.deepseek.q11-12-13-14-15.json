@@ -1,0 +1,229 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T13:48:34.354Z",
+  "completedAt": "2026-11-09T13:52:02.353Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34532,
+    "completion_tokens": 18270,
+    "total_tokens": 52802,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16665
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0161418,
+      "allowance": 0.00968508,
+      "tokens": {
+        "input": 34532,
+        "output": 18270,
+        "reasoning": 16665,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确标注“CCF 编程能力等级认证”“C++ 二级”“2024 年 06 月”，与 paperId 2024-06-l2 的年月、语言和级别一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图第11题题干、条件说明及代码逐行一致：int N,Sum=0; cin>>N; while(N){Sum+=N; cin>>N;} cout<<Sum; 站点未增删语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图 A-D 四项与站点选项文字、顺序一致，均围绕 while(N) 的终止条件与 N==0 改写。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第11题标 D，按 0 起始选项索引为 3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：首输入 0 时不进入循环，输出 0；非 0 输入累加后读下一数，遇 0 终止；while(N) 不会死循环，改为 while(N==0) 反而破坏求和语义，因此错误说法为 D，解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图代码第1-12行、第5页第13-15行与站点 question 内代码一致；Flag 初值 true、for 循环、i*i>N 时 break、N%i==0 的判断及输出分支均未漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图 A-D 与站点选项内容、顺序一致；D 中 Flag = N>=2? true:false 的写法一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第12题标 D，按 0 起始选项索引为 3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：未改初值时 N=1、0、负数会被误判为质数；改为 Flag=N>=2?true:false 后，N<2 直接排除，N=2 保持 true，正合数由循环推翻；D 正确，解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图第13题效果图为 1、2 4、3 6 9、4 8 12 16、5 10 15 20 25；站点用等价文本块呈现，代码 L1/L2 及 endl 位置与页图一致，无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图 A-D 与站点选项文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第13题标 A，按 0 起始选项索引为 0；站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立展开 i=1..5、j=1..i，输出 i*j 并在一行结束后换行，结果与效果图一致；endl 位于内层循环后、外层循环内，故 A 正确，其他选项会改变换行位置。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图第14题代码与站点一致：cnt1/cnt2 初始化、for i<10、continue、if(i%2)、else if(i%3==0) 及输出格式均未改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图 A-D 与站点选项“5 2”“5 0”“0 2”“0 0”的顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第14题标 B，按 0 起始选项索引为 1；站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举 i=0..9：偶数被 continue 跳过；奇数 1、3、5、7、9 使 cnt1=5；能执行到 else if 的 i 必为奇数，故 else if 不可达，cnt2=0；输出 5 0，解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页页图第15题题干、代码逐行对照一致：N 范围、M 正整数、Lucky 判定、while(M) 中 M/=10、printf 文本及 if(M==0) 分支均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页页图 A-D 与站点选项内容、顺序一致；仅存在空格和标点排版差异，不改变语义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第15题标 D，按 0 起始选项索引为 3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：A 输入 36 时先除至 M=3，实际输出“3是3的超级幸运数!”；B 输入 21 无匹配，循环后 M=0，输出“0是7的幸运数!”；C 输入 36 非 8 的倍数，输出“0非8的幸运数!”；D 输入 63 首次循环个位即 3，break 时 M=63，输出“63是3的超级幸运数!”，故 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题11-15。五题均为单选题，题面、选项、官方答案映射与 PDF 第4-6页页图及第1页答案表一致；解析经独立推导均成立，未发现需修改项。编程题参考代码与边界测试不适用于本批题目。"
+  }
+}

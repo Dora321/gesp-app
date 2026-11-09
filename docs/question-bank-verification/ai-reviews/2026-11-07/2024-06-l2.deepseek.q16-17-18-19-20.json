@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T13:57:04.947Z",
+  "completedAt": "2026-11-09T13:58:01.841Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34532,
+    "completion_tokens": 6598,
+    "total_tokens": 41130,
+    "prompt_tokens_details": {
+      "cached_tokens": 34432
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5260
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0040771,
+      "allowance": 0.00244626,
+      "tokens": {
+        "input": 100,
+        "output": 6598,
+        "reasoning": 5260,
+        "cache_read": 34432,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头显示“C++ 二级”“2024 年 06 月”，与 paperId 2024-06-l2 一致；第6页判断题答案表第1~5题为 ×、×、×、√、×。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第1题原文为“执行C++代码 cout << '9'+'1'; 的输出为10。( )”，网站题面保留单引号字符和表达式，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF判断题以括号待判断、答案表符号表示；网站设置为“正确/错误”二选一，符合判断题格式，0/1索引映射无误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第1题为“×”，即错误，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：字符 '9' 与 '1' 参与加法时按ASCII码转为57和49，57+49=106，输出不是10，故原命题错误；现有解析结论和推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，PDF第6页该题未附参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第2题原文为“C++表达式 -12 % 10 的值为2。( )”，网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF判断题使用正确/错误判断；网站options为“正确/错误”，与判断题格式及0/1索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第2题为“×”，即错误，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++整数取模结果符号随被除数，|-12|%|10|=2，故 -12%10=-2，不是2；现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，PDF第6页该题未附参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第3题原文为“C++表达式 int(12.56) 的值为13。（ ）”，网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF判断题使用正确/错误判断；网站options为“正确/错误”，与判断题格式及0/1索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第3题为“×”，即错误，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：int(12.56)执行浮点转整数的截断，丢弃小数部分得到12，并非四舍五入到13；现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，PDF第6页该题未附参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第4题原文为“C++的整型变量N被赋值为10，则语句 cout << N / 3 << \"-\" << N % 3 执行后输出是3-1。 ( )”，网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF判断题使用正确/错误判断；网站options为“正确/错误”，与判断题格式及0/1索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第4题为“√”，即正确，映射为0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：N=10时，N/3=3，N%3=1，按输出顺序拼接为3-1；现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，PDF第6页该题未附参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第5题原文为“在C++代码中，不可以将变量命名为scanf，因为scanf是C++语言的关键字。（ ）”，网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF判断题使用正确/错误判断；网站options为“正确/错误”，与判断题格式及0/1索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第5题为“×”，即错误，映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：scanf是C标准库函数名，不在C++关键字表中；原命题以“关键字”为由禁止命名不成立，故为错误。现有解析核心判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，PDF第6页该题未附参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16~20（PDF第6页判断题第1~5题）。五题的题面、选项形式、官方答案符号与网站答案均对应一致，解析独立推导后未发现需修改之处；这5题均为判断题，referenceCode不适用，无编程边界测试。changes 全部为空，无未决问题。"
+  }
+}

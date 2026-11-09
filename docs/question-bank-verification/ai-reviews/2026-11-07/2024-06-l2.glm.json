@@ -1,0 +1,1303 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T12:09:38.164Z",
+  "completedAt": "2026-11-09T14:08:48.297Z",
+  "finishReason": "stop",
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 二级 / 2024 年 06 月”，与 paperId 2024-06-l2 的年月、等级一致；第 1 页单选题答案表题 1-5 为 C B A A A，与网站 answer 映射逐一吻合。\nPDF 第1页卷头标明「C++ 二级」「2024 年 06 月」，与站点 2024年6月 GESP C++ 二级（level=2, year=2024, month=6）一致；第1页单选题答案表第6–10题为 C、D、B、C、C，换算 0 起始索引为 2、3、1、2、2，与站点 answer 逐一对应。\nPDF 第1页卷头标注「C++ 二级」「2024 年 06 月」，与 paperId 2024-06-l2 的年份、月份、级别、语言一致。\nPDF 第 1 页卷头为「C++ 二级」「2024 年 06 月」，与 paperId 2024-06-l2 对应；本次核验的判断题第 1~5 题题面与答案表（符号 × × × √ ×）位于第 6 页页图。\nPDF第1页原图卷头为「CCF 编程能力等级认证 C++ 二级 2024年06月」，与 2024-06-l2 的年份、月份、级别一致；判断题答案表位于第6页原图（× × × √ × × × √ √ √）。\nPDF 第 1 页卷头明确为“C++ 二级 2024 年 06 月”，与 2024-06-l2（2024 年 6 月 GESP C++ 二级）一致；单选 15 题、判断 10 题、编程 2 题的结构与当前数据对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干、选项、答案映射（C→索引2）与解析结论（1级可报图形化/Python/C++ 共3种）均经独立核对无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干“小杨父母带他到某培训机构给他报名参加CCF组织的GESP认证考试的第1级，那他可以选择的认证语言有几种？”与网站一致，仅换行排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A.1、B.2、C.3、D.4，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 1 为 C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：GESP 第 1 级开放图形化编程、Python、C++ 三种认证科目，解析结论“3 种”及各选项分析正确；题干明确为第 1 级，延伸说明（5-8 级仅 2 种）不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "接受初核对题面的补全：PDF 第 1 页确有流程图（N→2月是28天，Y→2月是29天），网站题面缺失必要图示，等价文本图与原图分支一致，修复必要；答案与解析经独立推导无误。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页流程图为：开始→输入 yr→菱形判断框，N 分支输出“2月是28天”、Y 分支输出“2月是29天”，汇合后→结束；网站 question 仅有文字、缺该图，导致“菱形框中应该填入”指代不明。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四个选项 (yr%400==0)||(yr%4==0)、(yr%400==0)||(yr%4==0&&yr%100!=0)、(yr%400==0)&&(yr%4==0)、(yr%400==0)&&(yr%4==0&&yr%100!=0) 与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 2 为 B，0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入 yr=2024：2024%400=24、2024%4=0、2024%100=24，B 表达式为 true；A 缺 %100 条件会误判 1900/2100；C、D 用 && 逻辑过严（D 中 400 的倍数必为 100 的倍数，无可满足年份），解析逐项结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面流程图在 yr 输入 2024 时，可以判定 yr 代表闰年，并输出 2 月是 29 天，则图中菱形框中应该填入（ ）。\n\n流程图（等价文本）：\n```text\n开始\n  ↓\n输入 yr\n  ↓\n◇ 菱形判断框（待填条件）\n ├─ N → 输出“2月是28天” ─┐\n └─ Y → 输出“2月是29天” ─┴→ 结束\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干在第 1 页末、选项在第 2 页，均与网站一致；答案映射 A→索引0 正确；解析对标识符规则的推导独立复核无误（_fiveStar 语法上为合法标识符）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干“在C++中，下列不可做变量的是( )”，网站作“不可做变量名的是”，语义等价且不改变选项含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1-2 页选项 A.five-Star、B.five_star、C.fiveStar、D._fiveStar，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 3 为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：标识符仅可由字母、数字、下划线组成且首字符不为数字；A 含连字符'-'（运算符），不合法；B/C/D 均为合法标识符（_fiveStar 虽以单下划线开头但非语言保留名，语法可用），解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面、选项与 PDF 第 2 页一致；答案映射 A→索引0 正确；解析对四个循环的执行次数与取值范围推导独立复核无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干“在C++中，与 for(int i=0; i<10; i++) 效果相同的是( )”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四个 for 选项与网站顺序一致，代码内容逐字符核对无差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 4 为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：A 仅将 i++ 换为 i+=1，初值 0、条件 i<10、共执行 10 次（i=0..9）完全等价；B 取值 1..10、C 为递减 10..1、D 首次条件 10<1 即假执行 0 次，解析逐项结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "接受初核对解析的修正：原解析称 bool 输出“与直接输出布尔常量不同”确实有误（cout << true 默认同样输出 1），修正稿改为说明默认输出 1/0、需 boolalpha 才输出 true/false，技术上正确且不改变本题答案与推理链；题面、选项、答案核对无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干表达式 cout << (5 % 2 && 5 % 3) 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A.1、B.2、C.true、D.false，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 5 为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "独立推导：5%2=1、5%3=2，1&&2 为 true，cout 默认输出 1，答案 A 正确；但原解析“与直接输出布尔常量不同”错误——cout << true 默认也输出 1，仅 boolalpha 下输出字符串 true/false，该句需修正，修正稿其余推理与原文一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (1)**\n\n**核心解析：**\n逐步分析表达式 `cout << (5 % 2 && 5 % 3)` 的求值过程：\n\n**第一步：计算取模运算**\n- `5 % 2` = 1（5 除以 2 余数是 1）\n- `5 % 3` = 2（5 除以 3 余数是 2）\n\n**第二步：逻辑与运算**\n- 表达式变为：`1 && 2`\n- 在 C++ 中，非零值转换为 `true`，零值转换为 `false`\n- `true && true` = `true`\n- 逻辑运算符 `&&` 的返回类型是 `bool`\n\n**第三步：cout 输出**\n- `bool` 类型值在流输出时，默认：\n  - `true` 输出为 `1`\n  - `false` 输出为 `0`\n- 因此最终输出：`1`\n\n**选项逐项分析：**\n- **A (1)**：✅ 正确。如上推导，最终输出为 1。\n- **B (2)**：❌ 错误。混淆了逻辑运算和按位与运算。若使用按位与 `5 % 2 & 5 % 3`（即 `1 & 2`），结果才是 0；题目使用的是 `&&`（逻辑与）。\n- **C (true)**：❌ 错误。虽然逻辑运算结果本质是 true，但默认 `cout` 输出 bool 时会转换为整数 1，不会输出字符串 `true`。\n- **D (false)**：❌ 错误。逻辑与 `1 && 2` 结果为 true，不是 false。只有当至少有一个操作数为 0/false 时，结果才为 false。\n\n**易错提醒：**\n- `&&` 是逻辑与，`&` 是按位与，两者完全不同。\n- `cout` 输出 bool 类型时，默认把 true 输出为 1、false 输出为 0，不会输出字符串 `true` 或 `false`；若使用 `boolalpha` 才会输出 true/false。\n- 取模运算 `%` 的结果可以是任意非零整数，不一定是 0 或 1。\n\n**知识延伸：**\n运算符优先级：`%` 的优先级高于 `&&`，但本题中取模运算已由括号整体表达式和优先级确定，逻辑与的优先级不影响结果。实际编程中可以用括号明确优先级。\n\n**考点：** 运算符优先级、逻辑真假的数值判定、布尔值的输出特性"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页题干「执行下面的C++代码时输入 1，则输出是」及13行 switch 代码与站点一致：case 1 输出 Jan 后无 break，case 3 输出 Mar 后 break，default 为空语句；站点仅排版压缩，语义相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A. Jan、B. Mar、C. Jan Mar、D. 以上均不对，与站点四项内容及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 C，0起始索引为 2；站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立走查 month=1：匹配 case 1 输出 Jan 后因无 break 穿透到 case 3 输出 Mar，遇 break 退出，输出 Jan Mar；站点解析的穿透分析与选项逐项排查均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立走查 switch 穿透路径并复核答案表第6题 C→索引2，与初核结论一致，站点原数据无误。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2–3页题干「执行下面C++代码后，有关说法错误的是」及10行 if-else if 代码与站点一致（a&&b→1，!(a||b)→2，a||b→3，else→4）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 四项分别为：1和1输出1；0和1或1和0输出3；0和0输出2；0和0输出4，与站点一致（仅空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 D，0起始索引为 3；站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：1,1 命中第一支输出1；0,1/1,0 前两支均不成立、命中 a||b 输出3；0,0 命中 !(a||b) 输出2 后跳出，末尾 else 不可达，故说法 D 错误；站点解析（含德摩根与死代码说明）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：四种输入组合均已独立枚举，D 为错误说法、索引3与答案表一致，初核可靠。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题干「某货币由5元，2元和1元组成……计算出最少数量」及8行代码（M5=N/5，M2、M1 两空，printf 输出）与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 四组填空 A(N/2；N-M5-M2)、B((N-M5*5)/2；N-M5*5-M2*2)、C(N-M5*5/2；N-M5*5-M2*2)、D((N-M5*5)/2；N-M5-M2) 与站点四项内容、顺序一致（「横线处」写作「空」为等价表述）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 B，0起始索引为 1；站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导贪心：M5=N/5 后剩余 N-M5*5，M2=(N-M5*5)/2，M1=N-M5*5-M2*2，B 正确；A 的 N/2 未扣除已付金额且 N-M5-M2 混淆枚数与金额，C 因 * 与 / 左结合实为 N-(M5*5/2)、缺括号，D 第2空同样混淆枚数与金额，站点解析各项判定均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立验证贪心公式与运算符优先级（*、/ 左结合），B 正确、A/C/D 错因分析成立，初核可靠。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3–4页题干及5行代码（外层 i=0..9，内层 j=1; j<i，loopCount+=1，输出 loopCount）与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A.55、B.45、C.36、D.28，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 C，0起始索引为 2；站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举内层执行次数：i=0,1 各0次，i=2..9 各1..8次，合计 0+0+1+…+8=36；对 A=55、B=45、D=28 的误算来源分析也成立。唯一瑕疵是末尾「知识延伸」为空标题（截断痕迹），不含错误信息，不影响解析正确性。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：36 的累加独立复算无误；「知识延伸」空标题属截断瑕疵、非事实错误，按「无问题不改」原则仅记录不补写。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干及8行代码（loopCount+=1 位于外层循环体内、内层 for 之后；内层 if(i*j%2) break）与站点一致，站点为内层补的花括号不改变语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A.25、B.16、C.10、D.9，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 C，0起始索引为 2；站点 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立走查：loopCount+=1 在外层，i=0..9 共10轮各加1次，输出10，核心答案正确。原解析知识延伸称「移入内层累计36」忽略了 break 的作用，按该改法（计数置于 break 判断之后）实为25（恰为选项A：0+1+2+1+4+1+6+1+8+1）；已替换为修正后的完整解析并逐项复核（含无 break 时移入内层为45、D 对应漏计 i=0 一轮），修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (10)**\n\n**核心解析：**\n关键是看清 `loopCount += 1` 写在**哪一层循环**。它位于外层 `for (i...)` 的循环体内、内层 `for (j...)` 之后，属于外层循环体：每执行一轮外层循环，它恰好加 1 次。\n\n内层的 `break` 只能跳出**内层**循环；无论内层循环执行了多少次、是否被 `break` 提前终止，外层的 `loopCount += 1` 都会照常执行。\n\n外层 `i` 依次取 0, 1, 2, …, 9，共 **10** 轮，因此 `loopCount` 被累加 10 次，输出 10。\n\n**选项逐项分析：**\n- **A (25)**：❌ 错误。它是把 `loopCount += 1` 移入内层循环体、且放在 `if (i * j % 2) break;` 之后的结果：`i` 为偶数（2、4、6、8）时 `i*j` 全为偶数，内层走满 `i` 次、各计 1 次；`i` 为奇数（3、5、7、9）时 `j=0` 计 1 次后，到 `j=1` 因乘积为奇数而 `break`；`i=1` 时内层只有 `j=0` 计 1 次；`i=0` 时内层不执行计 0 次。合计 0+1+2+1+4+1+6+1+8+1=25。\n- **B (16)**：❌ 错误。没有合理的执行路径或典型误算能得到该值。\n- **C (10)**：✅ 正确。外层 10 轮，每轮加 1 次。\n- **D (9)**：❌ 错误。漏掉了 `i = 0` 那一轮——该轮内层一次都不执行，但外层的 `loopCount += 1` 照样执行。\n\n**易错提醒：**\n- `i = 0` 时内层条件 `j < 0` 不成立，内层一次都不执行，但外层的 `loopCount += 1` 仍会执行——这是最容易漏掉的一轮。\n- `break` 只跳出一层循环。要跳出多层需要标志变量或 `goto`。\n\n**知识延伸：**\n语句所在层级以及它与 `break` 的相对位置共同决定结果：把 `loopCount += 1` 移入内层、放在 `break` 判断之后得 25；若删去 `if...break` 再移入内层，内层每轮执行 `i` 次，累计为 0+1+…+9=45。10、25、45 三者的差别正体现了语句位置的重要性。\n\n**考点：** 嵌套循环的执行次数、break 的作用范围"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：其认定「移入内层应为25而非36」经我复算（偶数轮计 i 次、奇数轮仅 j=0 计1次）成立，予以采纳；但其替换稿称 D「无对应执行路径」不准确（D 实为漏掉 i=0 一轮），也未交代无 break 时的 45，故在其基础上重写选项分析与知识延伸，不全文照搬。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图题干「假设下面C++代码执行过程中仅输入正负整数或0，有关说法错误的是」及代码 int N,Sum=0; cin>>N; while(N){Sum+=N; cin>>N;} cout<<Sum; 与站点逐行一致，无增删。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 四项（输入0终止循环／所有非0整数求和／首次输入0输出0／死循环并可改 while(N==0)）与站点文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第11题为 D，按0起始索引为3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：0 使 while(N) 为假即终止；非0输入均被累加；首次输入0时循环不执行输出0；代码不会死循环，改为 while(N==0) 会在读到非0时立即退出、与求和意图相反，故错误说法为 D，站点解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核结论与初核一致：题面、选项、答案映射、解析均经页图对照与独立推导确认，接受初核，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "代码跨第4页第1-12行与第5页第13-15行：bool Flag=true; for(i=2;i<N;i++) 内 i*i>N 时 break、N%i==0 时 Flag=false 并 break，随后按 Flag 输出「是质数／不是质数」；题干含【质数是指仅能被1和它本身整除的正整数】，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 与站点内容、顺序一致，D 中 Flag = N>=2? true:false 写法一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为 D，0起始索引3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：N=1、0 及负数时循环不执行且 Flag 初值 true，会被误判为质数，故 A、B、C 错误；改为 Flag=N>=2?true:false 后 N<2 直接判非质数，N=2 循环不执行仍为 true，N>=2 的合数（如4、9、25）由试除推翻，判定全部正确，D 成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致，关键在 Flag 初值与循环不执行分支的配合，站点解析推导完整正确，接受。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页页图效果图为 1／2 4／3 6 9／4 8 12 16／5 10 15 20 25，站点以等价文本块呈现；代码 L1 为 for(i=1;i<6;i++)、L2 为 for(j=1;j<i+1;j++) 输出 i*j，endl 位于内层循环后、外层循环内，与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D（无需调整／endl 移入L2／endl 移到L1外／删除 endl）与站点文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为 A，0起始索引0；站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立展开：i 取1..5 共5行，j 取1..i，第 i 行输出 i×1 至 i×i，endl 在每行结束后换行，与效果图完全一致；B 会逐数换行、C 与 D 会使全部输出挤在一行，均破坏效果，A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：当前代码即可产生目标图形，答案 A 映射正确，解析成立，接受。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页页图代码与站点一致：cnt1、cnt2 初始化为0，循环内 i%2==0 时 continue，随后 if(i%2) cnt1+=1; else if(i%3==0) cnt2+=1;，最后输出 cnt1 与 cnt2。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 依次为 5 2／5 0／0 2／0 0，与站点选项顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为 B，0起始索引1；站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举 i=0..9：偶数 0,2,4,6,8 均被 continue 跳过；奇数 1,3,5,7,9 执行 cnt1+=1，共5次；能到达 else if 的 i 必为奇数使 if(i%2) 为真，else 分支不可达，cnt2=0；输出 5 0，B 正确，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：continue 拦截偶数导致 else if 不可达是本题关键，站点解析推导正确，接受。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页页图题干与代码逐行一致：N 须小于10大于1、M 为正整数，Lucky 由 M%N 判定，while(M) 中 M%10==N && Lucky 时 printf 超级幸运数并 break，否则 M/=10，循环后 if(M==0) 按 Lucky 输出；站点「幸运数、超级幸运数或非幸运数」与页图「幸运数或超级幸运数或非幸运数」仅连词差异，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 与站点四项内容、顺序一致，仅空格与标点排版差异，不改变语义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为 D，0起始索引3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：A 中 N=3,M=36，第二轮 M=3 时匹配，实际输出「3是3的超级幸运数!」而非36；B 中 21 不含7，循环后 M=0，实际输出「0是7的幸运数!」；C 中 36%8 非0，Lucky=false，循环后输出「0非8的幸运数!」，且代码无「超级」否定文案；D 中 63%3==0 且个位即为3，首轮 break 时 M 仍为63，输出「63是3的超级幸运数!」，D 正确。站点解析结论成立；其末尾「易错提醒」标题后无正文，属排版残缺，不影响答案推导，不作修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：变量 M 在循环中被 /=10 修改是各选项判定的核心，四个选项的实际输出均独立验证无误，接受；仅提示解析尾部空标题为排版残缺。"
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文「执行C++代码 cout << '9'+'1'; 的输出为10。( )」；网站题面仅空格与代码排版差异，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷判断题为（ ）待判形式，答案以第 6 页答案表 ×/√ 符号给出；网站以「正确/错误」二选项呈现，符合规定映射（正确=0、错误=1），五个判断题均同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 1 题为 ×；独立推导：'9' 的 ASCII 为 57、'1' 为 49，<< 优先级低于 +，cout 输出 57+49=106≠10，命题为假，映射索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：char 参与算术经整数提升为 int，结果 106；解析的推导、易错点与整数延伸说明均正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、答案符号映射与解析（106）均经独立推导确认一致，初核无遗漏。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题原文「C++表达式 -12 % 10 的值为2。( )」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷（ ）待判加答案表符号形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 2 题为 ×；独立推导：C++ 整数除法向零截断，取模符号随被除数，-12 % 10 = -2 ≠ 2，命题为假，索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导得 -2；解析中「符号与被除数一致」的规则及与 Python（-12 % 10 = 8）的跨语言对比均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、×→1 映射与解析（-2）独立复核一致。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题原文「C++表达式 int(12.56) 的值为13。（ ）」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 3 题为 ×；独立推导：int(12.56) 向零截断得 12≠13，命题为假，索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "核心推导（截断得 12）正确；但解析称「floor() 函数」可实现四舍五入，实际 floor 为向下取整，floor(12.56)=12，并不能得到 13，该辅助表述有误；changes 已修正该句，其余内容保留。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\nC++ 中的强制类型转换 `int(12.56)` 采用的是**截断**（Truncation）策略，即直接丢弃小数部分，不进行任何四舍五入。\n\n对于 12.56：\n- 整数部分为 12\n- 小数部分为 0.56\n- 截断后直接保留整数部分，结果为 **12**\n\n因此 `int(12.56)` 的值为 12，而非题目所述的 13。要实现四舍五入需要使用其他方法，如 `int(12.56 + 0.5)`；注意 `floor()` 是向下取整函数，`floor(12.56)` 的值同样是 12，并不能实现四舍五入（需写成 `floor(12.56 + 0.5)` 才能得到 13）。\n\n**易错提醒：**\n- 强制类型转换为整数时，是\"截断\"而非\"四舍五入\"\n- `int()` 不是数学上的取整函数，而是丢弃小数部分的截断函数\n\n**知识延伸：**\n与 `int()` 类似的截断行为还出现在：整型变量赋值浮点数时 `int a = 12.56;` 同样得到 12。此外，`static_cast<int>(12.56)` 也采用相同的截断规则。\n\n**考点：** 强制类型转换的截断规则"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：初核将解析判为 verified，遗漏了「floor() 函数可实现四舍五入」这一事实性错误（floor(12.56)=12，floor 为向下取整）；已否决该结论并补充修复。题面、答案与核心截断推导部分的初核结论予以确认。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文「C++的整型变量N被赋值为10，则语句 cout << N / 3 << \"-\" << N % 3 执行后输出是3-1。 ( )」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 4 题为 √；独立推导：10/3=3（整除）、10%3=1，cout 依次输出 3、-、1，即 3-1，命题为真，索引 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致；整数除法向零取整、a=(a/b)*b+(a%b) 的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、√→0 映射与解析（3-1）独立复核一致。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文「在C++代码中，不可以将变量命名为scanf，因为scanf是C++语言的关键字。（ ）」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 5 题为 ×；独立推导：scanf 是 <stdio.h>/<cstdio> 声明的 C 标准库函数名，不在 C++ 关键字表中，命题以「关键字」为由的禁止不成立，为假，索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "关键字与库函数名的区分正确；关于包含头文件后同名声明冲突/遮蔽的补充说明在局部作用域等常见情形下成立，属合理的细化，不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、×→1 映射与解析（scanf 非关键字）独立复核一致。"
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第6页原图判断题第6题代码为 for (int i = 0; i < 10; i++) continue;（文字层一致）；网站原题面误植第15题的幸运数程序，changes 已替换为官方代码，替换后与原图逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签，无需核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第6题为×，对应错误=1；按官方代码独立推导：continue 不跳过迭代表达式 i++，i 取 0~9 共 10 轮后条件不成立、循环正常结束，「导致死循环」说法为假，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：网站原解析围绕幸运数 while(M)/M/=10 代码展开，与本题官方代码完全无关；changes 已重写为按 for+continue 推导（continue 仅跳过本轮循环体剩余语句，i++ 照常执行，10 轮后正常结束），推导经我独立复核正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后将导致死循环。（ ）\n```cpp\nfor (int i = 0; i < 10; i++)\n    continue;\n```",
+          "explanation": "**答案：错误**\n\n**判定依据：**\n官方代码为 `for (int i = 0; i < 10; i++) continue;`。for 循环每轮的执行顺序是：判断条件 `i < 10` → 执行循环体 → 执行迭代表达式 `i++` → 再回到条件判断。`continue` 的作用只是提前结束本轮循环体、直接进入迭代表达式环节，它**不会跳过 `i++`**。因此 `i` 每轮加 1，依次取 0~9，循环体共执行 10 次后条件不成立，循环正常结束，程序不会死循环，题干说法错误。\n\n**易错提醒：**\n- `continue` 与 `break` 不同：`continue` 只跳过本轮循环体的剩余语句，for 的迭代表达式照常执行；`break` 才直接跳出整个循环。\n- 死循环需要「循环条件恒真且循环变量不向终止方向推进」，例如 `while (N)` 且循环体内不更新 N。本题的 `i++` 保证了循环变量向终止条件推进。\n- 若误以为 `continue` 会连同 `i++` 一起跳过，就会误判为死循环而错答「正确」。\n\n**考点：** for 循环的执行流程、continue 的作用范围"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "采纳初核修复并独立确认：第6页原图第6题确为 for+continue，网站误植第15题幸运数代码；answer=1 虽恰好不受影响，但题面与解析必须修。初核新解析中「continue 不跳过 i++、共10轮正常结束」的推导经我复核技术正确，予以采纳并在最终稿中重述。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页原图第7题代码：int cnt = 0; 外层 for (int i = 0; i < 10; i++)，内层 for (int j = 0; j < i; j++){ cnt += 1; break; }，最后 cout << cnt;，与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第7题为×，对应错误=1；独立追踪：i=0 内层不执行，i=1~9 各执行一次 cnt+=1 后 break，cnt=9≠10，「输出10」为假，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐轮枚举 i=0（内层不执行）至 i=9，得出共 9 次累加、输出 9 而非 10 的结论，与我的独立追踪完全一致；「break 只跳出最内层循环」的提醒正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "采纳初核通过结论：代码与第7页原图一致；我独立追踪得 cnt=9（i=0 无内层执行，i=1~9 各一次后 break），「输出10」为假，answer=1 与官方×一致，解析推导无误，无需修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第7页原图第8题内层循环为 for (int j = i; j < 5; j += i)，网站原写成 for (int j = 1; j < i; j++)，初值、边界、步长均与官方不符；changes 已替换为官方代码，替换后与原图逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第8题为√，对应正确=0；按官方代码独立枚举：i=1 时 j=1..4 计 2，i=2 时 j=2,4 计 2，i=3 时 j=3 计 0，i=4 时 j=4 计 1，合计输出 5，「输出5」为真，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：网站原解析按错误循环（j=1; j<i; j++）列表推导，推导对象与官方代码不符；changes 已按 for (int j = i; j < 5; j += i) 重写，逐轮枚举 2+2+0+1=5，经我独立复核正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后，将输出 5。（ ）\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 5; i++)\n    for (int j = i; j < 5; j += i)\n        if (i * j % 2 == 0)\n            cnt += 1;\ncout << cnt;\n```",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n外层 `i` 取 1~4；内层 `j` 从 `i` 出发、每次增加 `i`、上限 `j < 5`。逐轮枚举：\n- `i = 1`：`j = 1, 2, 3, 4`，`i*j` 依次为 1、2、3、4，其中 2、4 为偶数，cnt 增加 2；\n- `i = 2`：`j = 2, 4`，`i*j` 为 4、8，均为偶数，cnt 增加 2；\n- `i = 3`：`j = 3`，`i*j = 9` 为奇数，cnt 增加 0；\n- `i = 4`：`j = 4`，`i*j = 16` 为偶数，cnt 增加 1。\n\n合计 2 + 2 + 0 + 1 = 5，程序输出 5，题干说法正确。\n\n**易错提醒：**\n- 内层循环是 `for (int j = i; j < 5; j += i)`：初值和步长都依赖 `i`，与常见的 `j = 1; j < i; j++` 完全不同，必须按题目代码逐项枚举，不能套用其他循环的推导。\n- 奇偶性规律：`i` 为偶数时 `i*j` 必为偶数；`i` 为奇数时 `i*j` 的奇偶性与 `j` 相同。\n\n**考点：** 嵌套循环的边界与步长、乘积的奇偶性判断"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "采纳初核修复并独立确认：官方内层为 j=i; j<5; j+=i，网站代码与解析对象均错；我按官方代码独立枚举得 2+2+0+1=5，与官方√及 answer=0 相符（两种循环恰好都输出 5，故答案无需改动，只修题面与解析），初核枚举数值无误，予以采纳。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第7页原图第9题为完整程序（int N,Sum = 0; cin >> N; while (N){ Sum += N % 10; N /= 10; } cout << Sum;），网站原题面仅剩 while 片段，缺变量声明、输入、输出三处必要代码；changes 已补全，补全后与原图逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第9题为√，对应正确=0；独立走查 N=123：依次累加 3、2、1，Sum=6，数位求和实现正确，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 %10 取末位、/=10 去末位的配合推导正确，N=123 走查得 6；「Sum 需初始化为 0」的提醒与官方代码 int N,Sum = 0; 相符，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码能实现正整数各位数字之和。（ ）\n```cpp\nint N,Sum = 0;\ncin >> N;\nwhile (N){\n    Sum += N % 10;\n    N /= 10;\n}\ncout << Sum;\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "采纳初核补全：官方第9题是含声明、输入、输出的完整程序，网站仅存 while 片段，属漏必要代码；answer=0 与官方√一致且解析对数位求和的推导本身正确，故仅修 question 字段，解析保留。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页原图第10题题干与网站一致：「GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第10题为√，对应正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析从 GESP 按能力等级划分、同级能力目标跨语言一致、语言仅为表达载体的角度论证，并区分不同语言语法层面的个别差异；论证独立充分，与官方√相符，非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "采纳初核通过结论：题干与第7页原图一致，官方√对应 0；解析从分级理念角度论证合理，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 7-8 页 3.1.1–3.1.6：题面描述、输入/输出格式与现有文本一致；但现有 question 缺少 3.1.6 数据范围（1≤n≤10，1≤a_i≤10^6，PDF 第 8 页原文），且 $a_1, a_2, dots, a_n$、$(1 le i le n)$ 中 \\dots、\\le 反斜杠丢失（同句 \\times 未丢失，可证为转义损耗）。changes 已按 PDF 原文补全，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF 亦未设置选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项（PDF 答案表仅覆盖单选与判断题），officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：x、y 为正整数 ⇒ y²≥1 ⇒ x²≤a−1<a，故枚举条件 x*x<a 完备；y2=a−x²≥1，sqrt 取整后以 y>0 且 y*y==y2 回代验证，排除浮点误差与 y=0（0 非正整数）；a=5→Yes（1²+2²）、a=4→No（仅 0²+2²，不合法）的样例走查正确；双重枚举 O(n·a)、易错点（x*x<=a 误判、开方回代、溢出、剪枝）表述均与代码和题意一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立核对算法与边界：a=1/2/3/4/5 分别输出 No/Yes/No/No/Yes；a=10^6 时 x≤999、y2<10^6，long long 无乘法溢出，sqrt 在 double 精确范围内且有整型回代验证兜底；复杂度 O(n√a)≈10^4 次操作，1.0 s 限内充裕；输出 Yes/No 换行与样例一致。与 PDF 第 8 页官方参考程序（check(j) 版，i*i<n 严格保证 j≥1）算法等价且更稳健。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 二级] 平方之和\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小杨有 $n$ 个正整数 $a_1, a_2, \\dots, a_n$，他想知道对于所有的 $i$（$1 \\le i \\le n$），是否存在两个正整数 $x$ 和 $y$ 满足 $x \\times x + y \\times y = a_i$。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，代表正整数数量。\n之后 $n$ 行，每行包含一个正整数，代表 $a_i$。\n\n## 输出格式\n\n对于每个正整数 $a_i$，如果存在两个正整数 $x$ 和 $y$ 满足 $x \\times x + y \\times y = a_i$，输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于全部数据，保证有 $1 \\le n \\le 10$，$1 \\le a_i \\le 10^6$。"
+        },
+        "tests": [
+          {
+            "name": "最小值 1",
+            "input": "1\n1\n",
+            "output": "No\n",
+            "reason": "x、y 均为正整数时最小平方和为 1^2+1^2=2，1 无法表示，输出 No（参考代码循环体不执行）。"
+          },
+          {
+            "name": "最小可表示值 2",
+            "input": "1\n2\n",
+            "output": "Yes\n",
+            "reason": "2 = 1^2+1^2，x=y=1 均为正整数。"
+          },
+          {
+            "name": "完全平方数但需 0",
+            "input": "1\n4\n",
+            "output": "No\n",
+            "reason": "4 = 0^2+2^2 含 0 不合法；x=1 时 y2=3 非完全平方，x*x<4 排除 x=2，输出 No。"
+          },
+          {
+            "name": "最大约束值",
+            "input": "1\n1000000\n",
+            "output": "Yes\n",
+            "reason": "1000000 = 280^2+960^2（78400+921600），两加数均为正整数；用于检查 a_i 上界下的枚举规模、long long 范围与开方回代验证。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核。独立复核确认：题面缺 PDF 3.1.6 数据范围、\\dots/\\le 反斜杠丢失属实；修复文本与 PDF 第 7-8 页原文逐字一致；解析与参考代码经独立边界推算（a=1/2/3/4/5、10^6=280²+960²）无误；4 组测试期望输出均由本人独立推算，非沿用样例。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 8-9 页 3.2.1–3.2.6：题面、输入/输出格式与现有文本一致；但现有 question 缺少 3.2.6 数据范围（1≤n≤1000，1≤k≤9，PDF 第 9 页原文），且 $1 le k le 9$ 反斜杠丢失。changes 已按 PDF 原文补全，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，PDF 亦未设置选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项（PDF 答案表仅覆盖单选与判断题），officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：外层枚举 1..n，内层以 t=i 副本做 t%10==k 计数、t/=10 剥位；n=25,k=2 时 2、12、20、21、23、24、25 各计 1 次、22 计 2 次，合计 9，与 PDF 3.2.5 样例解释（列出的正整数共出现 9 次）一致；‘22 须计两次’‘不得直接修改循环变量’的提醒与代码实现吻合，未发现错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立核对：i 的副本 t 逐位统计，i=22 贡献 2 次；n=1000,k=9 时 ans=300（000–999 按三位补齐，每位 9 出现 100 次、共 300 次，1000 不含 9）；n≤1000 时 ans≤300 无溢出（long long 为保守写法）；输出格式与样例一致。与 PDF 第 9 页官方参考程序（check 函数版）算法等价。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 二级] 计数\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小杨认为自己的幸运数是正整数 $k$（注：保证 $1 \\le k \\le 9$）。小杨想知道，对于从 $1$ 到 $n$ 的所有正整数中，$k$ 出现了多少次。\n\n## 输入格式\n\n第一行包含一个正整数 $n$。\n第二行包含一个正整数 $k$。\n\n## 输出格式\n\n输出从 $1$ 到 $n$ 的所有正整数中，$k$ 出现的次数。\n\n## 数据范围\n\n对于全部数据，保证有 $1 \\le n \\le 1000$，$1 \\le k \\le 9$。"
+        },
+        "tests": [
+          {
+            "name": "最小值 1",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "1 到 1 中数字 1 出现 1 次。"
+          },
+          {
+            "name": "目标数字不出现",
+            "input": "1\n9\n",
+            "output": "0\n",
+            "reason": "1 到 1 中不含数字 9，计数为 0。"
+          },
+          {
+            "name": "重复数字累计",
+            "input": "22\n2\n",
+            "output": "6\n",
+            "reason": "2、12、20、21 各贡献 1 次，22 含两个 2 贡献 2 次，合计 6（验证‘出现次数’而非‘含 k 的数的个数’）。"
+          },
+          {
+            "name": "最大 n 边界",
+            "input": "1000\n9\n",
+            "output": "300\n",
+            "reason": "000–999 按三位补齐后每个数位上 9 出现 100 次、三位共 300 次；1000 不含 9。用于检查 n 上界与 k 上界组合。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核。独立复核确认：题面缺 PDF 3.2.6 数据范围、LaTeX 反斜杠丢失属实；修复文本与 PDF 第 8-9 页原文一致；参考代码独立验证 n=25/k=2→9（含 22 双计）、n=1000/k=9→300；测试期望（1/1→1、1/9→0、22/2→6、1000/9→300）均为独立推算结果。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "usage": {
+        "prompt_tokens": 51372,
+        "completion_tokens": 4851,
+        "total_tokens": 56223,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2120,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0101313,
+          "allowance": 0.0101313,
+          "tokens": {
+            "input": 51372,
+            "output": 4851,
+            "reasoning": 2120,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T12:09:38.164Z",
+      "completedAt": "2026-11-09T12:10:08.666Z"
+    },
+    {
+      "questionIds": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "usage": {
+        "prompt_tokens": 51031,
+        "completion_tokens": 20468,
+        "total_tokens": 71499,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 17591,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01788865,
+          "allowance": 0.01788865,
+          "tokens": {
+            "input": 51031,
+            "output": 20468,
+            "reasoning": 17591,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T13:46:34.088Z",
+      "completedAt": "2026-11-09T13:48:34.344Z"
+    },
+    {
+      "questionIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 50922,
+        "completion_tokens": 8415,
+        "total_tokens": 59337,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 50816
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 6345,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00574788,
+          "allowance": 0.00574788,
+          "tokens": {
+            "input": 106,
+            "output": 8415,
+            "reasoning": 6345,
+            "cache_read": 50816,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T13:56:13.334Z",
+      "completedAt": "2026-11-09T13:57:04.940Z"
+    },
+    {
+      "questionIds": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "usage": {
+        "prompt_tokens": 50612,
+        "completion_tokens": 13603,
+        "total_tokens": 64215,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 11330,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0143933,
+          "allowance": 0.0143933,
+          "tokens": {
+            "input": 50612,
+            "output": 13603,
+            "reasoning": 11330,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T13:58:01.845Z",
+      "completedAt": "2026-11-09T13:59:27.826Z"
+    },
+    {
+      "questionIds": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 51416,
+        "completion_tokens": 16598,
+        "total_tokens": 68014,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 49152
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 13448,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01011316,
+          "allowance": 0.01011316,
+          "tokens": {
+            "input": 2264,
+            "output": 16598,
+            "reasoning": 13448,
+            "cache_read": 49152,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T14:01:05.283Z",
+      "completedAt": "2026-11-09T14:02:45.636Z"
+    },
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 50944,
+        "completion_tokens": 12690,
+        "total_tokens": 63634,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 50880
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 10227,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.007881,
+          "allowance": 0.007881,
+          "tokens": {
+            "input": 64,
+            "output": 12690,
+            "reasoning": 10227,
+            "cache_read": 50880,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T14:07:31.816Z",
+      "completedAt": "2026-11-09T14:08:48.297Z"
+    }
+  ]
+}

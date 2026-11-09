@@ -1,0 +1,245 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T14:01:05.283Z",
+  "completedAt": "2026-11-09T14:02:45.636Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51416,
+    "completion_tokens": 16598,
+    "total_tokens": 68014,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 49152
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 13448,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01011316,
+      "allowance": 0.01011316,
+      "tokens": {
+        "input": 2264,
+        "output": 16598,
+        "reasoning": 13448,
+        "cache_read": 49152,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页原图卷头为「CCF 编程能力等级认证 C++ 二级 2024年06月」，与 2024-06-l2 的年份、月份、级别一致；判断题答案表位于第6页原图（× × × √ × × × √ √ √）。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第6页原图判断题第6题代码为 for (int i = 0; i < 10; i++) continue;（文字层一致）；网站原题面误植第15题的幸运数程序，changes 已替换为官方代码，替换后与原图逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签，无需核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第6题为×，对应错误=1；按官方代码独立推导：continue 不跳过迭代表达式 i++，i 取 0~9 共 10 轮后条件不成立、循环正常结束，「导致死循环」说法为假，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：网站原解析围绕幸运数 while(M)/M/=10 代码展开，与本题官方代码完全无关；changes 已重写为按 for+continue 推导（continue 仅跳过本轮循环体剩余语句，i++ 照常执行，10 轮后正常结束），推导经我独立复核正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后将导致死循环。（ ）\n```cpp\nfor (int i = 0; i < 10; i++)\n    continue;\n```",
+          "explanation": "**答案：错误**\n\n**判定依据：**\n官方代码为 `for (int i = 0; i < 10; i++) continue;`。for 循环每轮的执行顺序是：判断条件 `i < 10` → 执行循环体 → 执行迭代表达式 `i++` → 再回到条件判断。`continue` 的作用只是提前结束本轮循环体、直接进入迭代表达式环节，它**不会跳过 `i++`**。因此 `i` 每轮加 1，依次取 0~9，循环体共执行 10 次后条件不成立，循环正常结束，程序不会死循环，题干说法错误。\n\n**易错提醒：**\n- `continue` 与 `break` 不同：`continue` 只跳过本轮循环体的剩余语句，for 的迭代表达式照常执行；`break` 才直接跳出整个循环。\n- 死循环需要「循环条件恒真且循环变量不向终止方向推进」，例如 `while (N)` 且循环体内不更新 N。本题的 `i++` 保证了循环变量向终止条件推进。\n- 若误以为 `continue` 会连同 `i++` 一起跳过，就会误判为死循环而错答「正确」。\n\n**考点：** for 循环的执行流程、continue 的作用范围"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "采纳初核修复并独立确认：第6页原图第6题确为 for+continue，网站误植第15题幸运数代码；answer=1 虽恰好不受影响，但题面与解析必须修。初核新解析中「continue 不跳过 i++、共10轮正常结束」的推导经我复核技术正确，予以采纳并在最终稿中重述。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页原图第7题代码：int cnt = 0; 外层 for (int i = 0; i < 10; i++)，内层 for (int j = 0; j < i; j++){ cnt += 1; break; }，最后 cout << cnt;，与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第7题为×，对应错误=1；独立追踪：i=0 内层不执行，i=1~9 各执行一次 cnt+=1 后 break，cnt=9≠10，「输出10」为假，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐轮枚举 i=0（内层不执行）至 i=9，得出共 9 次累加、输出 9 而非 10 的结论，与我的独立追踪完全一致；「break 只跳出最内层循环」的提醒正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "采纳初核通过结论：代码与第7页原图一致；我独立追踪得 cnt=9（i=0 无内层执行，i=1~9 各一次后 break），「输出10」为假，answer=1 与官方×一致，解析推导无误，无需修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第7页原图第8题内层循环为 for (int j = i; j < 5; j += i)，网站原写成 for (int j = 1; j < i; j++)，初值、边界、步长均与官方不符；changes 已替换为官方代码，替换后与原图逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第8题为√，对应正确=0；按官方代码独立枚举：i=1 时 j=1..4 计 2，i=2 时 j=2,4 计 2，i=3 时 j=3 计 0，i=4 时 j=4 计 1，合计输出 5，「输出5」为真，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：网站原解析按错误循环（j=1; j<i; j++）列表推导，推导对象与官方代码不符；changes 已按 for (int j = i; j < 5; j += i) 重写，逐轮枚举 2+2+0+1=5，经我独立复核正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后，将输出 5。（ ）\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 5; i++)\n    for (int j = i; j < 5; j += i)\n        if (i * j % 2 == 0)\n            cnt += 1;\ncout << cnt;\n```",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n外层 `i` 取 1~4；内层 `j` 从 `i` 出发、每次增加 `i`、上限 `j < 5`。逐轮枚举：\n- `i = 1`：`j = 1, 2, 3, 4`，`i*j` 依次为 1、2、3、4，其中 2、4 为偶数，cnt 增加 2；\n- `i = 2`：`j = 2, 4`，`i*j` 为 4、8，均为偶数，cnt 增加 2；\n- `i = 3`：`j = 3`，`i*j = 9` 为奇数，cnt 增加 0；\n- `i = 4`：`j = 4`，`i*j = 16` 为偶数，cnt 增加 1。\n\n合计 2 + 2 + 0 + 1 = 5，程序输出 5，题干说法正确。\n\n**易错提醒：**\n- 内层循环是 `for (int j = i; j < 5; j += i)`：初值和步长都依赖 `i`，与常见的 `j = 1; j < i; j++` 完全不同，必须按题目代码逐项枚举，不能套用其他循环的推导。\n- 奇偶性规律：`i` 为偶数时 `i*j` 必为偶数；`i` 为奇数时 `i*j` 的奇偶性与 `j` 相同。\n\n**考点：** 嵌套循环的边界与步长、乘积的奇偶性判断"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "采纳初核修复并独立确认：官方内层为 j=i; j<5; j+=i，网站代码与解析对象均错；我按官方代码独立枚举得 2+2+0+1=5，与官方√及 answer=0 相符（两种循环恰好都输出 5，故答案无需改动，只修题面与解析），初核枚举数值无误，予以采纳。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第7页原图第9题为完整程序（int N,Sum = 0; cin >> N; while (N){ Sum += N % 10; N /= 10; } cout << Sum;），网站原题面仅剩 while 片段，缺变量声明、输入、输出三处必要代码；changes 已补全，补全后与原图逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第9题为√，对应正确=0；独立走查 N=123：依次累加 3、2、1，Sum=6，数位求和实现正确，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 %10 取末位、/=10 去末位的配合推导正确，N=123 走查得 6；「Sum 需初始化为 0」的提醒与官方代码 int N,Sum = 0; 相符，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码能实现正整数各位数字之和。（ ）\n```cpp\nint N,Sum = 0;\ncin >> N;\nwhile (N){\n    Sum += N % 10;\n    N /= 10;\n}\ncout << Sum;\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "采纳初核补全：官方第9题是含声明、输入、输出的完整程序，网站仅存 while 片段，属漏必要代码；answer=0 与官方√一致且解析对数位求和的推导本身正确，故仅修 question 字段，解析保留。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页原图第10题题干与网站一致：「GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。」"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站 options 为标准「正确/错误」标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表判断题第10题为√，对应正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析从 GESP 按能力等级划分、同级能力目标跨语言一致、语言仅为表达载体的角度论证，并区分不同语言语法层面的个别差异；论证独立充分，与官方√相符，非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "参考代码仅编程题适用，判断题无。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "采纳初核通过结论：题干与第7页原图一致，官方√对应 0；解析从分级理念角度论证合理，无需修改。"
+      }
+    ],
+    "summary": "本批独立复核判断题第6~10题（网站ID 21~25）。官方答案表（第6页原图）：6×、7×、8√、9√、10√，对应 1,1,0,0,0，网站 answer 全部一致。三处题面问题已修复并复核通过：题21误植第15题幸运数代码，官方为 for+continue（continue 不跳过 i++，10 轮后正常结束，不死循环）；题23内层循环被写成 j=1;j<i;j++，官方为 j=i;j<5;j+=i（我按官方代码枚举得 2+2+0+1=5，两种循环恰好同输出 5，答案不受影响，但解析已按官方代码重写）；题24缺失变量声明与输入输出，已补全。题22、25 通过无需修改。全部为判断题，tests 不适用；无未决问题。"
+  }
+}

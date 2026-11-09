@@ -1,0 +1,239 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T13:58:01.845Z",
+  "completedAt": "2026-11-09T13:59:27.826Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50612,
+    "completion_tokens": 13603,
+    "total_tokens": 64215,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 11330,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0143933,
+      "allowance": 0.0143933,
+      "tokens": {
+        "input": 50612,
+        "output": 13603,
+        "reasoning": 11330,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 二级」「2024 年 06 月」，与 paperId 2024-06-l2 对应；本次核验的判断题第 1~5 题题面与答案表（符号 × × × √ ×）位于第 6 页页图。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文「执行C++代码 cout << '9'+'1'; 的输出为10。( )」；网站题面仅空格与代码排版差异，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷判断题为（ ）待判形式，答案以第 6 页答案表 ×/√ 符号给出；网站以「正确/错误」二选项呈现，符合规定映射（正确=0、错误=1），五个判断题均同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 1 题为 ×；独立推导：'9' 的 ASCII 为 57、'1' 为 49，<< 优先级低于 +，cout 输出 57+49=106≠10，命题为假，映射索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：char 参与算术经整数提升为 int，结果 106；解析的推导、易错点与整数延伸说明均正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、答案符号映射与解析（106）均经独立推导确认一致，初核无遗漏。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题原文「C++表达式 -12 % 10 的值为2。( )」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷（ ）待判加答案表符号形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 2 题为 ×；独立推导：C++ 整数除法向零截断，取模符号随被除数，-12 % 10 = -2 ≠ 2，命题为假，索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导得 -2；解析中「符号与被除数一致」的规则及与 Python（-12 % 10 = 8）的跨语言对比均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、×→1 映射与解析（-2）独立复核一致。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题原文「C++表达式 int(12.56) 的值为13。（ ）」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 3 题为 ×；独立推导：int(12.56) 向零截断得 12≠13，命题为假，索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "核心推导（截断得 12）正确；但解析称「floor() 函数」可实现四舍五入，实际 floor 为向下取整，floor(12.56)=12，并不能得到 13，该辅助表述有误；changes 已修正该句，其余内容保留。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\nC++ 中的强制类型转换 `int(12.56)` 采用的是**截断**（Truncation）策略，即直接丢弃小数部分，不进行任何四舍五入。\n\n对于 12.56：\n- 整数部分为 12\n- 小数部分为 0.56\n- 截断后直接保留整数部分，结果为 **12**\n\n因此 `int(12.56)` 的值为 12，而非题目所述的 13。要实现四舍五入需要使用其他方法，如 `int(12.56 + 0.5)`；注意 `floor()` 是向下取整函数，`floor(12.56)` 的值同样是 12，并不能实现四舍五入（需写成 `floor(12.56 + 0.5)` 才能得到 13）。\n\n**易错提醒：**\n- 强制类型转换为整数时，是\"截断\"而非\"四舍五入\"\n- `int()` 不是数学上的取整函数，而是丢弃小数部分的截断函数\n\n**知识延伸：**\n与 `int()` 类似的截断行为还出现在：整型变量赋值浮点数时 `int a = 12.56;` 同样得到 12。此外，`static_cast<int>(12.56)` 也采用相同的截断规则。\n\n**考点：** 强制类型转换的截断规则"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：初核将解析判为 verified，遗漏了「floor() 函数可实现四舍五入」这一事实性错误（floor(12.56)=12，floor 为向下取整）；已否决该结论并补充修复。题面、答案与核心截断推导部分的初核结论予以确认。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文「C++的整型变量N被赋值为10，则语句 cout << N / 3 << \"-\" << N % 3 执行后输出是3-1。 ( )」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 4 题为 √；独立推导：10/3=3（整除）、10%3=1，cout 依次输出 3、-、1，即 3-1，命题为真，索引 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致；整数除法向零取整、a=(a/b)*b+(a%b) 的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、√→0 映射与解析（3-1）独立复核一致。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文「在C++代码中，不可以将变量命名为scanf，因为scanf是C++语言的关键字。（ ）」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以「正确/错误」呈现，映射正确=0、错误=1，与原卷形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表判断第 5 题为 ×；独立推导：scanf 是 <stdio.h>/<cstdio> 声明的 C 标准库函数名，不在 C++ 关键字表中，命题以「关键字」为由的禁止不成立，为假，索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "关键字与库函数名的区分正确；关于包含头文件后同名声明冲突/遮蔽的补充说明在局部作用域等常见情形下成立，属合理的细化，不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，原卷该题亦未附代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、×→1 映射与解析（scanf 非关键字）独立复核一致。"
+      }
+    ],
+    "summary": "本次独立复核判断题第 16~20 题（对应 PDF 第 6 页判断题第 1~5 题）。题面文字与原卷逐条对照一致；第 6 页答案表符号 × × × √ × 与网站 answer（1,1,1,0,1）完全对应，且与逐题独立推导（106、-2、12、3-1、scanf 非关键字）互相印证。唯一修改：第 18 题解析中「floor() 函数可实现四舍五入」为事实性错误（floor 为向下取整，floor(12.56)=12），已在 changes 中给出修正句，修复后核验通过；其余四题解析经独立推导无误。DeepSeek 初核在第 16、17、19、20 题的结论全部采纳；第 18 题解析维度的初核结论被否决并补充修复。判断题无 tests 与未决问题。"
+  }
+}

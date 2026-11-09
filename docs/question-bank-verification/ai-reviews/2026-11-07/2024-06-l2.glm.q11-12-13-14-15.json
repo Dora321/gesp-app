@@ -1,0 +1,243 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T13:56:13.334Z",
+  "completedAt": "2026-11-09T13:57:04.940Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50922,
+    "completion_tokens": 8415,
+    "total_tokens": 59337,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 50816
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 6345,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00574788,
+      "allowance": 0.00574788,
+      "tokens": {
+        "input": 106,
+        "output": 8415,
+        "reasoning": 6345,
+        "cache_read": 50816,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标注「C++ 二级」「2024 年 06 月」，与 paperId 2024-06-l2 的年份、月份、级别、语言一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图题干「假设下面C++代码执行过程中仅输入正负整数或0，有关说法错误的是」及代码 int N,Sum=0; cin>>N; while(N){Sum+=N; cin>>N;} cout<<Sum; 与站点逐行一致，无增删。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 四项（输入0终止循环／所有非0整数求和／首次输入0输出0／死循环并可改 while(N==0)）与站点文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页单选答案表第11题为 D，按0起始索引为3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：0 使 while(N) 为假即终止；非0输入均被累加；首次输入0时循环不执行输出0；代码不会死循环，改为 while(N==0) 会在读到非0时立即退出、与求和意图相反，故错误说法为 D，站点解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核结论与初核一致：题面、选项、答案映射、解析均经页图对照与独立推导确认，接受初核，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "代码跨第4页第1-12行与第5页第13-15行：bool Flag=true; for(i=2;i<N;i++) 内 i*i>N 时 break、N%i==0 时 Flag=false 并 break，随后按 Flag 输出「是质数／不是质数」；题干含【质数是指仅能被1和它本身整除的正整数】，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 与站点内容、顺序一致，D 中 Flag = N>=2? true:false 写法一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为 D，0起始索引3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：N=1、0 及负数时循环不执行且 Flag 初值 true，会被误判为质数，故 A、B、C 错误；改为 Flag=N>=2?true:false 后 N<2 直接判非质数，N=2 循环不执行仍为 true，N>=2 的合数（如4、9、25）由试除推翻，判定全部正确，D 成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致，关键在 Flag 初值与循环不执行分支的配合，站点解析推导完整正确，接受。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页页图效果图为 1／2 4／3 6 9／4 8 12 16／5 10 15 20 25，站点以等价文本块呈现；代码 L1 为 for(i=1;i<6;i++)、L2 为 for(j=1;j<i+1;j++) 输出 i*j，endl 位于内层循环后、外层循环内，与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D（无需调整／endl 移入L2／endl 移到L1外／删除 endl）与站点文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为 A，0起始索引0；站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立展开：i 取1..5 共5行，j 取1..i，第 i 行输出 i×1 至 i×i，endl 在每行结束后换行，与效果图完全一致；B 会逐数换行、C 与 D 会使全部输出挤在一行，均破坏效果，A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：当前代码即可产生目标图形，答案 A 映射正确，解析成立，接受。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页页图代码与站点一致：cnt1、cnt2 初始化为0，循环内 i%2==0 时 continue，随后 if(i%2) cnt1+=1; else if(i%3==0) cnt2+=1;，最后输出 cnt1 与 cnt2。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 依次为 5 2／5 0／0 2／0 0，与站点选项顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为 B，0起始索引1；站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举 i=0..9：偶数 0,2,4,6,8 均被 continue 跳过；奇数 1,3,5,7,9 执行 cnt1+=1，共5次；能到达 else if 的 i 必为奇数使 if(i%2) 为真，else 分支不可达，cnt2=0；输出 5 0，B 正确，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：continue 拦截偶数导致 else if 不可达是本题关键，站点解析推导正确，接受。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6,
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页页图题干与代码逐行一致：N 须小于10大于1、M 为正整数，Lucky 由 M%N 判定，while(M) 中 M%10==N && Lucky 时 printf 超级幸运数并 break，否则 M/=10，循环后 if(M==0) 按 Lucky 输出；站点「幸运数、超级幸运数或非幸运数」与页图「幸运数或超级幸运数或非幸运数」仅连词差异，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图 A-D 与站点四项内容、顺序一致，仅空格与标点排版差异，不改变语义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为 D，0起始索引3；站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：A 中 N=3,M=36，第二轮 M=3 时匹配，实际输出「3是3的超级幸运数!」而非36；B 中 21 不含7，循环后 M=0，实际输出「0是7的幸运数!」；C 中 36%8 非0，Lucky=false，循环后输出「0非8的幸运数!」，且代码无「超级」否定文案；D 中 63%3==0 且个位即为3，首轮 break 时 M 仍为63，输出「63是3的超级幸运数!」，D 正确。站点解析结论成立；其末尾「易错提醒」标题后无正文，属排版残缺，不影响答案推导，不作修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：变量 M 在循环中被 /=10 修改是各选项判定的核心，四个选项的实际输出均独立验证无误，接受；仅提示解析尾部空标题为排版残缺。"
+      }
+    ],
+    "summary": "本次独立复核题11-15：五题题面、嵌入代码与选项均与 PDF 第4-6页页图逐行一致（题12代码跨第4-5页），答案映射与第1页答案表第11-15题的 D、D、A、B、D 逐题吻合；四题解析经独立推导（循环追踪、枚举、printf 实际输出代换）均成立。题15解析末尾存在空的「易错提醒」标题，属排版残缺，不影响结论正确性，未作修改。五题全部 approve，无 changes，无未决问题。"
+  }
+}

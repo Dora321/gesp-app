@@ -1,0 +1,231 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T12:10:46.707Z",
+  "completedAt": "2026-11-09T12:15:14.186Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34594,
+    "completion_tokens": 11526,
+    "total_tokens": 46120,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9854
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0121047,
+      "allowance": 0.00726282,
+      "tokens": {
+        "input": 34594,
+        "output": 11526,
+        "reasoning": 9854,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2de3f11676d25481a0e3e45621a5cb7dd129545da409c5f3d5ec2a5459c391b3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标明 C++ 二级、2024 年 06 月；第1页单选题答案表第6至10题为 C、D、B、C、C，题号与站点一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页题干为输入1判断 switch 输出；代码中 case 1 输出 Jan 后无 break，case 3 输出 Mar 后有 break，站点代码仅压缩排版，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A 为 Jan、B 为 Mar、C 为 Jan Mar、D 为以上均不对，站点四项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 C，换算为0起始索引是2；站点 answer 为2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立走查 month=1：匹配 case 1 输出 Jan，因缺少 break 穿透到 case 3 输出 Mar，遇 break 退出；解析结论 C 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码为依次读入 a、b 后按 a&&b、!(a||b)、a||b 三条件分支输出；站点代码等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 四项分别描述输入1和1、0和1或1和0、0和0输出2、0和0输出4；站点内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 D，换算为0起始索引是3；站点 answer 为3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐项验证：1和1走第一支输出1；0和1或1和0走第三支输出3；0和0在第二支输出2并跳出，故 D 说输出4错误。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题干、变量 M5/M2/M1 与 printf 语句和站点一致，仅空格及空线数量不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 四组填空为 A、B、C、D，分别对应站点四个选项；括号和运算符内容一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 B，换算为0起始索引是1；站点 answer 为1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证贪心：先取 M5=N/5，再取 M2=(N-M5*5)/2，最后 M1=N-M5*5-M2*2。选项 B 正确；其他项存在金额与枚数混用或缺少括号的问题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3至4页代码为双层 for，外层 i=0..9，内层 j=1 且 j<i 时 loopCount 加1；站点代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A 55、B 45、C 36、D 28，站点四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 C，换算为0起始索引是2；站点 answer 为2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举：i=0、1 时内层均为0次，i=2..9 时分别为1..8次，合计0+0+1+2+3+4+5+6+7+8=36；解析核心推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码为外层 i=0..9、内层 j=0 且 j<i，满足 i*j%2 时 break，loopCount 在内层结束后加1；站点代码等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A 25、B 16、C 10、D 9，站点四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 C，换算为0起始索引是2；站点 answer 为2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心答案10正确，但原解析的知识延伸称若把 loopCount 移入内层将得到36，未考虑 i*j 为奇数时的 break；按常见位置移入内层 break 之后应累计25，属于解析错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（10）**\n\n**核心解析：**`loopCount += 1` 写在外层 `for` 的循环体内、内层 `for` 之后，每轮外层只执行一次。外层 `i` 从 0 到 9 共 10 轮；内层 `break` 只跳出内层循环，随后仍会执行 `loopCount += 1`，所以结果为 10。\n\n**选项分析：**A 的 25 可对应把 `loopCount += 1` 移到内层 `break` 判断之后的改法：`i` 为偶数时内层执行 `i` 次；`i` 为奇数时，`j=0` 先计一次，若 `j=1` 可进入则因 `i*j` 为奇数而 `break`（`i=1` 时内层只有 `j=0`），故各奇数轮计1次；累计为 0+1+2+1+4+1+6+1+8+1=25。B、D 无对应执行路径。\n\n**易错提醒：**`i = 0` 时内层不执行，但外层 `loopCount += 1` 仍执行；`break` 只能跳出一层循环。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第1至4页逐题核对题号6至10：卷面题干、代码、选项及第1页答案表映射均与站点一致，题6至9解析核心正确无需改动；题10解析中的内层循环累计说明误算为36，已给出修正草稿。五题均为单选题，referenceCode 不适用，未做代码运行。"
+  }
+}
