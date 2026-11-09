@@ -27,18 +27,19 @@ const normalizeMathDelimiters = (value) => {
 
 const containsMath = (value) => /(^|[^\\])\${1,2}(?!\s)[\s\S]*?\${1,2}/m.test(value);
 
-const MarkdownRenderer = ({ content, className = '', inline = false }) => {
+const MarkdownRenderer = ({ content, className = '', inline = false, language, defaultLanguage = 'cpp' }) => {
     const lineBreakNormalized = normalizeEscapedLineBreaks(content);
     const codeBlockNormalized = inline ? lineBreakNormalized : promoteLongInlineCodeBlocks(lineBreakNormalized);
     const normalizedContent = normalizeMathDelimiters(codeBlockNormalized);
+    const fallbackLanguage = language || defaultLanguage;
     const Root = inline ? 'span' : 'div';
-    const plainContent = <MarkdownContent content={normalizedContent} inline={inline} />;
+    const plainContent = <MarkdownContent content={normalizedContent} inline={inline} defaultLanguage={fallbackLanguage} />;
 
     return (
         <Root className={`markdown-body ${inline ? 'inline-markdown' : ''} ${className}`}>
             {containsMath(normalizedContent) ? (
                 <Suspense fallback={plainContent}>
-                    <MathMarkdownContent content={normalizedContent} inline={inline} />
+                    <MathMarkdownContent content={normalizedContent} inline={inline} defaultLanguage={fallbackLanguage} />
                 </Suspense>
             ) : plainContent}
         </Root>

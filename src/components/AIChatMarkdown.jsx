@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components -- react-markdown component map shared with widget */
 import React, { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
+import HighlightedCode from './HighlightedCode';
+import { detectLanguage } from '../utils/syntaxHighlight';
 
 const getMarkdownText = (value) => {
     if (value === null || value === undefined || typeof value === 'boolean') return '';
@@ -30,9 +32,10 @@ const writeClipboardText = async (text) => {
 
 const ChatCode = ({ className, children, ...props }) => {
     const [copied, setCopied] = useState(false);
-    const match = /language-(\w+)/.exec(className || '');
+    const match = /language-([^\s]+)/.exec(className || '');
     const content = getMarkdownText(children).replace(/\n$/, '');
     const isBlockCode = Boolean(match) || content.includes('\n');
+    const language = detectLanguage(className, 'plain');
 
     const copyCode = async () => {
         try {
@@ -59,9 +62,12 @@ const ChatCode = ({ className, children, ...props }) => {
                 </button>
             </div>
             <pre className="max-w-full overflow-x-auto p-3 text-xs leading-relaxed text-white">
-                <code className={`${className || ''} font-mono`} {...props}>
-                    {children}
-                </code>
+                <HighlightedCode
+                    code={content}
+                    language={language}
+                    className="font-mono"
+                    {...props}
+                />
             </pre>
         </div>
     ) : (

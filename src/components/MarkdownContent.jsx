@@ -1,6 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import HighlightedCode from './HighlightedCode';
+import { detectLanguage } from '../utils/syntaxHighlight';
 
 const CopyButton = ({ text }) => {
     const [copied, setCopied] = useState(false);
@@ -48,12 +50,31 @@ const extractText = (node) => {
     return '';
 };
 
-const PreWithCopy = ({ children, ...props }) => {
+// react-markdown renders a fenced block as <pre><code className="language-cpp">.
+// Read the language from that inner code element; fences without a language fall
+// back to the paper's default language.
+const extractCodeLanguage = (children) => {
+    const childrenList = Array.isArray(children) ? children : [children];
+    for (const child of childrenList) {
+        if (!React.isValidElement(child)) continue;
+        const className = child.props?.className;
+        if (typeof className === 'string' && /(?:^|\s)(?:language|lang)-/.test(className)) {
+            return className;
+        }
+    }
+    return '';
+};
+
+const PreWithCopy = ({ children, defaultLanguage = 'cpp', ...props }) => {
     const codeText = extractText(children).replace(/\n$/, '');
+    const language = detectLanguage(extractCodeLanguage(children), defaultLanguage);
+
     return (
         <div className="code-block-wrapper">
             <CopyButton text={codeText} />
-            <pre {...props}>{children}</pre>
+            <pre {...props}>
+                <HighlightedCode code={codeText} language={language} />
+            </pre>
         </div>
     );
 };
@@ -69,14 +90,17 @@ const MarkdownImage = ({ src, alt, ...props }) => (
     <img {...props} src={withBaseUrl(src)} alt={alt || ''} loading="lazy" />
 );
 
-const MarkdownContent = ({ content, inline = false, remarkPlugins = [], rehypePlugins = [] }) => {
-    const components = inline
+const MarkdownContent = ({ content, inline = false, remarkPlugins = [], rehypePlugins = [], defaultLanguage = 'cpp' }) => {
+    const components = useMemo(() => (inline
         ? {
             p: ({ children }) => <span className="inline-p">{children}</span>,
             div: ({ children }) => <span className="inline-div">{children}</span>,
             img: MarkdownImage,
           }
-        : { pre: PreWithCopy, img: MarkdownImage };
+        : {
+            pre: (preProps) => <PreWithCopy {...preProps} defaultLanguage={defaultLanguage} />,
+            img: MarkdownImage,
+          }), [inline, defaultLanguage]);
 
     return (
         <ReactMarkdown
