@@ -1,0 +1,20 @@
+{
+  "paperId": "2024-06-l2",
+  "integratedAt": "2026-11-09T16:21:50.467Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 24,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下面 C++ 代码能实现正整数各位数字之和。（ ）\n```cpp\nint N,Sum = 0;\ncin >> N;\nwhile (N){\n    Sum += N % 10;\n    N /= 10;\n}\ncout << Sum;\n```"
+      }
+    }
+  ],
+  "codeChecks": []
+}

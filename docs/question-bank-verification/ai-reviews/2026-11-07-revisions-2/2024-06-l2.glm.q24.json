@@ -1,0 +1,96 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    24
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:21:19.419Z",
+  "completedAt": "2026-11-09T16:21:50.397Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30731,
+    "completion_tokens": 4222,
+    "total_tokens": 34953,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3260
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00672065,
+      "allowance": 0.00672065,
+      "tokens": {
+        "input": 30731,
+        "output": 4222,
+        "reasoning": 3260,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f72bb1526d855a786f29933bc7fdaaa610479aff858deff428696b03ac34227b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证」「C++ 二级」「2024 年 06 月」，与 2024-06-l2 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题原图为完整 7 行程序：int N,Sum = 0; / cin >> N; / while (N){ / Sum += N % 10; / N /= 10; / } / cout << Sum;。当前候选题面仅保留 while(N) 循环片段，遗漏变量声明与初始化、输入语句和输出语句，构成必要代码缺失。changes.question 已按原卷补全，修复后与 PDF 第 7 页原图逐行一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题以括号判断「（ ）」呈现，无 ABCD 选项；候选以「正确/错误」呈现为判断题等价形式，不适用单选选项核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表原图第 9 题为 √（答案行依次为 × × × √ × × × √ √ √），按正确=0、错误=1 映射，候选 answer=0 一致。独立走查：N=123 时依次累加 3、2、1 得 Sum=6=1+2+3；N=10 时累加 0、1 得 Sum=1，代码确能实现正整数各位数字之和，官方 √ 判定正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析已消除上轮指出的 N=0 表述矛盾，现表述「若输入 N=0，while (N) 不执行，输出 0，恰为 0 的数位和，同样正确，不影响本题正整数范围的结论」逻辑自洽。核心推导独立复核无误：N%10 取当前末位、N/=10 剥离末位、while(N) 以 N 变 0 终止，N=123 逐步得 Sum=3→5→6；「Sum 需初始化为 0」的提醒与原卷代码 int N,Sum = 0 相符，作为易错点合理。解析与答案及原卷代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码能实现正整数各位数字之和。（ ）\n```cpp\nint N,Sum = 0;\ncin >> N;\nwhile (N){\n    Sum += N % 10;\n    N /= 10;\n}\ncout << Sum;\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对题面代码不完整的指认并独立确认：对照 PDF 第 7 页原图，候选仅含 while(N) 循环 3 行，遗漏原卷的 int N,Sum = 0;、cin >> N;、cout << Sum;，初核提供的补全内容与原卷逐行一致，故采纳其 changes.question。答案维度经答案表原图（第 9 题 √）与独立代码走查（N=123→Sum=6）双重确认；解析的 N=0 边界表述已无矛盾，无需再改。除题面补全外其余维度维持候选现状，应用 changes 后该题可定稿。"
+      }
+    ],
+    "summary": "仅核验题 24（原卷判断题第 9 题）。官方答案表第 9 题判 √，候选 answer=0 映射正确；解析独立推导与边界检查（N=123→Sum=6，N=0 时输出 0 恰为数位和）无实质错误，上轮矛盾表述已消除。唯一问题为题面遗漏原卷必要代码行（声明初始化、输入、输出），已提供与 PDF 第 7 页原图逐行一致的补全修改，修复后核验通过。判断题无编程测试用例，unresolved 为空。"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    24
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:20:33.206Z",
+  "completedAt": "2026-11-09T16:21:19.415Z",
+  "finishReason": "stop",
+  "inputSha256": "f72bb1526d855a786f29933bc7fdaaa610479aff858deff428696b03ac34227b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证”“C++ 二级”“2024 年 06 月”，与 2024-06-l2 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 7 页判断题第 9 题原图为完整程序：int N,Sum = 0; cin >> N; while (N){ Sum += N % 10; N /= 10; } cout << Sum;。当前候选题面只保留了 while(N) 循环片段，缺少变量声明与初始化、输入语句和输出语句，未完整呈现原卷必要代码，需补全。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题以括号判断“（ ）”呈现，无 ABCD 选项；候选使用“正确/错误”是判断题的等价呈现，不参与单选选项索引核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 题为“√”，按正确=0、错误=1 映射，候选 answer=0 与官方答案一致。独立按原代码走查：N=123 时依次累加 3、2、1，Sum=6；N=10 时累加 0、1，Sum=1，均符合正整数各位数字之和。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立推导正确：N % 10 取当前末位，N /= 10 去掉末位，while(N) 在 N 变为 0 时结束；N=123 的逐步结果 Sum=6 正确。关于 Sum 需初始化为 0 的提醒正确；关于 N=0 时循环不执行、输出 0 且恰为 0 的数位和的说明也成立，虽题目限定正整数，但不构成答案或推导错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码能实现正整数各位数字之和。（ ）\n```cpp\nint N,Sum = 0;\ncin >> N;\nwhile (N){\n    Sum += N % 10;\n    N /= 10;\n}\ncout << Sum;\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        24
+      ],
+      "usage": {
+        "prompt_tokens": 15263,
+        "completion_tokens": 2863,
+        "total_tokens": 18126,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2222
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00400725,
+          "allowance": 0.00240435,
+          "tokens": {
+            "input": 15263,
+            "output": 2863,
+            "reasoning": 2222,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T16:20:33.206Z",
+      "completedAt": "2026-11-09T16:21:19.415Z"
+    }
+  ]
+}
