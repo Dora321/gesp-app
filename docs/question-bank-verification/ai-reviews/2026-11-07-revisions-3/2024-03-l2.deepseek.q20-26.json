@@ -1,0 +1,159 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    20,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:15:02.371Z",
+  "completedAt": "2026-11-09T15:17:45.625Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18200,
+    "completion_tokens": 20989,
+    "total_tokens": 39189,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19156
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0153234,
+      "allowance": 0.00919404,
+      "tokens": {
+        "input": 18200,
+        "output": 20989,
+        "reasoning": 19156,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e0a22ce409cf98d1b088c114c80f400da0442559f535954734bb28c95890d3b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 二级”与“2024 年 03 月”，与 paperId 2024-03-l2 对应。"
+    },
+    "questions": [
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文为“C++中 cout << float(2022) 与 cout << float('2022') 运行后的输出结果均为2022。”候选仅调整空格，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题未印选项，候选“正确/错误”为平台展示格式，无选项顺序映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 5 格为×，对应错误；独立推导：float(2022) 默认输出 2022，而 '2022' 是含多个字符的多字符字面量，类型为 int、值由实现定义，标准不保证其等于 2022，常规编译器输出非 2022 或拒绝编译，故“均为 2022”为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选给出错误结论，并正确说明 '2022' 是多字符字面量、类型为 int、值由实现定义、属于条件支持特性；同时指出 float(2022) 输出 2022，常规环境不输出 2022。修订后的易错提醒已不再声称单引号内只能放一个字符，内容与标准一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 3.1.1—3.1.3 与候选逐项对照：小 A 最近刚刚学习乘法、精准地算出答案、乘积超过 10^6、保证 n≤50 与 a≤100、输出 >1000000 或乘积均一致；第 6—7 页三个样例的输入输出也与候选 samples 一致。原卷第 7 页 3.1.10 标题误作“样例输出 2”，其内容 >1000000 对应第三个样例，候选收录正确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，答案表不覆盖编程题。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的算法步骤为先乘后判，并用 over 标记在超限后继续把后续数乘入 res；按 n≤50、a≤100，若一直累乘，50 个 100 会达到 100^50，远超 long long 范围并产生有符号溢出未定义行为。该解析还与候选参考代码（先判 product*a，超限立即输出并 return，不再读取剩余输入）不一致，需改为与官方参考程序一致的安全解析。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 7 页 3.1.11 参考程序逐行一致：每次先判断 product*a>1000000，成立则输出 >1000000 并 return 0，否则再乘入 product；判断时 product≤10^6、a≤100，product*a≤10^8，不会溢出；复杂度 O(n)，空间 O(1)。"
+          }
+        },
+        "changes": {
+          "explanation": "**解析：**\n本题属于基础循环与模拟题，主要考查循环累乘、条件判断以及对边界和溢出的把控。由于 n≤50、a≤100，若不加控制地把所有数乘完，最大可能达到 100^50，远超 64 位整数范围，因此应在每次相乘前判断是否会超过 10^6。\n\n**算法步骤：**\n1. 读入 n，令 `long long product = 1`。\n2. 循环 n 次：每次读入 a，先判断 `product * a > 1000000`。若成立，说明乘积已超过上限，立即输出 `>1000000` 并结束程序（`return 0`）。否则执行 `product *= a`。\n3. 循环正常结束后，说明乘积未超过 10^6，输出 `product`。\n\n**边界与正确性：**\n- 判断时 `product` 最多为 10^6，且 a≤100，所以 `product * a` 最大约 10^8，不会溢出；先判后乘也能避免继续累乘造成的溢出。\n- “超过”表示严格大于。乘积恰好等于 1000000 时应输出 `1000000`，不能输出 `>1000000`。\n- 累乘初值必须为 1，不能设为 0。\n- 一旦超过上限立即结束即可，不必继续读取剩余输入，不影响输出结果。\n\n**样例走查：**\n- 样例 1：`product` 依次为 1→3→15，输出 `15`。\n- 样例 2：`product` 依次为 1→100→10000→1000000；每次判断均不超过 10^6，输出 `1000000`。\n- 样例 3：前三个 100 累乘得 1000000；读入 a=2 时判断 1000000×2>1000000，输出 `>1000000`。"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\n1",
+            "output": "1",
+            "reason": "n=1、a=1 为题面允许的最小正整数输入；product=1，判断 1×1=1 不超过 10^6，累乘后仍为 1，输出 1。"
+          },
+          {
+            "name": "恰好等于阈值",
+            "input": "6\n10\n10\n10\n10\n10\n10",
+            "output": "1000000",
+            "reason": "前 5 个 10 累乘为 100000；第 6 次判断 100000×10=1000000，不满足严格大于，累乘得 1000000；循环正常结束输出 1000000。"
+          },
+          {
+            "name": "刚超过阈值",
+            "input": "7\n10\n10\n10\n10\n10\n10\n10",
+            "output": ">1000000",
+            "reason": "前 6 个 10 累乘为 1000000；第 7 次判断 1000000×10=10000000>1000000，参考程序立即输出 >1000000 并返回。"
+          },
+          {
+            "name": "阈值下方边界",
+            "input": "5\n100\n100\n99\n1\n1",
+            "output": "990000",
+            "reason": "100×100=10000，再乘 99 得 990000，均未超过 10^6；后两个 1 不改变乘积，输出 990000。"
+          },
+          {
+            "name": "溢出风险场景",
+            "input": "10\n100\n100\n100\n100\n100\n100\n100\n100\n100\n100",
+            "output": ">1000000",
+            "reason": "前 3 个 100 累乘得 10^6；第 4 个 100 时判断 10^6×100=10^8>10^6，参考程序立即输出 >1000000 并返回。若先乘后判且继续累乘到 100^10=10^20，会溢出 long long，此用例覆盖该风险。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "题 20 的题面、官方答案与解析均与 PDF 原卷相符；判断题选项在平台体现为“正确/错误”，但原卷未印选项，故 options 记为不适用。题 26 的题面、约束、样例及参考代码与 PDF 原卷一致；现有解析仍按“先乘后判、超限后继续累乘”描述，存在 long long 溢出风险且与官方参考代码“先判后乘、超限立即返回”不一致，需替换解析。两题均已完成五维核验，未发现需保留的官方答案冲突。"
+  }
+}
