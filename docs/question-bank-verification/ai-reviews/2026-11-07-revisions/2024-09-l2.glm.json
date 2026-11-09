@@ -1,0 +1,156 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    4,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:37:39.013Z",
+  "completedAt": "2026-11-09T15:38:28.083Z",
+  "finishReason": "stop",
+  "inputSha256": "ff90333f689c66b588df73d73abe88ff0933196802ddd3079277192ea5944e6a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为『CCF 编程能力等级认证 / GESP』『C++ 二级』『2024 年 09 月』，与 paperId 2024-09-l2（2024 年 9 月 C++ 二级）一致。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图第 4 题题干为『在C++中，与 for (int i = 1; i < 10; i++) 效果相同的是( )。』，与候选 question 逐字符等价（仅排版空格差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图 A–D 依次为 for (int i = 0; i < 10; i++)、for (int i = 0; i < 11; i++)、for (int i = 1; i < 10; ++i)、for (int i = 0; i < 11; ++i)，与候选 options 的顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 列为 C，即 0 起始索引 2，候选 answer=2 一致。独立推导：原循环 i 取 1～9 共 9 次；C 仅把 i++ 换成 ++i，迭代表达式返回值被丢弃，序列与次数完全相同；A 序列 0～9 共 10 次，B/D 序列 0～10 共 11 次，均不等价。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立复核成立：i++ 与 ++i 作为 for 第三表达式均使 i 加 1 且取值未被使用故等价；排除理由正确（A 多出 i=0，B/D 从 0 到 10）；$i=1,2,\\ldots,9$ 的 \\ldots 反斜杠修复已落实，无渲染缺陷；最小验证『9 次、序列 1～9』与独立计算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、选项、答案 C（索引 2）与第 1 页原图及答案表一致；解析中 i++/++i 等价性与 A/B/D 排除推导经独立复算无误；上一轮提出的 \\ldots 修复已在候选中落实。无需再改，维持 approve。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 3.2 节题面：构造 m×m 的 N 字矩阵（m 为奇数），左上到右下对角线、第 1 列和第 m 列为半角加号 +，其余为半角减号 -，并给出 5×5 示例（五行与候选一致）；第 9 页输入格式（第一行正整数 m）、输出格式、样例（输入 5，输出五行矩阵）及约束『3 ≤ m ≤ 49 且 m 为奇数』均与候选一致；1.0 s / 512.0 MB 与第 8 页一致。原卷『试题名称』行仅显示『小杨的』（原卷字体缺失致『N 字矩阵』未显示），题面正文可确定题意，候选标题补全为『小杨的 N 字矩阵』未改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项；答案表不涉及本题。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案；以题面样例、约束与第 9 页参考程序独立核验正确性。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析四节独立复核：条件归纳 j==1 || j==m || i==j 正确；m=5 逐行走查五行 +---+/++--+/+-+-+/+--++/+---+ 与样例一致；『4. 复杂度分析』已补全且数值正确（m≤49 时至多 49²=2401 字符，时间 O(m²)、空间 O(1)），远小于 1.0 s 限制。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与 PDF 第 9 页 3.2.5 参考程序逐行一致（int n; cin>>n; 双层循环 i、j 从 1 到 n，j==1||j==n 输出 +，否则 i==j 输出 + 再否则输出 -，每行末换行）；独立验证该逻辑对所有合法奇数 m 符合题面，m≤49 无越界、无溢出、无性能问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 m=3",
+            "input": "3\n",
+            "output": "+-+\n+++\n+-+\n",
+            "reason": "m=3 为约束下界。逐格独立推导：第 1、3 列恒为 +；i=2 时 j=2 命中主对角线，第 2 行整行为 +++；i=1、3 时对角线位置与边列重合仍为 +。未实际运行。"
+          },
+          {
+            "name": "一般奇数 m=7",
+            "input": "7\n",
+            "output": "+-----+\n++----+\n+-+---+\n+--+--+\n+---+-+\n+----++\n+-----+\n",
+            "reason": "按 j==1、j==7、i==j 逐行独立推导：第 3 行仅 j=3 为 +（+-+---+），第 4 行 j=4、第 5 行 j=5、第 6 行 j=6 依次命中对角线，末行 j=7 与边列重合；用于检验对角线位于中段时与两侧边列不混淆。未实际运行。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面（含原卷名称行截断的说明）、样例、约束与参考程序逐项与第 8-9 页原图一致；解析四节完整且推导正确（含已补全的复杂度分析）；两组测试期望输出均经独立逐格复算确认——m=3 第 2 行为 +++，m=7 第 3 行为 +-+---+（上一轮初稿误写的 +-+-+-+ 已更正，当前候选正确）。无待修改字段，维持 approve。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        4,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 35293,
+        "completion_tokens": 7724,
+        "total_tokens": 43017,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 6009,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00915595,
+          "allowance": 0.00915595,
+          "tokens": {
+            "input": 35293,
+            "output": 7724,
+            "reasoning": 6009,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T15:37:39.013Z",
+      "completedAt": "2026-11-09T15:38:28.083Z"
+    }
+  ]
+}

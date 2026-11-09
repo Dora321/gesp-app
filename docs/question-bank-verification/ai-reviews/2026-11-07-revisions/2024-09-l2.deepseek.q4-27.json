@@ -1,0 +1,138 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    4,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:35:50.989Z",
+  "completedAt": "2026-11-09T15:37:39.008Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 19447,
+    "completion_tokens": 9526,
+    "total_tokens": 28973,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8444
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00863265,
+      "allowance": 0.00517959,
+      "tokens": {
+        "input": 19447,
+        "output": 9526,
+        "reasoning": 8444,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "ff90333f689c66b588df73d73abe88ff0933196802ddd3079277192ea5944e6a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示『CCF 编程能力等级认证』『C++ 二级』『2024 年 09 月』，与 2024-09-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题题干为『在C++中，与 for (int i = 1; i < 10; i++) 效果相同的是( )。』，与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A–D 依次为 for (int i = 0; i < 10; i++)、for (int i = 0; i < 11; i++)、for (int i = 1; i < 10; ++i)、for (int i = 0; i < 11; ++i)，与候选 options 的顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 C，即 0 起始索引 2；候选 answer=2 一致。原循环与 C 均使 i 取 1～9，共 9 次。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立推导正确：i++ 与 ++i 在 for 迭代表达式中返回值未被使用，均使 i 增加 1，故等价；A 多出 i=0，B/D 使 i 从 0 到 10，排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页题面为构造 m×m 的 N 字矩阵（m 为奇数），左上到右下对角线、第 1 列和第 m 列为半角加号 +，其余为减号 -，并给出 5×5 示例；第 9 页输入输出格式、样例输入 5 及五行输出、约束 3≤m≤49 且 m 为奇数均与候选一致。原卷第 8 页『试题名称』行仅显示『小杨的』，候选补为『小杨的 N 字矩阵』，正文足以确定题意，未改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案；以题面、样例和参考程序核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析将条件归纳为 j==1 || j==m || i==j，并以 m=5 逐行走查，推导正确；时间复杂度 O(m²)，m≤49 时最多 49²=2401 个字符，空间复杂度 O(1)，结论成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与 PDF 第 9 页 3.2.5 参考程序逐行一致：j==1 或 j==n 输出 +，否则 i==j 输出 +，再否则输出 -，每行输出换行；对所有 3≤m≤49 的奇数均符合题面。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 m=3",
+            "input": "3\n",
+            "output": "+-+\n+++\n+-+\n",
+            "reason": "m=3 为约束下界；第 1、3 列及主对角线为 +，i=2 时 j=2 也在对角线上，故第 2 行为 +++。逐格独立推导，未实际运行。"
+          },
+          {
+            "name": "一般奇数 m=7",
+            "input": "7\n",
+            "output": "+-----+\n++----+\n+-+---+\n+--+--+\n+---+-+\n+----++\n+-----+\n",
+            "reason": "按 j==1、j==7、i==j 逐行放置 +；第 3 行 j=3 为 +，其余中间列为 -，用于检验对角线条件与两侧边列不混淆。独立推导，未实际运行。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号 4、27 均核验通过，未发现需修改字段。第 4 题答案 C（索引 2）与 PDF 答案表一致，解析推导正确；第 27 题题面、样例、约束和参考程序一致，补充 m=3 与 m=7 两组独立推导测试。原卷第 27 题名称行存在截断显示，候选标题补全但未改变题意。"
+  }
+}

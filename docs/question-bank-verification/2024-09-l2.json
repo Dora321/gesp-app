@@ -147,41 +147,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "第 1 页题干和 `for (int i = 1; i < 10; i++)` 与站内题面一致，选项顺序也按原卷排列。",
-          "review": "第 1 页题干代码 for (int i = 1; i < 10; i++) 与站内逐字符一致。"
+          "initial": "PDF 第 1 页第 4 题题干为『在C++中，与 for (int i = 1; i < 10; i++) 效果相同的是( )。』，与候选 question 一致。",
+          "review": "PDF 第 1 页原图第 4 题题干为『在C++中，与 for (int i = 1; i < 10; i++) 效果相同的是( )。』，与候选 question 逐字符等价（仅排版空格差异）。"
         },
         "options": {
-          "initial": "第 1 页 A-D 依次为从 0 开始到 <10、从 0 开始到 <11、从 1 开始到 <10 且用 `++i`、从 0 开始到 <11 且用 `++i`，与站内 options 一致。",
-          "review": "第 1 页 A–D 依次为 (i=0,<10,i++)/(i=0,<11,i++)/(i=1,<10,++i)/(i=0,<11,++i)，与站内 options 一致。"
+          "initial": "PDF 第 1 页 A–D 依次为 for (int i = 0; i < 10; i++)、for (int i = 0; i < 11; i++)、for (int i = 1; i < 10; ++i)、for (int i = 0; i < 11; ++i)，与候选 options 的顺序和内容一致。",
+          "review": "PDF 第 1 页原图 A–D 依次为 for (int i = 0; i < 10; i++)、for (int i = 0; i < 11; i++)、for (int i = 1; i < 10; ++i)、for (int i = 0; i < 11; ++i)，与候选 options 的顺序和内容一致。"
         },
         "answer": {
-          "initial": "第 1 页答案表第 4 题为 C，映射为 2；站内 answer=2，一致。",
-          "review": "第 1 页答案表第 4 题为 C，索引 2；站内 answer=2 一致。"
+          "initial": "PDF 第 1 页答案表第 4 题为 C，即 0 起始索引 2；候选 answer=2 一致。原循环与 C 均使 i 取 1～9，共 9 次。",
+          "review": "第 1 页答案表第 4 列为 C，即 0 起始索引 2，候选 answer=2 一致。独立推导：原循环 i 取 1～9 共 9 次；C 仅把 i++ 换成 ++i，迭代表达式返回值被丢弃，序列与次数完全相同；A 序列 0～9 共 10 次，B/D 序列 0～10 共 11 次，均不等价。"
         },
         "explanation": {
-          "initial": "推导正确：原循环取 1～9，`i++` 与 `++i` 在迭代表达式中均只使 i 自增，效果相同；但原文省略号 LaTeX 命令转义缺失，已在 changes 中修正，不影响答案。",
-          "review": "修复后核验通过：仅将站内解析中缺失反斜杠的 ldots 补全为 LaTeX 命令 \\ldots（同卷其他解析均使用 \\times 等规范命令，此处为渲染缺陷）；推导独立复核——原循环 i 取 1～9 共 9 次，i++ 与 ++i 在迭代表达式处返回值未被使用故等价；A 多出 i=0，B/D 序列为 0～10，均不等价，内容正确。"
+          "initial": "候选解析独立推导正确：i++ 与 ++i 在 for 迭代表达式中返回值未被使用，均使 i 增加 1，故等价；A 多出 i=0，B/D 使 i 从 0 到 10，排除理由成立。",
+          "review": "候选解析独立复核成立：i++ 与 ++i 作为 for 第三表达式均使 i 加 1 且取值未被使用故等价；排除理由正确（A 多出 i=0，B/D 从 0 到 10）；$i=1,2,\\ldots,9$ 的 \\ldots 反斜杠修复已落实，无渲染缺陷；最小验证『9 次、序列 1～9』与独立计算一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l2.glm.json"
       ]
     },
     {
@@ -955,54 +958,46 @@
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页题面给出 m×m、m 为奇数、左上到右下对角线及第1列和第m列为“+”、其余为“-”；第8页 5×5 样例与第9页输入输出、约束 3≤m≤49 且 m 为奇数均与网页一致。PDF 标题栏文字层存在截断，但题面明确为 N 字矩阵，网页标题未改变题意。",
-          "review": "PDF 第 8 页 3.2 节题面：m×m 的 N 字矩阵（m 为奇数），从左上角到右下角对角线、第 1 列和第 m 列为半角加号 +，其余为半角减号 -，并给出 5×5 示例；第 9 页输入/输出格式、样例（输入 5 与五行矩阵）及约束 3≤m≤49 且 m 为奇数均与网页一致。PDF 第 8 页『试题名称』行在原卷中即显示为『小杨的』（原卷排版截断），但题面正文明确为『N 字矩阵』，网页标题与题意一致，不构成题面偏差。"
+          "initial": "PDF 第 8 页题面为构造 m×m 的 N 字矩阵（m 为奇数），左上到右下对角线、第 1 列和第 m 列为半角加号 +，其余为减号 -，并给出 5×5 示例；第 9 页输入输出格式、样例输入 5 及五行输出、约束 3≤m≤49 且 m 为奇数均与候选一致。原卷第 8 页『试题名称』行仅显示『小杨的』，候选补为『小杨的 N 字矩阵』，正文足以确定题意，未改变含义。",
+          "review": "PDF 第 8 页 3.2 节题面：构造 m×m 的 N 字矩阵（m 为奇数），左上到右下对角线、第 1 列和第 m 列为半角加号 +，其余为半角减号 -，并给出 5×5 示例（五行与候选一致）；第 9 页输入格式（第一行正整数 m）、输出格式、样例（输入 5，输出五行矩阵）及约束『3 ≤ m ≤ 49 且 m 为奇数』均与候选一致；1.0 s / 512.0 MB 与第 8 页一致。原卷『试题名称』行仅显示『小杨的』（原卷字体缺失致『N 字矩阵』未显示），题面正文可确定题意，候选标题补全为『小杨的 N 字矩阵』未改变含义。"
         },
         "explanation": {
-          "initial": "现有解析的规律推导和样例走查基本正确，但末尾“4. **复杂度分析：**”后没有内容，解析不完整；建议补全复杂度说明。",
-          "review": "原解析第 1-3 节的条件归纳（j==1 || j==m || i==j）与 m=5 逐行走查经独立推导正确；缺陷仅在末尾『4. **复杂度分析：**』为空标题、内容缺失。已提供保留原文并补全该节的修改，修复后核验通过：时间 O(m²)（m≤49 至多 49²=2401 字符，远小于 1.0 s）、空间 O(1)。"
+          "initial": "候选解析将条件归纳为 j==1 || j==m || i==j，并以 m=5 逐行走查，推导正确；时间复杂度 O(m²)，m≤49 时最多 49²=2401 个字符，空间复杂度 O(1)，结论成立。",
+          "review": "候选解析四节独立复核：条件归纳 j==1 || j==m || i==j 正确；m=5 逐行走查五行 +---+/++--+/+-+-+/+--++/+---+ 与样例一致；『4. 复杂度分析』已补全且数值正确（m≤49 时至多 49²=2401 字符，时间 O(m²)、空间 O(1)），远小于 1.0 s 限制。"
         },
         "referenceCode": {
-          "initial": "网页 referenceCode 与 PDF 第9页参考程序一致：j==1 或 j==m 时输出“+”，否则 i==j 时输出“+”、其余输出“-”，每行换行。m≤49，时间复杂度 O(m^2)≤2401 次字符输出，额外空间 O(1)，无整数溢出或越界风险。",
-          "review": "网页 referenceCode 与 PDF 第 9 页 3.2.5 参考程序逐行一致：j==1 或 j==n 输出 +，否则按 i==j 输出 + 或 -，每行后换行，与题面条件等价；m≤49 时输出量≤2401 字符，无溢出、无越界，逻辑对所有合法奇数 m 成立。"
+          "initial": "候选 referenceCode 与 PDF 第 9 页 3.2.5 参考程序逐行一致：j==1 或 j==n 输出 +，否则 i==j 输出 +，再否则输出 -，每行输出换行；对所有 3≤m≤49 的奇数均符合题面。",
+          "review": "候选 referenceCode 与 PDF 第 9 页 3.2.5 参考程序逐行一致（int n; cin>>n; 双层循环 i、j 从 1 到 n，j==1||j==n 输出 +，否则 i==j 输出 + 再否则输出 -，每行末换行）；独立验证该逻辑对所有合法奇数 m 符合题面，m≤49 无越界、无溢出、无性能问题。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l2.glm.json"
       ]
     }
   ],
   "unresolved": [
-    {
-      "id": 4,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
     {
       "id": 13,
       "dimensions": [
@@ -1026,20 +1021,9 @@
       "reasons": [
         "保留原有争议/待审标记，模型结论不能自动解除"
       ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "explanation",
-        "referenceCode"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
-      ]
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-09-l2.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2024-09-l2.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-09-l2.integration.json"
 }

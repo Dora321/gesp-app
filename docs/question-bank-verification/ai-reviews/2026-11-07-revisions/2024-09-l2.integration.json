@@ -1,0 +1,56 @@
+{
+  "paperId": "2024-09-l2",
+  "integratedAt": "2026-11-09T15:45:00.582Z",
+  "accepted": [
+    {
+      "id": 4,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "5",
+          "output": "+---+\n++--+\n+-+-+\n+--++\n+---+",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "+---+\n++--+\n+-+-+\n+--++\n+---+\n",
+          "passed": true
+        },
+        {
+          "name": "最小 m=3",
+          "input": "3\n",
+          "output": "+-+\n+++\n+-+\n",
+          "reason": "m=3 为约束下界。逐格独立推导：第 1、3 列恒为 +；i=2 时 j=2 命中主对角线，第 2 行整行为 +++；i=1、3 时对角线位置与边列重合仍为 +。未实际运行。",
+          "kind": "boundary",
+          "actual": "+-+\n+++\n+-+\n",
+          "passed": true
+        },
+        {
+          "name": "一般奇数 m=7",
+          "input": "7\n",
+          "output": "+-----+\n++----+\n+-+---+\n+--+--+\n+---+-+\n+----++\n+-----+\n",
+          "reason": "按 j==1、j==7、i==j 逐行独立推导：第 3 行仅 j=3 为 +（+-+---+），第 4 行 j=4、第 5 行 j=5、第 6 行 j=6 依次命中对角线，末行 j=7 与边列重合；用于检验对角线位于中段时与两侧边列不混淆。未实际运行。",
+          "kind": "boundary",
+          "actual": "+-----+\n++----+\n+-+---+\n+--+--+\n+---+-+\n+----++\n+-----+\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f2e58452837b3a3958d6835ad3d765bd1937aefbc603b72a8969aa2dd9af7631"
+    }
+  ]
+}
