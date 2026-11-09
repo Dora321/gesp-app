@@ -1,0 +1,112 @@
+{
+  "executedAt": "2026-11-09T16:11:16.880Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n16\n81\n10",
+          "output": "2\n3\n-1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n3\n-1\n",
+          "passed": true
+        },
+        {
+          "name": "最小值1",
+          "input": "1\n1\n",
+          "output": "1\n",
+          "reason": "1=1⁴，候选 b=1，回代 1*1*1*1==1 成立，应输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "上界a=10^8",
+          "input": "1\n100000000\n",
+          "output": "100\n",
+          "reason": "100⁴=100000000=10⁸，为数据范围上界内的完全四次方，应输出 100。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        },
+        {
+          "name": "紧邻上界的非四次方",
+          "input": "1\n99999999\n",
+          "output": "-1\n",
+          "reason": "99⁴=96059601，100⁴=100000000，99999999 介于两者之间，不是任何正整数的四次方，应输出 -1。",
+          "kind": "boundary",
+          "actual": "-1\n",
+          "passed": true
+        },
+        {
+          "name": "多组混合",
+          "input": "4\n1\n16\n17\n100000000\n",
+          "output": "1\n2\n-1\n100\n",
+          "reason": "1→b=1；16→b=2（2⁴=16）；17 介于 2⁴=16 与 3⁴=81 之间非四次方；10⁸→b=100，按题意独立推导。",
+          "kind": "boundary",
+          "actual": "1\n2\n-1\n100\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "b1eaddfad0aaa7aaaf1b7934a3bd5e4c7c52f2c1eac8b738e9b7ec732a55ef6b"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n16\n81\n10",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小值1",
+          "input": "1\n1\n",
+          "output": "1\n",
+          "reason": "n=1，唯一正整数 1 的数位和为 1，最大值应为 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "上界a=10^12",
+          "input": "1\n1000000000000\n",
+          "output": "1\n",
+          "reason": "10^12=1000000000000 是 13 位数，数位和为 1；考察 long long 读入上界不溢出，应输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "范围内最大数位和",
+          "input": "1\n999999999999\n",
+          "output": "108\n",
+          "reason": "10^12−1 有 12 个数位均为 9，数位和 9×12=108，为约束内的最大可能数位和。",
+          "kind": "boundary",
+          "actual": "108\n",
+          "passed": true
+        },
+        {
+          "name": "多组取最大",
+          "input": "3\n1000000000000\n999999999999\n10\n",
+          "output": "108\n",
+          "reason": "三者数位和分别为 1、108、1，最大值为 108，验证 max 维护逻辑，按题意独立推导。",
+          "kind": "boundary",
+          "actual": "108\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f28adc346e08c65a41799a63c95121a6a9c6c50b8dd40c5041d45d24ef88e659"
+    }
+  ]
+}

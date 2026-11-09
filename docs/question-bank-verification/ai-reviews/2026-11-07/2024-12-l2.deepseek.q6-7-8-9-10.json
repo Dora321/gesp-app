@@ -1,0 +1,224 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:38:09.127Z",
+  "completedAt": "2026-11-09T15:41:05.597Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34209,
+    "completion_tokens": 14433,
+    "total_tokens": 48642,
+    "prompt_tokens_details": {
+      "cached_tokens": 34048
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12419
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00878609,
+      "allowance": 0.00527166,
+      "tokens": {
+        "input": 161,
+        "output": 14433,
+        "reasoning": 12419,
+        "cache_read": 34048,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确标注“CCF 编程能力等级认证”“C++ 二级”“2024 年 12 月”，与核验目标 2024-12-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题代码为 `int i; for (i=1; i<10; i++) if (i % 2) continue; else break; cout << i;`，与网站题面逐行一致，无漏行或改义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A.1、B.2、C.9、D.10，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题对应 B；按0起始索引为1，网站 answer=1 对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：i=1 时 i%2 为真，执行 continue 并执行 for 自增到 i=2；i=2 时 i%2 为假，执行 else 的 break；退出时 i=2，输出2。现有解析推导正确，并非仅引用答案表。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题代码包含 `for (i=0; i<10; i++)`、`if (i % 3) continue;`、`printf(\"0#\");`，循环后判断 `i>=10` 输出 `1#`，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A、B、C、D 分别为 7个、6个、4个、4个 `0#`，其中 A-C 后接 `1#`、D不接，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题对应 C；按0起始索引为2，网站 answer=2 对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举 i=0..9：i=0、3、6、9 时 i%3 为0，不执行 continue，共输出4次 `0#`；循环结束 i=10，满足 i>=10，再输出 `1#`，结果为 `0#0#0#0#1#`。现有解析一致且推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2-3页第8题题干、`for (i=0; i<100; i++)` 与待填 `if` 语句均与网站一致；题干“0-100之前（包含100）”按原卷保留。由于100不是7的倍数，该边界文字不影响本题筛选结果与答案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A、B、C、D 四个表达式与网站完全相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题对应 C；按0起始索引为2，网站 answer=2 对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：A为 `i%7==0 && i%3!=0`，B为 `!(i%7) && i%3!=0`，D为 `i%7==0 && !(i%3==0)`，均表示能被7整除且不能被3整除；C为 `i%7 && i%3`，在i能被7整除时短路为假，实际选出既不能被7整除也不能被3整除的数，不能填入。现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第9题代码含 `int tnt, N;`、`while (N != 0)`、待填行、`N /= 10;` 与 `cout <<tnt;`，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. `tnt = tnt + N % 10`、B. `tnt += N % 10`、C. `tnt = N % 10 + tnt`、D. `tnt = N % 10`，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题对应 D；按0起始索引为3，网站 answer=3 对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：求各位数字和需把每轮 `N%10` 累加到旧 `tnt`，再执行 `N/=10`；A、B、C均保留旧值，D每轮覆盖为当前最低位。以N=12验证，D最终只留下最高位1而非1+2=3，因此D不能填入。现有解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第10题嵌套循环代码为 `for (i=0; i<5; i++) for (j=0; j<i; j++) cout <<j;`，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项 A、B、C、D 与网站顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题对应 A；按0起始索引为0，网站 answer=0 对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐轮模拟：i=0时内层不执行；i=1输出0；i=2输出01；i=3输出012；i=4输出0123；拼接为 `0010120123`，对应A。现有解析结论与过程正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题6-10均为单选题。已逐题对照PDF页图、选项顺序和答案表，并独立推导程序输出或表达式逻辑；五题题面、选项、答案与解析均一致，无需修改。referenceCode均不适用，tests与unresolved为空。Q8题干“包含100”按原卷保留，因100不是7的倍数，不影响筛选结果与答案。"
+  }
+}

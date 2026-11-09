@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:45:42.677Z",
+  "completedAt": "2026-11-09T15:47:39.758Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34209,
+    "completion_tokens": 9959,
+    "total_tokens": 44168,
+    "prompt_tokens_details": {
+      "cached_tokens": 34048
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8647
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00610169,
+      "allowance": 0.00366102,
+      "tokens": {
+        "input": 161,
+        "output": 9959,
+        "reasoning": 8647,
+        "cache_read": 34048,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确标注“C++ 二级”和“2024 年 12 月”；判断题答案表位于第6页，红勾答案依次为√、√、√、√、×。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第1题文字与站内题干一致：在 Windows 资源管理器中先 Ctrl+C、后 Ctrl+V，可为已有文件建立副本。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”二值判断，不是单选 ABCD 选项；PDF 未设置选项表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断答案表第1格为√，对应正确=0；独立判断：Ctrl+C 复制文件对象，Ctrl+V 粘贴后生成副本，不是移动。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确区分 Ctrl+C（复制）与 Ctrl+X（移动），并说明可多次粘贴生成多个副本，结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第2题与站内题干一致，代码为 cout << (N - N / 10 * 10)，并假设 N 为正整数。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”二值判断，不是单选 ABCD 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断答案表第2格为√，对应正确=0；整数除法满足 N=(N/10)*10+N%10，故 N-N/10*10=N%10，即个位数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 / 与 * 同级左结合，表达式等价于 N-((N/10)*10)，并用 N=123 验证得到 3。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第3题与站内题干一致：cout << (10 <= N <= 12)，且给定 N=12。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”二值判断，不是单选 ABCD 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断答案表第3格为√，对应正确=0；N=12 时先算 10<=12 得 true，再算 true<=12 得 true，默认 cout 输出 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明关系运算符左结合，且未把数学连不等式语义误套到 C++ 表达式，独立推导结果为 1。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第4题与站内题干一致：int(sqrt(N))*int(sqrt(N)) == N 为 True 时，说明 N 为完全平方数。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”二值判断，不是单选 ABCD 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断答案表第4格为√，对应正确=0；令 k=int(sqrt(N))，若 k*k==N，则 N=k^2，按定义即为完全平方数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确只主张单向蕴含：表达式为真推出 N 为完全平方数；没有错误地把逆命题当作本题成立条件。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第5题与站内题干及代码一致：a=2、b=3，printf 的格式串为 %%a*%%b=%d，实参为 a*b。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”二值判断，不是单选 ABCD 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断答案表第5格为×，对应错误=1；两个 %% 各输出一个百分号，a、b 为普通字符，实际输出 %a*%b=6，不是 2*3=6。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确逐段展开格式串，区分 %% 的字面百分号转义与 %d 的整数替换，结论与原命题错误相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核 Q16-Q20 共 5 道判断题：题面与 PDF 第6页一致，官方判断答案表红勾为√、√、√、√、×，对应 officialAnswer 依次为 0、0、0、0、1。五题现有答案均正确，解析经独立推导亦成立；未发现需修改项。判断题不适用 ABCD 选项与参考程序维度，故 options、referenceCode 标为 not_applicable。"
+  }
+}

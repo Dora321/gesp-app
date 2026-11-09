@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:37:42.529Z",
+  "completedAt": "2026-11-09T15:38:09.123Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52189,
+    "completion_tokens": 4177,
+    "total_tokens": 56366,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 2124,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00991685,
+      "allowance": 0.00991685,
+      "tokens": {
+        "input": 52189,
+        "output": 4177,
+        "reasoning": 2124,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图为“CCF 编程能力等级认证 GESP / C++ 二级 / 2024 年 12 月”，等级、年份、月份与 2024-12-l2 完全一致，已校验来源 SHA f505006a74be63923199aeac00252fea821a7eff 对应同卷。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 1 题题干：“2024年10月8日，诺贝尔物理学奖‘意外地’颁给了两位计算机科学家约翰·霍普菲尔德（John J. Hopfield）和杰弗里·辛顿（Geoffrey E. Hinton）。这两位科学家的主要研究方向是（ ）。”与网站题干逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. 天体物理、B. 流体力学、C. 人工智能、D. 量子理论，四项内容与顺序均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 1 为 C，即 0 起始索引 2；独立判断：Hopfield 提出 Hopfield 神经网络、Hinton 为深度学习奠基人，获奖理由为“利用人工神经网络实现机器学习的奠基性发现”，属人工智能，与官方答案 C 相互印证。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以官方获奖理由（人工神经网络与机器学习）为核心推导出 C，并逐项排除天体物理、流体力学、量子理论，指出“意外地/物理学奖”为干扰信息，推理链完整且结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：本人独立对照第 1 页页图与答案表，题干、选项、答案（C→索引2）及解析推导均一致，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 2 题题干：“计算机系统中存储的基本单位用B来表示，它代表的是（ ），比如某个照片大小为3MB。”与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. Byte、B. Block、C. Bulk、D. Bit，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 2 为 A，即索引 0；独立判断：存储容量单位中大写 B 表示 Byte（1 Byte = 8 bit），小写 b 才是 Bit，故选 Byte。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分大写 B=Byte 与小写 b=Bit，指出 Block 为文件系统逻辑单位、Bulk 为纯干扰项，并以 3MB=3×1024KB 中 B 的含义佐证，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、选项与页图一致，答案表 A→索引0 与独立判断吻合，解析大小写区分正确，无需修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 3 题为 C++语句 cout << (3 + 3 % 3 * 2 - 1) 执行后输出的值，代码与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. -1、B. 4、C. 56、D. 2，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 3 为 D，即索引 3；独立计算：% 与 * 同级且高于加减、左结合，3%3=0，0*2=0，3+0-1=2，对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按运算符优先级逐步化简得到 2，并对各干扰项给出成因（如 A 的 -1 对应先算 (3+3)%3*2-1 = 6%3*2-1 = -1，复算成立），推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立按优先级复算结果为 2，与答案表 D（索引3）一致，解析中的干扰项复算亦无误，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 4 题代码为 for (int i=0; i<10; i++) / printf(\"%d\",i);（选项 A/B/C 在第 1 页，选项 D 延续到第 2 页顶部），代码与网站一致，sourcePages [1,2] 准确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. 123456789、B. 0123456789、C. 12345678910、D. 012345678910，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 4 为 B，即索引 1；独立跟踪：i 依次取 0..9 共 10 轮，printf(\"%d\",i) 无分隔符，i=10 时 10<10 为假退出，输出连排 0123456789。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出起点 0、终点 9、无分隔符三个关键点，并说明 C/D 多输出 10、A 漏首 0 的成因，与独立跟踪结果一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：跨页归属核对无误（D 项在第 2 页），独立循环跟踪输出 0123456789，与答案表 B（索引1）一致，无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页页图第 5 题代码为 int tnt; / for (int i=0; i<10; i++) / tnt += i; / cout << tnt;，与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A 求1-10的和（包含10）、B 求1-10的和（不包含10）、C 求0-10的和（不包含10）、D 输出不确定的值，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 5 为 D，即索引 3；独立判断：tnt 为未初始化的普通局部变量，读取其值参与累加属未定义行为，输出为垃圾值+45，结果不确定，不能视为任何确定求和。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明局部变量不自动清零、循环范围为 0..9（和为 45）、输出等于未知初值加 45，并区分全局/静态变量默认初始化与局部变量的差异，结论与 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立判断未初始化局部变量导致输出不确定，与答案表 D（索引3）一致，解析对 UB 与循环范围的说明完整无误，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核第 1 至 5 题（其余题目不在本次范围）。卷头页图确认“C++ 二级 2024 年 12 月”，与 2024-12-l2 及已校验来源一致。5 题的题干、代码、选项均与第 1/2 页页图逐项吻合；单选答案全部取自第 1 页答案表（C A D B D → 索引 2/0/3/1/3），与网站数据一致；每题解析均经独立推导复算（Q3 优先级化简得 2、Q4 循环跟踪得 0123456789、Q5 未初始化变量判定不确定输出），结论正确。DeepSeek 初核结论与本人独立核验一致，全部接受，无任何字段修改，5 题均 approve；无编程题，不适用 tests。"
+  }
+}

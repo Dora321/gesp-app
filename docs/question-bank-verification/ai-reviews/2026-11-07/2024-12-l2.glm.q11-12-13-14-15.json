@@ -1,0 +1,242 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:43:58.256Z",
+  "completedAt": "2026-11-09T15:45:42.671Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52641,
+    "completion_tokens": 16445,
+    "total_tokens": 69086,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 50688
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 14001,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01003609,
+      "allowance": 0.01003609,
+      "tokens": {
+        "input": 1953,
+        "output": 16445,
+        "reasoning": 14001,
+        "cache_read": 50688,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头清晰显示'CCF 编程能力等级认证 GESP''C++ 二级''2024 年 12 月'，全卷为单选15题+判断10题+编程2题共27题，与站内 title/level/year/month 及题目结构一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干'下面C++代码用于实现图示的九九乘法表。相关说法错误的是（ ）'及第3-4页代码（乘法表注释块、外层 Hang 1..9、内层 Lie<Hang+1、Lie*Hang>9 的两个 printf 格式串1/4空格、//L2 与 printf(\"\\n\");//L1 位置）与站内逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项A/C/D与站内逐字一致；B 原文图像确认为 print(\"%c\", '\\n')（缺 printf 的 f），站内如实转录原卷缺陷、未擅自改为 printf。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "第1页答案表第11题标 A（索引0）。但按第4页原图，B 调用不存在的 print 无法编译，其'效果相同'同样不成立，A、B 同时为错误说法，与单答案 A 冲突；源卷缺陷不可由站内修复，站内已用 sourceIntegrity=official-source-defect 加 integrityNote 保留争议并停止计分，维持待核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析独立推导：A 移换行入内层会使每个算式单独成行、C 在整数域 >9 与 >=10 等价、D 由乘法交换律等价，并在 B 项明确注明 print 笔误；计分冲突由 integrityNote 结构化保留、未擅自定案，与保留的官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷Q11选项B将 printf 误印为 print（第4页图像确认），按字面 B 亦为错误说法，与官方单答案 A 冲突；保留原卷缺陷并维持该题停止计分，不擅自改选项或另定答案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核对 print 印刷缺陷及 A/B 双错误说法与官方单答案冲突的认定（与我对第4页图像的独立核对一致）；但否决其 explanation 整体改写：站内已用 sourceIntegrity+integrityNote 结构化保留争议，现有解析亦注明笔误并保留 A/C/D 的详细推导，改写无新增修正且与保留的答案字段重复，按'无确有问题不做改写'处理，故 changes 为空。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干（N! 定义、求 1-N 阶乘之和、反向设问'其中不能实现阶乘和的选项是'）与第4-5页代码框架（int tnt=0, nowNum=1; for(int i=1; i<N+1; i++) 两处横线及注释）与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页 A/B/C 与第5页 D 逐行对照：A nowNum*=i; tnt+=nowNum; B nowNum=nowNum*i; tnt=tnt+nowNum; C nowNum*=i; tnt=nowNum+tnt; D nowNum=nowNum+i; tnt*=nowNum，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题标 D（索引3）。独立代入：A/B/C 均先累乘得 i!（nowNum 初值1）再累加进 tnt（初值0），可正确实现；D 中 nowNum=nowNum+i 变累加（1+1=2, 2+2=4, 4+3=7…非阶乘），且 tnt 初值0做乘法恒为0，不能实现，与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析独立指出 D 的两处错误（累乘误作累加、tnt=0 恒为0）并说明 A/B/C 仅是复合赋值与加法交换律的写法差异，还提醒反向设问，推导与 PDF 题意一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核各维结论与我的独立推导完全一致，接受，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干（N、M 之间可含端点的孪生素数、间隔为2、isPrime 说明、注释'本题假设N小于M'）与代码框架（cin>>N>>M; for(int i=N; i<____; i++) if(isPrime(i)&&isPrime(i+2)) printf…）与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页选项依次为 A. M-2、B. M-1、C. M、D. M+1，与站内顺序和文本一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题标 B（索引1）。独立推导：两成员都须落在 [N,M]，即 i+2<=M 即 i<=M-2；for 的 i<上界 须允许 i 取到 M-2，故上界为 M-1。A 使 i 最大 M-3 漏掉 (M-2,M)，C/D 会检查 i+2>M 的数。与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析由 i+2<=M 反推上界 M-1，并以 M=13 时 (11,13) 需 i=11 被检查做边界验证，同时说明 A 漏对、C/D 越界，推导独立且正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与独立推导一致，接受，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干'下面C++代码实现输出如下图形，横线应填入的代码是（ ）'、注释图（高度5，首行4空格1星，底行9星顶格）及代码（读入 height，空格循环、星号循环、endl 换行）与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页 A（height-i, 2*i）与第6页 B（height, 2*i）、C（height-i, 2*i+1）、D（height-i-1, 2*i+1）与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题标 D（索引3）。独立按 i=0..4 验证：空格数 4,3,2,1,0 即 height-1-i，星号数 1,3,5,7,9 即 2i+1，仅 D 吻合；A/B 星号表达式首行为0且各行为偶数，C 底行仍多1空格。与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析逐行列出空格/星号规律并推导 height-i-1 与 2*i+1，逐项排除 A/B/C（含 C 使图形整体右偏1格的分析），与图示及答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与独立推导一致，接受，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干'下面C++代码执行后的输出是30，则横线处不能填入（ ）'及代码（int a=10,b=20,c=30; cout<<____<<endl; cout<<endl;）与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页选项依次为 A. max(max(a, b), c)、B. min(a+b, c)、C. sqrt(a+b+c)、D. (a+b+c)/2，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题标 C（索引2）。独立计算：A=max(max(10,20),30)=30；B=min(10+20,30)=30；C=sqrt(60)≈7.746≠30；D=(10+20+30)/2=30。不能输出30的只有 C，与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析逐项代入求值，指出 sqrt(60) 介于 7 与 8 之间并非 30，并提醒反向设问与括号优先级，推导与 PDF 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与独立计算一致，接受，无需修改。"
+      }
+    ],
+    "summary": "本轮独立复核第11-15题：Q12-Q15 的题面、选项、答案表索引（D/B/D/C→3/1/3/2）及解析均与原卷第1、4、5、6页一致，全部核验通过；Q11 原卷第4页图像确认选项B将 printf 误印为 print，按字面 A、B 均为错误说法，与第1页答案表单答案 A 冲突，站内已用 sourceIntegrity=official-source-defect+integrityNote 保留争议并停止计分，answer 维度维持 unresolved。初稿对 Q11 冲突的认定正确并予接受，但其 explanation 整体改写被否决（站内已结构化保留争议，现有解析已注明笔误并保留 A/C/D 详细推导，改写无新增修正）；其余初核结论均接受。本轮无 changes 应用，全卷核验状态维持 partial（仅 Q11 的 answer 维度待核验）。"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:06:33.022Z",
+  "completedAt": "2026-11-09T16:07:21.433Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52188,
+    "completion_tokens": 7561,
+    "total_tokens": 59749,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 50688
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 5099,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00552614,
+      "allowance": 0.00552614,
+      "tokens": {
+        "input": 1500,
+        "output": 7561,
+        "reasoning": 5099,
+        "cache_read": 50688,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP C++ 二级 2024年12月”，与 paperId 2024-12-l2（2024年12月、二级）一致；已校验来源 git-blob SHA f505006a74be63923199aeac00252fea821a7eff。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页题面描述（小杨有正整数 a，是否存在正整数 b 满足 a=b⁴）、输入格式（第一行 t，之后每组一行 a）、输出格式（存在输出 b，否则输出 -1）、样例输入 3/16/81/10 与输出 2/3/-1、数据范围 1≤t≤10⁵、1≤a≤10⁸ 均与网站一致；网站的 Markdown 标题与 $a=b^4$ 为等价排版转换，未遗漏约束或样例。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF第8页无选项区块。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表，officialAnswer 按 null 处理。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：a≤10⁸ 时 4 次方根 b≤100（100⁴=10⁸），候选 b 由两次开方取整得到，必须经整数回代 b*b*b*b==a 校验。精度方面，a=b⁴（b≤100）时 sqrt(a)=b²≤10⁴ 可被 double 精确表示，IEEE-754 正确舍入的 sqrt 对完全平方输入返回精确值，两级开方均精确，截断不会误判；b⁴≤10⁸ 在 int 范围内。样例 16→2、81→3、10→-1 逐组验算成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第8-9页参考程序（第1-20行，跨页至 return 0;）与网站 referenceCode 逐行一致：t 组循环、sqrt(sqrt(a)) 取整候选、b*b*b*b==a 回代输出。复杂度 O(t)，t≤10⁵、a≤10⁸ 下时间与内存均满足 1.0s/512MB 限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值1",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "1=1⁴，候选 b=1，回代 1*1*1*1==1 成立，应输出 1。"
+          },
+          {
+            "name": "上界a=10^8",
+            "input": "1\n100000000\n",
+            "output": "100\n",
+            "reason": "100⁴=100000000=10⁸，为数据范围上界内的完全四次方，应输出 100。"
+          },
+          {
+            "name": "紧邻上界的非四次方",
+            "input": "1\n99999999\n",
+            "output": "-1\n",
+            "reason": "99⁴=96059601，100⁴=100000000，99999999 介于两者之间，不是任何正整数的四次方，应输出 -1。"
+          },
+          {
+            "name": "多组混合",
+            "input": "4\n1\n16\n17\n100000000\n",
+            "output": "1\n2\n-1\n100\n",
+            "reason": "1→b=1；16→b=2（2⁴=16）；17 介于 2⁴=16 与 3⁴=81 之间非四次方；10⁸→b=100，按题意独立推导。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。独立逐行比对 PDF 第8-9页参考程序与网站代码完全一致；算法、复杂度、溢出（b⁴≤10⁸ 仍在 int 范围）与浮点精度链条均独立复核通过；初核 tests 的期望输出经我独立验算（1→1，10⁸→100，99999999→-1 等）全部正确，无否决项。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页题面描述（n 个正整数的数位和最大值）、数位和定义与示例 12345→1+2+3+4+5=15、输入格式（第一行 n，之后 n 行每行一个正整数）、输出格式、样例输入 3/16/81/10 与输出 9、数据范围 1≤n≤10⁵ 且每个正整数不超过 10¹² 均与网站一致；独立验算样例：16→7、81→9、10→1，最大值 9，与样例输出吻合。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF第9页无选项区块。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表，officialAnswer 按 null 处理。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析“数位和最大约 13×9=117”有误，13×9 隐含 13 个数位全为 9（即 10¹³−1），超出“不超过 10¹²”的约束；约束内最大数位和来自 999999999999（=10¹²−1，12 个 9），为 9×12=108（10¹² 本身数位和为 1）。changes 已替换为正确的 108 上界，其余逐数取位、long long 读入、max 维护、O(n×位数) 复杂度的推导经独立复核均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第9-10页参考程序（第1-24行，跨页）与网站 referenceCode 逐行一致：bits/stdc++.h、#define ll long long、tmp 用 ll 接收（≤10¹² 不溢出）、smu 用 int 累加（上界 108）、x=max(x,smu) 维护最大值。n≤10⁵、每数≤13 位，约 1.3×10⁶ 次数位操作，满足 1.0s 限制；while(tmp>0) 对题面保证的正整数无遗漏边界。"
+          }
+        },
+        "changes": {
+          "explanation": "**算法推导：** 逐个读入正整数，用 `while (tmp>0){ smu += tmp%10; tmp/=10; }` 求它的数位和，再用 `max` 维护全局最大值。每个数最大不超过 10^12，需用 `long long` 接收；在 1 ≤ a ≤ 10^12 范围内，最大数位和来自 999999999999（即 10^12 − 1，12 个数位均为 9），为 9 × 12 = 108（10^12 本身的数位和仅为 1），用 `int` 足够。总复杂度约 O(n × 位数)，每数最多 13 位，足够通过。\n**常见错误方法：**\n- 用 `int` 接收高达 10^12 的输入会溢出，应改用 `long long`。\n- 求完一个数的数位和后忘记与当前最大值比较更新。\n**易错点：** 输入变量（`tmp`）要用 `long long`，数位和累加变量（`smu`）用 `int` 即可；`while` 条件是 `tmp>0`，把每一位取完为止。\n**最小验证：** 样例三个数 16→7、81→9、10→1，最大为 9，与样例输出一致。"
+        },
+        "tests": [
+          {
+            "name": "最小值1",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1，唯一正整数 1 的数位和为 1，最大值应为 1。"
+          },
+          {
+            "name": "上界a=10^12",
+            "input": "1\n1000000000000\n",
+            "output": "1\n",
+            "reason": "10^12=1000000000000 是 13 位数，数位和为 1；考察 long long 读入上界不溢出，应输出 1。"
+          },
+          {
+            "name": "范围内最大数位和",
+            "input": "1\n999999999999\n",
+            "output": "108\n",
+            "reason": "10^12−1 有 12 个数位均为 9，数位和 9×12=108，为约束内的最大可能数位和。"
+          },
+          {
+            "name": "多组取最大",
+            "input": "3\n1000000000000\n999999999999\n10\n",
+            "output": "108\n",
+            "reason": "三者数位和分别为 1、108、1，最大值为 108，验证 max 维护逻辑，按题意独立推导。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对解析的修正并独立确认：原解析“13×9=117”对应 13 个数位全为 9 的 10¹³−1，超出“不超过 10¹²”约束，属事实性错误；正确上界为 999999999999 的 9×12=108，10¹² 本身数位和为 1。修正仅涉及 explanation，不影响题面、样例与参考程序。初核其余结论（题面一致、参考程序逐行匹配、tests 期望输出）经我独立验算全部成立，一并接受；explanation 修复后核验通过。"
+      }
+    ],
+    "summary": "本次仅复核第 26、27 题。卷头身份（GESP C++ 二级 2024年12月）与 paperId 一致。第 26 题「寻找数字」：题面、样例、约束（1≤t≤10⁵，1≤a≤10⁸）与 PDF 第8页一致，参考程序与 PDF 第8-9页逐行一致，两次开方取整加整数回代的算法在 a≤10⁸ 内无精度与溢出风险，判定 approve，无修改。第 27 题「数位和」：题面、样例（16/81/10→9 独立验算成立）、约束（1≤n≤10⁵，a≤10¹²）与 PDF 第9页一致，参考程序与 PDF 第9-10页逐行一致且 long long/int 使用正确，判定 revise——解析中数位和上界 117（对应 10¹³−1，超界）应修正为 999999999999 的 108，已在 changes 给出完整字段，修复后核验通过。全部 tests 期望输出均由我依据题意独立推导（1→1、10⁸→100、99999999→-1、10¹²→1、999999999999→108 等），未声称实际运行，无未决问题。"
+  }
+}

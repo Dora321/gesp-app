@@ -1,0 +1,237 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:00:00.830Z",
+  "completedAt": "2026-11-09T16:00:28.192Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52149,
+    "completion_tokens": 4050,
+    "total_tokens": 56199,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 52148
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 1987,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00358959,
+      "allowance": 0.00358959,
+      "tokens": {
+        "input": 1,
+        "output": 4050,
+        "reasoning": 1987,
+        "cache_read": 52148,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头图清晰显示“CCF 编程能力等级认证 GESP / C++ 二级 / 2024 年 12 月”，与 paperId 2024-12-l2 的等级（2 级）、年月（2024-12）一致；判断题题面与答案表位于第 6 页，第 6 页原图答案表红字符号依次为 √ √ √ √ × × × √ √ √。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文“在Windows的资源管理器中为已有文件A建立副本的操作是Ctrl+C，然后Ctrl+V。( )”与站内题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为括号判断题，原卷仅设（ ）判断位，无 ABCD 选项列表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 1 格为红字 √，对应正确=0；独立推理：Ctrl+C 将文件对象复制入剪贴板，Ctrl+V 在目标目录生成副本且不动原文件，操作确能建立副本，命题为真，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立给出复制-粘贴建副本的推导，并对比 Ctrl+X（剪切=移动、不留原件）与可多次粘贴得多个副本的细节，推理成立、结论为“正确”无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定本题全维度通过，与我独立对照第 6 页题面、答案表第 1 格 √ 及复制/粘贴语义的推导完全一致，予以接受。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题原文含代码 cout << (N - N / 10 * 10) 并限定 N 为正整数，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为括号判断题，原卷无 ABCD 选项列表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 2 格为红字 √，对应正确=0；独立推理：N 为正整数时 / 为整数除法，N/10*10 为不超 N 的最大 10 的倍数，由带余除法 N=(N/10)*10+N%10 得差值恰为个位 N%10，命题为真，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明运算符优先级与左结合使表达式实为 N-((N/10)*10)，并以 N=123 验证 123-12*10=3，推导完整、结论无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定答案与解析均正确，与我按整数除法独立推导（N-N/10*10=N%10）及答案表第 2 格 √ 一致，予以接受。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题原文“在C++语句 cout << (10 <= N <= 12) 中，假设N为12，则其输出为1。( )”与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为括号判断题，原卷无 ABCD 选项列表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 3 格为红字 √，对应正确=0；独立推理：<= 左结合，N=12 时先算 10<=12 得 1，再算 1<=12 得 1，cout 输出该布尔值为 1，命题为真，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析明确指出表达式按 (10<=12)<=12 展开、输出 1，同时提醒“连写不表达数学区间”属另一回事、不影响本题取值，推理严谨无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与我对左结合求值链 (10<=12)=1、(1<=12)=1→输出 1 的独立推导及答案表第 3 格 √ 相符，予以接受。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文含代码 int(sqrt(N))*int(sqrt(N)) == N 并举例 4、9、25，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为括号判断题，原卷无 ABCD 选项列表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 4 格为红字 √，对应正确=0；独立推理：命题为单向蕴含，若表达式为真则存在整数 k=int(sqrt(N)) 使 k*k==N，按定义 N 即为完全平方数，该方向不依赖浮点精度，命题为真，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分蕴含方向：仅主张“表达式真⇒完全平方数”，未误把受 sqrt 浮点误差影响的逆命题作为成立条件，并以 N=25、N=8 两例正反验证，推理无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核把握了单向蕴含这一关键点，与我独立推导（k*k==N 成立即证 N=k²）及答案表第 4 格 √ 一致，予以接受。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题代码图显示 int a = 2, b = 3; 与 printf(\"%%a*%%b=%d\",a*b);，题干命题“执行后将输出2*3=6”，与站内题干及代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为括号判断题，原卷无 ABCD 选项列表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 5 格为红字 ×，对应错误=1；独立推理：printf 格式串 \"%%a*%%b=%d\" 中两个 %% 各转义输出一个字面 %，字母 a、b 按普通字符原样输出，仅 %d 被替换为 a*b=6，实际输出为 %a*%b=6，并非 2*3=6，命题为假，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐段展开格式串（%%→%、a* 原样、%%→%、b= 原样、%d→6），指出输出中根本不会出现 2 和 3，与独立推导完全相符，结论“错误”正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对 %% 转义与 %d 替换的分析正确，实际输出 %a*%b=6 与命题 2*3=6 不符，判定“错误=1”与我独立核对第 6 页答案表第 5 格 × 一致，予以接受。"
+      }
+    ],
+    "summary": "本次复核范围为判断题 Q16-Q20（原卷判断题第 1-5 题，均在 PDF 第 6 页）。依据第 6 页原图判断题答案表红字符号 √ √ √ √ ×，对应 officialAnswer 依次为 0、0、0、0、1。五题题面、代码均与原卷逐字一致；逐题独立推理：Q16 复制+粘贴确能建副本、Q17 整数除法下 N-N/10*10=N%10 取个位、Q18 左结合求值 (10<=12)<=12 输出 1、Q19 单向蕴含成立即证完全平方、Q20 格式串实际输出 %a*%b=6 而非 2*3=6，全部与官方答案及站内 answer 相符，现有解析推导均成立。五题判断题的 options、referenceCode 维度不适用。无需修改，DeepSeek 初核结论经独立复核全部接受，五题 verdict 均为 approve。"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:35:55.094Z",
+  "completedAt": "2026-11-09T15:37:42.519Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34209,
+    "completion_tokens": 7803,
+    "total_tokens": 42012,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6364
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00981315,
+      "allowance": 0.00588789,
+      "tokens": {
+        "input": 34209,
+        "output": 7803,
+        "reasoning": 6364,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页头为“CCF 编程能力等级认证 C++ 二级 2024 年 12 月”，与 2024-12-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 1 题题干为 2024 年 10 月 8 日诺贝尔物理学奖授予 John J. Hopfield 和 Geoffrey E. Hinton，并问主要研究方向，网站题干与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. 天体物理、B. 流体力学、C. 人工智能、D. 量子理论，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 1 为 C，即 0 起始索引 2；独立判断：二人因人工神经网络与机器学习相关工作获奖，属于人工智能方向。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据 2024 年诺贝尔物理学奖官方理由，指出 Hopfield 网络、玻尔兹曼机与反向传播属于人工智能，推导得到 C，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题题干为计算机存储基本单位 B 代表什么，并举例照片大小 3MB，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. Byte、B. Block、C. Bulk、D. Bit，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 2 为 A，即索引 0；独立判断：大写 B 表示 Byte（字节），小写 b 表示 bit（位），故选 Byte。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分大写 B=Byte 与小写 b=Bit，并用 3MB 中 MB 表示兆字节佐证，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 3 题代码为 cout << (3 + 3 % 3 * 2 - 1)，网站题干与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. -1、B. 4、C. 56、D. 2，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 3 为 D，即索引 3；独立计算：3%3=0，0*2=0，3+0-1=2，对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 % 与 * 同级且高于加减的优先级，先算 3%3=0，再乘 2，最后从左到右加减得到 2，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页至第 2 页第 4 题代码为 for(int i=0;i<10;i++) printf(\"%d\",i);，网站代码、循环条件与输出语句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. 123456789、B. 0123456789、C. 12345678910、D. 012345678910，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 4 为 B，即索引 1；独立判断：i 取 0 到 9，每次 printf 无分隔符，输出连排的 0123456789。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出循环从 0 开始、到 9 结束，且 printf(\"%d\",i) 不输出分隔符，排除漏 0 与多输出 10 的选项，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 5 题代码为 int tnt; for(int i=0;i<10;i++) tnt += i; cout << tnt;，网站题干与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A 求 1-10 和含 10、B 求 1-10 和不含 10、C 求 0-10 和不含 10、D 输出不确定的值，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表题号 5 为 D，即索引 3；独立判断：局部变量 tnt 未初始化，读取其值参与累加属于未定义行为，结果不确定，不能视为确定的 1-9、0-9 或 1-10 求和。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 tnt 未赋初值、循环范围是 0 到 9，并说明不能得到确定求和值，与选择 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 1 至 5 题。卷头身份与 PDF 一致；5 题的题干、代码、选项均与页图逐项吻合，答案均与第 1 页答案表一致，独立推导支持现有答案与解析。未发现需要修改的字段，借口题无编程边界测试。"
+  }
+}

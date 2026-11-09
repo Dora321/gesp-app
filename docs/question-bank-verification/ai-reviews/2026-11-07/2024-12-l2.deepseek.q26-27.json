@@ -1,0 +1,166 @@
+{
+  "paperId": "2024-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:04:04.192Z",
+  "completedAt": "2026-11-09T16:06:33.018Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34203,
+    "completion_tokens": 13982,
+    "total_tokens": 48185,
+    "prompt_tokens_details": {
+      "cached_tokens": 34048
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12321
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00851459,
+      "allowance": 0.00510876,
+      "tokens": {
+        "input": 155,
+        "output": 13982,
+        "reasoning": 12321,
+        "cache_read": 34048,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "363a25e26fb08ea5b715108b505e23140ea4ece80cd9e244b753289f4cdcc0fb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++2级.pdf",
+    "mirrorSha": "f505006a74be63923199aeac00252fea821a7eff",
+    "mirrorBytes": 1092195,
+    "shaVerified": true,
+    "sha256": "ec944b829a5033076ed9a9ffa077d4fc247b5a8bcaea15851fde0e79abea80f6"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP C++ 二级 2024年12月”，与paperId中的年份2024、月份12、等级2一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页题面、输入格式、输出格式、样例与数据范围（1≤t≤10^5，1≤a≤10^8）与网站文案一致；Markdown标题和公式为等价排版，未漏必要代码、样例或约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择项，PDF中亦无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案符号；PDF仅提供参考程序，故officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析与参考程序算法一致：先由sqrt(sqrt(a))向下取整得到候选b，再用b*b*b*b==a进行整数回代。a≤10^8时b≤100、b^4≤10^8，int安全；样例16→2、81→3、10→-1可由该逻辑独立得出。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第8-9页参考程序与当前代码逐行一致；按t组数据循环，每组只做两次开方和一次整数回代，复杂度O(t)，符合1≤t≤10^5与1≤a≤10^8。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小正整数",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "1=1^4，候选b=1，回代1^4==1，应输出1。"
+          },
+          {
+            "name": "四次方上界",
+            "input": "1\n100000000\n",
+            "output": "100\n",
+            "reason": "100000000=100^4，a≤10^8的上界内b=100，b^4仍在int范围内，应输出100。"
+          },
+          {
+            "name": "非四次方边界",
+            "input": "4\n2\n15\n82\n99999999\n",
+            "output": "-1\n-1\n-1\n-1\n",
+            "reason": "2、15、82均不是正整数四次方；99^4=96059601且100^4=100000000，故99999999也不是四次方，均应输出-1。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页题面、数位和示例12345→15、输入输出、样例（3/16/81/10→9）及约束（1≤n≤10^5，每个正整数≤10^12）与网站文案一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择项，PDF中亦无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案符号；PDF仅提供参考程序，故officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析称“数位和最大约13×9=117”与约束≤10^12不符：999999999999的数位和为108，10^12本身的数位和为1，因此数位和上界是108而不是117。其余逐数取位、用long long读入、用max维护最大值的说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第9-10页参考程序与当前代码一致；用long long接收≤10^12的输入，smu用int累加数位和，n≤10^5时每数最多13位，复杂度约O(13n)，无溢出。"
+          }
+        },
+        "changes": {
+          "explanation": "**算法推导：** 逐个读入正整数，用 `while (tmp>0){ smu += tmp%10; tmp/=10; }` 求它的数位和，再用 `max` 维护全局最大值。每个数最大为 10^12，需用 `long long` 接收；在 1 ≤ a ≤ 10^12 内最大数位和来自 999999999999，为 9 × 12 = 108（10^12 本身数位和为 1），用 `int` 足够。总复杂度约 O(n × 位数)，位数最多 13，足够通过。\n**常见错误方法：**\n- 用 `int` 接收高达 10^12 的输入会溢出，应改用 `long long`。\n- 求完一个数的数位和后忘记与当前最大值比较更新。\n**易错点：** 输入变量（`tmp`）要用 `long long`，数位和累加变量（`smu`）用 `int` 即可；`while` 条件是 `tmp>0`，把每一位取完为止。\n**最小验证：** 样例三个数 16→7、81→9、10→1，最大为 9，与样例输出一致。"
+        },
+        "tests": [
+          {
+            "name": "最小输入",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1，唯一正整数1的数位和为1，最大值为1。"
+          },
+          {
+            "name": "最大数位和边界",
+            "input": "1\n999999999999\n",
+            "output": "108\n",
+            "reason": "该数不超过10^12，12个数位均为9，数位和为9×12=108，是题面范围内的最大值。"
+          },
+          {
+            "name": "上界与非最大对照",
+            "input": "3\n1000000000000\n999999999999\n10\n",
+            "output": "108\n",
+            "reason": "10^12的数位和为1，999999999999的数位和为108，10的数位和为1，三者最大值为108。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验第26、27题。卷头身份与2024年12月C++二级一致；第26题题面、样例、约束、解析与PDF第8-9页参考程序均通过；第27题题面、样例和参考程序通过，但解析中的数位和上界117应修正为108，已在changes中给出完整解析。编程题边界测试均为依据题意独立推导，未声称实际运行。"
+  }
+}
