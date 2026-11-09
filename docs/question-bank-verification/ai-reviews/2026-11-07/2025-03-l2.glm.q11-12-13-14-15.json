@@ -1,0 +1,239 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:32:07.036Z",
+  "completedAt": "2026-11-09T16:32:41.129Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49673,
+    "completion_tokens": 5401,
+    "total_tokens": 55074,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 48256
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 3060,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00436073,
+      "allowance": 0.00436073,
+      "tokens": {
+        "input": 1417,
+        "output": 5401,
+        "reasoning": 3060,
+        "cache_read": 48256,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头图明确标注「CCF 编程能力等级认证 / GESP / C++ 二级 / 2025 年 03 月」，与 paperId 2025-03-l2 的等级（2 级）和年月（2025-03）一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干（N! 定义、0!=1、N=3 时结果为 9）及「实现1」代码逐行对照一致；第 5 页「实现2」代码（tmp=1 后内层 j=1..i 乘积、tnt+=tmp）逐行一致，无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项（A 代码短小但效率不高 / B 实现2效率更高 / C 实现1应用前项结果计算量小 / D 效率几乎一致）与网站选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 C，0 起始索引映射为 2；独立推理：实现1 每轮仅一次乘法共 N 次，实现2 每轮从 1 重乘到 i 共 N(N+1)/2 次，N=3 时分别 3 次与 6 次乘法且均得 9，故 C 正确、A/B/D 不成立，与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立给出 i!=(i-1)!×i 的复用论证与 N(N+1)/2 次乘法对比，并用 N=3 的 3 次对 6 次乘法做最小验证，推导成立且与我的独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经我独立逐行对照第 4-5 页代码与选项、并独立推导两种实现的乘法次数后确认无误，接受初核，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干（哥德巴赫猜想验证 4-1000 偶数、isPrime 返回 bool、问「错误的说法」）及代码（外层 i=4 起 i<1000 步长 2，内层 j=2 起 j<i，printf 后 break 位于 if 内）逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项与网站选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 D，0 起始索引映射为 3；独立推理：A 中 bool 值与 ==true 比较等价；B 中若首个解 j>i-j，则 i-j<j<i 早已被内层枚举且 isPrime(i-j)&&isPrime(j) 成立，会先输出，故小者在前；C 有限枚举不构成数学证明；D 若 break 移出 if，j=2 检查完即无条件退出，搜索失效，D 是错误说法，应选 D，与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析对 A/B/C/D 逐项独立论证（含 B 的首个解次序论证与 D 的 i=10 反例：j=2 时 8 非质数应继续到 j=3），推导成立，与我的独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经我独立核对代码结构（break 在 if 内）与四个选项真伪后确认无误，接受初核，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页代码（外层 i=1..N-1、内层 j<i+1 即 L1 标记行、last>9 时重置为 1、printf(\"\\n\") 换行）与第 6 页输出图示 9 行（1 / 2 3 / 4 5 6 / 7 8 9 1 / 2 3 4 5 6 / 7 8 9 1 2 3 / 4 5 6 7 8 9 1 / 2 3 4 5 6 7 8 9 / 1 2 3 4 5 6 7 8 9）均与网站题面逐行一致；我按 last 递推独立验证输出序列吻合。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项与网站选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 B，0 起始索引映射为 1；独立推理：printf(\"\\n\") 可输出换行故 A 错；last+=1 与 last=last+1 等价故 B 对；j<i 会使第 i 行少输出一个数故 C 错；last=0 会使首个输出为 0 与图示不符故 D 错，与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析含循环次数分析（j<i+1 等价 j<=i）与 i=3 行的最小验证，推导成立，与我的独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经我独立跟踪 last 的 1-9 循环递推并复现图示输出后确认无误，接受初核，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干（连续 5 次生成 1 到 10 之间随机整数）及代码 for(int i=0; i<5; i++) + 横线行与网站题面一致，仅全角/半角问号等标点差异，不影响含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项（rand()%11 / rand()%10 / rand()%10+1 / rand()%9+1）与网站选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C，0 起始索引映射为 2；独立推理：x%n 取值 0..n-1，故 A 为 0..10 含 0，B 为 0..9 缺 10，C 平移后恰为 1..10，D 为 1..9 缺 10，应选 C，与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出余数范围 0..n-1 及端点验证（0+1=1、9+1=10），推导成立，与我的独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经我独立核对四个选项的取值区间后确认无误，接受初核，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干（a、b 为 float，相差足够小如 0.000001 即视作相等，示例 2.2345676 与 2.2345677）与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项（(b-a)<0.000001 / (b-a)<=0.000001 / abs(b-a)<=0.000001 / sqrt(b-a)<=0.000001）与网站选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 C，0 起始索引映射为 2；独立推理：A/B 未取绝对值，b<a 时负差恒使条件成立；D 在 b<a 时对负数开方无意义且改变比较量纲；C 取绝对差与容差比较正确，应选 C，与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析含 a=10、b=1 的反例验证（A/B 误判为真、C 判为假），推导成立，与我的独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经我独立分析浮点近似比较需取绝对差后确认无误，接受初核，无需修改。"
+      }
+    ],
+    "summary": "独立复核题号 11-15 共 5 道单选题：题干、代码、输出图示、选项顺序均与 PDF 第 4-6 页原卷逐行一致；答案经第 1 页答案表（C/D/B/C/C）与 0 起始索引映射核对为 2/3/1/2/2，且每题均经我独立推理确认（Q11 两种实现乘法次数对比、Q12 break 位置与首解次序论证、Q13 last 递推复现图示、Q14 余数区间端点、Q15 负差反例）。网站解析均已独立推导成立。未发现需修改项，changes 全部为空；本范围为单选题，referenceCode 与 tests 不适用，无待决问题。DeepSeek 初核结论全部经独立确认后接受。"
+  }
+}

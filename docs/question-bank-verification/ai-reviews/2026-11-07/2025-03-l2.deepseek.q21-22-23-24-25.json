@@ -1,0 +1,223 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:34:58.506Z",
+  "completedAt": "2026-11-09T16:37:46.390Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31987,
+    "completion_tokens": 13721,
+    "total_tokens": 45708,
+    "prompt_tokens_details": {
+      "cached_tokens": 31872
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12198
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00834547,
+      "allowance": 0.00500728,
+      "tokens": {
+        "input": 115,
+        "output": 13721,
+        "reasoning": 12198,
+        "cache_read": 31872,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 二级 2025 年 03 月”，与 paperId=2025-03-l2 及给定 git-blob SHA 0c7122676556eb84513dbaaa55b2899eeeddc6f6 所指归档卷一致；本次仅核验全卷第21-25题（判断题第6-10题）。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第6题代码为：int i; for (i = 0; i < 10; i++) continue; cout << i << endl;，网站题面与代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选 options 维度；网站中的“正确/错误”仅作判断标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第6格为“√”；0起始映射为0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：每轮执行 continue 后转到 for 的步进 i++；i 从0走到9，最后步进为10，条件10<10为假，随后输出10，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第7题代码为：int i; for (i = 1; i < 10; i++){ break; continue; } cout << i << endl;，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选 options 维度；正确/错误为判断作答标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第7格为“√”；0起始映射为0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：i 初值为1，条件1<10成立，进入循环后立即执行 break，continue 与 i++ 均不执行，输出1；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第8题代码为：for (int i = 0; i < 5; i++) for(int j = 0; j < i; j++) printf(\"OK\\n\");，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选 options 维度；正确/错误为判断作答标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第8格为“√”；0起始映射为0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：i=0,1,2,3,4 时内层分别执行0,1,2,3,4次，总计0+1+2+3+4=10次，每次输出一行OK，共10行；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第9题代码为：int tnt = 0; for (int i = 1; i < 5; i++) tnt += i; cout << tnt;，题干要求把初始化 i=1 调整为 i=0，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选 options 维度；正确/错误为判断作答标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第9格为“√”；0起始映射为0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：原程序累加1+2+3+4=10；改为从0开始后多执行一次 tnt+=0，仍为0+1+2+3+4=10，输出相同；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第10题代码为：for (i = 0; i < 5; i++) for (i = 0; i < i; i++) continue; printf(\"%d\\n\", i);。网站题面与之等价；原卷未另写 int i;，按题意中的整型变量 i 理解，缩进差异不影响无花括号情况下的语法归属。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不适用单选 options 维度；正确/错误为判断作答标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第10格为“×”；0起始映射为1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：外层首次令 i=0，内层又令 i=0 且条件0<0为假；外层步进后 i=1，下一轮内层再次把 i 重置为0，如此反复，外层始终无法达到5，程序陷入无限循环，printf 不会执行，故“输出0123”错误；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第21-25题（判断题第6-10题）。逐题对照PDF第7页代码与第6页判断题答案表，答案符号依次为√、√、√、√、×，对应0、0、0、0、1，与网站答案全部一致。五个题的题面代码、判断结论和解析均经独立推导，未发现需要修改的字段；判断题不适用 options 与 referenceCode 维度，且无编程题测试。"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:20:38.183Z",
+  "completedAt": "2026-11-09T16:22:27.372Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31987,
+    "completion_tokens": 8261,
+    "total_tokens": 40248,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6227
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00975465,
+      "allowance": 0.00585279,
+      "tokens": {
+        "input": 31987,
+        "output": 8261,
+        "reasoning": 6227,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 二级”“2025 年 03 月”，与 paperId 2025-03-l2 的等级和年月一致；题目来源 SHA 为任务给定的 0c7122676556eb84513dbaaa55b2899eeeddc6f6。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页题面与当前 question 对照：春节背景、DeepSeek、《哪吒2》以及“描述成立的是”均一致，未发现语义缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页 A-D 依次为《哪吒2》是操作系统、DeepSeek 是深海钻探软件、《哪吒2》可生成软件、DeepSeek 可根据《哪吒2》场景生成剧情脚本，内容和顺序与当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第1题答案为 D；按 0 起始索引对应 3，与当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：DeepSeek 属可生成自然语言文本的人工智能模型，依据给定场景生成剧情脚本成立；A、B、C 均错误定性电影或人工智能产品，解析结论与 D 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用编程题参考程序维度；题面未附需核验的参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页题面为整型变量 N 同时被 3 和 5 整除时输出“N是含有至少两个质因数”，并问输出语句应使用哪种流程图图形框；当前题面仅增加引号，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页 A-D 为圆形框、椭圆形框、平行四边形框、菱形框，顺序和内容与当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题答案为 C；按 0 起始索引对应 2，与当前 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：标准流程图以平行四边形表示输入/输出，菱形表示判断，椭圆表示起止，圆形常作连接点；输出语句应使用平行四边形，解析与 C 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用编程题参考程序维度；题面未提供参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页代码为 `int a=3, b = 4; a == b; b == a; cout << a << ' ' << b << endl;`，与当前 statement 中的代码一致，问执行后的输出。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页选项依次为 `3 4`、`3 3`、`4 4`、`4 3`，顺序和内容与当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题答案为 A；按 0 起始索引对应 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：`a == b` 与 `b == a` 是相等比较表达式，结果被丢弃，不会赋值或交换；变量仍为 a=3、b=4，输出 `3 4`，解析与 A 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用编程题参考程序维度；题面内代码已在 statement 维度核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页题面描述红 5、绿 3、蓝 2 的循环排列，并按编号求颜色；第2页给出 `N % 10` 的分支代码。当前题面仅将原卷“代码是实现”顺为“代码实现”，不影响含义，代码和题意一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A-D 分别讨论最后分支改为 `else`、第一个条件去掉下界、链式比较写法、`N % 10` 改为 `N / 10`，与当前 options 的顺序和含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第4题答案为 A；按 0 起始索引对应 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：合法编号下 `N % 10` 取 0 到 9，前两个分支覆盖 1 到 8，剩余只可能是 0 或 9，故最后分支改为 `else` 等价；`remainder <= 5` 会把 0 误判为红色，链式比较不能表达区间，`N / 10` 也不是取个位或组内位置。解析结论与 A 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用编程题参考程序维度；题面内代码已在 statement 维度核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页代码为 `for (int i = 0; i < 10; i++)` 内按 `if (i % 3)` 分支累加 1 或 2，随后输出 `tnt`；当前 question 中的代码与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项依次为 18、17、16、14，顺序和内容与当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题答案为 D；按 0 起始索引对应 3，与当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i=0、3、6、9 时 `i % 3` 为 0，执行 `tnt += 2`，共 4 次增加 8；i=1、2、4、5、7、8 时条件为真，执行 `tnt += 1`，共 6 次增加 6；总计 14。解析与 D 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用编程题参考程序维度；题面内代码已在 statement 维度核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核仅覆盖 Q1-Q5。卷头身份与 2025-03-l2 匹配，答案表对应 D、C、A、A、D，五题的题面、选项、答案和解析均与 PDF 页图及独立推导相符，未发现需要修改的字段；编程题不在本次核验范围。"
+  }
+}

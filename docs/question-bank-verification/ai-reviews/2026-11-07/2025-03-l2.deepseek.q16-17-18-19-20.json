@@ -1,0 +1,223 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:32:41.132Z",
+  "completedAt": "2026-11-09T16:34:32.969Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31987,
+    "completion_tokens": 9159,
+    "total_tokens": 41146,
+    "prompt_tokens_details": {
+      "cached_tokens": 31872
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7880
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00560827,
+      "allowance": 0.00336496,
+      "tokens": {
+        "input": 115,
+        "output": 9159,
+        "reasoning": 7880,
+        "cache_read": 31872,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头显示“CCF 编程能力等级认证 C++ 二级”与“2025 年 03 月”，与 paperId 2025-03-l2 相符。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第1题原文与站点题面一致：C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。（ ）"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF未设A/B/C/D选项，仅有正确/错误判断括号。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第1格为“√”，对应正确=0；独立判断亦成立：高级语言程序最终由处理器执行机器指令完成。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明C++编译结果及Python解释器/虚拟机最终都由处理器执行机器指令，推导与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第2题原文与站点题面一致：假设N为正整数，则 N - N / 10 * 10 与 N % 10 都将获得N的个位数。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF未设A/B/C/D选项，仅有正确/错误判断括号。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第2格为“√”，对应正确=0；独立验证：N=123时，123-12*10=3，123%10=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析利用整数除法说明 N=(N/10)*10+N%10，并指出乘除同级从左向右结合，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第3题原文与站点题面一致：考察 cout << ((10 <= N <= 12)? \"true\":\"false\")，N=12时的输出及原因。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF未设A/B/C/D选项，仅有正确/错误判断括号。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第3格为“√”，对应正确=0；按左结合，(10<=12)为true，再转成1参与1<=12，结果仍为true。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出关系运算符从左向右结合，以及true参与数值比较时转为1，未与C++规则冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第4题原文与站点题面一致：表达式 (sqrt(N) * sqrt(N)) == N 在N为正整数时是否总为true。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF未设A/B/C/D选项，仅有正确/错误判断括号。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第4格为“×”，对应错误=1；浮点平方根再相乘不保证精确回到N，故不能断言所有正整数都为true。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出sqrt返回浮点数、舍入误差使==不一定成立，并给出N=2在常见IEEE 754双精度下的典型反例，足以支持“错误”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第5题原文与代码块一致：int a=2,b=3; a=a-b; b=a+b; a=b-a; printf(\"%d*%d=%d\\n\", a, b, a*b);，无缺行或改义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，PDF未设A/B/C/D选项，仅有正确/错误判断括号。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第5格为“√”，对应正确=0；状态依次为(2,3)→(-1,3)→(-1,2)→(3,2)，输出3*2=6。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按每条赋值使用最新变量值列出状态变化，最终得到a=3、b=2、a*b=6，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16-20，均为判断题。第6页判断题答案表第1-5格依次为√、√、√、×、√，与 officialAnswer 0、0、0、1、0 一致；题面、代码、答案符号及解析均未发现需修改之处，无未决项。"
+  }
+}

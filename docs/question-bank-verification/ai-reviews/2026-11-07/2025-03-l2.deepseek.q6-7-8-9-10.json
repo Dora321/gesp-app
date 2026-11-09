@@ -1,0 +1,227 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:22:57.420Z",
+  "completedAt": "2026-11-09T16:29:01.794Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31987,
+    "completion_tokens": 16184,
+    "total_tokens": 48171,
+    "prompt_tokens_details": {
+      "cached_tokens": 31872
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14070
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00982327,
+      "allowance": 0.00589396,
+      "tokens": {
+        "input": 115,
+        "output": 16184,
+        "reasoning": 14070,
+        "cache_read": 31872,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证 / C++ 二级 / 2025 年 03 月”，与 paperId 2025-03-l2 相符。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题的题干与代码同当前题面一致：`for (i = 10; i > 0; i -= 2) break; cout << i;`。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四个选项依次为 10、8、0、“i 的值不确定”，顺序和文字与当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 A，对应 0 起始索引 0；独立推导：i 初始化为 10，第一次判断成立后立即 break，未执行 i-=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确说明 break 会跳过 for 的步进部分，因此跳出后 i 仍为 10，输出 10。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 题从 PDF 第 2 页末开始，代码位于第 3 页；`for (i = 0; i < 10; i++)`、`continue` 条件 `i % 3 == 0` 及循环后的 `if (i >= 10)` 均与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A-D 与当前 options 完整一致；其中 D 为 6 个 `0#` 后接 `1#`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 D，对应 0 起始索引 3；独立推导：i=0、3、6、9 被 continue 跳过，其余 1、2、4、5、7、8 共输出 6 次 `0#`，循环结束 i=10 再输出 `1#`。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确统计了 6 次 `0#`，并指出循环正常结束后 i=10、满足 `i>=10` 再输出 `1#`。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题代码为 `for (i = 0; i < 5; i++) for (j = i; j > 0; j -= 1) printf(\"%d-\", j);`，与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A-D 与当前 options 一致，A 保留末尾连字符，B 无末尾连字符，C/D 则从 0 开始。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 A，对应 0 起始索引 0；独立推导：i=0 不输出，i=1、2、3、4 分别输出 `1-`、`2-1-`、`3-2-1-`、`4-3-2-1-`，拼接为 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确说明 j 从 i 递减到 1，且每次 printf 都输出末尾连字符，因此选项 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题要求找出不能实现“能被 2 整除且除以 7 余数为 2”的选项，代码中的空白位置与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A-D 与当前 options 一致：C 的 `!(i % 7)` 实际筛选能被 7 整除的数，不等价于 `i % 7 == 2`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 C，对应 0 起始索引 2；独立推导：C 实际选出 14 的倍数，而 A、B、D 在 i 为 0 到 99 时均等价于“偶数且 i%7==2”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确区分了 `!(i % 7)` 与 `i % 7 == 2`，并说明 D 中 `i % 2 != 1` 在非负循环变量下等价于偶数判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第 4 页题面与代码逐字对应；但原卷题干称“1到N之间”，代码条件明确为 `(j = i) < N`，右端点是否应包含 N 存在歧义，保留待核验。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A-D 与当前 options 一致：A 为 continue 和 j/=10，B 为 break 和 j/=10，C 为 continue 和 j%=10，D 为 break 和 j%=10。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 B，对应 0 起始索引 1；独立推导：发现数字 3 后应 break 保证一个整数只计一次，未发现时应 j/=10 删除个位继续检查。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确说明 B 可避免重复计数并推进 j；A/C 在找到 3 后不推进 j 会死循环，D 的 j%=10 在未找到 3 时也不能可靠删除个位。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷题干“1到N之间”与代码 `(j = i) < N` 的右端点包含性存在歧义；例如 N=33 时，33 本身不会被循环检查。该原卷边界问题保留，不影响两处填空答案 B。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验题 6—10：Q6—Q9 的题面、选项与 PDF 答案表一致，解析独立推导成立；Q10 填空答案 B 明确，但原卷题干“1到N”与代码 `(j=i) < N` 的右端点包含性存在歧义，已保留未决，未擅自修改原卷。本批均为单选题，无编程题边界测试。"
+  }
+}

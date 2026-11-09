@@ -1,0 +1,171 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:38:28.356Z",
+  "completedAt": "2026-11-09T16:40:57.490Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31981,
+    "completion_tokens": 11914,
+    "total_tokens": 43895,
+    "prompt_tokens_details": {
+      "cached_tokens": 31872
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10558
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00726037,
+      "allowance": 0.00435622,
+      "tokens": {
+        "input": 109,
+        "output": 11914,
+        "reasoning": 10558,
+        "cache_read": 31872,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 二级 2025 年 03 月”，与 paperId 2025-03-l2 对应；第26题在第8页，第27题在第9-10页，题名和页码吻合。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页的题名“等差矩阵”、n行m列矩阵与i×j构造说明、输入输出格式、样例“3 4”/“1 2 3 4…”及约束1≤n≤50、1≤m≤50均与站点一致，未发现缺漏或含义改变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表项，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据第i行第j列填入i×j，说明第i行公差为i、第j列公差为j；双重循环枚举n×m个位置，复杂度O(nm)、额外空间O(1)，样例走查正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第8页参考程序逐行核对一致：读入n,m，断言数据范围，循环1..n与1..m并输出i×j，以空格/换行索引控制行末格式；站点额外包含<cassert>不影响程序。n,m≤50时i×j≤2500，无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模1×1",
+            "input": "1 1",
+            "output": "1\n",
+            "reason": "n=m=1，唯一元素为1×1=1，参考程序在最后一列输出换行。"
+          },
+          {
+            "name": "单列边界3×1",
+            "input": "3 1",
+            "output": "1\n2\n3\n",
+            "reason": "每行只有一个元素，第i行值为i；覆盖多行及每行最后一列换行。"
+          },
+          {
+            "name": "单行边界1×4",
+            "input": "1 4",
+            "output": "1 2 3 4\n",
+            "reason": "只有一行，列依次为1×j=1,2,3,4；覆盖单行、元素间空格和行末换行。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第9页题面、输入输出格式、样例及数据范围与站点一致，站点也完整保留了原卷文字；但原卷输入称五行均为“正整数”而数据范围允许h=0，输出称四个“正整数”而样例h′=0，原卷本身存在矛盾。站点已用sourceIntegrity=official-source-defect标注，不能擅自暗改为非负整数或改动样例。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表项，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析利用0≤h≤23、1≤k≤24，故h+k最多47、最多跨一天；随后按大小月及闰年规则判断月末，并处理月份、年份进位。复杂度O(1)。该推导与给定范围相容，且样例2008年闰年2月28日23时加1小时得到2月29日0时正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第9-10页参考程序一致：h+=k后若h≥24则减24并将日期加1，再按月份和闰年规则确定当月天数，若d>days则进入下月，月份超过12则进入下一年。在0≤h≤23、1≤k≤24范围内只跨一天是充分的，2008闰年样例和各月末进位逻辑正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份且h=0加1小时",
+            "input": "2000\n1\n1\n0\n1",
+            "output": "2000 1 1 1",
+            "reason": "年份、月、日均取最小值，h=0处于数据范围允许区间；加1小时不跨日，覆盖原卷“正整数”与h=0的边界。"
+          },
+          {
+            "name": "h=0且k取上界24跨日",
+            "input": "2000\n1\n1\n0\n24",
+            "output": "2000 1 2 0",
+            "reason": "h+k=24，恰好跨一天，小时回到0且日期加1；覆盖k上界及输出小时为0的情况。"
+          },
+          {
+            "name": "平年2月末跨月",
+            "input": "2009\n2\n28\n23\n1",
+            "output": "2009 3 1 0",
+            "reason": "2009不是闰年，2月只有28天；2月28日23时加1小时应进入3月1日0时，验证平年二月和月份进位。"
+          },
+          {
+            "name": "年末23时跨年",
+            "input": "2000\n12\n31\n23\n1",
+            "output": "2001 1 1 0",
+            "reason": "12月31日23时加1小时应进入次年1月1日0时，覆盖12月到次年1月及年份进位。"
+          }
+        ],
+        "unresolved": [
+          "原卷输入/输出均写“正整数”，但数据范围允许h=0，样例输出又包含h′=0；该原卷措辞矛盾保留，题目继续按sourceIntegrity标记排除计分，待官方或后续裁定。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验第26、27题。第26题题面、样例、约束、解析及参考程序均通过，并补充1×1、单列、单行边界测试。第27题解析和参考程序在给定数据范围下通过；但原卷“正整数”表述与h=0、h′=0及样例冲突，题面维度保留unresolved，未作暗改，并补充h=0、k=24、平年二月末和跨年边界测试。"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:30:01.398Z",
+  "completedAt": "2026-11-09T16:32:07.032Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31987,
+    "completion_tokens": 11943,
+    "total_tokens": 43930,
+    "prompt_tokens_details": {
+      "cached_tokens": 31872
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10126
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00727867,
+      "allowance": 0.0043672,
+      "tokens": {
+        "input": 115,
+        "output": 11943,
+        "reasoning": 10126,
+        "cache_read": 31872,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注 CCF 编程能力等级认证 C++ 二级、2025 年 03 月，与 paperId 2025-03-l2 的等级和年月一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页实现 1、第 5 页实现 2 及题干逐行对照；阶乘定义、0!=1、N=3 时结果为 9 的说明均与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项与当前选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题对应 C；officialAnswer=2，与 0 起始索引映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立统计：实现 1 每轮仅乘一次，总乘法 N 次；实现 2 每轮从 1 乘到 i，总乘法 N(N+1)/2 次。N=3 时分别做 3 次和 6 次乘法且和均为 9，故 C 成立，A、B、D 不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干、循环边界 i<1000、内层 j<i、isPrime 判断、printf 格式及 break 位置均与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项与当前选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题对应 D；officialAnswer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：A 中 bool 表达式与 ==true 写法等价；B 若首个可行 j>i-j，则较小的 i-j 会先被扫描并先输出，故小者在前；C 有限枚举不能构成数学证明；D 错误，break 移到 if 外会在检查 j=2 后无条件退出内层循环，导致搜索失效。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页代码及预期输出逐行对照一致；外层 i 从 1 到 N-1、内层 j<i+1、last 在 1 到 9 间循环。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项与当前选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题对应 B；officialAnswer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：printf 可输出换行，A 错；last += 1 与 last = last + 1 等价，B 对；j<i 会使每行少一个数，C 错；last 改为 0 会使首个输出变为 0，D 错。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干及 for(int i=0; i<5; i++) 空白行与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项与当前选项一致；A 为 0 到 10，B 为 0 到 9，C 为 1 到 10，D 为 1 到 9。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题对应 C；officialAnswer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：rand()%10 的结果为 0 到 9，再加 1 得 1 到 10；其余选项或含 0，或缺少 10，故 C 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干、float 类型及 0.000001 容差示例与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 四项与当前选项逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题对应 C；officialAnswer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：浮点近似相等需比较绝对差；A、B 未取绝对值，b<a 时会把负差误判为足够小；D 对负差开方无效且改变比较尺度；C 使用 abs(b-a)<=0.000001 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 11-15，共 5 道单选题。题干、代码、选项顺序、答案表映射均与 PDF 原卷核对一致；解析经独立推导成立，未发现需修改项，故 changes 均为空。本范围为单选题，referenceCode 不适用，tests 不适用；无待决问题。"
+  }
+}

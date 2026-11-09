@@ -1,0 +1,197 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:40:57.494Z",
+  "completedAt": "2026-11-09T16:45:54.340Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49659,
+    "completion_tokens": 17381,
+    "total_tokens": 67040,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 47936
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 14978,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01038703,
+      "allowance": 0.01038703,
+      "tokens": {
+        "input": 1723,
+        "output": 17381,
+        "reasoning": 14978,
+        "cache_read": 47936,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 GESP C++ 二级 2025年03月」，与 paperId 2025-03-l2（2025年3月、二级）一致；编程题1「等差矩阵」位于第8页，编程题2「时间跨越」位于第9-10页，与站点 sourcePage/sourcePages 标记吻合。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "与 PDF 第8页逐项对照：题名「等差矩阵」；题面「小A想构造一个n行m列的矩阵…在第i行第j列填入整数i×j」；输入格式「一行，两个正整数n,m」；输出格式「共n行，每行m个由空格分割的整数」；样例「3 4」→「1 2 3 4 / 2 4 6 8 / 3 6 9 12」；数据范围1≤n≤50、1≤m≤50。站点 LaTeX 排版为等价转换，无缺漏代码、约束或样例，无含义改变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表项，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与站点解析一致：第i行为 i,2i,…,mi（公差 i），第j列为 j,2j,…,nj（公差 j）；双重循环共 n×m 次输出，时间复杂度 O(nm)、额外空间 O(1)；样例 3×4 走查逐位得到 1 2 3 4 / 2 4 6 8 / 3 6 9 12，与原卷样例一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第8页参考程序（第1-14行）逐行核对一致：scanf 读入、assert 约束、i/j 双重循环、printf(\"%d%c\", i*j, \" \\n\"[j==m]) 控制行末换行。站点较原卷仅多一行 #include <cassert>，为无害补充（供 assert 使用，不改变行为），不构成需修改项。i×j≤50×50=2500，int 无溢出；行末格式与样例逐字符吻合。本次复核补全该题参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模1×1",
+            "input": "1 1",
+            "output": "1\n",
+            "reason": "n=m=1 时矩阵唯一元素为 1×1=1；参考程序在 j==m 处输出换行，故为「1」加换行。"
+          },
+          {
+            "name": "单列边界3×1",
+            "input": "3 1",
+            "output": "1\n2\n3\n",
+            "reason": "m=1 时每行仅一个元素，第i行值为 i×1=i，j=1 即 j==m 逐行换行。"
+          },
+          {
+            "name": "单行边界1×4",
+            "input": "1 4",
+            "output": "1 2 3 4\n",
+            "reason": "n=1 时仅一行，元素为 1×j；前 m-1 个分隔符为空格、行末为换行。"
+          },
+          {
+            "name": "常规2×3",
+            "input": "2 3",
+            "output": "1 2 3\n2 4 6\n",
+            "reason": "逐位独立重算：第一行 1,2,3；第二行 2,4,6；验证非边界一般情形与分隔符位置。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核结论。我在 PDF 第8页基础上独立复核五维：题面转录完整、解析推导正确、参考程序逐行一致（站点多出的 #include <cassert> 属无害差异，不需修改，故 changes 为空）。全部测试期望输出由我按参考程序逻辑逐步推演重算（含补充的 2×3 一般情形），全部吻合，未声称实际运行。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "与 PDF 第9页逐项对照，站点题面、输入/输出格式、样例（2008/2/28/23/1 → 2008 2 29 0）、数据范围 2000≤y≤3000、1≤m≤12、1≤d≤31、0≤h≤23、1≤k≤24 及闰年提示均忠实转录、无缺漏。但原卷自身矛盾：输入格式称五个「正整数」而数据范围允许 h=0，输出格式称四个「正整数」而 h' 可为 0 且原卷样例输出正是 2008 2 29 0。站点已以 sourceIntegrity=official-source-defect 结构化标记并停止计分，按规则保留争议、不擅自定案，故维持 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无答案表项，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与站点解析一致：h+k≤23+24=47，最多跨一天，减 24 后 h'∈[0,23]；跨日时按当月天数（大月31、小月30、2月按闰年规则28/29）进位，d>days 进入下月，m>12 进入下一年；每步固定判断，O(1)。样例 2008 为闰年（%4=0 且 %100≠0），2月29天，2月28日23时+1小时=2月29日0时，与原卷样例一致；2023 12 31 23 1 → 2024 1 1 0 的进位链亦逐步验证正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第9页第1-11行及第10页第12-35行逐行核对完全一致。在给定约束下逻辑正确：k≤24 且 h≥0 保证 h+k≤47、最多跨一天，单次跨日处理充分；闰年条件 (y%4==0&&y%100!=0)||(y%400==0) 正确（2100 不会被误判为闰年）；12月→1月及年份进位正确；int 范围内无溢出；输出格式与样例逐字符吻合。本次复核补全该题参考代码核验（站点 coverage 原记 1/2）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小年份且h=0加1小时",
+            "input": "2000\n1\n1\n0\n1",
+            "output": "2000 1 1 1",
+            "reason": "h+k=1<24 不跨日；覆盖 y/m/d 最小值与 h=0（原卷「正整数」措辞与数据范围冲突的边界）。"
+          },
+          {
+            "name": "h=0且k取上界24跨日",
+            "input": "2000\n1\n1\n0\n24",
+            "output": "2000 1 2 0",
+            "reason": "h+k=24 恰好跨一天：h'=0、d=2≤31；覆盖 k 上界及输出 h'=0 的情况。"
+          },
+          {
+            "name": "平年2月末跨月",
+            "input": "2009\n2\n28\n23\n1",
+            "output": "2009 3 1 0",
+            "reason": "2009 不能被4整除为平年，2月28天；d=29>28 进位到3月1日0时。"
+          },
+          {
+            "name": "世纪年2100非闰年",
+            "input": "2100\n2\n28\n23\n1",
+            "output": "2100 3 1 0",
+            "reason": "2100 能被100整除但不能被400整除，非闰年，2月28天；检验世纪闰年规则。"
+          },
+          {
+            "name": "闰年2月28日跨日后仍为29日",
+            "input": "2024\n2\n28\n23\n1",
+            "output": "2024 2 29 0",
+            "reason": "2024 能被4整除且不被100整除为闰年，2月29天；d=29 不大于 29，不应进月。"
+          },
+          {
+            "name": "年末23时跨年",
+            "input": "2000\n12\n31\n23\n1",
+            "output": "2001 1 1 0",
+            "reason": "12月31天，d=32>31 → d=1、m=13 → m=1 并 y+1；覆盖12月到次年1月及年份进位。"
+          }
+        ],
+        "unresolved": [
+          "原卷输入/输出格式的「正整数」措辞与数据范围允许 h=0、h'=0（且样例输出 2008 2 29 0）自相矛盾，属官方原卷缺陷；站点保留原文并按 sourceIntegrity 标记排除计分，维持争议，待官方或后续裁定。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核的处理方式：题面维度因原卷自身缺陷维持 unresolved 而非暗改，解析与参考程序经我独立推导、逐行核对后确认正确。初核 4 条测试的期望输出我已逐条按参考程序逻辑独立重算确认，并补充 2100 世纪年非闰年、2024 闰年2月两条边界测试（期望输出同样独立推演，未实际运行）。未发现需修改字段，changes 为空；本题继续按站点标记排除计分。"
+      }
+    ],
+    "summary": "独立复核 2025-03-l2 第26、27题。第26题题面、解析、参考程序均与 PDF 第8页一致（站点参考程序仅多一行无害的 #include <cassert>），options/answer 不适用，补充并独立重算4条测试（1×1、3×1、1×4、2×3），verdict=approve。第27题解析与参考程序在给定数据范围内经独立推导确认正确，参考代码与 PDF 第9-10页逐行一致，并补充 k=24 上界、平年/世纪年/闰年二月、跨年等6条边界测试且期望输出均独立推演；题面忠实转录但原卷「正整数」措辞与 h=0、h'=0 及样例「2008 2 29 0」自相矛盾，维持 unresolved 并保留站点 sourceIntegrity 标记与停用计分处理，verdict=approve（题面维度 unresolved）。未应用任何 changes；全部测试期望输出均为独立推演结果，未声称已运行。"
+  }
+}

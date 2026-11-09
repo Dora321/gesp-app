@@ -1,0 +1,241 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:37:46.393Z",
+  "completedAt": "2026-11-09T16:38:28.349Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49815,
+    "completion_tokens": 6692,
+    "total_tokens": 56507,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 47936
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 4507,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00506593,
+      "allowance": 0.00506593,
+      "tokens": {
+        "input": 1879,
+        "output": 6692,
+        "reasoning": 4507,
+        "cache_read": 47936,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 二级 2025 年 03 月”，与 paperId=2025-03-l2（二级、2025 年 3 月）及给定归档卷 git-blob SHA 0c7122676556eb84513dbaaa55b2899eeeddc6f6 对应的页面图一致；本次仅独立复核第 21–25 题（判断题第 6–10 题）。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 6 题题干“下面C++代码执行后将输出10”及代码 int i; for (i = 0; i < 10; i++) continue; cout << i << endl; 经页面图逐行核对，与网站转录完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；正确/错误仅为作答标签。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表（红色标记）第 6 格为√，按 正确=0 映射即 0，网站 answer=0 一致；独立推演：每轮 continue 后 for 的步进 i++ 仍执行，i=0..9 共 10 轮，退出时 i=10，输出 10，题干说法成立，与答案表互相印证。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析一致：continue 只跳过本轮循环体剩余语句，不终止循环；最后一次以 i=9 进入，步进后 i=10，条件 10<10 为假后输出 10。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表符号√、页面代码、输出推演三条线索独立复核均一致，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 7 题代码 int i; for (i = 1; i < 10; i++){ break; continue; } cout << i << endl; 经页面图逐行核对，与网站转录一致（含 break 后不可达的 continue）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 7 格为√，映射为 0，网站 answer=0 一致；独立推演：i=1 时条件 1<10 成立，进入循环体立即 break，continue 与 i++ 均不执行，输出 1，题干说法成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析一致：break 直接结束最近一层循环，其后的 continue 为不可达代码，步进部分也不会执行。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表符号√、代码转录与执行路径推演独立复核一致。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 8 题题干“下面的C++代码执行后将输出10行\"OK\"”及代码 for (int i = 0; i < 5; i++) for(int j = 0; j < i; j++) printf(\"OK\\n\"); 经页面图逐行核对，与网站转录一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 8 格为√，映射为 0，网站 answer=0 一致；独立推演：i=0,1,2,3,4 时内层各执行 0,1,2,3,4 次，总计 0+1+2+3+4=10 次 printf，每次输出一行 OK，共 10 行，题干说法成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析一致：内层上界随 i 变化，不能按 5×5 计算；j<i 不含 j=i，i=0 时内层一次都不执行。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表符号√、代码转录与 0+1+2+3+4=10 的求和推演独立复核一致。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 9 题题干“将下面C++代码中的for循环中的 i = 1 调整为 i = 0 的输出结果相同”及代码 int tnt = 0; for (int i = 1; i < 5; i++) // i=1 tnt += i; cout << tnt; 经页面图逐行核对（含注释 // i=1），与网站转录一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 格为√，映射为 0，网站 answer=0 一致；独立推演：原程序累加 1+2+3+4=10，初值改 0 后新增一轮 tnt+=0，结果仍为 0+1+2+3+4=10，输出相同，题干说法成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析一致：新增迭代的贡献为 0，不改变累加和；比较的是结果而非循环次数。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表符号√、代码转录与两种初值求和相等的推演独立复核一致。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 10 题题干“下面C++代码执行后将输出 0123”及代码 for (i = 0; i < 5; i++) for (i = 0; i < i; i++) continue; printf(\"%d\\n\", i); 经页面图逐行核对，与网站转录一致；原卷同样未写 int i; 声明，网站按原样转录属实，该瑕疵不影响“不会输出 0123”的判定（无论按编译失败还是无限循环理解）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 10 格为×，按 错误=1 映射即 1，网站 answer=1 一致；独立推演：外层首轮 i=0，内层初始化又令 i=0，条件 0<0 为假，外层步进后 i=1；下一轮外层内层再次把 i 重置为 0，外层又只加到 1，如此往复，i 永远达不到 5，printf 不会执行，故“输出 0123”为假，× 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析的死循环机理一致：内外层复用同一变量 i，内层初始化不断破坏外层循环变量，循环无法正常结束，输出语句不可达；网站解析已按原卷保留代码形态，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表符号×、页面代码转录与死循环推演独立复核一致；变量 i 未在原卷声明的瑕疵属原卷原样，不影响×的判定，保留原样不改。"
+      }
+    ],
+    "summary": "本次独立复核第 21–25 题（对应 PDF 判断题第 6–10 题，页面在第 7 页）。逐题完成五维记录：题面代码均与第 7 页页面图逐行一致；判断题不适用 options 与 referenceCode 维度。答案核验：第 6 页判断题答案表红色标记依次为 √√√√×（第 6–10 格），映射为 0,0,0,0,1，与网站 answer 完全一致；并对其余格（第 4 格×等）抽查确认读表无串位。每题输出均经独立状态推演：21 题 continue 后步进仍执行输出 10；22 题 break 致输出 1；23 题 0+1+2+3+4=10 行 OK；24 题两种初值均输出 10；25 题内外层复用 i 致无限循环、printf 不可达，",
+    "output": "0123",
+    "note": "不成立",
+    "conclusion": "判定×正确",
+    "_meta": "（推演详见该题 dimensions.answer.evidence）"
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:29:01.804Z",
+  "completedAt": "2026-11-09T16:30:01.393Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49970,
+    "completion_tokens": 9218,
+    "total_tokens": 59188,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 47936
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 6181,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00635218,
+      "allowance": 0.00635218,
+      "tokens": {
+        "input": 2034,
+        "output": 9218,
+        "reasoning": 6181,
+        "cache_read": 47936,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图卷头清晰显示「CCF 编程能力等级认证 GESP / C++ 二级 / 2025 年 03 月」，与 paperId 2025-03-l2（level 2、2025 年 3 月）一致；第 1 页单选答案表与第 6 页判断题答案表均为红色矢量文字，可逐格读取。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页页图中第 6 题代码逐行为 `int i; for (i = 10; i > 0; i -= 2) break; cout << i;`，与网站题面代码完全一致；题干「下面C++代码执行后输出是( )」亦一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图四个选项依次为 A.10、B.8、C.0、D.因为循环执行时会执行break语句而终止循环，所以i的值不确定；与网站 options 顺序和文字一致（仅标点等价差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 A，对应 0 起始索引 0，与网站 answer=0 一致。独立推导：i 初始化为 10，首轮条件 10>0 成立，进入循环体立即执行 break 跳出；for 的步进 i-=2 只在循环体正常结束后执行，故未运行，i 保持 10，输出 10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推与解析一致：解析正确指出 break 直接离开循环、步进部分不执行，并逐项排除 B/C/D（D 的「值不确定」不成立，因 i 已明确初始化为 10），无逻辑错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。我独立核对第 2 页页图代码与选项、第 1 页答案表 A→索引 0，并独立推导 break 首轮即出、步进不执行，输出确定为 10，与网站 answer=0 相符；解析推导独立成立，无需修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 题题干位于第 2 页末（「第 7 题 下面C++代码执行后输出是（　）。」），代码位于第 3 页页图：`for (i =0; i < 10; i++){ if (i % 3 == 0) continue; cout << \"0\" << \"#\"; } if (i >= 10) cout << \"1\" << \"#\";`，与网站题面逐字一致；sourcePages [2,3] 与原卷跨页版面相符。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图选项为 A.0#0#0#0#0#0#、B.0#0#0#0#0#0#0#1#、C.0#0#0#0#1#、D.0#0#0#0#0#0#1#，与网站 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 D，对应索引 3，与网站 answer=3 一致。独立推导：i 取 0..9，其中 0、3、6、9 被 continue 跳过不输出（for 的 i++ 仍执行）；1、2、4、5、7、8 共 6 次输出 \"0#\"；循环正常结束时 i=10，满足 i>=10，再输出 \"1#\"，总输出 0#0#0#0#0#0#1#。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推与解析一致：解析正确统计 6 个 \"0#\"，并指出 A 漏 \"1#\"、B 写了 7 个 \"0#\"、C 只有 4 个 \"0#\"；关于 continue 不跳过步进、退出时 i=10 的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。我独立对照第 2/3 页页图确认题面跨页转录完整，并独立枚举 i=0..9 的输出路径验证答案 D（索引 3），与网站 answer=3 相符；解析各选项排除理由经独立推导成立。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页页图第 8 题代码为 `int i,j; for (i = 0; i < 5; i++) for (j = i; j > 0; j -= 1) printf(\"%d-\",j);`，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图选项 A.1-2-1-3-2-1-4-3-2-1-、B.1-2-1-3-2-1-4-3-2-1、C.0-0-1-0-1-2-0-1-2-3-、D.0-0-1-0-1-2-0-1-2-3，与网站 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题为 A，对应索引 0，与网站 answer=0 一致。独立推导：i=0 时内层条件 j>0 立即为假不输出；i=1、2、3、4 时 j 从 i 递减到 1，分别输出 1-、2-1-、3-2-1-、4-3-2-1-，每次 printf 均含末尾连字符，拼接为 1-2-1-3-2-1-4-3-2-1-。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推与解析一致：解析正确说明每段末尾连字符（排除 B）、条件 j>0 保证不输出 0 且数字递减（排除 C/D），并以 i=2 局部输出 2-1- 作最小验证，推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。我独立对照第 3 页页图并逐轮模拟双重循环，确认输出为选项 A（索引 0），与网站 answer=0 相符；解析对末尾连字符与 0 不输出的关键点均正确。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页页图第 9 题题干「将输出能被2整除且除以7余数为2的数。下列选项不能实现的是（　）」及带横线的 for/if 代码与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图四个选项为 A.((i % 2 == 0) && (i % 7 == 2))、B.((!(i % 2)) && (i % 7 == 2))、C.((!(i % 2)) && (!(i % 7)))、D.((i % 2 != 1) && (i % 7 == 2))，与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题为 C，对应索引 2，与网站 answer=2 一致。独立推导：B 中 !(i%2) 在 i%2==0 时为真，等价于偶数判断；C 中 !(i%7) 等价于 i%7==0，筛选 7 的倍数而非余 2，不能实现题意，为本题答案；D 中 i%2!=1 对非负 i（本循环 i∈[0,100)）等价于 i%2==0，能实现。A 直接对应条件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推与解析一致：解析正确区分 !(i%7) 与 i%7==2，指出 C 会选出 14 的倍数而漏掉 16 等目标数；对 D 明确说明其等价性依赖非负循环变量的前提；对 A/B 的可实现性论证正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。我独立对照第 3 页页图选项，并逐一验证四个条件在 i∈[0,100) 上的筛选结果，确认唯一不能实现的是 C（索引 2），与网站 answer=2 相符；解析对逻辑非含义和 D 前提条件的表述严谨。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "第 3 页末题干与第 4 页页图代码、选项与网站转录逐字一致（转录本身忠实，含 `for (i = 1; (j=i) < N; i++)`）；但原卷题干称「1到N之间正整数中含有3的数的个数」，而代码循环变量 i 仅取到 N-1（N 本身不被检查，例如 N=33 时含 3 的 33 不会被计数），题干区间端点与代码行为存在原卷层面的歧义，不影响本题填空作答，保留待定案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图四个选项代码块为 A.1 continue / 2 j /= 10、B.1 break / 2 j /= 10、C.1 continue / 2 j %= 10、D.1 break / 2 j %= 10，与网站 options 一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 B，对应索引 1，与网站 answer=1 一致。独立推导：第一空若填 continue，j 未改变且仍含数字 3，while (j!=0) 将无限重复同一分支造成死循环，故必须 break；第二空若填 j %= 10 只保留个位（如 j=12 → 2 → 2 死循环），无法删除个位推进数位检查，故必须 j /= 10。两空确定为 break 和 j /= 10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推与解析一致：解析正确说明 A/C 的 continue 死循环、D 的 j%=10 不能删除个位（12→2 例），以及 break 保证一个整数只计一次；对 /= 与 %= 作用相反的提示正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷题干「1到N之间」与代码 `(j = i) < N` 的右端点包含性不一致（N 本身不会被检查，如 N=33 时 33 不计入）；属原卷措辞缺陷，不影响两处填空答案 B 的判定，保留争议，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核的未决保留处理。我独立验证填空答案 B：continue 使 while 因 j 不变而死循环、j%=10 无法删除个位（j=12 会停在 2），两空均唯一确定为 break 与 j/=10，与答案表 B（索引 1）及网站 answer=1 相符；同时我独立确认了初核指出的原卷边界问题（`(j=i) < N` 使 N 本身不被检查）真实存在，属原卷层面歧义而非转录错误，故 statement 保留 unresolved、不提出修改，与不擅自定案原则一致。"
+      }
+    ],
+    "summary": "本批复核 2025-03 二级 Q6–Q10（均含代码的单选题），全部依据第 1—4 页页图逐字对照并独立推导。Q6–Q9 五维核验通过：代码、选项与页图一致，答案 A/D/A/C（索引 0/3/0/2）与第 1 页答案表及独立运行推导完全吻合，解析关键步骤（break 不执行步进、continue 保留 i++、双层循环拼接含末尾连字符、!(i%7) 筛选 7 的倍数）均经独立重推确认。Q10 转录忠实、填空答案 B（break 与 j/=10）经独立排除法确立，但原卷题干「1到N之间」与代码 `(j=i) < N` 的右端点存在原卷层面歧义（N 本身不被检查），按保留争议原则维持 statement 为 unresolved，未采纳任何改动。本批无 changes、无编程题，tests 全部为空；未发现初核草稿有需否决的不可靠结论。"
+  }
+}

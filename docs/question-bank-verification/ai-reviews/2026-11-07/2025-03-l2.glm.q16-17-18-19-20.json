@@ -1,0 +1,237 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:34:32.973Z",
+  "completedAt": "2026-11-09T16:34:58.503Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49583,
+    "completion_tokens": 3744,
+    "total_tokens": 53327,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 47936
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 1887,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00355713,
+      "allowance": 0.00355713,
+      "tokens": {
+        "input": 1647,
+        "output": 3744,
+        "reasoning": 1887,
+        "cache_read": 47936,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e1c0b70e8226be275035e79382667cb309ced18dd3c601c5b3b3b2d0c7bca39",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头清晰显示「CCF 编程能力等级认证 GESP」「C++ 二级」「2025 年 03 月」，与 paperId 2025-03-l2（2025年3月二级）一致；判断题答案表位于第6页，红色矢量标记逐格可读。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第1题原文「C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。（ ）」与站点题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷仅有判断括号，无 A/B 选项；站点补全的【正确/错误】为通用格式，不影响核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第1格为红色 √，对应正确=0；独立推理：C++ 编译为机器码、Python 经解释器/虚拟机执行，底层均由 CPU 机器指令完成，命题成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析区分编译型与解释型的执行路径并指出解释器最终仍执行机器指令，推导独立成立，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与 DeepSeek 初核结论一致：题面、√ 标记、解析均核验通过，接受初核，无修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第2题原文「在C++代码中，假设N为正整数，则 N - N / 10 * 10 与 N % 10 都将获得N的个位数。( )」与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷仅有判断括号，无 A/B 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第2格为红色 √，对应正确=0；独立验证：N=123 时 123/10=12（整数除法），123-12*10=3=123%10；由带余除法 N=(N/10)*10+N%10 对任意正整数成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析正确利用整数除法与乘除左结合（N-(N/10)*10）推导，并给出 N=123 的算例，逻辑无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立推导与答案表 √ 一致，初核结论可靠，接受，无修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第3题原文含表达式 cout << ((10 <= N <= 12)? \"true\":\"false\")、N=12 及原因说明，与站点题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷仅有判断括号，无 A/B 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第3格为红色 √，对应正确=0；独立推理：关系运算符左结合，(10<=12) 得 true 转为 1，1<=12 为真，输出 true；题干陈述的输出和原因（true 参与数值比较）均与 C++ 语义相符，整句为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析正确区分「该写法不能通用判区间」与「N=12 时本次结果为真」两个层面，按 (10<=12)<=12 即 1<=12 展开，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立按左结合与 bool→int 提升规则推导，结论与答案表 √ 一致，初核无误，接受。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第4题原文「C++表达式 (sqrt(N) * sqrt(N)) == N 中的N如果为正整数，则表达式的值为true，相当于开平方后平方是本身。（ ）」与站点题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷仅有判断括号，无 A/B 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第4格为红色 ×，对应错误=1；独立推理：sqrt 返回浮点近似值，非精确平方根经舍入后相乘不保证精确等于 N，== 为精确比较，故「N 为正整数则为 true」的全称命题不成立，判错误正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析给出浮点舍入机理与 N=2 时 sqrt(2)*sqrt(2)≈2.0000000000000004 的典型 IEEE 754 double 反例（未声称实际运行），并以 abs 差值比较作为正确做法，足以支撑「错误」判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认该命题为全称式错误陈述，答案表 × 与推理一致；初核的浮点反例说明合理，接受。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第5题代码 int a=2,b=3; a=a-b; b=a+b; a=b-a; printf(\"%d*%d=%d\\n\",a,b,a*b); 与站点题面代码逐行一致，陈述「将输出 3*2=6」一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷仅有判断括号，无 A/B 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第5格为红色 √，对应正确=0；独立状态推演：(a,b)=(2,3)→a=2-3=-1→b=-1+3=2→a=2-(-1)=3，printf 按序输出 a、b、a*b 即 3*2=6，陈述成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析逐步列出状态链 (2,3)→(-1,3)→(-1,2)→(3,2)，强调每条赋值使用上一条的新值，与独立推演完全吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立逐行模拟代码确认输出为 3*2=6，与答案表 √ 一致；初核推导正确，接受，无修改。"
+      }
+    ],
+    "summary": "本次独立复核范围仅为判断题第 16-20 题（原卷判断题第 1-5 题）。第 6 页判断题答案表红色标记逐格读取为 √、√、√、×、√，对应 0-based 索引 0、0、0、1、0，与站点 answer 完全一致。五题题面与第 6/7 页原图逐字核对无出入；每题均独立重新推理：Q16 机器指令层级、Q17 整数除法恒等式（N=123 验证）、Q18 左结合与 bool→int 提升后输出 true、Q19 浮点舍入致全称命题不成立、Q20 逐步状态推演输出 3*2=6，均支持站点答案与解析。DeepSeek 初核五题结论与独立推导全部吻合，予以接受；无修改项、无未决项。"
+  }
+}
