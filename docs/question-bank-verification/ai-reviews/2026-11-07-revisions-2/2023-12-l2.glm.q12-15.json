@@ -1,0 +1,136 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    12,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T12:03:02.299Z",
+  "completedAt": "2026-11-09T12:03:54.091Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34662,
+    "completion_tokens": 8472,
+    "total_tokens": 43134,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 6216,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0094353,
+      "allowance": 0.0094353,
+      "tokens": {
+        "input": 34662,
+        "output": 8472,
+        "reasoning": 6216,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "2e5a727d3f44947b16bd0b35e3f0c152570ff46c65296b49171ee94944c00a16",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 二级」「2023 年 12 月」，与 paperId 2023-12-l2 的等级（二级）和年月（2023 年 12 月）一致。"
+    },
+    "questions": [
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页右图 10 行代码逐行比对：1 cin >> N; / 2 for (i = 0; i < N; i++){ / 3 nowNum = 0; / 4 for (j = 0; j < i+1; j++){ / 5 cout << nowNum << \"\";（两个双引号紧挨，内为空串）/ 6 nowNum += 1; / 7 if (nowNum == 10) / 8 nowNum = 0; / 9 } / 10 }。候选原第 5 行写成 \" \"（含空格），与页图不符；且左图各行数字紧连无空格（如 01234567890），空格版本输出 0 1 2 … 与左图矛盾，只有空串版本自洽，已修正，修复后核验通过。左图顶部 12 为输入值标注（不参与输出），其下 12 行效果与原卷一致；选项引用的第 2/7/8/9 行号均可对应上述行号。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页四选项顺序、行号引用与内容与候选一致：A「与第8行下面填入一行：cout << nowNum;」、B「与第2行下面填入一行：cout << endl;」、C「与第7行下面填入一行：cout << nowNum;」、D「与第9行下面填入一行：cout << endl;」。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表（C A D D D A D C D B C D C B B）第 12 位为 D，0 起始索引 3。独立模拟 N=12：原代码无任何换行，D 在第 9 行（内层 }）下补 cout << endl; 后每轮外层循环末换行，依次输出 0、01、012、…、0123456789、01234567890（i=10 时 nowNum 到 10 清零，第 11 个数字为 0）、012345678901，共 12 行，与左图逐行一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按无花括号 if 的 C++ 结合规则独立重放四个插入点：A 插入行（第 8 行下）已脱离 if，成为内层循环体最后一条语句，每次迭代执行，i=0 行即由「0」变「01」；C 插入行（第 7 行下）顶替 if 唯一受控语句，原 nowNum = 0; 变无条件执行，nowNum 每轮迭代结束被清 0、永远到不了 10，插入行中的额外输出一次也不发生，第 2 行起各行全为 0；B 在外层循环体开头换行，多出行首空行；D 位置在内层循环之后、外层循环之内，正确。候选解析对四选项机制的描述与重放结果一致，无遗留错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "下面的 C++ 代码用于实现如下左图所示的效果，应在以下右图 C++ 代码中填入（ ）。\n\n左图的输出效果（N=12 时）：\n```\n12\n0\n01\n012\n0123\n01234\n012345\n0123456\n01234567\n012345678\n0123456789\n01234567890\n012345678901\n```\n\n```cpp\ncin >> N;\nfor (i = 0; i < N; i++){\n    nowNum = 0;\n    for (j = 0; j < i+1; j++){\n        cout << nowNum << \"\";\n        nowNum += 1;\n        if (nowNum == 10)\n            nowNum = 0;\n    }\n}\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核对题面第 5 行的修正：页图中该行为两个紧挨的双引号（空串），且左图数字紧连无空格，只有空串版本与两者自洽，候选的 \" \"（含空格）与页图、左图效果均矛盾，予以否决；修复后题面五维核验通过。answer=3 与答案表一致；解析对 A/C 的机制描述经我按 if 结合规则独立重放确认正确（A 的插入行每次内层迭代执行、C 的插入行使清零变无条件且 nowNum 永远到不了 10），B/D 分析维持有效，均不做改动。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题题干『输入一个正整数N，想找出它所有相邻的因数对，比如，输入12，因数对有(1,2)、(2,3)、(3,4)。下面哪段代码找不到所有的因数对？』与候选一致（文本层的『下/面』『所/有』拆字为排版噪声，页图语义完整）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页四段代码与候选逐字符一致：A for(i=1;i<N;i++) if(!(N%i) && !(N%(i+1))) 输出 (i,i+1)；B for(i=2;i<N;i++) 同条件输出 (i,i+1)；C for(i=2;i<N/2;i++) if(!(N%(i-1)) && !(N%i)) 输出 (i-1,i)；D for(i=1;i<N/2;i++) 同 A 条件输出 (i,i+1)；printf 格式串 (%d,%d)\\n 相同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 位为 B，0 起始索引 1。独立模拟 N=12：B 从 i=2 起永远检查不到 i=1，必然漏掉 (1,2)，只输出 (2,3)、(3,4)，符合「找不到所有因数对」；A 经 i=1,2,3 输出全部三对；C 经 i=2,3,4（检查 N%1/N%2 等）输出 (1,2)、(2,3)、(3,4)；D 经 i=1,2,3 输出全部三对。与官方 B 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析各项经独立验证：N=12 逐项跟踪正确；C 以 (i-1,i) 输出故起点 2 实际第一对仍是 (1,2)，正确；严谨性说明的反例成立（C 在 N=4 区间空漏 (1,2)、N=6 漏 (2,3)，D 在 N=2 区间空漏 (1,2)）；N=2 质数例外正确（1 和 2 是相邻因数对，A 输出 (1,2)，B i=2;i<2、C i=2;i<1、D i=1;i<1 区间均为空）；大于 2 的质数（如 N=3：3%2≠0）确无相邻因数对，四段代码均输出空。无遗留错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "题干未限定 N 的具体范围：按『任意正整数 N』的严格读法，C 在 N=4（区间空，漏 (1,2)）、N=6（漏 (2,3)），D 在 N=2（区间空，漏 (1,2)）时同样漏对，B 并非唯一反例，单选唯一性存在争议；此为源卷题面不严谨，官方答案表为 B，站内维持官方 B 并已在解析『严谨性说明』中注明，不擅自定案。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "本轮无需修改：候选题面、选项、答案均与原卷逐字一致；解析已包含上一轮修正的 N=2 质数例外，其细节（A 输出 (1,2)、B/C/D 循环区间为空）及 C/D 的任意 N 反例均经我独立验证无误，DeepSeek 初核本轮亦未提出新问题，故否决一切额外改动、维持候选现状；源卷『任意 N』读法下的单选唯一性瑕疵保留于 unresolved 记录。"
+      }
+    ],
+    "summary": "Q12：题面第 5 行须为空串 \"\"（页图双引号紧挨、左图数字紧连双重证据），候选的 \" \"（含空格）被否决并已修正，修复后题面核验通过；答案 D（索引 3）与官方答案表一致，解析对 A/C/D/B 四个插入点的机制描述经独立重放确认正确。Q15：题面、四段选项代码与第 5 页原卷逐字符一致，官方答案 B（索引 1）经 N=12 独立模拟确认（B 漏 (1,2)），解析含 N=2 质数例外与任意 N 读法下的 C/D 反例说明，均验证无误，无需修改；源卷单选唯一性瑕疵保留为 unresolved。"
+  }
+}

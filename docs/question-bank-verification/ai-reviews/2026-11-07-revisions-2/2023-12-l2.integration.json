@@ -1,0 +1,27 @@
+{
+  "paperId": "2023-12-l2",
+  "integratedAt": "2026-11-09T12:07:32.427Z",
+  "accepted": [
+    {
+      "id": 15,
+      "fields": [
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 12,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下面的 C++ 代码用于实现如下左图所示的效果，应在以下右图 C++ 代码中填入（ ）。\n\n左图的输出效果（N=12 时）：\n```\n12\n0\n01\n012\n0123\n01234\n012345\n0123456\n01234567\n012345678\n0123456789\n01234567890\n012345678901\n```\n\n```cpp\ncin >> N;\nfor (i = 0; i < N; i++){\n    nowNum = 0;\n    for (j = 0; j < i+1; j++){\n        cout << nowNum << \"\";\n        nowNum += 1;\n        if (nowNum == 10)\n            nowNum = 0;\n    }\n}\n```"
+      }
+    }
+  ],
+  "codeChecks": []
+}

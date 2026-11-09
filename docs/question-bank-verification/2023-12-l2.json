@@ -624,41 +624,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 15 题题面与站内一致：输入正整数 N，找相邻因数对，以 N=12 的 (1,2)、(2,3)、(3,4) 为例，问哪段代码找不到所有因数对。",
-          "review": "PDF 第 5 页题面“输入一个正整数N，想找出它所有相邻的因数对，比如，输入12，因数对有(1,2)、(2,3)、(3,4)。下面哪段代码找不到所有的因数对？”与站内一致。"
+          "initial": "PDF 第 5 页题干与候选一致：输入正整数 N，找所有相邻因数对，示例 N=12 的 (1,2)、(2,3)、(3,4)，问哪段代码找不到所有因数对；文本层拆字不影响页图语义。",
+          "review": "PDF 第 5 页第 15 题题干『输入一个正整数N，想找出它所有相邻的因数对，比如，输入12，因数对有(1,2)、(2,3)、(3,4)。下面哪段代码找不到所有的因数对？』与候选一致（文本层的『下/面』『所/有』拆字为排版噪声，页图语义完整）。"
         },
         "options": {
-          "initial": "四个选项的循环起点、上界和 printf 输出与 PDF 第 5 页逐项一致。",
-          "review": "四段代码与 PDF 第 5 页逐项一致：A/B 为 for(i=1或2;i<N;…)，C 为 for(i=2;i<N/2;…) 输出 (i-1,i)，D 为 for(i=1;i<N/2;…)，printf 串均相同。"
+          "initial": "PDF 第 5 页 A、B、C、D 四段代码的循环起止、条件、printf 格式和输出顺序与候选逐项一致。",
+          "review": "PDF 第 5 页四段代码与候选逐字符一致：A for(i=1;i<N;i++) if(!(N%i) && !(N%(i+1))) 输出 (i,i+1)；B for(i=2;i<N;i++) 同条件输出 (i,i+1)；C for(i=2;i<N/2;i++) if(!(N%(i-1)) && !(N%i)) 输出 (i-1,i)；D for(i=1;i<N/2;i++) 同 A 条件输出 (i,i+1)；printf 格式串 (%d,%d)\\n 相同。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选题答案表第 15 题为 B，即 0 起始索引 1；站内 answer=1 一致。",
-          "review": "PDF 第 1 页单选答案表第 15 题为 B，0 起始索引 1；站内 answer=1 一致；B 的循环起点为 2，永远不会检查 i=1，示例 N=12 的 (1,2) 必然漏掉，与题意相符。"
+          "initial": "PDF 第 1 页答案表第 15 题为 B，0 起始索引 1；按 N=12 独立模拟，B 从 i=2 起检查，漏掉 (1,2)，与官方 B 相符。",
+          "review": "PDF 第 1 页答案表第 15 位为 B，0 起始索引 1。独立模拟 N=12：B 从 i=2 起永远检查不到 i=1，必然漏掉 (1,2)，只输出 (2,3)、(3,4)，符合「找不到所有因数对」；A 经 i=1,2,3 输出全部三对；C 经 i=2,3,4（检查 N%1/N%2 等）输出 (1,2)、(2,3)、(3,4)；D 经 i=1,2,3 输出全部三对。与官方 B 一致。"
         },
         "explanation": {
-          "initial": "原解析称 C 能找出全部因数对，但 C 的 `i < N/2` 在 N=4、6 等情况下会漏掉边界对（如 N=6 的 (2,3)）；需保留官方答案 B，同时说明题目对任意 N 的严谨性争议。",
-          "review": "修复后核验通过：独立边界核验发现 C 并非对任意 N 完备——N=4 时其循环区间 [2,2) 为空、漏掉 (1,2)，N=6 时 i<N/2 即 i<3 检查不到 i=3、漏掉 (2,3)（2|6 且 3|6，确为相邻因数对）；D 在 N=2 时区间 [1,1) 为空、也漏掉 (1,2)；若按“任意正整数 N”的严格读法，B、C、D 均有反例，单选唯一性源于源题干不严谨。原解析仅锚定 N=12 且表述 C“一个不缺”未加限定，已补充严谨性说明并将各选项结论限定在示例 N=12 的语境。官方答案 B 维持不变。"
+          "initial": "按 N=12 模拟：A、C、D 均输出 (1,2)、(2,3)、(3,4)，B 只输出后两对；C 用 (i-1,i) 输出，起点 2 仍会检查 (1,2)。解析还正确指出严格任意 N 读法下 C 在 N=4、6，D 在 N=2 也会漏对，保留官方 B 与单选歧义。",
+          "review": "候选解析各项经独立验证：N=12 逐项跟踪正确；C 以 (i-1,i) 输出故起点 2 实际第一对仍是 (1,2)，正确；严谨性说明的反例成立（C 在 N=4 区间空漏 (1,2)、N=6 漏 (2,3)，D 在 N=2 区间空漏 (1,2)）；N=2 质数例外正确（1 和 2 是相邻因数对，A 输出 (1,2)，B i=2;i<2、C i=2;i<1、D i=1;i<1 区间均为空）；大于 2 的质数（如 N=3：3%2≠0）确无相邻因数对，四段代码均输出空。无遗留错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2023-12-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2023-12-l2.glm.json"
       ]
     },
     {
@@ -1110,19 +1113,9 @@
         "statement 尚无一致、完整的原卷核验结论",
         "explanation 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2023-12-l2.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-12-l2.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2023-12-l2.integration.json"
 }
