@@ -1,0 +1,243 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:15:59.872Z",
+  "completedAt": "2026-11-07T12:22:28.040Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53094,
+    "completion_tokens": 23556,
+    "total_tokens": 76650,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19869
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0197421,
+      "allowance": 0.0197421,
+      "tokens": {
+        "input": 53094,
+        "output": 23556,
+        "reasoning": 19869,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头及其页图为『CCF 编程能力等级认证 GESP C++ 五级 2023 年 12 月』，单选 15 题、判断 10 题（各 2 分）、编程 2 题（各 25 分）的数量与判定标准均与标识 2023-12-l5 一致；判断题答案表位于 PDF 第 7 页，题号 1-10 逐项图核。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核草稿。题面、答题符号（判断题1为√，对应0）与解析结论经我独立推导（递归分半+每层O(N)合并、层数O(logN)，与数据初态无关，稳定、需O(N)辅助空间）均与原卷一致，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题第 1 题原文『归并排序的时间复杂度是O(NlogN)。( )』；网站题面为『归并排序的时间复杂度是 $O(n log n)$ 。 ( )』，仅大小写与排版差异，含义相同，无遗漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，按任务约定 options 维度仅适用于单选题（网站以正确/错误呈现）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题答案表第 1 题为√，对应 0 起始索引 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：标准数组版归并排序最好/平均/最坏均为 O(NlogN)，稳定且需辅助空间；解析结论与题面判断（√）自洽，仅‘易混概念’处语言略简，无实质错误，不构成修改项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "否决初核草稿对第 17 题解析的重写。网站现有解析已同时记录官方判‘错’（×，索引 1）及其‘二分法’狭义概念依据、工程上二分答案判定的单调性思路，并明示‘考试中以此题官方答案为准’，争议已保留、无结论冲突或事实错误；草稿所写与原文内容实质相同，仅为措辞调整，且其对现解析‘写成无争议结论’的批评与原文不符，不满足修改门槛。概念争议单独保留于 unresolved。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题第 2 题原文：『小杨在生日聚会时拿一块H*W的巧克力招待来的K个小朋友，保证每位小朋友至少能获得一块相同大小的巧克力。那么小杨想分出来最大边长的巧克力可以使用二分法。（ ）』；网站题面将原文的‘他’写作‘小杨’，为主语补全，意思未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，按任务约定 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题答案表第 2 题为×，对应索引 1；网站 answer=1，与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：判定谓词 ‘(H/x)*(W/x) >= K’ 关于边长 x 单调递减，工程上可用二分答案验证；官方按‘二分法’狭义（有序数据上的二分查找）判错。现解析两面均已记录并明示采用官方答案，推导路径正确，保留争议即可，无需改动。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方判错（‘二分法’狭义概念）与竞赛语境‘二分答案也属二分法的一种’存在概念歧义，网站已按官方答案（错误）定稿并注明，保留待教研确认。"
+        ]
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "接受初核草稿的本题修改，并按第 7 页页图独立逐字核对：网站题面缺‘以下’、斐波那契定义及决定答案的 Fibo 代码；图示代码（第 7、8 行为 int m = fiboA(N - 1); 与 int n = fiboB(N - 2);）与草稿改动串逐字相符，予以采纳。解析由我按代码实质重写定稿（有基例但递归分支调用未定义的 fiboA/fiboB 而非 Fibo 自身，整体无法编译），原解析‘可能缺少基准情况’的表述不准确。answer=1 与答案表×一致，不动。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原网站题面缺‘以下’、斐波那契定义与 Fibo 代码；按 changes.question/changes.code 补齐，与 PDF 第 7 页页图判断题第 3 题题干及代码（递归分支调用 fiboA(N-1)、fiboB(N-2)）逐字比对一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，按任务约定 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题答案表第 3 题为×，对应索引 1；网站 answer=1，一致。独立推演代码：图示代码虽有 N==1||N==2 基例，但递归分支调用的是本题未定义的 fiboA/fiboB 而非 Fibo 自身，代码无法编译，不能‘以递归方式实现’，判‘错误’与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析称‘可能缺少基准情况或逻辑有误’指点不准（基例在、真正缺陷是未递归调用 Fibo 自身且 fiboA/fiboB 未定义）。changes.explanation 按代码实质重写，与官方×的判定依据吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码；题图代码已通过 changes.code 按页图补齐（归属 statement 核验）。"
+          }
+        },
+        "changes": {
+          "question": "以下 C++ 代码能以递归方式实现斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。（ ）",
+          "code": "int Fibo(int N)\n{\n    if (N == 1 || N == 2)\n        return 1;\n    else\n    {\n        int m = fiboA(N - 1);\n        int n = fiboB(N - 2);\n        return m + n;\n    }\n}",
+          "explanation": "**答案：错误**\n\n**判定依据：**\n图示代码中 `Fibo` 在 N=1 或 2 时返回 1，基例本身是存在的；但其递归分支调用的是 `fiboA(N - 1)` 和 `fiboB(N - 2)`，而这两个函数在本题代码中并未定义，也没有一处调用 `Fibo` 自身。代码整体无法通过编译，不能构成用递归调用自身实现的斐波那契程序，故本题应判‘错误’。\n\n**纠错：** '原命题说法有误。若将两处调用改为 `Fibo(N - 1)` 和 `Fibo(N - 2)`，才构成标准递归实现（第 1、2 项为 1，以后各项均是前两项之和）。\n\n**易混概念：** 递归三要素：终止条件、递归调用、状态传递。递归调用必须指向函数自身，函数名写错或调用未定义函数会直接编译失败；深层递归可能栈溢出。\n\n**考点：** 递归"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核草稿。题面与原卷一致，答案（判断题4为√，对应0）与页图答案表相符；结论经独立推导成立——贪心每步取当前局部最优，不保证全局最优，无需修改，现存解析仅偏简略、无事实错误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题第 4 题原文『贪心算法可以达到局部最优，但可能不是全局最优解。( )』；网站题面一致，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，按任务约定 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题答案表第 4 题为√，对应索引 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：贪心在每一步取当前最优选择，同余场景下局部最优可组合出全局最优，但一般情况下不保证（如非常规币制找零按面值贪心可能失败）；‘可能不是全局最优解’表述与√一致。现解析结论正确，仅‘易混概念’处为泛化填语，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "接受初核草稿补充边界说明的修改方向，但补充内容由我独立完善：大陆数学口径自然数包含 0，0 同为‘非质数自然数’且不能写成若干质数之积，草稿仅提 1 有遗漏；采纳版同时点明 0 与 1 两处边界并保留官方√判定。官方答案不改，争议单列 unresolved。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题第 5 题原文『小杨设计了一个拆数程序，它能够将任意的非质数自然数N转换成若干个质数的乘积，这个程序是可以设计出来的。（ ）』；网站题面一致，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，按任务约定 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图判断题答案表第 5 题为√，对应索引 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析仅给‘素数分解定理’，未界定定理适用范围（大于 1 的合数），也未处理‘非质数自然数’严格含 0、1 时的反例语境；changes.explanation 补齐适用前提与边界歧义说明，同时明确按官方与常规语境判‘正确’并保留争议，与 answer=0（√）不冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n            **判定依据：**\n            对于大于 1 的自然数，算术基本定理保证它可以分解为有限个质数的乘积，且分解唯一；程序可经试除法实现——逐步提取最小质因子，直到商为 1，即完成分解。因此在该通常语境（合数）下，拆数程序可以设计出来，官方判‘正确’。\n\n            **边界说明：** 题干『任意的非质数自然数』若按字面严格理解，还包含 0 和 1（二者均非质数，也均不能写成若干个质数之积）；官方与通行教学口径按合数（大于 1）理解该表述，此处保留边界歧义，考试与官方答案一致，判‘正确’。\n\n            **易混概念：** 试除法因子只需枚举到 √N；提取完某质因子后，剩余商若大于 1 也一定是质因子，直接补入即可；筛法（埃氏筛/线性筛）用于批量求某范围内的质数，而不是分解单个数。\n\n            **考点：** 筛法"
+        },
+        "tests": [],
+        "unresolved": [
+          "题干‘任意的非质数自然数’字面上包含 0 与 1，二者不能表示为质数之积；官方按合数（大于1）口径判√，边界歧义已按官方定稿保留，待教研确认。"
+        ]
+      }
+    ],
+    "summary": "本轮仅核验网站题 16–20（对应 PDF 第 7 页判断题 1–5）。按页图逐项核对答案表为 √ × × √ √（后五项 × √ √ √ √ 属范围外题 21–25，未核验），五题网站答案 0/1/1/0/0 全部一致。结论：16、19 独立推导通过、无修改；17 网站解析已完整保留官方判‘错’及其狭义概念依据与二分答案视角的双面记录，初核草稿的纯措辞重写被否决，概念歧义保留 unresolved；18 网站题面缺失‘以下’、斐波那契定义及决定答案的 Fibo 代码（递归分支调用未定义的 fiboA(N-1)、fiboB(N-2) 而非 Fibo 自身），原解析指点不准，已按第 7 页页图补齐题干、代码并重写解析，修复后核验通过；20解析补充 0/1 边界说明（自然数含 0 亦属非质数且不可分解），官方判定保留、歧义记录 unresolved。本批无编程题，tests 全为空。范围外上下文（第 1 页单选答案表 C C D A B A C B D B D B B C B 与网站单选答案亦一致）未纳入本轮核验与输出。"
+  }
+}

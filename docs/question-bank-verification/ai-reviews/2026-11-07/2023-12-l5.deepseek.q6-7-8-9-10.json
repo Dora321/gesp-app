@@ -1,0 +1,251 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:39:38.913Z",
+  "completedAt": "2026-11-07T11:45:33.548Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31604,
+    "completion_tokens": 19667,
+    "total_tokens": 51271,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16287
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0165408,
+      "allowance": 0.00992448,
+      "tokens": {
+        "input": 31604,
+        "output": 19667,
+        "reasoning": 16287,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF卷头为 CCF GESP C++ 五级 2023年12月；第1页答案表与第6-10题题号、选项顺序可对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页原图题6的题干、代码和选项齐全；网站 code 字段中的 foo 函数与PDF代码逐行一致。注意网站 sourcePage 元数据标为4，但PDF原图题6在第3页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 四项文字与PDF第3页原图一致，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题为 A；0起始索引为0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析为模板化描述，只称A正确，没有说明 foo 是欧几里得算法、rc 统计非终止调用次数、x<10 时步数有限的推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "explanation": "官方答案：A。\n\nfoo 是欧几里得算法：y==0 时返回 x，否则递归 foo(y, x%y)，返回的是 gcd(x,y)，不是“最大公共质因子”，也不是最小公倍数，因此 C、D 错。只要 y 最终变为 0，递归就会终止；在通常的非负整数输入下 x%y 的绝对值小于 y，不会无限递归，B 错。rc 只在 y!=0 的递归分支自增，统计的是非终止调用的次数。x<10 时，进入欧几里得过程后第一个参数很快降到小于 10，步数只有很小的常数，远小于 20；即使初始 y 很大，前一步交换后也会归入这一范围，因此 A 正确。"
+        },
+        "tests": [],
+        "unresolved": [
+          "网站 sourcePage 标注为4，PDF原图题6在第3页；输出 sourcePages 记为[3]，源数据页码需另修。"
+        ]
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "题干在PDF第3页底部，代码和选项在第4页；网站 code 缺少PDF原图中第二个完全相同的 for 收集循环，题面代码不完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 表达式顺序与PDF第4页一致，答案映射未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为 C；0起始索引为2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析把C的错因仅归为强制转换，未交代 operator+ 从下标1复制、D 也不能匹配重载、原题选项有类型歧义；需重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "code": "vector<int> operator +(vector<int> lA, vector<int> lB)\n{\n    vector<int> lst;\n    for (int i = 1; i < lA.size(); i++)\n        lst.push_back(lA[i]);\n    for (int i = 1; i < lB.size(); i++)\n        lst.push_back(lB[i]);\n    return lst;\n}\n\nvector<int> qSort(vector<int> lst)\n{\n    if (lst.size() < 2) return lst;\n    int pivot = lst[0];\n    vector<int> less, greater;\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n    return __________________________________________;\n}",
+          "explanation": "官方答案：C。\n\n快速排序的划分结果是：less 中元素 <= pivot，greater 中元素 > pivot，递归排好两段后，基准 pivot 应夹在两段中间，即“排好的 less + pivot + 排好的 greater”。A 把 pivot 放到最后，B 把 pivot 放到最前，均破坏左小右大的顺序。C 的骨架是左-中-右，但 (vector<int>)pivot 不是“只含 pivot 一个元素的向量”：它按 vector 的大小构造函数生成 pivot 个 0（pivot 非负时），与原意不符，因此按官方答案 C 是错误说法。D 直接写 + pivot 也不能匹配题中只接受两个 vector<int> 的 operator+，说明原题选项本身有类型/重载歧义；此处保留官方答案 C，不擅自改答案。另：PDF代码的 operator+ 从下标1开始复制，会丢弃每个参数的首元素，且 qSort 原图有重复收集循环，均属于原题代码缺陷。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原题选项/重载存在类型歧义：D 的 qSort(less)+pivot+qSort(greater) 不能直接匹配仅接受 vector<int> 的 operator+；C 的 (vector<int>)pivot 构造语义也不是单元素 pivot。保留官方答案 C，争议记录。"
+        ]
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页题8包含 isPrimeA/isPrimeB 两段完整代码；网站题面没有 code 字段，读者无法看到循环上界，属于必要代码缺失。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF选项A-D均含两个复杂度判断和结论；网站 options 把复杂度全部删掉，且A/D都简写成“isPrimeA()优于isPrimeB()”，信息缺失。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为 B；0起始索引为1，与网站 answer=1 一致；修复选项后B仍为正确项。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析只说B更优，未按 N/2 与 sqrt(N) 推导，也未逐项排除 A/C/D 的复杂度错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "code": "bool isPrimeA(int N)\n{\n    if (N < 2)\n        return false;\n    for (int i = 2; i <= N / 2; i++)\n        if (N % i == 0)\n            return false;\n    return true;\n}\nbool isPrimeB(int N)\n{\n    if (N < 2)\n        return false;\n    for (int i = 2; i <= sqrt(N); i++)\n        if (N % i == 0)\n            return false;\n    return true;\n}",
+          "options": [
+            "isPrimeA() 的最坏时间复杂度是 O(N/2)，isPrimeB() 的最坏时间复杂度是 O(log N)，isPrimeA() 优于 isPrimeB()",
+            "isPrimeA() 的最坏时间复杂度是 O(N/2)，isPrimeB() 的最坏时间复杂度是 O(N^(1/2))，isPrimeB() 绝大多数情况下优于 isPrimeA()",
+            "isPrimeA() 的最坏时间复杂度是 O(N^(1/2))，isPrimeB() 的最坏时间复杂度是 O(N)，isPrimeA() 优于 isPrimeB()",
+            "isPrimeA() 的最坏时间复杂度是 O(log N)，isPrimeB() 的最坏时间复杂度是 O(N)，isPrimeA() 优于 isPrimeB()"
+          ],
+          "explanation": "官方答案：B。\n\nisPrimeA 的循环上界是 N/2，最坏要检查约 N/2 个因子，时间复杂度为 O(N)（写成 O(N/2) 也等价于 O(N)）；isPrimeB 的循环上界是 sqrt(N)，最坏检查约 sqrt(N) 个因子，时间复杂度为 O(sqrt(N))=O(N^(1/2))。因此 isPrimeB 在绝大多数情况下明显快于 isPrimeA。A 把 isPrimeB 说成 O(log N) 且说 A 更优，错误；C 把两个复杂度写反，错误；D 把 isPrimeA 说成 O(log N) 且说 A 更优，错误。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在PDF第4页底部，代码和选项在第5页；网站 question、code 与PDF一致，包括 bSearch 用 lst.size() 作为 High 的原样缺陷。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 与PDF第5页一致，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为 D；0起始索引为3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析逐项分析把A/B/C误说成边界或mid更新有误，实际三项表述正确；需改为动态规划不符合代码特征。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "explanation": "官方答案：D。\n\n这段代码按中间下标 Mid 比较，目标较小则递归左半区间，较大则递归右半区间，因此它同时体现了二分法、分治思想和递归实现；A、B、C 都是正确描述。动态规划要求把问题拆成重叠子问题并保存子问题结果，本题没有状态表和重叠子问题，D 错误。附注：bSearch 把 High 初值写成 lst.size()，标准闭区间应为 lst.size()-1；当查找值不小于末尾元素时可能访问 lst[N]，这是原题代码的边界缺陷，但不影响本题选 D。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原题 bSearch 的 High 初值用 lst.size()，标准闭区间应为 lst.size()-1，查找值不小于末尾元素时可能访问 lst[N]；这是原题代码边界缺陷，不影响本题选D。"
+        ]
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干与PDF第5页第10题一致；网站少了“上题的”三字，不改变所指的 _binarySearch。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A-D 的复杂度与PDF一致，仅 log n/N 大小写排版差异，不影响匹配；顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题为 B；0起始索引为1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析只有“O(log n)”结论，未说明区间折半推导，也未提示 vector 按值传递导致的拷贝开销争议。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "explanation": "官方答案：B。\n\n_binarySearch 每次用 Mid 比较后，把查找区间缩小为原来的一半，最多递归 O(log N) 层，每层只做常数次比较；按二分查找的比较次数计，时间复杂度为 O(log N)。因此 A、C、D 均不对。注意：代码参数 vector<int> lst 是按值传递，每次递归会复制整个向量；若把复制开销也计入，严格总开销会达到 O(N log N) 量级。本题按常规二分查找/官方答案取 B，复制开销作为代码实现瑕疵保留说明。"
+        },
+        "tests": [],
+        "unresolved": [
+          "_binarySearch 的 vector<int> lst 为按值传递，每层递归复制整个向量；若计入拷贝开销，严格总开销可为 O(N log N)。官方答案B按比较次数取O(log N)，保留争议。"
+        ]
+      }
+    ],
+    "summary": "5题均对照PDF页图与第1页答案表核验：题6答案A正确，但网站解析模板化且 sourcePage 页码元数据与PDF第3页不符；题7官方答案C正确，但网站 code 漏掉原图第二个重复的 for 收集循环，解析也需重写，并记录选项/重载歧义；题8官方答案B正确，但网站缺 isPrimeA/isPrimeB 代码且选项丢失复杂度信息，需补全代码、选项和解析；题9官方答案D正确，但现解析误判A/B/C，需重写，并保留原题 bSearch 的 High 越界缺陷；题10官方答案B正确，需补充分治折半推导及按值传递 vector 的复杂度争议。所有5题均为单选题，referenceCode 不适用。"
+  }
+}

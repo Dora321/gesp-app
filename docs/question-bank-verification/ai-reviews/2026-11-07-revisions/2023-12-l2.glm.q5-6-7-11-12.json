@@ -1,0 +1,238 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "glm",
+  "questionIds": [
+    5,
+    6,
+    7,
+    11,
+    12
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T18:01:50.733Z",
+  "completedAt": "2026-11-08T18:06:41.959Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51340,
+    "completion_tokens": 21379,
+    "total_tokens": 72719,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16665
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0183905,
+      "allowance": 0.0183905,
+      "tokens": {
+        "input": 51340,
+        "output": 21379,
+        "reasoning": 16665,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "58018731e105f6b29cf8e95894faf719ceb5f94bedb36e033f0510d1bfe0b6ce",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 二级 / 2023 年 12 月」，与 paperId 2023-12-l2（2023 年 12 月 C++ 二级）一致；单选题答案表（15 题）在第 1 页，判断题答案表在第 5 页，与候选登记来源相符。"
+    },
+    "questions": [
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干「下面C++代码用于判断N（大于等于2的正整数）是否为质数（素数）……正确的是（ ）」与候选一致；8 行代码逐行比对：cin >> N; / for(i = 2; i < N/2; i++) / if(N % i == 0){ / cout << N << \" 不是质数\"; / break; / } / if(i >= N/2) / cout << N << \" 是质数\";，候选仅省略行号、语句顺序完全一致，选项中引用的第 2/5/7 行与代码行对应无误。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A「代码能正确判断N是否为质数」、B「代码总是不能判断N是否质数」、C「删除第5行 break ，将能正确判断N是否质数」、D「代码存在漏洞，边界存在问题，应将第2行和第7行的 N / 2 改为 N / 2 + 1」与 PDF 第 2 页逐字一致（仅排版空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 D，0 起始索引 3，候选 answer=3 一致；独立枚举 N≥2：素数（2、3、5、7、11…）均正常输出「是质数」，偶合数 ≥6 在 i=2 命中、奇合数（9、15、21、25、27、33、35、49…）因最小质因子 ≤√N < N/2 必在区间内命中，唯一误判为 N=4（N/2=2，循环一次不执行，i=2≥2 误输出「4 是质数」），与官方答案 D「边界问题」相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析的 N=4 逐点跟踪（i<2 不成立→i 仍为 2→2≥2 误报）经独立重算成立；「仅 N=4 误判」的论证成立（偶合数 2<N/2 ⇔ N>4 时 i=2 命中，奇合数 p≤√N，2p≤2√N<N-2 对 N≥9 成立）；修复验证成立（改为 i<N/2+1 后 N=2/3/5 循环体不执行但 i≥N/2+1 输出「是质数」正确，N=4 在 i=2 命中输出「不是质数」）；C 项行为成立（删 break 后 N≥6 合数命中不停止、循环正常结束至 i=N/2，if(i>=N/2) 恒成立再输出「是质数」，与「不是质数」矛盾，N=4 仍误判）。无遗留错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "经我独立逐点复核（N=2~9 及 15/21/25/49 等跟踪、唯一误判 N=4 的完整论证、D 修复后的多点重放、C 项删 break 后的双重输出），上一轮修订解析全部成立，候选无需再改，答案 D 与题面维持。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题 8 行代码逐行比对：N =4; / for(int i =0; i < N; i++){ / for(int j =1; j < i; j++) / if (i* j % 2 ==0) / cout << i << \"#\";（图中为斜体 i，等宽字形易误读为 1，由选项 A 2#3#0 与答案表可证为变量 i） / continue; / } / cout << \"0\";。候选代码逐行一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 2#3#0、B 1#2#0、C 1#0#、D 2#3# 与 PDF 第 2 页内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 A（索引 0），候选 answer=0 一致；独立跟踪：i=0/1 内层 j<i 均不成立无输出，i=2 时 j=1 命中 2*1%2==0 输出 2#，i=3 时 j=1 奇跳过、j=2 时 3*2=6 偶输出 3#，外层结束后输出 0，合计 2#3#0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐轮跟踪（i=0/1 不执行、i=2 单次、i=3 经 j=2）与我独立跟踪一致；continue 位于外层循环体末尾、本轮本就结束故为空操作的说明正确；B 错在 i=1 无输出、C 双错、D 漏外层 cout<<\"0\" 的逐项判断均成立；易错提醒中「N 改大且 i 为偶数时无 break 可对同一 i 连续输出多次」经 i=4 重放成立（j=1、2、3 时 4*j 均为偶，将连输三次 4#）。无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "上一轮修订已替换原文错误论据（「i*j 奇偶不变故每个 i 最多打印一次」），候选现版逐轮跟踪完整且含正确的多输出外推提醒，我独立跟踪 2#3#0 无分歧，核准维持。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末第 7 题题干「下面C++代码执行后的输出是（ ）」，代码在 PDF 第 3 页共 9 行：cnt =0; / for(i =1; i < 10; i++) / for(j = 1; j < i; j += 2) / if (i* j % 2 ==0){ / cnt++; / break; / } / if(i>=10) cout << cnt << \"#\"; / cout << cnt ;。候选逐行一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 0、B 8#8、C 4、D 4#4 与 PDF 第 3 页内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 D（索引 3），候选 answer=3 一致；独立推导：步长 2 使 j 恒为奇数，i*j 奇偶性由 i 决定，偶数 i=2/4/6/8 各在 j=1 命中一次（cnt=4），奇数 i 与奇 j 乘积恒奇不命中；外层正常结束 i=10，if(i>=10) 输出 4#，随后无条件 cout<<cnt 输出 4，合计 4#4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐轮跟踪表经核对：i=3 时 j 仅能取 1（j=3 不满足 j<i，与上轮修复一致）、i=5 取 j=1,3、i=7 取 j=1,3,5、i=9 取 j=1,3,5,7，均与内层边界一致；「循环结束 i=10、if 必然成立、cout<<cnt 无花括号限制必执行」的说明成立；A/B/C/D 逐项判断正确。无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "上一轮已修正 i=3 行误列 j=3 的跟踪错误；候选现版逐轮边界（含 i=9 时 j 至 7、j=9 退出）经我独立复核无误，输出 4#4 与答案表一致，核准维持。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图：for (i=1; i < 100+1; i++) / if(________) / cout << i << \" \";（3 行填空形式）。候选等价改写为 for(int i=1; i<=100; i++){ if(________) cout << i << \" \"; }，i<100+1 与 i<=100 语义相同，覆盖 1~100 含 100；原文示例短语「如16是4的平方」为修饰性省略，不影响填空语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A int(sqrt(i)) * int(sqrt(i)) = i（赋值号）、B int(sqrt(i)) == sqrt(i)、C int(sqrt(i)) * int(sqrt(i)) == i、D int(sqrt(i)) = sqrt(i)（赋值号），与 PDF 第 4 页逐项一致（仅 B/D 内部排版空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 C，0 起始索引 2，候选 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：A/D 左侧为临时右值（乘积表达式/函数调用结果）不可被赋值，编译错误，判断成立；C 的整数域判定经验证（i=16：4×4=16 命中；i=15：3×3=9≠15 排除；i=24：4×4=16≠24 排除）可靠；候选对 B 采用如实表述——不再虚构「sqrt(9) 可能返回 2.999999」，改述为「非稳健写法」并披露 1~100 范围、IEEE 正确舍入实现下 B 与 C 输出通常一致的单选唯一性争议，与我的独立数值复核结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "选项 B（int(sqrt(i)) == sqrt(i)）在 1~100 范围、IEEE 正确舍入的常见实现下，对完全平方数 sqrt 返回精确整数值（如 sqrt(9)=3.0），int() 截断后比较成立，B 通过的数集与 C 相同（非平方数如 15、24 经平方还原即可排除），故单选唯一性存在争议；此为官方源题内在不严谨，解析已如实披露，站内维持官方答案 C 不擅自定案。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "候选解析（上轮重写稿）经我独立数值复核：16/15/9/24 等点验证成立，A/D 非左值赋值编译错误的定性正确，B 的争议披露完整且无虚构技术论据；内容与官方答案一致且无事实错误，无需修改，争议以 unresolved 保留。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页右图 10 行代码逐行比对：1 cin >> N; / 2 for (i = 0; i < N; i++){ / 3 nowNum = 0; / 4 for (j = 0; j < i+1; j++){ / 5 cout << nowNum << \"\";（引号内为空串） / 6 nowNum += 1; / 7 if (nowNum == 10) / 8 nowNum = 0; / 9 } / 10 }。候选代码与行号说明（自第 1 行起计）完全吻合，选项引用的第 2/7/8/9 行均可对应；第 5 行空串与左图各行紧连无空格的输出一致。左图顶部「12」为输入值标注（不参与输出），候选已按标注处理，下方 12 行效果（0 至 012345678901）与原卷一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A「与第8行下面填入一行：cout << nowNum;」、B「与第2行下面填入一行：cout << endl;」、C「与第7行下面填入一行：cout << nowNum;」、D「与第9行下面填入一行：cout << endl;」与 PDF 第 4 页一致（顺序及行号引用无误）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 D，0 起始索引 3，候选 answer=3 一致；独立验证：原代码无任何换行，在每轮内层 } 之后（仍在外层循环体内）补 cout << endl; 后，N=12 依次输出 0、01、012、…、0123456789、01234567890（i=10 时 nowNum 到 10 清零，第 11 个数字为 0）、012345678901（i=11 同理第 12 个数字为 1），共 12 行，与左图逐行一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "D 的位置结论正确，但候选对 A、C 的机制描述与第 7 行 if 无花括号的 C++ 结合规则不符——A：第 7 行 if 的唯一受控语句是第 8 行 nowNum = 0;，插到第 8 行下面的语句已不在 if 内，而是内层循环体末尾语句，每次内层迭代都执行（我在原代码上重放：i=0 行原「0」将变为「01」，从第 1 行起即被打乱），候选「只在个位回卷时额外输出一个 0、仅第 10~12 行受影响」不成立；C：插入行顶替第 8 行成为 if 的唯一受控语句，原 nowNum = 0; 变为无条件执行，每轮内层迭代结束时 nowNum 都被清回 0，永远到不了 10，候选「回卷时 nowNum 仍为 10 会额外输出 \"10\"」描述的分支根本不会触发（实际输出为第 2 行起每行若干个 0）。答案不受影响，解析需按实际语法重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（官方答案表第 12 题为 D，对应索引 3）**\n\n**核心解析：**\n左图为输入 N=12 的效果（顶部 12 是输入值标注）：共 12 行，第 k 行输出从 0 开始的 k 个连续个位数，数字到 9 后回到 0 循环（所以有 01234567890 这样的行）。现有代码只在行内输出数字、没有任何换行；每行结束的位置是内层 for 的右花括号之后，即第 9 行（内层 }）下面，此处仍在外层循环体内，补 cout << endl; 即可实现每行一换行——按原代码逐行核对：N=12 时各行长度恰为 1~12，且 nowNum 在等于 10 时清零，与左图 01234567890、012345678901 两行完全吻合，故选 D。\n\n**选项逐项分析：**\n- **A（第 8 行下加 cout << nowNum;）**：❌ 第 7 行的 if 没有花括号，第 8 行 nowNum = 0; 才是 if 唯一受控的语句；插到第 8 行下面的语句已不在 if 内，而是内层循环体的最后一条语句，每次内层迭代都会执行——每个数字输出后还会再输出更新后的 nowNum，从第 1 行起（原「0」将变成「01」）所有行都会被打乱，并非只影响发生回卷的第 10~12 行。\n- **C（第 7 行下加 cout << nowNum;）**：❌ 插入行顶替第 8 行成为第 7 行 if 唯一受控的语句，原第 8 行 nowNum = 0; 随之变成无条件执行：每轮内层迭代结束时 nowNum 都被清回 0，永远到不了 10，插入行中的额外输出一次也不会发生，第 2 行起各行都变成若干个 0，与左图不符。\n- **B（第 2 行下加 cout << endl;）**：❌ 插入行位于每轮外层循环体的开头，先换行再输出数字，整体多出一个行首空行，行数与左图不符。\n- **D**：✅ 位置在内层循环（第 9 行 }）之后、外层循环之内，每行末尾换行，与左图逐行一致。\n\n**易错提醒：**\n- 每行只执行一次的语句要放在内层循环之外、外层循环体之内。\n- 无花括号的 if 只控制紧跟的一条语句：在第 8 行下插入会使语句脱离 if 控制，在第 7 行下插入会使语句顶替原来的受控语句，两种插入都改变控制流；判断插入效果必须按 C++ 的实际结合规则，而不是缩进外观。\n- 图首的 12 是输入标注，参与输出的是其下的 12 行。\n\n**考点：** 嵌套循环的输出控制、换行语句的放置位置、无花括号 if 的结合规则、按行号定位插入点"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "我按 C++ 语法在第 7 行 if 无花括号的前提下对四个插入点做了独立重放：A 的插入行每次内层迭代执行（第 1 行即被打乱）、C 的插入行顶替 if 语句且原清零变无条件执行（nowNum 在 1 与 0 间震荡、永到不了 10，「额外输出 \"10\"」的旧说法被否决），证实初核（DeepSeek V4.1）对 A/C 机制的修正正确、候选（承上一轮）对 A/C 的描述错误；初核对 B/D 的分析维持有效。采纳修正解析文本（已补充 nowNum 永到不了 10 的精确因果），answer=3 与题面（空串、行号说明）经第 4 页原卷比对无误，不做改动。"
+      }
+    ],
+    "summary": "本次复核题 5、6、7、11、12：题 5（质数判定边界）、6（嵌套循环输出 2#3#0）、7（双输出 4#4）的题面、选项、答案、解析经独立重放全部通过，无改动；题 11 官方答案 C 与候选一致，解析如实披露 B 项在 1~100 常见实现下与 C 输出一致的单选唯一性争议（源题内在不严谨，保留 unresolved，站内维持官方答案）；题 12 答案 D 正确，但候选解析对无花括号 if 结合规则下 A、C 两个插入点效果的描述有误（A 的插入行并非在 if 体内、从第 1 行起即打乱输出；C 的插入行顶替 if 语句使 nowNum=0 无条件执行、「额外输出 10」的分支不会发生），已按 C++ 语义重放核验并给出修正解析，答案与题面不变。"
+  }
+}

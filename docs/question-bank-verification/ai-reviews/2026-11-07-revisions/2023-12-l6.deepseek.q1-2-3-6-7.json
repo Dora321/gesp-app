@@ -1,0 +1,232 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    6,
+    7
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T16:33:56.304Z",
+  "completedAt": "2026-11-07T16:38:11.196Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45160,
+    "completion_tokens": 20720,
+    "total_tokens": 65880,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18396
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.019206,
+      "allowance": 0.0115236,
+      "tokens": {
+        "input": 45160,
+        "output": 20720,
+        "reasoning": 18396,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d809ace7c7124a6467b5453bba5e6ef63aa745a19c1b49efb3d3aa5d9610bfc0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 六级 2023 年 12 月”，与 2023-12-l6 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干“关于C++类和对象的说法，错误的是( )。”与候选一致；本题为纯文字题，无代码图。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D 四项顺序和文字与 PDF 第 1 页逐条一致：A 一切皆对象、B 可自定义类并实例化、C 内置函数和自定义函数都是类或者对象、D 可在自定义函数中嵌套定义新的函数。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 格为 D（0 起始索引 3），候选 answer=3；独立判断 D 明确违反标准 C++：函数体内不能直接定义常规具名函数，lambda 不是嵌套定义常规函数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析已区分官方命题口径与严格 ISO C++ 语义：指出 D 为错误项，lambda 不等于嵌套具名函数；同时说明 A、C 按严格语义不严谨，但官方答案锁定 D，未擅自改答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷 A“一切皆对象”、C“函数都是类或者对象”按严格 ISO C++ 语义均不成立，属原卷命题口径瑕疵；官方答案表锁定 D，解析已说明，不据此改答案。"
+        ]
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题代码可见 class Rectangle、private 中嵌套 class Point、Point a,b,c,d、double length/width、public:；候选用“...”和“};”补全被截断部分，不改变嵌套关系与访问控制判断。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D 顺序与 PDF 第 1 页一致；C 为“内部类可以随便访问，不需要通过外部类来访问”，D 含 Rectangle::Point 限定名写法。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 格为 C（0 起始索引 2），候选 answer=2；独立判断 C 错误：嵌套类名字受外部类作用域与访问控制约束，不能脱离外部类随便访问。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析先说明 Point 位于 private 区、类外直接使用 Rectangle::Point 会被访问控制拒绝，再说明 D 仅在官方口径下指限定名写法；与答案 C 不矛盾，并明确保留 D 的表述瑕疵。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷选项 D 中“可以通过外部类 Rectangle 来访问 Rectangle::Point”在 Point 为 private 时按严格访问控制不成立，属选项措辞瑕疵；官方答案 C 锁定，解析已说明，不据此改答案。"
+        ]
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页代码行号与候选逐行对应：第 2 行 using namespace std;、第 3 行 class newClass、第 6 行 static int objCounter;、第 7 行空行、第 8 行 };、第 9 行 int newClass::objCounter=2;、第 10 行 main、第 14/15 行两个 cout；第 1 行按语法应为 #include <iostream>，候选与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D 四项文字与 PDF 第 2 页一致；第 14 行、第 15 行、第 6 行的行号指称在候选代码中均已对齐。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 格为 C（0 起始索引 2），候选 answer=2；静态成员在类外初始化为 2 且无自增，第 14 行类名访问、第 15 行对象名访问均合法，故“两行都正确”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析所述第 6 行为静态成员声明、第 9 行为类外初始化、第 14/15 行为两个 cout，与修正后行号完全一致；D 改为 objCounter += 1 在类内声明处非法，判定成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 6 题代码包含 typedef struct LinkList、int data、LinkList* next、LinkList* prev、ListInit 中 new LinkNode、next/prev 置 NULL、data=-1；候选 question 与 code 均已是本题代码，无上题代码串入。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 单向链表、B 双向链表、C 循环链表、D 指针链表，四项顺序与文字和 PDF 第 3 页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 格为 B（0 起始索引 1），候选 answer=1；节点同时含 next 与 prev，初始化均置 NULL，构成双向链表而非单向或循环链表。D“指针链表”非标准术语。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以 next+prev 两个指针判定双向链表，以 next/prev 均初始化为 NULL 排除循环链表，并正确排除单向链表及“指针链表”，与答案 B 独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 7 题为纯文字题：“对 hello world 使用霍夫曼编码（Huffman Coding），最少bit（比特）为（ ）。”候选题干与之一致，本题无代码。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A. 4、B. 32、C. 64、D. 88，四项顺序与文字与 PDF 第 3 页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 格为 B（0 起始索引 1），候选 answer=1；独立重算 hello world 的哈夫曼 WPL=32，故最少 32 bit。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 B 与 WPL=32 正确，但解析有两处实质问题：其一称“4 bit/字符是 8 种字符的定长下界”不成立，8 种字符的定长编码下界是 ceil(log2 8)=3 bit/字符；其二所列合并序列“1+1，1+1，1+2，1+2……”不符合“每次取最小两个”，因六次 1 的前两轮合并后仍剩两个 1，第三轮应先合并 1+1 而非 1+2。需替换解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**解析：**\n对 hello world（共 11 个字符）统计频率：l=3、o=2，h、e、空格、w、r、d 各 1，共 8 种字符。\n\n按哈夫曼算法每次合并权值最小的两个节点，可取得最优树，例如合并过程为：1+1=2，1+1=2，1+1=2，2+2=4，2+2=4，3+4=7，4+7=11。带权路径长度 WPL 等于各次合并所得权值之和：2+2+2+4+4+7+11=32，因此最少需要 32 bit。\n\n- A 4：这不是整段编码的总位数；8 种字符的定长编码下界为 ceil(log2 8)=3 bit/字符，11 个字符按定长也需 33 bit，4 无法表示整段编码。\n- B 32：正确，等于最优哈夫曼树的 WPL。\n- C 64：无对应计算依据。\n- D 88：这是按每字符 8 bit 的定长 ASCII 计算 8×11=88 bit；哈夫曼编码可压缩到 32 bit。\n\n**易错点：** 空格也是字符；WPL 可直接用各次合并权值之和计算，无需逐字符统计码长。"
+        },
+        "tests": [],
+        "unresolved": [
+          "requiresCode=true 与原题无代码不符；该字段不在允许修改字段内，待平台处理。"
+        ]
+      }
+    ],
+    "summary": "已核验 1、2、3、6、7 五题。五题候选答案均与 PDF 答案表一致：1=D、2=C、3=C、6=B、7=B。第 1、2 题源卷选项本身存在严格 C++ 语义瑕疵，候选解析已作官方口径与严格语义区分，保留争议。第 3 题修正行号后自洽。第 6 题代码字段已是本题链表代码。第 7 题答案 B 正确，但候选解析的“4 bit 为定长下界”和哈夫曼合并序列不成立，已提供更正后的完整解析；requiresCode 元数据问题保留待平台处理。"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:22:28.056Z",
+  "completedAt": "2026-11-07T12:25:27.082Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31382,
+    "completion_tokens": 15539,
+    "total_tokens": 46921,
+    "prompt_tokens_details": {
+      "cached_tokens": 31232
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14094
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0094396,
+      "allowance": 0.00566376,
+      "tokens": {
+        "input": 150,
+        "output": 15539,
+        "reasoning": 14094,
+        "cache_read": 31232,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 五级 2023年12月”，与 paperId 2023-12-l5 对应。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第6题原文为“插入排序有时比快速排序时间复杂度更低。（ ）”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以“正确/错误”呈现判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第6格为“√”，即正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析理由成立：近乎有序时插入排序可达到 O(N)，而快排取端点基准可能退化至 O(N^2)；独立比较确认“有时更低”为真。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第7题题意及代码一致；代码为全局 char s[10]，循环内先取 N%8 追加到 rst，再执行 N/=8。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以“正确/错误”呈现判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第7格为“×”，即错误=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析把错误归因于“取模和除法顺序”不准确：先取模再除法本身正确，真正错误是每轮把最低位直接追加到 rst，导致八进制串倒序；如 N=8 输出 01 而非 10。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：错误。代码先执行 s[0]=N%8+'0' 并把该字符追加到 rst，再执行 N/=8，因此每轮追加的是当前最低位，最终八进制串是倒序的。例如 N=8 时输出 01 而不是 10，N=10 时输出 21 而不是 12。正确做法是每轮把新数字放到结果前面，或先保存各位再逆序输出。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第8题原数组为 {2, 6, 3, 5, 4, 8, 1, 0, 9, 10}，目标序列为 {0, 1, 2, 3, 4, 5, 6, 8, 9, 10}，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以“正确/错误”呈现判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第8格为“√”，即正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析“sort 默认升序排序”正确；独立排序原数组得到 {0, 1, 2, 3, 4, 5, 6, 8, 9, 10}，与题干一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第9题原文为“小杨想写一个程序来算出正整数N有多少个因数，经过思考他写出了一个重复没有超过N/2次的循环就能够算出来了”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以“正确/错误”呈现判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第9格为“√”，即正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析用 sqrt(N) 配对枚举说明可行；也可初始化计数为 1（N 本身），循环 i=1..N/2 统计真因数，迭代次数不超过 N/2，结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第10题原文为“同样的整数序列分别保存在单链表和双向链中，这两种链表上的简单冒泡排序的复杂度相同”，网站简写为“单链表和双向链表上的简单冒泡排序的复杂度相同”，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以“正确/错误”呈现判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第10格为“√”，即正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析“都是 O(N^2)”正确；两种链表上的简单冒泡排序均需约 N(N-1)/2 次相邻比较，交换值或维护指针不改变渐近时间复杂度。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号21-25对应PDF第7页判断题第6-10题，官方答案依次为√、×、√、√、√，网站答案均一致。题面除25题作等价简写外均与PDF一致。22题代码确因低位先追加而未反转导致输出错误，但原解析对错误原因表述不准确，已提供解析改写草稿；其余题无需改动。"
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    5,
+    6,
+    7,
+    11,
+    12
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T14:57:00.574Z",
+  "completedAt": "2026-11-08T14:59:52.487Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34374,
+    "completion_tokens": 31122,
+    "total_tokens": 65496,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 28539
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0238293,
+      "allowance": 0.01429758,
+      "tokens": {
+        "input": 34374,
+        "output": 31122,
+        "reasoning": 28539,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "58018731e105f6b29cf8e95894faf719ceb5f94bedb36e033f0510d1bfe0b6ce",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF GESP C++ 二级 2023年12月”，与paperId 2023-12-l2一致；答案表也在第1页。"
+    },
+    "questions": [
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题题干与8行代码逐行对应：cin>>N; for(i=2;i<N/2;i++) if(N%i==0) 中 break 在第5行，第7行为 if(i>=N/2)，与选项行号引用一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四个选项与候选一致，D项为“应将第2行和第7行的 N/2 改为 N/2+1”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第5题为D，0起始索引3；独立按N≥2推导，原代码仅N=4误判，与D的修法正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "N=4跟踪、仅N=4误判、两处N/2+1修复（N=2/3/4/5/6/9等）及删除break后合数会再输出“是质数”的论断均独立核对成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题8行代码与候选逐行一致：N=4、外层i、内层j从1到i-1、continue在外层循环末、最后输出0；仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项A 2#3#0、B 1#2#0、C 1#0#、D 2#3#，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题为A，索引0；独立跟踪i=2输出2#、i=3的j=2输出3#，最后输出0，得2#3#0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐轮跟踪正确，并正确指出当前N=4每个i至多一次、若N增大偶数i可连续输出多次；无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页末题干与第3页代码：cnt=0; for(i=1;i<10;i++) for(j=1;j<i;j+=2) ... if(i>=10) 输出cnt加井号; 最后输出cnt，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项A 0、B 8#8、C 4、D 4#4，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为D，索引3；j恒为奇数，i=2/4/6/8各命中一次，cnt=4，外层结束后i=10，输出4#4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐轮跟踪含i=3时j仅到1、i=9时j到7，均与代码边界一致；break只跳内层，输出判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页原代码为 for(i=1;i<100+1;i++) if(____) cout<<i<<空格; 候选改写为 for(int i=1;i<=100;i++){...}，语义等价；省略“如16是4的平方”示例不影响填空。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A/B/C/D与候选一致，C为 int(sqrt(i))*int(sqrt(i))==i。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为C，索引2，候选answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选正确指出C的整数判定与A/D的赋值非左值错误；同时如实说明B在1~100常见实现下也可能得到同样输出，保留单选唯一性争议，不虚构精度错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "B项 int(sqrt(i)) == sqrt(i) 在1~100的常见IEEE实现下对完全平方数返回精确整数值，通常也能得到与C相同的输出，单选唯一性存在争议；官方答案C，站内维持C，不作改动。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页右图10行代码与候选一致：第5行输出nowNum后接空串，第7行 if(nowNum==10) 无花括号，第9行为内层右花括号；左侧图顶部12为输入标注，候选行号说明正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项A/B/C/D与候选一致，均分别引用第8/2/7/9行。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为D，索引3；独立按原代码在每行之后补 cout<<endl; 后，N=12时输出与左图12行一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "D正确，但候选A、C项的流程解释有误：if无花括号时，A插入第8行后的语句不受if控制而是每次内层迭代执行；C插入第7行后的语句成为if体，原nowNum=0变为无条件执行，输出变成每行若干个0，并非“仅回卷多输出0”或“多输出10”。需改写解析；答案不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（官方答案表第 12 题为 D，对应索引 3）**\n\n**核心解析：**\n左图为输入 N=12 的效果（顶部 12 是输入值标注）：共 12 行，第 k 行输出从 0 开始的 k 个连续个位数，数字到 9 后回到 0 循环（所以有 01234567890 这样的行）。现有代码只在行内输出数字、没有任何换行；每行结束的位置是内层 for 的右花括号之后，即第 9 行（内层 }）下面，此处仍在外层循环体内，补 cout << endl; 即可实现每行一换行——按原代码逐行核对：N=12 时各行长度恰为 1~12，且 nowNum 在 10 时清零，与左图 01234567890、012345678901 两行完全吻合，故选 D。\n\n**选项逐项分析：**\n- **A（第 8 行下加 cout << nowNum;）**：❌ 原 if 没有花括号，第 8 行 `nowNum = 0;` 才是 if 的唯一受控语句；在第 8 行下插入的语句不在 if 体内，而是每次内层循环都执行。它会在每个数字输出后再输出更新后的 nowNum，所有行都会被打乱，不是只影响第 10~12 行。\n- **C（第 7 行下加 cout << nowNum;）**：❌ 插在 if 与第 8 行之间后，插入语句成为 if 的唯一受控语句，原来的 `nowNum = 0;` 变成无条件执行；于是每轮内层循环后 nowNum 都被清零，回卷分支不会触发，输出变成每行若干个 0，明显不符。\n- **B（第 2 行下加 cout << endl;）**：❌ endl 位于每轮外层循环的开头，先换行再输出数字，整体多出一个行首空行。\n- **D**：✅ 位置在内层循环之后、外层循环之内，与左图逐行一致。\n\n**易错提醒：**\n- “每行一次”的语句要放在内层循环之外、外层循环体之内。\n- 选项插入点要按 C++ 无花括号 if 的实际结合规则判断，缩进不改变 if 只控制下一条语句这一事实。\n- 图首的 12 是输入标注，参与输出的是其下的 12 行。\n\n**考点：** 嵌套循环的输出控制、换行语句的放置位置、按行号定位插入点"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验5题：题5、6、7的题面、选项、答案与解析均通过；题11答案与官方一致，但B项在1~100常见实现下也可能成立，唯一性争议保留；题12答案D正确，但原解析对无花括号if下A/C插入效果的判断有误，已给出解析修正，答案不变。"
+  }
+}

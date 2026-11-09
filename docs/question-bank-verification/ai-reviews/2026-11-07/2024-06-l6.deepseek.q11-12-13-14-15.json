@@ -1,0 +1,236 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:46:09.256Z",
+  "completedAt": "2026-11-07T11:48:36.616Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33846,
+    "completion_tokens": 13320,
+    "total_tokens": 47166,
+    "prompt_tokens_details": {
+      "cached_tokens": 33792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11073
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00810148,
+      "allowance": 0.00486089,
+      "tokens": {
+        "input": 54,
+        "output": 13320,
+        "reasoning": 11073,
+        "cache_read": 33792,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 六级 / 2024年06月”，与 paperId 2024-06-l6 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干为“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和( )。”，与当前题干仅空格差异。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页选项为 A 重叠子问题、B 分治法、C 贪心策略、D 回溯算法；当前选项 D 混入了循环队列 de_queue 代码及“42…51”等行号，属明显串页污染，需清理。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第11题对应 A；独立判断 DP 两个重要性质为最优子结构和重叠子问题，A 的 0 起始索引为 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析正确说明最优子结构与重叠子问题，并区分分治、贪心、回溯；与修订后的选项一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "重叠子问题",
+            "分治法",
+            "贪心策略",
+            "回溯算法"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干和 jump_recur/jump_dp 两个函数片段与当前题干一致；仅有空格、注释排版差异，未漏必要代码或条件。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF四选项 A-D 与当前一致（仅空格差异）：递归、动态规划、重复计算低效、代码量小效率高。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF单选答案表第12题对应 D；独立判断 D 将“代码量小”误当作“执行效率高”，为错误说法，D 的 0 起始索引为 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明递归与动态规划实现及复杂度差异，结论 D 错误，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6-7页 BFS 代码、树结构（5 为根，左 2 含 -4/3，右 17 含 9）及搜索数值 20 的题干与当前一致；当前 ASCII 树与 PDF 图等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项 A 5 2 -4 3 17 9、B -4 2 3 5 9 17、C 5 2 17 -4 3 9、D 以上都不对；顺序与当前一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF单选答案表第13题对应 C；按队列层序模拟，20 不存在时输出全树为 5 2 17 -4 3 9，C 的 0 起始索引为 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确按队列模拟层序遍历，说明 20 不在树中时会输出全部节点，并区分 DFS 与中序结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7-8页 DFS 代码（先压右子、再压左子）、引用上题树并搜索数值 20 的题干与当前一致；当前重复树图属等价呈现。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF四选项与当前一致：A 5 2 -4 3 17 9、B -4 2 3 5 9 17、C 5 2 17 -4 3 9、D 以上都不对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF单选答案表第14题对应 A；按栈后进先出模拟得到先序 5 2 -4 3 17 9，A 的 0 起始索引为 0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案结论正确，但原解析把 C 说成“访问根后先走右子树”不准确：C 实际是层序/BFS 序列，不是本 DFS 输出；需修正解析表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**推导过程：**\n\n栈后进先出。代码先压右孩子、再压左孩子，因此弹栈时左孩子先被访问，整体得到“根、左子树、右子树”的先序遍历。数值 20 不在树中，所以所有结点都会在查找失败前输出：\n\n`5 -> 2 -> -4 -> 3 -> 17 -> 9`\n\n逐项分析：\n- **A `5 2 -4 3 17 9`**：与先序序列一致，正确。\n- **B `-4 2 3 5 9 17`**：这是中序序列，不是本 DFS 的访问序列。\n- **C `5 2 17 -4 3 9`**：这是层序/BFS 序列，不是本 DFS 的先序序列。\n- **D 以上都不对**：错误，A 已正确。\n\n**易错点：** “先压入右孩子”并不等于“先访问右孩子”；由于栈后进先出，后压入的左孩子会先弹出，先压右、再压左正是为了得到先序遍历。\n\n**考点：** 二叉树、非递归深度优先搜索、栈、先序遍历。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页题干为“在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）。”，当前一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项 A 2、B 3、C 4、D 5，与当前一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF单选答案表第15题对应 C；按第14题 DFS 代码依次比较 5、2、-4、3，共 4 次，C 的 0 起始索引为 2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析前四步比较过程正确，但末句称比较次数等于根到目标路径节点数；本例路径 5→2→3 仅 3 个，而实际还比较了 -4，故该概括错误，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n**解析：**\nDFS 用**栈**实现：出栈时先与目标值比较，然后「先压右子、再压左子」（保证左子先出栈，等效先访问左子树）。\n\n搜索数值 3（存在于树中），逐次比较过程：\n1. 出栈 5，比较 5≠3（**第 1 次比较**），压入右子 17、左子 2\n2. 出栈 2，比较 2≠3（**第 2 次比较**），压入右子 3、左子 -4\n3. 出栈 -4，比较 -4≠3（**第 3 次比较**），无子节点\n4. 出栈 3，比较 3==3（**第 4 次比较**），命中返回\n\n共比较 **4** 个节点（5、2、-4、3），选 C。\n\n逐项分析：\n- **A 2**：错误，比较到 2 仍未命中，后面还要继续。\n- **B 3**：错误，比较到 -4 仍未命中。\n- **C 4**：正确，比较顺序为 5→2→-4→3。\n- **D 5**：错误，命中 3 后立即返回，不需要访问 17/9 分支。\n\n**易错点：** DFS 找到目标就立即返回，**不会**继续搜索右子树（17、9 不会被比较）；比较次数等于该非递归先序访问序列中从开始到目标（含目标）的节点数，不总是等于根到目标的路径长度——本例中 -4 虽不在 5→2→3 的路径上，但因为先序遍历先访问它，也被比较了一次。\n\n**考点：** 二叉树的深度优先搜索（非递归栈实现）"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验第11-15题。第11题选项 D 混入无关 de_queue 代码及行号，已给出清理草稿；第14题解析对选项 C 的描述不准确，已修正；第15题解析末句把比较次数误等同于根到目标路径节点数，已修正。其余题面、选项、答案和解析与 PDF 页图及官方答案表一致。对应 officialAnswer 0 起始索引依次为 0、3、2、0、2；五题均为单选题，无编程边界测试。"
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T05:50:02.651Z",
+  "completedAt": "2026-11-07T05:55:46.152Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31382,
+    "completion_tokens": 29307,
+    "total_tokens": 60689,
+    "prompt_tokens_details": {
+      "cached_tokens": 31232
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 27030
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0177004,
+      "allowance": 0.01062024,
+      "tokens": {
+        "input": 150,
+        "output": 29307,
+        "reasoning": 27030,
+        "cache_read": 31232,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF卷头为“CCF 编程能力等级认证 C++ 五级 2023年12月”，与paperId=2023-12-l5及已校验来源SHA f3e051516312e58303a5cd7130dc59b6b388cf9f一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干、fiboA/fiboB代码与站内question/code一致；第1、2项为1及递归/循环定义均未改变。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第1页B项完整为“fiboA( )更加符合斐波那契数列的数学定义，直观易于理解，而fiboB()需要将数学定义转换为计算机程序实现”；站内B项漏掉后半句。A/C/D与PDF一致，答案映射不受影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第1题C；站内answer=2（0起始）对应C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内解析独立比较递归重复子问题与迭代O(N)，说明代码量与效率不等价，能够推出C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "fiboA( )用递归方式，fiboB()循环方式",
+            "fiboA( )更加符合斐波那契数列的数学定义，直观易于理解，而 fiboB() 需要将数学定义转换为计算机程序实现",
+            "fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执行效率更高",
+            "fiboB( )虽然代码量有所增加，但其执行效率更高"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第1页题干还明确假设merge(int T[], int R[], int s, int m, int t)将有序的T[s..m]和T[m+1..t]归并到R[s..t]；站内question漏掉该假设，仅写“递归方式实现合并排序”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页及第2页A-D选项与站内顺序一致：A为m,t；B为m-1,m+1,t；C为m,m+1,t；D为m-1,m-1,t。站内$m-1$为LaTeX等价写法。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题C；站内answer=2对应C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内解析从m=(s+t)/2及左右闭区间推出[s,m]与[m+1,t]，并逐项指出A/B/D边界错误，能够独立支撑C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码以递归方式实现合并排序，并假设 merge(int T[], int R[], int s, int m, int t) 函数将有序（同样排序规则）的 T[s..m] 和 T[m+1..t] 归并到 R[s..t] 中。横线处应填上代码是（ ）。"
+        },
+        "tests": [],
+        "unresolved": [
+          "PDF第1页代码第10行及文本层显示merge(T2, SList, ...)，与基准情形TList[s]=SList[s]的输出契约不一致；若按此完整执行，长度大于2时父层T2可能未被递归结果填充，疑为原卷代码缺陷。该疑点不影响横线处按区间划分选C，但完整程序正确性保留待核验。"
+        ]
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干及fracA/fracB/main代码与站内code一致；stepCount初值、输出格式和调用顺序均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A-D四项输出串与站内options完全对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页答案表第3题D；站内answer=3对应D。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析仅笼统说stepCount先增加、第二次从新值开始，未说明fracA没有递归，也未列出fracB从2->到6->的完整序列，不能独立推出D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\nfracA(5)先把stepCount从0增至1并输出`1->`，循环算出120，返回后由main输出120，故前半段为`1->120`；随后输出`<===>`。fracB(5)从stepCount=1继续递归，每层先自增并输出，依次为`2->3->4->5->6->`，N=1时返回1并逐层乘回120，main最后输出120。完整输出为`1->120<===>2->3->4->5->6->120`，选D。A/B缺少3、4、5层输出，C误把fracB首次输出当作1。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干、isEven/swap/sortA代码与站内question/code一致；第3页D项结束，sourcePages应为[2,3]。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页至第3页A-D选项与站内一致：A为前奇后偶交换，B为前偶后奇，C/D为数值比较。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页答案表第4题A；站内answer=0对应A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内解析独立说明A会在前奇后偶时交换，B方向相反，C/D只按数值排序，并用[1,2]最小例验证，能够支撑A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干、Node结构、Insert函数及双向链表语境与站内question/code一致；sourceIntegrity=official-source-defect的既有标注保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A-D与站内一致；官方用逗号表达式，站内用分号分隔，语义等价。B检查pHead->next，A/C在空表或旧首节点为空时可能解引用空指针。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页答案表第5题B；站内answer=1对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内解析正确说明B需判断pHead->next以更新旧首节点的prev，并额外指出原卷命中尾结点时p->next->prev可能空指针解引用，未掩盖源卷缺陷。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "PDF第3页原程序在命中尾结点（包括唯一结点）时先执行p->next->prev，p->next可能为空，存在空指针解引用；该缺陷不改变填空答案B，但整段程序边界正确性保留待原卷或官方说明处理。"
+        ]
+      }
+    ],
+    "summary": "初审完成：Q1选项B截断需补全；Q2题干缺merge函数假设需补，另疑有原卷第10行merge目标缺陷；Q3现有解析不足以独立推出D需重写；Q4题面、选项、答案、解析一致；Q5选项与官方答案B一致，但保留原卷尾结点空指针缺陷。五题均已逐题对照PDF页图与文本层。"
+  }
+}

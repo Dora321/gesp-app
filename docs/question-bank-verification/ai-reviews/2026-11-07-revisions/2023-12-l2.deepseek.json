@@ -1,0 +1,472 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    5,
+    6,
+    7,
+    11,
+    12,
+    13,
+    15,
+    19,
+    21,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T14:57:00.574Z",
+  "completedAt": "2026-11-08T22:04:25.019Z",
+  "finishReason": "stop",
+  "inputSha256": "58018731e105f6b29cf8e95894faf719ceb5f94bedb36e033f0510d1bfe0b6ce",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF GESP C++ 二级 2023年12月”，与paperId 2023-12-l2一致；答案表也在第1页。\nPDF 卷头为 CCF GESP、C++ 二级、2023 年 12 月；第 1 页单选答案表与第 5 页判断题答案表用于逐题核对。"
+    },
+    "questions": [
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题题干与8行代码逐行对应：cin>>N; for(i=2;i<N/2;i++) if(N%i==0) 中 break 在第5行，第7行为 if(i>=N/2)，与选项行号引用一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四个选项与候选一致，D项为“应将第2行和第7行的 N/2 改为 N/2+1”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第5题为D，0起始索引3；独立按N≥2推导，原代码仅N=4误判，与D的修法正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "N=4跟踪、仅N=4误判、两处N/2+1修复（N=2/3/4/5/6/9等）及删除break后合数会再输出“是质数”的论断均独立核对成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题8行代码与候选逐行一致：N=4、外层i、内层j从1到i-1、continue在外层循环末、最后输出0；仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项A 2#3#0、B 1#2#0、C 1#0#、D 2#3#，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题为A，索引0；独立跟踪i=2输出2#、i=3的j=2输出3#，最后输出0，得2#3#0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐轮跟踪正确，并正确指出当前N=4每个i至多一次、若N增大偶数i可连续输出多次；无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页末题干与第3页代码：cnt=0; for(i=1;i<10;i++) for(j=1;j<i;j+=2) ... if(i>=10) 输出cnt加井号; 最后输出cnt，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项A 0、B 8#8、C 4、D 4#4，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为D，索引3；j恒为奇数，i=2/4/6/8各命中一次，cnt=4，外层结束后i=10，输出4#4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐轮跟踪含i=3时j仅到1、i=9时j到7，均与代码边界一致；break只跳内层，输出判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页原代码为 for(i=1;i<100+1;i++) if(____) cout<<i<<空格; 候选改写为 for(int i=1;i<=100;i++){...}，语义等价；省略“如16是4的平方”示例不影响填空。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A/B/C/D与候选一致，C为 int(sqrt(i))*int(sqrt(i))==i。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为C，索引2，候选answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选正确指出C的整数判定与A/D的赋值非左值错误；同时如实说明B在1~100常见实现下也可能得到同样输出，保留单选唯一性争议，不虚构精度错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "B项 int(sqrt(i)) == sqrt(i) 在1~100的常见IEEE实现下对完全平方数返回精确整数值，通常也能得到与C相同的输出，单选唯一性存在争议；官方答案C，站内维持C，不作改动。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页右图10行代码与候选一致：第5行输出nowNum后接空串，第7行 if(nowNum==10) 无花括号，第9行为内层右花括号；左侧图顶部12为输入标注，候选行号说明正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项A/B/C/D与候选一致，均分别引用第8/2/7/9行。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为D，索引3；独立按原代码在每行之后补 cout<<endl; 后，N=12时输出与左图12行一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "D正确，但候选A、C项的流程解释有误：if无花括号时，A插入第8行后的语句不受if控制而是每次内层迭代执行；C插入第7行后的语句成为if体，原nowNum=0变为无条件执行，输出变成每行若干个0，并非“仅回卷多输出0”或“多输出10”。需改写解析；答案不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（官方答案表第 12 题为 D，对应索引 3）**\n\n**核心解析：**\n左图为输入 N=12 的效果（顶部 12 是输入值标注）：共 12 行，第 k 行输出从 0 开始的 k 个连续个位数，数字到 9 后回到 0 循环（所以有 01234567890 这样的行）。现有代码只在行内输出数字、没有任何换行；每行结束的位置是内层 for 的右花括号之后，即第 9 行（内层 }）下面，此处仍在外层循环体内，补 cout << endl; 即可实现每行一换行——按原代码逐行核对：N=12 时各行长度恰为 1~12，且 nowNum 在 10 时清零，与左图 01234567890、012345678901 两行完全吻合，故选 D。\n\n**选项逐项分析：**\n- **A（第 8 行下加 cout << nowNum;）**：❌ 原 if 没有花括号，第 8 行 `nowNum = 0;` 才是 if 的唯一受控语句；在第 8 行下插入的语句不在 if 体内，而是每次内层循环都执行。它会在每个数字输出后再输出更新后的 nowNum，所有行都会被打乱，不是只影响第 10~12 行。\n- **C（第 7 行下加 cout << nowNum;）**：❌ 插在 if 与第 8 行之间后，插入语句成为 if 的唯一受控语句，原来的 `nowNum = 0;` 变成无条件执行；于是每轮内层循环后 nowNum 都被清零，回卷分支不会触发，输出变成每行若干个 0，明显不符。\n- **B（第 2 行下加 cout << endl;）**：❌ endl 位于每轮外层循环的开头，先换行再输出数字，整体多出一个行首空行。\n- **D**：✅ 位置在内层循环之后、外层循环之内，与左图逐行一致。\n\n**易错提醒：**\n- “每行一次”的语句要放在内层循环之外、外层循环体之内。\n- 选项插入点要按 C++ 无花括号 if 的实际结合规则判断，缩进不改变 if 只控制下一条语句这一事实。\n- 图首的 12 是输入标注，参与输出的是其下的 12 行。\n\n**考点：** 嵌套循环的输出控制、换行语句的放置位置、按行号定位插入点"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末至第 5 页第 13 题题干与候选一致：无人驾驶小汽车、声控智能驾驶、乘客告诉目的地、自动选择优化路线、告诉乘客后驶达；无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4—5 页选项 A 麦克风、B 扬声器、C 油量表、D 传感器，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 13 题为 C，0 起始索引 2；候选 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "题干要求系统告诉乘客选路结果，扬声器是输出反馈；传感器感知环境，麦克风接收语音目的地；油量表只显示油量，不参与选路决策，故 C 正确。解析推导与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题题干与候选一致：输入一个正整数 N，找出所有相邻因数对，示例输入 12 时因数对为 (1,2)、(2,3)、(3,4)，并问哪段代码找不到所有因数对。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页四段代码与候选 options 逐项一致：A/B 分别从 i=1、i=2 到 i<N，C 从 i=2 到 i<N/2 输出 (i-1,i)，D 从 i=1 到 i<N/2。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第 1 页答案表第 15 题为 B，0 起始索引 1，候选 answer=1 与官方一致；但按题干“输入一个正整数 N”的原文，C 在 N=4/6、D 在 N=2 也漏掉相邻因数对，官方单选答案存在争议，保留 B 为官方值。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析主干正确，但易错提醒中“N 为质数时不存在相邻因数对，四段代码都输出空”不成立：N=2 是质数，(1,2) 是相邻因数对，A 会输出它。需修正该句；N=12 逐项验证及 C/D 边界反例均无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（官方答案表第 15 题为 B，对应索引 1）**\n\n**核心解析：**\n以题面示例 N=12 检验：相邻因数对是 (1,2)、(2,3)、(3,4)，其中最小的 (1,2) 必须由 i=1 参与检查。\n\n- **A (for(i=1;i<N;…) 输出 (i,i+1))**：✅ i=1、2、3 依次命中三对，能找全。\n- **B (for(i=2;i<N;…))**：❌ i 从 2 开始，永远检查不到 i=1，(1,2) 必然漏掉——找不到所有因数对，本题答案。\n- **C (for(i=2;i<N/2;…) 输出 (i-1,i))**：✅（按示例 N=12）i=2 输出 (1,2)、i=3 输出 (2,3)、i=4 输出 (3,4)；起点虽是 2，但实际输出的第一对仍是 (1,2)，别被起点迷惑。\n- **D (for(i=1;i<N/2;…))**：✅ 按示例 N=12，i=1、2、3 分别输出三对，能找全。\n\n**严谨性说明：** 题干只说“输入一个正整数 N”（示例为 12）。若要求对任意 N 成立：C 的上界 i < N/2 检查不到 i = N/2，如 N=4 时漏掉 (1,2)、N=6 时漏掉 (2,3)；D 在 N=2 时也漏掉 (1,2)。因此严格读法下本题单选唯一性存在争议，官方答案按示例情形定为 B，站内维持官方答案 B。\n\n**易错提醒：**\n- 判断「找不到全部」先看起点：起点为 2 时 (1,2) 这一对永远不会出现（N 为偶数且 ≥2 时它是相邻因数对）。\n- C 用 (i-1, i) 输出，实际第一对是 (1,2)；!(N%i) 等价于 N % i == 0。\n- 验证时选因子较多的数（如 12）最有效。N 为大于 2 的质数时不存在相邻因数对，四段代码都输出空；但 N=2 是例外，(1,2) 是相邻因数对，A 会输出它。\n\n**考点：** 循环起点与上界、因数判定、代入验证法"
+        },
+        "tests": [],
+        "unresolved": [
+          "题干未限定 N=12：按“任意正整数 N”的严格读法，C 在 N=4/6 时漏掉 (1,2)/(2,3)，D 在 N=2 时漏掉 (1,2)，与 B 同为反例，单选唯一性存在争议；官方答案表为 B，站内保留官方答案并在解析中注明争议。"
+        ]
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 4 题为“在C++代码中，执行 srand(0) 后连续两次执行 rand() 的结果相等。”，与候选 question 一致；文本层有拆字噪声，页图可辨认为正常连写。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "官方判断题不设 A/B/C/D 选项；网站以“正确/错误”呈现，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 4 题为 ×（错误，索引 1），候选 answer=1 一致；srand(0) 固定序列，常见实现下连续两次 rand() 取序列第 1、第 2 个值通常不相等。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明 srand(0) 固定的是可重现序列，连续两次调用通常不相等，并注明 C++ 标准不保证相邻两次 rand() 必然相同或必然不同，判定“错误”论证充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题四行代码为 Sum=0; for(i=-500;i<500;i++) Sum += i; cout << Sum;。候选 question 代码块与独立 code 字段均一致（Sum += i，不是 Sum += 1）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题为（ ）判断式作答，官方未提供 A/B/C/D 选项；options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 题为 ×（错误，索引 1），候选 answer=1 一致；按代码对 -500 到 499 求和得 -500，不是 0，题面为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 Sum += i 重算：-499 到 499 关于 0 对称、和为 0，再单独加 -500，得 -500；配对法 500 对每对和为 -1，也得 -500。结论“错误”正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 3.1.1—3.1.3 与候选一致：第 1 天 a 题、第 2 天 b 题、第 3 天起为前两天总和；某天做题数大于等于 m 后，接下来所有日子不再做题；输入 a、b、m、N 四行，输出 N 天总题数。PDF 约束为 0≤a,b≤10、a,b<m≤1,000,000、3≤N≤364，候选一致；样例 1、2 的输入输出也一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在客观题答案表内，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的递推模拟、停止时机（达到 m 的当天仍计入，次日起停止）、变量滚动顺序与两个样例走查均独立核对正确；数据范围说明中 m≤1,000,000 与 PDF 一致，停止当天 cur<2m，int 可容纳，sum 用 long long 安全。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与 PDF 第 7 页官方程序逻辑等价：sum 初始 a+b，第 3 天起 cur=前两天之和先累加，cur≥m 当天计入后停止；用 stopped 标记空转不改变结果。N≤364，停止前 cur<2m≤2,000,000，sum 不超过约 3.18×10^6，类型与复杂度均安全。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 N 与全零序列",
+            "input": "0\n0\n1\n3",
+            "output": "0",
+            "reason": "N=3 为最小天数；a=b=0，m=1 满足 a,b<m；第 3 天 cur=0<1，sum 保持 0，后续也不会达到阈值。"
+          },
+          {
+            "name": "阈值当天计入并停止",
+            "input": "1\n2\n3\n10",
+            "output": "6",
+            "reason": "第 3 天 cur=1+2=3 首次达到 m=3；题干规定达到阈值当天仍做题，sum=1+2+3=6，第 4~10 天不再做题。"
+          },
+          {
+            "name": "最大 m 与最大 N",
+            "input": "10\n10\n1000000\n364",
+            "output": "3178100",
+            "reason": "每天题数为 10·F_k；F25=75025 时 750250<1000000，F26=121393 时 1213930≥1000000，第 26 天计入后停止；前 26 天和=10×(F28−1)=10×317810=3178100，后 338 天为 0。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        5,
+        6,
+        7,
+        11,
+        12
+      ],
+      "usage": {
+        "prompt_tokens": 34374,
+        "completion_tokens": 31122,
+        "total_tokens": 65496,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 28539
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0238293,
+          "allowance": 0.01429758,
+          "tokens": {
+            "input": 34374,
+            "output": 31122,
+            "reasoning": 28539,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T14:57:00.574Z",
+      "completedAt": "2026-11-08T14:59:52.487Z"
+    },
+    {
+      "questionIds": [
+        13,
+        15,
+        19,
+        21,
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 34498,
+        "completion_tokens": 25667,
+        "total_tokens": 60165,
+        "prompt_tokens_details": {
+          "cached_tokens": 34432
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 22489
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0155134,
+          "allowance": 0.00930804,
+          "tokens": {
+            "input": 66,
+            "output": 25667,
+            "reasoning": 22489,
+            "cache_read": 34432,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-08T22:02:13.869Z",
+      "completedAt": "2026-11-08T22:04:25.019Z"
+    }
+  ]
+}

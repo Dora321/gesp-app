@@ -1,0 +1,237 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:37:15.797Z",
+  "completedAt": "2026-11-07T11:39:53.084Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55428,
+    "completion_tokens": 9301,
+    "total_tokens": 64729,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6483
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0129647,
+      "allowance": 0.0129647,
+      "tokens": {
+        "input": 55428,
+        "output": 9301,
+        "reasoning": 6483,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为「CCF 编程能力等级认证 GESP」「C++ 六级」「2024 年 06 月」，并载有单选题 15 题答案表，与 paperId=2024-06-l6（2024年6月 C++ 六级）一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题题干「面向对象的编程思想主要包括（ ）原则。」与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项 A「贪心、动态规划、回溯」、B「并发、并行、异步」、C「递归、循环、分治」、D「封装、继承、多态」，与站点四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第1题为 D，0 起始索引为 3，站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：面向对象核心思想为封装、继承、多态；A 属算法设计策略，B 属执行模型，C 属控制结构/算法技巧，均非 OOP 思想。站点解析结论 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：已独立对照 PDF 第1页题干、选项及答案表核验，题面、答案 D（索引3）、解析均一致，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干及 1-26 行代码（static int count、构造 count++、析构 count--、main 依次创建 obj1/obj2/obj3 并调用 print_count）与站点 question 及 code 字段逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项 A「1 1 1」，第2页选项 B「1 2 3」、C「1 1 2」、D「1 2 2」，与站点选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题为 B，0 起始索引为 1，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：count 为静态成员初值 0；构造 obj1 后输出 1，构造 obj2 后输出 2，构造 obj3 后输出 3，屏幕输出「1 2 3 」；三次输出均发生在对象析构之前，析构减计数不影响已输出内容。站点解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立推演输出 1 2 3 与官方答案 B 一致；站点代码与 PDF 原图逐行一致，无需修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "站点 question 中题干及代码对照 PDF第2-3页原图一致（shape 的 virtual int area、rectangle/triangle 以 : shape(a,b) 继承并重写 area、main 中 pshape 先后指向 rec/tri 调用 area、return 0 收尾于第49行）；但站点独立 code 字段缺少 PDF第2页第1行的 #include <iostream>，已在 changes.code 按 PDF 原图补齐，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页第3题选项 A「rectangle area: triangle area:」、B「parent class area: parent class area:」、C「运行时报错」、D「编译时报错」，与站点选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题为 A，0 起始索引为 0，站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：基类 area() 为虚函数，经基类指针调用发生动态绑定——pshape 指向 rec 时输出「rectangle area: 」（返回 70 未使用），指向 tri 时输出「triangle area: 」（返回 25 未使用），屏幕输出为 A；若非虚函数才会静态绑定输出 B，指针向上转型合法，无编译/运行错误。站点解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "code": "#include <iostream>\nusing namespace std;\n\nclass shape {\nprotected:\n    int width, height;\npublic:\n    shape(int a = 0, int b = 0) {\n        width = a;\n        height = b;\n    }\n    virtual int area() {\n        cout << \"parent class area: \" << endl;\n        return 0;\n    }\n};\n\nclass rectangle : public shape {\npublic:\n    rectangle(int a = 0, int b = 0) : shape(a, b) { }\n    int area() {\n        cout << \"rectangle area: \";\n        return (width * height);\n    }\n};\n\nclass triangle : public shape {\npublic:\n    triangle(int a = 0, int b = 0) : shape(a, b) { }\n    int area() {\n        cout << \"triangle area: \";\n        return (width * height / 2);\n    }\n};\n\nint main() {\n    shape *pshape;\n    rectangle rec(10, 7);\n    triangle tri(10, 5);\n\n    pshape = &rec;\n    pshape->area();\n\n    pshape = &tri;\n    pshape->area();\n    return 0;\n}"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的修改方向并独立复核：确认站点独立 code 字段确缺首行 #include <iostream>（PDF第2页第1行存在）；对初核提供的修复代码逐行对照 PDF第2-3页原图核验一致后才采纳。其余维度——题干/代码、选项、官方答案 A（索引0）、虚函数动态绑定解析——均独立核验通过，仅待应用该 code 修复。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第4题题干「向一个栈顶为hs的链式栈中插入一个指针为s的结点时，应执行（ ）。」与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项 A「hs->next = s;」、B「s->next = hs; hs = s;」、C「s->next = hs->next; hs->next = s;」、D「s->next = hs; hs = hs->next;」，与站点选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第4题为 B，0 起始索引为 1，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：链式栈入栈应在栈顶完成，新结点 s 先指向原栈顶（s->next = hs），再更新栈顶指针（hs = s），即标准头插法，选 B；A 未更新栈顶、C 把 s 插到栈顶之后、D 未令 s 成为栈顶，均不成立。站点解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立推导头插法两步操作与选项 B 对应，官方答案表亦为 B，题面、选项、解析均一致，无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第5题题干「在栈数据结构中，元素的添加和删除是按照什么原则进行的？」与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项 A「先进先出」、B「先进后出」、C「最小值先出」、D「随机顺序」，与站点选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第5题为 B，0 起始索引为 1，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：栈为后进先出（LIFO）结构，入栈出栈均在栈顶进行，「先进后出」即 LIFO 的等价表述，选 B；A 为队列原则，C 为优先队列/堆行为，D 不符合栈的确定顺序。站点解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对栈的 LIFO 性质与选项 B 对应，官方答案表亦为 B，题面、选项、解析均一致，无需修改。"
+      }
+    ],
+    "summary": "本独立复核覆盖第 1-5 题。PDF 卷头（C++ 六级，2024 年 06 月）与 paperId 一致；答案表对应官方答案 D B A B B（0 起始 3/1/0/1/1），与站点 answer 全部吻合。题干、选项、解析均经独立推导核验：Q1 面向对象三特性选 D，Q2 静态计数输出 1 2 3 选 B，Q3 虚函数动态绑定输出 rectangle area: triangle area: 选 A，Q4 链式栈头插法选 B，Q5 栈 LIFO 选 B，均无异议。唯一缺陷：第 3 题站点独立 code 字段缺少 PDF 第 2 页首行 #include <iostream>，已提供与原图逐行一致的 changes.code 修复，修复后核验通过（verdict=revise 待应用）。本批无编程题，不适用测试用例。"
+  }
+}

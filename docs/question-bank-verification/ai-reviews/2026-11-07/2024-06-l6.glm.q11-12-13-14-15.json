@@ -1,0 +1,246 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:48:36.630Z",
+  "completedAt": "2026-11-07T11:53:57.437Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55857,
+    "completion_tokens": 20927,
+    "total_tokens": 76784,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17007
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01884205,
+      "allowance": 0.01884205,
+      "tokens": {
+        "input": 55857,
+        "output": 20927,
+        "reasoning": 17007,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页眉为“C++ 六级 / 2024 年 06 月”，与 paperId 2024-06-l6（2024年6月六级）一致；卷面结构为单选 15 题、判断 10 题、编程 2 题，与网站数据一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干为“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和( )。”，与当前题干一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页四个选项依次为：A 重叠子问题、B 分治法、C 贪心策略、D 回溯算法。当前数据中 D 选项混入了第 7 题循环队列 de_queue 代码片段（PDF 第 5 页行 42-51 及行号/break），属明显 OCR 串页污染；按 PDF 原文修复为“回溯算法”后与卷面完全一致，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 A；独立推导：动态规划两个标志性性质为最优子结构与重叠子问题，分治/贪心/回溯均不对应，A 的 0 起始索引为 0，与 website 数据一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立给出最优子结构与重叠子问题的含义，并逐项排除分治法、贪心策略、回溯算法，结论 A 与官方答案一致；与修复后的选项配合无矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "重叠子问题",
+            "分治法",
+            "贪心策略",
+            "回溯算法"
+          ]
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对 D 选项的清理：第 7 题 circular_queue 代码的 de_queue 段恰为 PDF 第 5 页行 42-51，被串入第 11 题 D 选项，可确认系 OCR 污染而非原卷内容；结合第 1 页答案表 A 与 DP 理论复核，修复后核验通过。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干“青蛙每次能跳1或2步，下面代码计算青蛙跳到第n步台阶有多少种不同跳法。则下列说法，错误的是( )。”与 jump_recur/jump_dp 两段代码（含“创建一个动态规划数组”“初始化前两个数”“斐波那契数列”注释）与 website 数据一致，仅排版空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A-D 依次为：函数jump_recur()采用递归方式；函数jump_dp()采用动态规划方法；当n较大时jump_recur()存在大量重复计算执行效率低；代码量小执行效率高，与 website 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 12 题为 D；独立推导：朴素递归存在重叠子问题、复杂度指数级，jump_dp 为 O(n) 动态规划，“代码量小”与“执行效率高”无因果关系，错误说法是 D，0 起始索引 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出 f(n)=f(n-1)+f(n-2) 递推、递归重叠子问题与 DP 自底向上数组的复杂度对比，逐项分析后指向 D，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题干、代码、选项、答案 D（索引 3）及解析均与 PDF 第 6 页及第 1 页答案表相符，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页给出 BFS 代码（queue 实现，出队先判命中再输出，左子先入队），第 7 页给出树图：根 5，左孩子 2（孩子 -4、3），右孩子 17（左孩子 9），与 website 的 ASCII 树同构；第 7 页题干为“使用以上算法，在以下这棵树搜索数值 20 时，可能的输出是( )”。注：目标数值“20”在 PDF 文本层被 OCR 丢失，依据树图结构、全树遍历型选项、官方答案 C 及公开版本一致采用 20。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 A 5 2 -4 3 17 9、B -4 2 3 5 9 17、C 5 2 17 -4 3 9、D 以上都不对，顺序与 website 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 13 题为 C；独立模拟队列：pop 5（输出，入 2、17）→pop 2（输出，入 -4、3）→pop 17（输出，入 9）→pop -4、3、9，20 不在树中故输出完整层序 5 2 17 -4 3 9，0 起始索引 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按队列逐层展开并说明 20 不在树中会输出全部节点，指出 A 是 DFS 先序、B 是中序、C 为 BFS 层序，与手动模拟一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "与初核结论一致，无需修改；补充说明搜索目标“20”在 PDF 文本层缺字，但由树结构、选项形态与官方答案反推唯一吻合（目标不在树中），采用 website/公开版本数值且不影响答案 C。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页给出非递归 DFS 代码（stack 实现，pop 后先判命中，否则输出当前节点，再先压右子、后压左子），第 8 页题干“使用以上算法，在二叉树搜索数值 20 时，可能的输出是( )”，引用上题同一棵树；目标数值“20”在文本层同样被 OCR 丢失，依据同上反推与公开版本采用 20。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 A 5 2 -4 3 17 9、B -4 2 3 5 9 17、C 5 2 17 -4 3 9、D 以上都不对，与 website 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 14 题为 A；独立模拟栈：pop 5（输出，压 17 再压 2）→pop 2（输出，压 3 再压 -4）→pop -4→pop 3→pop 17（压 9）→pop 9，20 不在树中，完整先序 5 2 -4 3 17 9，0 起始索引 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "答案与推导过程正确；原解析把选项 C 描述为“在访问根后先走右子树”不准确——C 序列 5 2 17 -4 3 9 中 2 先于 17，实为 BFS 层序，不是本 DFS 的任何输出；已按初核修订为“C 是层序/BFS 序列”，修订后各选项描述与实际遍历结果一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**推导过程：**\n\n栈后进先出。代码先压右孩子、再压左孩子，因此弹栈时左孩子先被访问，整体得到“根、左子树、右子树”的先序遍历。数值 20 不在树中，所以所有结点都会在查找失败前输出：\n\n`5 -> 2 -> -4 -> 3 -> 17 -> 9`\n\n逐项分析：\n- **A `5 2 -4 3 17 9`**：与先序序列一致，正确。\n- **B `-4 2 3 5 9 17`**：这是中序序列，不是本 DFS 的访问序列。\n- **C `5 2 17 -4 3 9`**：这是层序/BFS 序列，不是本 DFS 的先序序列。\n- **D 以上都不对**：错误，A 已正确。\n\n**易错点：** “先压入右孩子”并不等于“先访问右孩子”；由于栈后进先出，后压入的左孩子会先弹出，先压右、再压左正是为了得到先序遍历。\n\n**考点：** 二叉树、非递归深度优先搜索、栈、先序遍历。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对 explanation 的修正：原说法“C 在访问根后先走右子树”与 C 序列中 2（左子）先于 17（右子）的事实直接矛盾，C 实为 BFS 层序；修订版基于第 7-8 页代码逐步模拟核实，未引入新错误。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页题干“在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）。”，文本层缺失目标数值“3”（OCR 丢字）；该值由答案 C（比较 4 次）结合第 14 题 DFS 代码反推唯一锁定为树中的 3，与 website 数据和公开版本一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 A 2、B 3、C 4、D 5，与 website 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 15 题为 C；独立模拟：出栈序列 5（≠3）、2（≠3）、-4（≠3）、3（==3 命中即返回），共比较 4 个节点，0 起始索引 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "前四步比较过程正确；原末句“比较次数 = 根到目标节点的路径上的节点数”不成立——路径 5→2→3 仅 3 个节点，实际还比较了不在路径上的 -4；已按初核修订为“比较次数等于非递归先序访问序列中从开始到目标（含目标）的节点数”，修订后与实际过程一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n**解析：**\nDFS 用**栈**实现：出栈时先与目标值比较，然后「先压右子、再压左子」（保证左子先出栈，等效先访问左子树）。\n\n搜索数值 3（存在于树中），逐次比较过程：\n1. 出栈 5，比较 5≠3（**第 1 次比较**），压入右子 17、左子 2\n2. 出栈 2，比较 2≠3（**第 2 次比较**），压入右子 3、左子 -4\n3. 出栈 -4，比较 -4≠3（**第 3 次比较**），无子节点\n4. 出栈 3，比较 3==3（**第 4 次比较**），命中返回\n\n共比较 **4** 个节点（5、2、-4、3），选 C。\n\n逐项分析：\n- **A 2**：错误，比较到 2 仍未命中，后面还要继续。\n- **B 3**：错误，比较到 -4 仍未命中。\n- **C 4**：正确，比较顺序为 5→2→-4→3。\n- **D 5**：错误，命中 3 后立即返回，不需要访问 17/9 分支。\n\n**易错点：** DFS 找到目标就立即返回，**不会**继续搜索右子树（17、9 不会被比较）；比较次数等于该非递归先序访问序列中从开始到目标（含目标）的节点数，不总是等于根到目标的路径长度——本例中 -4 虽不在 5→2→3 的路径上，但因为先序遍历先访问它，也被比较了一次。\n\n**考点：** 二叉树的深度优先搜索（非递归栈实现）"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对 explanation 的修正：原表述把比较次数等同于根到目标路径长度，与实际访问序列（含 -4 共 4 次）不符；修订版推导与第 14 题 DFS 代码逐步模拟一致，未引入新错误。"
+      }
+    ],
+    "summary": "已复核第 11-15 题。官方答案（0 起始索引）依次为 0、3、2、0、2，与 PDF 第 1 页答案表（第 11-15 题为 A D C A C）及独立推导全部一致。第 11 题选项 D 被 OCR 串入第 7 题 de_queue 代码片段（PDF 第 5 页行 42-51），已修复为“回溯算法”；第 14 题解析对选项 C 的描述错误（实为 BFS 层序，而非“先走右子树”），第 15 题解析末句“比较次数=根到目标路径节点数”不成立（实际包含不在路径上的 -4，共 4 次），两处说明已修订并通过复核。第 12、13 题题干、代码、选项、答案与解析均与 PDF 一致，无需修改。第 13、14 题搜索目标“20”及第 15 题“3”在 PDF 文本层被 OCR 丢失，但由树结构、选项形态与官方答案反推唯一锁定，采用 website/公开版本数值且不影响结论。五题均为单选题，无编程题，不适用边界测试。"
+  }
+}

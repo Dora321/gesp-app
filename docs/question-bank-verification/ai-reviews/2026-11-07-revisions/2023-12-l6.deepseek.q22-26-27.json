@@ -1,0 +1,214 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    22,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T16:53:59.750Z",
+  "completedAt": "2026-11-07T16:57:52.378Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45156,
+    "completion_tokens": 19016,
+    "total_tokens": 64172,
+    "prompt_tokens_details": {
+      "cached_tokens": 45056
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17293
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01155977,
+      "allowance": 0.00693586,
+      "tokens": {
+        "input": 100,
+        "output": 19016,
+        "reasoning": 17293,
+        "cache_read": 45056,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d809ace7c7124a6467b5453bba5e6ef63aa745a19c1b49efb3d3aa5d9610bfc0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 六级 2023 年 12 月”，与paperId 2023-12-l6一致。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第7题原文为“二叉搜索树查找的平均时间复杂度为O(log N)。（ ）”，候选题干仅空格/排版差异，含义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”判断，PDF未设A—D选项；候选options字段不属于原卷选项结构。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第7格为√，按正确=0、错误=1映射为0，候选answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：BST查找代价与树高同阶；随机建立或平均形态下树高为O(log N)，平均查找为O(log N)。最坏情况退化为O(N)，但不否定题干限定的“平均”表述。候选解析与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6—7页3.1节的题目描述、输入输出描述、样例1/2与数据规模均与候选一致；候选已包含20%测试点M=1、40%测试点N≤20且M≤2、全部测试点N≤10^4且M≤100。PDF中的“特别提醒”属于考试系统提示，不影响题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表字母；officialAnswer=null，候选answer为空，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按0起始推演：样例1得dp[5..0]=30,30,130,60,130,131；样例2得dp[5]=-1、dp[3]=100、dp[0]=101。候选解析的倒序DP、直接通关取0分参与max、O(NM)时间与O(N)空间、1起始参考程序映射均正确；按N≤10^4、|b_i|≤10^5，总分绝对值不超过10^9，int理论上不溢出。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选1起始代码中b[1..n]对应题面b_0..b_{n-1}，dp[i]对应题面第i-1关，to=i+a[j]>n判通关，输出dp[1]；与官方正向f递推等价。N=1、全负、跳过负分关等边界独立计算均符合期望，O(NM)≤10^6。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "样例1",
+            "input": "6 2\n2 3\n1 0 30 100 30 30",
+            "output": "131",
+            "reason": "官方样例；倒序DP得dp[0]=1+max(dp[2]=60,dp[3]=130)=131。"
+          },
+          {
+            "name": "最小N=1",
+            "input": "1 1\n1\n5",
+            "output": "5",
+            "reason": "第0关离开即通关，得b0=5；任意a≥1均满足0+a≥1。"
+          },
+          {
+            "name": "全负分只能逐关",
+            "input": "3 1\n1\n-5 -10 -20",
+            "output": "-35",
+            "reason": "步长1必须依次离开三关，总分-5-10-20=-35；验证后续收益为负时不能错误截断为0。"
+          },
+          {
+            "name": "跳过负分关",
+            "input": "5 2\n1 3\n1 -100 1 1 1",
+            "output": "3",
+            "reason": "最优路径0→3→4→通关，得b0+b3+b4=1+1+1=3，跳过b1=-100。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页题目描述、输入输出描述、样例1，PDF第10页样例2和数据规模均与候选对应；候选补齐“50%测试点N≤50；全部测试点3≤N≤300、Q≤100”。PDF原文“正整数”与样例含0的矛盾见unresolved，不属于转写漏项。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表字母；officialAnswer=null，候选answer为空，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按树模型验证：管理关系等价于祖先关系，答案等于根到全体参与者LCA路径上的最大编号。样例1得2、2、0；样例2得2、1、1、1、0。候选的倍增LCA、bestOnPath递推、多节点LCA结合律合并及O(NlogN+Q·m·logN)复杂度均正确；官方暴力DFS程序亦与模型一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码建树正确，parent[0]=0防止越界；LOG满足2^LOG>n，覆盖最大深度差；BFS中父节点先于子节点出队，up表可用；bestOnPath[v]=max(bestOnPath[u],v)正确；lca对齐深度与同步上跳逻辑正确。最小N=3、编号最大祖先高于LCA、多参与者合并、主持人本人等边界独立计算均符合期望。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小N=3仅根可主持",
+            "input": "3\n0 0\n1\n2 1 2",
+            "output": "0",
+            "reason": "1、2互不为祖先，公共祖先仅0，编号最大为0。"
+          },
+          {
+            "name": "编号最大祖先高于LCA",
+            "input": "6\n0 5 0 2 0\n1\n2 4 2",
+            "output": "5",
+            "reason": "4与2的LCA为2，公共祖先链0-5-2，最大编号5；用于校验不能直接输出LCA编号。"
+          },
+          {
+            "name": "多参与者合并",
+            "input": "6\n0 5 2 2 0\n1\n3 4 3 2",
+            "output": "5",
+            "reason": "4、3、2的LCA为2，祖先链0-5-2，最大编号5。"
+          },
+          {
+            "name": "主持人可为参与者本人",
+            "input": "4\n0 0 2\n1\n2 2 3",
+            "output": "2",
+            "reason": "2是3的父节点且可管理自己，公共祖先0、2中最大为2。"
+          }
+        ],
+        "unresolved": [
+          "PDF第9页输入描述称f_1..f_{N-1}为“正整数”，但第9页样例1第二行“0 0 2 2”、第10页样例2第二行“0 1 0 2 1 2”均含0；这是源卷表述与样例的矛盾，候选保留原文未改，待源卷层面确认。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验22、26、27题。22题判断题答案表为√，候选answer=0且解析独立成立；26、27题题面、样例、数据规模与PDF一致，参考程序经算法、边界与复杂度检查未发现需修改之处；27题保留源卷“正整数”与样例含0的表述矛盾。"
+  }
+}

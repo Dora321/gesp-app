@@ -1,0 +1,235 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:25:27.091Z",
+  "completedAt": "2026-11-07T12:28:59.185Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52558,
+    "completion_tokens": 15041,
+    "total_tokens": 67599,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12569
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0154042,
+      "allowance": 0.0154042,
+      "tokens": {
+        "input": 52558,
+        "output": 15041,
+        "reasoning": 12569,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头（原图）为「CCF 编程能力等级认证 GESP C++ 五级 2023 年 12 月」：等级 C++ 五级、年月 2023 年 12 月，与 paperId 2023-12-l5（level 5，2023-12）一致；以页面原图核对，非仅文本层。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 6 题原文为「插入排序有时比快速排序时间复杂度更低。（ ）」，与网站题面逐字一致（仅省略题号前缀，属常规排版）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以「正确/错误」两项呈现判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表（图面红字）第 1–10 格为 √ × × √ √ √ × √ √ √，第 6 格为 √（正确=0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：近乎有序输入下插入排序为 Θ(N)，快排选端点基准遇有序输入退化至 Θ(N²)，故「有时更低」成立；网站解析「在数组几乎有序时，插入排序为 O(N)，快排退化可能更高」与此相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：本人对题面、答案符号（√）与解析的独立核对结论与初核一致，解析论证成立，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 7 题题干「下面的C++代码能实现十进制正整数N转换为八进制并输出。（ ）」与网站一致；图中代码 char s[10]; / main / cin>>N / string rst=\"\" / while(N!=0){s[0]=N%8+'0'; rst+=string(s); N/=8;} / cout<<rst<<endl 与网站 code 字段逐行相同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以「正确/错误」两项呈现判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 7 格为 ×（错误=1），与网站 answer=1 一致；代码经独立逐轮模拟确认确实不能正确转换，判定为错合理。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站原解析「进制转换需正确处理取模和除法顺序」归因不当：代码先取模再除法的顺序本身正确，真实缺陷是每轮把最低位追加到 rst 末尾且不反转。独立推演 N=8 输出 01（应为 10）、N=10 输出 21（应为 12）、N=64 输出 001（应为 100）。已应用修复后的解析并按上述样例复验，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序；题面代码已在 statement 维度核对。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n逐轮模拟：每轮先执行 s[0] = N % 8 + '0'，得到八进制当前的最低位；再用 rst += string(s) 把它追加到 rst 末尾；随后才执行 N /= 8。取模和除法的先后顺序本身没有问题（全局数组 s 未用到的位置零初始化，string(s) 恰为单个字符），真正的缺陷是：各位数字按从低位到高位的顺序被依次追加到 rst 末尾，程序并未做反转，最终输出的是倒序的八进制串。\n\n**逐例验证：**\n- N=8：依次追加 '0'、'1'，输出 01，而 8 的八进制应为 10；\n- N=10：依次追加 '2'、'1'，输出 21，而 10 的八进制应为 12；\n- N=64：依次追加 '0'、'0'、'1'，输出 001，而 64 的八进制应为 100。\n\n**修正思路：**\n每轮把新得到的数字插入到结果字符串的前面，或先将各位按低位在前保存、最后整体逆序输出。\n\n**考点：** 进制转换"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的解析修复：初核给出的归因（低位先追加导致倒序输出）经本人对 N=8/10/64 逐轮独立模拟复现确认，比网站原解析的「取模和除法顺序」表述更准确；初核对答案（×→1）与题面代码的核对结论亦与本人一致。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 8 题原文：对数组 int arr[] = {2, 6, 3, 5, 4, 8, 1, 0, 9, 10} 执行 sort(arr, arr+10)，结果调整为 {0, 1, 2, 3, 4, 5, 6, 8,9, 10}；网站题面一致（原卷「8,9」与网站「8, 9」仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以「正确/错误」两项呈现判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 8 格为 √（正确=0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：std::sort(arr, arr+10) 默认升序，排得 {0, 1, 2, 3, 4, 5, 6, 8, 9, 10}，与题干陈述一致；网站解析「sort 默认升序排序」论证充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立升序排序结果与初核一致，答案 √ 对应 0，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题原文为「小杨想写一个程序来算出正整数N有多少个因数，经过思考他写出了一个重复没有超过N/2次的循环就能够算出来了。（ ）」，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以「正确/错误」两项呈现判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 9 格为 √（正确=0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立论证：循环 i=1..⌊N/2⌋ 可枚举除 N 外的全部因子（因子对中较小者 ≤ √N ≤ N/2，N≥4；N=1、2 可边界处理），再补计 N 自身，迭代次数不超过 N/2，命题成立；网站「只需遍历到 sqrt(N) 即可找全所有因数」为成立的支撑理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：以 i=1..N/2 枚举真因数并补计 N 本身的论证与初核/解析一致且成立，答案核对一致。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 10 题原文「同样的整数序列分别保存在单链表和双向链中，这两种链表上的简单冒泡排序的复杂度相同（ ）」；网站简写为「单链表和双向链表上的简单冒泡排序的复杂度相同」，被判定命题「两种链表复杂度相同」完整保留，省略的「同样的整数序列」为铺垫性表述、不影响判定结论，属等价转换。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站以「正确/错误」两项呈现判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 10 格为 √（正确=0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：简单冒泡在单链表与双向链表上均为约 N(N−1)/2 次相邻比较，总复杂度 O(N²)；双向链表的 prev 指针只便于交换实现，不减少比较次数，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对网站题面缩写判为等价的结论与本人独立阅读一致，O(N²) 论证成立，答案核对一致，无需修改。"
+      }
+    ],
+    "summary": "本批仅核验题号 21–25（对应 PDF 第 7 页判断题第 6–10 题，全部位于第 7 页原图内）。答案行（图面红字）√ × × √ √ √ × √ √ √ 与网站 answer 逐格一致：21→0、22→1、23→0、24→0、25→0，且各题判定内容经独立推演均支持该官方判定（22 题代码确因低位追加不反转而输出倒序）。题面 21/23/24 与原卷逐字一致，25 为不改变判定含义的等价缩写。仅有 22 题解析对错误成因归因不当（缺陷是每轮低位追加到末尾且不反转，而非「取模和除法顺序」），已应用初核提出的解析修复并按 N=8/10/64 独立复验通过；其余题无改动、无未决问题。"
+  }
+}

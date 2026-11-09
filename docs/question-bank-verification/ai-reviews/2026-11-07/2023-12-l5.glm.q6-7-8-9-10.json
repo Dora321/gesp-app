@@ -1,0 +1,262 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:59:36.000Z",
+  "completedAt": "2026-11-07T12:07:14.748Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54159,
+    "completion_tokens": 34279,
+    "total_tokens": 88438,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 29334
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02526335,
+      "allowance": 0.02526335,
+      "tokens": {
+        "input": 54159,
+        "output": 34279,
+        "reasoning": 29334,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头为『CCF 编程能力等级认证 GESP C++ 五级 2023 年 12 月』，与网站 title『2023年12月 GESP C++ 五级真题』、level=5、year=2023、month=12 匹配；第 1 页答案表与各题选项顺序可逐题对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原图第 6 题题干『有关下面C++代码说法正确的是（ ）。』与网站一致；代码 int rc; int foo(int x,int y){... if(y==0) r=x; else{ r=foo(y,x%y); rc++; } return r;} 与原图逐行对应。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A『如果 x 小于10，rc 值也不会超过20』、B『foo 可能无限递归』、C『foo 可以求出 x 和 y 的最大公共质因子』、D『foo 能够求出 x 和 y 的最小公倍数』，四项文字与顺序与原图一致，仅空格排版差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析为模板占位（仅『经分析，A选项表述正确』，无推导）。已重写并独立复核：x<10 时第二次递归起两参数均小于 10，最坏斐波那契型链 rc 累计约 6 次，A 成立，B/C/D 均证伪；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "explanation": "官方答案：A。\n这段代码是辗转相除法（欧几里得算法）求最大公约数：y==0 时返回 x，否则递归调用 foo(y, x % y)，直到余数变为 0，返回值为 gcd(x, y)。\n- A 正确：若 x<10，当 y≠0 时新一轮余数 r1=x%y 必小于 10（y>x 时 r1=x<10；y≤x 时 r1<y≤x<10），因此从第二次递归调用起两个参数都落在 10 以内；两个 10 以内的正整数辗转相除，非终止调用次数最坏出现在接近斐波那契的相邻对（如 8 与 5，共 4 次），连同最初的一两次调用，rc 至多累计约 6 次，绝不会超过 20。\n- B 错误：非负整数输入下每步余数严格小于除数，递归链必在有限步内终止，不会无限递归。\n- C 错误：foo 求出的是最大公约数，它本身不一定是质数（如 foo(12,18)=6），不是『最大公共质因子』。\n- D 错误：最小公倍数为 x*y/gcd(x,y)，代码只求出 gcd，得不到最小公倍数。\n考点：递归实现欧几里得算法。"
+        },
+        "tests": [],
+        "unresolved": [
+          "网站 sourcePage 元数据把位于 PDF 第 3 页的题 6 误标为第 4 页；本条输出 sourcePages 记为 [3]，页码归档需在源数据层单独修正（不在本次允许的变更字段内）。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核：解析确为占位文字需重写、页码更正意见成立。我独立对照第 3 页原图确认代码与选项一致、答案表 A→0；并自行推演 rc 上界（x<10 → 第二次递归起参数均<10，最坏链 rc≈6<20），重写后的解析按此定稿，采纳。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在 PDF 第 3 页底、代码与选项在第 4 页，题干文字与网站一致。网站 code 缺少第 4 页原图 qSort 中第二段完全相同的 for 收集循环（原图两段收集循环重复出现），已按原图补全；修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A qSort(less)+qSort(greater)+(vector<int>)pivot、B (vector<int>)pivot+(qSort(less)+qSort(greater))、C (qSort(less)+(vector<int>)pivot+qSort(greater))、D qSort(less)+pivot+qSort(greater)，与第 4 页原图表达式与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析未说明 (vector<int>)pivot 的构造语义，也未指出原卷丢首元素、重复循环等缺陷。重写后按拼装顺序与强转构造语义论证 C 错、D 为官方认定的正确说法并记录类型歧义；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "code": "vector<int> operator +(vector<int> lA, vector<int> lB)\n{\n    vector<int> lst;\n    for (int i = 1; i < lA.size(); i++)\n        lst.push_back(lA[i]);\n    for (int i = 1; i < lB.size(); i++)\n        lst.push_back(lB[i]);\n    return lst;\n}\n\nvector<int> qSort(vector<int> lst)\n{\n    if (lst.size() < 2) return lst;\n    int pivot = lst[0];\n    vector<int> less, greater;\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n    for (int i = 1; i < lst.size(); i++)\n        if (lst[i] <= pivot) less.push_back(lst[i]);\n        else greater.push_back(lst[i]);\n    return __________________________________________;\n}",
+          "explanation": "官方答案：C。\n\n快速排序每趟划分后，less 中元素都不大于基准 pivot，greater 中元素都大于 pivot；两段分别递归排好后的正确拼装顺序是『排好的 less + 基准 pivot + 排好的 greater』，基准必须夹在中间。\n- A 把 pivot 拼到最末、B 把 pivot 拼到最前，都得不到『左小右大』的有序结果，说法错误。\n- C 是『左—中—右』的骨架，但 (vector<int>)pivot 并不是『只含 pivot 一个元素』的向量：这种转换等价于 vector<int>(pivot)，会生成 pivot 个 0（pivot 为 0 时为空向量），并不会把基准值本身插入中间，因此按官方判定 C 为错误说法，符合『说法错误的是』的题意。\n- D 写作 qSort(less)+pivot+qSort(greater)，拼装顺序正确，官方视为正确说法。\n\n原卷缺陷与争议（保留记录）：① operator+ 从下标 1 开始 push_back，会丢弃两个实参的首元素；② 题图 qSort 含两段完全相同的收集 for 循环，已按原图补全；③ 严格按类型论，D 中 vector<int> 与 int 相加并不匹配 operator+(vector<int>, vector<int>)，C 的强转构造语义也不直观。本题沿用官方答案 C，类型歧义仅作为原题瑕疵记录。\n\n考点：快速排序的分治结构、递归与结果拼接。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原题存在类型歧义：官方认定 D『qSort(less)+pivot+qSort(greater)』为正确说法，但该写法中 vector<int> 与 int 相加并不能匹配 operator+(vector<int>,vector<int>)，无法编译；C 的 (vector<int>)pivot 强转也非单元素向量语义。按官方答案 C 定案，争议保留。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核：经我复核 PDF 第 4 页原图，qSort 确有两段完全相同的收集循环，网站 code 确实漏抄，补全合法；解析按官方 C 重写并把 D 的重载歧义作为争议记录而非擅改答案，处理方式正确，采纳。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 8 题含 isPrimeA（循环上界 N/2）与 isPrimeB（循环上界 sqrt(N)）两段试除代码，网站题面缺 code 字段，已按原图逐行补全；修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "网站四个选项丢失了原图中全部复杂度断言。补全后：A 为 O(N/2)+O(log N)+A优；B 为 O(N/2)+O(N^(1/2))+B绝大多数优；C 为 O(N^(1/2))+O(N)+A优；D 为 O(log N)+O(N)+A优，与第 4 页原图逐项一致；修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 B，0 起始索引 1，与网站 answer=1 一致；补全选项后 B 仍是唯一正确项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析仅一句『isPrimeB 通常采用遍历到 sqrt(N) 的优化』，无逐项证伪。重写后完成 O(N/2) 与 O(N^(1/2)) 推导并逐项排除 A/C/D；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "code": "bool isPrimeA(int N)\n{\n    if (N < 2)\n        return false;\n    for (int i = 2; i <= N / 2; i++)\n        if (N % i == 0)\n            return false;\n    return true;\n}\nbool isPrimeB(int N)\n{\n    if (N < 2)\n        return false;\n    for (int i = 2; i <= sqrt(N); i++)\n        if (N % i == 0)\n            return false;\n    return true;\n}",
+          "options": [
+            "isPrimeA() 的最坏时间复杂度是 $O(\\frac{N}{2})$，isPrimeB() 的最坏时间复杂度是 $O(\\log N)$，isPrimeA() 优于 isPrimeB()",
+            "isPrimeA() 的最坏时间复杂度是 $O(\\frac{N}{2})$，isPrimeB() 的最坏时间复杂度是 $O(N^{\\frac{1}{2}})$，isPrimeB() 绝大多数情况下优于 isPrimeA()",
+            "isPrimeA() 的最坏时间复杂度是 $O(N^{\\frac{1}{2}})$，isPrimeB() 的最坏时间复杂度是 $O(N)$，isPrimeA() 优于 isPrimeB()",
+            "isPrimeA() 的最坏时间复杂度是 $O(\\log N)$，isPrimeB() 的最坏时间复杂度是 $O(N)$，isPrimeA() 优于 isPrimeB()"
+          ],
+          "explanation": "官方答案：B。\n\nisPrimeA 的循环条件是 i <= N/2：最坏情况（N 无小于 N/2 的因子，例如 N 为大素数）需要把 2 到 N/2 逐个试除，最坏时间复杂度为 $O(\\frac{N}{2})$（与 $O(N)$ 同阶）。\nisPrimeB 的循环条件是 i <= sqrt(N)：试除只需进行到 √N，最坏时间复杂度为 $O(N^{\\frac{1}{2}})$。\n两函数都从 2 开始逐个试除，isPrimeB 需检查的候选因子个数远小于 isPrimeA，故绝大多数情况下 isPrimeB 更快，B 正确。\n- A：把 isPrimeB 写成 $O(\\log N)$ 且结论为 isPrimeA 优，两处皆错。\n- C：把两个复杂度恰好写反，结论随之错误。\n- D：把 isPrimeA 写成 $O(\\log N)$ 且结论为 isPrimeA 优，两处皆错。\n\n注记：题图 isPrimeB 在循环条件中每轮重新计算 sqrt(N)，且有浮点精度隐患，属实现瑕疵，不影响两个复杂度量级的定性比较。\n考点：素数试除的复杂度分析。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核：网站缺代码、选项缺复杂度的问题属实，修复值与第 4 页原图逐项吻合；我对两函数复杂度（O(N/2) 对 O(√N)）独立复核一致，答案 B 无误，采纳。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在 PDF 第 4 页底，代码与选项在第 5 页；网站 question 与 code（含 Mid=(Low+High)/2、左右递归结构、bSearch 返回 _binarySearch(lst,0,lst.size(),Val)）与原图一致，原样保留原卷边界缺陷并在解析中注明。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 代码采用二分法、B 代码采用分治算法、C 代码采用递归方式、D 代码采用动态规划算法实现有序 list 的查找，四项与第 5 页原图文字与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 D，0 起始索引 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析把 A 错说成『二分查找的边界或 mid 更新有误』（该代码划分与递归结构正常），B/C 仅占位。重写后逐项确认 A/B/C 正确、动态规划错误，并附 bSearch 以 lst.size() 为 High 的越界实例；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "explanation": "官方答案：D。\n\n该函数取区间中点 Mid 与 Target 比较：相等返回 Mid；Target 较小则递归查左半区间 [Low, Mid-1]，较大则递归查右半区间 [Mid+1, High]。\n- A 正确：每次按中点对半缩小查找范围，是二分查找的实现。\n- B 正确：每次把问题规模减半、分而治之，体现分治思想。\n- C 正确：函数通过调用自身完成子区间查找，是递归实现。\n- D 错误，符合题意：动态规划的核心是重叠子问题与子问题解的保存/状态转移，本题既无状态定义也无重叠子问题，与动态规划无关。\n\n附注（原题代码边界缺陷，保留记录）：bSearch 以 lst.size() 作为闭区间上界传入 High，规范应为 lst.size()-1。当目标值不存在且较大时区间会收缩为 [N, N]，例如 lst={1,2,3}、Target=10 的调用链为 (0,3)→(2,3)→(3,3)，此时 Mid=N，访问 lst[N] 越界（未定义行为）。该缺陷不影响本题选 D。\n\n考点：二分查找（递归实现）及其与分治、动态规划的区别。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原题 bSearch 将闭区间上界设为 lst.size()（规范应为 lst.size()-1），目标不存在且较大时会访问 lst[N] 越界（lst={1,2,3}, Target=10 → (0,3)→(2,3)→(3,3) 访问 lst[3]），属原卷代码缺陷，不影响选 D，保留记录。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核：其指出原解析把 A/B/C 误标为边界有误正确，我独立重推确认三项描述均真、D 错；bSearch 的越界风险我已用具体调用链独立验证，作为原卷缺陷记录而非擅改代码，处理妥当，采纳。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 原文为『在上题的 _binarySearch 算法中，如果 lst 中有 N 个元素，其时间复杂度是（ ）。』，网站缺『上题的』指代词，已补齐；修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A $O(N)$、B $O(\\log N)$、C $O(N \\log N)$、D $O(N^2)$ 与第 5 页原图一致；网站的 $O(log n)$、$O(n log n)$ 仅是 n/N 大小写排版差异，所指变量相同，不改变选项匹配。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 B，0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析仅一句结论。重写后补充每次区间减半、递归深度约 log2(N) 层、每层常数比较的推导，并注明 vector<int> 按值传递每层整份拷贝的严格口径争议；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无 referenceCode。"
+          }
+        },
+        "changes": {
+          "question": "在上题的 _binarySearch 算法中，如果 lst 中有 N 个元素，其时间复杂度是（ ）。",
+          "explanation": "官方答案：B。\n\n_binarySearch 每次用中点 Mid 与 Target 比较后，把查找范围缩小为原来的一半（左半 [Low, Mid-1] 或右半 [Mid+1, High]），递归深度约为 log2(N) 层，每层只做常数次的数组访问与比较，按比较次数计时间复杂度为 $O(\\log N)$。\n- A $O(N)$：线性扫描的量级，不符。\n- C $O(N \\log N)$：排序量级，不符。\n- D $O(N^2)$：更差，不符。\n\n附注（实现瑕疵与复杂度口径，保留记录）：形参 vector<int> lst 为按值传递，每层递归都会整份拷贝 lst；若把拷贝开销计入，严格总代价可达 $O(N \\log N)$。官方按常规二分查找的比较次数口径取 $O(\\log N)$（选项 B），拷贝问题作为原题实现瑕疵说明。\n\n考点：二分查找的时间复杂度。"
+        },
+        "tests": [],
+        "unresolved": [
+          "形参 vector<int> lst 按值传递，每层递归整份复制，若计入拷贝总代价为 O(N log N)；官方按比较次数口径取 O(log N)（B），两种口径差异保留记录。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核：补『上题的』属忠实 PDF 的必要修复（非文风改写）；解析补充折半推导与按值传递拷贝口径争议合理，官方答案 B 经我独立确认无误，采纳。"
+      }
+    ],
+    "summary": "对题 6-10 五道单选题完成独立复核：官方答案 A/C/B/D/B（0 起始索引 0/2/1/3/1）与网站 answer 全部一致，无答案错误。五题均有需修复项并已提供修复：题 6 解析为占位文字已重写（辗转相除法判别 + rc 上界独立推导），并指出网站 sourcePage 把实际位于 PDF 第 3 页的题 6 误标为第 4 页（页码需在源数据层修正）；题 7 code 漏抄第 4 页原图中第二段完全相同的 for 收集循环，已补全，解析按官方 C 重写并保留 (vector<int>)pivot 强转语义与 D 选项 int 无法匹配 operator+ 的原题类型歧义争议；题 8 缺失的 isPrimeA/isPrimeB 代码与全部复杂度断言已按原图补全（isPrimeA 最坏 O(N/2)，isPrimeB 最坏 O(N^(1/2))，B 正确）；题 9 解析误把 A/B/C 标为边界或 mid 有误已重写，bSearch 以 lst.size() 为 High 的越界风险经独立调用链验证（lst={1,2,3}, Target=10 访问 lst[3]）作为原卷缺陷记录；题 10 题干补回『在上题的』指代，解析补折半深度推导及 vector 按值传递导致严格口径 O(N log N) 的争议说明。五题均为单选题，referenceCode 均不适用，无编程题故 tests 全空。所有修复均已独立复核通过，对应维度标 verified 并注明『修复后核验通过』。"
+  }
+}

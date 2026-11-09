@@ -1,0 +1,236 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T14:58:47.389Z",
+  "completedAt": "2026-11-08T15:01:17.250Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48606,
+    "completion_tokens": 12628,
+    "total_tokens": 61234,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10083
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0136049,
+      "allowance": 0.0136049,
+      "tokens": {
+        "input": 48606,
+        "output": 12628,
+        "reasoning": 10083,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为「CCF 编程能力等级认证 / C++ 二级 / 2024 年 03 月」，与 paperId=2024-03-l2、level=2、year=2024、month=3 相符；单选答案表第1-15题为 B B B C B C D B C A D A C C C，第1-5题对应 B B B C B。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干「下列流程图的输出结果是？」；原图流程：开始→cj=75（矩形处理框）→菱形判断 cj>=60→YES→菱形判断 cj>=90→YES→输出框「成绩优秀」、NO→输出框「良好」，cj>=60 为 NO→输出框「不及格」→结束。网站文字化题干完整保留两个判断与三条输出路径；原图分支标注 YES/NO，网站写作是/否，属等价转换，无遗漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项为 A.优秀、B.良好、C.不及格、D.没有输出，与网站 options 顺序及内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第1题为 B；网站 answer=1（0起始即B），映射正确。依图独立推导：75≥60 成立、75≥90 不成立，输出「良好」，即 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析执行路径推导正确，但易错提醒称「cj = 75 是赋值（平行四边形/矩形框）」有误：原卷图中 cj=75 为矩形处理框，平行四边形仅用于三个输出框，该句与解析末尾「矩形表示处理（赋值）」自相矛盾；「两条分支」实际为三条输出路径。所附修改稿改为「矩形处理框」并同步修正，其余内容逐句复核无误。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，原卷无参考程序，网站亦无该字段，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (良好)**\n\n**核心解析：**\n流程图只有一条执行路径，顺着走一遍即可：\n1. 先执行赋值框 `cj = 75`（矩形处理框）；\n2. 判断 `cj >= 60`：75 ≥ 60 成立 → 走「是」；\n3. 判断 `cj >= 90`：75 ≥ 90 **不成立** → 走「否」；\n4. 输出「良好」。\n\n**选项逐项分析：**\n- **A (优秀)**：❌ 需要 `cj >= 90`，75 不满足；流程图对应输出为「成绩优秀」。\n- **B (良好)**：✅ 60 ≤ cj < 90 区间的输出。\n- **C (不及格)**：❌ 那是 `cj < 60` 时走的「否」分支。\n- **D (没有输出)**：❌ 各分支最终都通向输出框，任何取值都会有输出。\n\n**易错提醒：**\n- 流程图开头的 `cj = 75` 是**矩形处理框中的赋值**，不是判断，也不是平行四边形的输入框；别把它当成“输入 75”。\n- 两层判断要按顺序看：先 60 分线过不过，过了再看 90 分线。写成代码就是 `if (cj>=60) { if (cj>=90) 优秀; else 良好; } else 不及格;`\n\n**知识延伸：**\n流程图的基本图形约定：圆角矩形表示开始/结束，平行四边形表示输入输出，矩形表示处理（赋值），菱形表示判断（只有一个入口、两个出口）。\n\n**考点：** 流程图的阅读、嵌套条件分支"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核修改：初核对「（平行四边形/矩形框）」符号误标的指认与原卷图相符（cj=75 为矩形处理框，平行四边形仅用于成绩优秀/良好/不及格三个输出框），且修改稿同步将「两条分支」修正为「各分支」（原图三条输出路径），逐句复核无新错误，予以采纳；题面、选项、官方答案均不受影响，verdict=revise 仅针对解析字段。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干「以下选项中不符合 C++变量命名规则的是？」，与网站题干语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项为 A.student、B.2_from、C._to、D.Text，与网站 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第2题为 B；网站 answer=1（0起始即B）。独立判断：2_from 以数字开头违反「首字符须为字母或下划线」规则，student/_to/Text 均合法，B 唯一正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项论证正确：首字符规则、下划线开头合法、大小写敏感区分 Text 与 text；结论与官方 B 一致，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，原卷无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维复核结论与初核一致，题面、选项、答案映射（B→1）与解析均无问题，无证据支持额外修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题题干「以下选项中，不能用于表示分支结构的C++保留字是？」，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项为 A.switch、B.return、C.else、D.if，与网站 options 顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第3题为 B；网站 answer=1。独立判断：return 为函数返回/跳转语句，不具备条件选择功能；switch/else/if 均属分支结构保留字，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分分支结构保留字（if/else/switch）与跳转语句（break/continue/return/goto），并补充三目运算符可作双分支；与官方答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，原卷无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：return 属跳转语句而非分支结构的判断正确，解析与官方答案一致；无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4题题干与选项A位于PDF第1页末，选项B/C/D 续于第2页顶部；网站题干完整包含 while、if、foreach、break/continue 四项说法，跨页无遗漏，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1-2页选项为 A.while 循环…直到指定的条件不满足为止、B.if 语句通常用于执行条件判断、C.在C++中可以使用 foreach 循环、D.break 和 continue 语句都可以用在 for 循环和 while 循环中，与网站 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第4题为 C；网站 answer=2（0起始即C），映射正确。C++ 标准关键字中无 foreach，C 项说法错误，符合「选错误说法」的题意。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 C++ 无 foreach 关键字，遍历用基于范围的 for（关键字仍为 for）或算法函数 std::for_each；并复核 A（当型循环）、B（条件判断）、D（break/continue 适用 for/while/do-while）描述均正确。与官方 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，原卷无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：跨页标注 sourcePages=[1,2] 与原卷相符；foreach 考点解析成立，A/B/D 复核无误；无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题题干「下列4个表达式中，答案不是整数8的是？」，与网站题干一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为 A.abs(-8)、B.min(max(8, 9), 10)、C.int(8.88)、D.sqrt(64)，与网站 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第5题为 B；网站 answer=1（0起始即B），映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：abs(-8)=8；max(8,9)=9，min(9,10)=9，B 结果为 9；int(8.88)=8（向零截断）；sqrt(64)=8.0，数值等于 8，解析已注明 double 类型差异。唯一结果不是整数 8 的是 B，与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，原卷无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：各表达式逐项复算与初核一致；sqrt(64) 的类型差异已由原解析说明，不影响官方答案 B；无需修改。"
+      }
+    ],
+    "summary": "本次独立复核第 1-5 题：卷头（C++ 二级，2024 年 03 月）与 paperId 相符，单选答案表第 1-5 题为 B B B C B，officialAnswer 映射（1,1,1,2,1）全部正确。唯一确认的问题是第 1 题解析中「cj=75 是赋值（平行四边形/矩形框）」的符号误标——原卷流程图中 cj=75 为矩形处理框，平行四边形仅用于三个输出框，已采纳经逐句复核的修改稿并将该维度标注「修复后核验通过」，verdict=revise；第 2-5 题题面、选项、答案、解析五维核验通过，verdict=approve。第 4 题跨第 1-2 页已在 sourcePages 标注。第 1 题题面中原图 YES/NO 与网站「是/否」属等价转换。未发现答案冲突或源卷疑误，无未决事项。"
+  }
+}

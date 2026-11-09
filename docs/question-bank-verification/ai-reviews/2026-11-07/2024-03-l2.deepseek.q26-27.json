@@ -1,0 +1,176 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T22:02:13.877Z",
+  "completedAt": "2026-11-08T22:04:35.684Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32181,
+    "completion_tokens": 26295,
+    "total_tokens": 58476,
+    "prompt_tokens_details": {
+      "cached_tokens": 32000
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 23123
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01590015,
+      "allowance": 0.00954009,
+      "tokens": {
+        "input": 181,
+        "output": 26295,
+        "reasoning": 23123,
+        "cache_read": 32000,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 二级”“2024 年 03 月”，与 paperId 2024-03-l2 对应；题号 26、27 分别对应 PDF 中的 3.1 乘法问题、3.2 小杨的日字矩阵。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页 3.1.2 输入描述明确写有“保证 n ≤ 50，a ≤ 100”，网站题面输入格式漏掉该约束；PDF 原文为“最近刚刚学习”“精准地算出”，网站写作“最初刚刚学习”“精确地算出”，属同义措辞，不改变题意。缺少数据范围会影响对溢出边界的判断，需补回。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不以选项答案表判定，PDF 未给选项答案。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现行解析第 2 步用 res 保存累乘结果，第 3 步要求每轮执行 res = res * a 后再判断是否超过 10^6，并建议继续读完输入。按题面 n ≤ 50、a ≤ 100，乘积可达 100^50，远超 long long 上限（约 9.22×10^18），继续累乘会发生有符号整数溢出（未定义行为）。应改为相乘前判断 product * a > 1000000，或超阈值后停止累乘。"
+          },
+          "referenceCode": {
+            "status": "needs_fix",
+            "evidence": "现行代码先执行 res *= a 再判断 res > 1000000，在 n=50、a=100 的合法输入下 res 会增长到 100^50，long long 溢出（UB）。PDF 第7页参考程序在相乘前判断 product * a > 1000000 并提前返回，product 始终不超过 10^6，product * a 最大 10^8，不会溢出；应改用该写法。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202403 二级] 乘法问题\n\n## 题目描述\n\n小 A 最近刚刚学习了乘法，为了帮助他练习，我们给他若干个正整数，并要求他将这些数乘起来。\n\n对于大部分题目，小 A 可以精准地算出答案，不过，如果这些数的乘积超过 $10^6$，小 A 就不会做了。\n\n请你写一个程序，告诉我们小 A 会如何作答。\n\n## 输入格式\n\n第一行一个整数 $n$，表示正整数的个数。\n\n接下来 $n$ 行，每行一个整数 $a$。小 A 需要将所有的 $a$ 乘起来。\n\n保证 $n \\le 50$，$a \\le 100$。\n\n## 输出格式\n\n输出一行，如果乘积超过 $10^6$，则输出 `>1000000`；否则输出所有数的乘积。",
+          "explanation": "**解析：**\n本题属于基础循环与模拟题，主要考查循环累乘、条件判断以及溢出与边界处理。\n\n**算法步骤：**\n1. 读入整数 `n`。\n2. 用 `long long` 类型变量 `product` 保存累乘结果，初始化为 `1`（乘法单位元，不能初始化为 `0`）。\n3. 循环 `n` 次，每次读入 `a`：\n   - 在相乘之前判断 `product * a` 是否超过 `1000000`。由于此前 `product` 始终不超过 `1000000`，且 `a ≤ 100`，`product * a` 最大为 `10^8`，不会超出 `long long` 范围。\n   - 若超过，直接输出 `>1000000` 并结束程序（也可以置溢出标记并停止继续累乘，同时继续读完剩余输入）。\n   - 否则执行 `product *= a`。\n4. 循环结束后输出 `product`。\n\n**样例走查：**\n- **样例 1**：`n = 2`，`a = 3、5`。`product = 1 → 3 → 15`，未超过 `10^6`，输出 `15`。\n- **样例 2**：`n = 3`，`a = 100、100、100`。`product = 100 → 10000 → 1000000`，恰好等于 `10^6`，未“超过”，输出 `1000000`。\n- **样例 3**：`n = 4`，`a = 100、100、100、2`。前三项 `product = 1000000`，第 4 项判断 `1000000 * 2 = 2000000 > 10^6`，输出 `>1000000`。\n\n**易错提醒：**\n- 累乘初值必须为 `1`，不能为 `0`。\n- “超过 `10^6`”是严格大于，等于 `1000000` 时应输出 `1000000`。\n- 不能先无限制累乘再判断：在 `n ≤ 50`、`a ≤ 100` 时乘积可达 `100^50`，远超 `long long` 范围，会产生有符号整数溢出（未定义行为）。应在每次相乘前判断，或超过阈值后停止累乘。\n- 若选择读完所有输入再输出，超过阈值后不要再把大数乘进 `product`，可置标记并跳过后续累乘。\n\n**考点：** 循环累乘、阈值判断、整数溢出防范",
+          "referenceCode": "#include <iostream>\nusing namespace std;\nint main() {\n    int n;\n    cin >> n;\n    long long product = 1;\n    for (int i = 0; i < n; ++i) {\n        int a;\n        cin >> a;\n        if (product * a > 1000000) {\n            cout << \">1000000\" << endl;\n            return 0;\n        }\n        product *= a;\n    }\n    cout << product << endl;\n    return 0;\n}"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\n1",
+            "output": "1",
+            "reason": "n=1、a=1，乘积为 1，不超过 10^6，应输出 1。"
+          },
+          {
+            "name": "恰好等于阈值",
+            "input": "6\n10\n10\n10\n10\n10\n10",
+            "output": "1000000",
+            "reason": "6 个 10 相乘等于 10^6，等于阈值不算超过，应输出 1000000。"
+          },
+          {
+            "name": "刚超过阈值",
+            "input": "7\n10\n10\n10\n10\n10\n10\n10",
+            "output": ">1000000",
+            "reason": "7 个 10 相乘为 10^7，严格大于 10^6，应输出 >1000000。"
+          },
+          {
+            "name": "阈值下方边界",
+            "input": "5\n100\n100\n99\n1\n1",
+            "output": "990000",
+            "reason": "100×100×99=990000，再乘两个 1 仍为 990000，不超过 10^6，应输出 990000。"
+          },
+          {
+            "name": "累乘溢出边界",
+            "input": "10\n100\n100\n100\n100\n100\n100\n100\n100\n100\n100",
+            "output": ">1000000",
+            "reason": "10 个 100 相乘为 10^20，超过 long long 上限；正确做法是在乘积超过 10^6 时提前判定或停止累乘，避免有符号溢出。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第8页 3.2.1 约束为 5 ≤ N ≤ 49 且 N 为奇数；网站题面写成 `$5 le N le 49$`，LaTeX 缺少反斜杠，无法正确显示。PDF 3.2.3 输出描述还要求“恰好输出 N 行，每行除了换行符外恰好包含 N 个字符……你的输出必须和标准答案完全一致才能得分”，网站题面只保留“输出对应的日字矩阵”，漏掉严格格式要求。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不以选项答案表判定，PDF 未给选项答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 0 基行列枚举：先判断 `j == 0 || j == n - 1` 输出 `|`，保证最左/最右列及四角为竖线；否则判断 `i == 0 || i == n - 1 || i == n / 2` 输出 `-`；其余输出 `x`。对 N=5，中间行下标 5/2=2，逐行得到 |---|、|xxx|、|---|、|xxx|、|---|；对 N=7，中间行下标 3，逐行得到 |-----|、|xxxxx|、|xxxxx|、|-----|、|xxxxx|、|xxxxx|、|-----|，与 PDF 样例一致。关于列边框优先级和 n/2 对应 0 基中间行的说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "现行代码用双重循环逐字符输出，列边框分支优先于横线分支，中间行取 `n / 2`（0 基），与 PDF 第9页参考程序的判定顺序和结果一致；按逻辑推演，N=5、N=7 均得到样例图形，且每行恰好 N 个字符、共 N 行。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202403 二级] 小杨的日字矩阵\n\n## 题目描述\n\n小杨想要构造一个 $N \\times N$ 的日字矩阵（$N$ 为奇数），具体来说，这个矩阵共有 $N$ 行，每行 $N$ 个字符，其中最左列、最右列都是 `|`，而第一行、最后一行、以及中间一行（即第 $\\frac{N+1}{2}$ 行）的第 2 ~ $N-1$ 个字符都是 `-`，其余所有字符都是半角小写字母 `x`。例如，一个 $N = 5$ 的日字矩阵如下：\n\n```\n|---|\n|xxx|\n|---|\n|xxx|\n|---|\n```\n\n请你帮小杨根据给定的 $N$ 打印出对应的“日字矩阵”。\n\n## 输入格式\n\n一行一个整数 $N$（$5 \\le N \\le 49$，保证 $N$ 为奇数）。\n\n## 输出格式\n\n输出对应的“日字矩阵”。\n\n请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 $N$ 行，每行除了换行符外恰好包含 $N$ 个字符，这些字符要么是 `-`，要么是 `|`，要么是 `x`。你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查。"
+        },
+        "tests": [
+          {
+            "name": "最小规模 N=5",
+            "input": "5",
+            "output": "|---|\n|xxx|\n|---|\n|xxx|\n|---|",
+            "reason": "N 的最小值为 5；第 1、3、5 行为横线，第 2、4 行为 x，两侧为竖线。"
+          },
+          {
+            "name": "中间行位置 N=9",
+            "input": "9",
+            "output": "|-------|\n|xxxxxxx|\n|xxxxxxx|\n|xxxxxxx|\n|-------|\n|xxxxxxx|\n|xxxxxxx|\n|xxxxxxx|\n|-------|",
+            "reason": "N=9 时中间行为 0 基下标 4（第 5 行），验证 n/2 取中间行；每行 9 个字符，共 9 行。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核仅覆盖题号 26、27。26：题面缺少 n≤50、a≤100 约束；解析与参考代码存在 long long 溢出风险，已给出修正题面、解析和 PDF 官方参考程序。27：题面缺少严格输出格式要求且 N 范围 LaTeX 损坏，已补正；解析与参考代码经逐行逻辑核对正确。两题样例均与 PDF 一致，编程边界测试见各题 tests，未实际运行。"
+  }
+}

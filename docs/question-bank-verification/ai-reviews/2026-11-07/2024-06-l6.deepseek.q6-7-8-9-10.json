@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:39:53.094Z",
+  "completedAt": "2026-11-07T11:42:34.916Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33846,
+    "completion_tokens": 14430,
+    "total_tokens": 48276,
+    "prompt_tokens_details": {
+      "cached_tokens": 33792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12532
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00876748,
+      "allowance": 0.00526049,
+      "tokens": {
+        "input": 54,
+        "output": 14430,
+        "reasoning": 12532,
+        "cache_read": 33792,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 六级”“2024 年 06 月”，与 2024-06-l6 一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3—4页第6题代码、横线位置和题意均与网站一致；官方图第3页未显示 #include <stack>，网站补入，这是使示例可编译的补充，不改变填空含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项 A—D 的文字和顺序与网站一致，仅空格排版略有差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 A，网站 answer=0 对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：栈中先压低位、最后压最高位，故应从栈顶开始反复 top 输出再 pop；A 正确。解析结论与选项一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无独立参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方代码在 n=1 时 m=0，while(m!=1) 恒真会造成死循环；这是源卷代码边界缺陷，不影响本题填空答案 A，保留争议。"
+        ]
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4—5页循环队列类定义、空白位置和判满函数语境与网站一致；官方题面“横向上”系“横线上”的错字，网站订正不改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A—D 选项与网站一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 A，网站 answer=0 对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：该实现牺牲一个空位，队满条件为 rear 再前进一格取模后等于 front，即 (rear+1)%capacity==front；解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无独立参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方 en_queue 声明为 void 却 return -1/1，严格按 C++ 无法编译；属源卷代码瑕疵，不影响 is_full 选 A，保留争议。"
+        ]
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第8题字符串“classmycls”和哈夫曼编码问法与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项 A 10、B 20、C 25、D 30 与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 C，网站 answer=2 对应 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案和 WPL=25 的结论正确，但现有构造步骤第3步先合并 s(3)+3=6，未按“每次合并当前最小两棵”的规则（此时应先合并 c(2)+l(2)=4）；最终树形与结果虽不变，解析过程需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无独立参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n**解析：**\n字符串 `classmycls` 共 10 个字符，频率为 s×3、c×2、l×2、a×1、m×1、y×1。按哈夫曼算法每次合并当前权值最小的两棵树：\n1. a(1)+m(1)=2；\n2. y(1)+2=3；\n3. c(2)+l(2)=4；\n4. s(3)+3=6；\n5. 4+6=10（根）。\n\n各字符编码长度：s=2、c=2、l=2、y=3、a=4、m=4。\n总比特数 = WPL = 3×2+2×2+2×2+1×3+1×4+1×4 = 6+4+4+3+4+4 = 25。\n\n逐项分析：\n- A 10：错误，这是字符总数；\n- B 20：错误，不是该树的 WPL；\n- C 25：正确；\n- D 30：错误，这是用 3 位定长编码表示 10 个字符的总位数。\n\n**易错点：** 哈夫曼树每次必须合并当前最小的两个权值；计算 WPL 时按“频率×编码长度”逐字符累加。\n\n**考点：** 哈夫曼树与哈夫曼编码"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第9题题干与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A 先序遍历、B 中序遍历、C 后序遍历、D 以上都是，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 A，网站 answer=0 对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：先序遍历访问次序为根—左—右，根必第一个访问；中序、后序一般不满足。解析已说明左子树为空时的特例，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无独立参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第10题“5 层的满二叉树”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项 A 31、B 32、C 33、D 16 与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 A，网站 answer=0 对应 A。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 31 正确，但原解析将 16=2^4 说成“2^5=32 的下一层”，且对 B=32 的解释混乱；16 实际只是第 5 层的节点数，需修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无独立参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**解析：**\n满二叉树（每层都满）第 i 层有 2^(i-1) 个节点，k 层满二叉树的节点总数为 2^k − 1。\n5 层：1+2+4+8+16 = 2^5 − 1 = 31。\n\n逐项分析：\n- A 31：正确。\n- B 32：错误，32=2^5，不是 5 层满二叉树的总节点数。\n- C 33：错误。\n- D 16：错误，16=2^4 只是第 5 层的节点数，不是总节点数。\n\n**易错点：** 满二叉树的总数是 2^k−1；第 k 层节点数是 2^(k−1)，不要与总数混淆。完全二叉树的节点数则只保证在相应范围内。\n\n**考点：** 满二叉树的节点数公式"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核对第6—10题：卷头来源匹配，题面、选项和答案均与官方 PDF 对应；第6、7题存在源卷代码层面的边界或编译瑕疵，已保留争议且不影响选项答案。第8题解析的哈夫曼合并次序、第10题解析的层级说明有误，已给出完整修正草稿；两题答案 C、A 不变。"
+  }
+}

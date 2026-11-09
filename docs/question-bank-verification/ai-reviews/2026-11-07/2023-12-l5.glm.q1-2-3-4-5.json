@@ -1,0 +1,250 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:33:03.728Z",
+  "completedAt": "2026-11-07T11:38:33.361Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52958,
+    "completion_tokens": 21744,
+    "total_tokens": 74702,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17399
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0188157,
+      "allowance": 0.0188157,
+      "tokens": {
+        "input": 52958,
+        "output": 21744,
+        "reasoning": 17399,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头印有「CCF 编程能力等级认证 / C++ 五级 / 2023年12月」，与 paperId=2023-12-l5（等级 5、2023 年 12 月）及已校验来源 SHA f3e051516312e58303a5cd7130dc59b6b388cf9f 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干「下面C++代码用于求斐波那契数列，该数列第1、2项为1，以后各项均是前两项之和。下面有关说法错误的是( )」及 fiboA/fiboB 代码经逐行对照与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "站内 B 项原缺后半句；PDF 第 1 页 B 完整为「fiboA( ) 更加符合斐波那契数列的数学定义，直观易于理解，而 fiboB() 需要将数学定义转换为计算机程序实现」。按 changes 补全后与原卷逐字对应，修复后核验通过；A、C、D 本就与 PDF 一致，且该补全不影响答案映射（错误项仍为 C）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 C，0 起始索引 2，与站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：fiboA 朴素递归无记忆化，计算 fiboA(5) 时 fiboA(3) 被重复计算两次，重复子问题随 N 呈指数增长（约 O(2^N)）；fiboB 以 last1/last2 线性递推为 O(N)。效率与代码行数无关，站内解析据此判定 C 将「代码量少」误作「效率高」，可独立推出答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "fiboA( )用递归方式，fiboB()循环方式",
+            "fiboA( )更加符合斐波那契数列的数学定义，直观易于理解，而 fiboB() 需要将数学定义转换为计算机程序实现",
+            "fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执行效率更高",
+            "fiboB( )虽然代码量有所增加，但其执行效率更高"
+          ]
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：独立对照 PDF 第 1 页确认站内 B 选项确实截断在「直观易于理解」处，原卷还有「，而 fiboB() 需要将数学定义转换为计算机程序实现」；补全后只影响忠实度、不影响 C 为唯一错误项的映射。题面、答案（答案表第 1 题 C）与解析经我独立复推后确认无其他问题，故仅应用该处修复。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "站内题干原漏 PDF 第 1 页必要假设「并假设 merge(int T[], int R[], int s, int m, int t) 函数将有序（同样排序规则）的T[s..m]和T[m+1..t]归并到R[s..t]中」，该假设决定 merge(T2, SList, s, m, t) 各参数含义，属必要信息；按 changes 补全后与原卷对应，修复后核验通过。mergeSort 函数体（基准 s==t、new int[len]、m=(s+t)/2、merge 调用、delete）经逐行对照与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页起 A(m and m,t)/B(m-1 and m+1,t)/C(m and m+1,t)/D(m-1 and m-1,t) 四项与站内顺序、内容一致；站内 $m-1$ 为 LaTeX 等价写法。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 C（索引 2），与站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：m=(s+t)/2 时标准划分应不重不漏，C 给出 [s,m] 与 [m+1,t]；A 右半从 m 起，与左半在 m 处重叠，且区间长度为 2（如 s=0,t=1,m=0）时右调用仍为 (0,1)，规模不缩导致无限递归；B 左半 [s,m-1] 遗漏下标 m 元素；D 两端点均错。站内解析逻辑与此一致，可独立支撑 C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码以递归方式实现合并排序，并假设 merge(int T[], int R[], int s, int m, int t) 函数将有序（同样排序规则）的 T[s..m] 和 T[m+1..t] 归并到 R[s..t] 中。横线处应填上代码是（ ）。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷 mergeSort 完整程序疑有缺陷：本层递归调用 mergeSort(SList, T2, s, m, len) 被期望产出有序的 T2[s..m]，但其内部最终以 merge(T2', SList, ...) 将结果写回 SList，本层 T2 的对应区间仅在基准层(s==t)被写入；我按区间长度分别推演，长度为 2 的区间可由两个基准子调用恰好填满 T2，而长度 ≥3 时本层 T2 的多元素子区间不会被递归结果填充（如长度 3 时左半 T2[s..m] 未初始化，顶层第二参数 TList 在非基准层也从不被写）。该缺陷不改变横线处按不重不漏划分应选 C 的结论（官方答案表亦为 C），代码按原卷原样保留，疑点维持待核验。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受初核：题干补全必要且与原卷一致；对第 10 行 merge 目标数组的疑点，我按长度 2/3 独立推演确认递归有序结果写回 SList 而不回填本层 T2，与初核描述相符，故维持 unresolved 争议而非定案，也不擅改题面代码。其余三维（选项、答案、解析）经独立复核通过。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干「阅读下面的C++代码，执行后其输出是( )」及 stepCount/fracA/fracB/main 代码逐行对照与站内 code 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A~D 四个输出串与站内 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页答案表第 3 题为 D（索引 3），与站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内原解析为占位式（正确项只写「正确答案」，错误项写「请逐步推演」），无法独立推证；已按独立推演重写。复推结果：fracA(5) 先把 stepCount 由 0 增至 1 输出 `1->`，循环算出 120 由 main 输出；fracB(5) 复用全局 stepCount 递归 5 层，每层先自增并输出，前缀依次为 `2->`至`6->`，N==1 返回 1 后逐层乘回 120；完整输出 `1->120<===>2->3->4->5->6->120`，与官方 D 一致。重写后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\nfracA(5) 先将全局 stepCount 由 0 自增到 1 并输出前缀 `1->`，随后 for 循环计算 5! = 120，返回后由 main 输出，故前半段为 `1->120`；接着 main 输出分隔串 `<===>`。fracB(5) 沿用 stepCount 的当前值继续：每一层先自增 1 并输出，递归链共 5 层（N 依次为 5、4、3、2、1），前缀依次为 `2->`、`3->`、`4->`、`5->`、`6->`，到达 N==1 时返回 1，各层相乘得 5×4×3×2×1×1=120，最后由 main 输出 120。完整输出为 `1->120<===>2->3->4->5->6->120`，选 D。\n\n**选项逐项分析：**\n- **A `1->120<===>2->120`**：❌ 错误。fracB(5) 递归 5 层、每层都会输出自增后的计数，不可能只出现一个 `2->`。\n- **B `1->120<===>1->120`**：❌ 错误。stepCount 是全局变量且不会被重置，第二个前缀不可能从 1 重新数起。\n- **C `1->120<===>1->2->3->4->5->120`**：❌ 错误。fracB(5) 的首个前缀应为 `2->`（stepCount 当前已是 1 再自增），C 把它当作重置后从 1 计数。\n- **D `1->120<===>2->3->4->5->6->120`**：✅ 正确，与逐层推演完全一致。\n\n**考点：** 全局变量在多次调用（含递归）之间的持续累加；同一问题的递归与循环两种实现。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：我未沿用原占位式解析，按代码独立推演输出串（fracA 无递归仅输出一次，fracB 自 stepCount=1 继续递归 5 层输出 2->~6->），与官方答案 D 吻合；重写解析内容各描述经核对准确（A/B/C 的错误成因归纳成立），予以应用。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干「下面的C++用于对 lstA 排序，使得偶数在前奇数在后，横线处应填入( )」及 isEven/swap/sortA 代码逐行对照与站内一致（站内反引号为 Markdown 等价排版）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2~3 页 A(!isEven(lstA[j]) && isEven(lstA[j+1]))/B(isEven(lstA[j]) && !isEven(lstA[j+1]))/C(>)/D(<) 与站内一致；D 项起始于第 3 页，sourcePages=[2,3] 正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页答案表第 4 题为 A（索引 0），与站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：相邻逆序仅当「前奇后偶」时交换才能使偶数前移，即 A；B 在「前偶后奇」时交换、方向相反；C、D 为纯数值冒泡，不保证奇偶分区。以 [1,2] 验证：A 条件成立交换为 [2,1]，[2,1] 保持不变。站内解析与此一致且含最小例验证，可独立支撑答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、代码、四选项与 PDF 第 2~3 页一致，答案表第 4 题为 A（answer=0）；站内解析含最小例 [1,2] 的独立验证，能够支撑答案，无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干（带头节点双向链表存字符串、重复串 ref 计数、最新访问节点移到链头）与站内一致；Node 结构与 Insert 函数体（while 查找并摘链、!p 时新建结点、横线后 pHead->next = p, p->prev = pHead）逐行对照一致；源卷代码原样保留，缺陷注记见 unresolved。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A 判 pHead、B 判 pHead->next、C 无判断、D「触发异常，不能对空指针进行操作」与站内逐项一致；站内把官方的逗号表达式写作分号分隔，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页答案表第 5 题为 B（索引 1），与站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：异动后重挂链头为 pHead->next = p, p->prev = pHead；若链表已有旧首结点，还需 p->next = pHead->next 且旧首 pHead->next->prev = p，因此只有 B 先判 pHead->next 才能在链表仅剩头节点时避免解引用空指针；A 判 pHead 无意义（头节点恒存在，其 next 可能为 NULL），C 无判断同样危险。站内解析同向支撑 B，并如实注记原卷缺陷，未掩盖问题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷 Insert 程序在循环命中结点（尤其该结点为当前尾结点，或命中链表中的唯一数据结点）时直接执行 p->next->prev = p->prev，而此时 p->next 为 NULL，存在空指针解引用；该缺陷不改变横线处选 B 的结论（官方答案表亦为 B），站内已以 sourceIntegrity=official-source-defect 与 integrityNote 标注，代码按原卷保留，争议维持待核验。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：选项、答案（答案表第 5 题 B）与解析均经我独立复核一致；对原卷尾结点空指针缺陷，我复演命中/未命中两条路径确认其存在，与初核及站内 integrityNote 判断一致，故维持 official-source-defect 标注与 unresolved 争议，不擅改题面代码，题面填空本身定案为 approve。"
+      }
+    ],
+    "summary": "本次复核覆盖第 1~5 题，全部对照 PDF 原页图与答案表逐题独立推演。三处确认需修复并给出完整字段值：第 1 题选项 B 补回原卷后半句「而 fiboB() 需要将数学定义转换为计算机程序实现」；第 2 题题干补回 merge 函数归并假设（决定 merge 参数语义的必要信息），其答案 C 按 [s,m]/[m+1,t] 标准划分复核无误；第 3 题原占位式解析替换为独立推演（输出 1->120<===>2->3->4->5->6->120，官方 D）。第 1 题答案 C（fiboA 指数级重复调用）、第 4 题答案 A（前奇后偶交换）均独立复推通过。两处保留原卷代码缺陷争议（不擅自定案）：第 2 题递归层把归并结果写回 SList 而非本层 T2，长度 ≥3 时本层 T2 区间未填充；第 5 题命中尾结点时 p->next->prev 解引用空指针，该题维持 official-source-defect。五题官方答案 C/C/D/A/B 与站内 answer 完全一致，未发现答案映射或评分错误。"
+  }
+}

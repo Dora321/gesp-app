@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:58:19.249Z",
+  "completedAt": "2026-11-07T12:00:27.428Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55184,
+    "completion_tokens": 7985,
+    "total_tokens": 63169,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5928
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0122701,
+      "allowance": 0.0122701,
+      "tokens": {
+        "input": 55184,
+        "output": 7985,
+        "reasoning": 5928,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图页首可见『GESP / CCF 编程能力等级认证（Grade Examination of Software Programming）』标识及标题『C++ 六级 2024 年 06 月』，与网站 title「2024年6月 GESP C++ 六级真题」及 level=6、year=2024、month=6 一致，来源 URL 为 CCF 官网附件。注：DeepSeek 初核将卷头误标注于第 8 页，实际卷头仅在第 1 页，此处已更正。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 6 题原文为“n个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是O(log n)。”（文本层该处 O(log n) 数学式缺失，以第 8 页原图确认），与站内题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为「正确/错误」二选，不属于单选题 options 逐项对照范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断题答案表第 6 题符号为“×”，按「正确=0、错误=1」映射为 1；站内 answer=1 一致。且独立推导成立：链表无随机访问不可二分，平均约检查 (n+1)/2 个结点，为 O(n) 而非 O(log n)，题干说法确为错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：双向循环链表查找只能沿 prev/next 顺序遍历，不支持二分跳跃；等概率目标平均约 n/2 次比较，最坏 n 次，均为 O(n)；O(log n) 需要跳表、平衡树等结构。站内解析（不可二分、平均 O(n)、需跳跃结构）与推导一致，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干与第 8 页原图一致、答案表“×”映射 1、解析可独立推演成立，引用页码正确，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 7 题原文为“完全二叉树可以用数组存储数据。”，与站内题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为「正确/错误」二选，不属于单选题 options 逐项对照范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断题答案表第 7 题符号为“√”，映射为 0；站内 answer=0 一致。且独立推导：完全二叉树按层序编号连续无空缺，可存入数组（如堆），说法正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验下标关系：0 基下标 i 的左右孩子为 2i+1、2i+2，父结点为 (i-1)/2；1 基为 2i、2i+1、i/2，与站内解析给出的公式一致；堆即为数组存储的完全二叉树，应用举例正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干一致、答案表“√”映射 0、数组下标公式核验无误，无需修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 8 题原文为“在C++中，静态成员函数只能访问静态成员变量。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为「正确/错误」二选，不属于单选题 options 逐项对照范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断题答案表第 8 题符号为“√”，映射为 0；站内 answer=0 一致。独立推导：静态成员函数无 this 指针，缺省途径下只能访问静态成员，按官方考点该说法正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：静态成员函数无 this 指针，不能直接访问具体对象的非静态成员变量，只能访问静态成员变量和静态成员函数；站内解析同时正确注明了可通过传入对象引用/指针访问非静态成员的例外，表述严谨且与官方答案相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干一致、答案表“√”映射 0、解析包含例外情形说明且与官方答案一致，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 9 题原文为“在深度优先搜索中，通常使用队列来辅助实现。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为「正确/错误」二选，不属于单选题 options 逐项对照范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断题答案表第 9 题符号为“×”，映射为 1；站内 answer=1 一致。独立推导：DFS 依赖栈/递归调用栈回退，队列用于 BFS，题干说法错误，判断成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：DFS 用栈（LIFO）实现一条路走到底再回溯，本卷第 14 题的非递归 DFS 代码亦用 stack；BFS 才用队列逐层扩展。站内解析与推导一致，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干一致、答案表“×”映射 1、解析与同卷第 14 题 stack 实现相互印证，无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 10 题原文为“对0-1背包问题，贪心算法一定能获得最优解。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为「正确/错误」二选，不属于单选题 options 逐项对照范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断题答案表第 10 题符号为“×”，映射为 1；站内 answer=1 一致。独立推导：0-1 背包不满足贪心选择性质，说法错误，判断成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证站内反例：容量 10，物品(重6价6)与两件(重5价5)性价比均为 1；贪心先取(6,6)后剩余 4 装不下任何 (5,5)，总价 6，而最优取两件 (5,5) 得 10，6<10，贪心不保证最优。反例数值成立，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干一致、答案表“×”映射 1、反例经独立数值验算成立，无需修改。"
+      }
+    ],
+    "summary": "本次复核仅覆盖题号 21–25（对应官方卷判断题第 6–10 题，均见 PDF 第 8 页）。五题题干均与第 8 页原图一致（判断第 6 题的 O(log n) 数学式在文本层缺失，已依原图确认）；答案表符号依次为 ×、√、√、×、×，按「正确=0、错误=1」映射为 1、0、0、1、1，与站内 answer 完全一致。五条解析均经独立推导/数值验算确认（含静态成员函数例外情形、0-1 背包反例 6<10）。判断题不适用 options 与 referenceCode 维度。无任何修改事项，无未决问题。对 DeepSeek 初核的逐题结论全部接受；唯初核 sourceIdentity 证据误称卷头在第 8 页，实际卷头位于第 1 页，已在本文 sourceIdentity 中更正并说明。"
+  }
+}

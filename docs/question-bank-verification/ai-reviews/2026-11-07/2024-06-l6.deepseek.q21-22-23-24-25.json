@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:57:11.803Z",
+  "completedAt": "2026-11-07T11:58:19.238Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33846,
+    "completion_tokens": 4961,
+    "total_tokens": 38807,
+    "prompt_tokens_details": {
+      "cached_tokens": 33792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3428
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00308608,
+      "allowance": 0.00185165,
+      "tokens": {
+        "input": 54,
+        "output": 4961,
+        "reasoning": 3428,
+        "cache_read": 33792,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 8 页可见卷头“C++ 六级 2024 年 06 月”，该页另有判断题第 1 至第 10 题的答案表；判断题第 6 至第 10 题依次对应站内题号 21 至 25。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 6 题原文为“n个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是O(log n)。”，与站内题干“n 个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是 O(log n)。”含义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 6 题为“×”；按判断题映射“正确=0、错误=1”，官方答案为 1，站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：双向循环链表只能沿 prev/next 指针逐个结点扫描，不能像有序数组或平衡树那样二分跳跃；若目标等概率位于 n 个结点之一，平均约比较 n/2 个结点，仍为 O(n)，不是 O(log n)。站内解析结论与推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 7 题原文为“完全二叉树可以用数组存储数据。”，与站内题干完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 7 题为“√”；按判断题映射“正确=0、错误=1”，官方答案为 0，站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：完全二叉树按层序编号后中间没有空位，可用数组连续存放；0 基下标 i 的左、右孩子为 2i+1、2i+2，父结点为 floor((i-1)/2)，堆即典型应用。站内解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 8 题原文为“在C++中，静态成员函数只能访问静态成员变量。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 8 题为“√”；按判断题映射“正确=0、错误=1”，官方答案为 0，站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：静态成员函数没有 this 指针，不能直接访问具体对象的非静态成员变量；类内直接访问静态数据成员和静态成员函数，若要访问非静态成员须通过传入对象引用或指针。站内解析符合该考点。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 9 题原文为“在深度优先搜索中，通常使用队列来辅助实现。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 9 题为“×”；按判断题映射“正确=0、错误=1”，官方答案为 1，站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：深度优先搜索依赖栈或递归调用栈实现回退，广度优先搜索才使用队列逐层扩展；因此题干说 DFS 通常用队列辅助是错误的。站内解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 10 题原文为“对0-1背包问题，贪心算法一定能获得最优解。”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 10 题为“×”；按判断题映射“正确=0、错误=1”，官方答案为 1，站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：0-1 背包物品不可分割，按单位价值贪心可能挤掉总价值更高的组合。反例：容量 10，物品(重6价6)、(重5价5)、(重5价5)，若按性价比先取(6,6)则仅得 6，而取两件(5,5)可得 10，故贪心不保证最优。站内解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已仅核验题号 21 至 25（对应 PDF 判断题第 6 至第 10 题）。五题题干均与 PDF 第 8 页原文一致；官方判断题答案表依次为 ×、√、√、×、×，与站内 answer 映射分别 1、0、0、1、1 全部一致。解析均可独立推导成立，无需修改；判断题不适用 options 与 referenceCode 维度，因此无纠错变更或未决问题。"
+  }
+}

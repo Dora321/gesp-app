@@ -1,0 +1,253 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:22:26.555Z",
+  "completedAt": "2026-11-08T15:25:31.107Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48469,
+    "completion_tokens": 11309,
+    "total_tokens": 59778,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8678
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01292485,
+      "allowance": 0.01292485,
+      "tokens": {
+        "input": 48469,
+        "output": 11309,
+        "reasoning": 8678,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示「CCF 编程能力等级认证 GESP」「C++ 二级」「2024 年 03 月」，与 paperId 2024-03-l2（2024年3月、C++二级、level 2）一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第11题题干「有句俗话叫“三天打渔，两天晒网”。如果小杨前三天打渔，后两天晒网，一直重复这个过程，以下程序代码用于判断，第n天小杨是在打鱼还是晒网，横线处应填写？」及代码 int n,i; cin >> n; i = n % 5; if(横线)输出“晒网”else“打鱼”，与当前题面和代码一致；原卷「用于判断，第n天」与题面「用于判断第 n 天」为等价排版，不改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A. i == 0、B. i == 4、C. i == 0 && i == 4、D. i == 0 || i == 4，顺序与文本和当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第11列为 D（0起始索引3），当前 answer=3。独立推导：i=n%5，第1~3天余1/2/3为打渔，第4天余4、第5天余0为晒网，晒网条件为 i==0 || i==4，即D，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复现解析推导：余数映射表（余1/2/3打渔、余4/0晒网）成立；A漏余4、B漏余0、C因一个余数不可能同时为0和4而恒假，仅D覆盖两种余数，解析可独立支撑答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          },
+          "referenceCode_note": "",
+          "tests": [],
+          "unresolved": []
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、代码、选项与PDF逐项一致，答案表D与answer=3吻合，解析的余数映射可独立复现，无修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第12题题干（回文数定义、101与6886是回文数而100不是的示例）及代码 a=0; k=n; while(n>0){ a=横线; n/=10; } 若 a==k 输出「是回文数」否则「不是回文数」，与当前题面、代码及注释位置一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A. 10 * a + n % 10、B. a + n % 10、C. 10 * a + n / 10、D. a + n / 10，顺序与文本和当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为 A（0起始索引0），当前 answer=0。独立跟踪 n=123：A式得 a=3→32→321 构成反转，是唯一正确拼接式，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复现：A式 10*a 左移旧值并拼接 n%10（n=123 时 a=3,32,321）；B缺乘10（n=123 得数字和 3→5→6）；C拼的是 n/10 非个位（n=12 得 a=1 而非2）；D两者皆错。解析推导独立成立，且说明了 k 备份原值的必要性。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          },
+          "tests": [],
+          "unresolved": []
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：表达式选项逐字一致，答案表A与answer=0吻合，反转式跟踪可独立复现，无修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第13题题干「给定两个整数 n 与 k…分成 n 段，段与段之间的间隔为 +，段内的填充为 k 个 -。形如 n=5, k=6 时，图形如下：+------+------+------+------+------+」及代码骨架（外层 for(i=0;i<n;i++) 每轮横线处后接内层 for(j=1;j<k;j++) 输出'-'，循环结束后补一个 cout << '+'）与当前题面一致；文字层与页面图均显示示例每段6个'-'，而给定代码每段实际输出 k-1=5 个'-'，此为原卷自身差异，题面如实照录。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项依次为 A. cout << '+' << endl;、B. cout << '+' << ' ' << endl;、C. cout << '+';、D. cout << '+' << ' ';，顺序与文本和当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为 C（0起始索引2），当前 answer=2。独立推导：横线处位于每轮段首，循环后已有收尾'+'，四个选项仅差换行与空格，唯一能输出单行连续栅栏的是C（A/B换行拆成5行、D每个加号后多空格），映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复现解析：结构计数（6个'+'、5组填充，首尾均为'+'）与代码骨架对应，C为唯一不引入换行/空格的选项；解析同时如实标注原卷示例图（每段6个'-'）与代码（每段5个'-'）相差1的出入，并论证其不影响四选项间的唯一答案，推导独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          },
+          "tests": [],
+          "unresolved": [
+            "原卷示例图每段为6个'-'（与 k=6 对应），而给定代码内层 j=1;j<k 每段仅输出5个'-'，属原卷自身前后不一致；四个选项均不改变短横个数，答案C唯一且不受影响，保留争议不改题面。"
+          ]
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷示例图每段为6个'-'（与 k=6 对应），而给定代码内层 j=1;j<k 每段仅输出5个'-'，属原卷自身前后不一致；四个选项均不改变短横个数，答案C唯一且不受影响，保留争议不改题面。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、示例图、代码、选项与PDF一致，答案表C与answer=2吻合；示例图与代码短横数的差异经独立计数（文字层每段确为6个'-'）确认源自原卷，属于源卷自身问题，题面如实保留并在解析中说明，不影响唯一答案，维持approve并保留unresolved。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第14题题干「小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是。（ ）」与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项依次为 A. 小程序、B. 计时器、C. 操作系统、D. 神话人物，顺序与文本和当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为 C（0起始索引2），当前 answer=2。鸿蒙（HarmonyOS）为华为自主研发、覆盖手机与手表等设备的操作系统，C为唯一正确项，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立支撑：鸿蒙提供进程管理、设备驱动等完整系统能力，属操作系统；小程序是运行于系统之上的应用形态、计时器是功能/设备、「神话人物」仅为词源联想（源自中国神话的宇宙初始状态）而非此处所指，逐项排除成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          },
+          "tests": [],
+          "unresolved": []
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：常识题事实明确（HarmonyOS为操作系统），选项文字与顺序核对无误，答案表C与answer=2吻合，解析独立排除三个干扰项，无修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第15题题干「中国计算机学会（CCF）在2024年1月27日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（ ）。」与当前题面一致（空格差异为等价排版）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项依次为 A. 制造自动驾驶汽车、B. 创立培训学校、C. 发明汉字激光照排系统、D. 成立方正公司，顺序与文本和当前 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为 C（0起始索引2），当前 answer=2。王选主持研制汉字激光照排系统（「当代毕昇」），为其重大科学贡献，C正确，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立支撑：王选为两院院士、汉字激光照排系统研制主持人，此项技术使其领域与时代对应；A、B与其研究领域和身份不符；D中北大方正源于该技术的产业化，但并非王选个人「成立公司」，非其科学贡献本身，辨析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          },
+          "tests": [],
+          "unresolved": []
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干与选项逐字一致，答案表C与answer=2吻合，解析对王选贡献与D选项（方正系成果产业化而非其个人创立）的辨析可独立支撑答案，无修改。"
+      }
+    ],
+    "summary": "独立复核第11~15题：题干、代码、选项与PDF第1、4、5页逐项一致（题面允许的空格/断句等价差异不改变含义）；第1页答案表对应第11~15题为 D、A、C、C、C（0起始索引 3、0、2、2、2），与当前 answer 全部吻合；五题解析均可独立推导支撑，无一项仅以「与官方一致」为据。第13题原卷示例图（每段6个'-'，与k=6对应）与给定代码（j=1;j<k 每段输出5个'-'）存在源卷自身不一致，经文字层与页面图独立计数确认，题面如实保留并在解析中说明，四个选项均不改变短横个数，答案C唯一不受影响，保留unresolved。无需修改（changes 全为空），五题全部 approve；均为单选题，无编程题测试项。"
+  }
+}

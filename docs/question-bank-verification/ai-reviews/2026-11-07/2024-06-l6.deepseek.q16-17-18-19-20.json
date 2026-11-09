@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T11:53:57.447Z",
+  "completedAt": "2026-11-07T11:55:04.399Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33846,
+    "completion_tokens": 4599,
+    "total_tokens": 38445,
+    "prompt_tokens_details": {
+      "cached_tokens": 33792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3349
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00286888,
+      "allowance": 0.00172133,
+      "tokens": {
+        "input": 54,
+        "output": 4599,
+        "reasoning": 3349,
+        "cache_read": 33792,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确标注“CCF 编程能力等级认证”“C++ 六级”“2024 年 06 月”，与 2024-06-l6 的来源标识一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第1题原文为“哈夫曼编码本质上是一种贪心策略。”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值，按规则不适用选项核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第1格为“√”；网站 answer=0（正确），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：哈夫曼树每次合并当前权值最小的两棵树，属于贪心选择，且得到最优前缀码；网站解析推导与结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第2题原文为“创建一个对象时，会自动调用该对象所属类的构造函数。如果没有定义构造函数，编译器会自动生成一个默认的构造函数。”；网站仅“默认”处有排版空格，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第2格为“√”；网站 answer=0（正确）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：对象创建时自动调用构造函数；若类没有用户声明的构造函数，编译器隐式声明默认构造函数。网站补充说明内置类型成员不自动初始化、类类型成员调用其默认构造，符合C++规则。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第3题原文为“定义一个类时，必须手动定义一个析构函数，用于释放对象所占用的资源。”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第3格为“×”；网站 answer=1（错误）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：析构函数并非必须手动定义；未定义时编译器隐式生成析构函数，成员对象会按规则自动析构。只有持有需要显式释放的裸资源时才通常自定义析构函数，网站结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第4题原文为“C++中类内部可以嵌套定义类。”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第4格为“√”；网站 answer=0（正确）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：C++允许在一个类体内定义嵌套类，嵌套类名属于外围类作用域并受访问控制约束；网站解析结论和示例方向正确，未影响判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第5题原文为“000, 001, 011, 010, 110, 111, 101, 100是一组格雷码。”，网站题面与序列一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第5格为“√”；网站 answer=0（正确）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：序列中每一对相邻码字均恰有一位不同，且8个码字互异并覆盖全部3位组合，确为3位反射格雷码；网站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题16至20。五题题干均与PDF第8页一致，官方判断题答案依次为√、√、×、√、√，与网站 answer 0、0、1、0、0 完全对应；解析经独立核对均可成立。判断题无选项和参考代码，按规则记为不适用；未发现需要提交 changes 的确证问题。"
+  }
+}

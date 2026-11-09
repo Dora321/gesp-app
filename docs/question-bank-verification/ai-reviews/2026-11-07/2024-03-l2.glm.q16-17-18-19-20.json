@@ -1,0 +1,243 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T16:48:20.517Z",
+  "completedAt": "2026-11-08T16:50:56.405Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48258,
+    "completion_tokens": 11398,
+    "total_tokens": 59656,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9011
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0129377,
+      "allowance": 0.0129377,
+      "tokens": {
+        "input": 48258,
+        "output": 11398,
+        "reasoning": 9011,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头为“C++ 二级 2024年03月”，年月与等级均与 paperId 2024-03-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断题第1题代码框为 double s; int t; s=18.5; t=int(s)+10;，第6页首句“那么 cout << t 的结果为 28.5 。”，与网站题面完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第1格为×（错误），officialAnswer=1 正确；独立推导：int(18.5) 向零截断得 18，t=18+10=28（int 型），cout 输出 28 而非 28.5，题述不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“显式转换向零截断得18 → t=28 → 输出28”独立推导，结论与官方×一致，无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立核对答案表第1格为×并独立推导得28，与官方及解析一致，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页原文为“Xyz ， xYz ， xyZ 是三个不同的变量。”；网站误把中间项写作全小写 xyz。按 PDF 修正为 xYz 后与原卷一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第2格为√（正确），officialAnswer=0 正确；独立验证：Xyz（首字母大写）、xYz（第二字母大写）、xyZ（末字母大写）两两大小写组合互不相同，确为三个不同变量。即使按误写的 xyz，结论也不变。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析基于全小写 xyz 描述第二项，与卷面 xYz 不符；重写后聚焦大小写敏感与三写法两两不同，与官方√一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "Xyz，xYz，xyZ 是三个不同的变量。",
+          "explanation": "**答案：正确**。C++ 的标识符区分大小写。`Xyz`、`xYz`、`xyZ` 三个写法中，各自唯一的大写字母出现的位置互不相同：第一个是首字母，第二个是中间字母，第三个是末字母，因此三者两两互不相同，编译器把它们视为三个不同的变量，题干判断成立。\n\n**易错提醒：**\n- 只要有一个字符的大小写不同，标识符就不同，题面中三个写法“字母组合相同”但大小写组合不同，不能视为同一变量。\n- 反之，若大小写完全相同，才是同一个变量。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的修改建议：独立核对第6页文本层确为 xYz（非 xyz），question 与 explanation 均按原卷重修；答案√不受影响，修复后核验通过。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页原文“cout << (8< 9< 10) 的输出结果为 true 。”，与网站题面仅空格差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第3格为×（错误），officialAnswer=1 正确；独立推导：(8<9) 为 true，提升为 1 后 1<10 为 true，表达式类型为 bool，cout 默认按整数输出 1，不是单词 true，题述不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明关系运算符从左结合、布尔值在比较中的提升规则，以及 cout 默认输出整数 1，故题述输出 true 错误，与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对答案表第3格为×并独立推导链式比较得 true（输出 1），与官方及解析一致，无需修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页原文“for (i = 0; i < 100; i+=2) ; 语句中变量i的取值范围是0到99。”，与网站题面等价（空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第4格为×（错误），officialAnswer=1 正确；独立推导：步长 2 时循环中 i 实际取 0,2,4,…,98，i 达到 100 时条件不成立退出，99 从未出现，“0到99”不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出步长导致的偶数序列与终值 100，99 未被赋值，与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对答案表第4格为×并独立推演 for 循环取值序列，与官方及解析一致，无需修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页原文“C++中 cout << float(2022) 与 cout << float('2022') 运行后的输出结果均为2022。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第5格为×（错误），officialAnswer=1 正确；独立推导：float(2022) 输出 2022，而 '2022' 是多字符字面量，其值由实现定义（不同编译器可能报错或带警告给出与 2022 无关的值），不可能输出 2022，故“均为 2022”不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析断言 '2022' 必然编译错误、程序无法执行，过于绝对：多字符字面量标准上为条件支持且值实现定义（GCC 等常见编译器可带警告接受，值不等于 2022）。重写为两情形（报错或实现定义值）下均不可能输出 2022，结论仍为“错误”，与官方×一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**。`float(2022)` 把整数 2022 转换为浮点数，`cout` 默认输出 `2022`。但 `float('2022')` 中的 `'2022'` 并不是单个字符常量，而是含四个字符的“多字符字面量”：C++ 标准规定其类型为 `int`、数值由实现定义，不同编译器可能直接报错，也可能带警告地接受并得到某个与 2022 无关的值。无论哪种情形都不可能输出 2022，因此“两者输出均为 2022”不成立。\n\n**易错提醒：**\n- 单引号内只能放一个字符（如 `'2'`）；字符串要用双引号（如 `\"2022\"`）。\n- 把 `'2022'` 当作字符串、或断言它在一切编译器下都“编译报错”，都是不准确的，关键结论是它不会得到数值 2022。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的 explanation 修正：多字符字面量在标准中条件支持（C++23 起移除该宽松处理）、值实现定义，原“必然编译错误”表述过强；重写解析后结论仍与官方×一致，修复后核验通过。"
+      }
+    ],
+    "summary": "本批核验判断题第 16—20 题（对应卷面判断题 1—5）。第 5 页判断题答案表前五格为 × √ × × ×，与网站答案映射（错误/正确/错误/错误/错误）一致，且与各题独立推导结果自洽。确认两处需修订并已给出修复后核验通过的最终字段值：第 17 题题干中间项按原卷应为 xYz（网站误作 xyz），explanation 同步重写为基于三写法大写位置互不相同的推导，答案仍为正确（√）；第 20 题 explanation 中“'2022' 必然编译错误、程序无法执行”的断言过强，重写为多字符字面量标准上值实现定义、不同编译器报错或警告接受，但均不可能输出 2022，官方答案仍为错误（×）。第 16、18、19 题题面、答案与解析均核验无误，无修改。每题五维记录齐备，本批全部为判断题，无编程题，不适用 tests。对初核草稿的判定（含其两处修改的理由）经独立复核后全部接受，无否决项。"
+  }
+}

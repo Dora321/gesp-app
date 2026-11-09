@@ -1,0 +1,225 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:07:14.763Z",
+  "completedAt": "2026-11-07T12:11:15.833Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31382,
+    "completion_tokens": 22079,
+    "total_tokens": 53461,
+    "prompt_tokens_details": {
+      "cached_tokens": 31232
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 20140
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0133636,
+      "allowance": 0.00801816,
+      "tokens": {
+        "input": 150,
+        "output": 22079,
+        "reasoning": 20140,
+        "cache_read": 31232,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF GESP C++ 五级 2023年12月”，答案表含题号1-15；第11题位于PDF第5页，第12-15题位于PDF第6页，与2023-12-l5目标一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第11题题干为“使用数组模拟整数加法……横线处应填入代码是（）”，网站题干及代码结构与PDF一致；网站以注释标出横线、省略行号，不改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A-D四项分别与网站options[0..3]对应，均为push_back(t % 10或t / 10)与t更新的四种组合，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题对应D，网站answer=3（0起始）即D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按个位t % 10、进位t / 10及循环结束后的最高进位t逐步推导D，结论与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第12题题干为“有关下面C++代码的说法正确的是”，网站code字段中的Node类、构造函及main函数建链代码与PDF一致，仅省略行号。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A-D四项依次为单向链表、双向链表、循环链表、指针链表，与网站options顺序和文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题对应B，网站answer=1（0起始）即B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "代码节点含Prev和Next指针，main中firstNode.Next指向node100且node100.Prev指回firstNode，node100.Next指向node111且node111.Prev指回node100，可推出双向链表，解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第13题题干为“通讯卫星在通信网络系统中主要起到（）的作用”，网站题干文字与PDF一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A-D四项为信息过滤、信号中继、避免攻击、数据加密，与网站options完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题对应B，网站answer=1（0起始）即B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明卫星接收地面站信号并转发，属于信号中继，并正确排除信息过滤、避免攻击、数据加密，能独立支持B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干含“小杨想编写一个判断任意输入的整数N是否为素数的程序，下面哪个方法不合适”，网站省略“小杨想编写一个”但保留判断素数程序和“哪个方法不合适”的完整设问，不改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A-D四项为埃氏筛法、线性筛法、二分答案、枚举法，与网站options完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题对应C，网站answer=2（0起始）即C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心判据“素数判定没有单调性，不能使用二分答案”正确，但逐项说明把A/B写成“筛法标记范围或起点有误”，没有依据；筛法可作为素数表预处理或判定方法，不应作为错误理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n**解析：** 判断任意输入的整数 N 是否为素数，可用枚举法试除，也可在数据范围内先用埃氏筛法或线性筛法预处理素数表；这些方法都能完成素数判定。二分答案要求答案具有单调性，素数判定不具备这种单调关系，因此不能采用二分答案。\n\n- **A 埃氏筛法**：可作为素数判定或预处理方法。\n- **B 线性筛法**：同样可作为素数判定或预处理方法。\n- **C 二分答案**：不合适，素数判定没有二分答案所需的单调性。\n- **D 枚举法**：可枚举因子完成判定。\n\n**考点：** 素数判定、二分答案的适用条件"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题干含“下面的排序算法都要处理多趟数据，哪种排序算法不能保证在下一趟处理时从待处理数据中选出最大或最小的数据”；网站省略前置铺垫，但保留“下一趟处理”及待处理数据极值判断，设问等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A-D四项为选择排序、快速排序、堆排序、冒泡排序，与网站options顺序和文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题对应B，网站answer=1（0起始）即B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析分别说明选择排序、冒泡排序、堆排序每趟可确定当前区间的最大或最小元素，而快速排序仅使基准值归位、不能保证基准为极值，独立推出B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题11-15。题11、12、13、15的题干、选项、答案与解析均能与PDF对应，个别非必要铺垫省略不改变题意；题14选项和答案正确，但解析中A/B项的“筛法标记范围或起点有误”无依据，已提供完整的explanation修正草稿。五题均为单选题，无编程题测试。"
+  }
+}

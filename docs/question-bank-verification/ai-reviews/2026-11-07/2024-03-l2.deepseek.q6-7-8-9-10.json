@@ -1,0 +1,228 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:01:17.258Z",
+  "completedAt": "2026-11-08T15:02:59.540Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32075,
+    "completion_tokens": 9651,
+    "total_tokens": 41726,
+    "prompt_tokens_details": {
+      "cached_tokens": 32000
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7526
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00589785,
+      "allowance": 0.00353871,
+      "tokens": {
+        "input": 75,
+        "output": 9651,
+        "reasoning": 7526,
+        "cache_read": 32000,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头明确标注“C++ 二级 2024 年 03 月”，与 2024-03-l2 一致；第 1 页单选题答案表可读，可用于核对题 6—10 的官方选项索引。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干及代码框与网站 question 一致：n=3,a=5，m=(a-1)*2，for(i=0;i<n-1;i++) m=(m-1)*2，最后 cout<<m。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 8、B. 14、C. 26、D. 50，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 6 题标 C，对应 0 起始索引 2；网站 answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：m 初值为 8；i=0 时 m=14；i=1 时 m=26；i=2 时循环条件不成立，输出 26。网站解析的逐轮表、选项排除和边界提醒与手工推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题代码框与网站 question 一致：n=81，i=1,result=1，while(i*i<=n)，若 n%(i*i)==0 则 result=i*i，i+=1，最后输出 result。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 16、B. 36、C. 49、D. 81，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 7 题标 D，对应 0 起始索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立检查 i=1 至 i=9：i=1 时 result=1，i=3 时 result=9，i=9 时 result=81；i=10 时 100>81 退出，输出 81。网站解析所述的“最大完全平方因子”与逐步覆盖过程一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题代码框与网站 question 一致：s=2,t=10,ans=0；while(s!=t) 中按 t%2==0 && t/2>=s 决定 t/=2 或 t-=1，每轮 ans+=1。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 2、B. 3、C. 4、D. 5，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 8 题标 B，对应 0 起始索引 1；网站 answer=1，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：t=10 时减半为 5，ans=1；t=5 时奇数，减 1 为 4，ans=2；t=4 时 4/2=2 且 2>=s，减半为 2，ans=3；此时 s==t 退出，输出 3。网站解析的表格和选项分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题代码框与网站 question 一致：n=17,masks=10,days=0,cur=2；while(masks!=n) 中 cur 为 0 或 1 时 masks+=7，随后 masks-=1、days+=1、cur=(cur+1)%7。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 5、B. 6、C. 7、D. 8，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 9 题标 C，对应 0 起始索引 2；网站 answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：前 5 轮 masks 10→9→8→7→6→5，days=5，cur=0；第 6 轮加 7 再减 1，masks=11，days=6，cur=1；第 7 轮加 7 再减 1，masks=17，days=7，循环退出，输出 7。网站解析的净增 +6、轮次表和退出时机均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页代码框至第 4 页续代码与网站 question 一致：N%2!=0 分支中 Flag=false 后为横线，else 为 N/=10；横线后继续 while，最后按 Flag 输出“是/否”。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. break、B. continue、C. N = N / 10、D. N = N % 10，与网站 options 及顺序一致。选项 C 虽也能得到正确输出，但属于题目多解争议，不是选项文字转录错误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 10 题标 A，对应 0 起始索引 0；网站 answer=0，官方映射正确。官方答案并不自动消除选项 C 的输出正确性争议。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析先称 C“不属于本题要填的内容”，后文又承认 C“结果也恰好正确”，逻辑自相矛盾。独立验证：在该 if/else 结构中填 C 会让 N 正常右移，最终仍输出正确结果；因此不能仅按输出正确性说 C 错误。应改写为保留官方答案 A，同时明确题目存在多解/命题意图歧义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（break，按官方答案表）**\n\n程序用 Flag 记录是否全为偶数位，N 通过 N /= 10 逐位右移。若 N % 2 != 0，说明已遇到奇数位，Flag = false；按命题意图，此时结论已确定，应填 break 立即退出 while，随后输出“否”。\n\n逐项：A（break）✅ 立即结束循环，输出“否”。B（continue）❌ 回到 while 条件，但该分支没有修改 N，N % 2 != 0 仍成立，会死循环。C（N = N / 10）在该 if/else 结构中也会正常右移 N，最终输出与题意一致；例如 N=23 时先置 Flag=false，再右移为 2、0，输出“否”，N=2024 时逐位均为偶数，输出“是”。因此若只按“填入后输出是否正确”判断，C 也成立，本题存在多解/歧义。D（N = N % 10）❌ 取最低位后 N 不会稳定变小（如 23→3→3…），会死循环。\n\n保留说明：官方答案取 A，依据的是“发现奇数位即可判定、提前结束检查”的命题意图；网站不擅自改官方答案，但不应把 C 说成输出错误。"
+        },
+        "tests": [],
+        "unresolved": [
+          "题 10 官方答案为 A（break），但选项 C（N = N / 10）放入原代码后同样能输出正确结果；按官方命题意图保留 A，题目严格存在多解/歧义，需在解析中显著说明。"
+        ]
+      }
+    ],
+    "summary": "本轮仅核验第 6—10 题：题 6—9 的题干、代码、选项顺序、官方答案映射和解析均可独立复核一致；题 10 官方答案表为 A，映射正确，但选项 C 也能得到正确输出，现有解析对 C 的否定存在逻辑矛盾，已给出解析纠错草稿并保留多解争议。5 题均为单选题，无编程题，未进行运行测试。"
+  }
+}

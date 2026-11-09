@@ -1,0 +1,227 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T16:50:56.409Z",
+  "completedAt": "2026-11-08T16:52:47.957Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32075,
+    "completion_tokens": 18889,
+    "total_tokens": 50964,
+    "prompt_tokens_details": {
+      "cached_tokens": 32000
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17173
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01144065,
+      "allowance": 0.00686439,
+      "tokens": {
+        "input": 75,
+        "output": 18889,
+        "reasoning": 17173,
+        "cache_read": 32000,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 二级”“2024 年 03 月”，与 paperId 2024-03-l2、level 2、year 2024、month 3 相符。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第6题原文为“已知 A 的ASCII码值为65，表达式 int('C')+abs(-5.8) 的值为72.8。”；网站题面仅作空格与行内代码排版，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为“正确/错误”两项，网站顺序一致，正确对应索引0、错误对应索引1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第6题标√，对应“正确”，即 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按题干 ASCII 前提，int('C')=67；abs(-5.8)=5.8；67+5.8=72.8，解析推导与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页判断题第7题为“bool() 函数用于将给定参数或表达式转换为布尔类型。语句 bool(-1) 返回的是 false 值。（ ）”；网站题面漏写 bool() 中的括号，函数/转换记法不完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为“正确/错误”两项，网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7题标×，即“错误”/1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C++ 中零值转为 false、非零值转为 true，-1 非零，因此 bool(-1) 为 true，原命题“返回 false”错误；解析与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "bool() 函数用于将给定参数或表达式转换为布尔类型。语句 bool(-1) 返回的是 false 值。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第8题为“如果变量 a 的值使得C++表达式 sqrt(a)==abs(a) ，则 a 的值为0。（ ）”；网站题面仅作空格与代码排版，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为“正确/错误”两项，网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第8题标×，即“错误”/1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "a=1 时 sqrt(1)=1.0、abs(1)=1，等式成立，故 a 不唯一为 0；解析用反例说明，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第9题原文为“小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒子具有路由器的功能。（ ）”；网站题面仅增加空格，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为“正确/错误”两项，网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题标√，对应“正确”，即 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "题干中 WIFI 盒子承担分配 IP 地址并提供无线接入的功能，符合家用路由器/DHCP+AP 的常见职责；解析判断合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第10题为“任何一个 for 循环都可以转化为等价的 while 循环（ ）。”；网站题面将“等价”写成“等效”，不改变命题含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为“正确/错误”两项，网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题标√，对应“正确”，即 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析给出的最简改写模板 init; while(cond){body;step;} 在循环体含 continue 时并不等价，因为 for 中 continue 会执行更新表达式，而 while 中会跳过；命题答案仍为正确，但解析需补 continue 情形说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n`for` 循环的标准形式为 `for(初始化; 条件; 更新) { 循环体; }`。在不含 `continue` 的通常情形下，可改写为：\n```\ninit;\nwhile (cond) {\n    body;\n    step;\n}\n```\n若循环体内含 `continue`，则必须保证 `continue` 后也会执行“更新”表达式（例如在 `continue` 前重复一次更新语句，或改用等价的标志/`goto` 结构），否则上述最简模板会跳过更新。完成这一处理后，任一 `for` 循环都能转化为等效的 `while` 循环。\n\n**易错提醒：**\n- 两者可以等价转化，但实际编程中应根据语义选择：循环次数明确时用 `for`，循环条件依赖变量变化时用 `while`。\n- 转化时需注意更新表达式 `step` 的执行时机；循环体含 `continue` 时不能直接套用最简模板。\n\n**知识延伸：**\nGESP 二级要求掌握 `for` 和 `while` 循环的语法及使用场景。除了相互转化，还需注意 `do-while` 循环（先执行后判断，至少执行一次）与前两者的区别。\n\n**考点：** for 循环与 while 循环的等价转化"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批次仅核验判断题21—25（对应 PDF 第6页判断第6—10题）。卷头与来源匹配；PDF 判断题答案表为 √、×、×、√、√，与网站答案 0、1、1、0、0 一致。发现 2 处需修正：第22题题面漏写 `bool()` 的括号；第25题解析中的最简 for→while 转换未覆盖 `continue` 情形，需补注，但答案仍为正确。其余题面、选项、答案和解析通过。"
+  }
+}

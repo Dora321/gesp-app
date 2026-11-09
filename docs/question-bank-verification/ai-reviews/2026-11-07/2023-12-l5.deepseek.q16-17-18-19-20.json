@@ -1,0 +1,235 @@
+{
+  "paperId": "2023-12-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T12:13:01.152Z",
+  "completedAt": "2026-11-07T12:15:59.860Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31382,
+    "completion_tokens": 13033,
+    "total_tokens": 44415,
+    "prompt_tokens_details": {
+      "cached_tokens": 31232
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11036
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.007936,
+      "allowance": 0.0047616,
+      "tokens": {
+        "input": 150,
+        "output": 13033,
+        "reasoning": 11036,
+        "cache_read": 31232,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "33abbd6e69825a3da56f734aeea05bb1d4a5668cbcf8413cc150fdb73ca4d94e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++5级.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "mirrorBytes": 2493556,
+    "shaVerified": true,
+    "sha256": "8e97282fd7f628474e3e342ec7028339b11650859500a7041a2dcf3831036c6b"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-12-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF GESP C++ 五级 2023 年 12 月”，与纸卷标识 2023-12-l5 一致；判断题答案表位于 PDF 第 7 页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 1 题为“归并排序的时间复杂度是 O(N log N)”。网站题面与该表述一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题；按任务约定，options 维度仅适用于单选题。网站以“正确/错误”为判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 1 题为√，对应 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明归并排序在最好、平均、最坏情况下均为 O(n log n)，这一结论正确，且与题面判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 2 题原文为 H*W 巧克力、K 个小朋友及“可以使用二分法”的表述；网站题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题；按任务约定，options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 2 题为×，对应 1；网站 answer=1，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析把“二分法”严格解释为在有序序列上做二分查找，并据此解释官方判错；但巧克力问题通常使用“二分答案”，题干表述存在概念歧义，解析需要明确这是官方答案的狭义理解并保留争议，不能把狭义解释写成无争议结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码核验。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误（按 PDF 第 7 页第 2 题答案表，×）**\n\n本题官方采用较窄的“二分法”概念：若只说二分法，通常指在有序序列上做二分查找；而巧克力问题实际是“二分答案”（先判定边长为 x 时能否切出至少 K 块，再对 x 二分枚举），需要建立单调判定函数，并不是直接套用二分查找。\n\n但需注意：在算法竞赛中，不少人把二分答案视为广义二分法；若按这种理解，题干表述会产生歧义，答案可能被认为是“正确”。这里按官方答案判为错误，并保留这一争议，不擅自改判。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案×与竞赛语境中“二分答案也属于二分法”的常见理解存在歧义；保留官方答案，待教研确认。"
+        ]
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 7 页判断题第 3 题包含完整题干与 Fibo 代码；网站题面缺少“以下”、斐波那契定义及原题代码块，导致考生无法看到决定答案的 fiboA/fiboB 调用错误。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题；按任务约定，options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 3 题为×，对应 1；网站 answer=1，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析称“可能缺少基准情况或逻辑有误”，不够准确；图中实际错误是 N>2 时调用未定义的 fiboA(N-1) 与 fiboB(N-2)，并未递归调用 Fibo 自身，代码不能编译。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码核验；题图中的 Fibo 代码已在 statement/code 维度核对。"
+          }
+        },
+        "changes": {
+          "question": "以下 C++ 代码能以递归方式实现斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。（ ）",
+          "code": "int Fibo(int N)\n{\n    if (N == 1 || N == 2)\n        return 1;\n    else\n    {\n        int m = fiboA(N - 1);\n        int n = fiboB(N - 2);\n        return m + n;\n    }\n}",
+          "explanation": "**答案：错误**\n\n图中 `Fibo` 在 N=1 或 2 时返回 1，但在 N>2 时调用的是未定义的 `fiboA(N - 1)` 与 `fiboB(N - 2)`，并未递归调用 `Fibo` 自身。因此该代码不能编译，不能按题意实现斐波那契数列。若将两处调用改为 `Fibo(N - 1)`、`Fibo(N - 2)`，才构成标准的递归实现。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 4 题为“贪心算法可以达到局部最优，但可能不是全局最优解”。网站题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题；按任务约定，options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 4 题为√，对应 0；网站 answer=0，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "贪心算法每一步做当前看来最优的选择，局部最优不保证整体全局最优；现有解析方向正确，虽简略但无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 5 题原文为“任意非质数自然数 N 转换成若干个质数的乘积”；网站题面与该原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题；按任务约定，options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 5 题为√，对应 0；网站 answer=0，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析只提“素数分解定理”，未说明算术基本定理，也未处理“非质数自然数”是否包含 1 的边界；需要补充 N>1/合数语境并注明题干歧义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码核验。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确（按 PDF 第 7 页第 5 题答案表，√）**\n\n对于大于 1 的合数，算术基本定理保证它可以分解为若干质数的乘积；程序可用试除法不断提取质因子来完成拆数。\n\n边界说明：自然数 1 既不是质数也不是合数；若把“非质数自然数”严格理解为包含 1，则 1 不能表示为若干个质数之积（除非允许空乘积），题干存在边界歧义。考试按合数/大于 1 的语境判为正确，这里保留该边界争议。"
+        },
+        "tests": [],
+        "unresolved": [
+          "“非质数自然数”若严格包含 1，则 1 不能表示为若干个质数之积；按官方答案及合数语境保留为正确，边界表述待确认。"
+        ]
+      }
+    ],
+    "summary": "本次核验题号 16—20，均为判断题。五题网站答案与 PDF 第 7 页答案表一致：16√、17×、18×、19√、20√。发现 18 题网站缺失原题代码及完整题干；17、18、20 题解析需要修正。17 题存在“二分法/二分答案”概念歧义，20 题“非质数自然数”是否包含 1 存在边界争议，均保留官方答案并记录待确认。16、19 题未发现需修改项；本次无编程题，tests 为空。"
+  }
+}

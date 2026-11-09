@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T15:05:53.037Z",
+  "completedAt": "2026-11-08T15:11:03.811Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48952,
+    "completion_tokens": 21039,
+    "total_tokens": 69991,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17891
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0178623,
+      "allowance": 0.0178623,
+      "tokens": {
+        "input": 48952,
+        "output": 21039,
+        "reasoning": 17891,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头清晰显示“CCF 编程能力等级认证 C++ 二级 2024 年 03 月”，与 2024-03-l2（二级、2024 年 3 月）一致；同页单选答案表（题 1—15：B B B C B C D B C A D A C C C）与判断题答案表清晰可读，是本轮题 6—10 官方答案索引的直接依据。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题代码框逐行核对：int n,a,m,i; n=3, a = 5; m = (a - 1) * 2; for (i=0; i<n-1; i++) m = (m - 1) * 2; cout << m;，与本站 question 一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 8、B. 14、C. 26、D. 50，与本站 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题标 C，对应 0 起始索引 2；本站 answer=2。与独立数值核对（输出 26 位于 C 位）双重一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：初值 m=(5-1)*2=8；循环条件 i<n-1 即跑 2 轮：i=0 时 m=14，i=1 时 m=26；i=2 时 2<2 不成立退出，输出 26=选项 C。选项 D（50）恰为多跑一轮 (26-1)*2 的结果，本站逐轮表、干扰项分析与边界提醒全部与手工计算吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。其对象题 6 的题干、 opções 顺序、答案映射（官方 C→索引 2）与解析判断与我的独立跟踪（8→14→26，共 2 轮）完全一致，无需修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题代码框：int n,i,result; n = 81; i = 1, result = 1; while (i * i <= n){ if (n % (i * i) == 0) result = i * i; i += 1; } cout << result;，与本站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 16、B. 36、C. 49、D. 81，与本站 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题标 D，对应索引 3；本站 answer=3。独立枚举最终输出 81（D 位）一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举 i=1..9：81 的平方因子为 1、9、81，result 依次被覆盖为 1、9、81；81%16=1、81%25=6、81%36=9、81%49=32、81%64=17 均非 0；i=10 时 100>81 退出，输出 81。本站走查与选项排除与手工计算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。对象题 7 的独立复核（result 覆盖序列 1→9→81，i=10 退出）与网站解析及官方答案 D 一致，无修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题代码框：s = 2, t = 10; ans = 0; while (s != t) 内按 t % 2 == 0 && t / 2 >= s 决定 t /= 2 或 t -= 1，每轮 ans += 1，末尾 cout << ans;，与本站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 2、B. 3、C. 4、D. 5，与本站 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题标 B，对应索引 1；本站 answer=1。独立跟踪输出 3（B 位）一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：t=10（偶，10/2=5≥2）→t=5，ans=1；t=5（奇）→t=4，ans=2；t=4（偶，4/2=2≥2）→t=2，ans=3；此时 s==t 退出，输出 3。本站逐轮表、整除说明与退出时机提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。对象题 8 的独立跟踪（t:10→5→4→2，ans=3）与网站解析、官方答案 B（索引 1）一致，无修改。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题代码框：int n, masks, days,cur; n = 17, masks = 10, days = 0; cur = 2; while (masks != n){ if (cur == 0 || cur == 1) masks += 7; masks -= 1; days += 1; cur = (cur + 1) % 7; } cout << days;，与本站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 5、B. 6、C. 7、D. 8，与本站 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题标 C，对应索引 2；本站 answer=2。独立跟踪输出 7（C 位）一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪 7 轮：前 5 轮 cur=2..6 不触发 +7，masks 10→9→8→7→6→5；第 6 轮 cur=0：+7 得 12 再 −1 得 11；第 7 轮 cur=1：+7 得 18 再 −1 得 17==n 退出，days=7。净增 +6、退出时机、cur 回绕分析与本站解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。对象题 9 的独立 7 轮跟踪（第 6、7 轮 +7 后再 −1）与网站解析和官方答案 C（索引 2）一致，无修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页至第 4 页接续代码：int N,Flag; cin >> N; Flag = true; while (N != 0){ if (N %2 != 0){ Flag = false; _____________ } else N /= 10; } if(Flag == true) cout << “是”; else cout << “否”;，与本站 question 一致（跨页拼接完整）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. break、B. continue、C. N = N / 10、D. N = N % 10，与本站 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题标 A，对应索引 0；本站 answer=0，映射正确。注意映射正确不等于题目本身无瑕疵（多解争议另记于 unresolved）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析给 C 标 ❌ 又承认“结果也恰好正确”，自相矛盾；独立代入复核：填 C 时 if/else 两支最终都做 N/=10，循环必终止，N=23（23→2→0，输出“否”）、N=2024（2024→202→20→2→0，输出“是”）等输入结果均正确，与 A 行为等价；B、D 均会死循环。修正后解析保留官方答案 A、明确 A/C 双解性质并说明 B/D 致死循环，经我重写并逐例复算通过，最终文本见 changes.explanation。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（break），依据官方答案表**\n\n代码逻辑：循环中每轮用 N % 2 检查当前 N 的个位奇偶（正整数下 N % 2 即个位的奇偶性），为偶数时用 N /= 10 去掉个位；Flag 记录“到目前为止各位是否全为偶数”。一旦 N % 2 != 0 成立，说明遇到了奇数位，结论确定为“否”；按命题意图此时即可判定，应填 break 立即退出循环，官方答案取 A。\n\n选项逐项分析：\n- A（break）：立即结束循环，此时 Flag 已为 false，输出“否”；各位全为偶数时从不进入 if 分支，循环自然结束后输出“是”。对所有正整数行为均正确，与官方答案一致。\n- B（continue）：跳过本轮剩余语句后回到循环条件，但该分支没有修改 N，N % 2 != 0 仍成立，造成死循环，排除。\n- C（N = N / 10）：注意，填入 C 对所有正整数同样能正常运行并得到与题意一致的结果：遇到奇数位时先置 Flag 为 false，再与 else 分支一样右移（如 N=23：N 依次为 23→2→0，输出“否”；N=2024：依次为 2024→202→20→2→0，输出“是”）。因此按“填入后输出是否正确”衡量，C 同样成立，本题严格说是多解/有歧义题，不能简单将 C 判为错误。\n- D（N = N % 10）：奇数分支只取个位，N 可能不再缩小（如 23→3→3…），造成死循环，排除。\n\n**争议说明：**官方答案为 A，依据是“发现奇数位即可判定、提前结束检查”的命题意图；本站不改官方答案，但就输出正确性而言 A、C 均成立，原解析简单断言 C 错误的说法不能成立，学习时应同时知晓两面。\n\n**知识延伸：**while (N != 0) 与 N /= 10 的组合是“按位遍历整数”的标准套路：N % 10 取个位，N / 10 去掉个位；判断“是否全部满足”通常用 Flag 合取，本题官方意图即采用发现反例立即 break 提前退出的思路。\n\n**考点：**break 与 continue 的区别、按位遍历整数、循环变量必须变化"
+        },
+        "tests": [],
+        "unresolved": [
+          "源题本身多解：选项 C（N = N / 10）填入后对任意正整数 N 的输出与 A（break）完全一致（if/else 两支等效于每轮 N/=10，循环必终止）；官方答案为 A，本站答案与解析修订均保留官方口径，但题目瑕疵需官方澄清，本次核验无法定案消除。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受初核的纠错方向并独立复核通过：代入 C 后所有输入输出均正确（逐例复算 N=23 路径为 23→2→0、N=2024 路径正确，B/D 死循环），原解析“C ❌ 错误”与“结果也恰好正确”自相矛盾，必须修正。以初稿为基础重写解析（官方 A 保留＋多解显著说明），最终文本为本人复核确认版本；多解争议按规则保留于 unresolved，不擅自定案。"
+      }
+    ],
+    "summary": "本轮仅覆盖题 6—10（均为单选题，故无 tests）。题 6—9：PDF 代码、选项、官方答案表（C/D/B/C，索引 2/3/1/2）与解析均经我独立重算一致，全部 approve、无修改。题 10：官方答案表为 A（索引 0），与本站 answer=0 一致；但独立验证显示填 C（N = N / 10）同样对所有正整数输出正确，与 A 行为等价，B/D 才是死循环，原解析一面给 C 标错一面承认其结果正确，逻辑失洽，已按修订后的完整解析文本（保留官方 A 并显著标注多解争议）替换，该维度修复后核验通过；源题多解瑕疵保留在 unresolved 待官方澄清。五题均无编程题，未做运行测试。"
+  }
+}

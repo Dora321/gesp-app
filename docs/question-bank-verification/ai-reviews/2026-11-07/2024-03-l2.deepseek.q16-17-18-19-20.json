@@ -1,0 +1,229 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-08T16:46:57.468Z",
+  "completedAt": "2026-11-08T16:48:20.510Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32199,
+    "completion_tokens": 14667,
+    "total_tokens": 46866,
+    "prompt_tokens_details": {
+      "cached_tokens": 32128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13204
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00890723,
+      "allowance": 0.00534434,
+      "tokens": {
+        "input": 71,
+        "output": 14667,
+        "reasoning": 13204,
+        "cache_read": 32128,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "19fa53c7ca35be475cb1ba296d6517ef719d95dba124be49ffa71947958afbdc",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF卷头为 C++ 二级 2024年03月，与 paperId 2024-03-l2 一致；判断题答案表位于第5页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页底部代码框及第6页首句‘那么 cout << t 的结果为 28.5。’与题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项审校范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第1列为×（错误），对应 officialAnswer=1；独立推导得 28，不是 28.5。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析中 int(18.5)=18、18+10=28、输出28 的推导正确，足以否定28.5。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页第2题原文为‘Xyz，xYz，xyZ 是三个不同的变量。’；现数据中间项误写为全小写 xyz，需要修正。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项审校范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第2列为√（正确），对应 officialAnswer=0；修正后三个标识符大小写组合仍互不相同。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析按全小写 xyz 描述第二项，与PDF的 xYz 不符；结论虽仍为正确，但解析内容需改正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "Xyz，xYz，xyZ 是三个不同的变量。",
+          "explanation": "**答案：正确**。C++ 标识符区分大小写。`Xyz`、`xYz`、`xyZ` 三个名称的大小写组合不同（第二项中间字母为大写 `Y`，第三项末字母为大写 `Z`），所以是三个不同的变量。题干中间项应写作 `xYz`，不能误写成全小写的 `xyz`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第3题原文为‘cout << (8< 9< 10) 的输出结果为 true。’与题面等价，仅空格不同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项审校范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第3列为×（错误），对应 officialAnswer=1；表达式结果为 true，但 cout 默认输出整数 1，不是单词 true。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明关系运算符从左到右结合，以及 bool 默认按整数输出，故题述输出 true 错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第4题原文为‘for (i = 0; i < 100; i+=2) ; 语句中变量i的取值范围是0到99。’与题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项审校范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第4列为×（错误），对应 officialAnswer=1；循环体实际遍历 0,2,...,98，循环结束时 i=100，99 不会出现。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出步长为2时只能取偶数，99从未被赋值，因此‘0到99’不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第5题原文为‘C++中 cout << float(2022) 与 cout << float('2022') 运行后的输出结果均为2022。’与题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不属于单选题选项审校范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第5列为×（错误），对应 officialAnswer=1；两式不可能按题意均输出 2022。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析断言 '2022' 必然导致编译错误不严谨：它是多字符字面量，在 C++ 中是条件支持且值由实现定义，常见编译器可能接受并警告，而且其值不等于题目所称的 2022。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "客观题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**。`float(2022)` 会输出 `2022`；而 `'2022'` 不是单个字符常量，而是多字符字面量，其值在 C++ 中由实现定义（常见编译器可能给出警告），将其转换为 `float` 后不能保证为 2022，通常也不会输出 2022。因此“两者结果均为 2022”不成立。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅核验第16—20题。判断题答案表与网站答案一致：第16、18、19、20题官方为错误，第17题为正确。需修正两处：第17题题干第二项应为 xYz，且原解析按 xyz 描述不符；第20题解析把 '2022' 断言为必然编译错误不严谨，应说明其为多字符字面量且不能保证输出2022。其余题面、答案与解析无实质问题；本批无编程题测试。"
+  }
+}

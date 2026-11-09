@@ -1,0 +1,242 @@
+{
+  "paperId": "2023-12-l6",
+  "phase": "glm",
+  "questionIds": [
+    8,
+    9,
+    10,
+    20,
+    21
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T16:50:21.312Z",
+  "completedAt": "2026-11-07T16:53:59.738Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64926,
+    "completion_tokens": 11849,
+    "total_tokens": 76775,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8784
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0156634,
+      "allowance": 0.0156634,
+      "tokens": {
+        "input": 64926,
+        "output": 11849,
+        "reasoning": 8784,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d809ace7c7124a6467b5453bba5e6ef63aa745a19c1b49efb3d3aa5d9610bfc0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++6级.pdf",
+    "mirrorSha": "2f8da49f90bbb031ec77e06865e27465483be552",
+    "mirrorBytes": 1992036,
+    "shaVerified": true,
+    "sha256": "45760f65e2f966400e4c461a2579932455b6374aa91d84513c1fd28403d7108b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 六级 2023 年 12月”，CCF GESP标注清晰，与2023-12-l6（2023年12月C++六级）一致；第1页单选题答案表与第6页判断题答案表（√√√√××√√√√）供逐题比对。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页末题干“下面的 fiboA() 和 fiboB() 两个函数分别实现斐波那契数列，该数列第1、第2项值为1，其余各项分别为前两项之和。下面有关说法错误的是（ ）。”；第4页代码行3—26（fiboA：if(n==0) return 1; if(n==1) return 1; else return fiboA(n-1)+fiboA(n-2); fiboB：if((n==0)||(n==1)){fiboB[n]=n; return n;} else{if(fiboB[n]==0){fiboB[n]=FiboB(n-1)+FiboB(n-2);} return fiboB[n];}）与候选题面内嵌代码逐行一致，源卷 FiboB 大小写写法如实保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A—D与第4页逐项一致：A“fiboA() 采用递归方式实现斐波那契数列”、B“fiboB() 采用动态规划算法实现斐波那契数列”、C“当N值较大时，fiboA() 存在大量重复计算”、D“由于 fiboA() 代码较短，其执行效率较高”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8格为D（0起始索引3），候选answer=3一致。独立判定：A朴素递归直接自调用、B记忆化数组属命题口径下的动态规划、C重叠子问题成立，均非错误项；执行效率取决于复杂度而非代码长短，D为错误说法，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导成立：fiboA无记忆化、递归调用树指数膨胀（O(2^n)量级，精确约O(φ^n)≈O(1.618^n)），fiboB备忘数组每状态只算一次为O(n)（记忆化搜索=自顶向下动态规划，空间换时间），逐项判A/B/C正确、D错误，与官方D对应，无内容错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷自身瑕疵：函数名fiboB与备忘数组fiboB同名，调用处写作FiboB（C++区分大小写，原码无法直接编译）；fiboB基准(n==0)return 0与fiboA基准(n==0)return 1的项序口径也不一致，且题干“第1、第2项值为1”未与代码下标明确对应。本题JSON无sourcePage元数据可修正。以上不影响官方答案D与概念判定，保留原貌备案。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：未发现需替换字段。五维证据均由我按第3—4页原图独立比对确认，源卷笔误（FiboB大小写、数组与函数同名、基准口径）确属原卷问题而非网站录入错误，保留unresolved不定案符合“源卷自身错误不擅自定案”原则。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页第9题题干“有关下面C++代码不正确的说法是（ ）。”及代码 int Depth(BiTree T){ if(T==NULL) return 0; else{ int m=Depth(T->lchild); int n=Depth(T->rchild); if(m>n) return m+1; else return n+1; } } 与候选question内嵌代码及独立code字段逐行一致（code字段已是源卷原貌Depth(BiTree T)，非其他版本）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A“该代码可用于求解二叉树的深度”、B“代码中函数 Depth( ) 的参数 T 表示根节点，非根节点不可以作为参数”、C“代码中函数 Depth( ) 采用了递归方法”、D“……要求该二叉树节点至少有 left 和 right 属性”，与第4页顺序文字一致（D跨行“属/性”已正确合并）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9格为B（索引1），候选answer=1一致。独立判定：代码内部递归调用Depth(T->lchild)/Depth(T->rchild)，实参即孩子节点，“非根节点不可以作为参数”不成立，B为不正确说法；A/C/D按命题口径成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导成立：空树返回0、取左右子树深度较大者加1；明确以递归传参Depth(T->lchild)直接证明非根节点可作参数，反驳B；易错点（每个节点都是其子树的根）与延伸（std::max写法、O(n)时间）无误，与官方B一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷类型笔误：参数声明为BiTree T却按T->lchild/T->rchild访问成员（BiTree若指第4题class BiTree则不合法，应为节点指针类型如BiNode*），属原卷瑕疵，不影响概念判定与答案B，按原貌保留。",
+          "选项D写left/right属性而代码成员实为lchild/rchild，属措辞口径差异，保留备案。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：无修改建议。独立结论同DeepSeek：候选code字段当前即原卷Depth(BiTree T)原貌（历史轮次曾误挂BiNode*版本的问题已不存在），题面、选项、答案、解析全部一致。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页第10题题干“下面有关树的存储，错误的是（ ）.”，纯文字无代码，候选code为空串、题面不内嵌代码，与原卷对应（此前误挂第9题Depth代码的问题已不存在）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A“完全二叉树可以用 list 存储”、B“一般二叉树都可以用 list 存储，空子树位置可以用 None 表示”、C“满二叉树可以用 list 存储”、D“树数据结构，都可以用 list 存储”，与第5页逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10格为D（索引3），候选answer=3一致。独立判定：完全/满二叉树按根下标1时孩子为2i/2i+1的一维口径可存，一般二叉树补None占位原理可行；一般多叉树分支度不固定、无固定父子下标公式，单一路径的D过于绝对，为答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导成立：以“能否仅凭下标公式确定父子关系”为判据，区分完全/满二叉树的可紧凑存储与一般树的不可单列顺序存储（需孩子兄弟/双亲表示法或邻接表），并提示“能存”与“划算”之别，支撑D，结论无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "候选sourcePage=4与实际PDF第5页不符；sourcePage不在允许修改字段内，本轮按第5页记录，待平台修正。",
+          "本题“list”按一维顺序（数组式）存储口径理解；若允许嵌套list或双亲数组等通用表示，“都可以用list存储”存在口径争议，按官方答案D保留原卷口径。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维一致无需改动。sourcePage元数据错位与list口径争议如实保留unresolved，符合不擅自定案要求；content层面解析与答案D经独立复核成立。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断第5题原文“哈夫曼编码（Huffman Coding）具有唯一性，因此有确定的压缩率。 ( )”，与候选仅空格差异，无漏项。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定“正确/错误”，无四选项；官方判定符号见第6页答案表第5格。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第5格为×（错误=1），候选answer=1一致。独立判定：同权节点合并次序可变、左右子树可互换，同一频率集可得不同形态哈夫曼树，各字符0/1编码串随之不同，题干“具有唯一性”前提为假，整句判错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导成立：以同频字符a、b的0/1互换为例说明编码不唯一；同时辨析“WPL/总bit数确定”不能推出“编码唯一”，指出题干因果前提不成立，支撑官方×，与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：answer=1与第6页答案表第5格×一一对应，解析重写后与官方口径一致，无需新修改。"
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断第6题原文“由于删除了变量 ptr ，因此 ptr 所对应的数据也随之删除，故第8行代码被执行时，将报错。（ ）”；代码截图带行号5—8：int * ptr=new int(10); / cout<<*ptr<<endl; / delete ptr; / cout<<*ptr<<endl;（第8行即末行）。候选题干括注“原题代码带行号 5—8，最后一行即第 8 行 cout<<*ptr<<endl;”并附四行代码块，忠实复现行号对应，未改变题意——修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定“正确/错误”；官方判定符号见第6页答案表第6格。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第6格为×（错误=1），候选answer=1一致。独立判定：delete只结束ptr所指动态int对象的生命周期，ptr本身不被删除而成为悬空指针；第8行解引用属未定义行为，可能崩溃报错也可能照常输出旧值，“将报错”不能断定必然成立，故题干判×。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导成立：明确区分“释放动态内存”与“删除指针变量”，指出悬空指针解引用为未定义行为、结果依编译器与运行环境而定，支撑“错误”判定，与官方×及全表第6格×相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干括注行号对应（5—8、末行即第8行）使“第8行”恢复可对应性且与页图截图一致，属等价转换而非改题；答案×与解析均一致，修复后核验通过。"
+      }
+    ],
+    "summary": "本轮独立核验2023-12-l6的第8、9、10、20、21题。五题官方答案索引依次为3（D）、1（B）、3（D）、1（×错误）、1（×错误），分别对应第1页单选答案表第8/9/10格与第6页判断答案表第5/6格，候选answer全部一致。题面、选项及代码经页图逐行比对：第8题（第3页题干+第4页fiboA/fiboB代码行3—26，含源卷FiboB大小写笔误原貌）、第9题（第4页Depth(BiTree T)原貌）、第10题（第5页纯文字题，code已正确清空）均与原卷对应，此前历史轮次记录的code字段误挂问题在当前候选中均已不存在。解析五题均经独立推导（fiboB记忆化O(n)与fiboA指数级对比、递归传参直接反驳“非根不可作参数”、一般树无固定下标公式、哈夫曼编码不唯一而WPL确定、delete后悬空指针解引用为UB不能断定必然报错）成立，全部与官方答案吻合，无需changes。保留的sourceIntegrity争议：第8题源卷代码自身笔误（FiboB大小写、数组与函数同名、基准项序口径）、第9题BiTree类型笔误与left/right命名差异、第10题sourcePage元数据错位（4 vs 实际第5页）与list口径争议，均记录于unresolved不定案。五题verdict均为approve，tests不适用。"
+  }
+}

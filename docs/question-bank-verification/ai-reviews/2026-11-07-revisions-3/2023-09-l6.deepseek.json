@@ -1,0 +1,204 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    8,
+    9,
+    15,
+    24
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T16:51:19.947Z",
+  "completedAt": "2026-11-07T16:54:49.568Z",
+  "finishReason": "stop",
+  "inputSha256": "41d8795f22e0a8729170e12875320f24e49f4f06837933846250ddbec0d9fa47",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为CCF GESP C++ 六级、2023年9月；第1页单选题答案表第8题B、第9题B、第15题D；第7页判断题答案表第9题√。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页末为题8题干，完整MoreData代码在第4页；候选question内嵌代码及独立code字段与第4页逐行一致：第5行int * __data;、第13行MoreData & push(int val)、第15行return *this;、第18行return __data[head++];、第29行myData.push(11).push(12).push(13);、第30行cout << myData.pop() << endl;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D四项文字与顺序均与候选一致：A队列、B第29行连续push编译错误、C __data私有、D以上均没有错误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题8为B（0起始索引1），候选answer=1一致。独立推导：push在tail入、pop在head出构成FIFO，A真；push返回MoreData&并return *this，第29行链式调用合法，B假；__data在public:前声明，class默认private，C真；因B假，D的“均没有错误”不成立，故错误项为B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以MoreData&返回值和*this解释链式调用，逐项判断A真、C真、B假、D不成立，并给出返回void或返回值类型时链式调用差异；与C++语义及PDF答案B一致，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "题8为代码型单选题，独立code字段已不是第7题ManyData源码，而是第4页MoreData完整代码。逐行对照第4页32行：MoreData & push(int val)、return *this、__data[head++]、第29行连续push、第30行pop均一致；缩进差异不影响语义。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页末为题9题干与概率0.40、0.30、0.15、0.05、0.04、0.03、0.03依次对应A-G；第5页为哈夫曼树图。候选文字描述与图一致：根1.00左叶A(0.40)右0.60；0.60左0.30右叶B(0.30)；0.30左0.15右叶C(0.15)；0.15左0.06（按图中自左至右为G(0.03)、F(0.03)）、右0.09（按图中自左至右为E(0.04)、D(0.05)）；左0右1约定与锚点B=11自洽。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项A. 10010、B. 10011、C. 10111、D. 10001，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为B（索引1），候选answer=1一致。独立按图推导：D路径为1.00→0.60（右1）→0.30（左0）→0.15（左0）→0.09（右1）→叶D（右1），编码10011，选B；B=11也与题设锚点吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析已修正叶码表：A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011，逐项复核无误且满足前缀码性质；易错点中C=10、G=0000等作为典型误读示例，逻辑自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码；树结构已在statement维度核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页题干“第15题 关于C++语言，以下说法不正确的是（ ）。”与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页A-D四项文字、顺序与候选一致：A常对象调用const成员函数、B常量静态变量类外初始化、C类A对象作为类B静态成员在main前初始化、D静态全局对象和常量全局对象main前初始化并在main后析构。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题15为D（0起始索引3），候选answer=3一致。学理备注：B项在标准C++存在static const整型或枚举类内初始化反例，D项对基本类型常量全局对象“被析构”的表述不严谨；候选解析已披露B项特例并按官方考试口径维持D，答案映射无冲突。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以基本类型全局常量无析构函数判定D不严谨，逐项说明A常对象只读、B按官方传统口径、C静态成员在main前初始化；并明确披露B项现代C++例外和D项析构措辞问题，与官方答案D及源卷口径一致，未发现需要改写的技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第9题原文“如果节点数为N，广度搜索算法的最差时间复杂度为O(N）”（N、O(N)为斜体）；候选写作“广度优先搜索算法”为等价补全，无实质差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设A-D选项，官方以答案表√/×呈现；站点[正确,错误]为呈现惯例。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第9题为√（整行√××√√√××√√），按正确=0映射officialAnswer=0，候选answer=0一致。独立按官方节点计数口径：BFS每个节点至多入队、出队一次，遍历N个节点为O(N)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以队列、每节点入队出队一次推得O(N)，并补充图论中按边计为O(N+E)；与官方√及answer=0自洽，未发现事实错误。一般稠密图可达O(N^2)属口径差异，候选已注明O(N+E)，不构成本题源映射冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        8,
+        9,
+        15,
+        24
+      ],
+      "usage": {
+        "prompt_tokens": 24097,
+        "completion_tokens": 25320,
+        "total_tokens": 49417,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 23187
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01880655,
+          "allowance": 0.01128393,
+          "tokens": {
+            "input": 24097,
+            "output": 25320,
+            "reasoning": 23187,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-07T16:51:19.947Z",
+      "completedAt": "2026-11-07T16:54:49.568Z"
+    }
+  ]
+}
