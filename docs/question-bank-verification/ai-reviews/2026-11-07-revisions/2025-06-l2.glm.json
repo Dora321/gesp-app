@@ -1,0 +1,102 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    14
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T23:56:57.962Z",
+  "completedAt": "2026-11-09T23:57:52.512Z",
+  "finishReason": "stop",
+  "inputSha256": "4c1a79cda769d5fdafb1937a8022806c50944ec56c2014a9de3e8c1b9580df80",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为 CCF GESP、C++ 二级、2025 年 06 月；与 2025-06-l2 标识一致。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页页图第14题题干为「判断一个数是否为自守数。自守数的定义是如果一个数的平方其尾数与该数相同，则为自守数，如25的平方是625，其尾数是25，所以25是自守数。相关说法错误的是（ ）。」，与候选一致。代码框共21行逐行核对：int N, N1, M1; / cout << \"输入一个正整数：\"; / cin >> N; / N1 = N, M1 = N * N; / bool Flag = true; / while (N1 > 0){ / if (N1 % 10 != M1 % 10){ Flag = false; break; } else{ N1 = N1 / 10, M1 = M1 / 10; } } / if (Flag == true) printf(\"%d的平方是%d,是自守数\", N, N * N); else printf(\"%d的平方是%d,不是自守数\", N, N * N);，与候选 question 代码逐行一致，无缺行或语义改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页页图选项 A—D 依次为：A 如果Flag在循环中不被改为false，则说明该数是自守数；B 代码 if (N1 % 10 != M1 % 10) 用于判断其个位数是否相等。如果不等，则表明不是自守数；C 代码 N1 = N1 / 10, M1 = M1 / 10 将个位数去掉；D 将 N1 > 0 改为 N > 0 效果相同。候选 options 与之一致（B 中「是否相等。如果」与候选「是否相等，如果」仅标点差异，忽略）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页页图答案表第14题为 D，0起始索引3，候选 answer=3 对齐。独立逻辑验证：A 正确——Flag 初始 true，循环中未被改 false 意味着 N 与 N*N 从最低位起的每一位都相等，即 N 的尾数等于其平方尾数，符合自守数定义；B 正确——% 10 取当前最低个位，不等即尾数不匹配；C 正确——整数除10舍弃个位；D 错误——N 在循环体中从不被修改，条件改为 N > 0 后对任何正整数恒真，循环只能靠 break 结束：N=25 时第2轮后 N1=0、M1=6，第3轮 0 != 6 触发 Flag=false 退出并被误判为非自守数；N=1 时 N1、M1 首轮比较后同时归0，0==0 恒成立且条件恒真，陷入死循环。故 D 是应选的错误说法，答案正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：修订后的解析替换了此前「25 死循环」的错误反例，经逐轮独立模拟确认无误——原条件 while(N1>0) 对 25 两轮比较（5=5、2=2 后 N1=0、M1=6）正确判定自守数；改 N > 0 后第3轮 0 != 6 置 Flag=false break 退出，25 被误判且不会卡死，与「程序不会卡死，但结论错误」表述一致；N=1 时 1 与 1 相等后 N1=M1=0，此后每轮 0 与 0 相等且 while(N>0) 恒真，死循环，表述正确。A/B/C/D 逐项分析（含 break 提前退出说明、除10去个位说明）与代码逻辑一致，输出分支描述与原卷 printf 文本相符，未编造运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核接受初核结论：候选题干、代码与第5页页图逐行一致；答案表第14题为 D（索引3），候选 answer=3 对齐，且 D 的错误性经 25（误判退出）与 1（死循环）两条路径独立模拟证实；修订后的解析反例表述与本轮独立模拟一致，未编造运行结果。无需修改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        14
+      ],
+      "usage": {
+        "prompt_tokens": 34030,
+        "completion_tokens": 5152,
+        "total_tokens": 39182,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3955
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0076805,
+          "allowance": 0.0076805,
+          "tokens": {
+            "input": 34030,
+            "output": 5152,
+            "reasoning": 3955,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T23:56:57.962Z",
+      "completedAt": "2026-11-09T23:57:52.512Z"
+    }
+  ]
+}

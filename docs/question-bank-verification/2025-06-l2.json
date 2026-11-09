@@ -520,41 +520,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "第5页题14代码完整给出 `N1 = N, M1 = N * N;`、`while (N1 > 0)`、逐位比较 `N1%10` 与 `M1%10`、不等时置 `Flag=false` 并 `break`、相等时同时除以 10，最后按 `Flag` 输出；与站点一致。",
-          "review": "第 5 页代码完整给出 N1 = N, M1 = N * N;、bool Flag = true;、while (N1 > 0)、N1 % 10 != M1 % 10 时置 Flag=false 并 break、否则 N1 = N1 / 10, M1 = M1 / 10，最后按 Flag 分支 printf；与站点逐行一致。"
+          "initial": "第5页原图第14题题干与代码框完整：题干为判断自守数并问相关说法错误的是；代码含 int N, N1, M1;、N1 = N, M1 = N * N;、while (N1 > 0)、N1 % 10 != M1 % 10 时 Flag=false 并 break、否则两者同除以10，最后按 Flag 输出是/不是自守数。候选 question 中的代码与之一致，无缺行或语义改动。",
+          "review": "第5页页图第14题题干为「判断一个数是否为自守数。自守数的定义是如果一个数的平方其尾数与该数相同，则为自守数，如25的平方是625，其尾数是25，所以25是自守数。相关说法错误的是（ ）。」，与候选一致。代码框共21行逐行核对：int N, N1, M1; / cout << \"输入一个正整数：\"; / cin >> N; / N1 = N, M1 = N * N; / bool Flag = true; / while (N1 > 0){ / if (N1 % 10 != M1 % 10){ Flag = false; break; } else{ N1 = N1 / 10, M1 = M1 / 10; } } / if (Flag == true) printf(\"%d的平方是%d,是自守数\", N, N * N); else printf(\"%d的平方是%d,不是自守数\", N, N * N);，与候选 question 代码逐行一致，无缺行或语义改动。"
         },
         "options": {
-          "initial": "第5页 A—D 选项分别涉及 Flag 仍为 true、个位比较、同时去掉个位、将 `N1 > 0` 改为 `N > 0`；站点文字和顺序均与卷面一致。",
-          "review": "第 5 页 A—D 分别为：Flag 未被改 false 即自守数、%10 比较个位、同时除 10 去个位、将 N1 > 0 改为 N > 0 效果相同，文字与顺序和站点一致。"
+          "initial": "第5页原图选项 A—D 顺序与文字为：A 如果Flag在循环中不被改为false则说明该数是自守数；B 代码 if (N1 % 10 != M1 % 10) 用于判断其个位数是否相等如果不等则表明不是自守数；C 代码 N1 = N1 / 10, M1 = M1 / 10 将个位数去掉；D 将 N1 > 0 改为 N > 0 效果相同。候选 options 与之一致。",
+          "review": "第5页页图选项 A—D 依次为：A 如果Flag在循环中不被改为false，则说明该数是自守数；B 代码 if (N1 % 10 != M1 % 10) 用于判断其个位数是否相等。如果不等，则表明不是自守数；C 代码 N1 = N1 / 10, M1 = M1 / 10 将个位数去掉；D 将 N1 > 0 改为 N > 0 效果相同。候选 options 与之一致（B 中「是否相等。如果」与候选「是否相等，如果」仅标点差异，忽略）。"
         },
         "answer": {
-          "initial": "第1页答案表第14题标为 D（0 基索引 3）。A/B/C 描述均符合代码：`Flag` 未被改为 false 表示逐位相等；`%10` 比较当前最低位；同时除以 10 去掉最低位。D 因 `N` 不变而会使循环条件恒真，效果不同。",
-          "review": "第 1 页答案表第 14 题为 D（0 基索引 3）。独立验证：A、B、C 描述均符合代码逻辑；D 中 N 在循环体内从不改变，条件改为 N > 0 后对正整数恒真，效果不同（自守数 25 会被误判，1 会死循环），D 为应选的错误说法。"
+          "initial": "第1页答案表第14题为 D，映射0起始索引为3，候选 answer=3 对齐。独立验证：A、B、C 描述符合代码逻辑；D 中 N 在循环体内不变，改为 N > 0 后对正整数恒真，25 会在 N1 归零后因 0 != 6 被误判，N=1 会因 N1 与 M1 同时归零且条件恒真而死循环，故 D 是错误说法，为应选项。",
+          "review": "第1页页图答案表第14题为 D，0起始索引3，候选 answer=3 对齐。独立逻辑验证：A 正确——Flag 初始 true，循环中未被改 false 意味着 N 与 N*N 从最低位起的每一位都相等，即 N 的尾数等于其平方尾数，符合自守数定义；B 正确——% 10 取当前最低个位，不等即尾数不匹配；C 正确——整数除10舍弃个位；D 错误——N 在循环体中从不被修改，条件改为 N > 0 后对任何正整数恒真，循环只能靠 break 结束：N=25 时第2轮后 N1=0、M1=6，第3轮 0 != 6 触发 Flag=false 退出并被误判为非自守数；N=1 时 N1、M1 首轮比较后同时归0，0==0 恒成立且条件恒真，陷入死循环。故 D 是应选的错误说法，答案正确。"
         },
         "explanation": {
-          "initial": "现解析称将 `N1 > 0` 改为 `N > 0` 后「自守数如 25 会陷入死循环」，该例子不准确：25 在 `N1` 变为 0 后，条件 `N>0` 仍成立，下一轮会比较 0 与 6，触发 `Flag=false` 并退出，而不是死循环；真正会死循环的典型输入是 1。虽然 D 仍为错误项、答案不变，但解析中的反例需纠正。",
-          "review": "修复后核验通过：站点原解析断言自守数 25 在条件改为 N > 0 后会陷入死循环，经独立模拟不成立——25 在 N1 归零后第 3 轮因 0 != 6 置 Flag=false 退出并被误判，只有 N=1（N1 与 M1 同时归零且恒相等）才死循环；已用正确反例重写完整解析（见 changes），答案 D 与 A/B/C 的选项分析保持不变。"
+          "initial": "候选解析已修正关键反例：25 在条件改动后第3轮以 0 != 6 置 Flag=false 退出并被误判，并非死循环；只有 N=1 时 N1=0、M1=0 且 while(N>0) 恒真才死循环。原条件对 25 的两轮比较和正确判定也描述无误；A、B、C、D 逐项分析与官方答案 D 自洽。",
+          "review": "修复后核验通过：修订后的解析替换了此前「25 死循环」的错误反例，经逐轮独立模拟确认无误——原条件 while(N1>0) 对 25 两轮比较（5=5、2=2 后 N1=0、M1=6）正确判定自守数；改 N > 0 后第3轮 0 != 6 置 Flag=false break 退出，25 被误判且不会卡死，与「程序不会卡死，但结论错误」表述一致；N=1 时 1 与 1 相等后 N1=M1=0，此后每轮 0 与 0 相等且 while(N>0) 恒真，死循环，表述正确。A/B/C/D 逐项分析（含 break 提前退出说明、除10去个位说明）与代码逻辑一致，输出分支描述与原卷 printf 文本相符，未编造运行结果。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-06-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-06-l2.glm.json"
       ]
     },
     {
@@ -1001,16 +1004,6 @@
       ]
     },
     {
-      "id": 14,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 15,
       "dimensions": [
         "statement",
@@ -1024,5 +1017,6 @@
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-06-l2.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2025-06-l2.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-06-l2.integration.json"
 }

@@ -1,0 +1,91 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    14
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T23:55:54.916Z",
+  "completedAt": "2026-11-09T23:56:57.949Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18443,
+    "completion_tokens": 6466,
+    "total_tokens": 24909,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5703
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00664605,
+      "allowance": 0.00398763,
+      "tokens": {
+        "input": 18443,
+        "output": 6466,
+        "reasoning": 5703,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4c1a79cda769d5fdafb1937a8022806c50944ec56c2014a9de3e8c1b9580df80",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为 CCF GESP、C++ 二级、2025 年 06 月；与 2025-06-l2 标识一致。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页原图第14题题干与代码框完整：题干为判断自守数并问相关说法错误的是；代码含 int N, N1, M1;、N1 = N, M1 = N * N;、while (N1 > 0)、N1 % 10 != M1 % 10 时 Flag=false 并 break、否则两者同除以10，最后按 Flag 输出是/不是自守数。候选 question 中的代码与之一致，无缺行或语义改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页原图选项 A—D 顺序与文字为：A 如果Flag在循环中不被改为false则说明该数是自守数；B 代码 if (N1 % 10 != M1 % 10) 用于判断其个位数是否相等如果不等则表明不是自守数；C 代码 N1 = N1 / 10, M1 = M1 / 10 将个位数去掉；D 将 N1 > 0 改为 N > 0 效果相同。候选 options 与之一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为 D，映射0起始索引为3，候选 answer=3 对齐。独立验证：A、B、C 描述符合代码逻辑；D 中 N 在循环体内不变，改为 N > 0 后对正整数恒真，25 会在 N1 归零后因 0 != 6 被误判，N=1 会因 N1 与 M1 同时归零且条件恒真而死循环，故 D 是错误说法，为应选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析已修正关键反例：25 在条件改动后第3轮以 0 != 6 置 Flag=false 退出并被误判，并非死循环；只有 N=1 时 N1=0、M1=0 且 while(N>0) 恒真才死循环。原条件对 25 的两轮比较和正确判定也描述无误；A、B、C、D 逐项分析与官方答案 D 自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号14核验通过：题干、代码、A—D选项均与第5页原图一致；官方答案表为 D（索引3），独立逻辑验证支持 D；修订后的解析中 25 误判退出、N=1 死循环的反例均正确。无需修改。"
+  }
+}
