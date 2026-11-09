@@ -8,6 +8,7 @@ import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
+import { getQuestionNavStatus } from '../../utils/questionNavStatus';
 
 const inferTags = (q) => {
     if (Array.isArray(q?.tags) && q.tags.length) return q.tags;
@@ -142,20 +143,23 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                     <div className="grid grid-cols-5 md:grid-cols-4 gap-2">
                         {questions.map((q, idx) => {
                             const isCurrent = idx === currentQuestionIndex;
-                            const hasAnswer = answers[q.id] !== undefined;
-                            const classes = isCurrent
-                                ? 'bg-indigo-600 text-white border-indigo-600'
-                                : hasAnswer
-                                    ? 'bg-indigo-50 text-indigo-700 border-indigo-200'
-                                    : 'bg-white text-slate-600 border-slate-200';
+                            const navStatus = getQuestionNavStatus({
+                                q,
+                                answer: answers[q.id],
+                                revealed: !!revealed[q.id],
+                                isCurrent,
+                                questionNumber: idx + 1,
+                            });
                             return (
                                 <button
                                     key={q.id}
+                                    aria-label={navStatus.ariaLabel}
+                                    aria-current={isCurrent ? 'step' : undefined}
                                     onClick={() => {
                                         setCurrentQuestionIndex(idx);
                                         setActiveTab('practice');
                                     }}
-                                    className={`aspect-square rounded-lg border text-sm font-semibold ${classes}`}
+                                    className={`aspect-square rounded-lg border text-sm font-semibold ${navStatus.className}`}
                                 >
                                     {idx + 1}
                                 </button>
