@@ -1,0 +1,127 @@
+{
+  "executedAt": "2026-11-09T11:32:19.687Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2\n3\n5",
+          "output": "15",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "15\n",
+          "passed": true
+        },
+        {
+          "input": "3\n100\n100\n100",
+          "output": "1000000",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1000000\n",
+          "passed": true
+        },
+        {
+          "input": "4\n100\n100\n100\n2",
+          "output": ">1000000",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": ">1000000\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1\n1",
+          "output": "1",
+          "reason": "n=1、a=1 为题面允许最小输入；product=1，1×1=1 不超过 10^6，输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "恰好等于阈值",
+          "input": "6\n10\n10\n10\n10\n10\n10",
+          "output": "1000000",
+          "reason": "6 个 10 相乘恰为 10^6；第 6 次判断 100000×10=1000000 不『大于』阈值，循环结束输出 1000000，验证『超过』为严格大于。",
+          "kind": "boundary",
+          "actual": "1000000\n",
+          "passed": true
+        },
+        {
+          "name": "刚超过阈值",
+          "input": "7\n10\n10\n10\n10\n10\n10\n10",
+          "output": ">1000000",
+          "reason": "第 7 次 product*a=10^7>10^6，输出 >1000000。",
+          "kind": "boundary",
+          "actual": ">1000000\n",
+          "passed": true
+        },
+        {
+          "name": "阈值下方边界",
+          "input": "5\n100\n100\n99\n1\n1",
+          "output": "990000",
+          "reason": "100×100×99=990000，再乘两个 1 仍为 990000，均不超过 10^6，输出 990000。",
+          "kind": "boundary",
+          "actual": "990000\n",
+          "passed": true
+        },
+        {
+          "name": "溢出场景（因子大、个数多）",
+          "input": "10\n100\n100\n100\n100\n100\n100\n100\n100\n100\n100",
+          "output": ">1000000",
+          "reason": "按先判后乘写法，第 4 个 100 时 product*a=10^8>10^6 即输出 >1000000 结束，全程不溢出；该用例同时覆盖『先乘后判写法会溢出』的风险场景。",
+          "kind": "boundary",
+          "actual": ">1000000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "4f8afe43e7ea274ffdd33d351d4045ce1b5cdaa79696abc6ee695604323cd647"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "5",
+          "output": "|---|\n|xxx|\n|---|\n|xxx|\n|---|",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "|---|\n|xxx|\n|---|\n|xxx|\n|---|\n",
+          "passed": true
+        },
+        {
+          "input": "7",
+          "output": "|-----|\n|xxxxx|\n|xxxxx|\n|-----|\n|xxxxx|\n|xxxxx|\n|-----|",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "|-----|\n|xxxxx|\n|xxxxx|\n|-----|\n|xxxxx|\n|xxxxx|\n|-----|\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 N=5",
+          "input": "5",
+          "output": "|---|\n|xxx|\n|---|\n|xxx|\n|---|",
+          "reason": "N 取下界 5；第 1/3/5 行为横线、第 2/4 行为 x、两端竖线，共 5 行每行 5 字符，逐行独立推演与官方样例一致。",
+          "kind": "boundary",
+          "actual": "|---|\n|xxx|\n|---|\n|xxx|\n|---|\n",
+          "passed": true
+        },
+        {
+          "name": "中间行公式验证 N=9",
+          "input": "9",
+          "output": "|-------|\n|xxxxxxx|\n|xxxxxxx|\n|xxxxxxx|\n|-------|\n|xxxxxxx|\n|xxxxxxx|\n|xxxxxxx|\n|-------|",
+          "reason": "N=9 时 0 基中间行下标 9/2=4（即第 (9+1)/2=5 行），逐行推演每行 9 字符共 9 行，验证 n/2 取整与行内 - 或 x 的分布。",
+          "kind": "boundary",
+          "actual": "|-------|\n|xxxxxxx|\n|xxxxxxx|\n|xxxxxxx|\n|-------|\n|xxxxxxx|\n|xxxxxxx|\n|xxxxxxx|\n|-------|\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "9d4487eb05f9405fee380474a2ba272050c943d94d64838c707ebb5fb7ccf922"
+    }
+  ]
+}
