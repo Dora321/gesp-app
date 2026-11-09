@@ -1,0 +1,226 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:41:41.112Z",
+  "completedAt": "2026-11-09T16:45:54.362Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29240,
+    "completion_tokens": 10105,
+    "total_tokens": 39345,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8443
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.010449,
+      "allowance": 0.0062694,
+      "tokens": {
+        "input": 29240,
+        "output": 10105,
+        "reasoning": 8443,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "dcd13cfe834ab32d78ad9860646303ed02b82f60265b4e87d855ce5a4fefb07a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标注“CCF 编程能力等级认证 C++ 二级 2025 年 06 月”，与 paperId 2025-06-l2 的等级、年份和月份一致；第 1 页还给出单选题答案表。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干为“2025年4月19日在北京举行了一场颇为瞩目的人形机器人半程马拉松赛……那么这类传感器类似于计算机的( )”，站点仅调整空格和括号全半角，语义与代码均无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项依次为 A. 处理器、B. 存储器、C. 输入设备、D. 输出设备，顺序和内容与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 C，按 A=0 映射为索引 2，站点 answer=2 一致；传感器采集外部数据并送入系统，符合输入设备定义。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据计算机五大部件的功能与数据流向，指出传感器负责采集姿态等外部信息并送入系统，因而类比输入设备；对处理器、存储器、输出设备的排除也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干为计算机使用一年后内存不够、想购置容量更大的内存条，站点文字与之一致，没有改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项为 A. RAM、B. ROM、C. CACHE、D. EPROM，站点顺序和内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 A，对应索引 0；日常所说的可插拔内存条即 RAM，站点 answer=0 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 RAM 与 ROM、Cache、EPROM，说明内存条用于临时存放运行中的程序和数据，断电易失，并正确排除固化存储器与 CPU 缓存。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页代码为 `int a=3; float b = 3.5; cout << (a *= b);`，站点逐行一致，求输出语句完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项为 A. 3、B. 3.5、C. 10、D. 11，站点顺序和值均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 C，对应索引 2；`3 * 3.5` 得 10.5，赋回 int 时向零截断为 10，站点 answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明复合赋值先按浮点乘法得到 10.5，再因左侧变量 a 为 int 而截断小数部分，最终输出 10；对 11 的四舍五入误区也有准确说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干和代码跨第 1、2 页：要求取正整数第 3 位，1234 输出 2，一两位输出 0；第 2 页代码为 `int N, remainder; ... cout << _________________;`，站点转录完整且未改语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页选项依次为 A. `N % 1000 / 100`、B. `N / 1000 % 100`、C. `N / 1000 / 100`、D. `N % 100 / 100`，站点顺序和表达式一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 A，对应索引 0；`N % 1000 / 100` 对 1234 得 `234/100=2`，对小于 100 的正整数得 0，站点 answer=0 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按运算符优先级解释 `(N%1000)/100`：先保留末三位，再整除 100 去掉末两位，从而取得从右往左第 3 位；并验证一两位时结果为 0。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页代码为 `int a, b = (6, 28); b == a; a = b; cout << a << ' ' << b;`，站点逐行一致；原卷本身存在未初始化局部变量 a 的缺陷，转录未擅自改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页选项为 A. 6 28、B. 6 6、C. 28 6、D. 28 28，站点顺序和内容一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "第 1 页答案表第 5 题为 D，按 A=0 映射为索引 3，站点 answer=3 与官方答案表一致；但第 2 行 `b == a` 读取未初始化的 a，标准 C++ 下为未定义行为，官方 D 只能视为命题意图，不能验证为确定输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 `(6,28)` 逗号表达式使 b 得 28、随后 `a=b` 使两者都为 28 是命题意图，同时明确说明读取未初始化 a 导致未定义行为并停止计分，未把官方答案伪装成可靠运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 2 行 `b == a` 读取未初始化的局部变量 a，构成标准 C++ 未定义行为；原卷答案 D（28 28）仅反映命题意图，不能保证实际输出，保留争议。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验题号 1–5。题面、选项及官方答案映射均与原卷一致；题 1–4 五维可确认，题 5 的代码存在原卷未初始化变量缺陷，官方答案 D 虽与答案表一致，但标准 C++ 无确定输出，因此答案维度保留为 unresolved，未提出字段改写。"
+  }
+}

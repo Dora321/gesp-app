@@ -1,0 +1,223 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T19:56:55.191Z",
+  "completedAt": "2026-11-09T19:57:27.064Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29240,
+    "completion_tokens": 4014,
+    "total_tokens": 33254,
+    "prompt_tokens_details": {
+      "cached_tokens": 29184
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2537
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00250435,
+      "allowance": 0.00150261,
+      "tokens": {
+        "input": 56,
+        "output": 4014,
+        "reasoning": 2537,
+        "cache_read": 29184,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "dcd13cfe834ab32d78ad9860646303ed02b82f60265b4e87d855ce5a4fefb07a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头显示“CCF 编程能力等级认证”“C++ 二级”“2025 年 06 月”，与 2025-06-l2 一致；第 6 页判断题答题表的红色符号为 √√×√×××××√，第 6—10 格对应第 21—25 题，答案依次为错误、错误、错误、错误、正确。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页原题及代码与当前题面一致：`int score; cin >> score; if (score < 60) ... else ...`，题干询问输入 59.99 时是否输出“及格”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无单选选项需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 6 格为×，对应索引 1（错误）。独立推导：`score` 为 int，`cin >> score` 从 59.99 中读取 59，59<60，输出“不及格”，不是“及格”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析指出整数输入读取 59 并进入“不及格”分支，与 C++ 格式化输入及题目代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页代码为 `for (i=1; i<10; i++) if (i%2==0) continue; if(i==10) cout << \"END\";`，题干称由于执行 continue 因而不会有输出。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无单选选项需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表第 7 格为×，对应索引 1（错误）。独立推导：循环在 i=10 时结束，随后 `if(i==10)` 成立并输出 END，并非无输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析说明 continue 只跳过偶数轮的循环体，for 循环最终仍到 i=10 并输出 END，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页代码为 `int Sum=0; for(int i=0;i<5;i++) Sum+=i; cout<<Sum;`，题干称执行后输出 15。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无单选选项需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页答案表第 8 格为×，对应索引 1（错误）。独立计算 i=0,1,2,3,4，Sum=0+1+2+3+4=10，不是 15。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确指出循环不取 5，累加结果为 10；15 来自误将条件当作 `i<=5`。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页代码为 `for (int i=5; i>1; i--) tnt += i;`，题干讨论将其改为 `for (int i=1; i<5; i++)` 后输出是否相同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无单选选项需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页答案表第 9 格为×，对应索引 1（错误）。独立计算：原循环取 5、4、3、2，和为 14；修改后取 1、2、3、4，和为 10，输出不同。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确指出两个循环因严格不等号分别漏掉 1 和 5，并非同一组数的反向遍历。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页题面要求 N 行 N 列：奇数 N 时中间一列为 `*`，偶数 N 时中间两列为 `*`，其余为 `-`；所附代码使用 `j == N/2 || j == (N-1)/2` 判断列位置，与当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无单选选项需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页答案表第 10 格为√，对应索引 0（正确）。独立验证：N=5 时仅 j=2 为 `*`；N=4 时 j=1、2 为 `*`；N=1 时 j=0 为 `*`；N=2 时 j=0、1 为 `*`，均符合要求。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析说明下标从 0 开始，奇数时两个判断重合于中央列，偶数时分别命中相邻两列，结论与代码行为一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 21—25 题。逐题对照第 6—7 页原图、代码和第 6 页红色判断题答案表：五题题面与代码完整，官方判断符号依次为错误、错误、错误、错误、正确；现有答案与解析均与独立推导一致，未发现需要修改的字段。"
+  }
+}

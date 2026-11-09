@@ -1,0 +1,146 @@
+{
+  "executedAt": "2026-11-09T23:49:59.440Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "input": "5",
+          "output": "9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 n=1",
+          "input": "1",
+          "output": "0",
+          "reason": "唯一无序对 (1,1) 乘积为奇数，面积为 1/2 非整数，按参考代码手推 cnt=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "小规模 n=2",
+          "input": "2",
+          "output": "2",
+          "reason": "(1,2)、(2,2) 乘积为偶数，(1,1) 不计，手推得 2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例 1",
+          "input": "3",
+          "output": "3",
+          "reason": "符合条件的是 (1,2),(2,2),(2,3)，与第8页输出样例 1 一致。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例 2",
+          "input": "5",
+          "output": "9",
+          "reason": "15 个无序对减 6 个全奇对得 9，与第8页输出样例 2 一致。",
+          "kind": "boundary",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最大值 n=1000",
+          "input": "1000",
+          "output": "375250",
+          "reason": "总无序对 1000×1001/2=500500，奇数边 500 个、全奇对 500×501/2=125250，500500-125250=375250，由公式独立推得，未实际运行。",
+          "kind": "boundary",
+          "actual": "375250\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "a3952b928b7779e084e0cd87d01bde1bd449049703ba8b8c91471c4b0220afeb"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2 8",
+          "output": "6",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "input": "10 100",
+          "output": "20",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "20\n",
+          "passed": true
+        },
+        {
+          "name": "最小区间 l=r=1",
+          "input": "1 1",
+          "output": "0",
+          "reason": "最小的两个 2 的非负次幂之和为 1+1=2，1 不是幂和数，手推 cnt=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "单点 l=r=2",
+          "input": "2 2",
+          "output": "1",
+          "reason": "2=2⁰+2⁰，区间内仅此一个幂和数，手推得 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例 1",
+          "input": "2 8",
+          "output": "6",
+          "reason": "幂和数为 2,3,4,5,6,8，与第9页输出样例 1 一致。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例 2",
+          "input": "10 100",
+          "output": "20",
+          "reason": "不超过 100 的 7 个幂组成 28 个无序对，和落在 [10,100] 的恰 20 个，与第9页输出样例 2 一致。",
+          "kind": "boundary",
+          "actual": "20\n",
+          "passed": true
+        },
+        {
+          "name": "最大范围 l=1, r=10000",
+          "input": "1 10000",
+          "output": "102",
+          "reason": "2⁰ 至 2¹³ 共 14 个幂，无序可重对 14×15/2=105 个，仅 (2048,8192)、(4096,8192)、(8192,8192) 三对之和超过 10000，105-3=102；由公式独立推得，未实际运行。",
+          "kind": "boundary",
+          "actual": "102\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "01f8e51155f559d46518b3761add6fe2b7f3b74f202016cb197b68bad938fecb"
+    }
+  ]
+}

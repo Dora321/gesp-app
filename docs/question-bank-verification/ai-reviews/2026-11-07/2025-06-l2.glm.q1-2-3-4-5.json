@@ -1,0 +1,240 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T18:02:40.245Z",
+  "completedAt": "2026-11-09T18:03:23.895Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45975,
+    "completion_tokens": 6433,
+    "total_tokens": 52408,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 4186,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01011275,
+      "allowance": 0.01011275,
+      "tokens": {
+        "input": 45975,
+        "output": 6433,
+        "reasoning": 4186,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "dcd13cfe834ab32d78ad9860646303ed02b82f60265b4e87d855ce5a4fefb07a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头图片清晰显示“CCF 编程能力等级认证 GESP / C++ 二级 / 2025 年 06 月”，与 paperId 2025-06-l2 的等级（2 级）、年份（2025）、月份（6）一致；第 1 页同时给出单选题 1–15 答案表“C A C A D D C C B A D D D D A”，可作为答案映射依据。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立复核接受初核结论：第 1 页图片中题干、四个选项及答案表第 1 题 C 均与站点一致；传感器按数据流向属输入设备，解析推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页图片题干为“2025年4月19日在北京举行了一场颇为瞩目的人形机器人半程马拉松赛。比赛期间，跑动着的机器人会利用身上安装的多个传感器所反馈的数据来调整姿态、保持平衡等，那么这类传感器类似于计算机的( )”，站点逐句一致，仅全半角括号差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页图片四个复选项依次为 A. 处理器、B. 存储器、C. 输入设备、D. 输出设备，顺序与文字和站点完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 C，按 A=0 映射为索引 2，站点 answer=2 一致；独立判断：传感器把外部物理量采集后送入系统，属输入设备，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以冯·诺依曼五大部件和数据流向区分输入/输出，逐项排除处理器、存储器、输出设备（电机类执行机构），并给出易错提醒，推导独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核接受初核结论：题干、选项与第 1 页图片一致，答案表第 2 题 A 映射索引 0，RAM 即可插拔内存条，解析区分无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页图片题干为“小明购置的计算机使用一年后觉得内存不够用了，想购置一个容量更大的内存条，这时他需要的内存条是（ ）”，站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页图片选项依次为 A. RAM、B. ROM、C. CACHE、D. EPROM，顺序与内容与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 A，映射索引 0，站点 answer=0 一致；日常主板插槽的内存条即随机存取存储器 RAM，判断成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 RAM 易失、可插拔扩展，排除固化引导用途的 ROM/EPROM 与集成于 CPU 的 Cache，并给出存储层级延伸，内容准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立复核接受初核结论：代码与选项转录无误；独立推导 3*3.5=10.5 赋回 int 截断为 10，输出 10，与答案表 C（索引 2）一致，解析正确，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页图片代码框为三行：`int a=3;`、`float b = 3.5;`、`cout << (a *= b);`，站点逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页图片选项依次为 A. 3、B. 3.5、C. 10、D. 11，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 C，映射索引 2，站点 answer=2 一致；独立推导：a*=b 按 float 计算 10.5，赋回 int 向零截断为 10，输出 10，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明复合赋值先浮点相乘得 10.5、存回 int 时丢弃小数而非四舍五入，并指出 D 选项 11 的四舍五入误区，与 C++ 隐式转换和截断规则相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核接受初核结论：跨页题干与代码转录完整，四个选项表达式一致；独立验证 A 对 1234 得 2、对两位数得 0，其余选项均不符合，答案表 A 映射索引 0 正确，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页末题干为“获得正整数的第3位数，如1234则输出2。如果是一位数或两位数，则输出0”，第 2 页顶部代码为 `int N, remainder;`、`cout << \"请输入正整数:\";`、`cin >> N;`、`cout << _________________;`，站点跨页转录完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页图片选项依次为 A. N % 1000 / 100、B. N / 1000 % 100、C. N / 1000 / 100、D. N % 100 / 100，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 A，映射索引 0，站点 answer=0 一致；独立验证：A 对 1234 得 234/100=2，对 N<100 得 0；B 对 1234 得 1，C 得 0，D 得 0，均不符，A 唯一正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按优先级解释先 N%1000 保留末三位、再整除 100 取得从右数第 3 位，并验证 N<100 时结果为 0，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立复核接受初核对答案维度标 unresolved 的处理：站点 answer=3 与答案表 D 的转录一致，且站点已用 sourceIntegrity=official-source-defect 标记原卷缺陷并不计分，题面、选项、解析忠实，无需字段修改，按规则保留争议不擅自定案。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页图片代码框为四行：`int a, b = (6, 28);`、`b == a;`、`a = b;`、`cout << a << ' ' << b;`，题干“下面C++代码执行，其输出是( )”，站点逐行一致，未擅自修补原卷缺陷。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页图片选项依次为 A. 6 28、B. 6 6、C. 28 6、D. 28 28，与站点一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "第 1 页答案表第 5 题为 D，映射索引 3，站点 answer=3 与官方表一致；但第 2 行 `b == a;` 读取未初始化的局部变量 a，属标准 C++ 未定义行为，程序无可靠输出，官方 D（28 28）只能视为命题意图，无法作为确定运行结果核验，保留争议。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导了命题意图（逗号表达式使 b=28，随后 a=b 得 28 28），并明确指出 `b == a` 读取未初始化 a 构成未定义行为、官方答案不可靠、该题不计分，与原卷缺陷标记一致，未编造运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 2 行 `b == a;` 读取未初始化的局部变量 a，标准 C++ 下为未定义行为，官方答案 D（28 28）仅反映命题意图，无法验证为确定输出；站点已以 sourceIntegrity 标记并不计分，争议保留。"
+        ]
+      }
+    ],
+    "summary": "本次独立复核题号 1–5。卷头确认 2025 年 6 月 C++ 二级，来源一致。题 1–4 的题面、选项、答案（C/A/C/A 映射索引 2/0/2/0）、解析经逐项独立推导全部通过，五维 verified。题 5 代码 `b == a;` 读取未初始化变量构成未定义行为，站点 answer=3 与答案表 D 转录一致，但无法作为确定输出核验，答案维度保留 unresolved；站点已按原卷缺陷标记并不计分，处理忠实，未提出字段修改。DeepSeek 初核对 1–5 的结论经独立重算后全部接受，无否决项；无需修改任何字段。"
+  }
+}

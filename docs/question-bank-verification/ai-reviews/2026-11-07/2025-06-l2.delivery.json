@@ -1,0 +1,49 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "初核复核",
+  "checkedAt": "2026-11-09T23:50:28.207Z",
+  "reviewedQuestions": 27,
+  "acceptedDimensions": 87,
+  "unresolved": [
+    {
+      "id": 5,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "保留原有争议/待审标记，模型结论不能自动解除"
+      ]
+    },
+    {
+      "id": 14,
+      "dimensions": [
+        "explanation"
+      ],
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 15,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "reasons": [
+        "保留原有争议/待审标记，模型结论不能自动解除"
+      ]
+    }
+  ],
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2025-06-l2.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2025-06-l2.glm.json",
+    "previous": "ai-reviews/2026-11-07/2025-06-l2.previous-evidence.json"
+  },
+  "checks": "题库结构、单元测试、课程与链接、解析质量、Lint、生产构建通过"
+}

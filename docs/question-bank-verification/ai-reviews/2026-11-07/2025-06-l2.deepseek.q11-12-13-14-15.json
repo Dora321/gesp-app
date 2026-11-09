@@ -1,0 +1,229 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T18:05:00.375Z",
+  "completedAt": "2026-11-09T18:07:52.585Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29240,
+    "completion_tokens": 18351,
+    "total_tokens": 47591,
+    "prompt_tokens_details": {
+      "cached_tokens": 29184
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15303
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01110655,
+      "allowance": 0.00666393,
+      "tokens": {
+        "input": 56,
+        "output": 18351,
+        "reasoning": 15303,
+        "cache_read": 29184,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "dcd13cfe834ab32d78ad9860646303ed02b82f60265b4e87d855ce5a4fefb07a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示「CCF GESP C++ 二级」「2025 年 06 月」，与 paperId=2025-06-l2 的年份、月份、等级一致；第1页另有单选题 1—15 的答案表。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页题11代码为 `for(i = 0; i < 3; i++)`、内层 `for(j = 0; j < i; j++)`、循环体 `printf` 格式串 `%d#%d-`，循环后单独执行 `printf(\"END\")`；与站点题干一致，无缺行或改义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页 A—D 选项依次为 `0#0-1#0-2#0-2#1-END`、以 `0#0-1#0-1#1-...` 开头的长串、`0#0-1#0-1#1-2#0-2#1-2#2-END`、`1#0-2#0-2#1-END`；站点选项文字与顺序完全对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11题标为 D（0 基索引 3）。独立执行：i=0 时内层不执行；i=1 输出 `1#0-`；i=2 输出 `2#0-2#1-`；最终为 `1#0-2#0-2#1-END`，对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析按 i=0、1、2 逐轮分析，指出 i=0 空循环、i=1 与 i=2 的输出，并说明 `printf(\"END\")` 在两个循环结束后执行，结论与独立推导一致，不是只复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页题12题干要求输出不能被 3 整除且除以 5 余 2 的数；代码为 `for(i = 0; i < 100; i++)` 与 `if(______________________) cout << i << endl;`，并声明未使用的 `j`；与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页四个选项依次为 `(i % 3 != 0) && (i % 5 == 2)`、`(i % 3) && (i % 5 == 2)`、`(i % 3) && !(i % 5 != 2)`、`!(i % 3) && (i % 5 == 2)`；站点文字、顺序和运算符均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题标为 D（0 基索引 3）。A/B 的 `i%3 != 0` 与 `i%3` 等价；C 的 `!(i%5 != 2)` 等价于 `i%5 == 2`；D 的 `!(i%3)` 表示 `i%3 == 0`，与「不能被 3 整除」相反，故 D 不能实现。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析先说明 `i%3` 非零表示不能被 3 整除，再验证 C 的双重否定和 D 的相反条件，最终判定 D，推导完整且自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4—5页题13代码先令 `cnt = 0`，再执行 `while (_________){ cnt += 1; ______________; }` 并输出 `cnt`；题干要求判断大于 0 的正整数位数，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页末至第5页的四组选项分别为 `N > 1；N = N / 10`、`N > 1；N /= 10`、`N == 0；N /= 10`、`N > 0；N /= 10`；站点按 A—D 顺序完整保留。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题标为 D（0 基索引 3）。当 `N=1` 时 D 执行一次得 1 位；`N=10`、`N=100` 分别执行两次、三次；A/B 的 `N>1` 会在 `N=1` 时提前停止，C 的 `N==0` 不进入循环，均不正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析指出每执行一次 `N/=10` 去掉一位，并在 `N=0` 时结束；同时说明 `N>1` 会使 1、10、100 等少数一位，`N==0` 一开始不进入循环，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页题14代码完整给出 `N1 = N, M1 = N * N;`、`while (N1 > 0)`、逐位比较 `N1%10` 与 `M1%10`、不等时置 `Flag=false` 并 `break`、相等时同时除以 10，最后按 `Flag` 输出；与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页 A—D 选项分别涉及 Flag 仍为 true、个位比较、同时去掉个位、将 `N1 > 0` 改为 `N > 0`；站点文字和顺序均与卷面一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题标为 D（0 基索引 3）。A/B/C 描述均符合代码：`Flag` 未被改为 false 表示逐位相等；`%10` 比较当前最低位；同时除以 10 去掉最低位。D 因 `N` 不变而会使循环条件恒真，效果不同。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析称将 `N1 > 0` 改为 `N > 0` 后「自守数如 25 会陷入死循环」，该例子不准确：25 在 `N1` 变为 0 后，条件 `N>0` 仍成立，下一轮会比较 0 与 6，触发 `Flag=false` 并退出，而不是死循环；真正会死循环的典型输入是 1。虽然 D 仍为错误项、答案不变，但解析中的反例需纠正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（将 `N1 > 0` 改为 `N > 0` 效果不同）**\n\n程序把原数保存在 `N`，用副本 `N1` 从低位到高位与 `N*N` 的对应低位比较；某一位不等就置 `Flag=false` 并 `break`。若 `N1` 的所有位都比较完，`N1` 变为 0，循环结束，`Flag` 仍为 true，即判为自守数。因此 A、B、C 的说法正确。\n\nD 错误：`N` 在循环体内从未改变，条件 `N > 0` 对输入的正整数恒为真。以 25 为例：第一轮后 `N1=2,M1=62`，第二轮后 `N1=0,M1=6`；若条件改为 `N > 0`，循环不会在 `N1=0` 时停止，下一轮会因 `0 != 6` 置 `Flag=false`，把 25 误判为不是自守数。对于 1，`N1` 和 `M1` 都会变为 0，条件仍为真，还会陷入死循环。故两者效果不同。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "第5页图形示例首行是「请输入层数: 10」，但第5—6页代码为 `cout << \"请输入行数: \";`；原卷示例提示语与代码提示语不一致，无法把完整终端输出视为逐字相符。站点已标注 official-source-defect，应保留原卷缺陷，不能擅自改成某一种提示语。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页 A—D 与站点逐项一致：A 为把 `now_number = 0` 移到外层循环内、内层循环前；B 为把 `now_number += 1` 改为 `now_number = 1 + now_number`；C 为把 `now_number == 10` 改为 `now_number > 9`；D 为把 `cout << endl` 改为输出换行符。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题标为 A（0 基索引 0）。按代码逻辑，A 把初始化移入外层循环后会让每一行都从 0 开始，图形改变；B 加法等价、C 因 `now_number` 只从 0 增至 10 故等价、D 的显示换行效果相同，因此 A 是唯一错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析指出 A 会使每行重置为 0，B 是加法交换写法，C 在 1 递增且到 10 归零的前提下与 `>9` 等价，D 的终端显示换行效果相同；逐项推导成立，提示语不一致问题已在 statement 中保留。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷图形示例首行「请输入层数: 10」与代码实际输出提示「请输入行数: 」不一致，完整程序输出无法逐字与示例对齐；保留原卷缺陷，待官方澄清，本题不因选项逻辑清楚而擅自改题。"
+        ]
+      }
+    ],
+    "summary": "本次初核仅覆盖第11—15题。Q11—Q13的题面代码、选项顺序、答案表和解析均与 PDF 页图一致，未发现问题。Q14 答案 D 正确，但现解析用 25 说明改为 `N > 0` 后会死循环有误：25 会在 `N1` 归零后继续比较 0 与 6 并被误判，只有 1 等特殊输入才死循环；已草拟完整解析修正，答案不变。Q15 原卷示例提示语「请输入层数」与代码「请输入行数」不一致，属于源卷自身缺陷，保留 unresolved，不改题面；其官方答案 A 与 A—D 选项逻辑仍可独立核对。五题均为单选题，无编程题边界测试。"
+  }
+}

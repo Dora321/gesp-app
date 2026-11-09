@@ -1,0 +1,223 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T19:54:48.930Z",
+  "completedAt": "2026-11-09T19:55:41.885Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29240,
+    "completion_tokens": 5166,
+    "total_tokens": 34406,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3920
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0074856,
+      "allowance": 0.00449136,
+      "tokens": {
+        "input": 29240,
+        "output": 5166,
+        "reasoning": 3920,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "dcd13cfe834ab32d78ad9860646303ed02b82f60265b4e87d855ce5a4fefb07a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头显示“C++ 二级”“2025 年 06 月”，与 paperId 2025-06-l2 的考试年月和等级对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第1题原文为“人们现在参加很多闭卷考试时通常都不允许带智能手机、平板电脑等，此外很多种智能手表同样因为具有嵌入操作系统及通信等功能，所以也不允许随身携带。”与库中题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A/B/C/D 选项；库中“正确/错误”是判定标签，不是原卷选择题选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第1格为红色√，对应“正确”，即 officialAnswer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析从智能手表具备嵌入式操作系统、存储和通信能力会破坏闭卷考试公平性出发，推出应禁止携带，结论与√一致，并非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第2题原文为“在C++代码中，假设N为正整数，则 N / 10 舍弃个位数。如果 N 小于10，则其值为0，大于10则是舍弃个位数的数。”库中题面除排版外与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设选择题选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第2格为红色√，对应“正确”，即 officialAnswer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按正整数整数除法向零截断分别说明 N<10 时结果为0、N>10 时去掉个位，并补充 N=10，推导与√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第3题原文及代码为 `int a = 10, b = 20; a == b; b == a; cout << (a, b);`，题面称输出 `10 20`，库中一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设选择题选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第3格为红色×，对应“错误”，即 officialAnswer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出两条 `==` 只比较不赋值，但 `cout << (a, b)` 是逗号表达式，只输出 b 的值20，因此“输出10 20”错误，判×，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第4题原文为“a 和 b 分别是C++的整型变量，如果表达式 max(a, b) == min(a, b) 的值为真，则说明 a 和 b 相等。”库中题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设选择题选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第4格为红色√，对应“正确”，即 officialAnswer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明若 a≠b 则最大值与最小值必不相等，只有 a=b 时两者相等，故该表达式为真可推出 a、b 相等，结论与√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第5题原文及代码为 `char a = '1'; a = 45.6; cout << a;`，题面称编译时将报错，库中一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设选择题选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第5格为红色×，对应“错误”，即 officialAnswer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 C++ 允许 double 到 char 的隐式数值转换，45.6 向零截断为45后存入 char，最多可能有警告而非必然编译错误，因此题面判错成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第16至20题，均为判断题。题面与代码已逐条对照第6页原图，答案按该页红色√/×判定；五题陈述、答案及现有解析均成立，无需提交 changes，未发现未决项。"
+  }
+}

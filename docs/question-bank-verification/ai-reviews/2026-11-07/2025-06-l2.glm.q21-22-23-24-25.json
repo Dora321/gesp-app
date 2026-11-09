@@ -1,0 +1,237 @@
+{
+  "paperId": "2025-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T19:58:35.134Z",
+  "completedAt": "2026-11-09T19:59:40.003Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45773,
+    "completion_tokens": 9724,
+    "total_tokens": 55497,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 44160
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 7547,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00642875,
+      "allowance": 0.00642875,
+      "tokens": {
+        "input": 1613,
+        "output": 9724,
+        "reasoning": 7547,
+        "cache_read": 44160,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "dcd13cfe834ab32d78ad9860646303ed02b82f60265b4e87d855ce5a4fefb07a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++2级.pdf",
+    "mirrorSha": "a63a41e5940dff2afdd191610e86c28b1c2e4bb3",
+    "mirrorBytes": 1291016,
+    "shaVerified": true,
+    "sha256": "9a638e93aff769b7ead155fa4481cc665d5b8c52ee1b1123fc047101103e8a3b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为 CCF 编程能力等级认证 GESP、C++ 二级、2025 年 06 月，与 2025-06-l2 一致；判断题官方答案为第 6 页红色矢量标记表，符号依次为 √ √ × √ × × × × × √，第 6—10 格对应网站第 21—25 题。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 6 题原文询问输入 59.99 时是否输出及格两个汉字；代码为 int score; cin >> score; if (score < 60) 输出不及格否则输出及格，与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题网站选项为 正确、错误，与原卷判断题格式一致；答案表第 6 格红色×按 √=正确=0、×=错误=1 的映射对应索引 1，与选项顺序自洽。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表第 6 格为×，对应索引 1，与网站 answer=1 一致。独立推导：score 为 int，cin 对输入 59.99 在小数点处停止，读入 59，59<60 成立，输出不及格而非及格，题干说法为假，应判错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出整数提取在 59 处停止、小数点及之后内容留在缓冲区、进入不及格分支，与 C++ 格式化输入行为和我的独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：官方符号×、整数截取 59、输出不及格的推导均与我独立复核一致。初核未通过结构检查的原因应为其 evidence 内含未转义 ASCII 双引号且 Q21 的 options 记录被判缺失；本次改用全角标点，并将判断题 options 补为含具体依据的 verified 记录。网站原数据无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 7 题代码：int i; for (i = 1; i < 10; i++) if (i % 2 == 0) continue; 之后 if(i == 10) 输出 END；题干称因 continue 将被执行故不会有输出，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题网站选项为 正确、错误，与原卷判断题格式一致；答案表第 7 格红色×按映射对应索引 1，与选项顺序自洽。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案表第 7 格为×，对应索引 1，与网站 answer=1 一致。独立推导：continue 只在偶数轮跳过循环体剩余语句，循环照常递增到 i=10 结束，随后 if(i==10) 成立并输出 END，并非无输出，题干说法为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明 continue 只影响当前轮且仅偶数触发、循环结束后 i=10、END 会输出，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：官方符号×与 END 会输出的判断均经独立复核确认，网站原数据正确。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 8 题代码：int Sum = 0; for (int i = 0; i < 5; i++) Sum += i; cout << Sum; 题干称执行后将输出 15，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题网站选项为 正确、错误，与原卷判断题格式一致；答案表第 8 格红色×按映射对应索引 1，与选项顺序自洽。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页答案表第 8 格为×，对应索引 1，与网站 answer=1 一致。独立推导：i 依次取 0,1,2,3,4，Sum=0+1+2+3+4=10，不是 15，题干说法为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确指出循环取不到 5、实际输出 10，15 源于把 i<5 误当作 i<=5，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：答案表第 8 格×与求和为 10 的独立计算均确认无误，网站原数据正确。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 9 题代码：int tnt; tnt = 0; for (int i = 5; i > 1; i--) tnt += i; cout << tnt; 末行缩进的 cout << endl; 也在原卷中；题干讨论将其调整为 (int i = 1; i < 5; i++) 后输出是否相同，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题网站选项为 正确、错误，与原卷判断题格式一致；答案表第 9 格红色×按映射对应索引 1，与选项顺序自洽。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页答案表第 9 格为×，对应索引 1，与网站 answer=1 一致。独立推导：原循环取 5,4,3,2，和为 14；修改后取 1,2,3,4，和为 10；14 与 10 不同，题干说法为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确指出两个严格不等号使前者不含 1、后者不含 5，并非同一组数的反向遍历，14 对 10 的计算与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：14 对 10 的对比与官方符号×均经独立复核确认，网站原数据正确。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 10 题含 N=5、五行 --*-- 的注释示例，以及用 (j == N / 2) || (j == (N-1) / 2) 选列的 N 行 N 列双重循环代码，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题网站选项为 正确、错误，与原卷判断题格式一致；答案表第 10 格红色√按 √=正确=0 的映射对应索引 0，与选项顺序自洽。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页答案表第 10 格为√，对应索引 0，与网站 answer=0 一致。独立验证：N=5 时 N/2 与 (N-1)/2 均为 2，仅第 2 列为星，得 --*--；N=4 时两值分别为 2 和 1，第 1、2 列为星，得 -**-；N=1 时仅第 0 列为星；N=2 时两列全为星；均符合奇数居中一列、偶数居中两列的要求，题干说法为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明下标从 0 开始、奇数时两个判断重合于中央列、偶数时命中相邻两列，与代码行为和独立验证一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：奇偶两种取值下的星号列位置均经独立代入验证，官方符号√确认无误，网站原数据正确。"
+      }
+    ],
+    "summary": "本次独立复核第 21—25 题（判断题第 6—10 题）。逐题对照第 6—7 页原图、代码与第 6 页红色判断题答案表（√ √ × √ × × × × × √）：第 6—10 格依次为×、×、×、×、√，对应索引 1、1、1、1、0，与网站答案全部一致。五题题面、选项、答案、解析各维度均核验通过，判断题无参考程序，无需任何修改。初核草稿对五题的结论全部正确，予以接受；其上次结构检查未通过的原因是 evidence 字段使用未转义 ASCII 双引号导致 JSON 非法，且 Q21 的 options 记录被判定缺失，本次已改用全角标点并为判断题 options 补充含具体依据的 verified 记录。"
+  }
+}
