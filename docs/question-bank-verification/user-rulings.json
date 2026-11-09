@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "note": "用户显式裁定：以下题目标为原卷争议（original-paper-dispute），不算通过、不计入五维完成；仅允许所在等级收束、放行下一等级。",
+  "rulings": [
+    {"paperId":"2023-03-l1","questionId":27,"dimensions":["statement"],"status":"original-paper-dispute","decidedBy":"user","decidedAt":"2026-11-09T18:55:00+08:00","countsAsPassed":false},
+    {"paperId":"2023-06-l1","questionId":8,"dimensions":["statement","options","answer","explanation"],"status":"original-paper-dispute","decidedBy":"user","decidedAt":"2026-11-09T18:55:00+08:00","countsAsPassed":false},
+    {"paperId":"2023-09-l1","questionId":12,"dimensions":["options","answer","explanation"],"status":"original-paper-dispute","decidedBy":"user","decidedAt":"2026-11-09T18:55:00+08:00","countsAsPassed":false},
+    {"paperId":"2023-09-l1","questionId":13,"dimensions":["statement","options","answer","explanation"],"status":"original-paper-dispute","decidedBy":"user","decidedAt":"2026-11-09T18:55:00+08:00","countsAsPassed":false},
+    {"paperId":"2025-12-l1","questionId":7,"dimensions":["statement"],"status":"original-paper-dispute","decidedBy":"user","decidedAt":"2026-11-09T18:55:00+08:00","countsAsPassed":false},
+    {"paperId":"2026-03-l1","questionId":7,"dimensions":["answer","explanation"],"status":"original-paper-dispute","decidedBy":"user","decidedAt":"2026-11-09T18:55:00+08:00","countsAsPassed":false},
+    {"paperId":"2026-03-l1","questionId":15,"dimensions":["explanation"],"status":"original-paper-dispute","decidedBy":"user","decidedAt":"2026-11-09T18:55:00+08:00","countsAsPassed":false}
+  ]
+}

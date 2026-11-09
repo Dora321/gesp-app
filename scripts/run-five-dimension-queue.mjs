@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn, execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { assertLevelBarrier, barrierForPaper, inspectPaper, isPendingPaper, selectDispatchablePaper } from './lib/level-barrier.mjs';
+import { assertLevelBarrier, barrierForPaper, inspectPaper, isPendingPaper, loadUserRulings, selectDispatchablePaper } from './lib/level-barrier.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cache = process.env.GESP_AUDIT_CACHE;
@@ -11,6 +11,7 @@ if (!cache || !process.env.OPENCODE_API_KEY) throw new Error('需要 GESP_AUDIT_
 const date = '2026-11-07';
 const reviews = path.join(root, 'docs/question-bank-verification/ai-reviews');
 const evidenceRoot = path.join(root, 'docs/question-bank-verification');
+const rulings = loadUserRulings(path.join(evidenceRoot, 'user-rulings.json'));
 const stateFile = path.join(cache, 'queue-state.json');
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const exists = file => fs.existsSync(file);
@@ -31,7 +32,7 @@ const evidenceFor = id => {
     try { return read(file); }
     catch (error) { return { paperId: id, questions: [], unresolved: [`正式证据无法读取：${error.message}`] }; }
 };
-const barrierContext = () => ({ inventory, papers: state.papers, evidenceFor });
+const barrierContext = () => ({ inventory, papers: state.papers, evidenceFor, rulings });
 const guard = id => assertLevelBarrier(id, barrierContext());
 let exclusive = Promise.resolve(), stopped = false;
 function serialize(work) {
@@ -187,7 +188,7 @@ while ((pending.length || active.size) && !stopped) {
         const id = selectDispatchablePaper({
             pending, active: [...active], runningExternal,
             concurrency: process.env.GESP_QUEUE_CONCURRENCY,
-            papers: state.papers, inventory, evidenceFor,
+            papers: state.papers, inventory, evidenceFor, rulings,
         });
         if (!id) break;
         pending.splice(pending.indexOf(id), 1); active.add(id); started = true;
@@ -236,15 +237,17 @@ if (!paused()) {
         if (barrier.ready) continue;
         const entry = state.papers[id] ||= {};
         if (!/blocked/.test(entry.status || '')) entry.status = 'waiting-coordinator';
-        entry.waitingReason = `L${barrier.level} 需要更低等级全部 verified`;
+        entry.waitingReason = `L${barrier.level} 需要更低等级全部 verified 或经用户裁定收束`;
         entry.waitingFor = barrier.blocked.map(item => ({ id: item.id, level: item.level, status: item.status, problems: item.problems }));
         entry.waitingAt = new Date().toISOString();
         waiting.push({ id, blockedBy: entry.waitingFor.map(item => item.id) });
     }
 }
 save();
-const unfinished = ids.map(id => inspectPaper(id, { entry: state.papers[id], evidence: evidenceFor(id) }))
-    .filter(item => !item.complete);
+const inspected = ids.map(id => inspectPaper(id, { entry: state.papers[id], evidence: evidenceFor(id), rulings }));
+const unfinished = inspected.filter(item => !item.complete);
+const disputes = inspected.filter(item => item.closedByRuling)
+    .map(item => ({ id: item.id, questions: item.disputes.map(dispute => dispute.id) }));
 const blockedStatuses = Object.entries(state.papers).filter(([, paper]) => /blocked/.test(paper.status || ''));
 const finished = !stopped && !paused() && pending.length === 0
     && unfinished.length === 0 && blockedStatuses.length === 0;
@@ -252,6 +255,7 @@ report({
     status: finished ? 'queue-finished' : 'needs-coordinator',
     pending: pending.length,
     waiting,
+    disputes,
     unfinished: unfinished.map(item => ({ id: item.id, level: item.level, status: item.status, problems: item.problems })),
     papers: Object.fromEntries(Object.entries(state.papers).map(([id, item]) => [id, item.status])),
 });
