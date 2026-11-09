@@ -29,7 +29,7 @@ const text = [
     `更新时间：${new Date().toISOString()}。本表由逐题证据和网站运行时数据生成。`, '',
     `正式试卷 ${formal.length} 套，五维全部完成 ${complete.length} 套，仍有未完成维度 ${formal.length - complete.length} 套。`, '',
     `本轮 OpenCode Go 双模型审校已接入 ${rows.length} 套卷、${rows.reduce((sum, row) => sum + row.reviewed, 0)} 道题，其中 ${fullyReviewed} 套已完成全卷初核及复核。初始待办为 98 套，尚未接入全卷双模型结果 ${98 - fullyReviewed} 套。审校完成不等于五维全部通过；分歧及原卷争议继续保留。`, '',
-    '执行分工：DeepSeek V4.1 Flash（max）初核；GLM 5.3 Flash（max）独立复核；Codex 负责队列、机械集成、自动测试和发布。', '',
+    '执行分工：DeepSeek V4.1 Flash（max）初核；GLM 5.3 Flash（max）独立复核；Grok CLI 负责调度；本机机械队列负责集成、自动测试和发布。', '',
     '| 试卷 | 双模型已审题数 | 通过的题目×维度 | 待处理题数 | 其中原有争议/待审标记 | 五维全部通过 |',
     '|---|---:|---:|---:|---:|---|',
     ...rows.map(row => `| [${row.id}](./${row.id}.json) | ${row.reviewed}/${row.total} | ${row.dimensions} | ${row.open} | ${row.protectedCount} | ${row.complete ? '是' : '否'} |`), '',

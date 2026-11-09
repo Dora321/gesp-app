@@ -86,7 +86,7 @@ for (const id of path.resolve(process.argv[1] || '') === fileURLToPath(import.me
     if (fs.existsSync(evidenceFile) && !fs.existsSync(previousFile)) fs.copyFileSync(evidenceFile, previousFile);
     const evidence = {
         paperId: id, reviewedAt: date, dimensionScopedUnresolved: true,
-        reviewedBy: { type: 'AI', executor: 'DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核', coordinator: 'Codex（资料、队列、自动校验与发布）' },
+        reviewedBy: { type: 'AI', executor: 'DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核', coordinator: 'Grok CLI（调度）+ 本机机械队列（资料、自动校验与发布）' },
         source: { ...manifest.source, pages: manifest.images.length },
         reviewFiles: { initial: `ai-reviews/${date}/${id}.deepseek.json`, review: `ai-reviews/${date}/${id}.glm.json`, previous: `ai-reviews/${date}/${id}.previous-evidence.json` },
         inputSha256: initial.inputSha256, questions,
