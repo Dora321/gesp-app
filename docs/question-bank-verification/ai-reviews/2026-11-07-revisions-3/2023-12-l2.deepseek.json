@@ -1,0 +1,103 @@
+{
+  "paperId": "2023-12-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    12
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T12:17:51.753Z",
+  "completedAt": "2026-11-09T12:24:03.570Z",
+  "finishReason": "stop",
+  "inputSha256": "ddcdadcf544ad47154322f068725f1d7a5b25207c00e16574ced83666a0449d6",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++2级.pdf",
+    "mirrorSha": "8cf4f4b60e3aefc4a755a2ca3b6ea19cae80c446",
+    "mirrorBytes": 1669649,
+    "shaVerified": true,
+    "sha256": "f673f72dbbe1b546c1f159ab33a31414b77c32eb98f3044fcc51fe9375d42009"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证”“C++ 二级”“2023 年 12 月”，与 paperId=2023-12-l2、level=2 相符。"
+    },
+    "questions": [
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 4 页左侧图首行为 12，但右侧代码没有输出 N 的语句，12 只能是输入或标注，不是输出；候选却在“左图的输出效果（N=12 时）”下把 12 列入输出块。另原图右侧代码带 1–10 行号，选项按行号引用，候选代码块未显式标行号。代码第 5 行确为 cout << nowNum << \"\";（空串），候选此处正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页四个选项顺序和内容与候选一致：A 为第 8 行下插 cout << nowNum;，B 为第 2 行下插 cout << endl;，C 为第 7 行下插 cout << nowNum;，D 为第 9 行下插 cout << endl;。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 项为 D（0 起始索引 3）。独立按空串版本模拟 N=12：D 在第 9 行内层 } 之后、第 10 行外层 } 之前换行，输出 12 行，依次为 0、01、…、01234567890、012345678901，与左图输出部分一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解释对 C 的机制描述错误：在第 7 行下插入 cout << nowNum; 后，原先受 if 控制的 nowNum = 0; 变成每轮无条件执行，nowNum 每次加到 1 即被清零，插入的 cout 永不执行，行内数字全为 0，并非“多输出一个数”。A 的解释也不准确：插入行在第 8 行之后，已不在 if 控制范围内，而是每次内层迭代都执行；且 A 没有补换行，输出会连成一片。候选还沿用了“左图输出”含 12 的误导。答案 D 本身正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "下面的 C++ 代码用于实现如下左图所示的效果，应在以下右图 C++ 代码中填入（ ）。\n\n左图（N=12；第一行的 12 为输入值，不参与输出）：\n```\n12\n0\n01\n012\n0123\n01234\n012345\n0123456\n01234567\n012345678\n0123456789\n01234567890\n012345678901\n```\n\n右图代码（行末注释用于标明原图行号）：\n```cpp\ncin >> N;                         // 第1行\nfor (i = 0; i < N; i++){          // 第2行\n    nowNum = 0;                   // 第3行\n    for (j = 0; j < i+1; j++){    // 第4行\n        cout << nowNum << \"\";     // 第5行\n        nowNum += 1;              // 第6行\n        if (nowNum == 10)         // 第7行\n            nowNum = 0;           // 第8行\n    }                             // 第9行\n}                                 // 第10行\n```",
+          "explanation": "**答案：D（与第9行下面填入一行：cout << endl;）**\n\n**解析：** 原代码外层循环控制行数，内层循环负责输出当前行的 i+1 个数字；nowNum 从 0 开始，每输出一位加 1，到 10 后归 0。原代码缺少每行结束后的换行。第 9 行是内层循环的右花括号，在其下面、外层循环右花括号之前插入 `cout << endl;`，即可在每一行输出完后换行。N=12 时输出为 0、01、…、01234567890、012345678901（左图首行 12 是输入，不属于输出）。\n\n**选项分析：**\n- A：在第 8 行下面插入 `cout << nowNum;`。该语句位于 if 语句之后、内层循环体内，每次内层迭代都会额外输出一次 nowNum，而且仍未添加换行；输出会比目标多出数字并全部连在一起。\n- B：在第 2 行下面（外层循环体开头）插入 `cout << endl;`，会在第一行输出前多出一个空行，不是目标效果。\n- C：在第 7 行下面插入 `cout << nowNum;` 后，原来的 `nowNum = 0;` 不再受 if 控制，而成为每轮无条件执行；nowNum 每次刚加到 1 就被清零，插入的 cout 也不会执行，行内数字全为 0。\n- D：位置在内层循环之后、外层循环之内，正好实现每行结束换行，正确。\n\n**考点：** 嵌套循环的输出控制、换行语句的放置位置。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        12
+      ],
+      "usage": {
+        "prompt_tokens": 15444,
+        "completion_tokens": 20095,
+        "total_tokens": 35539,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18671
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0143736,
+          "allowance": 0.00862416,
+          "tokens": {
+            "input": 15444,
+            "output": 20095,
+            "reasoning": 18671,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T12:17:51.753Z",
+      "completedAt": "2026-11-09T12:24:03.570Z"
+    }
+  ]
+}
