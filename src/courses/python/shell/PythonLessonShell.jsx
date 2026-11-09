@@ -1,4 +1,5 @@
 import CourseScopeNote from '../../../components/CourseScopeNote';
+import HighlightedCode from '../../../components/HighlightedCode';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { recordLessonMastered, recordLessonVisit } from '../../../utils/lessonProgress';
@@ -45,11 +46,16 @@ export function Button({ onClick, children, className = '', variant = 'primary',
 }
 
 // 统一代码块
-export function CodeBlock({ code, children }) {
+export function CodeBlock({ code, children, language = 'python' }) {
+    const source = code ?? children;
     return (
-        <div className="overflow-hidden rounded-xl bg-slate-950 shadow-inner ring-1 ring-slate-700/50">
+        <div className="syntax-highlight overflow-hidden rounded-xl bg-slate-950 shadow-inner ring-1 ring-slate-700/50">
             <div className="px-4 pt-2 text-xs font-mono uppercase tracking-widest text-slate-500">Python</div>
-            <pre className="overflow-x-auto px-4 pb-4 pt-1 font-mono text-sm leading-6 text-slate-100">{code ?? children}</pre>
+            <pre className="overflow-x-auto px-4 pb-4 pt-1 font-mono text-sm leading-6 text-slate-100">
+                {typeof source === 'string' || typeof source === 'number'
+                    ? <HighlightedCode code={String(source)} language={language} />
+                    : source}
+            </pre>
         </div>
     );
 }

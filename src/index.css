@@ -100,6 +100,27 @@
   -moz-tab-size: 4;
 }
 
+/* --- IDE-style syntax highlighting (VS Code Dark+ palette) ---
+   These colours are tuned for the #0d1117 / slate-900 code backgrounds used by
+   the markdown question blocks, lesson snippets and AI chat. All of them keep
+   at least ~4.8:1 contrast against #0d1117. */
+.syntax-highlight {
+  color: #c9d1d9;
+}
+.syntax-highlight .tok-plain { color: #c9d1d9; }
+.syntax-highlight .tok-keyword { color: #569cd6; }
+.syntax-highlight .tok-type { color: #4ec9b0; }
+.syntax-highlight .tok-builtin { color: #dcdcaa; }
+.syntax-highlight .tok-function { color: #dcdcaa; }
+.syntax-highlight .tok-string { color: #ce9178; }
+.syntax-highlight .tok-number { color: #b5cea8; }
+.syntax-highlight .tok-comment {
+  color: #8b949e;
+  font-style: italic;
+}
+.syntax-highlight .tok-operator { color: #f97583; }
+.syntax-highlight .tok-punct { color: #8b949e; }
+
 /* --- Table --- */
 .markdown-body table {
   border-collapse: collapse;

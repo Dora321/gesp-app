@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Code2, Download, ExternalLink } from 'lucide-react';
 import { cppProgrammingBridges, cppProgrammingExercises, getCppProgrammingExercise } from '../data/cppProgrammingPractice';
+import HighlightedCode from './HighlightedCode';
 
 import { LEARNING_DATA_EVENT, readLearningData, updateLearningData, hasLearningStorageError } from '../utils/learningData';
 
@@ -87,7 +88,7 @@ function PracticeCard({ exercise }) {
       <details className="mt-4 rounded-lg border border-slate-200 p-3">
         <summary className="cursor-pointer py-1 font-bold">完成尝试后对照：参考实现（C++11）</summary>
         <p className="mt-2 text-sm text-slate-600">先保留自己的代码，比较思路与边界处理；能够重新独立写出才算掌握。</p>
-        <pre tabIndex={0} className="mt-3 max-h-96 overflow-auto rounded-lg bg-slate-900 p-4 text-xs leading-relaxed text-slate-100"><code>{exercise.referenceCode}</code></pre>
+        <pre tabIndex={0} className="mt-3 max-h-96 overflow-auto rounded-lg bg-slate-900 p-4 text-xs leading-relaxed text-slate-100"><HighlightedCode code={exercise.referenceCode} language="cpp" /></pre>
       </details>
       <div className="mt-5 rounded-lg border border-indigo-100 bg-indigo-50 p-4">
         <h3 className="font-bold text-indigo-900">学完后迁移到 GESP 真题</h3>
