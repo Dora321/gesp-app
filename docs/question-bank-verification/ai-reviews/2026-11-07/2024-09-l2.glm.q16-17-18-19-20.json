@@ -1,0 +1,237 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:04:43.438Z",
+  "completedAt": "2026-11-09T15:05:09.215Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45018,
+    "completion_tokens": 3668,
+    "total_tokens": 48686,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 43648
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 1837,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00334894,
+      "allowance": 0.00334894,
+      "tokens": {
+        "input": 1370,
+        "output": 3668,
+        "reasoning": 1837,
+        "cache_read": 43648,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7a5b8fc0029274b72fa11e3b50c9535e2cc89f5a97787706eebcb913c3a37e53",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP / C++ 二级 / 2024 年 09 月”，与 paperId 2024-09-l2 的等级、年月一致；第 6 页为判断题区并载有红色√/×答案表，第 7 页承接判断题第 9、10 题与编程题区，卷面结构吻合。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文“小杨最近开始学习C++编程，老师说C++是一门面向对象的编程语言，也是一门高级语言。（ ）”与网站题面逐字一致（原卷半角逗号属排版等价差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 选项；网站以“正确/错误”两选项呈现，符合题型惯例。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页答案表第 1 题红色标记为√，映射为 0，与网站 answer=0 一致；独立推理：C++ 提供类、封装、继承、多态等面向对象机制，且属于需编译的高级语言，两项陈述均成立，应判“正确”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立给出判定依据（C with Classes 演进、面向对象核心概念；机器语言/汇编/高级语言分级）并逐项分析，结论与答案表一致，推导链完整无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对题面、答案表√及解析后与初核结论一致，接受初核：题面无出入，答案映射与独立推理均正确。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题原文“在C++中，cout << (3, 4, 5) 可以输出 3 4 5 ，且每个输出项之间用空格分开。（ ）”与网站题面一致，代码内容逐字符相符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页答案表第 2 题红色标记为×，映射为 1，与网站 answer=1 一致；独立推理：括号内为逗号表达式，值为最右项 5，cout 实际只输出“5”，既不输出 3、4 也无空格，题干说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确指出逗号运算符从左向右求值、取最右值 5，给出 int x=(1,2,3) 类似例证，并给出正确的多项输出写法 cout<<3<<\" \"<<4<<\" \"<<5，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核逗号表达式语义与答案表×一致，解析推导完整，接受初核。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题原文“C++表达式 12 % 10 % 10 的值为2。（ ）”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页答案表第 3 题红色标记为√，映射为 0，与网站 answer=0 一致；独立推理：% 为同级左结合，12%10=2，再 2%10=2，表达式值为 2，题干正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按左结合分两步计算并说明“小数模大数”规律（a<b 时 a%b=a），推导与结果一致，无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立计算 12%10%10=2 与答案表√一致，解析分步推导可靠，接受初核。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文“C++语句 cout << rand() << ' ' << rand(); 的第二个输出值较大。（ ）”与网站题面一致，代码含字符字面量 ' ' 分隔符均相符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页答案表第 4 题红色标记为×，映射为 1，与网站 answer=1 一致；独立推理：rand() 每次在 [0, RAND_MAX] 独立返回伪随机数，两次调用大小关系不确定，断言“第二个较大”不成立，判“错误”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明伪随机数相互独立、无递增趋势，并补充 srand(time(0)) 种子知识，判定逻辑与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对 rand() 语义与答案表×一致，解析推理成立，接受初核。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文“定义C++的 int 类型的变量 ch，而且值为 '1'，则语句 cout << int(ch); 的输出为 1 。（ ）”与网站题面一致，即 int ch='1' 后输出 int(ch)。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页答案表第 5 题红色标记为×，映射为 1，与网站 answer=1 一致；独立推理：'1' 是字符字面量，按常见 ASCII 编码值为 49，赋给 int ch 后保存编码 49，int(ch) 输出 49 而非 1，题干错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析明确字符字面量表示编码而非数字 1，指出 ASCII 下输出 49，结论与答案表一致；解析偏简但判定依据充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对字符编码推理（'1'=49）与答案表×一致，接受初核；解析虽较其余判断题简略但结论与依据均正确，无需修改。"
+      }
+    ],
+    "summary": "独立复核第 16—20 题（对应 PDF 第 6 页判断题第 1—5 题）全部通过：题面与原卷逐字一致（仅排版级差异），答案按第 6 页红色答案表 √ × √ × × 依次映射为 0/1/0/1/1，与网站 answer 完全吻合，且每题均经独立推理确认（C++ 语言定性、逗号表达式取最右值、左结合取模、rand 独立性、字符编码 49）；解析推导均成立。判断题的 options 与 referenceCode 记为 not_applicable，无编程题故无 tests。无 changes、无 unresolved，五题 verdict 均为 approve。"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:00:16.515Z",
+  "completedAt": "2026-11-09T15:02:07.328Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28976,
+    "completion_tokens": 14693,
+    "total_tokens": 43669,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28928,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 12563,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00890978,
+      "allowance": 0.00534587,
+      "tokens": {
+        "input": 48,
+        "output": 14693,
+        "reasoning": 12563,
+        "cache_read": 28928,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7a5b8fc0029274b72fa11e3b50c9535e2cc89f5a97787706eebcb913c3a37e53",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头显示 CCF 编程能力等级认证 C++ 二级、2024 年 09 月，与 paperId=2024-09-l2 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页给出 lineNum=7 的7行输出及代码框架，第3-4页题干与网页一致：外层 i 从1到 lineNum，内层输出第 i 行。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A: j=i;j<i;j++；B: j=1;j<i;j++；C: j=i;j<i*2;j++；D: j=i+1;j<i+i;j++，网页选项顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 C，网页 answer=2 映射 C；C 使第 i 行从 i 输出到 2i-1，共 i 个数，与图中7行完全吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证第 i 行首项为 i、项数为 i、末项为 2i-1；A 不执行内层，B 从1开始且少项，D 从 i+1 开始且少项，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干给出 123→321、120→21 的逆序数要求及 while(N) 两空代码框架，网页题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页四个选项的两个待填片段及顺序一致；网页以全角分号分隔两个片段，属排版分隔，不改变 A 的赋值顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 A，网页 answer=0；A 先以 rst=rst*10+N%10 接末位，再以 N=N/10 删末位，可得到 123→321、120→21。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立走查 123 得 3、32、321，走查 120 得 0、2、21；B 仅求和，C、D 混淆取末位与删除末位，网页解析判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干、while(1) 输入成绩代码、cnt/Sum 累加与输出语句均与网页一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 四项文字与网页一致：A 称 while(1) 写法错误，B 称输入负数会结束并正确输出，C 称含小数无法正常执行，D 称 score 未初始化不影响执行。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第1页答案表第13题为 A，网页 answer=0；但 B 在首次输入负数时 cnt=0，随后执行 Sum/cnt（0/0），不能称为“正确输出”，故 B 也有可判错情形，原卷存在 A/B 多答案歧义，保留争议，不擅自改答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网页解析正确指出 while(1) 合法、C 的小数读取问题及 D 的正常输入覆盖，并在易错提醒中明确记录首次负数导致的 0/0 边界，未抹去原卷缺陷。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第13题 B 选项在首次输入负数、cnt=0 时会导致 Sum/cnt 的 0/0 情形，不能称“正确输出”；官方答案 A 与 B 的边界缺陷构成多答案歧义，保留 sourceIntegrity=official-source-defect，等待定案。"
+        ]
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第4-5页原题声称该代码对输入的正整数判断质数并输出 YES/NO；但 num=1 时 for 循环不执行，i 保持为2，i==num 为假，程序无输出，题干所称完整功能对正整数1不成立。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A-D 依次为 num%i、num%i==0、num/i、num/i==0，网页选项与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 B，网页 answer=1；B 在 i<num 时检测到整除即输出 NO，是横线处唯一正确的质数判定条件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网页解析给出 B 的整除判断，并独立指出 num=1 时无输出的边界缺陷；举例 num=4 得 NO、num=1 无输出与代码推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第14题完整程序在 num=1 时不输出任何结果，与题干“输入的正整数……否则输出 NO”冲突；选项 B 仍是横线处唯一合理填法，保留 sourceIntegrity=official-source-defect，不修改官方答案。"
+        ]
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干、判定“与7有关”的代码及输出语句均与网页一致，代码包含 M=N、M%7、逐位取模和 break。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A-D 四项文字与网页一致：A 称删 break 不会死循环但有时导致结果错误，B 称删 M/=10 可能导致死循环，C 称删 M=N 并改写为 N、调整输出仍可完成功能，D 称删 break 不影响结果但可能影响效率。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 A，网页 answer=0；删除 break 后 Flag 已为 true，下一轮 while 条件因 !Flag 为假而退出，不会改变结果，故 A 是错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：B 在 M 不能被7整除且末位非7时会因 M 不缩小而死循环；C 可通过调整输出保留判定功能；D 删除 break 仅多执行一轮，结果不变但可能多一次无谓操作；网页解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号11-15。Q11、Q12、Q15 的题面、选项、答案与解析均与 PDF 一致；Q13 转写一致但存在 A/B 多答案边界歧义，Q14 转写一致但完整程序在 num=1 时无输出，均保留原卷缺陷与官方答案，不作擅自改判。无字段修改。"
+  }
+}

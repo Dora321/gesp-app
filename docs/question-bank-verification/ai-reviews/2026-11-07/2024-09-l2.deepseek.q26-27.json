@@ -1,0 +1,166 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:06:18.206Z",
+  "completedAt": "2026-11-09T15:07:44.479Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28970,
+    "completion_tokens": 13011,
+    "total_tokens": 41981,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28928,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 11518,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00789968,
+      "allowance": 0.00473981,
+      "tokens": {
+        "input": 42,
+        "output": 13011,
+        "reasoning": 11518,
+        "cache_read": 28928,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7a5b8fc0029274b72fa11e3b50c9535e2cc89f5a97787706eebcb913c3a37e53",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确为“CCF 编程能力等级认证 GESP C++ 二级 2024 年 09 月”，与 paperId 2024-09-l2 相符；第7-9页为本次需核验的编程题。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页题面给出“数位之和/美丽数字/数位和是7的倍数”；第8页样例为 3、7、52、103 对应 Yes、Yes、No，约束为 1≤n≤10^5、1≤a_i≤10^5，均与网页题面、样例、约束一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无 PDF 客观题答案表项；以题面样例、参考程序和边界测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明数位拆分（x%10、x/=10）、累加数位、判断 tot%7==0，并按样例逐项走查；未发现与 PDF 题面或样例冲突的内容。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网页 referenceCode 与 PDF 第8页参考程序逐行一致（仅保留 PDF 中未使用的 int ans=0，不影响结果）。代码对每个 a_i 逐位处理，复杂度 O(n·位数)，n≤10^5、a_i≤10^5 可控且无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值边界：n=1 且非7倍数",
+            "input": "1\n1\n",
+            "output": "No\n",
+            "reason": "n=1、a_i=1 是允许的最小输入；数位和为 1，不被 7 整除，独立推导应输出 No。"
+          },
+          {
+            "name": "最小 n 且数位和为7倍数",
+            "input": "1\n7\n",
+            "output": "Yes\n",
+            "reason": "a_i=7 的数位和为 7，是 7 的倍数，独立推导应输出 Yes。"
+          },
+          {
+            "name": "数字上界与数位和边界",
+            "input": "4\n99999\n100000\n99998\n70000\n",
+            "output": "No\nNo\nNo\nYes\n",
+            "reason": "99999 数位和 45、100000 数位和 1、99998 数位和 44，均非 7 的倍数；70000 数位和 7，是 7 的倍数。覆盖 a_i=10^5 上界及五位数最大数位和情形。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页题面给出 m×m、m 为奇数、左上到右下对角线及第1列和第m列为“+”、其余为“-”；第8页 5×5 样例与第9页输入输出、约束 3≤m≤49 且 m 为奇数均与网页一致。PDF 标题栏文字层存在截断，但题面明确为 N 字矩阵，网页标题未改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无 PDF 客观题答案表项；以题面样例、参考程序和边界测试核验。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析的规律推导和样例走查基本正确，但末尾“4. **复杂度分析：**”后没有内容，解析不完整；建议补全复杂度说明。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网页 referenceCode 与 PDF 第9页参考程序一致：j==1 或 j==m 时输出“+”，否则 i==j 时输出“+”、其余输出“-”，每行换行。m≤49，时间复杂度 O(m^2)≤2401 次字符输出，额外空间 O(1)，无整数溢出或越界风险。"
+          }
+        },
+        "changes": {
+          "explanation": "**解析：**\n\n1. **输出规律：** 令行号 `i`、列号 `j` 均从 1 开始。位置 `(i,j)` 输出 `+` 当且仅当 `j == 1`、`j == m` 或 `i == j`；其余位置输出 `-`。\n2. **算法：** 读入 `m`，外层枚举第 `i` 行（1 到 `m`），内层枚举第 `j` 列（1 到 `m`），按上述条件输出 `+` 或 `-`，每行结束输出换行。\n3. **样例核对：** `m=5` 时，第 1 行 `j=1` 与 `j=5` 为 `+`，得 `+---+`；第 2 行 `j=2` 同时满足对角线，得 `++--+`；逐行与样例输出一致。\n4. **复杂度：** 共输出 `m^2` 个字符，时间 O(m^2)；除输入输出外只使用循环变量，额外空间 O(1)。"
+        },
+        "tests": [
+          {
+            "name": "最小 m=3",
+            "input": "3\n",
+            "output": "+-+\n+++\n+-+\n",
+            "reason": "m=3 是允许的最小奇数；第1、3列和主对角线为“+”，中央 (2,2) 也为“+”，其余为“-”，独立推导。"
+          },
+          {
+            "name": "奇数 m=7 且对角线位于中段",
+            "input": "7\n",
+            "output": "+-----+\n++----+\n+-+---+\n+--+--+\n+---+-+\n+----++\n+-----+\n",
+            "reason": "m=7 为合法奇数；逐行按第1列、第7列及 i==j 放置“+”，检验对角线位于中段时与边列的叠加关系。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核仅覆盖题号26、27。Q26 的题面、样例、数据范围和参考代码与 PDF 一致，解析可独立推导且未发现错误；Q27 的题面、样例、数据范围和参考代码与 PDF 一致，但网页解析末尾缺少复杂度分析内容，已给出补全草稿。两题均补充了最小值和上界/特殊情形的独立边界测试预期；未声称实际运行源码。"
+  }
+}

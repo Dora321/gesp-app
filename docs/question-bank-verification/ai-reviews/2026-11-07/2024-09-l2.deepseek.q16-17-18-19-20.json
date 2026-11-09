@@ -1,0 +1,229 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:03:28.661Z",
+  "completedAt": "2026-11-09T15:04:43.434Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28976,
+    "completion_tokens": 9913,
+    "total_tokens": 38889,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28928,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 8261,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00604178,
+      "allowance": 0.00362507,
+      "tokens": {
+        "input": 48,
+        "output": 9913,
+        "reasoning": 8261,
+        "cache_read": 28928,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7a5b8fc0029274b72fa11e3b50c9535e2cc89f5a97787706eebcb913c3a37e53",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 / C++ 二级 / 2024 年 09 月”，与 paperId 2024-09-l2 一致；第6页为判断题区，并载有判断题答案表。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第1题与网站题面一致：C++ 是面向对象的编程语言，也是高级语言。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，非单选题；网站用“正确/错误”呈现，不对应原卷的 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第1题标红为√，正确映射为0；C++ 支持类、封装、继承、多态等面向对象机制，并属于高级语言。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明 C++ 的面向对象特性与高级语言属性，结论与官方答案一致，未发现事实冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第2题与网站题面一致：cout << (3, 4, 5) 可以输出 3 4 5，且每项之间用空格分开。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，非单选题；网站用“正确/错误”呈现，不对应原卷的 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第2题标红为×，错误映射为1；括号内逗号表达式只取最后一个值5，不会输出3、4，也不会自动补空格。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出逗号运算符依次求值但整个表达式取最右值5，且需要多个<<才能输出多项，结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第3题与网站题面一致：C++ 表达式 12 % 10 % 10 的值为2。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，非单选题；网站用“正确/错误”呈现，不对应原卷的 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第3题标红为√，正确映射为0；12 % 10 = 2，随后 2 % 10 = 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据同级取模运算符的左结合性逐步计算，结果为2，推导与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第4题与网站题面一致：cout << rand() << ' ' << rand(); 的第二个输出值较大。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，非单选题；网站用“正确/错误”呈现，不对应原卷的 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第4题标红为×，错误映射为1；连续调用 rand() 不保证后一次返回值更大，可能小于或等于前一次。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 rand() 返回范围内伪随机数且相邻调用没有递增规律，故不能断言第二个输出值较大；与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第5题与网站题面一致：定义 int 类型变量 ch，值为 '1'，则 cout << int(ch); 输出为1。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，非单选题；网站用“正确/错误”呈现，不对应原卷的 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第5题标红为×，错误映射为1；int ch = '1' 保存的是字符编码，int(ch) 不会把字符'1'转换为数值1，常见 ASCII 环境下输出49。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明字符字面量表示编码而非整数1，并指出常见 ASCII 输出49；核心判断与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已完成第16—20题（对应 PDF 判断题第1—5题）的五维初核：题面与 PDF 第6页一致，官方答案与第6页红√/×答案表一致，解析推导成立。判断题不使用单选 options 和 referenceCode，按规则记为 not_applicable；本次无 changes、无 unresolved，也无编程题测试。"
+  }
+}

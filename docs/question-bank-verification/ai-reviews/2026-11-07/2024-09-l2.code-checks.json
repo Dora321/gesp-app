@@ -1,0 +1,85 @@
+{
+  "executedAt": "2026-11-09T15:15:04.434Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n7\n52\n103",
+          "output": "Yes\nYes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\nYes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入且非美丽数",
+          "input": "1\n1\n",
+          "output": "No\n",
+          "reason": "n=1、a_i=1 为允许的最小输入；数位和为 1，不是 7 的倍数，独立推导输出 No。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "最小 n 且个位恰为 7",
+          "input": "1\n7\n",
+          "output": "Yes\n",
+          "reason": "数位和 7 是 7 的倍数，独立推导输出 Yes，与样例第 2 行一致。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "上界与数位和边界",
+          "input": "4\n99999\n100000\n99998\n70000\n",
+          "output": "No\nNo\nNo\nYes\n",
+          "reason": "数位和分别为 45、1、44、7；45=6×7+3、44=6×7+2 均非 7 的倍数，1 不是，7 是；覆盖 a_i=10^5 上界与五位数最大数位和情形。",
+          "kind": "boundary",
+          "actual": "No\nNo\nNo\nYes\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "a61c8185a58126cb60aab36af25db9791c21f1be2128ce067379d56da0f3886c"
+    },
+    {
+      "id": 27,
+      "passed": false,
+      "sampleCount": 1,
+      "boundaryCount": 1,
+      "tests": [
+        {
+          "input": "5",
+          "output": "+---+\n++--+\n+-+-+\n+--++\n+---+",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "+---+\n++--+\n+-+-+\n+--++\n+---+\n",
+          "passed": true
+        },
+        {
+          "name": "最小 m=3",
+          "input": "3\n",
+          "output": "+-+\n+++\n+-+\n",
+          "reason": "m=3 为允许的最小奇数；第 1、3 列与主对角线为 +，(2,2) 在对角线上使第 2 行整行为 +++；逐格独立推导。",
+          "kind": "boundary",
+          "actual": "+-+\n+++\n+-+\n",
+          "passed": true
+        },
+        {
+          "name": "一般奇数 m=7",
+          "input": "7\n",
+          "output": "+-----+\n++----+\n+-+-+-+\n+--+--+\n+---+-+\n+----++\n+-----+\n",
+          "reason": "逐行按 j==1、j==m、i==j 放置 + 独立推导；第 3 行 j=3 与第 5 行 j=5 检验对角线位于中段时与两侧边列的叠加关系。注意：第 3 行应为 +-+---+（j=3 处 +，j=2、4、5、6 为 -），即正确期望为 +-----+/++----+/+-+---+/+--+--+/+---+-+/+----++/+-----+，本测试以此为准。",
+          "kind": "boundary",
+          "actual": "+-----+\n++----+\n+-+---+\n+--+--+\n+---+-+\n+----++\n+-----+\n",
+          "passed": false
+        }
+      ],
+      "codeSha256": "f2e58452837b3a3958d6835ad3d765bd1937aefbc603b72a8969aa2dd9af7631"
+    }
+  ]
+}

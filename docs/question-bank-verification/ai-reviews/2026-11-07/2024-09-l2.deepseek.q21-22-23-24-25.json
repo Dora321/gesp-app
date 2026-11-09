@@ -1,0 +1,230 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:05:09.219Z",
+  "completedAt": "2026-11-09T15:05:52.400Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28976,
+    "completion_tokens": 5732,
+    "total_tokens": 34708,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 28928,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 4336,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00353318,
+      "allowance": 0.00211991,
+      "tokens": {
+        "input": 48,
+        "output": 5732,
+        "reasoning": 4336,
+        "cache_read": 28928,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7a5b8fc0029274b72fa11e3b50c9535e2cc89f5a97787706eebcb913c3a37e53",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "原卷 PDF 第 1 页卷头标明“C++ 二级”“2024 年 09 月”，第 6 页为判断题第 1—10 题及答案表，第 7 页续第 9—10 题并开始编程题；网站题号 21—25 分别对应原卷判断题第 6—10 题。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 6 题题面及代码与网站一致：for (i = 0; i < 10; i++) continue; if (i == 10) cout << i;，询问是否输出 10。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站使用“正确/错误”二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 6 项为红色√；正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：continue 只结束本轮，for 的 i++ 仍执行；i 从 0 增至 10 后退出，i==10 成立并输出 10，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 7 题题面、未初始化的 int Sum 及区间求和代码与网站一致，询问该代码能否求 N 到 M 的所有整数之和。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 7 项为红色×；错误=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：即使 N、M 端点会被正确交换，Sum 未初始化便执行 Sum += i，读取不确定值，不能保证得到区间和；解析正确指出需 int Sum = 0。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 8 题题面及代码与网站一致：原 L3 为 for (int i = 1; i < 5; i++)，内层 j 从 0 到 i-1 累加，询问改为 i=0 起是否输出相同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 8 项为红色√；正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：原式内层执行 1+2+3+4=10 次；改为 i=0..4 后为 0+1+2+3+4=10 次，输出相同，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页末第 9 题题面说明从第 3 个数开始为前两数之和且 N>2，第 7 页代码用 start1/start2 递推并输出 start2，与网站一致；注释文字细微差异不影响语义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 项为红色√；正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：输入后 start1、start2 为第1、2项；循环 i=2..N-1 共 N-2 次，每次生成下一项，结束时 start2 为第N项。N=3 时仅一次更新即输出前两项之和，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页第 10 题题面、完整代码及“输入 2024，则输出是 4202”的判断与网站一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 10 项为红色×；错误=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：flag 在 0/1 间交替，只在 flag=0 时输出末位。2024 依次处理 4（输出）、2（跳过）、0（输出）、2（跳过），结果为 40，不是 4202；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 21—25。五题均为判断题，题面、代码、官方答案映射及网站解析经 PDF 页图和答案表逐题对照，未发现需要修改的字段，故 changes 均为空。判断题的 options 与 referenceCode 维度不适用；未发现未决冲突。"
+  }
+}

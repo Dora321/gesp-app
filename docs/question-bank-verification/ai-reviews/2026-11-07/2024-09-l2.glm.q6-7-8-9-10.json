@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T14:59:50.553Z",
+  "completedAt": "2026-11-09T15:00:16.512Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 44989,
+    "completion_tokens": 3755,
+    "total_tokens": 48744,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 16384
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 1932,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00665977,
+      "allowance": 0.00665977,
+      "tokens": {
+        "input": 28605,
+        "output": 3755,
+        "reasoning": 1932,
+        "cache_read": 16384,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7a5b8fc0029274b72fa11e3b50c9535e2cc89f5a97787706eebcb913c3a37e53",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页原图卷头为“CCF编程能力等级认证 GESP”，正中标题“C++ 二级”，其下“2024年09月”，与paperId 2024-09-l2（2024年9月二级）一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页原图第6题题干含“先后输入 -2 和 3.14 后，其输出不可能是”，方括号内ASCII提示（'+'、'-'、'=' 分别为43、45、61）及3行输入输出代码均与网站question逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页原图选项自上而下为A 1、B 1.14、C 47、D 将触发异常，与网站options顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页红色答案表第6题格为D，0起始索引为3，与网站answer=3一致；独立推理：a、b均整型得1（3.14按int截取3），含浮点变量可得1.14，a为char读'-'(45)、b为int读余下2得47，格式化输入失败仅置流状态不抛异常，故D为唯一不可能输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析相符：char只取一个非空白字符且后续整数可读缓冲区剩余"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立重做类型组合枚举（int/int、含浮点、char+int）均得出D不可能，与官方答案D及网站解析一致，接受初核结论。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页原图第7题题干“在C++代码中假设N为正整数，则下面代码能获得个位数的是（ ）”与网站question一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页原图选项为A N % 10、B N / 10、C N && 10、D 以上选项均不正确，与网站options顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为A，0起始索引0，与网站answer=0一致；独立验证：正整数除以10的余数即个位，N/10为去掉个位的商，N&&10是逻辑与对正整数恒为1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立可复现：%10取余即个位、/10丢个位、&&为逻辑运算非数位提取，排除链完整，D因A成立而不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对三个干扰项的排除理由与我的独立推导一致，无需修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页原图第8题代码框内7行：int i; for(i=0;i<10;i++){ if(i%2) break; cout<<\"0#\"; } if(i==10) cout<<\"1#\";，与网站代码仅大括号排版差异，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页原图选项为A 0#、B 1#、C 0#0#1、D 没有输出，与网站options一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为A，0起始索引0，与网站answer=0一致；独立追踪：i=0时i%2为0不break并输出一次0#，i=1时i%2为1执行break退出，循环后i=1≠10不输出1#，总输出0#。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析的追踪路径（i=0输出、i=1 break、i≠10）与我的独立执行模拟完全一致，break发生在第二轮的易错点提示正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立单步模拟确认输出为0#，与答案表A和网站解析吻合，接受初核。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第9题题干“执行下面C++代码并输入1和0，有关说法正确的是（ ）”位于PDF第2页底部，完整10行代码位于第3页页图（a&&b、!(a||b)、a||b、else 四路分支），与网站question一致，sourcePages[2,3]标注正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页原图选项为A 1、B 2、C 3、D 4，与网站options一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为C，0起始索引2，与网站answer=2一致；独立推导：a=1,b=0时a&&b为假，!(a||b)=!true为假，a||b为真，命中第三个分支输出3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析的三分支真值判定与我的独立真值表推演一致（与为0、非或为假、或为1），else不可达的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对跨页题面位置与逻辑分支的判断经独立复核无误，接受。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页原图第10题4行代码：int loopCount=0; for(int i=1;i<5;i+=2) loopCount+=1; cout<<(loopCount);，与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页原图选项为A 1、B 2、C 3、D 5，与网站options一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题为B，0起始索引1，与网站answer=1一致；独立追踪：i取1、3两轮各加1，i=5时条件i<5为假退出，loopCount=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出循环入口值集合{1,3}并指出i+=2跳过偶数、i=5不满足边界，与我的独立追踪一致，排除项数值均不符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立模拟确认共执行2次输出2，与答案表B和网站解析一致，接受初核。"
+      }
+    ],
+    "summary": "本次复核独立覆盖第6–10题（全部单选）。逐题对照PDF第1页红色答案表（第6题D、第7题A、第8题A、第9题C、第10题B，对应0起始索引3/0/0/2/1）及第2–3页页图，题干、代码、选项顺序与网站数据完全一致；解析均经独立执行模拟或真值推演复现，未发现任何需修改字段，故无changes。DeepSeek初核草稿的五个维度结论全部独立确认成立，全部approve；五题均非编程题，referenceCode不适用，tests为空。"
+  }
+}

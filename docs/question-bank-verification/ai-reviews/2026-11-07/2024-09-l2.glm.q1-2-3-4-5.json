@@ -1,0 +1,239 @@
+{
+  "paperId": "2024-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T14:58:03.770Z",
+  "completedAt": "2026-11-09T14:58:58.462Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45207,
+    "completion_tokens": 9018,
+    "total_tokens": 54225,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 7055,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01129005,
+      "allowance": 0.01129005,
+      "tokens": {
+        "input": 45207,
+        "output": 9018,
+        "reasoning": 7055,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7a5b8fc0029274b72fa11e3b50c9535e2cc89f5a97787706eebcb913c3a37e53",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++2级.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "mirrorBytes": 1001572,
+    "shaVerified": true,
+    "sha256": "e3c6dabc897f517697a18f1013eb14efaed9d0bd91d71aef1d6a9f183a270507"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头清晰显示“C++ 二级”与“2024 年 09 月”，与 paperId 2024-09-l2 的等级 2、年份 2024、月份 9 完全一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页原卷题干含“山东大学于1972年研制成功DJL-1计算机……设计存贮周期为2μs（微秒）……相当于现代计算机的（ ）”，与站内题面逐句对应，仅空格排版差异，无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A–D 依次为 内存/磁盘/CPU/显示器，顺序与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 A，0 起始索引为 0；站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：磁心存储器保存处理器正在使用的数据与指令，属主存层级，“存贮周期”即存储器读写时间；磁盘为外存、CPU 负责运算控制、显示器为输出设备，排除理由均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项与第 1 页原卷逐句一致，答案表第 1 题为 A（索引 0），磁心存储器对应主存的解析独立成立，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干“IPv4版本的因特网总共有（ ）个A类地址网络。”与站内语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A–D 依次为 65000/200万/126/128，与站内 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 C，索引 2；站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 类首位固定为 0，网络号 7 位共 2^7=128 个编号，扣除 0（本网络）与 127（回环）得 126 个可用 A 类网络，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表第 2 题为 C（索引 2）；128−2=126 的推导独立复核成立，选项顺序无映射问题。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干“在C++中，下列不可做变量的是( )。”（原卷“不可”为红色强调，站内以文字保留），与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A–D 依次为 ccf-gesp/ccf_gesp/ccfGesp/_ccfGesp，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 A，索引 0；站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 标识符仅由字母、数字、下划线组成，连字符会被解析为减号运算符，A 不构成变量声明；B/C/D 为合法标识符拼写，答案唯一性成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：连字符不属于标识符字符集，答案 A 唯一成立；其余三项在题目语义下可作变量名，解析排除理由成立，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页题干代码 for (int i = 1; i < 10; i++) 与站内逐字符一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A–D 依次为 (i=0,<10,i++)/(i=0,<11,i++)/(i=1,<10,++i)/(i=0,<11,++i)，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 C，索引 2；站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：仅将站内解析中缺失反斜杠的 ldots 补全为 LaTeX 命令 \\ldots（同卷其他解析均使用 \\times 等规范命令，此处为渲染缺陷）；推导独立复核——原循环 i 取 1～9 共 9 次，i++ 与 ++i 在迭代表达式处返回值未被使用故等价；A 多出 i=0，B/D 序列为 0～10，均不等价，内容正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n**推导：** 原循环依次令 $i=1,2,\\ldots,9$。在 `for` 的迭代表达式中，`i++` 与 `++i` 都使 `i` 增加 1，且返回值未被使用，所以效果相同。\n**排除：** A 多执行 $i=0$；B、D 从 0 执行到 10，边界和次数都不同。\n**易错点：** 前置与后置自增只在表达式值被使用时可能体现差异。\n**最小验证：** 原循环与 C 都执行 9 次，循环体看到的序列均为 1～9。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受：答案 C 与推导正确；初核指出的 ldots 缺反斜杠问题属实（站内同卷他处均用规范 LaTeX 命令），采纳其最小修复并逐字比对确认仅此一处差异，修复后核验通过。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页题干“在C++中， cout << (5 / 2 + 5 % 3) 的输出是( )。”与站内一致，代码表达式无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A–D 依次为 1/2/4/5，与站内 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 C，索引 2；站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：两操作数均为整型，5/2 整除得 2，5%3 得余数 2，和为 4；最小验证 5=2×2+1（商 2）、5=3×1+2（余 2）成立，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：5/2=2、5%3=2、和为 4 的独立计算与答案表 C 一致，题面与选项无缺漏，无需修改。"
+      }
+    ],
+    "summary": "本次仅复核题 1–5：逐题对照第 1 页卷头与红色答案表（A/C/A/C/C，0 起始为 0/2/0/2/2）、第 1–2 页题面与选项，站内题面、选项、答案均与原卷一致，解析经独立推导全部成立。唯一修改为题 4 解析中缺失反斜杠的 ldots 补全为 LaTeX 命令（渲染缺陷，非文风改写），修复后核验通过。题 1/2/3/5 判定 approve，题 4 判定 revise（已附完整修复字段）。无未决争议，题 6–27 不在本次范围。"
+  }
+}
