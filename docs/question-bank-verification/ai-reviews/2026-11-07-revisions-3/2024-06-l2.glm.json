@@ -1,0 +1,105 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    24
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:42:22.537Z",
+  "completedAt": "2026-11-09T16:45:54.453Z",
+  "finishReason": "stop",
+  "inputSha256": "fa2a4ca703b6d7b595a81fa28ff8cdd40eaa18c8d90aa8b934938ccfe838841d",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头原图为「C++ 二级」「2024 年 06 月」（CCF 编程能力等级认证 GESP），与 paperId 2024-06-l2（2024 年 6 月 C++ 二级）一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题原图为完整 7 行程序：int N,Sum = 0; / cin >> N; / while (N){ / Sum += N % 10; / N /= 10; / } / cout << Sum;，题干为「下面C++代码能实现正整数各位数字之和。（ ）」。候选题面代码块逐行一致，题干仅空格排版差异；上轮补全的变量声明初始化、输入、输出语句均已落实，无必要代码缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题以括号「（ ）」呈现，无 ABCD 选项；候选以「正确/错误」等价呈现，按正确=0、错误=1 映射，不适用单选选项核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表原图第 9 题为 √（整行依次为 × × × √ × × × √ √ √），按正确=0 映射，候选 answer=0 一致。独立走查：N=123 依次累加 3、2、1 得 Sum=6=1+2+3；N=10 依次累加 0、1 得 Sum=1；N=9 得 9，代码确能实现正整数各位数字之和，官方 √ 判定成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：当前候选解析「易错提醒」仍为「该代码不适用于 N 为 0 的情况（若 N=0，循环体不执行，结果为 0，符合语义）」，主句「不适用」与括号内「符合语义」自相矛盾，且 N=0 时输出 0 恰为 0 的数位和，「不适用」说法不成立（上轮审校称该矛盾已消除，但候选实际文本未变）。应用 changes.explanation 后表述为「若输入 N=0，while (N) 不执行，直接输出 0，恰为 0 的数位和，结果同样正确；本题限定为正整数，因此不影响结论」，逻辑自洽。核心推导独立复核无误：N%10 取当前末位、N/=10 整除剥离末位、while(N) 在 N 变 0 时终止，N=123 逐步得 Sum=3→5→6=1+2+3；「Sum 需初始化为 0」的提醒与原卷 int N,Sum = 0 相符，作为易错点合理；解析结论与官方 √ 及答案映射一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n代码实现的是经典的**数位分离求和算法**：\n1. `N % 10` 每次提取当前 `N` 的个位数字。\n2. `N /= 10` 将 `N` 整除 10，相当于移除已处理的个位，剩余高位变为新的低位。\n3. 循环条件 `while(N)` 在 `N` 变为 0 时结束。\n\n以 N=123 为例验证：\n- 第 1 次循环：`Sum += 3`，`N = 12`\n- 第 2 次循环：`Sum += 2`，`N = 1`\n- 第 3 次循环：`Sum += 1`，`N = 0`\n- 循环结束，`Sum = 6`，即 1+2+3。\n\n该算法正确实现了正整数各位数字之和的计算。\n\n**易错提醒：**\n- 代码中 `Sum` 需初始化为 0，否则结果不确定。\n- 若输入 N=0，`while (N)` 不执行，直接输出 0，恰为 0 的数位和，结果同样正确；本题限定为正整数，因此不影响结论。\n\n**知识延伸：**\n数位分离是 GESP 二级的高频考点，与之相关的还有逆序输出数字、数字统计等问题。核心在于 `% 10` 取余和 `/ 10` 整除的配合使用。\n\n**考点：** 数位分离算法的原理"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核（DeepSeek）对解析的指认并独立确认：上轮审校虽称 N=0 表述矛盾已消除，但当前候选文本仍是「不适用于 N 为 0…符合语义」的自相矛盾旧文案；初核的 changes.explanation 仅改写该矛盾句、其余推导与候选一致，逐句核对无误后采纳。题面维度：上轮 changes.question 已在本候选落实，对照 PDF 第 7 页原图逐行一致，予以确认。答案维度：对照 PDF 第 6 页答案表原图（第 9 题 √）并独立代码走查（N=123→6、N=10→1、N=9→9）双重确认 answer=0 正确。应用 changes.explanation 后该题五个维度全部通过，可定稿。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        24
+      ],
+      "usage": {
+        "prompt_tokens": 30938,
+        "completion_tokens": 13619,
+        "total_tokens": 44557,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12220
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0114502,
+          "allowance": 0.0114502,
+          "tokens": {
+            "input": 30938,
+            "output": 13619,
+            "reasoning": 12220,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-09T16:42:22.537Z",
+      "completedAt": "2026-11-09T16:45:54.453Z"
+    }
+  ]
+}

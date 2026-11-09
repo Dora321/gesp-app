@@ -1,0 +1,94 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    24
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T16:41:36.125Z",
+  "completedAt": "2026-11-09T16:42:22.531Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 15202,
+    "completion_tokens": 5459,
+    "total_tokens": 20661,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4536
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0055557,
+      "allowance": 0.00333342,
+      "tokens": {
+        "input": 15202,
+        "output": 5459,
+        "reasoning": 4536,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "fa2a4ca703b6d7b595a81fa28ff8cdd40eaa18c8d90aa8b934938ccfe838841d",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 二级”“2024 年 06 月”，与 paperId 2024-06-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题原图为完整 7 行程序：int N,Sum = 0; / cin >> N; / while (N){ / Sum += N % 10; / N /= 10; / } / cout << Sum;；候选代码逐行一致，题干“能实现正整数各位数字之和”亦与原卷一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题以“（ ）”判断正误，无 ABCD 选项；候选用“正确/错误”等价呈现，按正确=0、错误=1 映射，不存在选项顺序问题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 题为 √（第 1 至 10 题依次为 ×、×、×、√、×、×、×、√、√、√），正确=0，候选 answer=0 一致；独立走查 N=123 得 Sum=6，N=10 得 Sum=1，代码确能实现正整数各位数字之和。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的核心算法推导正确，但“易错提醒”中“该代码不适用于 N 为 0 的情况”与紧接着的“若 N=0，循环体不执行，结果为 0，符合语义”前后矛盾；应明确 N=0 时循环不执行、输出 0，且本题限定正整数，不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n代码实现的是经典的**数位分离求和算法**：\n1. `N % 10` 每次提取当前 `N` 的个位数字。\n2. `N /= 10` 将 `N` 整除 10，相当于移除已处理的个位，剩余高位变为新的低位。\n3. 循环条件 `while(N)` 在 `N` 变为 0 时结束。\n\n以 N=123 为例验证：\n- 第 1 次循环：`Sum += 3`，`N = 12`\n- 第 2 次循环：`Sum += 2`，`N = 1`\n- 第 3 次循环：`Sum += 1`，`N = 0`\n- 循环结束，`Sum = 6`，即 1+2+3。\n\n该算法正确实现了正整数各位数字之和的计算。\n\n**易错提醒：**\n- 代码中 `Sum` 需初始化为 0，否则结果不确定。\n- 若输入 N=0，`while (N)` 不执行，输出 0；若将 0 的数位和视为 0，该结果同样正确。本题限定为正整数，因此不影响结论。\n\n**知识延伸：**\n数位分离是 GESP 二级的高频考点，与之相关的还有逆序输出数字、数字统计等问题。核心在于 `% 10` 取余和 `/ 10` 整除的配合使用。\n\n**考点：** 数位分离算法的原理"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题 24 题面代码已按原卷第 7 页补全且逐行一致；官方答案表第 6 页第 9 题为 √，候选 answer=0 正确，独立走查也支持“正确”。解析核心推导无误，但 N=0 的易错提醒存在“自相矛盾”的表述，需按 changes.explanation 修正；修正后该题可通过。"
+  }
+}
