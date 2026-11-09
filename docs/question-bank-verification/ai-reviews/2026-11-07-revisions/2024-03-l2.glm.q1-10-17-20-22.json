@@ -1,0 +1,243 @@
+{
+  "paperId": "2024-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    10,
+    17,
+    20,
+    22
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T12:01:12.508Z",
+  "completedAt": "2026-11-09T12:02:15.735Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 44175,
+    "completion_tokens": 10109,
+    "total_tokens": 54284,
+    "prompt_tokens_details": {
+      "cached_tokens": 43008
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7160
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00651979,
+      "allowance": 0.00651979,
+      "tokens": {
+        "input": 1167,
+        "output": 10109,
+        "reasoning": 7160,
+        "cache_read": 43008,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b90b3389ff7dced644408ffdfddb7f15ff057fedea00c8a35a7564fdb9d3712b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++2级.pdf",
+    "mirrorSha": "dfbe60e47d1a6af1d4cae022aa5e048201dd9625",
+    "mirrorBytes": 1502503,
+    "shaVerified": true,
+    "sha256": "41b30de07bc877e2e53c5f1f468816451b7c922a3a26fea6ab8b8f060f183253"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 / C++ 二级 / 2024 年 03 月」，与 paperId 2024-03-l2 的年份 2024、月份 3、级别 level 2 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图流程：开始→矩形框 cj=75→菱形 cj>=60（YES）→菱形 cj>=90（YES→平行四边形「成绩优秀」；NO→平行四边形「良好」），cj>=60 的 NO→平行四边形「不及格」，各支汇合至「结束」。候选文字化完整保留两个菱形判断、三条输出路径与汇合结构；图中 YES/NO 转写为「是/否」属等价转换，无遗漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原图选项依次为 A. 优秀、B. 良好、C. 不及格、D. 没有输出，与候选 options 顺序、文字完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 1 题为 B（0 起始索引 1），候选 answer=1 映射正确；按图独立推导：cj=75 时 75>=60 成立、75>=90 不成立，输出「良好」，即 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算执行路径与候选一致：A 需 cj>=90（图中输出文字为「成绩优秀」，解析已注明与选项「优秀」的差异）；C 需 cj<60；D 与图中所有分支都通向输出框矛盾。cj=75 为矩形处理框、三个输出为平行四边形的框形说明与原图相符，无自相矛盾之处。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，原卷无参考程序，候选亦无该字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定与我的独立结论一致：按第 1 页原图逐项核对流程框形状、判断条件、输出分支、选项与答案表 B，均与候选相符；解析推导（含 A/C/D 排除理由与「成绩优秀/优秀」文字差异说明）复核无误，无需修改，否决任何额外改动。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页代码第 1-10 行与第 4 页第 11-15 行跨页拼接：int N,Flag; cin >> N; Flag = true; while (N != 0){ if (N %2 != 0){ Flag = false; 横线 } else N /= 10; } if(Flag == true) cout << \"是\"; else cout << \"否\";，与候选代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A. break、B. continue、C. N = N / 10、D. N = N % 10，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题标 A（索引 0），候选 answer=0 映射正确；映射正确不等于源题无瑕疵，多解争议见 unresolved。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入复核：A（break）遇奇数位时 Flag 已置 false 即退出输出「否」，全偶数时循环自然结束输出「是」，对一切正整数正确；C（N = N / 10）填入后奇数支同样右移，N=23 走 23→2→0 输出「否」，N=2024 走 2024→202→20→2→0 输出「是」，与 A 输出完全等效；B（continue）该分支不修改 N，N%2!=0 恒成立致死循环；D（N = N % 10）奇数时 N 取个位不缩小（23→3→3…）致死循环。候选保留官方答案 A 并显著说明 A/C 双解性质，推导与结论均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源题本身多解：选项 C（N = N / 10）填入后对任意正整数 N 的输出与官方答案 A（break）完全一致（奇数支 Flag=false 后同样 N/=10，循环必终止）；官方答案表为 A，候选保留官方口径，题目瑕疵需官方澄清，本轮无法定案消除。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "初核判定与我的独立结论一致：我逐例复算确认 C 与 A 输出等效、B/D 死循环，候选解析已按上轮意见重写为「官方 A 保留＋多解显著说明」，无需再改；多解属源题瑕疵，按规则保留于 unresolved 不擅自定案，verdict 通过针对候选本身质量。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 2 题原文为「Xyz ， xYz ， xyZ 是三个不同的变量。」候选写作「Xyz，xYz，xyZ 是三个不同的变量。」仅省略空格，三个写法（首/中/末字母大写）与卷面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面仅有作答括号，未印制 A/B/C/D 选项；「正确/错误」为站点通用约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 2 格为 √（索引 0），候选 answer=0 正确；独立验证：C++ 标识符区分大小写，Xyz、xYz、xyZ 的大写字母位置互不相同，两两互不相同。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按大小写敏感规则说明三者两两互不相同，与官方 √ 一致，推导充分，无基于误写 xyz 的残留描述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定与我的独立结论一致：第 6 页原文确为 xYz（非全小写），候选题面已与原卷对齐；答案 √ 映射与解析推导均独立复核通过，无需修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 5 题原文为「C++中 cout << float(2022) 与 cout << float('2022') 运行后的输出结果均为2022。」候选题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面仅有作答括号，未印制 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 5 格为 ×（索引 1），候选 answer=1 正确；独立推导：float(2022) 输出 2022，而 '2022' 为含四字符的多字符字面量，标准规定其类型为 int、值由实现定义，常见编译器报错或给出与 2022 无关的值，官方判 × 成立。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选结论（错误）与官方 × 一致，也已说明多字符字面量与实现定义；但「无论哪种情形都不可能输出 2022」「关键结论是它不会得到数值 2022」为全称断言：严格按标准，实现定义的值在逻辑上不排除 2022，绝对化表述在理论上反而可能动摇官方答案根基；规范表述应为「标准不保证其值为 2022，常见编译环境的取值与 2022 无关」，足以支撑题干说法不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**。`float(2022)` 把整数 2022 转换为浮点数，`cout` 默认输出 `2022`。但 `float('2022')` 中的 `'2022'` 并不是单个字符常量，而是含四个字符的“多字符字面量”：C++ 标准规定其类型为 `int`、数值由实现定义，且属于条件支持特性——常见编译器要么直接报错，要么带警告地接受并得到某个与 2022 无关的值。标准并不保证它等于 2022，在常规编译环境下也确实不输出 2022，因此“两者输出均为 2022”不成立。\n\n**易错提醒：**\n- 单引号内只能放一个字符（如 `'2'`）；字符串要用双引号（如 `\"2022\"`）。\n- 把 `'2022'` 当作字符串、或断言它在一切编译器下都“编译报错”“绝不可能是 2022”，都是不准确的：其值由实现定义，标准不保证为 2022，常见编译环境的取值均与 2022 无关，这就足以判定题干说法不成立。"
+        },
+        "tests": [],
+        "unresolved": [
+          "严格按 C++ 标准，多字符字面量 '2022' 的值由实现定义，理论上不排除某实现将其定义为 2022；官方答案 × 按常规编译环境口径成立，本站保留官方答案，该严格性争议无法在本轮定案。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受初核对绝对断言的指认并独立确认：候选在「可能报错/得到与 2022 无关的值」两情形之后写「无论哪种情形都不可能输出 2022」，属同义反复掩盖下的全称断言，与「值由实现定义」自身矛盾（若某实现定义其值为 2022，题干反而成立）。修正为「标准不保证为 2022、常见环境取值与 2022 无关」后既保持严谨又足以支撑官方 ×，属实质性精度修正而非文风改写；题面、选项、答案均不受影响。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 7 题原文（代码体）为「bool() 函数用于将给定参数或表达式转换为布尔类型。语句 bool(-1) 返回的是 false 值。（ ）」候选仅省略行尾作答括号，bool() 的括号已补全，语义与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面仅有作答括号，未印制 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 7 格为 ×（索引 1），候选 answer=1 正确；独立推导：C++ 中零值转 false、非零值转 true，bool(-1) 为 true（内部值 1），题干「返回 false」不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按零/非零转换规则推导 bool(-1)=true，与官方 × 一致；「布尔转换只看是否为零、不看正负」的易错提醒准确，无编造的运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定与我的独立结论一致：题面（含 bool() 括号）与第 6 页原文一致，答案表 × 映射正确，解析推导独立复核无误，无需修改。"
+      }
+    ],
+    "summary": "本轮独立复核 5 题（1、10、17、20、22），全部基于 PDF 页图与文本层逐项推导。题 1：流程图（矩形 cj=75、两层菱形判断、三个平行四边形输出框）、四选项、答案表 B 及解析执行路径均与原卷相符，通过；题 10：答案表 A 映射正确，独立复算确认 C 与 A 输出完全等效、B/D 死循环，候选解析已如实保留官方口径并显著说明多解争议，候选通过，争议保留 unresolved；题 17：题面 xYz 与答案表 √ 核对无误，解析推导充分，通过；题 20：答案表 × 正确，但候选解析「无论哪种情形都不可能输出 2022」为过强全称断言（多字符字面量值由实现定义），已在 changes 提供修正稿，verdict=revise 仅针对解析字段；题 22：题面与 bool(-1)=true 推导无误，通过。未发现答案表映射错误或题面缺失。"
+  }
+}
