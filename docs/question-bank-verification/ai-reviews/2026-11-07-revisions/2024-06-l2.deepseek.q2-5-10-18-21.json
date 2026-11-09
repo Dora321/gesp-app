@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    5,
+    10,
+    18,
+    21
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T15:23:44.960Z",
+  "completedAt": "2026-11-09T15:25:50.515Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29706,
+    "completion_tokens": 8148,
+    "total_tokens": 37854,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6495
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0093447,
+      "allowance": 0.00560682,
+      "tokens": {
+        "input": 29706,
+        "output": 8148,
+        "reasoning": 6495,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "06ad0c4e7aedc88e5f87afadcce3a57e474a543fc1e2f5a31e3897d786c59d42",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++2级.pdf",
+    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+    "mirrorBytes": 1177408,
+    "shaVerified": true,
+    "sha256": "267e6031c9b99372f8333785d69588820ad2c20e26225723227d8f1584b1f709"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证 GESP”“C++ 二级”“2024 年 06 月”；单选答案表在第 1 页，判断答案表在第 6 页，题号与卷面一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干与流程图完整：开始→输入 yr→菱形判断框，N 分支输出“2月是28天”，Y 分支输出“2月是29天”，汇合后结束；候选的等价文本图分支与方向一致，无必要信息缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四个选项依次为 A. (yr%400==0) || (yr%4==0)、B. (yr%400==0) || (yr%4==0 && yr%100!=0)、C. (yr%400==0) && (yr%4==0)、D. (yr%400==0) && (yr%4==0 && yr%100!=0)，与候选顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 B，0 起始索引为 1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：2024%400=24、2024%4=0、2024%100=24，B 表达式为 true，输出 29 天；A 会把 1900、2100 等能被4整除但非闰年的年份误判，C 实际要求能被400整除而排除 2024 等普通闰年，D 中能被400整除者必能被100整除，故无年份满足。解析逐项结论与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干为“在C++中，cout << (5 % 2 && 5 % 3) 的输出是( )”，与候选表达式一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A. 1、B. 2、C. true、D. false，与候选顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 A，0 起始索引为 0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：5%2=1、5%3=2，1&&2 为 true；cout 默认将 bool 的 true 输出为 1，而非字符串 true。选项 A 正确；解析对 && 与 &、boolalpha 的说明无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 10 题代码中 loopCount += 1 位于外层 for 循环体内、内层 for 之后，内层为 for (int j=0; j<i; j++) if (i*j%2) break；候选为内层补花括号并放在同一层级，语义与原代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A. 25、B. 16、C. 10、D. 9，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 C，0 起始索引为 2，候选 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：break 只跳出内层循环，外层 i=0..9 共 10 轮，每轮执行一次 loopCount+=1，输出 10；A=25 对应把计数移入内层且在 break 之后的结果（0+1+2+1+4+1+6+1+8+1），D=9 对应漏计 i=0 一轮。解析的推导与数值均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题为“C++表达式 int(12.56) 的值为13。（ ）”，与候选题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项；候选使用“正确/错误”标签，与原卷判断形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断答案表第 3 题为 ×，对应错误索引 1；int(12.56) 向零截断得 12，不等于 13，命题为假，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：12.56 去小数部分为 12；int(12.56+0.5) 才可得到 13；floor(12.56)=12，floor 并非四舍五入。解析对截断及 floor 的修正表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 6 题代码为 for (int i = 0; i < 10; i++) continue;，与候选题面逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项；候选使用“正确/错误”标签，与原卷判断形式等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断答案表第 6 题为 ×，对应错误索引 1；continue 不跳过 for 的 i++，i 从 0 到 9 共 10 轮后条件失败，不会死循环，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：for 循环每轮执行后仍执行迭代表达式 i++，continue 仅提前结束本轮循环体；循环正常终止，题干“将导致死循环”为假。解析对 continue 与 break 的区分正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验的 2、5、10、18、21 题均与 PDF 原卷题面、选项和答案表一致；答案索引映射正确，解析经独立推导未发现事实性错误，无需修改。"
+  }
+}
