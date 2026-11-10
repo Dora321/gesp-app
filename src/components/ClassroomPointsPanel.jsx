@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Trophy, Trash2, UserPlus, RotateCcw, Download, History, X, Users, Minimize2 } from 'lucide-react';
+import { STUDENTS_KEY, HISTORY_KEY, readStudents, readHistory, writeStoredList, buildPointsCsv } from '../utils/classroomPoints';
 
 const ClassroomPointsPanel = ({ onClose }) => {
-    const [students, setStudents] = useState([]);
-    const [history, setHistory] = useState([]);
+    // 惰性初始化：首帧就拿到已存名单，写入 effect 不会先把 [] 覆盖进存储
+    // （旧写法在 StrictMode 双调用下会清空名单），坏数据也只会退回空名单。
+    const [students, setStudents] = useState(() => readStudents());
+    const [history, setHistory] = useState(() => readHistory());
     const [newStudentName, setNewStudentName] = useState('');
     const [showHistory, setShowHistory] = useState(false);
 
-    // Load from localStorage on mount
     useEffect(() => {
-        const savedStudents = localStorage.getItem('classroom_students');
-        const savedHistory = localStorage.getItem('classroom_history');
-        if (savedStudents) setStudents(JSON.parse(savedStudents));
-        if (savedHistory) setHistory(JSON.parse(savedHistory));
-    }, []);
+        writeStoredList(STUDENTS_KEY, students);
+    }, [students]);
 
-    // Save to localStorage on change
     useEffect(() => {
-        localStorage.setItem('classroom_students', JSON.stringify(students));
-        localStorage.setItem('classroom_history', JSON.stringify(history));
-    }, [students, history]);
+        writeStoredList(HISTORY_KEY, history);
+    }, [history]);
 
     const addStudent = () => {
         if (!newStudentName.trim()) return;
@@ -76,17 +73,16 @@ const ClassroomPointsPanel = ({ onClose }) => {
     };
 
     const exportData = () => {
-        const csvContent = "data:text/csv;charset=utf-8,"
-            + "姓名,分数\n"
-            + students.map(s => `${s.name},${s.points}`).join("\n");
-
-        const encodedUri = encodeURI(csvContent);
+        // Blob 下载：data: URI 遇到姓名里的 # 会被当成片段截断。
+        const blob = new Blob([buildPointsCsv(students)], { type: 'text/csv;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", `classroom_points_${new Date().toISOString().slice(0, 10)}.csv`);
+        link.href = url;
+        link.download = `classroom_points_${new Date().toISOString().slice(0, 10)}.csv`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(url), 0);
     };
 
     const sortedStudents = [...students].sort((a, b) => b.points - a.points);
