@@ -16,14 +16,16 @@ import {
 } from 'lucide-react';
 import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
-import { getLuoguProblemUrl, loadLuoguPool, needsSynthesizedCoding, withSynthesizedCoding } from '../../data/gesp/codingQuestions';
+import { getLuoguProblemUrl, needsSynthesizedCoding, withSynthesizedCoding } from '../../data/gesp/codingQuestions';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
+import useLuoguPool from '../../hooks/useLuoguPool';
 import { buildQuestionInsight, selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
+import { isProgrammingQuestion } from '../../utils/questionHelpers';
 
 const inferKnowledgeTags = (q, level) => {
     const merged = `${getQuestionContent(q)} ${q?.explanation || ''} ${(q?.options || []).join(' ')}`;
@@ -145,30 +147,34 @@ const sectionMetaByLevel = {
 
 // Local MarkdownRenderer removed in favor of shared component
 
-export default function EnhancedPaperPage({ forcedPaperId }) {
+// ExamPaper 已经取过卷（并套用了勘误）、也加载过洛谷题池时，直接通过 props 传进来，
+// 不再重复 getPaper；单独挂载（无 props）时才自己加载。
+export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPaper = null, luoguPool: providedPool = null }) {
     const { paperId: routePaperId } = useParams();
     const navigate = useNavigate();
 
     const paperId = forcedPaperId || routePaperId;
-    const [paperData, setPaperData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [luoguPool, setLuoguPool] = useState(null);
+    const [fetchedPaper, setFetchedPaper] = useState(null);
+    const [loading, setLoading] = useState(!providedPaper);
 
     useEffect(() => {
+        if (providedPaper) return undefined;
         let cancelled = false;
         Promise.resolve().then(() => {
             if (!cancelled) setLoading(true);
         });
         getPaper(paperId).then(data => {
             if (!cancelled) {
-                setPaperData(data);
+                setFetchedPaper(data);
                 setLoading(false);
             }
         }).catch(() => {
             if (!cancelled) setLoading(false);
         });
         return () => { cancelled = true; };
-    }, [paperId]);
+    }, [paperId, providedPaper]);
+
+    const paperData = providedPaper || fetchedPaper;
 
     // All hooks MUST be called before any conditional returns (React Rules of Hooks)
     const baseQuestions = useMemo(() => {
@@ -190,14 +196,8 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         [paperData, baseQuestions],
     );
 
-    useEffect(() => {
-        if (!paperData || !needsLuogu) return undefined;
-        let cancelled = false;
-        loadLuoguPool(paperData.level).then((pool) => {
-            if (!cancelled) setLuoguPool(pool);
-        });
-        return () => { cancelled = true; };
-    }, [needsLuogu, paperData]);
+    const luogu = useLuoguPool(paperData?.level, needsLuogu && !providedPool);
+    const luoguPool = providedPool || luogu.pool;
 
     const questions = useMemo(
         () => (paperData ? withSynthesizedCoding(baseQuestions, { paperId, luoguPool }) : []),
@@ -230,8 +230,24 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const revealedCount = useMemo(() => Object.keys(revealed).length, [revealed]);
 
     // --- Conditional returns AFTER all hooks ---
-    if (loading || (needsLuogu && luoguPool === null)) {
+    if ((loading && !providedPaper) || (needsLuogu && !providedPool && luogu.status === 'loading')) {
         return <LoadingScreen message="正在拼命加载试卷" variant="dark" />;
+    }
+
+    if (needsLuogu && !providedPool && luogu.status === 'error') {
+        return (
+            <div className="mw-surface mw-line-bank min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+                <div className="text-center max-w-lg p-6" role="alert">
+                    <AlertTriangle size={48} className="mx-auto text-amber-500 mb-4" />
+                    <h2 className="text-xl font-bold text-slate-700">上机编程题加载失败</h2>
+                    <p className="mb-6">这张卷的第 26、27 题（上机编程）题面没能加载出来，可能是网络不稳定。请重试一次。</p>
+                    <div className="flex gap-3 justify-center">
+                        <button onClick={luogu.retry} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">重新加载</button>
+                        <button onClick={() => navigate('/question-bank')} className="px-6 py-2 bg-slate-200 text-slate-700 rounded-lg">返回题库</button>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     if (!paperData) {
@@ -275,8 +291,11 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         color: 'from-indigo-500 to-blue-600'
     };
 
+    // Programming questions have no option answer: revealing one stores a
+    // placeholder 0 while q.answer is undefined, so they must not count as wrong.
     let wrongCount = 0;
     questions.forEach((q) => {
+        if (isProgrammingQuestion(q)) return;
         if (revealed[q.id] && answers[q.id] !== q.answer) wrongCount += 1;
     });
 

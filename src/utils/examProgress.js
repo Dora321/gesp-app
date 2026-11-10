@@ -1,6 +1,8 @@
 // Best-effort persistence of in-progress exam state, keyed by paper id.
 // Lets a learner survive an accidental refresh / tab close during a timed
-// 90-minute paper without losing answers or the clock.
+// paper without losing answers or the clock. The clock is stored as an
+// `endsAt` timestamp (see utils/examTimer.js); older snapshots only carry
+// `timeLeft` and are migrated on resume by resolveEndsAt().
 
 import { readLearningData, updateLearningData } from './learningData.js';
 

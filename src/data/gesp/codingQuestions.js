@@ -77,11 +77,19 @@ export function getLuoguProblemUrl(paperId, questionId) {
     return `https://www.luogu.com.cn/problem/${pid}`;
 }
 
-/** 取某等级的洛谷题池；模块按需动态加载，避免把 180KB 题面压进首屏。 */
+/**
+ * 取某等级的洛谷题池；模块按需动态加载，避免把 180KB 题面压进首屏。
+ * 加载失败会抛错——页面据此给出明确提示，而不是静默留下「题面暂缺」占位题。
+ */
+export async function fetchLuoguPool(level) {
+    const { luoguCodingByLevel } = await import('./luoguCodingByLevel.js');
+    return luoguCodingByLevel[String(level)] || luoguCodingByLevel[level] || [];
+}
+
+/** 容错版：失败时返回 []（脚本/测试用；页面请用 fetchLuoguPool 以便提示失败）。 */
 export async function loadLuoguPool(level) {
     try {
-        const { luoguCodingByLevel } = await import('./luoguCodingByLevel.js');
-        return luoguCodingByLevel[String(level)] || luoguCodingByLevel[level] || [];
+        return await fetchLuoguPool(level);
     } catch {
         return [];
     }

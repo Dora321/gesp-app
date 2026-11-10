@@ -1,5 +1,104 @@
 @import "tailwindcss";
 
+/* ===== Tailwind v4 theme =====
+ * v4 不读取 tailwind.config.js（且项目从未写 @config），原配置里的颜色和动画
+ * 一直是空操作。这里迁到 @theme，原 JS 配置已删除。
+ * 字体栈没有迁：站点字体由 design-tokens.css 的 --mw-font-* 统一管理，
+ * 旧配置里的 "PingFang SC"/"Noto Sans SC" 若生效，会在装了 Noto 的机器上
+ * 把全站默认字体换掉。 */
+@theme {
+  --color-brand-blue: #2563eb;
+  --color-brand-orange: #f97316;
+  --color-brand-slate: #1e293b;
+
+  /* backwards 而非 forwards：结束后不保留 transform，避免包裹层永久成为
+   * fixed 子元素的包含块；带 animationDelay 的错位入场在延迟期间也先隐藏。 */
+  --animate-fade-in: fadeIn 0.5s ease-out backwards;
+  --animate-bounce-short: bounceShort 0.5s ease-in-out;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounceShort {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+/* 用户要求减少动效时不播放（与下方 animate-in 一致）。 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-bounce-short {
+    animation: none;
+  }
+}
+
+/* ===== Enter animations: animate-in / fade-in / zoom-in-* / slide-in-from-* / spin-in-* =====
+ * 与 tailwindcss-animate / tw-animate-css 的类名语义一致的最小实现（项目只用到入场动画），
+ * 不新增依赖。时长、缓动沿用 duration-* / ease-*（它们会设置 --tw-duration / --tw-ease）。 */
+@property --tw-enter-opacity { syntax: "*"; inherits: false; initial-value: 1; }
+@property --tw-enter-scale { syntax: "*"; inherits: false; initial-value: 1; }
+@property --tw-enter-rotate { syntax: "*"; inherits: false; initial-value: 0deg; }
+@property --tw-enter-translate-x { syntax: "*"; inherits: false; initial-value: 0px; }
+@property --tw-enter-translate-y { syntax: "*"; inherits: false; initial-value: 0px; }
+
+@keyframes mw-enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform:
+      translate3d(var(--tw-enter-translate-x, 0px), var(--tw-enter-translate-y, 0px), 0)
+      scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1))
+      rotate(var(--tw-enter-rotate, 0deg));
+  }
+}
+
+@utility animate-in {
+  /* backwards：结束后不残留 transform（残留会让元素成为 fixed 子元素的包含块）。 */
+  animation: mw-enter var(--tw-duration, 150ms) var(--tw-ease, ease) backwards;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility fade-in {
+  --tw-enter-opacity: 0;
+}
+
+@utility zoom-in-* {
+  --tw-enter-scale: calc(--value(integer) / 100);
+}
+
+@utility spin-in-* {
+  --tw-enter-rotate: calc(--value(integer) * 1deg);
+}
+
+@utility slide-in-from-top {
+  --tw-enter-translate-y: -100%;
+}
+@utility slide-in-from-top-* {
+  --tw-enter-translate-y: calc(--value(integer) * var(--spacing) * -1);
+}
+@utility slide-in-from-bottom {
+  --tw-enter-translate-y: 100%;
+}
+@utility slide-in-from-bottom-* {
+  --tw-enter-translate-y: calc(--value(integer) * var(--spacing));
+}
+@utility slide-in-from-left {
+  --tw-enter-translate-x: -100%;
+}
+@utility slide-in-from-left-* {
+  --tw-enter-translate-x: calc(--value(integer) * var(--spacing) * -1);
+}
+@utility slide-in-from-right {
+  --tw-enter-translate-x: 100%;
+}
+@utility slide-in-from-right-* {
+  --tw-enter-translate-x: calc(--value(integer) * var(--spacing));
+}
+
 /* ===== Markdown Body – Full Typography ===== */
 .markdown-body {
   font-family:

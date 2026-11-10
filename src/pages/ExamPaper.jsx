@@ -2,14 +2,24 @@ import React, { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ChevronLeft, ChevronRight, AlertTriangle, FileText, Lightbulb, BookOpen, Menu, RotateCcw } from 'lucide-react';
 import LoadingScreen from '../components/LoadingScreen';
-import { getPaper, paperMeta } from '../data/gesp/index';
+import { getPaper } from '../data/gesp/index';
 import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
+import useLuoguPool from '../hooks/useLuoguPool';
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
 import { scoreExam } from '../utils/examScoring';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import { recordExamAttempt } from '../utils/examHistory';
-import { loadLuoguPool, needsSynthesizedCoding, withSynthesizedCoding } from '../data/gesp/codingQuestions';
+import { needsSynthesizedCoding, withSynthesizedCoding } from '../data/gesp/codingQuestions';
+import {
+  formatClock,
+  formatTimeLimitMinutes,
+  progressRemainingSeconds,
+  remainingSeconds,
+  resolveEndsAt,
+  resolveTimeLimitSeconds,
+} from '../utils/examTimer';
 import QuestionSidebar from './exam/QuestionSidebar';
+import ExamTimer from './exam/ExamTimer';
 import SubmitConfirmDialog from './exam/SubmitConfirmDialog';
 import ResultDialog from './exam/ResultDialog';
 
@@ -25,7 +35,11 @@ const ExamPaper = () => {
   // Core state
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [timeLeft, setTimeLeft] = useState(90 * 60);
+  // 权威时间是截止时间戳；显示由 ExamTimer 现算，本组件不再每秒重渲染。
+  const [endsAt, setEndsAt] = useState(null);
+  // 交卷那一刻的剩余秒数（定格显示、算用时）；未交卷时为 null。
+  const [submittedRemaining, setSubmittedRemaining] = useState(null);
+  const [autoSubmitted, setAutoSubmitted] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -37,8 +51,6 @@ const ExamPaper = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [savedProgress, setSavedProgress] = useState(null);
-  // 洛谷题面约 180KB，只在这张卷确实缺上机题时才动态取。
-  const [luoguPool, setLuoguPool] = useState([]);
 
   // ─── Data Loading ──────────────────────────────────────────────────
 
@@ -51,7 +63,9 @@ const ExamPaper = () => {
       if (cancelled) return;
       if (data) {
         setPaperData(data);
-        setTimeLeft(data.timeLimit || 90 * 60);
+        setEndsAt(null);
+        setSubmittedRemaining(null);
+        setAutoSubmitted(false);
         setSavedProgress(loadExamProgress(paperId));
       } else {
         setError('在此题库中未找到该试卷 (Registry Lookup Failed)');
@@ -65,24 +79,16 @@ const ExamPaper = () => {
     return () => { cancelled = true; };
   }, [paperId]);
 
-  useEffect(() => {
-    if (!paperData) return undefined;
-    const embedded = [
-      ...(paperData.questions || []),
-      ...(paperData.programmingQuestions || []),
-      ...(paperData.codingQuestions || []),
-    ];
-    if (!needsSynthesizedCoding(embedded)) {
-      setLuoguPool([]);
-      return undefined;
-    }
-
-    let cancelled = false;
-    loadLuoguPool(paperData.level).then((pool) => {
-      if (!cancelled) setLuoguPool(pool);
-    });
-    return () => { cancelled = true; };
-  }, [paperData]);
+  // 洛谷题面约 180KB，只在这张卷确实缺上机题时才动态取。两种模式都等它加载完
+  // 再渲染（否则考试模式会先显示 25 题、再跳成 27 题），失败时明确提示。
+  const timeLimitSeconds = resolveTimeLimitSeconds(paperData);
+  const baseQuestions = paperData ? [
+    ...(paperData.questions || []),
+    ...(paperData.programmingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
+    ...(paperData.codingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
+  ] : [];
+  const luogu = useLuoguPool(paperData?.level, Boolean(paperData) && needsSynthesizedCoding(baseQuestions));
+  const luoguPool = luogu.pool;
 
   // Reset on paperId change
   useEffect(() => {
@@ -95,32 +101,21 @@ const ExamPaper = () => {
     setMode(null);
   }, [paperId]);
 
-  // Timer
-  useEffect(() => {
-    if (isSubmitted || !paperData || mode !== 'exam') return;
-    const timer = setInterval(() => {
-      setTimeLeft(prev => prev <= 0 ? 0 : prev - 1);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [isSubmitted, paperData, mode]);
-
   // Persist exam progress so an accidental refresh / tab close doesn't wipe
-  // answers and the clock mid-paper. Only saves while actively in exam mode.
+  // answers and the clock mid-paper. Only saves while actively in exam mode,
+  // and only when something real changes (answers / question / submit) —
+  // the clock is a fixed endsAt timestamp, so there is nothing to save per second.
   useEffect(() => {
-    if (mode !== 'exam' || !paperData) return;
-    saveExamProgress(paperId, { answers, timeLeft, currentQuestionIndex, isSubmitted });
-  }, [mode, paperData, paperId, answers, timeLeft, currentQuestionIndex, isSubmitted]);
+    if (mode !== 'exam' || !paperData || !Number.isFinite(endsAt)) return;
+    saveExamProgress(paperId, { answers, endsAt, currentQuestionIndex, isSubmitted });
+  }, [mode, paperData, paperId, answers, endsAt, currentQuestionIndex, isSubmitted]);
 
   // ─── Derived Values ────────────────────────────────────────────────
 
   // 四到八级的卷文件没有内嵌上机编程题，而这部分占 GESP 总分一半。解析模式
   // 一直会从洛谷题池补齐第 26、27 题，考试模式却不会——同一张卷在两种模式下
   // 题数不同（25 vs 27），学生在考试模式练的是半张卷还看不出来。
-  const allQuestions = paperData ? withSynthesizedCoding([
-    ...(paperData.questions || []),
-    ...(paperData.programmingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
-    ...(paperData.codingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
-  ], { paperId, luoguPool }) : [];
+  const allQuestions = paperData ? withSynthesizedCoding(baseQuestions, { paperId, luoguPool }) : [];
   const questionCount = allQuestions.length;
 
   const currentQ = allQuestions[currentQuestionIndex] || allQuestions[0] || null;
@@ -138,12 +133,6 @@ const ExamPaper = () => {
     excludedObjectiveCount,
   } = scoreExam(allQuestions, answers);
 
-  const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  };
-
   // ─── Handlers ──────────────────────────────────────────────────────
 
   const handleOptionSelect = (qId, optionIdx) => {
@@ -158,15 +147,43 @@ const ExamPaper = () => {
 
   // 交卷即落盘一条成绩快照。ResultDialog 关掉之后，这是学生唯一能回看
   // 「这次考了多少、错在哪几题」的地方。
-  const handleSubmit = () => {
+  const handleSubmit = ({ auto = false } = {}) => {
+    if (isSubmitted) return;
+    const remaining = remainingSeconds(endsAt);
     recordExamAttempt(paperId, {
       questions: allQuestions,
       answers,
-      elapsedSeconds: (paperData?.timeLimit || 90 * 60) - timeLeft,
+      elapsedSeconds: Math.min(timeLimitSeconds, Math.max(0, timeLimitSeconds - remaining)),
     });
+    setSubmittedRemaining(remaining);
+    setAutoSubmitted(auto);
     setIsSubmitted(true);
     setShowResult(true);
     setShowSubmitConfirm(false);
+  };
+
+  // 计时到 0：自动交卷（与手动交卷走同一条路径，成绩照常记入错题本）。
+  const handleTimeUp = () => handleSubmit({ auto: true });
+
+  const startExam = ({ resume }) => {
+    if (resume) {
+      setAnswers(savedProgress.answers || {});
+      setCurrentQuestionIndex(savedProgress.currentQuestionIndex || 0);
+      setIsSubmitted(Boolean(savedProgress.isSubmitted));
+      // 兼容旧存档：只有 timeLeft 时按保存时的剩余秒数从现在起算。
+      setEndsAt(resolveEndsAt(savedProgress, timeLimitSeconds));
+    } else {
+      clearExamProgress(paperId);
+      setSavedProgress(null);
+      setAnswers({});
+      setIsSubmitted(false);
+      setCurrentQuestionIndex(0);
+      // 空存档 → 按整卷时长新开（now + timeLimit）。
+      setEndsAt(resolveEndsAt(null, timeLimitSeconds));
+    }
+    setSubmittedRemaining(null);
+    setAutoSubmitted(false);
+    setMode('exam');
   };
 
   // Navigation
@@ -189,7 +206,7 @@ const ExamPaper = () => {
 
   // ─── Loading / Error States ────────────────────────────────────────
 
-  if (loading) return <LoadingScreen message="正在加载试卷" variant="dark" />;
+  if (loading || (paperData && luogu.status === 'loading')) return <LoadingScreen message="正在加载试卷" variant="dark" />;
 
   if (error || !paperData) {
     return (
@@ -197,13 +214,24 @@ const ExamPaper = () => {
         <div className="text-center max-w-lg p-6">
           <AlertTriangle size={48} className="mx-auto text-red-400 mb-4" />
           <h2 className="text-xl font-bold text-slate-700">无法加载试卷</h2>
-          <p className="mb-4">{error || '未找到该试卷数据'}</p>
-          <div className="text-left bg-slate-100 p-4 rounded-lg text-xs font-mono mb-6 overflow-auto max-h-40">
-            <p><strong>Debug Info:</strong></p>
-            <p>Paper ID: {paperId}</p>
-            <p>Available: {paperMeta[paperId] ? 'Yes (in meta)' : 'No'}</p>
-          </div>
+          <p className="mb-6">{error ? '试卷暂时打不开，可能是网络不稳定或链接有误。请返回题库重新选择，或稍后再试。' : '未找到该试卷数据，请返回题库重新选择。'}</p>
           <button onClick={() => navigate('/question-bank')} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">返回题库</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (luogu.status === 'error') {
+    return (
+      <div className="mw-surface mw-line-bank min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+        <div className="text-center max-w-lg p-6" role="alert">
+          <AlertTriangle size={48} className="mx-auto text-amber-500 mb-4" />
+          <h2 className="text-xl font-bold text-slate-700">上机编程题加载失败</h2>
+          <p className="mb-6">这张卷的第 26、27 题（上机编程）题面没能加载出来，可能是网络不稳定。为了不让你只练半张卷，请重试一次。</p>
+          <div className="flex gap-3 justify-center">
+            <button onClick={luogu.retry} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">重新加载</button>
+            <button onClick={() => navigate('/question-bank')} className="px-6 py-2 bg-slate-200 text-slate-700 rounded-lg">返回题库</button>
+          </div>
         </div>
       </div>
     );
@@ -221,13 +249,7 @@ const ExamPaper = () => {
           </div>
           {hasResumableProgress(savedProgress) && (
             <button
-              onClick={() => {
-                setAnswers(savedProgress.answers || {});
-                setTimeLeft(typeof savedProgress.timeLeft === 'number' ? savedProgress.timeLeft : (paperData.timeLimit || 90 * 60));
-                setCurrentQuestionIndex(savedProgress.currentQuestionIndex || 0);
-                setIsSubmitted(Boolean(savedProgress.isSubmitted));
-                setMode('exam');
-              }}
+              onClick={() => startExam({ resume: true })}
               className="w-full mb-6 flex items-center justify-between gap-4 bg-amber-400/10 border border-amber-300/40 rounded-2xl p-5 text-left hover:bg-amber-400/20 transition-all group"
             >
               <div className="flex items-center gap-4">
@@ -236,21 +258,21 @@ const ExamPaper = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white">继续上次练习</h3>
-                  <p className="text-amber-100/80 text-sm">剩余 {formatTime(savedProgress.timeLeft || 0)} · 已答 {Object.keys(savedProgress.answers || {}).length} 题</p>
+                  <p className="text-amber-100/80 text-sm">剩余 {formatClock(progressRemainingSeconds(savedProgress, timeLimitSeconds))} · 已答 {Object.keys(savedProgress.answers || {}).length} 题</p>
                 </div>
               </div>
               <ChevronRight className="text-amber-200 group-hover:translate-x-1 transition-transform" size={22} />
             </button>
           )}
           <div className="grid md:grid-cols-2 gap-6">
-            <button onClick={() => { clearExamProgress(paperId); setSavedProgress(null); setAnswers({}); setIsSubmitted(false); setCurrentQuestionIndex(0); setTimeLeft(paperData.timeLimit || 90 * 60); setMode('exam'); }}
+            <button onClick={() => startExam({ resume: false })}
               className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-left hover:bg-white/20 hover:border-indigo-400 transition-all group">
               <div className="w-14 h-14 rounded-xl bg-indigo-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <FileText className="text-white" size={28} />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">考试模式</h3>
               <p className="text-indigo-200 text-sm leading-relaxed">计时整卷练习，客观题自动判分，编程题保留题面与手动完成标记。</p>
-              <div className="mt-4 flex items-center gap-2 text-indigo-300 text-xs"><Clock size={14} /> 90分钟计时</div>
+              <div className="mt-4 flex items-center gap-2 text-indigo-300 text-xs"><Clock size={14} /> {formatTimeLimitMinutes(timeLimitSeconds)}计时</div>
             </button>
             <button onClick={() => { setCurrentQuestionIndex(0); setMode('analysis'); }}
               className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-left hover:bg-white/20 hover:border-green-400 transition-all group">
@@ -273,7 +295,7 @@ const ExamPaper = () => {
   if (mode === 'analysis') {
     return (
       <Suspense fallback={<LoadingScreen message="正在加载解析" variant="dark" />}>
-        <EnhancedPaperPage />
+        <EnhancedPaperPage paperData={paperData} luoguPool={luoguPool} />
       </Suspense>
     );
   }
@@ -315,9 +337,7 @@ const ExamPaper = () => {
         <div className="flex shrink-0 items-center gap-2 md:gap-4">
           <span className="hidden md:inline-block px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">考试模式</span>
           <span className="hidden lg:inline text-xs text-slate-500">客观题自动判分，编程题需手动完成</span>
-          <div className={`flex items-center gap-1 md:gap-2 font-mono text-base md:text-xl font-bold ${timeLeft < 300 ? 'text-red-500 animate-pulse' : 'text-slate-700'}`}>
-            <Clock size={20} /> {formatTime(timeLeft)}
-          </div>
+          <ExamTimer endsAt={endsAt} frozenSeconds={isSubmitted ? (submittedRemaining ?? 0) : null} onExpire={handleTimeUp} />
           <button onClick={() => setShowSubmitConfirm(true)} disabled={isSubmitted}
             className={`min-h-11 whitespace-nowrap px-3 md:px-6 py-2 rounded-lg font-bold text-sm transition-all shadow-md ${isSubmitted ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-indigo-200'}`}>
             {isSubmitted ? '已交卷' : '现在交卷'}
@@ -372,7 +392,7 @@ const ExamPaper = () => {
           programmingMarkedCount={programmingMarkedCount}
           excludedObjectiveCount={excludedObjectiveCount}
           onCancel={() => setShowSubmitConfirm(false)}
-          onConfirm={handleSubmit}
+          onConfirm={() => handleSubmit()}
         />
       )}
 
@@ -380,7 +400,8 @@ const ExamPaper = () => {
         <ResultDialog
           objectiveScore={objectiveScore}
           objectiveScoreTotal={objectiveScoreTotal}
-          timeElapsed={(paperData?.timeLimit || 90 * 60) - timeLeft}
+          timeElapsed={timeLimitSeconds - (submittedRemaining ?? 0)}
+          autoSubmitted={autoSubmitted}
           objectiveCorrectCount={objectiveCorrectCount}
           objectiveWrongCount={objectiveWrongCount}
           programmingMarkedCount={programmingMarkedCount}

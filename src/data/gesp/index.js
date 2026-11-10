@@ -6,7 +6,17 @@
 // to regenerate after adding/removing paper files.
 
 import { paperIds as _paperIds, paperMeta as _paperMeta, loaders as _loaders } from './_generated.js';
-import { applyVerifiedQuestionCorrections } from './verifiedQuestionCorrections.js';
+
+// 勘误叠加层约 2,900 行、带顶层副作用无法摇树；只有真正取卷时才需要，
+// 所以按需加载，避免任何引用本模块的页面（题库列表等）被静态拖上它。
+let correctionsModulePromise = null;
+const loadCorrections = () => {
+  correctionsModulePromise ||= import('./verifiedQuestionCorrections.js').catch((error) => {
+    correctionsModulePromise = null;
+    throw error;
+  });
+  return correctionsModulePromise;
+};
 
 /**
  * Dynamic paper loader — only fetches the paper data when actually needed.
@@ -19,7 +29,8 @@ import { applyVerifiedQuestionCorrections } from './verifiedQuestionCorrections.
 export async function getPaper(paperId) {
   const loader = _loaders[paperId];
   if (!loader) return null;
-  const paper = applyVerifiedQuestionCorrections(await loader());
+  const [{ applyVerifiedQuestionCorrections }, rawPaper] = await Promise.all([loadCorrections(), loader()]);
+  const paper = applyVerifiedQuestionCorrections(rawPaper);
   const meta = _paperMeta[paperId] || {};
 
   return {

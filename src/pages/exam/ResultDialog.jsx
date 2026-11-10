@@ -16,6 +16,7 @@ const ResultDialog = ({
   onViewAnalysis,
   onBackToBank,
   onOpenReview,
+  autoSubmitted = false,
 }) => {
   const dialogRef = useDialogFocus(onViewAnalysis);
   const formatTime = (seconds) => {
@@ -32,7 +33,9 @@ const ResultDialog = ({
           <Trophy size={40} />
         </div>
         <h2 id="exam-result-title" className="text-2xl font-bold text-slate-800 mb-2">考试结束</h2>
-        <p className="text-slate-500 mb-6">已完成整卷练习，以下为客观题自动判分结果</p>
+        <p className="text-slate-500 mb-6">
+          {autoSubmitted ? '时间到，已自动交卷。' : '已完成整卷练习，'}以下为客观题自动判分结果
+        </p>
         <div className="text-6xl font-black text-indigo-600 mb-2 font-mono tracking-tighter">
           {objectiveScore} <span className="text-2xl text-slate-400 font-normal">/ {objectiveScoreTotal}</span>
         </div>

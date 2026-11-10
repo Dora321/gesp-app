@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2, NotebookPen } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
+import { formatTimeLimitMinutes } from '../utils/examTimer';
 import { DIMENSION_STATUS, VERIFICATION_DIMENSIONS, resolveVerification } from '../data/gesp/verificationModel';
 
 const levels = [
@@ -51,7 +52,7 @@ const QuestionBankHome = () => {
                     originalTitle: meta.title,
                     level: meta.level,
                     questions: questionCount,
-                    time: '90分钟',
+                    time: formatTimeLimitMinutes(meta.timeLimit),
                     year: meta.year,
                     month: meta.month,
                     isPlaceholder,

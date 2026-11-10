@@ -60,6 +60,7 @@ const entryKey = findKey(value => value.isEntry, 'entry');
 const mathKey = findKey(value => value.src === 'src/components/MathMarkdownContent.jsx', 'MathMarkdownContent');
 const museumKey = findKey(value => value.src === 'src/pages/ComputingMuseum.jsx', 'ComputingMuseum');
 const luoguKey = findKey(value => value.src === 'src/data/gesp/luoguCodingByLevel.js', 'luoguCodingByLevel');
+const homeKey = findKey(value => value.src === 'src/Home.jsx', 'Home');
 
 const entryAssets = collectStaticAssets(entryKey);
 const mathAssets = collectStaticAssets(mathKey);
@@ -75,6 +76,14 @@ const manifestJsAssets = new Set(
 // 这里按当前值留约 7% 余量，既能挡住上面那种量级的回归，又不会天天误报。
 // 首屏三块：vendor-react ~73KB gzip（不可再拆）、全局 CSS ~32KB、入口 ~11KB。
 assertBudget('Initial app graph', entryAssets, { raw: 570 * 1024, gzip: 124 * 1024 });
+
+// Home 是 lazy() 分块，不在入口静态图里，上面那条量不到它。首页真正首屏要下载的是
+// 「入口 + Home 分块及其静态依赖」：此前 ContinueLearning 为取卷名静态引入了
+// data/gesp/index，把整份注册表（每卷内联 verification JSON）和全部勘误一起拖进来，
+// 首页增量约 317KB raw / 66KB gzip（整图 852KB / 189KB），其中注册表分块独占 205KB。
+// 改用 _paperTitles 后整图约 656KB / 162KB；同上按约 7% 留余量。
+const homeAssets = collectStaticAssets(homeKey);
+assertBudget('Home route graph (entry + Home static deps)', new Set([...entryAssets, ...homeAssets]), { raw: 700 * 1024, gzip: 174 * 1024 });
 
 // The markdown/katex families must stay off the first-paint path and must not
 // grow unbounded. Measuring the shipped bytes directly (rather than the size of

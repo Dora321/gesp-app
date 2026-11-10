@@ -25,12 +25,13 @@ export default function useQuestionKeyboardNavigation({
             if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
             if (isEditableTarget(event.target)) return;
 
-            if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+            // 只用 ←/→ 翻题；↑/↓ 留给浏览器滚动，长代码题才能用键盘上下看。
+            if (event.key === 'ArrowLeft') {
                 event.preventDefault();
                 onPrevious();
             }
 
-            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+            if (event.key === 'ArrowRight') {
                 event.preventDefault();
                 onNext();
             }
