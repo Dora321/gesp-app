@@ -1,0 +1,238 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:08:13.835Z",
+  "completedAt": "2026-11-10T00:10:36.688Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51128,
+    "completion_tokens": 13109,
+    "total_tokens": 64237,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10362
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0142237,
+      "allowance": 0.0142237,
+      "tokens": {
+        "input": 51128,
+        "output": 13109,
+        "reasoning": 10362,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头印有“CCF 编程能力等级认证 / GESP / C++ 二级 / 2025 年 09 月”，与本卷 2025-09-l2（2025年9月 C++ 二级）一致；第1页单选题答案表含题号1-15，第6页判断题答案表含题号1-10，第8-10页含2道编程题，共27题，与网站结构一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页末题干“下面C++代码用于记录多个输入数中的最大数和最小数（输入 -999 则输入结束），相关说法错误的是（ ）”与网站一致；第4页代码 cin>>now_num、min_num=max_num=now_num、while(now_num!=-999) 内两个 if 更新、循环末 cin>>now_num、末行 cout<<min_num<<' '<<max_num 逐行与网站一致，未漏关键代码。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D四项（首数-999则输出-999 -999；首个数非-999且无-999时能求最大最小；考试成绩场景；将 cin >> now_num; 移动到 while (now_num != -999) { 下面结果不变）与网站逐项文本一致，顺序无变化。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题列为D（0起始索引3），网站 answer=3 一致。独立推导：问“错误”项——首数-999时初始化为-999且循环不执行，输出“-999 -999”，A为真；把读入移到循环体开头会跳过首个已初始化的有效数或先以未初始化值做判断，处理顺序改变，“结果不变”不成立，D为假，故选D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出本题求错误说法，说明初始化与“先处理后读入”的顺序不能移动、A输出正确、B/C依赖哨兵约定，为独立逻辑推导，与页图代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立对照第3/4页页图与第1页答案表核对题干、四个选项、答案D（索引3）及解析逻辑，均与网站一致，各维度维持 verified，不做任何修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干“输出与 5 有关数的数量……含有 5 或者能被 5 整除的数。相关说法正确的是”与网站一致；代码 cnt=0、for(i=1;i<1000;i++)、i%5==0 时 cnt+=1 并 continue、j=i、while(j>0) 中 j%10==5 计数并 break 否则 j/=10、末尾 cout<<cnt 逐行与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A（删除continue不影响结果）、B（删除 j=i 并把 while 内 j 改为 i）、C（break 修改为 j=0）、D（while(j>0) 修正为 while(j>=0)）与网站逐项一致，顺序无变化。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题列为C（0起始索引2），网站 answer=2 一致。独立推导：A错——如15既含5又能被5整除，删 continue 会重复计数；B错——在 while 内直接改 i 会破坏外层枚举；D错——j 减到 0 时 0>=0 成立且 0%10≠5、0/10=0，死循环；C对——找到含5数位后 break 立即退出内层 while，改为 j=0 后下一次条件 j>0 即不成立，同样退出且 for 体内其后无其他语句，计数不变。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐项给出A重复计数、B破坏枚举、D死循环及C等价退出的理由，属完整独立推导，与页图代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立代入 15、25 等算例并逐项推导 A-D，确认答案 C（索引2）以及解析无误，网站数据无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页底部10层图形（首行“请输入层数：10”，随后“         1”共9个空格起至“1234567891”共10个数字）与网站图形块逐字符一致；第5页代码 cout 请输入层数、cin>>N、K=1、外层 for(i=1;i<N+1;i++)、两个内层 for(int _=1; _<横线; _++)、K 回绕 if(K==10)K=1 及换行，逐行与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项A为 N-i+1 / i+1，B为 N-i / i，C为 N / i，D为 N-i / i+1，与网站四个选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题列为A（0起始索引0），网站 answer=0 一致。独立推导：第 i 行需 N-i 个空格和 i 个数字，循环变量自1且条件用“小于”，故 `_ < N-i+1` 执行 N-i 次、`_ < i+1` 执行 i 次；对照 N=10 图形第1行9空格、第10行10数字逐一吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按“第i行先输出N-i个空格再输出i个数字”推导并验证 K 到10回1的循环，与图形一致，推导充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立按循环次数计数并与10层图形逐行比对空格数与位数，确认答案 A（索引0）及解析正确，网站数据无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页代码 int a=9, b=27; a='a'+'b'; b='a'-'b'; a=a-b; cout << a << ' ' << b << endl; 逐行与网站一致，题干“下面C++代码执行，其输出是（ ）”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A为 196 -1、B为 27 9、C为 98 97、D为 不确定，与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题列为A（0起始索引0），网站 answer=0 一致。独立推导：按ASCII 'a'=97、'b'=98，a=97+98=195，b=97-98=-1，再 a=195-(-1)=196，输出“196 -1”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析明确按ASCII逐值计算并给出“196 -1”，含空格分隔的输出格式说明，推导独立且与选项映射一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立按字符编码完成三次赋值运算，确认输出与选项A（索引0）一致，网站数据无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第5页题干与网站一致（原卷“代码是实现”多一个“是”字属原卷笔误，网站规范为“代码实现”，含义不变）；代码跨第5-6页逐行与网站一致，包括首行“i int N, G, R;”。页图与文本层均确认首行多印字符“i”，该行不是合法C++声明，原卷程序无法通过编译。网站已逐字保留并标注 sourceIntegrity=official-source-defect 与 integrityNote，属官方源缺陷，保留争议待官方勘误，不按普通转录擅自修正。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A（必须同时修改 L1 和 L2）、B（必须同时修改 L3 和 L4）、C（必须同时修改 L3 和 L5）、D（其他说法都不对）与网站逐项一致，顺序无变化。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题列为D（0起始索引3），网站 answer=3 一致。按L1-L5意图独立推导：G3组4环、G4组3环、G6组2环，每9环36克为一个周期；(N-1)/9 与 (N-1)%9 正确，R=1..4 时前R环均3克，L3正确；R=5..7 应为 12+4(R-4)=4R-4，代码 4R 错，L4错；R=8 应为 12+12+6=30，代码 6*(8-1)=42 错，L5错。须同时修改 L4 与 L5，而A/B/C均不含该组合，故D成立；首行编译缺陷不改变选项逻辑结论。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析明确记录首行多余的“i”、给出9环36克周期及 L4 应为 4R-4、R=8 应为30 的推导，据此得出须同时改 L4、L5 而选D，与页图及我的独立推导一致，未把缺陷说成普通转录问题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第5页代码首行印为“i int N, G, R;”，页图与文本层一致，无法编译；网站已标注 sourceIntegrity=official-source-defect，保留待官方勘误或编者按，本复核不修改 sourceIntegrity 与题面。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核：答案D的 L1-L5 逻辑推导我已独立复核确认，选项与解析核验通过；但题面 statement 因官方源缺陷（首行多余“i”）维持 unresolved，争议保留，其余不改动题面与 sourceIntegrity 的处理正确。"
+      }
+    ],
+    "summary": "本批复核题号11-15，均为单选题，共5题。11-14题的题面、代码、选项与第1页答案表（11题D、12题C、13题A、14题A）及解析逻辑经页图逐项独立核验全部一致，五维（statement/options/answer/explanation均verified，referenceCode不适用）通过，无需任何字段修改。15题答案D（索引3）经L1-L5独立推导确认（L4应为4R-4、R=8应为30，须同时改L4与L5，故D），其options/answer/explanation核验通过，但statement维度因原卷第5页首行“i int N, G, R;”的官方源缺陷（程序不可编译）维持unresolved，网站sourceIntegrity=official-source-defect标注保留。初核草稿的全部结论经独立重验后均予接受，无否决项，无changes。"
+  }
+}

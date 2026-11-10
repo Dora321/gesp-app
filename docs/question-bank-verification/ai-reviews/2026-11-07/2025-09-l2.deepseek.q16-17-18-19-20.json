@@ -1,0 +1,225 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:10:36.692Z",
+  "completedAt": "2026-11-10T00:12:17.307Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32912,
+    "completion_tokens": 12408,
+    "total_tokens": 45320,
+    "prompt_tokens_details": {
+      "cached_tokens": 32768
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10943
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0075647,
+      "allowance": 0.00453882,
+      "tokens": {
+        "input": 144,
+        "output": 12408,
+        "reasoning": 10943,
+        "cache_read": 32768,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头可见 CCF 编程能力等级认证 GESP、C++ 二级、2025 年 09 月，与 paperId 2025-09-l2 的年份、月份、二级相符。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文与网站题干一致：调试时修改源程序需终止调试、关闭该文件并重新打开才能再次调试，句末判断括号完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选的 options；PDF 只要求判断正误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 1 格为红叉；按正确=0、错误=1，officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立指出修改源程序后停止调试、重新编译即可，无需关闭文件再重开，因此题干错误；与官方红叉相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题原文与网站题干一致，包含 N/100、N=1234 输出 12、N<100 时值为 0 的表述。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选的 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 2 格为红勾；按正确=0、错误=1，officialAnswer=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据 C++ 整数除法截断规则解释 1234/100=12，且正整数 N<100 时 N/100=0，推导独立且符合官方正确判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题题干和代码一致，代码为 a=5; cout << (a < 10 and 20);，网站转录无遗漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选的 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 格为红叉；按正确=0、错误=1，officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确识别 and 等价于 &&、< 优先级更高，表达式为 (a<10)&&20，实际输出 1；同时指出题干没有比较 a<20，因果说明不成立，故按原卷整句判错。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第 6 页判断题第 4 题代码与网站一致，首行为 x, y, z = 5, 10, 15;，但按 C++ 逗号运算符只将 5 赋给 z，x、y 在本片段中未初始化，不能保证执行结果；属于原卷自身缺陷，保留争议。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选的 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 格为红勾；按正确=0、错误=1，officialAnswer=0，与网站 answer=0 一致；此结论仅确认答案映射，不表示缺陷代码可直接推出该结果。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按原卷意图补出 x=5、y=10、z=15 并计算 5<10<15 得 1，同时明确指出首行逗号赋值缺陷及正确写法，未掩盖原卷问题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 4 题代码首行逗号赋值缺陷，x、y 未初始化；保留 sourceIntegrity=official-source-defect，待终审决定是否按原题保留。"
+        ]
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题题干与代码一致，含 int score;、cin >> score;、score>=60 输出及格。网站转录与页图相符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选的 options。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 5 格为红勾；按正确=0、错误=1，officialAnswer=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 int 读取 99.99 时先成功读入 99，小数点及后续内容留在缓冲区，99>=60 输出及格，符合 C++ 格式化输入行为。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批只核验 16-20 题。PDF 第 6 页判断题答案表 1-5 依次为 ×、√、×、√、√，对应错误=1、正确=0 后与网站 answer 1、0、1、0、0 完全一致。题 16、17、18、20 的题面、答案和解析均可核；题 19 因原卷第 4 题首行逗号赋值缺陷且 x、y 未初始化，保留 unresolved，不作擅自改写。本批未提出 changes，5 题均非编程题，tests 为空。"
+  }
+}

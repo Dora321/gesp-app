@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:12:17.374Z",
+  "completedAt": "2026-11-10T00:14:28.775Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50987,
+    "completion_tokens": 11003,
+    "total_tokens": 61990,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8782
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01314955,
+      "allowance": 0.01314955,
+      "tokens": {
+        "input": 50987,
+        "output": 11003,
+        "reasoning": 8782,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头图为 CCF 编程能力等级认证 GESP、『C++ 二级』、『2025 年 09 月』，与 2025-09-l2（2025 年 9 月、二级）一致；第 1 页单选答案表 D C C D D A D B D A D C A A D 与网站 15 道单选题答案（0 起始 3,2,2,3,3,0,3,1,3,0,3,2,0,0,3）逐项吻合，第 6 页判断题答案表红色标记亦与网站判断题答案全部对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题题干『在集成开发环境里调试程序时，要注意不能修改源程序，因为如果修改，就要终止调试、关闭该文件并重新打开，才能再次开始调试。（ ）』与网站转录逐字一致（文本层缺失的『里''止''文』等字在页图中完整可见）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度，原卷仅有判断括号。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 1 格为红色 ×（矢量标记逐格读取），按错误=1 得 officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：修改源程序后只需停止调试、重新编译并重启调试，无需关闭文件重开，故『必须关闭该文件并重新打开』的限制不成立，整句判错与官方 × 一致；解析同时给出正确操作步骤，无编造内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表第 1 格 × 读取一致，题面转录一致，解析独立成立。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题原文含『假设N为正整数且大于100，则 N / 100 将舍弃个位和十位，如N为1234则 cout << (N / 100) 将输出 12。如果N小于100，则其值为 0。（ ）』，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 2 格为红色 √，按正确=0 得 officialAnswer=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：两个整型操作数相除为整数除法、向零截断，1234/100=12（丢弃小数部分 .34）；正整数 N 在 1..99 时 N/100 的整数部分为 0。解析对以上两点及 / 与 %、整除与浮点除差异的提醒均无技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：解析推导完整，题面与答案映射核验通过，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题题干『下列C++代码执行后将输出 1，因为 a 确实小于 20 和 10。（ ）』及代码 `a = 5;`、`cout << (a < 10 and 20);` 与网站转录逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 格为红色 ×，按错误=1 得 officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：`and` 即 `&&`，且 `<` 优先级高于 `and`，表达式为 `(a<10) && 20`；a=5 时左侧为真、20 非零为真，实际输出确为 1。官方按『因为 a 确实小于 20 和 10』这一错误因果把整句判为错误，网站解析如实说明输出值与官方判错理由两者并存，未掩盖歧义也未编造运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：解析透明处理了『输出确为 1』与官方『整句判错』的关系，答案映射与页图标记得一致，不需要改动。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题题干及代码 `x, y, z = 5, 10, 15;`、`result = x < y < z;`、`cout << result;` 与网站转录逐字一致；网站如实保留原卷原样（含缺陷写法），且有 sourceIntegrity=official-source-defect 记录，转录本身无增删改。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 格为红色 √，按正确=0 得 officialAnswer=0，与网站 answer=0 一致；此结论仅确认答案表映射，不表示缺陷代码可直接推出该结果。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按命题意图 x=5,y=10,z=15 时链式比较 `x < y < z` 先得 5<10 为 1，再 1<15 为真，输出 1，与官方 √ 相符；解析同时明确指出按 C++ 逗号运算符规则首行只会给 z 赋值、x/y 未初始化，保留原卷答案并给出规范写法，处理透明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 4 题首行 `x, y, z = 5, 10, 15;` 按逗号运算符规则只会给 z 赋值、x 与 y 未初始化，题面代码不以严格语义推出输出 1；属原卷自身缺陷，网站 sourceIntegrity=official-source-defect 与不计分说明已保留争议，是否维持现处理方式交终审裁定。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "部分接受初核：初核将 statement 判为 unresolved 过于保守——转录与原卷逐字一致，缺陷属于原卷自身且已被 integrityNote 与解析透明记录，故我将 statement 改判 verified；但鉴于 sourceIntegrity 缺陷无充分修复方式，题目整体保留 unresolved，不擅自定案。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题题干『下面C++代码执行时如输入 99.99，将输出 及格 两个汉字。（ ）』及代码 `int score;`、提示语、`cin >> score;`、`if (score >= 60) printf(\"及格\"); else printf(\"不及格\");` 与网站转录逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 5 格为红色 √，按正确=0 得 officialAnswer=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：`cin >>` 向 int 读入 \"99.99\" 时解析到小数点前停止，score 得 99，\".99\" 留在输入缓冲区；99>=60 成立，进入第一分支输出『及格』。解析与 C++ 格式化输入实际行为一致，未编造运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、答案表读数与解析均核验通过，无需修改。"
+      }
+    ],
+    "summary": "本批仅复核第 6 页判断题第 1–5 题（网站 id 16–20）。逐格读取第 6 页红色矢量答案标记为 ×、√、×、√、√（第 6–10 格 ×、√、√、√、× 与网站后续题目一致，佐证读表方式可靠），映射 officialAnswer 依次为 1、0、1、0、0，与网站 answer 完全一致。五题题面与代码转录均与页图逐字相符；解析均经独立推导，未发现技术错误或编造运行结果。题 19 因原卷首行逗号赋值缺陷维持争议：statement/answer/explanation 各维核验通过，但保留 unresolved 与 sourceIntegrity，不擅自定案；题 16、17、18、20 判 approve。全批无 changes、无编程题故 tests 均为空。"
+  }
+}

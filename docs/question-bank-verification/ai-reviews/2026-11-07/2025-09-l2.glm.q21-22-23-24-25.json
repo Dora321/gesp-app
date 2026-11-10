@@ -1,0 +1,233 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:16:20.440Z",
+  "completedAt": "2026-11-10T00:19:20.584Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51148,
+    "completion_tokens": 16000,
+    "total_tokens": 67148,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13288
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0156722,
+      "allowance": 0.0156722,
+      "tokens": {
+        "input": 51148,
+        "output": 16000,
+        "reasoning": 13288,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头依次为『CCF GESP / CCF 编程能力等级认证』『C++ 二级』『2025 年 09 月』，与 2025-09-l2 的年份、月份、级别一致；单选 15 题+判断 10 题+编程 2 题的结构与该照二级卷相符。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 6 题：『执行下面的C++代码时输入 123 ，则输出是 DCB 。( )』，代码 int a; / cin >> a; / while(a){ / cout << 'A'+a%10; / a /= 10; / } 与网站逐行一致，第 6 页图可见。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷判断题为（ ）填空并按 √/× 记分，页图未见 A/B 选项；网站统一以『正确、错误』两项按 0/1 映射转录，顺序与官方符号约定一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案行『答案』红标第 6 格为 ×（错误），officialAnswer=1，网站 answer=1 一致。独立推演：'A'=65，'A'+a%10 为 int 表达式，依次输出 68、67、66，连写为 686766≠DCB，陈述为假，语义与 × 完全吻合，官方表格无冲突。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出字符常量参与加法发生整型提升、逐得 68/67/66、实际输出 686766，并给出 cout << char('A'+a%10) 的修正写法；与本次独立推导（65+3、65+2、65+1）一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决 DeepSeek 初核。初核将第 6 格红标读成 √ 并设 officialAnswer=0、留 unresolved，属对第 6 页红色标记的误读，且其 sourcePages 写作 [7] 有误（判断第 6 题在第 6 页）。支持第 6 格为 × 的独立证据有三重：①代码语义明确为假（输出 686766 而非 DCB）；②本题考点即 'A'+a%10 的整型陷阱，官方命题意图必为『错误』；③网站整行标记 ×√×√√×√√√× 与代码推演逐位吻合（10/10），若第 6、7 格为 √× 则两格同时违背语义。网站 answer=1 与官方标记一致，保留原值，答案维度恢复 verified。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 7 题：『下面的C++代码执行后将输出 +#+#3# 』，代码 int i; / for (i = 0; i < 3; i++){ / if (i == 2) / continue; / printf(\"+#\"); / } / cout << i << '#'; 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题按原卷（ ）填空、√/× 记分；网站『正确、错误』两项的 0/1 映射与符号约定一致，第 7 页图核对无误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案行红标第 7 格为 √（正确），officialAnswer=0，网站 answer=0 一致。独立推演：i=0、1 各输出一次 +#；i=2 时 continue 跳过输出，但 for 的 i++ 仍执行，循环结束 i=3，再输出 3#，合计 '+#+#3#'，陈述为真，与 √ 吻合，官方表格无冲突。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析准确指出 continue 不影响 for 自增、终值 i=3、i=2 时跳过一次 +#，与本次独立推演一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决 DeepSeek 初核。初核将第 7 格红标读成 ×、设 officialAnswer=1 并留 unresolved，同样属红标误读。独立证据三重：①代码语义明确为真（实际输出恰为 '+#+#3#'）；②考点为 continue 后 for 仍执行 i++，官方设计意图必为『正确』；③第 6 页整行标记 ×√×√√×√√√× 与逐题语义 10/10 吻合，初核的 6/7 两格读法会使两题同时与代码语义相反。网站 answer=0 与官方标记一致，保留原值并通过核验。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 8 题题干（第 1 个数 0、第 2 个数 1、其后为前两数之和，输入大于 1 的正整数）与代码 cin >> n; / a = 0, b = 1; / for (int j = 0; j < n; j++){ / cout << a << \" \"; / b = b + a; / a = b - a; / } 与网站页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题按（ ）填空、√/× 记分；网站『正确、错误』顺序与 0/1 映射约定一致，页图核对无误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案行红标第 8 格为 √，officialAnswer=0，网站 answer=0 一致。独立推演：二元组 (a,b) 依次 (0,1)→(1,1)→(1,2)→(2,3)→(3,5)，每轮先输出 a，n 次输出 0 1 1 2 …，恰为前 n 项斐波那契，『能实现』成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析的新 b=旧a+旧b、新 a=旧b 推导与本次独立复推一致，信任。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其 officialAnswer=0、推演链条与本页红标（第 8 格 √）一致；本次并独立复推 (0,1)→(1,1)→(1,2)→(2,3) 的更新关系予以确认，未发现需修改字段。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 9 题的目标矩阵（100000000…000000009）、含 continue 后不可达的 cout << 0; // L1、// L2 注记位及 printf(\"\\n\") 的完整代码与网站页图逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题按（ ）填空、√/× 记分；网站『正确、错误』顺序与 0/1 映射约定一致，页图核对无误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案行红标第 9 格为 √，officialAnswer=0，网站 answer=0 一致。独立推演：原 cout<<0 在 continue 后不可达，非对角无输出，不能得到目标矩阵；移至 L2 位（if 块之后）后对角位置先输出 i+1 且被 continue 跳过 0，非对角输出 0，每行为 1..9 位上恰一个对角数字，复现目标矩阵，表述为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析对 L1 不可达、移至 L2 后对角/非对角输出行为的说明与本次独立推演一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其 officialAnswer=0 与可达性推演（continue 后 L1 不可达、移 L2 可行）与原卷第 9 格 √ 红标一致；本次独立复推非对角补 0 的行为后确认，无字段修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页末判断第 10 题：『C++代码 cout << ('5'+4); 执行后的输出为 9 。( )』与网站转录一致，页图核对无误。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题按（ ）填空、√/× 记分；网站『正确、错误』顺序与 0/1 映射约定一致，页图核对无误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页答案行红标第 10 格为 ×，officialAnswer=1，网站 answer=1 一致。独立推导：'5' 为 char，ASCII 码 53，加法中提升为 int，53+4=57，输出 57 而非 9，表述为假，与 × 吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出 53+4=57 及 '5'-'0'+4 的修正写法，与本次独立推导一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其 officialAnswer=1、语义判断（57≠9）与原卷第 10 格 × 红标及网站答案一致；本次独立按 ASCII 推得 57 后确认，无字段修改。"
+      }
+    ],
+    "summary": "本部分核验对象为网站 ID 21–25（原卷判断第 6–10 题）。题面、代码（含 L1/L2 标记）逐一对照第 6、7 页页图一致，五条解析均经独立重新推导成立。关键结论：第 6 页判断题答案行红色标记自左至右为 ×√×√√×√√√×，与逐题代码语义（调试可改源程序为假、N/100 为真、and 理由错为假、连续赋值输出 1 为真、整型读 99.99 得 99 为真、'A'+a%10 输出 686766 为假、'+#+#3#' 为真、斐波那契可实现为真、移 L2 可行、57≠9 为假）10/10 逐位吻合，构成对第 6、7 格判读的强佐证。DeepSeek 初核将 ID 21、22 对应的官方标记误读为 √、× 且留 unresolved，其读法会使两题同时与代码语义相反并违背命题意图，予以否决；网站 ID 21 answer=1、ID 22 answer=0 与官方标记吻合，答案维度经核验恢复 verified，其余 ID 23–25 初核结论与网站数据一致并复核通过。五题声明、选项、答案、解析均为 verified（编程参考代码与 tests 不适用），无任何字段需改动，changes 全部为空。"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T23:49:58.777Z",
+  "completedAt": "2026-11-09T23:50:40.126Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32912,
+    "completion_tokens": 5082,
+    "total_tokens": 37994,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3647
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.007986,
+      "allowance": 0.0047916,
+      "tokens": {
+        "input": 32912,
+        "output": 5082,
+        "reasoning": 3647,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“CCF GESP 编程能力等级认证”“C++ 二级”“2025 年 09 月”，与 2025-09-l2 的年份、月份、级别一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题原文与站点题干一致，均为询问“大模型”最贴切的含义，无缺行或语义改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A-D 依次为“大电脑模型”“大规模智能”“智能的单位”“大语言模型”，与站点 options 的文本和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题答案为 D；按 0 起始索引为 3，与站点 answer 及 officialAnswer 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明“大模型”在此语境对应大语言模型，并逐项排除 A-C，结论与官方答案 D 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题原文“在TCP协议中，完成连接建立需要通过（ ）握手。”与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A-D 为“一次”“二次”“三次”“四次”，与站点 options 文本和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题答案为 C；按 0 起始索引为 2，与站点 answer 及 officialAnswer 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 TCP 建立连接采用三次握手，并区分断开连接的四次挥手，推导结论 C 成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题题干及代码 `string XingMing; ... cout << XingMing;` 与站点题干、代码一致，考查变量命名规则。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A-D 依次为“XingMing 是汉语拼音，不能作为变量名称”“可以将 XingMing 改为 Xing Ming”“可以将 XingMing 改为 xingming”“可以将 XingMing 改为 Xing-Ming”，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题答案为 C；按 0 起始索引为 2，与站点 answer 及 officialAnswer 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确依据标识符只能含字母、数字、下划线且不能含空格或减号，判定 xingming 合法，并排除 A、B、D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干与第 2 页代码均与站点一致，包括 `div` 初始化为 1、循环执行 `M-1` 次以及横线处的取位要求。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A-D 为 `N % div / 10`、`N / div / 10`、`N % div % 10`、`N / div % 10`，与站点 options 文本和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题答案为 D；按 0 起始索引为 3，与站点 answer 及 officialAnswer 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导：先用 `N / div` 去掉右侧低位，再用 `% 10` 取出目标数位；并用 M=1、M=2 及 1234 的例子验证 D，排除 A-C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题代码为 `a, b = 3, 4; c = a == b; cout << a << ' ' << b << ' ' << c;`，与站点代码和题干一致；原卷片段未显示变量声明。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A-D 为“3 4 0”“3 3 3”“4 4 4”“以上都不对”，与站点 options 文本和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题答案为 D；按 0 起始索引为 3，与站点 answer 及 officialAnswer 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按逗号运算符说明第一行只会把 3 赋给 b，a 未获得 4；比较结果只能是 0 或 1，因此 B、C 不可能，A 的 b=4 也不成立，结论 D 与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅初核题号 1-5。卷头身份匹配 2025 年 9 月 C++ 二级；五题的题干、选项、答案表映射和解析均与 PDF 页图一致，officialAnswer 分别为 3、2、2、3、3，无需要提交的字段修改，无未决项。五题均为单选题，referenceCode 不适用，tests 为空。"
+  }
+}

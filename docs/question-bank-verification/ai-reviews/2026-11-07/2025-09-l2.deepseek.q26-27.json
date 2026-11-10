@@ -1,0 +1,164 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:19:20.590Z",
+  "completedAt": "2026-11-10T00:21:26.737Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32906,
+    "completion_tokens": 15964,
+    "total_tokens": 48870,
+    "prompt_tokens_details": {
+      "cached_tokens": 32768
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14484
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0096974,
+      "allowance": 0.00581844,
+      "tokens": {
+        "input": 138,
+        "output": 15964,
+        "reasoning": 14484,
+        "cache_read": 32768,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 / C++ 二级 / 2025 年 09 月”，与 paperId 2025-09-l2 对应；卷末含两道编程题，题号 26、27。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页题目描述、输入/输出格式、样例1（6→6）、样例2（2025→28）及数据范围1≤n≤2025均与当前题面一致；无缺失代码或图示。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按数位分类推导：一位数9个，两位数9个，三位数9个；四位数中不超过2025的优美数仅有1111，共9+9+9+1=28。参考程序通过v=i%10记录个位、再用t逐位比较，算法与解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第8-9页参考程序与当前代码逐行一致：i从1到n，v=i%10，t=i/10，while(t)检查各数位，chk标记后累加ans，最后输出ans；n≤2025，int足够且复杂度为O(n log n)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值",
+            "input": "1\n",
+            "output": "1\n",
+            "reason": "1是唯一的正整数，且一位数1的所有数位相同，计数为1。"
+          },
+          {
+            "name": "一位到两位边界",
+            "input": "10\n",
+            "output": "9\n",
+            "reason": "1至9均优美；10的数位不同，因此不超过10的优美数仍为9个。"
+          },
+          {
+            "name": "四位数开始前的边界",
+            "input": "1110\n",
+            "output": "27\n",
+            "reason": "一至三位优美数共9+9+9=27个；1111大于1110，尚未计入。"
+          },
+          {
+            "name": "题目上界",
+            "input": "2025\n",
+            "output": "28\n",
+            "reason": "在27个一至三位优美数基础上，四位数中仅1111不超过2025，故总数为28。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9-10页题面、n行n列空心菱形描述、5×5示例、样例1（n=3）、样例2（n=9）以及数据范围3≤n≤29且n为奇数均与当前题面一致；字符#和.无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按中心坐标与曼哈顿距离推导：k=n/2，中心为(k+1,k+1)，边界满足abs(k-i+1)+abs(k-j+1)==k；该条件在n=3、n=5、n=9时均能生成空心菱形。n≤29，双重循环O(n²)，与参考程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第10页参考程序与当前代码逐行一致：k=n/2，i、j均从1到n遍历，距离等于k时输出#，否则输出.，每行结束换行；n≤29无溢出，复杂度O(n²)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小合法尺寸",
+            "input": "3\n",
+            "output": ".#.\n#.#\n.#.\n",
+            "reason": "n=3为最小合法奇数，中心为第2行第2列，四条边形成样例菱形。"
+          },
+          {
+            "name": "最大尺寸边界",
+            "input": "29\n",
+            "output": "..............#..............\n.............#.#.............\n............#...#............\n...........#.....#...........\n..........#.......#..........\n.........#.........#.........\n........#...........#........\n.......#.............#.......\n......#...............#......\n.....#.................#.....\n....#...................#....\n...#.....................#...\n..#.......................#..\n.#.........................#.\n#...........................#\n.#.........................#.\n..#.......................#..\n...#.....................#...\n....#...................#....\n.....#.................#.....\n......#...............#......\n.......#.............#.......\n........#...........#........\n.........#.........#.........\n..........#.......#..........\n...........#.....#...........\n............#...#............\n.............#.#.............\n..............#..............\n",
+            "reason": "n=29为最大合法奇数，按中心第15行第15列及曼哈顿距离14判定，验证最左/最右顶点和逐行对称的空心边界。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验第26、27题。两题题面、样例、数据范围和参考程序均与PDF页图逐项一致；参考算法正确，已补充最小值、边界及最大尺寸测试；未发现需要修改的字段，changes均为空。"
+  }
+}

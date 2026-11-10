@@ -1,0 +1,226 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T23:59:48.874Z",
+  "completedAt": "2026-11-10T00:00:59.955Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32981,
+    "completion_tokens": 8745,
+    "total_tokens": 41726,
+    "prompt_tokens_details": {
+      "cached_tokens": 32896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7079
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00535844,
+      "allowance": 0.00321506,
+      "tokens": {
+        "input": 85,
+        "output": 8745,
+        "reasoning": 7079,
+        "cache_read": 32896,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证 C++ 二级、2025 年 09 月；第1页单选题答案表题6-10依次为 A、D、B、D、A，对应0基索引为 0、3、1、3、0，与网站题号及 officialAnswer 映射一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页题干、编号示例及 part1/part2 两处取模代码与网站一致；但原卷以第1个编号为 00-0，与代码直接使用 N%12、N%10 在 N=1 时得到 01-1 相矛盾，网站已用 sourceIntegrity 和 integrityNote 标注该官方源缺陷。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项依次为 A 12 10、B 10 10、C 11 9、D 9 9，网站选项顺序和文本一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "第1页答案表第6题为 A，网站 answer=0 与答案表一致；但题干要求第1个编号为 00-0，而 N%12、N%10 在 N=1 时得到 01-1，代码缺少 N-1 的基准转换，官方源缺陷使该答案的语义存在争议。"
+          },
+          "explanation": {
+            "status": "unresolved",
+            "evidence": "网站解析已指出 N=1 与 (N-1) 的差异，但仍按 12、10 直接判 A；该解析能说明循环周期除数，不能消除整段程序的序号基准矛盾，故保留争议。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第6题以第1个编号 00-0 给出，但代码 N%12/N%10 对 N=1 输出 01-1；sourceIntegrity 已标 official-source-defect，未擅自改题或定案。"
+        ]
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2-3页代码为 cnt=0、外层 i 从 -10 到 9、内层 j 从 0 到 i-1 且 cnt+=1，网站题面代码与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项依次为 A 145、B 125、C 55、D 45，网站顺序和数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题为 D，网站 answer=3，0基映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i<=0 时内层不执行；i=1..9 内层分别执行 1..9 次，合计 45，故输出 45，与 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码的 for(i=1;i<12;i++)、偶数 continue、内层 for(j=0;j<i;j++) 与 if(i*j%2) break，以及外层结束后 if(i>=12) 输出 i*j，均与网站转录一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项依次为 A 110、B 12、C 不确定、D 无输出，网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为 B，网站 answer=1，0基映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：偶数 i 被 continue；奇数 i 的内层循环最终留下 j=1，最后一次处理 i=11，循环结束后 i=12、j=1，输出 12*1=12，与 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码 cin>>a>>b、while(b!=0) 中先 remainder=a%b，再 a=b、b=remainder，最后输出 a，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页四个选项关于 b=0、a 与 b 大小、正整数限制及 a=0 时输出绝对值的内容与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为 D，网站 answer=3，0基映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：b=0 时循环跳过，不会执行 a%b；a=0 且 b!=0 时首轮 remainder=0，随后 a=原 b、b=0，输出原 b，其绝对值为 abs(b)；b=0 时输出 0=abs(0)。A、B、C 均不成立，D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码 num=0、while(num<=5)、num+=1、num==3 时 continue、随后 printf(\"%d#\",num)，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项分别为 A 1#2#4#5#6#、B 1#2#4#5#6、C 1#2#3#4#5#6#、D 1#2#3#4#5#6，网站顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题为 A，网站 answer=0，0基映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：num 依次变为 1、2、3、4、5、6；3 被 continue 跳过输出，6 在条件变为 6 之前已输出，因此完整输出为 1#2#4#5#6#，与 A 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第6-10题。第7-10题题干、选项、答案表映射、解析均与 PDF 页图及独立推导一致；第6题转录与答案表 A（0基0）一致，但题干以第1个编号 00-0 起始，而代码 N%12/N%10 在 N=1 时得到 01-1，存在官方源卷内部矛盾，网站已标 official-source-defect，保留争议且不建议计分。未对任何题提交 changes。"
+  }
+}

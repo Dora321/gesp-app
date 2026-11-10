@@ -1,0 +1,236 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:00:59.959Z",
+  "completedAt": "2026-11-10T00:04:28.698Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51156,
+    "completion_tokens": 19203,
+    "total_tokens": 70359,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16616
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0172749,
+      "allowance": 0.0172749,
+      "tokens": {
+        "input": 51156,
+        "output": 19203,
+        "reasoning": 16616,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6fe5f7e382bec2f304402214be6fd74a01cadfd4665cc6ff6da3a4618df026d4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为『CCF 编程能力等级认证 GESP C++ 二级 2025 年 09 月』，与网站 title/level/year/month 一致；第1页单选题答案表题 1-15 依次为 D C C D D A D B D A D C A A D，其中第 6-10 题为 A、D、B、D、A，对应 0 基索引 0、3、1、3、0，与各题 officialAnswer 一致。本次仅复核第 6-10 题。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页页图第6题题干（XX 从 00 到 11、Y 从 0 到 9；第1个编号 00-0、第2个 01-1、第12个 11-1、第13个 00-2）与代码（cout 请输入编号位置、part1=N%____、part2=N%____、part1<10 时 printf(\"0%d-%d\\n\") 补零分支）逐行一致；原卷示例以 (N-1) 为序号基准而代码直接用 N 取模，该内部矛盾属官方源卷自身缺陷，网站如实转录并以 sourceIntegrity=official-source-defect 保留，未改动题面。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图选项依次为 A 12 10、B 10 10、C 11 9、D 9 9，与网站选项顺序、数值完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第6题为 A，网站 answer=0 映射正确；四个选项均为取模数对，XX 周期 12、Y 周期 10 时 (12,10) 是唯一合理填空，即使改用 (N-1)%12/(N-1)%10 也不改变所选除数，故官方答案 A 不受序号基准缺陷影响；该源级缺陷已由 integrityNote 标注并不计分，本复核保留争议、不改判为其他选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：N%12 取值 0~11 共 12 种覆盖 XX 全部编号，N%10 取值 0~9 共 10 种覆盖 Y；B(10,10) 生成不了 10、11，C(11,9)、D(9,9) 把最大值误当周期长度，均错。网站解析推导与此一致，并在『易错提醒』中明确披露严格对应需 (N-1)%12/(N-1)%10，未掩盖源缺陷，作为对官方答案 A 的解释是准确完整的。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方源卷第6题自相矛盾：题干示例第1个编号为 00-0，但代码 N%12/N%10 在输入 1 时输出 01-1（缺少 N-1 基准转换），整段程序无法复现题干示例；网站已标 official-source-defect 并注明本题不计分，本复核保留该争议，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核主体处理：不修改题面与官方答案、以 sourceIntegrity 保留源缺陷及不计分判断均经独立确认；但否决其把 answer、explanation 记为 unresolved 的结论——answer 与第1页答案表 A 的映射、解析对 (12,10) 的推导均可由页图独立证实且已披露 (N-1) 差异，源级矛盾单独保留在 unresolved 与 sourceIntegrity 中。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页末至第3页代码（cnt=0；for(int i=-10;i<10;i++) 内层 for(int j=0;j<i;j++) cnt+=1；cout<<cnt）与网站逐行一致，原卷 'j =0' 的异常空格亦原样保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页末 A.145 与第3页 B.125、C.55、D.45 与网站选项顺序及数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题为 D，网站 answer=3（D/45）映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i≤0 时内层条件 j<i 首次即假，执行 0 次；i=1..9 时内层分别执行 1..9 次，合计 1+2+…+9=45；外层条件 i<10，i=10 不进入。输出 45，与网站解析及选项 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立推导输出 45，与页图代码、答案表 D 及网站解析三方一致，无修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码 for(i=1;i<12;i++)、i%2==0 时 continue、内层 for(j=0;j<i;j++) 中 if(i*j%2) break、循环后 if(i>=12) cout<<(i*j) 与网站一致（原卷内层行多缩进属纯排版差异，不影响语义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项依次为 A 110、B 12、C 不确定、D 无输出，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为 B，网站 answer=1（B/12）映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立状态跟踪：偶数 i 被 continue 跳过；奇数 i 轮内层 j=0 时 i*0=0 为偶数不退出，j=1 时 i*1 为奇数即 break，故每个奇数轮结束 j=1；最后一个奇数 i=11，循环退出后 i=12、j=1，if 成立输出 12*1=12；且 j 自 i=1（奇数）起即被赋值，结果确定为 12 而非『不确定』。与网站解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立跟踪循环终态 i=12、j=1 得输出 12，与答案表 B 一致，无修改。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码 cin>>a>>b、while(b!=0) 中 remainder=a%b、a=b、b=remainder 的辗转相除结构及 cout<<a 与网站逐行一致，题干『变量都是整型』亦在。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页四个选项（b 不能为 0 因 a%b 出错；a 必须小于 b；a、b 都须为正整数；a 输入 0 时输出绝对值都是 abs(b)）与网站文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为 D，网站 answer=3 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：a%0 不会被执行，因循环条件 b!=0 先行拦截，b=0 时循环直接跳过，A 错；整数取模不要求 a<b（如 a=10,b=3 得余 1），B 错；C++ 负整数取模有明确定义不出错，C 错；a=0 且 b≠0 时首轮余数 0、随后 a=原b、b=0 退出并输出原 b，b=0 时输出 0，均有 |输出|=abs(b)，D 成立。与网站解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：A/B/C 的反例与 D 的 abs(b) 结论均经独立验证，与答案表 D 一致，无修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码 num=0、while(num<=5)、num+=1、num==3 时 continue、printf(\"%d#\", num) 与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项依次为 A 1#2#4#5#6#、B 1#2#4#5#6、C 1#2#3#4#5#6#、D 1#2#3#4#5#6，与网站顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题为 A，网站 answer=0 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：num 由 0 起每轮先加 1，依次变为 1、2、3、4、5、6；为 3 时 continue 仅跳过输出，最后一轮 num=5 仍满足条件、加 1 后输出 6#，随后条件失效退出循环。完整输出 1#2#4#5#6#，与网站解析及选项 A 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立跟踪输出 1#2#4#5#6#，与答案表 A 一致，无修改。"
+      }
+    ],
+    "summary": "本次仅复核第 6-10 题（依据 CCF 原卷页图）：第 7-10 题题面、代码、选项与第1页答案表（第7-10题依次 D、B、D、A）映射全部一致，输出/结论经独立推导（45、12、D 成立、1#2#4#5#6#）无偏差，完整通过；第6题转录与官方答案 A 一致，且 (12,10) 是唯一合理填空（改用 (N-1) 基准也不改变所选除数），但官方源卷题干示例（第1个编号 00-0）与代码 N%12/N%10（N=1 得 01-1）自相矛盾，属官方源缺陷，网站已用 official-source-defect/integrityNote 标注并不计分，本复核保留争议，判定为 unresolved。初核中把第6题 answer/explanation 记为 unresolved 的意见被否决：该两维的转录级一致性与推导准确性可由页图独立证实，源级矛盾单独在 unresolved 保留。五题均无 changes；不含编程题，故无 tests。其余题目不在本次范围，未核验。"
+  }
+}
