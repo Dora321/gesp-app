@@ -1,0 +1,236 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    8,
+    11,
+    15,
+    17,
+    19
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T07:50:34.094Z",
+  "completedAt": "2026-11-10T07:55:29.284Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42956,
+    "completion_tokens": 22783,
+    "total_tokens": 65739,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18760
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0178349,
+      "allowance": 0.0178349,
+      "tokens": {
+        "input": 42956,
+        "output": 22783,
+        "reasoning": 18760,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1e89f4d74220cb6b2661863563216d23e6d14d35c22bd5b26b14e80e35a5a4ec",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF 编程能力等级认证（Grade Examination of Software Programming）与 GESP 标识，主标题「C++ 二级」「2026 年 06 月」；第 1 页单选 15 题×2 分、第 6 页判断 10 题×2 分、第 8–10 页编程题 2×25 分，全卷 100 分，与来源标识 2026-06-l2（2026 年 6 月 C++ 二级）相符。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 8 题题干「下面的 C++ 代码执行之后的输出是（ ）。」及 5 行代码与候选逐字一致：int i; for (i = -2; i < 2; i++) 循环体 if (not i % 3 == 0) cout << i << \"#\"; 循环结束后 cout << i; 无缺失、无改动。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A. -2#-1#1#2、B. -2#-1#1#2#3、C. 1#2#3、D. 0#1#2#3，内容与顺序同候选一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 8 位为 A（0 起始索引 0）。独立推演：一元 not 优先于 % 与 ==，not i % 3 == 0 即 ((!i)%3)==0；i=-2、-1、1 时 !i=0、0%3=0 条件真，输出该数加 #；i=0 时 !0=1、1%3=1、1==0 假，不输出；退出循环后输出 i=2。合计 -2#-1#1#2，与 A 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 ((!i)%3)==0 推演，逐轮代入 i=-2,-1,0,1 与终值 2 的结果与我的独立推演完全一致；其易错说明中「错误读法 (!(i%3))==0 在本题取值范围内碰巧同输出」已复核成立（i=-2、-1 时 i%3 为 -2、-1 仍非 0，故该范围内 i%3==0 等价于 i==0），并明确不许把巧合当规则，技术与表述均无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "未沿用初核文本，独立手推 ((!i)%3)==0 各轮取值与终值输出得 -2#-1#1#2，与官方答案 A 相符；候选解析与本卷 Q4、Q17、Q19 的 not 一元优先级口径一致，无需任何修改，维持五维 verified。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题输出序列共 35 项（1..11 一段、5..11 三段、末尾 5 6 7，逐项点数吻合），代码 for (int i = 0; i < 35; i++) 内 cout << num 后三处空位分别位于 if 条件 num _______ 10、if 分支 num _______ 2 和 else 分支 num _______ 1，问法「横线处应该填入的运算符是」均与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. > /= +=、B. >= %= +=、C. > /= =+、D. >= %= =+，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 位为 A（索引 0）。独立验证 A 组合：num≤10 时走 += 1，num=11 时走 11/2=5 跳回，输出 1..11、5..11、5..11、5..11、5 6 7 共 11+21+3=35 项，与题给序列逐项吻合；B 在 num=10 处即触发 10%2=0、C 因 num =+ 1 恒为 1 输出全 1、D 同理恒 1，均不可能产生该序列，A 为唯一答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。候选 D 项称「条件 >= 提前触发 %=」，但 D 组合实际执行中第三空 =+ 使 num 恒为 1，num >= 10 永假，%= 分支根本不可达，输出为 35 个 1，排除机理与实际不符；A、B、C 项与核心轨迹（11/2=5 跳回、35 项分解）经我独立复算正确。替换后的完整解析已逐句独立验证：D 项按真实机理表述（=+ 使 num 恒 1、输出全 1，并说明即便第三空回退为 +=，>=+%= 组合也会在 10 处提前重置、且 11%2=1≠5），核心解析对 > 与 >= 触发点差异、=+ 即 num = +1（赋值）的分析均准确，未引入新错误。答案、题面、选项不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (> /= +=)**\n\n**核心解析：**\n输出序列的规律：num 从 1 增到 11 后跳回 5，再增到 11，如此往复。\n\n11 → 5 的变换：`11 /= 2` 得 5（整数除法）。若用 `%=`，当 num 到 11 时执行 `num %= 2` 会得到 1，不是 5；若再用 `>=`（且 num 能正常递增），num 到 10 就会提前执行 `num %= 2` 得到 0，序列更早被破坏。\n爬升：num ≤ 10 时执行 `num += 1`，5→6→…→11。\n\n完整轨迹：1..11（11 个）→ 5..11（7 个）×3 轮 = 21 个 → 再 5 6 7（3 个）→ 共 11+21+3 = 35 项，与 35 次循环吻合。\n\n**选项逐项分析：**\n- **A `> /= +=`**：✅ num>10 时在 11 处执行 11/2=5 跳回；否则 += 1 逐次爬升，完全吻合。\n- **B `>= %= +=`**：❌ 条件 >= 使 num=10 时就执行 `num %= 2` 得 0，序列提前破坏；即使假设 num 到 11，执行 `num %= 2` 也得 1，不是 5。\n- **C `> /= =+`**：❌ 第三空 `=+` 使 else 分支成为 `num =+ 1`，等价于 `num = +1`（把 num 赋值为 1），num 永远为 1，输出全为 1。\n- **D `>= %= =+`**：❌ 第三空 `=+` 使 num 恒为 1，实际不会进入 `>=` 的 `%=` 分支，输出全为 1；并且即使只把第三空修正为 +=，`>=` 与 `%=` 的组合也会在 10 处提前重置，当 num 为 11 时执行 `num %= 2` 也不是 5。\n\n**易错提醒：**\n- 整数除法向下取整是实现“跳回”的关键。\n- `/=` 与 `%=` 一字之差，结果天壤之别。\n\n**考点：** 复合赋值运算符与序列分析"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：其指出候选 D 项机理错误成立——D 中 =+ 使 num 恒为 1、>= 分支不可达，实际并非「>= 提前触发 %=」；其替换解析经我逐句独立验证无技术错误（含以「且 num 能正常递增」为前提说明 >= 在 10 处提前触发 %= 的限定），予以应用；同时复核确认 B、C 项排除理由与 35 项轨迹分解正确。此时仅解析字段更新，statement/options/answer 与原卷一致不动。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干为「每位选手由 8 位评委打分（分数为 0～10 的整数），且每位评委必须打分。计分规则：去掉一个最高分，去掉一个最低分。如下程序通过键盘先输入选手编号，然后依次输入 8 个分数，并计算最终得分」；候选「0 到 10」为 0～10 的等价写法。PDF 第 6 页代码 27 行与候选结构逐一一致：外层 for i<10、scanf 读编号、max_score=0/min_score=100 与 total_score=0 初始化、内层 for j<9 共读 8 个分数并更新最值与累加、最后 total_score 扣减 max/min 后 printf 续行输出；候选 printf 提示语中多余空格属转录排版差异，不改变语义与题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A「上述代码能完成题目要求」、B「max_score = 0, min_score = 100 应修改为 max_score = 0, min_score = 0」、C「max_score < score 和 min_score > score 必须相应修改为 <= 和 >=」、D「total_score = total_score - max_score - min_score 不能达到预期，可修改如下：int total = total_score - max_score - min_score; total_score = total;」（含 D 附带两行代码）与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 位为 A（索引 0）。独立核算：内层 j=1..8 恰读 8 个分数；max_score 初值 0 不高于任何合法分数（0~10），最终必为实际最高分（全 0 时 max=0 亦正确）；min_score 初值 100 高于任何合法分数，首轮必被更新并最终取得实际最低分；total 累加 8 分后各减一次最高与最低，剩余 6 个分数之和为最终得分，最高/最低分重复出现时也只各去一次，符合规则；代码能完成题目要求，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立复核成立：B 中 min_score 改为 0 后，`min_score > score` 对一切非负分数恒假，最低分统计失效；C 中 <→<=、>→>= 在同值时仅更新为同值，不改变 max/min 与 total，「必须」不成立；D 的中间变量改写与原表达式完全等价。哨兵初始化说明（求最大用可能最小值 0、求最小用大于上界 10 的 100）与 max 首分为 0 时不更新但值仍正确的说明均与实际行为一致，无实质性技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核维持 verified：分数范围以第 5 页原图为准（0～10），与候选「0 到 10」等价，无需改动；我独立核算了计分逻辑与 B/C/D 排除理由，均成立。候选「min_score=100 首轮必被更新」（结合哨兵机制保证最终取得实际最低分）经复核为正确概括，不构成技术错误，故维持原文不改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题：C++ 代码 cout << (not ('5' % 2 == 0) == ((not '5' % 2) == 0)) 执行后的输出是 1。括号层级（外层一层括号、左为 not ('5' % 2 == 0)、右为 ((not '5' % 2) == 0)）与候选完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有「正确/错误」两项，选项地位由 answer 维度承载。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断答案表第 2 位为 √（索引 0）。独立推导：'5' 按 ASCII 为 53；左半 not('5'%2==0)：53%2=1，1==0 假，not 假为真；右半一元 not 优先于 %，(not '5')%2 = 0%2 = 0，0==0 为真；真==真为真，cout 非 boolalpha 下输出 1。命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与上述独立推导一致：按 53 处理、一元 not 先与 '5' 结合、两半各为 true、输出 1；易错点（勿读成 not('5'%2)、'5' 的整数值是 53 而非 5）均正确无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核维持 verified：我独立重推含 ASCII 53 与一元 not 优先于 % 的细节，结论输出 1，判断答案 √ 对应索引 0；候选解析推导链完整、无一处需修正，保持原文。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题：代码 for (int i = 1; i < 10; i += 3) { if (not i % 3) break; cout << i << \"-\"; } 及断言「下面 C++ 代码执行后将输出 1-4-7-」与候选一致（not i % 3 与 break 的分支结构完整）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有「正确/错误」两项，选项地位由 answer 维度承载。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断答案表第 4 位为 √（索引 0）。独立推导：not i % 3 按一元优先级解析为 (not i)%3；i=1、4、7 时 !i=0、0%3=0，条件假不 break，依次输出 1-、4-、7-；i=10 时 i<10 不成立退出，无多余输出，结果恰为 1-4-7-，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐轮取值与我的独立推导一致，并另注错误读法 not (i%3)（i=1,4,7 时 i%3=1，!1=0）对本题三值同为假、结论碰巧相同但不能当作正确解析，区分严谨无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核维持 verified：我独立按 (not i)%3 重推 i=1,4,7,10 各轮结果得 1-4-7-，与 √ 一致；候选解析对正确解析与巧合等价性的区分准确，无修改。"
+      }
+    ],
+    "summary": "本轮独立复核 2026-06-l2 的第 8、11、15、17、19 题（全卷其余 22 题未纳入本轮）。五题题面、选项/判断表述经 PDF 第 1、2、3、5、6 页原图逐项比对一致；单选 Q8/Q11/Q15 官方答案均为 A（索引 0），判断 Q17/Q19 均为 √（索引 0），已同时用官方答案表与我的独立推演双重确认。Q8、Q15、Q17、Q19 解析按独立复算核对无技术错误，维持原文（changes 为空）。Q11 官方答案 A 正确、A 组合轨迹与 35 项输出序列逐项吻合，但候选解析 D 项「条件 >= 提前触发 %=」与该组合实际执行不符（=+ 使 num 恒为 1、>= 分支不可达、输出全 1），已替换为经逐句独立复核的修正解析（修复后核验通过），其余维度不变。本轮覆盖：statement 5/5、answer 5/5 verified；options 3/3 适用项 verified（另 2 项不适用）；explanation 5/5 verified（含 Q11 修复）；referenceCode 均不适用。全卷核验状态仍应保持 partial。"
+  }
+}

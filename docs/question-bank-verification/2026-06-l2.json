@@ -303,41 +303,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页题干和代码一致：for (i=-2; i<2; i++)，条件为 not i % 3 == 0，循环后输出 i。",
-          "review": "PDF 第 2 页题面与站内逐字一致；5 行代码核对相同：for(i=-2;i<2;i++)，判断条件 not i % 3 == 0，循环后 cout << i。"
+          "initial": "PDF 第2页第8题题面、5 行代码与四个选项均与候选一致：for(i=-2;i<2;i++)，条件为 not i % 3 == 0，循环后输出 i。",
+          "review": "PDF 第 2 页第 8 题题干「下面的 C++ 代码执行之后的输出是（ ）。」及 5 行代码与候选逐字一致：int i; for (i = -2; i < 2; i++) 循环体 if (not i % 3 == 0) cout << i << \"#\"; 循环结束后 cout << i; 无缺失、无改动。"
         },
         "options": {
-          "initial": "PDF 第 2 页选项 A -2#-1#1#2、B -2#-1#1#2#3、C 1#2#3、D 0#1#2#3，顺序和内容与站内一致。",
-          "review": "PDF 第 2 页选项 A -2#-1#1#2、B -2#-1#1#2#3、C 1#2#3、D 0#1#2#3，与站内一一对应。"
+          "initial": "PDF 第2页选项 A -2#-1#1#2、B -2#-1#1#2#3、C 1#2#3、D 0#1#2#3，顺序与候选一致。",
+          "review": "PDF 第 2 页选项依次为 A. -2#-1#1#2、B. -2#-1#1#2#3、C. 1#2#3、D. 0#1#2#3，内容与顺序同候选一一对应。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选答案表题号 8 为 A；0 起始索引为 0，与站内 answer=0 一致。",
-          "review": "PDF 第 1 页答案表第 8 位为 A，索引 0；按 C++ 优先级将 not i % 3 == 0 解析为 ((!i) % 3) == 0 独立推演：i=-2、-1、1 条件成立，i=0 不成立，循环后输出 i=2，合计 -2#-1#1#2，与 A 一致。"
+          "initial": "PDF 第1页单选答案表第8题为 A（索引 0）。按 C++ 优先级，not 先与 i 结合，得 ((!i)%3)==0；i=-2、-1、1 时输出，i=0 时不输出，退出后输出 i=2，结果为 -2#-1#1#2。",
+          "review": "PDF 第 1 页单选答案表第 8 位为 A（0 起始索引 0）。独立推演：一元 not 优先于 % 与 ==，not i % 3 == 0 即 ((!i)%3)==0；i=-2、-1、1 时 !i=0、0%3=0 条件真，输出该数加 #；i=0 时 !0=1、1%3=1、1==0 假，不输出；退出循环后输出 i=2。合计 -2#-1#1#2，与 A 一致。"
         },
         "explanation": {
-          "initial": "答案 A 正确，但站内解析把 not i % 3 == 0 误解析为 (not (i%3))==0；按 C++ 优先级应解析为 ((!i)%3)==0，需修正解析表述。",
-          "review": "原解析把 not i % 3 == 0 误述为 (not (i % 3)) == 0，与 C++ 优先级规则不符（一元 not 优先于 %，应先与 i 结合），也与本卷 Q4 解析中 not x > 5 的口径自相矛盾，属实质性技术错误；已替换为按 ((!i) % 3) == 0 推演的修正解析并独立重推，输出仍为 -2#-1#1#2，官方答案 A 不受影响。修复后核验通过。"
+          "initial": "候选按 ((!i)%3)==0 独立推导，逐轮结果正确；并说明错误读法在本题碰巧同输出、不能据此把错误优先级当规则，未见技术错误。",
+          "review": "候选解析按 ((!i)%3)==0 推演，逐轮代入 i=-2,-1,0,1 与终值 2 的结果与我的独立推演完全一致；其易错说明中「错误读法 (!(i%3))==0 在本题取值范围内碰巧同输出」已复核成立（i=-2、-1 时 i%3 为 -2、-1 仍非 0，故该范围内 i%3==0 等价于 i==0），并明确不许把巧合当规则，技术与表述均无错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.glm.json"
       ]
     },
     {
@@ -585,46 +588,48 @@
       "id": 15,
       "resolved": true,
       "dimensions": [
-        "options",
-        "answer"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第5页题干为“分数为 0～10 的整数”，网站误写为 0 到 100；第6页代码与网站代码逻辑一致（提示字符串空格不影响判断）。",
-          "review": "修复后核验通过。PDF 第5页题干明确为“8 位评委打分（分数为 0～10 的整数）”，网站误写为“0 到 100 的整数”，已按原卷修正为 0 到 10；其余要素（去最高最低、先编号后依次输入 8 个分数）与原卷一致。第6页代码与网站仅提示语空格等排版差异，不影响含义。"
+          "initial": "PDF 第5页题干明确为 8 位评委、分数为 0～10 的整数；PDF 第6页代码外层 i<10，内层 j=1..8 读 8 个分数，max_score=0、min_score=100、total_score 逻辑与候选一致。候选提示字符串中的空格属于排版差异，不改变计分逻辑和题意。",
+          "review": "PDF 第 5 页题干为「每位选手由 8 位评委打分（分数为 0～10 的整数），且每位评委必须打分。计分规则：去掉一个最高分，去掉一个最低分。如下程序通过键盘先输入选手编号，然后依次输入 8 个分数，并计算最终得分」；候选「0 到 10」为 0～10 的等价写法。PDF 第 6 页代码 27 行与候选结构逐一一致：外层 for i<10、scanf 读编号、max_score=0/min_score=100 与 total_score=0 初始化、内层 for j<9 共读 8 个分数并更新最值与累加、最后 total_score 扣减 max/min 后 printf 续行输出；候选 printf 提示语中多余空格属转录排版差异，不改变语义与题意。"
         },
         "options": {
-          "initial": "PDF 第6页 A-D 与网站一致，A 为“上述代码能完成题目要求”。",
-          "review": "PDF 第6页 A“上述代码能完成题目要求”、B、C、D 及 D 附带的修改代码与网站一致。"
+          "initial": "PDF 第6页选项 A“上述代码能完成题目要求”、B、C、D 及 D 的中间变量改写代码与候选一致。",
+          "review": "PDF 第 6 页 A「上述代码能完成题目要求」、B「max_score = 0, min_score = 100 应修改为 max_score = 0, min_score = 0」、C「max_score < score 和 min_score > score 必须相应修改为 <= 和 >=」、D「total_score = total_score - max_score - min_score 不能达到预期，可修改如下：int total = total_score - max_score - min_score; total_score = total;」（含 D 附带两行代码）与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第15题答案为 A，网站 answer=0。",
-          "review": "PDF 第1页答案表第15题为 A→索引 0；网站 answer=0 一致。独立复核代码正确性：j=1..8 读 8 个分数，max_score=0 为分数下界、min_score=100 为大于上界 10 的哨兵，total 减最高最低后为 6 个分数之和，代码能完成题目要求。"
+          "initial": "PDF 第1页答案表第15题为 A（索引 0）。独立核算：内层读 8 个分数；max_score=0 不高于任何可能分数，min_score=100 高于任何可能分数，total 累加后减去一次最高分和一次最低分，得到其余 6 个分数之和，代码能完成计分要求。",
+          "review": "PDF 第 1 页答案表第 15 位为 A（索引 0）。独立核算：内层 j=1..8 恰读 8 个分数；max_score 初值 0 不高于任何合法分数（0~10），最终必为实际最高分（全 0 时 max=0 亦正确）；min_score 初值 100 高于任何合法分数，首轮必被更新并最终取得实际最低分；total 累加 8 分后各减一次最高与最低，剩余 6 个分数之和为最终得分，最高/最低分重复出现时也只各去一次，符合规则；代码能完成题目要求，A 正确。"
         },
         "explanation": {
-          "initial": "原解析按 0~100 解释 min_score=100，并称 max_score 首轮必被更新；与原文 0~10 及首分数为0的情形不完全相符，需修正。",
-          "review": "修复后核验通过。原解析按 0~100 范围解释且称 max_score“第一轮必被更新”（与首分为 0 时不更新的实际行为矛盾），已按 0~10 范围改写：min_score=100 首轮必更新为实际最低分，max_score=0 若首分为 0 则不更新但值仍正确。B（min 置 0 后 min_score>score 永假）、C（< 与 <= 等价，“必须”不成立）、D（等价改写谈不上“不能达到预期”）的排除理由独立复核成立。"
+          "initial": "候选逐项分析成立：B 将 min_score 置 0 后，因分数均 ≥0，`min_score > score` 永假，不能保证正确统计最低分；C 的 < 与 <=、> 与 >= 在相等时更新同值，结果不变，“必须”错误；D 的中间变量与原式完全等价。",
+          "review": "候选解析独立复核成立：B 中 min_score 改为 0 后，`min_score > score` 对一切非负分数恒假，最低分统计失效；C 中 <→<=、>→>= 在同值时仅更新为同值，不改变 max/min 与 total，「必须」不成立；D 的中间变量改写与原表达式完全等价。哨兵初始化说明（求最大用可能最小值 0、求最小用大于上界 10 的 100）与 max 首分为 0 时不更新但值仍正确的说明均与实际行为一致，无实质性技术错误。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.glm.json"
       ]
     },
     {
@@ -666,37 +671,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 6 页判断题第 2 题与网页题面一致：代码为 cout << (not ('5' % 2 == 0) == ((not '5' % 2) == 0))，断言输出 1。",
-          "review": "PDF 第 6 页判断题第 2 题表达式 cout << (not ('5' % 2 == 0) == ((not '5' % 2) == 0)) 及断言『输出是 1』与网页一致。"
+          "initial": "PDF 第6页判断题第2题表达式 `cout << (not ('5' % 2 == 0) == ((not '5' % 2) == 0))` 及“执行后的输出是 1”的断言，与候选一致。",
+          "review": "PDF 第 6 页判断题第 2 题：C++ 代码 cout << (not ('5' % 2 == 0) == ((not '5' % 2) == 0)) 执行后的输出是 1。括号层级（外层一层括号、左为 not ('5' % 2 == 0)、右为 ((not '5' % 2) == 0)）与候选完全一致。"
         },
         "answer": {
-          "initial": "官方判断题答案表第 2 题为√；独立计算：左侧 not(53%2==0)=true，右侧 ((! '5')%2)==0 为 true，true==true 输出 1。",
-          "review": "官方答案表判断第 2 题为√，对应 0；独立推导：'5'=53，左半 not(53%2==0)=not(false)=true；右半按 C++ 优先级（一元 not 高于 %）解析为 (not '5')%2=0%2=0，0==0 为 true；true==true 输出 1，命题正确。"
+          "initial": "PDF 第6页判断答案表第2题为 √，对应索引 0。独立推导：左半 `not ('5'%2==0)` 中 53%2=1，1==0 为假，not 假得真；右半按一元 not 优先于 %，`(not '5')%2` 为 0%2=0，0==0 为真；真==真，cout 输出 1。",
+          "review": "PDF 第 6 页判断答案表第 2 位为 √（索引 0）。独立推导：'5' 按 ASCII 为 53；左半 not('5'%2==0)：53%2=1，1==0 假，not 假为真；右半一元 not 优先于 %，(not '5')%2 = 0%2 = 0，0==0 为真；真==真为真，cout 非 boolalpha 下输出 1。命题为真。"
         },
         "explanation": {
-          "initial": "结论正确，但现有解析先写“not 优先于 %？不”又自我更正，优先级表述混乱，容易误导；需改为明确说明 not 是一元运算符且优先级高于 %。",
-          "review": "修复后核验通过：原解析中『not 优先于 %？不——』与后续自我更正并存、优先级表述混乱自相矛盾；修复稿明确 not（!）为一元运算符、优先级高于 %，解析为 (not '5') % 2，推导链经独立复核全部正确。"
+          "initial": "候选解析已独立按 ASCII 码 53、一元 not 优先级高于 % 展开，左右两半均为 true，输出 1，推导链正确。",
+          "review": "候选解析与上述独立推导一致：按 53 处理、一元 not 先与 '5' 结合、两半各为 true、输出 1；易错点（勿读成 not('5'%2)、'5' 的整数值是 53 而非 5）均正确无误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.glm.json"
       ]
     },
     {
@@ -738,37 +746,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 6 页判断题第 4 题代码与网页一致：for(i=1;i<10;i+=3) 中 if(not i%3) break，然后输出 i 和短横线。",
-          "review": "PDF 第 6 页判断题第 4 题代码（for i=1;i<10;i+=3 内 if (not i % 3) break，否则输出 i 和 '-'）及断言『输出 1-4-7-』与网页一致。"
+          "initial": "PDF 第6页判断题第4题代码为 `for (int i=1; i<10; i+=3) { if (not i % 3) break; cout << i << \"-\"; }`，断言“执行后将输出 1-4-7-”，与候选一致。",
+          "review": "PDF 第 6 页判断题第 4 题：代码 for (int i = 1; i < 10; i += 3) { if (not i % 3) break; cout << i << \"-\"; } 及断言「下面 C++ 代码执行后将输出 1-4-7-」与候选一致（not i % 3 与 break 的分支结构完整）。"
         },
         "answer": {
-          "initial": "官方判断题答案表第 4 题为√；i 取 1、4、7 时条件均为假，依次输出 1-4-7-，i=10 退出。",
-          "review": "官方答案表判断第 4 题为√，对应 0；独立推导：not i % 3 即 (not i)%3，i=1,4,7 时 not i=0、0%3=0，条件均假不 break，依次输出 1-、4-、7-；i=10 时 i<10 不成立退出，输出恰为 1-4-7-，命题正确。"
+          "initial": "PDF 第6页判断答案表第4题为 √，对应索引 0。独立推导：`not i % 3` 按一元 not 优先解析为 `(not i)%3`；i=1、4、7 时 `!i` 为 0，0%3=0，if 为假，不 break，依次输出 1-、4-、7-；i=10 时 i<10 不成立退出，输出恰为 1-4-7-。",
+          "review": "PDF 第 6 页判断答案表第 4 位为 √（索引 0）。独立推导：not i % 3 按一元优先级解析为 (not i)%3；i=1、4、7 时 !i=0、0%3=0，条件假不 break，依次输出 1-、4-、7-；i=10 时 i<10 不成立退出，无多余输出，结果恰为 1-4-7-，命题为真。"
         },
         "explanation": {
-          "initial": "现有解析把 `not i % 3` 解释为 `not (i % 3)`，与 C++ 中一元 not 优先级高于 % 的实际解析 `(not i) % 3` 不符；虽然输出结论碰巧正确，但推理错误。",
-          "review": "修复后核验通过：原解析把 not i % 3 说成 not (i % 3)，与 C++ 一元 not 优先级高于 % 的实际解析 (not i)%3 相悖（虽对本序列碰巧同结论，但推理错误）；修复稿已改为正确解析并逐轮核对 i=1,4,7,10，推导正确。"
+          "initial": "候选指出正确解析是 `(not i)%3` 而非 `not (i%3)`，并逐轮核对 i=1、4、7、10，推导正确；也说明错误读法在本题碰巧同结论。",
+          "review": "候选解析逐轮取值与我的独立推导一致，并另注错误读法 not (i%3)（i=1,4,7 时 i%3=1，!1=0）对本题三值同为假、结论碰巧相同但不能当作正确解析，区分严谨无误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l2.glm.json"
       ]
     },
     {
@@ -1054,50 +1065,7 @@
   ],
   "unresolved": [
     {
-      "id": 8,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 11,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 17,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 19,
       "dimensions": [
         "explanation"
       ],
@@ -1108,5 +1076,6 @@
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l2.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l2.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l2.integration.json"
 }
