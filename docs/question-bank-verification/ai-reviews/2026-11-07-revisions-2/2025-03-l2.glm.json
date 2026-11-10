@@ -1,0 +1,105 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:16:17.576Z",
+  "completedAt": "2026-11-10T00:18:59.181Z",
+  "finishReason": "stop",
+  "inputSha256": "7e80206e7768979e64def7796f7383b386124508254e833fe515de6e33686bf1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为「CCF 编程能力等级认证 GESP / C++ 二级 / 2025 年 03 月」，与候选 title「2025年3月 GESP C++ 二级真题」、level=2、year=2025、month=3 一致；第1页红色单选答案表、第6页判断题红色答案标记、第8-10页编程题版式均与 GESP 二级卷面结构吻合。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "第3页页图题干逐字为「下面C++代码用于求1到N之间正整数中含有3的数的个数，比如 123 和 32 都是符合条件的数。则前后两处横线应填入代码分别是（ ）。」，与候选 question 一致。第4页页图代码逐行核对：int i,j; / int cnt = 0, N; / cout << \"请输入正整数N: \"; / cin >> N; / for (i = 1; (j=i) < N; i++) / while (j != 0) / if (j % 10 == 3){ / cnt +=1; / 第一空 __________; / } / else / 第二空 __________; / cout << cnt << \"  \";，与候选代码块逐行对应，仅空格宽度、全/半角冒号及字符串内空格数的排版级差异，无漏代码、无含义改变。但原卷自身存在端点歧义：题干称「1到N之间」而循环条件 (j=i) < N 仅统计 i=1..N-1，N 本身不被检查（如 N=33 时含3的 33 不计数；N=3 时循环不执行），经页图独立确认属原卷措辞与代码不一致的缺陷，非转录错误；按保留争议、不擅自定案规则维持 statement unresolved 并保留原题面。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图四个选项代码块依次为 A（第1空 continue、第2空 j /= 10）、B（break、j /= 10）、C（continue、j %= 10）、D（break、j %= 10）。候选以「……和……」合并表述，第一空/第二空的顺序映射与四个组合均与页图完全一致，无错位、无漏项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题列为 B（整行 D C A A D A D A C B C D B C C，红色矢量字），0起始索引为 1，与候选 answer=1 一致。独立穷举推理：第一空若填 continue，则发现个位 3 时 j 未被修改且 j≥3>0 恒满足 while (j!=0) 与 j%10==3，必然死循环，必须用 break；第二空若填 j %= 10，else 分支后 j 被截留为个位（如 12→2 后恒为 2），数位检查无法推进，仅 j /= 10 能逐位删至 0 结束。两空唯一确定为 break 与 j /= 10，与答案表互证。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "对候选解析逐项独立重推：break 保证含3的整数只计一次；A/C 的 continue 使 j 停在原值产生死循环；C 的 j %= 10 使 j 停在非零个位；D 的 j%=10 无法删位（12→2 后恒为 2）反例成立；「j/=10 删个位、j%=10 留个位、作用相反」提示正确。最小验证逐步重演：j=123 首查个位即得 3，计数并 break；j=124 按 124→12→1→0 逐位检查、不含 3 不计数，均与代码语义相符。解析含独立推导与四选项分析，非仅复述官方答案，且其论断不依赖端点缺陷，本身无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷题干「1到N之间」与代码 for (i = 1; (j=i) < N; i++) 的右端点不一致：循环仅统计 1..N-1，N 自身不计入（如 N=33 时含3的 33 不会被统计）。经我再核第3、4页页图，确认该歧义存在于原卷而非转录错误；它不影响两处填空的唯一答案 B，任何对题面、选项或答案的擅改均予否决，按保留争议规则维持 statement unresolved 并保留原题面。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "未沿用初核草稿结论：先独立完成第1页答案表读取、第4页四选项映射核对与两空穷举推理（continue 必死循环、j%=10 卡死个位、break+j/=10 为唯一成立组合），再与候选逐项比对，options/answer/explanation 三维全部一致，题面忠实转录，故接受 DeepSeek 初核草稿且无修改（changes 为空）。同时独立确认原卷端点歧义真实存在，statement 维持 unresolved 保留；候选顶部 notes 仅对 Q27 做了结构化缺陷标记，建议站点对 Q10 亦按同方式登记原卷缺陷标记，但 sourceIntegrity 不在本轮可修改字段内。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        10
+      ],
+      "usage": {
+        "prompt_tokens": 36047,
+        "completion_tokens": 13750,
+        "total_tokens": 49797,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12283
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01228205,
+          "allowance": 0.01228205,
+          "tokens": {
+            "input": 36047,
+            "output": 13750,
+            "reasoning": 12283,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-10T00:16:17.576Z",
+      "completedAt": "2026-11-10T00:18:59.181Z"
+    }
+  ]
+}
