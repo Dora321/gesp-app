@@ -1,0 +1,159 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T04:05:16.102Z",
+  "completedAt": "2026-11-10T04:09:54.650Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31586,
+    "completion_tokens": 13021,
+    "total_tokens": 44607,
+    "prompt_tokens_details": {
+      "cached_tokens": 31488,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11818
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00792176,
+      "allowance": 0.00475306,
+      "tokens": {
+        "input": 98,
+        "output": 13021,
+        "reasoning": 11818,
+        "cache_read": 31488,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5019763b44048764bae2fd137cb61d8e778de67d8a9d13cad24a80b99a0a4c5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 二级 2026 年 06 月”，与 paperId 2026-06-l2 的年月、等级一致；编程题位于 PDF 第8-10页。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8-9页题面：给定正整数 l、r，统计 [l,r] 内完全平方数个数；输入两行，样例 1/21→4，数据范围 1≤l≤r≤2000；站内题面逐项一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择项，PDF 亦未列选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案表项，故 officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：枚举底数 i，满足 i*i≤r 且 i*i≥l 即计数；r≤2000 时 i≤44。样例区间 1..21 得到 1、4、9、16 共 4 个，与站内解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第9页参考程序逐行一致：cin >> l >> r；for (i=1; i*i<=r; ++i)；if (i*i>=l) ans++；输出 ans。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小范围 l=r=1",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "1=1²，闭区间包含端点，应计 1 个。"
+          },
+          {
+            "name": "区间内无完全平方数",
+            "input": "2\n3\n",
+            "output": "0\n",
+            "reason": "2、3 均不能表示为正整数平方，按题意输出 0。"
+          },
+          {
+            "name": "上界附近最大完全平方数",
+            "input": "1936\n2000\n",
+            "output": "1\n",
+            "reason": "1936=44²；45²=2025>2000，区间内仅 1936 一个完全平方数。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9-10页题面：给定 n，在 (2n-1)×(2n-1) 画布中用 '+' 画菱形边、'.' 表示空白；n=3 示例图、n=4 样例及 3≤n≤15 均与站内一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择项，PDF 亦未列选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案表项，故 officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按四条边条件 i+j=n+1、j-i=n-1、i-j=n-1、i+j=3n-1 推导；n=4 逐行得到 ...+... 等 7 行，与样例一致。复杂度 O(n²)，n≤15 可行。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第10页参考程序逻辑一致；站内仅以 endl 代替 PDF 的 '\\n'，换行输出等价，不影响正确性。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小边界 n=3",
+            "input": "3\n",
+            "output": "..+..\n.+.+.\n+...+\n.+.+.\n..+..\n",
+            "reason": "n=3 时画布 5×5；按四条边条件得到 PDF 题面示例图，顶点各只输出一个 '+'。"
+          },
+          {
+            "name": "最大边界 n=15",
+            "input": "15\n",
+            "output": "..............+..............\n.............+.+.............\n............+...+............\n...........+.....+...........\n..........+.......+..........\n.........+.........+.........\n........+...........+........\n.......+.............+.......\n......+...............+......\n.....+.................+.....\n....+...................+....\n...+.....................+...\n..+.......................+..\n.+.........................+.\n+...........................+\n.+.........................+.\n..+.......................+..\n...+.....................+...\n....+...................+....\n.....+.................+.....\n......+...............+......\n.......+.............+.......\n........+...........+........\n.........+.........+.........\n..........+.......+..........\n...........+.....+...........\n............+...+............\n.............+.+.............\n..............+..............\n",
+            "reason": "n=15 时画布 29×29；按边条件逐行推导，每行长度 29，中心行左右顶点分别为第 1、29 列，上下顶点各只一个 '+'。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题 26、27。两题的题面、样例、数据范围、解析与参考代码均与 PDF 对照一致，未发现需要修改的字段；题 27 站内参考代码以 endl 代替 PDF 的 '\\n'，输出等价。边界测试期望值由数学条件独立推导，未实际运行。"
+  }
+}

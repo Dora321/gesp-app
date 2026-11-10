@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:14:26.629Z",
+  "completedAt": "2026-11-10T00:15:27.716Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31592,
+    "completion_tokens": 6889,
+    "total_tokens": 38481,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5466
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0088722,
+      "allowance": 0.00532332,
+      "tokens": {
+        "input": 31592,
+        "output": 6889,
+        "reasoning": 5466,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5019763b44048764bae2fd137cb61d8e778de67d8a9d13cad24a80b99a0a4c5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 二级 2026 年 06 月”，与 paperId 2026-06-l2 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干与网站一致：湿度传感器连续检测土壤湿度并实时发送给中央控制器，由控制器判断是否开启灌溉。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项顺序为 A. 处理器、B. 存储器、C. 输入设备、D. 输出设备，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 C，对应 0 起始索引 2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：传感器采集外部信息并送入系统，属于输入设备；处理器负责运算控制，存储器负责保存数据，输出设备方向相反。解析与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干与网站一致：系统提示“系统内存不足”，计划通过增加物理内存解决，询问应购买哪种硬件。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项为 A. 机械硬盘、B. 内存条、C. 图形显卡、D. 移动硬盘，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 B，对应 0 起始索引 1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：“内存不足”指运行内存 RAM 容量不足，增加物理内存即加装内存条；机械硬盘和移动硬盘属于外存，显卡不能替代系统内存。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码为 float a = 3 + 3.5; cout << a;，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四个选项及顺序与网站一致，均围绕代码是否报错及输出 6 或 6.5。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 D，对应 0 起始索引 3；网站 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：3 与 3.5 混合运算时 3 提升为 double，结果 6.5；赋给 float 合法，默认输出 6.5，不会报错，也不会截断为 6。D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题表达式为 not (x > 5 or y <= 10)，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A-D 与网站一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 C，对应 0 起始索引 2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：由德摩根律，not (A or B) 等价于 (not A) and (not B)，得到 x <= 5 and y > 10；A 错在 or，B 是括号内原式，D 受 not 优先级影响，C 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干、代码 cout << (2.5 + 2.25) << ' ' << (2.2 + 2.1) 及输出串 4.75 4.300000000000001 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A-D 与网站一致：A 称 + 有时正确有时错误，B 称浮点数难以精确表示，C 称 + 不能用于浮点数，D 称 cout 难以输出太长数值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 B，对应 0 起始索引 1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：2.2 与 2.1 的 IEEE 754 双精度表示均非精确十进制值，相加产生舍入误差，故 B 为最可能原因；A、C、D 均不符合浮点运算事实。题干输出位数依赖流精度设置，但题目已给定该输出，不影响选项判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核仅覆盖题号 1-5。卷头身份与 2026-06-l2 匹配；5 题的题干、选项、官方答案表映射及解析均已逐项对照 PDF 页图，未发现必须修改项。Q5 的输出位数与流精度设置有关，但题干已明确给定输出，核心原因仍为浮点数表示误差，答案 B 成立。编程题不在本次范围内。"
+  }
+}

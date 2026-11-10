@@ -1,0 +1,239 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T04:03:04.259Z",
+  "completedAt": "2026-11-10T04:05:16.095Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49494,
+    "completion_tokens": 8938,
+    "total_tokens": 58432,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6651
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0118931,
+      "allowance": 0.0118931,
+      "tokens": {
+        "input": 49494,
+        "output": 8938,
+        "reasoning": 6651,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5019763b44048764bae2fd137cb61d8e778de67d8a9d13cad24a80b99a0a4c5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页眉显示「CCF 编程能力等级认证 GESP / C++ 二级 / 2026 年 06 月」，与 paperId 2026-06-l2（二级、2026年6月）完全一致；第6页判断题答案表承担本批5题的官方答案依据。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立重推 break 首轮（i=0）即触发外层、输出 0 的结论与 DeepSeek 草稿一致，网站题面、答案、解析均无问题，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第6题题干「如下 C++ 代码执行后，输出值为 9。」及代码（外层 for i:0..9、内层 for j<i 做 cnt+=1、外层末尾 break、cout<<i 共7行）与网站题面逐行一致，无缺漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以√/×作答，不存在 A-D 选项；正误映射在 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第6项为×（对应错误=1）。独立推演：i=0 进入外层，内层 j<0 不执行，随后 break 立即终止外层，i 停在 0，输出 0≠9，命题为假；与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演确认解析结论：break 位于外层循环体末尾，首轮 i=0 即触发，输出的是 i 而非 cnt，i 终值为 0；网站解析的判定依据与易错点表述均与推演相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，网站亦未提供 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立重算 2×45=90 与草稿一致，网站题面、答案、解析均无问题，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第7题题干「如下 C++ 代码执行时如输入 10，输出将是 100。」及代码（cnt/N、 odst提示串、外层 i<N、内层 j=-i..i-1 计数、cout<<cnt 共7行）与网站逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以√/×作答，不存在 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第7项为×（错误=1）。独立推演：内层 j 从 -i 到 i-1 共 2i 次，N=10 时 Σ2i（i=0..9）=2×45=90≠100，命题为假；与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演与解析一致：区间 [-i,i) 长度为 2i（含左端不含右端），总和 2×(N-1)N/2=N(N-1)=90，易错点关于区间长度与等差求和的表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，网站亦未提供 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立枚举得 count=3 与草稿一致，网站题面、答案、解析均无问题，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第8题题干「如下 C++ 代码执行其输出是 3。」及代码（外层 while i<3、内层 while j<3、if(i+j>=3) count+=1、cout<<count 共12行）与网站逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以√/×作答，不存在 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第8项为√（正确=0）。独立推演：i、j 各取 0..2，满足 i+j>=3 的组合为 (1,2)、(2,1)、(2,2) 共 3 个，count=3，命题为真；与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举：i=0 时无满足项，i=1 时 j=2 一个，i=2 时 j=1、2 两个，合计 3，与网站解析完全一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，网站亦未提供 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立推演数位重组逻辑（3587→3587）确认命题为真，网站题面、答案、解析均无问题，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第9题题干「如下 C++ 代码执行时如果输入正整数，其输出将是输入的正整数。」在第7页末，代码（N%10*Nbase 累加、N/=10 与 Nbase*=10 复合逗号赋值、cout<<rst）在第8页，与网站题面逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以√/×作答，不存在 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第9项为√（正确=0）。独立推演：第 k 轮取出末位乘以 10^k 位权累加，逐位重组即为原数，如 N=3587：7×1+8×10+5×100+3×1000=3587，任意正整数均还原为自身，命题为真；与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站以 3587 的四步逐步演算与独立推导一致，位权（1,10,100…）与取位顺序对应关系的说明正确，并正确限定于正整数无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，网站亦未提供 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立逐行推演 n=5 输出与给定图形完全一致，网站题面、答案、解析均无问题，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断第10题题干「如下 C++ 代码执行时如输入 5，将输出代码后的字符图形。」及15行代码（两侧各 n-i 个 0、中间 k=1..2i-1 山形）与5行图形（000010000/000121000/001232100/012343210/123454321）与网站完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以√/×作答，不存在 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第10项为√（正确=0）。独立推演：i=1..5 每行为 (n-i) 个0 + 山形1..i..1（宽 2i-1）+ (n-i) 个0，逐行得 000010000、000121000、001232100、012343210、123454321，与题目图形逐字符一致，命题为真；与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐行走查与解析一致：i=1 得 4个0+1+4个0；i=2 得 3个0+121+3个0（k=3 时 2i-k=1）；…；i=5 得 123454321。山形宽度 2i-1（上升 i 个 + 下降 i-1 个）与两侧 0 递减保证等宽的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，网站亦未提供 referenceCode 字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅核验网站第21—25题，对应 PDF 判断题第6—10题。来源身份经第1页页眉（CCF GESP，C++ 二级，2026年06月）确认。第7—8页题干与代码逐行比对无误；第6页判断题答案表第6—10项为 ×/×/√/√/√，即 officialAnswer=1,1,0,0,0，与网站答案一致。五题解析均经独立推演复核：①i=0 首轮 break 输出 0 而非 9；②内层区间 [-i,i) 共 2i 次，N=10 时合计 90 而非 100；③满足 i+j>=3 的组合 (1,2),(2,1),(2,2) 共 3 个；④数位按位权重组还原原数（3587→3587）；⑤n=5 五行输出与给定图形逐字符一致。判断题无选项与参考代码维度，均记 not_applicable。无任何差异，未采纳修改，五题全部 approve。"
+  }
+}

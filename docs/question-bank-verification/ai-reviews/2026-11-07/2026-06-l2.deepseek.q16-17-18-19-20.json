@@ -1,0 +1,228 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T02:05:48.210Z",
+  "completedAt": "2026-11-10T02:07:03.648Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31716,
+    "completion_tokens": 9096,
+    "total_tokens": 40812,
+    "prompt_tokens_details": {
+      "cached_tokens": 31616,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7154
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0111349,
+      "allowance": 0.00668094,
+      "tokens": {
+        "input": 100,
+        "output": 9096,
+        "reasoning": 7154,
+        "cache_read": 31616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5019763b44048764bae2fd137cb61d8e778de67d8a9d13cad24a80b99a0a4c5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证 C++ 二级”和“2026 年 06 月”，与 paperId 2026-06-l2 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题与网页题面一致：AI 眼镜内置操作系统并可能支持 Wi-Fi 或蓝牙连接，考场禁止携带。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”，无单选 A-D 选项，按 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方判断题答案表第 1 题为√，对应 0；题干描述符合 AI 智能眼镜作为可穿戴智能设备具备操作系统和无线通信能力的事实。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析独立说明 AI 眼镜的处理器、嵌入式系统、无线模块及考场禁用原因，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题与网页题面一致：代码为 cout << (not ('5' % 2 == 0) == ((not '5' % 2) == 0))，断言输出 1。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”，无单选 A-D 选项，按 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方判断题答案表第 2 题为√；独立计算：左侧 not(53%2==0)=true，右侧 ((! '5')%2)==0 为 true，true==true 输出 1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论正确，但现有解析先写“not 优先于 %？不”又自我更正，优先级表述混乱，容易误导；需改为明确说明 not 是一元运算符且优先级高于 %。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**独立推导：**\n字符 '5' 参与算术运算时按 ASCII 码 53 处理。\n- 左半：`'5' % 2 == 0` 即 `53 % 2 == 0`，为 false；`not (...)` 得 true（1）。\n- 右半：C++ 中 `not`（即 `!`）是一元运算符，优先级高于 `%`，所以 `not '5' % 2` 解析为 `(not '5') % 2`。`not '5'` 为 false（0），`0 % 2` 为 0，再与 0 比较得 true（1）。\n- 两边均为 true，`true == true` 输出 1。\n\n**易错点：** `not` 的优先级高于 `%`，不要误读成 `not ('5' % 2)`；同时 '5' 的整数值是 53 而不是 5。\n\n**考点：** 字符与整数运算、运算符优先级"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题与网页题面一致：执行 cout << (int(3.5) * 2) 将输出 6。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”，无单选 A-D 选项，按 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方判断题答案表第 3 题为√；int(3.5) 向零截断为 3，3*2=6，输出 6。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析说明浮点转整数为截断而非四舍五入，并给出 -3.5 的例子，结论和易错点均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题代码与网页一致：for(i=1;i<10;i+=3) 中 if(not i%3) break，然后输出 i 和短横线。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”，无单选 A-D 选项，按 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方判断题答案表第 4 题为√；i 取 1、4、7 时条件均为假，依次输出 1-4-7-，i=10 退出。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析把 `not i % 3` 解释为 `not (i % 3)`，与 C++ 中一元 not 优先级高于 % 的实际解析 `(not i) % 3` 不符；虽然输出结论碰巧正确，但推理错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**独立推导：**\n`not i % 3` 中 `not`（即 `!`）是一元运算符，优先级高于 `%`，因此解析为 `(not i) % 3`，不是 `not (i % 3)`。\n- i=1：`not 1` 为 false（0），`0 % 3 = 0`，if 条件为假，不 break，输出 `1-`。\n- i=4：`not 4` 为 false（0），`0 % 3 = 0`，输出 `4-`。\n- i=7：`not 7` 为 false（0），`0 % 3 = 0`，输出 `7-`。\n- i=10：`i < 10` 不成立，退出循环。\n\n因此输出 `1-4-7-`，命题正确。\n\n**易错点：** 本题中即使误读为 `not (i % 3)`，对 i=1,4,7 也恰好都得 false，输出碰巧相同；但按 C++ 优先级，正确解析是 `(not i) % 3`。\n\n**考点：** for 步进、not 优先级与 break 条件"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 5 题代码与网页一致，包含 N<0 时 start_num=N、end_num=0，以及最后输出 ((i-1)==abs(N))。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”，无单选 A-D 选项，按 answer 维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方判断题答案表第 5 题为×，对应 1；N 为负数时循环后 i=0，i-1=-1 不等于 abs(N)，最后输出 0 而不是 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析分 N>0 与 N<0 讨论，正确指出 N<0 时最后输出 0；可用 N=-1 验证输出 -1 后最终为 0。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题号 16-20 共 5 道判断题：题面、官方答案表与网站答案均一致。Q16、Q18、Q20 解析通过；Q17 解析中 not 与 % 的优先级表述混乱，Q19 解析将 `not i % 3` 误释为 `not (i % 3)`，两处均已在 changes 中给出修正稿。判断题 options 与 referenceCode 维度不适用。"
+  }
+}

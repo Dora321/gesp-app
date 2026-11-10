@@ -1,0 +1,241 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:31:47.584Z",
+  "completedAt": "2026-11-10T00:35:05.064Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50323,
+    "completion_tokens": 16879,
+    "total_tokens": 67202,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13056
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01598795,
+      "allowance": 0.01598795,
+      "tokens": {
+        "input": 50323,
+        "output": 16879,
+        "reasoning": 13056,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5019763b44048764bae2fd137cb61d8e778de67d8a9d13cad24a80b99a0a4c5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 二级 2026 年 06 月”，等级与年月与 paperId 2026-06-l2 完全一致；答案表（单选 15 题、判断 10 题、编程 2 题）结构亦与二级卷式样吻合。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题干输出序列为 35 项（1..11 后接 5..11 三轮、末尾 5 6 7），与网站完全一致；代码 for 35 次、if 空位/then 空位 2/else 空位 1 与原卷一致，已独立验证 A 组合输出该序列。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A `> /= +=`、B `>= %= +=`、C `> /= =+`、D `>= %= =+` 及顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 A，0 起始索引 0；网站 answer=0 一致。独立运算验证：A 组合轨迹 11/=2=5、10 时走 += 增至 11，输出与题给序列逐项吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。原解析有两处机理错误：(1) 称 B 组合“11%=2=1 跳回 1”，实际 B 条件 >= 在 num=10 即触发 10%=2=0，序列提前破坏；(2) 称 C 组合“num =+ 2 是赋值为 2”，实际 C 的 =+ 填在第三空即 else 分支 `num =+ 1`（赋值 +1，序列恒为 1），第二空是 /=。DeepSeek 初核仅发现第 1 处、其修正稿仍沿用第 2 处错误，已由独立复核改写完整解析并确认技术推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (> /= +=)**\n\n**核心解析：**\n输出序列的规律：num 从 1 爬到 11 后**跳回 5**，再爬到 11，往复。\n\n11 → 5 的变换：`11 /= 2`（整数除法 11/2=5）✓。若用 `%=`，即使到 11，`11 %= 2` 也得 1，不是 5。\n爬升：num ≤ 10 时 `num += 1`，5→6→…→11 ✓。\n\n完整轨迹：1..11（11 个）→ 5..11（7 个）×3 轮 = 21 → 再 5 6 7（3 个）→ 共 11+21+3 = 35 项，与 35 次循环吻合。\n\n**选项逐项分析：**\n- **A `> /= +=`**：✅ num>10 时恰好爬到 11 后执行 11/2=5 跳回；爬升分支用 += 逐次加 1。完全吻合。\n- **B `>= %= +=`**：❌ 条件 >= 使 num=10 时就触发 `10 %= 2` 得 0，序列提前破坏；退一步说即使 num 到 11，`11 %= 2` 也是 1 而非 5。\n- **C `> /= =+`**：❌ 第三空填 =+ 后，else 分支变成 `num =+ 1`，等价于 `num = +1`（把 num 赋值为 1 而不是加 1），num 永远停在 1，输出全为 1。\n- **D `>= %= =+`**：❌ 条件 >= 提前触发 %=，第三空又被改成赋值，两处都错。\n\n**易错提醒：**\n- 整数除法向下取整是实现「跳回」的关键。\n- `/=` 与 `%=` 一字之差，结果天壤之别。\n\n**考点：** 复合赋值运算符与序列分析"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核方向正确（解析确需修正），部分采纳：B 触发点修正予以采纳；否决其修正稿中对 C 的分析（沿用原稿“num =+ 2”错误，实际 =+ 落在第三空 num =+ 1，赋值 +1，否则 C 行为被误述），C 项分析已由独立复核改写为正确机理后应用。答案、题面、选项均与原卷一致，无需其他修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页 10×10 图形逐行与网站代码块一致：第1行全1、末行全1，行2为 1 1 0…0 1 等，最外圈与主对角线(i==j)为 1；题干句“输入 10 来输出”位于第3页底部，与网站一致。网站题干补充的括号说明（最外圈全为1、主对角线为1）是对图形的忠实文字化，不改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 条件表达式及顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 B→索引 1；网站 answer=1 一致。独立验证：N=10、行列取 1..N 时，B 条件恰在最外圈和 i==j 处输出 1，与图形逐格吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：B 的 or 连接对角线与四条边（i==1/i==N/j==1/j==N），与图形一致；A/D 全用 and（且含 i==N 且 j==N 等不可能同时成立的项）几乎恒假；C 的 i==0、i==N+1 在 1..N 循环中不成立。解析结论正确，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核 approve 与独立核对一致，予以确认；题面、选项、答案、解析均核验通过。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干（corner case 定义、变量均为整型）与代码 while(1)+哨兵 -1+tnt/cnt 输出，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 与网站一致，D 表述“如果直接输入 -1，将导致执行错误，虽然这种情况较为罕见”逐字对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 D→索引 3；网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：首个输入即 -1 时循环立即 break，cnt=0，`tnt / cnt` 为整数 0/0，属除零未定义行为/运行时错误，正是罕见但致命的边角案例；A 仅代码风格、B 有 break 正常退出路径而非死循环、C 与正确性无关。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核 approve 与独立核对一致，予以确认。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干句在第4页底部、代码在第5页，与网站一致（外层 i=n..1，前导 0 共 n-i 个，数字 k+1 共 i 个）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页四个图形选项与网站逐一比对一致：A 1 2 3 4/1 2 3 0/1 2 0 0/1 0 0 0；B 1 2 3 4/0 1 2 3/0 0 1 2/0 0 0 1；C 1 2 3 4/2 3 4 0/3 4 0 0/4 0 0 0；D 0 0 0 1/0 0 1 2/0 1 2 3/1 2 3 4。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 B→索引 1；网站 answer=1 一致。独立模拟 n=4：i=4 无前导 0 输出 1 2 3 4，i=3 一个 0 + 1 2 3，i=2 两个 0 + 1 2，i=1 三个 0 + 1，与 B 图形完全吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐行计算前导 0 个数（n-i）与数字段（1..i），结论正确；对 A（0 在行尾/数字递减）、C（k+1 恒从 1 起）、D（i 递增版行序）的排除理由经复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核 approve 与独立核对一致，予以确认。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。PDF 第5页题干明确为“8 位评委打分（分数为 0～10 的整数）”，网站误写为“0 到 100 的整数”，已按原卷修正为 0 到 10；其余要素（去最高最低、先编号后依次输入 8 个分数）与原卷一致。第6页代码与网站仅提示语空格等排版差异，不影响含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页 A“上述代码能完成题目要求”、B、C、D 及 D 附带的修改代码与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 A→索引 0；网站 answer=0 一致。独立复核代码正确性：j=1..8 读 8 个分数，max_score=0 为分数下界、min_score=100 为大于上界 10 的哨兵，total 减最高最低后为 6 个分数之和，代码能完成题目要求。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。原解析按 0~100 范围解释且称 max_score“第一轮必被更新”（与首分为 0 时不更新的实际行为矛盾），已按 0~10 范围改写：min_score=100 首轮必更新为实际最低分，max_score=0 若首分为 0 则不更新但值仍正确。B（min 置 0 后 min_score>score 永假）、C（< 与 <= 等价，“必须”不成立）、D（等价改写谈不上“不能达到预期”）的排除理由独立复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "某学校举办\"校园演讲比赛\"，每位选手由 8 位评委打分（分数为 0 到 10 的整数），且每位评委必须打分。计分规则：去掉一个最高分，去掉一个最低分。如下程序通过键盘先输入选手编号，然后依次输入 8 个分数，并计算最终得分。下列说法正确的是（ ）。\n```cpp\nfor (int i = 0; i < 10; i++) {\n    int id, score;\n    printf(\"输入选手编号: \");\n    scanf(\"%d\", &id);\n    int max_score = 0, min_score = 100; // 最高分和最低分\n    int total_score = 0; // 总分\n    for (int j = 1; j < 9; j++) {\n        printf(\"输入选手第 %d 个成绩:\", j);\n        scanf(\"%d\", &score);\n        if (max_score < score)\n            max_score = score;\n        if (min_score > score)\n            min_score = score;\n        total_score += score;\n    }\n    total_score = total_score - max_score - min_score;\n    printf(\"%d 号选手的成绩: \\\n            去掉一个最高分 %d,\\\n            去掉一个最低分 %d,\\\n            最后成绩是： %d\", id, max_score, min_score, total_score);\n}\n```",
+          "explanation": "**答案：A**\n\n**核心解析：**\n逐项检验代码逻辑：\n- 8 位评委：内层 j=1..8 共读 8 个分数 ✓\n- max_score 初始化为 0：分数范围 0~10，0 是可能的最小值；若首个分数为 0，max_score 保持 0 仍正确，之后出现更大分数会被更新 ✓\n- min_score 初始化为 100：100 大于可能的最大分数 10，首轮必被更新为实际最低分 ✓\n- total_score 累加 8 个分数后减去最高分和最低分，剩 6 个分数之和，作为最终得分 ✓\n\n代码能完成题目要求。\n\n**选项逐项分析：**\n- **A**：✅ 正确。\n- **B**：❌ min_score 改成 0 后，因分数均 ≥0，`min_score > score` 永远不成立，最低分统计失效。\n- **C**：❌ `<` 换 `<=`、`>` 换 `>=` 在此处等价（分数相同时更新与否不改变 max/min 的值，也不影响总和），\"必须\"二字错误。\n- **D**：❌ 修改版只是多绕一个中间变量，与原式完全等价，谈不上\"不能达到预期\"。\n\n**易错提醒：**\n- 求最大值初始化为可能的最小值、求最小值初始化为大于可能最大值的哨兵，是经典做法；本题 min_score=100 正是哨兵。\n- `printf` 字符串中的行尾反斜杠是续行符，把多行拼成一条输出。\n\n**考点：** 最值统计与程序正确性判断"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：题干“0～10”的定性以 PDF 第5页原图为准（图片清晰可读为 0～10，网站 0 到 100 系转录错误），解析适配修正我已独立复核确认后应用；分数范围的修正不改变答案 A，但使 max/min 初始化的机理解释恢复准确。"
+      }
+    ],
+    "summary": "独立复核 11–15 五题，全部答案与 PDF 第1页答案表（11:A、12:B、13:D、14:B、15:A）映射一致。题12、13、14 题面/选项/答案/解析均核验通过，approve 无修改。题11解析存在两处机理描述错误：B 组合（>= %= +=）实际在 num=10 即触发 10%=2=0（原稿称 11%=2=1 跳回 1）；C 组合的 =+ 落在第三空即 else 分支 `num =+ 1`（赋值 +1，序列恒为 1），原稿及 DeepSeek 修正稿均误写为“num =+ 2”，已由独立复核改写完整解析后应用（revise）。题15题干分数范围网站误作“0 到 100”，原卷为“0～10”，已修正题干并按 0~10 范围重写解析中 max/min 初始化的表述（原稿“max_score 第一轮必被更新”与首分为 0 的实际行为矛盾），修复后核验通过（revise）。Initia 草稿两部分修正方向正确但题11的 C 项分析有误，已否决并替换。无待决事项。"
+  }
+}

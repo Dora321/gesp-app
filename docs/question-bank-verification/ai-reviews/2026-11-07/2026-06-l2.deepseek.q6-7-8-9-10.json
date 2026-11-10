@@ -1,0 +1,227 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:22:23.159Z",
+  "completedAt": "2026-11-10T00:23:55.696Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31592,
+    "completion_tokens": 11926,
+    "total_tokens": 43518,
+    "prompt_tokens_details": {
+      "cached_tokens": 31488,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9566
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00726566,
+      "allowance": 0.0043594,
+      "tokens": {
+        "input": 104,
+        "output": 11926,
+        "reasoning": 9566,
+        "cache_read": 31488,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5019763b44048764bae2fd137cb61d8e778de67d8a9d13cad24a80b99a0a4c5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证 C++ 二级 2026 年 06 月”，与 paperId 2026-06-l2 对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干与代码逐行一致：外层 i 从 n 递减到 1，内层输出 j+1，输入 4 时最后一行由 i=1 产生。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A 0、B 1、C 1 2、D 1 2 3 4，顺序和内容与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表题号 6 为 B；0 起始索引为 1，与站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟 n=4 输出四行：1 2 3 4 / 1 2 3 / 1 2 / 1，最后一行是 1，站内解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干和代码一致：for (i=1; i<5; i+=3)，内层将 tnt 累加 i 次，循环内输出 tnt#，循环后输出 tnt。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A 1#5#5、B 1#5#5#、C 1#5#12#12、D 0，顺序和内容与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表题号 7 为 A；0 起始索引为 0，与站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算 i=1、4：tnt 依次变为 1、5；循环内输出 1#、5#，循环外输出 5，合计 1#5#5，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干和代码一致：for (i=-2; i<2; i++)，条件为 not i % 3 == 0，循环后输出 i。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A -2#-1#1#2、B -2#-1#1#2#3、C 1#2#3、D 0#1#2#3，顺序和内容与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表题号 8 为 A；0 起始索引为 0，与站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 A 正确，但站内解析把 not i % 3 == 0 误解析为 (not (i%3))==0；按 C++ 优先级应解析为 ((!i)%3)==0，需修正解析表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无编程题参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (-2#-1#1#2)**\n\n**核心解析：**\n`not` 是 `!` 的替代记号，一元运算符优先级高于 `%` 和 `==`，因此 `not i % 3 == 0` 解析为 `((!i) % 3) == 0`，而不是 `(!(i % 3)) == 0`。\n- 当 i 非 0 时，`!i` 为 false（转成整数 0），`0 % 3 == 0` 成立，输出 `i#`；\n- 当 i = 0 时，`!i` 为 true（转成整数 1），`1 % 3 == 1`，`1 == 0` 不成立，不输出。\n\n循环 i = -2, -1, 0, 1：\n- i=-2：输出 `-2#`\n- i=-1：输出 `-1#`\n- i=0：不输出\n- i=1：输出 `1#`\n- i=2 时退出循环，循环后 `cout << i` 输出 `2`。\n\n合计 `-2#-1#1#2`。\n\n**选项逐项分析：**\n- A ✅ 正确。\n- B ❌ i=2 已退出循环，不会输出 3。\n- C ❌ 漏掉负数轮次。\n- D ❌ i=0 不输出。\n\n**易错提醒：**\n- 不要把 `not i % 3 == 0` 误读为 `not (i % 3 == 0)`；`not` 只作用于紧随的 `i`，随后才进行 `%` 和 `==`。\n- 本题范围内恰好没有非零的 3 的倍数，所以两种错误读法对输出可能看似相同；但运算符优先级必须按 C++ 规则分析。\n\n**考点：** 运算符优先级、逻辑非与整数运算、循环终值"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末给出题干，PDF 第 3 页代码逐行一致：i=0..2，j=i，while(j) 内 cnt 累加并使 j 递减。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A 3 0 3、B 2 0 4、C 2 0 5、D 3 0 5，顺序和内容与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表题号 9 为 A；0 起始索引为 0，与站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：i=0 时 while 不执行，i=1 加 1 次，i=2 加 2 次，cnt=3；循环后 i=3、j=0，输出 3 0 3，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干和代码一致：外层 i=1..3，内层 j 从 0 开始，j%3!=0 时 continue，否则 count++ 并 break。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A 4 0 4、B 3 0 0、C 3 2 0、D 4 0 3，顺序和内容与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表题号 10 为 D；0 起始索引为 3，与站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟：每轮 j=0 不满足 continue，count 加 1 后 break；三轮 count=3，j=0，i 最终为 4，输出 4 0 3，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 6-10：题面、选项和答案均与 PDF 一致；Q8 解析存在运算符优先级表述错误，已给出修正解析；其余解析独立复核通过。所有题均为单选，无参考代码与编程边界测试。"
+  }
+}

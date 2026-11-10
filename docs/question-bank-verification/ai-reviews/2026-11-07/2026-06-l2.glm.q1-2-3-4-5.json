@@ -1,0 +1,233 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:21:43.191Z",
+  "completedAt": "2026-11-10T00:22:23.153Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49524,
+    "completion_tokens": 3564,
+    "total_tokens": 53088,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1294
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0092106,
+      "allowance": 0.0092106,
+      "tokens": {
+        "input": 49524,
+        "output": 3564,
+        "reasoning": 1294,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c5019763b44048764bae2fd137cb61d8e778de67d8a9d13cad24a80b99a0a4c5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头清晰可见'CCF 编程能力等级认证 / Grade Examination of Software Programming、C++ 二级、2026 年 06 月'，与 paperId 2026-06-l2 的年月（2026-06）与等级（二级/l2）一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核：逐项独立复核题干、选项、答案表映射（C→索引2）与解析方向，均一致，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干：'学校组织到未来农场参观……湿度传感器可以连续检测土壤的湿度变化，并将检测到的湿度数据实时发送给中央控制器。中央控制器根据这些数据判断是否开启灌溉系统……类似于计算机系统中的哪一类组件？'与网站转录逐字一致（含标点）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项为 A. 处理器、B. 存储器、C. 输入设备、D. 输出设备，顺序与网站一致，无缺失。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表（题号1-15：C B D C B B A A A D A B D B A）第 1 题为 C，对应 0 起始索引 2；网站 answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：传感器将外部物理量（湿度）采集并转换为数据送入中央控制器，属信息输入方向，与键盘/摄像头同类，为输入设备；处理器（对应题中中央控制器）负责运算决策，存储器保存数据，输出设备为系统向外部发送结果，方向相反。网站解析与该推理一致，结论 C 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维均独立复核完毕（特别确认 options 四项及顺序与 PDF 页图一致），无必须修改项。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干：'小明去农场参观回来后就在自己的电脑上安装了一个 3D 农场仿真模拟系统……经常弹出“系统内存不足”的警告，导致系统卡顿严重。他计划通过增加物理内存来解决问题……应该购买以下哪种硬件组件？'与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题选项依次为 A. 机械硬盘、B. 内存条、C. 图形显卡、D. 移动硬盘，四项齐全且顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 B，对应 0 起始索引 1；网站 answer=1，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：'内存不足'指运行内存（RAM）不足，加装物理内存即购买内存条；机械硬盘与移动硬盘为外存（长期存储），显卡显存不可替代系统内存。网站解析及'内存与外存区别'的易错提醒与该推理一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核：代码、四选项、答案 D→索引3 逐项对照一致；输出行为经独立语义推导确认，解析正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码框为两行：'float a = 3 + 3.5;' 与 'cout << a;'，与网站代码块一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A（改为 float(3) + 3.5 能正常执行）、B（改为 3.0 + 3.5 能正常执行）、C（输出 6）、D（输出 6.5）与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 D，对应 0 起始索引 3；网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：3 为 int、3.5 为 double，混合运算中 3 提升为 3.0，结果 6.5（double）；赋给 float 合法（6.5 可由 float 精确表示），cout 默认格式输出 6.5，不报错、不截断。A/B 的'原代码报错'前提为假，C 错。网站解析推理链与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核：表达式、选项及顺序一致；德摩根律独立展开确认 C 正确，解析中关于 D 的 not 优先级分析亦成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题题干为'与 C++ 表达式 not (x > 5 or y <= 10) 等价的是（ ）'，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A. x <= 5 or y > 10、B. x > 5 and y <= 10、C. x <= 5 and y > 10、D. not x > 5 and not y <= 10，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 C，对应 0 起始索引 2；网站 answer=2，映射正确（选项顺序未变动，无需重映射）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：德摩根律 not(A or B) ≡ (not A) and (not B)，其中 not(x>5) ≡ x<=5，not(y<=10) ≡ y>10，故等价式为 x <= 5 and y > 10，即 C。A 将 and 误作 or，B 未取反，D 因 not 为一元运算符优先于算术/关系运算而起效范围错误。网站解析与该推理一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干中给定的输出现象与代码在第 2 页页图核对一致；B 项成因判断经独立浮点语义推导确认，其余排除理由成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干给出代码 cout << (2.5 + 2.25) << ' ' << (2.2 + 2.1) 及输出 4.75 4.300000000000001，与网站一致（字符 4.300000000000001 共 16 位小数数字，页图与网站转录相符）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A（+ 运算符有时正确有时错误）、B（某些浮点数难以精确表示，导致微小误差）、C（+ 不能用于浮点数）、D（cout 难以输出太长数值），与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 B，对应 0 起始索引 1；网站 answer=1，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：2.5=10.1₂ 与 2.25=10.01₂ 均为二进制有限小数，可精确表示，2.5+2.25=4.75 精确；而 2.2、2.1 在二进制下为无限循环小数，IEEE 754 只能存近似值，相加误差显现得 4.300000000000001（其精确出现依赖输出端采用高精度/最短往返格式，题干已给定该环境输出）。A/C 违背浮点运算事实，D 与输出原理无关，B 为本质原因。网站解析与该推理一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次独立复核覆盖第 1-5 题。卷头身份（2026 年 06 月 / C++ 二级）与 paperId 2026-06-l2 匹配。五题的题干、选项（含顺序）、官方答案表映射（C/B/D/C/B → 2/1/3/2/1）均逐项对照 PDF 第 1、2 页页图确认一致；解析内容经独立语义推导（输入设备判定、内存与外存区别、int/double 混合运算与浮点输出、德摩根律、IEEE 754 表示误差）核验成立。未发现任何必须修改项，changes 均为空；客观题不涉及参考代码与运行测试，tests 按规则留空。五题 verdict 均为 approve，DeepSeek 初核结论经复核成立并予接受。第 5 题输出字符串的出现依赖开发环境的高精度输出设置，但题干已给定该现象，不影响答案判定，已在此复核说明，不构成缺陷。"
+  }
+}
