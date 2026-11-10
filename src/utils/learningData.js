@@ -82,7 +82,8 @@ const normalizeExams = (value) => cleanEntries(value, (entry) => {
         answers: normalizeAnswers(entry.answers),
         isSubmitted: Boolean(entry.isSubmitted),
     };
-    for (const key of ['timeLeft', 'currentQuestionIndex', 'savedAt']) {
+    // endsAt：新版计时的截止时间戳；timeLeft：旧版存档的剩余秒数（恢复时兼容）。
+    for (const key of ['endsAt', 'timeLeft', 'currentQuestionIndex', 'savedAt']) {
         const number = finiteNumber(entry[key]);
         if (number !== undefined) snapshot[key] = number;
     }
