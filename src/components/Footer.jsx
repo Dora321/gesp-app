@@ -82,7 +82,8 @@ export default function Footer({ variant = 'site' }) {
                             <p className="mw-footer-about">
                                 面向青少年、老师和家长的编程与科创学习站：GESP
                                 C++ 一至八级、Python 入门与项目、电与磁和 ESP32 科创实验，以及 GESP
-                                官方真题练习。学习进度和错题只保存在你自己的浏览器里。
+                                官方真题练习。学习进度和错题只保存在你自己的浏览器里；网站用谷歌统计（Google
+                                Analytics）记录页面访问量，不会上传你的作答和 API Key。
                             </p>
                         </div>
                         <nav aria-labelledby="footer-courses-heading">

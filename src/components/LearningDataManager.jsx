@@ -142,6 +142,7 @@ export default function LearningDataManager() {
 
             <p className="mt-4 text-xs leading-5 text-slate-400">
                 进度只保存在当前浏览器，不会自动同步到其他设备。清理网站数据会移除记录。导出包含课程、上机自查、试卷、硬件课和博物馆进度，不包含 API Key、聊天、课堂积分或本次课内临时作答证据。
+                网站正式地址会加载谷歌统计（Google Analytics），它会在浏览器里存一个统计用的 Cookie，记录打开了哪些页面、用什么设备，用来了解哪些内容常被使用；作答、错题、聊天和 API Key 不会发给它。
             </p>
             <p className="mt-2 text-xs text-slate-300">{exportAt ? '最近发起导出：' + new Date(exportAt).toLocaleString('zh-CN') : '尚未导出备份'}{updatedAt && updatedAt > exportAt ? ' · 有新的学习记录，建议导出。' : ''}</p>
             <p className="mt-2 min-h-5 text-sm font-semibold text-blue-200" role="status" aria-live="polite">{status}</p>
