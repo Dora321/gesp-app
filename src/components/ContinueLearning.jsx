@@ -5,7 +5,8 @@ import { ArrowRight, BookOpen, NotebookPen, Target } from 'lucide-react';
 import { getCppLesson } from '../data/cppLessonIndex';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 import { arduinoLessons, contestLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
-import { paperMeta } from '../data/gesp';
+// 只取卷名的轻量生成文件：data/gesp/index 会把整份注册表和勘误拉进首页分块。
+import { paperTitles } from '../data/gesp/_paperTitles';
 import { LEARNING_DATA_EVENT } from '../utils/learningData';
 import { readLessonProgress, toLessonProgressKey, toLessonRoutePath } from '../utils/lessonProgress';
 import { latestWrongIdsByPaper, readExamAttempts } from '../utils/examHistory';
@@ -145,7 +146,7 @@ export default function ContinueLearning() {
         }
 
         if (attempt) {
-            const meta = paperMeta[attempt.paperId];
+            const paperTitle = paperTitles[attempt.paperId];
             const { score, total, correct, wrong } = attempt.attempt;
             list.push({
                 key: 'attempt',
@@ -153,7 +154,7 @@ export default function ContinueLearning() {
                 icon: Target,
                 tone: TONES.attempt,
                 eyebrow: `上次交卷 · ${formatDate(attempt.attempt.at)}`,
-                title: meta ? meta.title : attempt.paperId,
+                title: paperTitle || attempt.paperId,
                 detail: `客观题得分 ${score}/${total}，答对 ${correct} 题、答错 ${wrong} 题。`,
                 cta: '看成绩趋势',
             });
