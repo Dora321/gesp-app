@@ -1,0 +1,96 @@
+{
+  "paperId": "2025-09-l2",
+  "integratedAt": "2026-11-10T04:05:26.025Z",
+  "accepted": [
+    {
+      "id": 22,
+      "fields": []
+    },
+    {
+      "id": 26,
+      "fields": []
+    }
+  ],
+  "deferred": [
+    {
+      "id": 21,
+      "reasons": [
+        "explanation 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "6",
+          "output": "6",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "input": "2025",
+          "output": "28",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "28\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 n=1",
+          "input": "1",
+          "output": "1",
+          "reason": "不超过 1 的正整数只有 1，一位数所有数位相同，计 1 个；参考程序对 i=1 时 t=0、while 不执行、chk=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两位数分界 n=10",
+          "input": "10",
+          "output": "9",
+          "reason": "1–9 共 9 个优美数；10 的数位 1 与 0 不同不计。",
+          "kind": "boundary",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "首个两位重复数 n=11",
+          "input": "11",
+          "output": "10",
+          "reason": "1–9 共 9 个，加上 11 共 10 个；参考程序对 11：v=1、t=1 相等计入。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "四位数临界 n=1110",
+          "input": "1110",
+          "output": "27",
+          "reason": "一、二、三位重复数各 9 个共 27；四位数中最小的 1111 大于 1110 尚未计入，检验四位数上界逻辑。",
+          "kind": "boundary",
+          "actual": "27\n",
+          "passed": true
+        },
+        {
+          "name": "最大值 n=2025",
+          "input": "2025",
+          "output": "28",
+          "reason": "一位、两位、三位各 9 个，四位数仅 1111≤2025，合计 28，与原卷样例 2 一致。",
+          "kind": "boundary",
+          "actual": "28\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "145ab6472705b9330477d507fd98c0e4fad2c64f19618b9ebc82840dd134c040"
+    }
+  ]
+}

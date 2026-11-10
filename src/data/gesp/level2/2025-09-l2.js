@@ -571,13 +571,14 @@ TCP（传输控制协议）是一种面向连接的、可靠的传输层通信�
             sourceVerified: true,
             sourcePage: 7,
             sourcePages: [7],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             sourceUrl: SOURCE_URL,
             explanation: `**答案：正确**
 
 $i=0$ 和 $i=1$ 时各输出一次 \`+#\`，合起来是 \`+#+#\`。$i=2$ 时 \`continue\` 跳过输出，但仍会执行 for 循环的 \`i++\`，所以循环结束时 $i=3$。最后再输出 \`3#\`，完整结果就是 \`+#+#3#\`。`,
             tags: ['循环控制'],
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"],
         },
         {
             id: 23,
@@ -644,8 +645,8 @@ $i=0$ 和 $i=1$ 时各输出一次 \`+#\`，合起来是 \`+#+#\`。$i=2$ 时 \`
             sourceVerified: true,
             sourcePage: 8,
             sourcePages: [8, 9],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             sourceUrl: SOURCE_URL,
             samples: [
                 {
@@ -743,6 +744,7 @@ int main() {
     printf("%d\\n", ans);
     return 0;
 }`,
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"],
         },
         {
             id: 27,

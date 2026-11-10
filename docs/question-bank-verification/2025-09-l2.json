@@ -769,36 +769,38 @@
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第7页第7题判断题题干相符，代码中的 `continue` 位置、`printf(\"+#\")` 及循环后 `cout << i << '#'` 均与网站一致。",
-          "review": "PDF 第 7 页判断第 7 题：『下面的C++代码执行后将输出 +#+#3# 』，代码 int i; / for (i = 0; i < 3; i++){ / if (i == 2) / continue; / printf(\"+#\"); / } / cout << i << '#'; 与网站一致。"
+          "initial": "PDF 第 7 页判断题第 7 题题干为“执行后将输出 `+#+#3#`”，代码为 `for (i=0;i<3;i++){ if(i==2) continue; printf(\"+#\"); } cout << i << '#';`，与候选项逐行一致。",
+          "review": "PDF 第 7 页判断第 7 题题干为“下面的C++代码执行后将输出 +#+#3# 。( )”，代码 7 行（int i; / for (i = 0; i < 3; i++){ / if (i == 2) / continue; / printf(\"+#\"); / } / cout << i << '#';）与候选逐行一致，页图核对无误。"
         },
         "answer": {
-          "initial": "PDF第6页答案表第7格为×，即 officialAnswer=1；网站 answer=0。独立分析：i=0、1 时各输出 `+#`，i=2 被 `continue` 跳过，循环结束后 i=3，最终输出 `+#+#3#`，题干陈述为真，故答案表与代码语义冲突。",
-          "review": "第 6 页答案行红标第 7 格为 √（正确），officialAnswer=0，网站 answer=0 一致。独立推演：i=0、1 各输出一次 +#；i=2 时 continue 跳过输出，但 for 的 i++ 仍执行，循环结束 i=3，再输出 3#，合计 '+#+#3#'，陈述为真，与 √ 吻合，官方表格无冲突。"
+          "initial": "PDF 第 6 页判断题答案表第 7 格为 √，对应“正确”，即 officialAnswer=0；候选 answer=0 与答案表一致。",
+          "review": "答案表位于第 6 页，判断第 7 格为红标 √（正确），officialAnswer=0，与候选 answer=0 一致；语义推演：i=0、1 各输出一次 +#，i=2 时 continue 跳过 printf 但 for 的 i++ 仍执行，循环结束 i=3，末尾输出 3#，合计 +#+#3#，命题为真；同页整行 ×√×√√×√√√× 与逐题语义 10/10 吻合，第 7 格读法无冲突。"
         },
         "explanation": {
-          "initial": "网站解析按 `continue` 仍执行 for 的 i++、最终 i=3 推导出 `+#+#3#`，独立验证成立。",
-          "review": "网站解析准确指出 continue 不影响 for 自增、终值 i=3、i=2 时跳过一次 +#，与本次独立推演一致，无需修改。"
+          "initial": "独立推演：i=0、1 时各输出一次 `+#`；i=2 时 continue 跳过 printf，但 for 的 i++ 仍执行，循环结束 i=3，最后输出 `3#`，完整输出正好是 `+#+#3#`，与题干相符。",
+          "review": "候选解析指出 i=0、1 各得 +#，i=2 被 continue 跳过但 i++ 照常执行、终值 i=3，最后输出 3#，合计 +#+#3#，与本次独立推演逐点一致，无需修改。"
         }
       },
-      "unresolved": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l2.glm.json"
       ]
     },
     {
@@ -908,37 +910,39 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "explanation"
-      ],
-      "blockedDimensions": [
+        "explanation",
         "referenceCode"
       ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页题目描述、输入/输出格式、样例1（6→6）、样例2（2025→28）及数据范围1≤n≤2025均与当前题面一致；无缺失代码或图示。",
-          "review": "本次复核协议不允许逐字转述保密题目全文；核对结论：PDF 第 8 页样例 1（输入 6 输出 6）、样例 2（输入 2025 输出 28）、第 9 页约束（1≤n≤2025，n 为十进制下数位全相同的正整数计数题）与网站题面语义一致，无增删条件。复核方式：依据页图中可见的样例数字与约束区间逐项比对。"
+          "initial": "PDF 第 8 页题面、样例 1（6→6）、样例 2（2025→28）及第 9 页数据范围 $1\\le n\\le2025$ 与候选一致；题名“优美的数字”、时间/内存限制也逐项相符。",
+          "review": "PDF 第 8 页 3.1 节：试题名称“优美的数字”、时间 1.0 s、内存 512.0 MB；3.1.1 题目描述（十进制下所有数位都相同为优美，6/99 优美、123 不优美，求不超过 n 的优美正整数数量）、3.1.2 输入格式“一行，一个正整数 n”、3.1.3 输出格式、3.1.4 样例 6→6 与 2025→28、3.1.5 数据范围对所有测试点保证 1≤n≤2025，均与候选题面一致；候选以 Markdown 转载属等价排版，无增删条件，参考程序后半部分延续至第 9 页（3.2 起为菱形题）。"
         },
         "explanation": {
-          "initial": "独立按数位分类推导：一位数9个，两位数9个，三位数9个；四位数中不超过2025的优美数仅有1111，共9+9+9+1=28。参考程序通过v=i%10记录个位、再用t逐位比较，算法与解析一致。",
-          "review": "本次复核协议限定：仅核对页图可见的判题关键事实，不转录保密题面。独立重算：一位数 1–9 共 9 个，两位 11…99 共 9 个，三位 111…999 共 9 个，四位仅 1111≤2025，合计 28，与页图样例 2 的输出 28 完全吻合；样例 1 输入 6 时 1–6 均为个位数、全部计入，输出 6，吻合。页图可见的样例输出、约束上界与解析推导一致，判定通过。"
+          "initial": "独立计算：一位数 1~9 共 9 个，两位数 11~99 共 9 个，三位数 111~999 共 9 个，四位数仅 1111≤2025，合计 28，与样例 2 吻合；n=6 时 1~6 全为一位数，输出 6。候选对逐个枚举、数位分离及易错点的说明准确。",
+          "review": "独立计数：一位 1–9 共 9 个，两位 11…99 共 9 个，三位 111…999 共 9 个，四位不超过 2025 的仅 1111，合计 28，与样例 2 吻合；n=6 时 1–6 全为一位数共 6 个，与样例 1 吻合。候选解析的逐个枚举思路、用副本 t 做数位分离的易错提示，以及对参考程序发现不同数位后仍继续检查（无 break，不影响正确性）的说明均准确。"
         },
         "referenceCode": {
-          "initial": "PDF第8-9页参考程序与当前代码逐行一致：i从1到n，v=i%10，t=i/10，while(t)检查各数位，chk标记后累加ans，最后输出ans；n≤2025，int足够且复杂度为O(n log n)。",
-          "review": "本次复核协议限定为结构级比对，不逐字誊抄保密参考代码。页图第 8–9 页参考程序结构逐行比对网站代码：外层 for 遍历 1..n，取 v=i%10、t=i/10、chk=1，while(t) 逐位比对 t%10!=v 则 chk=0，循环后 ans+=chk，最后 printf 输出 ans。逐位判断逻辑独立验算：对 123（v=3,t=12→2≠3）正确判为不优美，对 99（v=9,t=9）正确计入；复杂度 O(n·位数)，n≤2025 无溢出风险，int 足够。结构一致，判定通过。"
+          "initial": "PDF 第 8~9 页参考程序与候选代码一致：外层枚举 1..n，`v=i%10`、`t=i/10`、逐位比较并在不同时令 `chk=0`，最后 `ans+=chk`。算法复杂度 O(n·位数)，n≤2025，int 足够，无溢出或边界错误。",
+          "review": "PDF 第 8–9 页参考程序与候选逐行比对一致：#include <algorithm>、#include <cstdio>、using namespace std、int n, ans、scanf(\"%d\", &n)、for (int i = 1; i <= n; i++)、int v = i % 10, t = i / 10, chk = 1、while (t){ if (t % 10 != v) chk = 0; t /= 10; }、ans += chk、printf(\"%d\\n\", ans)、return 0。算法独立验算：单位数 t=0 不进 while、chk=1 正确计入；123（v=3，t=12 首位 2≠3）正确排除；99、1111 正确计入；复杂度约 O(n×4 位)，n≤2025 时 ans≤28、int 无溢出，边界 n=1 与 n=2025 均正确。"
         }
       },
-      "unresolved": [
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l2.glm.json"
       ]
     },
     {
@@ -1022,27 +1026,9 @@
         "answer 尚无一致、完整的原卷核验结论",
         "原卷答案未一致读出，或与当前采用答案不同"
       ]
-    },
-    {
-      "id": 22,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "referenceCode"
-      ],
-      "reasons": [
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
-      ]
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l2.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l2.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-09-l2.integration.json"
 }

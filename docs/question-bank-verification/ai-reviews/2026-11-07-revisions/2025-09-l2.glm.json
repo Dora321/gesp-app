@@ -1,0 +1,206 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T04:02:16.234Z",
+  "completedAt": "2026-11-10T04:05:25.441Z",
+  "finishReason": "stop",
+  "inputSha256": "eff16fb3b5d3e3831414ae0519c7941de54884e6e4a27e4318cc4d5f0c610be0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF 徽标、GESP 标识与“CCF 编程能力等级认证 Grade Examination of Software Programming”，正文标题“C++ 二级，2025 年 09 月”，与候选 2025 年 9 月 C++ 二级完全一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 6 题题干为“执行下面的C++代码时输入 123 ，则输出是 DCB 。( )”，代码 6 行 int a; / cin >> a; / while(a){ / cout << 'A'+a%10; / a /= 10; / } 与候选逐行一致，页图核对无误。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷判断题以（ ）作答并按 √/× 记分，页图无 A/B 选项；站内统一以“正确/错误”两项按 0/1 映射转录，顺序与官方符号约定一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 6 格为红标 ×（错误），officialAnswer=1，与候选 answer=1 一致；同页整行为 ×√×√√×√√√×，且第 6 格与代码语义吻合：'A'+a%10 为 int 运算，依次输出 68、67、66，连写 686766 ≠ DCB，命题为假，答案表标记与独立语义推演双重吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a=123 循环逐轮取 a%10=3、2、1，'A'(=65) 分别加得 68、67、66，无分隔连写为 686766，非 DCB，结论“错误”成立；候选解析的整型提升说明、65+3/65+2/65+1 分解、686766 结果及 char('A'+a%10) 修正写法均与推导一致，内容无误可修。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决 DeepSeek 初核对解析的修改。其以“无法由当前证据支持”为由删除“本站已用 C++17 实测确认”一句，但该句是站方过程注记而非额外事实声明，其结论 686766 可由纯语义推导独立证实（65+3/65+2/65+1=68/67/66 连写），解释实质内容无误，删除属非实质改动，按“无问题 changes={}、不做纯文风改写”原则不采纳；candidate 其余字段（answer=1、题面、判定映射）均核验通过。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 7 题题干为“下面的C++代码执行后将输出 +#+#3# 。( )”，代码 7 行（int i; / for (i = 0; i < 3; i++){ / if (i == 2) / continue; / printf(\"+#\"); / } / cout << i << '#';）与候选逐行一致，页图核对无误。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷判断题按（ ）与 √/× 记分，页图无 A/B 选项；站内“正确/错误”两项的 0/1 映射与官方符号约定一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表位于第 6 页，判断第 7 格为红标 √（正确），officialAnswer=0，与候选 answer=0 一致；语义推演：i=0、1 各输出一次 +#，i=2 时 continue 跳过 printf 但 for 的 i++ 仍执行，循环结束 i=3，末尾输出 3#，合计 +#+#3#，命题为真；同页整行 ×√×√√×√√√× 与逐题语义 10/10 吻合，第 7 格读法无冲突。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出 i=0、1 各得 +#，i=2 被 continue 跳过但 i++ 照常执行、终值 i=3，最后输出 3#，合计 +#+#3#，与本次独立推演逐点一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核对本题的处理：题面、官方 √ 标记（officialAnswer=0）、候选 answer=0 及解析推演均经独立确认，无待决问题、无修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 3.1 节：试题名称“优美的数字”、时间 1.0 s、内存 512.0 MB；3.1.1 题目描述（十进制下所有数位都相同为优美，6/99 优美、123 不优美，求不超过 n 的优美正整数数量）、3.1.2 输入格式“一行，一个正整数 n”、3.1.3 输出格式、3.1.4 样例 6→6 与 2025→28、3.1.5 数据范围对所有测试点保证 1≤n≤2025，均与候选题面一致；候选以 Markdown 转载属等价排版，无增删条件，参考程序后半部分延续至第 9 页（3.2 起为菱形题）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，officialAnswer 置 null，以样例与约束核验代替。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计数：一位 1–9 共 9 个，两位 11…99 共 9 个，三位 111…999 共 9 个，四位不超过 2025 的仅 1111，合计 28，与样例 2 吻合；n=6 时 1–6 全为一位数共 6 个，与样例 1 吻合。候选解析的逐个枚举思路、用副本 t 做数位分离的易错提示，以及对参考程序发现不同数位后仍继续检查（无 break，不影响正确性）的说明均准确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 8–9 页参考程序与候选逐行比对一致：#include <algorithm>、#include <cstdio>、using namespace std、int n, ans、scanf(\"%d\", &n)、for (int i = 1; i <= n; i++)、int v = i % 10, t = i / 10, chk = 1、while (t){ if (t % 10 != v) chk = 0; t /= 10; }、ans += chk、printf(\"%d\\n\", ans)、return 0。算法独立验算：单位数 t=0 不进 while、chk=1 正确计入；123（v=3，t=12 首位 2≠3）正确排除；99、1111 正确计入；复杂度约 O(n×4 位)，n≤2025 时 ans≤28、int 无溢出，边界 n=1 与 n=2025 均正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 n=1",
+            "input": "1",
+            "output": "1",
+            "reason": "不超过 1 的正整数只有 1，一位数所有数位相同，计 1 个；参考程序对 i=1 时 t=0、while 不执行、chk=1。"
+          },
+          {
+            "name": "两位数分界 n=10",
+            "input": "10",
+            "output": "9",
+            "reason": "1–9 共 9 个优美数；10 的数位 1 与 0 不同不计。"
+          },
+          {
+            "name": "首个两位重复数 n=11",
+            "input": "11",
+            "output": "10",
+            "reason": "1–9 共 9 个，加上 11 共 10 个；参考程序对 11：v=1、t=1 相等计入。"
+          },
+          {
+            "name": "四位数临界 n=1110",
+            "input": "1110",
+            "output": "27",
+            "reason": "一、二、三位重复数各 9 个共 27；四位数中最小的 1111 大于 1110 尚未计入，检验四位数上界逻辑。"
+          },
+          {
+            "name": "最大值 n=2025",
+            "input": "2025",
+            "output": "28",
+            "reason": "一位、两位、三位各 9 个，四位数仅 1111≤2025，合计 28，与原卷样例 2 一致。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受候选与 DeepSeek 初核主体：题面、样例、约束与参考程序均与第 8–9 页逐项一致，算法正确性、复杂度与溢出经独立验算通过；DeepSeek 提出的 4 组测试期望输出（1/9/10/28）均经独立推演确认无误，另补充 n=1110 边界测试以覆盖“首个四位数 1111 计入与否”的临界逻辑，输出格式以本站样例表示法（不含尾随换行）为准，参考程序行末换行按常规判题规则不影响比较。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        21,
+        22,
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 39370,
+        "completion_tokens": 13885,
+        "total_tokens": 53255,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11457
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.012848,
+          "allowance": 0.012848,
+          "tokens": {
+            "input": 39370,
+            "output": 13885,
+            "reasoning": 11457,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-10T04:02:16.234Z",
+      "completedAt": "2026-11-10T04:05:25.441Z"
+    }
+  ]
+}

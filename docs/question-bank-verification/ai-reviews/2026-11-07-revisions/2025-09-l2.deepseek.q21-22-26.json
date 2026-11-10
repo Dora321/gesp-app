@@ -1,0 +1,185 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:34:46.910Z",
+  "completedAt": "2026-11-10T00:36:38.574Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21397,
+    "completion_tokens": 6430,
+    "total_tokens": 27827,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5004
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00706755,
+      "allowance": 0.00424053,
+      "tokens": {
+        "input": 21397,
+        "output": 6430,
+        "reasoning": 5004,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "eff16fb3b5d3e3831414ae0519c7941de54884e6e4a27e4318cc4d5f0c610be0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“C++ 二级”与“2025 年 09 月”，与候选的 2025 年 9 月 C++ 二级一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 6 题的题干为“输入 123，则输出是 DCB”，代码为 `int a; cin >> a; while(a){ cout << 'A'+a%10; a /= 10; }`，与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷判断题用括号作答，并按 √/× 记分；站内统一映射为“正确/错误”两项，顺序与 0/1 映射约定一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 6 格为 ×，对应“错误”，即 officialAnswer=1；候选 answer=1 与答案表一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选对 `'A'+a%10` 发生整型提升、输出 68/67/66、连写为 686766 的推导正确；但其中“本站已用 C++17 实测确认”属于无当前证据支持的运行声明，应删除并保留独立语义推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n循环确实按个位、十位、百位依次取得 3、2、1，但表达式 `'A' + a % 10` 发生整数运算，结果类型是 `int`，所以 `cout` 输出数值而不是字符。按 ASCII，三次结果分别为 $65+3=68$、$65+2=67$、$65+1=66$，且代码没有分隔符，实际输出是 `686766`，不是 `DCB`。若要输出字符，应写 `cout << char('A' + a % 10);`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 7 题题干为“执行后将输出 `+#+#3#`”，代码为 `for (i=0;i<3;i++){ if(i==2) continue; printf(\"+#\"); } cout << i << '#';`，与候选项逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷判断题按 √/× 记分；站内“正确/错误”两项的 0/1 映射与符号约定一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 7 格为 √，对应“正确”，即 officialAnswer=0；候选 answer=0 与答案表一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：i=0、1 时各输出一次 `+#`；i=2 时 continue 跳过 printf，但 for 的 i++ 仍执行，循环结束 i=3，最后输出 `3#`，完整输出正好是 `+#+#3#`，与题干相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页题面、样例 1（6→6）、样例 2（2025→28）及第 9 页数据范围 $1\\le n\\le2025$ 与候选一致；题名“优美的数字”、时间/内存限制也逐项相符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：一位数 1~9 共 9 个，两位数 11~99 共 9 个，三位数 111~999 共 9 个，四位数仅 1111≤2025，合计 28，与样例 2 吻合；n=6 时 1~6 全为一位数，输出 6。候选对逐个枚举、数位分离及易错点的说明准确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第 8~9 页参考程序与候选代码一致：外层枚举 1..n，`v=i%10`、`t=i/10`、逐位比较并在不同时令 `chk=0`，最后 `ans+=chk`。算法复杂度 O(n·位数)，n≤2025，int 足够，无溢出或边界错误。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 n=1",
+            "input": "1\n",
+            "output": "1\n",
+            "reason": "不超过 1 的正整数只有 1，且一位数所有数位相同，计入 1 个。"
+          },
+          {
+            "name": "一位/两位数边界 n=10",
+            "input": "10\n",
+            "output": "9\n",
+            "reason": "1~9 共 9 个优美数；10 的数位不同，不计入。"
+          },
+          {
+            "name": "两位重复数 n=11",
+            "input": "11\n",
+            "output": "10\n",
+            "reason": "1~9 共 9 个，加上 11 共 10 个；12 尚未包含。"
+          },
+          {
+            "name": "最大值 n=2025",
+            "input": "2025\n",
+            "output": "28\n",
+            "reason": "9 个一位数、9 个两位数、9 个三位数，再加唯一的四位数 1111，合计 28。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "题 21 答案表 × 对应“错误”，候选 answer=1 正确；仅删除解析中无法由当前证据支持的实测声明。题 22 答案表 √ 对应“正确”，候选 answer=0 正确。题 26 题面、样例、约束和参考程序均与原卷一致，边界测试覆盖 n=1、10、11 与 2025。"
+  }
+}
