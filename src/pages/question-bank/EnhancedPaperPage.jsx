@@ -24,6 +24,7 @@ import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
+import { isProgrammingQuestion } from '../../utils/questionHelpers';
 
 const inferKnowledgeTags = (q, level) => {
     const merged = `${getQuestionContent(q)} ${q?.explanation || ''} ${(q?.options || []).join(' ')}`;
@@ -275,8 +276,11 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         color: 'from-indigo-500 to-blue-600'
     };
 
+    // Programming questions have no option answer: revealing one stores a
+    // placeholder 0 while q.answer is undefined, so they must not count as wrong.
     let wrongCount = 0;
     questions.forEach((q) => {
+        if (isProgrammingQuestion(q)) return;
         if (revealed[q.id] && answers[q.id] !== q.answer) wrongCount += 1;
     });
 
