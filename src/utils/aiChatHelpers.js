@@ -9,6 +9,14 @@ export const HISTORY_WARN_CHARS = 18000;
 export const estimateMessagesChars = (msgs) =>
     msgs.reduce((sum, message) => sum + (typeof message?.content === 'string' ? message.content.length : 0), 0);
 
+/**
+ * 界面上的错误/提示气泡（isError）只给学生看，不能当成助教说过的话回传给模型，
+ * 否则模型会在下一轮"接着"一条报错继续回答。发送前先过滤，再做截断。
+ */
+export const toApiHistory = (msgs) => truncateChatHistory(
+    (Array.isArray(msgs) ? msgs : []).filter((message) => message && !message.isError),
+).map((message) => ({ role: message.role, content: message.content }));
+
 export const truncateChatHistory = (msgs) => {
     let truncated = Array.isArray(msgs) ? [...msgs] : [];
 

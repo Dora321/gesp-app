@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   truncateChatHistory,
+  toApiHistory,
   isHistoryNearLimit,
   mapCatchErrorMessage,
   mapHttpErrorMessage,
@@ -69,4 +70,19 @@ test('sheet helpers use md breakpoint and snap/close thresholds', () => {
   assert.deepEqual(resolveSheetDragEnd(exp, vh), { action: 'snap', expanded: true });
   assert.equal(sheetBottomOffsetPx(900, 700, 50), 150);
   assert.equal(sheetBottomOffsetPx(700, 700, 0), 0);
+});
+
+test('toApiHistory drops UI-only error bubbles and strips extra fields', () => {
+  const msgs = [
+    { role: 'user', content: 'q1' },
+    { role: 'assistant', content: '❌ 网络错误', isError: true },
+    { role: 'user', content: 'q2' },
+    { role: 'assistant', content: 'a2' },
+  ];
+  assert.deepEqual(toApiHistory(msgs), [
+    { role: 'user', content: 'q1' },
+    { role: 'user', content: 'q2' },
+    { role: 'assistant', content: 'a2' },
+  ]);
+  assert.deepEqual(toApiHistory(null), []);
 });

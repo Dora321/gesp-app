@@ -3,7 +3,7 @@ import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, 
 import { useLocation } from 'react-router-dom';
 import { assistantStorage, loadAssistantKey, saveAssistantKey, buildClassroomPrompt } from '../utils/classroomAssistant';
 import {
-    truncateChatHistory,
+    toApiHistory,
     isHistoryNearLimit,
     mapHttpErrorMessage,
     mapCatchErrorMessage,
@@ -350,10 +350,9 @@ const AIChatWidget = ({ onClose }) => {
             title: document.querySelector('main h1')?.textContent?.trim() || document.title,
         } : null);
 
-        const historyForApi = truncateChatHistory(newMessages);
         const apiMessages = [
             { role: 'system', content: systemPrompt },
-            ...historyForApi.map(m => ({ role: m.role, content: m.content }))
+            ...toApiHistory(newMessages)
         ];
 
         // Create new AbortController
@@ -387,16 +386,17 @@ const AIChatWidget = ({ onClose }) => {
             let assistantContent = '';
             let bufferedChunk = '';
 
-            const updateLastAssistantMessage = (content, replaceEmptyOnly = false) => {
+            // 不可变更新：updater 在 StrictMode 下会被调用两次，原地改 lastMessage 会叠加副作用。
+            const updateLastAssistantMessage = (content, { replaceEmptyOnly = false, isError = false } = {}) => {
                 setMessages(prev => {
-                    const updatedMessages = [...prev];
-                    const lastMessage = updatedMessages[updatedMessages.length - 1];
-                    if (lastMessage?.role === 'assistant') {
-                        lastMessage.content = replaceEmptyOnly && lastMessage.content ? lastMessage.content : content;
-                    } else {
-                        updatedMessages.push({ role: 'assistant', content });
+                    const lastMessage = prev[prev.length - 1];
+                    if (lastMessage?.role !== 'assistant') {
+                        return [...prev, isError ? { role: 'assistant', content, isError: true } : { role: 'assistant', content }];
                     }
-                    return updatedMessages;
+                    if (replaceEmptyOnly && lastMessage.content) return prev;
+                    const next = { ...lastMessage, content };
+                    if (isError) next.isError = true;
+                    return [...prev.slice(0, -1), next];
                 });
             };
 
@@ -437,25 +437,27 @@ const AIChatWidget = ({ onClose }) => {
             }
 
             if (!assistantContent.trim()) {
-                updateLastAssistantMessage('这次没有收到有效回答。请再问一次，或稍等后重试。', true);
+                updateLastAssistantMessage('这次没有收到有效回答。请再问一次，或稍等后重试。', { replaceEmptyOnly: true, isError: true });
             }
 
         } catch (error) {
             if (error.name === 'AbortError') {
                 setMessages(prev => {
-                    const updatedMessages = [...prev];
-                    const lastMessage = updatedMessages[updatedMessages.length - 1];
-                    if (lastMessage?.role === 'assistant') {
-                        lastMessage.content += " *(已停止)*";
-                    }
-                    return updatedMessages;
+                    const lastMessage = prev[prev.length - 1];
+                    if (lastMessage?.role !== 'assistant') return prev;
+                    const stopped = { ...lastMessage, content: `${lastMessage.content} *(已停止)*` };
+                    // 还没收到任何内容就停止：只是界面提示，不回传给模型。
+                    if (!lastMessage.content) stopped.isError = true;
+                    return [...prev.slice(0, -1), stopped];
                 });
             } else {
                 const friendly = mapCatchErrorMessage(error) || '出错了，请稍后再试。';
-                setMessages(prev => [...prev, {
-                    role: 'assistant',
-                    content: `❌ ${friendly}`
-                }]);
+                setMessages(prev => {
+                    // 流式占位（空的 assistant 气泡）直接替换成错误提示，避免留下一个空回答。
+                    const lastMessage = prev[prev.length - 1];
+                    const base = lastMessage?.role === 'assistant' && !lastMessage.content ? prev.slice(0, -1) : prev;
+                    return [...base, { role: 'assistant', content: `❌ ${friendly}`, isError: true }];
+                });
             }
         } finally {
             setIsLoading(false);
@@ -486,12 +488,13 @@ const AIChatWidget = ({ onClose }) => {
             maxHeight: 'calc(100vh - 120px)',
         };
 
-    // Chat window when open
+    // Chat window when open. aria-modal only for the mobile sheet (it has a backdrop);
+    // the desktop floating panel doesn't block the page and has no focus trap.
     const panel = (
         <div
             className={panelClassName}
             role="dialog"
-            aria-modal="true"
+            aria-modal={isSheet ? 'true' : undefined}
             aria-label="AI 问答助手"
             style={panelStyle}
         >
