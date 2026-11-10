@@ -1,0 +1,94 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T00:34:46.862Z",
+  "completedAt": "2026-11-10T00:36:38.566Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18918,
+    "completion_tokens": 7338,
+    "total_tokens": 26256,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6347
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0072405,
+      "allowance": 0.0043443,
+      "tokens": {
+        "input": 18918,
+        "output": 7338,
+        "reasoning": 6347,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7e80206e7768979e64def7796f7383b386124508254e833fe515de6e33686bf1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页页图卷头为“CCF GESP C++ 二级 2025年03月”，与 paperId 2025-03-l2 一致；第1页答案表第10题列为 B。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "第3页页图题干逐字为“下面C++代码用于求1到N之间正整数中含有3的数的个数，比如 123 和 32 都是符合条件的数。则前后两处横线应填入代码分别是（ ）。”，与候选一致。第4页页图代码逐行核对，变量、循环、if/else、两处横线及输出语句均与候选代码块对应，仅空格宽度等排版级差异，无漏代码或改变含义。但原卷题干“1到N之间”与循环条件 `(j=i) < N` 不一致：循环仅检查 i=1..N-1，N 自身不被检查（如 N=33 时含3的33不计；N=3时循环不执行）。经页图确认属原卷自身措辞与代码不一致，非转录错误；保留原题面，不擅自改题。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图四个选项代码块依次为 A（continue；j /= 10）、B（break；j /= 10）、C（continue；j %= 10）、D（break；j %= 10）。候选以“前后两处横线”组合表述，第一空/第二空顺序与四个组合均与页图完全一致，无错位、无漏项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题为 B，0起始索引为 1，与候选 answer=1 一致。独立推理：第一空若填 continue，发现个位3后 j 未改变，while 条件仍真，会反复检查同一位而死循环，故必须用 break；第二空若填 j%=10，不含3的数如 j=12 会变为2并停滞，无法逐位推进，故必须用 j/=10。两空唯一确定为 B，答案表与推理互证。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐项独立重推候选解析：A 的 continue 造成同一位反复检查；C 的第一空 continue 已不可行，且第二空 j%=10 使 j 停在非零个位；D 的 j%=10 对 j=12→2 后死循环；B 的 break 保证含3整数只计一次，j/=10 正确逐位删除个位。最小验证 j=123 首查个位3，计数并 break；j=124 按124→12→1→0检查完所有数位且不计数，均与代码语义相符。解析为独立推导，非仅复述官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷题干“1到N之间”与循环条件 `for (i = 1; (j=i) < N; i++)` 的右端点不一致：循环仅统计 1..N-1，N 自身不计入（如 N=33 时含3的33不被统计，N=3时循环不执行）。经第3、4页页图复核，该歧义存在于原卷而非候选转录错误；不影响两处填空的唯一答案 B，保留原题面，不擅自定案。"
+        ]
+      }
+    ],
+    "summary": "仅核验题号10：题面代码与第3、4页页图一致，四选项映射和答案表 B（索引1）一致，解析经独立推导成立；因原卷“1到N之间”与 `(j=i) < N` 的端点不一致，statement 保留 unresolved，无字段修改。"
+  }
+}
