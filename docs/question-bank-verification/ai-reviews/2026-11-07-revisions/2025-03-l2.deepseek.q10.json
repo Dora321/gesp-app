@@ -1,0 +1,95 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T23:55:54.868Z",
+  "completedAt": "2026-11-09T23:56:39.216Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18460,
+    "completion_tokens": 4140,
+    "total_tokens": 22600,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3421
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.005253,
+      "allowance": 0.0031518,
+      "tokens": {
+        "input": 18460,
+        "output": 4140,
+        "reasoning": 3421,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7e80206e7768979e64def7796f7383b386124508254e833fe515de6e33686bf1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标明 CCF GESP C++ 二级，2025年03月；与 paperId 2025-03-l2 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "type": "single",
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "第3页末题干与第4页页图代码逐项对照：题干为求1到N之间正整数中含有3的数的个数，代码为 int i,j; int cnt=0,N; ... for (i=1; (j=i) < N; i++) ... if (j % 10 == 3){ cnt +=1; 横线; } else 横线; ...，候选 question 与页图一致（仅空白差异）。但原卷题干所称 1到N之间 与循环条件 `< N` 使 N 本身不被检查（如 N=33 时 33 不计入），属原卷端点/范围歧义；不影响填空答案判定，保留 unresolved。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图 A 为 continue 与 j /= 10；B 为 break 与 j /= 10；C 为 continue 与 j %= 10；D 为 break 与 j %= 10。候选 options 顺序和内容与之一一对应，answer=1 指向 B。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题列为 B，按 0 起始索引为 1，与 officialAnswer=1 一致。独立推导：第一空若 continue，j 不变且仍满足 j%10==3，while 无限重复；第二空若 j%=10，只保留个位，如 j=12 变为 2 后不再变化，无法结束数位检查。故两空唯一为 break 与 j/=10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明 break 使一个整数只计一次，j/=10 删除个位；并正确指出 A/C 的 continue 会死循环、D 的 j%=10 不能删除个位（12→2 例）。推导与代码行为一致，未依赖官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，题面无编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷题干 1到N之间 与代码 `(j=i) < N` 的右端点不一致：N 本身不会被检查，例如 N=33 时 33 不会被计数；这是原卷题面/代码范围歧义，不是转录错误。候选保留原题面，未擅自改写；该歧义不影响两处填空答案 B 的判定。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验题号10。Q10 的题面转录忠实，选项顺序与页图一致，答案 B（索引1）与第1页答案表一致，解析独立推导正确；因原卷 1到N之间 与 `< N` 的端点矛盾，statement 保留 unresolved，建议继续标记争议而不改原题。changes 为空。"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "paperId": "2025-03-l2",
+  "phase": "glm",
+  "questionIds": [
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-09T23:56:39.225Z",
+  "completedAt": "2026-11-09T23:59:22.587Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35598,
+    "completion_tokens": 14930,
+    "total_tokens": 50528,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13606
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0128047,
+      "allowance": 0.0128047,
+      "tokens": {
+        "input": 35598,
+        "output": 14930,
+        "reasoning": 13606,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7e80206e7768979e64def7796f7383b386124508254e833fe515de6e33686bf1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++2级.pdf",
+    "mirrorSha": "0c7122676556eb84513dbaaa55b2899eeeddc6f6",
+    "mirrorBytes": 1291427,
+    "shaVerified": true,
+    "sha256": "795bc8c8d785ff4831cbe51d1d4942812d595e6341909f6b84fa993028041532"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为「CCF 编程能力等级认证 GESP」，主标题「C++ 二级」「2025 年 03 月」，与 paperId 2025-03-l2 的年份、月份、二级一致；第1页含单选题计分说明（每题2分共30分）及15题答案表，与候选结构与 score=2 相符。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "第3页页图末题干逐字为「下面C++代码用于求1到N之间正整数中含有3的数的个数，比如 123 和 32 都是符合条件的数。则前后两处横线应填入代码分别是（ ）。」，与候选 question 一致。第4页页图代码逐行为 int i,j; / int cnt = 0, N; / cout << \"请输入正整数N: \"; / cin >> N; / for (i = 1; (j=i) < N; i++) / while (j != 0) / if (j % 10 == 3){ cnt +=1; 第一空; } else 第二空; / cout << cnt << \"  \";，与候选代码块逐行对应，仅空白与全/半角冒号排版差异，无漏代码、无含义改变。但原卷自身存在端点歧义：题干称「1到N之间」而循环条件 (j=i) < N 仅取 i=1..N-1，N 本身不被检查（如 N=33 时含3的 33 不会被计数），经页图独立确认属原卷措辞与代码不一致的缺陷，非转录错误，故 statement 保留争议。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图四个选项代码块依次为 A（第1空 continue、第2空 j /= 10）、B（break、j /= 10）、C（continue、j %= 10）、D（break、j %= 10）。候选 options 以「……和……」的等价合并表述呈现，顺序与两空映射与页图完全一致，无错位。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题列为 B（整行 D C A A D A D A C B C D B C C），0起始索引为 1，与候选 answer=1 及 officialAnswer=1 一致。独立推理：第一空若填 continue，j 未被修改且仍满足 j%10==3，while (j!=0) 将永远重复同一分支造成死循环，必须用 break 使一个整数计数一次后退出 while、由外层 for 取下一个 i；第二空若填 j %= 10，j 被截留为个位（如 12→2 后恒为 2），数位检查永远无法推进，只有 j /= 10 能逐位删除个位直至 j=0 结束。两空唯一确定为 break 与 j/=10，与答案表互相印证。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "对候选解析逐项独立重推：break 保证一个整数只计一次；A/C 的 continue 使 j 停留原值产生死循环；D 的 j%=10 只保留个位（12→2 后不再变化、无法删位），与解析所举例一致；「j/=10 删个位、j%=10 留个位、二者作用相反」提示正确。最小验证逐步模拟：j=123 首次检查即遇个位3，cnt+1 后 break；j=124 依次 124→12→1→0，各数位无3不计数。解析含独立推导与四个选项分析，非仅复述官方答案，各判断均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序维度，题面亦无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷题干「1到N之间」与代码 for (i = 1; (j=i) < N; i++) 的右端点不一致：循环仅检查 1..N-1，N 本身不计入（如 N=33 时含3的 33 不会被计数）。经我再核第3、4页页图，确认该歧义存在于原卷而非转录错误；它不影响两处填空的唯一答案 B，也不属于可由站点单方裁定修复的问题，按保留争议、不擅自定案规则维持 statement unresolved 并保留原题面。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "未沿用初核草稿结论：先独立完成答案表读取、选项映射核对与两空的穷举推理（continue 必死循环、j%=10 无法删位、break+j/=10 为唯一成立组合），再与候选逐项比对，五维状态全部一致，故接受初核处理且无修改（changes 为空）。同时独立确认原卷端点歧义真实存在，维持 statement 的 unresolved 保留；任何对题面、选项或答案的擅改均予否决，本轮无此类修改提议。"
+      }
+    ],
+    "summary": "本轮仅独立复核 Q10（单选题，源页3–4）。结论：题面与第3页题干、第4页代码及选项页图逐项一致，仅排版级差异；两处横线唯一答案为 break 与 j/=10，第1页答案表第10题 B（0起始索引1）与候选 answer=1 一致；候选解析经逐步推理与最小模拟（123 计数即退、124 全数位无3）验证全部正确。原卷「1到N之间」与代码 (j=i) < N 不检查 N 本身的端点歧义再次确认属实，属原卷缺陷，按规则保留争议、不擅改题面。无应应用的修改，单选题无 tests；Q10 维持 statement unresolved，verdict=unresolved。"
+  }
+}
