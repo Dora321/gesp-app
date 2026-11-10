@@ -732,36 +732,38 @@
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第7页第6题判断题题干与代码逐行一致：int a; cin >> a; while(a){ cout << 'A'+a%10; a /= 10; }，网站转录无缺漏。",
-          "review": "PDF 第 6 页判断第 6 题：『执行下面的C++代码时输入 123 ，则输出是 DCB 。( )』，代码 int a; / cin >> a; / while(a){ / cout << 'A'+a%10; / a /= 10; / } 与网站逐行一致，第 6 页图可见。"
+          "initial": "PDF 第 6 页判断题第 6 题题干为“执行下面的C++代码时输入 123 ，则输出是 DCB 。( )”，其下代码依次为 int a;、cin >> a;、while(a){、cout << 'A'+a%10;、a /= 10;、}，与候选逐行一致。",
+          "review": "第 6 页页图判断题第 6 题题干为「执行下面的C++代码时输入 123 ，则输出是 DCB 。(   )」，其下代码第 1–6 行逐行为 int a; / cin >> a; / while(a){ / cout << 'A'+a%10; / a /= 10; / }，与候选 question 及代码块逐字一致，页图核对无误。"
         },
         "answer": {
-          "initial": "PDF第6页答案表第6格为√，即 officialAnswer=0；网站 answer=1。独立分析可见 `'A'+a%10` 为整数表达式，输入 123 时依次输出 68、67、66，实际结果为 686766，题干“输出 DCB”为假，故答案表与代码语义冲突。",
-          "review": "第 6 页答案行『答案』红标第 6 格为 ×（错误），officialAnswer=1，网站 answer=1 一致。独立推演：'A'=65，'A'+a%10 为 int 表达式，依次输出 68、67、66，连写为 686766≠DCB，陈述为假，语义与 × 完全吻合，官方表格无冲突。"
+          "initial": "PDF 第 6 页判断题答案表第 6 格为红标 ×，即“错误”；按判断题正确=0、错误=1，officialAnswer=1，与候选 answer=1 一致。",
+          "review": "第 6 页页图判断题答案表整行为红标 × √ × √ √ × √ √ √ ×，第 6 格为 ×（错误）；按判断题正确=0、错误=1 得 officialAnswer=1，与候选 answer=1 一致。语义旁证：程序实际输出为数值 686766 而非 DCB，命题为假，与答案表 × 双重吻合。"
         },
         "explanation": {
-          "initial": "网站解析正确说明字符常量 `'A'` 参与加法时提升为整数、逐次得到 68/67/66，并说明需强制转换为 char 才能输出 DCB；独立推导成立。",
-          "review": "网站解析指出字符常量参与加法发生整型提升、逐得 68/67/66、实际输出 686766，并给出 cout << char('A'+a%10) 的修正写法；与本次独立推导（65+3、65+2、65+1）一致，无需修改。"
+          "initial": "独立按 C++ 语义推导：'A' 为字符常量，'A'+a%10 发生整型提升并按 int 输出；a=123 时依次取得个位、十位、百位 3、2、1，输出 65+3=68、65+2=67、65+1=66，且无分隔符，实际输出 686766，不是 DCB，故命题错误。候选解析的 ASCII 分解和 char 转换修正与此一致。",
+          "review": "独立推导：a=123，while 循环逐轮取 a%10=3、2、1；`'A'`(ASCII 65) 与 int 相加发生整型提升，结果为 int，cout 依次输出 65+3=68、65+2=67、65+1=66，无分隔符连写为 686766 ≠ DCB，故命题「输出是 DCB」不成立，答案「错误」正确。候选解析的整型运算说明、68/67/66 分解、686766 结论及修正写法 cout << char('A' + a % 10) 均与此独立推导一致。解析中「本站已用 C++17 实测确认」为站方过程注记而非额外事实声明，其实质结论 686766 可由纯语义推导独立证实，无需改动。"
         }
       },
-      "unresolved": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2025-09-l2.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2025-09-l2.glm.json"
       ]
     },
     {
@@ -1016,19 +1018,9 @@
       "reasons": [
         "保留原有争议/待审标记，模型结论不能自动解除"
       ]
-    },
-    {
-      "id": 21,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
     }
   ],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2025-09-l2.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-09-l2.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2025-09-l2.integration.json"
 }

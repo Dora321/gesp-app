@@ -553,13 +553,14 @@ TCP（传输控制协议）是一种面向连接的、可靠的传输层通信�
             sourceVerified: true,
             sourcePage: 6,
             sourcePages: [6],
-            reviewedBy: REVIEWED_BY,
-            reviewedAt: REVIEWED_AT,
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             sourceUrl: SOURCE_URL,
             explanation: `**答案：错误**
 
 循环确实按个位、十位、百位依次取得 3、2、1，但表达式 \`'A' + a % 10\` 发生整数运算，结果类型是 \`int\`，所以 \`cout\` 输出数值而不是字符。按 ASCII，三次结果分别为 $65+3=68$、$65+2=67$、$65+1=66$，且代码没有分隔符，实际输出是 \`686766\`，不是 \`DCB\`。本站已用 C++17 实测确认。若要输出字符，应写 \`cout << char('A' + a % 10);\`。`,
             tags: ['字符编码'],
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"],
         },
         {
             id: 22,

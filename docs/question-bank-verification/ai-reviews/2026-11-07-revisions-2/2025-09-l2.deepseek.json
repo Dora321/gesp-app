@@ -1,0 +1,100 @@
+{
+  "paperId": "2025-09-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    21
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T05:53:29.351Z",
+  "completedAt": "2026-11-10T05:54:19.425Z",
+  "finishReason": "stop",
+  "inputSha256": "8f26c9b4f5937efcd3c9b8c6e5e740aba171f49e022683fe02ec0d7e1d9f0931",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++2级.pdf",
+    "mirrorSha": "ee47f8b19c9c5c5f1d1cb1bf3ae4ac3e2eb80057",
+    "mirrorBytes": 1162339,
+    "shaVerified": true,
+    "sha256": "971907c6ba9e65e30fcf44893a02310331c9cfc3120e128044f9d0b83cafdc96"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示 GESP CCF 编程能力等级认证，C++ 二级，2025 年 09 月；与 paperId 2025-09-l2 对应的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 6 题题干为“执行下面的C++代码时输入 123 ，则输出是 DCB 。( )”，其下代码依次为 int a;、cin >> a;、while(a){、cout << 'A'+a%10;、a /= 10;、}，与候选逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题原卷以题干后的（ ）作答，无 A/B/C/D 选项；站内“正确/错误”仅为判分映射，不是原卷选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 6 格为红标 ×，即“错误”；按判断题正确=0、错误=1，officialAnswer=1，与候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按 C++ 语义推导：'A' 为字符常量，'A'+a%10 发生整型提升并按 int 输出；a=123 时依次取得个位、十位、百位 3、2、1，输出 65+3=68、65+2=67、65+1=66，且无分隔符，实际输出 686766，不是 DCB，故命题错误。候选解析的 ASCII 分解和 char 转换修正与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，原卷无编程题参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        21
+      ],
+      "usage": {
+        "prompt_tokens": 19116,
+        "completion_tokens": 3910,
+        "total_tokens": 23026,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3300
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0052134,
+          "allowance": 0.00312804,
+          "tokens": {
+            "input": 19116,
+            "output": 3910,
+            "reasoning": 3300,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-10T05:53:29.351Z",
+      "completedAt": "2026-11-10T05:54:19.425Z"
+    }
+  ]
+}
