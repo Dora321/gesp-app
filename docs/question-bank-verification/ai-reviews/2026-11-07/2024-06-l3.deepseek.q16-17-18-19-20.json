@@ -1,0 +1,225 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T20:33:32.472Z",
+  "completedAt": "2026-11-11T20:37:12.450Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34868,
+    "completion_tokens": 10441,
+    "total_tokens": 45309,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8855
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0114948,
+      "allowance": 0.00689688,
+      "tokens": {
+        "input": 34868,
+        "output": 10441,
+        "reasoning": 8855,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "013365d4bb7fa13988476c0cb85873270422de0422337f459f87fb603e3353cb",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 三级 2024 年 06 月”，与 paperId 2024-06-l3 及标题一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 1 题原文为“GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关。”网站仅增加空格，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF 判断题未设置 A/B/C/D 选项，网站以“正确/错误”二值呈现；按约定选项维度不适用于判断题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 1 格为√；正确映射为索引 0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "主体判定“同一级别能力与编程语言基本无关”成立；但原解析知识延伸称“四级在三级基础上扩展指针和位运算”不准确，位运算已属于三级内容，需改写考纲延伸。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nGESP（编程能力等级认证）的设计理念是评估考生在**通用编程思维、算法逻辑和问题分析能力**上的水平，而非对特定编程语言语法细节的掌握程度。在同一级别下，无论考生选择 C++ 还是 Python，其考查的逻辑结构、数学基础、算法复杂度和问题解决思路要求基本一致。编程语言在 GESP 体系中主要作为实现工具，因此同一级别的能力要求基本上与编程语言无关。\n\n**易错提醒：**\n- 部分考生误以为选择不同语言会影响考查难度，实际上同一级别的能力要求基本一致。\n- GESP 各级别对应不同的知识深度和复杂度，但与语言选择基本无关。\n\n**知识延伸：**\nGESP 三级已涉及数据编码、进制转换、位运算、数组、字符串和函数等内容；不同级别对应不同的知识深度与复杂度，具体范围以官方考纲为准。\n\n**考点：** GESP 认证体系的设计理念与编程通用能力的关系"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 2 题原文为“整数-6的16位补码可用十六进制表示为FFFA。”网站表述一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF 判断题未设置 A/B/C/D 选项；判断题不适用选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 2 格为√；正确映射为索引 0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：16 位模为 2^16，[-6]补 = 65536-6 = 65530 = 0xFFFA；也可由 6 的二进制取反加一得到 FFFA。解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 3 题原文为“补码的优点是可以将减法运算转化为加法运算，从而简化计算机的硬件设计。”网站表述一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF 判断题未设置 A/B/C/D 选项；判断题不适用选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 3 格为√；正确映射为索引 0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：补码下 A-B = A+(-B)，负数可由取反加一得到，ALU 只需加法器即可完成加减法，确实简化硬件设计；解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 4 题原文为“字符常量'\\0'常用来表示字符串结束，和字符常量'0'相同。”网站表述一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF 判断题未设置 A/B/C/D 选项；判断题不适用选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 4 格为×；错误映射为索引 1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：'\\0' 的 ASCII 码为 0，'0' 的 ASCII 码为 48，两者不同；前者用于字符串结束标记，后者是数字字符，故题干错误。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 5 题原文为“数组的所有元素在内存中可以不连续存放。”网站表述一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF 判断题未设置 A/B/C/D 选项；判断题不适用选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 5 格为×；错误映射为索引 1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：C++ 数组元素占用连续内存，并可用首地址加下标乘元素大小寻址；不连续则无法按此方式随机访问，故题干错误。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验判断题 16—20 题。卷头与 2024 年 6 月 C++ 三级一致；PDF 判断题答案表前五格为√、√、√、×、×，对应网站答案 0、0、0、1、1，全部一致。17—20 题的题面、答案和解析均通过；16 题答案正确，但原解析中“四级扩展位运算”的考纲延伸不准确，已提交解析修订。判断题无选项与参考代码维度，本次未涉及编程题测试。"
+  }
+}
