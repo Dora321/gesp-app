@@ -1,0 +1,237 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T10:04:08.597Z",
+  "completedAt": "2026-11-11T10:07:11.110Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29885,
+    "completion_tokens": 12370,
+    "total_tokens": 42255,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 29824,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 10419,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00752062,
+      "allowance": 0.00451237,
+      "tokens": {
+        "input": 61,
+        "output": 12370,
+        "reasoning": 10419,
+        "cache_read": 29824,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6e7b2cc27b0471abbcdc9c6066a39e696d7882c20ef578c7bc1437c1ec6ef28a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 三级 2023年9月”，与2023-09-l3一致；判断题位于PDF第5页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第1题原文为“二进制数 101.101 在十进制下是 5.005。”，网站题干文字一致，语义未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在PDF中仅以√/×给出判定，无单选A-D选项；网站用“正确/错误”作为二值选项，options维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页答案表第1题（对应本题16）为×，按错误=1映射，网站answer=1；独立换算101.101₂=4+1+0.5+0.125=5.625，原判断错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析先算整数部分101₂=5，再算小数部分0.101₂=0.5+0.125=0.625，合计5.625，与5.005不符，能独立推出“错误”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第2题原文为“在C++语言中，位运算符也有类似‘先乘除、后加减’的优先级规则。因此，使用时应注意合理使用括号。”网站仅将句号改为逗号并合并“因此”，不改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选A-D选项，仅有正确/错误二值判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页答案表第2题为√，正确=0，网站answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析结论正确，但示例`cout << a + b << 1`把流插入运算符与算术左移混淆：该式实际是连续流输出，不是对a+b左移；需改用算术/位运算上下文示例并保留“应加括号”的结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\nC++ 的位运算符有独立优先级：按位取反 `~` 属于单目运算符；移位 `<<`、`>>` 的优先级低于算术加、减，但高于关系运算；按位与 `&`、异或 `^`、按位或 `|` 的优先级又低于相等/关系运算，且 `&` 高于 `^`、`^` 高于 `|`。例如 `1 + 2 << 3` 会先算 `1 + 2`，再左移 3 位；而 `a & 2 == 2` 会因 `==` 优先级高于 `&` 而解析为 `a & (2 == 2)`，并非 `(a & 2) == 2`。因此混合使用位运算与算术、比较运算时，应使用括号明确顺序。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第3题原文为“字符常量 '3' 的值和 int 类型常量 3 的值是相同的，只是占用的字节数不同。”，网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选A-D选项，仅有正确/错误二值判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页答案表第3题为×，按错误=1映射，网站answer=1；字符'3'的ASCII值为51，而int常量3的值为3，二者值不同。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出'3'的ASCII值为51，而int常量3的值为3；字符常量类型char与int大小通常也不同，故“值相同”错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页第4题原文为“在C++语言中，长度为n的数组，访问下标为n的元素会引起编译错误。”网站把两处n改成3。虽然访问下标3仍越界且不产生编译错误，但把原文的泛指n具体化属于题面转录改变，应恢复n。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选A-D选项，仅有正确/错误二值判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页答案表第4题为×，按错误=1映射，网站answer=1；数组越界不属于编译错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出编译期不做数组边界检查，越界访问是运行期/未定义行为问题，不会产生编译错误；用长度3、下标3举例可保留为特例，结论与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "在 C++ 语言中，长度为 n 的数组，访问下标为 n 的元素会引起编译错误。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第5题原文为“在C++语言中，所有 int 类型的值，经过若干次左移操作（ << ）后，它们的值总会变为 0 。”，网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选A-D选项，仅有正确/错误二值判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页答案表第5题为√，按正确=0映射，网站answer=0；答案与官方表一致。严格C++标准下的左移未定义行为争议见explanation与unresolved。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "官方√，但现解析称“至少32次”左移后必为0，并把带符号左移溢出按可回绕处理；严格C++标准中，有符号int溢出、移入符号位或单次移位次数达到/超过位宽均可能未定义，需区分出题模型与标准。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确（按本题出题意图）**\n\n在题目预设的固定 32 位、补 0 左移模型中，每执行一次左移，所有二进制位向左移动一位，最高位被丢弃，最低位补 0。只要原值非 0，连续左移足够多次后，原来的 1 位都会从最高位被移出，最终变为 0；若原值本来就是 0，则左移任意次仍为 0。\n\n需要说明：严格按 C++ 标准，有符号 `int` 左移若产生溢出、移入符号位，或单次移位次数达到/超过类型位宽，行为是未定义的；负数左移也受限制。因此该结论只在题目所设的“补 0 左移、忽略有符号溢出”模型下成立。官方答案表给“正确”，网站答案与官方一致。"
+        },
+        "tests": [],
+        "unresolved": [
+          "严格C++标准下，有符号 int 左移溢出、移入符号位或单次移位次数不小于类型位宽均可能为未定义行为；本题官方答案按补0左移模型判“正确”，标准争议保留。"
+        ]
+      }
+    ],
+    "summary": "本次初核覆盖2023-09-l3判断题16–20。PDF第5页答案表第1–5题依次为×、√、×、×、√，映射为1、0、1、1、0，网站答案全部一致。题面方面，16、17、18、20与PDF等价，19把原文的n改成3，需回填。解析方面，17的流插入示例错误，20需补充严格C++标准下左移未定义行为的说明并保留官方答案；16、18、19解析可独立支撑答案。options与referenceCode对判断题不适用；无编程题测试。"
+  }
+}
