@@ -454,16 +454,16 @@ cout << cnt;
 \`\`\`
 
 \`\`\`cpp
-cin >> N;
-for (i = 0; i < N; i++){
-    nowNum = 0;
-    for (j = 0; j < i+1; j++){
-        cout << nowNum << " ";
-        nowNum += 1;
-        if (nowNum == 10)
-            nowNum = 0;
-    }
-}
+ 1 cin >> N;
+ 2 for (i = 0; i < N; i++){
+ 3     nowNum = 0;
+ 4     for (j = 0; j < i+1; j++){
+ 5         cout << nowNum << "";
+ 6         nowNum += 1;
+ 7         if (nowNum == 10)
+ 8             nowNum = 0;
+ 9     }
+10 }
 \`\`\``,
             options: ['与第 8 行下面填入一行：cout << nowNum;', '与第 2 行下面填入一行：cout << endl;', '与第 7 行下面填入一行：cout << nowNum;', '与第 9 行下面填入一行：cout << endl;'],
             answer: 3,
@@ -487,6 +487,8 @@ for (i = 0; i < N; i++){
 
 **知识延伸：**
 这类「三角形数字阵」的通用结构是：外层控制行数、内层控制每行个数、内层结束后换行。改需求时只动内层的上界即可（如 \`j < i+1\` 改成 \`j < N\` 就是矩形）。
+
+**提示：** 本题 4 个选项都以「第 X 行」定位，所以代码必须带行号才能作答。
 
 **考点：** 嵌套循环的输出控制、换行语句的放置位置`,
             sourceVerified: true,
