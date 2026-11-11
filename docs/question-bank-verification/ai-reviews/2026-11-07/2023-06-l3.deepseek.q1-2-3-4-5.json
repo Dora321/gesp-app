@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T04:44:10.493Z",
+  "completedAt": "2026-11-11T04:45:23.129Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 39990,
+    "completion_tokens": 6490,
+    "total_tokens": 46480,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5292
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0098925,
+      "allowance": 0.0059355,
+      "tokens": {
+        "input": 39990,
+        "output": 6490,
+        "reasoning": 5292,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d80558b5c2f0eb8b9fea809bce35de852889e05b5b90a1b230c1f09d9c5ab4b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023年6月 GESP C++ 三级真题解析”，年份、月份、语言和等级与2023-06-l3一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题1题干与站内一致，均为高级语言程序生成可执行代码所需操作。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项依次为A编辑、B保存、C调试、D编译，与站内options顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】D，对应0起始索引3；站内answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出编译是把源程序翻译成可执行代码；站内解析逐项区分编辑、保存、调试、编译，核心结论与官方一致且能独立推出D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页至第2页单选题2题干与站内一致，均为二进制数11.01转换为十进制。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为A 3.01、B 3.05、C 3.125、D 3.25，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】D，对应0起始索引3；站内answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF按位权得出3.25；站内解析独立计算1×2^1+1×2^0+0×2^-1+1×2^-2=3.25，并逐项排除干扰项，结论与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页单选题3题干与站内一致，均已知A的ASCII十六进制为0x41并求F的ASCII十六进制表示。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为A 46、B 47、C 48、D 49，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】A，对应0起始索引0；站内answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF说明F比A的ASCII码大5，0x41+5=0x46；站内解析使用同一连续编码关系，独立推导出46，核心结论与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页单选题4题干与站内一致，均询问哪个不是C++语言中的运算符。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为A &、B &&、C *、D **，顺序和符号均与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】D，对应0起始索引3；站内answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出&、&&、*分别可为按位与、逻辑与和乘法，**不是C++运算符；站内解析进一步说明**在C++中会被拆分为乘法与解引用，独立支撑D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页单选题5题干与站内一致，均询问char str[]以Hello初始化时字符数组str的长度。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项为A 0、B 5、C 6、D 7，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF【答案】C，对应0起始索引2；站内answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF解析指出Hello有5个可见字符，另需保存1个字符串结束符，故数组长度为6；站内解析独立按5+1推导，并区分strlen与sizeof，结论与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按PDF页图核验题1-5：题干、选项顺序、官方答案映射和解析核心结论均与官方真题解析一致，未发现需要改动的字段。5题均为单选题，无编程题参考代码和边界测试项。"
+  }
+}
