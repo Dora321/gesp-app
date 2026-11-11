@@ -1,32 +1,10 @@
 {
   "paperId": "2023-06-l3",
-  "phase": "初核复核",
-  "checkedAt": "2026-11-11T10:52:58.601Z",
+  "phase": "第1轮修订",
+  "checkedAt": "2026-11-11T13:27:42.615Z",
   "reviewedQuestions": 27,
-  "acceptedDimensions": 73,
+  "acceptedDimensions": 89,
   "unresolved": [
-    {
-      "id": 7,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 8,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
     {
       "id": 9,
       "dimensions": [
@@ -37,26 +15,6 @@
       "reasons": [
         "修改 options 未获得两模型一致批准，待回流",
         "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 11,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
       ]
     },
     {
@@ -84,81 +42,6 @@
         "statement 尚无一致、完整的原卷核验结论",
         "explanation 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 17,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 18,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 22,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 24,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement",
-        "referenceCode",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 samples 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "reviewFiles": {
@@ -166,5 +49,6 @@
     "review": "ai-reviews/2026-11-07/2023-06-l3.glm.json",
     "previous": "ai-reviews/2026-11-07/2023-06-l3.previous-evidence.json"
   },
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-06-l3.integration.json",
   "checks": "题库结构、单元测试、课程与链接、解析质量、Lint、生产构建通过"
 }

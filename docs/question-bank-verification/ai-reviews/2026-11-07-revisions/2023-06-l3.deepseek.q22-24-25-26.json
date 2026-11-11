@@ -1,0 +1,218 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    22,
+    24,
+    25,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T13:12:39.239Z",
+  "completedAt": "2026-11-11T13:20:14.760Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 41087,
+    "completion_tokens": 14702,
+    "total_tokens": 55789,
+    "prompt_tokens_details": {
+      "cached_tokens": 40960
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12798
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00896313,
+      "allowance": 0.00537788,
+      "tokens": {
+        "input": 127,
+        "output": 14702,
+        "reasoning": 12798,
+        "cache_read": 40960,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "ccaa744b43803fcb477730680825b73fb73d1f86a52f861d268042fd4d18b493",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“2023 年 6 月 GESP C++ 三级真题解析”，与 paperId 的年月、语言、等级一致；卷头同时有 GESP 标识。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第7题原文为“在 C++语言中，数组被定义时，它的大小就确定了。”候选写作“在 C++中，数组被定义时，其大小就确定了。”仅省略“语言”、以“其”代“它”，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 仅标注【答案】√，无 A—D 单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页【答案】为√；候选 answer=0，按“正确=0、错误=1”映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析强调 C++ 定义数组时需有明确大小；候选以标准 C++ 静态定长数组为主，说明定义时大小确定，并区分 C99 VLA 与 std::vector，判断与官方一致且无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页末判断题第9题原文为“在 C++语言中，表达式(0xf == 015)的值为 true。”候选仅调整空格，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 仅标注【答案】×，无 A—D 单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页末【答案】为×（解析位于第10页）；候选 answer=1，按“错误=1”映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "0xf 为十六进制 15，015 为八进制 13，二者不相等，表达式为 false；候选推导与官方解析一致，并正确说明 0 前缀八进制及 C++14 的 0b 字面量。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页判断题第10题原文为“如果 a 为 int 类型的变量，且表达式((a | 3) == 3)的值为 true，则说明 a 在从 0 到 3 之间（可能为 0、可能为 3）。”候选保留 int 限定和端点说明，仅省略“的值/从”，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 仅标注【答案】√，无 A—D 单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第10页【答案】为√；候选 answer=0，按“正确=0、错误=1”映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按位独立推导：a|3 的高位与 a 相同、低两位恒为 11，故 (a|3)==3 等价于 a 的补码高位全 0，即 0≤a≤3；并指出负数情形，结论与官方解析一致且更严谨。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10-11页题干、输入输出描述、约束 2≤N,M≤1000 及两组样例均与候选一致；候选将官方疑似漏字“报出的编号”补为“报出自己的编号”，并将“合理范围”明确为小于 N 的非负整数，未改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选总体解析与官方解题思路一致：用 arrive 布尔数组标记已报到编号，遍历 0..N-1 输出缺席者，全员到齐输出 N；样例1全员到齐输出 3，样例2编号 0 重复 5 次、1 和 2 缺席输出 1 2，均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与 PDF 第12页官方程序算法等价：全局 bool 标记已报到编号，按 0..N-1 遍历输出缺席者，first/all 控制空格与全到特判；arrived[1005] 覆盖 N≤1000 且编号小于 N，重复赋 true 可去重，复杂度 O(N+M)，无越界或溢出问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模全员到达",
+            "input": "2 2\n0 1",
+            "output": "2",
+            "reason": "N=M=2 为约定下界，编号 0、1 均报到，触发全员到达输出 N=2。"
+          },
+          {
+            "name": "最小规模重复报到且缺一人",
+            "input": "2 2\n0 0",
+            "output": "1",
+            "reason": "编号 0 重复报到，编号 1 未报出，输出唯一缺席编号 1。"
+          },
+          {
+            "name": "M 大于 N 且重复报到全员到达",
+            "input": "2 3\n0 1 0",
+            "output": "2",
+            "reason": "M=3>N=2 且编号 0 重复报出，布尔标记重复赋 true 去重，全员到齐输出 N=2，覆盖 M>N 边界与全到特判。"
+          },
+          {
+            "name": "多人缺席按升序输出",
+            "input": "6 5\n5 4 3 2 2",
+            "output": "0 1",
+            "reason": "编号 2、3、4、5 已报到（2 重复），0、1 缺席；乱序输入下输出仍为升序的 0 1。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "题22、24、25、26均按 PDF 页图完成五维核验，未发现需要修改的字段。判断题答案映射正确；编程题参考代码算法正确，覆盖全到特判、重复报到去重、升序输出与 N/M 边界，复杂度 O(N+M)，无越界或溢出。测试期望输出均为独立推导，未声称已运行。"
+  }
+}
