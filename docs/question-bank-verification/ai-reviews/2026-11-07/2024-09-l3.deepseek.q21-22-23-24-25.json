@@ -1,0 +1,225 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T21:57:54.096Z",
+  "completedAt": "2026-11-11T22:00:59.491Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31709,
+    "completion_tokens": 7675,
+    "total_tokens": 39384,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5892
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00936135,
+      "allowance": 0.00561681,
+      "tokens": {
+        "input": 31709,
+        "output": 7675,
+        "reasoning": 5892,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6a865d3b5a006bd8bbb68cca6ef8c4d03edaed57fccb39a44079200af64dfda",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 / C++ 三级 / 2024 年 09 月”，与 paperId 2024-09-l3 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题原文为 `string str=\"CHADai\"; size_t pos = str.find('D'); cout<<pos<<endl;`，并称“下列程序输出的是 3”，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以括号作答、答案表用 √/×；网站将其规范化为“正确/错误”，映射为正确=0、错误=1，无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 题为 √，对应 officialAnswer=0；独立核对 `CHADai` 中 `D` 的下标为 3，输出确为 3，故该判断正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析把索引 4 的字符写成大写 `A`，但原串 `CHADai` 的索引 4 是小写 `a`；其余推导正确，且不影响答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n1. 字符串 `\"CHADai\"` 存储的字符序列为：`C`（索引0）、`H`（索引1）、`A`（索引2）、`D`（索引3）、`a`（索引4）、`i`（索引5）。\n2. `str.find('D')` 在字符串中查找字符 `'D'`，找到后返回其首次出现的下标位置。\n3. 字符 `'D'` 位于索引 3 处，因此 `find` 返回值 `pos = 3`。\n4. `cout << pos` 输出 `3`。\n\n**易错提醒：**\n- C++ 字符串的 `find` 函数返回的是从 0 开始计数的下标，而非从 1 开始。\n- 注意区分大小写，查找 `'D'` 与 `'d'` 结果不同。\n\n**知识延伸：**\n`std::string::find` 是字符串处理中的常用方法，若未找到指定字符，返回 `std::string::npos`（通常为 -1 的无符号表示）。\n\n**考点：** 字符串操作、索引下标"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 7 题原文为 `int a[10]={1}; cout<<a[1]<<endl;`，并称“下列程序将输出 1”，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以括号作答、答案表用 √/×；网站规范化为“正确/错误”，对应正确=0、错误=1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 7 题为 ×，对应 officialAnswer=1；独立核对 `int a[10]={1};` 只显式初始化 a[0]=1，其余元素补 0，故 a[1]=0，题干“输出 1”错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明部分初始化时未显式给出的元素自动初始化为 0，因此 a[1] 为 0，判定题干错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 8 题原文为 `int a=65; cout<<(char)a<<endl;`，并称“下列程序将输出 A”，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以括号作答、答案表用 √/×；网站规范化为“正确/错误”，对应正确=0、错误=1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 8 题为 √，对应 officialAnswer=0；ASCII 中十进制 65 对应字符 'A'，强制转换为 char 后输出 A，判断正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 `(char)a` 将整数 65 转为字符 'A'，并给出 ASCII 码范围，推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 9 题原文为“16进制数 AB，表示成2进制数是 10101011”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以括号作答、答案表用 √/×；网站规范化为“正确/错误”，对应正确=0、错误=1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 9 题为 √，对应 officialAnswer=0；十六进制 A=1010、B=1011，拼接为 10101011，判断正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确按每位十六进制对应 4 位二进制展开：A→1010、B→1011，拼接结果正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 10 题原文为“def(十六进制) = 103231(五进制)”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以括号作答、答案表用 √/×；网站规范化为“正确/错误”，对应正确=0、错误=1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 10 题为 ×，对应 officialAnswer=1；独立换算 def₁₆=3567₁₀，转五进制为 103232，而非 103231，故题干错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确计算 d=13、e=14、f=15，得到 3567，并逐步除以 5 得余数序列 2、3、2、3、0、1，逆序为 103232，与题干不符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 21～25 题（对应 PDF 判断题第 6～10 题）。5 题题面、选项归一化和官方答案均与 PDF 页图及答案表一致；仅第 21 题解析存在把索引 4 的小写 `a` 写成大写 `A` 的事实性笔误，已给出完整修正解析，答案不受影响。其余 4 题解析独立推导通过；5 题均为判断题，无编程参考代码与边界测试。"
+  }
+}

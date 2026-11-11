@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T21:56:03.494Z",
+  "completedAt": "2026-11-11T21:57:54.090Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 46088,
+    "completion_tokens": 9876,
+    "total_tokens": 55964,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8104
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0118512,
+      "allowance": 0.0118512,
+      "tokens": {
+        "input": 46088,
+        "output": 9876,
+        "reasoning": 8104,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6a865d3b5a006bd8bbb68cca6ef8c4d03edaed57fccb39a44079200af64dfda",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 三级”“2024 年 09 月”，与 paperId 2024-09-l3（2024 年 9 月三级）一致；本次核验的第 16~20 题对应第 5 页判断题第 1~5 题，题面与答案行符号在原图中清晰可辨。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题面、答案符号与解析经独立复核均无误，初核未提出修改项，无否决内容。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 1 题原文“+1和-1的原码进行1+（-1）计算的结果是-2 。（ ）”；网站题面仅括号全半角与空格排版差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在原卷以√/×判定，网站以正确/错误二值呈现，单选 options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案行第 1 题为√；按√=正确=0 映射，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：8 位原码 00000001+10000001=10000010（bit0 为 1+1=0 并进位至 bit1），按原码解释符号位 1、数值部分 2，即 -2，判定“正确”成立；解析另补充原码运算缺陷与补码对照，推理无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立复算 ~1=-2（~n=-(n+1)，补码 0xFFFFFFFE）与解析、官方√一致，无修改项。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 2 题原文“~1 的输出值是 -2 。（ ）”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案行第 2 题为√；√=正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：int 下 1 按位取反得 0xFFFFFFFE，补码真值为 -2；恒等式 ~n=-(n+1) 同得 -2；解析按 8 位示意并给出同结论，正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：8 位逐位取反独立复算得 11111110，与解析、官方√一致，无修改项。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 3 题原文“~1 = 1111 1110 。（ ）”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案行第 3 题为√；√=正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：8 位下 1=00000001，逐位取反得 11111110；解析并说明不同位宽下规律 ~n=-n-1 的一致性，推理正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：掩码 00001111 独立验证为保留低四位、清零高四位，与解析、官方√一致，无修改项。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 4 题原文“取 X 的低四位，可以用 Y = 0000 1111 ，用 X&Y 获取 X 的低四位。（ ）”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案行第 4 题为√；√=正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：X&00001111 中低四位与 1 相与保留原值、高四位与 0 相与清零，恰为提取低四位；解析推导与掩码知识延伸均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：独立跟踪 x=65('A')→x++ 后 66('B')，cout<<x++ 输出自增前值即字符 B 而非 A，命题为假；官方×与网站 answer=1 一致，无修改项。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断题第 5 题题面“下列程序输出的是 A 。（ ）”，配图代码三行 char x=65; x++; cout<<x++<<endl;；网站题面文字与内嵌代码块内容一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案行第 5 题为×；×=错误=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：char x=65 对应 'A'，首个 x++ 使 x=66('B')；cout<<x++ 后置自增先取自增前值 66，输出字符 B，随后 x 变 67；实际输出 B 而非 A，命题错误，解析逐步推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次独立复核 2024-09-l3 第 16~20 题（PDF 第 5 页判断题第 1~5 题）。卷头“C++ 三级 / 2024 年 09 月”确认来源一致。逐题对照第 5 页原图与文本层：题面语义一致（仅全/半角括号与空格排版差异）；判断题答案行“√ √ √ √ ×”与网站 answer 0,0,0,0,1 逐题相符；五题解析均经独立推导复核（原码直接相加得 -2、~1=-2、~1=11111110、低四位掩码 X&Y、后置自增输出 B 非 A），未发现事实或推导错误。DeepSeek 初核未提出修改项，其结论经独立确认后全部接受；无需 changes，五维均有核验记录，判断题 options 与编程题 referenceCode 按不适用处理。"
+  }
+}

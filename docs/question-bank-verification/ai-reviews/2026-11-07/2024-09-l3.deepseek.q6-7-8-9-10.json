@@ -1,0 +1,232 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T20:18:22.059Z",
+  "completedAt": "2026-11-11T20:23:14.390Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31833,
+    "completion_tokens": 15190,
+    "total_tokens": 47023,
+    "prompt_tokens_details": {
+      "cached_tokens": 31616
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12407
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0092414,
+      "allowance": 0.00554484,
+      "tokens": {
+        "input": 217,
+        "output": 15190,
+        "reasoning": 12407,
+        "cache_read": 31616,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6a865d3b5a006bd8bbb68cca6ef8c4d03edaed57fccb39a44079200af64dfda",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 三级 2024年09月”，答案表题6至10依次为B、C、C、A、D；与网站2024-09-l3一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干为“下列说法正确的是（）”，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四个选项依次为A `2>>1和1>>1`、B `(2>>2)和(1>>1)`、C `(11^00)和(1^0)`、D `(~0的输出值是1)`，文字和顺序与网站一致，仅有空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题为B，即0起始索引1。独立计算：2>>2=0，1>>1=0，B项成立；A项1和0不等，C项11和1不等，D项~0在补码下为-1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐项计算正确：A中2>>1=1、1>>1=0；B中2>>2=0、1>>1=0；C中11^00=11、1^0=1；D中~0=-1，不是1。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题给出`void Swap(int &a, int &b)`及`if (a != b)`包裹的三行异或操作，网站题干与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为A a和b的异或、B a和b的同或、C a和b的值交换、D a和b的高低位互换，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为C，即0起始索引2。设进入函数时a=X、b=Y且X≠Y，执行a^=b后a=X^Y，执行b^=a后b=X，执行a^=b后a=Y，完成交换。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称“当 a 和 b 指向同一内存位置时会将值清零”，又说“忽略 if(a != b) 条件……会做三次无效运算”，与代码不符：同一对象传入时`if (a != b)`为假，三轮异或不会执行，因此不会清零。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（a 和 b 的值交换）**\n\n设进入函数时 `a=X`、`b=Y`，且 `X≠Y`：\n1. `a ^= b` 后：`a=X^Y`，`b=Y`；\n2. `b ^= a` 后：`b=Y^(X^Y)=X`，`a` 仍为 `X^Y`；\n3. `a ^= b` 后：`a=(X^Y)^X=Y`，`b=X`。\n因此实现了两数交换，依据是异或的 `a^a=0`、`a^0=a` 性质。\n\n选项分析：A只是描述异或运算，不是函数目的；B同或需要对异或取反，代码没有取反；C正确；D不是高低位互换。\n\n注意：代码带有 `if (a != b)`。若传入同一变量，条件为假，函数不执行任何操作，因而不会发生无保护异或交换在自交换时清零的问题；若两个不同变量值相等，也只是无需交换。工程中仍可用临时变量交换，但不影响本题答案。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页末第8题题干为“a&~1运算实现的是（ ）”，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页至第3页四个选项依次为A使a的最低位为1、B使a的最高位为1、C使a的最低位为0、D使a的最高位为0，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为C，即0起始索引2。`~1`在补码中最低位为0、其余位为1，与a按位与后只把a的最低位清零，其余位保持不变。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确说明以8位为例`~1=11111110`，`a & ~1`只清除最低位；对任意位宽结论不变，低位补0的掩码写法也正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第9题题干为“a=1010 1110,a<<2,下面关于这个说法正确的是”，网站题干一致，仅空格和标点差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页四个选项依次为A `1011 1000`、B `1011 1010`、C `0101 1101`、D `0101 1100`，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题为A，即0起始索引0。按8位二进制，`1010 1110 << 2`得到`1011 1000`，对应A。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析中“原最低两位 10 移至更高位（但被丢弃）”表述错误：左移时最低两位并非被丢弃，而是在低位补入两个0；同时选项D `0101 1100`实际是原值逻辑左移1位的结果，不是不可得到的干扰项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（a 的值变为 1011 1000）**\n\n按题目语境把`a << 2`理解为左移2位后的结果。以8位二进制分析：原值`1010 1110`左移1位得`0101 1100`，再左移1位得`1011 1000`；也就是高两位`10`被移出丢弃，低位补两个`0`。\n\n逐项：A `1011 1000`正确；B `1011 1010`不符合低位补两个0的左移结果；C `0101 1101`是循环左移1位的形式；D `0101 1100`是逻辑左移1位的结果，不是左移2位。\n\n补充：严格C++中单独写`a << 2;`不会修改`a`；本题按“左移后的值”理解，答案仍为A。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题代码包含`long a=123; int b=1; long result=a&b;`及`long a2=-123; unsigned int b2=-1; long result2=a2&b2;`，网站内容完整，仅将首行放在代码围栏外。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为A `123 -1`、B `123 -123`、C `1 -1`、D `1 -123`，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题为D，即0起始索引3。`123 & 1`保留最低位，result=1；按官方32位long环境，result2=-123。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析直接默认`long`为32位，未说明位宽前提。若在LP64平台`long`为64位，unsigned int会提升为64位long，result2将变为4294967173，而非-123；官方答案D依赖32位long环境。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（1 -123）**\n\n按本题及官方答案所采用的常见GESP/Windows环境，`long`和`unsigned int`均按32位补码处理。\n\n1. `a=123`的二进制最低位为1，`b=1`只有最低位为1，因此`a & b`的结果为`1`。\n2. `a2=-123`的32位补码为`0xFFFFFF85`；`unsigned int b2=-1`得到`0xFFFFFFFF`。二者按位与仍为`0xFFFFFF85`，赋给32位有符号`long`后解释为`-123`，故`result2=-123`。\n\n因此输出`1`和`-123`，选D。\n\n说明：若不限定`long`为32位，例如LP64平台`long`为64位，则`unsigned int`会先转换为64位`long`，`result2`会变为`4294967173`；因此本题答案依赖考试环境的32位`long`前提。"
+        },
+        "tests": [],
+        "unresolved": [
+          "题面未明确long的位宽；官方答案D对应32位long环境，跨平台运行第二项输出可能不同。"
+        ]
+      }
+    ],
+    "summary": "题6、8题面选项答案及解析核对一致；题7解析存在自交换清零的错误说法，已修正；题9解析存在左移位描述错误，已修正；题10答案与PDF一致，但解析需注明32位long前提并保留该环境依赖提示。五题均为单选题，无编程题参考代码。"
+  }
+}

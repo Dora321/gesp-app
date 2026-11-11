@@ -1,0 +1,168 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T22:16:11.834Z",
+  "completedAt": "2026-11-11T22:23:09.459Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31703,
+    "completion_tokens": 14729,
+    "total_tokens": 46432,
+    "prompt_tokens_details": {
+      "cached_tokens": 31488
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13061
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00896411,
+      "allowance": 0.00537847,
+      "tokens": {
+        "input": 215,
+        "output": 14729,
+        "reasoning": 13061,
+        "cache_read": 31488,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6a865d3b5a006bd8bbb68cca6ef8c4d03edaed57fccb39a44079200af64dfda",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页原图卷头为“C++ 三级 2024 年 09 月”，与 2024-09-l3 一致；来源文件 SHA 为 b24fa856150b7751d986562d76d1438402e43241。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页题面、样例及第7页参考程序与现有算法描述基本一致；但现有题面未收录 PDF 第6页“对于全部数据，保证有 1 ≤ t ≤ 100，1 ≤ n, a_i ≤ 10000”的数据范围，也未列每题 1.0 s / 512.0 MB 限制。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案；PDF 答案表仅覆盖单选和判断。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立给出前缀和等价式 pre*2==sum，并正确处理 1≤i<n 的边界；样例三组走查结果 Yes/Yes/No 与 PDF 第6页一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第6-7页参考程序逐行语义一致；数组大小 10010 覆盖 n≤10000，sum、pre*2 在 1e8/2e8 量级内不会溢出 int；O(sum n) 满足 1.0 s 与总输入范围。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202409 三级] 平衡序列\n\n**时间限制：** 1.0 s  \n**内存限制：** 512.0 MB\n\n## 题目描述\n\n小杨有一个包含 $n$ 个正整数的序列 $a$。他认为一个序列是平衡的当且仅当存在一个正整数 $i$（$1 \\leq i < n$）使得序列第 $1$ 到第 $i$ 个数字的总和等于第 $i + 1$ 到第 $n$ 个数字的总和。\n\n小杨想请你判断序列 $a$ 是否是平衡的。\n\n## 输入格式\n\n**本题单个测试点内包含多组测试数据**。第一行是一个正整数 $t$，表示测试用例组数。\n\n接下来是 $t$ 组测试用例。对每组测试用例，一共两行。\n\n第一行包含一个正整数 $n$，表示序列长度。\n第二行包含 $n$ 个正整数，代表序列 $a$。\n\n## 输出格式\n\n对每组测试用例输出一行一个字符串。如果 $a$ 是平衡的，输出 $\\texttt{Yes}$，否则输出 $\\texttt{No}$。\n\n## 数据范围\n\n对于全部数据，保证 $1 \\le t \\le 100$，$1 \\le n \\le 10000$，$1 \\le a_i \\le 10000$。"
+        },
+        "tests": [
+          {
+            "name": "最小长度 n=1",
+            "input": "1\n1\n5",
+            "output": "No",
+            "reason": "PDF 要求切分点满足 1≤i<n；n=1 时没有合法切分点，参考程序也不会进入枚举循环。"
+          },
+          {
+            "name": "两元素可切分",
+            "input": "1\n2\n1 1",
+            "output": "Yes",
+            "reason": "i=1 时前缀和=1，后缀和=1，满足平衡条件。"
+          },
+          {
+            "name": "偶数长度全相同",
+            "input": "1\n4\n10000 10000 10000 10000",
+            "output": "Yes",
+            "reason": "i=2 时两边各 20000；各元素在题目上限内，验证一般分割与累加。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页题面、样例及第8页参考程序与现有内容基本一致；但现有题面未收录 PDF 第8页“1≤n≤10，每个字符串长度不超过100”的数据范围，也未列每题 1.0 s / 512.0 MB 限制。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案；PDF 答案表仅覆盖单选和判断。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 j=2..m-2 枚举分割点，保证两段长度至少为 2，并用反转比较判断回文；样例走查结果 No/Yes/No/No 与 PDF 第7页一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第8页参考程序一致；外层 n≤10、字符串长度≤100，O(n*m^2) 足够；j 的范围保证两段长度至少为 2，未使用变量 k 不影响正确性。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202409 三级] 回文拼接\n\n**时间限制：** 1.0 s  \n**内存限制：** 512.0 MB\n\n## 题目描述\n\n一个字符串是回文串，当且仅当该字符串从前往后读和从后往前读是一样的，例如，$\\texttt{aabaa}$ 和 $\\texttt{ccddcc}$ 都是回文串，但 $\\texttt{abcd}$ 不是。\n\n小杨有 $n$ 个仅包含小写字母的字符串，他想请你编写程序判断每个字符串是否由两个长度至少为 $2$ 的回文串前后拼接而成。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，代表字符串数量。\n接下来 $n$ 行，每行一个仅包含小写字母的字符串。\n\n## 输出格式\n\n对于每个字符串输出一行，如果该字符串由两个长度至少为 $2$ 的回文串前后拼接而成则输出 Yes，否则输出 No。\n\n## 数据范围\n\n对于全部数据，保证 $1 \\le n \\le 10$，并且每个字符串的长度不超过 $100$。"
+        },
+        "tests": [
+          {
+            "name": "最短字符串",
+            "input": "1\na",
+            "output": "No",
+            "reason": "字符串长度 1，小于两段最小总长度 4，无法合法切分。"
+          },
+          {
+            "name": "恰好两段长度 2",
+            "input": "1\naaaa",
+            "output": "Yes",
+            "reason": "j=2 得到 aa 与 aa，均为长度 2 的回文串。"
+          },
+          {
+            "name": "仅后段回文",
+            "input": "1\nabcdd",
+            "output": "No",
+            "reason": "j=3 时 abc 非回文、dd 是回文；j=2 时两段也都不是回文。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号 26、27。两题的核心算法、解析与 PDF 参考程序一致；两题的网站题面均漏列 PDF 中的数据范围（以及每题 1.0 s / 512.0 MB 限制），已提供补全 question 的修改草稿。边界测试覆盖 n=1、最小可切分长度、恰好两段长度 2、仅后段回文等情形；未实际运行源码，未发现需保留的答案或代码冲突。"
+  }
+}
