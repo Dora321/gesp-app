@@ -1,11 +1,12 @@
 import { isProgrammingQuestion } from './questionHelpers.js';
+import { isScoringExcluded } from './sourceIntegrity.js';
 
 export function scoreExam(questions = [], answers = {}) {
     const objectiveQuestions = questions.filter((question) => (
-        question && !isProgrammingQuestion(question) && !question.sourceIntegrity
+        question && !isProgrammingQuestion(question) && !isScoringExcluded(question)
     ));
     const excludedObjectiveCount = questions.filter((question) => (
-        question && !isProgrammingQuestion(question) && question.sourceIntegrity
+        question && !isProgrammingQuestion(question) && isScoringExcluded(question)
     )).length;
     const programmingQuestions = questions.filter((question) => isProgrammingQuestion(question));
     const objectiveCorrectCount = objectiveQuestions.filter((question) => answers[question.id] === question.answer).length;

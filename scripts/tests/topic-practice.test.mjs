@@ -8,6 +8,7 @@ import {
   getTopicGroup,
   normalizeTopicTags,
 } from '../../src/data/gesp/topicTaxonomy.js';
+import { isScoringExcluded } from '../../src/utils/sourceIntegrity.js';
 import { INFERRED_TOPIC_TAGS, inferTopicTags } from '../../src/data/gesp/topicInference.js';
 
 function allTopicQuestions(tagMap) {
@@ -56,12 +57,12 @@ test('topic practice excludes integrity risks by default and reports included pe
   const allQuestions = allTopicQuestions(withPending.tagMap);
   const includedPending = new Set(
     allQuestions
-      .filter(question => question.sourceIntegrity)
+      .filter(question => isScoringExcluded(question))
       .map(question => `${question.sourcePaperId}:${question.id}`),
   );
 
   assert.ok(trustedQuestions.length > 0);
-  assert.ok(trustedQuestions.every(question => !question.sourceIntegrity));
+  assert.ok(trustedQuestions.every(question => !isScoringExcluded(question)));
   assert.equal(
     withPending.stats.availableQuestionCount,
     trusted.stats.availableQuestionCount + trusted.stats.pendingQuestionCount,

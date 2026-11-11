@@ -9,6 +9,7 @@ import {
 } from '../../utils/questionHelpers';
 import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
+import { hasSourceDefect, isScoringExcluded } from '../../utils/sourceIntegrity';
 
 /**
  * Exam mode main content — question display, options, and programming question view
@@ -39,9 +40,14 @@ const ExamModeView = ({
             {isProgramming ? '编程题' : currentQ.type === 'single' ? '单选题' : '判断题'} &bull; {currentQ.score}分
           </div>
 
-          {currentQ.sourceIntegrity && (
+          {hasSourceDefect(currentQ) && (
             <div className="mt-4">
-              <SourceIntegrityNotice status={currentQ.sourceIntegrity} note={currentQ.integrityNote} />
+              <SourceIntegrityNotice
+                status={currentQ.sourceIntegrity}
+                note={currentQ.integrityNote}
+                defectKind={currentQ.defectKind}
+                examScoring={currentQ.examScoring}
+              />
             </div>
           )}
 
@@ -75,7 +81,7 @@ const ExamModeView = ({
             <div className="space-y-3">
               {currentQ.options.map((opt, idx) => {
                 const isSelected = answers[currentQ.id] === idx;
-                const isExcluded = Boolean(currentQ.sourceIntegrity);
+                const isExcluded = isScoringExcluded(currentQ);
                 const showAnswer = isSubmitted && !isExcluded;
                 let optionClass = 'hover:border-blue-400 hover:bg-slate-50 cursor-pointer';
                 if (isExcluded) {

@@ -6,6 +6,7 @@
 
 import { MAX_ATTEMPTS_PER_PAPER, readLearningData, updateLearningData } from './learningData.js';
 import { isProgrammingQuestion } from './questionHelpers.js';
+import { isScoringExcluded } from './sourceIntegrity.js';
 
 export { MAX_ATTEMPTS_PER_PAPER };
 
@@ -20,13 +21,13 @@ export function readPaperAttempts(paperId) {
 
 /**
  * 记录一次交卷。只统计参与判分的客观题：编程题靠手动标记、
- * sourceIntegrity 题不计分，两者都不该进错题本。
+ * 不计分题（isScoringExcluded，examScoring 优先）不计分，两者都不该进错题本。
  */
 export function recordExamAttempt(paperId, { questions = [], answers = {}, elapsedSeconds } = {}) {
     if (!paperId) return null;
 
     const gradable = questions.filter((question) => (
-        question && !isProgrammingQuestion(question) && !question.sourceIntegrity
+        question && !isProgrammingQuestion(question) && !isScoringExcluded(question)
     ));
 
     const wrongIds = [];
@@ -55,7 +56,7 @@ export function recordExamAttempt(paperId, { questions = [], answers = {}, elaps
         correct,
         wrong: wrongIds.length,
         unanswered,
-        excluded: questions.filter((q) => q && !isProgrammingQuestion(q) && q.sourceIntegrity).length,
+        excluded: questions.filter((q) => q && !isProgrammingQuestion(q) && isScoringExcluded(q)).length,
         wrongIds,
     };
     if (Number.isFinite(elapsedSeconds)) attempt.elapsedSeconds = Math.max(0, Math.round(elapsedSeconds));

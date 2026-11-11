@@ -54,12 +54,22 @@ function countRuntimeQuestions(paperData) {
   return questionIds.size + questionsWithoutId;
 }
 
-// Objective questions carrying a structured sourceIntegrity flag. These are
-// excluded from scoring and from topic practice, so the paper card has to say
-// how many there are — otherwise a learner only discovers it mid-paper.
+// Objective questions that do not participate in scoring (examScoring takes
+// priority; without it, the legacy sourceIntegrity truthy semantics apply).
+// These are excluded from scoring and from topic practice, so the paper card
+// has to say how many there are — otherwise a learner only discovers it mid-paper.
+// Keep this judgement in sync with isScoringExcluded() in src/utils/sourceIntegrity.js.
 function countIntegrityFlaggedQuestions(paperData) {
+  const isScoringExcluded = (question) => {
+    if (question?.examScoring === 'counted' || question?.examScoring === 'excluded') {
+      return question.examScoring === 'excluded';
+    }
+    const status = question?.sourceIntegrity;
+    return Boolean(status) && status !== 'ok';
+  };
+
   return (paperData?.questions || [])
-    .filter(question => ['single', 'judge'].includes(question?.type) && question?.sourceIntegrity)
+    .filter(question => ['single', 'judge'].includes(question?.type) && isScoringExcluded(question))
     .length;
 }
 
