@@ -1,0 +1,231 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    17,
+    19,
+    20,
+    22,
+    24
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T14:04:35.954Z",
+  "completedAt": "2026-11-11T14:16:31.283Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36613,
+    "completion_tokens": 17857,
+    "total_tokens": 54470,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 34816,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 16175,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0110882,
+      "allowance": 0.00665292,
+      "tokens": {
+        "input": 1797,
+        "output": 17857,
+        "reasoning": 16175,
+        "cache_read": 34816,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "13dc6da383f7b67a01767bcce8843fb4727d61b6155a63bb3975662d80445e42",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标明“C++ 三级 / 2023 年 9 月”，第 5 页为判断题第 1 至第 10 题及对应答案表；据此核对网站 ID 17/19/20/22/24 分别对应 PDF 判断题第 2/4/5/7/9 题。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 2 题原文为“在C++语言中，位运算符也有类似‘先乘除、后加减’的优先级规则。因此，使用时应注意合理使用括号。”候选仅合并句子并将句号改为逗号，语义未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”二值判断，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 2 题为 √；按正确=0 映射，候选 answer=0。C++ 位运算符确有独立优先级，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对 C++ 优先级：~ 为单目运算符；<<、>> 低于加减而高于关系运算；&、^、| 低于 ==/关系运算且 & 高于 ^、^ 高于 |。示例 1 + 2 << 3 解析为 (1 + 2) << 3，a & 2 == 2 解析为 a & (2 == 2)，均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 4 题原文为“在C++语言中，长度为n的数组，访问下标为n的元素会引起编译错误。”候选恢复为斜体 n 的泛指表述，与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”二值判断，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 4 题为 ×，按错误=1 映射，候选 answer=1。访问 a[n] 语法合法，编译器不做数组边界检查，不会产生编译错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分编译期与运行期：越界访问不属于编译错误，而是运行期未定义行为；编译器仅做语法检查，不检查下标范围。对 std::array/std::vector 的 [] 与 .at() 说明也正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 5 题原文为“在C++语言中，所有 int 类型的值，经过若干次左移操作（ << ）后，它们的值总会变为 0 。”候选与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”二值判断，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 5 题为 √，按正确=0 映射，候选 answer=0。在固定 32 位、补 0 左移模型下，非零值经 32 减去末尾 0 个数次逐位左移后清零，0 左移仍为 0，官方判 √。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选给出的清零次数公式、0 值特例，以及严格 ISO C++ 下有符号 int 左移溢出、移入符号位、负数左移和移位位数达到/超过位宽属未定义行为的注记均正确；官方答案按出题预设的补 0 左移模型成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "严格 ISO C++ 中有符号 int 左移溢出、移入符号位或单次移位位数达到/超过类型位宽为未定义行为，负数左移亦受限；命题仅在题目预设的补 0 左移模型下成立。官方答案 √，候选已注明该差异，保留说明。"
+        ]
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 7 题原文为“在C++语言中，定义数组时， [] 中必须指定元素个数。”候选与原文一致，仅空格差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”二值判断，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 7 题为 ×，按错误=1 映射，候选 answer=1。int a[] = {1, 2, 3}; 合法且长度可由初始化列表推断，故“必须指定元素个数”为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验证：带初始化列表时可省略数组长度；int c[]; 既不指定长度也无初始化列表，不合法。解析对自动推断适用条件、int a[3]; 与 std::array 的说明均无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 9 题原文为“在C++语言中，表达式 (0xff == 255) 的值为 true 。”候选与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”二值判断，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 9 题为 √，按正确=0 映射，候选 answer=0。0xff = 15×16 + 15 = 255，等式成立，表达式值为 true。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算 0xff=255，0xff == 255 为 true；延伸中八进制 0177 = 1×64 + 7×8 + 7 = 127，换算正确，进制前缀说明准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验 PDF 判断题第 2/4/5/7/9 题（网站 ID 17/19/20/22/24）。五题题面与 PDF 第 5 页原图一致；答案表 √/× 按正确=0、错误=1 映射后与候选 officialAnswer 全部一致；解析经独立推导无实质错误。题 20 的严格 C++ 左移未定义行为差异保留为未决说明，不据此改动官方答案。"
+  }
+}

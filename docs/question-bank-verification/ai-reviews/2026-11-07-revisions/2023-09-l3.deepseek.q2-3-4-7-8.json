@@ -1,0 +1,231 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    3,
+    4,
+    7,
+    8
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T13:53:16.957Z",
+  "completedAt": "2026-11-11T13:54:48.208Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36675,
+    "completion_tokens": 16130,
+    "total_tokens": 52805,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 14317,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01517925,
+      "allowance": 0.00910755,
+      "tokens": {
+        "input": 36675,
+        "output": 16130,
+        "reasoning": 14317,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "13dc6da383f7b67a01767bcce8843fb4727d61b6155a63bb3975662d80445e42",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确为 CCF 编程能力等级认证 C++ 三级、2023 年 9 月；第1页单选答案表与第5页判断题答案表均与候选题集对应。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页原图流程图完整：开始→a=5,s=1→判断a≥4；是分支执行s=s×a、a=a-1后回判，否分支输出s并结束；候选题面已补齐该图，文字与选项均对应该页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项 A.60、B.20、C.5、D.1 与候选顺序、数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题为B；按图模拟：a=5,s=1，5≥4得s=5,a=4；4≥4得s=20,a=3；3≥4不成立输出20，对应索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐步模拟5和4两轮乘法，得20；A的60、C的5、D的1均能按流程解释，独立复算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第3题题干为“已知大写字符 'A' 的ASCII编码的十六进制表示为 0x41，则字符 'L' 的ASCII编码的十六进制表示为（ ）。”候选仅空格排版不同，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A.4A、B.4B、C.4C、D.52，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题为C；0x41+0x0B=0x4C，索引2，与候选answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选把偏移量算为11即0x0B，指出低位1+B=C不进位，并验算0x4C=76；A/B/D分别对应J/K/R的解释独立复核正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第4题题干为“以下哪个不是C++语言中的运算符？（ ）”，候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A.~、B.~~、C.<、D.<<，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第4题为B；C++有单目按位取反~，不存在独立运算符~~，索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选指出~是单目按位取反、~~只是两个~连续并按~(~x)解析，且~不能作用于浮点类型；相关运算符规则独立复核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题题干为“以下数组定义，符合C++语言语法的是（ ）。”候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四项依次为 double a[];、double b[] = {1, 2.0, '3'};、double c[3.0];、double[] d = new double[3];，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为B；仅B同时具有初始化列表且各常量可精确转为double，A缺长度缺初始化、C浮点长度、D为Java风格，索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按省略数组长度规则、整型常量长度要求逐项判别；列表初始化窄化规则及int/char常量到double的转换经复核，B合法、A/C/D非法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第8题题干为“下列关于进制的叙述，正确的是（ ）。”候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A至D四项与候选逐字一致，仅排版空白差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为C；C的位数不等式成立，D最大数码为7，B为表述争议项，官方单选答案取C，索引2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选用floor(log10 N)+1与floor(log2 N)+1证明C，N=1时均为1位；A、D明确错误；B注明主观并保留争议，未改动官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "选项B「其他进制在日常生活中很少使用」带主观性，且时间六十进制、十二进制等日常事实可提出反例；官方答案取C，保留争议，不据此改动答案。"
+        ]
+      }
+    ],
+    "summary": "已核验题号2、3、4、7、8。题2流程图及模拟答案20正确；题3的0x41+0x0B=0x4C推导正确且无进位；题4的~~不是独立运算符判断正确；题7的B项在列表初始化规则下合法；题8答案与官方一致，C可由位数公式证明，但B项表述存在主观争议，保留unresolved。五题均为单选题，故tests为空，referenceCode不适用。"
+  }
+}
