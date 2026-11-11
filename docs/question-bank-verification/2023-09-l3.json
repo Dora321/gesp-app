@@ -378,39 +378,44 @@
       "dimensions": [
         "statement",
         "options",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第3页题干为“下列关于C++语言中数组的叙述，不正确的是（ ）。”当前题干与之一致。",
-          "review": "PDF第3页原文『第 9 题 下列关于C++语言中数组的叙述，不正确的是（ ）。』与站点题干一致。"
+          "initial": "PDF 第 3 页第 9 题题干为“下列关于C++语言中数组的叙述，不正确的是（ ）。”，与候选 question 逐字一致，无代码或图示遗漏。",
+          "review": "PDF 第 3 页第 9 题题干为『下列关于C++语言中数组的叙述，不正确的是（ ）。』，与候选 question 逐字一致，无代码或图示遗漏。"
         },
         "options": {
-          "initial": "PDF第3页选项A-D与当前选项一致：0个元素、-1个元素、越界编译错误、越界后可能正常结束。",
-          "review": "PDF第3页 A~D 为：可以定义 0 个元素的数组 / 不能定义 -1 个元素的数组 / 越界访问会产生编译错误 / 越界后程序依然可能正常结束，与站点一致。"
+          "initial": "PDF 第 3 页 A-D 依次为“可以定义 0 个元素的数组。”“不能定义 -1 个元素的数组。”“数组下标越界访问会产生编译错误。”“程序运行时发生数组下标的越界访问，程序依然可能正常结束。”，与候选 options 内容及顺序一致。",
+          "review": "PDF 第 3 页 A-D 依次为『可以定义 0 个元素的数组。』『不能定义 -1 个元素的数组。』『数组下标越界访问会产生编译错误。』『程序运行时发生数组下标的越界访问，程序依然可能正常结束。』，与候选 options 内容及顺序一致。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第9题为C，当前answer=2（C）与官方一致；但严格ISO C++下A项零长度数组也非标准允许，官方题存在标准/实现口径差异，不能仅按官方表定案。",
-          "review": "PDF第1页答案表第9题为C，站点 answer=2（C），逐字一致。C 把运行时未定义行为说成编译错误，是四个叙述中唯一明确错误的，符合官方预期答案。"
+          "initial": "PDF 第 1 页答案表第 9 题为 C（0 起始索引 2），与候选 answer=2 一致；独立判断 C 明确错误：下标越界通常不在编译期检查，不属于编译错误。",
+          "review": "PDF 第 1 页答案表第 9 题为 C（0 起始索引 2），与候选 answer=2 一致；独立判断：下标越界是运行期未定义行为，编译器不对 [] 做边界检查，不产生编译错误，四项中仅 C 明确错误，判 C 成立。"
         },
         "explanation": {
-          "initial": "当前解析正确指出C把运行时越界误作编译错误，B中-1非法，D未定义行为可能正常结束；并注明A在标准C++中不允许但常见编译器作为扩展接受。",
-          "review": "站点解析正确指出越界属运行时未定义行为而非编译错误，并如实记录『标准 C++ 不允许 0 长度数组、GCC/Clang 作为扩展接受 int a[0];』的事实，结论无需修改。"
+          "initial": "候选解析正确区分编译错误与运行期未定义行为，B、C、D 的推导成立；A 项已说明严格 ISO C++ 要求长度大于 0 而 GCC/Clang 以扩展接受零长数组，官方答案 C 不受影响；A 项的标准争议见 unresolved。",
+          "review": "修复后核验通过：候选解析逐项独立复核成立——(1) 越界属运行期 UB 而非编译错误，C 项判定正确；(2) B 项理由已改为『数组长度不能为负（标准还要求大于 0），-1 非法』，与 A 项『严格 ISO C++ 要求数组长度大于 0』的说明不再自相矛盾；(3) A 项『GCC/Clang 等常见编译器把 int a[0]; 作为扩展接受』属实（ISO C++ [dcl.array] 要求长度大于 0，零长数组是 GNU 扩展）；(4) D 项 UB 可能看似正常结束正确；(5) 知识延伸 std::array/std::vector 的 [] 不查边界、.at() 越界抛异常正确。答案 C 不受影响。"
         }
       },
-      "unresolved": [
-        "answer 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2023-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2023-09-l3.glm.json"
       ]
     },
     {
@@ -1018,36 +1023,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 5 题原文为“所有 int 类型的值，经过若干次左移操作（ << ）后，它们的值总会变为 0。”，网站题面语义一致。",
-          "review": "PDF 第 5 页判断题第 10 题原文「如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true ，则说明 a 是偶数。」与网站题面一致。"
+          "initial": "PDF 第 5 页判断题第 10 题原文为“如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true ，则说明 a 是偶数。”，与候选 question 一致。",
+          "review": "PDF 第 5 页判断题第 10 题原文为『如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true ，则说明 a 是偶数。』（代码片段在原图中等宽呈现），与候选 question 逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 5 页判断题答案表第 5 题为√，对应正确=0；网站 answer=0 一致。",
-          "review": "PDF 第 5 页判断题答案表第 10 题为 √，对应正确=0；网站 answer=0 一致。"
+          "initial": "PDF 第 5 页判断题答案表第 10 题为 √，按正确=0 映射与候选 answer=0 一致；独立推导在补码表示下 a&1 提取最低位，最低位为 0 当且仅当 a 为偶数，包括 0 和负偶数。",
+          "review": "PDF 第 5 页判断题答案表第 10 题为 √，按正确=0 映射与候选 answer=0 一致；独立推导：补码下 a&1 提取最低位，最低位为 0 当且仅当 a 为偶数（10&1=0、7&1=1、-4&1=0、-3&1=1、0&1=0），命题成立，判『正确』无误。"
         },
         "explanation": {
-          "initial": "解析按 32 位补 0 左移推演所有位最终移出，并注明严格 C++ 标准下有符号左移溢出的未定义行为；与官方考试口径一致。",
-          "review": "解析主体（最低位决定奇偶性、a&1 提取最低位、以 10/7 举例）独立推导正确，判「正确」成立；但原易错提醒首句「a & 1 只能用于判断非负整数的奇偶性」与同句「补码的最低位规律仍然成立」自相矛盾且不符合补码事实，已在 changes 中修正该句，修复后核验通过。"
+          "initial": "解析以最低有效位判断奇偶，正例与负数补码注意点均正确；知识延伸已限定 a>0 并说明 a=0 时 0&(-1)=0 的例外，不构成全称误述。",
+          "review": "修复后核验通过：主体推导（LSB 决定奇偶性、a&1 提取最低位、10/7 正例、负数补码说明及 C++20 起强制补码）独立复核均正确；知识延伸已限定『对于正整数 a』并注明 a=0 时 0&(-1)=0 但 0 非 2 的幂次的例外，不再构成『仅当 a 为 2 的幂次』的全称误述（负 2 的幂如 INT_MIN 补码下 a&(a-1)=0 的情形已被 a>0 限定排除）。8&7=0b1000&0b0111=0 计算正确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2023-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2023-09-l3.glm.json"
       ]
     },
     {
@@ -1129,27 +1138,8 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 9,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "answer 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2023-09-l3.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-09-l3.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2023-09-l3.integration.json"
 }
