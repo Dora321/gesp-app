@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T04:44:10.518Z",
+  "completedAt": "2026-11-11T04:45:22.758Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33142,
+    "completion_tokens": 6449,
+    "total_tokens": 39591,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4991
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0088407,
+      "allowance": 0.00530442,
+      "tokens": {
+        "input": 33142,
+        "output": 6449,
+        "reasoning": 4991,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c4f34351a8e3b2b69284df238ba5ae7fbd149cdc645a8b2ec894e8acb302e591",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++3级.pdf",
+    "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
+    "mirrorBytes": 1749021,
+    "shaVerified": true,
+    "sha256": "ef6bb91b5ed0d4b380f6ab5ee383711d77ee4c7d9894074cb83eabdc75322ec5"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头标明“CCF 编程能力等级认证 C++ 三级 2023年12月”；第1页单选题答案表可读为第1-5题 C、D、C、C、C，与站点题目属性及题号范围一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题题干“下面C++数组的定义中，会丢失数据的是( )”与网站题干一致，无代码或图表缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页四个选项逐项一致：A为char dict_key[]={'p','t','o'}，B为int dict_value[]={33,22,11}，C为char dict_name[]={'chen','wang','zhou'}，D为float dict_value[]={3,2,1}；顺序与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第1题标为C；按0起始选项索引为2，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：A、B、D均为类型匹配的常规数组初始化，不丢失元素数据；C用多字符常量初始化char元素，赋值到char时会发生实现定义截断，不能完整保存'chen'、'wang'、'zhou'，故答案C成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干“在下列编码中，不能够和二进制'1101 1101'相等的是( )”与网站一致，二进制串空格排版不影响含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页四个选项依次为（221）10进制、（335）8进制、（dd）16进制、（5d）16进制，与网站文本及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题标为D；按0起始选项索引为3，与网站answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立换算：1101 1101₂=221₁₀=335₈=DD₁₆，而5D₁₆=0101 1101₂=93₁₀，与题干不等；因此不相等项为D，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题题干“下面C++代码执行后不能输出'GESP'的是( )”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页四个string初始化与输出语句与网站逐项一致：A、B、D均整体输出str，C依次输出str[1]至str[4]；顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题标为C；按0起始选项索引为2，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：'GESP'有效下标为0..3，C输出str[1]、str[2]、str[3]得ESP，再输出str[4]的空字符，因此不是完整'GESP'；A、B、D均输出完整字符串，答案C成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页下方给出双层for循环代码，第2页上方接排选项；代码中temp=0、i<7、j<5、if(i/j==2)与网站一致，未漏必要条件。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "结合PDF第2页选项图与文本层，选项为A.10、B.8、C.4、D.3，与网站options顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第4题标为C；按0起始选项索引为2，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举满足i/j==2的(i,j)为(2,1)、(4,2)、(5,2)、(6,3)，共4次，temp=4；解析表格和最终答案C均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题代码为string str=(\"chen\"); int x=str.length(); int temp=0; for(int i=0;i<=x;i++){temp++;} cout<<temp<<endl;，与网站代码语义一致，仅字符串初始化括号排版略有差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为A.4、B.2、C.5、D.3，与网站options及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第5题标为C；按0起始选项索引为2，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：str='chen'长度为4，x=4；i从0到4且条件为i<=x，共执行5次temp++，输出5；解析结论C正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号1-5。五题题干、选项、PDF答案表与网站答案均一致；逐题独立推导的解析结论均成立，未发现需要修改的字段。单选题参考代码维度均记为not_applicable，未执行或声称运行任何代码。"
+  }
+}

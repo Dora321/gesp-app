@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T06:07:35.194Z",
+  "completedAt": "2026-11-11T06:08:00.326Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49364,
+    "completion_tokens": 4280,
+    "total_tokens": 53644,
+    "prompt_tokens_details": {
+      "cached_tokens": 31472
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2355
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00576796,
+      "allowance": 0.00576796,
+      "tokens": {
+        "input": 17892,
+        "output": 4280,
+        "reasoning": 2355,
+        "cache_read": 31472,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c4f34351a8e3b2b69284df238ba5ae7fbd149cdc645a8b2ec894e8acb302e591",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++3级.pdf",
+    "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
+    "mirrorBytes": 1749021,
+    "shaVerified": true,
+    "sha256": "ef6bb91b5ed0d4b380f6ab5ee383711d77ee4c7d9894074cb83eabdc75322ec5"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“C++ 三级”“2023 年 12 月”，与 id 2023-12-l3 的级别、年月一致；卷面结构为 15 道单选题、10 道判断题、2 道编程题，与网站数据相符。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文“执行C++代码 cout<<(5&&2)<<endl; 后将输出 1。”，网站题面仅空格排版差异，代码与命题语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A–D 选项；网站以“正确/错误”为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 1 题为 √（按正确=0 映射），网站 answer=0 一致。独立推导：5、2 均非零转 true，true&&true 为 true，cout 默认（无 boolalpha）输出 1，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析含完整推导链：操作数隐式转 bool、true&&true、bool 输出为 1，并区分 && 与 &，逻辑无误，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其题面对照、答案表引用（第 4 页第 1 题 √）与解析评估均准确，与本人独立推导一致，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文“输入 chen a dai 输出应该为： chen”，附代码 string str; cin>>str; cout<<str;，与网站题面及代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A–D 选项；网站以“正确/错误”为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 题为 √，网站 answer=0 一致。独立推导：operator>> 以空白符分隔且跳过前导空白，首词读入 chen，输出 chen，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 >> 按空格/制表/换行分隔、一次读取仅得 chen，并指出整行读取需 getline，推导完整无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案映射（√→0）、cin 读取规则推导与官方答案表均核验一致，无修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 3 题原文“执行C++代码 cout<<(5||2); 后将输出 1。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A–D 选项；网站以“正确/错误”为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 题为 √，网站 answer=0 一致。独立推导：5、2 非零转 true，true||true 为 true，cout 默认输出 1，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析含非零转 bool、逻辑或结果、输出 1 的完整推导，并补充短路求值（本题左操作数已为 true，不影响结果），逻辑正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面在第 5 页、答案表（第 4 页第 3 题 √）引用均正确，解析推导成立，与独立核验一致。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 4 题原文“执行下面C++代码后将输出\"China\"”，代码 string a=\"china\"; a.replace(0,1,\"C\"); cout<<a<<endl; 与网站一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A–D 选项；网站以“正确/错误”为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 题为 √，网站 answer=0 一致。独立推导：replace(pos=0, len=1, \"C\") 将下标 0 的 'c' 替换为 'C'，得 \"China\"，输出 China，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析准确解释 replace 三参数含义（起始位置、替换长度、替换内容）并说明就地修改，china→China 推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：replace 语义推导与官方答案表（第 4 题 √）均一致，无修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 5 题原文“执行C++代码将输出 0 5 ， 5 之后还有一个空格”，代码 int list[10]={1,2,3,4,5,6,7,8,9,10}; 及 i%5==0 时输出 list[i]<<\" \" 与网站一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A–D 选项；网站以“正确/错误”为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 题为 ×（按错误=1 映射），网站 answer=1 一致。独立推导：满足 i%5==0 的 i 为 0 和 5，输出 list[0]=1 与 list[5]=6，即 \"1 6 \"（末尾含空格），并非 \"0 5\"，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分循环变量 i 与元素值 list[i]，列出 i=0→1、i=5→6，得输出 \"1 6 \"，并提示 list[5]=6 而非 5，推导完整，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：该题为反向陷阱题，本人独立模拟得输出 \"1 6 \"，与官方答案表第 5 题 × 及网站解析结论一致，无修改。"
+      }
+    ],
+    "summary": "本次独立复核范围限定为判断题 id 16–20，其余题目未核验。卷头“C++ 三级 / 2023 年 12 月”与 2023-12-l3 匹配。PDF 第 4 页判断题答案表依次为 √ √ √ √ × × √ √ × √，故第 1–5 题映射为 0、0、0、0、1，与网站 answer 全部一致。逐题对照了第 4、5 页原图中的题面代码与命题，并独立推导：(5&&2) 输出 1；cin>>str 读得 chen；(5||2) 输出 1；replace 后输出 China；数组题实际输出 \"1 6 \" 而非 \"0 5\"（命题错误）。五题解析推导链完整、事实无误，判断题的 options 与 referenceCode 记为 not_applicable，编程题未涉及故无 tests。初核草稿结论与本人独立核验完全吻合，全部接受，changes 均为空，无遗留争议。"
+  }
+}

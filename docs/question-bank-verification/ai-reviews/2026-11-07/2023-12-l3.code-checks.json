@@ -1,0 +1,119 @@
+{
+  "executedAt": "2026-11-11T13:35:13.542Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "2\n1",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "input": "3\n1",
+          "output": "25",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "25\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 N=1,i=0",
+          "input": "1\n0\n",
+          "output": "1\n",
+          "reason": "官方约束 0<N<10、i<N 允许 N=1,i=0；一只小猫分1份拿走全部，每份非空至少需1条鱼，独立推得最小值为1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "i=0 边界 N=3",
+          "input": "3\n0\n",
+          "output": "27\n",
+          "reason": "i=0 时每轮须整除；独立模拟 x=3,6,9,12,15,18,21,24 均因中途余数非0或份额为空失败，x=27 时三轮份额 9、6、4 均非空，最小值为 N^N=27。",
+          "kind": "boundary",
+          "actual": "27\n",
+          "passed": true
+        },
+        {
+          "name": "最大规模 N=9,i=1",
+          "input": "9\n1\n",
+          "output": "387420481\n",
+          "reason": "按公式 m=ceil(2/8^8)=1，答案=9^9−8=387420489−8=387420481；该规模下从1正向枚举初始鱼数不可行，用于确认公式解法。",
+          "kind": "boundary",
+          "actual": "387420481\n",
+          "passed": true
+        },
+        {
+          "name": "最大余数 N=9,i=8",
+          "input": "9\n8\n",
+          "output": "387420425\n",
+          "reason": "m=1，答案=9^9−8×8=387420489−64=387420425；逆向逐级还原各轮份额均为整数且非空，覆盖修正项 (N−1)·i 取最大值的情形。",
+          "kind": "boundary",
+          "actual": "387420425\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d1fbf3d8e2df4dfbb8628e92c5a5720b848580afc5941eee1930f9bce6cd06e5"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2\n1 km = ? mm\n1 m = ? mm",
+          "output": "1 km = 1000000 mm\n1 m = 1000 mm",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1 km = 1000000 mm\n1 m = 1000 mm\n",
+          "passed": true
+        },
+        {
+          "input": "5\n100 m = ? mm\n1000 km = ? m\n20 kg = ? g\n200 g = ? mg\n0 kg = ? mg",
+          "output": "100 m = 100000 mm\n1000 km = 1000000 m\n20 kg = 20000 g\n200 g = 200000 mg\n0 kg = 0 mg",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "100 m = 100000 mm\n1000 km = 1000000 m\n20 kg = 20000 g\n200 g = 200000 mg\n0 kg = 0 mg\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模且 x=0",
+          "input": "1\n0 km = ? mm\n",
+          "output": "0 km = 0 mm\n",
+          "reason": "N 最小为1、x 最小为0；km→mm 倍率 1000000，0 乘任何倍率仍为 0，输出格式与题面一致。",
+          "kind": "boundary",
+          "actual": "0 km = 0 mm\n",
+          "passed": true
+        },
+        {
+          "name": "最大乘积 1000 kg = ? mg",
+          "input": "1\n1000 kg = ? mg\n",
+          "output": "1000 kg = 1000000000 mg\n",
+          "reason": "x 最大 1000、kg→mg 倍率 1000000，结果 10^9 为全题域最大值，验证 long long 范围与输出格式。",
+          "kind": "boundary",
+          "actual": "1000 kg = 1000000000 mg\n",
+          "passed": true
+        },
+        {
+          "name": "覆盖 km→m 分支",
+          "input": "1\n1000 km = ? m\n",
+          "output": "1000 km = 1000000 m\n",
+          "reason": "km→m 倍率 1000，1000×1000=10^6；验证映射表不漏 km→m 组合。",
+          "kind": "boundary",
+          "actual": "1000 km = 1000000 m\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "89c0ff57db3806eb0f300e61b305283c8019deac120274360bc5e616688664f0"
+    }
+  ]
+}
