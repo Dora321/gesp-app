@@ -20,28 +20,6 @@ const scienceLessonCount = foundationLessons.length + arduinoLessons.length + in
 
 const LINES = [
     {
-        id: 'cpp',
-        badge: 'C++',
-        title: 'C++ · GESP 一至八级',
-        detail: `${cppLessonIndex.length} 节互动课`,
-        stops: [
-            ...cppLevelCatalog.map((level) => ({
-                key: `level-${level.level}`,
-                label: LEVEL_NAMES[level.level - 1],
-                unit: '级',
-                to: level.path,
-                info: `${level.title} · ${countCppLessons(level.level)} 节课，进入等级页`,
-            })),
-            {
-                key: 'bank',
-                label: '真题',
-                to: '/question-bank',
-                interchange: true,
-                info: `GESP 真题题库 · ${paperStats.paperCount} 套官方真题、${paperStats.questionCount} 道题`,
-            },
-        ],
-    },
-    {
         id: 'python',
         badge: 'Python',
         title: 'Python · 从入门到项目',
@@ -64,6 +42,28 @@ const LINES = [
                 label: '项目',
                 to: pythonProjects[0].path,
                 info: `Python 项目课 · ${pythonProjects.length} 个项目，从「${pythonProjects[0].title}」开始`,
+            },
+        ],
+    },
+    {
+        id: 'cpp',
+        badge: 'C++',
+        title: 'C++ · GESP 一至八级',
+        detail: `${cppLessonIndex.length} 节互动课`,
+        stops: [
+            ...cppLevelCatalog.map((level) => ({
+                key: `level-${level.level}`,
+                label: LEVEL_NAMES[level.level - 1],
+                unit: '级',
+                to: level.path,
+                info: `${level.title} · ${countCppLessons(level.level)} 节课，进入等级页`,
+            })),
+            {
+                key: 'bank',
+                label: '真题',
+                to: '/question-bank',
+                interchange: true,
+                info: `GESP 真题题库 · ${paperStats.paperCount} 套官方真题、${paperStats.questionCount} 道题`,
             },
         ],
     },
