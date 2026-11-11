@@ -383,41 +383,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
+        1,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第3页第10题题干和四个范围选项与网站一致，均按 32 位计算机中的 int 讨论。",
-          "review": "PDF 第3页第10题题干“32位计算机中，C++的整型变量int能够表示的数据范围是”与网站一致。"
+          "initial": "PDF第3页第10题题干为“32位计算机中，C++的整型变量int能够表示的数据范围是（ ）。”，候选题干与之一致。",
+          "review": "PDF 第3页第10题题干页图原文“32位计算机中，C++的整型变量int能够表示的数据范围是（ ）。”，候选题干逐字一致（仅空格排版差异）。"
         },
         "options": {
-          "initial": "PDF 第3页选项依次为 A.2^31~(2^31)-1、B.2^32、C.-2^31~+(2^31)-1、D.-(2^31)+1~2^31，与网站顺序和内容一致。",
-          "review": "PDF 第3页选项依次为 A.2^31~(2^31)-1、B.2^32、C.-2^31~+(2^31)-1、D.-(2^31)+1~2^31，与网站一致。"
+          "initial": "PDF第3页选项顺序为 A.2^31~(2^31)-1、B.2^32、C.-2^31~+(2^31)-1、D.-(2^31)+1~2^31，候选 options 逐项及顺序一致。",
+          "review": "PDF 第3页页图选项依次为 A. 2^31~(2^31)-1、B. 2^32、C. -2^31~+(2^31)-1、D. -(2^31)+1~2^31，候选 options 内容与顺序均一致，无顺序映射风险。"
         },
         "answer": {
-          "initial": "PDF 第1页单选答案表第10题为 C；C 的 0 起始索引为 2，网站 answer=2 与之一致。",
-          "review": "PDF 第1页答案表第10题为 C，映射索引 2，网站 answer=2 一致；补码下 32 位 int 范围确为 -2^31~2^31-1（-2147483648~2147483647）。"
+          "initial": "PDF第1页单选答案表第10题为 C，映射为 0 起始索引 2；候选 answer=2。独立按32位有符号补码范围 [-2^31, 2^31-1] 复核，C 正确。",
+          "review": "PDF 第1页单选答案表第10列为 C，映射 0 起始索引 2，候选 answer=2 一致；独立复核：32 位补码有符号 int 范围为 [-2^31, 2^31-1]（-2147483648~2147483647），仅 C 正确——A 区间下界 2^31 大于上界 2^31-1 且不含负数，B 为单一数值而非范围（0~2^32-1 是 unsigned int），D 两端各偏移 1（漏 -2^31、多 2^31）。"
         },
         "explanation": {
-          "initial": "结论 C 正确，但原解析把补码 1111...1111 对应的 -1 称为“最小负数”，术语错误；-1 是负数端的最大负数，且解析应明确包含 0。已提供纠正。",
-          "review": "网站解析结论（-2^31~2^31-1）正确，但把补码 1111...1111 对应的 -1 误称“最小负数”（-1 是负数端数值最大者，最小负数是 -2^31），属事实性错误；已提供修正版解析并对补码范围及四个选项分析逐项复核，修复后核验通过。"
+          "initial": "候选解析给出补码非负段 0~2^31-1、负段 -2^31~-1，并逐项排除A/B/D；已修正原解析把 1111...1111（-1）误称“最小负数”的错误，独立复核全部结论正确。",
+          "review": "候选解析已为修复版：补码非负段 0~2^31-1、负段 -2^31~-1（1000...0000 为最小负数 -2^31，1111...1111 对应 -1），并逐项排除 A/B/D；独立复核全部结论及“易错提醒”（-1 是负数端数值最大者而非最小负数）均无事实性错误，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-12-l3.glm.json"
       ]
     },
     {
@@ -931,81 +935,86 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第5页判断题第10题原文为“任何一个while循环都可以转化为等价的for循环（ ）”，与网站题干一致。",
-          "review": "PDF 第 5 页判断题第 10 题原文“任何一个while循环都可以转化为等价的for循环（ ）。”，与网站题干一致。"
+          "initial": "PDF第5页判断题第10题原文为“任何一个while循环都可以转化为等价的for循环（ ）。”，候选题干一致。",
+          "review": "PDF 第5页判断题第10题页图原文“任何一个while循环都可以转化为等价的for循环（ ）。”，候选题干一致。"
         },
         "answer": {
-          "initial": "PDF第4页判断题答案表第10题位置为√，即“正确”，对应officialAnswer=0；网站answer=0，二者一致。",
-          "review": "PDF 第 4 页判断题答案表第 10 格为 √（正确），officialAnswer=0；网站 answer=0 一致。独立推导：`while(条件){循环体;}` 可直接写成 `for(;条件;){循环体;}`（初始化与更新留空），任意 while 循环都存在等价 for 写法，命题为真，与官方 √ 相符。"
+          "initial": "PDF第4页判断题答案表第10题为 √（正确），officialAnswer=0；候选 answer=0。独立验证 while(条件){循环体;} 可写成 for(;条件;){循环体;}，命题为真。",
+          "review": "PDF 第4页判断题答案表第10格页图为 √（正确），officialAnswer=0，候选 answer=0 一致；独立验证：while(条件){循环体;} 可严格改写为 for(;条件;){循环体;}（初始化与迭代表达式留空，continue 均跳至条件测试，语义不变），任意 while 循环均存在等价 for 写法，命题为真。"
         },
         "explanation": {
-          "initial": "结论正确，但原解析把while循环体末尾的更新操作搬到for第三部分，并称“任何while”都可如此改写；当循环体含有continue时，for的更新部分仍会执行，而原while中位于continue之后的更新会被跳过，这种改写不保证等价。更稳妥的通用转化是保留原循环体，写成for(; 条件; )。",
-          "review": "结论正确，但原解析“任何 while 循环只需将循环体末尾的更新操作放入 for 第三部分”的通用改法在循环体含 continue 时不等价：for 的更新表达式在 continue 之后仍会执行，而原 while 写法中位于 continue 之后的更新会被跳过。已替换为以 `for (; 条件; )` 保留原循环体的严格等价转换说明并补充该细节；修复后核验通过，答案仍为正确。"
+          "initial": "候选解析以 for(;条件;) 保留原循环体，正确说明 continue 在 for 与 while 中的跳转差异；结论“正确”与官方 √ 一致，未发现事实性错误。",
+          "review": "候选解析以 for(;条件;) 保留原循环体说明等价转换，并正确指出 for→while 的机械改写在循环体含 continue 时不等价（for 的 continue 跳至迭代表达式后再测条件，while 的 continue 直接跳至条件测试，故位于 continue 之后的更新会被跳过）；该细节不影响本题 while→for 方向的结论。独立复核无事实性错误，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-12-l3.glm.json"
       ]
     },
     {
       "id": 26,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "explanation",
         "referenceCode"
       ],
+      "blockedDimensions": [],
       "sourcePages": [
         5,
         6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第6页 3.1.2 的约束为“保证 0<N<10；i<N”，网站写成“0<i<N≤9”，错误地排除了 i=0 这一官方允许的边界；其余故事、样例和输出要求基本一致。",
-          "review": "PDF 第6页 3.1.2 页图原文为“保证 0 < N < 10；i < N。”，网站原写“保证 $0<i<N\\le9$”，错误排除了官方允许的 i=0（N≤9 与 0<N<10 等价，差异仅在 i 的下界）。已按页图改为“保证 $0<N<10$，$i<N$”，修复后核验通过；其余题面（分鱼流程、每份非空要求、输出格式、两组样例 2/1→7、3/1→25）与 PDF 第5—6页一致，条/个量词与括注属等价转述。"
+          "initial": "PDF第5—6页题面、输入输出描述及样例为：N只猫、每轮分N份余i条、拿走一份；约束“0<N<10；i<N”；样例 2/1→7、3/1→25。候选照录并保留“每只小猫都可吃到鱼”为“每份不能为空”的等价说明，未改变含义。",
+          "review": "PDF 第5—6页页图：N 只猫逐轮分 N 份、余 i 个扔海、拿走一份，输出最少鱼数使每只猫都吃到鱼；3.1.2 约束页图原文“保证 0 < N < 10；i < N。”；样例 2/1→7、3/1→25（3.1.5—3.1.8）。候选题面照录约束与两组样例，以“每份不能为空”等价转述“每只小猫都可吃到鱼”，未漏约束、未改变含义，i=0 未被排除，修复后核验通过。"
         },
         "explanation": {
-          "initial": "原解析建议从初始鱼数 x=1 正向枚举；当 N=9、i=1 时最小答案是 387420481，按原思路需进行约 3.5×10^9 次整除/取模检查，1.0 s 内不可接受。解析应改为逆向构造或直接公式。",
-          "review": "原解析采用从 x=1 正向枚举并模拟，官方约束最坏点 N=9、i=1 答案为 387420481，需约 3.9×10^8 次枚举、期望约 4.4×10^8 次变量除法/取模（除数为运行期变量，无法用魔数优化），1.0s 内无法保证通过。已替换为逆向构造公式解析；公式 s_t=((N-1)/N)^t·s_0、N^(N-1)|s_0、m=ceil((i+1)/(N-1)^(N-1))、x_0=m·N^N−(N−1)·i 均由我独立推导，并在 (2,1)→7、(3,1)→25、(1,0)→1、(3,0)→27、(9,1)→387420481、(9,8)→387420425、(4,3)→247 各点手算验证。修复后核验通过。"
+          "initial": "独立推导：令 s_t=y_t+i，由 N s_{t+1}=(N-1)s_t 得 s_t=m(N-1)^t N^{N-1-t}，N^{N-1}|s_0；非空要求给出 m=ceil((i+1)/(N-1)^{N-1})，x_0=mN^N-(N-1)i。与 N=1,i=0→1、N=2,i=1→7、N=3,i=1→25、N=9,i=1→387420481、N=9,i=8→387420425 一致；PDF仅明写 i<N，候选按“扔鱼数非负”理解 i=0，符合题意。",
+          "review": "独立推导验证：由 x_t=N·y_t+i、x_{t+1}=(N-1)y_t、s_t=y_t+i 得 N·s_{t+1}=(N-1)·s_t，故 s_t=m(N-1)^t·N^{N-1-t} 且 gcd(N,N-1)=1 下 N^{N-1}|s_0；非空约束 y_t≥1 结合 s_t 递减给出 m=⌈(i+1)/(N-1)^{N-1}⌉、x_0=m·N^N-(N-1)i。手算多点验证 (1,0)→1、(2,1)→7、(3,1)→25（末猫份额3，与官方样例解释2“第三只小猫需要拿走3条鱼”页图一致）、(3,0)→27（份额9/6/4 均非空）、(9,1)→387420481、(9,8)→387420425 均成立；对官方正向枚举参考程序（页图第6—7页）在 N=9、i=1 规模约 4×10^8 量级、1.0s 难以保证通过的风险判断成立，修复后核验通过。"
         },
         "referenceCode": {
-          "initial": "原参考代码逐一枚举初始鱼数 x，最坏 N=9 时循环到 387420481，每次又做 O(N) 检查，复杂度过高；应改为逆向枚举末猫份额，或使用由 s_t=y_t+i 推出的公式直接计算。",
-          "review": "原参考代码正向枚举初始鱼数，最坏 N=9 需约 3.9×10^8 次含变量取模的模拟，存在超时风险。已替换为公式实现（N=1 输出 1；N≥2 时 m=ceil((i+1)/(N-1)^(N-1))，ans=m·N^N−(N−1)·i），经上述多点验证正确，最大结果约 3.87×10^8，long long 无溢出，复杂度 O(N)。修复后核验通过。"
+          "initial": "候选参考代码用 O(N) 公式：N=1 特判输出1；否则 denom=(N-1)^(N-1)，m=ceil((i+1)/denom)，ans=mN^N-(N-1)i。经独立核对，N=2,i=1 得7，N=3,i=1 得25，N=9,i=1 得387420481，N=9,i=8 得387420425；long long 足够，未见溢出或复杂度问题。",
+          "review": "独立核对候选公式代码：N=1 特判输出1（此时 i 必为0，最小鱼数1）；N≥2 时 power(N-1,N-1) 与向上取整除法 (i+1+denom-1)/denom 正确，ans=m·power(N,N)-(N-1)i；逐点代入 N=2,i=1→7、N=3,i=1→25、N=9,i=1→387420481、N=9,i=8→387420425 相符，逆向还原各级份额均为正整数；全程数值 ≤9^9≈3.87×10^8，long long 无溢出，复杂度 O(N)，边界（N=1、i=0、i=N-1）均覆盖，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "修改 referenceCode 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "referenceCode 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation",
+        "referenceCode"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-12-l3.glm.json"
       ]
     },
     {
@@ -1045,44 +1054,8 @@
       "unresolved": []
     }
   ],
-  "unresolved": [
-    {
-      "id": 10,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement",
-        "explanation",
-        "referenceCode"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "修改 referenceCode 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "referenceCode 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2023-12-l3.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2023-12-l3.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-12-l3.integration.json"
 }

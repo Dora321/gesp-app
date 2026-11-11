@@ -1,0 +1,99 @@
+{
+  "paperId": "2023-12-l3",
+  "integratedAt": "2026-11-11T14:16:32.534Z",
+  "accepted": [
+    {
+      "id": 10,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 25,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation",
+        "referenceCode"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2\n1",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "input": "3\n1",
+          "output": "25",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "25\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 N=1,i=0",
+          "input": "1\n0\n",
+          "output": "1\n",
+          "reason": "官方约束 0<N<10、i<N 允许 N=1,i=0；一只猫将 x=1 分成1份拿走，份额非空的最小鱼数为1，独立推得并与参考代码特判分支一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "m>1 的最小规模 N=2,i=1",
+          "input": "2\n1\n",
+          "output": "7\n",
+          "reason": "denom=1^1=1，m=⌈2/1⌉=2，x=2·2^2-1=7；与官方样例1一致，覆盖 m>1 分支，正向模拟 7→(扔1拿3)剩3→(扔1拿1)成立。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "i=0 边界 N=3",
+          "input": "3\n0\n",
+          "output": "27\n",
+          "reason": "m=⌈1/2^2⌉=1，x=3^3=27；逐一手算确认 x=27 时三轮份额 9、6、4 均非空，x<27 的 3 的倍数候选均在某轮余数非零或份额为空，27 为最小值。",
+          "kind": "boundary",
+          "actual": "27\n",
+          "passed": true
+        },
+        {
+          "name": "最大规模 N=9,i=1",
+          "input": "9\n1\n",
+          "output": "387420481\n",
+          "reason": "m=⌈2/8^8⌉=1，x=9^9-8=387420489-8=387420481；逆向逐级还原（如 s_8=8^8=16777216、s_7=9·8^7=18874368）各级份额均为整数且非空，覆盖最大 N。",
+          "kind": "boundary",
+          "actual": "387420481\n",
+          "passed": true
+        },
+        {
+          "name": "最大余数 N=9,i=8",
+          "input": "9\n8\n",
+          "output": "387420425\n",
+          "reason": "m=⌈9/8^8⌉=1，x=9^9-8×8=387420489-64=387420425；覆盖 i=N-1 最大余数、修正项 (N-1)·i 最大的边界，逆向还原 y_8=16777208≥1 成立。",
+          "kind": "boundary",
+          "actual": "387420425\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "54dd0fc3afa04d4f31206c2857db9841c112d99c4f51bc84a2ba136d6ba21088"
+    }
+  ]
+}
