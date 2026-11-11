@@ -1,0 +1,112 @@
+{
+  "executedAt": "2026-11-11T20:44:20.521Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\naAc",
+          "output": "-61",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "-61\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1\na",
+          "output": "1",
+          "reason": "n=1，小写 a 代表序号 1，独立计算输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单个大写字母",
+          "input": "1\nZ",
+          "output": "-90",
+          "reason": "大写 Z 的 ASCII 码为 90，按题意代表 -90，覆盖大写取负分支。",
+          "kind": "boundary",
+          "actual": "-90\n",
+          "passed": true
+        },
+        {
+          "name": "大小写混合",
+          "input": "4\naZzB",
+          "output": "-129",
+          "reason": "独立计算 1+(-90)+26+(-66)=-129，同时覆盖小写序号与大写 ASCII 取负。",
+          "kind": "boundary",
+          "actual": "-129\n",
+          "passed": true
+        },
+        {
+          "name": "26 个小写字母",
+          "input": "26\nabcdefghijklmnopqrstuvwxyz",
+          "output": "351",
+          "reason": "1+2+…+26=351，覆盖 z 的偏移 26 与全部小写字母。",
+          "kind": "boundary",
+          "actual": "351\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "632087d4ae9a7a693ebc58bd51187e7b32a9d4590fd95b802eef08f2045cd242"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n1 4 3 3 5",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小 n 与最小值",
+          "input": "1\n0",
+          "output": "0",
+          "reason": "n=1 无下标对，答案 0；同时覆盖 n 与 A_i 的下界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "零和边界",
+          "input": "2\n0 0",
+          "output": "1",
+          "reason": "唯一数对和为 0=0×0，按题意 0 是非负完全平方数，计 1 对。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "多组平方和",
+          "input": "3\n0 9 16",
+          "output": "3",
+          "reason": "三对和 9、16、25 均为完全平方数（3²、4²、5²），独立枚举得 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "A_i 上界非平方",
+          "input": "2\n100000 100000",
+          "output": "0",
+          "reason": "和 200000 介于 447²=199809 与 448²=200704 之间，非完全平方数，覆盖 A_i≤10^5 上界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "08632f42df61b184a9b064b932bed4654658666b37cb1883ec799670f9bda19d"
+    }
+  ]
+}

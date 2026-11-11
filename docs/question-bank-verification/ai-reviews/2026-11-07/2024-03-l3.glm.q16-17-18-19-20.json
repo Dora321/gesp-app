@@ -1,0 +1,240 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T20:26:54.984Z",
+  "completedAt": "2026-11-11T20:30:55.774Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45784,
+    "completion_tokens": 18562,
+    "total_tokens": 64346,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15794
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0161486,
+      "allowance": 0.0161486,
+      "tokens": {
+        "input": 45784,
+        "output": 18562,
+        "reasoning": 15794,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "63079115485e966e08cd66705692205b40a0fc2e856e2d24a329555237af1e11",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP C++ 三级 2024 年 03 月」，与 paperId 2024-03-l3（2024 年 3 月、C++、三级）完全一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 1 题原文「任意整数 a 的二进制反码与补码都有1位不同。（ ）」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按「正确/错误」判定，不设 A-D 选项，options 维不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 1 格为 ×（错误），officialAnswer=1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站原解析例证有误：以 8 位 -1 演示「反码到补码多位变化」，但 11111110+1=11111111 仅最低位由 0 变 1、无进位传播，恰好只差 1 位，例证自相矛盾。changes 中已提供修正稿，以「正数/0 的反码与补码完全相同（0 位不同）」和「8 位 -2 反码 11111101 → 补码 11111110 相差 2 位」为独立反例，经独立推导无误；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n1. **非负整数是直接反例**：对正整数和 0，反码与补码都等于原码本身，两者每一位都相同（相差 0 位）。例如 8 位下 a=5，反码=补码=00000101。仅这一类整数就足以否定「任意整数……都有 1 位不同」的说法。\n2. **负数也不一定只差 1 位**：负数的补码=反码+1，改变的位数取决于加 1 时的进位传播。8 位下 a=-1：反码 11111110，补码 11111111，加 1 无进位传播，恰好只差最低 1 位；a=-2：反码 11111101，补码 11111110，进位传播使最低两位都改变，相差 2 位。\n\n因此，无论非负数还是负数，「反码与补码都有 1 位不同」都不成立，本题说法错误。\n\n**易错提醒：**\n- 正数的原码、反码、补码三者完全相同，举反例时不要只考虑负数。\n- 「反码 +1 得补码」可能因进位传播改变多位，并非固定只变 1 位。\n\n**知识延伸：**\n补码的设计初衷是让一套加法器统一完成加法和减法运算，掌握正数、负数各自的转换规则是理解有符号整数表示的基础。\n\n**考点：** 二进制、反码、补码"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：其判定网站 -1 例证不成立，我独立复核确认 11111110+1=11111111 只变最低位、无进位传播，原解析「产生进位传播，多位发生变化」不属实；在其重写思路基础上以正数/0（0 位不同）与 -2（差 2 位）两个反例独立核验后定稿，事实无误，采纳修正。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 2 题原文「对整型变量 int a = 3 ，执行C++代码 a<<2 将把2输出到 a 中。（ ）」，网站仅空格排版差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按「正确/错误」判定，不设 A-D 选项，options 维不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 2 格为 ×（错误），officialAnswer=1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a<<2 是左移表达式，只产生新值、不改变 a；且 3<<2=12（11 左移两位为 1100）而非 2，题干两点均不成立。网站解析完整指出这两点并给出 3<<2=12 的换算，推导无误，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 结论：我独立推导确认 3<<2=12 且左移表达式不改变 a 的值，解析两处错误均指出、结论正确，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 3 题题干「下面C++代码可以计算1到100的累加和，采用的是穷举法。」，代码见第 6 页：int i,sum=0; for(int i = 1; i <= 100 ; i++) sum += i; cout << sum << endl;（PDF 另含无影响的 cout << endl; 排版行）；网站代码等价，不影响判定。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按「正确/错误」判定，不设 A-D 选项，options 维不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 3 格为 ×（错误），officialAnswer=1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：代码按 1..100 循环累加，sum=5050，属于固定规则的迭代累加；穷举法需枚举候选解并逐个检验，代码中不存在该过程。网站解析论证与此一致，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 结论：我独立确认该代码为循环累加求和而非穷举（无候选解枚举与检验环节），解析成立，无需修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文「一个 int 类型变量 a ，执行操作 (a<<2>>2) 后的值一定是 a 。（ ）」，网站仅空格排版差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按「正确/错误」判定，不设 A-D 选项，options 维不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 4 格为 ×（错误），officialAnswer=1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站原解析例证有误：以 8 位 a=48 演示与 int 位宽不符，且 48=00110000 左移 2 位低 8 位应为 11000000，原稿误写为 10000000，后续「>>2 得 32」的算式随之不成立。changes 中已提供修正稿，改用 32 位 a=0x40000000 左移回绕为 0 的反例，经独立推导无误；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n移位运算符同级左结合，表达式应理解为 (a << 2) >> 2。左移会把高位移出并在低位补 0；对有符号 int，若左移结果超出 int 的表示范围即发生溢出，C++ 标准不保证得到普通算术结果；即使按常见的回绕（截断）实现，被移出的高位也无法由随后的右移恢复。因此该表达式不可能对任意 int 都等于 a。\n\n例如在常见的 32 位 int 下取 a = 1073741824（0x40000000）：其左移 2 位的真实算术结果为 2^32，超出 32 位表示范围；在常见的回绕实现中低 32 位变为 0，再右移 2 位仍为 0，不等于原值。故「执行后的值一定是 a」不成立，本题说法错误。\n\n**易错提醒：**\n- 不要用代数思维 (a×4)÷4=a 直接套用位运算；左移可能丢失高位或触发有符号溢出。\n- 负数左移可能波及符号位，右移的符号扩展规则也与实现相关，结论更不确定。\n\n**考点：** 位运算、左移、右移、溢出"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：其指出网站以 8 位 a=48 演示与 int 位宽不符；我另独立复核出该例的计算错误（48=00110000，左移 2 位低 8 位应为 11000000，原稿误写 10000000，故「>>2 得 32」不成立）；已改用 32 位 0x40000000 回绕反例重写并独立核验，采纳修正。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文「在C++语言中， (010<<1) 执行结果是 100 。（ ）」，与网站题面语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按「正确/错误」判定，不设 A-D 选项，options 维不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 5 格为 ×（错误），officialAnswer=1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：010 以 0 开头为八进制字面量，等于十进制 8；8<<1=16。若误按十进制 10 计算得 20；若误按二进制理解，010₂<<1=100₂=4。任何解读都不等于题干所称结果 100。网站解析核心推导正确，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 结论：我独立确认 010 为八进制等于 8、8<<1=16≠100，解析核心推导正确，无需修改。"
+      }
+    ],
+    "summary": "本批独立复核判断题 16-20（共 5 题）。卷头（GESP C++ 三级 2024 年 03 月）与 paperId 一致；第 5 页判断题答案表前 5 格均为 ×，五题 officialAnswer=1 与网站 answer 一致；五题题面与原卷逐字核对相符（仅空格排版差异）。第 16、19 题网站解析存在事实性例证错误（-1 例证自相矛盾；8 位 a=48 例位宽不符且 48<<2 低 8 位应为 11000000 而非 10000000），已在 changes 提供独立核验通过的修正稿并将解析维标 verified（修复后核验通过）；第 17、18、20 题解析经独立推导无误，维持原状。判断题不适用 options 与 referenceCode 维度；本批无编程题，故无 tests。"
+  }
+}

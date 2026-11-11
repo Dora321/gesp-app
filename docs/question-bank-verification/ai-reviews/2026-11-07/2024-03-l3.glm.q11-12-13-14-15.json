@@ -1,0 +1,236 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T18:00:31.168Z",
+  "completedAt": "2026-11-11T18:02:44.678Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45271,
+    "completion_tokens": 9546,
+    "total_tokens": 54817,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6612
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01156365,
+      "allowance": 0.01156365,
+      "tokens": {
+        "input": 45271,
+        "output": 9546,
+        "reasoning": 6612,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "63079115485e966e08cd66705692205b40a0fc2e856e2d24a329555237af1e11",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 三级 / 2024 年 03 月」，与核验目标 2024-03-l3 一致；单选题答案表第 11–15 列为 D、A、B、C、C，判断题与编程题不在本次范围。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 11 题题干「下面C++程序执行的结果是（ ）」及代码与站内逐行一致：int a[20],i; int cnt=0; 第一个循环 a[i]=i+1；第二个循环 for(;i>1;i--) if((a[i-1]+a[i-2])%3) cnt++; cout << cnt << endl; 无缺行、无改义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A.5、B.6、C.10、D.12，顺序与站内 [\"5\",\"6\",\"10\",\"12\"] 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 列为 D（索引 3），站内 answer=3 一致。独立复算：第一个循环结束后 i=20，第二个循环 i 从 20 递减到 2 共 19 次；相邻和 a[i-1]+a[i-2]=i+(i-1)=2i-1，其中 2i-1 能被 3 整除当 i≡2 (mod 3)，即 i=2,5,8,11,14,17,20 共 7 次，cnt=19-7=12，选 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内解析独立可推：正确指出 i 未重新初始化保持 20、循环 19 次、列出 19 个和（39,37,…,3）、其中 39,33,27,21,15,9,3 共 7 个能被 3 整除，得 cnt=12，与官方 D 及独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。我按 i 从 20 递减到 2 独立复算 19 次循环，用同余法（和=2i-1，i≡2 mod 3 时被 3 整除，共 7 次）同样得 cnt=12，与官方 D、站内 answer 及解析一致；初核对各维度的判断与我的独立推导相符，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末题干「定义字符数组 char str[20] = {'G', 'E', 'S', 'P'}; ，则 str 的字符串长度为（ ）。」与站内一致，代码与语义无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A.4、B.5、C.19、D.20，顺序与站内 [\"4\",\"5\",\"19\",\"20\"] 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 列为 A（索引 0），站内 answer=0 一致。独立推导：部分初始化后 str[4]~str[19] 共 16 个元素零初始化为 '\\0'，字符串在 str[4] 处结束，长度为 4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站内原稿 C 项说明自相矛盾（先称「19 是数组中 '\\0' 的数量」，括号又写「20-4=16 个自动初始化为 0」，数组内 '\\0' 实为 16 个）。已应用修正解析：明确 16 个 '\\0'、长度 4、B/D 干扰点归属，修正后内容经我独立推导复核无误——修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (4)**\n\n**核心解析：**\n字符数组部分初始化规则与字符串结束标记\n\n1. **数组声明与初始化**：`char str[20] = {'G', 'E', 'S', 'P'};`\n   - 数组总容量 20，显式初始化前 4 个元素：str[0]='G', str[1]='E', str[2]='S', str[3]='P'\n   - 按 C++ 初始化规则，剩余元素自动零初始化，即 str[4] 到 str[19] 共 16 个元素均为 '\\0'\n\n2. **字符串长度计算**：\n   - 字符串以第一个 '\\0' 为结束标记（strlen 即按此计数）\n   - str[4] 即为 '\\0'，因此字符串长度为 4\n\n3. **关键区分**：\n   - 数组容量：20（sizeof(str)=20 字节）\n   - 数组中 '\\0' 的个数：16（str[4]~str[19]，即 20-4）\n   - 字符串长度：4（有效字符数，不含结尾 '\\0'）\n\n**选项逐项分析：**\n- **A 4**：✅ 正确。前 4 个字符后紧跟 '\\0'，字符串长度为 4。\n- **B 5**：❌ 错误。误把结尾的 '\\0' 计入长度。\n- **C 19**：❌ 错误。19 与有效字符数无关；数组中 '\\0' 实际有 16 个（20-4），而非 19 个。\n- **D 20**：❌ 错误。20 是数组声明的总容量，不是字符串长度。\n\n**易错提醒：**\n- 区分 strlen（字符串长度，不含 '\\0'）与 sizeof（数组总字节数 20）\n- 部分初始化的字符数组，其余元素自动为 '\\0'，并非随机值；但数组内 '\\0' 的个数是 16（剩余元素个数），不要与长度 4 或容量 20 混算\n- 忽略 '\\0' 作为字符串结束标记的作用\n\n**知识延伸：**\n字符数组的初始化规则：若初始化列表长度小于数组大小，其余元素自动填充为 '\\0'。这一特性使得用列表初始化声明字符串时无需手动添加 '\\0'，与 `char str[20] = \"GESP\";` 等价。\n\n**考点：** 字符数组的部分初始化规则与字符串结尾标记 ('\\0')"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对解析矛盾的指认并复核通过修正稿：原稿「19 是数组中 '\\0' 的数量（20-4=16）」确为自相矛盾，数组中 '\\0' 实为 16 个（str[4]~str[19]），字符串长度 4。修正解析的每项论断（16 个 '\\0'、长度 4、B/D 归因）均经我独立推导确认，故 explanation 应用修正值并标 verified（修复后核验通过）；其余维度 approve。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 13 题题干「定义整型变量 int a=3, b=16 ，则 a|b 的值和 a+b 的关系是（ ）。」与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A.大于、B.等于、C.小于、D.等于或小于，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 列为 B（索引 1），站内 answer=1 一致。独立计算：3=00011₂、16=10000₂ 二进制位无重叠，a|b=19=a+b=19，关系为「等于」。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按位对齐计算得 19=19，并说明按位或与加法等价的前提是二进制位无重叠，可独立推出 B；对 D 项「等于或小于」的排除理由（本题按具体值精确相等）成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。我独立按位验证 3|16=19 与 3+16=19 相等，官方 B 与站内 answer、解析一致；解析对 D 选项的处理（一般关系恒有 a|b≤a+b，但本题具体值为精确相等）逻辑自洽，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 14 题题干「小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是（ ）。」与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A.小程序、B.计时器、C.操作系统、D.神话人物，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 列为 C（索引 2），站内 answer=2 一致。鸿蒙（HarmonyOS）为华为自主研发的操作系统，选 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确将鸿蒙定位为操作系统，并逐项排除小程序（应用形态）、计时器（功能组件）、神话人物（词源干扰），可独立推出 C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。鸿蒙是操作系统的常识判断与官方 C、站内 answer 一致，解析无误，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题题干「中国计算机学会（CCF）在2024年1月27日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（ ）。」与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A.制造自动驾驶汽车、B.创立培训学校、C.发明汉字激光照排系统、D.成立方正公司，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 列为 C（索引 2），站内 answer=2 一致。王选院士的重大技术贡献是汉字激光照排系统，选 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确对应王选与汉字激光照排系统（「当代毕昇」、告别铅与火），并对 D 项作出「技术发明与产业行为」的辨析，可独立推出 C；干扰项排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。王选的核心贡献为发明汉字激光照排系统，与官方 C、站内 answer 一致；解析对 D 项（方正公司与技术贡献之辨）的处理不影响答案且理由充分，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核第 11–15 题，全部基于 PDF 页图逐题核对。卷头「C++ 三级 2024年03月」与目标一致；答案表映射 11→D(3)、12→A(0)、13→B(1)、14→C(2)、15→C(2)，与站内 answer 字段完全相符。第 11 题我独立复算：循环 19 次，和=2i-1，被 3 整除者 7 个，cnt=12，解析与官方答案均正确；第 12 题题干、选项、答案无误，但解析 C 项「19 是数组中 '\\0' 的数量（20-4=16）」自相矛盾（数组内 '\\0' 实为 16 个），已提供修正解析并经独立推导复核通过（修复后核验通过），该题标 revise；第 13–15 题题干、选项、答案、解析均与原图一致且可独立推出答案，标 approve。5 题均无未决项，无争议保留项。"
+  }
+}

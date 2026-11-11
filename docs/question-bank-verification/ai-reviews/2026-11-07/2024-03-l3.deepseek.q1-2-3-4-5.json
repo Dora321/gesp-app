@@ -1,0 +1,240 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T16:03:10.842Z",
+  "completedAt": "2026-11-11T16:10:15.074Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30548,
+    "completion_tokens": 16802,
+    "total_tokens": 47350,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14414
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0146634,
+      "allowance": 0.00879804,
+      "tokens": {
+        "input": 30548,
+        "output": 16802,
+        "reasoning": 14414,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "63079115485e966e08cd66705692205b40a0fc2e856e2d24a329555237af1e11",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证（GESP） C++ 三级 2024年03月”，与 paperId 2024-03-l3 及“2024年3月 GESP C++ 三级真题”一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干为“整数-5的16位补码表示是( )”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题 A-D 依次为 1005、1006、FFFA、FFFB，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题标 D，对应0起始索引3；网站 answer=3。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析把 1005、1006 称为“不是合法的十六进制数”，这是错误的；二者均为合法十六进制串，只是数值不等于 -5 的补码。解析对 0xFFFA 为反码、0xFFFB 为补码的结论正确，但选项排除理由需更正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "16 位下，5 的二进制为 0000 0000 0000 0101 = 0x0005。求 -5 的补码：按位取反得 1111 1111 1111 1010 = 0xFFFA，再加 1 得 1111 1111 1111 1011 = 0xFFFB；也可用 2^16-5=65531=0xFFFB。因此选 D。A 的 0x1005、B 的 0x1006 都是合法十六进制数，但均不是 -5 的补码；C 的 0xFFFA 是按位取反所得反码，不是补码。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第1页原文为“如果16位短整数 -2 的二进制是\"FFFE\"，则短整数 -4 的十六进制是( )”；网站将“二进制”改为“十六进制表示”。FFFE 含 F，不可能是二进制，原卷疑有笔误，需保留争议。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题 A-D 依次为 FF04、FFFA、FFFC、FFFH，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题标 C，对应0起始索引2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析存在多处错误：把 FF04 排除的理由写成“负数补码最高位应为 F”不成立；把 FFFA 的十进制换算写成“原码 = -(2^15 - FFFA)”也不准确。核心答案 FFFC 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "官方题面“二进制是 FFFE”疑为“十六进制是 FFFE”的笔误（F 不是二进制数字）。按 16 位补码，-4 的绝对值为 0x0004，按位取反得 0xFFFB，再加 1 得 0xFFFC；也可由 -2 的补码 0xFFFE 再减 2 得 0xFFFC，因此选 C。0xFF04 对应 -252；0xFFFA 对应 -6；FFFH 含非法十六进制字符 H。注意负数补码的最高十六进制位不必然为 F（如 16 位最小负数 0x8000）。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方题面“二进制是FFFE”与 FFFE 为十六进制表示矛盾，疑为原卷笔误；网站已改为“十六进制表示”，需确认保留原文还是加注说明。"
+        ]
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页第3题代码包含 `cout << (3|16) << endl;` 之后的 `cout << endl;`，网站题干代码漏掉该行，导致代码不完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题 A-D 依次为 3、16、19、48，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题标 C，对应0起始索引2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析对 3|16=19 的位运算推导正确，但未说明官方代码中额外 `cout << endl;` 会再输出一个空行；补回代码后解析应交代该点。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint main() {\n    cout << (3 | 16) << endl;\n    cout << endl;\n    return 0;\n}\n```",
+          "explanation": "3 = 0000 0011₂，16 = 0001 0000₂，按位或得 0001 0011₂ = 16+2+1 = 19。官方代码在输出 19 后还有一条 `cout << endl;`，会再输出一个空行；选项只给出数值，故仍选 C(19)。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题题干为“定义整数 int x=-5 ，则执行C++代码 cout << (x == (x<<1>>1)) 输出是（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A.0 与第2页 B.1、C.-5、D.5 组合为 0、1、-5、5，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题标 B，对应0起始索引1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析在常见 32 位补码、算术右移模型下结论为 1，推导方向正确；但未指出有符号负数左移在严格标准/可移植性上的争议，且“C++标准未规定右移”的表述需限定为有符号负数右移在旧标准下由实现定义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "按本题采用的常见 32 位补码和算术右移模型：x=-5 的补码为 ...11111011；x<<1 得 ...11110110（-10）；再算术右移 1 位，高位补符号位 1，得 ...11111011（-5）。因此 x == (x<<1>>1) 为真，cout 输出布尔值 1，选 B。严格标准层面，负数左移的可移植性及有符号负数右移规则需结合命题环境理解；本题按官方命题环境给 B。"
+        },
+        "tests": [],
+        "unresolved": [
+          "负数左移涉及标准/实现可移植性；官方答案按常见补码算术语境为 B，严格标准环境需命题方确认。"
+        ]
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第2页第5题代码在 `cout << x << endl;` 之后还包含 `cout << endl;`，网站题干代码漏掉该行，导致输出被简化为仅一行。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题 A-D 依次为 10、58、154、316，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题标 C，对应0起始索引2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析的 ASCII 累加 51+49+54=154 正确，但未说明官方代码额外 `cout << endl;`；并且对 B(58) 的排除理由表述混乱、不具解释力。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "已知字符 \"0\" 的 ASCII 编码的十进制表示为 48，则执行下面 C++ 代码后，输出是（ ）。\n```cpp\nint main() {\n    string s = \"316\";\n    int n = s.length();\n    int x = 0;\n    for (int i = 0; i < n; i++) x += s[i];\n    cout << x << endl;\n    cout << endl;\n    return 0;\n}\n```",
+          "explanation": "字符串长度为 3，x 从 0 开始。'3' 的 ASCII 为 51，'1' 为 49，'6' 为 54；循环执行 x += s[i] 累加的是字符的 ASCII 码，故 x=51+49+54=154。`cout << x << endl;` 输出 154 并换行，随后额外的 `cout << endl;` 再输出一个空行；选项对应数值 C。若误按 3+1+6 会得 10，若把字符串当整数会得 316，均不符。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题1、2、4题干/选项/官方答案基本对应，但解析分别需纠正合法十六进制判断、补码换算表述和负数移位标准依赖说明；题3、5网站代码漏掉官方代码中的一条 `cout << endl;`，需补回并补充额外空行说明。题2官方“二进制是FFFE”保留为源卷笔误争议；题4负数左移的可移植性保留命题环境争议。5题均为单选，无编程题参考代码测试。"
+  }
+}
