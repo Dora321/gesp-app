@@ -1,0 +1,171 @@
+{
+  "paperId": "2024-09-l3",
+  "integratedAt": "2026-11-11T23:57:00.807Z",
+  "accepted": [
+    {
+      "id": 3,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": []
+    },
+    {
+      "id": 12,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 21,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 7,
+      "reasons": [
+        "explanation 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n3\n1 2 3\n4\n2 3 1 4\n5\n1 2 3 4 5",
+          "output": "Yes\nYes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\nYes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "最小 n=1 无切分点",
+          "input": "1\n1\n5",
+          "output": "No",
+          "reason": "平衡要求存在 1≤i<n 的切分点；n=1 时无合法切分点，参考程序内层循环 for(i=1;i<n;i++) 不执行，直接输出 No。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "最小可切分长度 n=2",
+          "input": "1\n2\n1 1",
+          "output": "Yes",
+          "reason": "sum=2，i=1 时前缀和 pre=1，pre*2==sum 成立，两段各为 1。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "a_i 取上限 10000",
+          "input": "1\n4\n10000 10000 10000 10000",
+          "output": "Yes",
+          "reason": "sum=40000，i=2 时 pre=20000，20000*2==sum；同时验证 a_i 上界下累加与乘 2 均在 int 范围内无溢出。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "奇数总和不可平分",
+          "input": "1\n3\n2 2 3",
+          "output": "No",
+          "reason": "sum=7 为奇数，两段整数和不可能相等；前缀和 2、4 均不满足 pre*2==sum。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f9b3dabb823448e666c359cfb8f60f8e6c328a8c652c369db248fb66fda2c058"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "4\nabcd\naabbb\naaac\nabcdd",
+          "output": "No\nYes\nNo\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "No\nYes\nNo\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "长度 1 最短字符串",
+          "input": "1\na",
+          "output": "No",
+          "reason": "两段长度至少为 2，总长至少为 4；m=1 时 j 的枚举区间 [2,m-2] 为空，输出 No。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "长度 3 回文串仍不可拆",
+          "input": "1\naba",
+          "output": "No",
+          "reason": "m=3<4，j 的枚举区间 2..m-2 为空；虽然整串是回文，但无法拆成两个长度至少为 2 的回文串。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "恰好拆成两段长度 2 的回文串",
+          "input": "1\naaaa",
+          "output": "Yes",
+          "reason": "j=2 时 s1=aa、s2=aa，均为长度 2 的回文串，满足前后拼接条件。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "仅后段回文",
+          "input": "1\nabcdd",
+          "output": "No",
+          "reason": "j=2 时 s1=ab、s2=cdd 均非回文；j=3 时 s1=abc 非回文、s2=dd 为回文，前段不满足，输出 No。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "e1b64be524a40144e8d6e170610b23c64beae9db9d31762e27bdc687ec63d7ad"
+    }
+  ]
+}

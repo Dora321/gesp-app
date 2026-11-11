@@ -1,0 +1,246 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    12,
+    21,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T23:45:02.911Z",
+  "completedAt": "2026-11-11T23:50:35.417Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29662,
+    "completion_tokens": 11329,
+    "total_tokens": 40991,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8835
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0112467,
+      "allowance": 0.00674802,
+      "tokens": {
+        "input": 29662,
+        "output": 11329,
+        "reasoning": 8835,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5f358a8b259baed98a288257170848a5992f4ff8438398cebcc85da6996e725f",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 三级 2024 年 09 月”，与所核验试卷 2024-09-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 12 题题干为“关于一维数组，下列程序能够正确执行的是（ ）。”，第 3~4 页给出 A~D 四段程序，候选题干及程序结构一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3~4 页选项顺序为 A 未初始化数组且 i<=10、B 完整初始化且 i<=10、C 完整初始化且 i<10、D 全零初始化且 i<=10，与候选一致；仅原卷 C 第 4 行印作“um=sum+a[i];”，首字符疑为印刷缺损，候选按“sum=sum+a[i];”规范化，字面争议见 unresolved。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 C，按 0 起始索引为 2；独立检查候选四项，只有 C 同时具备完整初始化和 i<10，不发生 a[10] 越界，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐项核对：A 未初始化且 i<=10 访问 a[10]，越界；B、D 均因 i<=10 访问 a[10]，越界；C 仅访问 a[0]~a[9]，能够正确执行。解析结论正确，并已注明源卷 C 行首字符缺损。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方 PDF 第 4 页选项 C 第 4 行印作“um=sum+a[i];”（图像与文本层均如此），首字符 s 疑为印刷缺损；候选按“sum=sum+a[i];”整理，原卷字面与官方答案 C 的对应关系保留待复核。"
+        ]
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题原文为“下列程序输出的是 3。（ ）”，代码为 string str=\"CHADai\"; size_t pos = str.find('D'); cout<<pos<<endl;，候选题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题原卷以括号作答，答案表用 √/×；候选归一化为“正确/错误”两选项，正确=0、错误=1，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 题为 √（正确），按 0 起始索引为 0；独立核对字符串 \"CHADai\" 的索引：C=0、H=1、A=2、D=3、a=4、i=5，find('D') 返回 3，输出 3，题干为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐字符列出索引并得出 D 位于 3、find 返回 3，结论正确；关于未找到时返回 string::npos 的延伸说明也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题面给出平衡定义（存在 1≤i<n 使前 i 项和等于后 n-i 项和）、输入输出格式、样例 3/3/1 2 3/4/2 3 1 4/5/1 2 3 4 5 → Yes/Yes/No；第 5 页载明时间限制 1.0 s、内存限制 512.0 MB；第 6 页数据范围为 1≤t≤100，1≤n,a_i≤10000，候选题面已补全且一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，PDF 答案表仅覆盖单选和判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导平衡条件等价于存在 i∈[1,n-1] 使 pre*2==sum；复算样例：[1,2,3] sum=6，i=2 时 pre=3 → Yes；[2,3,1,4] sum=10，i=2 时 pre=5 → Yes；[1,2,3,4,5] sum=15 为奇数，必然 No，与样例输出一致。解析对多组数据清零、i<n 上界和 pre*2==sum 规避整数除法陷阱的解释正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与 PDF 第 6~7 页官方程序语义一致（tot/fl 改名为 pre/ok，if/else 输出改为三元输出）；n≤10000、a_i≤10000 时 sum≤10^8，pre*2≤2×10^8，均在 int 范围内；数组 a[10010] 覆盖 n 上界，n=1 时内层循环不执行并输出 No，满足 1.0 s/512 MB 限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n=1 无切分点",
+            "input": "1\n1\n5",
+            "output": "No",
+            "reason": "平衡要求存在 1≤i<n 的切分点；n=1 时不存在合法切分点，参考程序内层循环不执行并输出 No。"
+          },
+          {
+            "name": "最小可切分长度 n=2",
+            "input": "1\n2\n1 1",
+            "output": "Yes",
+            "reason": "sum=2，i=1 时前缀和 pre=1，pre*2==sum 成立，两段各为 1。"
+          },
+          {
+            "name": "a_i 取上限 10000",
+            "input": "1\n4\n10000 10000 10000 10000",
+            "output": "Yes",
+            "reason": "sum=40000，i=2 时 pre=20000，20000*2==sum；同时验证 a_i 上界下累加与乘 2 不溢出 int。"
+          },
+          {
+            "name": "奇数总和不可平分",
+            "input": "1\n3\n2 2 3",
+            "output": "No",
+            "reason": "sum=7 为奇数，两段整数和不可能相等；前缀和 2、4 均不满足 pre*2==sum。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页题面给出回文定义、示例 aabaa/ccddcc、反例 abcd，并要求拆成两个长度至少为 2 的回文串前后拼接；样例 4/abcd/aabbb/aaac/abcdd → No/Yes/No/No 与候选一致；时间限制 1.0 s、内存限制 512.0 MB 见第 7 页，数据范围 1≤n≤10、每个字符串长度不超过 100 见第 8 页，候选已补全且一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，PDF 答案表仅覆盖单选和判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例：abcd（m=4）仅 j=2，s1=\"ab\" 与 s2=\"cd\" 均非回文 → No；aabbb（m=5）j=2 时 s1=\"aa\"、s2=\"bbb\" 均为回文 → Yes；aaac（m=4）j=2 时 s1=\"aa\" 为回文但 s2=\"ac\" 非回文 → No；abcdd（m=5）j=2 时 s1=\"ab\"、s2=\"cdd\" 均非回文，j=3 时 s1=\"abc\" 非回文、s2=\"dd\" 为回文但前段不满足 → No，与样例输出一致。解析对 j∈[2,m-2] 边界、substr 第二参数为长度、每组 ok 重置的说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与 PDF 第 8 页官方程序语义一致（省略官方未使用的变量 k，不影响逻辑）；j 从 2 枚举到 m-2 保证两段长度均至少为 2，m<4 时循环体不执行并输出 No；n≤10、串长≤100，字符操作量很小，满足 1.0 s/512 MB 限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "长度 1 最短字符串",
+            "input": "1\na",
+            "output": "No",
+            "reason": "两段长度至少为 2，总长至少为 4；m=1 时 j 的枚举区间 [2,m-2] 为空，输出 No。"
+          },
+          {
+            "name": "长度 3 回文串仍不可拆",
+            "input": "1\naba",
+            "output": "No",
+            "reason": "m=3<4，j 的枚举区间 2..m-2 为空；虽然整串是回文，但不能拆成两个长度至少为 2 的回文串。"
+          },
+          {
+            "name": "恰好拆成两段长度 2 的回文串",
+            "input": "1\naaaa",
+            "output": "Yes",
+            "reason": "j=2 时 s1=\"aa\"、s2=\"aa\"，均为长度 2 的回文串，满足前后拼接条件。"
+          },
+          {
+            "name": "仅后段回文",
+            "input": "1\nabcdd",
+            "output": "No",
+            "reason": "j=2 时 s1=\"ab\"、s2=\"cdd\" 均非回文；j=3 时 s1=\"abc\" 非回文、s2=\"dd\" 为回文，前段不满足，输出 No。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 12、21、26、27 题。第 12 题选项顺序及官方答案 C 核验通过，但源卷选项 C 第 4 行“um=sum+a[i];”疑缺首字符 s，候选已按“sum=sum+a[i];”规范化并在解析中注明，字面争议保留 unresolved；第 21 题判断题第 6 题题干、代码、√ 答案及解析均核对通过；第 26、27 题题面、数据范围、样例、解析和参考程序均独立复核通过，并补充了最小值、边界值及特殊情形测试。"
+  }
+}
