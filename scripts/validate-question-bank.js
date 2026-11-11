@@ -7,6 +7,12 @@ import {
   verifiedQuestionCorrections,
 } from '../src/data/gesp/verifiedQuestionCorrections.js';
 import { hasCjkRadicals, normalizeCjkRadicals } from '../src/data/gesp/textNormalization.js';
+import {
+  DEFECT_KINDS,
+  EXAM_SCORING_VALUES,
+  hasSourceDefect,
+  hasExplicitScoring,
+} from '../src/utils/sourceIntegrity.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -245,6 +251,45 @@ export const getObjectiveStemIntegrityErrors = (question, questionId = question?
         `[INTEGRITY] Q${questionId}: 选项中混入疑似跨题碎片「${label}」，但未标记 sourceIntegrity`,
       );
     }
+  }
+
+  return errors;
+};
+
+/**
+ * 校验「原卷缺陷」与「是否计分」两个新字段的组合关系。
+ * 独立于 sourceIntegrity 的其它检查，便于同时覆盖 questions /
+ * programmingQuestions / codingQuestions。
+ */
+export const getIntegrityFieldErrors = (question, questionId = question?.id || '?') => {
+  const q = question || {};
+  const errors = [];
+  const hasDefectKind = q.defectKind !== undefined && q.defectKind !== null;
+
+  if (q.defectKind !== undefined && q.defectKind !== null && !DEFECT_KINDS.includes(q.defectKind)) {
+    errors.push(`[INTEGRITY] Q${questionId}: unknown defectKind "${q.defectKind}"`);
+  }
+  if (q.examScoring !== undefined && q.examScoring !== null && !EXAM_SCORING_VALUES.includes(q.examScoring)) {
+    errors.push(`[INTEGRITY] Q${questionId}: unknown examScoring "${q.examScoring}"`);
+  }
+
+  if (q.examScoring === 'excluded' || hasDefectKind) {
+    if (!hasSourceDefect(q)) {
+      errors.push(`[INTEGRITY] Q${questionId}: examScoring='excluded' 或存在 defectKind 时必须带有原卷缺陷标记（sourceIntegrity）`);
+    }
+    if (!String(q.integrityNote || '').trim()) {
+      errors.push(`[INTEGRITY] Q${questionId}: examScoring='excluded' 或存在 defectKind 时必须提供 integrityNote`);
+    }
+  }
+
+  if (q.defectKind === 'out-of-scope' && q.examScoring !== 'counted') {
+    errors.push(`[INTEGRITY] Q${questionId}: defectKind='out-of-scope' 必须搭配 examScoring='counted'`);
+  }
+  if (['multi-answer', 'ub', 'non-compilable', 'self-contradictory'].includes(q.defectKind) && q.examScoring !== 'excluded') {
+    errors.push(`[INTEGRITY] Q${questionId}: defectKind='${q.defectKind}' 必须搭配 examScoring='excluded'`);
+  }
+  if (q.sourceIntegrity === 'official-source-defect' && hasExplicitScoring(q) && !hasDefectKind) {
+    errors.push(`[INTEGRITY] Q${questionId}: sourceIntegrity='official-source-defect' 且显式设置 examScoring 时必须提供 defectKind`);
   }
 
   return errors;
@@ -521,8 +566,9 @@ async function validateFile(filePath, cfg) {
     if (admitsReconstruction && !q.sourceIntegrity) {
       errors.push(`[INTEGRITY] Q${qId}: explanation admits reconstructed options/figure but question lacks sourceIntegrity flag`);
     }
-    if (q.sourceIntegrity) {
+    if (hasSourceDefect(q)) {
       const allowed = [
+        'ok',
         'options-reconstructed',
         'missing-figure',
         'missing-code',
@@ -568,6 +614,18 @@ async function validateFile(filePath, cfg) {
       }
     }
   });
+
+  // 现有遍历只检查 paper.questions；新字段校验同时覆盖上机题集合。
+  const integrityCollections = [
+    paper.questions || [],
+    paper.programmingQuestions || [],
+    paper.codingQuestions || [],
+  ];
+  for (const collection of integrityCollections) {
+    collection.forEach((q, index) => {
+      errors.push(...getIntegrityFieldErrors(q, q?.id || `idx_${index}`));
+    });
+  }
 
   return { errors, warnings, inferredCodeIssues };
 }

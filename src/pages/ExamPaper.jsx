@@ -10,6 +10,7 @@ import { scoreExam } from '../utils/examScoring';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import { recordExamAttempt } from '../utils/examHistory';
 import { needsSynthesizedCoding, withSynthesizedCoding } from '../data/gesp/codingQuestions';
+import { isHiddenFromMockExam, isScoringExcluded } from '../utils/sourceIntegrity';
 import {
   formatClock,
   formatTimeLimitMinutes,
@@ -115,12 +116,13 @@ const ExamPaper = () => {
   // 四到八级的卷文件没有内嵌上机编程题，而这部分占 GESP 总分一半。解析模式
   // 一直会从洛谷题池补齐第 26、27 题，考试模式却不会——同一张卷在两种模式下
   // 题数不同（25 vs 27），学生在考试模式练的是半张卷还看不出来。
-  const allQuestions = paperData ? withSynthesizedCoding(baseQuestions, { paperId, luoguPool }) : [];
+  const allQuestions = paperData ? withSynthesizedCoding(baseQuestions, { paperId, luoguPool }).filter((q) => !isHiddenFromMockExam(q)) : [];
   const questionCount = allQuestions.length;
 
   const currentQ = allQuestions[currentQuestionIndex] || allQuestions[0] || null;
 
-  const gradableQuestions = allQuestions.filter((question) => !question.sourceIntegrity);
+  const hiddenFromMockCount = baseQuestions.filter(isHiddenFromMockExam).length;
+  const gradableQuestions = allQuestions.filter((question) => !isScoringExcluded(question));
   const answeredCount = gradableQuestions.filter((question) => answers[question.id] !== undefined).length;
   const unansweredCount = Math.max(gradableQuestions.length - answeredCount, 0);
   const progress = gradableQuestions.length ? (answeredCount / gradableQuestions.length) * 100 : 0;
@@ -136,7 +138,7 @@ const ExamPaper = () => {
   // ─── Handlers ──────────────────────────────────────────────────────
 
   const handleOptionSelect = (qId, optionIdx) => {
-    if (isSubmitted || currentQ?.sourceIntegrity || isProgrammingQuestion(currentQ)) return;
+    if (isSubmitted || isScoringExcluded(currentQ) || isProgrammingQuestion(currentQ)) return;
     setAnswers(prev => ({ ...prev, [qId]: optionIdx }));
   };
 
@@ -272,6 +274,9 @@ const ExamPaper = () => {
               </div>
               <h3 className="text-xl font-bold text-white mb-2">考试模式</h3>
               <p className="text-indigo-200 text-sm leading-relaxed">计时整卷练习，客观题自动判分，编程题保留题面与手动完成标记。</p>
+              {hiddenFromMockCount > 0 && (
+                <p className="text-indigo-300 text-xs leading-relaxed">本卷有 {hiddenFromMockCount} 道原卷缺陷题不编入模考卷面（不计分，可在解析模式练习）</p>
+              )}
               <div className="mt-4 flex items-center gap-2 text-indigo-300 text-xs"><Clock size={14} /> {formatTimeLimitMinutes(timeLimitSeconds)}计时</div>
             </button>
             <button onClick={() => { setCurrentQuestionIndex(0); setMode('analysis'); }}
