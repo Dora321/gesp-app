@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useState } from 'react';
 import { Trophy } from 'lucide-react';
+import LoadingBlocks from './LoadingBlocks';
 
 const ClassroomPointsPanel = lazy(() => import('./ClassroomPointsPanel'));
 
@@ -13,9 +14,9 @@ const getStudentCount = () => {
 
 const PanelFallback = () => (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-        <div className="bg-white rounded-2xl shadow-2xl px-6 py-4 flex items-center gap-3 text-slate-500">
-            <span className="w-4 h-4 border-2 border-slate-300 border-t-indigo-600 rounded-full animate-spin" />
-            正在加载积分榜…
+        <div className="bg-white rounded-2xl shadow-2xl px-6 py-4 flex items-center gap-3 text-slate-500" role="status">
+            <LoadingBlocks />
+            正在加载积分榜
         </div>
     </div>
 );

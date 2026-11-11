@@ -10,6 +10,7 @@ import QuestionBankHighlight from './components/QuestionBankHighlight';
 import DeferredSection from './components/DeferredSection';
 import ClassroomPoints from './components/ClassroomPoints';
 import AIChat from './components/AIChat';
+import LoadingBlocks from './components/LoadingBlocks';
 import './styles/design-tokens.css';
 import './home.css';
 
@@ -19,7 +20,10 @@ const TheLab = lazy(() => import('./components/TheLab'));
 const ExploreMore = lazy(() => import('./components/ExploreMore'));
 
 const SectionFallback = ({ minHeight = 480 }) => (
-    <div className="home-fallback" style={{ minHeight }} aria-hidden="true" />
+    <div className="home-fallback flex items-center justify-center gap-2.5 text-sm text-[color:var(--mw-ink-2)]" style={{ minHeight }} role="status">
+        <LoadingBlocks />
+        正在加载本区内容
+    </div>
 );
 
 export default function Home() {

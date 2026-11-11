@@ -13,9 +13,11 @@ if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   });
 }
 import App from './App.jsx'
+import BootReady from './components/BootReady.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
+    <BootReady />
   </StrictMode>,
 )
