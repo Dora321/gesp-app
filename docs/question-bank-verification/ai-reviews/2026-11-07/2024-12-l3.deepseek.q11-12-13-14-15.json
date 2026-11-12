@@ -1,0 +1,250 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T08:04:43.369Z",
+  "completedAt": "2026-11-12T08:15:18.369Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36333,
+    "completion_tokens": 13416,
+    "total_tokens": 49749,
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 36333,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10466
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0269991,
+      "allowance": 0.01619946,
+      "tokens": {
+        "input": 36333,
+        "output": 13416,
+        "reasoning": 10466,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头显示“CCF 编程能力等级认证”“C++ 三级”“2024 年 12 月”，与 2024-12-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页程序为 `int a=65; cout<<tolower(a)<<endl;`，网站题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 65、A、a、97，网站顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11题为 D，网站 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 tolower 返回 int、'A' 的 ASCII 为65，故输出97，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题干要求统计 n 到 m（含端点）中数字 d 出现次数，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 四段代码与网站选项逐行一致：A 从 n+1 开始且未初始化 res；B 使用赋值 `=`；C 完整正确；D 缺少 `int temp=i`。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为 C，网站 answer=2，映射正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析称 D 中 temp“在循环前已定义”，但 PDF 选项 D 并没有 `int temp=i;`，temp 未声明；该理由与源码相反，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n统计 n 到 m（含端点）中数字 d 出现的次数，需要：res 初始化为 0；外层 i 从 n 到 m；每个 i 先复制到 temp，再不断取 temp%10 比较并 temp/=10。\n\n- A：res 未初始化，且循环从 n+1 开始，漏掉 n。\n- B：条件写成赋值 `temp % 10 = d`，不是比较；且 res 未初始化。\n- C：res=0，i 从 n 到 m，内层先用 `int temp=i`，再逐位判断，正确。\n- D：循环体内直接写 `while(temp)`，但前面没有 `int temp=i;`，temp 未声明，程序不能编译。\n\n因此选 C。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干为百钱买百只，要求兔子、鸡、鸭子每种至少一只；网站题干含义一致，但网站附加了“官方 PDF 文本层缺损”的说明，该说明不实，因为原图与文本层均存在完整选项代码。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页给出了 A-D 的完整三重循环代码；网站目前仅用文字概述，未保留完整程序，需按原图还原。"
+          },
+          "answer": {
+            "status": "needs_fix",
+            "evidence": "第1页答案表第13题为 D，网站 answer=3；但需保留原题“每种至少一只”与 D 从 0 枚举、未落实该限制之间的瑕疵。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析未充分说明 D 未落实“至少一只”，且对 C 的上界问题描述偏弱；C 实际因 i<=20、j<=34、k<=20 与 i+j+k=100 矛盾而不会输出合法解。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "兔子五元一只，鸡三元一只，小鸭子一元三只。现在你有一百元要买一百只，兔子、鸡、鸭子，问兔子、鸡、鸭子各买多少只，每种必须至少一只，下列哪个程序能实现。（ ）。",
+          "options": [
+            "```cpp\nfor(int i = 0; i <= 100; i++){\n    for(int j = 0; j <= 100; j++){\n        for(int k = 0; k <= 100; k++){\n            if(i + j + k == 100 && 25 * i + 10 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```",
+            "```cpp\nfor(int i = 0; i <= 100; i++){\n    for(int j = 0; j <= 100; j++){\n        for(int k = 0; k <= 100; k++){\n            if(i + j + k == 100 && 20 * i + 10 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```",
+            "```cpp\nfor(int i = 0; i <= 20; i++){\n    for(int j = 0; j <= 34; j++){\n        for(int k = 0; k <= 20; k++){\n            if(i + j + k == 100 && 15 * i + 9 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```",
+            "```cpp\nfor(int i = 0; i <= 100; i++){\n    for(int j = 0; j <= 100; j++){\n        for(int k = 0; k <= 100; k++){\n            if(i + j + k == 100 && 15 * i + 9 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```"
+          ],
+          "explanation": "**答案：D（按官方答案表）**\n\n设兔子、鸡、鸭子分别为 i、j、k 只。数量方程是 i+j+k=100；金额方程是 5i+3j+k/3=100，两边乘 3 得 15i+9j+k=300。\n\n- A：金额系数写成 25i+10j+k，错误。\n- B：金额系数写成 20i+10j+k，错误。\n- C：虽然金额式正确，但循环上界 i<=20、j<=34、k<=20 与 i+j+k=100 矛盾（k<=20 时需 i+j>=80，而 i+j 最大只有 54），不会输出解。\n- D：完整枚举 0..100，数量式和金额式都正确，因此是官方答案。\n\n**保留说明：** 题干还要求每种至少一只，但 D 从 0 开始枚举，未排除 i=0（如 0,25,75）等情况；原题选项没有同时落实该限制。按官方答案仍选 D。"
+        },
+        "tests": [],
+        "unresolved": [
+          "题干要求每种至少一只，但官方选项 D 未体现该限制；官方答案仍为 D，保留原题瑕疵。"
+        ]
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5-7页题干要求用 2 到 i-1 逐个试除判断素数，网站题干与代码语义一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5-7页给出 A-D 完整程序；网站仅用文字概述，尤其 D 缺少 `flag=0` 的关键细节未完整保留，需按原图还原。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为 C，网站 answer=2；C 先输出2，再枚举3到N并用2到i-1试除，最后重置flag，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项指出 A 判据写反、B 漏输出2、C 正确、D 状态未重置，与 PDF 代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "```cpp\nif(N >= 3){\n    cout<<2<<endl;\n    for(int i = 2;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j != 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n        flag = 0;\n    }\n}\n```",
+            "```cpp\nif(N >= 2){\n    for(int i = 3;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j == 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n        flag = 0;\n    }\n}\n```",
+            "```cpp\nif(N >= 2){\n    cout<<2<<endl;\n    for(int i = 3;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j == 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n        flag = 0;\n    }\n}\n```",
+            "```cpp\nif(N >= 2){\n    cout<<2<<endl;\n    for(int i = 3;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j == 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n    }\n}\n```"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页题干为15天、15环、每日结算，问最少剪成几段；网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第7页 A-D 依次为 1、2、4、8；15段每段1个；3、3、3、3、2、1；2、2、2、2、2、2、1、1、1，网站顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为 A，网站 answer=0；1、2、4、8 可组合出1到15并完成逐日结算。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析称3段“即使取最大的三个数总和也达不到15”，该说法错误，3段可以为5、5、5；最少性应通过3段最多只有2^3=8种子集、无法覆盖15天来证明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n1、2、4、8 可组合出 1 到 15 的所有天数，例如：第1天给1；第2天收回1给2；第3天再给1；第4天收回1、2给4……依次可结算到第15天。\n\n**最少性：** 若只有3段，工人在某天结束时持有的金环只能是这3段的某个子集，最多只有 2^3=8 种组合状态，不能覆盖1到15这15个不同的累计金额；因此3段不够。4段可由1、2、4、8实现，故最少为4段。\n\n**易错提醒：** 3段也可以总数为15（如5、5、5），关键不是总和不够，而是可表示的状态数不够，不能完成15天逐日结算。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "初核第11-15题：第11题五维通过；第12题解析中D项理由与源码相反，需修正；第13题题干附加说明不实、选项被概述化且解析未保留“至少一只”与D不落实该限制的瑕疵，需还原并保留争议；第14题选项需按PDF还原完整程序；第15题最少性论证有误，需改为状态数/子集数证明。"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T17:58:29.713Z",
+  "completedAt": "2026-11-12T17:59:44.176Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36439,
+    "completion_tokens": 15478,
+    "total_tokens": 51917,
+    "prompt_tokens_details": {
+      "cached_tokens": 36352,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13155
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00940891,
+      "allowance": 0.00564534,
+      "tokens": {
+        "input": 87,
+        "output": 15478,
+        "reasoning": 13155,
+        "cache_read": 36352,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 三级 / 2024 年 12 月”；第8-11页编程题名称分别为“数字替换”和“打印数字”，与网站 2024-12-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第9页给出数据范围：1 ≤ n ≤ 10^5，|k|, |ai| ≤ 10^5；网站题面未收录该数据范围。另 PDF 第8页输入格式写“两个正整数 n,k”，但样例 k=0 且约束允许 |k| ≤ 10^5，源文存在矛盾。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，网站 answer 为空。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析先求原序列最大值、最小值，再第二轮按严格大于 k、严格小于 k 替换；样例走查 -2 -1 0 1 2 得到 -2 -2 0 2 2，与参考代码和题意一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第9页参考程序与网站 referenceCode 一致：数组 a[100010]，先读入，再求极值，再替换输出；n ≤ 10^5、值域 10^5 使用 int 足够，空格和换行处理正确。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202412 三级] 数字替换\n\n## 题目描述\n\n小杨有一个包含 n 个数字的序列 A，即 A = [a1, a2, ..., an]，他想将其中大于 k 的数字都替换为序列的最大值，将其中小于 k 的数字都替换为序列的最小值，请你帮他计算出替换后的序列。\n\n## 输入格式\n\n第一行包含两个正整数 n,k，含义如题面所示。\n\n第二行包含 n 个数字，代表序列 A。\n\n## 输出格式\n\n输出 n 个整数，代表替换后的结果。\n\n## 数据范围\n\n对于全部数据，保证有 1 ≤ n ≤ 10^5，|k|, |ai| ≤ 10^5。"
+        },
+        "tests": [
+          {
+            "name": "最小 n 与负下界",
+            "input": "1 -100000\n-100000",
+            "output": "-100000",
+            "reason": "n=1 且 a1=k=-100000，严格大于和严格小于均不成立，原值保持不变。"
+          },
+          {
+            "name": "全负且 k=0",
+            "input": "3 0\n-5 -2 -1",
+            "output": "-5 -5 -5",
+            "reason": "原序列最大值为 -1、最小值为 -5；三个元素都小于 0，均替换为最小值 -5。"
+          },
+          {
+            "name": "等于 k 保持",
+            "input": "5 2\n1 2 3 2 1",
+            "output": "1 2 3 2 1",
+            "reason": "原序列最大值为 3、最小值为 1；1<2 替换为 1，2 等于 k 保持不变，3>2 替换为 3，故结果不变。"
+          }
+        ],
+        "unresolved": [
+          "官方 PDF 第8页输入格式称 n,k 为正整数，但样例 k=0 且第9页约束允许 |k| ≤ 10^5；网站沿用“正整数”，该源文矛盾未定案。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第9-10页题面与 5×5 模板完整；第10页明确 0 ≤ n ≤ 10^6，且 n 仅由数字 0、1、2、3 组成，网站题面漏掉该数据范围。PDF 第10页输入格式写“正整数”，但同页范围含 0，网站作“非负整数”，源文存在矛盾。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，网站 answer 为空。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析的图案模板、逐行拼接和样例走查正确；但称“没有明确给出 n 上限”“超过 19 位会溢出”与 PDF 的 0 ≤ n ≤ 10^6 不符，需修正为字符串便于逐位处理，且说明该范围内 int 也足够。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第10-11页参考程序与网站 referenceCode 一致：外层 row 从 0 到 4，内层遍历 string 的每一位，按 digit 和 row 追加 5 字符模板；0、1、2、3 模板均正确，支持 n=0 和多位数。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202412 三级] 打印数字\n\n## 题目描述\n\n小杨为数字 0,1,2 和 3 设计了一款表示形式，每个数字占用了 5×5 的网格。数字 0,1,2 和 3 的表示形式如下：\n\n```plain\n..... ****. ..... .....\n.***. ****. ****. ****.\n.***. ****. ..... .....\n.***. ****. .**** ****.\n..... ****. ..... .....\n```\n\n小杨想请你将给定的数字 n 转换为对应的表示形式。\n\n## 输入格式\n\n第一行包含一个非负整数代表 n。\n\n## 输出格式\n\n输出对应的表示形式。\n\n## 数据范围\n\n对于全部数据，保证有 0 ≤ n ≤ 10^6，且 n 仅由数字 0,1,2,3 组成。",
+          "explanation": "**解析：**\n\n### 1. 题目分析\n- 输入 n 满足 0 ≤ n ≤ 10^6，且十进制位只含 0、1、2、3。用 string 读入，可从高位到低位逐位处理。\n- 每个数字占 5×5 网格，共 5 行。输出必须按行拼接：外层枚举行号 row=0..4，内层从左到右遍历 n 的每一位，把该位在 row 行的 5 个字符追加到 line，最后输出整行。\n\n### 2. 图案规律\n- 数字 0：第 0、4 行为 .....；第 1、2、3 行为 .***.。\n- 数字 1：第 0 到 4 行全部为 ****.。\n- 数字 2：第 0、2、4 行为 .....；第 1 行为 ****.；第 3 行为 .****。\n- 数字 3：第 0、2、4 行为 .....；第 1、3 行为 ****.。\n\n### 3. 算法步骤\n1. 用 string n 读入数字串。\n2. row 从 0 到 4：令 line 为空串；遍历 n 的每个字符 digit，根据 digit 和 row 选择对应的 5 字符模板并追加到 line。\n3. 输出 line 并换行。\n\n### 4. 正确性说明\n按行输出时，每一行都把 n 的每一位对应的模板按原顺序横向拼接，因此最终 5 行正好组成每个数字的 5×5 图案；内层遍历顺序保证多位数从左到右排列。\n\n### 易错提醒\n- 不能先按数字逐个输出完整的 5 行，否则数字会竖向堆叠而不是横向拼接；必须先枚举行，再枚举数字位。\n- 数字 2 的第 3 行是 .****，数字 3 的第 3 行是 ****.，不要抄反。\n- 输入 0 也要输出 5 行，不能因为数值为 0 就跳过输出。\n\n**样例走查：**\n输入 12230，按上述模板逐行拼接，可得到样例的 5 行输出。\n\n**知识延伸：**\n可用二维字符串数组 art[4][5] 查表，按 art[digit-'0'][row] 取模板，减少分支。"
+        },
+        "tests": [
+          {
+            "name": "最小值 0",
+            "input": "0",
+            "output": ".....\n.***.\n.***.\n.***.\n.....",
+            "reason": "0 的 5×5 模板为第 0、4 行 .....，第 1 至 3 行 .***.；同时覆盖最小输入和单个数字。"
+          },
+          {
+            "name": "数字 3 模板",
+            "input": "3",
+            "output": ".....\n****.\n.....\n****.\n.....",
+            "reason": "3 的第 0、2、4 行为 .....，第 1、3 行为 ****.，用于核对易与数字 2 混淆的第 3 行。"
+          },
+          {
+            "name": "多位数含 0",
+            "input": "10",
+            "output": "****......\n****..***.\n****..***.\n****..***.\n****......",
+            "reason": "逐行横向拼接数字 1 与 0：1 各行均为 ****.，0 第 0、4 行为 .....、第 1 至 3 行为 .***.，可验证内层遍历顺序和 0 的模板。"
+          }
+        ],
+        "unresolved": [
+          "官方 PDF 第10页输入格式称 n 为正整数，但同页数据范围 0 ≤ n ≤ 10^6 含 0；网站采用“非负整数”，该源文矛盾保留待核。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验 26、27 题。两题参考代码均与 PDF 参考程序一致，算法正确；两题网站题面均遗漏数据范围，需补入。Q26 解析正确；Q27 解析中关于 n 无上限、可能超过 19 位的表述需修正。两题官方输入格式“正整数”与样例/范围含 0 的矛盾保留为未决问题。所附边界测试期望为独立计算，未声称已运行。"
+  }
+}

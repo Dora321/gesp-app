@@ -1,0 +1,229 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T16:00:07.209Z",
+  "completedAt": "2026-11-12T16:00:59.462Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36333,
+    "completion_tokens": 5807,
+    "total_tokens": 42140,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4472
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00893415,
+      "allowance": 0.00536049,
+      "tokens": {
+        "input": 36333,
+        "output": 5807,
+        "reasoning": 4472,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 三级 2024年12月”，与 2024-12-l3 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第6题原文为“下列可执行程序段中，最后 pos 的值是 4”，代码为 string str=\"chenADai\"; int pos = str.find('D'); --pos&11;，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以√/×作答，网站将选项规范为“正确/错误”，语义一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第6题为√，对应正确=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：str=\"chenADai\" 中 'D' 首次出现在下标5，find 返回5；--pos 使 pos 变为4；--pos&11 只是位与表达式，结果未赋回 pos，因此最终 pos 仍为4，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第7题原文为 string ch=\"chen\"; cout<<ch[4]<<endl;，并断言“该段程序将不能正确执行”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以√/×作答，网站将选项规范为“正确/错误”，语义一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第7题为×，对应错误=1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：ch=\"chen\" 长度为4，ch[4] 访问的是 std::string 在下标 size() 处可读的空字符终止位置，输出空字符/空行，程序可以正常执行，因此“不能正确执行”这一断言为假，应判错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第8题原文为 char a='A'; a=a+32; cout<<(int)a<<endl;，并断言“将输出 97”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以√/×作答，网站将选项规范为“正确/错误”，语义一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第8题为√，对应正确=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：在 ASCII 环境下 'A' 的码值为65，65+32=97，赋给 char 后仍表示码值97；再强制转换为 int 输出，得到97，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第9题原文为“自然界中，最小的素数是 2”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以√/×作答，网站将选项规范为“正确/错误”，语义一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第9题为√，对应正确=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：素数定义为大于1且只有1和自身两个正因数的自然数；1不是素数，2只有正因数1和2，且小于3、5等素数，因此最小素数是2，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第10题原文为“CCF(十六进制) = 12363(七进制)”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以√/×作答，网站将选项规范为“正确/错误”，语义一一对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第10题为√，对应正确=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：CCF₁₆=12×16²+12×16+15=3072+192+15=3279；12363₇=1×7⁴+2×7³+3×7²+6×7+3=2401+686+147+42+3=3279，两边相等，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题21至题25，均为判断题。已按 PDF 第7页答案表映射（√=正确=0，×=错误=1）逐题核对，题面、选项、答案与解析均一致；未发现需要修改的字段，也无未决问题。"
+  }
+}

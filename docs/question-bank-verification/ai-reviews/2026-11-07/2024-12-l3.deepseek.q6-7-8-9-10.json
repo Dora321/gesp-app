@@ -1,0 +1,230 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T05:53:42.102Z",
+  "completedAt": "2026-11-12T05:56:59.599Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36406,
+    "completion_tokens": 16459,
+    "total_tokens": 52865,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13761
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0153363,
+      "allowance": 0.00920178,
+      "tokens": {
+        "input": 36406,
+        "output": 16459,
+        "reasoning": 13761,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2024 年 12 月”，与 2024-12-l3 对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题为“补码1111 1101进行运算1111 1101>>1以后得到的结果是（）”，当前题面仅增加空格，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 1111 1100、B. -2、C. 1111 1101、D. 1111 1010，当前顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 6 题为 B。1111 1101 是 -3 的补码，算术右移 1 位得 1111 1110，即 -2，映射到 0 起始索引为 1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体推导正确，但把选项 A 的 1111 1100 误称为逻辑右移结果；8 位逻辑右移应为 0111 1110，该处需纠正。答案 B 本身无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (-2)**\n\n**核心解析：**\n1. 补码 `1111 1101` 最高位为 1，是负数。按 8 位取反加 1 求绝对值：`~1111 1101 + 1 = 0000 0010 + 1 = 0000 0011`，绝对值为 3，故原数为 -3。\n2. 有符号整数右移按算术右移处理：右移 1 位时符号位保持不变，左侧补符号位 1。`1111 1101 >> 1` 得到 `1111 1110`。\n3. 验证 `1111 1110`：取反加 1 得 `0000 0010`，即 -2。\n\n**选项逐项分析：**\n- A `1111 1100`：不符合算术右移结果；若按 8 位无符号数逻辑右移，结果应为 `0111 1110`，也不是 A。\n- B `-2`：✅ 正确，对应补码 `1111 1110`。\n- C `1111 1101`：原数未变，未执行右移。\n- D `1111 1010`：既非算术右移也非逻辑右移结果。\n\n**易错提醒：**\n- 不要把算术右移当成高位补 0；负数算术右移高位补 1。\n- 补码转真值时注意“取反加 1”的顺序。\n\n**知识延伸：**\n算术右移相当于对负数除以 2 后向负无穷取整，故 -3 >> 1 = -2；逻辑右移则按无符号位模式在高位补 0。\n\n**考点：** 补码表示下的算术右移规则"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 2 页第 7 题为完整四行代码块；当前 question 前三行落在 Markdown 代码围栏外，仅最后一行在代码块内，显示结构不完整，需统一为完整代码块。代码内容本身未漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 12345、B. 2345@、C. 112345chenadai、D. 12345chenadai，当前顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 7 题为 C。`s.replace(1,5,\"12345\")` 将下标 1 到 5 的 `234@@` 替换，得到 `112345chenadai`，对应索引 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立按 `replace(pos,len,str)` 参数含义推得替换段为 `234@@`，结果为 `112345chenadai`，与官方答案一致，无可实质纠错处。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下列代码输出的是（ ）。\n```cpp\nstring s = \"1234@@chenadai\";\nstring str = \"12345\";\ns.replace(1, 5, str);\ncout << s << endl;\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 8 题为“a|10（a与10都是10进制，且二进制表示最高位为1）运算的结果是（ ）”，当前题面仅空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A 为使从右往左第二位为 1，B 为第一位为 0，C 为第二位为 0，D 为最高位为 0；当前选项顺序和含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 8 题为 A。10 的二进制为 1010，`a|10` 必然把从右往左第 2 位和第 4 位置 1，其中 A 正确描述了第 2 位置 1，映射索引 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立将 10 分解为 1010，说明按位或只能置 1 或保持，不能清零；选项逐项判断与答案一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末给出题干，第 3 页给出完整代码和选项；当前题面代码、分支结构和选项顺序与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. right、B. wrong、C. hello、D. 不能正确执行，当前一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 9 题为 A。`ch[5]` 在 `string` 长度为 5 时对应空字符，与数值为 0 的 `NULL` 比较成立，进入第一个分支输出 right，映射索引 0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析存在事实错误：把 `ch[5]` 说成“合法的越界读取但行为未定义”，自相矛盾；按 C++11 起 `std::string::operator[]` 在 `pos == size()` 时返回空字符，不是未定义行为。需改写该段，答案不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (right)**\n\n**核心解析：**\n1. `string ch` 初始化为 `hello`，长度为 5，有效字符下标是 0~4。C++11 起，`std::string::operator[]` 允许访问下标 `size()`，此时返回空字符 `'\\0'`；若下标大于 `size()`，才是未定义行为。因此本题 `ch[5]` 是 `'\\0'`，不是越界未定义行为。\n2. `'\\0'` 的整数值为 0；在 GESP 常见环境中 `NULL` 也是整数 0（或等价的空指针常量），所以 `ch[5] == NULL` 成立。\n3. 程序进入第一个 `if`，输出 `right`；后面的 `else if (ch[5] == '\\0')` 虽然条件本来也成立，但不会被执行。\n\n**选项逐项分析：**\n- **A (right)**：✅ 正确。`ch[5]` 为 `'\\0'`，与 `NULL`（值为 0）比较成立，进入第一分支。\n- **B (wrong)**：❌ 错误。`ch[5] == '\\0'` 本身为真，但它是 `else if`，在第一个条件成立时不会执行。\n- **C (hello)**：❌ 错误。`ch[5]` 既不等于 `NULL` 也不等于 `'\\0'` 才会进入 `else`；实际两者都成立。\n- **D (不能正确执行)**：❌ 错误。`ch[5]` 是对 `size()` 位置的合法访问（C++11 起返回空字符），程序可正常执行并输出 `right`。\n\n**易错提醒：**\n- 不要误以为 `ch[5]` 一定是未定义行为：`std::string` 在 `pos == size()` 时允许访问并返回空字符；超过 `size()` 才越界。\n- 不要把 `NULL` 与 `'\\0'` 的类型差异和数值等价混为一谈；本题比较的是数值 0。\n- 注意 `if ... else if` 只会进入第一个成立的分支。\n\n**知识延伸：**\n`std::string::at()` 会做边界检查，越界时抛出 `std::out_of_range`；`operator[]` 不做运行时检查，但标准对 `pos == size()` 有上述特殊规定。C 风格字符串以 `'\\0'` 结尾，`strlen` 不计入该字符。\n\n**考点：** string 索引访问、C 风格字符串结束符、下标合法性"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题题干及 `char ch[] = \"hello world\"; size_t ret = strlen(ch);` 代码与当前一致；原卷题干本身重复“下列程序中”，当前也保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 11、B. 10、C. 13、D. 12，当前顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 10 题为 D。`hello world` 有 11 个可见字符，字符数组另含结尾空字符，共占 12 字节，对应索引 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析区分了 `strlen(ch)=11` 与字符数组总占用 12 字节，并正确指出题目问的是 `ch` 的内存空间；推导与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 6—10 题。五题官方答案均与 PDF 答案表一致：6-B、7-C、8-A、9-A、10-D。第 6 题解析对选项 A 的逻辑右移说明有误，第 9 题解析把 `ch[5]` 误述为未定义越界访问，已给出修正稿；第 7 题题面代码围栏结构需整理。第 8、10 题五维未发现实质问题。无未决争议。"
+  }
+}

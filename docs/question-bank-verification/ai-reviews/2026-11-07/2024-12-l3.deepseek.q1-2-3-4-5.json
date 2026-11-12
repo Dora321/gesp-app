@@ -1,0 +1,231 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T02:20:35.420Z",
+  "completedAt": "2026-11-12T02:23:22.637Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36344,
+    "completion_tokens": 14663,
+    "total_tokens": 51007,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12008
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0284988,
+      "allowance": 0.01709928,
+      "tokens": {
+        "input": 36344,
+        "output": 14663,
+        "reasoning": 12008,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 三级 2024 年 12 月”，第 1 页答案表列有 1—15 题答案 B D A A D B C A A D D C D C A；与站内 2024-12-l3 对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题原文为“下列二进制表示的十进制数值分别是”：[10000011]原、[10000011]补，与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 四选项依次为 A. -125，-3；B. -3，-125；C. -3，-3；D. -125，-125，站内选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 1 题为 B；站内 answer=1，以 0 起始对应 B，映射正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论 B 正确，但解析将原码低 7 位 1111101 写成 11111101（8 位）并称其值为 125，位串与求和范围不一致，容易误导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（-3，-125）**\n\n[10000011]原：符号位为 1，低 7 位为 0000011₂=3，故真值为 -3。\n\n[10000011]补：对 8 位补码整体取反加一，得 01111101₂=125，符号为负，故真值为 -125。也可先减 1 得 10000010₂，再将低 7 位 0000010 取反为 1111101，与符号位 1 合成原码 11111101₂；其低 7 位 1111101₂=125，真值为 -125。\n\n因此原码对应 -3、补码对应 -125，选 B。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题为“关于计算机中的编码，下列说法中错误的是”，与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 四选项 A“对于无符号数，原码就是真值”、B“正数的反码是其本身”、C“负数的反码和补码是不一样的”、D“负数的反码，在其原码的基础上，各个位取反”与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 2 题为 D；站内 answer=3，对应 D，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "负数反码应保持符号位为 1、只对数值位取反；D 说“各个位取反”未排除符号位，因而是错误说法。A、B、C 均符合编码定义。解析结论与 D 答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题为“16 进制数 B2025 转换成 8 进制数是”，与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A. 2620045、B. 2004526、C. 729125、D. 2420045，与站内顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 3 题为 A；站内 answer=0，对应 A，映射正确。B2025₁₆=729125₁₀=2620045₈，验证 A 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析称最左补两个 0 并列出“00 | 101 | 100 | 010 | 000 | 001 | 001 | 010 | 101”，随后又改成另一组 8 个三位组，均与正确答案的分组 010 | 110 | 010 | 000 | 000 | 100 | 101 不符；虽结论 A 正确，推导过程错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（2620045）**\n\n十六进制每位展开为 4 位二进制：B2025₁₆ = 1011 0010 0000 0010 0101₂。从右向左每 3 位一组，最左不足 3 位补一个 0：\n\n010 | 110 | 010 | 000 | 000 | 100 | 101\n\n逐组转为八进制：2 | 6 | 2 | 0 | 0 | 4 | 5，即 2620045₈。\n\n验证：B2025₁₆ = 11×16⁴ + 2×16³ + 2×16 + 5 = 729125₁₀；2620045₈ = 2×8⁶ + 6×8⁵ + 2×8⁴ + 4×8 + 5 = 729125₁₀。选项 C 的 729125 是十进制值，不是八进制结果。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题为“625.625 变成二进制是（ ）”，与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A. 1001110001.101、B. 101.101、C. 101.1001110001、D. 1001110001.1101，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 4 题为 A；站内 answer=0，对应 A。625₁₀=1001110001₂，0.625₁₀=0.101₂，故 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出 625=512+64+32+16+1，对应 1001110001₂；0.625 连续乘 2 取整得 .101₂；合并为 1001110001.101₂，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题为“下面逻辑运算中，正确的是（ ）”，与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 5&&3==0、B. 5|3==8、C. 5||3==11、D. 5&3==0001，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 5 题为 D；站内 answer=3，对应 D，按官方答案键映射正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析称 D 中“1 == 1 为 true，整个表达式成立”，但严格按 C++ 优先级，== 高于 &，5&3==0001 会解析为 5 & (3==0001) = 5 & 0 = 0；原题选项未加括号，存在源题歧义，解析必须注明官方命题意图与严格 C++ 语义的差别。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**官方答案：D。**按命题意图，将 D 理解为 `(5&3)==0001`：5=0101₂，3=0011₂，按位与得 0001₂=1；`0001` 是八进制字面量，值也是 1，故该比较成立。A 按位与逻辑判断不成立；B 中 `5|3=7`，不等于 8；C 中 `5||3` 的逻辑值为 1，不等于 11。\n\n**但须注意：**原选项未加括号，严格按 C++ 优先级，`5&3==0001` 会解析为 `5&(3==0001)`，值为 0。因此源题在 C++ 语义上存在歧义；官方答案 D 是按“5 与 3 按位与的结果等于 1”的命题意图判定。"
+        },
+        "tests": [],
+        "unresolved": [
+          "第 5 题 D 选项未加括号。严格按 C++ 运算符优先级，`5&3==0001` 不等于 `(5&3)==0001`，前者值为 0；官方答案表仍为 D，保留源题语义争议。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验 1—5 题。卷头身份与答案表一致；5 题题面、选项及站内答案映射均与 PDF 对齐。第 1 题解析的位串书写有误，第 3 题解析的二进制分组过程明显错误，均已给出修正解析；第 5 题官方答案 D 成立的前提是把选项理解为 `(5&3)==0001`，但原题缺少括号，严格 C++ 优先级下存在源题歧义，已在解析和 unresolved 中保留说明。"
+  }
+}
