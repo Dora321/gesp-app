@@ -1,0 +1,248 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T08:43:32.122Z",
+  "completedAt": "2026-11-12T08:49:46.773Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51260,
+    "completion_tokens": 17090,
+    "total_tokens": 68350,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13055
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.016234,
+      "allowance": 0.016234,
+      "tokens": {
+        "input": 51260,
+        "output": 17090,
+        "reasoning": 13055,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP C++ 三级 2025 年 03 月”，与 paperId 2025-03-l3（2025年3月三级）对应。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码：arr={3,7,2,9,5}、maxIndex=0、for (int i = 1; i < 5; i++)、横线后接 { maxIndex = i; }，与网站一致；第4页题干续接选项，无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A–D：if (arr[maxIndex] > arr[i]) / if (arr[i]-1 > arr[maxIndex]) / if (arr[i]+1 > arr[maxIndex]) / if (arr[i] > arr[maxIndex])，与网站逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 D；网站 answer=3 即 D（0 起始），映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析称填 A 时“会导致不更新 maxIndex”与实际执行不符——填 A 后 i=2 时 arr[0]=3 > arr[2]=2 成立，maxIndex 被更新为 2，最终输出 2 而非 3；changes 已给修正后的完整解析并独立推演确认。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (if (arr[i] > arr[maxIndex]))**\n\n**核心解析：**\n1. `maxIndex` 初始为 0，即先认为 `arr[0] = 3` 是最大值。\n2. 循环遍历 i = 1..4，枚举法维护“当前最大值的下标”：仅当 `arr[i] > arr[maxIndex]` 时更新 `maxIndex = i`。\n3. 数组 `{3, 7, 2, 9, 5}` 中最大元素 9 位于下标 3，最终输出 3。\n\n**选项逐项分析：**\n- **A (if (arr[maxIndex] > arr[i]))**：❌ 错误。条件写反。填入后，只要当前记录值大于 arr[i] 就执行 maxIndex = i，会把下标更新到较小元素上：例如 i=2 时 arr[0]=3 > arr[2]=2 成立，maxIndex 被改成 2，最终输出 2 而不是 3。\n- **B (if (arr[i]-1 > arr[maxIndex]))**：❌ 错误。对元素值减 1 再比较，与查找最大值下标无关，纯属无意义变形。\n- **C (if (arr[i]+1 > arr[maxIndex]))**：❌ 错误。对元素值加 1 再比较，同样与最大值判断无关。\n- **D (if (arr[i] > arr[maxIndex]))**：✅ 正确。发现更大元素时更新其下标，符合枚举查找最大值索引的标准逻辑。\n\n**易错提醒：**\n- 比较的是元素值 arr[i] 与 arr[maxIndex]，更新的是下标 i，不要混淆。\n- 条件方向应为“新元素更大才更新”；写反不会“保持不变”，而是得到错误下标（本题输出 2）。\n\n**知识延伸：**\n枚举（线性扫描）维护“当前最优解”的不变式是 GESP 三级常见考点：每次比较与更新都必须保证 maxIndex 始终指向已扫描部分的最大值。\n\n**考点：** 枚举法查找最大值索引"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核纠错并独立确认：填 A 后 i=2 时 3>2 成立、maxIndex 被更新为 2、最终输出 2，原解析“不更新 maxIndex”的机制描述错误，修改必要；其余选项分析、答案映射独立核对无误。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页完整程序（含 #include <iostream>、using、main、return 0）中核心逻辑 arr={1,2,3,4,5}、left=0/right=4、左指针 while (arr[left] % 2 == 1 && left < right) left++、横线、swap、输出循环，与网站片段一致；网站省略的仅为样板外壳，语义不变，不影响横线处答案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A–D 与网站一致；D 为 while (arr[right] % 2 == 0 && left < right) right--;。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 D；网站 answer=3 即 D，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按 D 填入手工推演：left 停在偶数、right 跳过偶数停在奇数、交换，最终输出 1 5 3 4 2，奇数在前偶数在后，程序目标达成；解析对左右指针职责与不变式的说明无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 结论：按 D 填入手工推演得输出 1 5 3 4 2，奇前偶后成立；解析无误；网站省略样板外壳属排版等价，不构成缺陷，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干与代码（string str = \"HelloWorld\"; 横线; cout << str; return 0;）及目标串 HelloC++ 与网站一致；第5页续接选项 C/D。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4–5页 A str.replace(0,5,\"C++\")、B str.replace(5,5,\"C++\")、C str.replace(1,5,\"C++\")、D str.replace(4,5,\"C++\")，与网站逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 B；网站 answer=1 即 B，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析 C 项结果写作 \"HC++rld\" 有误——replace(1,5) 删除下标 1–5 即 \"elloW\"，剩余 H 与 orld，插入后为 \"HC++orld\"（8 字符）；changes 已给修正文本并独立推演 A/B/C/D 四项结果确认。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (str.replace(5, 5, \"C++\");)**\n\n**核心解析：**\n1. 原字符串 `str = \"HelloWorld\"`，下标对应：H(0) e(1) l(2) l(3) o(4) W(5) o(6) r(7) l(8) d(9)。\n2. `str.replace(pos, len, s)` 表示从下标 pos 开始删除 len 个字符，并在该位置插入 s。\n3. 选项 B：删除下标 5–9 即 \"World\"，插入 \"C++\"，得到 \"Hello\" + \"C++\" = \"HelloC++\"，符合要求。\n\n**选项逐项分析：**\n- **A (str.replace(0, 5, \"C++\");)**：❌ 错误。删除 \"Hello\"，结果为 \"C++World\"。\n- **B (str.replace(5, 5, \"C++\");)**：✅ 正确。把 \"World\" 替换为 \"C++\"，得到 \"HelloC++\"。\n- **C (str.replace(1, 5, \"C++\");)**：❌ 错误。删除下标 1–5 即 \"elloW\"，剩余 \"H\" 与 \"orld\"，插入后得 \"HC++orld\"（不是 \"HC++rld\"），与目标不符。\n- **D (str.replace(4, 5, \"C++\");)**：❌ 错误。删除下标 4–8 即 \"oWorl\"，结果为 \"HellC++d\"，与目标不符。\n\n**易错提醒：**\n- replace 第一个参数是起始下标，第二个参数是删除长度，不是结束下标。\n- 建议先写出每个字符的下标，再计算删除区间与剩余前后缀，拼接核对。\n\n**知识延伸：**\nstring 的 replace、substr、insert、find 是 GESP 三级字符串处理的高频考点，需掌握各方法的下标语义与副作用（是否修改原串）。\n\n**考点：** string 类的 replace() 方法"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核纠错并独立确认：replace(1,5) 删除 \"elloW\"，剩余 H+orld，结果为 HC++orld，原解析 \"HC++rld\" 漏写 o，修改必要；A（C++World）、B（HelloC++）、D（HellC++d）逐项独立核对无误。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干原文为“想要得到字符串 world”（小写），与四个选项（均插入/输出大写 World）及官方答案 D 矛盾，属源卷笔误；网站题面已按官方题意整理为 World，整理后题面、选项、答案自洽，修复后核验通过；源卷差异保留于 unresolved 记录。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A–D：insert(4,\"World\")+substr(4,4) / substr(5,5) / insert(\"World\") 单参+substr(5,5) / insert(5,\"World\")+substr(5,5)，与网站逐项一致，均使用大写 World。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 D；网站 answer=3 即 D，映射一致；且 D 逻辑自洽：insert(5,\"World\") 后 substr(5,5) 确实输出 World。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析 B 项“substr(5,5) 会取到越界的部分”表述错误——\"HelloC++\" 长度 8，pos=5 合法，请求长度超过剩余时截断到末尾返回 \"C++\"（3 字符），不存在越界读取；changes 已给修正文本并保留源卷笔误说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (str.insert(5, \"World\"); cout << str.substr(5, 5);)**\n\n**核心解析：**\n1. 原字符串 `str = \"HelloC++\"`，下标：H(0) e(1) l(2) l(3) o(4) C(5) +(6) +(7)。\n2. 选项 D 两步操作：\n   - `str.insert(5, \"World\")` 在下标 5 处插入，字符串变为 \"HelloWorldC++\"；\n   - `str.substr(5, 5)` 从下标 5 起取 5 个字符，得 \"World\"。\n3. 两步配合精确得到目标输出。\n\n**选项逐项分析：**\n- **A (str.insert(4, \"World\"); cout << str.substr(4, 4);)**：❌ 错误。插入后得 \"HellWorldoC++\"，substr(4,4) 取 \"Worl\"，不是目标。\n- **B (cout << str.substr(5, 5);)**：❌ 错误。\"HelloC++\" 长度为 8，下标 5 起只剩 \"C++\" 三个字符；substr 在 pos 合法时请求长度超过剩余只会截断到末尾，返回 \"C++\"（不会越界读取），不是 \"World\"。\n- **C (str.insert(\"World\"); cout << str.substr(5, 5);)**：❌ 错误。std::string::insert 没有只接收一个字符串参数的重载，无法编译。\n- **D (str.insert(5, \"World\"); cout << str.substr(5, 5);)**：✅ 正确。\n\n**说明：** 官方答案表第 14 题为 D，四个选项插入/输出的均为大写 World；PDF 原卷题干写作小写 world，与选项和答案矛盾，属源卷笔误。网站题面已按官方题意整理为大写 World，整理后题面、选项、答案自洽（争议记录见 unresolved）。\n\n**易错提醒：**\n- insert 必须给出插入位置，不能只传字符串。\n- substr(pos, len) 第二个参数是长度；pos 合法时长度超出只会截断到串末尾。\n\n**考点：** string 的 insert() 与 substr() 联合应用"
+        },
+        "tests": [],
+        "unresolved": [
+          "PDF 第5页题干目标写作小写 world，而四个选项及官方答案 D 均对应大写 World；判定为源卷笔误，网站题面已按官方答案校正为 World，此处保留源卷差异记录，未改动答案与选项。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：B 项纠错（substr pos 合法时截断到末尾得 C++，非越界读取）经独立确认后采纳；但初核将 statement/answer 置为 unresolved 过于保守——官方答案表明确第14题 D，四个选项均为大写 World，PDF 题干小写 world 可判定为源卷笔误，网站按官方题意整理为 World 后题面自洽，故两维标 verified（修复后核验通过），源卷差异保留在 unresolved 记录。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干（美丽数字当且仅当是 9 的倍数但不是 8 的倍数）与代码片段 for (int i = 1; i <= n; i++) { cin >> a; 横线; cnt++; } 与网站一致（“美丽/美丽数字”用词等价）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A–D：if (a % 9 != 0 && a % 8 != 0) / if (a % 9 == 0 & a % 8 == 0) / if (a % 9 == 0 && a % 8 != 0) / if (a % 9 == 0 & a % 8 != 0)，与网站逐项一致，仅空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 C；网站 answer=2 即 C，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：C 即“是 9 的倍数且不是 8 的倍数”的规范 && 写法；A 逻辑相反、B 逻辑为“既是 9 又是 8 的倍数”均错误；D 用单 & 在两操作数均为 0/1 时数值结果虽相同但非规范写法，解析已如实说明，无事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 结论：C 条件与题意逐条对应；D 单 & 的数值等价性与规范性问题解析均已说明；A/B 错误原因描述正确；无需修改。"
+      }
+    ],
+    "summary": "本轮仅核验单选题 11–15。卷头（C++ 三级、2025 年 03 月）与 paperId 对应。五题题面、选项均按 PDF 第3–5页页图逐字核对，与网站一致（题12 网站省略样板外壳属排版等价）；answer 字段与第1页答案表完全对应：11 D、12 D、13 B、14 D、15 C。解析层面：11 的 A 项机制描述错误（填 A 实际会输出 2 而非“不更新”）、13 的 C 项结果串漏写 o（应为 HC++orld）、14 的 B 项“越界”说法错误（substr pos 合法时截断到末尾得 C++），均已给出修复文本并独立推演复核通过，三题标 revise；14 的源卷题干小写 world 与选项/官方答案 D 冲突判定为源卷笔误，网站按官方题意整理为 World 后自洽，差异保留在 unresolved。12、15 无修改，approve。单选题不适用参考代码与 tests，均为空。"
+  }
+}

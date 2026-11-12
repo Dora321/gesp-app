@@ -1,0 +1,228 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T05:52:32.044Z",
+  "completedAt": "2026-11-12T05:54:39.507Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34234,
+    "completion_tokens": 11469,
+    "total_tokens": 45703,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9036
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0120165,
+      "allowance": 0.0072099,
+      "tokens": {
+        "input": 34234,
+        "output": 11469,
+        "reasoning": 9036,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2025 年 03 月”，与 paperId=2025-03-l3（2025 年 3 月 C++ 三级）对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干与站点一致：Base64 每 3 字节编码为 4 字节，输入长度不是 3 的倍数时用 = 填充，问 10 字节输入的编码长度。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A. 12 字节、B. 13 字节、C. 14 字节、D. 16 字节，顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 1 题为 D，换算为 0 起始索引是 3，与站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：10 字节需分成 4 个 3 字节输入块（最后一组仅 1 字节），每组输出 4 字节，总长 4×4=16 字节。解析中的分块与填充说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题完整列出 1 至 4 字节 UTF-8 模式，并问哪个字节序列合法，站点题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项为 A. 0xC0 0x80、B. 0xF0 0x90 0x80 0x80、C. 0x80 0x80 0x80、D. 0xFF 0xFE 0xFD，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 2 题为 B，0 起始索引为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：B 的首字节 0xF0 符合 11110xxx，后续 0x90、0x80、0x80 均以 10 开头；A 的 0xC0 0x80 是过长编码，C 以续字节开头，D 含非法首字节。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题题干为“在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么”，站点题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 10000101、11111010、11111011、00000101，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 3 题为 A，0 起始索引为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心结论 A 正确，但原解析在 B 项先称“这是 -5 的 8 位补码表示”，随后又自我纠正为反码，表述自相矛盾；且“5 的反码 00000101”说法含混。B 实际应为 -5 的反码 11111010，C 才是 -5 的补码 11111011。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (10000101)**\n\n**核心解析：**\n1. 8 位原码用最高位作符号位：0 表示正，1 表示负；其余 7 位表示绝对值的二进制。\n2. -5 的符号位为 1，绝对值 5 写成 7 位二进制是 0000101，拼接得 10000101。\n\n**选项分析：**\n- A 10000101：正确。符号位 1，数值位 0000101。\n- B 11111010：错误。这是 -5 的 8 位反码，即对 +5 的 00000101 逐位取反。\n- C 11111011：错误。这是 -5 的 8 位补码，即反码加 1。\n- D 00000101：错误。这是 +5 的原码。\n\n**易错提醒：**\n- 原码的数值位直接写绝对值，不做“取反加一”。\n- 8 位原码中 +0 为 00000000，-0 为 10000000。\n\n**知识延伸：**\n8 位原码可表示 -127 到 +127，但 0 有两种编码；8 位补码范围是 -128 到 +127。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末第 4 题题干为“十进制数 111.111 的二进制表示可以是下面的（ ）”，站点题面一致，仅句末标点排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A. 1101111.0001110001、B. 1101110.1001110001、C. 1101111.1001110001、D. 1101111.0011110001，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 4 题为 A，0 起始索引为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心计算与答案 A 正确，但“易错提醒”称不能用累积结果的小数部分（如 0.222）作为下一轮乘法起点，这与乘 2 取整法相反；下一轮正是要使用上一轮乘积的小数部分 0.222。该表述会误导算法理解。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (1101111.0001110001)**\n\n**核心解析：**\n1. 整数部分：111₁₀ = 1101111₂（64+32+8+4+2+1=111）。\n2. 小数部分用乘 2 取整：\n   - 0.111×2=0.222，取 0；\n   - 0.222×2=0.444，取 0；\n   - 0.444×2=0.888，取 0；\n   - 0.888×2=1.776，取 1；\n   - 0.776×2=1.552，取 1；\n   - 0.552×2=1.104，取 1；\n   - 0.104×2=0.208，取 0；\n   - 0.208×2=0.416，取 0；\n   - 0.416×2=0.832，取 0；\n   - 0.832×2=1.664，取 1。\n   前 10 位为 0001110001。\n3. 合并得 1101111.0001110001。\n\n**选项分析：**\n- A 正确，整数部分与小数部分前 10 位均吻合。\n- B 错误，1101110₂=110，不等于 111。\n- C 错误，整数部分正确，但小数首位应为 0，不是 1。\n- D 错误，整数部分正确，但小数前三位应为 000，不是 001。\n\n**易错提醒：**\n- 乘 2 取整后，下一轮应使用上一轮乘积的小数部分（如 0.222），不能每轮都重新使用最初的 0.111。\n- 十进制小数转二进制可能无限进行，本题按选项取前 10 位比较。\n\n**知识延伸：**\n0.1、0.2 等十进制小数在二进制中常为无限循环，这也是浮点数精度问题的来源之一。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干为“在 C++ 中，补码的主要作用是（ ）”，站点题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A. 提高浮点数的精度、B. 简化整数的加减法运算、C. 增加整数的表示范围、D. 优化内存分配，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 5 题为 B，0 起始索引为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：补码使减法可转化为补码加法，核心目的确为简化整数加减法；原解析对 C 项“范围变化是附带效果”的区分与官方答案一致，未见实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号 1 至 5。PDF 卷头与 2025-03-l3 匹配；5 题的题面、选项和官方答案均一致。第 3、4 题答案正确，但解析存在表述错误，已在 changes 中给出完整修订解析；第 1、2、5 题解析通过。单选题不适用参考代码；未编写或声称运行任何测试。"
+  }
+}

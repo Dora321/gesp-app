@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T09:46:58.549Z",
+  "completedAt": "2026-11-12T09:50:00.317Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50489,
+    "completion_tokens": 9378,
+    "total_tokens": 59867,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6869
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01226235,
+      "allowance": 0.01226235,
+      "tokens": {
+        "input": 50489,
+        "output": 9378,
+        "reasoning": 6869,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP”“C++ 三级”“2025 年 03 月”，与 2025-03-l3 对应；判断题及答案表位于 PDF 第 6 页，完整答案表为 × √ √ √ √ √ √ √ × ×（初核草稿仅引前 5 个，结论不受影响）。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文：“判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度”；网站题面仅冒号/句号排版差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；PDF 第 6 页以题号加 √/× 答案表呈现，网站“正确/错误”为判断题标准形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 1 题为 ×（错误）；网站 answer=1，映射一致（正确=0、错误=1）。"
+          },
+          "explanation": {
+            "status": "unresolved",
+            "evidence": "独立复核：网站解析的主要论据“还须边长为正”不严谨——其反例 0、1、2 与 -1、2、3 自身均不满足‘任意两边之和大于第三边’（解析自己标注‘不成立’），不能证明‘满足该条件但边长非正’的情形存在；且数学上三条严格不等式 a+b>c、a+c>b、b+c>a 同时成立可推出 2a>0（两组相加）即三边均为正，故正性并非独立于该条件的额外要求。官方标 × 的判定口径（为何“只有”不成立）缺乏官方解析佐证，命题本身存在争议，保留待核，不擅自定案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案 × 与网站 answer=1 一致，但网站解析论据不严谨（反例自相矛盾；三条三角不等式在数学上已蕴含边长为正），且官方命题“条件只有……”的口径存在争议，保留未决，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核对 answer 维度的核验（×→1 一致）及其对 explanation 保留未决的处理；但否决其将命题争议轻描淡写的表述——我独立复核补充了两点硬依据：网站解析所举反例自身不满足题设条件、三条严格三角不等式可推出三边为正（a+b>c 与 a+c>b 相加得 2a>0），故维持 explanation=unresolved 而非 needs_fix，避免编造官方判定理由。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题题干与程序（char x; scanf(\"%c\",&x); int ASCII=(int)x; cout<<(x&1?\"YES\":\"NO\")<<'\\n';）与网站一致；PDF 用字符 '\\n'、网站用字符串 \"\\n\"，输出内容相同，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；PDF 第 6 页以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 2 题为 √（正确）；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：char 参与位运算时整型提升为 int；对任意整数值（含补码负值，其最低位与奇偶性对应关系不变），x&1 为真当且仅当值为奇数；故程序对输入字符的 ASCII 值奇偶输出 YES/NO，与题述一致；未使用的 ASCII 变量不影响结论。网站解析推导与此相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 结论；我独立按整型提升与补码最低位性质推导，x&1 判奇偶对 ASCII 范围及有符号 char 负值情形均成立，解析正确。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题含闰年定义（普通闰年 4 的倍数且非 100 倍数；世纪闰年须 400 倍数，含 1900/2000 举例）、cin>>n 与 cout<<((n%4==0&&n%100!=0)||(n%400==0))?1:0; 及 return 0;。网站保留全部定义要点与三行代码，仅省略括号内举例并将 cin>>n 置于代码块外，属排版等价，无内容缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；PDF 第 6 页以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 题为 √（正确）；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导运算符优先级：<< 高于 ?:，语句实际为 (cout << 布尔表达式) ? 1 : 0——先向 cout 输出布尔值 1/0，返回的 cout 在正常状态转为 true，三元分支取 1 但该值被丢弃；故程序实际输出即闰年判定 1/0，1900 输出 0、2000/2024 输出 1，与定义一致，程序确为正确闰年判断程序。网站解析的拆解与验证表结论正确（未展开优先级细节但不影响结论）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核及其关于优先级的补充；我独立确认 (cout<<expr)?:1:0 中三元结果为死值，实际输出 1/0 仍为正确闰年判定，官方 √ 成立，网站解析结论无误。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文：C++语句 cout<<(n%15==0? \"YES\":\"NO\"); 能够判断一个整数能否被3和5同时整除；网站题面仅空格排版差异，且括号保证条件表达式整体先于 << 求值，与原卷一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；PDF 第 6 页以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 题为 √（正确）；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：3 与 5 互质，最小公倍数为 15；n%15==0 ⇔ 15|n ⇔ 3|n 且 5|n，充要性成立（对照网站验证表 30/45/60/10/9 各例无误）。网站解析推导独立且正确，并正确提示了对非互质组合（如 4 和 6）不能套用乘积的易错点。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核；我独立以互质性与最小公倍数完成充要性证明，解析无数学错误，官方 √ 与网站 answer=0 一致。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文：“有n个同学，从中抽取任意个人数来参加学校组织的大合唱，共有2的n次幂个方法”；网站题面仅加空格，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；PDF 第 6 页以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 5 题为 √（正确）；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：每名同学独立作“选/不选”二择，乘法原理得子集总数 2ⁿ（n=3 时 8 种，含空集，与网站枚举表一致）。官方标 √ 采用“任意个人数”包含 0 人（都不选）的子集计数口径；网站解析已明确论证该口径，与官方答案自洽，未发现矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核；我独立按乘法原理复核 2ⁿ 计数，网站解析对“任意个人数含 0 人”口径的说明与官方 √ 自洽，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核网站 id 16-20（对应 PDF 第 6 页判断题第 1-5 题）。官方答案表前五题为 × √ √ √ √，网站 answer（1,0,0,0,0）映射全部一致，answer 维度均 verified；五题题面均与原卷一致（仅标点/空格/'\\n'与\"\\n\"等排版等价差异，id 18 省略举例不影响语义）。id 17-20 解析经独立推导通过：id 17 依据整型提升与最低位奇偶性；id 18 需注意 << 优先级高于 ?:，实际输出仍为正确的 1/0 闰年判定；id 19 由 3、5 互质得充要性；id 20 为含空集的 2ⁿ 子集计数口径，与官方自洽。id 16 官方答案与网站一致，但网站解析以“边长必须为正”论证“只有”不成立不严谨（所举反例自身不满足题设条件，且三条严格三角不等式在数学上已蕴含三边为正），官方命题口径存在争议，explanation 保留 unresolved，不擅自定案。全部题目 changes 为空，无需修改字段。"
+  }
+}

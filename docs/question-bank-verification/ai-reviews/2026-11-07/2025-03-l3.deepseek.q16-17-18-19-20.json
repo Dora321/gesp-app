@@ -1,0 +1,225 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T09:44:57.658Z",
+  "completedAt": "2026-11-12T09:46:58.542Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34296,
+    "completion_tokens": 9581,
+    "total_tokens": 43877,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8093
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.021786,
+      "allowance": 0.0130716,
+      "tokens": {
+        "input": 34296,
+        "output": 9581,
+        "reasoning": 8093,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标明“CCF 编程能力等级认证”“C++ 三级”“2025 年 03 月”，与 2025-03-l3 对应；判断题位于 PDF 第 6 页，答案表为 × √ √ √ √。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 1 题原文：“判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度”。网站仅作标点调整，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；PDF 第 6 页以题号及 √/× 答案表呈现，网站“正确/错误”为判断题标准交互形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 1 题为 ×；网站 answer=1（错误），映射一致。"
+          },
+          "explanation": {
+            "status": "unresolved",
+            "evidence": "网站解析以“边长必须为正数”作为该命题错误的主要理由，但几何“长度”本就不应为负，且三条严格三角不等式同时成立可推出各边大于 0；该补充条件论证不严谨。官方答案为×，但题干“只有任意两边之和大于第三边”在通常几何定义下存在争议，应保留待核。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案×且网站答案一致，但网站解析用“边长必须为正”补充“只有”条件不严谨；题干与通常三角形不等式判定定理存在命题争议，保留未决。"
+        ]
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 2 题描述及程序与网站一致；PDF 中字符换行写作 '\\n'，网站写作 \"\\n\"，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；PDF 以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 2 题为 √；网站 answer=0（正确），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：x 参与位运算时发生整型提升，x & 1 只检查最低位；ASCII 字符范围内奇数当且仅当最低位为 1；未使用的 ASCII 变量不影响判断结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 3 题给出闰年定义及判断程序，网站保留定义、代码与输出形式；省略示例和“整百数”说明不影响闰年条件含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；PDF 以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 题为 √；网站 answer=0（正确），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对 n%4==0 && n%100!=0 与 n%400==0 的组合推导正确。实际 C++ 中 << 优先级高于 ?:，语句先向 cout 输出布尔值 1/0 再执行三元表达式，但在 cout 正常状态下最终输出仍为 1/0，结论不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 4 题原文为 C++ 语句 cout<<(n%15==0? \"YES\":\"NO\"); 能判断一个整数能否被 3 和 5 同时整除；网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；PDF 以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 题为 √；网站 answer=0（正确），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析用 3 与 5 互质、最小公倍数为 15 证明 n%15==0 与同时被 3、5 整除等价；推导独立且正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 5 题原文为“有 n 个同学，从中抽取任意个人数来参加学校组织的大合唱，共有 2 的 n 次幂个方法”；网站题面一致，仅可能有排版断行差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；PDF 以 √/× 答案表呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 5 题为 √；网站 answer=0（正确），一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按每名同学“选/不选”两个独立状态，用乘法原理得到子集总数 2^n，并将 0 人计入“任意人数”；与官方答案口径一致。若题意另限定至少 1 人则应为 2^n-1，但官方答案采用子集计数口径。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 16-20 题（判断题）。官方答案表为 × √ √ √ √，网站答案映射均一致；第 17-20 题解析可通过。第 16 题官方答案与网站一致，但网站解析以“边长必须为正”论证“只有”不成立不够严谨，且题干与通常三角形不等式判定定理存在争议，保留未决。"
+  }
+}

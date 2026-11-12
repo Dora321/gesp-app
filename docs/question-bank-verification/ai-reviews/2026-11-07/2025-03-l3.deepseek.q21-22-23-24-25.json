@@ -1,0 +1,230 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T09:57:42.005Z",
+  "completedAt": "2026-11-12T10:01:10.051Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34296,
+    "completion_tokens": 21190,
+    "total_tokens": 55486,
+    "prompt_tokens_details": {
+      "cached_tokens": 34176
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19313
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02566906,
+      "allowance": 0.01540143,
+      "tokens": {
+        "input": 120,
+        "output": 21190,
+        "reasoning": 19313,
+        "cache_read": 34176,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2025 年 03 月”，与paperId 2025-03-l3及level=3、year=2025、month=3一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第6题定义A类数为二进制表示中1的个数为偶数者；网站题干保留定义和待判断句，仅略去(13)与(10)的举例，不改变判定含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项；按本次规则单选options才适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第6题为“√”，按正确=0映射，officialAnswer=0；网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立换算2025₁₀=11111101001₂，含8个1，8为偶数，故为A类；解析的除2取余过程和结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第7题的循环条件、商余输出和n/=2更新与网站代码一致；网站仅将字符常量空格、换行改为等价字符串常量，输出不变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项；按本次规则单选options才适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第7题为“√”，按正确=0映射，officialAnswer=0；网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按循环语义推演，以n=13为例依次输出商余(6,1)、(3,0)、(1,1)、(0,1)后n变为0终止；解析所述重复除2并输出商余、直到n=0成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第8题的13进制A、B分别表示十进制10、11，以及(A+B)₁₃=(18)₁₃的表述完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项；按本次规则单选options才适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第8题为“√”，按正确=0映射，officialAnswer=0；网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "最终21₁₀=(18)₁₃正确，但解析把A写成A=(10)₁₃，混淆了13进制数字A与十三进制记数(10)₁₃；需改写解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n13 进制中单个数字 A 表示十进制 10，B 表示十进制 11，故 A+B=10+11=21（十进制）。将 21 转为 13 进制：21=1×13+8，因此 21₁₀=(18)₁₃。所以 13 进制数 A 加 B 的和可写成 13 进制数 18，命题正确。注意 A 是 13 进制的一位数字，不应写成 A=(10)₁₃；若写成(10)₁₃，其值会是十进制 13。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页第9题原句为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”，网站题干在k²、k³前各多一个“逢”，与源卷文字不一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项；按本次规则单选options才适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第9题为“×”，按错误=1映射，officialAnswer=1；网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析以“逢k²进百位、逢k³进千位”的口径说明，与源卷文字不同；应围绕一般k进制的位权与十进制位名差异说明命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {
+          "question": "k 进制，逢 k 进第二位，k² 进百位，k³ 进千位。",
+          "explanation": "**答案：错误**\n\nk 进制的进位规则是“逢 k 进一”，即某一位满 k 就向相邻高一位进 1；从低位起（最低位记为第 0 位）各位位权依次为 k⁰、k¹、k²、k³……。题干中的“k² 进百位、k³ 进千位”把十进制的位名套到任意 k 进制，只在 k=10 时才与“百位、千位”对应；对一般 k 进制，位权 k²、k³ 对应的只是相应高位，不能称为百位、千位。因此原命题错误。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第10题“CCF(十九进制)=21AC(十三进制)(不区分大小写)”与网站题干一致，仅括号全半角和结尾标点不同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项；按本次规则单选options才适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页答案表第10题为“×”，按错误=1映射，officialAnswer=1；网站answer=1一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "算术结果4575与4705正确；但原文“不同进制下同一字母可能代表不同数值”及“不能直接套用C=12”表述不准确：字母数字值通常固定，变化的是合法性及位权。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n按字母数字的通常记法，A=10，B=11，C=12，…，F=15；某字母能否出现取决于进制基数是否大于其数值，字母对应的数值本身不随进制改变（大小写不影响数值）。\n\nCCF₁₉ = 12×19² + 12×19 + 15 = 4332 + 228 + 15 = 4575。\n21AC₁₃ = 2×13³ + 1×13² + 10×13 + 12 = 4394 + 169 + 130 + 12 = 4705。\n4575≠4705，因此 CCF₁₉ 不等于 21AC₁₃，命题错误。C 在 19 进制中仍表示 12，F 表示 15；A、C 在 13 进制中分别表示 10、12，均合法。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验题21-25，即PDF第6页判断题第6-10题。官方答案符号为√、√、√、×、×，映射为0、0、0、1、1，五题答案均与网站一致。题23、25解析存在概念或记号表述问题，题24题干多出“逢”且解析需同步修正，均已在changes中给出纠错草稿。"
+  }
+}
