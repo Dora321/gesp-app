@@ -1,0 +1,239 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T12:31:21.417Z",
+  "completedAt": "2026-11-12T12:36:04.527Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42836,
+    "completion_tokens": 16388,
+    "total_tokens": 59224,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13179
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0146194,
+      "allowance": 0.0146194,
+      "tokens": {
+        "input": 42836,
+        "output": 16388,
+        "reasoning": 13179,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c064127b760deed6240ffc2ff56339a0f779266c36290f74c5641ab666224a20",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确为「CCF 编程能力等级认证 / GESP / C++ 三级 / 2025 年 06 月」，页眉亦为「C++ 三级 2025 年 06 月」，与 2025-06-l3（三级、2025 年 6 月）一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 6 题原文为「(x & 1) == 0 可以判断整数 x 是否为偶数。」，与网站题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A–D 选项，以 √/× 作答；网站统一用「正确/错误」两选项呈现，单选 options 核对不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 6 题符号为 √（正确），按 正确=0 映射为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析核心结论（偶数时成立、奇数时不成立）正确，但「若 x 为奇数…则 x & 1 == 1 不成立」一句逻辑颠倒——奇数时 (x&1)==1 恰恰成立，故 (x&1)==0 不成立；且未提示 C++ 中 == 优先级高于 &，省略括号会按 x & (1 == 0) 解析。应用修复稿并独立推导复核：偶/奇最低位判定、负数补码最低位规律、括号优先级提醒均正确。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n在 C++ 常见的二进制补码表示下，偶数的最低位为 0，奇数的最低位为 1。`x & 1` 只保留最低位，因此：\n- 若 x 为偶数，则 `(x & 1) == 0` 成立；\n- 若 x 为奇数，则 `(x & 1) == 1`，所以 `(x & 1) == 0` 不成立。\n\n在代码中应保留括号，写成 `(x & 1) == 0`；若省略括号写成 `x & 1 == 0`，会因运算符优先级按 `x & (1 == 0)` 解析，导致语义错误。\n\n**易错提醒：**\n负整数在补码表示下最低位同样满足“偶数为0、奇数为1”，因此该方法对负整数也可用。判断奇数可写 `(x & 1) == 1` 或 `x & 1`。\n\n**知识延伸：**\n位运算常用于状态标记、权限控制等场景。\n\n**考点：** 位运算基础"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核修复：原句「x & 1 == 1 不成立」确属逻辑颠倒（应为 (x&1)==1 成立、故 (x&1)==0 不成立），补充的括号优先级提醒（== 优先级高于 &）正确；修复稿经我独立推导无误，应用。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 7 题原文为「string 的 substr(2, 10) 在字符串长度不足时会抛出异常。」，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A–D 选项，以 √/× 作答；网站统一用「正确/错误」两选项呈现，单选 options 核对不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 题符号为 ×（错误），按 错误=1 映射为 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析称「若 pos >= size() 则抛出 std::out_of_range」不符合标准：标准行为是 pos > size() 才抛 out_of_range，pos == size() 返回空串；长度不足（len 超出剩余字符）只会安全截断。因此题干「长度不足就抛异常」判为错误成立。应用修复稿并独立复核其边界描述正确。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n`std::string::substr(pos, len)` 从下标 `pos` 开始，最多取 `len` 个字符。标准行为是：\n1. 若 `pos > size()`，抛出 `std::out_of_range`；\n2. 若 `pos <= size()`，即使 `len` 超过从 `pos` 到末尾的字符数，也只返回能取到的部分，不会因为长度不足而抛异常；当 `pos == size()` 时返回空串。\n\n因此 `substr(2, 10)` 只有在字符串长度小于 2（即起始下标非法）时才可能抛异常；如果字符串长度虽然不足 10 但不小于 2（如长度为5），会正常返回从下标2到末尾的子串，不会抛异常。题干笼统地说“字符串长度不足时会抛出异常”，所以判断为错误。\n\n**易错提醒：**\n`substr` 对长度参数会安全截断；需要区分“起始位置越界”（`pos > size()`）和“截取长度超过剩余长度”。\n\n**知识延伸：**\n`substr(pos)` 省略长度时，表示从 `pos` 到字符串末尾。\n\n**考点：** string 类常用方法"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核修复：substr 抛异常边界确为 pos > size()（pos == size() 返回空串），原解析「pos >= size() 抛异常」是标准性错误；修复稿正确区分起始越界与长度截断，应用。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 8 题原文为「在数学纸面计算中， pow(2, 3) 的计算结果一定是8，但是在C++中。如果遇到数据类型是浮点数，那就不一定正确。」；网站将「中。如果」写作「中，如果」并调整空格，属标点级差异，语义不变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A–D 选项，以 √/× 作答；网站统一用「正确/错误」两选项呈现，单选 options 核对不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 8 题符号为 √（正确），按 正确=0 映射为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 pow 返回 double 类型、浮点数存在表示与运算误差、不宜与整数直接用 == 比较，该教学结论与官方答案 √ 的立场一致，未发现影响判定的事实错误；所举 7.999…/8.000… 数值属理论性示例说明，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核判 verified 无修改；我独立复核后同意——解析核心论点（double 返回类型、浮点精度风险）与官方判 √ 的立场一致，举例数值不影响判定。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 9 题原文为「在 C++ 中，枚举的底层类型可以是非整型（如 float 或 double ）。」，与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A–D 选项，以 √/× 作答；网站统一用「正确/错误」两选项呈现，单选 options 核对不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 9 题符号为 ×（错误），按 错误=1 映射为 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明枚举（含 enum class）底层类型必须为整型、不能为 float/double，C++11 显式指定底层类型也仍须为整型，与官方答案 × 一致，无事实错误，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核判 verified 无修改；独立复核同意——C++ 标准规定枚举底层类型为整型，解析论据与结论均正确。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 10 题原文为「函数声明 double f(); 返回 int 时，会自动转换为 double」，与网站题干一致（网站仅补句末句号并格式化代码，标点级差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面无 A–D 选项，以 √/× 作答；网站统一用「正确/错误」两选项呈现，单选 options 核对不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 10 题符号为 √（正确），按 正确=0 映射为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核心结论（return 的 int 表达式会隐式转换为声明的 double 返回类型，如 return 42 → 42.0）正确且与官方答案 √ 一致；但原句「这种转换发生在函数调用点」不准确——int→double 转换发生在被调函数的 return 语句处，而非调用点。修正该句后独立复核通过。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nC++ 的类型转换规则之一是：若 `return` 语句中表达式的类型与函数声明的返回类型不一致，编译器会自动将返回值转换为函数声明的返回类型。\n\n对于函数声明 `double f();`：\n- 若函数体中有 `return 42;`，其中 `42` 是 `int` 类型；\n- 编译器会自动将 `int` 类型的 `42` 转换为 `double` 类型的 `42.0` 后返回。\n\n这种转换发生在被调函数的 `return` 语句处，由编译器隐式完成，属于隐式类型转换的一部分。\n\n**易错提醒：**\n- 隐式转换可能带来精度损失或数据截断的风险（如 `double` 转 `int` 会丢失小数部分），但 `int` 转 `double` 不会丢失数据，只是类型发生变化；\n- 若返回类型是 `int`，而实际返回值是 `double`，则会丢失小数部分，这是另一种隐式转换的危害场景。\n\n**知识延伸：**\n函数返回值的隐式转换是 C++ 类型系统的一部分。理解这一规则有助于避免因类型不匹配导致的意外结果，也是后续学习函数重载、模板等高级特性的基础。\n\n**考点：** 隐式类型转换、函数返回类型"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "否决初核对 25 的 verified/无修改判定：初核未发现「这种转换发生在函数调用点」这一事实性不精确表述（转换发生在被调函数 return 语句处，不在调用点），我补充最小修复（仅改该句）并复核通过；答案与核心结论均不变。"
+      }
+    ],
+    "summary": "本批独立复核网站题 21–25，对应 PDF 第 4 页判断题第 6–10 题。卷头（第 1 页「C++ 三级 2025 年 06 月」）与 paperId 一致。判断题答案表第 6–10 题依次为 √、×、√、×、√，按 正确=0/错误=1 映射与网站 answer（0,1,0,1,0）全部一致。题面与原卷逐字对照一致，仅存在句读/空格等标点级差异（题 23「中。如果」vs「中，如果」、题 25 句末句号），均予通过。解析方面：题 21 存在逻辑颠倒句并缺括号优先级提醒，沿用初核修复稿（我已独立推导确认偶/奇判定与 == 优先级高于 & 的解析正确）；题 22 原解析「pos >= size() 抛 out_of_range」不符合标准（应为 pos > size()，pos == size() 返回空串），沿用初核修复稿；题 25 原解析「转换发生在函数调用点」为事实性不精确表述，否决初核的 verified/无修改判定并补充最小修复；题 23、24 解析通过、无修改。五题 verdict：21/22/25 为 revise（待应用 changes），23/24 为 approve。本批无编程题，tests 均为空，无遗留 unresolved。"
+  }
+}
