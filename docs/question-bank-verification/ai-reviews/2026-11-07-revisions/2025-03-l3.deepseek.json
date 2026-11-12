@@ -1,0 +1,712 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    4,
+    6,
+    7,
+    9,
+    10,
+    11,
+    13,
+    14,
+    16,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T15:50:29.550Z",
+  "completedAt": "2026-11-12T18:03:47.238Z",
+  "finishReason": "stop",
+  "inputSha256": "f13d61dd4f1a1efd22652a13eeabdf2599c04954ea23bf00e480a7a8a454289b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标明“C++ 三级 2025 年 03 月”，与 2025-03-l3 对应；第 1 页含单选题答案表。\nPDF第1页卷头显示“C++ 三级”“2025年03月”，与题包标识2025-03-l3一致。\nPDF 第1页卷头标明“C++ 三级 2025 年 03 月”，与 paperId 2025-03-l3 对应。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题题干为“在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么（ ）”，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A 10000101、B 11111010、C 11111011、D 00000101，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 A，即索引 0，与候选 answer=0 一致；独立按 8 位原码验算：符号位 1，数值位 5 的 7 位二进制为 0000101，拼接得 10000101，亦为 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：B 11111010 是 -5 的反码（+5 的 00000101 按位取反），C 11111011 是 -5 的补码（反码加 1），D 00000101 是 +5 的原码；候选解析逐项结论与推导一致，无内部矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末第 4 题题干为“十进制数 111.111 的二进制表示可以是下面的（ ）”，与候选题面一致（仅句末标点差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A 1101111.0001110001、B 1101110.1001110001、C 1101111.1001110001、D 1101111.0011110001，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 A，即索引 0，与候选 answer=0 一致；独立验算整数 111=1101111₂、小数前 10 位为 0001110001，答案为 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立乘 2 取整验算：0.111→0.222→0.444→0.888→1.776→1.552→1.104→0.208→0.416→0.832→1.664，取整序列 0001110001；整数除法逆序得 1101111，组合为 1101111.0001110001。候选解析逐项分析与此一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干为“在 C++ 中，一个 8 位有符号整数（使用补码表示）的范围是（ ）”，与候选题面一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A -128 到 127、B -127 到 128、C -256 到 255、D 0 到 255，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 A，即索引 0，与候选 answer=0 一致；独立按补码位权验算：10000000₂=-128，01111111₂=127。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：8 位补码范围为 -128 到 127；C 的 -256 到 255 对应 9 位有符号补码，16 位有符号范围为 -32768 到 32767；D 是 8 位无符号范围。候选解析各选项结论正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题代码为 int a = -5; unsigned int b = a; cout << b;，与候选题面代码一致；原卷同样未含 main 框架。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A -5、B 5、C 4294967291、D 编译错误，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 C，即索引 2，与候选 answer=2 一致；独立按 32 位补码验算：-5 转为 unsigned int 的值为 2^32-5=4294967291。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：0xFFFFFFFB 等于 2^32-5=4294967291；该转换不是取绝对值，也不是编译错误。候选解析的模 2^32 解释、16 位反例及 unsigned int x=-1 的延伸均正确，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末第 9 题题干为“下面程序是将十进制转十六进制，横线处应该填入的是（ ）”，代码在第 3 页：int decimal = 255; 后接横线及 return 0;，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A cout << oct << decimal;、B cout << decimal << decimal;、C cout << hex << decimal;、D 不能正确执行，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 C，即索引 2，与候选 answer=2 一致；独立验证 255 的十六进制为 ff，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：255=15×16+15，十六进制为 ff，八进制为 377；B 是合法语句，会输出 255255 且未设置 hex；A 输出八进制 377，不符合题意；D 错误。候选解析各选项结论正确，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题题干及代码（int a=0b1101; int b=0b1011; cout<<(a^b);）与候选一致，仅有排版和标点差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A-D依次为“整体异或运算”“按位同或运算”“按位与运算”“按位异或运算”，与候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第10题为D；候选answer=3即D。独立计算1101^1011=0110₂=6，^为按位异或。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐位推导1⊕1=0、1⊕0=1、0⊕1=1、1⊕1=0，得0110₂；并正确指出a&b=1001₂=9，B、C、D辨析均无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页代码为arr={3,7,2,9,5}、maxIndex=0、for(int i=1;i<5;i++)，横线后接{maxIndex=i;}；与候选一致，第4页续接选项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D依次为if(arr[maxIndex]>arr[i])、if(arr[i]-1>arr[maxIndex])、if(arr[i]+1>arr[maxIndex])、if(arr[i]>arr[maxIndex])，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第11题为D；候选answer=3即D。独立代入D后最大元素9的下标为3，输出3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "填A时模拟：i=2时arr[0]=3>arr[2]=2成立，maxIndex被改为2，之后i=3、4均不再更新，最终输出2，候选说明正确；B、C为无意义变形，D为正确更新条件。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干“下面程序最后能够得到 HelloC++ 的是（）”及代码string str=HelloWorld;横线;cout<<str;与候选一致，第5页续接选项C、D。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4至5页A-D依次为str.replace(0,5,C++)、str.replace(5,5,C++)、str.replace(1,5,C++)、str.replace(4,5,C++)，与候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第13题为B；候选answer=1即B。B删除下标5起的World并插入C++，得到HelloC++。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：A得C++World；B得HelloC++；C删除elloW后得HC++orld；D删除oWorl后得HellC++d。候选对四项结果及replace参数语义的分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第5页题干原文为“想要得到字符串 world”（小写），候选题面写作World；PDF四个选项均为World，官方答案D亦输出World，源卷存在题干与选项/答案不一致。候选按官方题意整理后无法与逐字原卷同时成立，故保留争议。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A-D依次为insert(4,World)+substr(4,4)、substr(5,5)、insert(World)单参+substr(5,5)、insert(5,World)+substr(5,5)，均用大写World，与候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第14题为D；候选answer=3即D。按选项D执行insert(5,World)后substr(5,5)得World，与官方答案对应；题干小写world的冲突见statement与unresolved。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：A插入后为HellWorldoC++，substr(4,4)=Worl；B对HelloC++取substr(5,5)因剩余长度不足截断为C++；C无单参insert重载；D得World。候选对四项的推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "PDF第5页题干目标写作小写world，而四个选项及官方答案D均对应大写World；候选题面按官方题意改为World，源卷题干与选项/答案矛盾未定，保留争议。"
+        ]
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第1题原文为“判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度”，候选仅全角冒号等排版差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D选项；候选采用“正确/错误”标准形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第1题为×；候选answer=1即错误，映射一致。"
+          },
+          "explanation": {
+            "status": "unresolved",
+            "evidence": "候选以“还必须边长为正”论证不成立：其反例0、1、2与-1、2、3均不满足任意两边之和大于第三边，不能证明条件不足；且由a+b>c与a+c>b相加可得2a>0，三条严格不等式本身已推出三边均为正。官方判错的具体依据未在PDF答案表给出，保留争议，不擅自定案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案表判×且候选answer=1与之一致，但候选解析的“边长为正”论据错误（反例不满足题设；严格三角不等式可推出正性），官方判错依据未明，保留未决。"
+        ]
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第8题原句与候选题干一致（仅括号/全半角差异）：两个13进制数A、B在十进制下分别表示10、11，并断言(A+B)_13=(18)_13。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无 A-D 选项，按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页答案表第8题为√，正确=0，与 officialAnswer=0、候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：A=10、B=11，A+B=21；21=1×13+8，即21₁₀=(18)₁₃，命题成立。候选解析正确指出A是一位13进制数字，不能写成A=(10)₁₃，计算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第9题原句为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”，候选题干仅句末分号改为句号，k²、k³写法与源卷一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无 A-D 选项，按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页答案表第9题为×，错误=1，与 officialAnswer=1、候选 answer=1 一致；原命题对一般 k 进制不成立。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析把“逢 k 进第二位”也绝对判为不存在/错误，表述不严谨：若“第二位”指从右往左第二位（位权 k），从个位满 k 向相邻高位进 1 正是进到第二位；规范说法应为“逢 k 进一”。原命题真正错误在于把 k²、k³ 位称为百位、千位。需按此重写解析，避免给考生错误知识。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\nk 进制的进位规则规范表述是“逢 k 进一”：某一位计满 k，就向相邻的高一位进 1。原句“逢 k 进第二位”表述不规范；若“第二位”指从右往左第二位（位权 k），从个位向它进位并不构成独立错误，规范说法仍应写成“逢 k 进一”。\n\n原命题的关键错误在后半句：k 进制中位权为 k²、k³ 的位分别是第 2 位、第 3 位（从第 0 位起），并不是十进制的“百位”“千位”。“百位”“千位”是十进制（k=10）的位名，只有当 k=10 时，k²=100、k³=1000 才分别对应百位、千位。对一般 k 进制不能套用这些名称。\n\n逐条判断：\n1. “逢 k 进第二位”——表述不规范，规范说法是“逢 k 进一”，向相邻高一位进 1。\n2. “k² 进百位、k³ 进千位”——错误。位权 k²、k³ 的位不是一般 k 进制的百位、千位。\n\n因此原命题作为对 k 进制的一般描述是错误的。\n\n**易错提醒：**\n- 进位规则应记作“逢 k 进一”（向相邻高一位进 1），不要与“第几位”的位序说法混淆。\n- “个位、十位、百位、千位”是十进制习惯叫法；一般 k 进制应说“第 0 位、第 1 位、第 2 位（位权 1, k, k²）”。\n\n**知识延伸：**\nk 进制数按权展开：数值 = Σ(第 i 位数字 × kⁱ)。理解“逢 k 进一”与位权展开，是进制转换类题目的基础。\n\n**考点：** 进制概念、进位规则、位权"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第10题原句“CCF(十九进制)=21AC(十三进制)(不区分大小写)”与候选题干一致，仅括号全半角与标点差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”，无 A-D 选项，按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页答案表第10题为×，错误=1，与 officialAnswer=1、候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按权展开：CCF₁₉=12×19²+12×19+15=4332+228+15=4575；21AC₁₃=2×13³+1×13²+10×13+12=4394+169+130+12=4705；4575≠4705，命题错误。候选解析关于字母数值固定、13与19进制合法数字范围的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页3.1.2–3.1.6题干、输入输出、样例1025→1000、数据范围0≤x<2025均与候选一致；3.1.7提示中and对应&、or对应|，以及1.0s/512MB限制已包含。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer=null；以官方参考程序和独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "恒等式(x&y)+(x|y)=x+y成立，故原方程等价于x+y=2025，唯一正整数解y=2025-x；官方数据范围0≤x<2025下y恒为正。样例1025→1000复算：1025&1000=0、1025|1000=2025，和为2025。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "官方参考程序枚举i=1..2025找首个命中，候选O(1)程序输出2025-x；在0≤x<2025内逐点等价（x=0→2025、x=2024→1已独立复核），long long无溢出，复杂度O(1)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "数据范围最小值 x=0",
+            "input": "0\n",
+            "output": "2025\n",
+            "reason": "由(x&y)+(x|y)=x+y得y=2025-x；x=0时y=2025为唯一正整数解，官方枚举程序同样在i=2025处命中。"
+          },
+          {
+            "name": "数据范围上界 x=2024",
+            "input": "2024\n",
+            "output": "1\n",
+            "reason": "y=2025-2024=1；2024为偶数，2024&1=0、2024|1=2025，和为2025，成立且y为唯一最小正整数解。"
+          },
+          {
+            "name": "官方样例 x=1025",
+            "input": "1025\n",
+            "output": "1000\n",
+            "reason": "PDF第7页样例1；1025&1000=0、1025|1000=2025，和为2025。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页3.2.10–3.2.14题面、样例6词→apple、数据范围1≤n≤100、词长≤30、仅大小写字母，与候选一致；1.0s/512MB限制已包含。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer=null；以官方参考程序和独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立走查样例：Apple→apple(1)、banana(1)、apple(2)、Orange→orange(1)、banana(2)、apple(3)，最终apple以3次唯一最大；候选map计数、逐字符转小写、cur>best维护最大值的逻辑正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与官方map计数程序语义等价；逐字符tolower(static_cast<unsigned char>(c))安全，输出为小写键；n≤100、词长≤30范围内复杂度约O(n·L·log n)，无溢出；n=1、大小写混合、长度30、最大频次非首个等边界独立推演正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 n=1",
+            "input": "1\nA\n",
+            "output": "a\n",
+            "reason": "官方数据范围下界；唯一单词A转小写后为a，输出须为小写形式。"
+          },
+          {
+            "name": "大小写混合同一单词",
+            "input": "4\nApple\nAPPLE\naPpLe\napple\n",
+            "output": "apple\n",
+            "reason": "忽略大小写后四个单词均为apple，计4次且为唯一最多；验证全字符小写化。"
+          },
+          {
+            "name": "词长上界 30",
+            "input": "1\nABCDEFGHIJKLMNOPQRSTUVWXYZABCD\n",
+            "output": "abcdefghijklmnopqrstuvwxyzabcd\n",
+            "reason": "单词长度恰为官方上界30（26+4个字母），n=1时唯一单词转小写输出。"
+          },
+          {
+            "name": "最大频次单词非首个",
+            "input": "3\nzzz\nApple\napple\n",
+            "output": "apple\n",
+            "reason": "zzz先成为临时答案，apple累计2次后经cur>best更新为最终答案，验证最大值维护逻辑。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3,
+        4,
+        6,
+        7,
+        9
+      ],
+      "usage": {
+        "prompt_tokens": 38779,
+        "completion_tokens": 9546,
+        "total_tokens": 48325,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 7783,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01154445,
+          "allowance": 0.00692667,
+          "tokens": {
+            "input": 38779,
+            "output": 9546,
+            "reasoning": 7783,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T15:50:29.550Z",
+      "completedAt": "2026-11-12T15:51:30.555Z"
+    },
+    {
+      "questionIds": [
+        10,
+        11,
+        13,
+        14,
+        16
+      ],
+      "usage": {
+        "prompt_tokens": 38903,
+        "completion_tokens": 16827,
+        "total_tokens": 55730,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 38784,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 15084,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0102304,
+          "allowance": 0.00613824,
+          "tokens": {
+            "input": 119,
+            "output": 16827,
+            "reasoning": 15084,
+            "cache_read": 38784,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T15:58:38.000Z",
+      "completedAt": "2026-11-12T16:00:43.444Z"
+    },
+    {
+      "questionIds": [
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 38779,
+        "completion_tokens": 16210,
+        "total_tokens": 54989,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 38656,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 13673,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00986042,
+          "allowance": 0.00591625,
+          "tokens": {
+            "input": 123,
+            "output": 16210,
+            "reasoning": 13673,
+            "cache_read": 38656,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T18:02:33.871Z",
+      "completedAt": "2026-11-12T18:03:47.238Z"
+    }
+  ]
+}

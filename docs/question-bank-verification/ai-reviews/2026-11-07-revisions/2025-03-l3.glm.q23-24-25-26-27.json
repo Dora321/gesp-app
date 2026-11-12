@@ -1,0 +1,285 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T19:57:59.045Z",
+  "completedAt": "2026-11-12T20:03:46.951Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 56045,
+    "completion_tokens": 36113,
+    "total_tokens": 92158,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 32758
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02646325,
+      "allowance": 0.02646325,
+      "tokens": {
+        "input": 56045,
+        "output": 36113,
+        "reasoning": 32758,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f13d61dd4f1a1efd22652a13eeabdf2599c04954ea23bf00e480a7a8a454289b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 三级 2025 年 03 月”，与 paperId 2025-03-l3（2025 年 3 月、C++ 三级）一致；两道编程题标题“2025”“词频统计”亦与 GESP202503 三级批次对应。"
+    },
+    "questions": [
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 8 题原文为“两个13进制的数A和B，在10进制下分别表示10和11。（A+B）13=（18）13，也就是说13进制数A加上13进制数B，和是13进制数18。”，与候选题干一致（仅全半角括号与空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两选项，无 A–D 选项，按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 8 位为 √，按正确=0 映射 officialAnswer=0，与候选 answer=0 一致；独立验算：13 进制一位数字 A=10、B=11，A+B=21=1×13+8，即 (A+B)₁₃=(18)₁₃，命题成立，答案本身正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：候选解析正确区分“13 进制的一位数字 A（值为十进制 10）”与“两位 13 进制数 (10)₁₃（值为 1×13+0=13）”，并验算 10+11=21=1×13+8=(18)₁₃，结论“正确”与官方 √ 一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立验算 10+11=21=(18)₁₃ 与官方 √、候选解析全部吻合，接受初核“全部通过”的结论，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 9 题原文为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”（图中 k²、k³ 为上标，直接紧接“进百位”“进千位”，其前无“逢”字），候选题干仅将句末分号写作句号，内容与源卷一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两选项，无 A–D 选项，按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 位为 ×，按错误=1 映射 officialAnswer=1，与候选 answer=1 一致；原命题把十进制位名“百位/千位”套用于一般 k 进制，进位表述亦不符合“逢 k 进一”规范，判 × 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：候选解析给出规范进位规则“逢 k 进一（向相邻高一位进 1）”，并以规范规则可证“逢 k 进第二位”作为一般进位规则确属错误（如十进制中十位计满后向百位即第 3 位进位，并非固定进到第二位）；“百位/千位仅当 k=10 时对应 k²/k³ 位、一般 k 进制不能套用”的论断正确，整体支撑答案 ×，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决初核对解析的改写：初核仅以“表述不严谨”为由重写，未指出候选文本的任何事实错误——候选是在进位规则语境下否定“逢 k 进第二位”，并已给出规范说法“逢 k 进一”与向相邻高一位进位，十进制反例（十位计满进到百位而非固定第二位）支持其判断；改写稿新增“不构成独立错误”等含混表述，属文风性重写且未修复实质问题，按规则不予采纳。题干、答案 × 与其余论断均独立核验通过。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 10 题原文为“CCF(十九进制) = 21AC(十三进制)(不区分大小写)”，与候选题干一致（仅括号全半角与句末标点差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两选项，无 A–D 选项，按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 10 位为 ×，按错误=1 映射 officialAnswer=1，与候选 answer=1 一致；独立验算 CCF₁₉=4575、21AC₁₃=4705，两值不等，命题错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：按权展开 CCF₁₉=12×361+12×19+15=4332+228+15=4575，21AC₁₃=2×2197+169+130+12=4705，4575≠4705；候选关于字母数值对应固定（A=10…F=15）、随进制变化的只是合法范围的说明正确（13 进制最大数字为 12 即 C，21AC 中 A=10、C=12 均合法），解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立按权展开验算 4575 与 4705 不等，答案 × 与候选解析全部吻合，接受初核结论，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 3.1.1–3.1.7 与第 8 页限制逐项对照：题面“最小正整数 y 使 (x and y)+(x or y)=2025”、输入“一行，一个整数 x”、输出“否则输出 -1”、样例 1025→1000、数据范围“对于所有测试点，保证 0 ≤ x < 2025。”、提示（and 运算符为 &，or 运算符为 |）、时间限制 1.0 s 与内存限制 512.0 MB，候选题面均已包含且一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方答案表仅覆盖客观题（第 1 页单选、第 6 页判断），编程题无答案表项，officialAnswer=null；正确性以官方参考程序与独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：按位验证恒等式 (x&y)+(x|y)=x+y（同位均为 1 贡献 2·2ⁱ，恰一位为 1 贡献 2ⁱ，均为 0 贡献 0，与算术和一致），方程化为 x+y=2025，解 y=2025-x 唯一；在官方数据范围 0≤x<2025 内 y 恒为正；样例复算 1025&1000=0、1025|1000=2025、和为 2025，输出 1000 正确。解析中 x=2025、x=2026 的走查超出官方数据范围，属对“否则输出 -1”分支的一般性讲解，与题面自洽，不构成错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立复核通过：官方参考程序枚举 i=1..2025 取首个满足 (x&i)+(x|i)=2025 的 i，即唯一解 y=2025-x；候选 O(1) 程序在保证范围 0≤x<2025 内与官方程序逐点等价（x=0→2025、x=3→2022、x=2024→1 均已独立验算），long long 无溢出，复杂度 O(1)；x≥2025 时两者同为无解输出 -1（x+i≥2026>2025）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "数据范围最小值 x=0",
+            "input": "0\n",
+            "output": "2025\n",
+            "reason": "由恒等式得唯一解 y=2025-0=2025>0；0&2025=0、0|2025=2025，和为 2025，官方枚举程序同样在 i=2025 处命中。"
+          },
+          {
+            "name": "按位与不为零的情形 x=3",
+            "input": "3\n",
+            "output": "2022\n",
+            "reason": "y=2025-3=2022；2022=0b11111100110，2022&3=2、2022|3=2023，2+2023=2025 成立，验证 AND≠0 时恒等式同样成立，且 2022 为唯一解即最小正整数解。"
+          },
+          {
+            "name": "数据范围上界 x=2024",
+            "input": "2024\n",
+            "output": "1\n",
+            "reason": "y=2025-2024=1；2024 为偶数故 2024&1=0、2024|1=2025，和为 2025，y=1 为最小正整数解。"
+          },
+          {
+            "name": "官方样例 x=1025",
+            "input": "1025\n",
+            "output": "1000\n",
+            "reason": "PDF 第 7 页样例 1；1025&1000=0、1025|1000=2025，和为 2025。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面（含数据范围、提示、限制）与 PDF 逐项一致，恒等式推导、样例与参考代码等价性均经独立复核通过；在初核 3 组测试外补充 AND≠0 的 x=3→2022 用例并独立验算，边界覆盖更完整。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 3.2.9–3.2.14 逐项对照：题面（忽略大小写并列举 Apple/apple/APPLE/aPPle、输入保证出现次数最多的单词只有一个、输出为小写形式）、样例 6 词输入输出 apple、数据范围“1 ≤ n ≤ 100，每个单词的长度不超过 30，且仅由大小写英文字母组成”、时间限制 1.0 s 与内存限制 512.0 MB，候选题面均已包含且一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方答案表仅覆盖客观题，编程题无答案表项，officialAnswer=null；正确性以官方参考程序与独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：按候选步骤走查样例，apple 计数 1→2→3、banana 1→2、orange 1，apple 以 3 次为唯一最大，输出 apple 与官方样例一致；cur>best 严格更新依赖题面“出现次数最多的单词唯一”的保证，逻辑自洽；逐字符（而非仅首字母）统一转小写的要点说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立复核通过：与官方 map 计数并 transform 全串转小写的程序语义等价；候选逐字符 tolower(static_cast<unsigned char>(c)) 用法安全，输出键即为小写形式；n≤100、词长≤30 范围内复杂度约 O(n·L·log n)，无溢出或越界风险；n=1、大小写混合、词长恰为 30、最大频次单词非首个等边界已独立推演正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 n=1",
+            "input": "1\nA\n",
+            "output": "a\n",
+            "reason": "官方数据范围下界；唯一单词 A 转小写后为 a，输出须为小写形式。"
+          },
+          {
+            "name": "大小写混合同一单词",
+            "input": "4\nApple\nAPPLE\naPpLe\napple\n",
+            "output": "apple\n",
+            "reason": "忽略大小写后四个单词均为 apple 计 4 次，为唯一最多，验证逐字符小写化逻辑。"
+          },
+          {
+            "name": "词长上界 30",
+            "input": "1\nABCDEFGHIJKLMNOPQRSTUVWXYZABCD\n",
+            "output": "abcdefghijklmnopqrstuvwxyzabcd\n",
+            "reason": "单词长度恰为官方上界 30（26+4 个字母），n=1 时唯一单词转小写输出。"
+          },
+          {
+            "name": "最大频次单词非首个",
+            "input": "3\nzzz\nApple\napple\n",
+            "output": "apple\n",
+            "reason": "zzz 计 1 次先成为临时答案，apple 计 2 次后经 cur>best 更新为最终答案，验证最大值维护不误留首个单词。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面与 PDF 逐项一致，样例走查与参考代码语义等价性均经独立复核通过；4 组测试期望输出均由我独立推演核对无误。"
+      }
+    ],
+    "summary": "本批核验 23–27 共 5 题，全部 approve。23（13 进制 A+B=(18)₁₃）与 25（CCF₁₉=4575≠21AC₁₃=4705）独立验算与官方 √/× 及解析一致；24 题干、答案 × 核验通过，候选解析对“逢 k 进第二位”的否定与“百位/千位为十进制专名”的论断经独立推导成立，否决初核的解析改写（未指出实质错误，且改写引入含混表述）；26、27 编程题题面（数据范围、提示、限制）与 PDF 逐项一致，参考代码与官方程序在保证数据范围内等价，全部测试期望输出均独立推演核对。无新增未决事项。"
+  }
+}
