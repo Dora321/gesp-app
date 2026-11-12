@@ -695,6 +695,10 @@ k 进制数按权展开：数值 = Σ(第 i 位数字 × kⁱ)。理解"逢 k �
 
 **考点：** 进制概念、进位规则、位权`,
             tags: ['进制转换'],
+      "sourcePage": 6,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"],
         },
         {
             id: 25,

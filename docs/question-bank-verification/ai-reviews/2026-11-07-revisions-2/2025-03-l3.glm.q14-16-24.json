@@ -1,0 +1,172 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    14,
+    16,
+    24
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T22:00:28.747Z",
+  "completedAt": "2026-11-12T22:02:08.010Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34691,
+    "completion_tokens": 9470,
+    "total_tokens": 44161,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6276
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00993865,
+      "allowance": 0.00993865,
+      "tokens": {
+        "input": 34691,
+        "output": 9470,
+        "reasoning": 6276,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "cfc848015bb7a7b5625c6d45c76e31c6eee2ce7f7f1378e6127e7bc52c68f222",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 三级”“2025 年 03 月”，与 2025-03-l3 的等级、年、月一致。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第 5 页原图题干为“想要得到字符串 world,下面程序横线处应该填入的是（）”，目标写作小写 world；同页 A–D 选项全部围绕大写 \"World\" 设计，第 1 页答案表第 14 题为 D（其输出为大写 World）。小写 world 无法由任何选项得到，属源卷自身矛盾。候选题面按选项与官方答案整理为大写 World 后与选项自洽，但与原卷逐字文本不一致，按“源卷自身错须保留争议”规则维持 unresolved，不擅自定案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图 A–D 依次为 str.insert(4, \"World\"); cout << str.substr(4, 4); / cout << str.substr(5, 5); / str.insert(\"World\"); cout << str.substr(5, 5); / str.insert(5, \"World\"); cout << str.substr(5, 5);，与候选 options 逐项一致，顺序无差异，无需检验答案映射调整。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 D，0 起始索引 3，与候选 answer=3 一致；独立推演：str=\"HelloC++\" 经 insert(5, \"World\") 得 \"HelloWorldC++\"，substr(5,5) 自下标 5 取 5 字符得 \"World\"，D 成立且与官方答案自洽。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选原稿两处事实错误：B 项称“下标 5-9 是 C++”（原串长度 8，下标仅 0–7）并称 substr(5,5)“越界”（pos=5≤size 合法，count 超过剩余时按标准截断为 \"C++\"，不抛异常）。所附修改稿已更正两处并补注源卷小写 world 矛盾说明；逐项独立核对：A 得 \"HellWorldoC++\"、substr(4,4)=\"Worl\"；B 得 \"C++\"；C 的 std::string 无单参数字符串 insert 重载，编译不通过；D 得 \"World\"，均无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (str.insert(5, \"World\"); cout << str.substr(5, 5);)**\n\n> 说明：原卷题干将目标字符串写作小写 `world`，但四个选项及官方答案 D 均对应大写 `World`，源卷题干与选项存在大小写矛盾；本解析按选项和官方答案的大写 `World` 说明。\n\n**核心解析：**\n1. 原字符串 `str = \"HelloC++\"`。下标：`H(0) e(1) l(2) l(3) o(4) C(5) +(6) +(7)`。\n2. 目标输出 `\"World\"`。\n3. 选项 D 的两步操作：\n   - 第一步：`str.insert(5, \"World\")` 在下标 5 处（即 `C` 的位置）插入 `\"World\"`，字符串变为 `\"HelloWorldC++\"`。\n   - 第二步：`str.substr(5, 5)` 从下标 5 开始截取 5 个字符，结果为 `\"World\"`。\n4. 两步配合精确得到目标输出。\n\n**选项逐项分析：**\n- **A**：`str.insert(4, \"World\")` 得到 `\"HellWorldoC++\"`，`substr(4,4)` 截取 `\"Worl\"`，不是 `\"World\"`。\n- **B**：原串 `\"HelloC++\"` 长度 8，下标 5 起只有 `\"C++\"` 三个字符；`substr(5,5)` 的起始位置合法，请求长度超过剩余字符时按 `std::string::substr` 规则截断到末尾，得到 `\"C++\"`，不是 `\"World\"`，也不会因 count 过大而越界异常。\n- **C**：`std::string` 没有单参数字符串 `insert(\"World\")` 的重载，不能编译。\n- **D**：插入后 `str = \"HelloWorldC++\"`，`substr(5,5)` 得到 `\"World\"`，正确。\n\n**易错提醒：**\n- `insert` 必须指定插入位置（第一个参数），不能只传字符串。\n- `substr` 的第二个参数是长度，不是结束下标；请求长度超过剩余字符时会截断到末尾，而不是越界异常。\n- 本题源卷题干写成小写 `world` 与选项/答案的大写 `World` 不一致，属于源卷矛盾。\n\n**考点：** string 类的 insert() 与 substr() 联合应用"
+        },
+        "tests": [],
+        "unresolved": [
+          "PDF 第 5 页原图题干目标写作小写 world，而四个选项及官方答案 D 均对应大写 World，属源卷自身矛盾；候选题面按官方题意整理为大写 World 后自洽，但与原卷逐字文本不一致，争议保留，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核对 options/answer 的核验结论（本复核独立推演四个选项：A 得 \"Worl\"、B 得 \"C++\" 且不抛异常、C 编译错误、D 得 \"World\"，确认答案 D 与官方映射一致）；explanation 维度确认候选原稿“下标 5-9”与“越界”两处错误属实，初核修正稿内容独立核对无误，采纳并标修复后核验通过；statement 维度按“源卷自身矛盾保留争议”规则维持 unresolved，不采用将整理文本定案为 verified 的写法。"
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文“判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度”，与候选题面仅冒号全半角与句末标点差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项，以题号加 √/× 答案表呈现，候选“正确/错误”为判断题标准形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题答案表第 1 位符号为 ×（清晰可辨），按正确=0、错误=1 映射 officialAnswer=1，与候选 answer=1 一致；答案符号映射本身核验通过，官方判定与标准数学解读的冲突另记于 unresolved。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选原稿立论不成立：由 a+b>c 与 a+c>b 相加得 2a>0 即 a>0，同理 b>0、c>0，三个严格不等式已蕴含三边为正，“边长为正”并非额外独立条件；其反例 0、1、2（0+1=1<2）与 -1、2、3（-1+2=1<3）均不满足题设条件，不能证明条件不充分。修改稿如实说明官方判 × 与标准充要性解读的冲突、官方依据未在 PDF 给出并保留争议，未编造官方理由，数学论证独立核对无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误（按PDF答案表第1题判×；候选answer=1与答案表一致）**\n\n**争议说明：** 本题官方答案表判×，但按通常的三角形边长判定，若三条边长 a、b、c 满足 a+b>c、a+c>b、b+c>a，则已经能推出三边均为正：由 a+b>c 与 a+c>b 相加得 2a>0，即 a>0，同理 b>0、c>0。因此“任意两边长度之和大于第三条边”在标准实数边长模型下已是三角形（非退化）成立的充要条件，不需要额外追加“边长为正”这一独立条件；若把“任意两边之差小于第三边”也算作条件，它也只是与三个严格不等式等价的表述，不是额外条件。\n\n用 0、1、2 或 -1、2、3 作反例也不成立：0+1=1<2，-1+2=1<3，均不满足题设的“任意两边之和大于第三边”，不能证明题设条件不充分。原卷判×的具体依据未在 PDF 中给出，无法据现有证据编造官方理由；本题解析保留争议，不擅自改判。\n\n**易错提醒：** 不要把“边长为正”误当成独立于三个严格三角不等式之外的条件；在实数范围内，三个严格不等式已蕴含三边为正。\n\n**考点：** 三角形不等式、命题条件的充分必要性"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案表第 1 题判 × 且与候选 answer=1 一致，但在“任意两边之和大于第三边”的全称解读下该条件是三角形成立的充要条件，官方判 × 的依据未在 PDF 给出；候选原解析“边长为正”理由不成立、反例自相矛盾，已提供如实保留争议的修正稿，整体争议保留，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核的 explanation 修正稿：本复核独立验证其数学论证（2a>0 推出 a>0；两组反例均不满足题设）与“不编造官方理由”的处理原则，确认候选原稿的两类论据（边长为正为额外条件、反例证明不充分）均不成立，故采纳修正并标修复后核验通过；statement 与答案符号映射核验通过；官方判 × 依据缺失的实质争议维持 unresolved，不擅自定案。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 9 题原文为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”（k²、k³ 为上标，其前无“逢”字）；候选补出“逢 k²”“逢 k³”属并列省略成分的等价补全，句末分号改句号，命题判断对象（错误进位规则描述）与真值判断均不变，含义未改变，属允许的等价整理。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两选项，无 A–D 选项，按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 位符号为 ×，按错误=1 映射 officialAnswer=1，与候选 answer=1 一致；命题把十进制位名“百位/千位”套用于一般 k 进制，且“逢 k 进第二位”不符合“逢 k 进一（向相邻高一位）”规范，判 × 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：候选解析给出规范进位规则“逢 k 进一位（向相邻高一位进 1）”，可证“逢 k 进第二位”作为一般进位规则确属错误；并指出位权依次为 1, k, k², k³…，“百位/千位”仅当 k=10 时对应 k²/k³ 位、一般 k 进制不能套用十进制位名，各论断无事实错误，整体独立支撑答案 ×。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核对题 24 五个维度的核验结论：本复核独立确认候选解析“逢 k 进一”“位权 kⁱ”“百位/千位仅十进制位名”等论断正确，足以支撑答案 ×；候选在 k²/k³ 前补“逢”属并列省略的等价补全，不改变判断对象，与源卷判定结论一致。无任何事实错误需修复，changes 为空，否决任何进一步的文风性改写。"
+      }
+    ],
+    "summary": "独立复核 3 题：题 14 选项与官方答案 D 映射核验通过，但原卷第 5 页题干小写 world 与选项/答案大写 World 存在源卷自身矛盾，statement 维持 unresolved；候选解析“下标 5-9”“越界”两处错误经独立推演确认，采纳修正稿（含截断语义更正与源卷矛盾注记），explanation 修复后核验通过。题 16 题面与答案表 × 映射核验通过，但官方判 × 与标准充要性解读冲突且依据缺失，候选“边长为正”立论及反例均不成立（三个严格不等式已蕴含三边为正），采纳如实保留争议的修正稿，explanation 修复后核验通过，整体维持 unresolved。题 24 题面（补“逢”属等价整理）、答案 × 与解析均独立核验通过，verdict 为 approve，无需修改。三题均为客观题，不涉及参考代码与 tests。"
+  }
+}

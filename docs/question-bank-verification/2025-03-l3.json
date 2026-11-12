@@ -966,40 +966,39 @@
       "id": 24,
       "resolved": true,
       "dimensions": [
-        "answer"
-      ],
-      "blockedDimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第6页第9题原句为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”，网站题干在k²、k³前各多一个“逢”，与源卷文字不一致。",
-          "review": "PDF 第 6 页第 9 题原句为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”（图中 k²、k³ 为上标，紧接“进百位”“进千位”，其前无“逢”字；文本层也仅在句首出现一处“逢”）。网站题干在 k²、k³ 前各多一个“逢”字，与源卷不一致，需修正。"
+          "initial": "PDF第6页第9题原图为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”（k²、k³ 为上标，k²、k³ 前无“逢”字）；候选在 k²、k³ 前补出“逢”并将句末分号改句号，属并列结构补全的等价整理，判断对象未变。",
+          "review": "PDF 第 6 页判断题第 9 题原文为“k 进制，逢 k 进第二位，k² 进百位，k³ 进千位；”（k²、k³ 为上标，其前无“逢”字）；候选补出“逢 k²”“逢 k³”属并列省略成分的等价补全，句末分号改句号，命题判断对象（错误进位规则描述）与真值判断均不变，含义未改变，属允许的等价整理。"
         },
         "answer": {
-          "initial": "PDF第6页答案表第9题为“×”，按错误=1映射，officialAnswer=1；网站answer=1一致。",
-          "review": "PDF 第 6 页答案表第 9 题为 ×，按错误=1 映射 officialAnswer=1，与网站 answer=1 一致；命题对一般 k 进制的描述确实错误（进位规则与位名均不成立）。"
+          "initial": "PDF第6页判断题答案表第9位为×，候选answer=1即“错误”，映射一致；命题把十进制的百位/千位名称套用于一般k进制，且“逢k进第二位”不是规范进位表述，判×成立。",
+          "review": "PDF 第 6 页判断题答案表第 9 位符号为 ×，按错误=1 映射 officialAnswer=1，与候选 answer=1 一致；命题把十进制位名“百位/千位”套用于一般 k 进制，且“逢 k 进第二位”不符合“逢 k 进一（向相邻高一位）”规范，判 × 成立。"
         },
         "explanation": {
-          "initial": "现解析以“逢k²进百位、逢k³进千位”的口径说明，与源卷文字不同；应围绕一般k进制的位权与十进制位名差异说明命题错误。",
-          "review": "现有解析按“逢k²进百位、逢k³进千位”口径批驳，与源卷文字不符；且未指出“逢 k 进第二位”本身不成立（进位应为向相邻高一位进 1）。需按源卷原句重写。"
+          "initial": "候选解析给出规范进位“逢k进一位”和位权k^i，说明百位/千位仅十进制名称，且k²/k³位不能泛称百位/千位，能独立支撑答案×，无事实错误。",
+          "review": "独立复核通过：候选解析给出规范进位规则“逢 k 进一位（向相邻高一位进 1）”，可证“逢 k 进第二位”作为一般进位规则确属错误；并指出位权依次为 1, k, k², k³…，“百位/千位”仅当 k=10 时对应 k²/k³ 位、一般 k 进制不能套用十进制位名，各论断无事实错误，整体独立支撑答案 ×。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2025-03-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2025-03-l3.glm.json"
       ]
     },
     {
@@ -1151,22 +1150,9 @@
       "reasons": [
         "explanation 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 24,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2025-03-l3.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-03-l3.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2025-03-l3.integration.json"
 }
