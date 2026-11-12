@@ -1,0 +1,218 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T00:09:56.837Z",
+  "completedAt": "2026-11-12T00:11:39.457Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48348,
+    "completion_tokens": 9911,
+    "total_tokens": 58259,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7162
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0122077,
+      "allowance": 0.0122077,
+      "tokens": {
+        "input": 48348,
+        "output": 9911,
+        "reasoning": 7162,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "77d2b2ae25fbcdf873a324e4c803131adf5f4bff1dc27e57790180e378ae95ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP」「C++ 三级」「2024 年 03 月」，与 paperId 2024-03-l3 的年份 2024、月份 3、级别 3 一致。"
+    },
+    "questions": [
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 10 题原文「任何一个 for 循环都可以转化为等价的 while 循环（ ）。」与候选题干语义一致，仅句末括号为排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按「正确/错误」判定，不设 A—D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表依次为 × × × × × √ × √ √ √，第 10 格为 √（正确），0 起始索引 0；候选 answer=0 一致。独立判断：for(初始化;条件;迭代) 的三段流程可用复合块内 while 完整表达，含 continue 时通过把迭代表达式复制到 continue 之前仍可保持等价，题干为真，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的等价模板 {初始化; while(条件){循环体;迭代;}} 经独立推导正确；continue 跳转目标差异（for 跳向迭代表达式、while 跳向条件判断）及「把迭代表达式复制到每个 continue 前」的处理方式正确；for 变量作用域提醒正确；「实现细节不影响结论本身」的限定成立。未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核后无需修改：答案与 PDF 第 5 页判断题答案表第 10 格 √ 一致，解析中的等价模板、continue 差异处理与作用域提醒均经独立推导确认无误，候选维持原样通过；不沿用初核草稿以外的任何改动，也无新增问题。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "候选与 PDF 第 6 页 3.1.1 及第 7 页 3.1.2—3.1.4 逐句对照：题面（小写代表字母序号、大写代表 ASCII 相反数、aAc→1+(-65)+3=-61）、输入格式（第一行正整数 n、第二行字符串 T）、输出格式（输出一行一个整数）、样例 3/aAc→-61、数据范围 1≤n≤10^5 均一致；候选已补齐原网站缺失的数据范围并按 PDF 原文还原「利用这种方式」，修复后核验通过。唯一差异是原卷「例如字母 A 代表了正整数 -65」按上下文、样例与参考程序三方印证勘误为「负整数 -65」，该源卷笔误争议保留于 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：小写分支 T[i]-'a'+1（a→1）、大写分支 ans-=T[i]（A→-65）与参考程序分支一致；样例走查 0→1→-64→-61 复算一致；O(n) 遍历在 n≤10^5 内可行；|ans| 极值约 90×10^5（全大写 Z）与 26×10^5（全小写），int 范围内安全；易错提醒（+1 偏移、大写取负、禁用连续比较）均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 7 页 3.1.5 参考程序逐行一致：五个头文件、const int N=100005、char str[N]、assert(n==strlen(str))、小写 ans+=str[i]-'a'+1、大写 ans-=str[i]、else assert(false)、cout<<ans<<endl；N=100005 可容纳 n=10^5 加结尾 '\\0'，cin>>str 按空白截断读入安全，O(n) 无越界。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\na",
+            "output": "1",
+            "reason": "独立计算：小写 a 代表序号 1，输出 1；覆盖 n 下界。"
+          },
+          {
+            "name": "单个大写字母",
+            "input": "1\nZ",
+            "output": "-90",
+            "reason": "独立计算：Z 的 ASCII 码为 90，按题意代表 -90，覆盖大写取负分支。"
+          },
+          {
+            "name": "大小写混合",
+            "input": "4\naZzB",
+            "output": "-129",
+            "reason": "独立计算：1+(-90)+26+(-66)=-129，同时覆盖小写序号（含 z 的 26）与大写 ASCII 取负。"
+          },
+          {
+            "name": "26 个小写字母",
+            "input": "26\nabcdefghijklmnopqrstuvwxyz",
+            "output": "351",
+            "reason": "独立计算：1+2+…+26=26×27/2=351，覆盖全部小写字母与序号偏移。"
+          }
+        ],
+        "unresolved": [
+          "原卷 3.1.1 写作「例如字母 A 代表了正整数 -65」，与前文「大写字母代表负整数」、样例 -61 及参考程序 ans-=str[i] 直接矛盾，系源卷笔误；候选按题意勘误为「负整数 -65」，该源卷笔误与勘误取舍保留争议记录。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "否决初核草稿将 statement 维持 unresolved 的处理：修复本身（补数据范围、还原「利用这种方式」、勘误「负整数 -65」）已由候选应用，我逐句对照 PDF 确认除笔误处外与原卷一致，勘误方向由上下文、样例 -61 与参考程序三方印证、唯一无歧义，故 statement 修复后核验通过、标 verified，源卷笔误争议改以 unresolved 记录保留，不擅自改判源卷。解析与参考代码经独立推导核验无误；四条测试期望值 1、-90、-129、351 均由我独立复算一致，予以采纳（未声称实际运行）。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "候选与 PDF 第 8 页 3.2.1—3.2.4 对照：下标组合条件 1≤i<j≤n 与原文 ⟨i,j⟩(1≤i,j≤n,i<j) 等价；y×y=x 的完全平方数定义、输入格式（第一行非负整数 n、第二行 n 个非负整数）、输出格式「输出一个非负整数，表示和是完全平方数的非负整数对数」、样例 5/1 4 3 3 5→3、数据范围 1≤n≤1000,0≤A_i≤10^5 均一致；候选已补数据范围并给出精确输出表述，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举样例全部 10 组下标对：和为 4、4、9 的 (1,3)(1,4)(2,5) 为完全平方数，其余 (1,2)=5、(1,5)=6、(2,3)=(2,4)=7、(3,4)=6、(3,5)=(4,5)=8 均不是，输出 3；O(n²)≈5×10^5 对在 n≤1000 下可行；sqrt(m+1e-7) 截断后 t*t==m 的判定在 m≤2×10^5 下安全（447²=199809、448²=200704，双精度误差远小于偏移量）；m=0 经 y=0 正确计为完全平方数；t≤447、t*t 用 int 无溢出；易错提醒（j 从 i+1 起、禁用浮点直接相等比较、数组开 1010）均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 8 页 3.2.5 参考程序逐行一致（读入循环为排版等价）：bits/stdc++.h、const int N=1010、a[N]、i 从 1 到 n 读入、双重循环 j=i+1..n、m=a[i]+a[j]、int t=sqrt(m+1e-7)、if(t*t==m) ans++、cout<<ans<<\"\\n\"；边界 n=1 时无下标对输出 0，0+0=0 计 1 对，m≤2×10^5 无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n 与最小值",
+            "input": "1\n0",
+            "output": "0",
+            "reason": "独立计算：n=1 无下标对，答案 0；同时覆盖 n 与 A_i 的下界。"
+          },
+          {
+            "name": "零和边界",
+            "input": "2\n0 0",
+            "output": "1",
+            "reason": "独立计算：唯一数对和为 0=0×0，按题意 y=0 即完全平方数，计 1 对。"
+          },
+          {
+            "name": "多组平方和",
+            "input": "3\n0 9 16",
+            "output": "3",
+            "reason": "独立枚举：三对和 9=3²、16=4²、25=5² 均为完全平方数，得 3。"
+          },
+          {
+            "name": "A_i 上界非平方",
+            "input": "2\n100000 100000",
+            "output": "0",
+            "reason": "独立计算：和 200000 介于 447²=199809 与 448²=200704 之间，非完全平方数，覆盖 A_i≤10^5 上界。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：候选题面修复（输出格式精确表述、数据范围补齐）与 PDF 第 8 页逐句一致；解析中的枚举结果 3、复杂度、sqrt 精度与溢出分析经独立推导无误；参考代码与原卷逐行一致且边界行为（n=1、0+0、上界）复核通过。四条测试期望值 0、1、3、0 均由我独立复算一致，予以采纳（未声称实际运行）。候选无需进一步修改。"
+      }
+    ],
+    "summary": "本轮独立复核第 25—27 题，三题 verdict 均为 approve。第 25 题：答案（√=0）与 PDF 第 5 页判断题答案表第 10 格一致，for→while 等价模板及 continue/作用域细节经独立推导无误，候选维持原样通过。第 26 题：候选已补数据范围、还原「利用这种方式」并将原卷「正整数 -65」笔误勘误为「负整数 -65」（上下文、样例与参考程序三方印证，方向唯一），statement 修复后核验通过并标 verified，源卷笔误争议以 unresolved 保留记录（否决初核将其维度维持 unresolved 的处理）；解析与参考代码核验无误，四条测试期望值 1、-90、-129、351 独立复算一致。第 27 题：题面、数据范围与输出格式表述与 PDF 一致，样例枚举、复杂度、sqrt 精度与溢出分析核验通过，参考代码与原卷逐行一致，四条测试期望值 0、1、3、0 独立复算一致。全部测试期望值均为独立推导，未声称实际运行。"
+  }
+}

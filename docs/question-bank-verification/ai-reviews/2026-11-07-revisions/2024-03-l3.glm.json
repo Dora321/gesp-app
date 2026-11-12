@@ -1,0 +1,663 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    8,
+    9,
+    12,
+    16,
+    19,
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T22:44:31.475Z",
+  "completedAt": "2026-11-12T00:11:39.457Z",
+  "finishReason": "stop",
+  "inputSha256": "77d2b2ae25fbcdf873a324e4c803131adf5f4bff1dc27e57790180e378ae95ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP」「C++ 三级」「2024 年 03 月」，与核验目标 2024-03-l3 的年份 2024、月份 3、等级 3 一致。\nPDF 第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 三级 / 2024 年 03 月」，与 2024-03-l3（2024 年 3 月三级）对应；单选 15 题、判断 10 题、编程 2 题的结构及两处答案表与版式均吻合。\nPDF 第 1 页卷头为「CCF 编程能力等级认证 GESP」「C++ 三级」「2024 年 03 月」，与 paperId 2024-03-l3 的年份 2024、月份 3、级别 3 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干「整数-5的16位补码表示是( )」；候选题干仅排版空格差异，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次 A.1005、B.1006、C.FFFA、D.FFFB；候选选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 D（0 起始索引 3），候选 answer=3；独立换算 16 位 -5 补码：2^16-5=65531=0xFFFB，支持 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选推导 |-5|=5 → 0x0005 按位取反得 0xFFFA（反码）→ 加 1 得 0xFFFB，与独立计算一致；逐项排除复核无误：0x1005=4101、0x1006=4102 均为合法十六进制数但数值不等于 -5 的补码，0xFFFA=65530 是未加 1 的反码（同时恰为 -6 的补码）；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选已吸收上一轮修复，把 1005/1006 表述为合法十六进制数但数值不符、FFFA 为反码；我按补码规则独立复核全部论断成立，DeepSeek 草稿未提出可靠新增修改，予以通过。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原文为「如果16位短整数 -2 的二进制是“FFFE”，则短整数 -4 的十六进制是( )」；FFFE 含字母 F，不可能是二进制，系源卷笔误。候选按语义改写为「十六进制表示是“FFFE”」，且解析开头完整引用原卷原文并注明笔误缘由，未掩盖源卷原貌；修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次 A.FF04、B.FFFA、C.FFFC、D.FFFH；候选选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 C（0 起始索引 2），候选 answer=2；独立换算 |-4|=4 → 取反 0xFFFB → 加 1 得 0xFFFC=65532，即 16 位补码 -4，支持 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选推导与逐项排除经独立复核无误：0xFFFE=65534 为 -2，减 2 得 0xFFFC；0xFF04=65284，对应 65284-65536=-252；0xFFFA=65530，对应 -6；FFFH 含非十六进制字符 H 本身不合法；易错提醒中 -32768 的 16 位补码为 0x8000 正确；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 2 题题面「二进制是“FFFE”」系源卷笔误（应为十六进制）；候选按语义改写并在解析中披露原文，勘误予以采纳，源卷争议在此保留记录，如需恢复原文措辞可再人工定案。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "否决 DeepSeek 草稿将题面恢复为原文「二进制是」的修改：照原文上线会发布自相矛盾的题面，而候选改写语义无损且解析已如实披露原卷原文与笔误，与上一轮对编程题 26「正整数 -65」笔误「合理勘误、予以采纳」的先例一致。候选题面、答案、解析独立复核无误，予以通过；笔误争议在 unresolved 保留。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码第 3 行 cout << (3|16) << endl; 之后第 5 行还有 cout << endl;，第 6 行 return 0;；候选代码两条输出语句齐全，仅省略无语义的空行，属排版等价；修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次 A.3、B.16、C.19、D.48；候选选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 C（0 起始索引 2），候选 answer=2；独立计算 3=00011(2)、16=10000(2)，按位或得 10011(2)=19，支持 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按位或推导 19 正确，并说明官方代码第二条 cout << endl; 会再输出一个空行、不影响数值选项；D(48) 归因为误把 | 当乘法 3×16 合理；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选已补回官方代码第二条 cout << endl;，我对照第 1 页页面图确认原卷该行存在；独立计算 3|16=19 与答案表 C 一致，解析无误，通过。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题题干「定义整数 int x=-5 ，则执行C++代码 cout << (x == (x<<1>>1)) 输出是（ ）」；候选仅排版空格差异，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A.0 与第 2 页 B.1、C.-5、D.5 组合为 0、1、-5、5；候选选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 B（0 起始索引 1），候选 answer=1；按 32 位补码与算术右移模型独立推导：x=-5 左移 1 位得 -10（0xFFFFFFF6），算术右移 1 位还原 -5（0xFFFFFFFB），比较为真输出 1，支持 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选核心推导与布尔输出说明正确；还原条件（最高两位相同）及反例 x=0x40000000（左移得 0x80000000，算术右移回 0xC0000000 不等于原值）经独立验证成立；标准层面表述（C++20 前负数左移为未定义行为、有符号右移由实现定义；C++20 起右移明确定义为算术右移）准确；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选解析已按上一轮意见改写标准层面表述并补反例；我独立验证反例与主流模型下结论 B 均成立，DeepSeek 草稿未提出新增修改，通过。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干「已知字符 '0' 的ASCII编码的十进制表示为48，则执行下面C++代码后，输出是（ ）」，字符写作单引号 '0'，与候选一致；代码第 8 行 cout << x << endl; 之后第 10 行另有 cout << endl;，候选两条输出语句齐全，字符串与累加循环同原卷；修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次 A.10、B.58、C.154、D.316；候选选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 C（0 起始索引 2），候选 answer=2；独立累加 '3'(51)+'1'(49)+'6'(54)=154，支持 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按 ASCII 码累加 51+49+54=154 的推导正确（由 '0'=48 推得 '3'=51、'1'=49、'6'=54）；A 归因为按数位 3+1+6=10 累加、D 归因为误当整数 316，排除合理；并说明第二条 cout << endl; 多输出一个空行不影响数值选项；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选已补回第二条 cout << endl; 并保留题干 '0' 单引号写法；我对照第 2 页页面图逐行核对代码一致，独立累加得 154 与答案表 C 一致，对 B(58) 的排除已为如实表述，通过。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 3 页第 8 题代码逐行对照（第 3-13 行），发现候选漏掉官方第 11 行 `cout << endl;`——官方代码在 `cout << str << endl;` 后还有一条 `cout << endl;`，与第 3、5、9 题同源漏失（该三处均已补回而此处被遗漏），changes 已补回；同时将 `\"a\"[0]`/`\"z\"[0]` 还原为原卷字面 'a'/'z'（语义等价，且候选解析本就以 'a'/'z' 表述）；其余代码与原文一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题选项 A. str[i]+='a'-'A'、B. str[i]+=20、C. str[i]+='A'-'a'、D. 无法实现，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 8 题为 C（0 起始索引 2），站内 answer=2 一致；独立推导：'A'=65、'a'=97，'A'-'a'=-32，小写转大写需减 32；'g'(103)-32=71='G'、's'(115)-32=83='S'，转换后输出 GESP IS INTERESTING，支持 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核验通过：条件 (str[i]>='a')&&(str[i]<='z') 仅筛出小写字母，大写与空格不进分支；'A'-'a'=-32 方向正确；A 项 +32 方向相反，'z'(122)+32=154 确已超出大写字母范围；B 项 20 非大小写差值（差为 32）；验证样例复算无误，与官方答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在下列代码的横线处填写（ ），可以使得输出是 GESP IS INTERESTING。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting\";\n    int x = str.length();\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= 'a') && (str[i] <= 'z'))\n            ________________________;\n    cout << str << endl;\n    cout << endl;\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "否决 DeepSeek 的「无需修改」结论：其漏检官方代码第 11 行 `cout << endl;`，该漏失与第 3、5、9 题同源，那三处均已补回而第 8 题被遗漏；我经 PDF 第 3 页页面图与文本层双重确认后补回，并顺带将 \"a\"[0]/\"z\"[0] 还原为原卷 'a'/'z' 字面写法（语义等价）。横线答案仍为 C，解析核验通过。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 4 页第 12-15 行确认 `cout << nwords << endl;` 后还有 `cout << endl;`，候选已补回，逐行对照无其他缺漏；字符串按 PDF 内嵌文本层为 \"gEsP is Interesting     !\"（Interesting 与 ! 之间 5 个连续空格），与官方第 3 页第 3 行一致。注：低分辨率页面图对连续空格的逐格读判存在局限，空格个数以文本层为准（与两轮复核一致）；无论各段空格个数为多少，程序统计的均为空格段数，输出恒为 3。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A.1、B.2、C.3、D.4，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 9 题为 C（0 起始索引 2），站内 answer=2 一致；独立模拟（含 while 推进与外层 i++ 叠加）：三段空格（gEsP 与 is 之间、is 与 Interesting 之间、Interesting 与 ! 之间）各计一次、段内连续空格被 while 跳过，nwords=3；该结果与空格段内具体个数无关，结论稳健。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核验通过：字符串长度 4+1+2+1+11+5+1=25 与题面（按文本层）自洽；「统计空格段数而非空格字符总数」的核心逻辑经逐步模拟验证，三段空格输出 3；D(4) 为词数干扰项的归因正确；补回的 `cout << endl;` 只多输出一个空行，不影响数值选项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（ ）。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting     !\";\n    int x = str.length();\n    int nwords = 0;\n    for (int i = 0; i < x; i++)\n        if (str[i] == ' ') {\n            nwords++;\n            while (str[++i] == ' ');\n        }\n    cout << nwords << endl;\n    cout << endl;\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 补回官方第二条 `cout << endl;` 的修改，经 PDF 第 4 页第 12-15 行逐行对照核验通过。字符串连续空格个数沿用文本层（5 个、总长 25）：文本层为机械提取产物且经两轮复核一致；我在页面图中对该处间隙的读判存在局限（is 后间隙亦似加宽），但已确认无论空格段内个数为多少，输出均为空格段数 3，答案与解析结论不受影响，故不作未决事项。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末第 12 题题干「定义字符数组 char str[20] = {'G', 'E', 'S', 'P'}; ，则 str 的字符串长度为（ ）。」与站内一致，无代码缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A.4、B.5、C.19、D.20，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 12 题为 A（0 起始索引 0），站内 answer=0 一致；独立推导：char str[20]={'G','E','S','P'} 部分初始化后 str[4]~str[19] 共 16 个元素零初始化为 '\\0'，字符串在 str[4] 结束，strlen=4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核验通过：数组内 '\\0' 共 16 个（str[4]~str[19]，即 20-4）、字符串长度 4；B 为误含结尾 '\\0'、C 的 19 与有效字符数无关、D 的 20 是数组容量（sizeof）；strlen 与 sizeof 的区分表述准确，与官方答案 A 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选题面、选项、答案与解析均经独立核验通过，无需修改；DeepSeek 的 approve 结论予以确认。"
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 1 题原文「任意整数 a 的二进制反码与补码都有1位不同。（ ）」与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按正确/错误判定，不设 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 1 格为 ×（0 起始索引 1），站内 answer=1 一致；独立判断：非负整数反码与补码均等于原码（如 8 位 a=5 为 00000101，0 位不同），已构成「任意整数都有 1 位不同」的直接反例，判定错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复算通过：a=5 反码=补码=00000101（0 位不同）；8 位 a=-1 反码 11111110、补码 11111111 仅最低位变化（加 1 无进位传播，恰差 1 位）；a=-2 反码 11111101、补码 11111110 最低两位 01→10 差 2 位（进位传播）；反例体系完整，结论「错误」成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选解析的反例体系（正数/0 差 0 位、-1 恰差 1 位为特例、-2 差 2 位）经独立复算全部成立，无需修改；DeepSeek 的 approve 结论予以确认。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文「一个 int 类型变量 a ，执行操作 (a<<2>>2) 后的值一定是 a 。（ ）」与站内题干一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按正确/错误判定，不设 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 4 格为 ×（0 起始索引 1），站内 answer=1 一致；独立反例：32 位 int 下取 a=0x40000000，(a<<2) 在常见回绕实现下低 32 位变为 0，再 >>2 仍为 0 ≠ a，故「一定是 a」不成立，判定错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原候选「C++ 标准不保证得到普通算术结果」「右移的符号扩展规则也与实现相关」的表述未区分 C++20 前后的语义变化，在 C++20 下不够准确（C++20 起有符号左移定义为按无符号回绕、右移定义为算术右移）；changes 已改为区分「较早标准中的未定义行为/实现定义」与「常见回绕实现」，与第 4 题解析的表述风格一致；反例 0x40000000 独立复算成立（真实值 2^32 超范围，回绕为 0，右移仍 0 ≠ 原值）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n移位运算符同级左结合，表达式应理解为 `(a << 2) >> 2`。左移会把高位移出并在低位补 0。对有符号 `int`，若左移结果超出可表示范围，在较早的 C++ 标准中属于未定义行为；即使按常见的回绕（截断）实现，被移出的高位也无法由随后的右移恢复。因此该表达式不可能对任意 `int` 都等于 `a`。\n\n例如在常见的 32 位 `int` 下取 `a = 1073741824`（`0x40000000`）：其左移 2 位的真实算术结果为 `2^32`，超出 32 位表示范围；在常见的回绕实现中低 32 位变为 0，再右移 2 位仍为 0，不等于原值。故「执行后的值一定是 a」不成立，本题说法错误。\n\n**易错提醒：**\n- 不要用代数思维 `(a×4)÷4=a` 直接套用位运算；左移可能丢失高位或发生有符号溢出。\n- 负数左移可能波及符号位；右移的符号扩展规则在较早标准中由实现定义（主流为算术右移），结论更不确定。\n\n**考点：** 位运算、左移、右移、溢出"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 的修正并否决原候选表述：候选称「C++ 标准不保证得到普通算术结果」「右移的符号扩展规则也与实现相关」，未区分 C++20 前后语义（C++20 起左移定义为按无符号回绕、右移定义为算术右移），在现行标准语境下不够准确；其修改稿各项论断（早期标准 UB、回绕实现、0x40000000 反例、右移早期实现定义）经我逐句独立核验准确，且与第 4 题解析风格一致，予以采纳。答案「错误」本身无争议。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 10 题原文「任何一个 for 循环都可以转化为等价的 while 循环（ ）。」与候选题干语义一致，仅句末括号为排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅按「正确/错误」判定，不设 A—D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表依次为 × × × × × √ × √ √ √，第 10 格为 √（正确），0 起始索引 0；候选 answer=0 一致。独立判断：for(初始化;条件;迭代) 的三段流程可用复合块内 while 完整表达，含 continue 时通过把迭代表达式复制到 continue 之前仍可保持等价，题干为真，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的等价模板 {初始化; while(条件){循环体;迭代;}} 经独立推导正确；continue 跳转目标差异（for 跳向迭代表达式、while 跳向条件判断）及「把迭代表达式复制到每个 continue 前」的处理方式正确；for 变量作用域提醒正确；「实现细节不影响结论本身」的限定成立。未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核后无需修改：答案与 PDF 第 5 页判断题答案表第 10 格 √ 一致，解析中的等价模板、continue 差异处理与作用域提醒均经独立推导确认无误，候选维持原样通过；不沿用初核草稿以外的任何改动，也无新增问题。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "候选与 PDF 第 6 页 3.1.1 及第 7 页 3.1.2—3.1.4 逐句对照：题面（小写代表字母序号、大写代表 ASCII 相反数、aAc→1+(-65)+3=-61）、输入格式（第一行正整数 n、第二行字符串 T）、输出格式（输出一行一个整数）、样例 3/aAc→-61、数据范围 1≤n≤10^5 均一致；候选已补齐原网站缺失的数据范围并按 PDF 原文还原「利用这种方式」，修复后核验通过。唯一差异是原卷「例如字母 A 代表了正整数 -65」按上下文、样例与参考程序三方印证勘误为「负整数 -65」，该源卷笔误争议保留于 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：小写分支 T[i]-'a'+1（a→1）、大写分支 ans-=T[i]（A→-65）与参考程序分支一致；样例走查 0→1→-64→-61 复算一致；O(n) 遍历在 n≤10^5 内可行；|ans| 极值约 90×10^5（全大写 Z）与 26×10^5（全小写），int 范围内安全；易错提醒（+1 偏移、大写取负、禁用连续比较）均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 7 页 3.1.5 参考程序逐行一致：五个头文件、const int N=100005、char str[N]、assert(n==strlen(str))、小写 ans+=str[i]-'a'+1、大写 ans-=str[i]、else assert(false)、cout<<ans<<endl；N=100005 可容纳 n=10^5 加结尾 '\\0'，cin>>str 按空白截断读入安全，O(n) 无越界。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\na",
+            "output": "1",
+            "reason": "独立计算：小写 a 代表序号 1，输出 1；覆盖 n 下界。"
+          },
+          {
+            "name": "单个大写字母",
+            "input": "1\nZ",
+            "output": "-90",
+            "reason": "独立计算：Z 的 ASCII 码为 90，按题意代表 -90，覆盖大写取负分支。"
+          },
+          {
+            "name": "大小写混合",
+            "input": "4\naZzB",
+            "output": "-129",
+            "reason": "独立计算：1+(-90)+26+(-66)=-129，同时覆盖小写序号（含 z 的 26）与大写 ASCII 取负。"
+          },
+          {
+            "name": "26 个小写字母",
+            "input": "26\nabcdefghijklmnopqrstuvwxyz",
+            "output": "351",
+            "reason": "独立计算：1+2+…+26=26×27/2=351，覆盖全部小写字母与序号偏移。"
+          }
+        ],
+        "unresolved": [
+          "原卷 3.1.1 写作「例如字母 A 代表了正整数 -65」，与前文「大写字母代表负整数」、样例 -61 及参考程序 ans-=str[i] 直接矛盾，系源卷笔误；候选按题意勘误为「负整数 -65」，该源卷笔误与勘误取舍保留争议记录。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "否决初核草稿将 statement 维持 unresolved 的处理：修复本身（补数据范围、还原「利用这种方式」、勘误「负整数 -65」）已由候选应用，我逐句对照 PDF 确认除笔误处外与原卷一致，勘误方向由上下文、样例 -61 与参考程序三方印证、唯一无歧义，故 statement 修复后核验通过、标 verified，源卷笔误争议改以 unresolved 记录保留，不擅自改判源卷。解析与参考代码经独立推导核验无误；四条测试期望值 1、-90、-129、351 均由我独立复算一致，予以采纳（未声称实际运行）。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "候选与 PDF 第 8 页 3.2.1—3.2.4 对照：下标组合条件 1≤i<j≤n 与原文 ⟨i,j⟩(1≤i,j≤n,i<j) 等价；y×y=x 的完全平方数定义、输入格式（第一行非负整数 n、第二行 n 个非负整数）、输出格式「输出一个非负整数，表示和是完全平方数的非负整数对数」、样例 5/1 4 3 3 5→3、数据范围 1≤n≤1000,0≤A_i≤10^5 均一致；候选已补数据范围并给出精确输出表述，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举样例全部 10 组下标对：和为 4、4、9 的 (1,3)(1,4)(2,5) 为完全平方数，其余 (1,2)=5、(1,5)=6、(2,3)=(2,4)=7、(3,4)=6、(3,5)=(4,5)=8 均不是，输出 3；O(n²)≈5×10^5 对在 n≤1000 下可行；sqrt(m+1e-7) 截断后 t*t==m 的判定在 m≤2×10^5 下安全（447²=199809、448²=200704，双精度误差远小于偏移量）；m=0 经 y=0 正确计为完全平方数；t≤447、t*t 用 int 无溢出；易错提醒（j 从 i+1 起、禁用浮点直接相等比较、数组开 1010）均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 8 页 3.2.5 参考程序逐行一致（读入循环为排版等价）：bits/stdc++.h、const int N=1010、a[N]、i 从 1 到 n 读入、双重循环 j=i+1..n、m=a[i]+a[j]、int t=sqrt(m+1e-7)、if(t*t==m) ans++、cout<<ans<<\"\\n\"；边界 n=1 时无下标对输出 0，0+0=0 计 1 对，m≤2×10^5 无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n 与最小值",
+            "input": "1\n0",
+            "output": "0",
+            "reason": "独立计算：n=1 无下标对，答案 0；同时覆盖 n 与 A_i 的下界。"
+          },
+          {
+            "name": "零和边界",
+            "input": "2\n0 0",
+            "output": "1",
+            "reason": "独立计算：唯一数对和为 0=0×0，按题意 y=0 即完全平方数，计 1 对。"
+          },
+          {
+            "name": "多组平方和",
+            "input": "3\n0 9 16",
+            "output": "3",
+            "reason": "独立枚举：三对和 9=3²、16=4²、25=5² 均为完全平方数，得 3。"
+          },
+          {
+            "name": "A_i 上界非平方",
+            "input": "2\n100000 100000",
+            "output": "0",
+            "reason": "独立计算：和 200000 介于 447²=199809 与 448²=200704 之间，非完全平方数，覆盖 A_i≤10^5 上界。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：候选题面修复（输出格式精确表述、数据范围补齐）与 PDF 第 8 页逐句一致；解析中的枚举结果 3、复杂度、sqrt 精度与溢出分析经独立推导无误；参考代码与原卷逐行一致且边界行为（n=1、0+0、上界）复核通过。四条测试期望值 0、1、3、0 均由我独立复算一致，予以采纳（未声称实际运行）。候选无需进一步修改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "usage": {
+        "prompt_tokens": 48472,
+        "completion_tokens": 23366,
+        "total_tokens": 71838,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 20388
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0189538,
+          "allowance": 0.0189538,
+          "tokens": {
+            "input": 48472,
+            "output": 23366,
+            "reasoning": 20388,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-11T22:44:31.475Z",
+      "completedAt": "2026-11-11T22:48:33.821Z"
+    },
+    {
+      "questionIds": [
+        8,
+        9,
+        12,
+        16,
+        19
+      ],
+      "usage": {
+        "prompt_tokens": 48708,
+        "completion_tokens": 31416,
+        "total_tokens": 80124,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 27737
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0230142,
+          "allowance": 0.0230142,
+          "tokens": {
+            "input": 48708,
+            "output": 31416,
+            "reasoning": 27737,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-11T23:59:25.271Z",
+      "completedAt": "2026-11-12T00:04:46.837Z"
+    },
+    {
+      "questionIds": [
+        25,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 48348,
+        "completion_tokens": 9911,
+        "total_tokens": 58259,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7162
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0122077,
+          "allowance": 0.0122077,
+          "tokens": {
+            "input": 48348,
+            "output": 9911,
+            "reasoning": 7162,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T00:09:56.837Z",
+      "completedAt": "2026-11-12T00:11:39.457Z"
+    }
+  ]
+}
