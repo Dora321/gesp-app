@@ -1,0 +1,227 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    6,
+    8
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T23:28:02.372Z",
+  "completedAt": "2026-11-11T23:31:13.265Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37423,
+    "completion_tokens": 10572,
+    "total_tokens": 47995,
+    "prompt_tokens_details": {
+      "cached_tokens": 37120
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8850
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00650001,
+      "allowance": 0.00390001,
+      "tokens": {
+        "input": 303,
+        "output": 10572,
+        "reasoning": 8850,
+        "cache_read": 37120,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bf1b65396b9eebc80d9ef42d2d4829bfef82335c4e1b36f4de3950ced199d25a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2024 年 06 月”，与 2024-06-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干为“小杨父母带他到某培训机构给他报名参加CCF组织的GESP认证考试的第1级，那他可以选择的认证语言有（ ）种。”候选题面与之一致，仅有空格和排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. 1、B. 2、C. 3、D. 4，候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题标为 C，对应 0 起始索引 2；候选 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：GESP 一级可选图形化编程（Scratch）、Python、C++ 共 3 种；候选对 A、B、D 的排除及选 C 的推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题原图给出流程图：开始→输入 yr→菱形条件→N 分支输出“2 月是 28 天”、Y 分支输出“2 月是 29 天”→结束；候选补充的文字结构与原图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四项依次为 A. (yr%400==0) || (yr%4==0)、B. (yr%400==0) || (yr%4==0 && yr%100!=0)、C. (yr%400==0) && (yr%4==0)、D. (yr%400==0) && (yr%4==0 && yr%100!=0)，候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题为 B，对应 0 起始索引 1；候选 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核闰年规则：能被 400 整除，或能被 4 整除且不能被 100 整除；2024 年满足后者，走 Y 分支。A 会把 1900 误判为闰年，C/D 使用 && 后不满足 2024；候选对 1900%400=300 的修正正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题题干为“一般默认64位计算机系统中整型变量（int）还是32位，则整数能够表示的数据范围是（ ）。”候选题面与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页原图选项依次为 A. 0~2^32、B. 0~2^64、C. −2^31~(2^31)−1、D. −2^63~(2^63)−1；候选顺序和数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 C，对应 0 起始索引 2；候选 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算 32 位有符号补码范围为 -2^31 到 2^31-1；A 混淆非负上界，B/D 为更大位宽范围，候选逐项排除成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第3页第6题题干下方附有完整流程图；候选 question 仅有“下列流程图的输出结果是（ ）。”，未附图片或等价流程描述，缺少确定循环和分支所必需的图形信息。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. 5、B. 10、C. 20、D. 30，候选四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 B，对应 0 起始索引 1；独立按图模拟 i=0 内层不执行，i=1~4 内层分别执行 1、2、3、4 次，sum=0+1+2+3+4=10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐轮推导与 PDF 第3页流程图一致：外层 i<5，内层 j<i，sum 每次加 1、j 每次加 1，内层结束后 i 加 1；最终输出 10，与官方 B 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下列流程图的输出结果是（ ）。\n\n流程图结构：开始 → 令 sum=0、i=0 → 判断 i<5：若为 N，则输出 sum 并结束；若为 Y，则令 j=0 → 判断 j<i：若为 Y，则 sum 增加 1、j 增加 1，然后回到 j<i 判断；若为 N，则 i 增加 1，然后回到 i<5 判断。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第8题代码为 a=5、b=10，依次执行 a=a^b、b=a^b、a=a^b 后输出；候选题面内代码与之一致，选项位于 PDF 第4页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项依次为 A. a = 5, b = 10、B. a = 5, b = 5、C. a = 10, b = 5、D. a = 10, b = 10，候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 C，对应 0 起始索引 2；独立计算 5^10=15、15^10=5、15^5=10，最终 a=10、b=5。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐步代入和代数推导均正确：第一步 a=a0^b0，第二步 b=(a0^b0)^b0=a0，第三步 a=(a0^b0)^a0=b0；最终输出 a=10、b=5。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题1、2、3、8的题面、选项、答案和解析均与原卷一致；题6答案 B 及解析经独立模拟成立，但候选缺少原题流程图，已补等价文字流程结构，需在题面维度修复。"
+  }
+}

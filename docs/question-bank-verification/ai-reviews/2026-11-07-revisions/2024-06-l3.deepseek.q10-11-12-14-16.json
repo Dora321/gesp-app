@@ -1,0 +1,224 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    10,
+    11,
+    12,
+    14,
+    16
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T23:43:21.539Z",
+  "completedAt": "2026-11-11T23:45:57.681Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37485,
+    "completion_tokens": 8246,
+    "total_tokens": 45731,
+    "prompt_tokens_details": {
+      "cached_tokens": 37248
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6724
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00509489,
+      "allowance": 0.00305694,
+      "tokens": {
+        "input": 237,
+        "output": 8246,
+        "reasoning": 6724,
+        "cache_read": 37248,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bf1b65396b9eebc80d9ef42d2d4829bfef82335c4e1b36f4de3950ced199d25a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 三级 2024年06月”，与paperId 2024-06-l3及三级、2024年6月信息一致。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第10题代码为 int array[5]={3,7,5,2,4}; int max=0; for(i=0;i<5;i++) if(空白) max=array[i]; 输出max，候选题面、代码和空白位置一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A. max > array[i]、B. max < array[i]、C. max = array[i]、D. 以上均不对，候选选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题为B，0起始索引为1；候选answer=1，对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入：max初值0，B条件使max依次更新为3、7，最终输出7；A条件因max=0且元素全正而始终为假，输出0；C为赋值表达式，因元素均非零而每轮为真，最终max=4。候选逐项推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4至5页代码为 int arr[35]; int count=0; for(i=1;i<=35;i++){ if(i%7==0) 空白 }，随后按 i<count 输出arr[i]；候选题面和代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项依次为 A. arr[count++] = i;、B. arr[i] = count++;、C. arr[i] = count;、D. arr[count] = count++;，候选顺序和文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为A，0起始索引为0；候选answer=0，对应A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：A依次写arr[0]至arr[4]为7、14、21、28、35且count变为5；B写入下标7、14、21、28等位置，并在i=35时写arr[35]越界，未正确写输出区间；C中count恒为0，输出循环不执行；D存入count自增值而非i，不能得到目标序列。候选结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第12题题干给出字符0的ASCII码为48，代码为string s=“0629”; n=s.length(); x=0; x+=s[i]; 输出x；候选question中的代码与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项依次为A. 17、B. 158、C. 209、D. 316，候选数值和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为C，0起始索引为2；候选answer=2，对应C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算各字符ASCII码：0为48，6为54，2为50，9为57，累计48+54+50+57=209；A是把字符面值相加得到17，B和D均不是正确ASCII累加结果。候选解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第14题要求选出可正确输出 They're planning a party for their friend's birthday. 的C++语句，候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页A至D四项的外层引号、内部转义及结尾形式与候选对应，顺序一致：A引号不成对且含裸露片段，B双引号字符串未闭合，C用单引号包裹整句，D双引号成对且内部单引号采用合法转义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为D，0起始索引为3；候选answer=3，对应D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按C++字面量规则核对：双引号字符串内的单引号本无需转义，写成转义单引号也合法；D外层双引号闭合正确，可原样输出目标句；A、B、C均因引号不配对或字符串未正确闭合而存在语法错误。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第1题原文为GESP测试是对认证者的编程能力进行等级认证，同一级别的能力基本上与编程语言无关；候选题面一致，仅标点规范化。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项维度，网站以正确、错误二值呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第1格为√，按正确=0映射，候选answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方命题强调同级认证能力与具体编程语言基本无关，候选按通用编程思维、算法逻辑解释，与本卷三级考点中的补码、进制、位运算、数组、字符串等内容不冲突，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号10、11、12、14、16。五题题面、选项顺序、答案表映射及答案解析均与PDF原卷核对一致；10、11、12、14为单选题，16为判断题，均无需修改，未发现需保留的争议或未决问题。"
+  }
+}

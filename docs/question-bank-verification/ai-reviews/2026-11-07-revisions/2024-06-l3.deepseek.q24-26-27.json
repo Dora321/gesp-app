@@ -1,0 +1,218 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    24,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T23:53:24.373Z",
+  "completedAt": "2026-11-11T23:56:46.410Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 37415,
+    "completion_tokens": 10957,
+    "total_tokens": 48372,
+    "prompt_tokens_details": {
+      "cached_tokens": 37248
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8777
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00671099,
+      "allowance": 0.0040266,
+      "tokens": {
+        "input": 167,
+        "output": 10957,
+        "reasoning": 8777,
+        "cache_read": 37248,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bf1b65396b9eebc80d9ef42d2d4829bfef82335c4e1b36f4de3950ced199d25a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证 C++ 三级 2024 年 06 月，与 paperId 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7-8页判断题第9题题干和代码与候选一致：int s[5]、while(i<=5)、if(a%3==(i+1)%3) s[i++]=a、for(i=1;i<=5) 输出 s[i]；候选仅省略注释并调整缩进，未改变代码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题无 A-D 选项，网站以正确/错误二值呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第9格为√（表为√√√×××√×√√），按正确=0映射，候选 answer=0，与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i=1..5时分别要求 s1%3=2、s2%3=0、s3%3=1、s4%3=2、s5%3=0；89781 的 8、9、7、8 满足前四位余数，末位 1%3=1 不满足第五位余0，所以在命题意图下不可能是输出。候选还指出 int s[5] 在 i=5 时写读 s[5] 越界，并说明官方答案按命题意图保留，推导和限定均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方源代码 int s[5] 在 while(i<=5) 中必然写读 s[5]，属数组越界（未定义行为）；官方答案按命题意图保留，此为源卷固有缺陷。"
+        ]
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页 3.1.1-3.1.6 题面、输入输出、样例、数据范围与候选一致：样例输入 3 输出 DEFGHIJKLMNOPQRSTUVWXYZABC；数据范围 1≤n≤100；候选的 Markdown/LaTeX 为等价排版。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无单选选项，PDF中亦无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，官方答案表不涉及本题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导移位映射：原字母编号 i(0..25) 移位后为 A+(i+n)%26；n=3 时 A→D、...、X→A、Y→B、Z→C，与样例相符；取模处理整周期回绕正确。候选提及 n=100000 只是讲解取模必要性的示例，虽超出 1≤n≤100，但数学性质对非负整数成立，不影响本题结论。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第9页 3.1.7 参考程序为读入 n 后循环 i=0..25 输出 A+(i+n)%26；候选参考代码算法相同，省略官方未使用的 int fl=0 并补 return 0，n≤100 时 i+n≤125 无溢出，26 次输出后换行，与 PDF 一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小偏移n=1",
+            "input": "1",
+            "output": "BCDEFGHIJKLMNOPQRSTUVWXYZA",
+            "reason": "独立推导：(i+1)%26 使 A→B、…、Y→Z、Z→A，字母表整体后移1位。"
+          },
+          {
+            "name": "整周期n=26",
+            "input": "26",
+            "output": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "reason": "26 mod 26=0，题面注释明确偏移量为26的倍数时字母表保持不变。"
+          },
+          {
+            "name": "跨周期n=27",
+            "input": "27",
+            "output": "BCDEFGHIJKLMNOPQRSTUVWXYZA",
+            "reason": "27 mod 26=1，与 n=1 等效，验证取模回绕跨整周期后仍正确。"
+          },
+          {
+            "name": "上界n=100",
+            "input": "100",
+            "output": "WXYZABCDEFGHIJKLMNOPQRSTUV",
+            "reason": "100 mod 26=22：A→W、B→X、C→Y、D→Z、E→A，其后顺延至 V，共26字符；检验数据范围上界回绕。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9-10页 3.2.1-3.2.6 题面、输入输出、样例、数据范围与候选一致：样例为2组，第一组 3 个数 1 2 4 输出 Yes，第二组 5 个数 1 2 3 4 5 输出 No；数据范围 1≤t≤10、1≤n≤10^5、1≤ai≤10^9；候选 Markdown 为等价排版。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无单选选项，PDF中亦无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，官方答案表不涉及本题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：序列为正整数，若 ai 是所有数的倍数则 ai≥每个 ak，故候选只能是最大值；求最大值 x 后检查 x%a[i]==0 对所有 i 成立，条件充分必要；样例1的最大值4被1、2、4整除输出 Yes，样例2的最大值5不被2、3、4整除输出 No；多组变量重置和 O(sum n) 说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF第10页 3.2.7 参考程序逐行一致（仅补 return 0）；N=1e5+10 覆盖 n≤1e5，ai≤1e9 与 x≤1e9 在 int 范围内，x 和 fl 每组重新初始化，总运算量≤1e6，符合1.0s和512MB限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小n=1",
+            "input": "1\n1\n1",
+            "output": "Yes",
+            "reason": "唯一元素1是自身的倍数，最大值1整除所有元素。"
+          },
+          {
+            "name": "元素全相同",
+            "input": "1\n3\n6 6 6",
+            "output": "Yes",
+            "reason": "最大值6被6、6、6整除，6是所有元素的倍数。"
+          },
+          {
+            "name": "最大值不能整除全部元素",
+            "input": "1\n5\n1 2 3 4 5",
+            "output": "No",
+            "reason": "最大值5不能被2、3、4整除；由正整数倍数性质候选只能是最大值，故输出 No。"
+          },
+          {
+            "name": "ai上界且检查int范围",
+            "input": "1\n2\n1 1000000000",
+            "output": "Yes",
+            "reason": "1e9为ai上界，在int表示范围内；最大值1e9被1与其自身整除。"
+          },
+          {
+            "name": "多组用例状态重置",
+            "input": "2\n2\n2 5\n3\n2 4 8",
+            "output": "No\nYes",
+            "reason": "第一组最大值5不能被2整除输出 No；第二组最大值8被2、4、8整除输出 Yes，检验 x 与 fl 每组重新初始化。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "题24答案映射与逐位推导成立，保留源卷 int s[5] 在 i<=5 时越界的未定义行为争议；题26、27的题面、数据范围、参考代码及边界测试均独立核验通过，未发现需要修改的字段。"
+  }
+}
