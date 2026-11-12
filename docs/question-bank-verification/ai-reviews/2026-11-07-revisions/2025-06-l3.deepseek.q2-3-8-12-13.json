@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    3,
+    8,
+    12,
+    13
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T21:55:52.332Z",
+  "completedAt": "2026-11-12T21:58:04.575Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35366,
+    "completion_tokens": 12751,
+    "total_tokens": 48117,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11163
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0129555,
+      "allowance": 0.0077733,
+      "tokens": {
+        "input": 35366,
+        "output": 12751,
+        "reasoning": 11163,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d7f5e2c37e6c8fc4333be88e1396cb5721cc6b88e69677de4e2e5e6a11ef4e23",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 CCF 编程能力等级认证 GESP、C++ 三级、2025 年 06 月，与 paperId 2025-06-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题原文为「反码表示中，零的表示形式有：」，网页仅将冒号改为句号并补作答括号，语义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. 1种、B. 2种、C. 8种、D. 16种，与网页选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号2对应B，网页 answer=1 映射B；独立推导反码 +0=00000000、-0=11111111，共两种，B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：正数（含+0）反码同原码，-0原码10000000数值位取反得11111111；8位反码零为00000000/11111111两种。补码零唯一，10000000规定为-128，选项分析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题原文为「补码 1011 1011 对应的真值是( )」，与网页一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. -69、B. -59、C. -68、D. -58，与网页顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号3对应A，网页 answer=0 映射A；独立计算 10111011 取反加一得01000101=69，真值-69。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：10111011 位权求和 -128+32+16+8+2+1=-69；-69=01000101取反10111010加1得10111011，反向验证成立；C(-68)对应漏加1错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第8题原文为「二进制数 1010|1100 的结果是（ ）」，网页仅空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. 1000、B. 1110、C. 1010、D. 1100，与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号8对应B，网页 answer=1 映射B；独立逐位计算 1010|1100=1110。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核逐位：bit0 0|0=0，bit1 1|0=1，bit2 0|1=1，bit3 1|1=1，结果1110；A的1000是1010&1100，C/D分别是原操作数，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第12题代码为 int height=10; int distance=0; for(i=1;i<=5;i++){ 横线; height/=2; distance+=height; } 输出distance，网页代码与选项顺序一致；原注释为「模拟5次落地」。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. distance += height/2;、B. distance += height;、C. distance += height*2;、D. distance += height+1;，网页仅空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号12对应B，网页 answer=1 映射B；填B后逐轮累计15、22、25、26、26，横线负责累加本次下落距离，B唯一符合代码。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核填B的代码行为：i=1加10再反弹5，累计15；i=2加5再反弹2，累计22；i=3加2再反弹1，累计25；i=4加1再反弹0，累计26；i=5加0，仍26。横线后 height/=2; distance+=height; 已累加反弹高度，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第13题原文为「C++代码 string s = \"GESP考试\"; ，s占据的字节数是（）」，网页题干一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. 10、B. 8、C. 8或10、D. 取决于计算机采用什么编码，与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号13对应D，网页 answer=3 映射D；独立分析 UTF-8=10 字节、GBK=8 字节，其他编码还可能不同，仅D完整。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：GESP考试为4个ASCII字符+2个汉字；UTF-8下4+3×2=10字节，GBK下4+2×2=8字节，若按其他编码计还可能不同（如UTF-16为12字节、UTF-32为24字节），字节数取决于编码；选项C只列两种常见情况不全面。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 2、3、8、12、13。五题的题干、代码、选项顺序与 PDF 页图一致；officialAnswer 与第1页答案表映射一致；对解析逐题独立推导，未发现事实性错误；五题均为单选题，referenceCode 不适用，tests 为空。建议维持 verified。"
+  }
+}

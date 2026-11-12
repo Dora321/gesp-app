@@ -1,0 +1,254 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    15,
+    21,
+    22,
+    25,
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T22:19:07.544Z",
+  "completedAt": "2026-11-12T22:20:23.369Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 48916,
+    "completion_tokens": 7446,
+    "total_tokens": 56362,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4269
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0110604,
+      "allowance": 0.0110604,
+      "tokens": {
+        "input": 48916,
+        "output": 7446,
+        "reasoning": 4269,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d7f5e2c37e6c8fc4333be88e1396cb5721cc6b88e69677de4e2e5e6a11ef4e23",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图卷头为「C++ 三级」「2025 年 06 月」，与核验目标 2025-06-l3（2025 年 6 月 GESP C++ 三级）一致。"
+    },
+    "questions": [
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 15 题原文「字符串\"Gesp考试\",字符数是（ ）」，候选题干仅差异在空格与句末标点，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图选项依次为 A. 10、B. 8、C. 6、D. 字符数多少取决于编码，候选 options 内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 15 题为 C（0 起始索引 2），候选 answer=2 一致；独立计数：G、e、s、p 共 4 个英文字符，加「考」「试」2 个汉字，合计 6 个字符，选 C 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：4+2=6 为逻辑字符计数，与编码无关，正确；A（UTF-8 下 4+2×3=10 字节）、B（GBK 下 4+2×2=8 字节）为字节数的辨析经独立换算无误；D 被否定的理由（字符数不随编码变化）成立；关于 std::string::size()/length() 返回 char/代码单元数而非逻辑字符数的提醒技术上正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 判定：答案表符号 C、选项顺序、字符计数 4+2=6 均经我独立推导确认；候选解析对字符数与字节数的区分无事实错误，无需修改。"
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 6 题原文「(x & 1) == 0 可以判断整数 x 是否为偶数。」，候选题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面以 √/× 作答，无 A–D 选项；网站以「正确/错误」两选项呈现，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 6 题符号为 √（正确），按 正确=0 映射为 0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：补码下偶数最低位为 0、奇数最低位为 1，x & 1 仅保留最低位，故偶数时 (x&1)==0 成立、奇数时不成立，可判断偶数，结论正确；负数补码最低位同样反映奇偶，成立；优先级提醒正确（C++ 中 == 优先级高于 &，x & 1 == 0 会按 x & (1 == 0) 解析，恒得 x & 0 = 0，语义错误），括号必要性说明无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 判定：答案表第 6 题 √、奇偶最低位判定、负数适用性及 == 优先级高于 & 的提醒均经我独立验算确认，候选解析无逻辑颠倒或事实错误，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 7 题原文「string 的 substr(2, 10) 在字符串长度不足时会抛出异常。」，候选题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面以 √/× 作答，无 A–D 选项；网站以「正确/错误」两选项呈现，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 题符号为 ×（错误），按 错误=1 映射为 1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对 substr(pos, len) 标准行为：pos > size() 才抛 std::out_of_range；pos == size() 返回空串；len 超出剩余字符数时安全截断、不抛异常。故长度为 5 时 substr(2,10) 正常返回下标 2 起的 3 个字符，仅长度小于 2 时才抛异常；题干笼统称「长度不足即抛异常」判为错误成立，候选边界描述准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 判定：× 的映射与 substr 抛异常边界（pos > size()）、长度截断行为均经我独立核对标准语义确认，候选解析正确区分起始越界与长度不足，无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 10 题原文「函数声明 double f(); 返回 int 时，会自动转换为 double」，候选仅补句末句号并格式化代码为 `double f();`，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面以 √/× 作答，无 A–D 选项；网站以「正确/错误」两选项呈现，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 10 题符号为 √（正确），按 正确=0 映射为 0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：return 表达式类型与函数声明返回类型不一致时发生隐式标准转换，return 42（int）在 double f() 中转换为 42.0，结论与 √ 一致；候选指出转换发生在被调函数 return 语句处而非调用点，表述准确；易错提醒中 int→double 在 32 位 int/64 位 double 环境下不丢失精度、double→int 截断小数的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 判定：答案表第 10 题 √、隐式转换规则及转换位置（被调函数 return 处）均经我独立确认无误，候选解析事实准确，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          4,
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 3.1 编程题 1 头部：试题名称「奇偶校验」、时间限制 1.0 s、内存限制 512.0 MB，候选题面首行已含；第 5 页 3.1.1–3.1.3 题目描述、输入/输出格式与候选逐句一致；3.1.4 样例（4 / 71 69 83 80 → 13 1；6 / 1 2 4 8 16 32 → 6 0）与候选 samples 一致；3.1.5 数据范围「保证 1 ≤ n ≤ 100，0 ≤ c_i ≤ 255」已包含在候选题面数据范围小节，与页图逐字对应。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表条目，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算样例 1：71=64+4+2+1=1000111₂ 含 4 个 1，69=64+4+1=1000101₂ 含 3 个 1，83=64+16+2+1=1010011₂ 含 4 个 1，80=64+16=1010000₂ 含 2 个 1，合计 13 为奇数，校验码 1，输出「13 1」与 PDF 样例一致；样例 2 六个数均为 2 的幂各含 1 个 1，合计 6 为偶数，校验码 0，输出「6 0」成立。候选解析的除 2 取余法与位运算统计说明、c=0 时 while(c) 不进入循环（改 do...while 也仅多执行一次且 0&1=0 不多计）、累加器显式初始化及输出格式提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与 PDF 第 5–6 页 3.1.6 逐行一致（#include <cstdio>、int n, v、while(c){ v += c & 1; c >>= 1; }、printf(\"%d %d\\n\", v, v & 1)）。独立复核：while 循环逐位取最低位统计 1 的个数，c=0 贡献 0；n≤100、c_i≤255 时 v≤800 无溢出；输出两个整数以空格分隔且校验码为 v&1，符合输出格式要求；复杂度 O(n·log c_max)，在实际数据范围内无边界问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模与零值下界",
+            "input": "1\n0\n",
+            "output": "0 0",
+            "reason": "n=1、c_1=0 同时取数据范围下界；0 的二进制不含 1，参考代码 while(c) 不执行，v=0，校验码 v&1=0，期望输出 0 0（独立推算，未实际运行）。"
+          },
+          {
+            "name": "n 与 c_i 双上界",
+            "input": "100\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n",
+            "output": "800 0",
+            "reason": "255=11111111₂ 各含 8 个 1，100 个共 800 个 1，800 为偶数故校验码 0；覆盖 n=100、c_i=255 双上界并确认 v 上限 800 无溢出（独立推算，未实际运行）。"
+          },
+          {
+            "name": "奇校验分支",
+            "input": "3\n1 2 4\n",
+            "output": "3 1",
+            "reason": "1、2、4 各含 1 个二进制 1，总数 3 为奇数，校验码 1；覆盖奇数输出分支（独立推算，未实际运行）。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 verified 判定：候选题面已包含 PDF 的数据范围与时间/内存限制，题面、样例与 3.1.6 参考程序逐行比对一致；样例 13 1 / 6 0 及三条 tests 期望输出（0 0、800 0、3 1）均经我独立推算复核无误；初核 changes 为空符合候选现状，无新增修改。"
+      }
+    ],
+    "summary": "本次独立复核题号 15、21、22、25、26 共 5 题（对应 PDF 单选第 15 题、判断第 6/7/10 题、编程第 1 题）。逐题基于 PDF 页图与答案表重新推导：15 题字符计数 4+2=6 与答案表 C（索引 2）一致；21 题答案表第 6 题 √（索引 0），奇偶最低位判定与运算符优先级提醒成立；22 题答案表第 7 题 ×（索引 1），substr 抛异常边界为 pos > size()、长度不足仅安全截断；25 题答案表第 10 题 √（索引 0），int 返回值隐式转换为声明的 double 成立且转换位置说明准确；26 编程题题面（含数据范围 1≤n≤100、0≤c_i≤255 及 1.0 s/512.0 MB 限制）、两组样例与 3.1.6 参考程序均与原卷逐行一致，样例输出 13 1、6 0 经独立验算成立。五维中单选 options、客观题 answer 仅在适用维度核验，判断题与编程题相应维度标 not_applicable。全部题目 verdict=approve，无 changes，未决问题为空；编程题三条 tests（0 0、800 0、3 1）期望输出均由本人独立推算，未声称实际运行。"
+  }
+}

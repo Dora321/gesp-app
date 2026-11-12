@@ -1,0 +1,105 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T22:20:23.380Z",
+  "completedAt": "2026-11-12T22:21:42.839Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35358,
+    "completion_tokens": 7985,
+    "total_tokens": 43343,
+    "prompt_tokens_details": {
+      "cached_tokens": 35200
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6905
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0049203,
+      "allowance": 0.00295218,
+      "tokens": {
+        "input": 158,
+        "output": 7985,
+        "reasoning": 6905,
+        "cache_read": 35200,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d7f5e2c37e6c8fc4333be88e1396cb5721cc6b88e69677de4e2e5e6a11ef4e23",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证 / GESP / C++ 三级 / 2025年06月”，与 2025-06-l3 的年份、月份和等级一致。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页 3.2 题头标明时间限制 1.0 s、内存限制 512.0 MB；3.2.1—3.2.5 的题目描述、输入格式、输出格式、两则样例及数据范围“1 ≤ n ≤ 1000，1 ≤ a_i ≤ 10^9”与候选 question、samples 一致。样例1为“4 / 1 4 3 3 → 16”，样例2为“15 / 314 15926 53589793 238462643 383279502 8 8 4 1 9 7 1 6 9 3 → 4508143253”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，卷面无 A—D 选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题没有 PDF 答案表条目，officialAnswer 为 null；正确性通过参考程序和独立推导核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用贪心 b_1=a_1、b_i=max(a_i,b_{i-1}+1)，并按参考代码写回 a[i] 的方式避免使用未更新的前一位需求。独立复核样例1：发放数为 1、4、5、6，总和16；样例2前5位发放数和为 314+15926+53589793+238462643+383279502=675348178，第6—15位依次为 383279503—383279512，共10项之和为3832795075，总计4508143253，与PDF样例一致。解析中关于 long long 防溢出、全局 a[0]=0 使 i=1 时 max(1,a[1])=a[1] 的说明均成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与 PDF 第7页 3.2.6 参考程序逐行一致。独立复核：i=1 时全局 a[0]=0，a[1]=max(1,a[1])=a[1]；i>1 时 a[i]=max(a[i-1]+1,a[i])，其中 a[i-1] 已是前一位实际发放数。a[i-1]+1 最大约为 10^9+999，仍在 int 范围内；ans 为 long long，满规模总和约为 1.0000005×10^12，printf(\"%lld\") 正确；复杂度 O(n)，在 1≤n≤1000、1≤a_i≤10^9 下无越界或溢出问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模（n=1，a_1=1）",
+            "input": "1\n1\n",
+            "output": "1",
+            "reason": "n=1 和 a_1=1 同时取数据范围下界；第一位无前驱约束，参考代码中 a[0]=0，发放数为 max(0+1,1)=1，总和为1（独立推算，未实际运行）。"
+          },
+          {
+            "name": "a_i 上界与累加溢出边界",
+            "input": "3\n1000000000 1000000000 1000000000\n",
+            "output": "3000000003",
+            "reason": "发放数依次为 1000000000、1000000001、1000000002；总和 3000000003 已超过32位有符号 int 上限 2147483647，必须使用 long long 累加并以 %lld 输出（独立推算，未实际运行）。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第27题“分糖果”。修订后的题面已包含时间/内存限制和数据范围，样例、参考程序与PDF第6—7页一致；贪心策略、两则样例结果及 long long 溢出边界均经独立复核，未发现需要修改的字段。"
+  }
+}

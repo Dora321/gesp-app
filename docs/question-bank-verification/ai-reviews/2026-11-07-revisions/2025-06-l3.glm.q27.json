@@ -1,0 +1,107 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T22:21:42.841Z",
+  "completedAt": "2026-11-12T22:23:36.534Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47896,
+    "completion_tokens": 11122,
+    "total_tokens": 59018,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9572
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0127454,
+      "allowance": 0.0127454,
+      "tokens": {
+        "input": 47896,
+        "output": 11122,
+        "reasoning": 9572,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d7f5e2c37e6c8fc4333be88e1396cb5721cc6b88e69677de4e2e5e6a11ef4e23",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示『CCF 编程能力等级认证 / GESP / C++ 三级 / 2025 年 06 月』，与目标 2025-06-l3 的年份（2025）、月份（6）、等级（三级）一致。"
+    },
+    "questions": [
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 3.2 题头：试题名称『分糖果』、时间限制 1.0 s、内存限制 512.0 MB；3.2.1 题目描述（第 i 位小朋友想要至少 a_i 颗糖果、分给他的糖果数量必须比前一位更多，否则不开心；求最少准备糖果数）、3.2.2 输入格式、3.2.3 输出格式、3.2.4 两则样例（4 / 1 4 3 3 → 16；15 / 314 15926 53589793 238462643 383279502 8 8 4 1 9 7 1 6 9 3 → 4508143253）、3.2.5 数据范围『1 ≤ n ≤ 1000，1 ≤ a_i ≤ 10^9』与候选 question、samples 逐项一致；候选已按 PDF 原文补全原网站缺失的时间/内存限制与数据范围，标题前缀『[GESP202506 三级]』为网站格式惯例，语义与『试题名称：分糖果』等价。修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，卷面无 A—D 选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 答案表条目，officialAnswer 为 null；正确性通过参考程序与独立推导核验（见 explanation、referenceCode）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：样例 1 发放数依次为 1、4、5、6，总和 16；样例 2 前 5 位发放 314、15926、53589793、238462643、383279502（和 675348178），第 6—15 位依次 383279503…383279512（10 项等差和 3832795075），总计 4508143253，与 PDF 样例完全一致。贪心式 b_i = max(a_i, b_{i-1}+1) 就地写回时 a[i-1] 已是前一位实际发放数、不能拿未更新原始需求加 1 的说明正确；long long 必要性（4508143253 > 2147483647）与全局 a[0]=0 使 i=1 时 max(1, a[1])=a[1] 不产生错误约束的边界说明均成立。核验通过。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与 PDF 第 7 页 3.2.6 参考程序逐行一致（仅 max(a[i-1]+1,a[i]) 的空格与空行排版差异，语义相同）。独立复核：i=1 时全局 a[0]=0，a[1]=max(1,a[1])=a[1]；i>1 时 a[i-1] 已是前一位实际发放数，转移正确；复杂度 O(n)；n=1000、a_i 全为 10^9 满规模时 a[i-1]+1 ≤ 1000000999 仍在 int 范围内，ans=1000000499500 在 long long 范围内，printf(\"%lld\") 输出正确；N=1005 覆盖 n≤1000 无越界。核验通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模（n=1，a_1=1）",
+            "input": "1\n1\n",
+            "output": "1",
+            "reason": "n=1 与 a_1=1 同时取数据范围下界；第一位无前驱约束，参考代码中全局 a[0]=0，发放数 max(0+1,1)=1，总和为 1（独立推算，未实际运行）。"
+          },
+          {
+            "name": "a_i 上界与 long long 溢出边界",
+            "input": "3\n1000000000 1000000000 1000000000\n",
+            "output": "3000000003",
+            "reason": "发放数依次为 1000000000、1000000001、1000000002，总和 3000000003 已超过 32 位有符号 int 上限 2147483647，必须以 long long 累加并按 %lld 输出；覆盖 a_i=10^9 上界与严格递增约束（独立推算，未实际运行）。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选已包含上一轮全部修复（题面按 PDF 补全时间/内存限制与数据范围、解析与参考代码对齐原卷），本轮独立复算两则样例（16、4508143253）、贪心转移逻辑、满规模溢出边界（a[i-1]+1 ≤ 1000000999 在 int 内、ans ≤ 1000000499500 在 long long 内）与数组容量（N=1005 ≥ 1000）全部通过，候选与原卷一致，无需再改，故 approve。接受 DeepSeek 初核的 changes={} 结论及其 2 条 tests（期望 1、3000000003 经我独立验算正确，予以采纳）；初核草稿仅缺 verdict/reviewNote 字段，已在本稿补齐。满规模 n=1000 情形已在 referenceCode 证据中推算确认（总和 1000000499500），不再重复罗列超长测试数据。"
+      }
+    ],
+    "summary": "本轮仅独立复核题 27『分糖果』：候选题面（含补全的 1.0 s / 512.0 MB 限制与数据范围 1≤n≤1000、1≤a_i≤10^9）、两则样例、参考程序均与 PDF 第 6—7 页一致；贪心策略 b_i=max(a_i,b_{i-1}+1) 的样例结果（16、4508143253）、long long 溢出必要性、满规模总和 1000000499500 与数组容量 N=1005 经独立验算全部正确。候选符合原卷，判定 approve，无需修改；采纳 DeepSeek 初核结论及经我独立核对期望输出的 2 条测试（最小输入→1、a_i 上界→3000000003）。"
+  }
+}
