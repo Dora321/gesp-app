@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams, useSearchParams, Link } from 'react-router-dom';
-import { ChevronLeft, Tags, Loader2, BookOpen, ShieldCheck, TriangleAlert } from 'lucide-react';
+import { ChevronLeft, Tags, BookOpen, ShieldCheck, TriangleAlert } from 'lucide-react';
+import LoadingBlocks from '../../components/LoadingBlocks';
 import { loadLevelTopics, buildTopicPaper } from '../../data/gesp/topics';
 import { TOPIC_GROUP_ORDER } from '../../data/gesp/topicTaxonomy';
 import InteractiveAnalysisPage from './InteractiveAnalysisPage';
@@ -144,8 +145,8 @@ export default function TopicPracticePage() {
                 </div>
 
                 {loading ? (
-                    <div className="flex items-center justify-center gap-2 py-20 text-slate-500">
-                        <Loader2 className="animate-spin" size={20} /> 正在汇总 {LEVEL_NAMES[level - 1]}级真题考点…
+                    <div className="flex items-center justify-center gap-2.5 py-20 text-slate-500" role="status">
+                        <LoadingBlocks /> 正在汇总 {LEVEL_NAMES[level - 1]}级真题考点
                     </div>
                 ) : topics.length === 0 ? (
                     <div className="rounded-xl border border-slate-200 bg-white p-10 text-center text-slate-500">
