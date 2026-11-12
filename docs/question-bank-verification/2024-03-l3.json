@@ -74,44 +74,46 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
-        "answer"
+        "answer",
+        "explanation"
       ],
-      "blockedDimensions": [
-        "explanation",
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第1页原文为“如果16位短整数 -2 的二进制是\"FFFE\"，则短整数 -4 的十六进制是( )”；网站将“二进制”改为“十六进制表示”。FFFE 含 F，不可能是二进制，原卷疑有笔误，需保留争议。",
-          "review": "PDF 第 1 页原文为「如果16位短整数 -2 的二进制是“FFFE”，则短整数 -4 的十六进制是( )」；FFFE 含字母 F，不可能是二进制，系原卷笔误。网站已改写为「十六进制表示是“FFFE”」，语义正确但与原文措辞不同；按「源卷自身有误须保留争议」原则，是否保留改写（或按原文加注）留待人工定案，故本维度 unresolved、不提供 changes。"
+          "initial": "PDF 第1页第2题原文为“如果16位短整数 -2 的二进制是‘FFFE’，则短整数 -4 的十六进制是（ ）”；FFFE 含十六进制字符 F，不可能是二进制，系原卷把“十六进制”误写为“二进制”。候选改为“十六进制表示是‘FFFE’”并在解析中披露原卷原文，属唯一可解的语义勘误；源卷笔误争议保留。",
+          "review": "修复后核验通过。PDF 第 1 页第 2 题原文为「如果16位短整数 -2 的二进制是“FFFE”，则短整数 -4 的十六进制是( )」，FFFE 含十六进制字符 F 不可能是二进制，系源卷把「十六进制」误写为「二进制」；候选按语义勘误为「十六进制表示是 FFFE」并在解析开头披露原卷原文，勘误方向唯一（若按字面「二进制」则题面自相矛盾无解）。源卷笔误争议保留于 unresolved。"
         },
         "options": {
-          "initial": "PDF 第1页第2题 A-D 依次为 FF04、FFFA、FFFC、FFFH，与网站选项及顺序一致。",
-          "review": "PDF 第 1 页第 2 题选项 A.FF04、B.FFFA、C.FFFC、D.FFFH，与网站选项及顺序一致。"
+          "initial": "PDF 第1页选项依次为 A.FF04、B.FFFA、C.FFFC、D.FFFH，与候选内容及顺序一致。",
+          "review": "PDF 第 1 页原图选项依次为 A.FF04、B.FFFA、C.FFFC、D.FFFH，与候选内容及顺序一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第2题标 C，对应0起始索引2；网站 answer=2。",
-          "review": "PDF 第 1 页答案表第 2 题为 C（索引 2），与网站 answer=2 一致；独立换算 0xFFFC = 65532 − 65536 = −4，支持 C。"
+          "initial": "PDF 第1页答案表第2题为 C（0 起始索引 2），候选 answer=2；独立换算：|−4|=4=0x0004，取反 0xFFFB，加 1 得 0xFFFC=65532，65532−65536=−4。",
+          "review": "PDF 第 1 页单选答案表第 2 题为 C（0 起始索引 2），候选 answer=2 一致；独立换算：|−4|=4=0x0004，取反得 0xFFFB，加 1 得 0xFFFC=65532，65532−65536=−4，支持 C。"
         },
         "explanation": {
-          "initial": "网站解析存在多处错误：把 FF04 排除的理由写成“负数补码最高位应为 F”不成立；把 FFFA 的十进制换算写成“原码 = -(2^15 - FFFA)”也不准确。核心答案 FFFC 正确。",
-          "review": "修复后核验通过：原解析「负数补码最高位应为 F」不成立（16 位最小负数 −32768 为 0x8000）、FF04「接近 -252」实为恰等于 −252、FFFA 换算式「-(2^15 - FFFA)」错误；changes 已重写为精确换算 0xFF04=−252、0xFFFA=−6、0xFFFC=−4 并指出 FFFH 含非法字符，结论 C 复核无误。"
+          "initial": "候选解析已避免“FFFE−1 得 −4”的错误，改为 FFFE−2=FFFC；逐项复算：0xFF04=65284→−252、0xFFFA=65530→−6、0xFFFC→−4、FFFH 含非法字符 H，均正确。",
+          "review": "修复后核验通过。候选解析以「-4 比 -2 小 2，FFFE−2=FFFC」及「|−4|=4 取反加一得 0xFFFC」双路推导；逐项复算：0xFF04=65284→65284−65536=−252、0xFFFA=65530→−6、0xFFFC=65532→−4、FFFH 含非法十六进制字符 H，均无误；上轮两处解析错误（FFFE−1 推不出 −4、2^15−FFFA 算式）已不存在。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-3/2024-03-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-3/2024-03-l3.glm.json"
       ]
     },
     {
@@ -1038,39 +1040,42 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 6—7 页题面、输入输出与样例一致；但当前 question 缺少第 7 页的约束“对于全部数据，保证有 1 ≤ n ≤ 10^5”。另 PDF 第 6 页示例文字把 A 写成“正整数 -65”，与“ASCII 码的相反数”及样例 -61 矛盾，当前按负整数处理。",
-          "review": "PDF 第 6 页 3.1.1 题面与第 7 页 3.1.2/3.1.3 输入输出格式逐句对照，网站文字基本一致，样例 3/aAc→-61 一致。三处差异：①网站缺 PDF 第 7 页样例下方数据范围“对于全部数据，保证有 1 ≤ n ≤ 10^5”（页面图可见，参考程序 N=100005 与之吻合）；②PDF 原文“例如字母 A 代表了正整数 -65”自相矛盾，系源卷笔误，网站已按题意与参考程序改为“负整数”，属合理勘误、予以采纳；③网站“利用这种放缩”PDF 原文为“利用这种方式”，应还原。"
+          "initial": "PDF 第6页题面与第7页输入/输出格式、样例、数据范围对照：候选保留“利用这种方式”，样例 3/aAc→−61 正确，数据范围 1≤n≤10^5 存在；原卷“例如字母 A 代表了正整数 -65”与上下文“大写字母代表负整数”、样例 −61 及参考程序 ans-=str[i] 均矛盾，候选按题意作“负整数 -65”，源卷笔误争议保留。",
+          "review": "修复后核验通过。PDF 第 6 页 3.1.1 与第 7 页 3.1.2—3.1.4 逐句对照：候选保留「利用这种方式」、输入/输出格式（正整数 n、字符串 T）、样例 3/aAc→−61 与数据范围 1≤n≤10^5，均与原卷一致；原卷「例如字母 A 代表了正整数 -65」与同段「大写字母代表负整数」、样例 −61 及参考程序 ans-=str[i] 三方矛盾，系源卷笔误，候选按题意作「负整数 -65」，争议保留于 unresolved。"
         },
         "explanation": {
-          "initial": "解析按字符分类：小写累加 c-'a'+1，大写累加 -ASCII；样例 aAc 独立核算为 1-65+3=-61；算法 O(n)，n≤10^5 可行。",
-          "review": "独立推导：小写加序号 T[i]-'a'+1，大写加 ASCII 相反数（等价 ans-=T[i]），与参考程序分支一致；样例 aAc=1+(-65)+3=-61 复算一致；O(n) 遍历在 n≤10^5 内可行；ans 极值约 -90×10^5～26×10^5，int 安全。"
+          "initial": "独立推导：小写 ans+=T[i]-'a'+1（a→1、z→26）；大写 ans-=T[i]（A→−65、Z→−90）；样例 0→1→−64→−61 复算一致；O(n) 可行，全大写 Z 时约 −9×10^6，在 int 范围内。",
+          "review": "独立推导核验通过：小写分支 ans+=T[i]−'a'+1（a→1、z→26），大写分支 ans−=T[i]（A→−65、Z→−90），与题意和参考程序一致；样例走查 0→1→1−65=−64→−64+3=−61 复算一致；O(n) 在 n≤10^5 内可行，|ans| 极值约 90×10^5=9×10^6（全大写 Z）或 26×10^5=2.6×10^6（全小写），均在 int 范围内；易错提醒（+1 序号偏移、大写取 ASCII 相反数、禁用 'a'<=str[i]<='z' 式连续比较）均正确。"
         },
         "referenceCode": {
-          "initial": "与 PDF 第 7 页参考程序逐行一致；N=100005 可容纳 n≤10^5 及结尾 '\\0'；ans 约在 [-6.5e6, 2.6e6] 内，int 足够。",
-          "review": "与 PDF 第 7 页 3.1.5 参考程序逐行一致（含头文件、N=100005、assert(n==strlen(str))、大小写分支及 else assert(false)）；N=100005 可容纳 n=10^5 加结尾 '\\0'；cin>>str 读入定长字符数组安全。"
+          "initial": "与 PDF 第7页 3.1.5 参考程序逐行一致：五个头文件、N=100005、char str[N]、assert(n==strlen(str))、小写 ans+=str[i]-'a'+1、大写 ans-=str[i]、else assert(false)；N 可容纳 n=10^5 及结尾空字符，cin>>str 对该无空格字符串安全，复杂度 O(n)。",
+          "review": "与 PDF 第 7 页 3.1.5 参考程序逐行一致：五个头文件（iostream/assert.h/cstdlib/cstdio/cstring）、const int N=100005、char str[N]、assert(n==strlen(str))、小写 ans+=str[i]-'a'+1、大写 ans-=str[i]、else assert(false)、cout<<ans<<endl；N=100005 可容纳 n=10^5 及结尾空字符，cin>>str 按空白截断读入该无空格字符串安全，O(n) 无越界、无溢出。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-3/2024-03-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-3/2024-03-l3.glm.json"
       ]
     },
     {
@@ -1118,18 +1123,6 @@
   ],
   "unresolved": [
     {
-      "id": 2,
-      "dimensions": [
-        "explanation",
-        "statement"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 8,
       "dimensions": [
         "explanation"
@@ -1151,16 +1144,6 @@
         "statement 尚无一致、完整的原卷核验结论",
         "explanation 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [
@@ -1173,5 +1156,5 @@
     }
   ],
   "programmingChecks": "ai-reviews/2026-11-07/2024-03-l3.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2024-03-l3.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-3/2024-03-l3.integration.json"
 }
