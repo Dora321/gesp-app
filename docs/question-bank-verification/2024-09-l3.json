@@ -279,40 +279,43 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
+        1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第2页第7题给出`void Swap(int &a, int &b)`及`if (a != b)`包裹的三行异或操作，网站题干与代码一致。",
-          "review": "PDF 第 2 页第 7 题题干“下列代码实现的是（ ）”，代码为 void Swap(int &a, int &b){ if(a!=b){ a^=b; b^=a; a^=b; } }，网站逐行一致。"
+          "initial": "原卷 PDF 第2页显示：第7题题干为“下列代码实现的是（ ）”，代码为 void Swap(int &a, int &b) { if (a != b) { a ^= b; b ^= a; a ^= b; } }；这与候选题面中的代码和函数名逐项一致。",
+          "review": "PDF 第2页第7题题干为「下列代码实现的是（）」，代码图逐行为 void Swap(int &a, int &b) { if (a != b) { a ^= b; b ^= a; a ^= b; } }（第1~7行），与候选题面代码逐字符一致，含引用传参、if(a != b) 保护及三次 ^=，无缺漏。"
         },
         "options": {
-          "initial": "PDF第2页选项依次为A a和b的异或、B a和b的同或、C a和b的值交换、D a和b的高低位互换，顺序与网站一致。",
-          "review": "PDF 第 2 页选项依次为 A a和b的异或、B a和b的同或、C a和b的值交换、D a和b的高低位互换，与网站一致。"
+          "initial": "原卷 PDF 第2页第7题选项依次为 A. a和b的异或、B. a和b的同或、C. a和b的值交换、D. a和b的高低位互换；这与候选项的文字和顺序一致。",
+          "review": "PDF 第2页第7题选项依次为 A. a和b的异或、B. a和b的同或、C. a和b的值交换、D. a和b的高低位互换，文字与顺序均与候选 options[0..3] 一致。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第7题为C，即0起始索引2。设进入函数时a=X、b=Y且X≠Y，执行a^=b后a=X^Y，执行b^=a后b=X，执行a^=b后a=Y，完成交换。",
-          "review": "PDF 第 1 页答案表第 7 题为 C，即 0 起始索引 2。独立推导：设 a=X、b=Y（X≠Y），a^=b 后 a=X^Y；b^=a 后 b=Y^(X^Y)=X；a^=b 后 a=(X^Y)^X=Y，完成交换。"
+          "initial": "原卷 PDF 第1页单选题答案表中，题号7对应答案 C；按 0 起始选项索引即 2，与候选 answer=2 一致。独立推导：设初始 a=X、b=Y 且 X≠Y，执行 a^=b 得 a=X^Y；执行 b^=a 得 b=Y^(X^Y)=X；执行 a^=b 得 a=(X^Y)^X=Y，最终值互换；当 a==b 时条件保护会跳过操作，但结果仍保持交换语义。",
+          "review": "PDF 第1页单选答案表「B C A D C B C C A D D C D C B」第7位为 C，0 起始索引 2，与候选 answer=2 一致。独立推导：设 a=X、b=Y（X≠Y），a^=b 后 a=X^Y；b^=a 后 b=Y^(X^Y)=X；a^=b 后 a=(X^Y)^X=Y，两值完成交换，故 C 正确；A（异或仅为中间步骤）、B（同或需取反，代码无取反）、D（无位级高低位操作）均不符。"
         },
         "explanation": {
-          "initial": "原解析称“当 a 和 b 指向同一内存位置时会将值清零”，又说“忽略 if(a != b) 条件……会做三次无效运算”，与代码不符：同一对象传入时`if (a != b)`为假，三轮异或不会执行，因此不会清零。",
-          "review": "网站解析主体推导正确。易错提醒中“a、b 相等时做三次无效运算、结果仍为原值”对两个不同变量同值的情形成立（X^X=0，再两次异或复原为原值）；知识延伸所述“自交换清零”是经典无保护异或交换的一般事实，本题代码带 if(a!=b) 保护，两者并不矛盾，原文无事实错误。"
+          "initial": "候选解析用三次异或逐步推导，结论“值交换”正确；对 A、B、D 的排除也正确。关于异或消去律、单位元和自反性的公式无误。解析对 a==b 时保护条件的说明，以及对经典无保护异或交换在别名情形下清零风险的提醒，属于通用注意事项；本题代码带有 if(a != b) 保护，不影响本题答案与主要解析结论。",
+          "review": "候选解析三次异或逐步推导正确；所列性质 a^a=0、a^0=a、a^b^b=a 经独立验证均成立；对 A/B/D 的排除理由正确。易错提醒所述「a==b 时异或交换做三次无效运算但值不变」经独立验证成立：a=X,b=X → a^=b 得 0 → b^=a 得 X → a^=b 得 X，净效果为零，且候选随即指出本题 if 保护正是为避免该情形，与带保护代码不矛盾；别名清零说明是对经典异或交换技巧的通用工程注意事项，非对本题代码行为的错误断言。解析无事实错误，无需修复。"
         }
       },
-      "unresolved": [
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2024-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2024-09-l3.glm.json"
       ]
     },
     {
@@ -1084,18 +1087,8 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 7,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2024-09-l3.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-09-l3.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2024-09-l3.integration.json"
 }

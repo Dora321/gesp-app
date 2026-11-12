@@ -1,0 +1,101 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    7
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T00:11:54.690Z",
+  "completedAt": "2026-11-12T00:12:29.027Z",
+  "finishReason": "stop",
+  "inputSha256": "e1af11fdc6ca4d4a9d3f57d9bd7d1444216501b19ea775fcd1257cfb9ac69eab",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 三级”和“2024 年 09 月”，与 2024-09-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "原卷 PDF 第2页显示：第7题题干为“下列代码实现的是（ ）”，代码为 void Swap(int &a, int &b) { if (a != b) { a ^= b; b ^= a; a ^= b; } }；这与候选题面中的代码和函数名逐项一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原卷 PDF 第2页第7题选项依次为 A. a和b的异或、B. a和b的同或、C. a和b的值交换、D. a和b的高低位互换；这与候选项的文字和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "原卷 PDF 第1页单选题答案表中，题号7对应答案 C；按 0 起始选项索引即 2，与候选 answer=2 一致。独立推导：设初始 a=X、b=Y 且 X≠Y，执行 a^=b 得 a=X^Y；执行 b^=a 得 b=Y^(X^Y)=X；执行 a^=b 得 a=(X^Y)^X=Y，最终值互换；当 a==b 时条件保护会跳过操作，但结果仍保持交换语义。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析用三次异或逐步推导，结论“值交换”正确；对 A、B、D 的排除也正确。关于异或消去律、单位元和自反性的公式无误。解析对 a==b 时保护条件的说明，以及对经典无保护异或交换在别名情形下清零风险的提醒，属于通用注意事项；本题代码带有 if(a != b) 保护，不影响本题答案与主要解析结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        7
+      ],
+      "usage": {
+        "prompt_tokens": 13514,
+        "completion_tokens": 3770,
+        "total_tokens": 17284,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3225
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0042891,
+          "allowance": 0.00257346,
+          "tokens": {
+            "input": 13514,
+            "output": 3770,
+            "reasoning": 3225,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T00:11:54.690Z",
+      "completedAt": "2026-11-12T00:12:29.027Z"
+    }
+  ]
+}

@@ -256,6 +256,10 @@ a ^= b;  // 执行后：a = (X ^ Y) ^ X = Y，b = X
 
 **考点：** 异或运算性质应用（交换律、自反性、消去律）`,
             tags: ['位运算', '异或'],
+      "sourcePage": 1,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"],
         },
         {
             id: 8,
