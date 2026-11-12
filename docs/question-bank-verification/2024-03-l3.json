@@ -780,38 +780,41 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第6页判断题第4题原文为“一个 int 类型变量 a ，执行操作 (a<<2>>2) 后的值一定是 a 。”，网站空格排版不同但语义一致。",
-          "review": "PDF 第 6 页判断题第 4 题原文「一个 int 类型变量 a ，执行操作 (a<<2>>2) 后的值一定是 a 。（ ）」，网站仅空格排版差异，语义一致。"
+          "initial": "PDF 第 6 页判断题第 4 题原文为「一个 int 类型变量 a，执行操作 (a<<2>>2) 后的值一定是 a。」候选仅调整空格排版，含义一致。",
+          "review": "PDF 第 6 页判断题第 4 题原文「一个 int 类型变量 a，执行操作 (a<<2>>2) 后的值一定是 a。（ ）」与候选题干一致（仅排版空格差异）。"
         },
         "answer": {
-          "initial": "PDF 第5页判断题答案表第4格为 ×，对应“错误”，即 officialAnswer=1；网站 answer=1 一致。",
-          "review": "PDF 第 5 页判断题答案表第 4 格为 ×（错误），officialAnswer=1；网站 answer=1 一致。"
+          "initial": "PDF 第 5 页判断题答案表第 4 格为 ×（0 起始索引 1），候选 answer=1；独立反例 a=0x40000000 左移 2 位超出 32 位 int 表示范围，回绕后低 32 位为 0，再右移仍为 0，不等于原值。",
+          "review": "PDF 第 5 页判断题答案表第 4 格为 ×（0 起始索引 1），候选 answer=1；独立反例：32 位 int 取 a=0x40000000，a<<2 真实值 2^32 超出表示范围，常见回绕实现下低 32 位为 0，再 >>2 仍为 0 ≠ 原 a，故「一定是 a」不成立，判定错误。"
         },
         "explanation": {
-          "initial": "当前解析以 8 位 `a=48` 演示 `int` 的高位丢失，位宽与 `int` 不符，且未说明有符号左移溢出问题，例证不严谨。应改为说明左移可能丢失高位或发生有符号溢出，右移不能保证恢复，故“一定”为假。",
-          "review": "网站原解析例证有误：以 8 位 a=48 演示与 int 位宽不符，且 48=00110000 左移 2 位低 8 位应为 11000000，原稿误写为 10000000，后续「>>2 得 32」的算式随之不成立。changes 中已提供修正稿，改用 32 位 a=0x40000000 左移回绕为 0 的反例，经独立推导无误；修复后核验通过。"
+          "initial": "候选按较早标准/常见回绕实现区分讨论，反例 0x40000000 复算成立：真实值 2^32 超出 32 位表示范围，常见回绕结果为 0，右移 2 位仍 0，足以说明“一定是 a”错误。",
+          "review": "候选解析逐句独立核验通过，无需修改：移位运算符同级左结合，表达式即 (a<<2)>>2；对有符号 int 左移超范围在较早 C++ 标准为未定义行为、C++20 起定义为按无符号回绕，候选已区分两种语义表述；反例 a=0x40000000 复算成立（左移真实值 2^32 超范围，常见回绕低 32 位为 0，右移仍 0≠原值）；负数左移波及符号位、右移符号扩展在较早标准由实现定义（主流为算术右移）表述准确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2024-03-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2024-03-l3.glm.json"
       ]
     },
     {
@@ -1150,16 +1153,6 @@
       ]
     },
     {
-      "id": 19,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 26,
       "dimensions": [
         "statement"
@@ -1180,5 +1173,5 @@
     }
   ],
   "programmingChecks": "ai-reviews/2026-11-07/2024-03-l3.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-03-l3.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2024-03-l3.integration.json"
 }
