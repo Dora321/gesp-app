@@ -1,0 +1,239 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    9,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T22:37:55.325Z",
+  "completedAt": "2026-11-12T22:41:34.078Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64530,
+    "completion_tokens": 22852,
+    "total_tokens": 87382,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19460
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0211055,
+      "allowance": 0.0211055,
+      "tokens": {
+        "input": 64530,
+        "output": 22852,
+        "reasoning": 19460,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5a1bf4809054a8ace2ba6d3c9a0579254947a4af27c93b344d11d7439c73ed0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 页首标明「CCF 编程能力等级认证 GESP」「C++ 三级」「2024 年 12 月」，全卷结构为单选 15 题、判断 10 题、编程 2 题，与 paperId 2024-12-l3（2024 年 12 月 GESP C++ 三级）对应。"
+    },
+    "questions": [
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末为第 9 题题干「下列程序输出的是（）」，完整 13 行代码位于第 3 页：string ch=\"hello\"; 后接 if(ch[5]==NULL) 输出 right、else if (ch[5]=='\\0') 输出 wrong、else 输出 hello 三分支；候选代码块与原图逐行对应，仅大括号换行与空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. right、B. wrong、C. hello、D. 不能正确执行，与候选顺序、内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 A，候选 answer=0。独立推导：「hello」长度为 5，C++11 起 std::string::operator[] 在 pos==size() 时返回空字符引用，ch[5] 即 '\\0'（数值 0），属合法访问；GESP 考试语境 NULL 为整型 0，ch[5]==NULL 等价 0==0 成立，进入第一分支输出 right，与官方键一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立复核通过：ch[5] 读取的是 pos==size() 处的合法空字符而非未定义行为，与 NULL（数值 0）比较为真进入第一分支，else if 不再执行，故输出 right；对 B/C/D 的排除理由以及「严格大于 size() 才越界」「NULL 与 '\\0' 数值同为 0」的提醒均与标准语义和官方键相符，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其对本题各维的结论与我的独立推导一致（ch[5] 为 pos==size() 的合法访问并返回空字符、NULL 按整型 0 处理、第一分支成立输出 right），题面、选项、答案映射均与 PDF 第 2-3 页及答案表一致，解析无事实性错误，无需修改，无否决项。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干「想要计算从数字n到数字m之间（包含n和m）有多少个数字d出现，下列程序哪个能够实现（ ）。」，候选题干一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 4 页原图逐行核验：A 为 int n,m,res,d; 且 for 从 i=n+1 起、含 int temp=i 与 ==d；B 第 6 行为 if(temp % 10 = d)（单等号）；C 为 res=0、i=n 起、含 int temp=i 与 ==d；D 为 res=0 但循环体内缺 int temp=i、直接 while(temp)。候选四段代码与原图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 C，候选 answer=2。独立复核：A 漏统计 n 且 res 未初始化；B 中 (temp%10)=d 对右值赋值属非法，无法编译；D 的 temp 未声明，无法编译；仅 C 同时满足计数器初始化、闭区间 [n,m] 遍历与逐位剥离，与官方键一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项与 PDF 第 4 页源码对应并独立复核通过：A 的两处缺陷（res 未初始化、i=n+1 漏 n）、B 的 temp%10 为右值不能作赋值目标且 res 未初始化、D 缺 int temp=i 致 temp 未声明无法编译、C 三要点齐备，均与源码事实相符，未发现错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其认定的四段代码缺陷（A 漏 n 且 res 未初始化、B 非法赋值无法编译、D temp 未声明、C 唯一正确）与我对照 PDF 第 4 页原图的独立走查完全一致，answer=2 与官方答案表 C 对应，解析无需修改，无否决项。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干「兔子五元一只，鸡三元一只，小鸭子一元三只，现在你有一百元要买一百只，兔子、鸡、鸭子，问兔子、鸡、鸭子各买多少只，每种必须至少一只，下列哪个程序能实现。（ ）。」，候选题干一致，仅逗号句读差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 5 页原图逐行核验：A 条件为 i+j+k==100 && 25*i+10*j+k==300；B 同结构但 20*i+10*j+k==300；C 上界 i<=20、j<=34、k<=20 且 15*i+9*j+k==300；D 枚举 0..100 且 15*i+9*j+k==300。候选四段代码与原图逐行一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 D，候选 answer=3 与官方键一致。独立推导：5i+3j+k/3=100 两边乘 3 得 15i+9j+k=300，D 的两个条件均正确。但题干「每种必须至少一只」未在 D 中落实（7i+4j=100 的非负解含 (0,25,75)，D 会输出 0 25 75），属原卷选项设计瑕疵，记入 unresolved 保留争议，不据此改动 answer。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立核算通过：金额方程 15i+9j+k=300 正确；A（25i+10j+k）、B（20i+10j+k）系数错误；C 上界之和最多 20+34+20=74，与 i+j+k=100 直接矛盾，一行也输出不了；D 两方程正确并与官方键一致；解析同时保留 D 会输出 0 25 75 的原卷瑕疵说明，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷瑕疵：题干要求每种必须至少一只，但官方正确选项 D 从 0 起枚举且条件未排除 0，会输出 0 25 75 等不满足题意的解（不定方程 7i+4j=100 的非负整数解为 (0,25,75)、(4,18,78)、(8,11,81)、(12,4,84)，仅首个违反约束）；官方答案表仍记 D，候选未改 answer，保留争议不定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "部分接受 DeepSeek 初核：其确认候选选项与 PDF 第 5 页逐行一致、解析与源码对应，与我独立核算一致，予以采纳；但初核把 answer 维度整体标 unresolved 过宽——站点 answer=3 与官方答案表 D 的映射本身可核验且一致，我改标 verified，仅将「至少一只」未落实的原卷瑕疵单列 unresolved。本题因源卷自身题干约束与正确选项行为冲突，verdict 取 unresolved 保留争议。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干「求小于等于N的素数的方法中，有一种方法是将所有从2到它本身减1的数都除一遍，如果不能整除，就是素数。下列哪个程序，体现了这种方法（）」，候选题干一致（仅一处逗号排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 5-7 页原图逐行核验：A 为 if(N>=3) 先输出 2、外层 i 从 2 起、判据 i%j!=0 时置 flag=1、每轮末 flag=0；B 为 if(N>=2) 无先输出 2、i 从 3 起、判据 i%j==0、含 flag=0 复位；C 与 B 同判据但先输出 2（14 行、含复位）；D 与 C 相同但缺每轮末 flag=0（13 行）。候选四段代码与原图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C，候选 answer=2。独立走查 N=5（flag 初始 0）：C 输出 2、3、5；A 因判据 i%j!=0 反向且 i=2 重复输出，仅输出两个 2；B 漏掉素数 2；D 因 i=4 置 flag=1 后无复位，5 被漏掉，仅输出 2、3。C 与官方键一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与还原后的 PDF 代码逐项对应并独立复核通过：A 的判据反向（任意 i≥3 存在 j=i-1 使 i%j≠0，flag 必被置 1，i≥3 全被判为非素数）且重复输出 2；B 缺先输出 2；C 的初始化、试除范围 j<i、每轮复位均正确（N=5 走查得 2、3、5）；D 缺 flag=0 复位致后续素数被污染漏输出，均无事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其对四段代码的缺陷归因（A 判据反向并重复输出 2、B 漏 2、C 正确、D 缺复位漏 5）与我按 N=5 的独立走查一致，answer=2 与官方答案表 C 对应，解析无需修改，无否决项。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页题干「工人工作一天，会得到一个金环作为工资报酬，某个工作需要15天完成，一条15个环的金环项链，为了严格执行每天工作结束时，完成对工人工资的结算，最少需要将金环项链剪裁成几段，每段几个金环（ ）」，候选题干一致，仅句读与空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页选项依次为 A. 4段，分别是1、2，4，8；B. 15段，每段1个；C. 6段，分别是3、3、3、3、2、1；D. 9段，分别是2、2、2、2、2、2、1、1、1，与候选顺序、内容一致，仅标点差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 A，候选 answer=0。独立验证：1、2、4、8 的子集和覆盖 1..15 全部整数，配合给出/收回操作可完成 15 天逐日结算；k 段最多提供 2^k 种持有组合，2^3=8<15≤2^4=16，故最少 4 段，与官方键一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立复核通过：其修正了旧解析的三处论证错误（旧版称 3 段总和达不到 15、C 无法组合出 4、D 无法组合出 3，实际 5+5+5=15、4=3+1、3=2+1 均成立），改以「k 段最多 2^k 种子集状态、需 2^k≥15」作最少性判据；经我验证 B/C/D 确能组合出 1..15 但段数多于 4，排除理由成立，结论与官方键 A 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其认可候选解析以 2^k 状态数下界重写最少性证明并修正旧版对 C/D「无法组合」的错误断言，经我独立验证 2^3=8<15、2^4=16≥15 以及 4=3+1、3=2+1 均成立，结论与官方键 A 一致，无需修改，无否决项。"
+      }
+    ],
+    "summary": "本批复核第 9、12、13、14、15 题。第 9 题：ch[5] 为 pos==size() 的合法访问并返回空字符，与 NULL（整型 0）比较成立，答案 A（answer=0）与官方键一致，解析核验通过；第 12 题：四段选项代码与 PDF 第 4 页逐行一致，A 漏 n 且 res 未初始化、B 为非法赋值、D 的 temp 未声明，仅 C 正确，独立复核成立；第 13 题：候选已忠实还原 PDF 第 5 页选项代码，answer=3 与官方答案表 D 一致，但题干「每种必须至少一只」与官方 D 的行为冲突（会输出 0 25 75），属原卷自身瑕疵，保留 unresolved，verdict 为 unresolved；第 14 题：N=5 走查确认 C 正确输出 2、3、5，A 重复输出 2 且判据反向、B 漏 2、D 因缺 flag 复位漏 5；第 15 题：以 2^k 状态数下界（2^3=8<15）确立最少 4 段，旧解析论证错误已在候选中修正。第 9、12、14、15 题 verdict 为 approve，本批无需 changes；五题均为单选题，无参考代码，tests 不适用。"
+  }
+}

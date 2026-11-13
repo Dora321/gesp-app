@@ -30,41 +30,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页第 1 题原文为“下列二进制表示的十进制数值分别是”：[10000011]原、[10000011]补，与站内题面一致。",
-          "review": "PDF 第 1 页第 1 题题干「下列二进制表示的十进制数值分别是（ ）」，代码框两行为 [10000011]原=（ ）、[10000011]补=（ ），与站内题面一致。"
+          "initial": "PDF 第 1 页第 1 题题干为「下列二进制表示的十进制数值分别是（ ）」，代码框两行为 [10000011]原=（ ）、[10000011]补=（ ），与候选题面一致。",
+          "review": "PDF 第 1 页第 1 题题干为「下列二进制表示的十进制数值分别是（）」，代码框两行依次为 [10000011]原=（）、[10000011]补=（），与站内题面逐行一致。"
         },
         "options": {
-          "initial": "PDF 四选项依次为 A. -125，-3；B. -3，-125；C. -3，-3；D. -125，-125，站内选项内容与顺序一致。",
-          "review": "PDF 四选项依次为 A. -125，-3；B. -3，-125；C. -3，-3；D. -125，-125，与站内选项顺序、内容一致（仅标点全半角差异）。"
+          "initial": "PDF 四选项依次为 A. -125，-3；B. -3，-125；C. -3，-3；D. -125，-125，与候选选项顺序和内容一致，仅标点全半角差异。",
+          "review": "PDF 四选项依次为 A. -125，-3；B. -3，-125；C. -3，-3；D. -125，-125，与站内顺序、内容一致（仅标点全半角差异）。"
         },
         "answer": {
-          "initial": "PDF 答案表第 1 题为 B；站内 answer=1，以 0 起始对应 B，映射正确。",
-          "review": "PDF 答案表第 1 题为 B，站内 answer=1（0 起始对应 B）。独立验算：原码 10000011 符号位 1、低 7 位 0000011₂=3，真值 -3；补码 10000011 取反加一得 01111101₂=125，真值 -125，故 B（-3，-125）正确。"
+          "initial": "PDF 答案表第 1 题为 B，候选 answer=1（0 起始对应 B）。独立验算：原码 10000011 的低 7 位 0000011₂=3，真值为 -3；补码 10000011 取反加一得 01111101₂=125，故真值为 -125，B 正确。",
+          "review": "PDF 第 1 页答案表第 1 题为 B，站内 answer=1（0 起始对应 B）。独立验算：原码 10000011 符号位为 1、低 7 位 0000011₂=3，真值 -3；补码 10000011 取反加一得 01111101₂=125，真值 -125，B（-3，-125）正确。"
         },
         "explanation": {
-          "initial": "结论 B 正确，但解析将原码低 7 位 1111101 写成 11111101（8 位）并称其值为 125，位串与求和范围不一致，容易误导。",
-          "review": "修复后核验通过：原解析步骤三写「数值位 11111101 = 64+32+16+8+4+1 = 125」，位串与求和不一致（11111101₂=253），正确数值位应为低 7 位 1111101₂=125；已在 changes 中给出修正解析，结论 -3、-125 与各选项分析结论均不变。"
+          "initial": "候选解析步骤三使用低 7 位 1111101₂=64+32+16+8+4+1=125，求和与位串一致；此前把 11111101 写入求和的笔误已修正，结论与各选项排除理由正确。",
+          "review": "修订候选已修复原稿笔误：步骤三现写「数值位 1111101₂ = 64+32+16+8+4+1 = 125」，位串与求和一致（1111101₂=125）；「反码 10000010 的数值位取反得 1111101、符号位保持 1 得原码 11111101」及验算「10000011 → 01111100 → 01111101₂=125」均独立复核无误；四个选项分析结论正确，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -112,41 +115,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页第 3 题为“16 进制数 B2025 转换成 8 进制数是”，与站内题面一致。",
-          "review": "PDF 第 1 页第 3 题为「16 进制数 B2025 转换成 8 进制数是（ ）」，与站内题面一致。"
+          "initial": "PDF 第 1 页第 3 题为「16进制数B2025转换成8进制数是（ ）」，与候选题面一致。",
+          "review": "PDF 第 1 页第 3 题为「16进制数B2025转换成8进制数是（）」，与站内题面一致。"
         },
         "options": {
-          "initial": "PDF 选项 A. 2620045、B. 2004526、C. 729125、D. 2420045，与站内顺序和内容一致。",
-          "review": "PDF 选项 A. 2620045、B. 2004526、C. 729125、D. 2420045，与站内顺序和内容一致。"
+          "initial": "PDF 选项依次为 A. 2620045、B. 2004526、C. 729125、D. 2420045，与候选顺序、内容一致。",
+          "review": "PDF 选项依次为 A. 2620045、B. 2004526、C. 729125、D. 2420045，与站内顺序、内容一致。"
         },
         "answer": {
-          "initial": "PDF 答案表第 3 题为 A；站内 answer=0，对应 A，映射正确。B2025₁₆=729125₁₀=2620045₈，验证 A 正确。",
-          "review": "PDF 答案表第 3 题为 A，站内 answer=0。独立验算：B2025₁₆=10110010000000100101₂，补 1 个 0 后按 3 位分组 010|110|010|000|000|100|101 → 2620045₈；十进制双向验证 B2025₁₆=729125=2620045₈，A 正确。"
+          "initial": "PDF 答案表第 3 题为 A，候选 answer=0。独立验算：B2025₁₆=10110010000000100101₂，左侧补 1 个 0 后分组为 010|110|010|000|000|100|101，得 2620045₈；十进制 B2025₁₆=729125 与 2620045₈=729125 一致。",
+          "review": "PDF 答案表第 3 题为 A，站内 answer=0。独立验算：B2025₁₆ = 1011 0010 0000 0010 0101₂（20 位），左补 1 个 0 后按 3 位分组 010|110|010|000|000|100|101 → 2620045₈；十进制双向验证 B2025₁₆ = 11×65536+2×4096+2×16+5 = 729125，2620045₈ = 2×262144+6×32768+2×4096+4×8+5 = 729125，A 正确。"
         },
         "explanation": {
-          "initial": "解析称最左补两个 0 并列出“00 | 101 | 100 | 010 | 000 | 001 | 001 | 010 | 101”，随后又改成另一组 8 个三位组，均与正确答案的分组 010 | 110 | 010 | 000 | 000 | 100 | 101 不符；虽结论 A 正确，推导过程错误。",
-          "review": "修复后核验通过：原解析称补 2 个 0 并列出 9 组（26 位）与 8 组（24 位）两种互相矛盾、且推不出其自报答案的分组，已按正确过程重写（补 1 个 0，7 组 010|110|010|000|000|100|101 → 2620045₈，附十进制 729125 双向验证），结论 A 不变。"
+          "initial": "候选解析补 1 个 0、列出 7 组得到 2620045，并用十进制 729125 双向验证；分组、求和及选项排除理由均复核无误。",
+          "review": "修订候选解析按正确过程重写：B=1011、2=0010、0=0000、2=0010、5=0101 拼为 20 位，左补 1 个 0 后 7 组分组得 2620045，并以十进制 729125 双向验证；B（错位）、C（十进制值）、D（个别分组算错）的排除理由成立，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -236,84 +242,90 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页第 6 题为“补码1111 1101进行运算1111 1101>>1以后得到的结果是（）”，当前题面仅增加空格，语义一致。",
-          "review": "PDF 第 2 页第 6 题为『补码1111 1101进行运算1111 1101>>1以后得到的结果是（）』，网站题面仅增加排版空格，语义一致。"
+          "initial": "PDF 第 2 页第 6 题为「补码1111 1101进行运算1111 1101>>1以后得到的结果是（）」，候选仅增加空格排版，语义一致。",
+          "review": "PDF 第 2 页第 6 题为「补码1111 1101进行运算1111 1101>>1以后得到的结果是（）」，站内仅增加空格排版，语义一致。"
         },
         "options": {
-          "initial": "PDF 选项为 A. 1111 1100、B. -2、C. 1111 1101、D. 1111 1010，当前顺序与内容一致。",
-          "review": "PDF 选项为 A. 1111 1100、B. -2、C. 1111 1101、D. 1111 1010，与网站顺序、内容一致。"
+          "initial": "PDF 选项依次为 A. 1111 1100、B. -2、C. 1111 1101、D. 1111 1010，与候选顺序、内容一致。",
+          "review": "PDF 选项依次为 A. 1111 1100、B. -2、C. 1111 1101、D. 1111 1010，与站内顺序、内容一致。"
         },
         "answer": {
-          "initial": "PDF 答案表第 6 题为 B。1111 1101 是 -3 的补码，算术右移 1 位得 1111 1110，即 -2，映射到 0 起始索引为 1。",
-          "review": "PDF 第 1 页答案表第 6 题为 B。独立推导：1111 1101 取反加 1 得 0000 0011=3，故为 -3 的补码；算术右移 1 位得 1111 1110，再取反加 1 得 2，即 -2，0 起始索引为 1。"
+          "initial": "PDF 答案表第 6 题为 B，候选 answer=1。独立验算：11111101 取反加一得 00000011=3，故原数为 -3；算术右移 1 位得 11111110，再取反加一得 00000010=2，即 -2。",
+          "review": "PDF 答案表第 6 题为 B，站内 answer=1。独立验算：11111101 取反加一得 00000011=3，故原数为 -3 的补码；有符号数算术右移 1 位（高位补符号位 1）得 11111110，取反加一得 00000010=2，即 -2，B 正确。"
         },
         "explanation": {
-          "initial": "解析主体推导正确，但把选项 A 的 1111 1100 误称为逻辑右移结果；8 位逻辑右移应为 0111 1110，该处需纠正。答案 B 本身无误。",
-          "review": "修复后核验通过：原解析把选项 A（1111 1100）误称为逻辑右移结果，而 8 位逻辑右移（高位补 0）应为 0111 1110；已重写该段并逐项复核，-3 的算术右移推导及四个选项的排除理由均正确。"
+          "initial": "候选解析正确区分 8 位逻辑右移 01111110 与算术右移 11111110，并指出 A 是 -4 的补码、D 是左移 1 位的结果；-3 到 -2 的推导复核无误。",
+          "review": "候选解析逐项复核无误：-3 的求取、算术右移补符号位、1111 1110 即 -2 的推导正确；A（1111 1100 为 -4 的补码，8 位逻辑右移应为 0111 1110，故 A 既非逻辑也非算术右移结果）、C（原数未移位）、D（左移 1 位结果 1111 1010）的排除理由均成立；「C++20 起标准明确规定有符号右移为算术右移」的表述准确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
       "id": 7,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页第 7 题为完整四行代码块；当前 question 前三行落在 Markdown 代码围栏外，仅最后一行在代码块内，显示结构不完整，需统一为完整代码块。代码内容本身未漏。",
-          "review": "修复后核验通过：PDF 第 2 页第 7 题为四行完整代码 string s=\"1234@@chenadai\"; string str=\"12345\"; s.replace(1,5,str); cout<<s<<endl;。原网站题面前三行落在代码围栏外、仅 cout 一行位于 ```cpp 围栏内，Markdown 渲染会破坏代码结构；已合并为完整代码块，代码内容未增删。"
+          "initial": "PDF 第 2 页第 7 题给出四行代码 string s=「1234@@chenadai」; string str=「12345」; s.replace(1,5,str); cout<<s<<endl;，候选已合并为完整代码块，代码内容一致。",
+          "review": "PDF 第 2 页第 7 题给出四行代码 string s=\"1234@@chenadai\"; string str=\"12345\"; s.replace(1,5,str); cout<<s<<endl;，站内已合并为完整代码块，代码内容与原图逐行一致。"
         },
         "options": {
-          "initial": "PDF 选项为 A. 12345、B. 2345@、C. 112345chenadai、D. 12345chenadai，当前顺序与内容一致。",
-          "review": "PDF 选项为 A. 12345、B. 2345@、C. 112345chenadai、D. 12345chenadai，与网站顺序、内容一致。"
+          "initial": "PDF 选项依次为 A. 12345、B. 2345@、C. 112345chenadai、D. 12345chenadai，与候选顺序、内容一致。",
+          "review": "PDF 选项依次为 A. 12345、B. 2345@、C. 112345chenadai、D. 12345chenadai，与站内顺序、内容一致。"
         },
         "answer": {
-          "initial": "PDF 答案表第 7 题为 C。`s.replace(1,5,\"12345\")` 将下标 1 到 5 的 `234@@` 替换，得到 `112345chenadai`，对应索引 2。",
-          "review": "PDF 第 1 页答案表第 7 题为 C。独立推导：s.replace(1,5,str) 将下标 1~5 的『234@@』替换为『12345』，得『1』+『12345』+『chenadai』=『112345chenadai』，0 起始索引为 2。"
+          "initial": "PDF 答案表第 7 题为 C，候选 answer=2。独立推导：s.replace(1,5,str) 将下标 1 到 5 的 234@@ 替换为 12345，得 1 + 12345 + chenadai = 112345chenadai。",
+          "review": "PDF 答案表第 7 题为 C，站内 answer=2。独立推导：s 共 14 个字符，replace(1,5,str) 将下标 1~5 的『234@@』替换为『12345』，得『1』+『12345』+『chenadai』=『112345chenadai』，C 正确。"
         },
         "explanation": {
-          "initial": "解析独立按 `replace(pos,len,str)` 参数含义推得替换段为 `234@@`，结果为 `112345chenadai`，与官方答案一致，无可实质纠错处。",
-          "review": "解析按 replace(pos,len,str) 参数语义推得被替换段为『234@@』、结果为『112345chenadai』，与官方答案一致，各选项排除理由成立，复核通过。"
+          "initial": "候选解析正确说明 replace(pos,len,str) 的三参数含义，截取段 234@@ 与替换后结果 112345chenadai 均正确，四个选项分析成立。",
+          "review": "候选解析对 replace(pos, len, str) 三参数语义（起始下标、替换长度、新串）的说明、被替换段『234@@』（s[1]~s[5]）的截取及四个选项的排除理由均正确，独立复核通过。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -361,42 +373,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         2,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页末给出题干，第 3 页给出完整代码和选项；当前题面代码、分支结构和选项顺序与 PDF 一致。",
-          "review": "题干『第 9 题 下列程序输出的是（）』位于 PDF 第 2 页末，完整代码与选项位于第 3 页；网站代码（if(ch[5]==NULL) / else if (ch[5]=='\\0') / else 三分支）与 PDF 一致，仅大括号换行排版等价，选项顺序一致。"
+          "initial": "PDF 第 2 页末为第 9 题题干，代码位于第 3 页，包含 ch[5]==NULL、else if 的空字符判断及 else 三分支；候选代码块与 PDF 代码结构一致，仅有排版空格差异。",
+          "review": "PDF 第 2 页末为第 9 题题干「下列程序输出的是（）」，完整 13 行代码位于第 3 页：string ch=\"hello\"; 后接 if(ch[5]==NULL) 输出 right、else if (ch[5]=='\\0') 输出 wrong、else 输出 hello 三分支；候选代码块与原图逐行对应，仅大括号换行与空格排版差异。"
         },
         "options": {
-          "initial": "PDF 选项为 A. right、B. wrong、C. hello、D. 不能正确执行，当前一致。",
-          "review": "PDF 选项为 A. right、B. wrong、C. hello、D. 不能正确执行，与网站顺序、内容一致。"
+          "initial": "PDF 第 3 页选项依次为 A. right、B. wrong、C. hello、D. 不能正确执行，候选顺序和内容一致。",
+          "review": "PDF 第 3 页选项依次为 A. right、B. wrong、C. hello、D. 不能正确执行，与候选顺序、内容完全一致。"
         },
         "answer": {
-          "initial": "PDF 答案表第 9 题为 A。`ch[5]` 在 `string` 长度为 5 时对应空字符，与数值为 0 的 `NULL` 比较成立，进入第一个分支输出 right，映射索引 0。",
-          "review": "PDF 第 1 页答案表第 9 题为 A。独立推导：C++11 起 std::string::operator[] 在 pos==size() 时返回空字符引用，ch[5] 为 '\\0'（数值 0），与 NULL（该语境为整型 0）比较成立，进入第一分支输出 right，0 起始索引为 0。"
+          "initial": "PDF 第 1 页答案表第 9 题为 A，候选 answer=0。独立推导：string 长度为 5，ch[5] 在 pos==size() 时返回空字符引用，其值为 0；GESP 环境下 NULL 为值为 0 的宏，第一分支成立，输出 right。",
+          "review": "PDF 第 1 页答案表第 9 题为 A，候选 answer=0。独立推导：「hello」长度为 5，C++11 起 std::string::operator[] 在 pos==size() 时返回空字符引用，ch[5] 即 '\\0'（数值 0），属合法访问；GESP 考试语境 NULL 为整型 0，ch[5]==NULL 等价 0==0 成立，进入第一分支输出 right，与官方键一致。"
         },
         "explanation": {
-          "initial": "解析存在事实错误：把 `ch[5]` 说成“合法的越界读取但行为未定义”，自相矛盾；按 C++11 起 `std::string::operator[]` 在 `pos == size()` 时返回空字符，不是未定义行为。需改写该段，答案不变。",
-          "review": "修复后核验通过：原解析在选项 D 分析中写『ch[5] 是合法的越界读取行为（但行为未定义）』，自相矛盾且与标准不符（pos==size() 是合法访问并返回空字符）；已重写该段，并明确 GESP 语境下 NULL 按整型 0 处理，其余推导复核无误。"
+          "initial": "候选解析独立复核：ch[5] 读取空字符而非越界，NULL 与该空字符比较为真，进入第一个 if，后续 else if 不再执行；解析同时说明 pos==size() 合法、严格大于 size() 才是未定义行为，未发现事实性错误。",
+          "review": "候选解析独立复核通过：ch[5] 读取的是 pos==size() 处的合法空字符而非未定义行为，与 NULL（数值 0）比较为真进入第一分支，else if 不再执行，故输出 right；对 B/C/D 的排除理由以及「严格大于 size() 才越界」「NULL 与 '\\0' 数值同为 0」的提醒均与标准语义和官方键相符，未发现事实性错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -483,42 +498,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第3页题干要求统计 n 到 m（含端点）中数字 d 出现次数，网站题干一致。",
-          "review": "PDF 第 3 页题干“想要计算从数字n到数字m之间（包含n和m）有多少个数字d出现，下列程序哪个能够实现”，网站题干一致。"
+          "initial": "PDF 第 3 页题干为统计从 n 到 m（包含 n 和 m）之间数字 d 出现次数，候选题干与 PDF 一致。",
+          "review": "PDF 第 3 页题干「想要计算从数字n到数字m之间（包含n和m）有多少个数字d出现，下列程序哪个能够实现（ ）。」，候选题干一致（仅空格排版差异）。"
         },
         "options": {
-          "initial": "PDF 第4页 A-D 四段代码与网站选项逐行一致：A 从 n+1 开始且未初始化 res；B 使用赋值 `=`；C 完整正确；D 缺少 `int temp=i`。",
-          "review": "对照 PDF 第 4 页原图逐行核验：A 为 res 未初始化且 `i = n+1` 起；B 判断写成 `if(temp % 10 = d)`（赋值）；C 为 `res=0`、`i=n` 起、含 `int temp = i;`、`==d`，完整正确；D 缺少 `int temp = i;`，`while(temp)` 中 temp 未声明。网站四段代码与原图一致。"
+          "initial": "PDF 第 4 页四段代码逐行核对：A 为 res 未初始化且 i=n+1 起；B 为 if(temp % 10 = d)；C 为 res=0、i=n 起、先 int temp=i、再用 ==d；D 为 while(temp) 但缺少 int temp=i。候选四段代码与 PDF 原图一致。",
+          "review": "对照 PDF 第 4 页原图逐行核验：A 为 int n,m,res,d; 且 for 从 i=n+1 起、含 int temp=i 与 ==d；B 第 6 行为 if(temp % 10 = d)（单等号）；C 为 res=0、i=n 起、含 int temp=i 与 ==d；D 为 res=0 但循环体内缺 int temp=i、直接 while(temp)。候选四段代码与原图一致。"
         },
         "answer": {
-          "initial": "第1页答案表第12题为 C，网站 answer=2，映射正确。",
-          "review": "第 1 页答案表第 12 题为 C，网站 answer=2 正确；A/B/D 均存在编译或逻辑错误，C 为唯一正确实现。"
+          "initial": "PDF 第 1 页答案表第 12 题为 C，候选 answer=2。独立复核：A 漏 n 且 res 未初始化；B 将比较写成非法赋值；D 的 temp 未声明；只有 C 完成初始化、两端遍历和逐位剥离。",
+          "review": "PDF 第 1 页答案表第 12 题为 C，候选 answer=2。独立复核：A 漏统计 n 且 res 未初始化；B 中 (temp%10)=d 对右值赋值属非法，无法编译；D 的 temp 未声明，无法编译；仅 C 同时满足计数器初始化、闭区间 [n,m] 遍历与逐位剥离，与官方键一致。"
         },
         "explanation": {
-          "initial": "网站解析称 D 中 temp“在循环前已定义”，但 PDF 选项 D 并没有 `int temp=i;`，temp 未声明；该理由与源码相反，需修正。",
-          "review": "原解析 D 项写“`temp` 在循环前已定义为 `int temp=i`，不属于未定义情况”，与 PDF 第 4 页 D 选项源码相反——D 中根本没有该行，temp 未声明、无法编译；该理由自相矛盾需修正。另外 B 项应指出 `temp % 10` 是右值不能被赋值（编译错误），原解析仅泛称“逻辑完全错误”。"
+          "initial": "候选解析逐项指出的错误与 PDF 第 4 页代码一致：A 的 res 未初始化并漏 n；B 的 temp % 10 是右值不能作为赋值目标；D 缺少 int temp=i 导致 temp 未声明；C 的三项关键逻辑均满足。未发现事实性错误。",
+          "review": "候选解析逐项与 PDF 第 4 页源码对应并独立复核通过：A 的两处缺陷（res 未初始化、i=n+1 漏 n）、B 的 temp%10 为右值不能作赋值目标且 res 未初始化、D 缺 int temp=i 致 temp 未声明无法编译、C 三要点齐备，均与源码事实相符，未发现错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -571,46 +589,49 @@
       "id": 14,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         5,
         6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第5-7页题干要求用 2 到 i-1 逐个试除判断素数，网站题干与代码语义一致。",
-          "review": "PDF 第 5 页题干“求小于等于N的素数的方法中，有一种方法是将所有从2到它本身减1的数都除一遍，如果不能整除，就是素数。下列哪个程序，体现了这种方法”，与网站题干一致。"
+          "initial": "PDF 第 5 页题干要求用 2 到自身减 1 的数逐个试除判断素数，候选题干与 PDF 一致。",
+          "review": "PDF 第 5 页题干「求小于等于N的素数的方法中，有一种方法是将所有从2到它本身减1的数都除一遍，如果不能整除，就是素数。下列哪个程序，体现了这种方法（）」，候选题干一致（仅一处逗号排版差异）。"
         },
         "options": {
-          "initial": "PDF 第5-7页给出 A-D 完整程序；网站仅用文字概述，尤其 D 缺少 `flag=0` 的关键细节未完整保留，需按原图还原。",
-          "review": "对照 PDF 第 5-7 页原图：A 为 `if(N>=3){ cout<<2<<endl; for(int i=2;i<=N;i++){ ... if(i%j!=0){flag=1;} ... flag=0; } }`；B 为 `if(N>=2){ for(int i=3;i<=N;i++){ ... 有复位 } }`（无输出 2）；C 为 `if(N>=2){ cout<<2<<endl; for(int i=3;i<=N;i++){ ... flag=0; } }`（14 行，含复位）；D 为与 C 相同但缺少 `flag = 0;`（仅 13 行）。网站均为文字概述，须按原图还原完整代码。"
+          "initial": "PDF 第 5 至 7 页代码已核对：A 从 i=2 开始且判据为 i%j!=0；B 从 i=3 开始且未输出 2；C 先输出 2，从 i=3 开始并在每轮末 flag=0；D 与 C 相同但缺少每轮末 flag=0。候选四段代码与原图一致。",
+          "review": "对照 PDF 第 5-7 页原图逐行核验：A 为 if(N>=3) 先输出 2、外层 i 从 2 起、判据 i%j!=0 时置 flag=1、每轮末 flag=0；B 为 if(N>=2) 无先输出 2、i 从 3 起、判据 i%j==0、含 flag=0 复位；C 与 B 同判据但先输出 2（14 行、含复位）；D 与 C 相同但缺每轮末 flag=0（13 行）。候选四段代码与原图一致。"
         },
         "answer": {
-          "initial": "第1页答案表第14题为 C，网站 answer=2；C 先输出2，再枚举3到N并用2到i-1试除，最后重置flag，正确。",
-          "review": "第 1 页答案表第 14 题为 C，网站 answer=2 正确。独立走查：C 先输出 2，对 3..N 用 2..i-1 试除并每轮复位 flag，N=5 时输出 2、3、5，符合题意。"
+          "initial": "PDF 第 1 页答案表第 14 题为 C，候选 answer=2。独立走查 N=5：C 输出 2、3、5；A 只输出两个 2；B 漏掉 2；D 因 flag 未复位只输出 2、3。答案 C 正确。",
+          "review": "PDF 第 1 页答案表第 14 题为 C，候选 answer=2。独立走查 N=5（flag 初始 0）：C 输出 2、3、5；A 因判据 i%j!=0 反向且 i=2 重复输出，仅输出两个 2；B 漏掉素数 2；D 因 i=4 置 flag=1 后无复位，5 被漏掉，仅输出 2、3。C 与官方键一致。"
         },
         "explanation": {
-          "initial": "解析逐项指出 A 判据写反、B 漏输出2、C 正确、D 状态未重置，与 PDF 代码一致。",
-          "review": "原解析 D 项引用概述文本“其余流程不符合……”并把 A/B 的缺陷笼统归入 D 的理由；还原代码后，D 的实际缺陷仅是缺少 `flag = 0;` 复位（如 N=5 时先输出 2、3，i=4 置 flag=1 后未复位，导致 5 被漏掉），解析须与还原后的选项逐项对应重写。"
+          "initial": "候选解析逐项与还原后的 PDF 代码对应：A 的 i%j!=0 判据及重复输出 2，B 漏输出 2，D 缺少 flag=0 导致后续素数被漏掉，C 的初始化、试除范围和复位均正确；未发现事实性错误。",
+          "review": "候选解析与还原后的 PDF 代码逐项对应并独立复核通过：A 的判据反向（任意 i≥3 存在 j=i-1 使 i%j≠0，flag 必被置 1，i≥3 全被判为非素数）且重复输出 2；B 缺先输出 2；C 的初始化、试除范围 j<i、每轮复位均正确（N=5 走查得 2、3、5）；D 缺 flag=0 复位致后续素数被污染漏输出，均无事实性错误。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -619,41 +640,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第7页题干为15天、15环、每日结算，问最少剪成几段；网站题面一致。",
-          "review": "PDF 第 7 页题干“工人工作一天，会得到一个金环作为工资报酬，某个工作需要15天完成，一条15个环的金环项链，为了严格执行每天工作结束时，完成对工人工资的结算，最少需要将金环项链剪裁成几段，每段几个金环”，与网站一致。"
+          "initial": "PDF 第 7 页题干为 15 天工作、15 环金链、每天结算、最少剪成几段及每段环数；候选题干与 PDF 一致。",
+          "review": "PDF 第 7 页题干「工人工作一天，会得到一个金环作为工资报酬，某个工作需要15天完成，一条15个环的金环项链，为了严格执行每天工作结束时，完成对工人工资的结算，最少需要将金环项链剪裁成几段，每段几个金环（ ）」，候选题干一致，仅句读与空格排版差异。"
         },
         "options": {
-          "initial": "PDF 第7页 A-D 依次为 1、2、4、8；15段每段1个；3、3、3、3、2、1；2、2、2、2、2、2、1、1、1，网站顺序和内容一致。",
-          "review": "PDF 第 7 页选项 A-D 依次为“4段，分别是1、2，4，8”“15段，每段1个”“6段，分别是3、3、3、3、2、1”“9段，分别是2、2、2、2、2、2、1、1、1”，网站一致（仅标点排版差异）。"
+          "initial": "PDF 第 7 页选项依次为 A. 4 段，1、2、4、8；B. 15 段，每段 1 个；C. 6 段，3、3、3、3、2、1；D. 9 段，2、2、2、2、2、2、1、1、1；候选顺序和内容一致，仅有标点空格差异。",
+          "review": "PDF 第 7 页选项依次为 A. 4段，分别是1、2，4，8；B. 15段，每段1个；C. 6段，分别是3、3、3、3、2、1；D. 9段，分别是2、2、2、2、2、2、1、1、1，与候选顺序、内容一致，仅标点差异。"
         },
         "answer": {
-          "initial": "第1页答案表第15题为 A，网站 answer=0；1、2、4、8 可组合出1到15并完成逐日结算。",
-          "review": "第 1 页答案表第 15 题为 A，网站 answer=0 正确。独立验证：1、2、4、8 的子集和覆盖 1..15 全部整数，且 k 段最多提供 2^k 种持有状态，2^3=8<15≤2^4=16，故最少 4 段。"
+          "initial": "PDF 第 1 页答案表第 15 题为 A，候选 answer=0。独立验证：1、2、4、8 的子集和覆盖 1 到 15；若剪成 k 段，每天结束时最多只有 2^k 种持有组合，2^3=8<15 且 2^4=16>=15，故最少需要 4 段。",
+          "review": "PDF 第 1 页答案表第 15 题为 A，候选 answer=0。独立验证：1、2、4、8 的子集和覆盖 1..15 全部整数，配合给出/收回操作可完成 15 天逐日结算；k 段最多提供 2^k 种持有组合，2^3=8<15≤2^4=16，故最少 4 段，与官方键一致。"
         },
         "explanation": {
-          "initial": "现解析称3段“即使取最大的三个数总和也达不到15”，该说法错误，3段可以为5、5、5；最少性应通过3段最多只有2^3=8种子集、无法覆盖15天来证明。",
-          "review": "原解析三处论证错误：①称“3 段即使取最大的三个数，总和也达不到 15”——不成立，5+5+5=15；②称 C“无法组合出 4”——实为 3+1=4 可行；③称 D“无法组合出 3”——实为 2+1=3 可行。B/C/D 均能组合出 1..15，正确判据是 k 段最多 2^k 种子集状态，须重写最少性证明。"
+          "initial": "候选解析修正了原解析的错误论证：3 段的总和可以达到 15，C 和 D 也都能组合出 1 到 15；判断最少段数的正确依据是 k 段最多 2^k 种子集状态，需 2^k>=15。解析结论与选项 A 及官方答案一致。",
+          "review": "候选解析独立复核通过：其修正了旧解析的三处论证错误（旧版称 3 段总和达不到 15、C 无法组合出 4、D 无法组合出 3，实际 5+5+5=15、4=3+1、3=2+1 均成立），改以「k 段最多 2^k 种子集状态、需 2^k≥15」作最少性判据；经我验证 B/C/D 确能组合出 1..15 但段数多于 4，排除理由成立，结论与官方键 A 一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -661,37 +685,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第7页判断题第1题题干与网站一致。",
-          "review": "PDF 第 7 页判断题第 1 题题干（补码使减法转化为加法等表述）与网站逐句一致。"
+          "initial": "PDF 第 7 页判断题第 1 题题干逐句对应“为了简化计算机基本运算电路……这种形式就是补码”，站内题面一致。",
+          "review": "PDF 第 7 页判断题第 1 题题干「为了简化计算机基本运算电路，使加减法都只需要通过加法电路实现，也就是让减去一个正数或加上一个负数这样的运算可以用加上一个正数来代替。于是改变负数存储的形式，存储成一种可以直接当成正数来相加的形式，这种形式就是补码。」逐句对照，站内题面一致（仅标点排版差异）。"
         },
         "answer": {
-          "initial": "PDF 第7页答案表第1题为√，对应正确=0。",
-          "review": "PDF 第 7 页判断题答案表第 1 题为 √，对应 0 起始索引 0，与网站 answer=0 一致。"
+          "initial": "PDF 第 7 页判断题答案表第 1 题为 √；按判断题正确=0，站内 answer=0 与官方一致。",
+          "review": "PDF 第 7 页判断题答案表第 1 题为 √，按判断题 正确=0 映射，站内 answer=0 与官方键一致。"
         },
         "explanation": {
-          "initial": "解析把8位-3的补码253写成二进制10011101；253应为11111101，原二进制值错误。",
-          "review": "原解析将 -3 的补码 253 括注为二进制 10011101，该值实为 157，确属错误；独立复核 253=0b11111101，5+253=258 对 256 取模得 2，与 5-3 一致。应用更正后核验通过（修复后核验通过）。"
+          "initial": "独立复核：8 位 -3 的补码为 11111101=253，5+253=258 对 256 取模得 2，说明补码使减法转加法；解析数值与结论正确。",
+          "review": "独立验算：8 位下 -3 的补码为 11111101（无符号 253），5+253=258，对 256 取模得 2=5-3，解析数值链正确；易错提醒（本质是模运算、-128 无原码/反码表示）与知识延伸（正数补码为自身、负数取反加一）均无误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -1009,39 +1036,42 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第9页给出数据范围：1 ≤ n ≤ 10^5，|k|, |ai| ≤ 10^5；网站题面未收录该数据范围。另 PDF 第8页输入格式写“两个正整数 n,k”，但样例 k=0 且约束允许 |k| ≤ 10^5，源文存在矛盾。",
-          "review": "网站题面逐句对照 PDF 第 8 页：题目描述（大于 k 替换为最大值、小于 k 替换为最小值）、输入格式两行、输出格式均一致，但网站漏掉 PDF 第 9 页顶部数据范围『对于全部数据，保证有 1 ≤ n ≤ 10^5, |k|, |a_i| ≤ 10^5』，已补入。另第 8 页原图序列记号为 A={a_1,a_2,…,a_n}（花括号），网站作方括号，已改回忠实原卷。修复后核验通过。源卷『两个正整数 n,k』与样例 k=0、约束 |k| ≤ 10^5 的矛盾属源文自身问题，保留于 unresolved，不擅改原文。"
+          "initial": "PDF 第 8 页题目描述、输入输出格式与样例，以及第 9 页数据范围 1 ≤ n ≤ 10^5、|k|,|a_i| ≤ 10^5 均已包含；序列记号与 A={a_1,a_2,…,a_n} 一致。源文“两个正整数 n,k”与样例 k=0、约束 |k| ≤ 10^5 的矛盾见 unresolved。",
+          "review": "PDF 第 8 页 3.1.1-3.1.3（序列 A={a₁,a₂,…,aₙ} 花括号记号、大于 k 替换为最大值、小于 k 替换为最小值、两行输入格式、输出格式）与第 9 页数据范围「1 ≤ n ≤ 10⁵, |k|,|aᵢ| ≤ 10⁵」均已包含，站内题面一致；源文「两个正整数 n,k」与样例 k=0、|k| ≤ 10⁵ 的矛盾按原文保留并记入 unresolved。"
         },
         "explanation": {
-          "initial": "解析先求原序列最大值、最小值，再第二轮按严格大于 k、严格小于 k 替换；样例走查 -2 -1 0 1 2 得到 -2 -2 0 2 2，与参考代码和题意一致。",
-          "review": "独立推导：先在修改前完整求原序列 max/min（初始化为 a[1] 可避免全负序列陷阱，解析已强调两轮循环不能合并），第二轮按严格大于/严格小于 k 替换、等于 k 保持。样例 n=5,k=0，序列 -2 -1 0 1 2：max=2、min=-2，替换得 -2 -2 0 2 2，与 PDF 第 8 页样例输出一致；解析与参考代码逻辑完全对应，无与源卷冲突的表述。"
+          "initial": "独立推导：先在修改前完整求原序列 max/min（初始化为 a[1]），再按严格大于/小于 k 替换，等于 k 保持。样例 max=2、min=-2，得 -2 -2 0 2 2，与 PDF 第 8 页样例一致；O(n) 两轮遍历及边界提醒正确。",
+          "review": "独立推导：先在修改前完整求原序列极值（初始化为 a[1]），再按严格大于/小于 k 替换、等于 k 保持；样例 max=2、min=-2，替换得 -2 -2 0 2 2，与 PDF 第 8 页样例一致；「两轮循环不能合并」「极值不能初始化为 0」「else if 分支互斥」等提醒均正确，解析与参考代码逻辑逐条对应。"
         },
         "referenceCode": {
-          "initial": "PDF 第9页参考程序与网站 referenceCode 一致：数组 a[100010]，先读入，再求极值，再替换输出；n ≤ 10^5、值域 10^5 使用 int 足够，空格和换行处理正确。",
-          "review": "与 PDF 第 9 页参考程序逐行一致（仅 i<=n 与 i <= n 等空格排版差异）：a[100010] 覆盖 n ≤ 10^5；先读入、再两轮循环求极值并替换输出；|值| ≤ 10^5 下 int 不溢出；末尾换行处理与样例一致。算法 O(n) 正确，边界 n=1、全负序列、等于 k 均正确。"
+          "initial": "与 PDF 第 9 页参考程序逐行一致（仅空格排版差异）；a[100010] 覆盖 n ≤ 10^5，两轮 O(n) 遍历，int 足够 |a_i| ≤ 10^5，n=1、全负、等于 k 均正确。",
+          "review": "与 PDF 第 9 页 3.1.5 参考程序逐行一致（仅空格排版差异）：a[100010] 覆盖 n ≤ 10⁵；两轮 O(n) 遍历；|aᵢ| ≤ 10⁵ 下 int 不溢出；末尾 endl 换行与样例一致；n=1、全负序列、等于 k 的边界均正确。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l3.glm.json"
       ]
     },
     {
@@ -1089,71 +1119,11 @@
   ],
   "unresolved": [
     {
-      "id": 1,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 3,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 5,
       "dimensions": [
         "explanation"
       ],
       "reasons": [
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 6,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 7,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 9,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
         "explanation 尚无一致、完整的原卷核验结论"
       ]
     },
@@ -1176,50 +1146,6 @@
       ]
     },
     {
-      "id": 14,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 16,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 27,
       "dimensions": [
         "statement",
@@ -1234,5 +1160,6 @@
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-12-l3.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2024-12-l3.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-12-l3.integration.json"
 }

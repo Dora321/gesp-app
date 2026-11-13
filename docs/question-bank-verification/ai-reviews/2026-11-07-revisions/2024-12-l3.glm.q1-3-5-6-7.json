@@ -1,0 +1,237 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    3,
+    5,
+    6,
+    7
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T21:57:19.115Z",
+  "completedAt": "2026-11-12T22:01:07.114Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 64961,
+    "completion_tokens": 22395,
+    "total_tokens": 87356,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18244
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02094165,
+      "allowance": 0.02094165,
+      "tokens": {
+        "input": 64961,
+        "output": 22395,
+        "reasoning": 18244,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5a1bf4809054a8ace2ba6d3c9a0579254947a4af27c93b344d11d7439c73ed0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP C++ 三级 2024 年 12 月」，与 paperId 2024-12-l3（2024 年 12 月三级）对应；第 1 页单选题答案表 1~15 为 B D A A D B C A A D D C D C A，第 7 页判断题答案表为 √ √ √ × √ √ × √ √ √，与已校验来源相符。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干为「下列二进制表示的十进制数值分别是（）」，代码框两行依次为 [10000011]原=（）、[10000011]补=（），与站内题面逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 四选项依次为 A. -125，-3；B. -3，-125；C. -3，-3；D. -125，-125，与站内顺序、内容一致（仅标点全半角差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 B，站内 answer=1（0 起始对应 B）。独立验算：原码 10000011 符号位为 1、低 7 位 0000011₂=3，真值 -3；补码 10000011 取反加一得 01111101₂=125，真值 -125，B（-3，-125）正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修订候选已修复原稿笔误：步骤三现写「数值位 1111101₂ = 64+32+16+8+4+1 = 125」，位串与求和一致（1111101₂=125）；「反码 10000010 的数值位取反得 1111101、符号位保持 1 得原码 11111101」及验算「10000011 → 01111100 → 01111101₂=125」均独立复核无误；四个选项分析结论正确，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认修订候选解析的位串笔误确已修复（1111101₂=125 与求和一致），原码 -3、补码 -125 的推导与官方答案表 B 一致；题面、选项、答案映射与 PDF 第 1 页原图一致，无需再改。初核（DeepSeek）结论与之一致，予以确认。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题为「16进制数B2025转换成8进制数是（）」，与站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 2620045、B. 2004526、C. 729125、D. 2420045，与站内顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 3 题为 A，站内 answer=0。独立验算：B2025₁₆ = 1011 0010 0000 0010 0101₂（20 位），左补 1 个 0 后按 3 位分组 010|110|010|000|000|100|101 → 2620045₈；十进制双向验证 B2025₁₆ = 11×65536+2×4096+2×16+5 = 729125，2620045₈ = 2×262144+6×32768+2×4096+4×8+5 = 729125，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修订候选解析按正确过程重写：B=1011、2=0010、0=0000、2=0010、5=0101 拼为 20 位，左补 1 个 0 后 7 组分组得 2620045，并以十进制 729125 双向验证；B（错位）、C（十进制值）、D（个别分组算错）的排除理由成立，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立验算 20 位二进制左补 1 个 0、按 3 位分组得 2620045₈，与十进制 729125 双向验证一致；修订候选解析与官方答案 A 完全吻合，确认采纳，无需再改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干为「下面逻辑运算中，正确的是（）」，与站内题面一致（仅括号内空格等排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 5&&3==0、B. 5|3==8、C. 5||3==11、D. 5&3==0001，与站内顺序、内容一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 答案表第 5 题为 D，站内 answer=3 与官方键映射一致。但四选项均未加括号，严格按 C++ 优先级（== 高于 &、|、&&、||）求值：5&&(3==0)=0（假）、5|(3==8)=5（非零为真）、5||(3==11)=1（真）、5&(3==0001)=5&0=0（假），即 B、C 为真而 D 为假，与官方答案 D 相反；官方答案仅在把每项读作 (5□3)==常数 的命题意图下成立。属源题自身歧义，官方答案与站内 answer 均不改动，保留争议。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "初核指出的缺陷成立：候选原解析仅在易错提醒中含糊提及优先级（「本题讨论的是数学比较关系的正确性」），未点明严格 C++ 语义下 B、C 为真、D 为假且与官方答案表面冲突，学生按优先级求值会与「正确答案 D」矛盾而无从解释。应用修改稿后核验通过：0001 为八进制字面量 1，3==1 为假，5&0=0；5|(3==8)=5 非零为真；5||(3==11)=1 为真；按命题意图 (5□3)==常数 分组时仅 D 成立，与官方键一致；各步求值逐句独立验算无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（按官方答案表）**\n\n**源题歧义说明：** 严格按 C++ 运算符优先级（`==` 高于 `&`、`|`、`&&`、`||`），四个表达式的实际求值并不按 `(5□3)==常数` 分组：A 为 `5&&(3==0)=0`（假），B 为 `5|(3==8)=5`（非零，真），C 为 `5||(3==11)=1`（真），D 为 `5&(3==0001)=0`（假，因 `0001` 是八进制字面量 1，`3==1` 为假）。即严格 C++ 语义下 B、C 为真、D 为假，与官方答案 D 相反；官方答案仅在按命题意图把每项理解为 `(5□3)==常数` 时成立。原卷选项缺少括号，保留争议，不擅改官方答案。\n\n**按命题意图逐项分析：**\n- **A. `5&&3==0`**：按 `(5&&3)==0` 理解，`5&&3` 为真（1），`1==0` 为假。\n- **B. `5|3==8`**：按 `(5|3)==8` 理解，`5|3` 为 7，`7==8` 为假。\n- **C. `5||3==11`**：按 `(5||3)==11` 理解，`5||3` 为真（1），`1==11` 为假。\n- **D. `5&3==0001`**：按 `(5&3)==0001` 理解，`5&3` 为 1，`0001`（八进制）为 1，`1==1` 为真。\n\n**易错提醒：** 本题选项未加括号，C++ 中 `==` 优先级高于 `&`、`|`，严格语义与命题意图不一致；考试按官方答案表选 D，但实际编程应写 `(5&3)==1` 或加括号消除歧义。\n\n**考点：** 位运算与逻辑运算辨析、运算符优先级。"
+        },
+        "tests": [],
+        "unresolved": [
+          "第 5 题选项均未加括号：严格按 C++ 优先级（== 高于 &、|、&&、||），5&3==0001 为 5&(3==0001)=0（假）、5|3==8 为 5|(3==8)=5（真）、5||3==11 为 5||(3==11)=1（真），B、C 为真而 D 为假，与官方答案表 D 相反；官方答案仅在按命题意图读作 (5□3)==常数 时成立。源题歧义保留争议，官方答案与站内 answer 均不改动。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "独立验算确认源题括号歧义属实：严格 C++ 语义下 B、C 为真、D 为假，与官方答案 D 冲突。上一轮曾否决整体改写并裁定不改；本轮独立重验后认为候选解析的优先级提醒表述含糊、未解释与官方答案的表面冲突，补充说明确有必要且非文风改写，故接受初核修改稿——其各步求值经逐句独立验证无误，并明确标注「按官方答案表」、保留争议。answer 维度维持官方映射（answer=3）不改，源题歧义记入 unresolved；解析修改虽已核验通过，但源题歧义无法通过站点数据消解，整题 verdict 取 unresolved。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题为「补码1111 1101进行运算1111 1101>>1以后得到的结果是（）」，站内仅增加空格排版，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 1111 1100、B. -2、C. 1111 1101、D. 1111 1010，与站内顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 6 题为 B，站内 answer=1。独立验算：11111101 取反加一得 00000011=3，故原数为 -3 的补码；有符号数算术右移 1 位（高位补符号位 1）得 11111110，取反加一得 00000010=2，即 -2，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项复核无误：-3 的求取、算术右移补符号位、1111 1110 即 -2 的推导正确；A（1111 1100 为 -4 的补码，8 位逻辑右移应为 0111 1110，故 A 既非逻辑也非算术右移结果）、C（原数未移位）、D（左移 1 位结果 1111 1010）的排除理由均成立；「C++20 起标准明确规定有符号右移为算术右移」的表述准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核 -3 算术右移 1 位得 1111 1110（即 -2）无误；候选解析已修复早先把 A 误称为逻辑右移结果的问题，四个选项排除理由均经独立验证成立，无需再改。初核结论与之一致，予以确认。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题给出四行代码 string s=\"1234@@chenadai\"; string str=\"12345\"; s.replace(1,5,str); cout<<s<<endl;，站内已合并为完整代码块，代码内容与原图逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 12345、B. 2345@、C. 112345chenadai、D. 12345chenadai，与站内顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 7 题为 C，站内 answer=2。独立推导：s 共 14 个字符，replace(1,5,str) 将下标 1~5 的『234@@』替换为『12345』，得『1』+『12345』+『chenadai』=『112345chenadai』，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对 replace(pos, len, str) 三参数语义（起始下标、替换长度、新串）的说明、被替换段『234@@』（s[1]~s[5]）的截取及四个选项的排除理由均正确，独立复核通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立验证 replace(1,5,str) 的下标 1~5 为『234@@』，替换后结果『112345chenadai』与官方答案 C 一致；候选题面代码块已修复原稿围栏断裂问题，解析无误，确认采纳，无需再改。"
+      }
+    ],
+    "summary": "本次仅核验题号 1、3、5、6、7。第 1、3、6、7 题的题面、选项、答案与解析均与 PDF 原图及独立验算一致，判定 approve：第 1 题解析位串笔误已在修订候选中修复（1111101₂=125），第 3 题分组结果 2620045₈ 与十进制 729125 双向验证一致，第 6 题 -3 算术右移得 -2 的推导及四个选项排除理由无误，第 7 题 replace(1,5,str) 推得 112345chenadai 无误。第 5 题站内 answer=3 与官方答案表 D 一致，但选项未加括号，严格按 C++ 运算符优先级求值时 B、C 为真、D 为假，与官方答案冲突，属源题自身歧义：answer 维持官方映射不改并保留 unresolved 争议；解析应用修改稿，明确区分「官方命题意图」与「严格 C++ 语义」两种读法，修改稿逐句独立验算无误，修复后核验通过，verdict 记 unresolved。未对任何题的官方答案做改动，未输出其余题目。"
+  }
+}
