@@ -67,42 +67,46 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第1页第2题原文为“如果我们买的厂商标注的是 1 TB 的硬盘”，站点题干漏写“厂”字，写成“我们买的商标注的是”，语义受影响，需补正。",
-          "review": "修复后核验通过：PDF 第1页第2题原文为‘如果我们买的厂商标注的是 1 TB 的硬盘’，站点漏‘厂’字写成‘商标注’致语义不通，已按原文补正并与图片逐字核对一致。"
+          "initial": "PDF 第 1 页页图第 2 题原文为“计算机厂商为了计算方便，一般采用 1000 进制。如果我们买的厂商标注的是 1 TB 的硬盘，它实际的存储容量是（ ）。”候选题干与“厂商标注”均一致。",
+          "review": "PDF 第 1 页页图第 2 题原文为『计算机厂商为了计算方便，一般采用 1000 进制。如果我们买的厂商标注的是 1 TB 的硬盘，它实际的存储容量是（ ）。』，候选题干逐字一致（含此前补正的『厂商标注』）。"
         },
         "options": {
-          "initial": "四项与PDF第1页第2题一致，包括1000与1024因子、A/D的小写b、B/C的大写B及931、1049、977等数值。",
-          "review": "四个选项逐项对照第1页图片：A‘1000×1000×1000×1000÷1024÷1024÷1024b=931Gb’、B 同式大写 B 结尾 931GB、C‘1024×1024×1024×1024÷1000÷1000÷1024B=1049GB’、D‘1000×1024×1024×1024÷1024÷1024÷1024b=977Gb’，因子、大小写单位与数值均一致。"
+          "initial": "PDF 第 1 页四个选项逐项比对：A/D 结尾为小写 b 的 931Gb/977Gb，B 为大写 B 的 931GB，C 为 1049GB；因子及 1024/1000 顺序与候选一致。",
+          "review": "第 1 页页图四选项逐项比对：A『1000×1000×1000×1000÷1024÷1024÷1024b = 931Gb』、B 同式大写 B 结尾 931GB、C『1024×1024×1024×1024÷1000÷1000÷1024B = 1049GB』、D『1000×1024×1024×1024÷1024÷1024÷1024b = 977Gb』，候选 options 的因子顺序、单位大小写与数值全部一致。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第2题给B；B对应0起始索引1。",
-          "review": "答案表第2题为 B，对应索引 1；独立计算 1000^4÷1024^3≈931.32，B 正确，与站点 answer=1 一致。"
+          "initial": "第 1 页单选答案表第 2 题为 B，映射索引 1；独立计算 1 TB（厂商 1000 进制）=10^12 B，10^12÷1024^3≈931.32，故选 B。",
+          "review": "第 1 页单选答案表第 2 题为 B，映射 officialAnswer=1；独立计算：厂商 1000 进制下 1 TB = 1000⁴ B = 10¹² B，10¹² ÷ 1024³ ≈ 931.32 GB，仅 B 的换算与单位（B/GB）均正确。"
         },
         "explanation": {
-          "initial": "独立复核：厂商按1000进制标称1TB=1000^4字节，按1024^3换算约931.32GiB，试卷记作931GB；A、D单位写成bit，C换算方向错误。",
-          "review": "独立推导：1TB=10^12 B，除以 1024^3≈1.074×10^9 得约 931GB；A、D 单位误用小写 b（bit），C 把 1024 与 1000 混用且方向错误。解析成立。"
+          "initial": "独立核对：B 的换算方向与单位正确；A、D 把字节写成 bit（小写 b），C 把 1024 与 1000 混用且方向错误，B 唯一正确。候选解析结论与推导成立。",
+          "review": "独立复核：A、D 把字节单位写成小写 b（bit），C 把 1024 与 1000 进制方向混用且数值不对应；候选解析的核心推导（1000⁴ ÷ 1024³ ≈ 931GB）、逐项分析（b 与 B 区分、1B=8b）与易错点均与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l3.glm.json"
       ]
     },
     {
@@ -584,42 +588,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         1,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页题15题干、输入限制 1≤N≤1000、字符串长度限制及所给程序均与当前题面一致。",
-          "review": "PDF 第 4 页第 15 题题干、约束（1≤N≤1000、字符串长度不超过 10）及所给程序（外层/内层循环均用变量 i、char max='0'、第 13 行横线）与网站题面逐行一致。"
+          "initial": "PDF 第 4 页页图第 15 题题干、1≤N≤1000、字符串长度不超过 10 及程序第 1—16 行与候选一致；内层 for 的 i 遮蔽外层 i、max 为独立 char 变量，均与原图一致。",
+          "review": "PDF 第 4 页页图第 15 题题干、约束（1≤N≤1000、字符串长度不超过 10）、示例（6AFF 仅可能为十六进制、1011 四种皆可能）及程序 16 行（外层与内层循环均用变量 i、char max='0'、第 13 行为横线）与候选逐行一致。"
         },
         "options": {
-          "initial": "PDF 第4页 A-D 分别为 >=、<=、=、< 四种边界判断；当前选项及顺序一致。",
-          "review": "PDF 第 4 页四个横线候选 A（>=）、B（<=）、C（=）、D（<），输出四列判断的表达式与网站一致。"
+          "initial": "PDF 第 4 页四个候选依次使用 max >=、<=、=、< 与字符 '1'/'7'/'9'/'F'，与候选 options 一致；换行仅版式差异。",
+          "review": "第 4 页页图四个候选依次为 max >= / <= / = / < 与字符 '1'、'7'、'9'、'F' 组成的四列输出加 endl，与候选 options 一致（页图中因行宽换行仅为版式差异）。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表题15为 B；当前 answer=1（B），一致。用最大字符不超过各进制最大字符判断，B 正确。",
-          "review": "PDF 第 1 页答案表第 15 题为 B；网站 answer=1（B）一致。独立复核：串可为 k 进制 ⇔ 最大字符不超过该进制最大数字字符，B 的 ≤ 判断正确（1011 的 max='1'→1 1 1 1；6AFF 的 max='F'→0 0 0 1）。"
+          "initial": "PDF 第 1 页答案表第 15 题为 B（索引 1）；独立判断：串可表示 k 进制当且仅当最大字符不超过该进制最大数字字符，B 的四个 <= 判断正确。",
+          "review": "第 1 页答案表第 15 题为 B，officialAnswer=1；独立判定：字符串可为 k 进制 ⇔ 最大字符不超过该进制最大数字字符，B 的四个 ≤ 判断成立——1011 的 max='1' 输出 1 1 1 1，6AFF 的 max='F' 输出 0 0 0 1，与题面示例吻合。"
         },
         "explanation": {
-          "initial": "答案和核心判断正确，但原解析末条误称 max 变量与内层循环变量同名 i；实际是外层与内层循环均用 i，max 为独立变量。C 项解析也把字符赋值输出误说成布尔真，需修正表述。",
-          "review": "原解析两处技术性错误：①“max 变量与内层循环变量同名 i”系误述，实为外层与内层循环同名 i（内层遮蔽外层），max 是独立变量；②C 项称赋值表达式“非 0 即真，输出全 1”有误——max 为 char，cout << (max = '1') 按字符输出，结果形如 1 7 9 F，并非全 1。已提交修正稿并逐句复核，修复后核验通过。"
+          "initial": "逐项复核：A 对 89 会输出 1 1 1 0（误判二进制/八进制）；B 对 1011 输出 1 1 1 1、对 6AFF 输出 0 0 0 1；C 为赋值并按字符输出 1 7 9 F，非 0/1；D 对 7 会判八进制不可能。候选解析正确。",
+          "review": "逐项独立验证：A 用 ≥ 逻辑颠倒（输入 89 时 max='9'，'9'>='1'、'9'>='7'、'9'>='9' 为真、'9'>='F' 为假，输出 1 1 1 0，把 89 误判为可能是二进制）；C 中 (max='1') 等为赋值表达式，cout 对 char 按字符输出，结果为 1 7 9 F，不是 0/1；D 用 < 在 max 恰为边界时误判（输入 7 时 '7'<'7' 为假，可能是八进制却被判 0）。候选解析对此三点及变量遮蔽（内外层循环均用 i，内层遮蔽外层）的表述均准确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l3.glm.json"
       ]
     },
     {
@@ -1045,25 +1052,6 @@
   ],
   "unresolved": [
     {
-      "id": 2,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 18,
       "dimensions": [
         "explanation"
@@ -1075,5 +1063,6 @@
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l3.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l3.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l3.integration.json"
 }
