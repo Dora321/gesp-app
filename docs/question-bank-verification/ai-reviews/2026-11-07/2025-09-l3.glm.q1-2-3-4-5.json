@@ -1,0 +1,234 @@
+{
+  "paperId": "2025-09-l3",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T22:38:23.559Z",
+  "completedAt": "2026-11-12T22:39:44.984Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45434,
+    "completion_tokens": 8253,
+    "total_tokens": 53687,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6315
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0109416,
+      "allowance": 0.0109416,
+      "tokens": {
+        "input": 45434,
+        "output": 8253,
+        "reasoning": 6315,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "43ffc688f67a86ee289b9974260b2eb06df2d31affb9a23d328badd1da8c1066",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++3级.pdf",
+    "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
+    "mirrorBytes": 896357,
+    "shaVerified": true,
+    "sha256": "9d498145166ef002cead99e73efa9ddc5c87e1c82a7cd7058e63f969800d768f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头原图显示“CCF 编程能力等级认证 GESP”“C++ 三级”“2025 年 09 月”，与 paperId 2025-09-l3 的等级3、2025年9月完全一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题原文“执行以下C++代码后，c 的数值是（）。”，代码两行 int a = 10, b = 3; / double c = a / b;，与网站题面及代码逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页原图选项 A.3.33333、B.3.333、C.3.0、D.3.3，顺序与文本和网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表（答案行 C C D B B B B D A C D C D C D）第1题为 C，0起始索引为2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a、b 均为 int，a / b 执行整数除法得 3，赋给 double 后为 3.0，故选 C；网站解析（整数除法丢弃小数、隐式类型转换、逐项排除及 double(a)/b 等修正写法延伸）与此一致，无技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核草稿未提修改，其各项核验依据与我的独立推导一致，接受。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题原文“下列C++表达式的结果为 true 的是（）。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页原图 A.(5 <= 5) && (7 < 5)、B.!(10 > 5)、C.(10 != 10) || (5 >= 3)、D.(5 == 3) && (4 > 2)，顺序与文本和网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题为 C，0起始索引2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：A 为 true&&false=false，B 为 !true=false，C 为 false||true=true，D 为 false&&true=false，仅 C 为 true；网站解析逐项结论与短路求值延伸说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与我的独立计算一致，无修改项，接受。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题原文“以下关于C++数组的说法，错误的是（）。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页原图四项：A.数组的下标通常从0开始；B.int arr[5]; 声明了一个包含5个整数的数组；C.数组的大小必须在编译时确定，不能使用变量定义大小；D.可以通过 arr[5] 来访问 int arr[5]; 数组的最后一个元素。与网站仅空格/排版等效差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题为 D，0起始索引3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：int arr[5] 合法下标为 0~4，最后元素是 arr[4]，arr[5] 越界属未定义行为，故错误说法为 D；A、B 在标准 C++ 内置数组语境下正确，C 在固定长度数组/考试语境下成立。网站解析结论与官方 D 项一致，越界与 sizeof 计算长度延伸合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与独立推导一致；其“C项按固定长度数组/考试语境理解”的限定说明合理，接受。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第4题代码原图为 int sum = 0; for (int i = 1; i <= 5; i += 2) { sum += i; int sum=0; }，与网站代码语义逐字一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页原图 A.6、B.9、C.15、D.死循环，顺序与文本和网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第4题为 B，0起始索引1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：i 依次取 1、3、5；sum += i 位于内层 int sum = 0 的声明点之前，用的是外层 sum，累加得 1+3+5=9；i=7 时条件 i<=5 不成立，循环正常结束，非死循环。答案 B 正确，网站解析对作用域遮蔽与声明顺序关键点的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与我的独立模拟一致，无修改项，接受。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题原文“要正确定义一个返回两个整数中较大值的函数 max，应该使用（）。”，与网站题面一致（答案表位于第1页，故记 1、2 两页）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页原图 A.void max(int a, int b) { return a > b ? a : b; }、B.int max(int a, int b) { if (a > b) return a; else return b; }、C.int max(a, b) { if (a > b) return a; else return b; }、D.void max(a, b) { cout << (a > b ? a : b); }，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第5题为 B，0起始索引1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：B 返回类型 int、两个形参均带类型、if-else 两分支 return 正确；A 在 void 函数中 return 带值属编译错误，C、D 形参缺类型声明（C++ 不允许省略），D 还以 cout 输出代替返回值。网站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论与我的独立判断一致，无修改项，接受。"
+      }
+    ],
+    "summary": "本次独立复核题1-5（全部单选题）：PDF第1页卷头“CCF编程能力等级认证 GESP / C++ 三级 / 2025年09月”与 2025-09-l3 一致；五题题干、代码与选项经第1、2页原图逐字比对一致（仅空格/排版等效差异）；答案表前5题为 C C D B B，0起始索引 2/2/3/1/1 与网站 answer 全部吻合；五题解析均经独立推导（整数除法、逻辑运算真值表、数组下标越界、变量遮蔽与声明顺序、函数定义语法）确认正确。未发现需修改字段，五题均 approve；初核草稿未提出任何修改，其核验依据与本文独立结论一致，全部接受。判断题答案表（第4页原图可见）与两道编程题不在本次核验范围，后续批次需另行处理。"
+  }
+}

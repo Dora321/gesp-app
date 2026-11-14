@@ -1,0 +1,228 @@
+{
+  "paperId": "2025-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T00:03:42.031Z",
+  "completedAt": "2026-11-13T00:05:42.318Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30802,
+    "completion_tokens": 11706,
+    "total_tokens": 42508,
+    "prompt_tokens_details": {
+      "cached_tokens": 30720
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9999
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00712806,
+      "allowance": 0.00427684,
+      "tokens": {
+        "input": 82,
+        "output": 11706,
+        "reasoning": 9999,
+        "cache_read": 30720,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "43ffc688f67a86ee289b9974260b2eb06df2d31affb9a23d328badd1da8c1066",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++3级.pdf",
+    "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
+    "mirrorBytes": 896357,
+    "shaVerified": true,
+    "sha256": "9d498145166ef002cead99e73efa9ddc5c87e1c82a7cd7058e63f969800d768f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示 GESP/CCF 编程能力等级认证、C++ 三级、2025年09月，与 2025-09-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题的代码为 int reversed=0; while(x!=0){ int digit=x%10; x/=10; reversed=reversed*10+digit; }，站点题面与之一致，仅空白差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页四个选项 A 能够反转任何位数的整数、B 2147483647、C 2147483648、D 1463847412，顺序与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第11题为 D，对应 0 起始索引 3，站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "站点解析称 D 是能安全反转的最大原数，但 x=2147483641 更大且反转得 1463847412，仍在 int 范围内；题干表述与官方答案 D 存在歧义，原解析的论证不充分且结论有误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码核对。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（按官方答案）**\n\n官方命题意图下，D 的 1463847412 反转为 2147483641，仍在 int 范围内。但题干“能够反转的最大位数正整数”存在歧义：若理解为“可安全反转的最大原数”，则 2147483641 更大且其反转 1463847412 也未溢出，D 并非最大原数；若理解为“反转后能得到的最大 int 值所对应的原数”，D 才符合官方答案。此处保留官方答案 D，同时标注题干表述争议。\n\nA 错：int 范围有限；B 的 2147483647 反转为 7463847412，溢出；C 的 2147483648 已超过 int 最大正值；D 反转为 2147483641，未溢出。"
+        },
+        "tests": [],
+        "unresolved": [
+          "题干“能够反转的最大位数正整数”与官方答案 D 的严格数学含义存在歧义；按“可安全反转的最大原数”理解时，2147483641 是反例；未擅自修改官方答案。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第12题代码、空位和函数签名与站点一致：int maxVal=________; for(int i=1;i<size;i++)...；仅横线长度和注释排版不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页四个选项依次为 0、arr[-1]、arr[0]、size，与站点选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第12题为 C，对应 0 起始索引 2，站点 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "数组最大值打擂台算法应以 arr[0] 为初值；若初始为 0，全负数组会出错；arr[-1] 越界；size 不是元素值。推导独立且符合程序语义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第13题的四个选项文字与站点一致；函数参数传递、形参生命周期、void 返回和默认返回 int 的表述均未漏改。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项顺序为 A 值传递一种、B 形参调用后仍占内存、C void 不能含 return、D C++11 起不允许默认返回 int；站点顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第13题为 D，对应 0 起始索引 3，站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "A 错在还有引用/指针传递；B 错在形参为自动存储期；C 错在 void 函数可用 return; 提前返回；D 符合 C++11 后取消隐式 int 的规则。解析方向正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页末第14题题干与PDF第4页代码一致：const int SIZE=5; int arr[SIZE]; for(i=0;i<=SIZE;i++) arr[i]=i*2; cout<<arr[SIZE]<<endl;；站点未漏代码。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项为 A 0处、B 1处、C 2处、D 3处，站点选项和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第14题为 C，对应 0 起始索引 2，站点 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "SIZE=5 时合法下标为 0 到 4；循环 i<=SIZE 在 i=5 写 arr[5] 越界，随后 cout<<arr[SIZE] 又读 arr[5] 越界，按题意计两处，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第15题关于 string 与 char[] 的四个说法与站点一致，选项内容、顺序和“错误的是”设问均保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项 A 赋值与 strcpy、B length 与 strlen、C 动态空间、D == 直接比较内容；站点顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第15题为 D，对应 0 起始索引 3，站点 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "std::string 重载 == 比较内容；char[] 作为 C 风格字符串时 == 比较首元素地址，比较内容需 strcmp，因此 D 错。其余三项表述符合 string 与字符数组差异。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考代码核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号11—15均为单选题；题面、选项顺序和官方答案表均能在PDF对应页复核，answer 索引全部一致。Q12—Q15解析经独立推导成立；Q11官方答案为 D，但题目“最大位数正整数”的表述与解析存在歧义，已给出保留官方答案的解析纠错草稿并列为未决问题。未进行代码运行，本题组无编程题参考代码核验。"
+  }
+}

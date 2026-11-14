@@ -1,0 +1,237 @@
+{
+  "paperId": "2025-09-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T01:51:02.722Z",
+  "completedAt": "2026-11-13T01:52:50.862Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45768,
+    "completion_tokens": 7096,
+    "total_tokens": 52864,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4741
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0104132,
+      "allowance": 0.0104132,
+      "tokens": {
+        "input": 45768,
+        "output": 7096,
+        "reasoning": 4741,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "43ffc688f67a86ee289b9974260b2eb06df2d31affb9a23d328badd1da8c1066",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++3级.pdf",
+    "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
+    "mirrorBytes": 896357,
+    "shaVerified": true,
+    "sha256": "9d498145166ef002cead99e73efa9ddc5c87e1c82a7cd7058e63f969800d768f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP”“C++ 三级”“2025 年 09 月”，与 paperId 2025-09-l3（等级 3、2025 年 9 月）一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文为“表达式 sizeof('a') 的结果总是 1 ，因为 'a' 是一个字符。”，网站题干与之一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项，网站仅以“正确/错误”二元标签表示。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第 4 页判断题答案表第 1 题为“×”（错误），对应 officialAnswer=1；网站 answer=1 与答案表映射一致。但按 ISO C++ 标准，普通字符字面量 'a' 的类型是 char，sizeof(char) 按定义为 1，故 sizeof('a') 在 C++ 中为 1（GCC/Clang/MSVC 均如此），题干按 C++ 语义应为正确；官方答案疑似沿用 C 语言“字符常量为 int”的规则，与 C++ 标准冲突，保留争议不定案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：现解析把 C 语言规则误用于 C++ 且自相矛盾（先称类型是 char 又称标准规定为 int），已改写为如实记录官方答案表为“×”，并准确说明 C++ 与 C 在字符常量类型上的差异及答案争议，内容经独立推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**官方答案：错误（PDF 第 4 页判断题答案表第 1 题标 ×）。**\n\n**核验与争议说明：**\n本题为判断题，官方判定为“错误”，此处保留官方答案。但需特别指出：按 ISO C++ 标准，普通字符字面量 `'a'` 的类型就是 `char`，而 `sizeof(char)` 按定义为 1，因此在 C++ 中 `sizeof('a')` 的结果确实是 1（GCC、Clang、MSVC 等主流 C++ 编译器均如此）。“sizeof('a') 为 4”的说法源自 C 语言——在 C 中字符常量的类型是 `int`，`sizeof('a')` 通常等于 `sizeof(int)`。官方答案疑似按 C 语言规则判错，与 ISO C++ 标准存在冲突，学习者应知悉此争议。\n\n**易错提醒：**\n- C 与 C++ 的著名差异：C 中 `'a'` 类型为 `int`，`sizeof('a')` 通常为 4；C++ 中 `'a'` 类型为 `char`，`sizeof('a')` 为 1。\n- 无论哪种语言，`sizeof(char)` 恒为 1。\n- 遇到此类跨语言规则的题目时，先确认考试语境（本题官方按“错误”判分）。\n\n**考点：** sizeof、字符常量类型（C/C++ 差异）"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案表将本题判为“错误”，但按 ISO C++ 标准 sizeof('a') 为 1、题干按 C++ 语义应为正确，官方答案疑似沿用 C 语言规则；保留官方答案并标注争议，未定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受 DeepSeek 初核的争议保留方案并独立确认：官方答案表第 1 题为 ×，与网站 answer=1 映射一致；但 ISO C++ 中字符字面量类型为 char、sizeof('a') 为 1，官方判错与标准冲突。现解析把 C 规则误用于 C++ 且自相矛盾，修改稿已补强 C/C++ 差异说明并如实标注争议，explanation 修复后核验通过；answer 因争议保留 unresolved。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文为“在C++中，所有全局变量如果没有显式初始化，都会被自动初始化为0。”，网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项，网站仅以“正确/错误”二元标签表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 题为“√”（正确），对应 officialAnswer=0；网站 answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：全局变量具有静态存储期，未显式初始化时执行零初始化，数值型得 0、指针得空指针，现有解析与此一致，且正确提醒了局部变量不适用该规则。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干与 PDF 第 4 页一致，答案表第 2 题为 √ 与网站 answer=0 一致，解析零初始化论述经独立推导无误，全维度通过。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题原文为“do { ... } while (false); 循环体内的语句至少会被执行一次。”，网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项，网站仅以“正确/错误”二元标签表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 题为“√”（正确），对应 officialAnswer=0；网站 answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：do-while 先执行循环体再判断条件，即使条件为 false 也至少执行一次；现有解析正确，且对比了 while/for 可能零次执行的情形。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干与 PDF 第 4 页一致，答案表第 3 题为 √ 与网站 answer=0 一致，解析 do-while 至少执行一次的论述正确，全维度通过。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文为“在C++中， ++i 是一个左值表达式，而 i++ 是一个右值表达式。”，网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项，网站仅以“正确/错误”二元标签表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 题为“√”（正确），对应 officialAnswer=0；网站 answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 中内置类型前置 ++ 返回自增后对象的左值（可取地址 &++i），后置 ++ 返回自增前的临时值（纯右值，不可取地址）；现有解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干与 PDF 第 4 页一致，答案表第 4 题为 √ 与网站 answer=0 一致，解析前置/后置自增的左值右值结论经独立推导正确，全维度通过。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 5 题原文为“对于 enum Color { RED, GREEN, BLUE }; ， RED 的类型是 int”，网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项，网站仅以“正确/错误”二元标签表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 题为“×”（错误），对应 officialAnswer=1；网站 answer=1，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：无作用域枚举的枚举量 RED 的类型是其所属枚举类型 Color，可隐式转换为 int 但类型本身不是 int；现有解析正确区分了“可转换”与“类型是 int”，并延伸说明了 enum class 的显式转换要求。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干与 PDF 第 4 页一致，答案表第 5 题为 × 与网站 answer=1 一致，解析关于枚举量类型为 Color 的论述经独立推导正确，全维度通过。"
+      }
+    ],
+    "summary": "本次仅复核判断题第 1—5 题（id 16—20）。5 题题干均与 PDF 第 4 页原文一致；网站答案与第 4 页判断题答案表前五项“× √ √ √ ×”的映射全部一致（16→错误、17—19→正确、20→错误）。第 16 题官方答案与 ISO C++ 标准冲突：C++ 中字符字面量 'a' 类型为 char、sizeof('a') 为 1，题干按 C++ 语义应为正确，官方判“错误”疑似沿用 C 语言规则，故 answer 维度保留 unresolved、保留官方答案并标注争议；其解析原先把 C 语言规则误用于 C++ 且自相矛盾，已提供修复稿（如实记录官方答案并准确说明 C/C++ 差异），修复后核验通过。第 17—20 题解析经独立推导均无误，全维度 verified，verdict 为 approve。"
+  }
+}
