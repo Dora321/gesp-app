@@ -1,0 +1,180 @@
+{
+  "paperId": "2023-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T13:20:31.177Z",
+  "completedAt": "2026-11-11T13:35:08.192Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49824,
+    "completion_tokens": 36285,
+    "total_tokens": 86109,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 32750
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0256161,
+      "allowance": 0.0256161,
+      "tokens": {
+        "input": 49824,
+        "output": 36285,
+        "reasoning": 32750,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c4f34351a8e3b2b69284df238ba5ae7fbd149cdc645a8b2ec894e8acb302e591",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++3级.pdf",
+    "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
+    "mirrorBytes": 1749021,
+    "shaVerified": true,
+    "sha256": "ef6bb91b5ed0d4b380f6ab5ee383711d77ee4c7d9894074cb83eabdc75322ec5"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页页图卷头为“C++ 三级 / 2023 年 12 月”，与 2023-12-l3 一致；编程题 3.1 为“小猫分鱼”（题26）、3.2 为“单位转换”（题27），对应无误。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "verdict": "revise",
+        "reviewNote": "接受初核：约束修复（官方为 0<N<10、i<N，允许 i=0）经第6页页图独立确认；解析/参考代码替换的理由成立。但初核复杂度表述不准确（并非每次 O(N) 检查、也非约 3.5×10^9 次运算，实际约 3.9×10^8 次枚举、期望约 4.4×10^8 次变量取模/整除，仍超出 1.0s），最终字段值按我修正后的文本应用。公式解法与全部测试期望输出均由我独立推导并多点手算确认，另补充 N=9,i=8 最大余数测试。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页 3.1.2 页图原文为“保证 0 < N < 10；i < N。”，网站原写“保证 $0<i<N\\le9$”，错误排除了官方允许的 i=0（N≤9 与 0<N<10 等价，差异仅在 i 的下界）。已按页图改为“保证 $0<N<10$，$i<N$”，修复后核验通过；其余题面（分鱼流程、每份非空要求、输出格式、两组样例 2/1→7、3/1→25）与 PDF 第5—6页一致，条/个量词与括注属等价转述。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方 PDF 仅单选/判断有答案表，编程题无答案，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析采用从 x=1 正向枚举并模拟，官方约束最坏点 N=9、i=1 答案为 387420481，需约 3.9×10^8 次枚举、期望约 4.4×10^8 次变量除法/取模（除数为运行期变量，无法用魔数优化），1.0s 内无法保证通过。已替换为逆向构造公式解析；公式 s_t=((N-1)/N)^t·s_0、N^(N-1)|s_0、m=ceil((i+1)/(N-1)^(N-1))、x_0=m·N^N−(N−1)·i 均由我独立推导，并在 (2,1)→7、(3,1)→25、(1,0)→1、(3,0)→27、(9,1)→387420481、(9,8)→387420425、(4,3)→247 各点手算验证。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "原参考代码正向枚举初始鱼数，最坏 N=9 需约 3.9×10^8 次含变量取模的模拟，存在超时风险。已替换为公式实现（N=1 输出 1；N≥2 时 m=ceil((i+1)/(N-1)^(N-1))，ans=m·N^N−(N−1)·i），经上述多点验证正确，最大结果约 3.87×10^8，long long 无溢出，复杂度 O(N)。修复后核验通过。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 三级] 小猫分鱼\n\n## 题目描述\n\n海滩上有一堆鱼，$N$ 只小猫来分。第一只小猫把这堆鱼平均分为 $N$ 份，多了 $i$ 条，它把多的 $i$ 条扔进海里，拿走了其中的一份。第二只小猫接着把剩下的鱼平均分为 $N$ 份，又多了 $i$ 条，它同样把多的 $i$ 条扔进海里，拿走了其中的一份。之后的小猫都按同样的方式分鱼，直到第 $N$ 只小猫也拿走了自己的一份（每只小猫分得的一份都不能为空）。\n\n请问海滩上最少有多少条鱼，才能让上述过程顺利完成？\n\n## 输入格式\n\n总共 $2$ 行。第一行一个整数 $N$，第二行一个整数 $i$。\n\n保证 $0<N<10$，$i<N$。\n\n## 输出格式\n\n一行一个整数，表示满足要求的海滩上最少的鱼数。\n",
+          "explanation": "**解析：**\n\n**一、思路选择**\n若从初始鱼数 $x=1$ 开始正向枚举并逐轮模拟，当 $N=9$、$i=1$ 时最小答案为 $387420481$，需约 $3.9\\times10^8$ 次枚举、期望约 $4.4\\times10^8$ 次变量整除/取模，$1.0\\ s$ 时限内无法保证通过，故采用逆向构造（公式法）直接求最小值，整个过程只需 $O(N)$ 次乘法。\n\n**二、公式推导**\n设第 $t$ 只小猫（$t=0,1,\\dots,N-1$）面对 $x_t$ 条鱼、拿走的一份为 $y_t$ 条，则每轮满足：$x_t=N\\cdot y_t+i$（扔掉多出的 $i$ 条后均分 $N$ 份），$x_{t+1}=(N-1)\\cdot y_t$（剩余 $N-1$ 份留给下一只猫）。令 $s_t=y_t+i$，比较 $x_{t+1}$ 的两种表达可得 $N\\cdot s_{t+1}=(N-1)\\cdot s_t$，即 $s_t=\\left(\\frac{N-1}{N}\\right)^t s_0$。由于 $\\gcd(N,N-1)=1$，要使 $y_1,\\dots,y_{N-1}$ 均为整数，$s_0$ 必须是 $N^{N-1}$ 的倍数；令 $s_0=m\\cdot N^{N-1}$（$m$ 为正整数），则 $s_t=m\\cdot(N-1)^t\\cdot N^{N-1-t}$。\n\n“每只小猫分得的一份都不能为空”要求 $y_t=s_t-i\\ge1$ 对所有 $t$ 成立；$s_t$ 随 $t$ 递减，故只需 $s_{N-1}=m\\cdot(N-1)^{N-1}\\ge i+1$，取 $m=\\left\\lceil\\frac{i+1}{(N-1)^{N-1}}\\right\\rceil$ 即得最小初始鱼数 $x_0=N\\cdot y_0+i=m\\cdot N^N-(N-1)\\cdot i$。\n\n**三、样例与边界验证**\n- $N=2,i=1$：$m=\\lceil 2/1\\rceil=2$，$x=2\\cdot4-1=7$，与样例1一致；\n- $N=3,i=1$：$m=\\lceil 2/4\\rceil=1$，$x=27-2=25$，且末猫份额 $y_2=1\\cdot2^2-1=3$，与官方样例解释“第三只小猫需要拿走3条鱼”一致；\n- $i=0$（官方允许）：$m=1$，答案为 $N^N$，如 $N=3$ 时为 $27$；\n- $N=1$（此时必有 $i=0$）：答案为 $1$。\n\n**四、易错提醒**\n- 官方约束为 $0<N<10$、$i<N$，$i$ 可以为 $0$，不要按 $0<i$ 处理；\n- “每份非空”对应 $m$ 的下界，不能遗漏；\n- $N=9$ 时答案约 $3.9\\times10^8$，须用 `long long`；正向枚举初始鱼数在该规模会超时。",
+          "referenceCode": "#include <iostream>\nusing namespace std;\n\nlong long power(long long a, int b) {\n    long long r = 1;\n    while (b--) r *= a;\n    return r;\n}\n\nint main() {\n    int N, i;\n    cin >> N >> i;\n    if (N == 1) {\n        cout << 1 << endl;\n        return 0;\n    }\n    long long denom = power(N - 1, N - 1);\n    long long m = (i + 1 + denom - 1) / denom;\n    long long ans = m * power(N, N) - 1LL * (N - 1) * i;\n    cout << ans << endl;\n    return 0;\n}"
+        },
+        "tests": [
+          {
+            "name": "最小规模 N=1,i=0",
+            "input": "1\n0\n",
+            "output": "1\n",
+            "reason": "官方约束 0<N<10、i<N 允许 N=1,i=0；一只小猫分1份拿走全部，每份非空至少需1条鱼，独立推得最小值为1。"
+          },
+          {
+            "name": "i=0 边界 N=3",
+            "input": "3\n0\n",
+            "output": "27\n",
+            "reason": "i=0 时每轮须整除；独立模拟 x=3,6,9,12,15,18,21,24 均因中途余数非0或份额为空失败，x=27 时三轮份额 9、6、4 均非空，最小值为 N^N=27。"
+          },
+          {
+            "name": "最大规模 N=9,i=1",
+            "input": "9\n1\n",
+            "output": "387420481\n",
+            "reason": "按公式 m=ceil(2/8^8)=1，答案=9^9−8=387420489−8=387420481；该规模下从1正向枚举初始鱼数不可行，用于确认公式解法。"
+          },
+          {
+            "name": "最大余数 N=9,i=8",
+            "input": "9\n8\n",
+            "output": "387420425\n",
+            "reason": "m=1，答案=9^9−8×8=387420489−64=387420425；逆向逐级还原各轮份额均为整数且非空，覆盖修正项 (N−1)·i 取最大值的情形。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面、解析与参考代码经我与 PDF 第7—9页页图逐项对照确认一致；三个测试的期望输出（0 km = 0 mm、1000 kg = 1000000000 mg、1000 km = 1000000 m）由我按 map 映射与输出格式独立计算核对无误。无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第7—8页 3.2.1—3.2.3：两类单位关系式（1km=1000m=1000000mm；1kg=1000g=1000000mg）、六种转换题型、x 为不超过 1000 的非负整数、1≤N≤1000、输入/输出格式与两组样例逐字一致；无缺失约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方 PDF 编程题无答案表，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用 cin 按空白分词读取 x、单位1、=、?、单位2，与参考代码一致；六种倍率（m→mm、km→mm、km→m、g→mg、kg→mg、kg→g）覆盖题目全部合法组合；最大结果 1000×1000000=10^9 < 2^31−1，溢出分析正确；两组样例及样例2各行走查复算一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "map 恰好登记六种合法单位对，无多余/缺失；x 与倍率用 long long，最大 10^9 无溢出；输出 \"x u1 = ans u2\" 与题面“? 代入答案、其余一字不差”要求一致；复杂度 O(N)，N≤1000 内轻松通过 1.0s。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模且 x=0",
+            "input": "1\n0 km = ? mm\n",
+            "output": "0 km = 0 mm\n",
+            "reason": "N 最小为1、x 最小为0；km→mm 倍率 1000000，0 乘任何倍率仍为 0，输出格式与题面一致。"
+          },
+          {
+            "name": "最大乘积 1000 kg = ? mg",
+            "input": "1\n1000 kg = ? mg\n",
+            "output": "1000 kg = 1000000000 mg\n",
+            "reason": "x 最大 1000、kg→mg 倍率 1000000，结果 10^9 为全题域最大值，验证 long long 范围与输出格式。"
+          },
+          {
+            "name": "覆盖 km→m 分支",
+            "input": "1\n1000 km = ? m\n",
+            "output": "1000 km = 1000000 m\n",
+            "reason": "km→m 倍率 1000，1000×1000=10^6；验证映射表不漏 km→m 组合。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "按任务范围仅核验题26、27。sourceIdentity 与官方 PDF 第1页卷头（C++ 三级，2023年12月）及 3.1/3.2 编程题布局一致。题27（单位转换）题面、解析、参考代码与 PDF 第7—9页页图逐项一致，核验通过，无需修改。题26（小猫分鱼）存在两处问题并已修复：①官方约束为“0<N<10；i<N”（第6页页图），允许 i=0，网站误写 0<i<N≤9；②原正向枚举初始鱼数的解析与参考代码在 N=9、i=1（答案 387420481）时需约 3.9×10^8 次含变量取模的模拟，1.0s 内无法保证通过，已替换为经独立推导与多点手算验证的逆向构造公式解法，并补充覆盖 N=1、i=0、最大 N 与最大 i 的测试。初核关于复杂度的具体数字（每次 O(N) 检查、约 3.5×10^9 次）不准确，已在证据中修正但结论不变。两题编程题均无官方答案表，officialAnswer=null。"
+  }
+}

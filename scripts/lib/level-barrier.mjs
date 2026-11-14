@@ -4,6 +4,10 @@ import fs from 'node:fs';
 
 export const maxLevelConcurrency = 3;
 export const terminalStatuses = new Set(['verified', 'reviewed-with-open-issues']);
+// original-paper-dispute：用户把题标为原卷争议（2026-11-09 起）。
+// user-adjudicated：用户逐题人工裁定（2026-11-11 起），可以是按原卷改回、加注计分或排除不计分——
+// 两者都只用于等级收束，永远不等于「通过五维核验」（countsAsPassed 必须为 false）。
+export const rulingStatuses = new Set(['original-paper-dispute', 'user-adjudicated']);
 
 const statusReasons = {
     'not-started': '尚未开始审校',
@@ -57,7 +61,9 @@ export function loadUserRulings(file) {
         if (!Array.isArray(ruling.dimensions) || ruling.dimensions.some(dimension => typeof dimension !== 'string')) {
             throw new Error(`${label}缺少 dimensions 数组`);
         }
-        if (ruling.status !== 'original-paper-dispute') throw new Error(`${label} status 必须是 original-paper-dispute`);
+        if (!rulingStatuses.has(ruling.status)) {
+            throw new Error(`${label} status 必须是 ${[...rulingStatuses].join(' 或 ')}`);
+        }
         if (ruling.decidedBy !== 'user') throw new Error(`${label} decidedBy 必须是 user`);
         if (ruling.countsAsPassed !== false) throw new Error(`${label} countsAsPassed 必须是 false`);
     }

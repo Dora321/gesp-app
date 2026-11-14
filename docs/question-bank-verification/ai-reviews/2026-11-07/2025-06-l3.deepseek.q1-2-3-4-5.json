@@ -1,0 +1,228 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T06:25:02.760Z",
+  "completedAt": "2026-11-12T06:27:04.470Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29282,
+    "completion_tokens": 11054,
+    "total_tokens": 40336,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9235
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0220494,
+      "allowance": 0.01322964,
+      "tokens": {
+        "input": 29282,
+        "output": 11054,
+        "reasoning": 9235,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c064127b760deed6240ffc2ff56339a0f779266c36290f74c5641ab666224a20",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 三级”“2025 年 06 月”，与 paperId 对应的等级 3、2025 年 6 月一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题原文为“8位二进制原码能表示的最小整数是：（ ）”，网站只调整了空格，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. -127、B. -128、C. -255、D. -256，顺序和内容与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号 1 对应 A；网站 answer=0 映射 A，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：8 位原码最高位为符号位、低 7 位为数值位，负数绝对值最大为 1111111₂=127，故最小整数为 -127；解析中的范围、正负零和选项辨析均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题原文为“反码表示中，零的表示形式有：”，网站增补括号，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. 1种、B. 2种、C. 8种、D. 16种，网站内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号 2 对应 B；网站 answer=1 映射 B，二者一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论 B 正确，但解析中“将+0的原码00000000的数值位取反得到10000000（符号位1，数值位全0）”混淆了符号位与数值位：10000000 是负零的原码，不是该步骤所得，后续推导不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（2种）**\n\n设字长为8位。反码中，正数（含+0）的符号位为0，数值位与原码相同；负数的符号位为1，数值位为对应绝对值按位取反。\n\n- +0：符号位0，数值位全0，编码为 `00000000`。\n- -0：符号位为1，7个数值位全取反，得到 `11111111`。\n\n所以零有 `00000000` 和 `11111111` 两种表示，选B。补码中零只有一种表示，`10000000` 被规定为 -128；零的表示形式也不随字长变为8种或16种，故A、C、D错误。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题原文为“补码 1011 1011 对应的真值是( )”，网站仅调整空格并在括号内加句号，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. -69、B. -59、C. -68、D. -58，网站内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号 3 对应 A；网站 answer=0 映射 A，二者一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析中出现“真值为 -65... 等等，让我重新计算”的自我纠正，且快速转换技巧称“从右找第一个1在右数第2位”，与 10111011 的实际情况不符；虽最终答案 A 正确，但解析不可作为可靠推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（-69）**\n\n补码 `10111011` 的最高位为1，说明是负数。\n\n**方法一：取反加1求绝对值**\n对 `10111011` 按位取反得 `01000100`，再加1得 `01000101`，即十进制69，所以原数为 -69。\n\n**方法二：按补码位权直接计算**\n`10111011` 的位权从高到低为 -128、64、32、16、8、4、2、1，真值为：\n-128 + 32 + 16 + 8 + 2 + 1 = -69。\n\n**验证**：-69 的绝对值为69，二进制 `01000101`，按位取反后加1得到 `10111011`，与题给补码一致。故选A；B、C、D均不符合。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题原文为“若X的8位补码为 0000 1010，则 X/2 的补码是（ ）。”，网站仅调整空格，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. 0000 0101、B. 1000 0101、C. 0000 0101 或 1000 0101、D. 算术右移后结果取决于符号位，网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号 4 对应 A；网站 answer=0 映射 A，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：00001010₂ 补码表示正数10，10/2=5，其8位补码为00000101；正数算术右移1位也为00000101，网站推导和选项辨析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第5题原文为“二进制数 1101.101 对应的十进制数是( )”，网站仅调整空格和括号，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. 13.625、B. 12.75、C. 11.875、D. 14.5，网站内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号 5 对应 A；网站 answer=0 映射 A，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：1101₂=8+4+0+1=13，0.101₂=1/2+0+1/8=0.625，总和13.625；解析中的整数部分、小数部分和选项分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号1至5。五题的题面、选项和官方答案（A、B、A、A、A）均与PDF原图及答案表一致；第2题和第3题的网站解析存在推导性错误，已分别给出完整替换草稿；第1、4、5题解析通过独立核对。未运行代码（本次均为单选题，无编程题）。"
+  }
+}

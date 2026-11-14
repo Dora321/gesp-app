@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T21:54:02.017Z",
+  "completedAt": "2026-11-11T21:56:03.474Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31771,
+    "completion_tokens": 6178,
+    "total_tokens": 37949,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4900
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00847245,
+      "allowance": 0.00508347,
+      "tokens": {
+        "input": 31771,
+        "output": 6178,
+        "reasoning": 4900,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6a865d3b5a006bd8bbb68cca6ef8c4d03edaed57fccb39a44079200af64dfda",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 三级”“2024 年 09 月”，与 2024-09-l3 一致；本次核验的判断题位于第 5 页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 1 题原文为“+1和-1的原码进行1+（-1）计算的结果是-2。”，网站题面仅在空格和括号全半角上有排版差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选的 options；PDF 第 5 页以√/×判定，网站以“正确/错误”二值呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 1 题为√；按正确=0、错误=1 映射，officialAnswer=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按 8 位原码直接相加：00000001+10000001=10000010，按原码解释为-2；解析同时说明原码运算缺陷，结论与官方判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 2 题原文为“~1 的输出值是 -2 。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选的 options；PDF 以√/×判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 2 题为√；正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按补码及恒等式~n=-(n+1)可独立推出~1=-2；C++ 中 cout<<~1 输出 -2，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 3 题原文为“~1 = 1111 1110 。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选的 options；PDF 以√/×判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 3 题为√；正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按题干给出的 8 位二进制写法，1 为 00000001，逐位取反得到 11111110；解释已说明位宽语境，结论与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 4 题原文为“取 X 的低四位，可以用 Y = 0000 1111 ，用 X&Y 获取 X 的低四位。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选的 options；PDF 以√/×判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 4 题为√；正确=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "掩码 00001111 的低四位为 1、其余为 0，X&Y 保留 X 的低四位并把其余位清零，解析推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 5 题题面为“下列程序输出的是 A。”，代码为 char x=65; x++; cout<<x++<<endl;，网站文字与独立 code 字段合并后一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选的 options；PDF 以√/×判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 5 题为×；错误=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "x 初值 65 对应 A，第一次 x++ 后变为 66 即 B；cout<<x++ 输出自增前的 66，即字符 B，不是 A，故原说法错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 16~20 题（PDF 判断题第 1~5 题）。逐题对照第 5 页原图、代码及判断题答案表，题干语义、答案符号均与网站数据一致；解析可独立推导，未发现需修正项。判断题不适用单选的 options 维度，均按 not_applicable 记录。"
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T12:00:48.436Z",
+  "completedAt": "2026-11-12T12:03:45.821Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34219,
+    "completion_tokens": 16925,
+    "total_tokens": 51144,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15283
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01528785,
+      "allowance": 0.00917271,
+      "tokens": {
+        "input": 34219,
+        "output": 16925,
+        "reasoning": 15283,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证”“C++ 三级”“2025 年 03 月”，与 paperId 2025-03-l3 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页题面、公式和样例与网站一致，但明确写有“对于所有测试点，保证 0 ≤ x < 2025”，并标注时间限制 1.0 s、内存限制 512.0 MB；网站 question 仅写到输出格式，缺数据范围及逐题限制。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer 为 null；以参考程序和独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立利用 (x&y)+(x|y)=x+y 化简为 x+y=2025，推得 y=2025-x，并验证样例 1025→1000；推导和计算正确。文中 x=2025、x=2026 的示例超出官方数据范围，属于对无解分支的一般性说明，不是合法输入测试。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第8页官方参考程序用 i=1..2025 枚举；网站代码用 y=2025-x 并判断 y>0，在官方 0≤x<2025 范围内与枚举等价且解唯一，长整型避免溢出，复杂度 O(1)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 三级] 2025\n\n## 题目描述\n\n小 A 有一个整数 $x$，他想找到最小的正整数 $y$ 使得下式成立：\n\n$(x \\ \\operatorname{and} \\ y) + (x \\ \\operatorname{or} \\ y) = 2025$\n\n其中 $\\operatorname{and}$ 表示二进制按位与运算，$\\operatorname{or}$ 表示二进制按位或运算。如果不存在满足条件的 $y$，则输出 $-1$。\n\n## 输入格式\n\n一行，一个整数 $x$。\n\n## 输出格式\n\n一行，一个整数，若满足条件的 $y$ 存在则输出 $y$，否则输出 $-1$。\n\n## 数据范围\n\n对于所有测试点，保证 $0 \\le x < 2025$。\n\n## 限制\n\n时间限制：1.0 s；内存限制：512.0 MB。\n"
+        },
+        "tests": [
+          {
+            "name": "数据范围最小值 x=0",
+            "input": "0\n",
+            "output": "2025\n",
+            "reason": "由恒等式 (x&y)+(x|y)=x+y 得 y=2025-x；x=0 时 y=2025，且为唯一正整数解。"
+          },
+          {
+            "name": "数据范围上界前一位 x=2024",
+            "input": "2024\n",
+            "output": "1\n",
+            "reason": "y=2025-2024=1；1 为正整数，且 2024+1=2025 满足恒等式。"
+          },
+          {
+            "name": "官方样例 x=1025",
+            "input": "1025\n",
+            "output": "1000\n",
+            "reason": "PDF 样例 1；y=2025-1025=1000。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第8页题面、输入输出格式和样例与网站一致，但明确给出数据范围“1 ≤ n ≤ 100，每个单词的长度不超过 30，且仅由大小写英文字母组成”，并标注时间限制 1.0 s、内存限制 512.0 MB；网站 question 缺这些约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表项，officialAnswer 为 null；以参考程序和独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“统一转小写→map 计数→维护最大频次”推导，与 PDF 第9页官方参考程序逻辑一致；样例 Apple/banana/apple/Orange/banana/apple 得到 apple，过程正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码读入 n 个单词，逐字符转小写，map 计数并维护最大频次与答案；在 n≤100、长度≤30 的范围内正确，复杂度为 O(总字符数·log n)，输出小写单词，与官方程序等价。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 三级] 词频统计\n\n## 题目描述\n\n在文本处理中，统计单词出现的频率是一个常见的任务。现在，给定 $n$ 个单词，你需要找出其中出现次数最多的单词。在本题中，忽略单词中字母的大小写（即 `Apple`、`apple`、`APPLE`、`aPPle` 等均视为同一个单词）。\n\n请你编写一个程序，输入 $n$ 个单词，输出其中出现次数最多的单词。\n\n## 输入格式\n\n第一行，一个整数 $n$，表示单词的个数；\n\n接下来 $n$ 行，每行包含一个单词，单词由大小写英文字母组成。\n\n输入保证，出现次数最多的单词只会有一个。\n\n## 输出格式\n\n输出一行，包含出现次数最多的单词（输出单词为小写形式）。\n\n## 数据范围\n\n对于所有测试点，$1 \\le n \\le 100$，每个单词的长度不超过 $30$，且仅由大小写英文字母组成。\n\n## 限制\n\n时间限制：1.0 s；内存限制：512.0 MB。\n"
+        },
+        "tests": [
+          {
+            "name": "最小规模 n=1 单字母",
+            "input": "1\nA\n",
+            "output": "a\n",
+            "reason": "n=1 为下界；唯一单词转小写后输出。"
+          },
+          {
+            "name": "大小写混合的同一单词",
+            "input": "4\nApple\nAPPLE\naPpLe\napple\n",
+            "output": "apple\n",
+            "reason": "忽略大小写后四个单词均为 apple，出现 4 次且唯一最多；按题目要求输出小写形式。"
+          },
+          {
+            "name": "单词长度上界 30",
+            "input": "1\nABCDEFGHIJKLMNOPQRSTUVWXYZABCD\n",
+            "output": "abcdefghijklmnopqrstuvwxyzabcd\n",
+            "reason": "单词长度恰为 30，覆盖官方长度上界；n=1 时唯一单词即答案并转小写。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验 26、27 两题。两题题面主要问题均为漏列官方数据范围，并按 PDF 补入逐题 1.0 s/512.0 MB 限制；公式、样例和输出要求与 PDF 一致。26 的 O(1) 参考程序与官方枚举程序等价；27 的 map 计数与小写化参考程序正确。所列测试均为独立推导的期望输出，未声明实际运行。"
+  }
+}

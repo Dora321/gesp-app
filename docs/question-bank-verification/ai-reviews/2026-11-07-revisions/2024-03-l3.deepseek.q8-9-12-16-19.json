@@ -1,0 +1,225 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    8,
+    9,
+    12,
+    16,
+    19
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T23:53:24.125Z",
+  "completedAt": "2026-11-11T23:59:25.262Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33597,
+    "completion_tokens": 19297,
+    "total_tokens": 52894,
+    "prompt_tokens_details": {
+      "cached_tokens": 33408
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17298
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01170677,
+      "allowance": 0.00702406,
+      "tokens": {
+        "input": 189,
+        "output": 19297,
+        "reasoning": 17298,
+        "cache_read": 33408,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "77d2b2ae25fbcdf873a324e4c803131adf5f4bff1dc27e57790180e378ae95ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 三级 2024年03月”，与 2024-03-l3 对应；页面版式、题号、答案表均一致。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第8题代码为 string str=\"gEsP is Interesting\";，条件为 (str[i]>='a')&&(str[i]<='z')，横线处需填语句；站内以 \"a\"[0]、\"z\"[0] 表示 'a'、'z'，语义等价，未改变判断含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项 A. str[i]+='a'-'A'、B. str[i]+=20、C. str[i]+='A'-'a'、D. 无法实现，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第8题为 C（0 起始索引2）；独立计算 'A'-'a'=65-97=-32，小写转大写需减32，C 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立验证：条件仅筛选小写字母，'g'(103)+(-32)=71='G'、's'(115)+(-32)=83='S'，转换后为 GESP IS INTERESTING；A 的 +32 方向相反，B 的20不是大小写差值，D 不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第3页代码第3行字符串为 \"gEsP is Interesting     !\"（Interesting 与 ! 间为5个连续空格，总长25）；PDF 第4页第12—14行在 cout << nwords << endl; 后还有 cout << endl;，当前候选漏掉该行，需补回。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项 A.1、B.2、C.3、D.4，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第9题为 C（0 起始索引2）；独立模拟：三段空格分别计一次，nwords=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析中的字符串长度25与三段空格计数3经独立模拟一致；PDF 第4页额外的 cout << endl; 只多输出空行，不影响数值选项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（ ）。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting     !\";\n    int x = str.length();\n    int nwords = 0;\n    for (int i = 0; i < x; i++)\n        if (str[i] == ' ') {\n            nwords++;\n            while (str[++i] == ' ');\n        }\n    cout << nwords << endl;\n    cout << endl;\n    return 0;\n}\n```"
+        },
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页末第12题题干为 char str[20] = {'G', 'E', 'S', 'P'};，第5页续选项；站内题干、代码一致，无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项 A.4、B.5、C.19、D.20，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选题答案表第12题为 A（索引0）；独立推导：str[0..3] 为 GESP，str[4..19] 零初始化为 '\\0'，strlen=4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核验：数组中 '\\0' 共16个（str[4]至str[19]），字符串在第4个字符后结束，长度为4；C 项19不是有效字符数，D 项20是数组容量。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第1题原文“任意整数 a 的二进制反码与补码都有1位不同。（ ）”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只判定正确/错误，不设 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1格为 ×，对应索引1；站内 answer=1 一致。独立判断：正数与0的反码、补码相同，已构成反例。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立核验：8位下 a=5 的反码=补码=00000101（0位不同）；a=-2 的反码11111101、补码11111110（差2位）；-1恰好差1位只是特例，不能支持“任意整数”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第4题原文“一个 int 类型变量 a ，执行操作 (a<<2>>2) 后的值一定是 a 。（ ）”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只判定正确/错误，不设 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4格为 ×，对应索引1；站内 answer=1 一致。独立判断：取 a=0x40000000 时 (a<<2) 丢失高位后为0，再右移仍为0，不等于 a。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案“错误”与反例正确；但解析称“C++ 标准不保证”过于笼统，未区分较早标准的未定义行为与常见回绕实现，且右移规则表述也不够精确，需按标准版本补充说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n移位运算符同级左结合，表达式应理解为 `(a << 2) >> 2`。左移会把高位移出并在低位补 0。对有符号 `int`，若左移结果超出可表示范围，在较早的 C++ 标准中属于未定义行为；即使按常见的回绕（截断）实现，被移出的高位也无法由随后的右移恢复。因此该表达式不可能对任意 `int` 都等于 `a`。\n\n例如在常见的 32 位 `int` 下取 `a = 1073741824`（`0x40000000`）：其左移 2 位的真实算术结果为 `2^32`，超出 32 位表示范围；在常见的回绕实现中低 32 位变为 0，再右移 2 位仍为 0，不等于原值。故「执行后的值一定是 a」不成立，本题说法错误。\n\n**易错提醒：**\n- 不要用代数思维 `(a×4)÷4=a` 直接套用位运算；左移可能丢失高位或发生有符号溢出。\n- 负数左移可能波及符号位；右移的符号扩展规则在较早标准中由实现定义（主流为算术右移），结论更不确定。\n\n**考点：** 位运算、左移、右移、溢出"
+        },
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第8、9、12、16、19题：第8、12、16题题面、选项、答案与解析均通过；第9题题面漏官方第二条 cout << endl，已列入 changes；第19题答案正确，但解析的标准表述需按早期标准与常见回绕实现修正。五题答案映射均与 PDF 答案表一致。"
+  }
+}

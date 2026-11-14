@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T20:26:54.964Z",
+  "completedAt": "2026-11-11T20:33:09.280Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47248,
+    "completion_tokens": 30245,
+    "total_tokens": 77493,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 26817
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0222097,
+      "allowance": 0.0222097,
+      "tokens": {
+        "input": 47248,
+        "output": 30245,
+        "reasoning": 26817,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6a865d3b5a006bd8bbb68cca6ef8c4d03edaed57fccb39a44079200af64dfda",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 三级 2024 年 09 月”，与网站 id 2024-09-l3（level 3、year 2024、month 9）一致；第 1 页单选答案表第 6~10 题依次为 B、C、C、A、D，与本次核验的 officialAnswer 对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干“下列说法正确的是（）”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四个选项依次为 A 2>>1和1>>1的值是一样的、B (2>>2)和(1>>1)的值是一样的、C (11^00)和(1^0)的值是一样的、D (~0的输出值是1)，与网站一致（仅空格差异），顺序未变，答案映射不受影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 B，即 0 起始索引 1，与网站 answer=1 一致。独立计算：2>>2=0 且 1>>1=0，B 成立；A 中 2>>1=1≠0=1>>1；C 中 11^00=11（00 即八进制 0）≠1=1^0；D 中 ~0 的全 1 位模式按有符号解释为 -1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐项复算均正确：A 2>>1=1、1>>1=0；B 2>>2=0、1>>1=0；C 11^00=11、1^0=1；D ~0 为 -1 而非 1。无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "接受初核 approve。答案 B、题面与选项均与原卷一致，解析经独立复算无误，无需修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题题干“下列代码实现的是（ ）”，代码为 void Swap(int &a, int &b){ if(a!=b){ a^=b; b^=a; a^=b; } }，网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A a和b的异或、B a和b的同或、C a和b的值交换、D a和b的高低位互换，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 C，即 0 起始索引 2。独立推导：设 a=X、b=Y（X≠Y），a^=b 后 a=X^Y；b^=a 后 b=Y^(X^Y)=X；a^=b 后 a=(X^Y)^X=Y，完成交换。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析主体推导正确。易错提醒中“a、b 相等时做三次无效运算、结果仍为原值”对两个不同变量同值的情形成立（X^X=0，再两次异或复原为原值）；知识延伸所述“自交换清零”是经典无保护异或交换的一般事实，本题代码带 if(a!=b) 保护，两者并不矛盾，原文无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "否决初核对解析的 needs_fix：初核把知识延伸中关于经典无保护异或交换的一般性说明误读为对本题代码的断言；本题带 if(a!=b) 保护，网站原文并未声称本题代码会清零，且易错提醒的计算（同值的不同变量三次异或后复原）正确。原解析无事实错误，不应用改写；其余维度核验通过。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末第 8 题题干“a&~1运算实现的是（ ）。”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项 A 使a的最低位为1、B 使a的最高位为1 位于第 2 页末，C 使a的最低位为0、D 使a的最高位为0 位于第 3 页首，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 C，即 0 起始索引 2。独立验证：8 位下 ~1=1111 1110，a&~1 仅把最低位清 0、其余位保持不变。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析以 8 位示例 ~1=1111 1110 并逐位说明 a&~1 清最低位，正确；~0<<7 在 8 位截断下即 0x80（1000 0000），解析中该掩码示例无误导；位掩码置位/清零/翻转的一般规则表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "接受初核 approve。~1 的掩码作用与答案 C 经独立验证一致，解析无事实错误。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题题干“a=1010 1110,a<<2,下面关于这个说法正确的是（ ）。”，与网站一致（仅空格/标点差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A a的值变为1011 1000、B 1011 1010、C 0101 1101、D 0101 1100，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 A，即 0 起始索引 0。独立计算：1010 1110（=174）左移 2 位，174×4=696，696 mod 256=184=1011 1000，与 A 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：新解析按逐位左移推导 1010 1110→左移1位 0101 1100→再左移1位 1011 1000，并用 174×4=696、696 mod 256=184 交叉验证；修正了原稿两处事实错误——“原最低两位 10 移至更高位（但被丢弃）”（实际原最低两位上移后保留在结果第 3、2 位，被丢弃的是原最高两位）与“选项 D 左移 2 位、右移、循环移位都得不到”（0101 1100 恰为原值左移 1 位的结果）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（a 的值变为 1011 1000）**\n\n本题按“a 左移 2 位后的值”理解。以题目给出的 8 位形式分析左移规则：左移时每一位向高位移动，最高位被移出丢弃，最低位补 0。\n\n**移位过程：**\n- 原值：`1010 1110`\n- 左移 1 位：`0101 1100`（最高位 1 移出丢弃，低位补 0）\n- 再左移 1 位：`1011 1000`（最高位 0 移出丢弃，低位补 0）\n\n即左移 2 位后：原最高两位 `10` 移出丢弃，其余 6 位 `101110` 依次上移两位（原最低两位上移后被保留在结果的第 3、2 位），最低两位补 `00`，得 `1011 1000`。\n\n**数值验证：** `1010 1110₂ = 174`，`174 × 4 = 696`，超出 8 位表示范围，`696 mod 256 = 184 = 1011 1000₂`，与移位结果一致。\n\n**选项逐项分析：**\n- **A (1011 1000)**：✅ 正确，即左移 2 位的结果。\n- **B (1011 1010)**：❌ 错误。其最低两位是 `10` 而非 `00`，不符合左移 2 位低位补 0 的规则。\n- **C (0101 1101)**：❌ 错误。这是把原值最高位 `1` 循环绕回最低位的结果（循环左移 1 位），左移并不循环。\n- **D (0101 1100)**：❌ 错误。这是原值左移 1 位（而非 2 位）的结果。\n\n**易错提醒：**\n- 将左移误认为循环移位：左移的高位直接丢弃，不绕回低位。\n- 混淆左移和右移：左移向高位移动并低位补 0，右移向低位移动。\n\n**知识延伸：**\n左移 `a << n` 在不溢出的前提下等价于 `a × 2ⁿ`；本题结果超出 8 位范围，高位溢出丢弃。另外，严格按 C++ 语义，单独写 `a << 2;` 并不会改变 `a` 的值（需 `a = a << 2` 或 `a <<= 2`），本题按“左移后的值”理解，答案仍为 A。\n\n**考点：** 位移运算的规则（左移补零）"
+        },
+        "tests": [],
+        "unresolved": [],
+        "reviewNote": "接受初核对解析的 needs_fix，并独立确认两处事实错误后应用修正版：（1）左移 2 位时原最低两位 10 上移到结果的第 3、2 位并被保留，并非“被丢弃”，被丢弃的是原最高两位；（2）选项 D 的 0101 1100 恰是原值左移 1 位的结果，原稿“左移 2 位、右移、循环移位都得不到这个值”不成立。修正版已按逐位移位与数值法双重验证。题面、选项、答案（PDF 答案表第 9 题 A）核验一致。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题给出 9 行代码（long a = 123; int b = 1; long result = a & b; cout<<result<<endl; long a2 = -123; unsigned int b2 = -1; long result2 = a2 & b2; cout<<result2<<endl;），网站完整保留（仅首行置于代码围栏外），题干“result和result2输出分别是”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A 123 -1、B 123 -123、C 1 -1、D 1 -123，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 D，即 0 起始索引 3。独立计算：123&1=1；32 位 long 下 (unsigned)-123=0xFFFFFF85，与 b2=0xFFFFFFFF 按位与仍为 0xFFFFFF85，按 32 位有符号 long 解释为 -123，输出 1 与 -123，与 D 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析明示按 32 位计算（原文写明“-123 的二进制（32 位）为 0xFFFFFF85”），在该前提下各步推导正确；GESP 考试环境（Windows，long 为 32 位）下结论成立，与官方答案 D 一致。未覆盖的 LP64 平台差异属环境依赖提示，记入 unresolved，不构成解析内的事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方题面未声明 long 的位宽：在 32 位 long（ILP32 及 Windows LLP64）环境下 result2=-123，答案 D 成立；在 LP64（64 位 Linux/macOS，long 为 64 位）下 unsigned int 先转换为 64 位 long，result2 输出 4294967173。教学与复现时需注明 32 位 long 前提。"
+        ],
+        "reviewNote": "部分接受初核：采纳其 unresolved 的位宽依赖提示，但否决对解析的整体改写——原解析已明示 32 位前提且逐步推导正确，与官方答案 D 所依赖的考试环境（Windows，long 32 位）一致，不应用重写替换正确内容；位宽问题以 unresolved 记录即可。"
+      }
+    ],
+    "summary": "本次独立复核 2024-09-l3 第 6~10 题（均为单选题，无参考代码与测试项）。五题题面、选项、答案均与官方 PDF 一致（第 1 页答案表第 6~10 题为 B C C A D）：题 6 选 B（2>>2=0=1>>1），题 7 选 C（异或交换），题 8 选 C（a&~1 将最低位清 0），题 9 选 A（1010 1110 左移 2 位得 1011 1000），题 10 选 D（输出 1 与 -123）。应用 1 处修改：题 9 解析含两处事实错误（原最低两位左移后是被保留而非被丢弃；选项 D 0101 1100 实为左移 1 位的结果），已替换为修正后的完整解析并复核通过。否决初核 2 处修改：题 7 原解析关于无保护异或交换自交换清零的说明属正确的一般性知识，与本题带 if(a!=b) 保护的代码不矛盾；题 10 原解析已明示 32 位前提且推导正确，LP64 平台差异改以 unresolved 记录。题 6、题 8 全维度通过；题 7、题 10 除已说明事项外全维度通过。"
+  }
+}

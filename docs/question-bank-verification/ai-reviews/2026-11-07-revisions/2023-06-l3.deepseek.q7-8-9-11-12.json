@@ -1,0 +1,227 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    7,
+    8,
+    9,
+    11,
+    12
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T11:58:09.390Z",
+  "completedAt": "2026-11-11T12:02:04.679Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 41089,
+    "completion_tokens": 16915,
+    "total_tokens": 58004,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14468
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01631235,
+      "allowance": 0.00978741,
+      "tokens": {
+        "input": 41089,
+        "output": 16915,
+        "reasoning": 14468,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "ccaa744b43803fcb477730680825b73fb73d1f86a52f861d268042fd4d18b493",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“2023 年 6 月 GESP C++ 三级真题解析”，与候选的年份、月份、科目和三级一致。"
+    },
+    "questions": [
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第7题题干为“以下数组定义，符合 C++语言语法的是（ ）。”，候选题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项为 A. int a[]; B. int b['3']; C. int c[3.0]; D. int[3] d;，与候选 options 的顺序和内容一致；页图确认 B 使用单引号字符常量 '3'。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第3页【答案】B，按 0 起始选项索引为 1，候选 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：'3' 的 ASCII 码为 51，int b['3'] 等价于 int b[51]；A 未初始化且长度未知，C 用浮点常量作数组界不合法，D 声明符顺序错误。候选解析与 PDF 第4页官方解析一致，VLA 知识延伸也正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第8题题干为“下列关于进制的叙述，不正确的是（ ）。”，候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A/B/C/D 与候选一致；C、D 均含“很方便地由低到高”和“对应的一位 8/16 进制位”，仅句末标点差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页【答案】B，按 0 起始索引为 1，候选 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：10=1010₂；110101₂=65₈=35₁₆=53₁₀；C、D 的每 3 位/4 位由低到高分组方向正确，B 为错误说法。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第9题题干为“下列关于 C++语言中数组的叙述，不正确的是（ ）。”，候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A. 数组必须先定义后使用。 B. 数组的所有元素在内存中是连续存放的。 C. 除了字符数组，在定义数组时“[]”内必须有常数。 D. 不能对数组赋值，但可以对数组的每个基础类型的元素赋值。候选 options 已与页图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页【答案】C，按 0 起始索引为 2，候选 answer=2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心结论与 PDF 第4页解析一致：任意类型数组只要有初始化，就可在定义时省略 [] 内常数，因此 C 错。但候选解析 A 项仍残留英文“definition”，应改为“定义”，与已修正选项及原卷不一致；修正不影响答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：不正确的是 C（除了字符数组，在定义数组时“[]”内必须有常数）**\n\n**核心解析：**\n在 C++ 中，定义一维数组确定长度主要有两种方式：\n1. **显式指定长度**：在 `[]` 中填入大于 0 的整型常量或常量表达式，如 `int a[5];`。\n2. **初始化列表自动推导**：如果在定义数组的同时使用花括号 `{}` 给出了初始值列表，编译器会自动根据初始值的个数计算出数组的长度，此时中括号 `[]` 内完全可以留空。\n\n例如：\n`int a[] = {1, 2, 3};`（编译器自动推导出长度为 3）\n`double b[] = {1.5, 2.5};`（自动推导长度为 2）\n`char c[] = \"hello\";`（自动推导长度为 6，包含末尾空字符 `'\\0'`）\n\n由此可见，“定义时 `[]` 内不写常数、由编译器推导大小”是 C++ 所有数据类型数组通用的初始化规则，并不是字符数组特有的语法。选项 C 称“除了字符数组……必须有常数”，是以偏概全的错误说法。\n\n**选项逐项分析：**\n- **A 数组必须先定义后使用**：❌ 说法正确，不合题意。C++ 是一门强类型的编译型语言，所有变量、数组、函数等标识符都必须遵循“先定义、后使用”的原则。未定义直接使用会导致编译器因找不到标识符而报错。\n- **B 数组的所有元素在内存中是连续存放的**：❌ 说法正确，不合题意。内存连续存储是数组最核心的特征。数组中所有元素在内存中紧密相邻排布，地址依次递增。这也使得程序能够通过首地址和下标以 `O(1)` 的时间复杂度极快地随机访问任意元素。\n- **C 除了字符数组，在定义数组时“[]”内必须有常数**：✅ 说法错误，符合题意。只要提供了初始化列表，任意类型的数组（整型、浮点型等）在定义时都可以省略 `[]` 内的常数，交由编译器推导长度，该特性并非字符数组专属。\n- **D 不能对数组赋值，但可以对数组的每个基础类型的元素赋值**：❌ 说法正确，不合题意。在 C++ 中，数组名代表数组首元素的起始地址，是一个不可修改的地址常量，不能进行整体赋值（如定义 `int a[3], b[3];` 后执行 `a = b;` 会产生编译错误）；但可以通过下标单独访问并修改每个基础类型元素的值（如 `a[0] = 10;` 完全合法）。\n\n**易错提醒：**\n- **省略常数的前提是“同时初始化”**：只有在定义的同时给出花括号初值列表，`[]` 内才可以省略常数。如果写 `int a[];` 但不赋初值，编译器无法得知该分配多少内存，会编译报错。\n- **不可整体赋值与逐元素赋值**：中小学生常误以为 `a = b;` 可以像普通整型变量那样直接拷贝数组，但 C++ 中必须通过循环逐个元素赋值，或者调用 `memcpy` 等函数来复制数组。\n\n**知识延伸：**\n字符数组在初学者中容易让人产生“特殊特权”的误解，原因在于字符数组支持使用双引号字符串字面量初始化，例如 `char s[] = \"abc\";`。但本质上，字符串字面量在底层也是字符数组，其自动确定大小的原理与普通花括号列表推导完全一致。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第11题题干为“如果 a 和 b 均为 int 类型的变量，下列表达式能正确判断‘a 等于 b’的是（ ）。”，候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A. ((a / b) == 1) B. ((a & b) == a) C. ((a ^ b) == 0) D. ((a | b) == b)，与候选 options 的顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页【答案】C，按 0 起始索引为 2，候选 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：a=3,b=2 时 3/2=1 但 a≠b；a=3,b=7 时 3&7=3 但 3≠7；a=5,b=15 时 5|15=15 但 5≠15；a^b==0 当且仅当各位相同，即 a==b。候选解析已消除旧解析的自相矛盾和缺反例问题，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第12题题干为“如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足‘小于等于 a 且是 4 的倍数’的整数中最大的？”，候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A. (a & (~3)) B. ((a << 2) >> 2) C. (a ^ 3) D. ((a - 1) | 3) + 1，与候选 options 顺序和内容一致，仅有空格排版差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页【答案】A（解析延续至第6页），按 0 起始索引为 0，候选 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算 a=5：A 得 5&~3=4；B 得 (5<<2)>>2=5；C 得 5^3=6；D 得 ((5-1)|3)+1=8。仅 A 为不超过 5 的最大 4 的倍数。对负数 a=-1，A 得 -4，也符合不超过 a 的最大 4 的倍数。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题7、8、11、12 的题面、选项、答案和解析均通过独立核验。题9 的选项和答案已正确，但解析 A 项仍残留英文“definition”，需改为“定义”；已给出该解析字段的完整修订稿。未发现其他答案冲突或原卷事实性问题。"
+  }
+}

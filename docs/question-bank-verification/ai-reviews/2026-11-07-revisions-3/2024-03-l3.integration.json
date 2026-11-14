@@ -1,0 +1,99 @@
+{
+  "paperId": "2024-03-l3",
+  "integratedAt": "2026-11-12T05:57:00.715Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 8,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "在下列代码的横线处填写（ ），可以使得输出是 GESP IS INTERESTING。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting\";\n    int x = str.length();\n\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= 'a') && (str[i] <= 'z'))\n            ________________________;\n    cout << str << endl;\n\n    cout << endl;\n    return 0;\n}\n```"
+      }
+    },
+    {
+      "id": 9,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（ ）。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting     !\";\n    int x = str.length();\n    int nwords = 0;\n\n    for (int i = 0; i < x; i++)\n        if (str[i] == ' ') {\n            nwords++;\n            while (str[++i] == ' ');\n        }\n    cout << nwords << endl;\n\n    cout << endl;\n    return 0;\n}\n```"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\naAc",
+          "output": "-61",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "-61\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模小写字母",
+          "input": "1\na",
+          "output": "1",
+          "reason": "独立计算：小写 a 代表字母顺序 1，输出 1；覆盖 n 下界（n 为正整数，最小 1）。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单个大写字母极值",
+          "input": "1\nZ",
+          "output": "-90",
+          "reason": "独立计算：Z 的 ASCII 码为 90，按题意取相反数输出 −90；覆盖单字符大写及 ASCII 最大的大写字母。",
+          "kind": "boundary",
+          "actual": "-90\n",
+          "passed": true
+        },
+        {
+          "name": "大小写混合",
+          "input": "4\naZzB",
+          "output": "-129",
+          "reason": "独立计算：1+(−90)+26+(−66)=−129；覆盖小写序号（含 z 的 26）与大写 ASCII 取负（Z=90、B=66）两类分支。",
+          "kind": "boundary",
+          "actual": "-129\n",
+          "passed": true
+        },
+        {
+          "name": "26 个小写字母",
+          "input": "26\nabcdefghijklmnopqrstuvwxyz",
+          "output": "351",
+          "reason": "独立计算：1+2+…+26=26×27/2=351；覆盖全部小写字母与 +1 序号偏移。",
+          "kind": "boundary",
+          "actual": "351\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "632087d4ae9a7a693ebc58bd51187e7b32a9d4590fd95b802eef08f2045cd242"
+    }
+  ]
+}

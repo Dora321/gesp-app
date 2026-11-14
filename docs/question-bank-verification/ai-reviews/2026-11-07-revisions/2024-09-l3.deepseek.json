@@ -1,0 +1,464 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    4,
+    7,
+    9,
+    10,
+    12,
+    21,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T23:28:02.398Z",
+  "completedAt": "2026-11-11T23:50:35.417Z",
+  "finishReason": "stop",
+  "inputSha256": "5f358a8b259baed98a288257170848a5992f4ff8438398cebcc85da6996e725f",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2024 年 09 月”，与 2024-09-l3 的年月、等级和语言一致。\nPDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 三级 2024 年 09 月”，与所核验试卷 2024-09-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题题干为“8进制数3703转换成16进制数是（）”，第1页末给出选项A，第2页给出B、C、D，与候选题面含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1~2页选项依次为 A 7C3、B 7A3、C 7B3、D 7D3，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 A，即 0 起始索引 0。独立验算：3703₈=3×512+7×64+3=1987₁₀；1987÷16=124余3，124÷16=7余12(C)，7÷16=0余7，逆序得 7C3₁₆，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的十进制桥接和二进制分组均正确：3703₈=011111000011₂=0111|1100|0011₂=7C3₁₆；选项 B、C、D 分别等于 1955、1971、2003，均非 1987。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第4题题干为“0.8125变成二进制是（ ）”，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A 0.1110、B 0.1 1111 1011 1101、C 0.1 1111 1011 1100、D 0.1101，与候选 options 顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题为 D，即 0 起始索引 3。独立验算：D 的 0.1101₂=1/2+1/4+1/16=13/16=0.8125。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "乘2取整得到 0.1101₂ 的过程正确；选项 A=14/16=0.875；B 去空格后为 8125/8192≈0.991821；C 为 8124/8192≈0.991699；D=13/16=0.8125，逐项判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题代码逐行为 void Swap(int &a, int &b) { if (a != b) { a ^= b; b ^= a; a ^= b; } }，与候选题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A a和b的异或、B a和b的同或、C a和b的值交换、D a和b的高低位互换，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 C，即 0 起始索引 2。独立推导：设 a=X、b=Y（X≠Y），a^=b 后 a=X^Y；b^=a 后 b=Y^(X^Y)=X；a^=b 后 a=(X^Y)^X=Y，完成交换。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的主体推导正确，但易错提醒称“当 a 和 b 相等时……会做三次无效运算”，与所给带 if (a != b) 保护的代码不符：相等时函数体直接跳过，不会执行三次异或。该表述需改为区分“无保护的一般算法”和“本题带保护代码”，并说明别名调用 Swap(x,x) 时守卫可避免清零。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（a 和 b 的值交换）**\n\n**核心解析：**\n设调用时 `a = X`、`b = Y` 且 `X != Y`。\n1. `a ^= b;` 后 `a = X ^ Y`，`b = Y`；\n2. `b ^= a;` 后 `b = Y ^ (X ^ Y) = X`，`a = X ^ Y`；\n3. `a ^= b;` 后 `a = (X ^ Y) ^ X = Y`，`b = X`。\n因此两个引用所绑定对象的值交换。\n\n**选项逐项分析：**\n- **A**：异或只是中间运算，不是函数最终实现的功能。\n- **B**：同或需要对异或结果取反，代码没有取反。\n- **C**：正确。\n- **D**：代码交换整个值，不做高低位互换。\n\n**关于 `if (a != b)`：**\n当 `a`、`b` 是两个内容相等的不同变量时，即使去掉该判断，三次异或也会恢复原值；该判断使相等时直接跳过。若 `Swap(x, x)` 传入同一个对象，`a != b` 为假，函数体不执行，避免经典无保护异或交换在别名情况下把值清零。\n\n**易错提醒：**\n`a ^= b` 是按位异或赋值，不是加法；不要把本题带保护的代码与无保护异或交换在别名情况下清零的结论混为一谈。\n\n**考点：** 异或运算性质与交换算法。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第9题题干为“a=1010 1110,a<<2,下面关于这个说法正确的是（ ）”，与候选题面一致，仅有空格和标点差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A a的值变为1011 1000、B 1011 1010、C 0101 1101、D 0101 1100，与候选 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 A，即 0 起始索引 0。独立验算：10101110₂=174，174×4=696，按8位截断 696 mod 256=184=10111000₂，与 A 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐位移位：10101110 左移1位为01011100，再左移1位为10111000；数值法交叉验证一致。选项 D 01011100 是原值左移1位，C 01011101 是循环左移1位，B 最低两位为10不符合左移2位补00。候选还注明严格 C++ 单独写 a<<2; 不改变 a，本题按移位后的值理解，处理合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第10题代码共9行，依次为 long a=123; int b=1; long result=a&b; cout<<result<<endl; long a2=-123; unsigned int b2=-1; long result2=a2&b2; cout<<result2<<endl; 候选内容完整，仅首行位于代码围栏外，含义未缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A 123 -1、B 123 -123、C 1 -1、D 1 -123，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 D，即 0 起始索引 3。独立验算：123&1=1；在32位 long 环境下，-123=0xFFFFFF85，unsigned(-1)=0xFFFFFFFF，二者按位与仍为0xFFFFFF85，按有符号 long 解释为 -123，输出 1 和 -123。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析明确按32位 long 推导，逐步计算与官方答案 D 一致；第一段 123&1=1 正确，第二段全1掩码保留 -123 的补码位模式。题面未声明 long 位宽，LP64 环境会得到不同 result2，此环境依赖需保留说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方题面未声明 long 的位宽：在32位 long（Windows LLP64 等 GESP 常见环境）下 result2=-123，答案 D 成立；在 LP64（64位 Linux/macOS）下 result2 会输出 4294967173。解析的32位前提应保留注明。"
+        ]
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 12 题题干为“关于一维数组，下列程序能够正确执行的是（ ）。”，第 3~4 页给出 A~D 四段程序，候选题干及程序结构一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3~4 页选项顺序为 A 未初始化数组且 i<=10、B 完整初始化且 i<=10、C 完整初始化且 i<10、D 全零初始化且 i<=10，与候选一致；仅原卷 C 第 4 行印作“um=sum+a[i];”，首字符疑为印刷缺损，候选按“sum=sum+a[i];”规范化，字面争议见 unresolved。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 C，按 0 起始索引为 2；独立检查候选四项，只有 C 同时具备完整初始化和 i<10，不发生 a[10] 越界，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐项核对：A 未初始化且 i<=10 访问 a[10]，越界；B、D 均因 i<=10 访问 a[10]，越界；C 仅访问 a[0]~a[9]，能够正确执行。解析结论正确，并已注明源卷 C 行首字符缺损。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方 PDF 第 4 页选项 C 第 4 行印作“um=sum+a[i];”（图像与文本层均如此），首字符 s 疑为印刷缺损；候选按“sum=sum+a[i];”整理，原卷字面与官方答案 C 的对应关系保留待复核。"
+        ]
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题原文为“下列程序输出的是 3。（ ）”，代码为 string str=\"CHADai\"; size_t pos = str.find('D'); cout<<pos<<endl;，候选题面与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题原卷以括号作答，答案表用 √/×；候选归一化为“正确/错误”两选项，正确=0、错误=1，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 题为 √（正确），按 0 起始索引为 0；独立核对字符串 \"CHADai\" 的索引：C=0、H=1、A=2、D=3、a=4、i=5，find('D') 返回 3，输出 3，题干为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐字符列出索引并得出 D 位于 3、find 返回 3，结论正确；关于未找到时返回 string::npos 的延伸说明也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题面给出平衡定义（存在 1≤i<n 使前 i 项和等于后 n-i 项和）、输入输出格式、样例 3/3/1 2 3/4/2 3 1 4/5/1 2 3 4 5 → Yes/Yes/No；第 5 页载明时间限制 1.0 s、内存限制 512.0 MB；第 6 页数据范围为 1≤t≤100，1≤n,a_i≤10000，候选题面已补全且一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，PDF 答案表仅覆盖单选和判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导平衡条件等价于存在 i∈[1,n-1] 使 pre*2==sum；复算样例：[1,2,3] sum=6，i=2 时 pre=3 → Yes；[2,3,1,4] sum=10，i=2 时 pre=5 → Yes；[1,2,3,4,5] sum=15 为奇数，必然 No，与样例输出一致。解析对多组数据清零、i<n 上界和 pre*2==sum 规避整数除法陷阱的解释正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与 PDF 第 6~7 页官方程序语义一致（tot/fl 改名为 pre/ok，if/else 输出改为三元输出）；n≤10000、a_i≤10000 时 sum≤10^8，pre*2≤2×10^8，均在 int 范围内；数组 a[10010] 覆盖 n 上界，n=1 时内层循环不执行并输出 No，满足 1.0 s/512 MB 限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n=1 无切分点",
+            "input": "1\n1\n5",
+            "output": "No",
+            "reason": "平衡要求存在 1≤i<n 的切分点；n=1 时不存在合法切分点，参考程序内层循环不执行并输出 No。"
+          },
+          {
+            "name": "最小可切分长度 n=2",
+            "input": "1\n2\n1 1",
+            "output": "Yes",
+            "reason": "sum=2，i=1 时前缀和 pre=1，pre*2==sum 成立，两段各为 1。"
+          },
+          {
+            "name": "a_i 取上限 10000",
+            "input": "1\n4\n10000 10000 10000 10000",
+            "output": "Yes",
+            "reason": "sum=40000，i=2 时 pre=20000，20000*2==sum；同时验证 a_i 上界下累加与乘 2 不溢出 int。"
+          },
+          {
+            "name": "奇数总和不可平分",
+            "input": "1\n3\n2 2 3",
+            "output": "No",
+            "reason": "sum=7 为奇数，两段整数和不可能相等；前缀和 2、4 均不满足 pre*2==sum。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页题面给出回文定义、示例 aabaa/ccddcc、反例 abcd，并要求拆成两个长度至少为 2 的回文串前后拼接；样例 4/abcd/aabbb/aaac/abcdd → No/Yes/No/No 与候选一致；时间限制 1.0 s、内存限制 512.0 MB 见第 7 页，数据范围 1≤n≤10、每个字符串长度不超过 100 见第 8 页，候选已补全且一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，PDF 答案表仅覆盖单选和判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例：abcd（m=4）仅 j=2，s1=\"ab\" 与 s2=\"cd\" 均非回文 → No；aabbb（m=5）j=2 时 s1=\"aa\"、s2=\"bbb\" 均为回文 → Yes；aaac（m=4）j=2 时 s1=\"aa\" 为回文但 s2=\"ac\" 非回文 → No；abcdd（m=5）j=2 时 s1=\"ab\"、s2=\"cdd\" 均非回文，j=3 时 s1=\"abc\" 非回文、s2=\"dd\" 为回文但前段不满足 → No，与样例输出一致。解析对 j∈[2,m-2] 边界、substr 第二参数为长度、每组 ok 重置的说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与 PDF 第 8 页官方程序语义一致（省略官方未使用的变量 k，不影响逻辑）；j 从 2 枚举到 m-2 保证两段长度均至少为 2，m<4 时循环体不执行并输出 No；n≤10、串长≤100，字符操作量很小，满足 1.0 s/512 MB 限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "长度 1 最短字符串",
+            "input": "1\na",
+            "output": "No",
+            "reason": "两段长度至少为 2，总长至少为 4；m=1 时 j 的枚举区间 [2,m-2] 为空，输出 No。"
+          },
+          {
+            "name": "长度 3 回文串仍不可拆",
+            "input": "1\naba",
+            "output": "No",
+            "reason": "m=3<4，j 的枚举区间 2..m-2 为空；虽然整串是回文，但不能拆成两个长度至少为 2 的回文串。"
+          },
+          {
+            "name": "恰好拆成两段长度 2 的回文串",
+            "input": "1\naaaa",
+            "output": "Yes",
+            "reason": "j=2 时 s1=\"aa\"、s2=\"aa\"，均为长度 2 的回文串，满足前后拼接条件。"
+          },
+          {
+            "name": "仅后段回文",
+            "input": "1\nabcdd",
+            "output": "No",
+            "reason": "j=2 时 s1=\"ab\"、s2=\"cdd\" 均非回文；j=3 时 s1=\"abc\" 非回文、s2=\"dd\" 为回文，前段不满足，输出 No。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3,
+        4,
+        7,
+        9,
+        10
+      ],
+      "usage": {
+        "prompt_tokens": 29726,
+        "completion_tokens": 12694,
+        "total_tokens": 42420,
+        "prompt_tokens_details": {
+          "cached_tokens": 29440
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10304
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00774762,
+          "allowance": 0.00464857,
+          "tokens": {
+            "input": 286,
+            "output": 12694,
+            "reasoning": 10304,
+            "cache_read": 29440,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-11T23:28:02.398Z",
+      "completedAt": "2026-11-11T23:31:59.183Z"
+    },
+    {
+      "questionIds": [
+        12,
+        21,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 29662,
+        "completion_tokens": 11329,
+        "total_tokens": 40991,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8835
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0112467,
+          "allowance": 0.00674802,
+          "tokens": {
+            "input": 29662,
+            "output": 11329,
+            "reasoning": 8835,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-11T23:45:02.911Z",
+      "completedAt": "2026-11-11T23:50:35.417Z"
+    }
+  ]
+}

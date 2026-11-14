@@ -1,0 +1,234 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T00:14:50.327Z",
+  "completedAt": "2026-11-13T00:17:36.659Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33806,
+    "completion_tokens": 19677,
+    "total_tokens": 53483,
+    "prompt_tokens_details": {
+      "cached_tokens": 33664
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16024
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01192849,
+      "allowance": 0.0071571,
+      "tokens": {
+        "input": 142,
+        "output": 19677,
+        "reasoning": 16024,
+        "cache_read": 33664,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "59499284a77768a1dad2144d2dbbbd4c13ca7395c1e3c283e607e6972b16b659",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF GESP C++ 三级、2025 年 12 月；单选题答案表第 11-15 题为 C/B/B/A/D，题号范围与站点一致。已校验来源 git-blob SHA 0e53148a247d948c01155e55b49c20fe737ed6ed。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干、三行代码与网站一致；变量初值 10 和输出语句未改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项为 A.0、B.-1、C.1、D.死循环，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题标 C，对应 0 起始索引 2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心推导正确，但 A 项误写“t -= 8 = 1”；若按前置自减应 x=9、t=9，t-=x 得 0。知识延伸中“* 与 ++ 同级”亦错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (1)**\n\n**核心解析：**\n1. 初始 `x = 10`。\n2. 执行 `int t = x--;`：后置自减先取 `x` 的当前值 10 赋给 `t`，随后 `x` 减 1，因此 `t = 10`，`x = 9`。\n3. 执行 `t -= x;`，即 `t = t - x = 10 - 9 = 1`。\n4. 输出 `t`，结果为 1。\n\n**选项逐项分析：**\n- A (0)：若把 `x--` 误当成前置自减 `--x`，则 `t = 9`、`x = 9`，`t -= x` 会得到 0；这是错误选项对应的误算。\n- B (-1)：计算不会得到负数。\n- C (1)：✅ 正确，按后置自减推导。\n- D (死循环)：代码没有循环结构，不可能死循环。\n\n**易错提醒：**\n- 后置自减 `x--` 先取值后减 1；前置自减 `--x` 先减 1 后取值。\n- `t -= x` 等价于 `t = t - x`，不要写成 `t = -x`。\n\n**知识延伸：**\n后缀 `++/--` 的优先级高于解引用 `*`，因此 `*p++` 等价于 `*(p++)`；`(*p)++` 才是对指针所指对象自增。\n\n**考点：** 后自减运算符的赋值与更新时序"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页有题干、第 4 页有流程图；网站 question 只有“根据下面的流程图”，未附流程图，缺少必要图。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A.优秀、B.及格、C.不及格、D.没有输出，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题标 B，对应 0 起始索引 1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析写“根据题目描述（流程图包含两个判断框），推断”，但 PDF 第 4 页已有明确流程图，不能以推断代替图；答案逻辑本身正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "根据下面的流程图，如果成绩 score 输入 60，输出的结果是（ ）。\n\n流程图逻辑：开始 → 输入成绩 score → 判断 score ≥ 90？若“是”，输出“优秀”；若“否”，再判断 score ≥ 60？若“是”，输出“及格”；若“否”，输出“不及格”；最后结束。",
+          "explanation": "**答案：B (及格)**\n\n**核心解析：**\nPDF 第 4 页流程图先判断 `score >= 90`，为真时输出“优秀”；否则再判断 `score >= 60`，为真时输出“及格”，为假时输出“不及格”。\n\n输入 `score = 60`：\n1. `60 >= 90` 为假，进入“否”分支；\n2. `60 >= 60` 为真，执行“输出‘及格’”；\n3. 流程结束。\n\n**选项逐项分析：**\n- A (优秀)：需要 `score >= 90`，60 不满足。\n- B (及格)：✅ 正确，60 满足第二个判断。\n- C (不及格)：需要 `score < 60`，60 不满足。\n- D (没有输出)：流程图的各条路径最终都有输出，60 会命中“及格”分支。\n\n**易错提醒：**\n- 注意边界值：`>= 60` 包含 60，因此 60 是及格。\n- 按流程图箭头顺序先判断 90，再判断 60，不能把两个条件并列处理。\n\n**知识延伸：**\n流程图中的菱形判断框对应 `if-else` 分支，本题逻辑等价于先判断 `score >= 90`，否则判断 `score >= 60`，再否则输出“不及格”。\n\n**考点：** 流程图的条件分支逻辑追踪"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干和代码与网站一致，数组初值及 switch 分支未改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页有 A.10，第 5 页有 B.11、C.14、D.15，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题标 B，对应 0 起始索引 1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心累加正确，但 A 项解释“sum = 2+2+2+2+2 = 10”与实际序列 case2/case1/case0/case2/case1 不符，属于错误选项分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (11)**\n\n**核心解析：**\n1. 计算位运算：`1 | 2`，1 的二进制为 `01`，2 的二进制为 `10`，按位或得 `11`，即 3。因此 `arr[i] % (1|2)` 等价于 `arr[i] % 3`。\n2. 逐项累加：\n   - `i=0`，`arr[0]=2`，`2%3=2`，进入 `case 2`，`sum += 3`，`sum=3`；\n   - `i=1`，`arr[1]=4`，`4%3=1`，进入 `case 1`，`sum += 2`，`sum=5`；\n   - `i=2`，`arr[2]=6`，`6%3=0`，进入 `case 0`，`sum += 1`，`sum=6`；\n   - `i=3`，`arr[3]=8`，`8%3=2`，进入 `case 2`，`sum += 3`，`sum=9`；\n   - `i=4`，`arr[4]=10`，`10%3=1`，进入 `case 1`，`sum += 2`，`sum=11`。\n3. 最终 `sum = 11`。\n\n**选项逐项分析：**\n- A (10)：与逐项累加结果不符。\n- B (11)：✅ 正确。\n- C (14)：与逐项累加结果不符；若把 `1|2` 的模数或分支增量算错，可能得到其他值，但按代码不会出现 14。\n- D (15)：与逐项累加结果不符；若忽略 `break` 或重复累加会偏离正确值。\n\n**易错提醒：**\n- `|` 是按位或，不是逻辑或。\n- 本题每个 `case` 后都有 `break`，不会发生贯穿。\n- 括号不能丢，先算 `1|2` 再取模。\n\n**知识延伸：**\n`1|2` 与 `1^2` 的数值都为 3，但含义不同：按位或是置 1，按位异或是相异为 1。\n\n**考点：** 位运算、switch 分支与循环累加"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干为“以下关于 C++ 中 abs() 函数的描述，正确的是”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四个选项与网站文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题标 A，对应 0 起始索引 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项核验：A 与官方答案一致；B 混淆绝对值与四舍五入；C 参数个数错误；D 不会截断小数部分。结论推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干、循环代码与网站一致，字符串初值为 GESP。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A.GESP、B.HFTR、C.hesp、D.GFUS，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题标 D，对应 0 起始索引 3。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心 ASCII 推导正确，但 B 项解释写成“'G' + 0 = 'H'”且与后续偏移不自洽；应说明正确结果为 G、F、U、S，而不是 HFTR。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (GFUS)**\n\n**核心解析：**\n字符串 `GESP` 各字符的 ASCII 码为：`G=71`、`E=69`、`S=83`、`P=80`。循环执行 `s[i] = toupper(s[i] + i)`：\n\n| 循环 i | 原字符 | ASCII | `s[i] + i` | 加后字符 | `toupper` 后 |\n|---|---|---|---|---|---|\n| 0 | G | 71 | 71 | G | G |\n| 1 | E | 69 | 70 | F | F |\n| 2 | S | 83 | 85 | U | U |\n| 3 | P | 80 | 83 | S | S |\n\n因此最终字符串为 `GFUS`。\n\n**选项逐项分析：**\n- A (GESP)：若索引 i 没有参与运算、只执行 `toupper(s[i])`，才会保持原串；原代码有 `+i`，不成立。\n- B (HFTR)：不等于按 `s[i]+i` 逐位计算再转大写的结果；正确结果为 `GFUS`。\n- C (hesp)：原代码每步都调用 `toupper`，结果应全为大写，不成立。\n- D (GFUS)：✅ 正确，逐字符推导如表。\n\n**易错提醒：**\n- 下标从 0 开始，i=0 时不加偏移，i=1 时加 1。\n- `toupper` 的参数是字符对应的整数值，传回的是大写字符的整数值；本题各值均在合法字符范围内。\n\n**知识延伸：**\n`toupper`/`tolower` 定义于 `<cctype>`，实参应能表示为 `unsigned char` 或等于 `EOF`；对字符串字符逐个处理时要注意下标与字符值的区别。\n\n**考点：** 字符串遍历、ASCII 码值偏移与字符转换函数 `toupper()`"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验 11-15 题。五题官方答案与站点映射均一致：11C、12B、13B、14A、15D。题 12 网站题面缺少必要流程图，需补等价流程描述；题 11、12、13、15 的解析存在细节错误，已给出修正草稿；题 14 五维通过。本批均为单选题，无编程题，tests 均为空。"
+  }
+}

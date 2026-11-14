@@ -1,0 +1,178 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T13:53:48.509Z",
+  "completedAt": "2026-11-12T13:58:24.934Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50652,
+    "completion_tokens": 14888,
+    "total_tokens": 65540,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12113
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0150418,
+      "allowance": 0.0150418,
+      "tokens": {
+        "input": 50652,
+        "output": 14888,
+        "reasoning": 12113,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 / GESP / C++ 三级 / 2025 年 03 月”，与 2025-03-l3（2025 年 3 月、三级）的年份、月份、等级一致；第1页单选答案表与第6页判断答案表结构也与三级卷面一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "verdict": "revise",
+        "reviewNote": "接受初核对 Q26 题面缺数据范围与逐题限制的认定（PDF 第7页 3.1.6 原文“对于所有测试点，保证 0 ≤ x < 2025。”、页首 1.0 s/512.0 MB 均在，网站缺失），但否决初核的替换文本：其遗漏了官方 3.1.7 提示节（明确 and/or 对应运算符 &、|），本复核已给出含提示节的完整题面。解析经独立推导核验（恒等式 (x&y)+(x|y)=x+y 可由 x+y=(x^y)+2(x&y) 与 x|y=(x^y)+(x&y) 证得，样例 1025&1000=0、1025|1000=2025 复算成立），参考代码与官方枚举程序在 0≤x<2025 内等价且 O(1)，均无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页 3.1.2–3.1.5 题面、输入/输出格式及样例（1025→1000）与网站一致；但网站缺 3.1.6 数据范围原文“对于所有测试点，保证 0 ≤ x < 2025。”、3.1.7 提示节（and 运算符为 &、or 运算符为 |）及页首“时间限制：1.0 s / 内存限制：512.0 MB”。changes.question 已按 PDF 原文补全上述内容，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方答案表仅覆盖客观题（第1页单选、第6页判断），编程题无答案表项，officialAnswer 为 null；正确性以官方参考程序与独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：按位分解可得 (x&y)+(x|y)=x+y，故方程等价于 x+y=2025，唯一解 y=2025-x 且须 y>0；样例复算 1025=0b10000000001、1000=0b1111101000，1025&1000=0、1025|1000=2025，和为 2025，输出 1000 正确。x=2025、x=2026 的说明超出官方数据范围（0≤x<2025），属于对 -1 分支的一般性讲解，与题面“不存在则输出 -1”自洽，不构成错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第7–8页官方参考程序枚举 i=1..2025 输出首个满足 (x&i)+(x|i)=2025 的 i，即最小 y=2025-x（x<0 或 x≥2025 时输出 -1）；网站 O(1) 程序在官方数据范围 0≤x<2025 内 y 恒为正、结果逐一等价（x=0→2025、x=2024→1 已独立复核），long long 无溢出，复杂度 O(1)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 三级] 2025\n\n## 题目描述\n\n小 A 有一个整数 $x$，他想找到最小的正整数 $y$ 使得下式成立：\n\n$(x \\ \\operatorname{and} \\ y) + (x \\ \\operatorname{or} \\ y) = 2025$\n\n其中 $\\operatorname{and}$ 表示二进制按位与运算，$\\operatorname{or}$ 表示二进制按位或运算。如果不存在满足条件的 $y$，则输出 $-1$。\n\n## 输入格式\n\n一行，一个整数 $x$。\n\n## 输出格式\n\n一行，一个整数，若满足条件的 $y$ 存在则输出 $y$，否则输出 $-1$。\n\n## 数据范围\n\n对于所有测试点，保证 $0 \\le x < 2025$。\n\n## 提示\n\n$(x \\ \\operatorname{and} \\ y) + (x \\ \\operatorname{or} \\ y) = 2025$，其中：\n\n- $\\operatorname{and}$ 表示按位与运算，运算符为 `&`；\n- $\\operatorname{or}$ 表示按位或运算，运算符为 `|`。\n\n## 限制\n\n时间限制：1.0 s；内存限制：512.0 MB。\n"
+        },
+        "tests": [
+          {
+            "name": "数据范围最小值 x=0",
+            "input": "0\n",
+            "output": "2025\n",
+            "reason": "由 (x&y)+(x|y)=x+y 得 y=2025-x；x=0 时 y=2025 为唯一正整数解，官方枚举程序同样在 i=2025 处命中（0&2025=0，0|2025=2025）。"
+          },
+          {
+            "name": "数据范围上界 x=2024",
+            "input": "2024\n",
+            "output": "1\n",
+            "reason": "y=2025-2024=1；2024 为偶数，2024&1=0、2024|1=2025，和为 2025，成立且 y 为最小正整数解。"
+          },
+          {
+            "name": "官方样例 x=1025",
+            "input": "1025\n",
+            "output": "1000\n",
+            "reason": "PDF 第7页样例 1；1025&1000=0、1025|1000=2025，和为 2025。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "verdict": "revise",
+        "reviewNote": "采纳初核认定：网站题面缺 PDF 第8页 3.2.14 数据范围“对于所有测试点，1 ≤ n ≤ 100，每个单词的长度不超过 30，且仅由大小写英文字母组成。”及页首 1.0 s/512.0 MB 限制，经逐字对照 PDF 原图确认；替换题面与初核一致并独立复核通过。解析样例走查独立复算正确（apple 最终 3 次为唯一最大，banana 2 次、orange 1 次，平局不替换），参考代码与官方 map 计数程序语义等价，均无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页 3.2.9–3.2.13 题面（含大小写忽略说明、“输入保证，出现次数最多的单词只会有一个”、输出为小写形式）及样例 6 词→apple 与网站一致；但网站缺 3.2.14 数据范围原文“对于所有测试点，1 ≤ n ≤ 100，每个单词的长度不超过 30，且仅由大小写英文字母组成。”及页首“时间限制：1.0 s / 内存限制：512.0 MB”。changes.question 已按 PDF 原文补全，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方答案表仅覆盖客观题，编程题无答案表项，officialAnswer 为 null；正确性以官方参考程序与独立测试核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立走查样例：Apple→apple(1)、banana(1)、apple(2)、Orange→orange(1)、banana(2)、apple(3)，最终 apple 以 3 次为唯一最大，输出 apple，与官方输出一致；“严格大于才更新”依赖题面“出现次数最多的单词唯一”的前提，逻辑自洽；逐字符统一转小写的要点说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第9页官方参考程序（map 计数、transform 转小写、维护最大值后输出）语义等价；网站代码逐字符 tolower(static_cast<unsigned char>(c)) 用法正确，输出键即为小写形式；在 n≤100、词长≤30 范围内复杂度约 O(n·L·log n)，无性能或溢出问题；n=1、大小写混合、30 字符上界、最大频次词非首个等边界已独立复核。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 三级] 词频统计\n\n## 题目描述\n\n在文本处理中，统计单词出现的频率是一个常见的任务。现在，给定 $n$ 个单词，你需要找出其中出现次数最多的单词。在本题中，忽略单词中字母的大小写（即 `Apple`、`apple`、`APPLE`、`aPPle` 等均视为同一个单词）。\n\n请你编写一个程序，输入 $n$ 个单词，输出其中出现次数最多的单词。\n\n## 输入格式\n\n第一行，一个整数 $n$，表示单词的个数；\n\n接下来 $n$ 行，每行包含一个单词，单词由大小写英文字母组成。\n\n输入保证，出现次数最多的单词只会有一个。\n\n## 输出格式\n\n输出一行，包含出现次数最多的单词（输出单词为小写形式）。\n\n## 数据范围\n\n对于所有测试点，$1 \\le n \\le 100$，每个单词的长度不超过 $30$，且仅由大小写英文字母组成。\n\n## 限制\n\n时间限制：1.0 s；内存限制：512.0 MB。\n"
+        },
+        "tests": [
+          {
+            "name": "最小规模 n=1",
+            "input": "1\nA\n",
+            "output": "a\n",
+            "reason": "n=1 为官方数据范围下界；唯一单词转小写后即为答案，输出须为小写形式。"
+          },
+          {
+            "name": "大小写混合同一单词",
+            "input": "4\nApple\nAPPLE\naPpLe\napple\n",
+            "output": "apple\n",
+            "reason": "忽略大小写后四个单词均为 apple 计 4 次，为唯一最多；验证全字符（不只首字母）小写化逻辑。"
+          },
+          {
+            "name": "词长上界 30",
+            "input": "1\nABCDEFGHIJKLMNOPQRSTUVWXYZABCD\n",
+            "output": "abcdefghijklmnopqrstuvwxyzabcd\n",
+            "reason": "单词长度恰为官方上界 30（26+4 个字母），n=1 时唯一单词转小写输出。"
+          },
+          {
+            "name": "最大频次单词非首个",
+            "input": "3\nzzz\nApple\napple\n",
+            "output": "apple\n",
+            "reason": "zzz 计 1 次先成为临时答案，apple 计 2 次后经 cur>best 更新为最终答案，验证最大值维护逻辑不误留首个单词。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次独立复核编程题 26、27 两题。两题样例、公式与 PDF 原图一致，解析与参考代码均经独立推导核验通过：26 题利用 (x&y)+(x|y)=x+y 化简为 y=2025-x，O(1) 程序与官方枚举程序在 0≤x<2025 内等价；27 题 map 计数+小写化程序正确。两题共同问题是网站题面漏列官方数据范围（26：0≤x<2025；27：1≤n≤100、词长≤30）及 1.0 s/512.0 MB 逐题限制，26 题还漏官方提示节（and/or 对应 &、|），已在 changes.question 中按 PDF 原文补全，修复后核验通过。初核对缺失项的认定被采纳，但其 26 题替换文本遗漏提示节，已由本复核补全并否决原稿文本。tests 为独立推导的期望输出（含各自数据范围最小值、上界及官方样例），未实际运行。"
+  }
+}

@@ -1,0 +1,1225 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T00:02:13.992Z",
+  "completedAt": "2026-11-13T16:02:47.811Z",
+  "finishReason": "stop",
+  "inputSha256": "59499284a77768a1dad2144d2dbbbd4c13ca7395c1e3c283e607e6972b16b659",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头显示“C++ 三级”“2025 年 12 月”，与 paperId 2025-12-l3 一致；第 1 页官方单选答案表前 5 题为 B、C、D、B、B。\nPDF第1页卷头为“CCF 编程能力等级认证”“C++ 三级”“2025 年 12 月”，与 2025-12-l3 的年月、等级一致。\nPDF 第 1 页卷头为 CCF GESP C++ 三级、2025 年 12 月；单选题答案表第 11-15 题为 C/B/B/A/D，题号范围与站点一致。已校验来源 git-blob SHA 0e53148a247d948c01155e55b49c20fe737ed6ed。\nPDF 第1页卷头为“C++ 三级”“2025年12月”；第5页判断题答案表与题号对应，确认本卷为 2025-12-l3。\nPDF 第1页卷头显示“C++ 三级”与“2025 年 12 月”，与 paperId 2025-12-l3 一致。\nPDF第1页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2025 年 12 月”，与 paperId 2025-12-l3 对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干为二进制数 (1101.101)₂ 转十进制，网站题干含义等价，选项前无必要代码或图表缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 14.25、B. 13.625、C. 13.5、D. 14.5，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 1 题答案表为 B（0 起始索引 1）。独立计算：1101.101₂=8+4+0+1+0.5+0+0.125=13.625，网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心数值推导 13.625 正确；但“知识延伸”将“除基取余、乘基取整”说成二进制转十进制的方法，方向错误，这是十进制转二进制的方法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (13.625)**\n\n**核心解析：**\n1. **整数部分转换**：`1101` 从右向左各位权值为 2³、2²、2¹、2⁰。\n   - `1 × 2³ = 8`\n   - `1 × 2² = 4`\n   - `0 × 2¹ = 0`\n   - `1 × 2⁰ = 1`\n   合计：`8 + 4 + 0 + 1 = 13`。\n\n2. **小数部分转换**：`0.101` 从左向右各位权值为 2⁻¹、2⁻²、2⁻³。\n   - `1 × 2⁻¹ = 0.5`\n   - `0 × 2⁻² = 0`\n   - `1 × 2⁻³ = 0.125`\n   合计：`0.5 + 0 + 0.125 = 0.625`。\n\n3. **合并结果**：`13 + 0.625 = 13.625`。\n\n**选项逐项分析：**\n- A (14.25)：错误，不是该二进制数按位权展开的结果。\n- B (13.625)：正确，计算过程如上。\n- C (13.5)：错误，相当于只计算了小数部分的前一位 0.5，漏掉 2⁻³ 位。\n- D (14.5)：错误，整数部分或小数部分计算有误。\n\n**易错提醒：**\n小数部分从左向右的权值是 2⁻¹、2⁻²、2⁻³……，容易与整数部分的正指数混淆。\n\n**知识延伸：**\n二进制转十进制时，整数部分和小数部分都按位权展开求和；“除基取余、乘基取整”是十进制转二进制的方法，不能把转换方向弄反。\n\n**考点：** 二进制浮点数转十进制"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干为“以下关于标准 C++ 一维数组的描述，哪一项是错误的？”，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 下标从 0 开始、B. 内存中连续存放、C. 长度只能在运行时才能确定、D. 可以修改某个元素的值，网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 2 题答案表为 C（0 起始索引 2）。标准静态数组长度需在编译期确定，C 项“只能在运行时才能确定”错误；网站 answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出普通标准 C++ 数组长度需编译期常量确定，并补充了 VLA 属于编译器扩展而非标准 C++ 特性，与选项 C 的判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页第 3 题代码首行为 `{`、末行为 `}`；网站 question 内嵌代码有首尾大括号，但独立 `code` 字段缺少首行 `{` 却保留末尾 `}`，渲染时大括号不配对。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 12、B. 17、C. 33、D. 40，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 3 题答案表为 D（0 起始索引 3）。独立计算：8>>2=2，跳过 i%3==2 的 2、5、8，sum=1+3+4+6+7+9+10=40，网站 answer=3 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核心推导正确：8>>2=2，跳过 2、5、8 后累加和为 40；虽然“巧合”等措辞可进一步润色，但不影响本题结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "code": "{\n    int sum = 0;\n    for (int i = 1; i <= 10; i++) {\n        if (i % 3 == 8 >> 2)\n            continue;\n        sum += i;\n    }\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末至第 2 页第 4 题代码为 `int x = 5; if (x == 3 >> 2) x = 8 >> 3; cout << x << endl;`，网站题干代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题选项依次为 A. 0、B. 5、C. 120、D. 1，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 4 题答案表为 B（0 起始索引 1）。独立计算：3>>2=0，条件 5==0 为假，x 保持 5；网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心结论 5 正确；但解析称“位运算优先级较低”并把 `==` 与 `>>` 的优先级关系说得含糊。实际 `>>` 优先级高于 `==`，条件应解析为 `x == (3 >> 2)`。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (5)**\n\n**核心解析：**\n1. **计算 `3 >> 2`**：`3` 的二进制为 `11`，右移 2 位后为 `0`。\n2. **判断 if 条件**：`x == 3 >> 2` 等价于 `x == (3 >> 2)`，即 `5 == 0`，结果为假。\n3. **确定输出**：条件为假，`x = 8 >> 3` 不执行；即使计算，`8 >> 3 = 1`，但该赋值不会发生。\n4. **最终结果**：`x` 保持原值 `5`，输出 `5`。\n\n**选项逐项分析：**\n- A (0)：错误，不是 `x` 的输出值。\n- B (5)：正确，if 条件不成立，`x` 未改变。\n- C (120)：错误，与代码逻辑无关。\n- D (1)：错误，`1` 是 `8 >> 3` 的值，但赋值语句未执行。\n\n**易错提醒：**\n位移运算符 `>>` 的优先级高于相等运算符 `==`，因此 `x == 3 >> 2` 应理解为 `x == (3 >> 2)`，不能理解为 `(x == 3) >> 2`。另外，对负数右移在 C++ 标准中属于实现定义行为，应尽量避免依赖。\n\n**知识延伸：**\n`>>` 对非负整数与除以 2ⁿ 的结果一致；对负数不要随意依赖移位结果。`&`、`^`、`|` 与 `==` 的优先级关系也常考，建议用括号明确意图。\n\n**考点：** 位运算右移操作符、条件判断语句的执行流程"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干为字符串 s = \"C++ Programming\"，代码为 `cout << (int)(s.length() | 3) << endl;`，网站题干与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 14、B. 15、C. 16、D. 17，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 5 题答案表为 B（0 起始索引 1）。独立计算：\"C++ Programming\" 长度为 15，15|3=15；网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心计算 15|3=15 正确；但解析称 `s.length()` 已返回 `int`、`(int)` 转换冗余。实际 `std::string::length()` 返回 `size_type`（通常为 `size_t`），并非 `int`。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (15)**\n\n**核心解析：**\n1. **计算字符串长度**：`“C++ Programming”` 含 15 个字符，依次为 `C`、`+`、`+`、空格、`P`、`r`、`o`、`g`、`r`、`a`、`m`、`m`、`i`、`n`、`g`。\n2. **计算按位或**：`15` 的二进制为 `1111`，`3` 的二进制为 `0011`，所以 `15 | 3 = 1111₂ = 15`。\n3. **类型转换与输出**：`s.length()` 返回 `std::string::size_type`（通常为无符号的 `size_t`），`(int)` 将其结果显式转换为 `int`；本题数值 15 在 `int` 范围内，转换后仍为 15。\n\n**选项逐项分析：**\n- A (14)：错误，只有长度数错或额外清除最低位时才可能得到 14。\n- B (15)：正确，`15 | 3 = 15`。\n- C (16)：错误，不符合按位或结果。\n- D (17)：错误，不符合按位或结果。\n\n**易错提醒：**\n`s.length()` 返回的不是 `int`，而是 `std::string::size_type`；`(int)` 是显式类型转换，不能简单视为冗余。`|` 是按位或，不是逻辑或 `||`。\n\n**知识延伸：**\n按位或可用于把指定位置 1。例如 `x | 3` 会把最低两位置 1；本题 15 的低两位本来就是 1，因此结果不变。\n\n**考点：** `string` 类 `length()` 方法、按位或运算符 `|`"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干及代码为 `int arr[5] = {1, 2, 3, 4, 5};`、`int p = arr[1];`、`cout << (p + 2) << endl;`，站内 question 与 code 均包含同一代码，无漏项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A.1、B.2、C.3、D.4，站内 options 顺序与含义一致，仅存在空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第6题为 D，D 是第4个选项，0 起始索引为 3；站内 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "arr[1]=2，p=2，p+2=4，输出4；逐项分析与官方答案 D 相符，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题题干及四个选项均与站内 question/options 对应，考查 min() 的错误描述。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A 函数必须返回一个值、B 可嵌套调用、C min(5) 不能编译、D min() 可编译且结果为0，站内顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第7题为 D，D 对应 0 起始索引 3；站内 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "官答 D 成立，但解析末尾称 std::min“需要至少两个参数”，与初始化列表重载 std::min({a,b,c}) 冲突；应改为双参数重载需两个实参、初始化列表重载至少一个元素、无参重载不存在。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\nD 的说法错误：`std::min` 常见形式有双参数形式 `std::min(a, b)` 和初始化列表形式 `std::min({a, b, c})`。双参数形式需要两个实参，初始化列表形式至少需要一个元素；不存在完全不传参数的重载。因此 `min()` 无法通过编译，也不会返回 0。\n\n- A 正确：`std::min` 返回两个（或一组）元素中的较小值。\n- B 正确：可以写成 `std::min(a, std::min(b, c))` 这样的嵌套调用。\n- C 正确：`min(5)` 没有匹配的一元重载，不能通过编译。\n- D 错误：无参 `min()` 不能通过编译，更不会得到 0，故选 D。\n\n**易错提醒：** 本题是反向选择题，问“不正确的是”；不要把“正确描述”误选为答案。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第8题假设 unsigned int 占2个字节（16位），题干和选项与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A 0~65535、B 0~65536、C -65536~65535、D 0~32767，站内顺序与含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第8题为 A，A 为第1项，0 起始索引为 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "A 的结论正确，但 B 项解析把 2^16 与 16 位无符号数的最大值混同；应说明 16 位可表示 2^16 个值，最大值为 2^16-1=65535。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (0 ~ 65535)**\n\n`unsigned int` 占 2 字节，即 16 位；无符号类型的 16 位全部用于表示数值。16 位可表示 2^16=65536 个不同值，最小为 0，最大为 2^16-1=65535，所以范围是 0~65535。\n\n- A 正确：0~65535。\n- B 错误：65536=2^16 是表示值的个数，不是 16 位无符号数的最大可表示值；最大值是 65535。\n- C 错误：`unsigned` 没有符号位，不能表示负数。\n- D 错误：32767=2^15-1，是 16 位有符号整型的最大正值，不是本题无符号类型的范围。\n\n**易错提醒：** n 位无符号整数范围为 0~2^n-1；n 位有符号补码整数范围为 -2^(n-1)~2^(n-1)-1。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2-3页第9题代码为 `int arr[6] = {1, 2, 3, 4, 5, 6};` 及三句交换语句，站内 question/code 一致；选项跨第2页末与第3页首。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2-3页选项依次为 A {2,1,4,3,6,5}、B {1,2,3,4,5,6}、C {3,1,4,2,5,3}、D {1,3,2,5,4,6}，站内顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第9题为 A，A 为第1项，0 起始索引为 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "交换结论和选项 A 正确，但解析第二步、第三步把中间值说成“原始 arr[i] 减原始 arr[i+1]”及“原 arr[i] 存入 arr[i]”，逐步推导错误；应改为 arr[i+1] 得到原 arr[i]、arr[i] 得到原 arr[i+1]。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A ({2,1,4,3,6,5})**\n\n循环 `i=0,2,4`，每次处理一对相邻元素。设处理前 `a=arr[i]`、`b=arr[i+1]`：\n1. `arr[i]=a+b`；\n2. `arr[i+1]=arr[i]-arr[i+1]=(a+b)-b=a`，即 `arr[i+1]` 得到原 `arr[i]`；\n3. `arr[i]=arr[i]-arr[i+1]=(a+b)-a=b`，即 `arr[i]` 得到原 `arr[i+1]`。\n三步完成交换。\n\n逐次：`i=0` 得 `{2,1,3,4,5,6}`；`i=2` 得 `{2,1,4,3,5,6}`；`i=4` 得 `{2,1,4,3,6,5}`。因此选 A；B 是原数组，C、D 不符合推导。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题表达式为 `a & b | (c ^ d)`，其中 a=3、b=7、c=15、d=4，站内题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 A 十进制11、B 二进制11、C 八进制11、D 十六进制11，站内顺序与含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第10题为 A，A 为第1项，0 起始索引为 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "数值推导可到11且答案 A 正确，但解析把 `&` 的真值表写成“相同为1，不同为0”，并用左到右结合性解释不同优先级运算；应改为两位全1才为1，并按 & 高于 ^ 高于 | 说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (十进制 11)**\n\n按位运算优先级为 `&` 高于 `^`，`^` 高于 `|`，所以原式等价于 `(a & b) | (c ^ d)`。\n\n- `a & b`：3(0011) & 7(0111) = 3(0011)。\n- `c ^ d`：15(1111) ^ 4(0100) = 11(1011)。\n- `(a & b) | (c ^ d)`：3(0011) | 11(1011) = 11(1011)，即十进制 11。\n\n因此选 A。B“二进制11”表示十进制3，C“八进制11”表示十进制9，D“十六进制11”表示十进制17，均不符。\n\n**易错提醒：** `&` 是两位都为 1 才得 1；`|` 是任一位为 1 就得 1；`^` 是两位不同得 1。不要把按位或 `|` 与逻辑或 `||` 混淆。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干、三行代码与网站一致；变量初值 10 和输出语句未改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项为 A.0、B.-1、C.1、D.死循环，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题标 C，对应 0 起始索引 2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心推导正确，但 A 项误写“t -= 8 = 1”；若按前置自减应 x=9、t=9，t-=x 得 0。知识延伸中“* 与 ++ 同级”亦错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (1)**\n\n**核心解析：**\n1. 初始 `x = 10`。\n2. 执行 `int t = x--;`：后置自减先取 `x` 的当前值 10 赋给 `t`，随后 `x` 减 1，因此 `t = 10`，`x = 9`。\n3. 执行 `t -= x;`，即 `t = t - x = 10 - 9 = 1`。\n4. 输出 `t`，结果为 1。\n\n**选项逐项分析：**\n- A (0)：若把 `x--` 误当成前置自减 `--x`，则 `t = 9`、`x = 9`，`t -= x` 会得到 0；这是错误选项对应的误算。\n- B (-1)：计算不会得到负数。\n- C (1)：✅ 正确，按后置自减推导。\n- D (死循环)：代码没有循环结构，不可能死循环。\n\n**易错提醒：**\n- 后置自减 `x--` 先取值后减 1；前置自减 `--x` 先减 1 后取值。\n- `t -= x` 等价于 `t = t - x`，不要写成 `t = -x`。\n\n**知识延伸：**\n后缀 `++/--` 的优先级高于解引用 `*`，因此 `*p++` 等价于 `*(p++)`；`(*p)++` 才是对指针所指对象自增。\n\n**考点：** 后自减运算符的赋值与更新时序"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页有题干、第 4 页有流程图；网站 question 只有“根据下面的流程图”，未附流程图，缺少必要图。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A.优秀、B.及格、C.不及格、D.没有输出，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题标 B，对应 0 起始索引 1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析写“根据题目描述（流程图包含两个判断框），推断”，但 PDF 第 4 页已有明确流程图，不能以推断代替图；答案逻辑本身正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "根据下面的流程图，如果成绩 score 输入 60，输出的结果是（ ）。\n\n流程图逻辑：开始 → 输入成绩 score → 判断 score ≥ 90？若“是”，输出“优秀”；若“否”，再判断 score ≥ 60？若“是”，输出“及格”；若“否”，输出“不及格”；最后结束。",
+          "explanation": "**答案：B (及格)**\n\n**核心解析：**\nPDF 第 4 页流程图先判断 `score >= 90`，为真时输出“优秀”；否则再判断 `score >= 60`，为真时输出“及格”，为假时输出“不及格”。\n\n输入 `score = 60`：\n1. `60 >= 90` 为假，进入“否”分支；\n2. `60 >= 60` 为真，执行“输出‘及格’”；\n3. 流程结束。\n\n**选项逐项分析：**\n- A (优秀)：需要 `score >= 90`，60 不满足。\n- B (及格)：✅ 正确，60 满足第二个判断。\n- C (不及格)：需要 `score < 60`，60 不满足。\n- D (没有输出)：流程图的各条路径最终都有输出，60 会命中“及格”分支。\n\n**易错提醒：**\n- 注意边界值：`>= 60` 包含 60，因此 60 是及格。\n- 按流程图箭头顺序先判断 90，再判断 60，不能把两个条件并列处理。\n\n**知识延伸：**\n流程图中的菱形判断框对应 `if-else` 分支，本题逻辑等价于先判断 `score >= 90`，否则判断 `score >= 60`，再否则输出“不及格”。\n\n**考点：** 流程图的条件分支逻辑追踪"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干和代码与网站一致，数组初值及 switch 分支未改变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页有 A.10，第 5 页有 B.11、C.14、D.15，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题标 B，对应 0 起始索引 1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心累加正确，但 A 项解释“sum = 2+2+2+2+2 = 10”与实际序列 case2/case1/case0/case2/case1 不符，属于错误选项分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (11)**\n\n**核心解析：**\n1. 计算位运算：`1 | 2`，1 的二进制为 `01`，2 的二进制为 `10`，按位或得 `11`，即 3。因此 `arr[i] % (1|2)` 等价于 `arr[i] % 3`。\n2. 逐项累加：\n   - `i=0`，`arr[0]=2`，`2%3=2`，进入 `case 2`，`sum += 3`，`sum=3`；\n   - `i=1`，`arr[1]=4`，`4%3=1`，进入 `case 1`，`sum += 2`，`sum=5`；\n   - `i=2`，`arr[2]=6`，`6%3=0`，进入 `case 0`，`sum += 1`，`sum=6`；\n   - `i=3`，`arr[3]=8`，`8%3=2`，进入 `case 2`，`sum += 3`，`sum=9`；\n   - `i=4`，`arr[4]=10`，`10%3=1`，进入 `case 1`，`sum += 2`，`sum=11`。\n3. 最终 `sum = 11`。\n\n**选项逐项分析：**\n- A (10)：与逐项累加结果不符。\n- B (11)：✅ 正确。\n- C (14)：与逐项累加结果不符；若把 `1|2` 的模数或分支增量算错，可能得到其他值，但按代码不会出现 14。\n- D (15)：与逐项累加结果不符；若忽略 `break` 或重复累加会偏离正确值。\n\n**易错提醒：**\n- `|` 是按位或，不是逻辑或。\n- 本题每个 `case` 后都有 `break`，不会发生贯穿。\n- 括号不能丢，先算 `1|2` 再取模。\n\n**知识延伸：**\n`1|2` 与 `1^2` 的数值都为 3，但含义不同：按位或是置 1，按位异或是相异为 1。\n\n**考点：** 位运算、switch 分支与循环累加"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干为“以下关于 C++ 中 abs() 函数的描述，正确的是”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四个选项与网站文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题标 A，对应 0 起始索引 0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项核验：A 与官方答案一致；B 混淆绝对值与四舍五入；C 参数个数错误；D 不会截断小数部分。结论推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干、循环代码与网站一致，字符串初值为 GESP。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A.GESP、B.HFTR、C.hesp、D.GFUS，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题标 D，对应 0 起始索引 3。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心 ASCII 推导正确，但 B 项解释写成“'G' + 0 = 'H'”且与后续偏移不自洽；应说明正确结果为 G、F、U、S，而不是 HFTR。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (GFUS)**\n\n**核心解析：**\n字符串 `GESP` 各字符的 ASCII 码为：`G=71`、`E=69`、`S=83`、`P=80`。循环执行 `s[i] = toupper(s[i] + i)`：\n\n| 循环 i | 原字符 | ASCII | `s[i] + i` | 加后字符 | `toupper` 后 |\n|---|---|---|---|---|---|\n| 0 | G | 71 | 71 | G | G |\n| 1 | E | 69 | 70 | F | F |\n| 2 | S | 83 | 85 | U | U |\n| 3 | P | 80 | 83 | S | S |\n\n因此最终字符串为 `GFUS`。\n\n**选项逐项分析：**\n- A (GESP)：若索引 i 没有参与运算、只执行 `toupper(s[i])`，才会保持原串；原代码有 `+i`，不成立。\n- B (HFTR)：不等于按 `s[i]+i` 逐位计算再转大写的结果；正确结果为 `GFUS`。\n- C (hesp)：原代码每步都调用 `toupper`，结果应全为大写，不成立。\n- D (GFUS)：✅ 正确，逐字符推导如表。\n\n**易错提醒：**\n- 下标从 0 开始，i=0 时不加偏移，i=1 时加 1。\n- `toupper` 的参数是字符对应的整数值，传回的是大写字符的整数值；本题各值均在合法字符范围内。\n\n**知识延伸：**\n`toupper`/`tolower` 定义于 `<cctype>`，实参应能表示为 `unsigned char` 或等于 `EOF`；对字符串字符逐个处理时要注意下标与字符值的区别。\n\n**考点：** 字符串遍历、ASCII 码值偏移与字符转换函数 `toupper()`"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第1题原文为“在 C++ 中，数组名不能改变，数组名不能被赋值。”网站题面文字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项；网站 options 仅为“正确/错误”的判断展示，按规则本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1列为“√”，即正确；网站 answer=0 对应“正确”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析从数组名不可作为赋值目标、数组元素仍可按下标读写两方面说明，能够独立推出原命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文与网站一致：a 为整型 3，b 为浮点数 3.5，经 a *= b 后称 a 变为 10.5 并输出 10.5。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2列为“×”，即错误；网站 answer=1 对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析的示例代码写成 int a = 3, b = 3.5;，会把 b 声明为 int，无法正确说明“浮点数结果赋给 int 被截断”；应把 b 声明为 double。原解析结论仍正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n判定依据：\n```cpp\nint a = 3;\ndouble b = 3.5;\na *= b;  // 等价于 a = a * b\n```\n1. 计算 `a * b`：`3 * 3.5 = 10.5`，结果为 `double`。\n2. 赋值回 `int` 类型的 `a` 时，小数部分被截断：`10.5` 转换为 `10`。\n3. 因此 `a` 的值为 `10`，输出也是 `10`，不是 `10.5`。\n\n**易错提醒：**\n- 复合赋值 `*=` 不会改变左侧变量的类型；右侧结果会转换为左侧变量的类型。\n- 浮点数赋给整型时是截断小数部分，不是四舍五入。\n\n**知识延伸：**\n若希望保留小数结果，应把 `a` 声明为 `double` 或 `float`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第3题原文与网站一致：strcmp(str1,str2) 返回 0 表示 str1 大于 str2，返回正数表示两者相等。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第3列为“×”，即错误；网站 answer=1 对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 strcmp 返回 0 表示相等、返回正数表示 str1 大于 str2、返回负数表示 str1 小于 str2，因此题干把 0 和正数的含义说反，原命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页判断题第4题代码为 `int c = a++ + ++b;`，中间有空格；网站写成 `int c = a+++++b;`。后者按最大 munch 会切成 `a++ ++ + b`，与原式不同且不能通过编译。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4列为“×”，即错误；按原式 a++ 得 5、++b 得 4，c=9，不是 8，故原命题错误，网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析错误声称无空格的 `a+++++b` 会按最大 munch 解析为 `(a++) + (++b)`；实际不是，并且原解析未按 PDF 带空格代码说明输出 9。需修正表达式和推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "以下代码输出结果为 8。\n```cpp\nint a = 5, b = 3;\nint c = a++ + ++b;\ncout << c << endl;\n```",
+          "explanation": "**答案：错误**\n\n官方代码为 `int c = a++ + ++b;`（PDF 中带空格；不能写成无空格的 `a+++++b`，后者会按最大 munch 切成 `a++ ++ + b`，不是同一表达式且不能通过编译）。\n\n1. `a++` 是后置自增，表达式的值为原值 5，随后 `a` 变为 6。\n2. `++b` 是前置自增，`b` 先由 3 变为 4，表达式的值为 4。\n3. `c = 5 + 4 = 9`。\n\n因此输出 9 而不是 8，题面判断错误。\n\n**易错提醒：**\n- 后置 `++` 返回原值，前置 `++` 返回自增后的值。\n- 代码书写时应保留必要空格，避免 `+++++` 这类连续符号被按最大 munch 切成不同 token。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第5题原文与网站一致：位运算符 &、|、^、~ 的优先级高于算术运算符 +、-、*、/。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第5列为“×”，即错误；因为 &、^、| 的优先级低于算术运算符，整句不成立，网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称 `~` 的优先级低于算术运算符，这是错误的：`~` 是单目运算符，优先级高于 `* /` 和 `+ -`；错误在于把 `~` 与 `&、^、|` 混为一谈。需修正解析，答案仍为错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n判定依据：\n- 取反运算符 `~` 是单目运算符，优先级高于算术运算符 `* / %` 和 `+ -`。\n- 但按位与 `&`、按位异或 `^`、按位或 `|` 的优先级低于算术运算符。\n\nC++ 中相关优先级大致为：`~`（单目） > `* / %` > `+ -` > 移位 > 关系 > `&` > `^` > `|`。\n\n因此“`&、|、^、~` 的优先级都高于算术运算符”这一整体说法错误；不能因为 `~` 的优先级高，就认为整句正确。例如 `5 + 3 & 7` 先计算 `5 + 3`，再计算 `8 & 7`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第6题原文为“在 C++ 中，int a[] = {1, 2, 3, 4, 5}; 可以定义一个包含 5 个元素的整型数组。”与站内题干一致；C++ 允许由初始化列表推导数组长度。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第6题为 √，按正确=0 映射为 0；站内 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明由初始化列表推导长度，并指出不能既无长度又无初始化列表，推导与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5—6页第7题除条件运算符等价代码外，还紧跟“以下代码执行后，输出将会是 2。”以及 `arr[3 > 2 ? 1 : 2]` 的完整代码；站内题干漏掉第二段断言和代码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7题为 √（0）；站内 answer=0。补齐后两段断言均成立，答案仍为 0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "站内解析只说明三目运算符与 if-else 等价，未覆盖漏掉的 `arr[3 > 2 ? 1 : 2]` 输出 2 的断言。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "C++ 表达式 `z = a > b ? x : y` 等同于：\n```cpp\nif (a > b) {\n    z = x;\n} else {\n    z = y;\n}\n```\n\n以下代码执行后，输出将会是 2。\n```cpp\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    cout << arr[3 > 2 ? 1 : 2] << endl;\n    return 0;\n}\n```",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n1. 条件运算符 `?:` 的优先级高于赋值运算符 `=`，因此 `z = a > b ? x : y` 等价于 `z = (a > b ? x : y)`；条件为真取 x，否则取 y，与所给 if-else 等价。\n2. 在第二段代码中，`3 > 2` 为真，故 `arr[3 > 2 ? 1 : 2]` 取 `arr[1]`；数组初始化为 `{1, 2, 3, 4, 5}`，`arr[1]` 的值为 2，所以输出 2。\n\n两段断言均成立，故判断为正确。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第8题原文为“在 C++ 中，++ 和 -- 运算符只能用于整型变量，不能用于浮点数变量。”与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第8题为 ×（1）；站内 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出浮点变量也可使用 ++/--，并给出 `double a = 3.14; a++;` 后为 4.14，能够独立推出题干错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第9题与站内题干一致：从右往左扫描 a 的二进制，遇到第一个 1 后，将该 1 左侧所有位取反，可得到 -a 的补码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题为 √（0）；站内 answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "站内解析主结论正确，但括注“10000110 的补码也是 11111010”错误：8 位 10000110 取反加一为 01111010；应直接用 6=00000110 → 11111010 说明 -6 的补码，并删除错误括注。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n补码取负的快速方法是：对正整数 a 的二进制，从右往左找到最低位的 1，保持这个 1 及其右侧的 0 不变，把该 1 左侧的所有位取反。它与“按位取反再加 1”等价。\n\n例如 8 位下 a = 6 = `00000110`：从右往左第一个 1 是倒数第二位；保持该 1 及其右侧的 0 不变，将其左侧所有位取反，得到 `11111010`，即 -6 的补码。\n\n**易错提醒：**\n- 取反的是第一个 1 左边的位，第一个 1 本身和其右侧的 0 不变。\n- 该技巧用于补码表示下的正整数取负。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第10题代码与站内一致：`for (int i = 0; i < 5; i++);` 后接独立大括号代码块；分号形成空循环体，后续块只执行一次。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题为 ×（1）；站内 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 for 后分号是空语句，循环执行 5 次但循环体为空，随后的代码块独立执行一次，Hello 只输出 1 次。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6–7页的题目描述、输入格式、输出格式与当前 question 主体一致；但 PDF第7页 3.1.5 数据范围写明“1 ≤ T ≤ 100，并且每组密码长度不超过 100 且至少为 1，每组密码仅由大小写字母和数字组成”，当前 question 遗漏该数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，不设 A-D 选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不设客观答案索引；PDF 答案表只覆盖单选和判断题，当前 officialAnswer 应为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“长度至少 8、至少一个大写字母、至少一个数字”三条件独立推导；六组样例对应 Y/Y/Y/N/N/N 均正确；状态变量需在每组内重置的提醒正确；总字符数不超过 100×100，O(T×L) 满足限制。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前 referenceCode 与 PDF第8页 3.1.6 参考程序逐行一致；while(T--) 处理多组，has_upper/has_digit 在组内初始化，长度>=8、大写字母、数字的判定正确；时间复杂度 O(总字符数)，空间 O(1)（不含输入字符串）。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202512 三级] 密码强度\n\n## 题目描述\n\n小杨是学校网络安全小组的成员，今天他的任务是设计一个“密码强度检测器”，帮助同学们检查自己的密码是否足够安全。一个安全的密码需要满足以下条件：\n\n- 密码至少包含 $8$ 个字符（太短的密码容易被猜出来哦！）。\n- 密码至少包含一个大写字母（A、B、C、...、Z 都可以）。\n- 密码至少包含一个数字（0、1、2、3、...、9 都可以）。\n\n例如：\n\n- 密码 `PAs1s2an` 是安全密码（有 $8$ 位、包含大写字母 `P`、`A` 和数字 `1`、`2`）。\n- 密码 `ab1da3cd` 不是安全密码（没有大写字母）。\n- 密码 `Paabdbcd` 不是安全密码（没有数字）。\n- 密码 `Pa2` 不是安全密码（只有 $3$ 位，太短了）。\n\n## 输入格式\n\n第一行一个正整数 $T$，代表需要安全检测的密码组数。\n\n对于每组密码，一行包含一个字符串，代表需要安全检测的密码。\n\n## 输出格式\n\n对于每组密码，输出一行，如果满足强度要求输出 Y，否则输出 N。\n\n## 数据范围\n\n对于所有测试点，保证 1 ≤ T ≤ 100，并且每组密码长度不超过 100 且至少为 1，每组密码仅由大小写字母和数字组成。"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\na\n",
+            "output": "N",
+            "reason": "T=1，密码长度为 1，不满足至少 8 个字符，且没有大写字母和数字，应输出 N。"
+          },
+          {
+            "name": "长度恰好为 8 且满足全部条件",
+            "input": "1\nA1234567\n",
+            "output": "Y",
+            "reason": "密码长度为 8，包含大写字母 A 和数字，三项条件同时成立，应输出 Y。"
+          },
+          {
+            "name": "多组状态重置",
+            "input": "2\nA1234567\nabcdefgh\n",
+            "output": "Y\nN",
+            "reason": "第一组满足条件输出 Y；第二组长度为 8 但全为小写且无数字，应输出 N，可验证每组标记变量正确重置。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第8–9页的题目描述、输入格式、输出格式与当前 question 主体一致；但 PDF第9页 3.2.5 数据范围写明“1 ≤ M ≤ N ≤ 10^5，1 ≤ K_i ≤ M，1 ≤ P_i ≤ 10^3”，当前 question 遗漏该数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，不设 A-D 选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不设客观答案索引；PDF 答案表只覆盖单选和判断题，当前 officialAnswer 应为 null。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体算法和样例走查正确，但原末尾称“题面给出的具体数据范围没有完整摘出”，并泛泛提示总和可能超出 int。PDF第9页给出 M≤10^5、P_i≤10^3，最大总价为 10^8，int 足够；该说明与实际数据范围矛盾，已修正。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前 referenceCode 与 PDF第10页 3.2.6 参考程序逐行一致；min_price[100005] 覆盖 M≤100000；初始化极大值后对每件文具取 min，最后累加 1..M；最大总价 10^8，int 安全；时间复杂度 O(N+M)，空间 O(M)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202512 三级] 小杨的智慧购物\n\n## 题目描述\n\n小杨的班级要举办一个环保手工作品展览，老师请小杨去文具店购买 $M$ 种不同的文具（例如：铅笔、橡皮、尺子等）。\n\n商店里共有 $N$ 件文具，每件文具都有一个种类编号（从 $1$ 到 $M$）和价格。\n\n小杨的预算有限，他想了一个聪明的办法：对于每种文具，他只买最便宜的那一件（如果同种文具有多件价格相同且都是最便宜的，他只会购买其中的一件）。请你帮小杨计算出，买齐这 $M$ 种文具一共需要花费多少钱。\n\n## 输入格式\n\n第一行两个正整数 $M, N$，代表文具的种类数和总数。\n\n之后 $N$ 行，每行两个正整数 $K_i$ 和 $P_i$，分别代表第 $i$ 件文具的种类编号和它的价格。数据保证每个种类至少有一件文具可供购买。\n\n## 输出格式\n\n输出一行，代表购买文具的总价。\n\n## 数据范围\n\n对于所有测试点，保证 1 ≤ M ≤ N ≤ 10^5，1 ≤ K_i ≤ M，1 ≤ P_i ≤ 10^3。",
+          "explanation": "**解析：**\n\n### 一、题意理解\n题目要求购买编号为 `1` 到 `M` 的共 `M` 种文具。商店里共有 `N` 件文具，每件文具标明了它的种类编号 `K` 和价格 `P`。\n小杨的目标是以最省钱的方式买齐这 `M` 种文具。因为每种文具只需要购买一件，所以对于同一种类的多件文具，只需要选出**价格最低的那一件**即可。最终输出买齐 `M` 种文具所需的最低总花费。\n\n---\n\n### 二、完整算法流程\n\n本题的核心是**“分组求最小值并求和”**。由于文具种类的编号范围是 `1` 到 `M`，非常适合使用数组下标作为种类编号，来动态维护每种文具的当前最低价格。\n\n具体实现步骤如下：\n\n1. **定义最低价格数组：**\n   - 建立一个一维数组 `min_price`，其中 `min_price[i]` 表示种类编号为 `i` 的文具的最低单价。\n   - 参考代码把数组定义为 `min_price[100005]`，使下标能覆盖到种类编号。\n\n2. **初始化数组为极大值：**\n   - 求最小值时，初值必须设为一个很大的数，否则更新时无法取到正确的较小值。\n   - 将 `min_price[1]` 到 `min_price[M]` 全部初始化为一个极大的整数（如 `1000000000`）。\n\n3. **逐件读取文具并更新最低价：**\n   - 循环 `N` 次，每次读入一件文具的种类 `K` 和价格 `P`。\n   - 使用求较小值函数 `min` 更新该种类的最低价：`min_price[K] = min(min_price[K], P)`。\n   - 这样即使同一种文具出现多次，`min_price[K]` 中保存的始终是目前见过的最低价格。\n\n4. **累加计算总花费：**\n   - 定义累加变量 `total_cost`，初值赋为 `0`。\n   - 循环从 `1` 遍历到 `M`，将每种文具最终记录的最低价累加起来：`total_cost += min_price[k]`。\n\n5. **输出结果：**\n   - 打印 `total_cost` 即为所求的最小总花费。\n\n---\n\n### 三、样例走查\n\n以输入样例进行逐步推演：\n```\n2 5\n1 1\n1 2\n1 1\n2 3\n2 10\n```\n\n1. **输入参数：**\n   - 文具种类数 `M = 2`，文具总数 `N = 5`。\n2. **初始化状态：**\n   - `min_price[1] = 1000000000`\n   - `min_price[2] = 1000000000`\n3. **依次处理 5 件文具：**\n   - **第 1 件（种类 1，价格 1）：**\n     `min_price[1] = min(1000000000, 1) = 1`\n   - **第 2 件（种类 1，价格 2）：**\n     `min_price[1] = min(1, 2) = 1`（价格 2 比当前最低价 1 贵，不更新）\n   - **第 3 件（种类 1，价格 1）：**\n     `min_price[1] = min(1, 1) = 1`（价格相同，保持为 1）\n   - **第 4 件（种类 2，价格 3）：**\n     `min_price[2] = min(1000000000, 3) = 3`\n   - **第 5 件（种类 2，价格 10）：**\n     `min_price[2] = min(3, 10) = 3`（价格 10 比当前最低价 3 贵，不更新）\n4. **统计每种文具的最终最低价：**\n   - 种类 `1` 的最低价为 `1`；\n   - 种类 `2` 的最低价为 `3`。\n5. **累加求和：**\n   - 循环遍历 `k = 1` 到 `2`：\n     - `k = 1` 时：`total_cost = 0 + 1 = 1`\n     - `k = 2` 时：`total_cost = 1 + 3 = 4`\n6. **最终输出：** `4`，与样例输出一致。\n\n---\n\n### 四、易错提醒\n\n1. **初始值不可设为 0：**\n   求最大值时通常初值设为 `0`，但**求最小值时初值必须设为一个很大的正整数**。如果误将数组初始化为 `0`，`min(0, P)` 会永远得到 `0`，导致最终结果错误。\n2. **数组越界问题：**\n   种类编号从 `1` 到 `M`，用到的最大下标是 `M`，所以数组长度至少要是 `M + 1`。参考代码开了 `min_price[100005]`。累加时要写 `k <= M`；写成 `k < M` 会漏掉第 `M` 种。\n3. **总和的数据类型：**\n   本题数据范围中 1 ≤ M ≤ N ≤ 10^5、1 ≤ P_i ≤ 10^3，最坏总价为 10^5 × 10^3 = 10^8，未超过 `int` 上限（约 2.1×10^9），因此参考代码用 `int` 累加 `total_cost` 足够；若数据范围更大则需要改用 `long long`。\n\n该算法时间复杂度为 O(N+M)，空间复杂度为 O(M)。"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1\n",
+            "output": "1",
+            "reason": "M=N=1，只有种类 1 的一件文具，价格 1；必须购买，总价为 1。"
+          },
+          {
+            "name": "同种类多件与最高单价",
+            "input": "2 3\n1 1000\n2 1000\n1 999\n",
+            "output": "1999",
+            "reason": "种类 1 有两件，最低价为 999；种类 2 只有一件，价格为 1000；总价 999+1000=1999，同时覆盖单价上界 1000 和重复种类取最小值。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "usage": {
+        "prompt_tokens": 33875,
+        "completion_tokens": 15446,
+        "total_tokens": 49321,
+        "prompt_tokens_details": {
+          "cached_tokens": 33792
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12032
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00938143,
+          "allowance": 0.00562886,
+          "tokens": {
+            "input": 83,
+            "output": 15446,
+            "reasoning": 12032,
+            "cache_read": 33792,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-13T00:02:13.992Z",
+      "completedAt": "2026-11-13T00:04:24.972Z"
+    },
+    {
+      "questionIds": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "usage": {
+        "prompt_tokens": 33806,
+        "completion_tokens": 16514,
+        "total_tokens": 50320,
+        "prompt_tokens_details": {
+          "cached_tokens": 33664
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13902
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01003069,
+          "allowance": 0.00601842,
+          "tokens": {
+            "input": 142,
+            "output": 16514,
+            "reasoning": 13902,
+            "cache_read": 33664,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-13T00:08:30.767Z",
+      "completedAt": "2026-11-13T00:10:46.583Z"
+    },
+    {
+      "questionIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 33806,
+        "completion_tokens": 19677,
+        "total_tokens": 53483,
+        "prompt_tokens_details": {
+          "cached_tokens": 33664
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16024
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01192849,
+          "allowance": 0.0071571,
+          "tokens": {
+            "input": 142,
+            "output": 19677,
+            "reasoning": 16024,
+            "cache_read": 33664,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-13T00:14:50.327Z",
+      "completedAt": "2026-11-13T00:17:36.659Z"
+    },
+    {
+      "questionIds": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "usage": {
+        "prompt_tokens": 33859,
+        "completion_tokens": 12173,
+        "total_tokens": 46032,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10057
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0247653,
+          "allowance": 0.01485918,
+          "tokens": {
+            "input": 33859,
+            "output": 12173,
+            "reasoning": 10057,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-13T03:53:28.411Z",
+      "completedAt": "2026-11-13T03:55:44.370Z"
+    },
+    {
+      "questionIds": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 33930,
+        "completion_tokens": 11220,
+        "total_tokens": 45150,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 9325
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0118215,
+          "allowance": 0.0070929,
+          "tokens": {
+            "input": 33930,
+            "output": 11220,
+            "reasoning": 9325,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-13T05:56:55.614Z",
+      "completedAt": "2026-11-13T05:58:43.884Z"
+    },
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 33856,
+        "completion_tokens": 16571,
+        "total_tokens": 50427,
+        "prompt_tokens_details": {
+          "cached_tokens": 33792
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13325
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01005358,
+          "allowance": 0.00603215,
+          "tokens": {
+            "input": 64,
+            "output": 16571,
+            "reasoning": 13325,
+            "cache_read": 33792,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-13T16:00:07.996Z",
+      "completedAt": "2026-11-13T16:02:47.811Z"
+    }
+  ]
+}

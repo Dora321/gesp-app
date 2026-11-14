@@ -1,0 +1,103 @@
+{
+  "executedAt": "2026-11-12T13:58:27.685Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "1025",
+          "output": "1000",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1000\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围最小值 x=0",
+          "input": "0\n",
+          "output": "2025\n",
+          "reason": "由 (x&y)+(x|y)=x+y 得 y=2025-x；x=0 时 y=2025 为唯一正整数解，官方枚举程序同样在 i=2025 处命中（0&2025=0，0|2025=2025）。",
+          "kind": "boundary",
+          "actual": "2025\n",
+          "passed": true
+        },
+        {
+          "name": "数据范围上界 x=2024",
+          "input": "2024\n",
+          "output": "1\n",
+          "reason": "y=2025-2024=1；2024 为偶数，2024&1=0、2024|1=2025，和为 2025，成立且 y 为最小正整数解。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "官方样例 x=1025",
+          "input": "1025\n",
+          "output": "1000\n",
+          "reason": "PDF 第7页样例 1；1025&1000=0、1025|1000=2025，和为 2025。",
+          "kind": "boundary",
+          "actual": "1000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "8e7436a218abe7e86518b6bb1ad3ecf8938fd25c95ab7228a7a045bcc927a0fa"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "6\nApple\nbanana\napple\nOrange\nbanana\napple",
+          "output": "apple",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "apple\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1",
+          "input": "1\nA\n",
+          "output": "a\n",
+          "reason": "n=1 为官方数据范围下界；唯一单词转小写后即为答案，输出须为小写形式。",
+          "kind": "boundary",
+          "actual": "a\n",
+          "passed": true
+        },
+        {
+          "name": "大小写混合同一单词",
+          "input": "4\nApple\nAPPLE\naPpLe\napple\n",
+          "output": "apple\n",
+          "reason": "忽略大小写后四个单词均为 apple 计 4 次，为唯一最多；验证全字符（不只首字母）小写化逻辑。",
+          "kind": "boundary",
+          "actual": "apple\n",
+          "passed": true
+        },
+        {
+          "name": "词长上界 30",
+          "input": "1\nABCDEFGHIJKLMNOPQRSTUVWXYZABCD\n",
+          "output": "abcdefghijklmnopqrstuvwxyzabcd\n",
+          "reason": "单词长度恰为官方上界 30（26+4 个字母），n=1 时唯一单词转小写输出。",
+          "kind": "boundary",
+          "actual": "abcdefghijklmnopqrstuvwxyzabcd\n",
+          "passed": true
+        },
+        {
+          "name": "最大频次单词非首个",
+          "input": "3\nzzz\nApple\napple\n",
+          "output": "apple\n",
+          "reason": "zzz 计 1 次先成为临时答案，apple 计 2 次后经 cur>best 更新为最终答案，验证最大值维护逻辑不误留首个单词。",
+          "kind": "boundary",
+          "actual": "apple\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "dc18a739bede0d4c89c05e83d61238f3b733f5b87113046ff504a1b78ab96074"
+    }
+  ]
+}

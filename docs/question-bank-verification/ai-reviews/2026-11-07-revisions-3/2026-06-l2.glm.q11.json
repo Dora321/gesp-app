@@ -1,0 +1,96 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "glm",
+  "questionIds": [
+    11
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T09:26:47.805Z",
+  "completedAt": "2026-11-10T09:34:16.335Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35614,
+    "completion_tokens": 24947,
+    "total_tokens": 60561,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 23035
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0178156,
+      "allowance": 0.0178156,
+      "tokens": {
+        "input": 35614,
+        "output": 24947,
+        "reasoning": 23035,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f340c52a764794ec28972e2743de8c9e00bd715e04449fb1a213e463105c6fa7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 / C++ 二级 / 2026 年 06 月」，与核验目标 2026-06-l2（2026 年 6 月 C++ 二级）一致；同页答案表完整可读（题号 1-15 对应 C B D C B B A A A D A B D B A），第 3 页承载第 11 题完整题面；登记来源 git-blob SHA 46f343b77f0d32bf68cf4557bca15b8ee4cc94e8。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题给出 35 项输出序列，原卷因排版折为两行（第一行止于 5 6 7，第二行为 8 9 10 11 5 6 7），拼接后与候选项内单行序列逐项一致：「1 2 3 4 5 6 7 8 9 10 11 5 6 7 8 9 10 11 5 6 7 8 9 10 11 5 6 7 8 9 10 11 5 6 7」。代码块 int num = 1; for (int i = 0; i < 35; i++) { cout << num << \" \"; if (num _______ 10) num _______ 2; else num _______ 1; } 与候选逐字一致。独立点数：1..11 计 11 项，其后 5..11 三段计 21 项，末尾 5 6 7 计 3 项，合计 35，与循环上限 35 吻合。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题选项依次为 A. > /= +=、B. >= %= +=、C. > /= =+、D. >= %= =+，与候选 options 数组的顺序与内容完全一致，仅代码字体渲染差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题号 11 对应答案 A，0 起始索引为 0，与候选 answer=0 一致。独立复算四种组合：A（> /= +=）按 11/=2=5 跳回、num≤10 时 +=1 爬升，输出 1..11、随后 5..11 三段、末尾 5 6 7，共 11+21+3=35 项，与题给序列逐项吻合；B（>= %= +=）在 num=10 时即满足 10>=10，执行 10%=2 得 0，第 11 项输出 0 而非 11；C（> /= =+）、D（>= %= =+）中第三空 =+ 等价于 num = +1（赋值），使 num 恒为 1，均输出 35 个 1。A 为唯一正确组合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。当前候选解析确有机理偏差：B 仅写 11%=2=1，未指出 >= 条件在 num=10 时即触发 10%=2=0（实际首处偏离为第 11 项输出 0 而非 11）；C 将错误归因于 num =+ 2，但该分支在 num 恒为 1 时不可达，真实机理是 else 中 num =+ 1（即 num = +1）使 num 恒为 1、输出 35 个 1；D 仅写「两处都错」未给出机理。替换解析经我逐句独立复算：A 的 11/=2=5 跳回、num≤10 时 +=1 爬升、35=11+7+7+7+3 分解均正确；B 的首处偏离定位与 11%=2=1（假设性补充论断）成立；C/D 的 =+ 机理与输出 35 个 1 结论正确；易错提醒（整数除法截断、=+ 非复合赋值）与考点标注无误，且与题面、答案无冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第 11 题为单选题，原卷无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (> /= +=)**\n\n**核心解析：**\n输出规律是 num 从 1 递增到 11 后回到 5，再递增到 11，循环往复。A 中当 num=11 时 `11 > 10` 成立，执行 `11 /= 2` 得 5；其余 num≤10 时执行 `num += 1`，因而序列为 1..11，之后反复 5..11，最后停在 5 6 7。35 个输出可分解为 11 + 7 + 7 + 7 + 3 = 35，与循环次数吻合。\n\n**选项逐项分析：**\n- **A `> /= +=`**：✅ 与题给序列逐项一致。\n- **B `>= %= +=`**：❌ num=10 时 `10 >= 10` 已成立，执行 `10 %= 2` 得 0，序列在 10 后变为 0，不能得到 11；即使到达 11，`11 %= 2` 也为 1，不是 5。\n- **C `> /= =+`**：❌ `num =+ 1` 等价于 `num = +1`；首次 num=1 且不满足 `1 > 10`，else 每次都把 num 重新赋值为 1，故输出 35 个 1，`num =+ 2` 分支不可达。\n- **D `>= %= =+`**：❌ 同样因 `num =+ 1` 使 num 始终为 1，`>=` 与 `%=` 分支均不执行，输出 35 个 1。\n\n**易错提醒：** 整数除法会截断（11/2=5）；`=+` 不是复合赋值运算符，而是赋值一个正数。\n\n**考点：** 复合赋值运算符与循环序列分析"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核：题面（35 项序列、三处横线代码）、选项 A-D 与官方答案 A（索引 0）经 PDF 第 1、3 页独立核对均无需修改；其指出的候选解析缺陷我复核属实——B 的实际首错点是 num=10 时 10>=10 触发 10%=2=0（第 11 项输出 0 而非 11），候选仅写 11%=2=1 未定位首错；C 的实际机理是 else 中 num =+ 1（即 num = +1）使 num 恒为 1、输出 35 个 1，候选归因于不可达的 num =+ 2 分支属错误；D 候选仅写「两处都错」无机理。其替换解析经我独立复算 35 项轨迹（1..11 + 5..11×3 + 5 6 7 = 11+35... 即 11+21+3=35）及各分支排除机理全部正确，故应用 changes.explanation，修复后 explanation 标记为 verified。tests 不适用（非编程题）。"
+      }
+    ],
+    "summary": "题 11：题面、选项与官方答案 A（索引 0）均与原卷一致且经独立复算通过（A 组合输出 35 项 1..11、5..11×3、5 6 7 逐项吻合）；唯一问题为候选解析对 B/C/D 排除机理描述不准确（B 实际首错于 num=10 时 10>=10 触发 10%=2=0，C/D 实际是 =+ 使 num 恒为 1、输出 35 个 1，C 的 num =+ 2 分支不可达），已应用经独立复核确认的修正解析；其余维度无修改，tests 不适用（单选题）。"
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T20:18:22.083Z",
+  "completedAt": "2026-11-11T20:23:08.662Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34992,
+    "completion_tokens": 14957,
+    "total_tokens": 49949,
+    "prompt_tokens_details": {
+      "cached_tokens": 34688
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12354
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00912386,
+      "allowance": 0.00547432,
+      "tokens": {
+        "input": 304,
+        "output": 14957,
+        "reasoning": 12354,
+        "cache_read": 34688,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "013365d4bb7fa13988476c0cb85873270422de0422337f459f87fb603e3353cb",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF GESP C++ 三级、2024 年 06 月；同页单选题答案表第 11—15 题为 A、C、B、D、A，与卷面题号对应。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题面与 PDF 第 4—5 页一致：要求找出 1 到 35 中能被 7 整除的数，代码框架、空行位置和输出循环均对应。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与 PDF 第 5 页逐一对应：A arr[count++] = i; B arr[i] = count++; C arr[i] = count; D arr[count] = count++;，顺序与答案映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 11 题标为 A，网站 answer=0，对应 A 选项。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析核心结论正确，但称 D 与 A“等效”错误，且称 B 在 i=1 时越界也不准确；D 实际存入的是 count 值 0、1、2、3、4，并非 7、14、21、28、35。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (arr[count++] = i;)**\n\n**核心解析：**\n本题要把 1 到 35 中所有能被 7 整除的 i 按顺序存入数组，并用 count 记录已存入的元素个数。遇到 i % 7 == 0 时，应把当前的 i 写入 arr[count]，再让 count 加 1；后置自增 arr[count++] 正好完成“先以当前 count 为下标写入，再让 count 自增”。\n\n执行过程：i=7 时 arr[0]=7、count=1；i=14 时 arr[1]=14、count=2；……；i=35 时 arr[4]=35、count=5。最终 arr[0..4] 为 7、14、21、28、35。\n\n**选项逐项分析：**\n- A：正确。按 count 紧凑存放 i，并同步更新计数器。\n- B：错误。arr[i]=count++ 把计数器值写入与 i 对应的位置，而不是把 i 存入 arr[0]、arr[1]……；且 i=35 时 arr[35] 越界。\n- C：错误。arr[i]=count 既不存入 i，也不更新 count，输出循环不会输出所需结果。\n- D：错误。arr[count]=count++ 实际向 arr[0..4] 写入 0、1、2、3、4，而不是 7、14、21、28、35，与 A 不等价。\n\n**易错提醒：** 循环变量 i 用于枚举 1 到 35，count 用于控制结果数组的紧凑下标；不要混用，也不要漏掉自增。\n\n**考点：** 数组下标操作与后置自增运算符。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题面与 PDF 第 5 页一致：字符串 s=\"0629\"，逐字符累加到 x，且给出字符 '0' 的 ASCII 码为 48。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项 A 17、B 158、C 209、D 316 与 PDF 第 5 页顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 12 题标为 C，网站 answer=2，对应 C 选项 209。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析核心算式 48+54+50+57=209 正确，但对 B 选项称将 48 误记为 40 后得到 201“接近”158，属于错误且无助于解释干扰项；已改写为准确推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (209)**\n\n**核心解析：**\n字符串 \"0629\" 中的每个 s[i] 是 char 类型，参与算术运算时取字符的 ASCII 码值，而不是字符所表示的数字。\n\n逐位计算：\n- s[0] = '0'，ASCII 码为 48；\n- s[1] = '6'，ASCII 码为 48+6 = 54；\n- s[2] = '2'，ASCII 码为 48+2 = 50；\n- s[3] = '9'，ASCII 码为 48+9 = 57。\n\n因此 x = 48 + 54 + 50 + 57 = 209。\n\n**选项逐项分析：**\n- A 17：错误。把字符直接当成数字 0、6、2、9 相加得到 17，忽略了 ASCII 码。\n- B 158：错误。按 ASCII 码求和得不到 158。\n- C 209：正确。四个字符的 ASCII 码之和为 209。\n- D 316：错误。按 ASCII 码求和也不是 316。\n\n**易错提醒：** 字符参与算术运算时使用 ASCII 码；若要得到字符表示的数字，应使用 s[i] - '0'。\n\n**考点：** 字符与 ASCII 编码、字符参与整数运算、循环累加。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题面与 PDF 第 5—6 页一致：身高超过 135 厘米（不含 135 厘米）才入选，10 人身高数据与代码框架对应。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项 A count = arr[i]>135? 1: 0; B count += arr[i]>135? 1: 0; C count++; D 以上都不对，与 PDF 第 6 页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 13 题标为 B，网站 answer=1，对应 B 选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐项检查身高：136、137、138、140、145 共 5 人满足严格大于 135；B 用条件表达式累加 1/0，逻辑正确。原解析对 A、C 的排除也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题面与 PDF 第 6 页一致：要求输出 They're planning a party for their friend's birthday. 的 C++ 语句。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A、B、C、D 四个选项的引号、转义与结束符位置均与 PDF 第 6 页逐项对应；D 使用双引号包裹，内部单引号写成转义形式，语法成立。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 14 题标为 D，网站 answer=3，对应 D 选项。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称双引号字符串内部的单引号“需要”用反斜杠转义，这一说法不准确；在双引号字符串中单引号无需转义，只是写成 \\' 也合法。A、B、C 的错误均来自外层引号不成对或字符串未正确闭合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**核心解析：**\n目标句子中含有单引号，外层应使用双引号界定整个字符串。双引号字符串中的单引号不是外层定界符，本来不必转义；但写成 \\' 仍是合法的转义形式，仍表示单引号。D 的双引号闭合正确，能够原样输出目标句子。\n\n**选项逐项分析：**\n- A：外层以单引号开头，结尾却使用双引号，引号不配对；且其中包含 \\s 等无效片段，语法错误。\n- B：开头有双引号，但到 << 前没有闭合双引号，字符串没有正常结束，语法错误。\n- C：用单引号包裹整句，They're 处的单引号会提前结束字面量，语法错误。\n- D：外层双引号成对，内部 \\' 合法，输出内容与目标句子一致。\n\n**易错提醒：** 双引号字符串中的单引号无需转义；写成 \\' 也合法。关键是不能漏掉外层双引号，也不能用单引号包裹整句。\n\n**考点：** 字符串字面量、引号配对与转义字符。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "网站题面与 PDF 第 6—7 页一致：str=\"gesp.ccf.org.cn\"、delimiter=\".\"，要求补全 while 循环内更新 str 的语句，使输出为 gesp ccf org cn（末尾带空格）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A str = str.substr(found + delimiter.length(), str.length() - 1); B str = str.substr(found, str.length()); C str = str.substr(found, str.length() - 1); D 以上都不对，与 PDF 第 7 页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 15 题标为 A，网站 answer=0，对应 A 选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "A 从 found+1 处截取，跳过当前分隔点，剩余串依次为 ccf.org.cn、org.cn、cn；循环结束后再补最后一个 cn，得到 gesp ccf org cn 。B 未跳过点号会反复匹配同一位置；C 同样未跳过且长度递减会丢字符。解析核心推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验第 11—15 题：题面、选项顺序与官方答案表均匹配，答案分别为 A、C、B、D、A。第 11、12、14 题解析存在事实性/推导性瑕疵，已给出修正草稿：第 11 题纠正 D 与 A 不等效及 B 越界位置；第 12 题纠正干扰项 201 的错误说明；第 14 题纠正“双引号字符串内单引号必须转义”的错误说法。第 13、15 题维持通过。"
+  }
+}

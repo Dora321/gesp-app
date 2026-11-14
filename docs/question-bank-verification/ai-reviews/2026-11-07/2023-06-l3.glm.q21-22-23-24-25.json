@@ -1,0 +1,241 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T10:03:32.494Z",
+  "completedAt": "2026-11-11T10:07:11.126Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 67015,
+    "completion_tokens": 8552,
+    "total_tokens": 75567,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5247
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01432825,
+      "allowance": 0.01432825,
+      "tokens": {
+        "input": 67015,
+        "output": 8552,
+        "reasoning": 5247,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d80558b5c2f0eb8b9fea809bce35de852889e05b5b90a1b230c1f09d9c5ab4b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确为“2023 年 6 月 GESP C++ 三级真题解析”，含单选 15 题（每题 2 分共 30 分）、判断 10 题（每题 2 分共 20 分）、编程 2 题（每题 25 分共 50 分），与 2023-06-l3 三级真题及 CCF 官方解析来源一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题第 6 题原文“在 C++语言中，可以使用字符（如'0'）作为数组下标。”，网站题面一致，未改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项为“正确/错误”，与 PDF 答案符号 √/× 对应，顺序无映射问题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页【答案】为“√”，按正确=0 映射为 0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：'0' 的 ASCII 为 48，字符常量在 C++ 中为整型，可隐式转换作下标，int b['0'] 等价于 int b[48]，与 PDF 解析及网站解析一致。PDF 考纲知识点误标“位运算(三级)”，网站未沿用该错误标注，不影响解析内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。答案映射 √→0 正确，题面与 PDF 一致，解析推导正确，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题第 7 题原文“在 C++语言中，数组被定义时，它的大小就确定了。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序正确，与 PDF 符号 √ 对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页【答案】为“√”，映射为 0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：网站原解析“C++11 起也引入了 std::vector 等动态容器”为事实错误（std::vector 自 C++98 标准库即已提供），替换为“C++ 标准库早已提供 std::vector”；对 VLA（C99、部分编译器扩展）的表述准确，核心判定（定长数组大小定义时确定）正确且与 PDF 解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n在标准 C++（C++98/03 及之后）中，使用静态语法定义的数组（如 `int arr[10];` 或 `int arr[N];`，其中 N 是常量表达式）其大小在编译阶段就已确定。数组一旦定义，其长度不可改变，既不能在定义后扩展，也不能在运行时动态调整。虽然 C99 引入了变长数组（VLA）允许运行时确定大小，部分编译器也将其作为扩展支持；C++ 标准库则早已提供 `std::vector` 等动态容器，但这些已超出“数组”原始定义的范畴。本题语境下的“数组”即指静态分配的定长数组，其大小在定义时确定，此后不可变。\n\n**易错提醒：**\n- 混淆标准 C++ 数组与 C99 VLA、C++ 的 `vector` 等动态容器的行为，后者可以运行时改变大小。\n- 将“数组大小确定”与“数组内容可变”混淆：数组大小固定，但数组元素的值可以修改。\n\n**知识延伸：**\n如果需要在运行时动态调整大小，应使用 `std::vector`、`std::array`（大小固定但更安全）或手动动态内存分配（`new[]`/`delete[]`）。GESP 三级要求掌握静态数组的基本概念和用法。\n\n**考点：** 数组的概念与特性"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对“C++11 起引入 std::vector”事实错误的指认（vector 为 C++98 标准库组件）；独立核对修复文本无新错误，采纳该修复。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页判断题第 8 题原文含背景句“计算机中存储的数据都是二进制形式。因此，在使用 C++语言编写程序时……会使得程序运行效率更高。”网站压缩了前半句背景，但保留“改写为二进制使运行效率更高”这一被判断的核心命题，判断结论（错误）不受影响，属可接受的等价缩写。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序正确；该命题应判错误，对应选项 1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页【答案】为“×”，映射为 1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：无论源码写 10、0xA 还是 0b1010，编译期均生成相同机器码，运行效率相同，与 PDF 解析“编译器都会翻译为二进制机器指令运行”一致，网站解析推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。背景句压缩不改变判断命题与结论，不构成需修复的题面缺失，维持网站原数据。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页末判断题第 9 题原文“在 C++语言中，表达式(0xf == 015)的值为 true。”，网站题面文字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序正确；0xf=15 与八进制 015=13 不相等，表达式为 false，应选“错误”即选项 1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页末【答案】为“×”（解析位于第 10 页），映射为 1，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：核心推导 0xf=15、015（八进制）=1×8+5=13、15≠13 故为 false 正确；修复了“printf/scout”笔误（应为 cout）、“0 开头且第二位非 8/9”的不严谨表述（改为八进制后续由 0～7 组成，0 后出现 8/9 则字面量非法），并在知识延伸补充 C++14 起的 0b 二进制字面量，修复文本经独立核对无新错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n在 C++ 中，以不同前缀表示不同进制的整数常量：\n- `0xf` 以 `0x` 开头，是十六进制数，转换为十进制为 15（即二进制 1111₂）。\n- `015` 以 `0` 开头（后续由 0～7 组成），是八进制数，转换为十进制为 1×8¹ + 5 = 13（即二进制 1101₂）。\n\n由于 15 ≠ 13，二者不相等，因此表达式 `(0xf == 015)` 的结果为 `false`（0）。\n\n**易错提醒：**\n- 容易忽略 `0` 开头的整数是八进制，将 `015` 误认为十进制的 15；若 `0` 后出现 8 或 9，则不是合法的八进制字面量。\n- 在调试输出时注意 printf/cout 的默认输出都是十进制，但源码中的进制不影响比较逻辑。\n\n**知识延伸：**\nC++ 传统上支持十进制（无前缀）、八进制（`0` 前缀）、十六进制（`0x` 前缀）整型字面量；C++14 起还支持 `0b` 前缀的二进制字面量。GESP 三级常通过进制转换和进制混淆来考察学员对进制的理解。\n\n**考点：** 数制转换与整型常量表示"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核指出的 scout 笔误、八进制描述不严谨及“三种进制”遗漏 0b 的问题；逐条核对修复文本（13=1101₂、15=1111₂、C++14 二进制字面量）均正确，采纳。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 10 页判断题第 10 题原文为“如果 a 为 int 类型的变量，且表达式((a | 3) == 3)的值为 true，则说明 a 在从 0 到 3 之间（可能为 0、可能为 3）。”网站原题面缺失“int 类型”限定（类型限定影响 a|3 的合法性及命题范围），已按原文回补 int 限定与端点说明（可能为 0、可能为 3），与官方题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序正确；该命题为真，应选“正确”即选项 0。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 10 页【答案】为“√”，映射为 0，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：独立推导 a|3 的逐位独立性质——高位（第 2 位及以上）与 a 相同、低两位恒为 11，故 (a|3)==3 当且仅当 a 补码高位全 0，即 a∈{0,1,2,3}；修正原解析“结果必然大于 3”对负数不成立的漏洞（负数高位为 1 时 a|3 仍为负数，同样不等于 3），修复文本无新错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "如果 a 为 int 类型的变量，且表达式 ((a | 3) == 3) 为 true，说明 a 在 0 到 3 之间（可能为 0、可能为 3）。",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n位运算表达式 `(a | 3) == 3` 的含义是：a 与 3 进行按位或运算后，结果等于 3。3 的二进制表示为 `...000011₂`（低两位为 1，高位为 0）。\n\n按位或是逐位独立运算：`a | 3` 的高位（第 2 位及以上）与 a 的对应高位完全相同，低两位恒为 11。因此 `(a | 3) == 3` 成立，当且仅当 a 的补码表示中第 2 位及更高位全为 0。补码高位全 0 意味着 a 为非负数，且 a 只能取 0、1、2、3 四个值之一，即 0 ≤ a ≤ 3，包含端点 0 和 3。对负数而言，其补码最高位为 1，`a | 3` 的最高位仍为 1，结果为负数，同样不可能等于 3。\n\n**易错提醒：**\n- 误认为 a 只能是 3，实际上 a 可以是 0、1、2、3 中的任意一个。\n- 不要用“结果必然大于 3”来概括高位有 1 的情形：对负数，高位有 1 时 `a | 3` 仍为负数，同样不等于 3，但并非“大于 3”。\n\n**知识延伸：**\n位运算（|、&、^、~、<<、>>）是 GESP 三级、四级的重点考点。类似地，`(a & 3) == 3` 则表示 a 的低两位必须全为 1（即 a ≡ 3 mod 4）。掌握位运算的位独立性原则是解题关键。\n\n**考点：** 位运算（按位或）的特性与分析"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对题面缺失 int 限定与解析负数情形漏洞的指认；question 回补采用更贴近 PDF 原文的“（可能为 0、可能为 3）”表述（替代初稿“包含 0 和 3”），explanation 重写为逐位独立 + 补码高位全 0 的严格论证，均为独立确认后采纳。"
+      }
+    ],
+    "summary": "本批核验网站题号 21–25（对应 PDF 判断题第 6–10 题）。五题官方答案符号与网站答案映射全部一致：21 √→0、22 √→0、23 ×→1、24 ×→1、25 √→0。题面方面，23 题压缩背景句不改变判断命题，无需修复；25 题缺失“int 类型”限定及端点说明，已按 PDF 原文回补。解析方面修复三处：22 题“C++11 起引入 std::vector”的事实错误（vector 为 C++98 组件）、24 题“printf/scout”笔误及八进制/进制种类表述不严谨（补充 C++14 的 0b 字面量）、25 题对负数“结果必然大于 3”的不当论证（改为补码高位论证）。修复后相关维度均核验通过。本批均为判断题，无参考代码与编程测试项，tests 留空。"
+  }
+}

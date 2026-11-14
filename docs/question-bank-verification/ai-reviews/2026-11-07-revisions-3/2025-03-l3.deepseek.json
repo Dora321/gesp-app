@@ -1,0 +1,141 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    14,
+    16
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T22:17:52.839Z",
+  "completedAt": "2026-11-12T22:21:01.944Z",
+  "finishReason": "stop",
+  "inputSha256": "13b785c8164759fe7c37e0d6b53a719d0a8e11dfb1003e06f6362ce4ddee90ec",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为CCF GESP“C++ 三级”“2025年03月”，与paperId 2025-03-l3一致；第1页单选题答案表第14题为D，第6页判断题答案表第1题为×。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "type": "single",
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第5页原图题干为“想要得到字符串 world，下面程序横线处应该填入的是（）”，目标字符串为小写world；候选题面按选项和官方答案整理为大写World，与原卷逐字文本不一致。选项及官方答案均按大写World设计，源卷题干与选项存在大小写矛盾，无法同时满足原卷字面与官方答案，保留争议。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A-D依次为：A str.insert(4, \"World\"); cout << str.substr(4, 4);；B cout << str.substr(5, 5);；C str.insert(\"World\"); cout << str.substr(5, 5);；D str.insert(5, \"World\"); cout << str.substr(5, 5);。与候选options逐项一致，顺序无差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第14题为D，0起始索引3，与候选answer=3一致。按大写World理解独立推演：D插入后为HelloWorldC++，substr(5,5)得World；A得Worl，B得C++，C无单参数字符串insert重载。原卷题干小写world与选项不符的争议另记。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项推导A得HellWorldoC++且substr(4,4)为Worl、B得C++且substr(5,5)按标准截断不抛异常、C编译失败、D得World，均与C++标准库行为一致；并明确注明源卷小写world与选项/答案大写World矛盾，未编造官方理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "PDF第5页题干目标为小写world，而四个选项及官方答案D均对应大写World；源卷题干与选项矛盾，候选题面按大写整理后与选项自洽但不等同于原卷逐字文本，保留争议。"
+        ]
+      },
+      {
+        "id": 16,
+        "type": "judge",
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第1题原文为“判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度”，与候选题面除冒号全半角及句末标点外语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D选项，原卷以题号加√/×答案表呈现；候选“正确/错误”为判断题通用形式。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第6页判断题答案表第1位为×，候选answer=1与答案表映射一致；但按标准实数边长，若a+b>c、a+c>b、b+c>a，则相加得2a>0等，可推出a、b、c均大于0，故该条件已是非退化三角形成立的充要条件，官方判×与标准数学结论冲突，PDF未给出官方理由。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立给出2a>0等推导，指出官方×与标准充要性解读冲突，并说明0、1、2与-1、2、3反例均不满足题设条件，不能证明条件不充分；未编造官方依据，保留争议的处理符合证据边界。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案表第1题判×且候选answer=1与表一致，但“任意两边之和大于第三边”在实数边长模型下已是三角形成立的充要条件；官方判×依据未在PDF给出，答案的数学正确性保留争议，不擅自改判。"
+        ]
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        14,
+        16
+      ],
+      "usage": {
+        "prompt_tokens": 17558,
+        "completion_tokens": 17634,
+        "total_tokens": 35192,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16376
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0132141,
+          "allowance": 0.00792846,
+          "tokens": {
+            "input": 17558,
+            "output": 17634,
+            "reasoning": 16376,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T22:17:52.839Z",
+      "completedAt": "2026-11-12T22:21:01.944Z"
+    }
+  ]
+}

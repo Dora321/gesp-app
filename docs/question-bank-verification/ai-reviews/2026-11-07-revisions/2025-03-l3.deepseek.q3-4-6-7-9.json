@@ -1,0 +1,231 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    4,
+    6,
+    7,
+    9
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T15:50:29.550Z",
+  "completedAt": "2026-11-12T15:51:30.555Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38779,
+    "completion_tokens": 9546,
+    "total_tokens": 48325,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 7783,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01154445,
+      "allowance": 0.00692667,
+      "tokens": {
+        "input": 38779,
+        "output": 9546,
+        "reasoning": 7783,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f13d61dd4f1a1efd22652a13eeabdf2599c04954ea23bf00e480a7a8a454289b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标明“C++ 三级 2025 年 03 月”，与 2025-03-l3 对应；第 1 页含单选题答案表。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题题干为“在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么（ ）”，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A 10000101、B 11111010、C 11111011、D 00000101，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 A，即索引 0，与候选 answer=0 一致；独立按 8 位原码验算：符号位 1，数值位 5 的 7 位二进制为 0000101，拼接得 10000101，亦为 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：B 11111010 是 -5 的反码（+5 的 00000101 按位取反），C 11111011 是 -5 的补码（反码加 1），D 00000101 是 +5 的原码；候选解析逐项结论与推导一致，无内部矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末第 4 题题干为“十进制数 111.111 的二进制表示可以是下面的（ ）”，与候选题面一致（仅句末标点差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A 1101111.0001110001、B 1101110.1001110001、C 1101111.1001110001、D 1101111.0011110001，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 A，即索引 0，与候选 answer=0 一致；独立验算整数 111=1101111₂、小数前 10 位为 0001110001，答案为 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立乘 2 取整验算：0.111→0.222→0.444→0.888→1.776→1.552→1.104→0.208→0.416→0.832→1.664，取整序列 0001110001；整数除法逆序得 1101111，组合为 1101111.0001110001。候选解析逐项分析与此一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干为“在 C++ 中，一个 8 位有符号整数（使用补码表示）的范围是（ ）”，与候选题面一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A -128 到 127、B -127 到 128、C -256 到 255、D 0 到 255，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 A，即索引 0，与候选 answer=0 一致；独立按补码位权验算：10000000₂=-128，01111111₂=127。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：8 位补码范围为 -128 到 127；C 的 -256 到 255 对应 9 位有符号补码，16 位有符号范围为 -32768 到 32767；D 是 8 位无符号范围。候选解析各选项结论正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题代码为 int a = -5; unsigned int b = a; cout << b;，与候选题面代码一致；原卷同样未含 main 框架。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A -5、B 5、C 4294967291、D 编译错误，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题为 C，即索引 2，与候选 answer=2 一致；独立按 32 位补码验算：-5 转为 unsigned int 的值为 2^32-5=4294967291。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：0xFFFFFFFB 等于 2^32-5=4294967291；该转换不是取绝对值，也不是编译错误。候选解析的模 2^32 解释、16 位反例及 unsigned int x=-1 的延伸均正确，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页末第 9 题题干为“下面程序是将十进制转十六进制，横线处应该填入的是（ ）”，代码在第 3 页：int decimal = 255; 后接横线及 return 0;，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A cout << oct << decimal;、B cout << decimal << decimal;、C cout << hex << decimal;、D 不能正确执行，与候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 C，即索引 2，与候选 answer=2 一致；独立验证 255 的十六进制为 ff，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：255=15×16+15，十六进制为 ff，八进制为 377；B 是合法语句，会输出 255255 且未设置 hex；A 输出八进制 377，不符合题意；D 错误。候选解析各选项结论正确，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "按 PDF 页图核验指定 5 题（3、4、6、7、9）：题面与选项均与原卷一致，答案索引分别为 0、0、0、2、2，与第 1 页答案表对应；解析经独立验算未发现事实或推导错误，5 题均无需修改。其他题号不在本次处理范围。"
+  }
+}

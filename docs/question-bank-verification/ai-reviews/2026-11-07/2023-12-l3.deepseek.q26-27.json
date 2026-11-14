@@ -1,0 +1,170 @@
+{
+  "paperId": "2023-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T10:47:25.059Z",
+  "completedAt": "2026-11-11T10:52:26.759Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33184,
+    "completion_tokens": 24315,
+    "total_tokens": 57499,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 22342
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0195666,
+      "allowance": 0.01173996,
+      "tokens": {
+        "input": 33184,
+        "output": 24315,
+        "reasoning": 22342,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c4f34351a8e3b2b69284df238ba5ae7fbd149cdc645a8b2ec894e8acb302e591",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++3级.pdf",
+    "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
+    "mirrorBytes": 1749021,
+    "shaVerified": true,
+    "sha256": "ef6bb91b5ed0d4b380f6ab5ee383711d77ee4c7d9894074cb83eabdc75322ec5"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 三级 2023 年 12 月”，与 paperId 2023-12-l3 一致；题26位于 3.1，题27位于 3.2。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页 3.1.2 的约束为“保证 0<N<10；i<N”，网站写成“0<i<N≤9”，错误地排除了 i=0 这一官方允许的边界；其余故事、样例和输出要求基本一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 编程题没有答案表，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析建议从初始鱼数 x=1 正向枚举；当 N=9、i=1 时最小答案是 387420481，按原思路需进行约 3.5×10^9 次整除/取模检查，1.0 s 内不可接受。解析应改为逆向构造或直接公式。"
+          },
+          "referenceCode": {
+            "status": "needs_fix",
+            "evidence": "原参考代码逐一枚举初始鱼数 x，最坏 N=9 时循环到 387420481，每次又做 O(N) 检查，复杂度过高；应改为逆向枚举末猫份额，或使用由 s_t=y_t+i 推出的公式直接计算。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 三级] 小猫分鱼\n\n## 题目描述\n\n海滩上有一堆鱼，$N$ 只小猫来分。第一只小猫把这堆鱼平均分为 $N$ 份，多了 $i$ 条，它把多的 $i$ 条扔进海里，拿走了其中的一份。第二只小猫接着把剩下的鱼平均分为 $N$ 份，又多了 $i$ 条，它同样把多的 $i$ 条扔进海里，拿走了其中的一份。之后的小猫都按同样的方式分鱼，直到第 $N$ 只小猫也拿走了自己的一份（每只小猫分得的一份都不能为空）。\n\n请问海滩上最少有多少条鱼，才能让上述过程顺利完成？\n\n## 输入格式\n\n总共 $2$ 行。第一行一个整数 $N$，第二行一个整数 $i$。\n\n保证 $0<N<10$，$i<N$。\n\n## 输出格式\n\n一行一个整数，表示满足要求的海滩上最少的鱼数。\n",
+          "explanation": "**答案：** 采用逆向构造或公式求最小初始鱼数。设第 t 只小猫面对 x_t 条鱼，拿走 y_t 条，则 x_t=N*y_t+i，x_{t+1}=(N-1)*y_t。又有 x_{t+1}=N*y_{t+1}+i。令 s_t=y_t+i，可推出 s_{t+1}=(N-1)/N*s_t，即 s_t=((N-1)/N)^t*s_0。为使 y_0,...,y_{N-1} 全为整数，s_0 必须是 N^(N-1) 的倍数。令 s_0=m*N^(N-1)。最后一只猫拿到的份额 y_{N-1}=m*(N-1)^(N-1)-i，必须不小于1，因此最小的 m 为 ceil((i+1)/(N-1)^(N-1))。初始鱼数为 x_0=N*y_0+i=m*N^N-(N-1)*i。N=1 时答案为1。\n\n**样例验证：** N=2,i=1 时，m=ceil(2/1)=2，x=2*2^2-1=7；N=3,i=1 时，m=ceil(2/4)=1，x=3^3-2=25。\n\n**复杂度与范围：** N≤9，直接用长整型计算幂和答案即可，时间 O(N) 或 O(1)，空间 O(1)，不会因从1枚举初始鱼数而超时。答案最大不超过约3.9e8，long long足够。",
+          "referenceCode": "#include <iostream>\nusing namespace std;\n\nlong long power(long long a, int b) {\n    long long r = 1;\n    while (b--) r *= a;\n    return r;\n}\n\nint main() {\n    int N, i;\n    cin >> N >> i;\n    if (N == 1) {\n        cout << 1 << endl;\n        return 0;\n    }\n    long long denom = power(N - 1, N - 1);\n    long long m = (i + 1 + denom - 1) / denom;\n    long long ans = m * power(N, N) - 1LL * (N - 1) * i;\n    cout << ans << endl;\n    return 0;\n}"
+        },
+        "tests": [
+          {
+            "name": "最小规模 N=1,i=0",
+            "input": "1\n0\n",
+            "output": "1\n",
+            "reason": "官方约束 0<N<10、i<N 允许 N=1,i=0；一只猫至少拿走1条，故最少1条。"
+          },
+          {
+            "name": "i=0 边界 N=3",
+            "input": "3\n0\n",
+            "output": "27\n",
+            "reason": "i=0 时每轮均分且每份非空，最小初始鱼数为 N^N=3^3=27。"
+          },
+          {
+            "name": "大规模 N=9,i=1",
+            "input": "9\n1\n",
+            "output": "387420481\n",
+            "reason": "公式中 m=1，答案=9^9-(9-1)=387420489-8=387420481；用于检验不能按初始鱼数从1暴力枚举。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7—8页的题目描述、六种转换类型、N 与 x 的范围、输入输出格式及样例均与网站一致；$0\\le x\\le1000$、$1\\le N\\le1000$ 与单位大小关系无误。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 编程题没有答案表，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确说明用 cin 按空白分词读取 x、单位1、等号、问号、单位2，六种倍率覆盖完整，最大结果 1000×1000000=1000000000 未溢出；样例复算一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码的 map 覆盖 m→mm、km→mm、km→m、g→mg、kg→mg、kg→g 六种合法转换；x 与倍率使用 long long，最大 1e9 不溢出；输出空格和换行格式与题目要求一致，复杂度 O(N)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模且 x=0",
+            "input": "1\n0 km = ? mm\n",
+            "output": "0 km = 0 mm\n",
+            "reason": "N 最小为1，x 最小为0；km 到 mm 的倍率为1000000，0乘任何倍率仍为0。"
+          },
+          {
+            "name": "最大乘积 1000 kg = ? mg",
+            "input": "1\n1000 kg = ? mg\n",
+            "output": "1000 kg = 1000000000 mg\n",
+            "reason": "x 最大为1000，kg 到 mg 的倍率为1000000，答案为10^9，验证 long long 与输出格式。"
+          },
+          {
+            "name": "覆盖 km→m 分支",
+            "input": "1\n1000 km = ? m\n",
+            "output": "1000 km = 1000000 m\n",
+            "reason": "验证 map 中 km→m 的倍率1000及最大 x，防止漏映射。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题26、27。题27题面、解析和参考代码与 PDF 一致，边界测试覆盖 i=0、最大 N 和最大乘积。题26存在约束遗漏：官方允许 i=0，而网站写成 0<i；同时原解析和参考代码采用从初始鱼数正向暴力枚举，N=9 时不可接受，已给出逆向公式解法及边界测试。两题编程题均无官方答案表，officialAnswer 设为 null。"
+  }
+}

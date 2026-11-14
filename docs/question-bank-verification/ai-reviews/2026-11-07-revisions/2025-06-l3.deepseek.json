@@ -1,0 +1,538 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    3,
+    8,
+    12,
+    13,
+    15,
+    21,
+    22,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T21:55:52.332Z",
+  "completedAt": "2026-11-12T22:21:42.839Z",
+  "finishReason": "stop",
+  "inputSha256": "d7f5e2c37e6c8fc4333be88e1396cb5721cc6b88e69677de4e2e5e6a11ef4e23",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 CCF 编程能力等级认证 GESP、C++ 三级、2025 年 06 月，与 paperId 2025-06-l3 一致。\nPDF第1页页图卷头为“C++ 三级”，年月为“2025年06月”，与目标2025-06-l3一致。\nPDF 第1页卷头显示“CCF 编程能力等级认证 / GESP / C++ 三级 / 2025年06月”，与 2025-06-l3 的年份、月份和等级一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题原文为「反码表示中，零的表示形式有：」，网页仅将冒号改为句号并补作答括号，语义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. 1种、B. 2种、C. 8种、D. 16种，与网页选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号2对应B，网页 answer=1 映射B；独立推导反码 +0=00000000、-0=11111111，共两种，B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：正数（含+0）反码同原码，-0原码10000000数值位取反得11111111；8位反码零为00000000/11111111两种。补码零唯一，10000000规定为-128，选项分析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题原文为「补码 1011 1011 对应的真值是( )」，与网页一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A. -69、B. -59、C. -68、D. -58，与网页顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号3对应A，网页 answer=0 映射A；独立计算 10111011 取反加一得01000101=69，真值-69。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：10111011 位权求和 -128+32+16+8+2+1=-69；-69=01000101取反10111010加1得10111011，反向验证成立；C(-68)对应漏加1错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第8题原文为「二进制数 1010|1100 的结果是（ ）」，网页仅空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. 1000、B. 1110、C. 1010、D. 1100，与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号8对应B，网页 answer=1 映射B；独立逐位计算 1010|1100=1110。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核逐位：bit0 0|0=0，bit1 1|0=1，bit2 0|1=1，bit3 1|1=1，结果1110；A的1000是1010&1100，C/D分别是原操作数，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第12题代码为 int height=10; int distance=0; for(i=1;i<=5;i++){ 横线; height/=2; distance+=height; } 输出distance，网页代码与选项顺序一致；原注释为「模拟5次落地」。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. distance += height/2;、B. distance += height;、C. distance += height*2;、D. distance += height+1;，网页仅空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号12对应B，网页 answer=1 映射B；填B后逐轮累计15、22、25、26、26，横线负责累加本次下落距离，B唯一符合代码。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核填B的代码行为：i=1加10再反弹5，累计15；i=2加5再反弹2，累计22；i=3加2再反弹1，累计25；i=4加1再反弹0，累计26；i=5加0，仍26。横线后 height/=2; distance+=height; 已累加反弹高度，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第13题原文为「C++代码 string s = \"GESP考试\"; ，s占据的字节数是（）」，网页题干一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. 10、B. 8、C. 8或10、D. 取决于计算机采用什么编码，与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题号13对应D，网页 answer=3 映射D；独立分析 UTF-8=10 字节、GBK=8 字节，其他编码还可能不同，仅D完整。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：GESP考试为4个ASCII字符+2个汉字；UTF-8下4+3×2=10字节，GBK下4+2×2=8字节，若按其他编码计还可能不同（如UTF-16为12字节、UTF-32为24字节），字节数取决于编码；选项C只列两种常见情况不全面。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第15题原文为“字符串‘Gesp考试’，字符数是（ ）”，候选仅补充空格、括号和句号，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为 A.10、B.8、C.6、D.字符数多少取决于编码；候选 options 顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第15题为 C（0起始索引2）；独立计数 G、e、s、p 共4个字母，加“考”“试”2个汉字，共6个字符，C正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立推导4+2=6；同时区分UTF-8约10字节、GBK约8字节，并指出 std::string::size()/length() 返回 char 单元数而非本题逻辑字符数，未混淆字符数与字节数。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第6题原文为“(x & 1) == 0 可以判断整数 x 是否为偶数。”，与候选逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面以√/×作答，无A-D选项；网站“正确/错误”仅为作答映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第6题为√（正确），按正确=0映射为0；候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：偶数最低位为0，奇数最低位为1，故 (x & 1) == 0 判断偶数成立；负数在补码下最低位同样反映奇偶；候选补充“== 优先级高于 &，省略括号会解析为 x & (1 == 0)”正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第7题原文为“string 的 substr(2, 10) 在字符串长度不足时会抛出异常。”，与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面以√/×作答，无A-D选项；网站“正确/错误”仅为作答映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第7题为×（错误），按错误=1映射为1；候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对 std::string::substr(pos,len)：pos > size() 才抛 out_of_range；pos == size() 返回空串；len 超过剩余字符数时安全截断。故“长度不足就抛异常”错误，候选边界说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第10题原文为“函数声明 double f(); 返回 int 时，会自动转换为 double”，候选仅补充句号和代码格式，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题卷面以√/×作答，无A-D选项；网站“正确/错误”仅为作答映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第10题为√（正确），按正确=0映射为0；候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：return 语句表达式类型与函数声明返回类型不一致时发生隐式转换，return 42 在 double f() 中转换为 42.0；候选将转换位置说明在被调函数 return 处正确。GESP常见32位 int/64位 double 环境下 int→double 可精确表示，不影响本题判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          4,
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页有“3.1 编程题1 试题名称：奇偶校验”及1.0 s/512.0 MB；第5页3.1.1至3.1.4题面、输入输出格式、两组样例与候选一致；第5页3.1.5数据范围“1≤n≤100，0≤ci≤255”已包含在候选题面中。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表条目，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算样例1：71含4个1、69含3个、83含4个、80含2个，合计13，校验码1；样例2六个数均为2的幂各含1个1，合计6，校验码0。候选关于除2取余/位运算统计、c=0不进入 while(c) 循环、累加器初始化及输出格式的说明均成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考程序与PDF第5至6页3.1.6逐行一致；全局 v 初始为0，while(c) 中 v += c & 1 后 c >>= 1 正确统计二进制1的个数，c=0不贡献；n≤100、ci≤255时 v≤800，无溢出；输出 v 与 v & 1 符合格式。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值与零值",
+            "input": "1\n0\n",
+            "output": "0 0",
+            "reason": "n=1、c1=0均为范围下界；0的二进制不含1，v=0，校验码0（独立推算，未运行）。"
+          },
+          {
+            "name": "n与c_i双上界",
+            "input": "100\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n",
+            "output": "800 0",
+            "reason": "255=11111111₂含8个1，100个共800个1，800为偶数故校验码0；覆盖n=100、ci=255双上界及v上限（独立推算）。"
+          },
+          {
+            "name": "奇数校验分支",
+            "input": "3\n1 2 4\n",
+            "output": "3 1",
+            "reason": "1、2、4各含1个二进制1，总数3为奇数，校验码1（独立推算）。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页 3.2 题头标明时间限制 1.0 s、内存限制 512.0 MB；3.2.1—3.2.5 的题目描述、输入格式、输出格式、两则样例及数据范围“1 ≤ n ≤ 1000，1 ≤ a_i ≤ 10^9”与候选 question、samples 一致。样例1为“4 / 1 4 3 3 → 16”，样例2为“15 / 314 15926 53589793 238462643 383279502 8 8 4 1 9 7 1 6 9 3 → 4508143253”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，卷面无 A—D 选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题没有 PDF 答案表条目，officialAnswer 为 null；正确性通过参考程序和独立推导核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用贪心 b_1=a_1、b_i=max(a_i,b_{i-1}+1)，并按参考代码写回 a[i] 的方式避免使用未更新的前一位需求。独立复核样例1：发放数为 1、4、5、6，总和16；样例2前5位发放数和为 314+15926+53589793+238462643+383279502=675348178，第6—15位依次为 383279503—383279512，共10项之和为3832795075，总计4508143253，与PDF样例一致。解析中关于 long long 防溢出、全局 a[0]=0 使 i=1 时 max(1,a[1])=a[1] 的说明均成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与 PDF 第7页 3.2.6 参考程序逐行一致。独立复核：i=1 时全局 a[0]=0，a[1]=max(1,a[1])=a[1]；i>1 时 a[i]=max(a[i-1]+1,a[i])，其中 a[i-1] 已是前一位实际发放数。a[i-1]+1 最大约为 10^9+999，仍在 int 范围内；ans 为 long long，满规模总和约为 1.0000005×10^12，printf(\"%lld\") 正确；复杂度 O(n)，在 1≤n≤1000、1≤a_i≤10^9 下无越界或溢出问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模（n=1，a_1=1）",
+            "input": "1\n1\n",
+            "output": "1",
+            "reason": "n=1 和 a_1=1 同时取数据范围下界；第一位无前驱约束，参考代码中 a[0]=0，发放数为 max(0+1,1)=1，总和为1（独立推算，未实际运行）。"
+          },
+          {
+            "name": "a_i 上界与累加溢出边界",
+            "input": "3\n1000000000 1000000000 1000000000\n",
+            "output": "3000000003",
+            "reason": "发放数依次为 1000000000、1000000001、1000000002；总和 3000000003 已超过32位有符号 int 上限 2147483647，必须使用 long long 累加并以 %lld 输出（独立推算，未实际运行）。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        3,
+        8,
+        12,
+        13
+      ],
+      "usage": {
+        "prompt_tokens": 35366,
+        "completion_tokens": 12751,
+        "total_tokens": 48117,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11163
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0129555,
+          "allowance": 0.0077733,
+          "tokens": {
+            "input": 35366,
+            "output": 12751,
+            "reasoning": 11163,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T21:55:52.332Z",
+      "completedAt": "2026-11-12T21:58:04.575Z"
+    },
+    {
+      "questionIds": [
+        15,
+        21,
+        22,
+        25,
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 35366,
+        "completion_tokens": 16187,
+        "total_tokens": 51553,
+        "prompt_tokens_details": {
+          "cached_tokens": 35200
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13852
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0098427,
+          "allowance": 0.00590562,
+          "tokens": {
+            "input": 166,
+            "output": 16187,
+            "reasoning": 13852,
+            "cache_read": 35200,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T22:00:01.907Z",
+      "completedAt": "2026-11-12T22:02:39.814Z"
+    },
+    {
+      "questionIds": [
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 35358,
+        "completion_tokens": 7985,
+        "total_tokens": 43343,
+        "prompt_tokens_details": {
+          "cached_tokens": 35200
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6905
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0049203,
+          "allowance": 0.00295218,
+          "tokens": {
+            "input": 158,
+            "output": 7985,
+            "reasoning": 6905,
+            "cache_read": 35200,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T22:20:23.380Z",
+      "completedAt": "2026-11-12T22:21:42.839Z"
+    }
+  ]
+}

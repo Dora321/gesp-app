@@ -1,0 +1,136 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    9,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T17:05:35.184Z",
+  "completedAt": "2026-11-11T17:08:53.143Z",
+  "finishReason": "stop",
+  "inputSha256": "ce6eb08e95fc689d43f97c3da6d1332210fd49438a381bba6acfc8fc642656f1",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 三级 2023 年 9 月”，与 paperId 2023-09-l3 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题题干为“下列关于C++语言中数组的叙述，不正确的是（ ）。”，与候选 question 逐字一致，无代码或图示遗漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 依次为“可以定义 0 个元素的数组。”“不能定义 -1 个元素的数组。”“数组下标越界访问会产生编译错误。”“程序运行时发生数组下标的越界访问，程序依然可能正常结束。”，与候选 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 C（0 起始索引 2），与候选 answer=2 一致；独立判断 C 明确错误：下标越界通常不在编译期检查，不属于编译错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分编译错误与运行期未定义行为，B、C、D 的推导成立；A 项已说明严格 ISO C++ 要求长度大于 0 而 GCC/Clang 以扩展接受零长数组，官方答案 C 不受影响；A 项的标准争议见 unresolved。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "严格 ISO C++ 下数组长度须大于 0，因此选项 A“可以定义 0 个元素的数组”按标准亦不成立；GCC/Clang 等以扩展接受零长数组。官方答案取 C，源卷选项严谨性争议保留，不据此改动答案。"
+        ]
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 10 题原文为“如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true ，则说明 a 是偶数。”，与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”二值判断，无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 10 题为 √，按正确=0 映射与候选 answer=0 一致；独立推导在补码表示下 a&1 提取最低位，最低位为 0 当且仅当 a 为偶数，包括 0 和负偶数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以最低有效位判断奇偶，正例与负数补码注意点均正确；知识延伸已限定 a>0 并说明 a=0 时 0&(-1)=0 的例外，不构成全称误述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        9,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 15170,
+        "completion_tokens": 7799,
+        "total_tokens": 22969,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6954
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0069549,
+          "allowance": 0.00417294,
+          "tokens": {
+            "input": 15170,
+            "output": 7799,
+            "reasoning": 6954,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-11T17:05:35.184Z",
+      "completedAt": "2026-11-11T17:08:53.143Z"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    9,
+    13,
+    14
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T13:55:31.920Z",
+  "completedAt": "2026-11-11T14:04:24.726Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51695,
+    "completion_tokens": 21417,
+    "total_tokens": 73112,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18903
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01846275,
+      "allowance": 0.01846275,
+      "tokens": {
+        "input": 51695,
+        "output": 21417,
+        "reasoning": 18903,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "204819cd2e84508fb14ee08b38a1d909b65daac77c5110218816475ac9be7a27",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023 年 6 月 GESP C++ 三级真题解析”，与 paperId 的年份 2023、月份 6、等级 3 一致；正文结构为单选 15 题每题 2 分共 30 分、判断 10 题每题 2 分共 20 分、编程 2 题每题 25 分共 50 分，与三级卷相符。"
+    },
+    "questions": [
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图第 9 题题干“下列关于 C++语言中数组的叙述，不正确的是（ ）。”与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选 A 项残留英文“definition”（页图为“数组必须先定义后使用”）、C 项“[ ]”内多一空格（页图为“[]”）；修订稿按页图更正后 A/B/C/D 四项与页图逐字一致，行尾句号省略属纯标点差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页【答案】C，对应 0 起始索引 2，候选 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前候选解析已修复上一轮指出的残留问题（A 项为中文“定义”、C 项方括号统一为“[]”），核心论证“任意类型数组只要有初始化即可省略[]内常数”与页图官方解析一致；示例 int a[]={1,2,3} 推导长度 3、double b[]={1.5,2.5} 推导 2、char c[]=\"hello\" 长度 6（5 个字符加结束符）经独立验算正确；A/B/D 逐项分析（先定义后使用、元素连续存放、数组名不可整体赋值而 a[0]=10 合法）及易错提醒、知识延伸经独立核对无新错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "数组必须先定义后使用",
+            "数组的所有元素在内存中是连续存放的",
+            "除了字符数组，在定义数组时“[]”内必须有常数",
+            "不能对数组赋值，但可以对数组的每个基础类型的元素赋值"
+          ]
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：候选选项 A 的英文“definition”与 C 项“[ ]”确与第 4 页页图不符，修订选项文本后我逐字复核通过；题面、答案 C 无需改动；解析当前候选已无上一轮残留问题且内容经独立核对无新错误，故 explanation 直接判 verified、不再改动。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选压缩代码“int a = 12, b = 24; a = a ^ b; ___________; a = a ^ b;”在横线前多出一条 a = a ^ b;，且缺少横线后的 b = a ^ b; 与输出语句，与 PDF 第 6 页页图 10 行代码不符；修订稿按页图补全（第 4 行 int a = 12, b = 24;、第 5 行横线加注释“// 在此处填入代码”、第 6-7 行 a = a ^ b; b = a ^ b;、第 8 行 cout << a << \" \" << b << endl;、第 9-10 行 return 0; 与右括号），逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页页图选项 A. a = a ^ b、B. b = a ^ b、C. a = a + b、D. b = a + b，候选顺序与内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页【答案】B，对应 0 起始索引 1，候选 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按页图代码独立逐行验算：填 B，第 5 行 b=12^24=20（01100^11000=10100），第 6 行 a=12^20=24（01100^10100=11000），第 7 行 b=24^20=12（11000^10100=01100），输出“24 12”；填 A 得 a=20→a=20^24=12→b=12^24=20，输出“12 20”；填 C 得 a=12+24=36→a=36^24=60（100100^011000=111100）→b=60^24=36，输出“60 36”；填 D 得 b=36→a=12^36=40（001100^100100=101000）→b=40^36=12，输出“40 12”。候选解析四种结果与我的验算全部一致，答案 B 成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "在下列代码的横线处填写（ ），可以使得输出是“24 12”。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 12, b = 24;\n    ___________; // 在此处填入代码\n    a = a ^ b;\n    b = a ^ b;\n    cout << a << \" \" << b << endl;\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核并否决候选原题面：候选把横线错置于一条 a = a ^ b; 之后且丢失 b = a ^ b; 与输出语句，已按第 6 页页图修正为完整 10 行代码，我逐行复核一致；解析中填 A/B/C/D 的输出我独立验算为“12 20”“24 12”“60 36”“40 12”，与修订解析一致，答案 B 不受影响；选项与答案无需改动。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选题面数组为 {3, 11, 2, 5, 24} 且循环自 i=1 起，均与 PDF 第 7 页页图不符；页图共 11 行：int array[5] = {3, 7, 5, 2, 4};、int min = 0;、for (int i = 0; i < 5; i++)、if (横线) 加注释“// 在此处填写代码”、min = array[i];、cout << min << endl;、return 0;；修订稿按页图逐行补全，对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页页图选项 A. min > array[i]、B. min < array[i]、C. min = array[i]、D. 以上均不对，候选顺序与内容一致（D 项行尾句号省略属纯标点差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页【答案】D，对应 0 起始索引 3，候选 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按页图代码（数组 {3,7,5,2,4}、min=0、i 从 0 到 4）独立逐轮验算：填 A，0>array[i] 五轮全为假，min 恒为 0；填 B，0<3 真得 min=3，3<7 真得 min=7，7<5、7<2、7<4 均假，最终 min=7；填 C，赋值表达式 min = array[i] 的值为 array[i]，各元素均非 0，条件恒真，min 逐轮覆盖，最终为 array[4]=4。三种结果均不为 2，答案 D 成立；候选解析与该验算一致，末尾“应把 min 初始化为 array[0]（或足够大的数）再在 array[i] < min 时更新”的补充说明亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "在下列代码的横线处填写（ ），可以使得输出是“2”。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int array[5] = {3, 7, 5, 2, 4};\n    int min = 0;\n    for (int i = 0; i < 5; i++)\n        if (___________) // 在此处填写代码\n            min = array[i];\n    cout << min << endl;\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核并否决候选原题面：候选数组值 {3, 11, 2, 5, 24} 与循环起点 i=1 均与第 7 页页图不符，已修正为 {3, 7, 5, 2, 4}、i 从 0 起、含输出语句的完整代码，我逐行复核一致；解析填 A/B/C 的结果 0、7、4 我独立逐轮验算无误，答案 D 不受影响；选项与答案无需改动。"
+      }
+    ],
+    "summary": "本次仅核验第 9、13、14 题（对照 CCF 官方 2023 年 6 月 C++ 三级真题解析 PDF 页图）。第 9 题官方答案 C（索引 2）：候选选项 A 残留英文 definition、C 项方括号含多余空格，已按第 4 页页图修正，题面与解析经独立核对无其他问题；第 13 题官方答案 B（索引 1）：候选题面代码在横线前多出 a = a ^ b; 且缺 b = a ^ b; 与输出语句，已按第 6 页页图补全为 10 行完整代码，解析四种填法输出（12 20 / 24 12 / 60 36 / 40 12）经独立逐行验算全部正确；第 14 题官方答案 D（索引 3）：候选数组 {3, 11, 2, 5, 24} 与 i=1 起始均与第 7 页页图不符，已修正为 {3, 7, 5, 2, 4}、i=0 起并补全输出语句，解析填 A/B/C 的结果 0、7、4 经独立验算正确。三题答案映射均与官方一致，全部修复内容已逐字/逐行复核，无遗留争议。"
+  }
+}

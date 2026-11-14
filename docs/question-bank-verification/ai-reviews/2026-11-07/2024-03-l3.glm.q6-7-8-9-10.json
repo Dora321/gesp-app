@@ -1,0 +1,240 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T17:06:55.642Z",
+  "completedAt": "2026-11-11T17:12:39.716Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45938,
+    "completion_tokens": 23417,
+    "total_tokens": 69355,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 20325
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0185992,
+      "allowance": 0.0185992,
+      "tokens": {
+        "input": 45938,
+        "output": 23417,
+        "reasoning": 20325,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "63079115485e966e08cd66705692205b40a0fc2e856e2d24a329555237af1e11",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 三级 2024年03月”，与目标 2024-03-l3 对应；同页单选题答案表（红字 D C C B C C A C C C D A B C C）清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2~3页代码与网站一致：a[i]=i+1 赋值1~20，if((a[i]%2)&&(a[i]%3)) a[i]=0 后输出非零元素；PDF 末尾多出的 cout<<endl 仅输出换行，网站省略不影响题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A.2的倍数、B.3的倍数、C.能被2或3整除的数，第3页首行 D.能被2和3同时整除的数；顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 C（0起始索引2），网站 answer=2 一致；独立推导：1~20 中 1,5,7,11,13,17,19 既不被2也不被3整除被置0，保留的恰为能被2或3整除的数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：置零条件为“既不能被2整除又不能被3整除”，其否定即“能被2或3整除”（德摩根定律），保留 2,3,4,6,8,9,10,12,14,15,16,18,20。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维独立复核均通过，无修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码第二循环 for( ; i>0; i--) 未重置 i，沿用第一循环结束时的 i=20，首次输出 a[19]；网站代码结构一致（省略不影响题意的末尾 cout<<endl）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A.20、B.19、C.1、D.不确定，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 A（索引0），网站 answer=0 一致；独立推导 a[19]=20 为首个输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第一循环结束时 i=20，第二循环首次输出 a[19]=19+1=20，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维独立复核均通过，无修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码条件 (str[i]>='a')&&(str[i]<='z')，横线处需填小写转大写语句；网站以 \"a\"[0]、\"z\"[0] 表示字符常量，与 'a'、'z' 语义等价；字符串 gEsP is Interesting 与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A.str[i]+='a'-'A'、B.str[i]+=20、C.str[i]+='A'-'a'、D.无法实现，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 C（索引2），网站 answer=2 一致；独立推导 'A'-'a'=65-97=-32，小写转大写需减32。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析 A 项存在事实错误：称加32“可把小写字母转为下一个字母”不成立（加32与下一字母无关），且“大写字母变乱码”脱离本题分支条件（大写字母不会进入 if）。已替换为独立推导版本并核验通过：条件只选中小写字母，'A'=65、'a'=97，应加 -32，'g'+(-32)='G' 验证成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (str[i] += 'A'-'a')**\n\n**核心解析：**\n目标输出为 GESP IS INTERESTING，需将原字符串 \"gEsP is Interesting\" 中的小写字母转为大写，其余字符保持不变。\n\n1. 条件 `(str[i] >= 'a') && (str[i] <= 'z')` 只筛选出小写字母；大写字母与空格不进入分支，保持原样。\n2. ASCII 码中 'A'=65、'a'=97，同一字母大小写的码值差恒为 32，且小写码值更大。小写转大写需将码值减 32，即加上 `'A'-'a' = 65 - 97 = -32`。\n3. 验证：'g'(103) + (-32) = 71 = 'G'，'s'(115) + (-32) = 83 = 'S'，转换后输出 GESP IS INTERESTING。\n\n**选项逐项分析：**\n- **A (str[i] += 'a'-'A')**：❌ 错误。`'a'-'A' = +32`，方向相反。小写字母加 32 得不到对应大写字母，只会得到码值更大的错误字符（如 'z'+32=154，已超出大写字母范围）。\n- **B (str[i] += 20)**：❌ 错误。20 不是大小写字母的 ASCII 差值（差值为 32）。\n- **C (str[i] += 'A'-'a')**：✅ 正确。等价于码值减 32，准确完成小写转大写。\n- **D (无法实现)**：❌ 错误。选项 C 即可实现。\n\n**易错提醒：**\n- 不要混淆 `'a'-'A'`（+32）与 `'A'-'a'`（-32）的方向：小写转大写是减 32。\n- 大小写字母的 ASCII 差值恒为 32，不是 20。\n\n**考点：** ASCII 码表规律与字符加减运算"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核的修复判断：原解析 A 项“小写字母加32转为下一个字母”为事实错误，修复合理；已用独立表述重写，答案与选项本身无误，修复后核验通过。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "官方字符串含连续空格：PDF 第3页代码第3行按内嵌文本层逐字符提取为 \"gEsP is Interesting     !\"（Interesting 与 ! 之间5个连续空格，总长25）；页面图像中等宽渲染在该处间隙明显加宽，方向一致（分辨率下逐格精读有限，空格个数以文本层为准）。网站原题面各处仅1个空格，与官方不符，已按文本层恢复。无论该处连续空格为几个（≥2），while 跳过逻辑下输出均为3，结论稳健。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A.1、B.2、C.3、D.4，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 C（索引2），网站 answer=2 一致；独立模拟（含连续空格、含 while 推进与外层 i++ 叠加）得 nwords=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析称 x=24：与官方字符串长度25不符，也与网站自身单空格题面的长度21不符。已重写为按官方字符串推导：程序统计空格段数（while 跳过段内连续空格），共3段，输出3；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（ ）。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting     !\";\n    int x = str.length();\n    int nwords = 0;\n    for (int i = 0; i < x; i++)\n        if (str[i] == ' ') {\n            nwords++;\n            while (str[++i] == ' ');\n        }\n    cout << nwords << endl;\n    return 0;\n}\n```",
+          "explanation": "**答案：C (3)**\n\n**核心解析：**\n官方代码中的字符串为 \"gEsP is Interesting     !\"，其中 Interesting 后有 5 个连续空格，字符串长度 x = 4+1+2+1+11+5+1 = 25。\n\n程序逻辑：for 循环逐字符扫描；遇到空格时 `nwords++`，随后 `while (str[++i] == ' ');` 跳过该段剩余的连续空格。因此 nwords 统计的是**空格段**的个数，而不是空格字符的总数。\n\n字符串中共有三段空格：gEsP 与 is 之间、is 与 Interesting 之间、Interesting 与 ! 之间，故输出 nwords = 3。\n\n**选项逐项分析：**\n- **A (1)**：❌ 错误。只计第一段空格，忽略了循环会继续扫描后续空格。\n- **B (2)**：❌ 错误。漏计了 Interesting 与 ! 之间的空格段。\n- **C (3)**：✅ 正确。三个空格段各计一次，段内连续空格被 while 跳过，不重复计数。\n- **D (4)**：❌ 错误。4 是“词”的个数（gEsP、is、Interesting、!），但本程序统计的是空格段数，并非词数。\n\n**易错提醒：**\n- `while (str[++i] == ' ');` 跳过连续空格后，外层 for 还会再执行一次 `i++`，两者叠加推进扫描位置，需逐步模拟理解。\n- 若去掉 while 跳过逻辑而逐个空格计数，连续空格会被重复统计，得不到本题结果。\n\n**考点：** 字符串处理与循环跳跃逻辑"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核的修复判断：独立依据 PDF 内嵌文本层确认官方字符串含连续空格（Interesting 后5个、总长25），网站题面被简化为单空格，且原解析 x=24 与官方及网站自身题面均自相矛盾；已同步修复题面与解析。答案3与连续空格具体个数无关。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干“C++的字符变量的码值是整数，下面字面量形式的字符码值最大的是”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A.100、B.075、C.0x70、D.0x60，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 C（索引2），网站 answer=2 一致；独立换算：100=100、075（八进制）=61、0x70=112、0x60=96，最大为112。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立换算与解析一致：61 < 96 < 100 < 112，最大为 0x70=112，对应 C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维独立复核均通过，无修改。"
+      }
+    ],
+    "summary": "本轮独立复核第6~10题并逐题给出 verdict。第6、7、10题五维全部通过，答案与 PDF 第1页答案表一致（C、A、C），无需修改。第8题题面/选项/答案正确，但原解析 A 项含事实错误（“小写字母加32转为下一个字母”不成立、“大写字母变乱码”脱离分支条件），已重写解析，修复后核验通过。第9题网站题面把官方字符串中的连续空格简化为单空格——PDF 内嵌文本层逐字符显示 Interesting 与 ! 之间为5个连续空格（总长25），页面图像同样显示该处间隙加宽；原解析 x=24 与官方长度及网站自身题面（21）均不符，已同步修复题面与解析，修复后核验通过；无论连续空格个数如何，程序统计空格段数均为3，答案不受影响。无保留争议，无 unresolved 项。"
+  }
+}

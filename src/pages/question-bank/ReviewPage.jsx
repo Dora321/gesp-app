@@ -2,8 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
     ChevronLeft, NotebookPen, TrendingUp, TrendingDown, Minus,
-    Target, ListChecks, Trash2, Loader2, ArrowRight,
+    Target, ListChecks, Trash2, ArrowRight,
 } from 'lucide-react';
+import LoadingBlocks from '../../components/LoadingBlocks';
 import { getPaper, paperMeta } from '../../data/gesp/index';
 import { resolveTopicTags } from '../../data/gesp/topics';
 import {
@@ -130,8 +131,8 @@ export default function ReviewPage() {
                         </Link>
                     </div>
                 ) : loading ? (
-                    <div className="flex items-center justify-center gap-2 py-20 text-slate-500">
-                        <Loader2 className="animate-spin" size={20} aria-hidden="true" /> 正在汇总成绩与错题…
+                    <div className="flex items-center justify-center gap-2.5 py-20 text-slate-500" role="status">
+                        <LoadingBlocks /> 正在汇总成绩与错题
                     </div>
                 ) : (
                     <>

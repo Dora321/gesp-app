@@ -1,0 +1,162 @@
+{
+  "paperId": "2025-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T13:53:48.514Z",
+  "completedAt": "2026-11-12T13:56:58.635Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29332,
+    "completion_tokens": 18221,
+    "total_tokens": 47553,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16227
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0153324,
+      "allowance": 0.00919944,
+      "tokens": {
+        "input": 29332,
+        "output": 18221,
+        "reasoning": 16227,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c064127b760deed6240ffc2ff56339a0f779266c36290f74c5641ab666224a20",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++3级.pdf",
+    "mirrorSha": "8d0070052cc67428abbb5544040a5f814678ab6c",
+    "mirrorBytes": 1335711,
+    "shaVerified": true,
+    "sha256": "c1214e7b1134f988ee8fa9b967be0d5d0bf48d51f836427048ce7e69c96f605a"
+  },
+  "pageCount": 7,
+  "report": {
+    "paperId": "2025-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证（GESP）”“C++ 三级”“2025年06月”，与 paperId 2025-06-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页3.1.1至3.1.4的题目、输入输出格式与两则样例均与网页一致；但PDF第5页3.1.5的数据范围 1≤n≤100、0≤c_i≤255，以及页首的1.0 s/512.0 MB限制，网页题面未体现。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，没有选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，PDF未提供客观题答案表，仅提供参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按逐个数拆分二进制并统计1的个数，再输出总数与总数奇偶性，推导独立完整；样例1为13和1，样例2为6和0，均与PDF一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第5至6页3.1.6参考程序逐行一致；v最大值800不溢出，while(c)可正确处理c=0，复杂度O(n log(max c))，符合n≤100、c_i≤255。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 三级] 奇偶校验\n\n时间限制：1.0 s；内存限制：512.0 MB。\n\n## 题目描述\n\n数据在传输过程中可能出错，因此接收方收到数据后通常会校验传输的数据是否正确，奇偶校验是经典的校验方式之一。\n\n给定 n 个非负整数 c_1, c_2, ..., c_n 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。你能求出这些整数的校验码吗？\n\n## 输入格式\n\n第一行，一个正整数 n，表示所传输的数据量。\n\n第二行，n 个非负整数 c_1, c_2, ..., c_n，表示所传输的数据。\n\n## 输出格式\n\n输出一行，两个整数，以一个空格分隔：\n\n第一个整数表示 c_1, c_2, ..., c_n 在二进制下 1 的总数量；\n\n第二个整数表示校验码（0 或 1）。\n\n## 数据范围\n\n对于所有测试点，保证 1 ≤ n ≤ 100，0 ≤ c_i ≤ 255。"
+        },
+        "tests": [
+          {
+            "name": "最小输入与零值",
+            "input": "1\n0\n",
+            "output": "0 0",
+            "reason": "n=1且c_1=0，二进制中没有1，总数为0，校验码为0；覆盖n与c_i下界及零值。"
+          },
+          {
+            "name": "n与c_i上界",
+            "input": "100\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n255 255 255 255 255 255 255 255 255 255\n",
+            "output": "800 0",
+            "reason": "100个255各含8个1，总数为800，800为偶数，校验码为0；覆盖n=100与c_i=255上界。"
+          },
+          {
+            "name": "奇数校验分支",
+            "input": "3\n1 2 4\n",
+            "output": "3 1",
+            "reason": "1、2、4各含1个二进制1，总数为3，校验码为1；覆盖奇数校验分支。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页3.2.1至3.2.4的题目、输入输出格式与两则样例均与网页一致；但PDF第6页3.2.5的数据范围 1≤n≤1000、1≤a_i≤10^9，以及页首的1.0 s/512.0 MB限制，网页题面未体现。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，没有选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，PDF未提供客观题答案表，仅提供参考程序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出贪心转移 b_i=max(a_i,b_{i-1}+1)，样例1得16，样例2得4508143253，并指出累加和需用long long；推导独立且与PDF一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第7页3.2.6参考程序逐行一致；N=1005覆盖n≤1000，a[i-1]+1最大约为1000000999，仍在int范围内，ans使用long long，时间复杂度O(n)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 三级] 分糖果\n\n时间限制：1.0 s；内存限制：512.0 MB。\n\n## 题目描述\n\n有 n 位小朋友排成一队等待老师分糖果。第 i 位小朋友想要至少 a_i 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。\n\n老师想知道至少需要准备多少颗糖果才能让所有小朋友都开心。你能帮帮老师吗？\n\n## 输入格式\n\n第一行，一个正整数 n，表示小朋友的人数。\n\n第二行，n 个正整数 a_1, a_2, ..., a_n，依次表示每位小朋友至少需要的糖果数量。\n\n## 输出格式\n\n输出一行，一个整数，表示最少需要准备的糖果数量。\n\n## 数据范围\n\n对于所有测试点，保证 1 ≤ n ≤ 1000，1 ≤ a_i ≤ 10^9。"
+        },
+        "tests": [
+          {
+            "name": "最小输入",
+            "input": "1\n1\n",
+            "output": "1",
+            "reason": "n=1且a_1=1，只有第一位小朋友且最低需求为1，最少准备1颗；覆盖下界。"
+          },
+          {
+            "name": "最大需求且总和溢出int",
+            "input": "3\n1000000000 1000000000 1000000000\n",
+            "output": "3000000003",
+            "reason": "贪心分配为1000000000、1000000001、1000000002，总和3000000003，已超过32位有符号int上限；覆盖a_i上界、严格递增及long long累加。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号26、27。两题的题意、样例和参考程序均与PDF一致；但网页题面均漏掉官方数据范围及题首时间/内存限制，需按changes补全。未发现算法错误、边界或溢出问题。"
+  }
+}

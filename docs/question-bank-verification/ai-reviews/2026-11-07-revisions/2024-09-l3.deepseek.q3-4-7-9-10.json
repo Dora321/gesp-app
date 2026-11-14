@@ -1,0 +1,228 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    4,
+    7,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T23:28:02.398Z",
+  "completedAt": "2026-11-11T23:31:59.183Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29726,
+    "completion_tokens": 12694,
+    "total_tokens": 42420,
+    "prompt_tokens_details": {
+      "cached_tokens": 29440
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10304
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00774762,
+      "allowance": 0.00464857,
+      "tokens": {
+        "input": 286,
+        "output": 12694,
+        "reasoning": 10304,
+        "cache_read": 29440,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5f358a8b259baed98a288257170848a5992f4ff8438398cebcc85da6996e725f",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2024 年 09 月”，与 2024-09-l3 的年月、等级和语言一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题题干为“8进制数3703转换成16进制数是（）”，第1页末给出选项A，第2页给出B、C、D，与候选题面含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1~2页选项依次为 A 7C3、B 7A3、C 7B3、D 7D3，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 A，即 0 起始索引 0。独立验算：3703₈=3×512+7×64+3=1987₁₀；1987÷16=124余3，124÷16=7余12(C)，7÷16=0余7，逆序得 7C3₁₆，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的十进制桥接和二进制分组均正确：3703₈=011111000011₂=0111|1100|0011₂=7C3₁₆；选项 B、C、D 分别等于 1955、1971、2003，均非 1987。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第4题题干为“0.8125变成二进制是（ ）”，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A 0.1110、B 0.1 1111 1011 1101、C 0.1 1111 1011 1100、D 0.1101，与候选 options 顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题为 D，即 0 起始索引 3。独立验算：D 的 0.1101₂=1/2+1/4+1/16=13/16=0.8125。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "乘2取整得到 0.1101₂ 的过程正确；选项 A=14/16=0.875；B 去空格后为 8125/8192≈0.991821；C 为 8124/8192≈0.991699；D=13/16=0.8125，逐项判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题代码逐行为 void Swap(int &a, int &b) { if (a != b) { a ^= b; b ^= a; a ^= b; } }，与候选题面代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A a和b的异或、B a和b的同或、C a和b的值交换、D a和b的高低位互换，顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 C，即 0 起始索引 2。独立推导：设 a=X、b=Y（X≠Y），a^=b 后 a=X^Y；b^=a 后 b=Y^(X^Y)=X；a^=b 后 a=(X^Y)^X=Y，完成交换。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的主体推导正确，但易错提醒称“当 a 和 b 相等时……会做三次无效运算”，与所给带 if (a != b) 保护的代码不符：相等时函数体直接跳过，不会执行三次异或。该表述需改为区分“无保护的一般算法”和“本题带保护代码”，并说明别名调用 Swap(x,x) 时守卫可避免清零。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（a 和 b 的值交换）**\n\n**核心解析：**\n设调用时 `a = X`、`b = Y` 且 `X != Y`。\n1. `a ^= b;` 后 `a = X ^ Y`，`b = Y`；\n2. `b ^= a;` 后 `b = Y ^ (X ^ Y) = X`，`a = X ^ Y`；\n3. `a ^= b;` 后 `a = (X ^ Y) ^ X = Y`，`b = X`。\n因此两个引用所绑定对象的值交换。\n\n**选项逐项分析：**\n- **A**：异或只是中间运算，不是函数最终实现的功能。\n- **B**：同或需要对异或结果取反，代码没有取反。\n- **C**：正确。\n- **D**：代码交换整个值，不做高低位互换。\n\n**关于 `if (a != b)`：**\n当 `a`、`b` 是两个内容相等的不同变量时，即使去掉该判断，三次异或也会恢复原值；该判断使相等时直接跳过。若 `Swap(x, x)` 传入同一个对象，`a != b` 为假，函数体不执行，避免经典无保护异或交换在别名情况下把值清零。\n\n**易错提醒：**\n`a ^= b` 是按位异或赋值，不是加法；不要把本题带保护的代码与无保护异或交换在别名情况下清零的结论混为一谈。\n\n**考点：** 异或运算性质与交换算法。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第9题题干为“a=1010 1110,a<<2,下面关于这个说法正确的是（ ）”，与候选题面一致，仅有空格和标点差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A a的值变为1011 1000、B 1011 1010、C 0101 1101、D 0101 1100，与候选 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 A，即 0 起始索引 0。独立验算：10101110₂=174，174×4=696，按8位截断 696 mod 256=184=10111000₂，与 A 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐位移位：10101110 左移1位为01011100，再左移1位为10111000；数值法交叉验证一致。选项 D 01011100 是原值左移1位，C 01011101 是循环左移1位，B 最低两位为10不符合左移2位补00。候选还注明严格 C++ 单独写 a<<2; 不改变 a，本题按移位后的值理解，处理合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第10题代码共9行，依次为 long a=123; int b=1; long result=a&b; cout<<result<<endl; long a2=-123; unsigned int b2=-1; long result2=a2&b2; cout<<result2<<endl; 候选内容完整，仅首行位于代码围栏外，含义未缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A 123 -1、B 123 -123、C 1 -1、D 1 -123，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 D，即 0 起始索引 3。独立验算：123&1=1；在32位 long 环境下，-123=0xFFFFFF85，unsigned(-1)=0xFFFFFFFF，二者按位与仍为0xFFFFFF85，按有符号 long 解释为 -123，输出 1 和 -123。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析明确按32位 long 推导，逐步计算与官方答案 D 一致；第一段 123&1=1 正确，第二段全1掩码保留 -123 的补码位模式。题面未声明 long 位宽，LP64 环境会得到不同 result2，此环境依赖需保留说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方题面未声明 long 的位宽：在32位 long（Windows LLP64 等 GESP 常见环境）下 result2=-123，答案 D 成立；在 LP64（64位 Linux/macOS）下 result2 会输出 4294967173。解析的32位前提应保留注明。"
+        ]
+      }
+    ],
+    "summary": "已对照 PDF 第1~3页逐题核验题号 3、4、7、9、10。五题的题面、选项顺序和官方答案表映射均正确；第3、4、9、10题解析独立复核通过，其中第10题存在 long 位宽环境依赖，已记录待说明。第7题答案与主体推导正确，但解析中关于 if (a != b) 且 a、b 相等时“会做三次无效运算”的表述与所给带保护代码不符，已提供修正解析。编程题不在本次范围内，故未输出测试。"
+  }
+}

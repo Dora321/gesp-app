@@ -1,0 +1,237 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T16:48:58.046Z",
+  "completedAt": "2026-11-11T16:52:10.472Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34868,
+    "completion_tokens": 11509,
+    "total_tokens": 46377,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9072
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0121356,
+      "allowance": 0.00728136,
+      "tokens": {
+        "input": 34868,
+        "output": 11509,
+        "reasoning": 9072,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "013365d4bb7fa13988476c0cb85873270422de0422337f459f87fb603e3353cb",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 三级”“2024 年 06 月”，与 paperId 2024-06-l3（2024年6月C++三级）一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干与网站题面一致，仅存在空格和排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项为 A. 1、B. 2、C. 3、D. 4，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题答案为 C，0 起始索引为 2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心答案“3 种”正确，但原解析中“二级、三级会逐步减少图形化语言选项”“二级及以上聚焦文本编程语言”等扩展表述不准确，容易误导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，本维度不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (3)**\n\nGESP 一级可选认证语言包括图形化编程（Scratch）、Python 和 C++，共 3 种，因此选 C。\n\n**选项逐项分析：**\n- **A 1**：❌ 只有 1 种，不符合 GESP 一级的语言设置。\n- **B 2**：❌ GESP 一级可选语言多于 2 种。\n- **C 3**：✅ 图形化编程（Scratch）、Python、C++，共 3 种。\n- **D 4**：❌ GESP 一级没有 4 种认证语言。\n\n**考点：** GESP 认证体系基础知识（一级可选语言种类）"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页含完整流程图：开始→输入 yr→菱形判断框→Y 分支输出“2 月是 29 天”、N 分支输出“2 月是 28 天”→结束；网站题面仅说“下面流程图”，未给出必要图形，单凭文字无法确定分支结构。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页四个选项与网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题答案为 B，0 起始索引为 1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 B 及闰年规则推导正确，但解析将 1900%400 写成 100，实际应为 300，属于具体计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，本维度不适用。"
+          }
+        },
+        "changes": {
+          "question": "下面流程图在 yr 输入 2024 时，可以判定 yr 代表闰年，并输出 2 月是 29 天，则图中菱形框中应该填入（ ）。\n\n流程图结构：开始 → 输入 yr → 菱形判断框（待填）→ N 分支输出“2 月是 28 天”，Y 分支输出“2 月是 29 天”→ 结束。",
+          "explanation": "**答案：B ((yr%400==0) || (yr%4==0 && yr%100!=0))**\n\n闰年规则：能被 400 整除的年份是闰年；能被 4 整除但不能被 100 整除的年份也是闰年。因此菱形框中的条件应为 `(yr%400==0) || (yr%4==0 && yr%100!=0)`。2024 不能被 400 整除，但能被 4 整除且不能被 100 整除，所以条件为真，走 Y 分支输出“2 月是 29 天”。\n\n**选项逐项分析：**\n- **A**：❌ 缺少“不能被 100 整除”的限制；如 1900 能被 4 整除，会被误判为闰年（1900%400=300，1900%4=0）。\n- **B**：✅ 完整表达闰年规则；`&&` 优先级高于 `||`，等价于“能被 400 整除，或（能被 4 整除且不能被 100 整除）”。\n- **C**：❌ 变成必须能被 400 整除，漏掉 2024 这类能被 4 整除但不能被 100 整除的闰年。\n- **D**：❌ 要求同时能被 400 整除且不能被 100 整除，这两个条件互相矛盾；且 2024 不满足，故错误。\n\n**考点：** 闰年判定与逻辑表达式。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题题干与网站题面一致；“还是32位”与“仍是32位”为等价表述。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第2页原图选项为 A. 0~2^32、B. 0~2^64、C. -2^31~(2^31)-1、D. -2^63~(2^63)-1；网站 A、B、D 与官方选项不符，C 虽数值等价但应保留官方形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题答案为 C，0 起始索引为 2；网站 answer=2，修正选项后仍对应 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析按网站错误选项（A 为 -2^15~2^15-1、B 为 -2^31~2^31、D 为 -2^32~2^32-1）逐项分析，与 PDF 第2页官方选项不一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，本维度不适用。"
+          }
+        },
+        "changes": {
+          "options": [
+            "0 ~ 2^32",
+            "0 ~ 2^64",
+            "-2^31 ~ (2^31)-1",
+            "-2^63 ~ (2^63)-1"
+          ],
+          "explanation": "**答案：C (-2^31 ~ (2^31)-1)**\n\n32 位有符号 `int` 采用补码表示：最高位为符号位，其余 31 位表示数值。非负范围是 `0 ~ 2^31-1`，负数范围是 `-2^31 ~ -1`，合并后为 `-2^31 ~ 2^31-1`。\n\n**选项逐项分析：**\n- **A 0 ~ 2^32**：❌ 32 位有符号整数的非负部分上限是 `2^31-1`，不是 `2^32`。\n- **B 0 ~ 2^64**：❌ 远超 32 位 `int` 的表示范围。\n- **C -2^31 ~ (2^31)-1**：✅ 正确，符合 32 位有符号补码的范围。\n- **D -2^63 ~ (2^63)-1**：❌ 这是 64 位有符号整数的典型范围，不是 32 位 `int`。\n\n**考点：** 32 位有符号整型的补码表示范围。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第4题代码、数组声明、循环及横线位置与网站题面一致；网站省略注释“//在此处填入代码”，不影响语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 四个选项与网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题答案为 C，0 起始索引为 2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“除 8 取余、i++ 后移下标、逆序输出”独立推导，并正确指出 A 未自增、B 语法错误、D 混淆商与余数。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题题干“二进制数101.11对应的十进制数是（ ）”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项为 A. 6.5、B. 5.5、C. 5.75、D. 5.25，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题答案为 C，0 起始索引为 2；网站 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按位权展开计算：1×2^2+0×2^1+1×2^0+1×2^-1+1×2^-2=4+0+1+0.5+0.25=5.75，逐项排除成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题号 1-5。PDF 第1页答案表对应为 C、B、C、C、C，网站五题 answer 索引 2、1、2、2、2 均匹配。第1题题面、选项、答案正确，但解析含不准确的 GESP 级别语言扩展说明，已修正。第2题网站缺少必要流程图，已补文字等价流程图；原解析中 1900%400 的计算错误已修正。第3题 PDF 第2页选项与网站 A/B/D 明显不符，已按原图改为 0~2^32、0~2^64、-2^31~(2^31)-1、-2^63~(2^63)-1，并按官方选项重写解析，答案仍为 C。第4、5题题面、选项、答案和解析均通过核对。"
+  }
+}

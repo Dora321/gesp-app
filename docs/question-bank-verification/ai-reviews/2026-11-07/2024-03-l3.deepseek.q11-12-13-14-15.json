@@ -1,0 +1,226 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T17:57:56.847Z",
+  "completedAt": "2026-11-11T18:00:31.162Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30610,
+    "completion_tokens": 14226,
+    "total_tokens": 44836,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12773
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0131271,
+      "allowance": 0.00787626,
+      "tokens": {
+        "input": 30610,
+        "output": 14226,
+        "reasoning": 12773,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "63079115485e966e08cd66705692205b40a0fc2e856e2d24a329555237af1e11",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为 C++ 三级 2024年03月，与核验目标 2024-03-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第11题题干及代码与站内一致：数组 a[20] 赋值为 1 到 20，第一个循环结束后 i=20，第二个循环使用该 i 统计满足条件的次数，无缺行或改义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项为 A.5、B.6、C.10、D.12，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第11列为 D（索引3）。独立计算：i 从 20 到 2 共 19 次，对应 19 个相邻和中有 7 个能被 3 整除，cnt=19-7=12。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确列出相邻和，并由 19 个和中扣去 7 个 3 的倍数得到 12，与官方 D 及独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第12题题干与站内一致：定义 char str[20] = {'G','E','S','P'}，问字符串长度；无代码或语义遗漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A.4、B.5、C.19、D.20，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12列为 A（索引0）。部分初始化后 str[4] 起为空字符，字符串在第一个空字符处结束，长度为 4。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析结论 A 正确，但 C 项说明出现“19 是数组中空字符的数量”，随后又写“20-4=16”，前后矛盾；数组内空字符实际有 16 个。已提供修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (4)** 核心解析：char str[20] = {'G','E','S','P'}; 只显式初始化前 4 个字符；其余元素按 C++ 规则零初始化，因此 str[4] 到 str[19] 都是空字符，字符串在第一个空字符处结束，长度为 4。选项 A 正确；B 误把结尾空字符计入长度；C 的 19 与有效字符数无关，数组内空字符实际有 16 个；D 的 20 是数组容量。易错点：数组大小不等于字符串长度，部分初始化的字符数组其余元素为 0。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第13题题干与站内一致：定义 int a=3, b=16，问 a|b 的值和 a+b 的关系。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A.大于、B.等于、C.小于、D.等于或小于，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13列为 B（索引1）。独立计算：3|16=19，a+b=3+16=19，二者相等。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按位计算得出 19=19；D 为包含式表述，本题按精确关系取 B，官方答案与计算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第14题题干与站内一致：问华为手表上运行的鸿蒙是什么。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A.小程序、B.计时器、C.操作系统、D.神话人物，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14列为 C（索引2）。鸿蒙是华为研发的操作系统。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确将鸿蒙定位为操作系统，并排除小程序、计时器和神话人物，能够独立推出 C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第15题题干与站内一致：2024年1月27日 CCF 颁奖典礼颁布王选奖，问王选先生的重大贡献。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A.制造自动驾驶汽车、B.创立培训学校、C.发明汉字激光照排系统、D.成立方正公司，顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15列为 C（索引2）。王选先生的核心技术贡献是发明汉字激光照排系统。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确将王选与汉字激光照排系统对应，并排除自动驾驶、培训学校和方正公司等干扰项，C 可独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第11至15题。五题题干、选项及官方答案表映射均一致：11D、12A、13B、14C、15C。第12题解析中空字符数量表述自相矛盾，已给出修正解析；其余题目解析可独立推出答案，无未决项。"
+  }
+}

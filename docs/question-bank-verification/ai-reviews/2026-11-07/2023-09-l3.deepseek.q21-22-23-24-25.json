@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T10:52:51.799Z",
+  "completedAt": "2026-11-11T10:55:54.470Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29885,
+    "completion_tokens": 7619,
+    "total_tokens": 37504,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 29824,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 6049,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00467002,
+      "allowance": 0.00280201,
+      "tokens": {
+        "input": 61,
+        "output": 7619,
+        "reasoning": 6049,
+        "cache_read": 29824,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6e7b2cc27b0471abbcdc9c6066a39e696d7882c20ef578c7bc1437c1ec6ef28a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 三级 2023 年 9 月”，与 2023-09-l3 一致；第 5 页判断题答案表与题号 21—25 对应。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 1 题原文为“二进制数 101.101 在十进制下是 5.005。”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 1 题为×，对应错误=1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按二进制权值展开得 101.101₂=5.625，独立推出原命题错误，与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 2 题原文与网站题面仅标点差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 2 题为√，对应正确=0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析中把 `cout << a + b << 1` 解释为位左移，实际这是连续两次流插入；示例错误，会误导运算符优先级理解。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nC++ 中位运算符有明确的优先级，并非按从左到右的顺序求值。大致上，按位取反 `~` 高于移位 `<<`、`>>`，移位高于关系比较，关系比较高于按位与 `&`、按位异或 `^`、按位或 `|`。位运算与算术运算、关系运算混用时，若不加括号很容易得到与直觉不同的结果，因此应合理使用括号明确运算顺序。\n\n**易错提醒：**\n- 位运算优先级并不等同于算术运算的“先乘除、后加减”。例如 `a & 1 == 0` 会先计算 `1 == 0`，再与 `a` 按位与；若想判断最低位是否为 0，应写成 `(a & 1) == 0`。\n- 在输出语句中，`<<` 可能作为流插入运算符。`cout << a + b << 1` 表示先输出 `a + b`，再输出 `1`；若要输出 `(a + b)` 左移 1 位的结果，应写成 `cout << ((a + b) << 1)`。\n\n**知识延伸：**\n复合赋值运算符（如 `&=`、`|=`、`^=`、`<<=`、`>>=`）的优先级与赋值运算符相同，低于其他双目运算符。\n\n**考点：** 位运算、运算符优先级"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 3 题原文为“字符常量 '3' 的值和 int 类型常量 3 的值是相同的，只是占用的字节数不同。”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 3 题为×，对应错误=1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出字符 '3' 的 ASCII 值为 51，与整数 3 数值不同，独立推出原命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页第 4 题原文为“长度为n的数组，访问下标为n的元素会引起编译错误。”；网站写成“长度为3的数组，访问下标为3……”，把一般命题改成特例，改变原题表述。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 4 题为×，对应错误=1；网站 answer=1 一致。越界访问本身属于运行期问题，官方判错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明越界访问不会产生编译错误，而属于运行期未定义行为；其中“长度为3”仅作举例，不改变判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在 C++ 语言中，长度为 n 的数组，访问下标为 n 的元素会引起编译错误。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 5 题原文为“所有 int 类型的值，经过若干次左移操作（ << ）后，它们的值总会变为 0。”，网站题面语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 5 题为√，对应正确=0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 32 位补 0 左移推演所有位最终移出，并注明严格 C++ 标准下有符号左移溢出的未定义行为；与官方考试口径一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核对 PDF 第 5 页判断题题干及官方答案表。21—25 题答案均与官方答案一致；第 24 题网站题面把原题的 n 改写为 3，已按原文修正；第 22 题解析中关于流插入与位移的示例有误，已修正。其余题面、答案和解析可核验；本批均为判断题，无编程题运行测试。"
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T05:56:09.943Z",
+  "completedAt": "2026-11-12T05:58:09.488Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34234,
+    "completion_tokens": 13110,
+    "total_tokens": 47344,
+    "prompt_tokens_details": {
+      "cached_tokens": 34176
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9863
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00797723,
+      "allowance": 0.00478634,
+      "tokens": {
+        "input": 58,
+        "output": 13110,
+        "reasoning": 9863,
+        "cache_read": 34176,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a90ffc86ba74771df09b6623ac3f40e11d860e0501cb0d204970a4a4dabd4b54",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF卷头为“CCF 编程能力等级认证 C++ 三级 2025 年 03 月”，与 paperId=2025-03-l3 对应；第1页有单选题答案表，题6-10答案可读。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干为“在C++中，一个8位有符号整数（使用补码表示）的范围是（）”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A-D选项依次为-128到127、-127到128、-256到255、0到255，与网站一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第6题为A，对应0起始索引0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析把“-256到255”误称为16位有符号整数范围；实际这是9位有符号补码范围，16位有符号范围为-32768到32767。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (-128 到 127)**\n\n**核心解析：**\n8 位补码中最高位权重为 -2^7，其余 7 位权重为 2^6 到 2^0，因此可表示的最小值为 10000000₂ = -128，最大值为 01111111₂ = 127。\n\n**选项逐项分析：**\n- **A (-128 到 127)**：✅ 正确，是 8 位有符号补码的完整范围。\n- **B (-127 到 128)**：❌ 错误，128 需要 9 位补码才能表示；8 位补码中 10000000 表示 -128。\n- **C (-256 到 255)**：❌ 错误，这是 9 位有符号补码的范围；16 位有符号补码的范围是 -32768 到 32767，8 位无符号整数的范围是 0 到 255。\n- **D (0 到 255)**：❌ 错误，这是 8 位无符号整数的范围，不是有符号整数范围。\n\n**易错提醒：**\n- 8 位补码的最小负数 10000000 没有对应的正数 +128；不能把它按普通原码理解为 -0。\n- 8 位编码共有 2^8 = 256 个值，其中负数 128 个，0 和正数共 128 个。\n\n**知识延伸：**\nn 位有符号补码范围为 -2^(n-1) 到 2^(n-1)-1；32 位 int（补码）通常为 -2147483648 到 2147483647。\n\n**考点：** 有符号整型（补码表示）的数值范围计算"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题代码片段为 int a=-5; unsigned int b=a; cout<<b;，与网站题面一致；PDF同样未给出完整main框架，不影响输出判断。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为-5、5、4294967291、编译错误，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第7题为C，对应0起始索引2，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析有事实错误：0xFFFFFFFF-5=0xFFFFFFFA，不是0xFFFFFFFB；且“4294967295减去5”等于4294967290，不等于4294967291。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (4294967291)**\n\n**核心解析：**\n32 位 int 的 -5 按补码存储为 0xFFFFFFFB。把 int 赋给 unsigned int 时，在本题默认的32位环境中按模 2^32 转换，位模式不变；0xFFFFFFFB 作为无符号数的值是 2^32 - 5 = 4294967291。\n\n**选项逐项分析：**\n- **A (-5)**：❌ 错误，b 是 unsigned int，输出不会带负号。\n- **B (5)**：❌ 错误，转换不是取绝对值，负数转无符号按模 2^32 进行。\n- **C (4294967291)**：✅ 正确，2^32 - 5 = 4294967291。\n- **D (编译错误)**：❌ 错误，有符号整数到无符号整数的隐式转换合法。\n\n**易错提醒：**\n- 有符号负数转换为同宽无符号数时，实际值为 2^32 + 原负数；原负数为 -5 时即 4294967296 - 5。\n- 本题默认 int 为 32 位；若 int 为 16 位，结果会变为 65531，但 GESP 常规环境按 32 位 int 理解。\n\n**知识延伸：**\nunsigned int x = -1; 通常得到 2^32 - 1 = 4294967295，这是模 2^32 转换的典型例子。\n\n**考点：** 补码内存表示与有符号/无符号类型的转换机制"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第8题代码为 int decimal=25; cout<<oct<<decimal;，与网站代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A-D选项依次为十进制转八进制、八进制转十进制、二进制转八进制、八进制转16进制，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第8题为A，对应0起始索引0，与网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导正确：25 的八进制为31；oct 只改变输出格式，不改变变量值；选项分析无事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页末给出第9题题名，第3页给出完整代码和空行；网站保留 decimal=255 与空行，含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A-D选项依次为 cout<<oct<<decimal;、cout<<decimal<<decimal;、cout<<hex<<decimal;、不能正确执行，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第9题为C，对应0起始索引2，与网站answer=2一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析把 decimal 的初值255写成了25，并把选项B误称为位左移和语法错误；选项B实际合法，会输出255255。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (cout << hex << decimal;)**\n\n**核心解析：**\n题目要求把 decimal=255 以十六进制形式输出。`hex` 是 C++ 的流操纵符，设置后续整数按十六进制输出；`cout << hex << decimal;` 会输出 `ff`。\n\n**选项逐项分析：**\n- **A (cout << oct << decimal;)**：❌ 错误，`oct` 设置八进制输出，255 会输出 377，不是十六进制。\n- **B (cout << decimal << decimal;)**：❌ 错误，该语句本身合法，会连续输出两个 255，即 `255255`，但没有设置十六进制，不符合题意。\n- **C (cout << hex << decimal;)**：✅ 正确，`hex` 设置十六进制输出，255 的十六进制表示为 `ff`。\n- **D (不能正确执行)**：❌ 错误，C 选项语句合法且可执行。\n\n**易错提醒：**\n- `oct`、`dec`、`hex` 只改变输出格式，不改变 `decimal` 的值。\n- 本题中的 `decimal` 初值是 255，不是 25；不要与第 8 题的 25 混淆。\n\n**知识延伸：**\n进制格式设置会持续影响后续输出，恢复十进制应使用 `cout << dec`。\n\n**考点：** C++ 输出格式控制（hex 操纵符）"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题代码为 int a=0b1101; int b=0b1011; cout<<(a^b);，与网站代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A-D选项依次为整体异或、按位同或、按位与、按位异或，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第10题为D，对应0起始索引3，与网站answer=3一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析逐位计算中第四位应为1⊕1=0，原文误写成1⊕0=1；虽然最终结果0110和答案D正确，但推导过程有错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (进行的是按位异或运算)**\n\n**核心解析：**\n`^` 在 C++ 中是按位异或运算符。`a = 0b1101`，`b = 0b1011`，按位异或规则为相同得 0、不同得 1：\n\n```\n  1101\n^ 1011\n------\n  0110\n```\n\n结果为二进制 0110，即十进制 6。\n\n**选项逐项分析：**\n- **A (进行的是整体异或运算)**：❌ 错误，C++ 的 `^` 是按位运算，不存在“整体异或”运算。\n- **B (进行的是按位同或运算)**：❌ 错误，同或（XNOR）是异或后取反；C++ 无直接的按位同或运算符。\n- **C (进行的是按位与运算)**：❌ 错误，按位与使用 `&`，`a & b` 的结果是 1001₂ = 9。\n- **D (进行的是按位异或运算)**：✅ 正确，`^` 表示按位异或。\n\n**易错提醒：**\n- 按位异或要逐位对齐，不要漏掉最低位或最高位。\n- 不要把 `^` 与 `&`、`|` 混淆；在 C++ 中 `^` 不是幂运算符。\n\n**知识延伸：**\n`a ^ a = 0`，`a ^ 0 = a`；异或常用于交换变量、找出只出现一次的数等。\n\n**考点：** C++ 位运算符的符号含义辨析"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题6-10。五题的题面与选项均与 PDF 原图一致，答案表映射也全部正确；题6、7、9、10 的解析存在事实性错误，已在 changes 中给出修正，题8解析通过。未发现题面或答案冲突。"
+  }
+}

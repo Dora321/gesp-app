@@ -1,0 +1,235 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T20:37:12.455Z",
+  "completedAt": "2026-11-11T20:44:19.064Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52838,
+    "completion_tokens": 11606,
+    "total_tokens": 64444,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9479
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0137287,
+      "allowance": 0.0137287,
+      "tokens": {
+        "input": 52838,
+        "output": 11606,
+        "reasoning": 9479,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "013365d4bb7fa13988476c0cb85873270422de0422337f459f87fb603e3353cb",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP / C++ 三级 / 2024 年 06 月』，与 paperId 2024-06-l3 及标题『2024年6月 GESP C++ 三级真题』一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 1 题原文『GESP测试是对认证者的编程能力进行等级认证．同一级别的能力基本上与编程语言无关。』与网站题面语义一致（网站仅将句读『．』规范为『，』，不改变含义）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项维度；网站仅以『正确/错误』二值呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 1 格为√（√√√×××√×√√ 之首），√→正确→索引 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立确认初核意见成立：原解析知识延伸称『四级在三级基础上扩展指针和位运算』，但位运算属三级考点——本卷即为三级卷，单选第 7、8 题考查移位/异或，判断第 7、8 题考查按位或/按位与，该表述构成级别事实错误。已将该段替换为本卷可验证的三级考点列举，其余判定逻辑（同级别不同语言考查目标一致）与易错、考点标注复核无误。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nGESP（编程能力等级认证）的设计理念是评估考生在**通用编程思维、算法逻辑和问题分析能力**上的水平，而非对特定编程语言语法细节的掌握程度。在同一级别下，无论考生选择 C++ 还是 Python，其考查的逻辑结构、数学基础、算法复杂度和问题解决思路要求基本一致。编程语言在 GESP 体系中主要作为实现工具，因此同一级别的能力要求基本上与编程语言无关。\n\n**易错提醒：**\n- 部分考生误以为选择不同语言会影响考查难度，实际上同一级别的能力要求基本一致。\n- GESP 各级别对应不同的知识深度和复杂度，但与语言选择基本无关。\n\n**知识延伸：**\nGESP 三级已涉及数据编码、进制转换、位运算、数组、字符串和函数等内容（本卷即考查补码与进制转换、移位/异或/按位与等位运算、数组与字符串）；不同级别对应不同的知识深度与复杂度，具体范围以官方考纲为准。\n\n**考点：** GESP 认证体系的设计理念与编程通用能力的关系"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：独立核对后确认原解析『四级扩展位运算』的考纲延伸与本卷三级考点冲突（本卷单选 7、8 及判断 7、8 均为位运算），修订仅替换该知识延伸段并补充本卷佐证，题面、答案与主体解析不变；修订后无事实性遗留问题。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 2 题原文『整数-6的16位补码可用十六进制表示为FFFA。』与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 2 格为√，√→正确→索引 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：[-6]补 = 2^16 - 6 = 65536 - 6 = 65530 = 0xFFFA；或对 6（0000 0000 0000 0110）按位取反加一得 1111 1111 1111 1010 = FFFA，解析给出的两种方法与分组转换均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复算补码与十六进制转换无误，解析『取反加一』与『模减法』两种推导均正确，答案表第 2 格√与 answer=0 一致，接受原数据。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 3 题原文『补码的优点是可以将减法运算转化为加法运算，从而简化计算机的硬件设计。』与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 3 格为√，√→正确→索引 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：补码下 A-B = A+(-B)，负数补码可由取反加一得到，ALU 仅需一套加法器即可完成加减法，确实简化硬件；解析关于 0 的唯一表示与最小值（-128、-32768）的延伸亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立推导补码统一加减法、ALU 仅需加法器的论据成立，答案表第 3 格√与 answer=0 一致，接受原数据。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 4 题原文『字符常量\\'\\0\\'常用来表示字符串结束，和字符常量\\'0\\'相同。』与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 4 格为×，×→错误→索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对 ASCII：\\'\\0\\' 码值为 0，\\'0\\' 码值为 48，相差 48，题干称『相同』为假；解析的判定依据与 printf 验证示例（0 与 48）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对空字符与数字字符的 ASCII 码值差异成立，答案表第 4 格×与 answer=1 一致，接受原数据。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 5 题原文『数组的所有元素在内存中可以不连续存放。』与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选选项维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 5 格为×，×→错误→索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：C++ 数组元素占用一段连续内存，随机访问依赖『首地址 + 下标 × 元素大小』寻址公式，题干『可以不连续存放』为假；解析对数组与链表存储及访问特性的对比正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认数组连续存储与 O(1) 随机访问的因果关系成立，答案表第 5 格×与 answer=1 一致，接受原数据。"
+      }
+    ],
+    "summary": "本批仅复核判断题第 16–20 题（来源 PDF 第 7 页）。卷头『C++ 三级 2024 年 06 月』与 paperId 2024-06-l3 一致；PDF 判断题答案表前五格为 √ √ √ × ×，对应索引 0/0/0/1/1，与网站 answer 全部一致；五题题面均与原文语义一致（第 16 题仅句读规范）。第 16 题原解析知识延伸『四级在三级基础上扩展指针和位运算』与本卷矛盾（本卷即三级卷且单选 7、8 及判断 7、8 均考查位运算），已修订该段，修复后核验通过；第 17–20 题解析经独立推导无误，维持原数据。判断题不适用选项与参考代码维度，无编程测试用例；无遗留待核验事项。"
+  }
+}

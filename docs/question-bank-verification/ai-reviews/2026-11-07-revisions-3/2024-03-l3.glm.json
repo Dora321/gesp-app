@@ -1,0 +1,245 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    8,
+    9,
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T05:53:46.963Z",
+  "completedAt": "2026-11-12T05:56:59.769Z",
+  "finishReason": "stop",
+  "inputSha256": "cf4c9716973bf3e43538dd348a1b6f92d73a3514f2d1a3988de2e1e5e7304bd1",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 三级」「2024 年 03 月」，与 paperId 2024-03-l3（三级、2024 年 3 月）一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。PDF 第 1 页第 2 题原文为「如果16位短整数 -2 的二进制是“FFFE”，则短整数 -4 的十六进制是( )」，FFFE 含十六进制字符 F 不可能是二进制，系源卷把「十六进制」误写为「二进制」；候选按语义勘误为「十六进制表示是 FFFE」并在解析开头披露原卷原文，勘误方向唯一（若按字面「二进制」则题面自相矛盾无解）。源卷笔误争议保留于 unresolved。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图选项依次为 A.FF04、B.FFFA、C.FFFC、D.FFFH，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 2 题为 C（0 起始索引 2），候选 answer=2 一致；独立换算：|−4|=4=0x0004，取反得 0xFFFB，加 1 得 0xFFFC=65532，65532−65536=−4，支持 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。候选解析以「-4 比 -2 小 2，FFFE−2=FFFC」及「|−4|=4 取反加一得 0xFFFC」双路推导；逐项复算：0xFF04=65284→65284−65536=−252、0xFFFA=65530→−6、0xFFFC=65532→−4、FFFH 含非法十六进制字符 H，均无误；上轮两处解析错误（FFFE−1 推不出 −4、2^15−FFFA 算式）已不存在。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 2 题题面写作「16位短整数 -2 的二进制是“FFFE”」，FFFE 含字母 F 不可能是二进制，系源卷把「十六进制」误写为「二进制」；候选按语义勘误为「十六进制表示」并在解析中披露原文，源卷笔误与勘误取舍保留争议记录。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "初核（DeepSeek）对题 2 未再提出修改，与候选现状一致。我独立复算 0xFFFE−2=0xFFFC、0xFFFA→−6、0xFF04→−252 均无误；题面勘误披露完整、答案 C 与官方表一致，予以通过；源卷「二进制」笔误保留争议记录。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页第 8 题代码：第 3 行 string str=\"gEsP is Interesting\";，第 7 行 if ((str[i]>='a') && (str[i]<='z')) 用字符字面量 'a'/'z'；第 9 行 cout << str << endl; 后第 11 行还有 cout << endl;。候选题面把条件写成 (str[i] >= \"a\"[0]) && (str[i] <= \"z\"[0])，语义等价但未忠实还原原卷代码形式，且漏掉第 11 行 cout << endl;，需按原卷修正题面（修正稿见 changes）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. str[i]+='a'-'A'、B. str[i]+=20、C. str[i]+='A'-'a'、D. 无法实现，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题为 C（0 起始索引 2），候选 answer=2；独立推导：'A'=65、'a'=97，'A'-'a'=−32，g(103)−32=71='G'、s(115)−32=83='S'，全部小写转大写后输出 GESP IS INTERESTING，支持 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析核心经独立复算无误：if 仅筛小写字母，'A'−'a'=65−97=−32 实现小写转大写；A 项 'a'+'a'−'A'='a'+32=129 并非对应大写字母，且 if 只筛小写字母、不会作用于大写字母（候选已按此表述）；B 项偏移 20≠32；D 项与程序可实现性矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "在下列代码的横线处填写（ ），可以使得输出是 GESP IS INTERESTING。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting\";\n    int x = str.length();\n\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= 'a') && (str[i] <= 'z'))\n            ________________________;\n    cout << str << endl;\n\n    cout << endl;\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 对题面的修正：原卷第 7 行确为字符字面量 (str[i]>='a')&&(str[i]<='z')，候选 \"a\"[0]/\"z\"[0] 未忠实还原；原卷第 11 行 cout << endl; 候选漏掉。修正稿已对照原卷第 1—13 行逐行核验完整，予以采纳；选项、答案 C 与解析经独立复算无误，verdict=revise 仅涉及题面。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 3 页第 3 行字符串为 \"gEsP is Interesting     !\"（Interesting 与 ! 之间 5 个连续空格，以文本层为准），第 4 页第 8、10 行为 if (str[i]==' ')、while(str[++i]==' ') ;，均为字符字面量；第 12 行 cout << nwords << endl; 后第 14 行还有 cout << endl;。候选题面 Interesting 与 ! 之间仅 1 个空格（长度 21）、写成 \" \"[0]、漏掉 cout << endl;，且与其解析按 5 个空格算得的长度 25 自相矛盾，需按原卷修正题面（修正稿见 changes）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A.1、B.2、C.3、D.4，与候选内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 C（0 起始索引 2），候选 answer=2；独立模拟：gEsP 与 is、is 与 Interesting、Interesting 与 ! 之间共 3 段空格各计一次，段内连续空格被 while 跳过，nwords=3；该结果与段内空格具体个数无关，结论稳健。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按原卷 5 个连续空格计算长度 25（4+1+2+1+11+5+1=25），三段空格逐步模拟输出 3，与官方答案 C 一致；D 项「字符串可看作 3 个单词后接一个感叹号、程序统计空格段落数」表述正确，未把感叹号误作单词；A/B 项归因合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（ ）。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting     !\";\n    int x = str.length();\n    int nwords = 0;\n\n    for (int i = 0; i < x; i++)\n        if (str[i] == ' ') {\n            nwords++;\n            while (str[++i] == ' ');\n        }\n    cout << nwords << endl;\n\n    cout << endl;\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 对题面的修正：PDF 文本层显示 Interesting 与 ! 之间 5 个连续空格，候选仅 1 个且与解析「长度 25」自相矛盾；' ' 字符字面量与 cout << endl; 同需还原。修正稿与原卷逐行一致（含 while 分号），予以采纳；nwords=3 与答案 C 一致且与段内空格数无关，verdict=revise 仅涉及题面。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。PDF 第 6 页 3.1.1 与第 7 页 3.1.2—3.1.4 逐句对照：候选保留「利用这种方式」、输入/输出格式（正整数 n、字符串 T）、样例 3/aAc→−61 与数据范围 1≤n≤10^5，均与原卷一致；原卷「例如字母 A 代表了正整数 -65」与同段「大写字母代表负整数」、样例 −61 及参考程序 ans-=str[i] 三方矛盾，系源卷笔误，候选按题意作「负整数 -65」，争议保留于 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer=null；按题面算法与参考程序独立核对样例输出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：小写分支 ans+=T[i]−'a'+1（a→1、z→26），大写分支 ans−=T[i]（A→−65、Z→−90），与题意和参考程序一致；样例走查 0→1→1−65=−64→−64+3=−61 复算一致；O(n) 在 n≤10^5 内可行，|ans| 极值约 90×10^5=9×10^6（全大写 Z）或 26×10^5=2.6×10^6（全小写），均在 int 范围内；易错提醒（+1 序号偏移、大写取 ASCII 相反数、禁用 'a'<=str[i]<='z' 式连续比较）均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 7 页 3.1.5 参考程序逐行一致：五个头文件（iostream/assert.h/cstdlib/cstdio/cstring）、const int N=100005、char str[N]、assert(n==strlen(str))、小写 ans+=str[i]-'a'+1、大写 ans-=str[i]、else assert(false)、cout<<ans<<endl；N=100005 可容纳 n=10^5 及结尾空字符，cin>>str 按空白截断读入该无空格字符串安全，O(n) 无越界、无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模小写字母",
+            "input": "1\na",
+            "output": "1",
+            "reason": "独立计算：小写 a 代表字母顺序 1，输出 1；覆盖 n 下界（n 为正整数，最小 1）。"
+          },
+          {
+            "name": "单个大写字母极值",
+            "input": "1\nZ",
+            "output": "-90",
+            "reason": "独立计算：Z 的 ASCII 码为 90，按题意取相反数输出 −90；覆盖单字符大写及 ASCII 最大的大写字母。"
+          },
+          {
+            "name": "大小写混合",
+            "input": "4\naZzB",
+            "output": "-129",
+            "reason": "独立计算：1+(−90)+26+(−66)=−129；覆盖小写序号（含 z 的 26）与大写 ASCII 取负（Z=90、B=66）两类分支。"
+          },
+          {
+            "name": "26 个小写字母",
+            "input": "26\nabcdefghijklmnopqrstuvwxyz",
+            "output": "351",
+            "reason": "独立计算：1+2+…+26=26×27/2=351；覆盖全部小写字母与 +1 序号偏移。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 6 页 3.1.1 写作「例如字母 A 代表了正整数 -65」，与前文「大写字母代表负整数」、样例 −61 及参考程序 ans-=str[i] 直接矛盾，系源卷笔误；候选按题意勘误为「负整数 -65」，源卷笔误与勘误取舍保留争议记录。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "初核对题 26 未再提出修改，与候选现状一致。题面（含数据范围、「利用这种方式」、「负整数 -65」勘误）、解析与参考代码经我逐项独立核验通过；四条测试期望值 1、−90、−129、351 均独立复算一致（未声称实际运行），予以采纳；源卷「正整数 -65」笔误保留争议记录。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        8,
+        9,
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 36804,
+        "completion_tokens": 15265,
+        "total_tokens": 52069,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11856
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0131531,
+          "allowance": 0.0131531,
+          "tokens": {
+            "input": 36804,
+            "output": 15265,
+            "reasoning": 11856,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-12T05:53:46.963Z",
+      "completedAt": "2026-11-12T05:56:59.769Z"
+    }
+  ]
+}

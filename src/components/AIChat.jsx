@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useState } from 'react';
 import { MessageCircle } from 'lucide-react';
+import LoadingBlocks from './LoadingBlocks';
 
 // 重量级聊天面板（react-markdown + highlight.js + remark/rehype 全家桶）只在
 // 用户首次点开聊天时才动态加载，避免把这套依赖塞进首屏 bundle。
@@ -21,9 +22,9 @@ const PanelFallback = () => (
             role="status"
             aria-label="正在加载 AI 问答助手"
         >
-            <div className="flex items-center gap-2 text-slate-400 text-sm">
-                <span className="w-4 h-4 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" />
-                正在加载助手…
+            <div className="flex items-center gap-2.5 text-slate-500 text-sm">
+                <LoadingBlocks />
+                正在加载助手
             </div>
         </div>
     </>

@@ -1,0 +1,85 @@
+{
+  "executedAt": "2026-11-14T01:08:12.623Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "6\nPAs1s2an\n1a2bCql3\nPa12bsna\nab1da3cd\nPaabdbcd\nPa2",
+          "output": "Y\nY\nY\nN\nN\nN",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Y\nY\nY\nN\nN\nN\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1\na\n",
+          "output": "N",
+          "reason": "T=1、密码长度 1，不满足至少 8 个字符，也无大写字母和数字，输出 N。",
+          "kind": "boundary",
+          "actual": "N\n",
+          "passed": true
+        },
+        {
+          "name": "长度恰为 8 的边界",
+          "input": "1\nA1234567\n",
+          "output": "Y",
+          "reason": "长度恰为 8（满足≥8 下界），含大写字母 A 和数字 1~7，三条件同时成立，输出 Y。",
+          "kind": "boundary",
+          "actual": "Y\n",
+          "passed": true
+        },
+        {
+          "name": "多组标记重置",
+          "input": "2\nA1234567\nabcdefgh\n",
+          "output": "Y\nN",
+          "reason": "第一组三条件满足输出 Y；第二组长度 8 但全为小写且无数字应输出 N；若标记未在组内重置，残留 true 会使第二组误输出 Y，可检验每组状态重置逻辑。",
+          "kind": "boundary",
+          "actual": "Y\nN\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6324d45423c659212cbb70c5d5bad3bf40e9e5bc9324cf3e477f58c5eb4e4c45"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "2 5\n1 1\n1 2\n1 1\n2 3\n2 10",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1 1\n1 1\n",
+          "output": "1",
+          "reason": "M=N=1，仅种类 1 一件文具、价格 1，必须购买，总价为 1。",
+          "kind": "boundary",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "name": "同种类取最小与单价上界",
+          "input": "2 3\n1 1000\n2 1000\n1 999\n",
+          "output": "1999",
+          "reason": "种类 1 两件取最低价 999，种类 2 一件为单价上界 1000，总价 999+1000=1999；覆盖同种类多件取最小、P_i 取 10^3 上界，并满足每个种类至少一件的保证（M=2 ≤ N=3）。",
+          "kind": "boundary",
+          "actual": "1999",
+          "passed": true
+        }
+      ],
+      "codeSha256": "68509655070e18c37704badabc3187baa47a309c6e481a979a13a1fbcecae262"
+    }
+  ]
+}

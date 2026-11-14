@@ -1,0 +1,230 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T08:19:49.297Z",
+  "completedAt": "2026-11-11T08:22:25.271Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40038,
+    "completion_tokens": 17339,
+    "total_tokens": 57377,
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 40038,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15311
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0328182,
+      "allowance": 0.01969092,
+      "tokens": {
+        "input": 40038,
+        "output": 17339,
+        "reasoning": 15311,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d80558b5c2f0eb8b9fea809bce35de852889e05b5b90a1b230c1f09d9c5ab4b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“2023 年 6 月 GESP C++ 三级真题解析”，判断题位于第8—9页；与 2023-06-l3 对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题1原文为“一个算法可以用不同的形式来描述，但要求描述比较规范，因此不能用自然语言描述。”网站压缩为“但不能用自然语言描述”，保留了被判断的核心结论，未改变答案。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 单选选项；PDF 只标注【答案】×。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】×；网站 answer=1，对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析指出算法也可用自然语言描述；网站解析核心判断一致。末句关于 GESP 二级的延伸不在本 PDF 证据内，但不影响本题结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第8页原文为“CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn”，网站写成“CCF 官方网站域名”，漏掉“编程能力等级认证”，所指对象不准确。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 单选选项；PDF 只标注【答案】×。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】×；网站 answer=1，对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析强调最右边 cn 为顶级域名；网站解析说明 gesp 是四级域名、cn 是顶级域名，与官方一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题3原文为“数据编码方式只有原码、反码、补码三种。”网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 单选选项；PDF 只标注【答案】×。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】×；网站 answer=1，对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "官方解析指出编码方式很多，如格雷码、哈夫曼编码等；网站解析主体正确，但“8421码/余码”与移码关系的表述不准确，需改写该知识延伸。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n题目声称数据编码方式“只有”原码、反码、补码三种，这是一个绝对化表述。实际上，除了这三种整数编码方式外，还有：\n1. 移码（Excess/bias notation）：常用于浮点数的指数部分，通过偏移量表示数值。\n2. 浮点数编码（如 IEEE 754 标准）：用科学计数法形式表示实数，包含符号位、指数位和尾数位。\n3. BCD 码（Binary-Coded Decimal）：用二进制表示十进制数字。\n4. 格雷码（Gray Code）：相邻数值只有一位不同的编码方式。\n因此原题说法过于狭隘，遗漏了重要的编码方式。\n\n**易错提醒：**\n- 考生容易将“原码、反码、补码”与“所有编码方式”混淆，实际上前者主要用于有符号整数的表示。\n- 在 C++ 中，整数在内存中通常以补码形式存储，但浮点数遵循 IEEE 754 标准。\n\n**知识延伸：**\n除原码、反码、补码外，BCD 码、格雷码、移码以及 IEEE 754 浮点数编码等也是常见的数据编码方式，应根据具体场景区分。\n\n**考点：** 计算机基础 - 数据编码方式"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页题面起、第9页续：“长度为 n 的数组，合理的下标范围是从 0 到 n，包括 0 和 n。”网站省略“在 C++语言中”，但本题为 C++三级且上下文明确，核心判断对象未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 单选选项；PDF 只标注【答案】×。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页顶部续【答案】×；网站 answer=1，对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析说明长度为 n 的数组下标为 0 到 n-1，不包括 n；网站解析一致，并补充越界为未定义行为。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题5原文为“字符常量'\\0'常用来表示字符串结束，它和字符常量'0'是不同的。”网站将后一个“字符常量”简写为“字符”，并保留关键区分，未改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A—D 单选选项；PDF 只标注【答案】√。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页【答案】√；网站 answer=0，对应“正确”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析说明'\\0'的 ASCII 码为 0，'0'的 ASCII 码为 48，二者不同；网站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16—20（PDF判断题1—5）。官方答案依次为×、×、×、×、√，与网站 answer 1、1、1、1、0 一致。题17题面将“CCF 编程能力等级认证官方网站”简写为“CCF 官方网站”，建议补全限定语；题18解析中“8421码/余码”与移码关系的表述不准确，建议修正。题16、19、20题面与答案核心一致。五题均为判断题，referenceCode 不适用。"
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T12:31:21.369Z",
+  "completedAt": "2026-11-12T12:44:12.833Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36333,
+    "completion_tokens": 13805,
+    "total_tokens": 50138,
+    "prompt_tokens_details": {
+      "cached_tokens": 36224,
+      "cache_write_tokens": null
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12472
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00840802,
+      "allowance": 0.00504481,
+      "tokens": {
+        "input": 109,
+        "output": 13805,
+        "reasoning": 12472,
+        "cache_read": 36224,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 三级 2024 年 12 月”，与 paperId 2024-12-l3 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题第1题题干与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 答案表以√/×作答；网站映射为“正确/错误”，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页答案表第1题为√，对应正确=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析把8位-3的补码253写成二进制10011101；253应为11111101，原二进制值错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n补码的设计正是为了解决这一工程问题。通过把负数表示成其模 $2^n$ 意义下的补数，可以把减去一个正数或加上一个负数统一转化为加上一个正数。例如在 8 位系统中，-3 的补码是 253，即二进制 `11111101`；计算 5-3 时可算 5+253=258，舍弃 8 位之外的进位后得到 2，与 5-3 的结果一致。这样加减法都能由同一套加法电路完成，简化了硬件设计。\n\n**易错提醒：**\n- 补码的本质不是“把负数当正数”，而是利用模运算的性质，让减法变成加法。\n- 补码范围不对称：8位有符号整数的范围是 -128 ~ +127，-128 没有原码和反码表示，只有补码。\n\n**知识延伸：**\n补码的定义为：正数的补码是自身；负数的补码是符号位不变，其余各位取反后加1。这一规则保证了所有加减法都能统一用加法器完成，是现代计算机的基石。\n\n**考点：** 二进制、补码"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题第2题题干为“使用原码进行的计算，2+(-1) 的结果是 -3”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 答案表以√/×作答；网站映射为“正确/错误”，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页答案表第2题为√，对应正确=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按原码位模式直接相加得到10000011并解释为-3，能支持官方√的判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题第3题题干为“反码计算加减法：加法与减法结果都是正确的，只是解决不了 -0 的问题”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 答案表以√/×作答；网站映射为“正确/错误”，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页答案表第3题为√，对应正确=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明了反码规则、循环进位以及+0/-0两种零表示，能支持官方√的判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题第4题的除2取余式与结论文字，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 答案表以√/×作答；网站映射为“正确/错误”，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页答案表第4题为×，对应错误=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出除2取余应逆序读取，并说明本题余数全为1导致数值巧合；官方答案表第4题为×。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题第5题代码为 char x=65; x=x&00001111; cout<<x<<endl;，与网站等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 答案表以√/×作答；网站映射为“正确/错误”，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页答案表第5题为√，对应正确=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出00001111为八进制585，65&585=65，输出A；与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题16至题20共5道判断题。题面、选项映射和官方答案均与PDF第7页一致；仅题16解析中253的二进制误写为10011101，已给出更正。其余解析可独立支持答案，未发现需改题面或答案的问题。"
+  }
+}

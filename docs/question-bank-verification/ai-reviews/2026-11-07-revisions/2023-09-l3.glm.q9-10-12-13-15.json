@@ -1,0 +1,240 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "glm",
+  "questionIds": [
+    9,
+    10,
+    12,
+    13,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T13:59:15.068Z",
+  "completedAt": "2026-11-11T14:04:35.950Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 52207,
+    "completion_tokens": 20970,
+    "total_tokens": 73177,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17199
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01831605,
+      "allowance": 0.01831605,
+      "tokens": {
+        "input": 52207,
+        "output": 20970,
+        "reasoning": 17199,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "13dc6da383f7b67a01767bcce8843fb4727d61b6155a63bb3975662d80445e42",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 Grade Examination of Software Programming』『C++ 三级』『2023 年 9 月』，与 paperId 2023-09-l3（2023 年 9 月、三级）对应；单选 15 题×2 分、判断 10 题×2 分、编程 2 题×25 分的分值结构也与候选 score 一致。"
+    },
+    "questions": [
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题题干『下列关于C++语言中数组的叙述，不正确的是（ ）。』与候选 question 一致，无图示或代码遗漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 依次为『可以定义 0 个元素的数组。』『不能定义 -1 个元素的数组。』『数组下标越界访问会产生编译错误。』『程序运行时发生数组下标的越界访问，程序依然可能正常结束。』与候选 options 内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 C，对应 0 起始索引 2，与候选 answer=2 一致；独立判断四项中仅 C 明确错误（下标越界是运行期未定义行为，编译器不做边界检查，不产生编译错误）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选 B 项理由『数组长度必须是非负整数常量』把 ISO C++『数组长度必须大于 0』的规则弱化为非负，与同解析 A 项『标准 C++ 不允许长度为 0 的数组』的说明自相矛盾；替换文本中『标准要求数组长度大于 0、GCC/Clang 以扩展接受 int a[0];、越界属运行期未定义行为、std::array/std::vector 的 [] 不查边界而 .at() 越界抛异常』各点均经独立复核成立，结论 C 不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (数组下标越界访问会产生编译错误。)**\n\n**核心解析：**\n本题要求选出“不正确”的叙述。数组下标越界属于运行期未定义行为，而不是编译错误。C++ 编译器通常不对 `[]` 的下标做边界检查，越界访问的代码在语法上可以编译通过；运行后果可能是崩溃、数据损坏，也可能看似正常结束。\n\n**选项逐项分析：**\n- **A (可以定义 0 个元素的数组)**：不是本题答案。严格 ISO C++ 要求数组长度大于 0；但 GCC/Clang 等常见编译器把 `int a[0];` 作为扩展接受。本题按考试环境口径不把 A 视为错误，同时应知道标准与编译器扩展的差异。\n- **B (不能定义 -1 个元素的数组)**：不是本题答案。数组长度不能为负（标准还要求大于 0），`-1` 非法，说法本身正确。\n- **C (数组下标越界访问会产生编译错误)**：✅ 本题答案。越界访问发生在运行阶段，编译器不会据此报编译错误。\n- **D (程序运行时发生数组下标的越界访问，程序依然可能正常结束)**：不是本题答案。越界属未定义行为，不保证崩溃，程序可能“看似正常”地跑完。\n\n**易错提醒：**\n- 混淆编译时错误与运行时错误：语法错误、类型不匹配通常是编译时错误；数组越界、除零、空指针解引用等属于运行时问题。\n- 不要以为越界一定导致程序崩溃，未定义行为的表现不可预测。\n\n**知识延伸：**\n`std::array` 和 `std::vector` 的 `[]` 也不自动做边界检查；需要检查时可使用 `.at()`（越界会抛出异常）。\n\n**考点：** 数组越界与未定义行为"
+        },
+        "tests": [],
+        "unresolved": [
+          "严格 ISO C++ 要求数组长度大于 0，选项 A『可以定义 0 个元素的数组』按标准同样不成立（GCC/Clang 以扩展接受）；官方答案取 C，源卷选项严谨性争议保留，不据此改动答案。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受初核 needs_fix：候选 B 项理由『数组长度必须是非负整数常量』确实弱化了标准规则（长度必须大于 0），并与同解析 A 项关于标准与扩展差异的说明矛盾；替换解析的全部技术主张经我独立复核成立且不改变答案 C，采纳应用。其余四维通过判定与初核一致。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题题干『如果 a 是 int 类型的变量，下列哪个表达式的值一定为 true？（ ）』与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 依次为 a + 1000 - 1000 == a、a * 2 / 2 == a、(a & 1) == 1、(a | 1) == a + 1，与候选 options 内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 A，对应索引 0，与候选 answer=0 一致；独立核验：模 2^32 下 (a+1000)-1000≡a 对全体 int 成立，B 在 a=2^30 时 a*2 回绕为 -2^31、再除以 2 得 -2^30≠a，C 仅奇数成立，D 仅偶数成立（a 为奇数时 a|1=a 而 a+1 已改变），A 为唯一可选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：候选按考试常规 32 位补码回绕口径推导 A 恒成立，B 的具体反例 a=2^30（a*2 回绕 -2^31，/2 得 -2^30）复算无误，C/D 的奇偶性失效条件正确；易错提醒明确注明严格 ISO C++ 中有符号溢出属未定义行为，考试口径与标准的差距已如实说明，解析无自相矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "严格 ISO C++ 中 a+1000 在 a 接近 INT_MAX 时溢出属未定义行为，『一定为 true』仅在考试默认的补码回绕口径下成立；官方答案为 A，候选解析已注明该差距，保留注记。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核通过判定：A 的回绕推导、B 的具体反例及 C/D 的失效条件均经我独立复算无误，候选解析无初核所述之外的问题，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 12 题题干『如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a是大写字母”？（ ）』与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A-D 依次为 a - 'A' <= 26、'A' <= a <= 'Z'、'A' <= 'a' <= 'Z'、('A' <= a) && (a <= 'Z')，与候选 options 内容、顺序一致（仅空格排版差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 D，对应索引 3，与候选 answer=3 一致；独立判断：仅 D 同时约束上下界，A 误收 '['(91-65=26) 与 '@'(64-65=-1≤26)，B、C 均为恒真表达式。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：A 项两个反例（'[' 差 26、'@' 差 -1）成立；B 按左结合解析为 ('A' <= a) <= 'Z'，左侧结果只能为 0/1 且 0/1 ≤ 'Z'(90) 恒真，如 a='0'(48) 时整体为真；C 为常量比较 65≤97 得 1、1≤90 恒真，与 a 无关；D 用 && 连接两个独立比较，判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核通过判定：各选项反例与恒真性推导均经我独立复算成立，题面、选项、答案与 PDF 一致，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 13 题代码与候选 code 逐行一致：int a = 10, b = 20; a = (a << 8) | b; 横线填空行（// 在此处填入代码）及 cout << a << \" \" << b << endl; 均无遗漏；题干『可以使得输出是“20 10”』一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3-4 页 A-D 依次为 a = a >> 8; b = a & 0xff（无尾分号）、b = a >> 8; a = a & 0xff;、a = b; b = a & 0xff;、b = a; a = b;（D 位于第 4 页），与候选 options 内容、顺序一致；A 项尾分号属纯标点差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 B，对应索引 1，与候选 answer=1 一致；独立复算 B：b=2580>>8=10、a=2580&0xff=20，输出 20 10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：a=(10<<8)|20=2560|20=2580=0x0A14（高 8 位 0x0A=10、低 8 位 0x14=20）；A 先改 a 得输出 10 10，C 输出 20 20，D 输出 2580 2580，各选项模拟与候选解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码；题面代码已随 statement 对照 PDF 第 3 页核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核通过判定：2580=0x0A14 的换算及四个选项的模拟输出均经我独立复算无误，题面代码与 PDF 第 3 页图像逐行一致，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 15 题代码与候选 code 一致：array[i]=i 初始化，p=2..9 时若 array[p]==p 则对 n=p,2p,...<10 执行 array[n]=array[n]/p*(p-1)，最后累加 array[1..9] 输出；无遗漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 依次为 15、28、45、55，与候选 options 内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 B，对应索引 1，与候选 answer=1 一致；独立模拟最终 array[1..9]=1,1,2,2,4,2,6,4,6，求和 28。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核通过：逐步模拟 p=2（array[2,4,6,8]→1,2,3,4）、p=3（array[3,6,9]→2,2,6，其中 array[6] 由 p=2 后的 3 更新为 2）、p=5（array[5]→4）、p=7（array[7]→6），p=4/6/8/9 因 array[p]≠p 跳过；每处除法恰好整除，最终和 1+1+2+2+4+2+6+4+6=28，与候选解析逐步一致；C(45) 为未筛选直和、A(15)/D(55) 无对应正确逻辑的说明合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码；题面代码已对照 PDF 第 4 页核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核通过判定：整轮模拟（含 p=5、p=7 的更新与 array[6] 的二次修改）经我独立手算与候选解析完全一致，最终 28 无误，无需修改。"
+      }
+    ],
+    "summary": "本轮仅复核第 9、10、12、13、15 题。五题题面（含第 13、15 题代码图像）与官方 PDF 对应页一致，答案均与第 1 页答案表匹配（9→C、10→A、12→D、13→B、15→B，索引 2/0/3/1/1）。第 9 题候选解析 B 项『数组长度必须是非负整数常量』弱化了标准『长度必须大于 0』的规则并与同解析 A 项说明矛盾，已替换为修正稿并复核通过，官方答案 C 不受影响，源卷 A 项严谨性争议保留于 unresolved；第 10 题解析的补码回绕推导与 ISO 未定义行为注记经独立复算无矛盾，保留注记；第 12、13、15 题解析各选项反例与模拟输出（含 10 10/20 20/2580 2580、28）均独立复算通过，无需修改。其余题目不在本轮范围，未核验。"
+  }
+}

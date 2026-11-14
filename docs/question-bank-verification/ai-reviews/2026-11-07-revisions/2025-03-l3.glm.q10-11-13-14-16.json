@@ -1,0 +1,243 @@
+{
+  "paperId": "2025-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    10,
+    11,
+    13,
+    14,
+    16
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T17:58:29.708Z",
+  "completedAt": "2026-11-12T18:02:33.856Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55351,
+    "completion_tokens": 19018,
+    "total_tokens": 74369,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15812
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01781165,
+      "allowance": 0.01781165,
+      "tokens": {
+        "input": 55351,
+        "output": 19018,
+        "reasoning": 15812,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "f13d61dd4f1a1efd22652a13eeabdf2599c04954ea23bf00e480a7a8a454289b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++3级.pdf",
+    "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
+    "mirrorBytes": 1346878,
+    "shaVerified": true,
+    "sha256": "b7e9c17c562b99757a88c1909a96258f27b7f45145ad9f3a46b0d1d54c5deefa"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头原图为“C++ 三级”“2025 年 03 月”，与题包标识 2025-03-l3（2025 年 3 月、C++ 三级）一致；全卷结构为单选题 15 题（每题 2 分）、判断题 10 题（每题 2 分）、编程题 2 题（每题 25 分），与候选题包结构一致。"
+    },
+    "questions": [
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原图第 10 题题干“以下代码的说法正确的是什么()”及完整代码（#include <iostream>、using namespace std;、int a = 0b1101;、int b = 0b1011;、cout << (a ^ b);、return 0;）与候选题面逐行一致，仅括号全半角差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原图 A–D 依次为“进行的是整体异或运算”“进行的是按位同或运算”“进行的是按位与运算”“进行的是按位异或运算”，与候选顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 D，候选 answer=3 即 D（0 起始），映射一致；独立计算 0b1101=13、0b1011=11，13^11=0b0110=6，^ 为按位异或运算符，D 表述正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐位复算：高位起 1⊕1=0、1⊕0=1、0⊕1=1、1⊕1=0，得 0110₂=6，与候选推导一致；a&b=1001₂=9 亦复核无误；候选对 A（C++ 无“整体异或”概念）、B（C++ 无按位同或运算符）、C（按位与为 &）的辨析正确，易错提醒“最低位是 1⊕1=0”与两数最低位均为 1 的事实相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立逐位复算（1101⊕1011=0110=6）、答案表第 10 题 D 与 answer=3 映射、四选项辨析均与候选一致；候选解析已修正早前“最低位 1⊕0=1”的笔误为 1⊕1=0，复核通过，无需修改。接受 DeepSeek 草稿对本题的核验结论。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页原图代码为 int arr[] = {3, 7, 2, 9, 5};、int maxIndex = 0;、for (int i = 1; i < 5; i++) {，第 8 行为横线，随后 { maxIndex = i; }、cout << maxIndex;，与候选题面结构一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图 A–D 依次为 if (arr[maxIndex] > arr[i])、if (arr[i]-1 > arr[maxIndex])、if (arr[i]+1 > arr[maxIndex])、if (arr[i] > arr[maxIndex])，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 D，候选 answer=3 即 D，映射一致；独立验证填 D：i=1 时 7>3 更新 maxIndex=1，i=3 时 9>7 更新为 3，最终输出 3，为最大元素 9 的正确下标。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立完整模拟填 A：i=1 时 3>7 不成立；i=2 时 arr[0]=3>arr[2]=2 成立，maxIndex 被改为 2；i=3、i=4 时 arr[2]=2 与 9、5 比较均不成立，最终输出 2，与候选“条件写反会得到错误下标 2”的机制描述一致；B、C 为对元素值加减 1 的无意义变形，辨析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立模拟确认填 A 最终输出 2、填 D 输出 3，候选解析对 A 项错误机制的描述（更新到较小元素而非“不更新”）与答案映射均正确，无需修改。接受 DeepSeek 草稿对本题的核验结论。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图题干“下面程序最后能够得到 HelloC++ 的是（）”及代码（string str = \"HelloWorld\";、横线、cout << str;、return 0;）与候选一致，选项 C、D 续于第 5 页，无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4–5 页原图 A–D 依次为 str.replace(0, 5, \"C++\");、str.replace(5, 5, \"C++\");、str.replace(1, 5, \"C++\");、str.replace(4, 5, \"C++\");，与候选顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 B，候选 answer=1 即 B，映射一致；独立验证 replace(5,5,\"C++\") 删除下标 5–9 的 \"World\" 并插入 \"C++\"，得 \"HelloC++\"。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立字符串手术：A 得 \"C++World\"；B 得 \"HelloC++\"；C 删除下标 1–5（\"elloW\"）后剩 H 与 orld，得 \"HC++orld\"；D 删除下标 4–8（\"oWorl\"）后得 \"HellC++d\"，均与候选一致（候选已修正早前 C 项漏写 o 的 \"HC++rld\"）；replace(pos, len, s) 为起始下标加长度的参数语义说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立推演四个选项结果（C++World / HelloC++ / HC++orld / HellC++d）与候选解析逐项一致，答案 B 与官方表映射无误，无需修改。接受 DeepSeek 草稿对本题的核验结论。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF 第 5 页原图题干为“想要得到字符串 world”（小写 world），候选题面写作大写 World。原卷题干与同页四个选项（均用大写 World）及第 1 页答案表第 14 题 D 相互矛盾，属源卷自身缺陷：保留小写则无任何选项能输出 world，改写为大写则偏离原卷逐字文本。候选已按官方题意整理并在解析中记录说明，该矛盾无法在不定案的前提下消除，保留争议。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图 A–D 依次为 str.insert(4, \"World\"); 加 cout << str.substr(4, 4);、cout << str.substr(5, 5);、str.insert(\"World\"); 加 cout << str.substr(5, 5);、str.insert(5, \"World\"); 加 cout << str.substr(5, 5);，与候选逐项一致（均用大写 World）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 D，候选 answer=3 即 D，映射一致；独立验证 D：insert(5, \"World\") 后 str=\"HelloWorldC++\"，substr(5,5)=\"World\"，与官方答案自洽。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演四项：A 插入后为 \"HellWorldoC++\"，substr(4,4)=\"Worl\"；B 对长度 8 的 \"HelloC++\" 取 substr(5,5)，pos=5 合法、请求长度超过剩余时截断到末尾得 \"C++\"，不存在越界异常；C 的 std::string 无单参数字符串 insert 重载，无法编译；D 得 \"World\"。候选各结论正确，且保留了源卷小写 world 笔误的说明，与本次独立核对一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "PDF 第 5 页题干目标写作小写 world，而四个选项及官方答案 D 均对应大写 World，属源卷自身矛盾；候选题面按官方题意整理为大写 World 后自洽，但与原卷逐字文本不一致，争议保留，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受 DeepSeek 草稿对 options/answer/explanation 的核验结论（本复核独立推演四选项结果与 substr 截断语义后一致确认）；statement 维度：源卷题干小写 world 与选项、官方答案 D 的大写 World 冲突属源卷缺陷，按“源卷本身错须保留争议、不擅自定案”的规则维持 unresolved，不采用将整理文本定案为 verified 的写法；候选已含整理文本与说明，无需再改，changes 为空。"
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题第 1 题原文“判断一个三角形是否成立的条件只有:任意两边长度之和大于第三条边的长度”，与候选题面仅冒号全半角与句末标点差异，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项；PDF 第 6 页以题号加 √/× 答案表呈现，候选“正确/错误”为判断题标准形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页原图判断题答案表第 1 题符号为 ×，候选 answer=1 即“错误”，映射一致（正确=0、错误=1）。"
+          },
+          "explanation": {
+            "status": "unresolved",
+            "evidence": "独立复核：候选所举反例 0、1、2 与 -1、2、3 自身均不满足“任意两边之和大于第三边”（0+1=1<2、-1+2=1<3），不能证明该条件不充分；且三条严格不等式蕴含三边为正（a+b>c 与 a+c>b 相加得 2a>0，同理得 b>0、c>0），“边长为正”并非独立于该条件的额外要求。在“任意”的全称解读下，题设条件恰为三角形成立的标准充要条件，与官方判 × 相矛盾；官方判错依据未在 PDF 给出，无法据实重写解析而不编造，保留未决。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案表判 × 且与候选 answer=1 一致，但候选解析以“还须边长为正”立论不成立（其反例不满足题设条件；三条严格三角不等式可推出三边为正），官方判 × 的依据无法从原卷获得；在“任意两边”全称解读下命题反而成立，存在解读争议，保留未决，不擅自定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受 DeepSeek 草稿维持 unresolved 的处理，并独立补充硬依据：候选解析反例自相矛盾（0+1=1<2、-1+2=1<3 均不满足题设），且由 a+b>c 与 a+c>b 相加得 2a>0 可推出三边为正，“边长为正”并非额外条件；官方判 × 依据缺失，故解析维度维持 unresolved，否决任何编造官方判定理由的改写，changes 为空，答案符号映射本身核验通过。"
+      }
+    ],
+    "summary": "本次独立复核题号 10、11、13、14、16 共 5 题，全部基于 PDF 页图核对（第 1 页单选答案表、第 6 页判断答案表符号均从原图确认）。第 10 题（XOR 逐位 0110=6、答案 D）、第 11 题（填 A 输出 2、填 D 输出 3、答案 D）、第 13 题（replace 四项结果 C++World/HelloC++/HC++orld/HellC++d、答案 B）题面、选项、答案映射与解析全部独立复算通过，verdict 为 approve。第 14 题选项、答案（D）与解析四项推演独立通过，但原卷题干小写 world 与选项/官方答案大写 World 属源卷自身矛盾，题面维度保留 unresolved，候选的整理文本与说明无需再改。第 16 题答案符号 × 与官方表一致（answer=1），但候选解析的“边长为正”论据经独立验证不成立（反例不满足题设；严格三角不等式蕴含三边为正），官方判错依据原卷未给出，解析维度保留 unresolved。五题均无待应用修改（changes 为空），均为客观题，tests 为空。"
+  }
+}

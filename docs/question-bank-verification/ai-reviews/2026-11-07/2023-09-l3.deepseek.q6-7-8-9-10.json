@@ -1,0 +1,241 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T06:02:11.132Z",
+  "completedAt": "2026-11-11T06:04:56.934Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29947,
+    "completion_tokens": 19266,
+    "total_tokens": 49213,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 17035,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0321033,
+      "allowance": 0.01926198,
+      "tokens": {
+        "input": 29947,
+        "output": 19266,
+        "reasoning": 17035,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "6e7b2cc27b0471abbcdc9c6066a39e696d7882c20ef578c7bc1437c1ec6ef28a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确标注“C++ 三级 2023年9月”，与paperId 2023-09-l3及年份、月份、等级均吻合。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干为“一个数组定义为 double array[3];，则可合理访问这个数组的元素的下标最大为（ ）。”当前题干与之一致，无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为 A.2、B.3、C.23、D.24；当前选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题为A，当前answer=0（A）；数组长度3的合法下标为0、1、2，最大为2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析独立说明下标范围0到2、array[3]越界，并逐项排除3、23、24，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干为“以下数组定义，符合C++语言语法的是（ ）。”当前题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项为 A. double a[];、B. double b[] = {1, 2.0, '3'};、C. double c[3.0];、D. double[] d = new double[3];，当前顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题为B，当前answer=1（B）；B给出初始化列表，可推断数组长度3且各常量可转换为double。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析把B的初始化转换概括为“C++允许窄化转换”，该表述错误；本例int/char常量到double是常量精确转换，并不代表允许任意窄化转换，需改正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（double b[] = {1, 2.0, '3'};）** 核心解析：定义数组时若省略长度，必须同时提供初始化列表，由编译器按元素个数推断长度；数组大小表达式必须为整型常量表达式。逐项分析：A `double a[];` 无长度也无初始化列表，不能确定数组大小，错误。B 初始化列表有3个元素，长度推断为3；int常量1、double常量2.0、字符常量'3'（ASCII值51）转化为double后值均可精确表示，列表初始化可接受，正确。这里不能概括为“C++允许窄化转换”，因为列表初始化通常会拒绝窄化转换。C `double c[3.0];` 数组大小不是整型常量表达式，错误。D `double[] d = new double[3];` 不是C++合法声明；动态数组应写成指针接收，如 `double* d = new double[3];`，错误。易错提醒：省略长度只可配合初始化列表；列表初始化中的浮点转整型等窄化转换会被拒绝。考点：数组定义、长度推断和初始化转换。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干为“下列关于进制的叙述，正确的是（ ）。”当前题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A-D四项与当前选项逐字一致，包括“八进制和十六进制不可以”“最大数字是8”等表述。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题为C，当前answer=2（C）；C是二进制与十进制位数关系的正确叙述。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析把B改述为“常用进制只有四种”，但原选项并无“只有”二字，且仅以时间/角度进制否定B不够严谨；应改为说明B为主观使用习惯描述并保留歧义，同时给出C的对数推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（对任意正整数，其二进制表示不会比它的十进制表示更短。）** 核心解析：A错误，任何进位制都可以用小数点及负位权表示小数，八进制和十六进制并非不能表示小数。B项是带主观性的使用习惯描述，不是严格的进位制性质；日常生活也存在六十进制（如时间、角度）等，题干要求选“正确”的进制叙述，按官方单选口径不选B。C正确，设n为正整数，十进制有floor(log10 n)+1位，二进制有floor(log2 n)+1位，且log2 n≥log10 n，因此二进制表示不会更短。D错误，八进制每位数字只能为0到7，最大数码是7而不是8。易错提醒：判断进制表示长度要看底数和对数关系；不要只凭个别生活例子判断“常用进制”的表述。考点：进制表示、二进制与十进制位数关系、各进制数码范围。"
+        },
+        "tests": [],
+        "unresolved": [
+          "B项“其他进制在日常生活中很少使用”带有主观性，若按“包括”理解可能引起歧义；官方答案为C。"
+        ]
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干为“下列关于C++语言中数组的叙述，不正确的是（ ）。”当前题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项A-D与当前选项一致：0个元素、-1个元素、越界编译错误、越界后可能正常结束。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第1页答案表第9题为C，当前answer=2（C）与官方一致；但严格ISO C++下A项零长度数组也非标准允许，官方题存在标准/实现口径差异，不能仅按官方表定案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析正确指出C把运行时越界误作编译错误，B中-1非法，D未定义行为可能正常结束；并注明A在标准C++中不允许但常见编译器作为扩展接受。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "A项存在标准与实现差异：严格ISO C++不支持0长度数组，`int a[0];`通常仅为编译器扩展；本题按常见考试环境把A视作可定义，官方答案为C。"
+        ]
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干为“如果 a 是 int 类型的变量，下列哪个表达式的值一定为 true？（ ）”当前题干与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项A-D为 a + 1000 - 1000 == a、a * 2 / 2 == a、(a & 1) == 1、(a | 1) == a + 1，当前选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第1页答案表第10题为A，当前answer=0（A）与官方一致；但严格ISO C++下a+1000可能发生有符号整数溢出，A并非标准意义上对全部int都一定为true，需保留争议。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析称A“无论a为何值”都成立，后面又说A成立原因是数学特性而非溢出，互相矛盾；在标准C++中a+1000溢出属于未定义行为，必须明确这是考试常规口径而非严格标准结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（a + 1000 - 1000 == a）。** 核心解析：在考试通常假设的32位补码环境并忽略有符号整数溢出未定义行为时，先加1000再减1000会回到原值，因此A是预期答案。B不必然成立，a*2若发生溢出，再除以2不能保证恢复a。C只对奇数成立，偶数时(a&1)为0。D只对偶数成立，奇数时a|1仍为a，而a+1已改变。易错提醒：严格按ISO C++，当a>INT_MAX-1000时a+1000会发生有符号整数溢出，属于未定义行为，故A并非在标准意义上对全部int都一定为true；本题需结合官方答案A和考试常规口径理解。B、C、D在一般取值下也有明显反例。考点：整型表达式、位运算与有符号溢出边界。"
+        },
+        "tests": [],
+        "unresolved": [
+          "A项在严格ISO C++下存在有符号整数溢出未定义行为；官方答案按常见补码回绕或不考察未定义行为的考试口径取A。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验题6至题10。题面与选项均与官方PDF第2至3页一致；第6至10题PDF答案表为A、B、C、C、A，当前answer字段分别0、1、2、2、0，均与官方一致。题6无需修改；题7、8、10的解析存在技术性表述问题并已给出修改稿；题9保留零长度数组的标准与实现差异，题10保留有符号溢出未定义行为争议，均不擅自改动答案。未执行代码测试。"
+  }
+}

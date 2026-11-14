@@ -1,0 +1,109 @@
+{
+  "paperId": "2026-06-l2",
+  "phase": "deepseek",
+  "questionIds": [
+    11
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-10T08:33:13.711Z",
+  "completedAt": "2026-11-10T08:34:26.054Z",
+  "finishReason": "stop",
+  "inputSha256": "f340c52a764794ec28972e2743de8c9e00bd715e04449fb1a213e463105c6fa7",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295276212256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++2级.pdf",
+    "mirrorSha": "46f343b77f0d32bf68cf4557bca15b8ee4cc94e8",
+    "mirrorBytes": 983895,
+    "shaVerified": true,
+    "sha256": "2a03b774c5b22b85da5183a7a325984db217d40d7f6a0ef53c989c3f7fe24fcb"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l2",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标明“CCF 编程能力等级认证 C++ 二级 2026 年 06 月”，与 2026-06-l2 一致；同页答案表第 11 题为 A，第 3 页为第 11 题完整题面。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题给出的输出串及代码块（num=1，i<35，三处横线分别用于条件与两个赋值）与候选一致；输出串共 35 个数字。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. > /= +=、B. >= %= +=、C. > /= =+、D. >= %= =+，候选顺序和内容均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 A，0 起始索引即 0。独立代入 A：开局输出 1..11，11>10 时 11/=2=5，之后反复 5..11，末尾为 5 6 7，共 11+3×7+3=35 项，与题给序列一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选对 A 的轨迹和 35 项分解正确；但 B 的实际首处失败是 num=10 时 >= 触发 10%=2=0，候选只写了 11%=2=1；C 实际是 else 中 num =+ 1 等价于 num = +1，使 num 始终为 1，num =+ 2 分支不可达，候选却归因于 num =+ 2；D 也只说“两处都错”，未说明第三空 =+ 使输出全为 1。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (> /= +=)**\n\n**核心解析：**\n输出规律是 num 从 1 递增到 11 后回到 5，再递增到 11，循环往复。A 中当 num=11 时 `11 > 10` 成立，执行 `11 /= 2` 得 5；其余 num≤10 时执行 `num += 1`，因而序列为 1..11，之后反复 5..11，最后停在 5 6 7。35 个输出可分解为 11 + 7 + 7 + 7 + 3 = 35，与循环次数吻合。\n\n**选项逐项分析：**\n- **A `> /= +=`**：✅ 与题给序列逐项一致。\n- **B `>= %= +=`**：❌ num=10 时 `10 >= 10` 已成立，执行 `10 %= 2` 得 0，序列在 10 后变为 0，不能得到 11；即使到达 11，`11 %= 2` 也为 1，不是 5。\n- **C `> /= =+`**：❌ `num =+ 1` 等价于 `num = +1`；首次 num=1 且不满足 `1 > 10`，else 每次都把 num 重新赋值为 1，故输出 35 个 1，`num =+ 2` 分支不可达。\n- **D `>= %= =+`**：❌ 同样因 `num =+ 1` 使 num 始终为 1，`>=` 与 `%=` 分支均不执行，输出 35 个 1。\n\n**易错提醒：** 整数除法会截断（11/2=5）；`=+` 不是复合赋值运算符，而是赋值一个正数。\n\n**考点：** 复合赋值运算符与循环序列分析"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        11
+      ],
+      "usage": {
+        "prompt_tokens": 18001,
+        "completion_tokens": 9034,
+        "total_tokens": 27035,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 8044,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0162411,
+          "allowance": 0.00974466,
+          "tokens": {
+            "input": 18001,
+            "output": 9034,
+            "reasoning": 8044,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-10T08:33:13.711Z",
+      "completedAt": "2026-11-10T08:34:26.054Z"
+    }
+  ]
+}

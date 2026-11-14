@@ -1,0 +1,228 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    13,
+    14,
+    15,
+    17,
+    18
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T13:07:02.244Z",
+  "completedAt": "2026-11-11T13:09:52.270Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 41213,
+    "completion_tokens": 15177,
+    "total_tokens": 56390,
+    "prompt_tokens_details": {
+      "cached_tokens": 41088
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12674
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00924821,
+      "allowance": 0.00554893,
+      "tokens": {
+        "input": 125,
+        "output": 15177,
+        "reasoning": 12674,
+        "cache_read": 41088,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "ccaa744b43803fcb477730680825b73fb73d1f86a52f861d268042fd4d18b493",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“2023 年 6 月 GESP C++ 三级真题解析”，与 2023-06-l3（2023 年 6 月 C++ 三级）匹配。"
+    },
+    "questions": [
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第13题代码为 int a = 12, b = 24; 横线; a = a ^ b; b = a ^ b; 输出 a 与 b，候选题面代码逐行一致（仅下划线长度和缩进差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页选项为 A. a = a ^ b、B. b = a ^ b、C. a = a + b、D. b = a + b，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页【答案】B，0 起始索引为 1，候选 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选对填 B、A、D 的推演正确；但候选称填 C 输出“36 36”，实际 a=12、b=24 时第5行 a=a+b 得36，第6行 a=a^b 得36^24=60，第7行 b=a^b 得60^24=36，应输出“60 36”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：B (b = a ^ b)。按官方代码，填入后依次执行：第5行 b = a ^ b = 12 ^ 24 = 20；第6行 a = a ^ b = 12 ^ 20 = 24；第7行 b = a ^ b = 24 ^ 20 = 12；输出“24 12”，正好完成交换，利用异或性质 x^x=0、x^0=x。若填 A（a = a ^ b），第5行 a=20，第6行 a=12，第7行 b=20，输出“12 20”；若填 C（a = a + b），第5行 a=36，第6行 a=36^24=60，第7行 b=60^24=36，输出“60 36”；若填 D（b = a + b），第5行 b=36，第6行 a=12^36=40，第7行 b=40^36=12，输出“40 12”，均不是“24 12”。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第14题代码为 int array[5] = {3, 7, 5, 2, 4};、int min = 0;、for (int i = 0; i < 5; i++)、if (空白) min = array[i];、cout << min << endl;，候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第7页选项为 A. min > array[i]、B. min < array[i]、C. min = array[i]、D. 以上均不对，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页【答案】D，0 起始索引为 3，候选 answer=3。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选称填 B 时 min 最终为 4 有误。独立推演：填 A 时 0 > array[i] 恒假，min=0；填 B 时 0<3 真使 min=3，3<7 真使 min=7，此后 7<5、7<2、7<4 均假，最终 min=7；填 C 时赋值表达式恒真并反复赋值，最终 min=4；三种填法均非 2，答案 D 不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：D (以上均不对)。min 初始为 0，而数组元素 3、7、5、2、4 均为正数。若填 A，0 > array[i] 对所有 i 都为假，min 始终为 0；若填 B，第1轮 0<3 为真令 min=3，第2轮 3<7 为真令 min=7，此后 7<5、7<2、7<4 均为假，最终 min 为 7；若填 C，赋值表达式 min = array[i] 的值非 0，条件恒真，循环体每次执行 min = array[i]，最终 min 为最后一个元素 4。三种填法都得不到 2，因此选 D。正确求最小值应把 min 初始化为 array[0]（或足够大的数），再在 array[i] < min 时更新。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7-8页第15题代码为 int array[5] = {1, 2, 4, 8, 16};、int res = 0;、for (int i = 0; i < 5; i++)、循环体内横线、cout << res << endl;，候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第7-8页选项为 A. res = res + array[i]、B. res = res & array[i]、C. res = res | array[i]、D. res = res ^ array[i]，候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】B，0 起始索引为 1，候选 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：A 累加得 1+2+4+8+16=31；C 按位或合并各位得 0b11111=31；D 因五个二进制位互不重叠，异或结果也为 31；B 中 res 初值为 0，0 & array[i] 恒为 0，最终输出 0，满足“不是31”。候选解析与推演一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第2题原文为“域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称，CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。”，候选 question 与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；正确/错误含义由 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】为“×”；候选 answer=1，对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析指出最右边的词为顶级域名，所以顶级域名是 cn；候选解析指出 cn 为顶级域名、gesp 只是四级域名，结论正确。独立核对域名从右向左分层成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第3题原文为“数据编码方式只有原码、反码、补码三种。”，候选 question 与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项；正确/错误含义由 answer 维度核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页【答案】为“×”；候选 answer=1，对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "官方解析指出数据编码方式非常多，例如格雷码、哈夫曼编码；候选列举移码、IEEE 754 浮点编码、BCD 码、格雷码、哈夫曼编码等，说明“只有三种”过于绝对，结论正确，且关于 8421 码属 BCD 码的补充无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验 13、14、15、17、18 五题。原卷答案分别为 B、D、B、错误、错误，候选 answer 映射均正确。13 题解析中填 C 的实际输出应为 60 36，候选误作 36 36；14 题解析中填 B 的最终 min 应为 7，候选误作 4；两题已给出修正解析。15、17、18 题题面、选项或判断、答案和解析均与原卷一致，无需改动。"
+  }
+}

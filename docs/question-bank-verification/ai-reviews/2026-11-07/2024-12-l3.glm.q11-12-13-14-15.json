@@ -1,0 +1,259 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T11:56:53.676Z",
+  "completedAt": "2026-11-12T12:03:45.832Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 57495,
+    "completion_tokens": 24883,
+    "total_tokens": 82378,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19168
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02106575,
+      "allowance": 0.02106575,
+      "tokens": {
+        "input": 57495,
+        "output": 24883,
+        "reasoning": 19168,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头清晰显示“CCF 编程能力等级认证 GESP”“C++ 三级”“2024 年 12 月”，与 2024-12-l3 一致；答案表、单选/判断/编程三部分结构与该真题吻合。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干“下列程序最后输出的是（）”，代码块为 `int a=65; cout<<tolower(a)<<endl;`，与网站题面及代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A-D 依次为 65、A、a、97，网站顺序与内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 D，网站 answer=3（0 起始）映射正确。独立推导：tolower(65) 返回 int 类型 97，cout 按整数输出 97，选 D 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核解析：tolower 返回值类型为 int、'A' 的 ASCII 为 65、'a' 为 97、cout 按 int 形式输出 97，各选项分析无误，与代码行为一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五维独立复核全部一致，网站原数据无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干“想要计算从数字n到数字m之间（包含n和m）有多少个数字d出现，下列程序哪个能够实现”，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 4 页原图逐行核验：A 为 res 未初始化且 `i = n+1` 起；B 判断写成 `if(temp % 10 = d)`（赋值）；C 为 `res=0`、`i=n` 起、含 `int temp = i;`、`==d`，完整正确；D 缺少 `int temp = i;`，`while(temp)` 中 temp 未声明。网站四段代码与原图一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 C，网站 answer=2 正确；A/B/D 均存在编译或逻辑错误，C 为唯一正确实现。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析 D 项写“`temp` 在循环前已定义为 `int temp=i`，不属于未定义情况”，与 PDF 第 4 页 D 选项源码相反——D 中根本没有该行，temp 未声明、无法编译；该理由自相矛盾需修正。另外 B 项应指出 `temp % 10` 是右值不能被赋值（编译错误），原解析仅泛称“逻辑完全错误”。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n题目要求统计 n 到 m（含 n 和 m）之间数字 d 出现的次数，正确程序需同时满足：计数器 res 先初始化为 0；外层 i 从 n 遍历到 m（两端都包含）；对每个 i 先复制到临时变量 temp，再用 `temp % 10` 取最低位与 d 比较、`temp /= 10` 去掉最低位，直到 temp 变为 0。\n\n**选项逐项分析：**\n- **A**：❌ 两处错误：res 未初始化（初值不确定）；外层从 `i = n+1` 开始，漏掉了 n 本身。\n- **B**：❌ 判断条件写成 `if(temp % 10 = d)`，把比较 `==` 误写成赋值 `=`；`temp % 10` 是右值，不能作为赋值目标，程序无法编译。此外 res 也未初始化。\n- **C**：✅ `res=0` 初始化、`i` 从 `n` 到 `m` 完整遍历、循环体内先 `int temp = i` 再逐位剥离比较，三点全部满足。\n- **D**：❌ 循环体内直接写 `while(temp)`，但之前没有 `int temp = i;`，temp 根本未声明，程序无法编译。\n\n**易错提醒：**\n- `=` 与 `==` 的区别是本题设错点之一；`temp % 10 = d` 不是“先取余再比较”，而是非法赋值。\n- 数位剥离必须先把 i 备份到 temp，不能直接改动循环变量 i。\n- 统计类计数器必须显式初始化为 0。\n\n**考点：** 循环嵌套、数位剥离、变量初始化与编译合法性"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：其指出原解析 D 项理由与源码相反正确。我独立复核 PDF 第 4 页确认 D 选项无 `int temp=i;`，已按原图重写解析。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页原图显示 A-D 四个选项的完整三重循环代码均清晰可见，网站自加的“本题原卷选项代码在官方 PDF 文本层中缺损”说明不实，须删除；原卷题干还含“问兔子、鸡、鸭子各买多少只”及“每种必须至少一只”，网站措辞需按原图校正。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页四个选项均为完整代码：A 枚举 0..100 且条件 `i+j+k==100 && 25*i+10*j+k==300`；B 同结构但 `20*i+10*j+k==300`；C 上界 `i<=20, j<=34, k<=20` 且 `15*i+9*j+k==300`；D 枚举 0..100 且 `15*i+9*j+k==300`。网站仅为文字概述，需按原图还原完整代码。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 D，网站 answer=3 一致。独立推导：金额方程 5i+3j+k/3=100 两边乘 3 得 15i+9j+k=300，D 的两个条件均正确，故官方选 D。注意原卷瑕疵（D 未落实“每种至少一只”，会输出 0 25 75 等解）记入 unresolved，不改动 answer。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称 C“上界过小可能导致漏解”，实际 C 的上界与数量方程直接矛盾：i+j+k ≤ 20+34+20 = 74 < 100，永远无输出；且原解析未保留“D 从 0 枚举未落实至少一只”的原卷瑕疵说明，需按还原后的代码重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "兔子五元一只，鸡三元一只，小鸭子一元三只。现在你有一百元要买一百只，兔子、鸡、鸭子，问兔子、鸡、鸭子各买多少只，每种必须至少一只。下列哪个程序能实现（ ）。",
+          "options": [
+            "```cpp\nfor(int i = 0; i <= 100; i++){\n    for(int j = 0; j <= 100; j++){\n        for(int k = 0; k <= 100; k++){\n            if(i + j + k == 100 && 25 * i + 10 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```",
+            "```cpp\nfor(int i = 0; i <= 100; i++){\n    for(int j = 0; j <= 100; j++){\n        for(int k = 0; k <= 100; k++){\n            if(i + j + k == 100 && 20 * i + 10 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```",
+            "```cpp\nfor(int i = 0; i <= 20; i++){\n    for(int j = 0; j <= 34; j++){\n        for(int k = 0; k <= 20; k++){\n            if(i + j + k == 100 && 15 * i + 9 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```",
+            "```cpp\nfor(int i = 0; i <= 100; i++){\n    for(int j = 0; j <= 100; j++){\n        for(int k = 0; k <= 100; k++){\n            if(i + j + k == 100 && 15 * i + 9 * j + k == 300)\n                cout << i << \" \" << j << \" \" << k << endl;\n        }\n    }\n}\n```"
+          ],
+          "explanation": "**答案：D（按官方答案表）**\n\n设兔子 i 只、鸡 j 只、小鸭子 k 只。\n- 数量方程：i + j + k = 100。\n- 金额方程：兔子 5 元/只、鸡 3 元/只、鸭子 1 元 3 只（每只 1/3 元），即 5i + 3j + k/3 = 100，两边同乘 3 得 **15i + 9j + k = 300**。\n\n**选项逐项分析：**\n- **A**：❌ 金额条件写成 `25*i + 10*j + k == 300`，系数错误。\n- **B**：❌ 金额条件写成 `20*i + 10*j + k == 300`，系数错误。\n- **C**：❌ 金额式虽正确，但循环上界为 i≤20、j≤34、k≤20，三者之和最多 74，永远无法满足 i+j+k=100，程序一行也输出不了。\n- **D**：✅ 三重循环完整枚举 0..100，同时判断 i+j+k==100 与 15i+9j+k==300，两个方程都正确，与官方答案表（D）一致。\n\n**保留说明（原卷瑕疵）：** 题干要求“每种必须至少一只”，但官方选项 D 从 0 开始枚举且条件中未排除 i、j、k 为 0 的情形（例如会输出 0 25 75）。这是原卷选项设计上的疏漏，不影响按官方答案选 D。\n\n**易错提醒：**\n- 鸭子“一元三只”会产生分数，标准做法是把金额方程两边同乘 3 化为整数形式 15i+9j+k=300。\n- 压缩枚举上界（如选项 C）必须保证不与数量方程矛盾，否则会漏掉全部解。\n\n**考点：** 不定方程的穷举解法（百钱买百鸡问题变种）"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷瑕疵：题干要求每种至少一只，但官方正确选项 D 从 0 枚举且未在条件中排除 0（会输出 0 25 75 等解）；官方答案表仍记 D，保留争议不改答案。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：采纳其“还原选项代码、删除不实缺损说明、重写解析”的判断；否决其把 answer 维度标 needs_fix 的做法——answer=3 与官方答案表 D 一致，“至少一只”未落实属原卷瑕疵，应保留在 unresolved 而非改答案。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干“求小于等于N的素数的方法中，有一种方法是将所有从2到它本身减1的数都除一遍，如果不能整除，就是素数。下列哪个程序，体现了这种方法”，与网站题干一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "对照 PDF 第 5-7 页原图：A 为 `if(N>=3){ cout<<2<<endl; for(int i=2;i<=N;i++){ ... if(i%j!=0){flag=1;} ... flag=0; } }`；B 为 `if(N>=2){ for(int i=3;i<=N;i++){ ... 有复位 } }`（无输出 2）；C 为 `if(N>=2){ cout<<2<<endl; for(int i=3;i<=N;i++){ ... flag=0; } }`（14 行，含复位）；D 为与 C 相同但缺少 `flag = 0;`（仅 13 行）。网站均为文字概述，须按原图还原完整代码。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 C，网站 answer=2 正确。独立走查：C 先输出 2，对 3..N 用 2..i-1 试除并每轮复位 flag，N=5 时输出 2、3、5，符合题意。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析 D 项引用概述文本“其余流程不符合……”并把 A/B 的缺陷笼统归入 D 的理由；还原代码后，D 的实际缺陷仅是缺少 `flag = 0;` 复位（如 N=5 时先输出 2、3，i=4 置 flag=1 后未复位，导致 5 被漏掉），解析须与还原后的选项逐项对应重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "```cpp\nif(N >= 3){\n    cout<<2<<endl;\n    for(int i = 2;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j != 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n        flag = 0;\n    }\n}\n```",
+            "```cpp\nif(N >= 2){\n    for(int i = 3;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j == 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n        flag = 0;\n    }\n}\n```",
+            "```cpp\nif(N >= 2){\n    cout<<2<<endl;\n    for(int i = 3;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j == 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n        flag = 0;\n    }\n}\n```",
+            "```cpp\nif(N >= 2){\n    cout<<2<<endl;\n    for(int i = 3;i <= N;i ++){\n        for(int j = 2;j < i;j ++){\n            if(i % j == 0){\n                flag = 1;\n            }\n        }\n        if(flag == 0){\n            cout<<i<<endl;\n        }\n    }\n}\n```"
+          ],
+          "explanation": "**答案：C**\n\n题干要求体现“把 2 到它本身减 1 的数都除一遍，如果不能整除，就是素数”的试除法：对每个 i 用 2..i-1 逐个试除，全部不能整除才输出。\n\n**选项逐项分析：**\n- **A**：❌ 两个问题：其一是外层 i 从 2 开始而 2 已先输出过，i=2 时内层 `j<i` 不执行、flag 保持 0，会把 2 再输出一次（N≥3 时重复输出 2）；其二是判据写成 `i % j != 0` 时置 `flag=1`，与“能整除才说明不是素数”相反——任意 i≥3 总存在某个 j（如 j=i-1）使 i%j≠0，因此 i≥3 全被判为非素数，程序实际只会输出两个 2。\n- **B**：❌ 外层从 i=3 开始且循环前没有输出 2，N≥2 时会漏掉最小的素数 2。\n- **C**：✅ `N>=2` 时先输出 2；再对 3..N 的每个 i 用 2..i-1 试除，`i%j==0` 时置 flag=1；内层结束后 flag 仍为 0 才输出 i；每个 i 处理完后 `flag=0` 复位。与题干方法完全一致。\n- **D**：❌ 代码与 C 几乎相同，但少了内层结束后的 `flag = 0;` 复位。一旦某个合数把 flag 置成 1，之后所有素数都不会再被输出（如 N=5 时只输出 2、3，漏掉 5）。\n\n**C 的走查（N=5，flag 初始为 0）：** 先输出 2；i=3 只试 j=2，3%2≠0，flag 保持 0，输出 3；i=4 时 4%2==0，flag=1，不输出，随后复位为 0；i=5 对 2、3、4 都不能整除，输出 5。结果为 2、3、5。\n\n**易错提醒：**\n- 试除范围是 `j < i` 而非 `j <= i`，否则 i%i==0 会把所有数误判为合数。\n- 标志位 flag 在每轮试除结束后必须复位，否则前一个合数留下的状态会污染后续判定。\n\n**考点：** 试除法判断素数、双重循环、标志位管理"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：采纳其还原选项代码的判断；否决其把解析标 verified 的结论——原解析 D 项基于概述文本且把 A/B 的缺陷混入 D 的归因，选项还原后解析必须同步重写，已重写。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页题干“工人工作一天，会得到一个金环作为工资报酬，某个工作需要15天完成，一条15个环的金环项链，为了严格执行每天工作结束时，完成对工人工资的结算，最少需要将金环项链剪裁成几段，每段几个金环”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页选项 A-D 依次为“4段，分别是1、2，4，8”“15段，每段1个”“6段，分别是3、3、3、3、2、1”“9段，分别是2、2、2、2、2、2、1、1、1”，网站一致（仅标点排版差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 A，网站 answer=0 正确。独立验证：1、2、4、8 的子集和覆盖 1..15 全部整数，且 k 段最多提供 2^k 种持有状态，2^3=8<15≤2^4=16，故最少 4 段。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析三处论证错误：①称“3 段即使取最大的三个数，总和也达不到 15”——不成立，5+5+5=15；②称 C“无法组合出 4”——实为 3+1=4 可行；③称 D“无法组合出 3”——实为 2+1=3 可行。B/C/D 均能组合出 1..15，正确判据是 k 段最多 2^k 种子集状态，须重写最少性证明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n1、2、4、8 即 2⁰、2¹、2²、2³，它们的子集和恰好覆盖 1 到 15 的所有整数；配合“给出一段、或收回找零再给”的操作即可完成 15 天逐日结算：第 1 天给 1；第 2 天收回 1 给 2；第 3 天再给 1（合计 3）；第 4 天收回 1、2 给 4；……以此类推，工人每天在手的金环数恰好等于已工作的天数。\n\n**最少性证明：** 若项链被剪成 k 段，某天结束时工人手里的金环只能是这 k 段的某个子集，最多只有 2^k 种不同的持有量。第 1 天到第 15 天对应 15 种互不相同的累计数，因此需要 2^k ≥ 15，即 k ≥ 4。3 段不够——即使三段之和恰好等于 15（如 5、5、5），也只有 8 种组合状态，无法覆盖 15 天。\n\n**选项逐项分析：**\n- **A (4 段，分别是 1、2、4、8)**：✅ 总和为 15，且可组合出 1..15 的所有数，段数最少。\n- **B (15 段，每段 1 个)**：❌ 能完成结算，但 15 段远多于最少段数 4。\n- **C (6 段，分别是 3、3、3、3、2、1)**：❌ 这 6 段其实也能组合出 1..15（如 4=3+1），并非“无法组合”，但 6 段不是最少。\n- **D (9 段，分别是 2、2、2、2、2、2、1、1、1)**：❌ 同样能组合出 1..15（如 3=2+1），但 9 段不是最少。\n\n**易错提醒：**\n- 判断“最少”的关键是 k 段最多只有 2^k 种子集组合，而不是各段总和是否等于 15——三个总和为 15 的段同样不够用。\n- 1、2、4、8 正是二进制权值 2⁰..2³，其和为 2⁴−1=15。\n\n**考点：** 二进制权值分解与组合问题（金环/砝码称重类问题）"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核对“3 段总和达不到 15”错误的判断，并扩大修正范围：原解析对 C、D“无法组合”的断言同样错误（4=3+1、3=2+1 均可行），B/C/D 都能组合出 1..15，正确判据是 2^k 状态数下界，已按此重写。"
+      }
+    ],
+    "summary": "本次独立复核题 11-15：第 11 题五维全部通过（approve）；第 12 题解析中 D 项理由与 PDF 第 4 页源码相反（D 无 int temp=i，temp 未声明），已重写；第 13 题网站“官方 PDF 文本层缺损”说明不实（第 5 页原图四选项代码完整），已按原图还原完整代码、删除不实说明并重写解析，answer=3 与官方答案表 D 一致，“每种至少一只未落实”属原卷瑕疵记入 unresolved；第 14 题选项由文字概述还原为第 5-7 页原图完整代码（D 与 C 的差异仅在缺少 flag=0 复位），解析同步重写；第 15 题解析最少性论证错误（3 段总和可为 15、C/D 实际均可组合 1..15），改用 2^k 子集状态数判据重写。五题 officialAnswer 均与第 1 页答案表（D C D C A → 3 2 3 2 0）核对一致，无需改答案。"
+  }
+}

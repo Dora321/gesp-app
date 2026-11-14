@@ -1,0 +1,228 @@
+{
+  "paperId": "2024-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T22:13:48.571Z",
+  "completedAt": "2026-11-11T22:16:38.338Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33597,
+    "completion_tokens": 8592,
+    "total_tokens": 42189,
+    "prompt_tokens_details": {
+      "cached_tokens": 33280
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6886
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00530259,
+      "allowance": 0.00318155,
+      "tokens": {
+        "input": 317,
+        "output": 8592,
+        "reasoning": 6886,
+        "cache_read": 33280,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "77d2b2ae25fbcdf873a324e4c803131adf5f4bff1dc27e57790180e378ae95ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++3级.pdf",
+    "mirrorSha": "37a63c4fc0a34cbf57aa761620402f5a4cd05199",
+    "mirrorBytes": 928116,
+    "shaVerified": true,
+    "sha256": "36df03b76a0d390976f41c192f39d196449666b2cd74cac3129ffa63c0f0b89f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF GESP、C++ 三级、2024 年 03 月，与 2024-03-l3 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干为「整数-5的16位补码表示是( )」；候选题干数值、位宽和提问语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A.1005、B.1006、C.FFFA、D.FFFB；候选选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 D（0 起始索引 3）；候选 answer=3。独立换算 16 位 -5 的补码为 0xFFFB。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按 |−5|=5 → 取反得 0xFFFA → 加 1 得 0xFFFB 推导，与独立计算一致；指出 1005、1006 是合法十六进制串但数值不符，判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页第 2 题原文为「如果16位短整数 -2 的二进制是“FFFE”，则短整数 -4 的十六进制是( )」；候选写成「十六进制表示是」，改变了原卷用词。原卷 FFFE 含 F，本身是笔误，应保留原文并在解析中注明争议。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A.FF04、B.FFFA、C.FFFC、D.FFFH；候选选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 C（0 起始索引 2）；候选 answer=2。独立换算 0xFFFC=65532，对应 16 位补码 -4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按 |−4|=4 → 取反 0xFFFB → 加 1 得 0xFFFC 推导正确；0xFF04=−252、0xFFFA=−6、FFFH 含非法字符 H 的排除均正确，并已注明原卷笔误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "如果 16 位短整数 -2 的二进制是“FFFE”，则短整数 -4 的十六进制是（ ）。"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷第 2 题题面「二进制是 FFFE」与 FFFE 非二进制表示矛盾，系源卷笔误；候选改写为「十六进制表示」不忠实原文，建议恢复原文并在解析中注明，最终措辞保留争议。"
+        ]
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码为 int main()、cout << (3|16) << endl;、空行、cout << endl;、return 0;；候选代码含同一输出语句及第二条空行输出。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A.3、B.16、C.19、D.48；候选选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 C（0 起始索引 2）；候选 answer=2。独立计算 3|16=19。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按 3=00011、16=10000，按位或得 10011=19 的推导正确；并说明官方代码第二条 cout << endl; 会多输出一个空行但不影响数值选项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题题干为「定义整数 int x=-5 ，则执行C++代码 cout << (x == (x<<1>>1)) 输出是（ ）」；候选题干语义一致，仅排版空格不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A.0 与第 2 页 B.1、C.-5、D.5 组合为 0、1、-5、5；候选选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 B（0 起始索引 1）；候选 answer=1。按 32 位补码算术右移模型，-5 左移一位再右移一位还原为 -5，比较结果为真，输出 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选核心推导 -5 → 左移得 -10 → 算术右移还原 -5 → 输出布尔值 1 正确；选项排除合理，并补充了最高两位相同的还原条件及 0x40000000 反例。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题面为已知字符 '0' 的 ASCII 编码十进制为 48；代码含 string s=“316”、for 循环累加 s[i]、cout << x << endl; 及第二条 cout << endl;；候选代码完整且语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 A.10、B.58、C.154、D.316；候选选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 5 题为 C（0 起始索引 2）；候选 answer=2。独立累加 '3'、'1'、'6' 的 ASCII 码 51+49+54=154。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选按字符 ASCII 码累加得 154 的推导正确；对 A、B、D 的排除合理，并说明官方代码第二条 cout << endl; 会再输出空行但不影响数值选项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验第 1-5 题。第 2 题候选题干把原卷「二进制是 FFFE」改写为「十六进制表示是」，不忠实原卷，已提出恢复原文并保留源卷笔误争议；其余四题的题干、选项、答案与解析经页面图和独立计算核对一致。五题均为单选题，无参考代码与编程测试。"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "executedAt": "2026-11-11T22:23:11.656Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3",
+          "output": "DEFGHIJKLMNOPQRSTUVWXYZABC",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "DEFGHIJKLMNOPQRSTUVWXYZABC\n",
+          "passed": true
+        },
+        {
+          "name": "最小偏移 n=1",
+          "input": "1",
+          "output": "BCDEFGHIJKLMNOPQRSTUVWXYZA",
+          "reason": "独立推导：(i+1)%26 使 A→B、…、Y→Z、Z→A，字母表整体后移 1 位。",
+          "kind": "boundary",
+          "actual": "BCDEFGHIJKLMNOPQRSTUVWXYZA\n",
+          "passed": true
+        },
+        {
+          "name": "整周期 n=26",
+          "input": "26",
+          "output": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "reason": "26 mod 26=0，题面注释明确偏移量为 26 的倍数时字母表保持不变。",
+          "kind": "boundary",
+          "actual": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n",
+          "passed": true
+        },
+        {
+          "name": "跨周期 n=27",
+          "input": "27",
+          "output": "BCDEFGHIJKLMNOPQRSTUVWXYZA",
+          "reason": "27 mod 26=1，与 n=1 等效，验证取模回绕跨越整周期后仍正确。",
+          "kind": "boundary",
+          "actual": "BCDEFGHIJKLMNOPQRSTUVWXYZA\n",
+          "passed": true
+        },
+        {
+          "name": "上界 n=100",
+          "input": "100",
+          "output": "WXYZABCDEFGHIJKLMNOPQRSTUV",
+          "reason": "100 mod 26=22：A→W、B→X、C→Y、D→Z、E→A，其后顺延至 V，共 26 字符；检验官方数据范围上界处的回绕。",
+          "kind": "boundary",
+          "actual": "WXYZABCDEFGHIJKLMNOPQRSTUV\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "fd771042806d0bec7e873433d61c6327e016986652cd41dea6066f949ab0c688"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2\n3\n1 2 4\n5\n1 2 3 4 5",
+          "output": "Yes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "最小 n=1",
+          "input": "1\n1\n1",
+          "output": "Yes",
+          "reason": "独立推导：唯一元素 1 是自身的倍数，最大值 1 整除所有元素。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "元素全相同",
+          "input": "1\n3\n6 6 6",
+          "output": "Yes",
+          "reason": "最大值 6 被 6、6、6 整除，6 是所有元素的倍数。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "最大值不能整除全部元素",
+          "input": "1\n5\n1 2 3 4 5",
+          "output": "No",
+          "reason": "最大值 5 不能被 2、3、4 整除；由正整数倍数性质候选只能是最大值，故输出 No。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "a_i 上界与 int 范围",
+          "input": "1\n2\n1 1000000000",
+          "output": "Yes",
+          "reason": "1e9 为官方 a_i 上界，在 int 表示范围内；最大值 1e9 被 1 与其自身整除。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "多组用例状态重置",
+          "input": "2\n2\n2 5\n3\n2 4 8",
+          "output": "No\nYes",
+          "reason": "第一组最大值 5 不能被 2 整除输出 No；第二组最大值 8 被 2、4、8 整除输出 Yes，检验 x 与 fl 每组重新初始化、无残留影响。",
+          "kind": "boundary",
+          "actual": "No\nYes\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "409d8a377ad75321b3c3c014b0040318954c1a59db23d658003ae205ce3e1c23"
+    }
+  ]
+}

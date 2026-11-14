@@ -23,6 +23,7 @@ import { buildQuestionInsight, selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
+import { integrityNoticeTiming } from '../../utils/sourceIntegrity';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
 import { isProgrammingQuestion } from '../../utils/questionHelpers';
@@ -326,6 +327,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
+    const noticeTiming = integrityNoticeTiming(currentQ);
     const tags = inferKnowledgeTags(currentQ, paperData.level);
     const codingGuide = (currentQ?.type === 'coding' || currentQ?.type === 'programming') ? buildCodingGuide(currentQ) : null;
     // Answer and explanation are verified independently — see verificationModel.
@@ -453,9 +455,26 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                             </div>
                         </div>
 
-                        {currentQ.sourceIntegrity && (
+                        {noticeTiming === 'legacy' && (
                             <div className="mb-4">
                                 <SourceIntegrityNotice status={currentQ.sourceIntegrity} note={currentQ.integrityNote} />
+                            </div>
+                        )}
+
+                        {noticeTiming === 'after' && isRevealed && (
+                            <div className="mb-4">
+                                <SourceIntegrityNotice
+                                    status={currentQ.sourceIntegrity}
+                                    note={currentQ.integrityNote}
+                                    defectKind={currentQ.defectKind}
+                                    examScoring={currentQ.examScoring}
+                                />
+                            </div>
+                        )}
+
+                        {noticeTiming === 'after' && !isRevealed && currentQ.examScoring === 'excluded' && (
+                            <div className="mb-4 text-xs text-slate-500">
+                                本题为原卷缺陷题，查看答案后会说明详情
                             </div>
                         )}
 

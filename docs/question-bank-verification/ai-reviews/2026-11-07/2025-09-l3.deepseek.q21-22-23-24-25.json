@@ -1,0 +1,229 @@
+{
+  "paperId": "2025-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T01:58:43.190Z",
+  "completedAt": "2026-11-13T02:03:06.389Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30802,
+    "completion_tokens": 24802,
+    "total_tokens": 55604,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 22350
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.039003,
+      "allowance": 0.0234018,
+      "tokens": {
+        "input": 30802,
+        "output": 24802,
+        "reasoning": 22350,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "43ffc688f67a86ee289b9974260b2eb06df2d31affb9a23d328badd1da8c1066",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++3级.pdf",
+    "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
+    "mirrorBytes": 896357,
+    "shaVerified": true,
+    "sha256": "9d498145166ef002cead99e73efa9ddc5c87e1c82a7cd7058e63f969800d768f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页原图卷头为“C++ 三级”“2025年09月”，与 2025-09-l3 的年月、等级一致；判断题第6-10题位于PDF第4页。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第6题原文：“#define SQUARE(x) x * x 是一个安全的宏定义，SQUARE(2+3) 会正确计算出 25。”网站陈述与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题只列陈述和√/×答案表，没有单选题A-D选项；网站“正确/错误”为判断题二选一表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第6列为×，对应“错误”(索引1)；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立展开：SQUARE(2+3) → 2+3*2+3 = 11，不是25；安全宏应写为 ((x)*(x))。现行解析结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第7题原文：“在C++中，char 类型的取值范围总是 -128 到 127。”网站陈述与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题只列陈述和√/×答案表，没有单选题A-D选项；网站“正确/错误”为判断题二选一表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第7列为×，对应“错误”(索引1)；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论正确，但现行解析称“GCC/Clang（Linux/macOS）等实现中 char 等价于 unsigned char”不成立；普通 char 的符号性由实现定义，常见 x86 GCC/Clang 默认为 signed，ARM 等目标和编译选项可能不同。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\nC++ 标准中 `char`、`signed char`、`unsigned char` 是三种不同的字符类型。普通 `char` 是否有符号由实现定义：在常见 8 位字节平台上，它可能取 `signed char` 的范围（通常 -128～127），也可能取 `unsigned char` 的范围（通常 0～255）。因此“总是 -128 到 127”不成立。若需确定范围，应显式使用 `signed char` 或 `unsigned char`；具体范围还应以 `CHAR_BIT` 和 `<climits>` 中的 `CHAR_MIN/CHAR_MAX` 为准。GCC/Clang 等编译器的默认符号性也取决于目标平台和编译选项，不能概括为固定无符号。\n\n**易错提醒：**\n- 不要把普通 `char` 与 `signed char` 混为一谈。\n- 考试中遇到“总是”“所有情况”等绝对化表述时要警惕。\n\n**考点：** 普通 char 的符号性由实现定义，char/signed char/unsigned char 的区别"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第8题原文：“表达式 a > b ? a : b = 10; 一定是合法的C++代码。”网站陈述与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题只列陈述和√/×答案表，没有单选题A-D选项；网站“正确/错误”为判断题二选一表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第8列为×，对应“错误”(索引1)；网站 answer=1 与官方答案表一致。答案本身的合理性见 unresolved。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现行解析称条件运算符结果必为右值、不能作赋值左操作数，并不准确；C++条件运算符在适宜条件下可产生左值。且按C++语法，`a > b ? a : b = 10` 的第三操作数是赋值表达式，解析为 `(a > b) ? a : (b = 10)`，不是外层再赋值。若默认 a、b 为可修改 int，该表达式本身合法，题干“一定”存在歧义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误（按官方答案表）**\n\n**判定依据：**\nC++ 条件运算符的第三操作数可以是赋值表达式，因此 `a > b ? a : b = 10;` 按语法解析为 `(a > b) ? a : (b = 10);`，而不是 `(a > b ? a : b) = 10;`。该表达式语句只有在 `a`、`b` 已经声明、且 `b` 可被赋值为 10 时才合法；题干没有给出这些前提，却使用“一定合法”的绝对表述，所以按官方答案判为错误。\n\n需要注意：若默认 `a`、`b` 是已声明的可修改 `int` 变量，这个表达式本身是合法的；本题的表述因此存在歧义。条件运算符并非“结果总是右值”：当两个分支为同类型左值时，条件表达式也可为左值；但本式并没有把条件表达式结果再赋值为 10。\n\n**易错提醒：**\n- 不要把 `a > b ? a : b = 10` 误解成 `(a > b ? a : b) = 10`。\n- 判断合法性时先确认标识符已声明、被赋值对象可修改。\n\n**考点：** 条件运算符的优先级/语法、赋值表达式与左值"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案为×，但若 a、b 为已声明的可修改 int，按 C++ 语法该表达式合法；题干“一定”及缺少声明前提导致命题歧义，建议保留争议而非擅自改写官方答案。"
+        ]
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第9题原文：“#include \"file.h\" 和 #include <file.h> 在编译器查找头文件时的搜索策略是完全相同的。”网站陈述与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题只列陈述和√/×答案表，没有单选题A-D选项；网站“正确/错误”为判断题二选一表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第9列为×，对应“错误”(索引1)；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：`#include \"file.h\"` 未找到时会按角括号形式重搜，而 `#include <file.h>` 不保证同样的当前目录搜索；两者搜索策略不能视为完全相同。现行解析的常见实现描述与结论一致，具体顺序属实现定义，不影响判错。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第10题原文：“在同一个作用域内，extern 声明的变量可以多次定义。”网站陈述与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "PDF判断题只列陈述和√/×答案表，没有单选题A-D选项；网站“正确/错误”为判断题二选一表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第10列为×，对应“错误”(索引1)；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：`extern int a;` 是声明，同一作用域可多次声明；变量定义只能有一次（外部定义通常全程序一次）。题干“可以多次定义”错误，现行解析结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已完成21-25题初核：卷头与来源一致，5题 officialAnswer 均为1（×）。Q22、Q23 的解析存在需替换的技术问题；Q23 因题干“一定”/声明前提与官方答案存在歧义，保留 unresolved。其余题目的陈述、答案与解析通过。判断题无参考程序，边界测试不适用。"
+  }
+}

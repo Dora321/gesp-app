@@ -1,0 +1,210 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T00:05:34.371Z",
+  "completedAt": "2026-11-13T00:08:40.237Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 44567,
+    "completion_tokens": 20818,
+    "total_tokens": 65385,
+    "prompt_tokens_details": {
+      "cached_tokens": 44416
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18408
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0126467,
+      "allowance": 0.00758802,
+      "tokens": {
+        "input": 151,
+        "output": 20818,
+        "reasoning": 18408,
+        "cache_read": 44416,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5a1bf4809054a8ace2ba6d3c9a0579254947a4af27c93b344d11d7439c73ed0",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 三级 2024 年 12 月”，与 paperId 所指场次一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 1 题题干逐句对应“为了简化计算机基本运算电路……这种形式就是补码”，站内题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表以 √/× 给出，站内“正确/错误”两项顺序一致，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 1 题为 √；按判断题正确=0，站内 answer=0 与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：8 位 -3 的补码为 11111101=253，5+253=258 对 256 取模得 2，说明补码使减法转加法；解析数值与结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页题目描述、输入输出格式与样例，以及第 9 页数据范围 1 ≤ n ≤ 10^5、|k|,|a_i| ≤ 10^5 均已包含；序列记号与 A={a_1,a_2,…,a_n} 一致。源文“两个正整数 n,k”与样例 k=0、约束 |k| ≤ 10^5 的矛盾见 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer=null，站内 answer 为空，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：先在修改前完整求原序列 max/min（初始化为 a[1]），再按严格大于/小于 k 替换，等于 k 保持。样例 max=2、min=-2，得 -2 -2 0 2 2，与 PDF 第 8 页样例一致；O(n) 两轮遍历及边界提醒正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 9 页参考程序逐行一致（仅空格排版差异）；a[100010] 覆盖 n ≤ 10^5，两轮 O(n) 遍历，int 足够 |a_i| ≤ 10^5，n=1、全负、等于 k 均正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n 且元素等于 k 的下界",
+            "input": "1 -100000\n-100000",
+            "output": "-100000",
+            "reason": "n=1，a[1]=k=-100000，严格大于与严格小于均不成立，保持原值；覆盖 n 最小值与值域下界。"
+          },
+          {
+            "name": "全负序列且 k=0",
+            "input": "3 0\n-5 -2 -1",
+            "output": "-5 -5 -5",
+            "reason": "原序列 max=-1、min=-5，三元素均小于 0，全部替换为 min=-5；验证解析强调的“初始化极值不能设为 0”陷阱。"
+          },
+          {
+            "name": "等于 k 保持不变",
+            "input": "5 2\n1 2 3 2 1",
+            "output": "1 2 3 2 1",
+            "reason": "max=3、min=1；1<2→1、2=2 保持、3>2→3，替换后与原序列相同，验证等于 k 的元素保留且 else if 分支互斥。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第 8 页输入格式称 n,k 为“两个正整数”，但同卷样例 k=0、第 9 页约束 |k| ≤ 10^5 允许 0 或负数，源文自相矛盾；站内保留原文，不作擅改。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 10 页 3.2.2 原文为“第一行包含一个正整数代表 n。”，候选作“非负整数”，与原文不一致；但同页数据范围 0 ≤ n ≤ 10^6 含 0，属源文自身矛盾。其余题面、5×5 点阵、样例及约束与 PDF 第 9-10 页一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer=null，站内 answer 为空，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按官方数据范围 0 ≤ n ≤ 10^6 说明最多 7 位、n=0 也须输出；图案模板、逐行拼接、样例 12230 走查及 art 查表延伸均独立复核正确。输入格式矛盾见 unresolved。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 10-11 页参考程序逐行一致（仅排版差异）；外层 row=0..4、内层逐位拼接，各数字各行的模板分支正确；n=0 可输出 5 行，n ≤ 10^6 最多 7 位，O(5|n|) 无溢出。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202412 三级] 打印数字\n\n## 题目描述\n\n小杨为数字 $0,1,2$ 和 $3$ 设计了一款表示形式，每个数字占用了 $5\\times 5$ 的网格。数字 $0,1,2$ 和 $3$ 的表示形式如下：\n\n```plain\n..... ****. ..... .....\n.***. ****. ****. ****.\n.***. ****. ..... .....\n.***. ****. .**** ****.\n..... ****. ..... .....\n```\n\n小杨想请你将给定的数字 $n$ 转换为对应的表示形式。\n\n## 输入格式\n\n第一行包含一个正整数代表 $n$。\n\n## 输出格式\n\n输出对应的表示形式。\n\n## 数据范围\n\n对于全部数据，保证有 $0 \\le n \\le 10^6$，且 $n$ 仅由数字 $0,1,2,3$ 组成。"
+        },
+        "tests": [
+          {
+            "name": "最小值 0",
+            "input": "0",
+            "output": ".....\n.***.\n.***.\n.***.\n.....",
+            "reason": "0 的第 0、4 行为 .....，第 1-3 行为 .***.；覆盖最小输入和单数字，确认 n=0 也输出 5 行。"
+          },
+          {
+            "name": "数字 3 模板",
+            "input": "3",
+            "output": ".....\n****.\n.....\n****.\n.....",
+            "reason": "3 的第 0、2、4 行为 .....，第 1、3 行为 ****.；核对易与数字 2 混淆的第 3 行。"
+          },
+          {
+            "name": "多位数含 0",
+            "input": "10",
+            "output": "****......\n****..***.\n****..***.\n****..***.\n****......",
+            "reason": "逐行横向拼接 1 与 0：1 各行均为 ****.，0 第 0、4 行为 .....、第 1-3 行为 .***.；验证内层从左到右的拼接顺序。"
+          },
+          {
+            "name": "上界 1000000",
+            "input": "1000000",
+            "output": "****...............................\n****..***..***..***..***..***..***.\n****..***..***..***..***..***..***.\n****..***..***..***..***..***..***.\n****...............................",
+            "reason": "n=10^6 是约束内最大的 7 位数，验证 7 位长度与 1 后接六个 0 的逐行拼接；候选中 1111111 超过 10^6，已替换。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第 10 页输入格式称 n 为“正整数”，但同页数据范围 0 ≤ n ≤ 10^6 含 0，源文自相矛盾；站内按原文恢复“正整数”，同时保留该矛盾待核，参考程序本身支持 n=0。"
+        ]
+      }
+    ],
+    "summary": "题 16、26 五维核验通过；题 27 题面输入格式将 PDF 原文“正整数”改为“非负整数”，已给出恢复原文的修改草稿，并保留源文与数据范围含 0 的矛盾。另题 27 候选中测试输入 1111111 超出 n ≤ 10^6，已改为 1000000；其余题面、参考代码和解析与 PDF 对照一致。"
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "paperId": "2023-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    25,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T16:01:03.175Z",
+  "completedAt": "2026-11-11T16:03:07.124Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36607,
+    "completion_tokens": 19666,
+    "total_tokens": 56273,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 34816,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 17659,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0121727,
+      "allowance": 0.00730362,
+      "tokens": {
+        "input": 1791,
+        "output": 19666,
+        "reasoning": 17659,
+        "cache_read": 34816,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "13dc6da383f7b67a01767bcce8843fb4727d61b6155a63bb3975662d80445e42",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++3级.pdf",
+    "mirrorSha": "cbc0d550a4ba1fb37fbedfdd217f70d52d1bf666",
+    "mirrorBytes": 1334808,
+    "shaVerified": true,
+    "sha256": "91c312701211ff2851b20c72ced5b7307b1694952250bcf324f15af2c79a1fc0"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头为“CCF 编程能力等级认证 / C++ 三级 / 2023 年 9 月”，与 paperId 的年份、月份和级别一致。"
+    },
+    "questions": [
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 10 题原文为“如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true，则说明 a 是偶数。”，与候选题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”二值判断，无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 10 题为 √，按正确=0 映射为 0，与候选 answer=0 一致；补码环境下最低位为 0 等价于偶数，命题成立。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "主体推导正确，但“知识延伸”称 a & (a-1) 为 0 仅当 a 为 2 的幂次，未排除 a=0（0 & -1 = 0），作为“整数”命题不成立；应限定 a>0。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n在 C++ 中，整数在内存中以二进制形式存储。对于题目所采用的补码表示，任意整数的最低有效位（Least Significant Bit, LSB）决定其奇偶性：最低位为 0 时该数为偶数，最低位为 1 时该数为奇数。\n\n位运算 `a & 1` 提取 `a` 的最低位：\n- 例如 `a = 10`，二进制为 `1010`，`10 & 1 = 0`，说明 10 是偶数；\n- 例如 `a = 7`，二进制为 `0111`，`7 & 1 = 1`，说明 7 是奇数。\n\n因此，表达式 `((a & 1) == 0)` 为 `true` 时，确实说明 `a` 是偶数。\n\n**易错提醒：**\n- 对负数同样成立：现代计算机均采用补码表示（C++20 起标准强制要求），补码的最低位仍然决定奇偶性，例如 -3 的补码最低位为 1（奇数），-4 的补码最低位为 0（偶数），因此 `a & 1` 对负数同样有效。\n- 判断条件是 `== 0` 而不是 `== 1`，需要仔细区分。\n\n**知识延伸：**\n对于正整数 `a`，可以用 `a & (a - 1)` 快速判断它是否为 2 的幂：若 `a > 0` 且 `(a & (a - 1)) == 0`，则 `a` 是 2 的幂。需注意 `a = 0` 时该式也为 0，不能直接据此判定。\n\n**考点：** 位运算、奇偶性判断"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 3.2.1-3.2.7 与候选题面、约束、两组样例逐项一致；尤其 3.2.2 原文为“且不以 0 开头”，候选已改回该表述。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无 A-D 选项；两组样例已与 PDF 第 7-8 页核对一致。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐字符数码范围判定和四组走查（15A6F→0 0 0 1、1011→1 1 1 1、12345678→0 0 1 1、GG→0 0 0 0）独立复核正确；前导零说明与 PDF 约束一致，数码集合包含关系成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "逐字符 val 法与 PDF 第 8 页官方最大字符法等价；O(N·L)≤10^4，长度≤10，char 比较无溢出；非法 G~Z 统一置大值使四进制均不可行，两组样例和边界测试期望均独立推得。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模全进制可能",
+            "input": "1\n1\n",
+            "output": "1 1 1 1\n",
+            "reason": "N=1 为下界；数码 1 小于 2/8/10/16 全部阈值。"
+          },
+          {
+            "name": "八进制上界",
+            "input": "1\n7\n",
+            "output": "0 1 1 1\n",
+            "reason": "7≥2 使二进制不可行；7<8、<10、<16，其余三种可行。"
+          },
+          {
+            "name": "八进制越界",
+            "input": "1\n8\n",
+            "output": "0 0 1 1\n",
+            "reason": "8≥8 使八进制不可行；8<10 仍可作十进制与十六进制数码。"
+          },
+          {
+            "name": "十六进制字母边界",
+            "input": "1\nF\n",
+            "output": "0 0 0 1\n",
+            "reason": "F 对应 15：≥2、≥8、≥10，仅 15<16 使十六进制可行。"
+          },
+          {
+            "name": "非法大写字母",
+            "input": "1\nG\n",
+            "output": "0 0 0 0\n",
+            "reason": "G 超出 A~F，val 记为大值，四种进制全不可行。"
+          },
+          {
+            "name": "含0但非0开头",
+            "input": "1\n10\n",
+            "output": "1 1 1 1\n",
+            "reason": "以 1 开头符合“不以 0 开头”约束；'1' 与 '0' 数码均小于 2，四种进制皆可能。"
+          },
+          {
+            "name": "字母数字混合",
+            "input": "1\nA0\n",
+            "output": "0 0 0 1\n",
+            "reason": "A 的数码 10 使二/八/十进制不可行，10<16 十六进制可行；'0' 不影响判定。"
+          },
+          {
+            "name": "长度上界",
+            "input": "1\nFFFFFFFFFF\n",
+            "output": "0 0 0 1\n",
+            "reason": "10 个 F（长度上界 10），每位 15<16，输出仍为 0 0 0 1。"
+          },
+          {
+            "name": "多组字符串混合",
+            "input": "3\n1011\n15A6F\nGG\n",
+            "output": "1 1 1 1\n0 0 0 1\n0 0 0 0\n",
+            "reason": "验证 N>1 时逐行独立判断，混合二进制串、十六进制串和非法字母串。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号 25、27。25 题题面与官方答案一致；解析中的 2 的幂判断缺少 a>0 前提，已给出修正解析。27 题题面、约束、样例、解析与参考代码均符合原卷，并给出最小 N、非法字母、长度上界等边界测试。"
+  }
+}

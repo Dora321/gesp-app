@@ -1,0 +1,255 @@
+{
+  "paperId": "2023-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T06:03:54.742Z",
+  "completedAt": "2026-11-11T06:05:37.999Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 66220,
+    "completion_tokens": 17583,
+    "total_tokens": 83803,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 14581,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0187245,
+      "allowance": 0.0187245,
+      "tokens": {
+        "input": 66220,
+        "output": 17583,
+        "reasoning": 14581,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9d80558b5c2f0eb8b9fea809bce35de852889e05b5b90a1b230c1f09d9c5ab4b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++3级.pdf",
+    "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
+    "mirrorBytes": 1344973,
+    "shaVerified": true,
+    "sha256": "89de3e08ec223ab607ab9b4b142dfdba4130007dd96d6708b3a207be62440350"
+  },
+  "pageCount": 15,
+  "report": {
+    "paperId": "2023-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“2023 年 6 月 GESP C++ 三级真题解析”，年份 2023、月份 6、等级 C++ 三级均与 2023-06-l3 一致；来源为 CCF 官方解析 PDF（1569361659691040.pdf）。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "初核判定无改动。独立核对：PDF 第 3 页题干“一个数组定义为 double array[3];，则这个数组占用内存的大小为（ ）”、选项 A.24/B.12/C.6/D.3、【答案】A 及“double 占 8 字节、3×8=24”的解析均与网站数据一致，接受初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 6 题题干与当前 question 一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 24、12、6、3，与当前 options 顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】A，0 起始索引为 0，与当前 answer=0 一致；独立推导 sizeof(double)=8，3×8=24 亦支持 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析“double 占 8 字节、3 个元素共 24 字节、B 对应 4 字节类型”与 PDF 第 3 页解析及 C++ 类型常识一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "接受初核对解析的修正：原知识延伸把变长数组（VLA）写作“C99/C++11 特性”并归入“数组大小留空”，属事实错误——VLA 仅是 C99 特性，任何版本标准 C++ 均未纳入，且 VLA 用运行期变量作长度、并非留空。核心推导（'3' 的 ASCII 为 51，int b['3'] 等价 int b[51]）与 PDF 第 3-4 页一致且正确，答案 B 不受影响；修正文本经对照原卷与 C++ 标准常识复核后采用。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 7 题题干“以下数组定义，符合 C++语言语法的是（   ）。”与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项 A. int a[]; B. int b['3']; C. int c[3.0]; D. int[3] d; 与当前 options 一致（以页图为准，文本层解析中弯引号系提取痕迹）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页【答案】B，0 起始索引为 1，与当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "核心推导与 PDF 第 4 页解析一致（'3'→51，等价 int b[51]，A/C/D 分析正确）；原知识延伸 VLA 表述有误，已在 changes 中替换为修正后完整解析，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (int b['3'];)**\n\n**核心解析：**\n1. C++ 规定：定义数组时，`[]` 内的数组大小必须是大于 0 的整型常量表达式；若在定义的同时给出初始化列表，则可以省略数组大小，由编译器根据初始值个数推断。\n2. 选项 B：`int b['3'];` 中，`'3'` 是字符常量，其值为字符 '3' 的 ASCII 码，即整数 51。这是一个合法的整型常量表达式。\n3. 因此该语句等价于 `int b[51];`，语法合法。\n\n**选项逐项分析：**\n- **A (int a[];)**：❌ 错误。在不进行初始化的情况下，数组大小不能为空，编译器无法确定应分配的存储空间。\n- **B (int b['3'];)**：✅ 正确。字符常量的 ASCII 值构成整型常量表达式，可以作为数组大小。\n- **C (int c[3.0];)**：❌ 错误。数组大小必须是整数类型的常量表达式，不能使用浮点型字面量。\n- **D (int[3] d;)**：❌ 错误。这是 Java、C# 等语言的数组声明写法，C++ 的正确语法是 `int d[3];`。\n\n**易错提醒：**\n- `'3'` 是字符常量（值为 51），而 “3” 是字符串（包含字符 '3' 和结束符 '\\0' 两个字符）。审题时不可混淆。\n- 字符常量在 C++ 中本质上是整型，可以参与整型运算或作为数组大小。\n\n**知识延伸：**\n标准 C++ 中数组大小留空的情形是定义的同时用初始化列表推断长度，如 `int a[] = {1, 2, 3};`（编译器自动推出长度为 3）。C99 的变长数组（VLA）允许用运行期变量作长度，但它不属于任何版本的标准 C++（GESP 范围内通常不涉及），且与“数组大小留空”是两回事。\n\n**考点：** C++ 数组定义语法与类型转换规则"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "接受初核补全选项 C/D 的修改：网站把 C/D 缩略为“可以方便地将每 3/4 位二进制位转换”，丢失了“很方便地由低到高”的分组方向和“转换为对应的一位 8/16 进制位”的转换目标，属漏必要内容而非可忽略的排版差异；补全文本与 PDF 第 4 页原文逐字一致，答案 B 的映射不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 8 题题干“下列关于进制的叙述，不正确的是（      ）。”与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原选项 C/D 缺“很方便地由低到高”及“转换为对应的一位 8/16 进制位”，changes 已按 PDF 第 4 页原文补全，修复后核验通过；选项 A/B 仅句末标点差异，可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页【答案】B，0 起始索引为 1，与当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析对 B 的反驳（任意十进制整数均可转二进制，10=1010₂）及 C/D 的 3 位/4 位分组说明与 PDF 一致；独立验算 110101₂=65₈=35₁₆=53 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "正整数的二进制表示中只会出现 0 和 1",
+            "10 不是 2 的整数次幂，所以十进制数无法转换为二进制数",
+            "从二进制转换为 8 进制时，可以很方便地由低到高将每 3 位二进制位转换为对应的一位 8 进制位",
+            "从二进制转换为 16 进制时，可以很方便地由低到高将每 4 位二进制位转换为对应的一位 16 进制位"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "revise",
+        "reviewNote": "接受初核修正：网站选项 A 写作“数组必须先 definition 后使用”，PDF 第 4 页原文为“数组必须先定义后使用”，混入英文属转录错误，必须更正；顺带把选项 C ““[ ]””内的空格规范为“[]”。其余选项与 PDF 一致，答案 C 不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 9 题题干“下列关于 C++语言中数组的叙述，不正确的是（     ）。”与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "选项 A 的“definition”系原卷“定义”之误，changes 已按 PDF 第 4 页原文更正并规范 C 项括号，修复后核验通过；B、D 与原文一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页【答案】C，0 起始索引为 2，与当前 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析指出任何类型数组只要带初始化列表即可省略长度、因此 C 表述错误，与 PDF 第 4 页解析一致；对 A（先定义后使用）、B（连续存放）、D（不可整体赋值、可逐元素赋值）的分析均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "数组必须先定义后使用",
+            "数组的所有元素在内存中是连续存放的",
+            "除了字符数组，在定义数组时“[]”内必须有常数",
+            "不能对数组赋值，但可以对数组的每个基础类型的元素赋值"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "初核判定无改动。独立推导确认：D 满足 (x^7)^7=x 恒成立；A 左移可致高位溢出丢失、B 右移丢低 3 位、C 等价于 x&~7（仅当低 3 位为 0 才还原，网站反例 x=10：10|7=15，15&-8=8≠10 正确），均不能保证变回原值。题干、选项、【答案】D 均与 PDF 第 4-5 页一致，接受初核结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末至第 5 页第 10 题题干“一个 int 类型的值，做以下哪个操作，一定会变回原来的值？（ ）”与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4-5 页选项依次为左移3再右移3、右移3再左移3、按位或7再按位与-8、按位异或7再按位异或7，与当前 options 顺序、内容一致（句末标点差异可忽略）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页【答案】D，0 起始索引为 3，与当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析的异或自反性推导及 A/B 丢位、C 反例验算（10→15→8）均正确，与 PDF 第 5 页解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次独立复核第 6–10 题（单选题），答案映射均与官方解析 PDF 一致：6→A(0)、7→B(1)、8→B(1)、9→C(2)、10→D(3)。题 6、题 10 题干、选项、解析均与 PDF 一致，verdict=approve、无改动；题 7 解析知识延伸将 VLA 误述为“C99/C++11 特性”且归入“数组大小留空”，已替换为修正后完整解析（VLA 仅属 C99、非标准 C++）；题 8 选项 C/D 缩略丢失“很方便地由低到高”与“转换为对应的一位 8/16 进制位”，属漏必要内容，已按 PDF 原文补全；题 9 选项 A 误含英文“definition”，PDF 原文为“定义”，已更正。三处修复均经对照原卷逐字复核，修复后核验通过。初核草稿的三处修改全部经独立确认可靠并接受，其“题 6、10 无改动”的结论亦经独立推导确认。本次仅处理题 6–10，其余题目未核验、维持原有待核验状态。"
+  }
+}

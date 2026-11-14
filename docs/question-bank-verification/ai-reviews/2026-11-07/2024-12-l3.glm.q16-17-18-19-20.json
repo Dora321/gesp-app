@@ -1,0 +1,235 @@
+{
+  "paperId": "2024-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-12T15:58:06.229Z",
+  "completedAt": "2026-11-12T16:00:07.197Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55814,
+    "completion_tokens": 8508,
+    "total_tokens": 64322,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6327
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0126261,
+      "allowance": 0.0126261,
+      "tokens": {
+        "input": 55814,
+        "output": 8508,
+        "reasoning": 6327,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "73451c8308d5dda25f879a9319f75a6b9c66697804e2f1f819e2bcf98cb7fa1c",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++3级.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "mirrorBytes": 1127458,
+    "shaVerified": true,
+    "sha256": "18906aab7b63314ee328d203d49b216dc893252f68230e0335b1c345dbfd91f4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 三级」「2024 年 12 月」，与 paperId 2024-12-l3（2024 年 12 月、三级）一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 1 题题干（补码使减法转化为加法等表述）与网站逐句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以答案表 √/× 给出，网站选项「正确/错误」顺序一致，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 1 题为 √，对应 0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析将 -3 的补码 253 括注为二进制 10011101，该值实为 157，确属错误；独立复核 253=0b11111101，5+253=258 对 256 取模得 2，与 5-3 一致。应用更正后核验通过（修复后核验通过）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n补码的设计正是为了解决这一工程问题。早期的计算机硬件实现加法电路相对简单，而实现减法电路需要额外的电路设计。设计者发现：通过将负数表示为其绝对值的“补数”（即补码），可以让 CPU 内部的减法运算转化为等效的加法运算。例如，在8位系统中，-3 的补码是 253，即二进制 11111101；计算 5-3 时只需计算 5+253=258，舍弃超出 8 位的进位（即对 256 取模）后正好得到 2，与 5-3 的结果一致。这种表示方法统一了加减法运算，显著简化了算术逻辑单元（ALU）的硬件设计。\n\n**易错提醒：**\n- 补码的本质不是“把负数当正数”，而是利用模运算的性质，让减法变成加法。\n- 补码范围不对称：8位有符号整数的范围是 -128 ~ +127，-128 没有原码和反码表示，只有补码。\n\n**知识延伸：**\n补码的定义为：正数的补码是自身；负数的补码是符号位不变，其余各位取反后加1。这一规则保证了所有加减法都能统一用加法器完成，是现代计算机的基石。\n\n**考点：** 二进制、补码"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "独立复核确认 253=0b11111101，原解析括注的 10011101=157 属实错；接受初核提出的修复方向，但采用最小化改动（仅更正二进制并补全取模说明），其余内容保留。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 2 题「使用原码进行的计算，2+(-1) 的结果是 -3」与网站一致（仅句末标点差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以答案表 √/× 给出，网站选项「正确/错误」顺序一致，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 2 题为 √，对应索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按位相加：00000010 + 10000001 = 10000011，按原码解释为符号位 1、数值 3，即 -3，与官方 √ 判定自洽，推理完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立重算原码位模式加法得到 10000011→-3，支持官方答案；初核结论可接受，网站数据无修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 3 题题干（反码加减法正确但解决不了 -0 问题）与网站逐句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以答案表 √/× 给出，网站选项「正确/错误」顺序一致，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 3 题为 √，对应索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：反码负数取反规则、循环进位（end-around carry）、+0=00000000 与 -0=11111111 双零表示均准确，与官方 √ 判定自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "解析的技术细节（循环进位、双零缺陷）独立核实无误；初核结论可接受，网站数据无修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 4 题的六条除 2 取余式子及结论句「按照从前往后的顺序，获得 63 的二进制值是 111111」与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以答案表 √/× 给出，网站选项「正确/错误」顺序一致，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 4 题为 ×，对应索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：除 2 取余应自下而上逆序读；本题六个余数全为 1，正逆序读恰好同为 111111，数值巧合正确而「从前往后」的方法表述不成立，与官方 × 自洽；反例 10→余 0,1,0,1 正序 0101 错、逆序 1010 对，验证成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "官方答案 × 与网站一致；解析对「判错落点在顺序表述而非数值」的论证经独立反例验证成立；初核结论可接受，网站数据无修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 5 题题干「下列程序输出的是 A」及代码 char x=65; x=x&00001111; cout<<x<<endl; 与网站等价（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以答案表 √/× 给出，网站选项「正确/错误」顺序一致，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 5 题为 √，对应索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：00001111 以 0 开头为八进制字面量 = 1×512+1×64+1×8+1 = 585 = 0b1001001001；65 = 0b1000001，按位与保留 bit6 与 bit0，结果仍为 65，cout 输出字符 A；另核 0x1111=4369 时 65&4369=1（不可见字符），与解析中的陷阱说明一致，支持官方 √。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立重算八进制字面量换算与按位与结果均为 65→'A'，解析正确；初核结论可接受，网站数据无修改。"
+      }
+    ],
+    "summary": "本次独立复核题 16–20（判断题第 1–5 题）。题面文字与代码均与 PDF 第 7 页一致，判断题答案表读出 √√√×√，映射为 0,0,0,1,0，与网站 answer 完全一致。唯一问题在题 16 解析：-3 的补码 253 被误写为二进制 10011101（该值实为 157），已更正为 11111101 并复核 5+253=258 对 256 取模得 2，修复后核验通过；题 17–20 的解析经独立推导（原码位加法、反码双零与循环进位、除 2 取余逆序规则及反例、八进制字面量 585 的按位与）均支持官方答案，未做修改。"
+  }
+}

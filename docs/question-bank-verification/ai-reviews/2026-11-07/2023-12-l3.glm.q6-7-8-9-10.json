@@ -1,0 +1,236 @@
+{
+  "paperId": "2023-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T06:02:12.424Z",
+  "completedAt": "2026-11-11T06:03:37.287Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49806,
+    "completion_tokens": 15048,
+    "total_tokens": 64854,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12231
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0149949,
+      "allowance": 0.0149949,
+      "tokens": {
+        "input": 49806,
+        "output": 15048,
+        "reasoning": 12231,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c4f34351a8e3b2b69284df238ba5ae7fbd149cdc645a8b2ec894e8acb302e591",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++3级.pdf",
+    "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
+    "mirrorBytes": 1749021,
+    "shaVerified": true,
+    "sha256": "ef6bb91b5ed0d4b380f6ab5ee383711d77ee4c7d9894074cb83eabdc75322ec5"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 三级”“2023 年 12 月”，与 paperId=2023-12-l3 及网站 level=3、year=2023、month=12 一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题页图代码为 string str=(\"chen\"); int x=str.length(); cout<<x<<endl;，网站以 string str = \"chen\" 等价展示（括号初始化与拷贝初始化构造结果均为 \"chen\"），题干完整无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A.4、B.3、C.2、D.5，与网站选项内容和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第6题为 A（答案序列 C D C C C A …），A 映射 0 起始索引 0，网站 answer=0 一致；独立推导 \"chen\" 的 length() 为 4，输出 4，选 A 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：\"chen\" 含 4 个有效字符，x=4，cout 输出 4；网站解析结论正确，且对选项 D（5 为含 '\\0' 的 C 风格存储字节数、length() 不计结尾符）的辨析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：括号初始化与等号初始化属等价展示；独立推导输出为 4（A，索引 0），与答案表及网站 answer=0 一致，解析正确，无需修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题页图代码为 string str=(\"chen\"); cout<<str[5]<<endl;，网站等价展示为 string str = \"chen\"，代码完整，题意一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A.输出未知的数、B.输出'n'、C.输出'\\0'、D.输出空格，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 A，映射索引 0，网站 answer=0 一致；独立推导 str[5] 为越界访问，输出不可预知，选 A 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：\"chen\" 长度 4，合法下标 0..3；operator[] 在 pos>size() 时为未定义行为（仅 pos==size() 自 C++11 起返回 '\\0' 的引用，5>4 不适用），结果不可预测，选 A；网站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：str[5]（pos>size()）属未定义行为，“输出未知的数”最贴切；与答案表 A 及网站 answer=0 一致，解析正确，无需修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页底部第8题题干与代码 char ch[10]={'1'}; cout<<ch[2]<<endl; 及选项 A.0、B.1、C.输出空格，第3页顶部承接选项 D.什么也不输出；网站题干、代码与四选项完整一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页给出 A.0、B.1、C.输出空格，第3页顶部给出 D.什么也不输出，与网站选项内容和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 D，映射索引 3，网站 answer=3 一致；独立推导 ch[2] 为 '\\0'，输出无可见字符，选 D 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：char 数组部分初始化时其余元素值初始化为 0，ch[2] 为空字符 '\\0'（ASCII 0），输出无可见字符；网站解析正确区分了 '0'(48)、整数 0 与 '\\0'，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：部分初始化补零规则与 '\\0' 不可见的结论独立复核成立；选项 D 跨页（第2→3页）衔接已核对；与答案表 D（索引 3）及网站 answer=3 一致，无需修改。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第9题页图代码为 string str=\"GESP is a good programming test!\"; int x=0; for(int i=0;i<str.length();i++){ if(_______){ x++; } } cout<<x<<endl;，网站将计数变量 x 等价改名为 cnt、花括号块等价写为单条语句，字符串、循环条件与填空位置一致，题意不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A.str[i]=='o'、B.str[i]=='a'+14、C.str[i]==115、D.str[i]==111，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 C，映射索引 2，网站 answer=2 一致；独立统计确认 115（'s'）仅出现 2 次，为唯一使输出不为 3 的选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立统计：'o' 在 good 中 2 次、programming 中 1 次，共 3 次；'a'+14=97+14=111 即 'o'，D 的 111 亦为 'o'，均使输出为 3；115 为小写 's'，仅在 is、test 各 1 次共 2 次，GESP 中为大写 'S'(83) 不计入，填入输出 2≠3；网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：变量改名与语句合并属等价转换；对 'o'（3 次）与 's'（2 次）的独立计数支持答案 C（索引 2），与网站解析及 answer=2 一致，无需修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第10题题干“32位计算机中，C++的整型变量int能够表示的数据范围是”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A.2^31~(2^31)-1、B.2^32、C.-2^31~+(2^31)-1、D.-(2^31)+1~2^31，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 C，映射索引 2，网站 answer=2 一致；补码下 32 位 int 范围确为 -2^31~2^31-1（-2147483648~2147483647）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析结论（-2^31~2^31-1）正确，但把补码 1111...1111 对应的 -1 误称“最小负数”（-1 是负数端数值最大者，最小负数是 -2^31），属事实性错误；已提供修正版解析并对补码范围及四个选项分析逐项复核，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (-2^31~+(2^31)-1)**\n\n**核心解析：**\n32 位计算机中 `int` 通常占 4 字节共 32 个二进制位，采用补码表示，最高位为符号位：\n- 符号位为 0（非负数）：`0000...0000` 到 `0111...1111`，即 0 到 2^31-1；\n- 符号位为 1（负数）：`1000...0000` 到 `1111...1111`，即 -2^31 到 -1。\n\n因此 32 位有符号 `int` 的表示范围是 **-2^31 到 2^31-1**，即 -2147483648 到 2147483647，对应选项 C。\n\n**选项逐项分析：**\n- **A 2^31~(2^31)-1**：❌ 错误。该区间下界 2^31 比上界 2^31-1 还大，且完全不含负数，与有符号 int 的实际范围不符。\n- **B 2^32**：❌ 错误。2^32 = 4294967296 只是一个数值而非范围；0 到 2^32-1 是 32 位无符号整型 `unsigned int` 的范围。\n- **C -2^31~+(2^31)-1**：✅ 正确。补码下 32 位有符号整数的完整范围：最小值 -2^31（-2147483648），最大值 2^31-1（2147483647）。\n- **D -(2^31)+1~2^31**：❌ 错误。下界 -(2^31)+1 = -2147483647，漏掉了真正的最小值 -2^31；上界 2^31 = 2147483648 又超出真正的最大值 2^31-1。\n\n**易错提醒：**\n- 补码范围不对称：负数端比正数端多表示一个值，范围是 [-2^31, 2^31-1]，不是 [-2^31+1, 2^31]。\n- 32 位指二进制位数，不是能表示的最大数值 2^32。\n- 二进制 1111...1111 对应的 -1 是负数中数值最大的，最小的负数是 -2^31（二进制 1000...0000）。\n\n**知识延伸：**\n无符号整型 `unsigned int`（同样 32 位）范围为 0 到 2^32-1，因为所有位都用于表示数值，没有符号位。\n\n**考点：** 计算机数值表示范围与补码原理"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的修复：网站解析把补码 1111...1111 对应的 -1 称为“最小负数”确属事实性错误而非文风差异（最小负数是 -2^31）；修正版解析对补码范围与四个选项的分析均经独立复核无误，且与答案表第 10 题 C（索引 2）一致，应用该修改。"
+      }
+    ],
+    "summary": "本次复核第 6–10 题共 5 道单选题。卷头“2023 年 12 月 / C++ 三级”与来源一致；答案表第 6–10 题为 A A D C C，与网站 answer（0,0,3,2,2）逐一映射核对通过；题 6、7 的括号初始化与题 9 计数变量改名均属等价展示，不改变题意。题 6–9 独立推导与网站解析一致，直接通过；题 10 网站解析存在“把 -1 误称最小负数”的事实性错误，采纳修正版解析并复核通过。无未决问题。"
+  }
+}

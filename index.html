@@ -11,7 +11,8 @@
     content="魔丸聚集地——面向青少年的 GESP C++/Python 编程备考平台：历年真题题库（1–8 级）、互动课程讲解、ESP32 硬件项目与内置 AI 编程助教。" />
   <meta name="keywords" content="GESP,C++,Python,少儿编程,编程备考,真题,题库,信息技术,ESP32,AI 助教" />
   <meta name="author" content="魔丸聚集地" />
-  <meta name="theme-color" content="#6366f1" />
+  <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#23283d" media="(prefers-color-scheme: dark)" />
   <meta name="mobile-web-app-capable" content="yes" />
   <title>魔丸聚集地 | GESP C++/Python 备考 · 真题题库 · AI 助教</title>
 
@@ -41,9 +42,14 @@
       window.gtag('config', 'G-T8HZPB84S8');
     }
   </script>
+  <!-- 首屏加载层「积木拼合」：样式内联，JS 到达前就能画出来；LoadingScreen 与小号积木复用同一份 .mwl 样式 -->
+  <style id="mw-boot-css">.mwl{--bg:#f7f5f0;--ink:#23283d;--sub:#676b7b;--paper:#fff;--deco:#efebe2;--drop:#23283d;position:fixed;inset:0;z-index:9999;overflow:hidden;display:grid;grid-template-rows:1fr auto 1fr;place-items:center;padding:24px;background:var(--bg);color:var(--ink);font:400 15px/1.5 "PingFang SC","HarmonyOS Sans SC","MiSans","Microsoft YaHei UI","Microsoft YaHei",system-ui,sans-serif;text-align:center;-webkit-font-smoothing:antialiased}.mwl--night{--bg:#23283d;--ink:#f1eee7;--sub:#b9bcc8;--paper:#f1eee7;--deco:#2d3350;--drop:#151929}.mwl::before,.mwl::after{content:"";position:absolute;background:var(--deco)}.mwl::before{top:-18vmin;right:-18vmin;width:52vmin;height:52vmin;border-radius:50%}.mwl::after{left:-12vmin;bottom:-16vmin;width:38vmin;height:38vmin;border-radius:9vmin;transform:rotate(18deg)}.mwl__in{grid-row:2;position:relative;z-index:1;display:grid;justify-items:center}.mwl-mark{--c:#dd5a2e;--m:#f2c14e;--s:30px;display:grid;grid-template-columns:var(--s) var(--s);gap:calc(var(--s) * .18);padding:calc(var(--s) * .28);border:2px solid var(--ink);border-radius:calc(var(--s) * .56);background:var(--paper);box-shadow:calc(var(--s) * .16) calc(var(--s) * .2) 0 var(--drop)}.mwl-mark--boot{--s:44px}.mwl-mark--bare{--s:9px;padding:0;border:0;background:none;box-shadow:none}.mwl-mark i{position:relative;height:var(--s);border-radius:30%;background:var(--c);animation:mwl-hop 2s cubic-bezier(.45,0,.2,1) infinite}.mwl-mark i:nth-child(2){border-radius:30% 100% 30% 30%;background:var(--m);animation-delay:.16s}.mwl-mark i:nth-child(3){border-radius:50%;background:var(--m);animation-delay:.48s}.mwl-mark i:nth-child(4){background:none;animation-delay:.32s}.mwl-mark i:nth-child(4)::before,.mwl-mark i:nth-child(4)::after{content:"";position:absolute;inset:33% -6%;border-radius:99px;background:var(--c);transform:rotate(45deg)}.mwl-mark i:nth-child(4)::after{transform:rotate(-45deg)}.mwl__brand{margin:30px 0 0;font-size:24px;font-weight:800;line-height:1.3;letter-spacing:.16em;text-indent:.16em}.mwl__msg{margin:28px 0 0;font-size:17px;font-weight:700;letter-spacing:.06em}.mwl__sub{margin:6px 0 0;font-size:13px;color:var(--sub);letter-spacing:.04em}.mwl__slow{grid-row:3;align-self:end;position:relative;z-index:1;margin:0;font-size:12px;color:var(--sub);text-align:center;opacity:0;visibility:hidden;animation:mwl-slow .4s 8s forwards}#mw-boot{z-index:10000}.mw-ready #mw-boot{display:none}@keyframes mwl-hop{0%,36%,100%{transform:none}18%{transform:translateY(-16%)}}@keyframes mwl-slow{to{opacity:1;visibility:visible}}@media (prefers-reduced-motion:reduce){.mwl-mark i,.mwl__slow{animation:none}}</style>
+  <noscript><style>#mw-boot{display:none}</style></noscript>
 </head>
 
 <body>
+  <!-- boot 加载层是 #root 的兄弟节点：预渲染只替换下面的空 #root，React 首屏提交后由 main.jsx 给 <html> 加 mw-ready 收起 -->
+  <div id="mw-boot" class="mwl" role="status" aria-live="polite" aria-busy="true"><div class="mwl__in"><div class="mwl-mark mwl-mark--boot" aria-hidden="true"><i></i><i></i><i></i><i></i></div><p class="mwl__brand">魔丸聚集地</p><p class="mwl__sub">正在打开，内容马上就绪</p></div><p class="mwl__slow">网络有点慢，请再等一下，或者刷新页面试试</p></div>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

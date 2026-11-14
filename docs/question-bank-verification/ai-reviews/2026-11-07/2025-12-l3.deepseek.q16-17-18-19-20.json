@@ -1,0 +1,230 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T03:53:28.411Z",
+  "completedAt": "2026-11-13T03:55:44.370Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33859,
+    "completion_tokens": 12173,
+    "total_tokens": 46032,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10057
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0247653,
+      "allowance": 0.01485918,
+      "tokens": {
+        "input": 33859,
+        "output": 12173,
+        "reasoning": 10057,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "59499284a77768a1dad2144d2dbbbd4c13ca7395c1e3c283e607e6972b16b659",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 三级”“2025年12月”；第5页判断题答案表与题号对应，确认本卷为 2025-12-l3。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第1题原文为“在 C++ 中，数组名不能改变，数组名不能被赋值。”网站题面文字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项；网站 options 仅为“正确/错误”的判断展示，按规则本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1列为“√”，即正确；网站 answer=0 对应“正确”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析从数组名不可作为赋值目标、数组元素仍可按下标读写两方面说明，能够独立推出原命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文与网站一致：a 为整型 3，b 为浮点数 3.5，经 a *= b 后称 a 变为 10.5 并输出 10.5。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2列为“×”，即错误；网站 answer=1 对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析的示例代码写成 int a = 3, b = 3.5;，会把 b 声明为 int，无法正确说明“浮点数结果赋给 int 被截断”；应把 b 声明为 double。原解析结论仍正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n判定依据：\n```cpp\nint a = 3;\ndouble b = 3.5;\na *= b;  // 等价于 a = a * b\n```\n1. 计算 `a * b`：`3 * 3.5 = 10.5`，结果为 `double`。\n2. 赋值回 `int` 类型的 `a` 时，小数部分被截断：`10.5` 转换为 `10`。\n3. 因此 `a` 的值为 `10`，输出也是 `10`，不是 `10.5`。\n\n**易错提醒：**\n- 复合赋值 `*=` 不会改变左侧变量的类型；右侧结果会转换为左侧变量的类型。\n- 浮点数赋给整型时是截断小数部分，不是四舍五入。\n\n**知识延伸：**\n若希望保留小数结果，应把 `a` 声明为 `double` 或 `float`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第3题原文与网站一致：strcmp(str1,str2) 返回 0 表示 str1 大于 str2，返回正数表示两者相等。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第3列为“×”，即错误；网站 answer=1 对应“错误”，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 strcmp 返回 0 表示相等、返回正数表示 str1 大于 str2、返回负数表示 str1 小于 str2，因此题干把 0 和正数的含义说反，原命题错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页判断题第4题代码为 `int c = a++ + ++b;`，中间有空格；网站写成 `int c = a+++++b;`。后者按最大 munch 会切成 `a++ ++ + b`，与原式不同且不能通过编译。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4列为“×”，即错误；按原式 a++ 得 5、++b 得 4，c=9，不是 8，故原命题错误，网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析错误声称无空格的 `a+++++b` 会按最大 munch 解析为 `(a++) + (++b)`；实际不是，并且原解析未按 PDF 带空格代码说明输出 9。需修正表达式和推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "以下代码输出结果为 8。\n```cpp\nint a = 5, b = 3;\nint c = a++ + ++b;\ncout << c << endl;\n```",
+          "explanation": "**答案：错误**\n\n官方代码为 `int c = a++ + ++b;`（PDF 中带空格；不能写成无空格的 `a+++++b`，后者会按最大 munch 切成 `a++ ++ + b`，不是同一表达式且不能通过编译）。\n\n1. `a++` 是后置自增，表达式的值为原值 5，随后 `a` 变为 6。\n2. `++b` 是前置自增，`b` 先由 3 变为 4，表达式的值为 4。\n3. `c = 5 + 4 = 9`。\n\n因此输出 9 而不是 8，题面判断错误。\n\n**易错提醒：**\n- 后置 `++` 返回原值，前置 `++` 返回自增后的值。\n- 代码书写时应保留必要空格，避免 `+++++` 这类连续符号被按最大 munch 切成不同 token。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第5题原文与网站一致：位运算符 &、|、^、~ 的优先级高于算术运算符 +、-、*、/。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A/B/C/D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第5列为“×”，即错误；因为 &、^、| 的优先级低于算术运算符，整句不成立，网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称 `~` 的优先级低于算术运算符，这是错误的：`~` 是单目运算符，优先级高于 `* /` 和 `+ -`；错误在于把 `~` 与 `&、^、|` 混为一谈。需修正解析，答案仍为错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n判定依据：\n- 取反运算符 `~` 是单目运算符，优先级高于算术运算符 `* / %` 和 `+ -`。\n- 但按位与 `&`、按位异或 `^`、按位或 `|` 的优先级低于算术运算符。\n\nC++ 中相关优先级大致为：`~`（单目） > `* / %` > `+ -` > 移位 > 关系 > `&` > `^` > `|`。\n\n因此“`&、|、^、~` 的优先级都高于算术运算符”这一整体说法错误；不能因为 `~` 的优先级高，就认为整句正确。例如 `5 + 3 & 7` 先计算 `5 + 3`，再计算 `8 & 7`。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题16—20（PDF 判断题第1—5题）。五题答案均与 PDF 第5页答案表一致。发现 3 处需修正：题17解析把浮点变量 b 误写成 int；题19题干丢失 PDF 原式中的空格，导致表达式词法解析错误；题20解析错误声称 `~` 的优先级低于算术运算符。题16、18题面与解析通过。"
+  }
+}

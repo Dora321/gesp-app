@@ -1,0 +1,232 @@
+{
+  "paperId": "2023-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T06:55:14.508Z",
+  "completedAt": "2026-11-11T06:57:13.405Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33196,
+    "completion_tokens": 12354,
+    "total_tokens": 45550,
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 33196,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10541
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0247836,
+      "allowance": 0.01487016,
+      "tokens": {
+        "input": 33196,
+        "output": 12354,
+        "reasoning": 10541,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c4f34351a8e3b2b69284df238ba5ae7fbd149cdc645a8b2ec894e8acb302e591",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++3级.pdf",
+    "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
+    "mirrorBytes": 1749021,
+    "shaVerified": true,
+    "sha256": "ef6bb91b5ed0d4b380f6ab5ee383711d77ee4c7d9894074cb83eabdc75322ec5"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2023-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确标注“C++ 三级 / 2023年12月”，与paperId 2023-12-l3对应的等级、年份、月份一致；PDF第4页判断题答案表与第5页判断题题面可逐题对应。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第6题原文代码为 `int list[10]={1}; cout<<list<<endl;`，题面为“下面C++代码将输出1（ ）”，与网站题干及代码一致，仅存在排版空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页该判断题以括号作答，PDF第4页答案表使用√/×；网站将判断选项表示为“正确/错误”，顺序与0/1答案索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第6题位置为×，即“错误”，对应officialAnswer=1；网站answer=1，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：`list` 是 `int[10]` 数组，在 `cout << list` 中退化为 `int*`，输出的是指针地址而非首元素值1，因此原命题错误；现有解析结论和主要理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第7题原文代码为 `int arr[10]={1}; cout<<arr[0]<<endl;`，题面为“下面C++程序将输出1。（ ）”，与网站题干及代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页该判断题以括号作答，PDF第4页答案表使用√/×；网站“正确/错误”选项顺序与0/1答案索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第7题位置为√，即“正确”，对应officialAnswer=0；网站answer=0，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：`arr[0]` 被列表中的1显式初始化，其余元素为0，因此输出1，原命题正确；现有解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第8题的数组初始化、`i += 2` 步长循环以及每次输出元素后追加一个空格，均与网站题干和代码一致，且明确说明9之后还有一个空格。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页该判断题以括号作答，PDF第4页答案表使用√/×；网站“正确/错误”选项顺序与0/1答案索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第8题位置为√，即“正确”，对应officialAnswer=0；网站answer=0，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：i取0、2、4、6、8，对应list元素1、3、5、7、9；每次输出后追加一个空格，因此末尾有空格，原命题正确；现有解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第9题原文为“小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页该判断题以括号作答，PDF第4页答案表使用√/×；网站“正确/错误”选项顺序与0/1答案索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第9题位置为×，即“错误”，对应officialAnswer=1；网站answer=1，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：Dev C++ 是集成开发环境，不是负责硬件管理、进程管理和内存管理的操作系统，原命题错误；现有解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第10题原文为“任何一个while循环都可以转化为等价的for循环（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页该判断题以括号作答，PDF第4页答案表使用√/×；网站“正确/错误”选项顺序与0/1答案索引一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第10题位置为√，即“正确”，对应officialAnswer=0；网站answer=0，二者一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论正确，但原解析把while循环体末尾的更新操作搬到for第三部分，并称“任何while”都可如此改写；当循环体含有continue时，for的更新部分仍会执行，而原while中位于continue之后的更新会被跳过，这种改写不保证等价。更稳妥的通用转化是保留原循环体，写成for(; 条件; )。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码，本维度不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nC++ 中 `while (条件) { 循环体; }` 可以直接改写为 `for (; 条件; ) { 循环体; }`：`for` 的初始化部分和更新部分留空，条件与循环体原样保留，因此任意 `while` 循环都能转换成语义等价的 `for` 循环。\n\n反过来，`for (初始化; 条件; 更新) { 循环体; }` 也可写成 `初始化; while (条件) { 循环体; 更新; }`，但若循环体中有 `continue`，由于 `for` 的更新部分在 `continue` 后仍会执行，而上述 `while` 写法中的更新语句会被跳过；此时需要把更新逻辑放在 `continue` 之前或改写控制流。这个细节不影响本题结论。\n\n**易错提醒：**\n- 通用等价转换应优先使用 `for (; 条件; )`，不要误以为必须把 `while` 循环体末尾的更新操作搬到 `for` 的第三部分。\n- 判断循环等价性时，要同时考虑 `continue`、`break` 和循环变量更新位置。\n\n**考点：** `while` 与 `for` 循环的等价转换。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验判断题21-25。PDF第5页题面与第4页判断题答案表逐项对应：21、24为错误，22、23、25为正确，均与网站答案一致；题干和选项无冲突。21-24解析可独立复现。25的原解析把while循环体末尾更新移入for第三部分，该改写对含continue的循环不严格等价，结论正确但解析已提出修正草稿。其余题号未处理。"
+  }
+}

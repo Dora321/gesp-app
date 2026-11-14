@@ -1,0 +1,232 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T05:56:55.614Z",
+  "completedAt": "2026-11-13T05:58:43.884Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33930,
+    "completion_tokens": 11220,
+    "total_tokens": 45150,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9325
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0118215,
+      "allowance": 0.0070929,
+      "tokens": {
+        "input": 33930,
+        "output": 11220,
+        "reasoning": 9325,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "59499284a77768a1dad2144d2dbbbd4c13ca7395c1e3c283e607e6972b16b659",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 三级”与“2025 年 12 月”，与 paperId 2025-12-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第6题原文为“在 C++ 中，int a[] = {1, 2, 3, 4, 5}; 可以定义一个包含 5 个元素的整型数组。”与站内题干一致；C++ 允许由初始化列表推导数组长度。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第6题为 √，按正确=0 映射为 0；站内 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明由初始化列表推导长度，并指出不能既无长度又无初始化列表，推导与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5—6页第7题除条件运算符等价代码外，还紧跟“以下代码执行后，输出将会是 2。”以及 `arr[3 > 2 ? 1 : 2]` 的完整代码；站内题干漏掉第二段断言和代码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7题为 √（0）；站内 answer=0。补齐后两段断言均成立，答案仍为 0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "站内解析只说明三目运算符与 if-else 等价，未覆盖漏掉的 `arr[3 > 2 ? 1 : 2]` 输出 2 的断言。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "C++ 表达式 `z = a > b ? x : y` 等同于：\n```cpp\nif (a > b) {\n    z = x;\n} else {\n    z = y;\n}\n```\n\n以下代码执行后，输出将会是 2。\n```cpp\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    cout << arr[3 > 2 ? 1 : 2] << endl;\n    return 0;\n}\n```",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n1. 条件运算符 `?:` 的优先级高于赋值运算符 `=`，因此 `z = a > b ? x : y` 等价于 `z = (a > b ? x : y)`；条件为真取 x，否则取 y，与所给 if-else 等价。\n2. 在第二段代码中，`3 > 2` 为真，故 `arr[3 > 2 ? 1 : 2]` 取 `arr[1]`；数组初始化为 `{1, 2, 3, 4, 5}`，`arr[1]` 的值为 2，所以输出 2。\n\n两段断言均成立，故判断为正确。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第8题原文为“在 C++ 中，++ 和 -- 运算符只能用于整型变量，不能用于浮点数变量。”与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第8题为 ×（1）；站内 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出浮点变量也可使用 ++/--，并给出 `double a = 3.14; a++;` 后为 4.14，能够独立推出题干错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第9题与站内题干一致：从右往左扫描 a 的二进制，遇到第一个 1 后，将该 1 左侧所有位取反，可得到 -a 的补码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题为 √（0）；站内 answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "站内解析主结论正确，但括注“10000110 的补码也是 11111010”错误：8 位 10000110 取反加一为 01111010；应直接用 6=00000110 → 11111010 说明 -6 的补码，并删除错误括注。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n补码取负的快速方法是：对正整数 a 的二进制，从右往左找到最低位的 1，保持这个 1 及其右侧的 0 不变，把该 1 左侧的所有位取反。它与“按位取反再加 1”等价。\n\n例如 8 位下 a = 6 = `00000110`：从右往左第一个 1 是倒数第二位；保持该 1 及其右侧的 0 不变，将其左侧所有位取反，得到 `11111010`，即 -6 的补码。\n\n**易错提醒：**\n- 取反的是第一个 1 左边的位，第一个 1 本身和其右侧的 0 不变。\n- 该技巧用于补码表示下的正整数取负。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第10题代码与站内一致：`for (int i = 0; i < 5; i++);` 后接独立大括号代码块；分号形成空循环体，后续块只执行一次。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；站内“正确/错误”与 PDF 答案符号对应。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题为 ×（1）；站内 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 for 后分号是空语句，循环执行 5 次但循环体为空，随后的代码块独立执行一次，Hello 只输出 1 次。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号 21—25。五题站内答案均与 PDF 第5页判断题答案表（第6—10题：√、√、×、√、×）一致。21、23、25 可保留；22 漏掉 PDF 第7题第二段代码与“输出 2”断言，需补题并补解析；24 的解析含一处错误括注，需替换。未发现答案冲突或需改判的题目。"
+  }
+}

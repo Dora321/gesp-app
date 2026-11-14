@@ -1,0 +1,216 @@
+{
+  "paperId": "2024-03-l3",
+  "integratedAt": "2026-11-12T00:11:56.195Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 3,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 16,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 25,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 2,
+      "reasons": [
+        "statement 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 8,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "在下列代码的横线处填写（ ），可以使得输出是 GESP IS INTERESTING。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting\";\n    int x = str.length();\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= 'a') && (str[i] <= 'z'))\n            ________________________;\n    cout << str << endl;\n    cout << endl;\n    return 0;\n}\n```"
+      }
+    },
+    {
+      "id": 9,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（ ）。\n```cpp\nint main() {\n    string str = \"gEsP is Interesting     !\";\n    int x = str.length();\n    int nwords = 0;\n    for (int i = 0; i < x; i++)\n        if (str[i] == ' ') {\n            nwords++;\n            while (str[++i] == ' ');\n        }\n    cout << nwords << endl;\n    cout << endl;\n    return 0;\n}\n```"
+      }
+    },
+    {
+      "id": 19,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：错误**\n\n**判定依据：**\n移位运算符同级左结合，表达式应理解为 `(a << 2) >> 2`。左移会把高位移出并在低位补 0。对有符号 `int`，若左移结果超出可表示范围，在较早的 C++ 标准中属于未定义行为；即使按常见的回绕（截断）实现，被移出的高位也无法由随后的右移恢复。因此该表达式不可能对任意 `int` 都等于 `a`。\n\n例如在常见的 32 位 `int` 下取 `a = 1073741824`（`0x40000000`）：其左移 2 位的真实算术结果为 `2^32`，超出 32 位表示范围；在常见的回绕实现中低 32 位变为 0，再右移 2 位仍为 0，不等于原值。故「执行后的值一定是 a」不成立，本题说法错误。\n\n**易错提醒：**\n- 不要用代数思维 `(a×4)÷4=a` 直接套用位运算；左移可能丢失高位或发生有符号溢出。\n- 负数左移可能波及符号位；右移的符号扩展规则在较早标准中由实现定义（主流为算术右移），结论更不确定。\n\n**考点：** 位运算、左移、右移、溢出"
+      }
+    },
+    {
+      "id": 26,
+      "reasons": [
+        "statement 尚无一致、完整的原卷核验结论"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\naAc",
+          "output": "-61",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "-61\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1\na",
+          "output": "1",
+          "reason": "独立计算：小写 a 代表序号 1，输出 1；覆盖 n 下界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单个大写字母",
+          "input": "1\nZ",
+          "output": "-90",
+          "reason": "独立计算：Z 的 ASCII 码为 90，按题意代表 -90，覆盖大写取负分支。",
+          "kind": "boundary",
+          "actual": "-90\n",
+          "passed": true
+        },
+        {
+          "name": "大小写混合",
+          "input": "4\naZzB",
+          "output": "-129",
+          "reason": "独立计算：1+(-90)+26+(-66)=-129，同时覆盖小写序号（含 z 的 26）与大写 ASCII 取负。",
+          "kind": "boundary",
+          "actual": "-129\n",
+          "passed": true
+        },
+        {
+          "name": "26 个小写字母",
+          "input": "26\nabcdefghijklmnopqrstuvwxyz",
+          "output": "351",
+          "reason": "独立计算：1+2+…+26=26×27/2=351，覆盖全部小写字母与序号偏移。",
+          "kind": "boundary",
+          "actual": "351\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "632087d4ae9a7a693ebc58bd51187e7b32a9d4590fd95b802eef08f2045cd242"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n1 4 3 3 5",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小 n 与最小值",
+          "input": "1\n0",
+          "output": "0",
+          "reason": "独立计算：n=1 无下标对，答案 0；同时覆盖 n 与 A_i 的下界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "零和边界",
+          "input": "2\n0 0",
+          "output": "1",
+          "reason": "独立计算：唯一数对和为 0=0×0，按题意 y=0 即完全平方数，计 1 对。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "多组平方和",
+          "input": "3\n0 9 16",
+          "output": "3",
+          "reason": "独立枚举：三对和 9=3²、16=4²、25=5² 均为完全平方数，得 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "A_i 上界非平方",
+          "input": "2\n100000 100000",
+          "output": "0",
+          "reason": "独立计算：和 200000 介于 447²=199809 与 448²=200704 之间，非完全平方数，覆盖 A_i≤10^5 上界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "08632f42df61b184a9b064b932bed4654658666b37cb1883ec799670f9bda19d"
+    }
+  ]
+}

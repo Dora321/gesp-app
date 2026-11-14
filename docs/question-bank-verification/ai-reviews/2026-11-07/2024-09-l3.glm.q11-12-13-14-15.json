@@ -1,0 +1,245 @@
+{
+  "paperId": "2024-09-l3",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T20:38:15.446Z",
+  "completedAt": "2026-11-11T20:44:19.161Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 46707,
+    "completion_tokens": 25176,
+    "total_tokens": 71883,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 22253
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01959405,
+      "allowance": 0.01959405,
+      "tokens": {
+        "input": 46707,
+        "output": 25176,
+        "reasoning": 22253,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6a865d3b5a006bd8bbb68cca6ef8c4d03edaed57fccb39a44079200af64dfda",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1644702761746464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++3级.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "mirrorBytes": 1384976,
+    "shaVerified": true,
+    "sha256": "bd4c2bd3957401c3540fe8177761a6cc58cc14ff718e12e7f73e75cc447251af"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP / C++ 三级 / 2024 年 09 月”，与 2024-09-l3（2024年9月·三级）一致；全卷为单选15题＋判断10题＋编程2题（平衡序列、回文拼接），第1页答案表题号1~15覆盖本批11~15题。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第11题题干：陈A歹种植一批农作物，第一天浇水1次，随后的两天（第2、第3天）每天浇水2次，再随后的3天（第4、第5、第6天）每天浇水3次，随后的n天每天浇水n次，问100天里总共浇了多少次水。站内改写为“第1天浇水1次；接下来的2天每天2次；……接下来的n天每天n次”，分段规则、100天条件与“陈 A 歹”原文人名均保留，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项 A.994、B.996、C.995、D.945，与站内options顺序、数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为D，0起始索引3，与站内answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算：前13个阶段共1+2+…+13=91天（≤100），第14阶段仅前9天落入100天；Σi²(i=1..13)=13×14×27/6=819，9×14=126，合计945，选D。站内解析为同一推导（819+126=945），过程与结论均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干为等价改写但完整保留分段浇水规则与100天条件；D=945经独立计算确认；选项与官方答案表一致，解析推导正确。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第12题题干“关于一维数组，下列程序能够正确执行的是（ ）。”，与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：站内原C/D选项与PDF不符——C被写成{0}初始化＋i<10（混合了PDF中D的初始化与C的循环），D被写成{1..10}后cout<<a[10]（实为第13题代码）；已对照PDF第3~4页图像与文本层恢复四项：A未初始化数组＋i<=10、B完整初始化＋i<=10、C完整初始化＋i<10、D{0}初始化＋i<=10。其中PDF选项C第4行印作“um=sum+a[i];”，首字符s疑为印刷缺损（文本层与图像均显示“um=”），按官方答案C及A/B/D同构写法规范化为“sum=sum+a[i];”；该源卷字面争议保留于unresolved，不定案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为C，0起始索引2，与站内answer=2一致；按恢复后的选项独立检验，仅C（完整初始化且i<10）不发生a[10]越界访问，答案成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：站内原解析针对被改写的C/D选项展开（称C为{0}初始化、D为输出a[10]），与PDF原选项不对应，已重写；新解析对恢复后的四项独立复核：A未初始化且i<=10越界、B i<=10越界、C完整初始化且i<10合法、D i<=10越界，唯C可正确执行，与官方答案C一致，并附“um=”印刷缺损说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "int a[10];\nint sum=0;\nfor(int i=0;i<=10;i++) {\n  sum=sum+a[i];\n}",
+            "int a[10]={1,2,3,4,5,6,7,8,9,10};\nint sum=0;\nfor(int i=0;i<=10;i++) {\n  sum=sum+a[i];\n}",
+            "int a[10]={1,2,3,4,5,6,7,8,9,10};\nint sum=0;\nfor(int i=0;i<10;i++) {\n  sum=sum+a[i];\n}",
+            "int a[10]={0};\nint sum=0;\nfor(int i=0;i<=10;i++) {\n  sum=sum+a[i];\n}"
+          ],
+          "explanation": "**答案：C**\n\n**核心解析：**\n`int a[10]` 的合法下标是 0~9，任何对 a[10] 的访问都是越界（未定义行为）。逐项分析：\n\n- **A**：`int a[10];` 未初始化，读取元素值不确定；且循环条件 `i<=10` 会访问 a[10]，越界。不能正确执行。\n- **B**：数组已用 {1,2,…,10} 完整初始化，但循环条件 `i<=10` 仍会访问 a[10]，越界。不能正确执行。\n- **C**：数组完整初始化，循环条件 `i<10`，只访问 a[0]~a[9]，全部合法。能够正确执行。\n- **D**：`int a[10]={0};` 把全部元素初始化为 0，但循环条件 `i<=10` 仍访问 a[10]，越界。不能正确执行。\n\n故能够正确执行的只有 C。\n\n**易错提醒：**\n- 循环用 `<=` 还是 `<` 决定遍历次数：`i<=10` 比 `i<10` 多一次，对长度为 10 的数组是致命的。\n- 数组完整初始化不能弥补越界访问；大小为 10 的数组最大合法下标是 9。\n\n**注（源卷版式）：** 官方 PDF 第4页选项 C 第4行印作 “um=sum+a[i];”，首字符 s 疑为印刷缺损（文本层与页面图像均显示 “um=”）；依据官方答案 C 及 A/B/D 的同构写法，此处按 “sum=sum+a[i];” 整理，原卷字面保留待复核。\n\n**考点：** 数组下标合法范围与越界访问"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方PDF第4页选项C第4行印作“um=sum+a[i];”（文本层与页面图像一致），疑漏首字符s；本站按“sum=sum+a[i];”等价整理，原卷字面与官方答案表（C）的对应关系保留待复核，未定案。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受初核对C/D选项失配与解析错位的判定，并采纳其恢复PDF选项的方向；已对照第3~4页图像与文本层逐字复核恢复内容；对C第4行“um=”按印刷缺损规范化为“sum=”的处理予以有条件接受，争议保留于unresolved，未擅自定案。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第13题题干“下面的程序中，会输出（ ）。”，代码为 int a[10]={1,2,3,4,5,6,7,8,9,10}; cout<<a[10]<<endl;，与站内code字段逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项 A.1、B.0、C.10、D.不确定的值，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为D，0起始索引3，与站内answer=3一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：合法下标0~9，a[10]越界读取属未定义行为，输出值不确定，选D；站内解析结论一致（其“未初始化局部变量”一节为UB的示例性补充，不影响本题结论）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、代码、选项与PDF第4页一致；D（索引3）与官方答案表一致；越界读取→未定义行为→输出不确定的推导独立成立。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第14题题干：ABCD四人中恰一人为小偷、只有小偷说假话；A说“不是我”，B说“是C”，C说“是D”，D说“C瞎说”。站内完整保留全部约束与四句话。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项 A.A、B.B、C.C、D.D，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为C，0起始索引2，与站内answer=2一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立假设检验：设C为小偷时A真（不是我）、B真（是C）、C假（是D）、D真（C瞎说），自洽；设A/B/D为小偷时，均因B或C的真话（“是C”/“是D”）推出第二个小偷而矛盾。站内解析逐案验证一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干约束与四句话完整；C经四个案例假设检验独立确认；解析逐案验证正确。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4~5页第15题代码为 string str = \"Hello,CHAD\"; cout << str.find(\"A\") << '\\n';（字符字面量换行）；站内写作 << \"\\n\"（字符串字面量换行），两者输出相同（8后换行），为等价转换；字符串内容与find参数均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4~5页选项 A.9、B.8、C.7、D.6，与站内顺序、数值一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为B，0起始索引1，与站内answer=1一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立标注索引：H0 e1 l2 l3 o4 ,(5) C6 H7 A8 D9，find(\"A\")首次出现于下标8，输出8后换行；站内解析索引标注与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：仅换行的字面形式（字符'\\n'与字符串\"\\n\"）同PDF不同且输出等价，不构成含义改变，不作修改；find下标8与答案B独立确认。"
+      }
+    ],
+    "summary": "本批复核11~15题：第1页官方答案表对应为 D、C、D、C、B（0起始索引3/2/3/2/1），与站内answer全部一致。题11、13、14、15的题面、选项、答案、解析均与PDF及官方答案相符（approve）。题12站内C/D选项与PDF不符（C混入{0}初始化、D误用第13题代码），解析随之错位；已按PDF第3~4页图像与文本层恢复四个选项并重写解析，修复后核验通过；官方PDF选项C第4行印作“um=sum+a[i];”疑漏首字符s，按“sum=sum+a[i];”等价整理并在unresolved保留原卷字面争议，未定案。本批均为单选题，无编程题，tests为空。"
+  }
+}

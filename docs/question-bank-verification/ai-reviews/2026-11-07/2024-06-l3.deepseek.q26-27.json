@@ -1,0 +1,175 @@
+{
+  "paperId": "2024-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-11T22:13:47.323Z",
+  "completedAt": "2026-11-11T22:17:23.281Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34918,
+    "completion_tokens": 11738,
+    "total_tokens": 46656,
+    "prompt_tokens_details": {
+      "cached_tokens": 34688
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9916
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00718136,
+      "allowance": 0.00430882,
+      "tokens": {
+        "input": 230,
+        "output": 11738,
+        "reasoning": 9916,
+        "cache_read": 34688,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "013365d4bb7fa13988476c0cb85873270422de0422337f459f87fb603e3353cb",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071490973728.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++3级.pdf",
+    "mirrorSha": "9daa099e94084bc7483b12d2237340e4fd4f3a41",
+    "mirrorBytes": 1284269,
+    "shaVerified": true,
+    "sha256": "9649d0c64710da1b749c9fd193b45b056ec36abf56f97e815ef3ae9a9a7f1169"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 三级 2024年06月”，与 paperId 2024-06-l3 相符；本次核验的编程题位于 PDF 第8-10页。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第8页“3.1 编程题1 移位”的题面、输入、输出、样例及数据范围完整；网站 question 缺少官方数据范围“1≤n≤100”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，没有单选选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，PDF 答案表不涉及本题。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "主体推导“整体循环移位、按 (i+n)%26 计算”正确，但原文使用 n=100000 作为示例，超出官方数据范围 1≤n≤100；需改为范围内示例。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第9页 3.1.7 参考程序与网站 referenceCode 算法一致；网站代码仅省略未使用的 fl 并补 return 0，对 1≤n≤100 可正确按 26 周期回绕输出。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 三级] 移位\n\n## 题目描述\n\n小杨学习了加密技术移位，所有大写字母都向后按照一个固定数目进行偏移。偏移过程会将字母表视作首尾相接的环，例如，当偏移量是 $3$ 的时候，大写字母 A 会替换成 D，大写字母 Z 会替换成 C，总体来看，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 会被替换成 DEFGHIJKLMNOPQRSTUVWXYZABC。\n\n注：当偏移量是 $26$ 的倍数时，每个大写字母经过偏移后会恰好回到原来的位置，即大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 经过偏移后会保持不变。\n\n## 输入格式\n\n第一行包含一个正整数 $n$。\n\n## 输出格式\n\n输出在偏移量为 $n$ 的情况下，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 移位替换后的结果。\n\n## 数据范围\n\n对于全部数据，保证有 $1 \\le n \\le 100$。",
+          "explanation": "**解析：**\n\n本题要求将 26 个大写字母整体向后循环移动 $n$ 位。由于字母表长度为 26，偏移 $n$ 位与偏移 $n \\bmod 26$ 位等价。\n\n将原字母编号为 $i=0,1,\\dots,25$（'A' 对应 0），移动后的编号为 $(i+n)\\bmod 26$，对应字符为 `char('A' + (i+n)%26)`。按 $i=0$ 到 $25$ 依次输出即可。\n\n例如 $n=3$ 时，'A' 替换为 'D'、'Z' 替换为 'C'，输出 `DEFGHIJKLMNOPQRSTUVWXYZABC`；$n=26$ 时输出原字母表。本题 $1\\le n\\le100$，取模能正确处理边界回绕。\n\n**易错点：** 不能直接对 `'A'+n` 取模，应先计算相对偏移量，再加回 `'A'`。"
+        },
+        "tests": [
+          {
+            "name": "最小偏移 n=1",
+            "input": "1",
+            "output": "BCDEFGHIJKLMNOPQRSTUVWXYZA",
+            "reason": "按题意将字母表整体后移1位，Z越过末尾回绕为A。"
+          },
+          {
+            "name": "整周期 n=26",
+            "input": "26",
+            "output": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "reason": "26是字母表长度，26 mod 26=0，输出应与原字母表相同。"
+          },
+          {
+            "name": "上界 n=100",
+            "input": "100",
+            "output": "WXYZABCDEFGHIJKLMNOPQRSTUV",
+            "reason": "100 mod 26=22，字母表后移22位；同时检查官方上界处的取模回绕。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第9-10页“3.2 编程题2 寻找倍数”题面、输入、输出、样例及数据范围完整；网站 question 缺少官方数据范围“1≤t≤10，1≤n≤10^5，1≤a_i≤10^9”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，没有单选选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，PDF 答案表不涉及本题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导出：若存在所有数的倍数，该数只能是序列最大值；再检查最大值能否整除所有元素。算法、样例走查与复杂度说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第10页 3.2.7 参考程序与网站 referenceCode 一致；全局数组容量 1e5+10，a_i≤10^9 在 int 范围内，按每组 O(n) 检查，符合数据范围。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202406 三级] 寻找倍数\n\n## 题目描述\n\n小杨有一个包含 $n$ 个正整数的序列 $A=[a_1,a_2,\\dots,a_n]$，他想知道是否存在 $i(1\\leq i\\leq n)$ 使得 $a_i$ 是序列 $A$ 中所有数的倍数。\n\n## 输入格式\n\n第一行包含一个正整数 $t$，代表测试用例组数。\n\n接下来是 $t$ 组测试用例。对于每组测试用例，一共两行。\n\n其中，第一行包含一个正整数 $n$；第二行包含 $n$ 个正整数，代表序列 $A$。\n\n## 输出格式\n\n对于每组测试用例，如果存在 $i(1\\leq i\\leq n)$ ，满足对于所有 $k(1\\leq k\\leq n)$ $a_i$ 是 $a_k$ 的倍数，输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于全部数据，保证有 $1\\le t\\le 10$，$1\\le n\\le 10^5$，$1\\le a_i\\le 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "n=1 最小值",
+            "input": "1\n1\n1",
+            "output": "Yes",
+            "reason": "唯一元素1是自身的倍数，最大值1可整除序列全部元素。"
+          },
+          {
+            "name": "元素全相同",
+            "input": "1\n3\n6 6 6",
+            "output": "Yes",
+            "reason": "最大值为6，且6能被每个元素6整除。"
+          },
+          {
+            "name": "最大元素不能整除其他数",
+            "input": "1\n5\n1 2 3 4 5",
+            "output": "No",
+            "reason": "最大值为5，但5不能被2、3、4整除，因此不存在所有数的公倍数元素。"
+          },
+          {
+            "name": "a_i上界与 int 范围",
+            "input": "1\n2\n1 1000000000",
+            "output": "Yes",
+            "reason": "1e9 不超过官方上界且可存入 int；最大值1e9能被1和其自身整除。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验编程题26、27。两题网站题面均遗漏官方数据范围，已在 changes 中补齐；26题解析含超出 n≤100 的 n=100000 示例，已修正。两题参考程序与 PDF 参考程序算法一致，未发现算法、边界或溢出问题。其他题号未核验。"
+  }
+}
