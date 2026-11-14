@@ -1,0 +1,232 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T00:02:13.992Z",
+  "completedAt": "2026-11-13T00:04:24.972Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33875,
+    "completion_tokens": 15446,
+    "total_tokens": 49321,
+    "prompt_tokens_details": {
+      "cached_tokens": 33792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12032
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00938143,
+      "allowance": 0.00562886,
+      "tokens": {
+        "input": 83,
+        "output": 15446,
+        "reasoning": 12032,
+        "cache_read": 33792,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "59499284a77768a1dad2144d2dbbbd4c13ca7395c1e3c283e607e6972b16b659",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头显示“C++ 三级”“2025 年 12 月”，与 paperId 2025-12-l3 一致；第 1 页官方单选答案表前 5 题为 B、C、D、B、B。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干为二进制数 (1101.101)₂ 转十进制，网站题干含义等价，选项前无必要代码或图表缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 14.25、B. 13.625、C. 13.5、D. 14.5，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 1 题答案表为 B（0 起始索引 1）。独立计算：1101.101₂=8+4+0+1+0.5+0+0.125=13.625，网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心数值推导 13.625 正确；但“知识延伸”将“除基取余、乘基取整”说成二进制转十进制的方法，方向错误，这是十进制转二进制的方法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (13.625)**\n\n**核心解析：**\n1. **整数部分转换**：`1101` 从右向左各位权值为 2³、2²、2¹、2⁰。\n   - `1 × 2³ = 8`\n   - `1 × 2² = 4`\n   - `0 × 2¹ = 0`\n   - `1 × 2⁰ = 1`\n   合计：`8 + 4 + 0 + 1 = 13`。\n\n2. **小数部分转换**：`0.101` 从左向右各位权值为 2⁻¹、2⁻²、2⁻³。\n   - `1 × 2⁻¹ = 0.5`\n   - `0 × 2⁻² = 0`\n   - `1 × 2⁻³ = 0.125`\n   合计：`0.5 + 0 + 0.125 = 0.625`。\n\n3. **合并结果**：`13 + 0.625 = 13.625`。\n\n**选项逐项分析：**\n- A (14.25)：错误，不是该二进制数按位权展开的结果。\n- B (13.625)：正确，计算过程如上。\n- C (13.5)：错误，相当于只计算了小数部分的前一位 0.5，漏掉 2⁻³ 位。\n- D (14.5)：错误，整数部分或小数部分计算有误。\n\n**易错提醒：**\n小数部分从左向右的权值是 2⁻¹、2⁻²、2⁻³……，容易与整数部分的正指数混淆。\n\n**知识延伸：**\n二进制转十进制时，整数部分和小数部分都按位权展开求和；“除基取余、乘基取整”是十进制转二进制的方法，不能把转换方向弄反。\n\n**考点：** 二进制浮点数转十进制"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干为“以下关于标准 C++ 一维数组的描述，哪一项是错误的？”，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 下标从 0 开始、B. 内存中连续存放、C. 长度只能在运行时才能确定、D. 可以修改某个元素的值，网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 2 题答案表为 C（0 起始索引 2）。标准静态数组长度需在编译期确定，C 项“只能在运行时才能确定”错误；网站 answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出普通标准 C++ 数组长度需编译期常量确定，并补充了 VLA 属于编译器扩展而非标准 C++ 特性，与选项 C 的判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页第 3 题代码首行为 `{`、末行为 `}`；网站 question 内嵌代码有首尾大括号，但独立 `code` 字段缺少首行 `{` 却保留末尾 `}`，渲染时大括号不配对。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 12、B. 17、C. 33、D. 40，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 3 题答案表为 D（0 起始索引 3）。独立计算：8>>2=2，跳过 i%3==2 的 2、5、8，sum=1+3+4+6+7+9+10=40，网站 answer=3 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核心推导正确：8>>2=2，跳过 2、5、8 后累加和为 40；虽然“巧合”等措辞可进一步润色，但不影响本题结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "code": "{\n    int sum = 0;\n    for (int i = 1; i <= 10; i++) {\n        if (i % 3 == 8 >> 2)\n            continue;\n        sum += i;\n    }\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末至第 2 页第 4 题代码为 `int x = 5; if (x == 3 >> 2) x = 8 >> 3; cout << x << endl;`，网站题干代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题选项依次为 A. 0、B. 5、C. 120、D. 1，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 4 题答案表为 B（0 起始索引 1）。独立计算：3>>2=0，条件 5==0 为假，x 保持 5；网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心结论 5 正确；但解析称“位运算优先级较低”并把 `==` 与 `>>` 的优先级关系说得含糊。实际 `>>` 优先级高于 `==`，条件应解析为 `x == (3 >> 2)`。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (5)**\n\n**核心解析：**\n1. **计算 `3 >> 2`**：`3` 的二进制为 `11`，右移 2 位后为 `0`。\n2. **判断 if 条件**：`x == 3 >> 2` 等价于 `x == (3 >> 2)`，即 `5 == 0`，结果为假。\n3. **确定输出**：条件为假，`x = 8 >> 3` 不执行；即使计算，`8 >> 3 = 1`，但该赋值不会发生。\n4. **最终结果**：`x` 保持原值 `5`，输出 `5`。\n\n**选项逐项分析：**\n- A (0)：错误，不是 `x` 的输出值。\n- B (5)：正确，if 条件不成立，`x` 未改变。\n- C (120)：错误，与代码逻辑无关。\n- D (1)：错误，`1` 是 `8 >> 3` 的值，但赋值语句未执行。\n\n**易错提醒：**\n位移运算符 `>>` 的优先级高于相等运算符 `==`，因此 `x == 3 >> 2` 应理解为 `x == (3 >> 2)`，不能理解为 `(x == 3) >> 2`。另外，对负数右移在 C++ 标准中属于实现定义行为，应尽量避免依赖。\n\n**知识延伸：**\n`>>` 对非负整数与除以 2ⁿ 的结果一致；对负数不要随意依赖移位结果。`&`、`^`、`|` 与 `==` 的优先级关系也常考，建议用括号明确意图。\n\n**考点：** 位运算右移操作符、条件判断语句的执行流程"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干为字符串 s = \"C++ Programming\"，代码为 `cout << (int)(s.length() | 3) << endl;`，网站题干与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. 14、B. 15、C. 16、D. 17，网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方第 5 题答案表为 B（0 起始索引 1）。独立计算：\"C++ Programming\" 长度为 15，15|3=15；网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心计算 15|3=15 正确；但解析称 `s.length()` 已返回 `int`、`(int)` 转换冗余。实际 `std::string::length()` 返回 `size_type`（通常为 `size_t`），并非 `int`。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (15)**\n\n**核心解析：**\n1. **计算字符串长度**：`“C++ Programming”` 含 15 个字符，依次为 `C`、`+`、`+`、空格、`P`、`r`、`o`、`g`、`r`、`a`、`m`、`m`、`i`、`n`、`g`。\n2. **计算按位或**：`15` 的二进制为 `1111`，`3` 的二进制为 `0011`，所以 `15 | 3 = 1111₂ = 15`。\n3. **类型转换与输出**：`s.length()` 返回 `std::string::size_type`（通常为无符号的 `size_t`），`(int)` 将其结果显式转换为 `int`；本题数值 15 在 `int` 范围内，转换后仍为 15。\n\n**选项逐项分析：**\n- A (14)：错误，只有长度数错或额外清除最低位时才可能得到 14。\n- B (15)：正确，`15 | 3 = 15`。\n- C (16)：错误，不符合按位或结果。\n- D (17)：错误，不符合按位或结果。\n\n**易错提醒：**\n`s.length()` 返回的不是 `int`，而是 `std::string::size_type`；`(int)` 是显式类型转换，不能简单视为冗余。`|` 是按位或，不是逻辑或 `||`。\n\n**知识延伸：**\n按位或可用于把指定位置 1。例如 `x | 3` 会把最低两位置 1；本题 15 的低两位本来就是 1，因此结果不变。\n\n**考点：** `string` 类 `length()` 方法、按位或运算符 `|`"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题 1-5 均为单选题。官方答案表为 B、C、D、B、B，网站 answer 与之一致。题 3 的独立 code 字段缺少首行大括号，需补全；题 1、4、5 的解析存在事实性表述错误，已给出完整修订草稿；题 2 无问题。本次只核验题 1-5，未核验第 6-25 题及编程题。"
+  }
+}

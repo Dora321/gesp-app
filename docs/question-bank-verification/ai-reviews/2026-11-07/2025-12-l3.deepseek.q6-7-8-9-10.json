@@ -1,0 +1,232 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-13T00:08:30.767Z",
+  "completedAt": "2026-11-13T00:10:46.583Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33806,
+    "completion_tokens": 16514,
+    "total_tokens": 50320,
+    "prompt_tokens_details": {
+      "cached_tokens": 33664
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13902
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01003069,
+      "allowance": 0.00601842,
+      "tokens": {
+        "input": 142,
+        "output": 16514,
+        "reasoning": 13902,
+        "cache_read": 33664,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "59499284a77768a1dad2144d2dbbbd4c13ca7395c1e3c283e607e6972b16b659",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证”“C++ 三级”“2025 年 12 月”，与 2025-12-l3 的年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干及代码为 `int arr[5] = {1, 2, 3, 4, 5};`、`int p = arr[1];`、`cout << (p + 2) << endl;`，站内 question 与 code 均包含同一代码，无漏项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A.1、B.2、C.3、D.4，站内 options 顺序与含义一致，仅存在空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第6题为 D，D 是第4个选项，0 起始索引为 3；站内 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "arr[1]=2，p=2，p+2=4，输出4；逐项分析与官方答案 D 相符，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题题干及四个选项均与站内 question/options 对应，考查 min() 的错误描述。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A 函数必须返回一个值、B 可嵌套调用、C min(5) 不能编译、D min() 可编译且结果为0，站内顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第7题为 D，D 对应 0 起始索引 3；站内 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "官答 D 成立，但解析末尾称 std::min“需要至少两个参数”，与初始化列表重载 std::min({a,b,c}) 冲突；应改为双参数重载需两个实参、初始化列表重载至少一个元素、无参重载不存在。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\nD 的说法错误：`std::min` 常见形式有双参数形式 `std::min(a, b)` 和初始化列表形式 `std::min({a, b, c})`。双参数形式需要两个实参，初始化列表形式至少需要一个元素；不存在完全不传参数的重载。因此 `min()` 无法通过编译，也不会返回 0。\n\n- A 正确：`std::min` 返回两个（或一组）元素中的较小值。\n- B 正确：可以写成 `std::min(a, std::min(b, c))` 这样的嵌套调用。\n- C 正确：`min(5)` 没有匹配的一元重载，不能通过编译。\n- D 错误：无参 `min()` 不能通过编译，更不会得到 0，故选 D。\n\n**易错提醒：** 本题是反向选择题，问“不正确的是”；不要把“正确描述”误选为答案。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第8题假设 unsigned int 占2个字节（16位），题干和选项与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为 A 0~65535、B 0~65536、C -65536~65535、D 0~32767，站内顺序与含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第8题为 A，A 为第1项，0 起始索引为 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "A 的结论正确，但 B 项解析把 2^16 与 16 位无符号数的最大值混同；应说明 16 位可表示 2^16 个值，最大值为 2^16-1=65535。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (0 ~ 65535)**\n\n`unsigned int` 占 2 字节，即 16 位；无符号类型的 16 位全部用于表示数值。16 位可表示 2^16=65536 个不同值，最小为 0，最大为 2^16-1=65535，所以范围是 0~65535。\n\n- A 正确：0~65535。\n- B 错误：65536=2^16 是表示值的个数，不是 16 位无符号数的最大可表示值；最大值是 65535。\n- C 错误：`unsigned` 没有符号位，不能表示负数。\n- D 错误：32767=2^15-1，是 16 位有符号整型的最大正值，不是本题无符号类型的范围。\n\n**易错提醒：** n 位无符号整数范围为 0~2^n-1；n 位有符号补码整数范围为 -2^(n-1)~2^(n-1)-1。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2-3页第9题代码为 `int arr[6] = {1, 2, 3, 4, 5, 6};` 及三句交换语句，站内 question/code 一致；选项跨第2页末与第3页首。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2-3页选项依次为 A {2,1,4,3,6,5}、B {1,2,3,4,5,6}、C {3,1,4,2,5,3}、D {1,3,2,5,4,6}，站内顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第9题为 A，A 为第1项，0 起始索引为 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "交换结论和选项 A 正确，但解析第二步、第三步把中间值说成“原始 arr[i] 减原始 arr[i+1]”及“原 arr[i] 存入 arr[i]”，逐步推导错误；应改为 arr[i+1] 得到原 arr[i]、arr[i] 得到原 arr[i+1]。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A ({2,1,4,3,6,5})**\n\n循环 `i=0,2,4`，每次处理一对相邻元素。设处理前 `a=arr[i]`、`b=arr[i+1]`：\n1. `arr[i]=a+b`；\n2. `arr[i+1]=arr[i]-arr[i+1]=(a+b)-b=a`，即 `arr[i+1]` 得到原 `arr[i]`；\n3. `arr[i]=arr[i]-arr[i+1]=(a+b)-a=b`，即 `arr[i]` 得到原 `arr[i+1]`。\n三步完成交换。\n\n逐次：`i=0` 得 `{2,1,3,4,5,6}`；`i=2` 得 `{2,1,4,3,5,6}`；`i=4` 得 `{2,1,4,3,6,5}`。因此选 A；B 是原数组，C、D 不符合推导。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题表达式为 `a & b | (c ^ d)`，其中 a=3、b=7、c=15、d=4，站内题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 A 十进制11、B 二进制11、C 八进制11、D 十六进制11，站内顺序与含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第10题为 A，A 为第1项，0 起始索引为 0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "数值推导可到11且答案 A 正确，但解析把 `&` 的真值表写成“相同为1，不同为0”，并用左到右结合性解释不同优先级运算；应改为两位全1才为1，并按 & 高于 ^ 高于 | 说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (十进制 11)**\n\n按位运算优先级为 `&` 高于 `^`，`^` 高于 `|`，所以原式等价于 `(a & b) | (c ^ d)`。\n\n- `a & b`：3(0011) & 7(0111) = 3(0011)。\n- `c ^ d`：15(1111) ^ 4(0100) = 11(1011)。\n- `(a & b) | (c ^ d)`：3(0011) | 11(1011) = 11(1011)，即十进制 11。\n\n因此选 A。B“二进制11”表示十进制3，C“八进制11”表示十进制9，D“十六进制11”表示十进制17，均不符。\n\n**易错提醒：** `&` 是两位都为 1 才得 1；`|` 是任一位为 1 就得 1；`^` 是两位不同得 1。不要把按位或 `|` 与逻辑或 `||` 混淆。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验 2025-12-l3 单选第6-10题。PDF 卷头与 2025 年 12 月 C++ 三级匹配，单选题答案表与站内答案映射一致。题6五维均通过；题7、8、9、10答案正确，但解析分别存在 std::min 参数个数、unsigned 最大值表述、交换算法中间值推导、按位与真值表及优先级的表述问题，已在 changes 中给出解析修订稿。五题均为单选题，referenceCode 不适用，tests 为空；未发现答案冲突。"
+  }
+}
