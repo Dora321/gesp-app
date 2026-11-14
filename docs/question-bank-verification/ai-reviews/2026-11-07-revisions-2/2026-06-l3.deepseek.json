@@ -1,0 +1,100 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    18
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T15:23:48.938Z",
+  "completedAt": "2026-11-14T15:25:01.517Z",
+  "finishReason": "stop",
+  "inputSha256": "280e8036e22d936a504485bd306efd0d2584eac3d1c1f01b61a52efa2c9a4979",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 三级”“2026 年 06 月”；第4页为判断题第3题及判断题答案表，卷别、年月、题号均对应。"
+    },
+    "questions": [
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图判断题第3题原文为“一个 8 位的二进制数补码，最大的表示范围是从 -127 到 +127。”候选题干与页图一致，数字 8、-127、+127 均清晰可辨。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题仅要求判定正误，不设 A/B/C/D 选项；候选 options 为站点呈现标签，不参与原卷选项核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第3项为“×”，按错误=1 映射 officialAnswer=1。独立核算 8 位补码范围为 [-128,+127]，题干所称 [-127,+127] 确为错误命题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选修订后的解析经独立复核正确：8 位补码按权求值最高位为 -2^7，1000 0000B=-128；按位取反加 1 并截断到 8 位时，0000 0000B 与 1000 0000B 均为自身，其中 1000 0000B 是唯一的非零不动点，故“唯一的非零”限定消除了原表述遗漏 0 的问题；1000 0000B 在原码、反码、补码中分别为 -0、-127、-128 的对照亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        18
+      ],
+      "usage": {
+        "prompt_tokens": 15990,
+        "completion_tokens": 6780,
+        "total_tokens": 22770,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6276
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0064665,
+          "allowance": 0.0038799,
+          "tokens": {
+            "input": 15990,
+            "output": 6780,
+            "reasoning": 6276,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-14T15:23:48.938Z",
+      "completedAt": "2026-11-14T15:25:01.517Z"
+    }
+  ]
+}

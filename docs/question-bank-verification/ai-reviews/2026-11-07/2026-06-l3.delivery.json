@@ -1,26 +1,15 @@
 {
   "paperId": "2026-06-l3",
-  "phase": "第1轮修订",
-  "checkedAt": "2026-11-14T15:17:03.989Z",
+  "phase": "第2轮修订",
+  "checkedAt": "2026-11-14T15:25:48.653Z",
   "reviewedQuestions": 27,
-  "acceptedDimensions": 95,
-  "unresolved": [
-    {
-      "id": 18,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "acceptedDimensions": 96,
+  "unresolved": [],
   "reviewFiles": {
     "initial": "ai-reviews/2026-11-07/2026-06-l3.deepseek.json",
     "review": "ai-reviews/2026-11-07/2026-06-l3.glm.json",
     "previous": "ai-reviews/2026-11-07/2026-06-l3.previous-evidence.json"
   },
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l3.integration.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2026-06-l3.integration.json",
   "checks": "题库结构、单元测试、课程与链接、解析质量、Lint、生产构建通过"
 }
