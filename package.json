@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:classroom": "node scripts/dev-classroom.mjs",
+    "start:classroom": "node server/classroom.mjs",
     "build": "vite build && node scripts/prerender-static-routes.mjs",
     "lint": "eslint . --max-warnings 0",
     "preview": "vite preview",

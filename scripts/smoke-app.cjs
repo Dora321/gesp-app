@@ -222,30 +222,17 @@ async function run() {
   await page.getByRole('button', { name: '最小化课堂积分榜' }).click();
   await page.getByRole('button', { name: '打开课堂积分榜' }).waitFor({ timeout: 10000 });
 
-  await page.evaluate(() => localStorage.setItem('deepseek_api_key', 'legacy-persistent-key'));
+  await require('./classroom-browser-mock.cjs')(page);
   await page.getByRole('button', { name: '打开 AI 问答助手' }).click();
   await page.getByRole('dialog', { name: 'AI 问答助手' }).waitFor({ timeout: 10000 });
   await page.getByRole('button', { name: '打开 AI 设置' }).click();
-  await page.getByLabel('DeepSeek API Key').fill('persistent-key');
-  await page.getByRole('button', { name: '保存', exact: true }).click();
-
-  const savedApiKeyState = await page.evaluate(() => ({
-    session: sessionStorage.getItem('deepseek_api_key'),
-    persistent: localStorage.getItem('deepseek_api_key'),
-  }));
-  if (savedApiKeyState.session !== null || savedApiKeyState.persistent !== 'persistent-key') {
-    throw new Error(`AI API key storage is not persistent-only: ${JSON.stringify(savedApiKeyState)}`);
-  }
-
+  await page.getByLabel('课堂口令', { exact: true }).fill('123456');
+  await page.getByRole('button', { name: '激活课堂', exact: true }).click();
+  await page.getByText(/全班剩余 500 次/).waitFor();
+  if (await page.evaluate(() => localStorage.getItem('deepseek_api_key'))) throw new Error('Student must not store an API key');
   await page.getByRole('button', { name: '打开 AI 设置' }).click();
-  await page.getByRole('button', { name: '清除', exact: true }).click();
-  const clearedApiKeyState = await page.evaluate(() => ({
-    session: sessionStorage.getItem('deepseek_api_key'),
-    persistent: localStorage.getItem('deepseek_api_key'),
-  }));
-  if (clearedApiKeyState.session !== null || clearedApiKeyState.persistent !== null) {
-    throw new Error(`AI API key clear action left stored data: ${JSON.stringify(clearedApiKeyState)}`);
-  }
+  await page.getByRole('button', { name: '退出课堂', exact: true }).click();
+  await page.getByText('已退出课堂。', { exact: true }).waitFor();
   await page.getByRole('button', { name: '关闭 AI 问答助手' }).click();
 
   // 学习数据的导出/导入/重置已从首页移到错题本页——那里才是学生查看和管理

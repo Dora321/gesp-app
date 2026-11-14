@@ -1,0 +1,15 @@
+{
+    admin off
+    auto_https disable_redirects
+}
+
+43.156.68.157.sslip.io {
+    tls {
+        issuer acme {
+            disable_http_challenge
+        }
+    }
+    reverse_proxy 127.0.0.1:8792 {
+        flush_interval -1
+    }
+}

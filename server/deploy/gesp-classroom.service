@@ -1,0 +1,26 @@
+[Unit]
+Description=GESP classroom AI gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=gesp-classroom
+Group=gesp-classroom
+WorkingDirectory=/opt/gesp-classroom
+ExecStart=/opt/gesp-runtime/node-v24.11.1-linux-x64/bin/node server/classroom.mjs
+Environment=NODE_ENV=production
+Environment=CLASSROOM_PORT=8792
+Environment=CLASSROOM_DATA_DIR=/var/lib/gesp-classroom
+Environment=CLASSROOM_ORIGIN=https://43.156.68.157.sslip.io
+Environment=CLASSROOM_STUDENT_ORIGIN=https://dora321.github.io
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/gesp-classroom
+
+[Install]
+WantedBy=multi-user.target

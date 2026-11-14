@@ -32,6 +32,7 @@ tmp/
 
 # API keys and temp files
 .env
+.classroom/
 scripts/temp_explanations.json
 scripts/apply_patch.js
 scripts/write_json.js
