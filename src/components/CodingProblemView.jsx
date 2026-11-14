@@ -7,6 +7,7 @@ import {
   BookOpen,
   Check,
   Clock,
+  ChevronDown,
   Code2,
   Copy,
   Cpu,
@@ -20,6 +21,7 @@ import {
   Tags,
 } from 'lucide-react';
 import MarkdownRenderer from './MarkdownRenderer';
+import HighlightedCode from './HighlightedCode';
 import { parseCodingProblem } from '../utils/codingProblemSections';
 
 const SECTION_ICONS = {
@@ -81,31 +83,58 @@ const CopyTextButton = ({ text, label, copiedLabel = '已复制', ariaLabel, cla
   );
 };
 
-const SampleBlock = ({ kind, value, sampleIndex, icon: Icon }) => {
-  const label = kind === 'input' ? '输入' : '输出';
+/**
+ * 浅色代码块 + 复制按钮。解析页的代码模板/参考代码和作答页样例共用同一套
+ * 复制行为与滚动样式，避免每处再手写一遍 button + pre。
+ */
+export function CopyableCodeBlock({
+  code,
+  label,
+  language = 'cpp',
+  ariaLabel,
+  codeAriaLabel,
+  icon: Icon = Code2,
+  className = '',
+}) {
+  const text = typeof code === 'string' ? code : String(code ?? '');
 
   return (
-    <div className="min-w-0 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+    <div className={`copyable-code-block min-w-0 overflow-hidden rounded-lg border border-slate-200 bg-slate-50 ${className}`}>
       <div className="flex items-center justify-between gap-2 border-b border-slate-200 bg-white/70 px-3 py-1.5">
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600">
-          <Icon size={13} className="text-emerald-700" aria-hidden="true" />
-          {label}
+        <span className="inline-flex min-w-0 items-center gap-1.5 text-xs font-semibold text-slate-600">
+          <Icon size={13} className="shrink-0 text-emerald-700" aria-hidden="true" />
+          <span className="truncate">{label}</span>
         </span>
         <CopyTextButton
-          text={value}
+          text={text}
           label="复制"
-          ariaLabel={`复制样例 ${sampleIndex + 1} ${label}`}
-          className="border-slate-200 bg-white text-slate-600 hover:bg-slate-100"
+          ariaLabel={ariaLabel || `复制${label}`}
+          className="shrink-0 border-slate-200 bg-white text-slate-600 hover:bg-slate-100"
         />
       </div>
       <pre
         tabIndex={0}
-        aria-label={`样例 ${sampleIndex + 1} ${label}`}
-        className="max-h-80 overflow-auto whitespace-pre p-3 font-mono text-[13px] leading-6 text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500"
+        aria-label={codeAriaLabel || label}
+        className="max-h-96 overflow-auto whitespace-pre p-3 font-mono text-[13px] leading-6 text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500"
       >
-        {value}
+        <HighlightedCode code={text} language={language} />
       </pre>
     </div>
+  );
+}
+
+const SampleBlock = ({ kind, value, sampleIndex, icon: Icon }) => {
+  const label = kind === 'input' ? '输入' : '输出';
+
+  return (
+    <CopyableCodeBlock
+      code={value}
+      label={label}
+      language="text"
+      icon={Icon}
+      ariaLabel={`复制样例 ${sampleIndex + 1} ${label}`}
+      codeAriaLabel={`样例 ${sampleIndex + 1} ${label}`}
+    />
   );
 };
 
@@ -123,10 +152,22 @@ const InfoRow = ({ label, value }) => (
   </div>
 );
 
-export default function CodingProblemView({ q, questionNumber, luoguUrl = null, onReveal }) {
+export default function CodingProblemView({
+  q,
+  questionNumber,
+  luoguUrl = null,
+  onReveal,
+  variant = 'practice',
+  actions = null,
+}) {
   const reduceMotion = useReducedMotion();
   const parsed = useMemo(() => parseCodingProblem(q), [q]);
   const { title, sections, samples, extraNotes } = parsed;
+
+  const isExam = variant === 'exam';
+  const isReview = variant === 'review';
+  const showSidebar = !isReview;
+  const showReveal = !isExam && Boolean(onReveal);
 
   const score = q?.score;
   const timeLimit = q?.timeLimit;
@@ -176,11 +217,11 @@ export default function CodingProblemView({ q, questionNumber, luoguUrl = null, 
     );
   };
 
-  return (
+  const body = (
     <div className="space-y-4">
       <motion.header
         {...enter(0)}
-        className="rounded-xl border border-slate-200 bg-white p-5 md:p-6"
+        className={`rounded-xl border border-slate-200 bg-white ${isReview ? 'p-4' : 'p-5 md:p-6'}`}
       >
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">
@@ -196,13 +237,13 @@ export default function CodingProblemView({ q, questionNumber, luoguUrl = null, 
             {timeLimit && <InfoChip icon={Clock}>时间限制 {timeLimit}</InfoChip>}
             {memoryLimit && <InfoChip icon={Cpu}>内存限制 {memoryLimit}</InfoChip>}
             {tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs text-emerald-800 lg:hidden">#{tag}</span>
+              <span key={tag} className={`rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs text-emerald-800 ${isReview ? '' : 'lg:hidden'}`}>#{tag}</span>
             ))}
           </div>
         )}
       </motion.header>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-start">
+      <div className={isReview ? 'space-y-4' : 'grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-start'}>
         <div className="min-w-0 space-y-4">
           {preSections.map((section) => renderSection(section, sections.indexOf(section)))}
 
@@ -278,7 +319,8 @@ export default function CodingProblemView({ q, questionNumber, luoguUrl = null, 
           {postSections.map((section) => renderSection(section, sections.indexOf(section) + 2))}
         </div>
 
-        <aside className="space-y-4 lg:sticky lg:top-28">
+        {showSidebar && (
+          <aside className="space-y-4 lg:sticky lg:top-28">
           <section className="hidden rounded-xl border border-slate-200 bg-white p-4 lg:block">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-800">
               <Tags size={15} className="text-emerald-700" aria-hidden="true" />
@@ -329,7 +371,7 @@ export default function CodingProblemView({ q, questionNumber, luoguUrl = null, 
                   className="w-full border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
                 />
               )}
-              {onReveal && (
+              {showReveal && (
                 <button
                   type="button"
                   onClick={onReveal}
@@ -339,11 +381,40 @@ export default function CodingProblemView({ q, questionNumber, luoguUrl = null, 
                   看思路与参考代码
                 </button>
               )}
+              {actions}
             </div>
-            <p className="mt-3 text-xs leading-5 text-slate-500">先自己想一想，写完再看思路哦。</p>
+            <p className="mt-3 text-xs leading-5 text-slate-500">
+              {isExam
+                ? '考试模式下编程题不自动判分，交卷后会提示人工评阅。'
+                : '先自己想一想，写完再看思路哦。'}
+            </p>
           </section>
         </aside>
+        )}
       </div>
     </div>
   );
+
+  if (isReview) {
+    return (
+      <details className="group rounded-xl border border-slate-200 bg-white">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2.5 px-4 py-3 text-sm font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500 md:px-5 [&::-webkit-details-marker]:hidden">
+          <span
+            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-800"
+            aria-hidden="true"
+          >
+            <BookOpen size={16} />
+          </span>
+          <span className="min-w-0 flex-1 truncate">
+            题面回顾{title ? <span className="font-normal text-slate-600"> · {title}</span> : null}
+          </span>
+          <span className="shrink-0 text-xs font-normal text-slate-600 group-open:hidden">点开再看一遍</span>
+          <ChevronDown size={16} className="shrink-0 text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true" />
+        </summary>
+        <div className="border-t border-slate-100 p-3 md:p-4">{body}</div>
+      </details>
+    );
+  }
+
+  return body;
 }
