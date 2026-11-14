@@ -12,7 +12,10 @@ import {
     CheckCircle2,
     ClipboardList,
     Tags,
-    AlertTriangle
+    AlertTriangle,
+    Code2,
+    Gauge,
+    Workflow
 } from 'lucide-react';
 import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
@@ -23,6 +26,8 @@ import { buildQuestionInsight, selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
+import CodingProblemView from '../../components/CodingProblemView';
+import { CopyableCodeBlock } from '../../components/CodingProblemView';
 import { integrityNoticeTiming } from '../../utils/sourceIntegrity';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
@@ -58,45 +63,6 @@ const inferKnowledgeTags = (q, level) => {
     tags.push(`L${level}能力点`);
 
     return Array.from(new Set(tags)).slice(0, 5);
-};
-
-const buildProgrammingMarkdown = (q, { includeReference = false } = {}) => {
-    if (!q) return '';
-    if (q.type === 'coding' && !q.description && q.explanation) {
-        return q.explanation;
-    }
-
-    const sections = [];
-    if (q.title) sections.push(`## ${q.title}`);
-    if (q.problemNumber) sections.push(`**题号**：${q.problemNumber}`);
-    if (q.description) sections.push(`### 题目描述\n${q.description}`);
-    if (q.inputDescription) sections.push(`### 输入格式\n${q.inputDescription}`);
-    if (q.outputDescription) sections.push(`### 输出格式\n${q.outputDescription}`);
-
-    if (Array.isArray(q.samples) && q.samples.length > 0) {
-        const sampleSections = q.samples.map((sample, index) => [
-            `#### 样例 ${index + 1}`,
-            '输入：',
-            '```text',
-            sample.input || '',
-            '```',
-            '输出：',
-            '```text',
-            sample.output || '',
-            '```'
-        ].join('\n'));
-        sections.push(`### 样例\n${sampleSections.join('\n\n')}`);
-    }
-
-    if (q.explanation) sections.push(`### 题解提示\n${q.explanation}`);
-    if (includeReference && q.template) sections.push(`### 代码模板\n\`\`\`cpp\n${q.template}\n\`\`\``);
-    if (includeReference && q.referenceCode) sections.push(`### 参考代码\n\`\`\`cpp\n${q.referenceCode}\n\`\`\``);
-
-    if (sections.length === 0) {
-        return q.question || '';
-    }
-
-    return sections.join('\n\n');
 };
 
 const buildCodingGuide = (q) => {
@@ -135,6 +101,27 @@ const buildCodingGuide = (q) => {
 
     return { idea, steps, complexity, pitfalls, isGrid, isNumberTheory, isSorting, isSearch };
 };
+const ANALYSIS_CARD_TONES = {
+    emerald: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+    amber: 'border-amber-200 bg-amber-50 text-amber-800',
+    indigo: 'border-indigo-200 bg-indigo-50 text-indigo-800',
+};
+
+const AnalysisCard = ({ icon: Icon, title, tone = 'emerald', children }) => (
+    <section className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 md:p-5">
+        <h3 className="flex items-center gap-2.5 text-[15px] font-semibold text-slate-800 md:text-base">
+            <span
+                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${ANALYSIS_CARD_TONES[tone] || ANALYSIS_CARD_TONES.emerald}`}
+                aria-hidden="true"
+            >
+                <Icon size={16} />
+            </span>
+            {title}
+        </h3>
+        <div className="mt-3 min-w-0">{children}</div>
+    </section>
+);
+
 const sectionMetaByLevel = {
     1: { tone: '语法启蒙', focus: '语句规则与基础逻辑', color: 'from-emerald-500 to-teal-500' },
     2: { tone: '流程强化', focus: '循环与分支协同', color: 'from-blue-500 to-indigo-500' },
@@ -339,11 +326,9 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     const analysisView = selectAnalysisView(currentQ, paperData.level);
     const useGenericHint = analysisView.mode === 'generic';
     const displayedAnalysis = analysisView.analysis;
-    const isReformed = (currentQ.type === 'coding' || currentQ.type === 'programming') && getQuestionContent(currentQ).trim().startsWith('# ');
-    const programmingPracticeMarkdown = (currentQ.type === 'coding' || currentQ.type === 'programming') ? buildProgrammingMarkdown(currentQ) : '';
-    const programmingAnalysisMarkdown = (currentQ?.type === 'coding' || currentQ?.type === 'programming')
-        ? buildProgrammingMarkdown(currentQ, { includeReference: true })
-        : '';
+    const isProgramming = isProgrammingQuestion(currentQ);
+    const syntheticLuoguCoding = currentQ?.type === 'coding' && !currentQ.description && Boolean(currentQ.explanation);
+    const luoguUrl = isProgramming ? getLuoguProblemUrl(paperId, currentQ.id) : null;
 
     return (
         <div className="mw-surface mw-line-bank min-h-screen bg-slate-100">
@@ -431,24 +416,24 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
                 <section className="min-w-0 space-y-4">
                     <div className="bg-white rounded-2xl border border-slate-200 p-5 md:p-8">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="text-sm text-slate-500">第 {currentQuestionIndex + 1} 题 / 共 {questions.length} 题</div>
+                        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                            <div className="whitespace-nowrap text-sm text-slate-500">第 {currentQuestionIndex + 1} 题 / 共 {questions.length} 题</div>
                             <div className="inline-flex bg-slate-100 rounded-lg p-1">
                                 <button
                                     onClick={() => setActiveTab('practice')}
-                                    className={`px-3 py-1.5 rounded-md text-sm ${activeTab === 'practice' ? 'bg-white shadow text-slate-800' : 'text-slate-500'}`}
+                                    className={`px-3 py-1.5 rounded-md text-sm whitespace-nowrap ${activeTab === 'practice' ? 'bg-white shadow text-slate-800' : 'text-slate-600'}`}
                                 >
                                     <span className="inline-flex items-center gap-1"><BookOpen size={14} /> 作答</span>
                                 </button>
                                 <button
                                     onClick={() => setActiveTab('analysis')}
-                                    className={`px-3 py-1.5 rounded-md text-sm ${activeTab === 'analysis' ? 'bg-white shadow text-slate-800' : 'text-slate-500'}`}
+                                    className={`px-3 py-1.5 rounded-md text-sm whitespace-nowrap ${activeTab === 'analysis' ? 'bg-white shadow text-slate-800' : 'text-slate-600'}`}
                                 >
                                     <span className="inline-flex items-center gap-1"><Lightbulb size={14} /> 解析</span>
                                 </button>
                                 <button
                                     onClick={() => setActiveTab('knowledge')}
-                                    className={`px-3 py-1.5 rounded-md text-sm ${activeTab === 'knowledge' ? 'bg-white shadow text-slate-800' : 'text-slate-500'}`}
+                                    className={`px-3 py-1.5 rounded-md text-sm whitespace-nowrap ${activeTab === 'knowledge' ? 'bg-white shadow text-slate-800' : 'text-slate-600'}`}
                                 >
                                     <span className="inline-flex items-center gap-1"><BrainCircuit size={14} /> 知识点</span>
                                 </button>
@@ -478,7 +463,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                             </div>
                         )}
 
-                        {!( (currentQ.type === 'coding' || currentQ.type === 'programming') && (getQuestionContent(currentQ) === programmingPracticeMarkdown || isReformed) ) && (
+                        {!isProgrammingQuestion(currentQ) && (
                             <div className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
                                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
                             </div>
@@ -486,81 +471,64 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
                         {activeTab === 'practice' && (
                             <div className="space-y-3">
-                                {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
-                                    <>
-                                    <div className="luogu-problem">
-                                        <div className="problem-header">
-                                            <span className="problem-tag">上机编程</span>
-                                            <span className="problem-title">第 {currentQuestionIndex + 1} 题</span>
-                                        </div>
-                                        <div className="problem-content">
-                                            <MarkdownRenderer content={isReformed ? getQuestionContent(currentQ) : programmingPracticeMarkdown} />
-                                        </div>
-                                    </div>
-                                    {(() => {
-                                        const luoguUrl = getLuoguProblemUrl(paperId, currentQ.id);
-                                        return luoguUrl ? (
-                                            <a
-                                                href={luoguUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
-                                            >
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                前往洛谷提交代码
-                                            </a>
-                                        ) : null;
-                                    })()}
-                                    </>
+                                {isProgrammingQuestion(currentQ) ? (
+                                    <CodingProblemView
+                                        q={currentQ}
+                                        questionNumber={currentQuestionIndex + 1}
+                                        luoguUrl={getLuoguProblemUrl(paperId, currentQ.id)}
+                                        onReveal={revealCurrent}
+                                    />
                                 ) : (
-                                    (currentQ.options || []).map((opt, idx) => {
-                                        const isSelected = selected === idx;
-                                        const optionState = isRevealed
-                                            ? idx === currentQ.answer
-                                                ? 'border-emerald-400 bg-emerald-50 text-emerald-950 shadow-emerald-100'
+                                    <>
+                                        {(currentQ.options || []).map((opt, idx) => {
+                                            const isSelected = selected === idx;
+                                            const optionState = isRevealed
+                                                ? idx === currentQ.answer
+                                                    ? 'border-emerald-400 bg-emerald-50 text-emerald-950 shadow-emerald-100'
+                                                    : isSelected
+                                                        ? 'border-rose-300 bg-rose-50 text-rose-900 shadow-rose-100'
+                                                        : 'border-slate-200 bg-slate-50/70 text-slate-500 opacity-75'
                                                 : isSelected
-                                                    ? 'border-rose-300 bg-rose-50 text-rose-900 shadow-rose-100'
-                                                    : 'border-slate-200 bg-slate-50/70 text-slate-500 opacity-75'
-                                            : isSelected
-                                                ? 'border-indigo-400 bg-indigo-50 text-indigo-950 shadow-indigo-100'
-                                                : 'border-slate-200 bg-white text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/40 hover:shadow-md';
-                                        const badgeState = isRevealed
-                                            ? idx === currentQ.answer
-                                                ? 'bg-emerald-600 text-white'
+                                                    ? 'border-indigo-400 bg-indigo-50 text-indigo-950 shadow-indigo-100'
+                                                    : 'border-slate-200 bg-white text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/40 hover:shadow-md';
+                                            const badgeState = isRevealed
+                                                ? idx === currentQ.answer
+                                                    ? 'bg-emerald-600 text-white'
+                                                    : isSelected
+                                                        ? 'bg-rose-500 text-white'
+                                                        : 'bg-slate-200 text-slate-500'
                                                 : isSelected
-                                                    ? 'bg-rose-500 text-white'
-                                                    : 'bg-slate-200 text-slate-500'
-                                            : isSelected
-                                                ? 'bg-indigo-600 text-white'
-                                                : 'bg-slate-100 text-slate-600 group-hover:bg-indigo-100 group-hover:text-indigo-700';
+                                                    ? 'bg-indigo-600 text-white'
+                                                    : 'bg-slate-100 text-slate-600 group-hover:bg-indigo-100 group-hover:text-indigo-700';
 
-                                        return (
-                                            <button
-                                                key={idx}
-                                                onClick={() => handleOptionSelect(currentQ.id, idx)}
-                                                className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${optionState}`}
-                                            >
-                                                <span className={`option-badge ${badgeState}`}>{String.fromCharCode(65 + idx)}</span>
-                                                <span className="question-option-content">
-                                                    <MarkdownRenderer content={formatOptionDisplay(opt)} inline={true} className="text-inherit" />
-                                                </span>
-                                            </button>
-                                        );
-                                    })
+                                            return (
+                                                <button
+                                                    key={idx}
+                                                    onClick={() => handleOptionSelect(currentQ.id, idx)}
+                                                    className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${optionState}`}
+                                                >
+                                                    <span className={`option-badge ${badgeState}`}>{String.fromCharCode(65 + idx)}</span>
+                                                    <span className="question-option-content">
+                                                        <MarkdownRenderer content={formatOptionDisplay(opt)} inline={true} className="text-inherit" />
+                                                    </span>
+                                                </button>
+                                            );
+                                        })}
+
+                                        <button
+                                            onClick={revealCurrent}
+                                            disabled={(currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined}
+                                            className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${((currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                                        >
+                                            <CheckCircle2 size={18} /> {(currentQ.type === 'coding' || currentQ.type === 'programming') ? '标记已阅读并查看复盘' : '查看答案与解析'}
+                                        </button>
+                                    </>
                                 )}
-
-                                <button
-                                    onClick={revealCurrent}
-                                    disabled={(currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined}
-                                    className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${((currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
-                                >
-                                    <CheckCircle2 size={18} /> {(currentQ.type === 'coding' || currentQ.type === 'programming') ? '标记已阅读并查看复盘' : '查看答案与解析'}
-                                </button>
                             </div>
                         )}
 
                         {activeTab === 'analysis' && (
-                            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-3">
+                            <div className={isProgramming ? 'space-y-4' : 'bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-3'}>
                                 {isRevealed ? (
                                     <>
                                         <AnalysisTrustNotice
@@ -568,47 +536,89 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                             explanationVerified={explanationVerified}
                                             useGenericHint={useGenericHint}
                                         />
-                                        {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
-                                            <div className="space-y-3">
-                                                <div className="luogu-problem">
-                                                    <div className="problem-header">
-                                                        <span className="problem-tag">题面回顾</span>
-                                                        <span className="problem-title">上机编程</span>
-                                                    </div>
-                                                    <div className="problem-content">
-                                                        <MarkdownRenderer content={programmingAnalysisMarkdown} />
-                                                    </div>
-                                                </div>
+                                        {isProgramming ? (
+                                            <div className="space-y-4">
+                                                <CodingProblemView
+                                                    variant="review"
+                                                    q={currentQ}
+                                                    questionNumber={currentQuestionIndex + 1}
+                                                    luoguUrl={luoguUrl}
+                                                />
 
-                                                <div className="grid md:grid-cols-2 gap-3">
-                                                    <div className="bg-white border border-blue-100 rounded-lg p-3">
-                                                        <div className="text-sm font-semibold text-slate-800 mb-1">解题思路</div>
-                                                        <p className="text-sm text-slate-700 leading-relaxed">{codingGuide?.idea}</p>
-                                                    </div>
-                                                    <div className="bg-white border border-blue-100 rounded-lg p-3">
-                                                        <div className="text-sm font-semibold text-slate-800 mb-1">复杂度评估</div>
-                                                        <p className="text-sm text-slate-700 leading-relaxed">{codingGuide?.complexity}</p>
-                                                    </div>
-                                                </div>
+                                                {syntheticLuoguCoding ? (
+                                                    <AnalysisCard icon={Lightbulb} title="题解思路">
+                                                        <p className="text-sm leading-6 text-slate-700">
+                                                            本题暂无站内题解，可前往
+                                                            {luoguUrl ? (
+                                                                <a
+                                                                    href={luoguUrl}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="mx-1 font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900"
+                                                                >
+                                                                    洛谷
+                                                                </a>
+                                                            ) : '洛谷'}
+                                                            查看题解。
+                                                        </p>
+                                                    </AnalysisCard>
+                                                ) : currentQ.explanation && (
+                                                    <AnalysisCard icon={Lightbulb} title="题解思路">
+                                                        <MarkdownRenderer
+                                                            content={currentQ.explanation}
+                                                            className="text-[15px] font-normal leading-7 text-slate-700 md:text-base"
+                                                        />
+                                                    </AnalysisCard>
+                                                )}
 
-                                                <div className="bg-white border border-blue-100 rounded-lg p-3">
-                                                    <div className="text-sm font-semibold text-slate-800 mb-2">图解流程（可视化）</div>
+                                                {currentQ.template && (
+                                                    <details className="min-w-0 rounded-xl border border-slate-200 bg-white">
+                                                        <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2.5 px-4 py-3 text-[15px] font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500 md:px-5 md:text-base [&::-webkit-details-marker]:hidden">
+                                                            <span
+                                                                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-800"
+                                                                aria-hidden="true"
+                                                            >
+                                                                <Code2 size={16} />
+                                                            </span>
+                                                            代码模板
+                                                        </summary>
+                                                        <div className="border-t border-slate-100 p-4 md:p-5">
+                                                            <CopyableCodeBlock code={currentQ.template} label="代码模板" ariaLabel="复制代码模板" />
+                                                        </div>
+                                                    </details>
+                                                )}
+
+                                                {currentQ.referenceCode && (
+                                                    <AnalysisCard icon={Code2} title="参考代码">
+                                                        <p className="mb-3 text-sm leading-6 text-slate-600">建议自己写完再对照。</p>
+                                                        <CopyableCodeBlock code={currentQ.referenceCode} label="参考代码" ariaLabel="复制参考代码" />
+                                                    </AnalysisCard>
+                                                )}
+
+                                                <AnalysisCard icon={Lightbulb} title="解题思路">
+                                                    <p className="text-[15px] font-normal leading-7 text-slate-700 md:text-base">{codingGuide?.idea}</p>
+                                                </AnalysisCard>
+
+                                                <AnalysisCard icon={Gauge} title="复杂度评估">
+                                                    <p className="text-[15px] font-normal leading-7 text-slate-700 md:text-base">{codingGuide?.complexity}</p>
+                                                </AnalysisCard>
+
+                                                <AnalysisCard icon={Workflow} title="图解流程（可视化）">
                                                     <div className="flex flex-wrap items-center gap-2 text-xs">
                                                         {codingGuide?.steps?.map((step, idx) => (
                                                             <React.Fragment key={step}>
-                                                                <span className="px-2 py-1 rounded bg-indigo-50 border border-indigo-200 text-indigo-700">{idx + 1}. {step}</span>
-                                                                {idx < codingGuide.steps.length - 1 && <span className="text-indigo-400">→</span>}
+                                                                <span className="rounded border border-emerald-200 bg-emerald-50 px-2 py-1 text-emerald-800">{idx + 1}. {step}</span>
+                                                                {idx < codingGuide.steps.length - 1 && <span className="text-emerald-500" aria-hidden="true">→</span>}
                                                             </React.Fragment>
                                                         ))}
                                                     </div>
-                                                </div>
+                                                </AnalysisCard>
 
-                                                <div className="bg-white border border-amber-100 rounded-lg p-3">
-                                                    <div className="text-sm font-semibold text-amber-800 mb-1">易错点</div>
-                                                    <ul className="list-disc pl-5 text-sm text-slate-700 space-y-1">
+                                                <AnalysisCard icon={AlertTriangle} title="易错点" tone="amber">
+                                                    <ul className="list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
                                                         {(codingGuide?.pitfalls || []).map((it) => <li key={it}>{it}</li>)}
                                                     </ul>
-                                                </div>
+                                                </AnalysisCard>
                                             </div>
                                         ) : (
                                             <div className="space-y-3">
@@ -690,7 +700,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                         )}
                                         <div className="flex flex-wrap gap-2">
                                             {tags.map((tag) => (
-                                                <span key={tag} className="text-xs px-2 py-1 rounded-full bg-white border border-blue-200 text-blue-700">#{tag}</span>
+                                                <span key={tag} className={`text-xs px-2 py-1 rounded-full bg-white border ${isProgramming ? 'border-emerald-200 text-emerald-800' : 'border-blue-200 text-blue-700'}`}>#{tag}</span>
                                             ))}
                                         </div>
                                     </>

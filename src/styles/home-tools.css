@@ -106,3 +106,34 @@ body:has([role="dialog"][aria-modal="true"], .mw-nav-sheet[data-open="true"], bu
         transition: none;
     }
 }
+
+/* Phones: the floating annotation launcher is icon-only so it no longer sits
+   on top of question text. The button keeps its accessible name; the visible
+   label is hidden visually and stays available to assistive tech. */
+@media (max-width: 640px) {
+    body .annotation-tools .annotation-launcher {
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 0;
+        border-radius: 9999px;
+        opacity: .85;
+    }
+
+    body .annotation-tools .annotation-launcher:hover,
+    body .annotation-tools .annotation-launcher:focus-visible {
+        opacity: 1;
+    }
+
+    .annotation-tools .annotation-launcher-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+}
