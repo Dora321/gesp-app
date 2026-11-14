@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    4,
+    5,
+    7,
+    8
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T15:12:03.386Z",
+  "completedAt": "2026-11-14T15:13:51.000Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30438,
+    "completion_tokens": 8037,
+    "total_tokens": 38475,
+    "prompt_tokens_details": {
+      "cached_tokens": 30336
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6521
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00492851,
+      "allowance": 0.0029571,
+      "tokens": {
+        "input": 102,
+        "output": 8037,
+        "reasoning": 6521,
+        "cache_read": 30336,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "993121a4c4bfb7ab8e9ba900f584376ff00d058645981c9882ae731094bedef5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示 CCF 编程能力等级认证 C++ 三级，2026年03月，共9页；第1页单选题答案表覆盖题3、4、5、7、8，题4代码跨至第2页，卷头与题号均可对应。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题3题干给出 char str1[] 与 char str2[] 的初始化两行；候选将原选项B内的两行 cout 输出语句并入题干同一代码块，必要代码未丢失，B的文字仍明确指向该程序，属不改变含义的等价排版。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项A为字符数组 str1 和 str2 完全相同；B为这段程序多次执行将输出不同的结果（其代码块已在题干）；C为字符数组 str1 和 str2 不相等；D为这两个赋值方式完全相同。候选顺序与语义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表题3为C，对应0起始索引2；候选 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：str1 由字符串字面量初始化并含结尾空字符，长度6；str2 为5个字符，末字符是数字字符0而非字母o，无结尾空字符，长度5。两者内容、长度、终止方式不同，C成立；B所述多次输出不同结果依赖越界读取的未定义行为，不能作为确定结论；A、D错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页末题4题干承接第2页顶部代码 int x=10; cout<<(x++)+(++x)<<endl;，与候选题干代码一致，跨页完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项A为C++11标准中这是未定义行为、不同环境可能出现不同结果；B为22；C为21；D为20。候选顺序与文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题4为A，对应索引0；候选 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：x++与++x都在同一表达式中修改x，两个修改相对未定序，C++11起属未定义行为，故不能保证得到20、21或22；A正确，B、C、D把具体数值当确定结果，均错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题5为8位二进制下，十进制数-15的补码是（ ）。候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为A.11110000、B.10001111、C.10010000、D.11110001；候选顺序与文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题5为D，对应索引3；候选 answer=3；独立验算2⁸-15=241=11110001。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：-15的8位原码为10001111，符号位不变、其余位取反得反码11110000，再加1得补码11110001；A是反码、B是原码、C不符合补码计算，D正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题7为二进制数10110101是某数的8位补码，该数的十进制是（ ）。候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为A.-73、B.-75、C.-77、D.75；候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题7为B，对应索引1；候选 answer=1；独立按无符号值181减256验算得-75。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：最高位1表示负数；对10110101整体取反得01001010，加1得01001011=64+8+2+1=75，故值为-75；也可由无符号值181减256得-75。解析对补码转原码与求绝对值的区分正确，A、C、D排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题8为已知 unsigned char c=0x0F; 执行 c=c<<3; 后，c的十进制值是（ ）。候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项依次为A.64、B.72、C.80、D.120；候选顺序与文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题8为D，对应索引3；候选 answer=3；独立验算0x0F=15，15<<3=120。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：0x0F为00001111，左移3位得01111000，即64+32+16+8=120；unsigned char参与移位先整型提升为int，120赋回unsigned char未溢出；A、B、C数值与结果不符，D正确。解析对整型提升和移位位宽约束的说明成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮仅核验题3、4、5、7、8。五题题干、选项顺序、官方答案索引与解析均与PDF原图核对一致，未发现需修改项；题3将选项B内输出代码上移至题干属不改变含义的等价排版，必要代码未丢失。"
+  }
+}

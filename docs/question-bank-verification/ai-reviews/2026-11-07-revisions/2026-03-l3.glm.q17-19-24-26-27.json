@@ -1,0 +1,275 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    17,
+    19,
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T15:30:37.200Z",
+  "completedAt": "2026-11-14T15:36:05.543Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47029,
+    "completion_tokens": 24220,
+    "total_tokens": 71249,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 20270
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01916435,
+      "allowance": 0.01916435,
+      "tokens": {
+        "input": 47029,
+        "output": 24220,
+        "reasoning": 20270,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "993121a4c4bfb7ab8e9ba900f584376ff00d058645981c9882ae731094bedef5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「C++ 三级 2026年03月」，页脚显示共9页；第1页单选题答案表（题号1–15）与第4页判断题答案表（题号1–10：× × √ √ √ √ √ × × √）齐全，足以支撑本次题号 17、19、24（对应判断题第2/4/9题）与 26、27（对应编程题 3.1/3.2）的逐题对照。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题第2题原文「定义 double arr[10];，未手动初始化时，数组中所有元素的默认值为 0.0。」与候选题干逐字一致（代码标记为等价排版）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”两种判定，官方以第4页答案表 √/× 表达结论，无单选 options 数组可核。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第2题为 ×（错误），按 正确=0、错误=1 映射为索引 1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：函数内局部数组具有自动存储期，默认初始化不清零，元素为不确定值（读取属未定义行为）；仅全局变量与 static 变量由静态存储区零初始化。候选解析第 1 点按局部数组立论、第 2 点主动对比全局/静态零初始化情形，前提完整、推导无误，结论“错误”与官方 × 一致；题干未写明作用域属官方原文固有表述，解析已通过存储类别区分覆盖两种情形，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核（DeepSeek）对本题的 approve 结论，且经我对照第4页原图独立复核全部成立：答案表第2题为 ×、题干与候选一致、解析关于局部数组不清零及全局/静态变量零初始化的说明符合 C++ 默认初始化语义。本题无任何需修改字段，changes 保持为空。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题第4题题干「下面的流程图是用来求 1+2+3+…+10 的和。请判断：这个流程图的逻辑正确还是错误？」与候选一致；第5页流程图原图为：开始→sum=0, i=1→判断 i <= 10?→是：sum = sum + i→i = i + 1→回到判断；否：输出sum→结束，与候选等价文字整理逐框一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两判定，官方以第4页答案表 √/× 表达结论，无单选 options 数组可核。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第4题为 √（正确），映射索引 0，候选 answer=0 一致；独立推演该流程图输出 55，恰为 1+2+…+10 的和，逻辑判定“正确”成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：初始 sum=0、i=1，条件 i<=10，先累加后自增，第 10 轮 sum=45+10=55、i=11 退出输出 55；三条易错提醒逐条验算：条件改 i<10 只累加 1..9 得 45；步进改 i=i+2 得 1+3+5+7+9=25；i 初始化为 0 时多执行一次 sum+0 但总和仍为 55——候选解析各变体结论均与独立验算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立确认：流程图五要素（初始化、条件、累加顺序、自增、输出位置）与第5页原图逐框核对一致，求和 55 正确；解析中对条件、步进、初始值三种变体的结论经我逐条复算无误（尤其“i=0 时总和仍为 55”已验证成立）。无需修改，changes 为空。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第9题原文「在C++语言中，表达式 （(0xf0 + 0x15) == 255） 的值为 true 。」与候选题干一致（仅全角括号排版差异，含义不变）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两判定，官方以第4页答案表 √/× 表达结论，无单选 options 数组可核。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第9题为 ×（错误），映射索引 1，候选 answer=1 一致；独立计算 0xf0=240、0x15=21、和为 261=0x105，261≠255 故表达式值为 false，命题确为错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：解析中 0xf0=15×16+0=240、0x15=1×16+5=21、240+21=261、0x105=1×256+5=261、0xFF=255 等数值均正确；十六进制逐位加法描述（低位 0+5=5 无进位，高位 F+1=16 写 0 进 1 得 0x105）正确，此前版本把低位误写为 F+5 的错误在候选中已修复；结论 false 与官方 × 一致。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核（上一轮）对该解析的修复并独立确认修复内容正确：0xF0 的十六进制低位是 0 而非 F，候选解析的逐位描述（0+5=5，F+1=16 进位，0x105=261）经验算无误；主结论 261≠255→false 亦独立成立；答案表第9题 × 与候选 answer=1 相符。候选已含全部修复，无需再改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页 3.1.1–3.1.5 的题面（9→1001、12→1100 示例）、输入/输出格式、样例（输入 15、输出 6）、样例解释（1、3、5、7、9、15）与候选逐条等价；PDF 3.1.6 数据范围 1 ≤ n ≤ 10^5 已包含在候选题面（“**数据范围：** 1 ≤ n ≤ 10^5。”），与原文逐字核对一致，此前缺失问题已修复。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在官方答案表（第1、4页）中无对应条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：短除法按低位到高位存 a[] 后比较 a[j] 与 a[pos-1-j]，因回文串反转不变，与「正读反读相同」判据等价；走查表逐行核对无误（如 11=1011 存 [1,1,0,1] 因 a[1]≠a[2] 判否，9=1001 存 [1,0,0,1] 判是，13=1101 存 [1,0,1,1] 判否）；1~15 中回文数 1、3、5、7、9、15 共 6 个与样例一致；上界独立计数两法互证：长度 L 的回文数有 2^(⌈L/2⌉-1) 个，L=1..16 依次 1,1,2,2,4,4,8,8,16,16,32,32,64,64,128,128 合计 510（全部 ≤65535<100000）；17 位回文数以自由位权重 {32770,16388,8200,4112,2080,1088,640,256}、基数 65537、预算 34463 计，不含 32770 的 128 个子集和至多 32764 全部满足，含 32770 时仅 {1088,640,256} 中子集和 ≤1693 的 6 个满足（0/256/640/896/1088/1344，下一组合 1728 超界），合计 134；510+134=644，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第8页参考程序逐句等价（仅内层循环变量 i 改名 j，PDF 原写法靠作用域遮蔽行为相同，外层 for 自增不受影响）；n≤10^5 时二进制最长 17 位（2^16=65536≤100000<131072=2^17），a[50] 足够；pos 每轮在 for 内随 t、pos 一起重置；ans 上界 644 远小于 int 上限无溢出；复杂度约 O(n·17)≈1.7×10^6 次基本操作，1.0s 限制内充裕。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 n=1",
+            "input": "1",
+            "output": "1",
+            "reason": "1 的二进制为 1，天然回文；[1,1] 范围内仅此一个，独立推导确认。"
+          },
+          {
+            "name": "样例 n=15",
+            "input": "15",
+            "output": "6",
+            "reason": "独立枚举 1~15：1、3、5、7、9、15 共 6 个二进制回文数，与官方样例一致。"
+          },
+          {
+            "name": "上界 n=100000",
+            "input": "100000",
+            "output": "644",
+            "reason": "按长度独立计数：L=1..16 回文数合计 510（均 ≤65535）；17 位中以基数 65537、预算 34463 对自由位权重子集计数得 128+6=134；两种方法互证合计 644。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立复核：数据范围补全已应用于候选且与 PDF 3.1.6 逐字一致，statement 转 verified；解析与参考代码的 verified 结论经我重算（样例逐行走查、上界 644 两种独立计数法、数组边界 pos≤17<a[50]、pos 每轮重置、无溢出、复杂度约 1.7×10^6）全部成立；三条测试期望输出 1、6、644 均由我独立推演确认。无新增修改项，changes 为空。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8–9页 3.2.1–3.2.5 的题面要素（偏移 3 时 A→D、…、X→A、Y→B、Z→C 的环绕示例、破解任务）、三行输入格式、输出格式、样例（三行输入与输出 THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG）与候选等价，网站省略的仅是凯撒命名由来、易被破解等背景段落，不含必要约束或代码；PDF 3.2.6 数据范围「保证密码长度均不超过 1000，所有字符串由大写字母组成」已包含在候选题面，与原文逐字核对一致，此前缺失问题已修复。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在官方答案表（第1、4页）中无对应条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立全样例复核：s1/s2 全串映射自洽（A→D…V→Y 为 +3，W→Z、X→A、Y→B、Z→C 为 +3 环绕）；d='A'-'D'=65-68=-3，(d%26+26)%26=23；按 (c-'A'+23)%26 逐字符解密 s3 全部 35 个字符（W→T、K→H、H→E、T→Q、X→U、L→I、F→C、N→K、E→B、U→R、R→O、Z→W、Q→N、I→F、R→O、A→X、M→J、X→U、P→M、S→P、V→S、R→O、Y→V、H→E、U→R、W→T、K→H、H→E、O→L、D→A、C→Z、B→Y、G→D、R→O、J→G）得 THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG，与样例输出完全一致；C++ 负数取模仍为负、须 (d%26+26)%26 归一化的易错提醒正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第9页参考程序逻辑等价：d 同样经 (d%26+26)%26 归一化到 [0,25]，(c-'A'+d)∈[0,50] 恒非负，取模无负值路径；以 <string> 替代 <cstring>、以范围 for 替代下标循环（避开 size_t 比较问题）均为等价改写；长度 ≤1000 时无越界、溢出或性能问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "偏移 0 的最短输入",
+            "input": "A\nA\nA",
+            "output": "A",
+            "reason": "d='A'-'A'=0，长度 1 的最小合法输入，解密后不变，独立按代码路径推演确认。"
+          },
+          {
+            "name": "负偏移归一化",
+            "input": "A\nD\nABC",
+            "output": "XYZ",
+            "reason": "d='A'-'D'=-3，经 (d%26+26)%26 归一化为 23；A→(0+23)%26=23→X、B→24→Y、C→25→Z，覆盖 C++ 负数取模必须归一化的分支。"
+          },
+          {
+            "name": "跨字母表环绕（偏移 25）",
+            "input": "Z\nA\nABC",
+            "output": "ZAB",
+            "reason": "明文 Z 加密为 A 得加密偏移 1，d='Z'-'A'=25；解密 A→(0+25)%26=25→Z、B→26%26=0→A、C→27%26=1→B，覆盖模 26 环绕边界。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立复核：数据范围补全已应用于候选且与 PDF 3.2.6 逐字一致；样例 35 字符全串解密、参考代码等价性与三条测试期望输出（A、XYZ、ZAB）均由我按代码路径独立推演确认（覆盖偏移 0、负偏移归一化、模 26 环绕三个分支）。无新增修改项，changes 为空。"
+      }
+    ],
+    "summary": "本次独立复核题号 17、19、24、26、27 共 5 题，全部 verdict=approve，无 changes。三道判断题（17、19、24）题干、答案（×、√、×，映射 1、0、1）与解析均与 PDF 第4页答案表及第5/6页原图语义一致，24 的逐位十六进制修复（0xF0 低位为 0，0+5=5、F+1=16 进位得 0x105=261）经独立验算通过；两道编程题（26、27）题面均已包含 PDF 数据范围（1≤n≤10^5；长度≤1000 且全大写），参考代码与官方参考程序逻辑等价，26 的样例 6 与上界 644 经长度分类计数与自由位权重子集计数两种方法独立确认，27 的样例全串 35 字符解密及偏移 0/负模归一化/环绕三类边界测试期望输出均独立推演通过。未发现源卷错误、答案冲突或需保留争议的事项。"
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    17,
+    19,
+    24,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T15:17:21.350Z",
+  "completedAt": "2026-11-14T15:22:40.653Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 30314,
+    "completion_tokens": 29384,
+    "total_tokens": 59698,
+    "prompt_tokens_details": {
+      "cached_tokens": 30208
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 27037
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01773692,
+      "allowance": 0.01064215,
+      "tokens": {
+        "input": 106,
+        "output": 29384,
+        "reasoning": 27037,
+        "cache_read": 30208,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "993121a4c4bfb7ab8e9ba900f584376ff00d058645981c9882ae731094bedef5",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 C++ 三级、2026年03月，页脚共9页；第1页单选答案表及第4页判断答案表与候选答案映射核对一致。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第2题原文“定义 double arr[10]; ，未手动初始化时，数组中所有元素的默认值为 0.0。”与候选题干一致；官方按函数内局部数组语境判该说法错误。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”判断，非单选题 options 数组。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第2题为“×”，映射为错误，即索引1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按局部数组说明自动存储期数组不自动清零，并正确对比全局变量、静态变量会零初始化；结论与官方“×”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第4题题干与候选一致；第5页流程图为：开始→sum=0,i=1→判断 i<=10?→是：sum=sum+i→i=i+1→回判断；否：输出sum→结束，候选文字整理等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”判断，非单选题 options 数组。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第4题为“√”，映射为正确，即索引0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：sum=0,i=1，条件 i<=10，先累加后自增，第10次 sum=55、i=11 退出输出55；i 初始化为0仍得55，条件写成 i<10 得45，步长改为2得25，解析中相关变体结论均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第9题原文“在C++语言中，表达式 ((0xf0 + 0x15) == 255) 的值为 true。”与候选题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有“正确/错误”判断，非单选题 options 数组。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第9题为“×”，映射为错误，即索引1，候选 answer=1 一致；独立计算 0xf0+0x15=240+21=261，表达式为 false，题面说 true 故错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析中 0xf0=240、0x15=21、和为261、0x105=261、0xff=255 均正确；逐位相加低位0+5=5、高位F+1=16进位得0x105，已纠正此前误写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页 3.1.1-3.1.6 的题面、输入/输出格式、样例输入15/输出6、数据范围 1≤n≤10^5 均与候选一致；候选已包含此前缺失的数据范围约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在PDF答案表中无对应条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举1~15得1、3、5、7、9、15共6个；走查表逐项核对（如11=1011低位存储[1,1,0,1]）正确；长度≤16的二进制回文数共510个，17位且≤100000的为134个，合计644，与候选上界分析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第8页参考程序逐句等价，仅将内层循环变量 i 改名为 j；a[50] 对 n≤10^5（最长17位）足够，pos 每轮重置，ans 上界644无溢出，复杂度约 O(n log n)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 n=1",
+            "input": "1",
+            "output": "1",
+            "reason": "1 的二进制为 1，天然回文；[1,1] 范围内仅此一个，独立推导确认。"
+          },
+          {
+            "name": "样例 n=15",
+            "input": "15",
+            "output": "6",
+            "reason": "独立枚举1~15：1、3、5、7、9、15 共6个二进制回文数，与官方样例一致。"
+          },
+          {
+            "name": "上界 n=100000",
+            "input": "100000",
+            "output": "644",
+            "reason": "按长度独立计数：1~16位回文数共510个；17位且≤100000的134个（不含最高自由位的128个，含最高自由位且低权重子集不超过预算的6个），合计644。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8-9页 3.2.1-3.2.6 的题面、三行输入格式、输出格式、样例三行输入与输出、数据范围“长度均不超过1000，所有字符串由大写字母组成”均与候选一致；省略的凯撒背景不影响题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在PDF答案表中无对应条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算 d='A'-'D'=-3，归一化为23；按 (c-'A'+23)%26 可逐字符将样例密文还原为 THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG，35字符完全一致；负模归一化、环绕及大写基准说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第9页程序逻辑等价：以 <string> 替代 <cstring>、以范围 for 替代下标循环，d 同样经 (d%26+26)%26 归一化；长度≤1000时无越界、溢出或性能问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "偏移 0 的最短输入",
+            "input": "A\nA\nA",
+            "output": "A",
+            "reason": "d='A'-'A'=0，长度1的最小合法输入，解密后仍为A。"
+          },
+          {
+            "name": "负偏移归一化",
+            "input": "A\nD\nABC",
+            "output": "XYZ",
+            "reason": "d='A'-'D'=-3，经(d%26+26)%26归一化为23；A→X、B→Y、C→Z，覆盖负数取模分支。"
+          },
+          {
+            "name": "跨字母表环绕",
+            "input": "Z\nA\nABC",
+            "output": "ZAB",
+            "reason": "d='Z'-'A'=25；A→Z、B→A、C→B，覆盖模26环绕边界。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "共核验题号17、19、24、26、27。17、19、24的题干、判断题答案与解析均与PDF答案表及原卷语义一致；26、27的题面已包含PDF数据范围，参考代码与PDF参考程序等价，26的上界644、27的样例及边界测试均独立复算通过。未发现需新增修改项，changes均为空。"
+  }
+}
