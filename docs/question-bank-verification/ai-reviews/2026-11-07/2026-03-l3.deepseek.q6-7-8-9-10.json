@@ -1,0 +1,233 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T05:53:42.783Z",
+  "completedAt": "2026-11-14T05:56:36.684Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32948,
+    "completion_tokens": 19210,
+    "total_tokens": 52158,
+    "prompt_tokens_details": {
+      "cached_tokens": 32896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16163
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01163249,
+      "allowance": 0.00697949,
+      "tokens": {
+        "input": 52,
+        "output": 19210,
+        "reasoning": 16163,
+        "cache_read": 32896,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9c45a2790735006d9f07af701d50c808c340287d7fa7ec079325239888d2d303",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 CCF 编程能力等级认证 C++ 三级、2026 年 03 月；页脚为第1页/共9页，与 2026-03-l3 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题原文为“三进制数 2102_(3) 转换成十进制是：（ ）”；网站用 `2102(3)` 表示三进制下标，含义等价，无代码、约束或图表遗漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. 63、B. 65、C. 67、D. 69；网站 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题答案为 B；B 对应 0 起始索引 1；按权值展开 2×3^3+1×3^2+0×3+2=65，与答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析核心推导 2×27+1×9+0×3+2=65 独立成立；A 项成因猜测略粗，但不影响正确结论，未发现必须修改的事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，PDF 无参考程序，网站 referenceCode 为空。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题原文为“二进制数 10110101 是某数的 8 位补码，该数的十进制是（ ）”；网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. -73、B. -75、C. -77、D. 75；网站 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 B，索引 1；10110101 作为 8 位补码对应 0xB5，无符号值 181，181-256=-75，与答案一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 -75 和取反加一思路正确，但解析把补码 10110101 写成“原码”，并在知识延伸中称“两种补码/原码转换方法结果相同”，术语和表述有误；已在 changes 给出修正稿。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，PDF 无参考程序，网站 referenceCode 为空。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (-75)**\n\n**核心解析：**\n已知 8 位补码 10110101，求其对应的十进制数值。补码表示中，最高位为符号位（1 表示负数）；负数的绝对值可通过对补码整体取反再加一得到。\n\n推导步骤：\n1. **确定符号**：最高位为 1，该数为负数。\n2. **整体取反**：10110101 → 01001010。\n3. **加一**：01001010 + 1 = 01001011。\n4. **计算绝对值**（01001011）：2⁶ + 2³ + 2¹ + 2⁰ = 64 + 8 + 2 + 1 = 75。\n5. **组合负号**：-75。\n\n**选项逐项分析：**\n- **A -73**：❌ 错误。计算绝对值时遗漏了某一位，例如只算 64+8+1。\n- **B -75**：✅ 正确。整体取反加一得到绝对值 75，符号为负。\n- **C -77**：❌ 错误。多算了 2。\n- **D 75**：❌ 错误。忽略了符号位；补码最高位为 1 表示负数。\n\n**易错提醒：**\n- 不能直接把二进制 10110101 当成正数转换成十进制，否则会得到 181。\n- 8 位补码能表示的范围是 -128 到 +127。\n\n**知识延伸：**\n补码转原码时，可保持符号位不变，其余位取反后加一；若只求绝对值，可对补码整体取反后加一，得到的是正数幅值。两种操作目的不同，不要混淆为同一结果。GESP 还常考十进制负数转补码：8 位下 -n 的补码等于 2⁸ - n。\n\n**考点：** 补码表示法中负数的绝对值还原（取反加一）以及二进制转十进制。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第8题原文为“已知 unsigned char c = 0x0F;（十六进制 0F = 二进制 00001111），执行 c = c << 3; 后，c 的十进制值是：（ ）”；网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. 64、B. 72、C. 80、D. 120；网站 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 D，索引 3；0x0F=15，左移 3 位为 120，赋值回 unsigned char 后仍为 120，与答案一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案和核心移位过程正确，但 C 项分析写成 2⁶+2⁴+2³=64+16+8=88，与选项 80 不符，属于算术说明错误；已在 changes 修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，PDF 无参考程序，网站 referenceCode 为空。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D (120)**\n\n**核心解析：**\n1. **确定初始值**：十六进制 0x0F = 二进制 00001111，对应十进制 15。\n2. **执行左移操作**：表达式 `c = c << 3` 表示将 c 的二进制位向左移动 3 位。\n   - 移位规则：高位丢弃，低位补 0。\n   - 00001111 左移 3 位后变为 01111000（最高 3 位 000 被丢弃，低位补 3 个 0）。\n3. **转换为十进制**：01111000 = 2⁶ + 2⁵ + 2⁴ + 2³ = 64 + 32 + 16 + 8 = 120。\n\n**选项逐项分析：**\n- **A 64**：❌ 错误。64 = 2⁶，只保留了结果中的最高位，漏计了 32+16+8。\n- **B 72**：❌ 错误。72 = 64+8（二进制 01001000），与 00001111 左移 3 位得到 01111000 不符。\n- **C 80**：❌ 错误。80 = 64+16（二进制 01010000），是位权组合错误，不是本题左移结果。\n- **D 120**：✅ 正确。00001111 左移 3 位得到 01111000，计算 64+32+16+8=120。\n\n**易错提醒：**\n- `unsigned char` 参与移位时会先整型提升为 `int`，本题 15<<3=120 在 `int` 中计算后再赋回 `unsigned char`，未溢出。\n- 移位位数不能为负，且不能达到或超过提升后类型的位宽，否则行为未定义。\n\n**知识延伸：**\n左移 n 位相当于乘以 2ⁿ（在不溢出的前提下）。例如 0x0F = 15 左移 3 位得 15×8 = 120。GESP 中还常考右移操作：无符号数右移低位补 0，有符号数右移可能保持符号位（算术右移）。\n\n**考点：** 无符号整数的按位左移运算符（<<）的原理及结果计算。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第9题原文为“补码的情况下，关于按位取反运算，用笔计算的情况下，以下说法错误的是：（ ）”；网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. ~5=-6、B. ~0=0、C. ~(-3)=2、D. ~8=-9（均标注 int 类型 32 位）；网站用反引号包裹代码，仅排版差异，顺序和含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 B，索引 1；~0=-1，故 B 是错误说法，符合题干选错误项；~5=-6、~(-3)=2、~8=-9 均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析用 ~x=-(x+1) 逐项验证，并明确指出题目问“错误的是”，推导完整；未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，PDF 无参考程序，网站 referenceCode 为空。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页底部第10题题干和代码为 `string str = \"GESP2026\";`、`string sub = str.substr(4, 2);`，与网站一致；选项在第3页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. 20、B. 02、C. 2026、D. 026；网站 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 A，索引 0；str 下标 0-7 为 G,E,S,P,2,0,2,6，substr(4,2)=20，与答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确列出下标表并说明 substr 第二参数是长度；B、C、D 的错误分析成立，未发现事实性错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，PDF 无参考程序，网站 referenceCode 为空。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核题号 6-10：五题的题面、选项顺序及 PDF 答案表对应答案均一致。Q7 解析存在补码/原码术语与知识延伸错误，Q8 解析存在 C 选项算术说明错误，已分别给出修正稿；Q6、Q9、Q10 五维核验通过。"
+  }
+}

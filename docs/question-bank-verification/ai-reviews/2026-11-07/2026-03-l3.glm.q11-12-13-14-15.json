@@ -1,0 +1,235 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T10:11:08.531Z",
+  "completedAt": "2026-11-14T10:12:31.653Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49169,
+    "completion_tokens": 4952,
+    "total_tokens": 54121,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2423
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00985135,
+      "allowance": 0.00985135,
+      "tokens": {
+        "input": 49169,
+        "output": 4952,
+        "reasoning": 2423,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9c45a2790735006d9f07af701d50c808c340287d7fa7ec079325239888d2d303",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头图像为“CCF 编程能力等级认证 Grade Examination of Software Programming / C++ 三级 / 2026 年 03 月”，与 paperId=2026-03-l3、level=3、year=2026、month=3 一致；第 1 页单选答案表第 11~15 题依次为 B、B、C、A、D。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题题干为“执行以下代码后，输出结果是：（ ）”，代码块三行与网站逐字一致：int arr[] = {5, 10, 15, 20, 25, 30}; int count = sizeof(arr) / sizeof(arr[0]); cout << count;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. 4、B. 6、C. 24、D. 30，与网站 options 顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：数组 6 个元素，sizeof(arr)=6×4=24 字节，sizeof(arr[0])=4，24/4=6，输出 6，对应选项 B。PDF 第 1 页答案表第 11 题为 B，网站 answer=1 即 B，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 sizeof 总字节数 24 除以单元素 4 字节得 6 独立复算通过，选项逐项分析正确（24 为总字节数的混淆项、30 为元素值混淆项），与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其证据与我对 PDF 第 3 页原图和第 1 页答案表的独立核对一致，答案 B 由 24/4=6 独立复算确认，解析无误。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 12 题题干“执行以下代码后，输出结果是：（ ）”，代码四行与网站一致：char s[10] = \"abcde\"; int a = sizeof(s) / sizeof(s[0]); int b = strlen(s); cout << a - b;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. 4、B. 5、C. 6、D. 10，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：s 声明为 10 元素 char 数组，sizeof(s)=10、sizeof(s[0])=1，a=10；strlen(s) 统计到 '\\0' 前共 5；a-b=5，对应 B。PDF 第 1 页答案表第 12 题为 B，网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析区分 sizeof（编译期数组容量 10）与 strlen（有效长度 5）并得 10-5=5，结论正确。第 1 条“实际占用 6 字节”指字符串内容 5 字符+'\\0' 的初始化占用，与后文 sizeof(s)=10（数组声明容量）不矛盾，不影响推导与答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：答案 B 经独立复算确认，其对解析中“6 字节”表述的判断合理——该句描述字符串内容占用而非数组容量，解析随后已明确 sizeof(s)=10，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 13 题题干“以下问题中，最不适合用枚举法解决的是：（ ）”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. 找出 1~100 之间所有能被 7 整除的数、B. 找出 100~200 之间的所有质数、C. 计算 1+2+3+…+1000 的和、D. 找出三位数中个位、十位、百位数字之和等于 10 的数，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推导：C 可用等差数列求和公式 1000×1001/2=500500 以 O(1) 直接得出，存在高效公式时枚举最不适合；A、B、D 均需遍历候选集逐个检验。PDF 第 1 页答案表第 13 题为 C，网站 answer=2 即 C，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 C 存在 O(1) 高斯公式并给出 500500 结果，A/B/D 需逐个检查，能独立推出 C，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题面、选项与答案 C 均经独立核对确认，解析推导成立。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 14 题题干为鸡兔同笼“头共 35 个，脚共 94 只，求鸡和兔的数量”，要求选最合理的枚举逻辑，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项：A 枚举鸡 x（0~35）令 y=35-x 判 2*x+4*y==94；B 枚举兔 y（0~94）令 x=35-y；C 双重枚举 x（0-100）、y（0-100）判 x+y==35 && 2*x+4*y==94；D 枚举脚总数 sum（0~94）判 sum==94。与网站逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立验证：设鸡 x、兔 y，x+y=35，2x+4y=94，代入得 2x+4(35-x)=94，解得 x=23、y=12（验证 46+48=94）。A 仅枚举一个变量且范围 0~35 由约束决定，共 36 次，最合理；B 枚举范围 0~94 超出兔上限 35；C 为 O(n²) 未降维；D 与求解目标无关。PDF 第 1 页答案表第 14 题为 A，网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出约束方程、指出 A 降维且枚举次数最少（36 次）、B 范围过大、C 双重枚举效率低、D 逻辑无关，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其解方程得 x=23、y=12 与我独立计算一致，四选项对比分析成立，答案 A 确认。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页末第 15 题题干为“模拟‘字符串加密’：规则为‘每个字符 ASCII 码+3，若超过 z（122）则从 a 重新开始’”；PDF 第 4 页图像给出完整代码 for (int i = 0; i < str.length(); i++) { // 需补充条件：_______ else { str[i] += 3; } }，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A. if (str[i]> 122) str[i] = str[i] + 3 - 26; B. if (str[i] > 122) str[i] = str[i] - 26; C. if (str[i] + 3 > 122) str[i] = str[i] - 26; D. if (str[i] + 3 > 'z') str[i] = 'a' + (str[i] + 3 - 'z') - 1;，与网站一致（A 中空格属纯排版差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立验证 D：对 'y'(121)，条件 121+3>122 成立，赋值 'a'+(121+3-122)-1=97+2-1=98='b'，符合 y→z→a→b 回绕；对 'z'(122) 得 97+3-1=99='c'，正确。A/B 条件检查的是加 3 之前的原字符（小写字母均 ≤122，永不触发，走 else 得 '|'{123} 等非字母）；C 条件正确但赋值 str[i]-26 漏加 3，'y' 得 121-26=95 '_' 而非 'b'。故 D 唯一正确。PDF 第 1 页答案表第 15 题为 D，网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以 'y' 走查 D 得 'b'，并逐项指出 A/B 条件时机错误、C 漏加 3，能独立推出 D，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：我独立以 'y'、'z' 两例复算 D 的条件与回绕公式均正确，A/B/C 的错误类型确认无误，答案 D 确认。"
+      }
+    ],
+    "summary": "本次独立复核第 11~15 题（均基于 PDF 第 1、3、4 页原图及官方答案表）：五题题面、代码块、选项内容与顺序均与官网一致；官方答案依次为 B、B、C、A、D，网站 answer 索引 1、1、2、0、3 全部正确。各题解析均经独立推导复核（第 11 题 24/4=6、第 12 题 10-5=5、第 13 题高斯公式 500500、第 14 题解得 x=23/y=12、第 15 题 'y'→'b'/'z'→'c' 回绕公式），无需修改，五题均 approve；DeepSeek 初核结论全部接受，无否决项。本批均为单选题，无编程题参考代码与 tests。"
+  }
+}

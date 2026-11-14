@@ -1,0 +1,162 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T11:56:38.334Z",
+  "completedAt": "2026-11-14T11:59:47.136Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32989,
+    "completion_tokens": 23807,
+    "total_tokens": 56796,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 22227,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01923255,
+      "allowance": 0.01153953,
+      "tokens": {
+        "input": 32989,
+        "output": 23807,
+        "reasoning": 22227,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9c45a2790735006d9f07af701d50c808c340287d7fa7ec079325239888d2d303",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 三级 / 2026 年 03 月”，与 paperId 2026-03-l3 对应；题26、27 分别位于第7-8页和第8-9页。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页题面与网站 description 的核心表述一致，样例输入 15、输出 6 也一致；但 PDF 第7页 3.1.6 明确给出数据范围 1 ≤ n ≤ 10^5，网站 description 未保留该必要约束，需补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按二进制长度与首尾对称推导样例：1、3、5、7、9、15 共 6 个；解析中的样例走查、数组低位到高位存储、a[j] 与 a[pos-1-j] 比较及奇偶剪枝均与 PDF 第7-8页一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第8页参考程序逻辑逐句等价；网站版仅把内层循环变量 i 改为 j 以避免遮蔽外层 i，a[50] 对 n ≤ 10^5（最多 17 位）足够，ans 为 int 不溢出。"
+          }
+        },
+        "changes": {
+          "description": "对于一个正整数 `n`，把它转换成不含前导零的二进制表示；如果这个二进制序列从左向右读与从右向左读完全相同，则称该数为二进制回文数。例如，`9` 的二进制表示为 `1001`，是二进制回文数；`12` 的二进制表示为 `1100`，不是二进制回文数。给定一个正整数 `n`，请计算在 `1` 到 `n` 的范围内二进制回文数的数量。 **数据范围：** 1 ≤ n ≤ 10^5。"
+        },
+        "tests": [
+          {
+            "name": "最小值 n=1",
+            "input": "1",
+            "output": "1",
+            "reason": "1 的二进制为 1，是回文数；1 到 1 范围内仅此一个。"
+          },
+          {
+            "name": "上界 n=100000",
+            "input": "100000",
+            "output": "644",
+            "reason": "按长度独立统计：1~16 位二进制回文数共 510 个；17 位回文数中前缀 256..389 共 134 个不超过 100000，合计 644。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第8页题面、三行输入格式与网站 description/inputDescription 等价，样例三行和输出也一致；但 PDF 第9页 3.2.6 给出“密码长度均不超过 1000，所有字符串由大写字母组成”，网站题面未保留该必要约束，需补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算 s1[0]-s2[0]=A-D=-3 经正模归一化为 23，再对 W、K、H、T、X、L 逐字符解密得到 T、H、E、Q、U、I，整串与样例输出 THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG 一致；负模处理和取模公式正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第9页参考程序逻辑等价；网站版将 <cstring> 改为 <string> 并用范围 for 遍历 s3，解密偏移正模归一化和 (c-'A'+d)%26 计算一致，长度 ≤1000、全大写字母时无边界/溢出问题。"
+          }
+        },
+        "changes": {
+          "description": "凯撒密码是一种替换加密技术，明文中的所有字母都会按照固定偏移量进行整体平移。例如偏移量是 `3` 时，`A` 会替换成 `D`，`B` 会替换成 `E`，……，`X` 会替换成 `A`，`Y` 会替换成 `B`，`Z` 会替换成 `C`。现在给你一组已破解的凯撒密码明文与密文，以及一个使用相同偏移量的待破解密文，请输出它对应的明文。 **数据范围：** 保证密码长度均不超过 1000，所有字符串由大写字母组成。"
+        },
+        "tests": [
+          {
+            "name": "最短长度与偏移 0",
+            "input": "A\nA\nA",
+            "output": "A",
+            "reason": "s1[0]=s2[0]=A，偏移为 0，待解密密文 A 不变；覆盖长度 1 的最小输入。"
+          },
+          {
+            "name": "跨字母表边界（偏移 1）",
+            "input": "Z\nA\nABC",
+            "output": "ZAB",
+            "reason": "由明文 Z 加密为 A 可知偏移为 1；解密时 A→Z、B→A、C→B，覆盖环绕边界。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "初核题26、27：两题与 PDF 第7-9页题面、样例及参考程序基本一致，解析与参考代码正确；两题网站题面均缺少 PDF 数据范围，已通过 changes.description 补入。题26 参考代码用 j 替代 PDF 内层 i 的遮蔽写法，等价；题27 用 <string> 替代 PDF 的 <cstring>，等价。测试期望值由独立推导得出，未声称运行。"
+  }
+}

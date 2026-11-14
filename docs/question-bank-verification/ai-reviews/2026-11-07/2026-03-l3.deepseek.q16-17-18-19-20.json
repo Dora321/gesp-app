@@ -1,0 +1,231 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T10:12:31.657Z",
+  "completedAt": "2026-11-14T10:15:34.845Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32948,
+    "completion_tokens": 17297,
+    "total_tokens": 50245,
+    "prompt_tokens_details": {
+      "cached_tokens": 32896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15251
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01048469,
+      "allowance": 0.00629081,
+      "tokens": {
+        "input": 52,
+        "output": 17297,
+        "reasoning": 15251,
+        "cache_read": 32896,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9c45a2790735006d9f07af701d50c808c340287d7fa7ec079325239888d2d303",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 三级 2026年03月”，与 paperId=2026-03-l3 对应；判断题答案表位于第4页，题号与网站16-20题按顺序对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第1题原文为“定义 int arr[5] = {1,2,3};，则 arr[3] 的值为 0，arr[5] 是合法下标。”与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，网站仅以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第1题为“×”，对应错误，即索引1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "`int arr[5] = {1,2,3};` 部分初始化会把 arr[3]、arr[4] 补为0；合法下标是0~4，arr[5]越界，故整句错误。解析推导与结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第2题原文为“定义 double arr[10];，未手动初始化时，数组中所有元素的默认值为 0.0。”网站题干逐字一致，但原文未注明数组定义在函数内还是全局作用域。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，网站仅以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第2题为“×”，对应错误，即索引1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析直接按“局部数组”解释，但题干未写明作用域；若为全局或静态存储期数组则会零初始化，陈述反而为真。应补充作用域限定，保留原题歧义。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误（按函数内局部数组理解；题干未明确作用域，存在歧义）**\n\n**判定依据：**\n1. 若 `double arr[10];` 定义在函数内部，它是局部数组，元素不会被自动清零，值是不确定的；读取未初始化元素属于未定义行为，不能认为默认是 `0.0`。\n2. 若定义在全局作用域或加 `static`，则具有静态存储期，程序启动前会零初始化，此时元素才是 `0.0`。\n3. 本题官方答案按常见的“函数内局部数组”语境判错；严格说题干应补充作用域，否则陈述并不唯一。\n\n**易错提醒：**\n- 不要把“部分初始化时未显式给出的元素补 0”与“局部数组未初始化自动为 0”混淆。\n- 全局/静态数组与局部数组的初始化规则不同。\n\n**知识延伸：**\nC++ 变量是否自动清零取决于存储期；自动存储期的局部变量不会自动初始化，静态存储期变量会零初始化。\n\n**考点：** 局部数组的默认初始化状态、变量存储期与初始化规则"
+        },
+        "tests": [],
+        "unresolved": [
+          "题干未注明 `double arr[10];` 是函数内局部数组还是全局/静态数组；若为全局或静态存储期则元素零初始化，陈述为真。官方答案按局部数组判错，严格语义存在歧义。"
+        ]
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第3题原文为“定义 int arr[] = {1,2,3};，则 sizeof(arr) 的结果为 12（int 占 4 字节）。”与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，网站仅以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第3题为“√”，对应正确，即索引0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "`int arr[] = {1,2,3};` 自动推导为3个int元素；每个int占4字节，`sizeof(arr)=3×4=12`。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第4题题干为“下面的流程图是用来求 1+2+3+…+10 的和。请判断：这个流程图的逻辑正确还是错误？”；流程图位于第5页。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，网站仅以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第4题为“√”，对应正确，即索引0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "流程图确实正确：sum=0,i=1，条件i<=10，累加后i++，最终输出55。但原解析“若初始值 i=0，则求和范围变为0+1+…+10，结果错误”不成立，因为0不影响总和，仍为55，只是多一次循环。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n1. 流程图先初始化 `sum = 0, i = 1`。\n2. 判断 `i <= 10`：成立时执行 `sum = sum + i`，再执行 `i = i + 1` 并返回判断；不成立时输出 `sum` 并结束。\n3. 前几轮为：sum=0+1=1、i=2；sum=1+2=3、i=3；……；第10轮 sum=45+10=55、i=11。此后 `i <= 10` 为假，输出55，正好等于1+2+...+10。\n\n**易错提醒：**\n- 若循环条件写成 `i < 10`，会漏加10。\n- 若步进写成 `i = i + 2`，只会累加奇数。\n- 若把 `i` 初始化为0，循环会多执行一次 `sum = sum + 0`，但最终和仍是55；真正改变结果的是条件或步进写错。\n\n**知识延伸：**\n求1+2+...+n的累加循环是GESP基础算法，流程图题要重点核对初始化、循环条件、累加语句、步进和输出位置。\n\n**考点：** 流程图阅读理解、循环累加算法、等差数列求和"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页底部判断题第5题题干为“下面流程图的功能是计算 5 对 2 取余数，输出结果为 1。”；对应流程图位于第6页顶部。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，网站仅以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题答案表第5题为“√”，对应正确，即索引0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "第6页流程图初始 a=5,b=2，循环条件 a>=b 时执行 a=a-b：5→3→1，随后 1<2，输出a=1，故功能为5%2=1。解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅核验判断题16-20。五题答案均与PDF第4页答案表一致；16、18、20题题干、答案与解析基本正确；19题原解析中“i=0会导致结果错误”的说法不成立，已给出修正；17题原题干未注明数组定义作用域，解析按局部数组判错，严格语义存在歧义，已在解析中补充说明并保留争议。"
+  }
+}

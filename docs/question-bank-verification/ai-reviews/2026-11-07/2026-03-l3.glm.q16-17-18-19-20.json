@@ -1,0 +1,240 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T11:04:50.069Z",
+  "completedAt": "2026-11-14T11:07:22.465Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49665,
+    "completion_tokens": 10098,
+    "total_tokens": 59763,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7420
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01249875,
+      "allowance": 0.01249875,
+      "tokens": {
+        "input": 49665,
+        "output": 10098,
+        "reasoning": 7420,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9c45a2790735006d9f07af701d50c808c340287d7fa7ec079325239888d2d303",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP C++ 三级 2026 年 03 月”，与 2026-03-l3 对应；判断题答案表位于第 4 页（× × √ √ √ √ √ × × √），题号与网站 16-20 题按顺序对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文“定义 int arr[5] = {1,2,3};，则 arr[3] 的值为 0，arr[5] 是合法下标。”与网站题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两选项，无单选选项数组需核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 1 题为“×”，即“错误”（索引 1），与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：{1,2,3} 部分初始化使 arr[3]、arr[4] 值初始化为 0，前半句为真；长度 5 数组合法下标为 0~4，arr[5] 越界属未定义行为，后半句为假，整体判“错误”与官方一致；解析中易错提醒与知识延伸无错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干、答案、解析均经独立核对无误，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文“定义 double arr[10];，未手动初始化时，数组中所有元素的默认值为 0.0。”与网站题干一致；题干未注明作用域属官方原文固有表述，官方按 GESP 常规语境（函数内局部数组）判错。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两选项，无单选选项数组需核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 题为“×”，即“错误”（索引 1），与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：官方口径为函数内局部数组——自动存储期数组不自动清零，读取为不确定值，陈述判“错误”正确；网站解析第 1 点已明确按局部变量阐述，第 2 点主动对比了全局变量/静态变量零初始化的情形，前提声明完整、推导与结论无误。初核所称“题干未写明作用域”是官方题面固有特征而非网站数据缺陷，官方答案表明确为“×”，不构成源卷错误或答案冲突，故否决其改写并撤销其新增 unresolved。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决初核对 explanation 的修改并撤销 unresolved：原解析在局部数组前提下推导正确，且已包含全局/静态存储期零初始化的对比，与官方答案口径一致；题干作用域省略属官方原文固有，非需修复的网站数据问题。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题原文“定义 int arr[] = {1,2,3};，则 sizeof(arr) 的结果为 12（int 占 4 字节）。”与网站题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两选项，无单选选项数组需核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 题为“√”，即“正确”（索引 0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：初始化列表 3 个元素推导数组长度为 3，sizeof 作用于数组名不退化为指针，返回 3×4=12 字节，结论正确；易错提醒中函数参数退化、64 位指针 8 字节等表述无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干、答案、解析均经独立核对无误，无需修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题题干“下面的流程图是用来求 1+2+3+…+10 的和。请判断：这个流程图的逻辑正确还是错误？”与网站题干一致；对应流程图在第 5 页（开始→sum=0, i=1→判断 i<=10?→是：sum=sum+i→i=i+1→回判断；否：输出sum→结束），与网站等价文字整理一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两选项，无单选选项数组需核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 题为“√”，即“正确”（索引 0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析易错提醒“若初始值 i=0，则求和范围变为 0+1+…+10，结果错误”不成立——加 0 不改变总和仍为 55，仅多一次循环。已替换修正版解析：独立推演流程图 sum=0,i=1，条件 i<=10，先 sum=sum+i 后 i=i+1，第 10 轮 sum=45+10=55，i=11 退出输出 55；修正后各变体结论均经独立验算（条件 i<10 得 45、步进 i=i+2 得 25、i=0 初始化仍 55）。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n1. **初始化阶段**：流程图先设置累加变量 `sum = 0`，循环计数器 `i = 1`。\n2. **循环条件判断**：每次回到菱形框判断 `i <= 10` 是否成立；成立走“是”分支进入循环体，不成立走“否”分支输出 `sum` 并结束。\n3. **循环体执行顺序**：先执行 `sum = sum + i`，再执行 `i = i + 1`，然后返回条件判断。\n   - 第 1 次：`sum = 0 + 1 = 1`，`i = 2`\n   - 第 2 次：`sum = 1 + 2 = 3`，`i = 3`\n   - ……\n   - 第 10 次：`sum = 45 + 10 = 55`，`i = 11`\n4. **循环终止**：`i` 增至 11 时 `i <= 10` 为假，输出 `sum = 55`，恰为 $1+2+3+\\cdots+10$ 的和，流程图逻辑完整、正确。\n\n**易错提醒：**\n- 若循环条件写成 `i < 10`，只能累加到 9，输出 45，漏掉 10。\n- 若步进写成 `i = i + 2`，只会累加 1、3、5、7、9，输出 25。\n- 若把 `i` 初始化为 0，循环会多执行一次 `sum = sum + 0`，但总和仍是 55，并不改变结果；真正导致错误的是条件或步进写错。\n\n**知识延伸：**\n求 $1+2+\\cdots+n$ 的累加循环是 GESP 各级别的经典基础算法，流程图题需逐一核对初始化、循环条件、累加语句、步进和输出位置。\n\n**考点：** 流程图阅读理解、循环累加算法、等差数列求和",
+          "tags": [
+            "流程图"
+          ]
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核修改：独立确认“初始值 i=0 时总和仍为 55”成立，原解析该句确属错误；修正版解析中对循环条件、步进、初始值各变体的结论均已独立验算无误，故应用替换并标修复后核验通过。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页底部判断题第 5 题题干“下面流程图的功能是计算 5 对 2 取余数，输出结果为 1。”与网站题干一致；对应流程图在第 6 页顶部（开始→初始化: a=5, b=2→判断: a ≥ b?→是：a=a-b 回判断；否：输出 a→结束），与网站题干对流程图功能的描述一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两选项，无单选选项数组需核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 题为“√”，即“正确”（索引 0），与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演流程图：a=5,b=2，循环执行 a=a-b：5→3→1，此时 1<2 条件为假，输出 a=1，即 5%2=1，与题干及官方“√”一致；解析中取余的数学定义、循环减法实现说明及易错提醒（负被除数取余、被除数小于除数情形）均无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题干、答案与解析经独立核对均无误，第 6 页流程图按图推演输出确为 1，无需修改。"
+      }
+    ],
+    "summary": "本批核验判断题 16-20（对应 PDF 判断题 1-5）。五题官方答案（× × √ √ √）与网站 answer 完全一致，题干均与 PDF 原文或流程图等价整理一致。16、18、20 题解析经独立推演无误，直接通过；19 题原解析中“初始值 i=0 则结果错误”的说法经独立验算不成立（加 0 不改变总和仍为 55），已替换修正版解析，修复后核验通过；17 题否决初核修改与 unresolved：官方答案表明确为“错误”，网站解析按官方口径的局部数组语境推导正确且已对比全局/静态零初始化规则，题干作用域省略属官方原文固有表述，不构成网站数据缺陷。"
+  }
+}

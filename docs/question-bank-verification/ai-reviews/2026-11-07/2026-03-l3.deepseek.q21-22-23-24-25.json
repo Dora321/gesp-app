@@ -1,0 +1,230 @@
+{
+  "paperId": "2026-03-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T11:19:05.481Z",
+  "completedAt": "2026-11-14T11:20:24.657Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33010,
+    "completion_tokens": 7768,
+    "total_tokens": 40778,
+    "prompt_tokens_details": {
+      "cached_tokens": 32896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6012
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00477659,
+      "allowance": 0.00286595,
+      "tokens": {
+        "input": 114,
+        "output": 7768,
+        "reasoning": 6012,
+        "cache_read": 32896,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "9c45a2790735006d9f07af701d50c808c340287d7fa7ec079325239888d2d303",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++3级.pdf",
+    "mirrorSha": "d71b439c4f46b746b3b20e36f11193714f802416",
+    "mirrorBytes": 852508,
+    "shaVerified": true,
+    "sha256": "16be70a6edb8b7947285995bb18f0dd5c3c118113b14ae34c6c08da35984defe"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证”“C++ 三级”“2026 年 03 月”，与 2026-03-l3 对应；判断题答案符号见 PDF 第 4 页答案表。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          4,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 6 题原文与网站题干一致：已知大写 A 的 ASCII 十六进制为 0x41，判断 m 的 ASCII 八进制表示是否为 155。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以“正确/错误”判定，第 4 页答案表用 √/× 表示；网站 options 的“正确/错误”顺序可采用 0/1 映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 6 题为 √，即正确，对应网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立验算：m 为小写第 13 个字母，ASCII 十进制为 97+13-1=109；109 转八进制为 155，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 7 题原文与网站题干一致：C++ 位运算中不同运算符有优先级区分，括号可解决优先级问题。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以“正确/错误”判定，第 4 页答案表用 √/× 表示；网站 options 的顺序与 0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 题为 √，即正确，对应网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：按位取反、移位、按位与、异或、或存在不同优先级；括号可强制求值顺序，解析中的优先级说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 8 题原文与网站题干及代码一致：char x='1'; int y=1; 并称 x 与 y 相等。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以“正确/错误”判定，第 4 页答案表用 √/× 表示；网站 options 的顺序与 0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 8 题为 ×，即错误，对应网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：字符 '1' 的 ASCII 值为 49，int y 的值为 1，49 不等于 1，故原命题错误；解析结论与推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 9 题原文与网站题干一致：表达式 ((0xf0 + 0x15) == 255) 的值是否为 true。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以“正确/错误”判定，第 4 页答案表用 √/× 表示；网站 options 的顺序与 0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 9 题为 ×，即错误，对应网站 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析结论正确，但十六进制进位说明有误：把 0xF0 的低位误写为 F，实际个位是 0；0xF0 的低位为 0，0x15 的低位为 5。需替换该段解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n1. 十六进制转十进制：`0xf0 = 15×16 + 0 = 240`，`0x15 = 1×16 + 5 = 21`。\n2. 求和：`240 + 21 = 261`；写成十六进制是 `0x105`。相加时个位 `0 + 5 = 5`，高位 `F + 1 = 16`，写 `0` 并向百位进 `1`。\n3. 比较：`261 != 255`，故 `((0xf0 + 0x15) == 255)` 的值为 `false`；题面称其值为 `true`，因此判断题应判为错误。\n\n**易错提醒：**\n- `0xFF` 才等于 255；`0xf0 + 0x15` 已经超过 `0xFF`，不是 255。\n- 十六进制相加要按位逢 16 进 1，不能只凭 `0xF0` 接近 255 就误判。\n\n**知识延伸：**\n`0xF = 15`，`0xFF = 255`，`0xF0 = 240`；做十六进制加法时应对应位相加，满 16 进位。\n\n**考点：** 十六进制数值计算与比较。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 10 题原文与网站题干一致：a 为 int 且二进制最低位为 0，判断 ((a & 3 & 1) == 0) 是否为 true。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 判断题以“正确/错误”判定，第 4 页答案表用 √/× 表示；网站 options 的顺序与 0/1 映射一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 10 题为 √，即正确，对应网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：a 最低位为 0 等价于 a&1=0；按结合律 (a&3)&1 = a&(3&1) 的结果低一位仍为 0，故表达式为 true，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题 21-25 对应 PDF 判断题第 6-10 题。五题题干和“正确/错误”选项映射均与 PDF 页图一致；答案按第 4 页判断题答案表 √√××√ 映射为 0、0、1、1、0，与网站答案一致。仅第 24 题解析中的十六进制进位描述有误，已提出完整解析修正；其余四题五维核验通过。"
+  }
+}
