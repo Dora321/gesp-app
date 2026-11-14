@@ -3,7 +3,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { scoreExam } from '../../src/utils/examScoring.js';
 import { recordExamAttempt, readPaperAttempts } from '../../src/utils/examHistory.js';
 import {
@@ -146,7 +146,7 @@ const EXPECTED = {
 
 async function loadQuestion(paperId, id) {
     const level = paperId.slice(-1);
-    const { paperData } = await import(path.join(root, `src/data/gesp/level${level}/${paperId}.js`));
+    const { paperData } = await import(pathToFileURL(path.join(root, `src/data/gesp/level${level}/${paperId}.js`)).href);
     const all = [...(paperData.questions || []), ...(paperData.programmingQuestions || []), ...(paperData.codingQuestions || [])];
     return all.find((q) => q.id === id);
 }

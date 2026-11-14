@@ -1,5 +1,13 @@
 # 课堂 AI：最简试用版
 
+## 线上部署：保留 GitHub Pages 地址
+
+学生入口继续使用 `https://dora321.github.io/gesp-app/`，构建时通过 `VITE_CLASSROOM_API_URL` 指向 HTTPS 网关。教师后台单独访问网关的 `/classroom-admin`。
+
+跨站模式不依赖第三方 Cookie：口令兑换短期随机会话凭证，只存当前标签页的 sessionStorage（被禁用时仅保留内存），刷新可恢复；它不是上游 API key。教师后台仍使用 HttpOnly Cookie。服务端仅为 `CLASSROOM_STUDENT_ORIGIN` 配置的来源开放学生接口 CORS，教师管理接口不对跨站开放。会话可被设备持有人读取，但仍受全班额度、期限及撤销控制。
+
+生产配置见 `server/deploy/`：Node 24 独立运行时，systemd 单实例，SQLite 数据保存在 `/var/lib/gesp-classroom`，Caddy 提供 HTTPS。需要云安全组放行入站 TCP 443。现有 80/8787/8790 服务不改动。
+
 ## 本机试用
 
 需要 Node.js 22.13+（推荐 24 LTS）。项目已安装依赖时：

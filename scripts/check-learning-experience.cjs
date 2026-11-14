@@ -63,11 +63,12 @@ const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replac
     assert.equal(requests[1].context, null);
     await page.getByRole('button', { name: '打开 AI 设置', exact: true }).click();
     assert.equal(await page.evaluate(() => sessionStorage.getItem('deepseek_api_key')), null);
-    assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), 'test-only-not-a-real-key');
-    await page.getByRole('button', { name: '清除', exact: true }).click();
+    assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), null);
+    await page.getByRole('button', { name: '退出课堂', exact: true }).click();
+    await page.getByText('已退出课堂。', { exact: true }).waitFor();
     assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), null);
     await page.getByRole('button', { name: '关闭 AI 问答助手', exact: true }).click();
-    console.log('Classroom assistant automatic key persistence, reload, clearing, optional context and mocked response passed.');
+    console.log('Classroom activation, reload, logout, optional context and mocked response passed.');
 
     await page.goto(base + '/lesson/1/4#programming-practice');
     await page.getByRole('region', { name: '本课上机练习', exact: true }).getByRole('checkbox').first().check();

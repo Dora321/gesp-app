@@ -12,7 +12,7 @@ async function fixture(t) {
   const calls = [];
   let fail = false;
   let blocking = false;
-  const options = { directory, adminPassword: 'teacher-test-password', secure: false, now: () => time, fetchAI: async (url, init) => {
+  const options = { directory, studentOrigin: 'https://dora321.github.io', adminPassword: 'teacher-test-password', secure: false, now: () => time, fetchAI: async (url, init) => {
     calls.push({ url, ...init });
     if (fail) return new Response('SECRET upstream error', { status: 500 });
     if (blocking) return new Response(new ReadableStream({ start(controller) {
@@ -26,8 +26,8 @@ async function fixture(t) {
   async function listen() { server.listen(0, '127.0.0.1'); await once(server, 'listening'); base = `http://127.0.0.1:${server.address().port}`; }
   await listen();
   t.after(async () => { await new Promise(resolve => server.close(resolve)); rmSync(directory, { recursive: true, force: true }); });
-  async function req(path, data, cookie = '', origin = base) {
-    const res = await fetch(base + path, { ...(data === undefined ? {} : { method: 'POST', body: JSON.stringify(data) }), headers: { Origin: origin, 'Content-Type': 'application/json', Cookie: cookie } });
+  async function req(path, data, cookie = '', origin = base, headers = {}) {
+    const res = await fetch(base + path, { ...(data === undefined ? {} : { method: 'POST', body: JSON.stringify(data) }), headers: { Origin: origin, 'Content-Type': 'application/json', Cookie: cookie, ...headers } });
     const text = await res.text();
     let result; try { result = JSON.parse(text); } catch { result = text; }
     return { status: res.status, body: result, cookie: res.headers.get('set-cookie')?.split(';')[0], headers: res.headers };
@@ -115,4 +115,20 @@ test('ending the classroom cancels an in-progress upstream stream', async t => {
   await pending;
   assert.equal(f.calls[0].signal.aborted, true);
   assert.equal((await f.chat(cookie)).status, 401);
+});
+
+test('GitHub Pages receives revocable bearer authorization without third-party cookies or admin access', async t => {
+  const f = await fixture(t); const state = await f.start(); const origin = 'https://dora321.github.io';
+  const redeem = await f.req('/api/classroom/redeem', { code: state.code }, '', origin);
+  assert.equal(redeem.status, 200);
+  assert.equal(redeem.cookie, undefined);
+  assert.equal(redeem.headers.get('Access-Control-Allow-Origin'), origin);
+  assert.match(redeem.body.token, /^[A-Za-z0-9_-]{43}$/);
+  const headers = { Authorization: `Bearer ${redeem.body.token}` };
+  assert.equal((await f.req('/api/session', undefined, '', origin, headers)).status, 200);
+  assert.equal((await f.req('/api/chat', { messages: [{ role: 'user', content: '你好' }], requestId: crypto.randomUUID() }, '', origin, headers)).status, 200);
+  assert.equal((await f.req('/api/admin/login', { password: 'teacher-test-password' }, '', origin)).status, 403);
+  assert.equal((await f.req('/api/classroom/redeem', { code: state.code }, '', 'https://evil.example')).status, 403);
+  await f.req('/api/logout', {}, '', origin, headers);
+  assert.equal((await f.req('/api/session', undefined, '', origin, headers)).status, 401);
 });
