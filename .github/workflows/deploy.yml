@@ -110,6 +110,8 @@ jobs:
             command: node scripts/with-preview.cjs scripts/check-cpp-practice-ui.mjs
           - name: Learning experience checks
             command: node scripts/with-preview.cjs scripts/check-learning-experience.cjs
+          - name: AI personal and classroom modes
+            command: node scripts/with-preview.cjs scripts/check-ai-modes.cjs
           - name: Visual and layout regression
             command: npm run visual
 

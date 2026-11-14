@@ -41,12 +41,13 @@ const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replac
     await page.getByRole('button', { name: '打开 AI 问答助手', exact: true }).filter({ visible: true }).click();
     await page.getByRole('button', { name: '打开 AI 设置', exact: true }).click();
     assert.equal(await page.getByText('嘴臭贴吧老哥', { exact: true }).count(), 0);
-    const panelBounds = await page.getByRole('dialog', { name: 'AI 问答助手', exact: true }).boundingBox();
-    const sendBounds = await page.getByRole('button', { name: '发送', exact: true }).boundingBox();
-    assert.ok(sendBounds.x >= panelBounds.x && sendBounds.x + sendBounds.width <= panelBounds.x + panelBounds.width, 'send button must fit inside the mobile assistant');
+    assert.equal(await page.getByRole('textbox', { name: '对话输入', exact: true }).isVisible(), false);
     await page.getByLabel('课堂口令', { exact: true }).fill('123456');
     await page.getByRole('button', { name: '激活课堂', exact: true }).click();
     await page.getByText(/全班剩余 500 次/).waitFor();
+    const panelBounds = await page.getByRole('dialog', { name: 'AI 问答助手', exact: true }).boundingBox();
+    const sendBounds = await page.getByRole('button', { name: '发送', exact: true }).boundingBox();
+    assert.ok(sendBounds.x >= panelBounds.x && sendBounds.x + sendBounds.width <= panelBounds.x + panelBounds.width, 'send button must fit inside the mobile assistant');
     assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), null);
     assert.equal(await page.evaluate(() => sessionStorage.getItem('deepseek_api_key')), null);
     await page.reload();
@@ -54,13 +55,13 @@ const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replac
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').fill('循环输出为什么少一项？');
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').press('Enter');
     await page.getByText('先观察循环变量。', { exact: true }).waitFor();
-    assert.equal(requests[0].context.path, '/python/f3');
+    assert.equal(Object.hasOwn(requests[0], 'context'), false);
     assert.ok(requests[0].messages.every(message => message.role !== 'system'));
-    await page.getByLabel('附带当前页面标题与路径').uncheck();
+    assert.equal(await page.getByLabel('附带当前页面标题与路径').count(), 0);
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').fill('再给一个提示');
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').press('Enter');
     await page.waitForFunction(() => document.body.innerText.split('先观察循环变量。').length >= 3);
-    assert.equal(requests[1].context, null);
+    assert.equal(Object.hasOwn(requests[1], 'context'), false);
     await page.getByRole('button', { name: '打开 AI 设置', exact: true }).click();
     assert.equal(await page.evaluate(() => sessionStorage.getItem('deepseek_api_key')), null);
     assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), null);
@@ -68,7 +69,7 @@ const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replac
     await page.getByText('已退出课堂。', { exact: true }).waitFor();
     assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), null);
     await page.getByRole('button', { name: '关闭 AI 问答助手', exact: true }).click();
-    console.log('Classroom activation, reload, logout, optional context and mocked response passed.');
+    console.log('Classroom activation, reload, logout and mocked chat without page context passed.');
 
     await page.goto(base + '/lesson/1/4#programming-practice');
     await page.getByRole('region', { name: '本课上机练习', exact: true }).getByRole('checkbox').first().check();

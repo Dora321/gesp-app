@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
-import { assistantStorage } from '../utils/classroomAssistant';
+import { assistantStorage, ASSISTANT_KEY, loadAssistantKey, saveAssistantKey, buildClassroomPrompt } from '../utils/classroomAssistant';
 import { classroomRequest, classroomFetch } from '../utils/classroomClient';
 import {
     toApiHistory,
     isHistoryNearLimit,
     mapCatchErrorMessage,
+    mapHttpErrorMessage,
     AI_CHAT_SHEET_BREAKPOINT,
     sheetHeightPx,
     resolveSheetDragEnd,
@@ -18,9 +18,14 @@ import { AI_PERSONAS, AI_MODEL } from '../utils/aiChatConstants';
 import { chatMarkdownComponents } from './AIChatMarkdown';
 
 const AIChatWidget = ({ onClose }) => {
-    const location = useLocation();
     const [keyStatus, setKeyStatus] = useState('');
-    const [shareContext, setShareContext] = useState(true);
+    const [personalKey, setPersonalKey] = useState(() => loadAssistantKey().key);
+    const [personalKeyInput, setPersonalKeyInput] = useState('');
+    const [personalStatus, setPersonalStatus] = useState('');
+    const [mode, setMode] = useState(() => {
+        const saved = assistantStorage.get('localStorage', 'ai_connection_mode');
+        return ['personal', 'classroom'].includes(saved) ? saved : loadAssistantKey().key ? 'personal' : 'classroom';
+    });
     const [classroomActive, setClassroomActive] = useState(false);
     const [classroomCode, setClassroomCode] = useState('');
     const [showSettings, setShowSettings] = useState(false);
@@ -38,6 +43,8 @@ const AIChatWidget = ({ onClose }) => {
     });
     const [classroom, setClassroom] = useState(null);
     const [activating, setActivating] = useState(false);
+    const authorized = mode === 'personal' ? Boolean(personalKey) : classroomActive;
+    const quotaExhausted = mode === 'classroom' && classroom?.remaining === 0;
     const [customPersona, setCustomPersona] = useState(null);
     const [editingCustomPersona, setEditingCustomPersona] = useState(null);
     const [size, setSize] = useState({ width: 360, height: 500 });
@@ -190,7 +197,11 @@ const AIChatWidget = ({ onClose }) => {
         setSheetExpanded(Boolean(result.expanded));
     };
 
-    // Restore only the server-issued HttpOnly classroom session.
+    useEffect(() => {
+        assistantStorage.set('localStorage', 'ai_connection_mode', mode);
+    }, [mode]);
+
+    // Restore classroom authorization only while classroom mode is selected.
     useEffect(() => {
         let mounted = true;
         const restore = () => classroomRequest('/api/session').then(state => {
@@ -200,8 +211,8 @@ const AIChatWidget = ({ onClose }) => {
         }).catch(error => {
             if (mounted && error.status === 401) { setClassroomActive(false); setClassroom(null); }
         });
-        restore();
-        const timer = setInterval(restore, 15000);
+        if (mode === 'classroom') restore();
+        const timer = mode === 'classroom' ? setInterval(restore, 15000) : null;
         const savedPersona = assistantStorage.get('localStorage', 'ai_custom_persona');
         if (savedPersona) {
             try {
@@ -211,7 +222,7 @@ const AIChatWidget = ({ onClose }) => {
             }
         }
         return () => { mounted = false; clearInterval(timer); };
-    }, []);
+    }, [mode]);
 
     // Save messages to sessionStorage
     useEffect(() => {
@@ -249,6 +260,24 @@ const AIChatWidget = ({ onClose }) => {
             setClassroomCode('');
         } catch (error) { setKeyStatus(error.message || '无法连接课堂服务。'); }
         finally { setActivating(false); }
+    };
+
+    const savePersonalKey = () => {
+        const value = personalKeyInput.trim();
+        if (!value) return;
+        if (!saveAssistantKey(value)) { setPersonalStatus('浏览器无法保存密钥，请检查存储权限。'); return; }
+        setPersonalKey(value);
+        setPersonalKeyInput('');
+        setPersonalStatus('个人密钥已保存。');
+        setShowSettings(false);
+    };
+
+    const clearPersonalKey = () => {
+        const local = assistantStorage.remove('localStorage', ASSISTANT_KEY);
+        const session = assistantStorage.remove('sessionStorage', ASSISTANT_KEY);
+        setPersonalKey('');
+        setPersonalKeyInput('');
+        setPersonalStatus(local && session ? '个人密钥已清除。' : '无法清除浏览器存储，请在浏览器设置中清理本站数据。');
     };
 
     const exitClassroom = async () => {
@@ -340,7 +369,7 @@ const AIChatWidget = ({ onClose }) => {
     };
 
     const sendMessage = async () => {
-        if (!inputValue.trim() || isLoading || !classroomActive || classroom?.remaining === 0) return;
+        if (!inputValue.trim() || isLoading || !authorized || quotaExhausted) return;
 
         const currentPersona = (selectedPersona === 'custom' && customPersona)
             ? customPersona
@@ -355,11 +384,6 @@ const AIChatWidget = ({ onClose }) => {
         setInputValue('');
         setIsLoading(true);
 
-        const context = shareContext ? {
-            path: location.pathname,
-            title: document.querySelector('main h1')?.textContent?.trim() || document.title,
-        } : null;
-
         const apiMessages = [
             ...toApiHistory(newMessages).map(message => ({ ...message, content: message.content.slice(0, 4000) }))
         ];
@@ -368,16 +392,24 @@ const AIChatWidget = ({ onClose }) => {
         abortControllerRef.current = new AbortController();
 
         try {
-            const response = await classroomFetch('/api/chat', {
+            const response = mode === 'personal' ? await fetch('https://api.deepseek.com/chat/completions', {
                 method: 'POST',
-                credentials: 'same-origin',
+                referrerPolicy: 'no-referrer',
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${personalKey}` },
+                body: JSON.stringify({ model: AI_MODEL.id, stream: true, messages: [
+                    { role: 'system', content: buildClassroomPrompt(currentPersona.systemPrompt) },
+                    ...toApiHistory(newMessages),
+                ] }),
+                signal: abortControllerRef.current.signal,
+            }) : await classroomFetch('/api/chat', {
+                method: 'POST',
+                referrerPolicy: 'no-referrer',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     requestId: crypto.randomUUID(),
                     persona: currentPersona.systemPrompt,
-                    context,
                     messages: apiMessages,
                     stream: true // Enable streaming
                 }),
@@ -385,6 +417,7 @@ const AIChatWidget = ({ onClose }) => {
             });
 
             if (!response.ok) {
+                if (mode === 'personal') throw new Error(await mapHttpErrorMessage(response));
                 if (response.status === 401) { setClassroomActive(false); setClassroom(null); setShowSettings(true); }
                 const result = await response.json().catch(() => ({}));
                 throw new Error(result.message || '课堂服务暂时不可用，请联系老师。');
@@ -475,7 +508,7 @@ const AIChatWidget = ({ onClose }) => {
         } finally {
             setIsLoading(false);
             abortControllerRef.current = null;
-            classroomRequest('/api/session').then(setClassroom).catch(() => {});
+            if (mode === 'classroom') classroomRequest('/api/session').then(setClassroom).catch(() => {});
         }
     };
 
@@ -538,7 +571,7 @@ const AIChatWidget = ({ onClose }) => {
                     <span className="font-bold">{currentPersonaInfo?.name || 'AI 问答助手'}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                    <button
+                    {!showSettings && <button
                         type="button"
                         onClick={clearChat}
                         className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
@@ -546,7 +579,7 @@ const AIChatWidget = ({ onClose }) => {
                         aria-label="新对话"
                     >
                         <Plus size={18} />
-                    </button>
+                    </button>}
                     <button
                         type="button"
                         onClick={() => {
@@ -554,8 +587,8 @@ const AIChatWidget = ({ onClose }) => {
                             setClassroomCode('');
                         }}
                         className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
-                        title="设置"
-                        aria-label="打开 AI 设置"
+                        title={showSettings ? '关闭设置' : '设置'}
+                        aria-label={showSettings ? '关闭 AI 设置' : '打开 AI 设置'}
                         aria-expanded={showSettings}
                     >
                         <Settings size={18} />
@@ -572,16 +605,36 @@ const AIChatWidget = ({ onClose }) => {
                 </div>
             </header>
 
-            <div className="px-3 py-2 text-xs bg-stone-100 text-stone-700 border-b border-stone-200" role="status">
-                {classroomActive && classroom
-                    ? `课堂已激活 · 全班剩余 ${classroom.remaining} 次 · ${new Date(classroom.expiresAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} 截止`
-                    : <button type="button" onClick={() => setShowSettings(true)} className="underline">输入课堂口令，开始提问</button>}
-            </div>
             {/* Settings Panel */}
             {showSettings && (
-                <div className="p-3 bg-slate-50 border-b border-slate-200 animate-in slide-in-from-top duration-200 max-h-[300px] overflow-y-auto">
+                <section aria-label="AI 设置" className="flex min-h-0 flex-1 flex-col bg-slate-50">
+                    <div className="flex shrink-0 items-center justify-between gap-2 border-b border-stone-200 px-3 py-1">
+                        <h2 className="text-sm font-semibold text-stone-800">AI 设置</h2>
+                        <button type="button" onClick={() => setShowSettings(false)} className="min-h-11 rounded-lg px-3 text-sm text-stone-700 hover:bg-stone-200">返回对话</button>
+                    </div>
+                    <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-3">
+                    <div className="mb-4 flex gap-2" role="group" aria-label="AI 使用模式">
+                        {[['personal', '个人模式'], ['classroom', '课堂模式']].map(([value, label]) => (
+                            <button key={value} type="button" aria-pressed={mode === value} disabled={isLoading || activating}
+                                onClick={() => { setMode(value); setPersonalKeyInput(''); setClassroomCode(''); }}
+                                className={`min-h-11 flex-1 rounded-lg border px-3 py-2 text-sm disabled:opacity-50 ${mode === value ? 'bg-stone-800 text-white border-stone-800' : 'bg-stone-50 text-stone-700 border-stone-300'}`}>{label}</button>
+                        ))}
+                    </div>
+                    {mode === 'personal' && <div className="mb-4">
+                        <label htmlFor="personal-api-key" className="block mb-2 text-sm font-medium text-stone-700">DeepSeek API Key</label>
+                        <input id="personal-api-key" type="password" autoComplete="off" spellCheck={false}
+                            value={personalKeyInput} onChange={event => setPersonalKeyInput(event.target.value)}
+                            placeholder={personalKey ? '已保存密钥，输入新密钥可更换' : '粘贴你的 API Key'}
+                            className="min-h-11 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm" />
+                        <div className="flex gap-2 mt-2">
+                            <button type="button" onClick={savePersonalKey} disabled={isLoading || !personalKeyInput.trim()} className="min-h-11 rounded-lg bg-stone-800 text-white px-4 py-2 disabled:opacity-50">保存个人密钥</button>
+                            {personalKey && <button type="button" onClick={clearPersonalKey} disabled={isLoading} className="min-h-11 rounded-lg border border-stone-300 px-3 py-2">清除个人密钥</button>}
+                        </div>
+                        {personalStatus && <p role="status" className="mt-2 text-sm">{personalStatus}</p>}
+                        <p className="mt-2 text-xs leading-5 text-stone-500">密钥保存在当前浏览器，提问时直接发送到 DeepSeek，使用你自己的额度。共享电脑用完请清除密钥。课堂模式不会使用此密钥。</p>
+                    </div>}
                     {/* API Key Section */}
-                    <div className="mb-4">
+                    {mode === 'classroom' && <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
                             <Key size={16} className="text-slate-500" />
                             <label htmlFor="classroom-code" className="text-sm font-medium text-slate-700">课堂口令</label>
@@ -623,7 +676,7 @@ const AIChatWidget = ({ onClose }) => {
                         <p id="deepseek-api-key-notice" className="mt-2 text-xs leading-5 text-slate-500">
                             向老师获取六位口令即可使用，刷新无需重输，课堂结束后自动失效。对话经课堂服务转交 AI，学生无需配置密钥。
                         </p>
-                    </div>
+                    </div>}
 
                     {/* Model */}
                     <div className="mb-4">
@@ -776,36 +829,39 @@ const AIChatWidget = ({ onClose }) => {
                             ))}
                         </div>
                     </div>
-                </div>
+                    </div>
+                </section>
             )}
 
-            <div className="border-b border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
-                <label className="flex min-h-11 items-center gap-2"><input type="checkbox" checked={shareContext} onChange={event => setShareContext(event.target.checked)} />附带当前页面标题与路径</label>
-                <p>先说说你试了什么。助教建议需要你运行和核对。</p>
+            <div className={showSettings ? 'hidden' : 'flex min-h-0 flex-1 flex-col'}>
+            <div className="shrink-0 px-3 py-2 text-xs bg-stone-100 text-stone-700 border-b border-stone-200" role="status">
+                {mode === 'personal' ? (personalKey ? '个人模式 · 使用自己的 API Key' : '个人模式 · 请在设置中填写 API Key') : classroomActive && classroom
+                    ? `课堂已激活 · 全班剩余 ${classroom.remaining} 次 · ${new Date(classroom.expiresAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} 截止`
+                    : <button type="button" onClick={() => setShowSettings(true)} className="underline">输入课堂口令，开始提问</button>}
             </div>
             {/* Messages Area */}
             <div
                 ref={messagesContainerRef}
                 onScroll={updateAutoScrollState}
-                className="flex-1 overflow-y-auto p-3 space-y-3 bg-slate-50"
+                className="min-h-0 flex-1 overflow-y-auto p-3 space-y-3 bg-slate-50"
             >
-                {!classroomActive && messages.length === 0 && (
+                {!authorized && messages.length === 0 && (
                     <div className="text-center py-8">
                         <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Key size={32} className="text-indigo-500" />
                         </div>
                         <h3 className="text-lg font-medium text-slate-700 mb-2">欢迎使用 AI 助手</h3>
-                        <p className="text-sm text-slate-500 mb-4">请输入老师提供的课堂口令</p>
+                        <p className="text-sm text-slate-500 mb-4">{mode === 'personal' ? '粘贴自己的 API Key，或切换课堂模式' : '请输入老师提供的课堂口令，或切换个人模式'}</p>
                         <button
                             onClick={() => setShowSettings(true)}
                             className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors"
                         >
-                            输入课堂口令
+                            {mode === 'personal' ? '设置 API Key' : '输入课堂口令'}
                         </button>
                     </div>
                 )}
 
-                {classroomActive && messages.length === 0 && (
+                {authorized && messages.length === 0 && (
                     <div className="text-center py-8">
                         <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Bot size={32} className="text-indigo-500" />
@@ -875,15 +931,15 @@ const AIChatWidget = ({ onClose }) => {
                                 sendMessage();
                             }
                         }}
-                        placeholder={classroomActive ? "输入你的问题…（Enter 发送，Shift+Enter 换行）" : "请先输入课堂口令"}
-                        disabled={!classroomActive || classroom?.remaining === 0 || isLoading}
+                        placeholder={authorized ? "输入你的问题…（Enter 发送，Shift+Enter 换行）" : mode === 'personal' ? '请先设置 API Key' : "请先输入课堂口令"}
+                        disabled={!authorized || quotaExhausted || isLoading}
                         aria-label="对话输入"
                         className="min-h-11 max-h-36 min-w-0 flex-1 resize-y px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all disabled:bg-slate-100 disabled:cursor-not-allowed text-sm leading-6"
                     />
                     <button
                         type="button"
                         onClick={isLoading ? stopGeneration : sendMessage}
-                        disabled={!classroomActive || (!isLoading && (classroom?.remaining === 0 || !inputValue.trim()))}
+                        disabled={!authorized || (!isLoading && (quotaExhausted || !inputValue.trim()))}
                         className={`shrink-0 min-h-11 px-4 py-2.5 rounded-xl font-medium transition-colors flex items-center gap-1 text-white
                             ${isLoading
                                 ? 'bg-red-500 hover:bg-red-600'
@@ -895,6 +951,7 @@ const AIChatWidget = ({ onClose }) => {
                         {isLoading ? <Square size={18} fill="currentColor" /> : <Send size={18} />}
                     </button>
                 </div>
+            </div>
             </div>
             {/* Resize Handle — desktop floating panel only */}
             {!isSheet && (
