@@ -1,0 +1,181 @@
+{
+  "paperId": "2025-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    16,
+    23
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T16:00:22.064Z",
+  "completedAt": "2026-11-14T16:02:52.532Z",
+  "finishReason": "stop",
+  "inputSha256": "844f1708fcfba2943326650afd68f0a29cfa3c367cdbee674a90945d64bcb753",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++3级.pdf",
+    "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
+    "mirrorBytes": 896357,
+    "shaVerified": true,
+    "sha256": "9d498145166ef002cead99e73efa9ddc5c87e1c82a7cd7058e63f969800d768f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证 C++ 三级、2025 年 09 月，与 paperId 2025-09-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题题干为“关于以下代码的说法正确的是（ ）”，代码为 int reversed=0; while(x!=0){ int digit=x%10; x/=10; reversed=reversed*10+digit; }，候选逐行一致，仅空白差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页四选项依次为 A 能够反转任何位数的整数、B 最大位数正整数是 2147483647、C 是 2147483648、D 是 1463847412，顺序与文字同候选。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第1页单选答案表第11题为 D（0 起始索引 3），候选 answer=3 与答案表映射一致。但独立核算：1463847412 反转为 2147483641 未溢出；2147483641 本身也在 int 范围内，反转为 1463847412 同样未溢出且大于 1463847412，故官方 D 与题干“最大”存在冲突，保留争议。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析断言 1463847412 是“能够安全反转的最大正整数”，并称“比它更大的数字”会溢出；该结论被 2147483641 反例推翻（2147483641 反转 1463847412，未超 int 上限）。候选未如实保留官方答案与题干语义冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**官方答案：D（0 起始索引 3）**\n\n按本题环境（32 位 int）独立核算：`1463847412` 反转得到 `2147483641`，未超过 `int` 上限 `2147483647`。但 `2147483641` 本身也在 `int` 范围内，反转得到 `1463847412`，同样未溢出，且大于 `1463847412`。因此若把题意理解为“反转前后均在 int 范围内的最大正整数”，最大值应为 `2147483641`，而不是 D；只有把题意另行理解为“反转结果接近 int 上限时对应的原数”等非常规定义，才可能得到 D。\n\nB 的 `2147483647` 反转后为 `7463847412`，溢出；C 的 `2147483648` 已超出 int 最大正值。A 也因 int 范围有限而错误。故保留官方答案 D，但题干“最大”与官方答案存在语义冲突，不能将 D 说成无争议的最大安全反转数。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案 D（1463847412）与“能够反转的最大位数正整数”的严格语义冲突：2147483641 反转 1463847412 未溢出且更大；保留官方答案，不擅自改 answer。"
+        ]
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题第1题原文为“表达式 sizeof('a') 的结果总是 1 ，因为 'a' 是一个字符。”，候选题干与之一致，仅空格差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题无 A-D 选项；候选“正确/错误”为展示标签。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第4页判断题答案表第1题为 ×（错误，0 起始索引 1），候选 answer=1 与答案表映射一致。但按 ISO C++，普通字符字面量 'a' 的类型是 char，sizeof(char) 定义为 1，故 sizeof('a') 为 1，题干按 C++ 应判正确；官方 × 与 C++ 标准冲突，保留争议。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析先称 'a' 类型是 char，随后又称 C++ 标准规定字符常量类型为 int、sizeof('a') 通常为 4，内部自相矛盾，并错误按 C 规则解释 C++ 题目。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**官方答案：错误（0 起始索引 1）**\n\n按 ISO C++，普通字符字面量 `'a'` 的类型是 `char`，而 `sizeof(char)` 按标准定义为 1，因此 `sizeof('a')` 在 C++ 中为 1，题干“结果总是 1”成立。C 语言中字符常量类型为 `int`，`sizeof('a')` 通常等于 `sizeof(int)`（常见为 4），官方判“错误”可能沿用了 C 规则。故保留官方答案“错误”，但该答案与 C++ 标准冲突，题干按 C++ 应判“正确”。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案表判 ×，但 ISO C++ 中 sizeof('a') 为 1，题干结论成立；官方答案疑似沿用 C 语言规则，保留官方答案并标注冲突。"
+        ]
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题第8题原文为“表达式 a > b ? a : b = 10; 一定是合法的C++代码。”，候选题干与之一致，仅空格差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题无 A-D 选项；候选“正确/错误”为展示标签。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第4页判断题答案表第8题为 ×（错误，0 起始索引 1），候选 answer=1 与答案表映射一致。但按 C++ 语法，第三操作数为 assignment-expression，表达式解析为 (a>b)?a:(b=10)；若 a、b 为已声明的可修改 int，则该表达式语句合法，官方 × 存在语义歧义，保留争议。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析称条件运算符结果必然是右值、若作为外层赋值左操作数会报错，并虚构了并不存在的外层 =10；但实际解析为 (a>b)?a:(b=10)，且 C++ 条件表达式在两分支同为左值时可为左值，候选论证不成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**官方答案：错误（0 起始索引 1）**\n\n按 C++ 语法，条件运算符的第三操作数是赋值表达式，`a > b ? a : b = 10` 解析为 `(a > b) ? a : (b = 10)`，而不是 `(a > b ? a : b) = 10`。若 `a`、`b` 是已声明的可修改 `int`，该表达式语句合法；若未声明 `a`/`b` 或 `b` 不可赋值，才不合法。因此题干“一定合法”因缺少声明和上下文可判错，但在通常默认变量已声明的前提下，官方“错误”与 C++ 语法存在冲突。不能把条件运算符结果简单断言为必然右值；两分支同为左值时，条件表达式本身也可为左值。保留官方答案并标注争议。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案表判 ×；但默认 a、b 为已声明可修改 int 时，按 C++ 语法解析为 (a>b)?a:(b=10)，该表达式语句合法；官方答案与 C++ 语义存在歧义，保留官方答案不定案。"
+        ]
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        11,
+        16,
+        23
+      ],
+      "usage": {
+        "prompt_tokens": 16146,
+        "completion_tokens": 12269,
+        "total_tokens": 28415,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10349
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0097833,
+          "allowance": 0.00586998,
+          "tokens": {
+            "input": 16146,
+            "output": 12269,
+            "reasoning": 10349,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-14T16:00:22.064Z",
+      "completedAt": "2026-11-14T16:02:52.532Z"
+    }
+  ]
+}
