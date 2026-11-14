@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T11:21:02.999Z",
+  "completedAt": "2026-11-14T11:22:46.318Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29828,
+    "completion_tokens": 8007,
+    "total_tokens": 37835,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6355
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0092784,
+      "allowance": 0.00556704,
+      "tokens": {
+        "input": 29828,
+        "output": 8007,
+        "reasoning": 6355,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证 C++ 三级 2026 年 06 月”；第 4 页是判断题第 1—7 题，并给出 10 项判断题答案表，与 2026-06-l3 的级别、年月和题型一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文与当前 question 一致：“反码运算时，产生的进位需要循环进位，即最高位产生的进位要加回到结果的最低位。”"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题的判定只有“正确/错误”两种，PDF 未另列 A/B/C/D 选项，因此不使用单选的 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 1 项为“√”，按正确=0 映射为 officialAnswer=0；当前 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明符号位参与反码运算，最高位产生的进位要回卷加到最低位，并区分补码进位直接舍弃；这与反码加法规则一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文与当前 question 一致：“-11 的补码的一种计算方式是从右往左扫描正数的二进制形式，遇到第一个 1 之后，左边的所有位都取反。”"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两种判定，PDF 未设单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 项为“√”，按正确=0 映射为 officialAnswer=0；当前 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析先用 +11 的 8 位形式 0000 1011B 演示快捷法，得到 1111 0101B，再用“按位取反加 1”复核，推导独立且结果正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题及页图清楚显示：“一个 8 位的二进制数补码，最大的表示范围是从 -127 到 +127。”与当前 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两种判定，不适用单选的 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 项为“×”，按错误=1 映射为 officialAnswer=1；当前 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析关于“8 位补码范围为 -128 到 +127”的主结论正确，但其中“原码/反码中 1000 0000B 是 -0”混同了原码与反码：1000 0000B 在原码中为 -0，在反码中为 -127，反码的 -0 是 1111 1111B。该句需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n8 位补码的表示范围是 **-128 到 +127**，不是 -127 到 +127。最小值 -128 的编码为 1000 0000B；它在原码中对应 -0，但在反码中 -0 的编码是 1111 1111B，1000 0000B 表示 -127。补码把原先重复的零编码用于多表示一个负数，因此负数端可到 -128。\n\n**易错点：**\n- ±127 是**原码/反码**的对称范围；补码是 [-128, 127]。\n- 1000 0000B 在补码中表示 -128，没有对应的 +128。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文与当前 question 一致：“判断某个数是否是质数，枚举范围可适当缩小（遍历到 √i 而非 i），提升效率。”"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两种判定，PDF 未另列单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 项为“√”，按正确=0 映射为 officialAnswer=0；当前 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析用“若 n 为合数，则存在不大于 √n 的因子”证明试除上界，并说明复杂度由 O(n) 降为 O(√n)，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 5 题原文与当前 question 一致：“如果 a 为 int 类型的变量，且表达式 ((a & 1) == 1) 的值为 true，则说明 a 是奇数。”"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两种判定，PDF 未设单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 项为“√”，按正确=0 映射为 officialAnswer=0；当前 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 a & 1 只保留最低位，最低位为 1 当且仅当 a 为奇数，并补充负奇数在补码下的情形，结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已完成题 16—20 的初核：五题题面均与 PDF 第 4 页页图一致，官方判断题答案表依次为 √、√、×、√、√，当前答案映射全部一致。第 18 题答案正确，但原解析把原码与反码的 1000 0000B 含义混同，已给出修正草稿；其余解析可独立支持答案。未发现题面或答案冲突。"
+  }
+}

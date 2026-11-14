@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T11:00:11.220Z",
+  "completedAt": "2026-11-14T11:02:08.884Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29890,
+    "completion_tokens": 11274,
+    "total_tokens": 41164,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9762
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0112479,
+      "allowance": 0.00674874,
+      "tokens": {
+        "input": 29890,
+        "output": 11274,
+        "reasoning": 9762,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 Grade Examination of Software Programming / C++ 三级 / 2026 年 06 月”，与 2026-06-l3 的年份、月份、等级一致；题6-10位于PDF第2-3页。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题题干为“关于位运算，下列说法错误的是（ ）。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四个选项与网站逐项一致：A为异或找唯一数，B为三次异或交换，C为左移n位溢出舍弃并称等价于乘2^n，D为按位取反含符号位且给出~n=-n-1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第6项为C，即0起始索引2；独立判断C项在溢出时不再等价于乘以2^n，为错误项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析结论与独立推导一致：A的异或抵消、B的异或交换、D的补码取反恒等式均成立；C因高位溢出截断而不保持乘法等价，且有符号溢出在C++中属于未定义行为。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第7题题干为“关于字符串和字符数组，下列说法正确的是（ ）。”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A-D四个代码块与网站选项内容对应：A比较sizeof与strlen，B为4字节数组初始化GESP，C为strcpy越界，D为strcat越界；网站用行内代码表达，未改变含义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第7项为C，即索引2；独立判断只有C的描述正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核正确：A中sizeof(str)=5、strlen(str)=4，故不相等；B中4字节数组装入4个字符加空字符长度不足，初始化过长；C向4字节数组复制10个字符加空字符必越界；D中dest无空字符结尾且容量不足，strcat会越界。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第8题题干为“计算机中的 2 KB 等于多少 bit（ ）。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页给出A、B两项，第3页续C、D两项，选项依次为16384、20000、2000、2048，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第8项为A，即索引0；独立计算2×1024×8=16384，确认A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核正确：1 KB=1024 B，1 B=8 bit，2 KB=2×1024×8=16384 bit；D只算到字节数，B、C为十进制或漏乘换算。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第9题题干为“在 C++ 中，对于 32 位有符号整数 int 类型数据 n，关于按位取反运算符 ~，下列说法正确的是（ ）。”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页四个选项与网站一致：A称~6=5，B称~n=-n-1，C称~0=1，D称~(-2)=-1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第9项为B，即索引1；独立计算~6=-7、~0=-1、~(-2)=1，只有B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核正确：补码下~n=-n-1，故~6=-7、~0=-1、~(-2)=1；A、C、D均与计算结果矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题题干为“关于计算机中的二进制编码表示，下列说法错误的是（ ）。”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A-D选项与网站对应：A为原码符号位与数值位，B为补码取反加一，C为补码快捷求法，D给出的范围是[-2^(n-1), +2^(n-1)]。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第10项为D，即索引3；独立判断n位补码范围应为[-2^(n-1), 2^(n-1)-1]，D的上界多1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立复核正确：n位补码非负部分为0到2^(n-1)-1，负部分到-2^(n-1)，故D错误；A、B、C表述符合原码、补码及快捷求法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题6-10已按PDF第2-3页题面、选项、代码块及第1页答案表逐题核验；官方答案映射依次为2、2、0、1、3，即C、C、A、B、D，均与网站一致。五维记录显示题干、选项、答案和解析均通过独立复核，无需changes，未发现未决问题。"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T10:18:13.685Z",
+  "completedAt": "2026-11-14T10:19:47.969Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29828,
+    "completion_tokens": 9117,
+    "total_tokens": 38945,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7708
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0099444,
+      "allowance": 0.00596664,
+      "tokens": {
+        "input": 29828,
+        "output": 9117,
+        "reasoning": 7708,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确为“CCF 编程能力等级认证”“C++ 三级”“2026 年 06 月”，与 2026-06-l3 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题题干与四项文字均与站点一致，关键二进制串1000 1101B及“1k字节”等数字未缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A至D四项逐项对照PDF第1页第1题，含义与关键表述一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第1题给A；A对应0起始索引0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：1000 1101B按8位原码解释为-13，按无符号数解释为141；B错误在于计算机内部以二进制存储和运算；C把bit与Byte的最小单位表述颠倒；D中1KB为1024B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题原文为“如果我们买的厂商标注的是 1 TB 的硬盘”，站点题干漏写“厂”字，写成“我们买的商标注的是”，语义受影响，需补正。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四项与PDF第1页第2题一致，包括1000与1024因子、A/D的小写b、B/C的大写B及931、1049、977等数值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第2题给B；B对应0起始索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：厂商按1000进制标称1TB=1000^4字节，按1024^3换算约931.32GiB，试卷记作931GB；A、D单位写成bit，C换算方向错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "计算机厂商为了计算方便，一般采用 1000 进制。如果我们买的厂商标注的是 1 TB 的硬盘，它实际的存储容量是（ ）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题图中的低4位、高4位、8位、0～15、0x0到0xF等数字与站点题干一致，压缩对象0x1、0x2、0x3、0x4完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A至D与PDF第1页第3题选项一致，含12D/12Q/12H及两组8位二进制数。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第3题给C；C对应0起始索引2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：0x1与0x2合并为0001 0010B=0x12=12H；0x3与0x4合并为0011 0100B=0x34=34H；A、B后缀分别表示十进制、八进制，D的低半字节错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第4题及公式图与站点题干一致；选项B的范围公式为[-(2^(n-1))-1, +(2^(n-1)-1)]，站点转写保留括号和负号。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A至D逐项与PDF第1页第4题一致，B的公式边界未漏项或错位。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第4题给B；B对应0起始索引1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：8位反码范围为[-127,127]，补码范围为[-128,127]，B的下界-129无法表示；A负数补码快捷法、C反码符号位参与运算、D反码正负零表示均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题题干中的字符数组text、KEY=2026、运算符数组function及示例'G'|6、'E'-2、'S'^0、'P'+2均与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A至D与PDF第2页第5题选项一致，分别为GCSR、RSCG、GCSA、BCSR。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页答案表第5题给A；A对应0起始索引0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：按示例取KEY个位至千位6、2、0、2，'G'|6=71为G，'E'-2=67为C，'S'^0=83为S，'P'+2=82为R，结果为GCSR。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第1至5题。官方答案依次为A、B、C、B、A，站点答案索引0、1、2、1、0全部匹配。第2题题干漏“厂”字，已给出修正；其余四题的题干、选项、答案和解析核验一致。五题均为单选题，无参考代码测试项。"
+  }
+}

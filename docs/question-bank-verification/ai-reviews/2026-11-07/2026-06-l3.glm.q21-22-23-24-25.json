@@ -1,0 +1,237 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T13:57:14.505Z",
+  "completedAt": "2026-11-14T13:59:25.008Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 46220,
+    "completion_tokens": 9205,
+    "total_tokens": 55425,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7226
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0115355,
+      "allowance": 0.0115355,
+      "tokens": {
+        "input": 46220,
+        "output": 9205,
+        "reasoning": 7226,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示 CCF 编程能力等级认证、GESP、C++ 三级、2026 年 06 月，与 paperId 2026-06-l3 对应；判断题答案表位于 PDF 第 4 页，符号逐项可辨。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 6 题原文：十六进制数 CCF 对应的二进制数、八进制数、十进制数分别是：110011001111、6317、3269。与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以陈述句呈现，PDF 仅给出判断符号，无独立选项文本需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 6 项为 ×（错误），officialAnswer=1，与网站 answer=1 一致。独立换算：0xCCF=12×256+12×16+15=3279，题中十进制写作 3269 确为错误；二进制 C=1100、C=1100、F=1111 得 110011001111 正确；八进制 6317 换回十进制 6×512+3×64+1×8+7=3279 正确；整句因十进制错误而判定为错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出二进制与八进制正确、十进制应为 3279 而非 3269；独立复核 3279 与 6317 均成立，与解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核草稿的页面定位、答案符号 × 与独立换算 3279 均与本次复核一致，接受其结论；网站数据无错误，无修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 7 题题干：下列程序如果能够正确执行，那么输出的结果是 GESP。第 5 页代码框为 int main() { string name = \"GESP\"; cout << name[false] << name[true] << name[1 << 1] << name[7 >> 1] << endl; }，代码未含 include 行，与网站转录一致，题干以能够正确执行为前提。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以陈述句呈现，无独立选项文本需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 项为 √（正确），officialAnswer=0，与网站 answer=0 一致。独立推导：false 转 0 取 name[0]='G'，true 转 1 取 name[1]='E'，1<<1=2 取 'S'，7>>1=3 取 'P'，输出 GESP，陈述成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐项给出下标 0、1、2、3 并对应 G、E、S、P，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核草稿对 √ 符号与下标映射的核验正确，接受；代码缺 include 不影响判定，因题干以能够正确执行为前提。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 8 题代码框中，除左侧灰色行号 1–6 外，每行代码内容前又带有数字 1–6，首行呈现为 1 #include<bits/stdc++.h>，末行为 6 }，与网站转录一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以陈述句呈现，无独立选项文本需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 8 项为 ×（错误），officialAnswer=1，与网站 answer=1 一致。学生敲入的每一行以数字开头，# 不在行首，代码非法无法编译，能够正常编译运行的陈述为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出行号被原样敲入编译器、形如 1 #include<bits/stdc++.h> 的文本不是合法 C++ 代码，与代码框实况及判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核草稿对双重行号的识别与 × 符号核验均正确，接受。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 9 题原文：代码逐行复刻手工运算步骤，中间不能增加任何判断逻辑，否则就不属于模拟算法。与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以陈述句呈现，无独立选项文本需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 9 项为 ×（错误），officialAnswer=1，与网站 answer=1 一致。模拟算法的核心是按题目规则逐步复现过程，允许 if、循环等判断逻辑处理分支与终止条件，禁止任何判断的说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明模拟题大量使用条件判断、忠实复现规则即可，逐行死板复刻并禁止判断是对模拟算法的曲解，理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核草稿结论与 × 符号及模拟算法概念一致，接受。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 10 题原文：判断一个 int 型数字 s[i] 是不是在 0 和 9 之间（可以是 0 和 9），判断条件可以写为 if (s[i] >= '0' && s[i] <= '9')。与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以陈述句呈现，无独立选项文本需要核对。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 10 项为 ×（错误），officialAnswer=1，与网站 answer=1 一致。题干明确 s[i] 为 int 型数值 0–9，而字符常量 '0'=48、'9'=57，例如 s[i]=5 时 5>=48 为 false，条件恒不成立，写法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出 int 数值与字符常量混用导致条件失效，并给出数值比较 s[i] >= 0 && s[i] <= 9 及字符场景两种正确写法；ASCII '0'=48、'9'=57 复核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核草稿对 int 数值与字符常量混淆的分析及 × 符号核验正确，接受。"
+      }
+    ],
+    "summary": "本次核验判断题第 6–10 题（网站 id 21–25）。五题题面与 PDF 第 4–5 页逐字一致；官方答案表符号依次为 ×、√、×、×、×，对应 officialAnswer 1、0、1、1、1，与网站 answer 完全吻合。解析均经独立复核：0xCCF 十进制为 3279（题中 3269 错误、八进制 6317 正确），GESP 下标映射 false/true/1<<1/7>>1 输出 GESP，行号敲入致编译失败，模拟算法允许判断逻辑，int 与字符常量 '0'(48) 比较恒假。全部五题 approve，无需修改。判断题 options 与 referenceCode 不适用，标为 not_applicable。"
+  }
+}

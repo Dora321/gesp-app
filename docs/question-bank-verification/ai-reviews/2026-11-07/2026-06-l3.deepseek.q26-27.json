@@ -1,0 +1,160 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T13:59:25.017Z",
+  "completedAt": "2026-11-14T14:02:06.365Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29822,
+    "completion_tokens": 13433,
+    "total_tokens": 43255,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11777
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0125331,
+      "allowance": 0.00751986,
+      "tokens": {
+        "input": 29822,
+        "output": 13433,
+        "reasoning": 11777,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页原图卷头为“C++ 三级 / 2026 年 06 月”，与 paperId 2026-06-l3 一致；编程题 26、27 分别对应 PDF 第5-7页、第7-9页的 3.1 加密与 3.2 字符转换。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页 3.1 起至第7页 3.1.8：题目描述、3 行输入格式、输出格式、样例 7 / 0 2 0 3 4 1 9 / 9 0 1 2 3 4 5 6 7 8 → 9 1 9 2 3 0 8、数据范围“不超过 20000 个，且均为 0 到 9；密码本数字不重复”均与当前题面一致；页图中的数字 10、20000 等已按原图核对。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项；当前数据未设置 options 字段。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案索引；PDF 第1页答案表只覆盖单选，第4页答案表只覆盖判断。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“原数字作为 keys 下标”独立推导，样例走查 0→9、2→1、0→9、3→2、4→3、1→0、9→8 与 PDF 第6-7页一致；复杂度 O(n)、输出尾随空格说明也与第7页参考程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第7页 3.1.9 参考程序语义一致：a[20010]、keys[11]、读入顺序、循环边界均相同；输出处仅把字符空格写成字符串空格，结果同为单个空格。n≤20000 时 a 下标 0..n-1 安全，keys 只访问 0..9，无溢出/越界。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n=0 空序列边界",
+            "input": "0\n\n9 0 1 2 3 4 5 6 7 8",
+            "output": "\n",
+            "reason": "题面只给“不超过 20000”的上界，未明确下界；参考代码在 n=0 时不进入数字循环，读取 10 个映射后仅输出换行。此测试用于空序列容错，若官方隐含 n≥1 则不计入强制范围。"
+          },
+          {
+            "name": "查表索引而非位置（含 0 和 9）",
+            "input": "2\n0 9\n9 0 1 2 3 4 5 6 7 8",
+            "output": "9 8 \n",
+            "reason": "keys[0]=9、keys[9]=8；代码输出 keys[a[i]] 而非 keys[i]，且每个密文后有一个空格，最后换行。"
+          },
+          {
+            "name": "最小非零规模 n=1",
+            "input": "1\n9\n9 0 1 2 3 4 5 6 7 8",
+            "output": "8 \n",
+            "reason": "n=1 是最小非零规模；验证 keys[9]=8 以及输出末尾空格/换行与参考代码一致。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页 3.2 起至第9页 3.2.8：转换规则（大写→小写、小写→大写、数字→*）、2 行输入、输出不加空格、样例 5 / aBc98 → AbC**、数据范围“不超过 1000 个”均与当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项；当前数据未设置 options 字段。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观答案索引；PDF 第1页答案表只覆盖单选，第4页答案表只覆盖判断。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 ASCII 差 32 独立推导大小写转换，数字分支输出 '*'；样例逐字符走查 a→A、B→b、c→C、9→*、8→* 与 PDF 第8页样例解释一致，且与第9页参考程序逻辑一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第9页 3.2.9 参考程序逐行一致：s[1010]，cin >> s，按 n 遍历 s[0..n-1]，小写减 'a'-'A'、大写加 'a'-'A'、其余输出 '*'；n≤1000 时数组容量含结束符安全，循环不越界，复杂度 O(n)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n=1 小写边界 z",
+            "input": "1\nz",
+            "output": "Z\n",
+            "reason": "n=1 为最小非零规模；'z' 是小写字母边界，按 c-('a'-'A') 转为 'Z'，最后换行。"
+          },
+          {
+            "name": "大小写与数字边界混合",
+            "input": "6\nAz09aZ",
+            "output": "aZ**Az\n",
+            "reason": "覆盖 'A'、'z'、'0'、'9'、'a'、'Z'：大写 A→a、小写 z→Z、数字 0/9→*、小写 a→A、大写 Z→z；输出字符间无空格。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验 26、27。两题题面、样例、数据范围与 PDF 第5-9页页图一致；参考代码算法、边界和复杂度静态核对通过；解析独立推导与样例走查一致，未发现需修改字段。测试期望由代码逻辑独立推导，未实际运行源码；26 题 n=0 下界题面未明示，已作为容错边界注明。"
+  }
+}

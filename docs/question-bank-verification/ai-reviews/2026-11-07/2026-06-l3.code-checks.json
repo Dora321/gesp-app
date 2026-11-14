@@ -1,0 +1,85 @@
+{
+  "executedAt": "2026-11-14T14:27:47.791Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "7\n0 2 0 3 4 1 9\n9 0 1 2 3 4 5 6 7 8",
+          "output": "9 1 9 2 3 0 8",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9 1 9 2 3 0 8 \n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1",
+          "input": "1\n5\n9 0 1 2 3 4 5 6 7 8",
+          "output": "4",
+          "reason": "n=1 为题面允许的最小非零规模；独立查表 keys[5]=4，期望输出 4。参考代码会在数后再输出一个空格并换行，行尾空白按评测惯例忽略。",
+          "kind": "boundary",
+          "actual": "4 \n",
+          "passed": true
+        },
+        {
+          "name": "取值域两端 0 与 9（下标语义）",
+          "input": "2\n0 9\n9 0 1 2 3 4 5 6 7 8",
+          "output": "9 8",
+          "reason": "覆盖取值域两端：keys[0]=9、keys[9]=8，验证按原数字作下标（keys[a[i]]）而非按位置（keys[i]）查表；独立复算期望输出 9 8。",
+          "kind": "boundary",
+          "actual": "9 8 \n",
+          "passed": true
+        },
+        {
+          "name": "n=0 容错边界（题面未明示下界）",
+          "input": "0\n\n9 0 1 2 3 4 5 6 7 8",
+          "output": "",
+          "reason": "题面仅约束上界 20000、未明示下界；若数据含 n=0，参考代码读入 10 个密码后不输出任何数字，仅由 endl 输出一个换行，可见输出为空（与空输出按空白等价）。",
+          "kind": "boundary",
+          "actual": "\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ed3000913d9d218c4569ad9e7d63ae8c24d01529b7ac59c3618d076735239609"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "5\naBc98",
+          "output": "AbC**",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "AbC**\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1",
+          "input": "1\nz",
+          "output": "Z",
+          "reason": "n=1 为最小规模；独立复算 'z'(122)−32='Z'(90)，期望输出 Z，末尾换行（空白差异按惯例忽略）。",
+          "kind": "boundary",
+          "actual": "Z\n",
+          "passed": true
+        },
+        {
+          "name": "大小写与数字边界混合",
+          "input": "6\nAz09aZ",
+          "output": "aZ**Az",
+          "reason": "一次覆盖 A、Z、a、z、0、9 全部边界字符：A→a、z→Z、0→*、9→*、a→A、Z→z；独立逐字符复算得 aZ**Az，字符间无空格、末尾换行，与参考代码行为一致。",
+          "kind": "boundary",
+          "actual": "aZ**Az\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "91f91277c18ccba8e125a4d4e2d6692ba0811d82b20bbf40b044f475726121be"
+    }
+  ]
+}

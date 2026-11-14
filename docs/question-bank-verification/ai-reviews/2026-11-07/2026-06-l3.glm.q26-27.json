@@ -1,0 +1,164 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T14:16:49.443Z",
+  "completedAt": "2026-11-14T14:22:26.214Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 46036,
+    "completion_tokens": 22679,
+    "total_tokens": 68715,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 20174
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0182449,
+      "allowance": 0.0182449,
+      "tokens": {
+        "input": 46036,
+        "output": 22679,
+        "reasoning": 20174,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页原图卷头为「C++ 三级 / 2026 年 06 月」（CCF 编程能力等级认证 GESP），与 paperId 2026-06-l3 的年份 2026、月份 6、级别 3 一致；第5页起编程题1「加密」、第7页起编程题2「字符转换」，与网站题号 26、27 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "逐项对照页图：第5页 3.1 试题名称「加密」、时间限制 1.0 s、内存限制 512.0 MB、题目描述（数字共 10 个 0–9、密码本依次告知各变成什么）及 3.1.2 输入格式（共 3 行）；第6页 3.1.3 输出格式、3.1.5/3.1.6 样例（7 / 0 2 0 3 4 1 9 / 9 0 1 2 3 4 5 6 7 8 → 9 1 9 2 3 0 8）及样例解释、第6页续「第 1 个数字表示 0 加密后变成什么……第 10 个数字表示 9 加密后变成什么」；第7页 3.1.8 数据范围（不超过 20000 个、均为 0 到 9、密码本数字不重复）。网站题面全部数字（3 行、10 个、20000、样例值）与页图一致，无缺漏、无含义改动。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项；网站数据亦未设置 options 字段。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF 第1页答案表仅覆盖单选、第4页答案表仅覆盖判断，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：keys 依次为 9,0,1,2,3,4,5,6,7,8，对 a=[0,2,0,3,4,1,9] 逐位查 keys[a[i]] 得 9,1,9,2,3,0,8，与第6–7页样例输出一致；解析中「keys 从下标 0 存」「输出 keys[a[i]] 而非 keys[i]」「先读数字后读密码本」「a 至少开 20000（参考 a[20010]）」「每个数后输出空格、行末多一个空格」各提醒均与第7页参考程序实际行为相符，O(n) 复杂度判断正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与第7页 3.1.9 参考程序逐行语义一致：a[20010]、keys[11]、读入顺序 n→n 个数→10 个密码、三段循环边界相同、末尾 endl；唯一输出相关差异是网站把字符空格写成字符串字面量（' ' 写作双引号包裹形式），输出同为单个空格，属等价写法而非内容错误。静态核对边界：n≤20000 时 a 下标最大 19999<20010，keys 仅访问 0..9，无越界与溢出；O(n) 在 1.0 s 限制内充分。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 n=1",
+            "input": "1\n5\n9 0 1 2 3 4 5 6 7 8",
+            "output": "4",
+            "reason": "n=1 为题面允许的最小非零规模；独立查表 keys[5]=4，期望输出 4。参考代码会在数后再输出一个空格并换行，行尾空白按评测惯例忽略。"
+          },
+          {
+            "name": "取值域两端 0 与 9（下标语义）",
+            "input": "2\n0 9\n9 0 1 2 3 4 5 6 7 8",
+            "output": "9 8",
+            "reason": "覆盖取值域两端：keys[0]=9、keys[9]=8，验证按原数字作下标（keys[a[i]]）而非按位置（keys[i]）查表；独立复算期望输出 9 8。"
+          },
+          {
+            "name": "n=0 容错边界（题面未明示下界）",
+            "input": "0\n\n9 0 1 2 3 4 5 6 7 8",
+            "output": "",
+            "reason": "题面仅约束上界 20000、未明示下界；若数据含 n=0，参考代码读入 10 个密码后不输出任何数字，仅由 endl 输出一个换行，可见输出为空（与空输出按空白等价）。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核对题面/解析/参考代码「均一致且正确」的结论，经本人独立对照 PDF 第5–7页页图逐项复核后成立，予以接受，无字段需修改。对初核测试做两处调整：其一，初核期望输出按参考代码字面书写（含行尾空格与换行），与网站样例的语义输出惯例不一致，已统一改为语义期望（9 8、4、空）并在 reason 注明参考代码行尾空白差异；其二，最小规模用例改用本人独立选取的 n=1、数字 5→4（初核原用例 n=1、9→8 亦经复算正确，属等价替换而非否决）。n=0 下界题面未明示，保留为容错边界用例并加注。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "逐项对照页图：第7页 3.2 试题名称「字符转换」、时间限制 1.0 s、内存限制 512.0 MB、3.2.1 三条转换规则（大写→小写、小写→大写、数字→*）；第8页 3.2.2 输入格式（共 2 行：整数、一串连续无空格字符）、3.2.3 输出格式（字符之间不要加空格）、3.2.5/3.2.6 样例（5 / aBc98 → AbC**）、3.2.7 逐字符样例解释、3.2.8 数据范围（不超过 1000 个；只会是大写字母、小写字母或数字）。网站题面与页图一致，无缺漏。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项；网站数据亦未设置 options 字段。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；officialAnswer 记为 null，答案表仅适用单选/判断题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：'a'−'A'=32，小写减 32 得大写、大写加 32 得小写、依题面其余必为数字故输出 *；对样例 aBc98 逐字符复算 a→A、B→b、c→C、9→*、8→*，与第8页样例解释及输出 AbC** 一致。解析关于 char 与整数运算提升为 int、须 (char) 强转后再输出、范围判断须写作 'a'<=c && c<='z' 而非连续不等式的提醒均符合 C++ 实际语义。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与第9页 3.2.9 参考程序逐行语义一致（仅空行排版差异）：char s[1010]、cin>>n、cin>>s、按 n 遍历 s[0..n−1]，'a'<=c&&c<='z' 时输出 (char)(c−('a'−'A'))，'A'<=c&&c<='Z' 时输出 (char)(c+('a'−'A'))，否则输出 *，末尾 endl。静态核对：n≤1000 时字符串最长 1000 字符加结束符共 1001≤1010，循环不越界；char 算术在 int 范围内无溢出；O(n) 在 1.0 s 限制内充分。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 n=1",
+            "input": "1\nz",
+            "output": "Z",
+            "reason": "n=1 为最小规模；独立复算 'z'(122)−32='Z'(90)，期望输出 Z，末尾换行（空白差异按惯例忽略）。"
+          },
+          {
+            "name": "大小写与数字边界混合",
+            "input": "6\nAz09aZ",
+            "output": "aZ**Az",
+            "reason": "一次覆盖 A、Z、a、z、0、9 全部边界字符：A→a、z→Z、0→*、9→*、a→A、Z→z；独立逐字符复算得 aZ**Az，字符间无空格、末尾换行，与参考代码行为一致。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论经本人独立对照 PDF 第7–9页页图逐项复核后成立，予以接受，无字段需修改。其两条测试均经本人独立复算确认（z→Z、Az09aZ→aZ**Az），仅将期望输出统一为语义形式（去掉字面换行符），与网站样例书写惯例一致；混合用例恰好覆盖全部六类边界字符，予以保留。"
+      }
+    ],
+    "summary": "本次仅核验编程题 26（加密）与 27（字符转换）。两题题面、样例与数据范围经与 PDF 第5–9页页图逐项对照一致；参考代码与官方参考程序逐行语义一致（26 题仅空格的字符/字符串写法差异，输出相同），算法正确性、O(n) 复杂度与边界（a[20010] 对 n≤20000、keys 下标 0..9、s[1010] 对 n≤1000、char 算术无溢出）静态核对通过；解析均经独立推导与样例走查确认。两题 statement/explanation/referenceCode 标 verified，options/answer 对编程题不适用，无任何字段需要修改，changes 为空。测试期望全部由本人独立复算（未实际运行代码）：26 题覆盖 n=1 最小规模、取值域两端 0/9 与 n=0 容错边界，27 题覆盖 n=1 与 A/Z/a/z/0/9 六个边界字符。备注：PDF 标明两题时间限制 1.0 s、内存限制 512.0 MB，网站数据模型未设单题时限/内存字段，无处承载，不构成题面错误；26 题数据范围未明示 n 下界，n=0 用例已按容错边界注明。"
+  }
+}

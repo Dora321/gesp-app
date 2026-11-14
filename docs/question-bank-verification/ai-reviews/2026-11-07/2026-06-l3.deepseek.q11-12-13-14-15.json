@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T11:02:58.728Z",
+  "completedAt": "2026-11-14T11:06:12.937Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29828,
+    "completion_tokens": 21488,
+    "total_tokens": 51316,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19738
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.017367,
+      "allowance": 0.0104202,
+      "tokens": {
+        "input": 29828,
+        "output": 21488,
+        "reasoning": 19738,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 C++ 三级、2026 年 06 月；与 paperId 的 level=3、year=2026、month=6 一致，共 9 页。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题11题干与当前题面一致：变量均为正整数，要求选出关于位运算说法错误的一项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 四项分别为 num & 1 判奇偶、num & 0xFF 保留低8位、num & b ≤ num、左移溢出仍符合乘法规律；与当前选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题11为 D；当前 answer=3（D），一致。独立判断 D 为错误项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按正整数按位与只可能清 0、不会增加数值，验证 A、B、C 成立；左移溢出后不能保证等于乘 2 的幂，D 错，解析结论与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题12给出 a=7、b=3、c=14、d=15、e=8，表达式为 !a << b & c ^ d | e；与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项为 A.0、B.15、C.7、D.14，当前选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题12为 B；当前 answer=1（B），一致。独立按优先级计算得 15。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按优先级 ! > << > & > ^ > |，!a=0，0<<3=0，0&14=0，0^15=15，15|8=15；解析推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题13题干要求选出关于 string 成员函数说法错误的一项；与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 分别涉及 size、length、empty、append(s2,0,3)；当前选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题13为 C；当前 answer=2（C），一致。empty() 在字符串非空时返回 false，C 项颠倒。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "size/length 描述成立，append 三参数重载描述成立；empty() 为空返回 true、非空返回 false，故 C 错，解析与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题14要求选出符合 C++ 语法的数组定义；与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页四项为 int [10] a、int b['&']、int c[*]、double d[10.0]；当前选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题14为 B；当前 answer=1（B），一致。'&' 是字符常量，可作为整型常量表达式用作数组长度。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "数组长度须为整型常量表达式；A 声明语法错误，C 的 * 非法，D 浮点长度非法；B 的字符常量可转换为整数常量，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题15题干、输入限制 1≤N≤1000、字符串长度限制及所给程序均与当前题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 分别为 >=、<=、=、< 四种边界判断；当前选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表题15为 B；当前 answer=1（B），一致。用最大字符不超过各进制最大字符判断，B 正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案和核心判断正确，但原解析末条误称 max 变量与内层循环变量同名 i；实际是外层与内层循环均用 i，max 为独立变量。C 项解析也把字符赋值输出误说成布尔真，需修正表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**核心解析：**\n字符串能否作为 k 进制数，取决于**最大字符**是否在该进制允许的数字字符范围内：\n- 二进制（0/1）：max ≤ '1'\n- 八进制（0-7）：max ≤ '7'\n- 十进制（0-9）：max ≤ '9'\n- 十六进制（0-9, A-F）：max ≤ 'F'\n\nmax 越小，满足的进制越多——用 ≤ 逐一判断即可。验证：1011 的 max='1' → 四个条件全真 → 1 1 1 1；6AFF 的 max='F' → 只满足最后一个 → 0 0 0 1。\n\n**选项逐项分析：**\n- **A**：❌ 用 >=：max ≥ '1' 对几乎任何数字串都成立，逻辑完全颠倒（例如 89 会被判为二进制可能）。\n- **B**：✅ 正确，≤ 判断没有超出该进制字符集。\n- **C**：❌ 用 = 赋值：max 被覆盖，无法完成条件判断，输出不是题目要求的四列 0/1 结果。\n- **D**：❌ 用 <：max 恰好等于边界时误判（如 7 的 '7' < '7' 为假，会被漏判为八进制不可能）。\n\n**易错提醒：**\n- 可能是 k 进制 ⇔ 所有字符都在该进制字符集内 ⇔ max 不超过该进制允许的最大数字字符。\n- max 是独立变量；本题代码外层循环和内层循环都使用了变量名 i，内层 i 会遮蔽外层 i。\n\n**考点：** 字符比较与进制判断逻辑"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题11-14题面、选项、官方答案与解析均核对一致，无需改动。题15官方答案 B、选项与程序逻辑正确；原解析末条存在变量名误述，且对 C 项赋值输出的说明不准确，已提交解析修正。本节仅核验题11-15。"
+  }
+}

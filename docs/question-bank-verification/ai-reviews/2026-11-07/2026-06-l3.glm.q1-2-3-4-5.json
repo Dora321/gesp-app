@@ -1,0 +1,235 @@
+{
+  "paperId": "2026-06-l3",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T10:52:32.849Z",
+  "completedAt": "2026-11-14T10:53:24.542Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 46177,
+    "completion_tokens": 8496,
+    "total_tokens": 54673,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6260
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01117455,
+      "allowance": 0.01117455,
+      "tokens": {
+        "input": 46177,
+        "output": 8496,
+        "reasoning": 6260,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bbde5cadff3580def14fa850f5f6c203da755c43120166f91ac930ede5a9a50d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295297183776.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++3级.pdf",
+    "mirrorSha": "015d4a7d322082d8fba5c018c963f9efa9100e02",
+    "mirrorBytes": 811368,
+    "shaVerified": true,
+    "sha256": "7d6596448d55cbe5af37bb6b0d3aea00b14af9988e5519f0bb54da1299e0c72b"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-06-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头图为‘CCF 编程能力等级认证 / GESP / C++ 三级 / 2026 年 06 月’，页脚 1/9，与 2026-06-l3（2026年6月 C++ 三级）一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干‘关于计算机的数据编码，下面说法正确的是（ ）。’与站点一致；图片中 A 项二进制串 1000 1101B、数值 -13、141，D 项‘1k 字节是 1000 字节’等关键数字齐全。站点 C 项省略第二个‘计算机中’，语义不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四项逐项对照第1页图片：A 机器数 1000 1101B 按原码 -13/无符号 141；B 所有数据以二进制、八进制、十六进制存储和运算；C Byte/bit 最小单位表述；D 1k=1000。含义均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第1题为 A，对应 0 起始索引 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：1000 1101B 原码符号位 1、数值位 0001101=13 得 -13；无符号 128+8+4+1=141，A 正确。B 计算机内部只用二进制存储运算，错误；C bit 与 Byte 的‘最小’表述颠倒；D 1KB=1024B。解析与官方答案 A 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照 PDF 第1页确认题干、选项、官方答案 A 及解析推导均无误，无修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第1页第2题原文为‘如果我们买的厂商标注的是 1 TB 的硬盘’，站点漏‘厂’字写成‘商标注’致语义不通，已按原文补正并与图片逐字核对一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项逐项对照第1页图片：A‘1000×1000×1000×1000÷1024÷1024÷1024b=931Gb’、B 同式大写 B 结尾 931GB、C‘1024×1024×1024×1024÷1000÷1000÷1024B=1049GB’、D‘1000×1024×1024×1024÷1024÷1024÷1024b=977Gb’，因子、大小写单位与数值均一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第2题为 B，对应索引 1；独立计算 1000^4÷1024^3≈931.32，B 正确，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：1TB=10^12 B，除以 1024^3≈1.074×10^9 得约 931GB；A、D 单位误用小写 b（bit），C 把 1024 与 1000 混用且方向错误。解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "计算机厂商为了计算方便，一般采用 1000 进制。如果我们买的厂商标注的是 1 TB 的硬盘，它实际的存储容量是（ ）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：独立确认站点题干漏‘厂’字，‘买的商标注的是’语义受损，PDF 第1页图片原文为‘厂商标注’，采纳该补正；选项、答案、解析核验一致。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题图片中‘低 4 位、高 4 位’‘一个字节为 8 位’‘0～15，即 0x0 到 0xF’‘四个数据 0x1、0x2、0x3、0x4’等数字完整无缺失，站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 12D、34D；B 12Q、34Q；C 12H、34H；D 00010011B、00110101B，与图片逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第3题为 C，对应索引 2，与站点 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：0x1 与 0x2 合并为 0001 0010B=0x12=12H；0x3 与 0x4 合并为 0011 0100B=0x34=34H，故 C。D 项 00010011B=0x13、00110101B=0x35 低半字节有误；A、B 后缀分别为十进制、八进制。解析与 C 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：压缩结果 12H、34H 经独立验算成立，官方答案 C 与站点一致，题干选项无缺失，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题题干‘关于计算机编码中反码和补码，下面说法错误的是（ ）。’与站点一致；B 项公式经图片核对为 [-(2^(n-1))-1, +(2^(n-1)-1)]，站点转写括号与负号均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 负数补码从右往左扫描遇第一个 1 后左边取反；B n 位范围公式；C 反码减法统一为加法、符号位直接参与运算；D 反码 0 不唯一（0000 0000B 与 1111 1111B），逐项与图片一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第4题为 B，对应索引 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：8 位反码范围 [-127,127]、补码 [-128,127]；B 的下界 -(2^(n-1))-1（8 位即 -129）超出两者表示能力，说法错误。A 快捷法对 +6→1111 1010 验证成立；C 循环进位机制正确；D 正负零表示正确。解析判定与官方答案 B 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：B 项范围公式下界多减 1 的判定经独立验算成立，其余三项说法均正确，题干与选项转写无误，无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题：char text[4] = {'G', 'E', 'S', 'P'}、KEY = 2026、char function[4] = {'|', '-', '^', '+'} 及示例运算 'G' | 6、'E' - 2、'S' ^ 0、'P' + 2 均与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A GCSR、B RSCG、C GCSA、D BCSR，与第2页图片逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表（第1页）第5题为 A，对应索引 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：KEY=2026 按 6、2、0、2 配对：'G'(71)|6=71='G'（6 的置位已在 G 中）；'E'(69)-2=67='C'；'S'(83)^0=83='S'；'P'(80)+2=82='R'，结果 GCSR。解析与官方答案 A 吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：按密钥 6、2、0、2 与四运算符逐步独立验算得 GCSR，官方答案 A 与站点一致，题干选项转写无误，无需修改。"
+      }
+    ],
+    "summary": "本次核验第1—5题。官方答案表（PDF 第1页）依次为 A、B、C、B、A，对应 0 起始索引 0、1、2、1、0，与站点 answer 全部一致。第2题题干漏‘厂’字（‘商标注’语义不通），已按 PDF 原文补正，修复后核验通过；其余各题题干、选项、解析均与原卷逐字/逐项核对一致。DeepSeek 初核结论经独立复核全部采纳，未发现其误判。五题均为单选题，referenceCode 不适用，无测试项，无未决问题。"
+  }
+}
