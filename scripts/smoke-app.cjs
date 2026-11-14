@@ -145,6 +145,8 @@ async function run() {
   const requestUrls = [];
 
   page.on('console', (msg) => {
+    // An unopened classroom has no authorization; the restore probe deliberately returns 401.
+    if (/\/api\/session$/.test(msg.location().url || '') && /401/.test(msg.text())) return;
     if (['error', 'warning'].includes(msg.type())) {
       messages.push(`${msg.type()}: ${msg.text()}`);
     }
