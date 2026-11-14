@@ -1,0 +1,32 @@
+{
+  "paperId": "2025-09-l3",
+  "integratedAt": "2026-11-14T21:56:57.667Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 11,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 16,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 23,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": []
+}
