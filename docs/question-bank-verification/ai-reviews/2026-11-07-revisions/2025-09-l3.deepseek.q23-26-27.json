@@ -1,0 +1,218 @@
+{
+  "paperId": "2025-09-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    23,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T05:47:38.668Z",
+  "completedAt": "2026-11-14T05:50:40.555Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29335,
+    "completion_tokens": 26051,
+    "total_tokens": 55386,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 29312,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 23648,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01572199,
+      "allowance": 0.00943319,
+      "tokens": {
+        "input": 23,
+        "output": 26051,
+        "reasoning": 23648,
+        "cache_read": 29312,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c940228a2907653eb538d55fd5379b9aa2fe2b21c866e7af28661fe48dae8928",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++3级.pdf",
+    "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
+    "mirrorBytes": 896357,
+    "shaVerified": true,
+    "sha256": "9d498145166ef002cead99e73efa9ddc5c87e1c82a7cd7058e63f969800d768f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为CCF GESP C++ 三级、2025年09月，与2025-09-l3一致。"
+    },
+    "questions": [
+      {
+        "id": 23,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页判断题第8题原文为“表达式 a > b ? a : b = 10; 一定是合法的C++代码。”，候选题干一致，仅空格/排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D选项；原卷用√/×，网站用“正确/错误”二元表示。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF第4页判断题答案表第8列为×，对应“错误”=索引1，候选answer=1与答案表映射一致；但按ISO C++，若a、b是已声明的可修改int，第三操作数b=10为赋值表达式，表达式解析为(a>b)?a:(b=10)，语句合法，官方×与通常C++语义存在冲突。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明条件运算符第三操作数可为赋值表达式、解析为(a>b)?a:(b=10)，并指出若a、b已声明且b可赋值则表达式合法、题干有歧义；未发现技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案表判×；但若a、b为已声明的可修改int，按C++语法该表达式合法，官方答案与C++语义存在歧义，保留争议，不擅自改答案。"
+        ]
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题面、样例序列及第6页3.1.5数据范围1≤n≤100、0≤a_i≤100，与候选question一致；样例1输入3/2 3 4输出7，样例2输入5/1 3 2 2 5输出13均与PDF一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按参考程序模拟：样例1经7次、样例2经13次归零；[2,4,6]为6次，全0输出0，单元素100输出1；每轮两遍扫描O(n)，操作次数不超过元素和10000，n≤100时1s内安全，cnt无溢出。候选解析无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第6页参考程序逐行一致：mx从1到n用>=扫描保证并列最大值取最右下标；mn跳过0取最小正数；a[mx]==0时退出；cnt全局零初始化，a_i≤100、操作次数≤10000，均无溢出风险。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "全零最小规模",
+            "input": "1\n0",
+            "output": "0",
+            "reason": "n=1、a1=0，首轮a[mx]==0立即break，cnt保持0；覆盖n下界及全零情形。"
+          },
+          {
+            "name": "单元素上界",
+            "input": "1\n100",
+            "output": "1",
+            "reason": "唯一正数同为最大值与最小正数，自减一次归零，共1次；覆盖a_i上界100。"
+          },
+          {
+            "name": "混合零跳过0",
+            "input": "3\n0 5 0",
+            "output": "1",
+            "reason": "最大值为5，最小正数为5，减后全0；验证最小正数跳过0且原有0不被改动。"
+          },
+          {
+            "name": "最小正数大于1",
+            "input": "3\n2 4 6",
+            "output": "6",
+            "reason": "每轮减2：6→4→2→0、4→2→0、2→0，共6次；验证次数可小于元素和12。"
+          },
+          {
+            "name": "n上界全1",
+            "input": "100\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1",
+            "output": "100",
+            "reason": "每轮最右最大值1减1归零，共100轮；覆盖n上界与最坏循环规模，cnt无溢出。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页题目描述、第7页样例1/2及3.2.5数据范围1≤m≤12，与候选question一致；九月示例恢复为4列对齐，样例2首行日期1与SUN末字母N对齐。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推算2025-09-01周一、06-01周日、01-01周三、12-01周一；样例1/2走查、空星期4空格、% 3d字段与行末不补空格均正确；m>9递推和m<9回溯含0→7处理，与参考程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第7-8页参考程序一致：以9月1日周一为锚点，m>9用(w+days[i]-1)%7+1递推，m<9用((w-days[i])%7+7)%7回溯并0→7；先输出w-1组4空格，再按% 3d输出日期，w==1或i==d换行。m≤12，常数时间，无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小月份回溯含二月",
+            "input": "1",
+            "output": "MON TUE WED THU FRI SAT SUN\n          1   2   3   4   5\n  6   7   8   9  10  11  12\n 13  14  15  16  17  18  19\n 20  21  22  23  24  25  26\n 27  28  29  30  31",
+            "reason": "m=1为最小月份；从9/1回溯经days[2]=28得2025-01-01周三；首行前置2个空星期共8空格，加日期字段2空格后为10空格，1月31天，末行27-31止于周五换行。"
+          },
+          {
+            "name": "二月非闰年28天",
+            "input": "2",
+            "output": "MON TUE WED THU FRI SAT SUN\n                      1   2\n  3   4   5   6   7   8   9\n 10  11  12  13  14  15  16\n 17  18  19  20  21  22  23\n 24  25  26  27  28",
+            "reason": "2025-02-01为周六；前置5个空星期共20空格，加日期字段2空格后为22空格；非闰年二月28天，末行24-28止于周五换行。"
+          },
+          {
+            "name": "最大月份无前置空位",
+            "input": "12",
+            "output": "MON TUE WED THU FRI SAT SUN\n  1   2   3   4   5   6   7\n  8   9  10  11  12  13  14\n 15  16  17  18  19  20  21\n 22  23  24  25  26  27  28\n 29  30  31",
+            "reason": "2025-12-01为周一，无前置空位；12月31天，末行29-31，覆盖m上界12。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号23、26、27。第23题官方答案表为×且候选映射一致，但若a、b为已声明可修改int，按C++语法表达式合法，官方答案存在语义争议，保留unresolved；解释稿已如实记录该冲突。第26、27题的题面、样例、数据范围、参考程序和解析均与原卷及页图核对一致，未作改动；所列编程测试期望均由人工按参考程序推导，未声称已运行。"
+  }
+}

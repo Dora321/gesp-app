@@ -1,0 +1,237 @@
+{
+  "paperId": "2025-09-l3",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    10,
+    11,
+    16,
+    22
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T02:43:47.996Z",
+  "completedAt": "2026-11-14T02:44:52.508Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 44545,
+    "completion_tokens": 6125,
+    "total_tokens": 50670,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3505
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00974425,
+      "allowance": 0.00974425,
+      "tokens": {
+        "input": 44545,
+        "output": 6125,
+        "reasoning": 3505,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c940228a2907653eb538d55fd5379b9aa2fe2b21c866e7af28661fe48dae8928",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++3级.pdf",
+    "mirrorSha": "15655ec2e85e52347b143600e8784252fad68a76",
+    "mirrorBytes": 896357,
+    "shaVerified": true,
+    "sha256": "9d498145166ef002cead99e73efa9ddc5c87e1c82a7cd7058e63f969800d768f"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图卷头为“C++ 三级、2025 年 09 月”，与 2025-09-l3 的年份、月份、等级一致；单选 15 题每题 2 分共 30 分、判断 10 题共 20 分、编程 2 题共 50 分的结构与候选 score/timeLimit 也相符。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题代码为 int arr[4] = {1, 2, 3}; 与 arr[3] = arr[0] + arr[2];，与候选代码块逐行一致（仅运算符旁空格差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A-D 依次为 {1, 2, 3, 3}、{1, 2, 3, 4}、{1, 2, 3, 5}、{1, 2, 3, 6}，内容与顺序和候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 6 题为 B（0 起始索引 1），候选 answer=1。独立推导：聚合初始化使 arr[3] 先补 0，随后 arr[3]=arr[0]+arr[2]=1+3=4，结果 {1, 2, 3, 4} 对应 B，与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析正确区分两种情形——带初始化列表的聚合初始化中缺失元素被值初始化（整型为 0），而完全无初始化器的局部数组元素值不确定；逐项分析 A/C/D 的排除理由独立核算无误，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题面、选项、官方答案 B 及修复后的解析均与 PDF 页图相符，候选已包含正确解析版本，无需新修改，接受初核判定。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题题干“以下关于C++变量作用域的说法，错误的是（ ）。”与候选一致；D 项 PDF 句末无句号、候选有句号，属纯标点差异可忽略。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页四个选项依次为 for 中声明变量作用域、局部变量、所有函数外声明的变量、不同函数同名局部变量，内容与顺序和候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 10 题为 C（0 起始索引 2），候选 answer=2 一致；C 项“在整个程序中都有效”表述过于绝对，是四项中唯一的错误说法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析的技术陈述独立核算成立——命名空间作用域非 const 变量默认外部链接、const 与显式 static 变量默认内部链接、跨翻译单元使用需 extern 声明、作用域与生命周期是不同概念；A/B/D 三项正确性判断无误，未再出现“全局变量默认内部链接”的原错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题面、选项、官方答案 C 均与 PDF 相符，候选解析的链接性与作用域论述准确，接受初核判定，无需修改。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题代码为 int reversed=0; while(x!=0){ int digit=x%10; x/=10; reversed=reversed*10+digit; }，候选逐行一致，仅“10+digit”与“10 + digit”空白差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页四选项依次为 A 能够反转任何位数的整数、B …2147483647、C …2147483648、D …1463847412，文字与顺序同候选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 D（0 起始索引 3），候选 answer=3 与答案表映射一致；独立核算 1463847412 反转为 2147483641 未超 int 上限，2147483647 反转为 7463847412 溢出，2147483648 本身超 int 最大正值。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析的核心推导独立成立（逐位中间值 2,21,214,…,2147483641 全部不超界），并如实保留官方答案 D、在争议说明中给出直接反例——2147483641 反转为 1463847412 未溢出且更大，其逐位中间值 1,14,146,…,1463847412 也不超界；论证无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案 D（1463847412）与题干“能够反转的最大位数正整数”的严格语义存在冲突：按“反转结果仍在 int 内的最大输入值”理解，2147483641 可安全反转且大于 1463847412；按“反转结果可达到的最大值 2147483641 所对应的原数”理解才与 D 吻合。官方答案表明确为 D，保留争议不定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核：题面、选项与答案表映射核对一致，候选解析准确保留官方答案 D 并完整标注题干语义争议（2147483641 反例经我独立逐位核算成立）。解析文本本身无需修改，但官方答案与题干语义的冲突属源卷层面问题，按规则保留 unresolved，不擅自定案。"
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文为“表达式 sizeof('a') 的结果总是 1 ，因为 'a' 是一个字符。”，候选题干与之一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题仅有陈述与 √/× 答案表，无 A-D 选项；候选以“正确/错误”二元标签表示。"
+          },
+          "answer": {
+            "status": "unresolved",
+            "evidence": "PDF 第 4 页判断题答案表第 1 题为 ×（错误，0 起始索引 1），候选 answer=1 与答案表映射一致；但按 ISO C++ 标准，普通字符字面量 'a' 的类型为 char，sizeof(char) 按定义为 1，故 C++ 中 sizeof('a') 为 1，题干按 C++ 语义应判正确；官方答案疑似沿用 C 语言“字符常量类型为 int”的规则，与 C++ 标准冲突，保留争议。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析如实记录官方答案表为 ×，并准确说明 C 与 C++ 的差异——C 中字符常量类型为 int、sizeof('a') 通常为 4，C++ 中为 char、结果为 1，且 sizeof(char) 恒为 1；未再把 C 规则误用于 C++，争议表述清楚。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案表将本题判为 ×，但按 ISO C++ 标准 sizeof('a') 为 1、题干结论“总是 1”成立；官方答案疑似沿用 C 语言规则，与 C++ 标准冲突。保留官方答案并标注争议，未定案。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核：候选解析已纠正原解析把 C 语言规则误用于 C++ 并自相矛盾的问题，如实标注官方 × 与 ISO C++ 标准的冲突；答案维度因官方答案与 C++ 语义冲突保留 unresolved，不擅自改答案，接受初核的争议保留方案。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 7 题原文为“在C++中， char 类型的取值范围总是 -128 到 127。”，候选题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题仅有陈述与 √/× 答案表，无 A-D 选项；候选以“正确/错误”二元标签表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 列为 ×（错误，0 起始索引 1），候选 answer=1 一致；独立判断：C++ 标准规定普通 char 的符号性由实现定义，可能为 -128～127 或 0～255，“总是 -128 到 127”不成立，官方判错正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析准确区分 char、signed char、unsigned char 三种类型，说明符号性随目标平台与编译选项变化（未再出现“GCC/Clang 默认 unsigned”的不实概括），并给出 CHAR_BIT 与 <climits> 中 CHAR_MIN/CHAR_MAX 的查证途径，独立核算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核与初核一致：题干、官方答案 × 及候选解析（实现定义的符号性）均与原卷和技术事实相符，候选已替换掉原解析中关于编译器默认符号性的错误概括，接受初核判定，无需修改。"
+      }
+    ],
+    "summary": "本轮独立复核 5 题（6、10、11、16、22）：题 6、10、22 的题面、选项、官方答案与候选解析均与 PDF 页图一致，verdict 为 approve，无修改。题 11 的候选 answer=3 与官方答案表 D 映射一致，候选解析对反转过程的独立核算无误，但官方答案 D 与题干“能够反转的最大位数正整数”的严格语义冲突（2147483641 反转为 1463847412 未溢出且更大），候选已如实标注，verdict 为 unresolved。题 16 的候选 answer=1 与官方答案表 × 映射一致，候选解析已纠正原解析把 C 语言规则误用于 C++ 的错误，但按 ISO C++ 标准 sizeof('a') 为 1、官方判错与标准冲突，保留争议，verdict 为 unresolved。全部 5 题未提出字段修改（changes 均为空），两处源卷争议保留于 unresolved，不擅自定案。"
+  }
+}

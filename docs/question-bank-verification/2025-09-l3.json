@@ -226,41 +226,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第2页第6题题干和代码为 `int arr[4] = {1, 2, 3};` 与 `arr[3] = arr[0] + arr[2];`，网站仅少了运算符旁空格，含义一致。",
-          "review": "PDF第2页第6题代码为 `int arr[4] = {1, 2, 3};` 与 `arr[3] = arr[0] + arr[2];`，与网站代码块一致（仅运算符旁空格差异）。"
+          "initial": "PDF 第 2 页第 6 题代码为 int arr[4] = {1, 2, 3}; arr[3] = arr[0] + arr[2];，与候选代码块一致，仅空格差异。",
+          "review": "PDF 第 2 页第 6 题代码为 int arr[4] = {1, 2, 3}; 与 arr[3] = arr[0] + arr[2];，与候选代码块逐行一致（仅运算符旁空格差异）。"
         },
         "options": {
-          "initial": "PDF第2页选项A-D分别为 `{1, 2, 3, 3}`、`{1, 2, 3, 4}`、`{1, 2, 3, 5}`、`{1, 2, 3, 6}`，网站顺序与内容一致。",
-          "review": "PDF第2页选项A-D依次为 {1, 2, 3, 3}、{1, 2, 3, 4}、{1, 2, 3, 5}、{1, 2, 3, 6}，内容与顺序和网站一致。"
+          "initial": "PDF 第 2 页选项依次为 {1, 2, 3, 3}、{1, 2, 3, 4}、{1, 2, 3, 5}、{1, 2, 3, 6}，顺序和内容与候选一致。",
+          "review": "PDF 第 2 页选项 A-D 依次为 {1, 2, 3, 3}、{1, 2, 3, 4}、{1, 2, 3, 5}、{1, 2, 3, 6}，内容与顺序和候选一致。"
         },
         "answer": {
-          "initial": "PDF第2页单选题答案表第6题答案为B，0起始索引1；网站answer=1。",
-          "review": "PDF第1页单选答案表第6题为B（0起始索引1），网站answer=1；独立计算 arr[3]=arr[0]+arr[2]=1+3=4，对应B，与官方一致。"
+          "initial": "PDF 第 1 页答案表第 6 题为 B（0 起始索引 1），候选 answer=1；独立计算 arr[3]=arr[0]+arr[2]=1+3=4，对应 B。",
+          "review": "PDF 第 1 页单选答案表第 6 题为 B（0 起始索引 1），候选 answer=1。独立推导：聚合初始化使 arr[3] 先补 0，随后 arr[3]=arr[0]+arr[2]=1+3=4，结果 {1, 2, 3, 4} 对应 B，与官方一致。"
         },
         "explanation": {
-          "initial": "主推导正确，但原解析称函数内数组默认初始化为0，忽略无初始化器的局部数组值不确定；已给出精确说明。",
-          "review": "修复后核验通过：原解析主体推导正确，但易错提醒中“若在函数内声明则为默认值 0”错误——完全无初始化器的局部数组元素值不确定，仅带初始化列表时剩余元素才零初始化；初核修复稿准确区分两种情形，经独立复核无误，故采纳替换。"
+          "initial": "候选解析正确指出 {1, 2, 3} 聚合初始化使 arr[3] 补 0，随后赋值为 4；对无初始化器局部数组值不确定的提醒也正确，独立推导无误。",
+          "review": "修复后核验通过：候选解析正确区分两种情形——带初始化列表的聚合初始化中缺失元素被值初始化（整型为 0），而完全无初始化器的局部数组元素值不确定；逐项分析 A/C/D 的排除理由独立核算无误，无事实错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.glm.json"
       ]
     },
     {
@@ -386,41 +389,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第3页第10题题干与四个选项与网站一致，网站仅D项末尾句号缺失，不影响含义。",
-          "review": "PDF第3页第10题题干与A-D与网站一致，仅D项句末少一个句号，不影响含义。"
+          "initial": "PDF 第 3 页第 10 题题干及 A-D 选项与候选一致；D 项句末少一个句号，不影响含义。",
+          "review": "PDF 第 3 页第 10 题题干“以下关于C++变量作用域的说法，错误的是（ ）。”与候选一致；D 项 PDF 句末无句号、候选有句号，属纯标点差异可忽略。"
         },
         "options": {
-          "initial": "PDF第3页选项A-D内容与顺序一致。",
-          "review": "PDF第3页四个选项（for 变量作用域、局部变量、全局变量、同名局部变量）内容与顺序和网站一致。"
+          "initial": "四个选项依次讨论 for 中变量作用域、局部变量、所有函数外变量、不同函数同名局部变量，内容与顺序均与 PDF 一致。",
+          "review": "PDF 第 3 页四个选项依次为 for 中声明变量作用域、局部变量、所有函数外声明的变量、不同函数同名局部变量，内容与顺序和候选一致。"
         },
         "answer": {
-          "initial": "PDF第3页单选择题答案表第10题C，0起始索引2；网站answer=2。",
-          "review": "PDF第1页单选答案表第10题为C（0起始索引2），网站answer=2。"
+          "initial": "PDF 第 1 页答案表第 10 题为 C（0 起始索引 2），候选 answer=2 一致。",
+          "review": "PDF 第 1 页单选答案表第 10 题为 C（0 起始索引 2），候选 answer=2 一致；C 项“在整个程序中都有效”表述过于绝对，是四项中唯一的错误说法。"
         },
         "explanation": {
-          "initial": "选项C的结论正确，但原解析称全局变量默认 internal 链接，这是错误的；普通非 const 全局变量默认外部链接，跨文件可见性还需声明，不能笼统说整个程序都直接有效。",
-          "review": "修复后核验通过：原解析结论方向正确（跨文件需 extern 声明），但“全局变量默认 internal 链接”错误——命名空间作用域非 const 变量默认外部链接，const/static 变量才默认内部链接；初核修复稿准确区分作用域、链接性与生命周期，经我独立复核无误，故采纳替换。"
+          "initial": "候选解析正确区分全局变量在定义文件中的作用域与跨文件可见性，并指出非 const 全局变量默认外部链接、const/static 才默认内部链接；独立核对无误。",
+          "review": "修复后核验通过：候选解析的技术陈述独立核算成立——命名空间作用域非 const 变量默认外部链接、const 与显式 static 变量默认内部链接、跨翻译单元使用需 extern 声明、作用域与生命周期是不同概念；A/B/D 三项正确性判断无误，未再出现“全局变量默认内部链接”的原错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.glm.json"
       ]
     },
     {
@@ -836,37 +842,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第4页判断题第7题原文：“在C++中，char 类型的取值范围总是 -128 到 127。”网站陈述与之一致。",
-          "review": "PDF第4页判断题第7题原文：“在C++中， char 类型的取值范围总是 -128 到 127。”网站题干一致。"
+          "initial": "PDF 第 4 页判断题第 7 题原文为“在 C++ 中，char 类型的取值范围总是 -128 到 127。”，与候选一致。",
+          "review": "PDF 第 4 页判断题第 7 题原文为“在C++中， char 类型的取值范围总是 -128 到 127。”，候选题干一致。"
         },
         "answer": {
-          "initial": "PDF第4页判断题答案表第7列为×，对应“错误”(索引1)；网站 answer=1 一致。",
-          "review": "PDF第4页判断题答案表第7列为×，对应“错误”（0起始索引1）；网站 answer=1 一致。"
+          "initial": "PDF 第 4 页判断题答案表第 7 题为 ×（错误，对应 1），候选 answer=1 一致；普通 char 的符号性由实现定义，故“总是 -128 到 127”为假。",
+          "review": "PDF 第 4 页判断题答案表第 7 列为 ×（错误，0 起始索引 1），候选 answer=1 一致；独立判断：C++ 标准规定普通 char 的符号性由实现定义，可能为 -128～127 或 0～255，“总是 -128 到 127”不成立，官方判错正确。"
         },
         "explanation": {
-          "initial": "结论正确，但现行解析称“GCC/Clang（Linux/macOS）等实现中 char 等价于 unsigned char”不成立；普通 char 的符号性由实现定义，常见 x86 GCC/Clang 默认为 signed，ARM 等目标和编译选项可能不同。",
-          "review": "修复后核验通过：原解析断言“GCC/Clang（Linux/macOS）中 char 等价于 unsigned char”不实——x86-64 GCC/Clang 及 macOS clang 默认 char 为有符号，ARM Linux 才默认无符号。替换解析（见 changes.explanation）改为“符号性由实现定义、随平台与编译选项变化”，并保留 char/signed char/unsigned char 三类型区分与 CHAR_MIN/CHAR_MAX 查证途径，已独立复核无误。"
+          "initial": "候选解析正确区分 char、signed char、unsigned char，说明普通 char 的符号性随平台和编译选项变化，并给出 CHAR_MIN/CHAR_MAX 的查证途径；独立核对无误。",
+          "review": "修复后核验通过：候选解析准确区分 char、signed char、unsigned char 三种类型，说明符号性随目标平台与编译选项变化（未再出现“GCC/Clang 默认 unsigned”的不实概括），并给出 CHAR_BIT 与 <climits> 中 CHAR_MIN/CHAR_MAX 的查证途径，独立核算无误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.glm.json"
       ]
     },
     {
@@ -979,105 +988,90 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第5页题面、样例与第6页数据范围为准。当前题面“他会对阵组”应为“他会对数组”，且缺少 PDF 第6页的数据范围 1≤n≤100、0≤a_i≤100。",
-          "review": "原数据“他会对阵组 $a$ 重复进行以下操作”与 PDF 第 5 页页图“他会对数组 $a$ 重复进行以下操作”不符；且缺第 6 页 3.1.5 数据范围“对于所有测试点，保证 1≤n≤100，0≤a_i≤100”。已提供修正后的完整 question，修复后核验通过。"
+          "initial": "PDF第5页题面、样例序列及第6页3.1.5数据范围1≤n≤100、0≤a_i≤100，与候选question一致；样例1输入3/2 3 4输出7，样例2输入5/1 3 2 2 5输出13均与PDF一致。",
+          "review": "PDF 第 5 页 3.1.1 题目描述（三步操作定义、[2,3,4] 七次演变示例、保证有限次归零）、3.1.2/3.1.3 输入输出格式、3.1.4 两个样例（3/2 3 4→7；5/1 3 2 2 5→13）与候选 question、samples 逐句一致；第 6 页 3.1.5 数据范围 1≤n≤100、0≤aᵢ≤100 已补齐。输出格式“一个正整数”系原卷原文表述（全 0 时输出 0 的张力属原卷自身表述，解析已注明），转录忠实。"
         },
         "explanation": {
-          "initial": "解析中的模拟流程、样例一/二走查、[2,4,6] 与 [1,2,3] 次数不变结论均可独立复核，未发现算法性错误。",
-          "review": "独立模拟参考程序：样例一 [2,3,4] 经 [2,3,2]→[2,1,2]→[2,1,1]→[1,1,1]→[1,1,0]→[1,0,0]→[0,0,0] 共 7 次；样例二 [1,3,2,2,5] 每轮减最小正数 1 共 13 次，均与解析走查一致；[2,4,6] 与 [1,2,3] 同为 6 次、全 0 输出 0、次数可小于元素和等结论独立推导成立。"
+          "initial": "独立按参考程序模拟：样例1经7次、样例2经13次归零；[2,4,6]为6次，全0输出0，单元素100输出1；每轮两遍扫描O(n)，操作次数不超过元素和10000，n≤100时1s内安全，cnt无溢出。候选解析无误。",
+          "review": "修复后核验通过：独立按参考程序逐步模拟，样例一 [2,3,4] 经 [2,3,2]→[2,1,2]→[2,1,1]→[1,1,1]→[1,1,0]→[1,0,0]→[0,0,0] 共 7 次；样例二 [1,3,2,2,5] 最小正数恒为 1、每轮减最右最大值共 13 次（=元素和）；[2,4,6] 为 6 次、[1,2,3] 为 6 次、全 0 输出 0、单正数 [100] 为 1 次、次数可小于元素和等延伸结论均独立推导成立；每轮总和至少减 1、轮数≤元素和≤10000 的复杂度论证正确。"
         },
         "referenceCode": {
-          "initial": "与 PDF 第6页参考程序一致：从左到右用 >= 选最右最大值，跳过 0 找最小正数；操作次数不超过初始总和 10000，每次 O(n)，n≤100，cnt 足够；全零会立即 break。",
-          "review": "与 PDF 第 6 页页图参考程序逐行一致：mx 从左到右用 >= 扫描保证并列最大值取最右下标；跳过 0 取最小正数避免死循环；a[mx]==0 时 break 处理全 0 输入。每轮 O(n)，总操作次数≤元素和≤10000，n≤100，最坏约 10^6 次基本运算，1s 限制内安全；cnt 与数值均无溢出风险（a_i≤100）。"
+          "initial": "与PDF第6页参考程序逐行一致：mx从1到n用>=扫描保证并列最大值取最右下标；mn跳过0取最小正数；a[mx]==0时退出；cnt全局零初始化，a_i≤100、操作次数≤10000，均无溢出风险。",
+          "review": "与 PDF 第 6 页 3.1.6 参考程序逐行一致：mx 初值 n 并用 >= 从左向右扫描保证并列最大值取最右下标；mn 跳过 0 取最小正数防死循环；a[mx]==0 先判后减处理全 0 输入；cnt 为全局变量零初始化。n≤100、轮数≤10000、每轮两遍 O(n)，总基本运算约 2×10⁶，1.0s/512MB 内安全；aᵢ≤100、cnt≤10⁴ 均无溢出。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement",
-        "explanation"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         6,
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第6页题面要求日期个位与星期缩写最后字母对齐，页图九月示例为 4 列对齐；当前题面九月示意图日期间仅有 1 个空格，且缺少第7页数据范围 1≤m≤12。已按页图与样例修正示例并补数据范围。",
-          "review": "原数据九月示例日期间仅 1 个空格（“ 1 2 3 4 5 6 7”），与 PDF 第 6 页页图及第 7 页输出样例 1 的 4 列对齐（“  1   2   3   4   5   6   7”）不符，且缺第 7 页 3.2.5 数据范围“1≤m≤12”。已按页图恢复示例并补数据范围，修复后核验通过。"
+          "initial": "PDF第6页题目描述、第7页样例1/2及3.2.5数据范围1≤m≤12，与候选question一致；九月示例恢复为4列对齐，样例2首行日期1与SUN末字母N对齐。",
+          "review": "PDF 第 6 页 3.2.1 题目描述及九月示例（4 列对齐格式）、第 7 页 3.2.2/3.2.3 输入输出格式、3.2.4 样例 1（输入 9）/样例 2（输入 6，首行 26 空格+“1”）与候选 question、samples 一致；第 7 页 3.2.5 数据范围 1≤m≤12 已补齐。“个位与星期缩写末字母对齐”经独立列位核算：SUN 的 N 在第 27 列，样例 2 首行 1 亦在第 27 列。"
         },
         "explanation": {
-          "initial": "算法步骤、样例走查、易错点均正确；但开头“题干示意图空格较少”在修正题面后过时，应同步删除。已提供修订后的完整解析。",
-          "review": "原解析开头“题干示意图空格较少，评分以样例为准”在题面按页图修正后已过时，删除并重组为对格式的直接陈述；算法步骤（m>9 递推 / m<9 回溯含加 7 防负取余、0 改 7）、样例一/二走查、易错点（days[2] 仅影响 1、2 月；空星期 4 空格；行末不补空格）均独立推演正确，修复后核验通过。"
+          "initial": "独立推算2025-09-01周一、06-01周日、01-01周三、12-01周一；样例1/2走查、空星期4空格、% 3d字段与行末不补空格均正确；m>9递推和m<9回溯含0→7处理，与参考程序一致。",
+          "review": "修复后核验通过：独立核算星期链 2025-09-01 周一（官方给定）→ 8/1 周五、7/1 周二、6/1 周日、1/1 周三（以 1→9 月天数和 243≡5 (mod 7) 交叉验证）、10/1 周三、11/1 周六、12/1 周一，与解析及参考程序递推/回溯公式结果一致；空星期 4 空格经列宽 4 字符与样例 2 首行 26 空格（6×4+2）反推确认；% 3d 字段宽 3、列间 1 空格、w==1 或 i==d 换行、行末不补空格的描述与两个样例逐字符吻合；days[2]=28 仅影响 m=1、2 的推算说明正确（m=2 回溯 i=2 用 days[2] 算 2/1，m≥3 不经过 i=2）。"
         },
         "referenceCode": {
-          "initial": "与 PDF 第7-8页参考程序一致；从 9 月 1 日向前/后推算首星期，空星期按 4 个空格输出，与页7样例2中 1 对齐 SUN 的 N 一致；m 仅 1..12，复杂度 O(1)。PDF 文本层第8页行22空格数显示可能少 1，但页图样例与当前代码的 4 空格一致。",
-          "review": "与 PDF 第 7-8 页页图参考程序一致：以 2025-09-01=周一为锚点，m>9 用 (w+days[i]-1)%7+1 递推、m<9 用 ((w-days[i])%7+7)%7 回溯并 0→7；前置 w-1 组 4 空格、printf(\"% 3d\")、列间 1 空格、w==1 或月末换行。空星期 4 空格经格式要求（每列 4 字符）与样例 2 首行 26 空格+1（6×4+2）反推确认，文本层的 3 空格系丢失；m∈[1,12] 时全程 O(1)，无溢出。"
+          "initial": "与PDF第7-8页参考程序一致：以9月1日周一为锚点，m>9用(w+days[i]-1)%7+1递推，m<9用((w-days[i])%7+7)%7回溯并0→7；先输出w-1组4空格，再按% 3d输出日期，w==1或i==d换行。m≤12，常数时间，无溢出。",
+          "review": "与 PDF 第 7-8 页 3.2.6 参考程序逐行一致：以 9/1 周一为锚点，m>9 用 (w+days[i]-1)%7+1 递推，m<9 用 ((w-days[i])%7+7)%7 回溯（加 7 防负取余）并 0→7；空星期 printf(\"    \") 输出 4 个空格（页图引号内 4 空格，文本层 3 空格系丢失）；% 3d 输出日期、列间 1 空格。m≤12 全程常数次运算，无溢出，1.0s/512MB 内安全。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l3.glm.json"
       ]
     }
   ],
   "unresolved": [
-    {
-      "id": 6,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
     {
       "id": 11,
       "dimensions": [
@@ -1101,45 +1095,12 @@
       ]
     },
     {
-      "id": 22,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 23,
       "dimensions": [
         "explanation"
       ],
       "reasons": [
         "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
         "explanation 尚无一致、完整的原卷核验结论"
       ]
     }
@@ -1154,5 +1115,6 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l3.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l3.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-09-l3.integration.json"
 }

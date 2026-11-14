@@ -1,0 +1,186 @@
+{
+  "paperId": "2025-09-l3",
+  "integratedAt": "2026-11-14T15:53:16.038Z",
+  "accepted": [
+    {
+      "id": 6,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 11,
+      "reasons": [
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 16,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 23,
+      "reasons": [
+        "answer 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3\n2 3 4",
+          "output": "7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "input": "5\n1 3 2 2 5",
+          "output": "13",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "13\n",
+          "passed": true
+        },
+        {
+          "name": "全零最小规模",
+          "input": "1\n0",
+          "output": "0",
+          "reason": "n=1、a1=0 同时覆盖 n 下界与全零情形；首轮 a[mx]==0 立即 break，cnt 保持 0，独立模拟输出 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "单元素上界",
+          "input": "1\n100",
+          "output": "1",
+          "reason": "唯一正数同为最大值与最小正数，自减一次归零；覆盖 a_i 上界 100，独立模拟输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "混合零跳过0",
+          "input": "3\n0 5 0",
+          "output": "1",
+          "reason": "最大值为下标 2 的 5，最小正数 5（跳过两端 0），减后全 0；独立模拟验证最小正数跳过 0 且原有 0 不被改动，输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小正数大于1",
+          "input": "3\n2 4 6",
+          "output": "6",
+          "reason": "每轮减最小正数 2：[2,4,6]→[2,4,4]→[2,4,2]→[2,2,2]→[2,2,0]→[2,0,0]→[0,0,0] 共 6 次；验证次数可小于元素和 12，独立模拟输出 6。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "n上界全1",
+          "input": "100\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1",
+          "output": "100",
+          "reason": ">= 扫描使每轮最右边的 1 减 1 归零，共 100 轮；覆盖 n 上界与最坏循环规模（≤10⁴ 轮），cnt 无溢出，独立模拟输出 100。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "da5ae74fee128a677c05a3d128668dcfd69b08af3bd2da3ec4c2305a0730f667"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "9",
+          "output": "MON TUE WED THU FRI SAT SUN\n  1   2   3   4   5   6   7\n  8   9  10  11  12  13  14\n 15  16  17  18  19  20  21\n 22  23  24  25  26  27  28\n 29  30",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "MON TUE WED THU FRI SAT SUN\n  1   2   3   4   5   6   7\n  8   9  10  11  12  13  14\n 15  16  17  18  19  20  21\n 22  23  24  25  26  27  28\n 29  30\n",
+          "passed": true
+        },
+        {
+          "input": "6",
+          "output": "MON TUE WED THU FRI SAT SUN\n                          1\n  2   3   4   5   6   7   8\n  9  10  11  12  13  14  15\n 16  17  18  19  20  21  22\n 23  24  25  26  27  28  29\n 30",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "MON TUE WED THU FRI SAT SUN\n                          1\n  2   3   4   5   6   7   8\n  9  10  11  12  13  14  15\n 16  17  18  19  20  21  22\n 23  24  25  26  27  28  29\n 30\n",
+          "passed": true
+        },
+        {
+          "name": "最小月份回溯含二月",
+          "input": "1",
+          "output": "MON TUE WED THU FRI SAT SUN\n          1   2   3   4   5\n  6   7   8   9  10  11  12\n 13  14  15  16  17  18  19\n 20  21  22  23  24  25  26\n 27  28  29  30  31",
+          "reason": "m=1 为最小月份且回溯路径使用 days[2]=28；独立核算 2025-01-01 为星期三（1→9 月天数和 243≡5 mod 7 交叉验证），前置 2 个空星期（8 空格+字段 2 空格），1 对齐 WED 的 D（第 11 列）；1 月 31 天，末行 27-31 止于周五换行，行末无空格。",
+          "kind": "boundary",
+          "actual": "MON TUE WED THU FRI SAT SUN\n          1   2   3   4   5\n  6   7   8   9  10  11  12\n 13  14  15  16  17  18  19\n 20  21  22  23  24  25  26\n 27  28  29  30  31\n",
+          "passed": true
+        },
+        {
+          "name": "二月非闰年28天",
+          "input": "2",
+          "output": "MON TUE WED THU FRI SAT SUN\n                      1   2\n  3   4   5   6   7   8   9\n 10  11  12  13  14  15  16\n 17  18  19  20  21  22  23\n 24  25  26  27  28",
+          "reason": "2025 年非闰年，2/1 为星期六（1/1 周三+3）：前置 5 个空星期，1 在第 23 列（SAT 的 T）、2 在第 27 列后换行；2 月 28 天，末行 24-28 止于周五换行，行末无空格。",
+          "kind": "boundary",
+          "actual": "MON TUE WED THU FRI SAT SUN\n                      1   2\n  3   4   5   6   7   8   9\n 10  11  12  13  14  15  16\n 17  18  19  20  21  22  23\n 24  25  26  27  28\n",
+          "passed": true
+        },
+        {
+          "name": "最大月份无前置空位",
+          "input": "12",
+          "output": "MON TUE WED THU FRI SAT SUN\n  1   2   3   4   5   6   7\n  8   9  10  11  12  13  14\n 15  16  17  18  19  20  21\n 22  23  24  25  26  27  28\n 29  30  31",
+          "reason": "独立递推 10/1=周三（9/1 周一+30 mod 7=+2）、11/1=周六得 2025-12-01 为星期一，无前置空位；12 月 31 天，末行 29-31，覆盖 m 上界 12。",
+          "kind": "boundary",
+          "actual": "MON TUE WED THU FRI SAT SUN\n  1   2   3   4   5   6   7\n  8   9  10  11  12  13  14\n 15  16  17  18  19  20  21\n 22  23  24  25  26  27  28\n 29  30  31\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "64960f886000bd907aaf72977a8d362a715db4475918ade04cfae5e205fc71bc"
+    }
+  ]
+}
