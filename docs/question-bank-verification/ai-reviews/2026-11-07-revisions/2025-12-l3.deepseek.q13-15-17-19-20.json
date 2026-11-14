@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    13,
+    15,
+    17,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T04:02:08.902Z",
+  "completedAt": "2026-11-14T04:03:43.503Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50282,
+    "completion_tokens": 9366,
+    "total_tokens": 59648,
+    "prompt_tokens_details": {
+      "cached_tokens": 50176
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7889
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00578603,
+      "allowance": 0.00347162,
+      "tokens": {
+        "input": 106,
+        "output": 9366,
+        "reasoning": 7889,
+        "cache_read": 50176,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "95b3d0e8f35254e2cdd098628763080daeadb5c8235f100e6461192575fa8caf",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标明「C++ 三级 2025 年 12 月」；第1页单选答案表和第5页判断答案表均与题号对应。"
+    },
+    "questions": [
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第13题题干及代码为 arr[5]={2,4,6,8,10}、sum=0、for(i=0;i<5;i++)、switch(arr[i]%(1|2))、case 0/1/2 分支；候选代码语义相同，仅 1|2 周围空格属排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页末给出 A.10，第5页给出 B.11、C.14、D.15；候选选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第13题为 B，即0起始索引1；独立计算 1|2=3，arr[i]%3 依次为 2、1、0、2、1，sum=3+2+1+3+2=11，候选 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐项推导得 sum 依次为 3、5、6、9、11，最终为 11；候选解析对 1|2=3、switch 分支、break 及干扰项说明自洽，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第15题题干为字符串 s 的值是 GESP，代码为 for (int i = 0; i < s.length(); i++) { s[i] = toupper(s[i] + i); }；候选代码语义一致，空格差异不影响含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项依次 A.GESP、B.HFTR、C.hesp、D.GFUS，候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第15题为 D，即0起始索引3；独立按 ASCII 计算，i=0..3 时 71+0、69+1、83+2、80+3 得 G、F、U、S，结果为 GFUS，候选 answer=3 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导字符串最终为 GFUS；候选解析的 ASCII 表、逐位偏移结果及选项排除均正确，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文为整型变量 a 的值为3、浮点数变量 b 的值为3.5，经过 a *= b 后称 a 变为10.5并输出10.5；候选题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断答案表第2列为 ×（错误），对应索引1；独立推导 int a=3、double b=3.5 经 a*=b 后 a 截断为10，输出10，候选 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按复合赋值和浮点转整型截断规则推导，10.5转为10，题面所述10.5不成立；候选解析正确，并指出示例中 b 不能声明为 int。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第4题代码为 int a = 5, b = 3; int c = a++ + ++b; cout << c << endl;，候选保留 a++ 与 +、++b 之间的空格，题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断答案表第4列为 ×（错误），对应索引1；独立计算 a++ 取5、++b 得4，c=5+4=9，不是8，候选 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立求值确认 c=9，题面称输出8错误；候选对后置/前置自增的推导及无空格写法的词法切分说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第5题原文为位运算符 &、|、^、~ 的优先级高于算术运算符 +、-、*、/；候选题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断答案表第5列为 ×（错误），对应索引1；独立对照优先级，~ 高于算术运算符，但 &、^、| 低于算术运算符，故整句不成立，候选 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验优先级关系及 5+3&7 示例：(5+3)&7=8&7=0，候选解析正确区分 ~ 与 &、^、| 的优先级，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号13、15、17、19、20。五题的题干、选项（单选）、官方答案索引及解析均与PDF原卷一致，未发现需要修订的内容。"
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "deepseek",
+  "questionIds": [
+    22,
+    24,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T04:05:07.661Z",
+  "completedAt": "2026-11-14T04:07:48.361Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50156,
+    "completion_tokens": 16173,
+    "total_tokens": 66329,
+    "prompt_tokens_details": {
+      "cached_tokens": 50048
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14585
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00987014,
+      "allowance": 0.00592209,
+      "tokens": {
+        "input": 108,
+        "output": 16173,
+        "reasoning": 14585,
+        "cache_read": 50048,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "95b3d0e8f35254e2cdd098628763080daeadb5c8235f100e6461192575fa8caf",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 三级 2025年12月”，与paperId的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题第7题给出三目表达式与if-else等价代码，并以“以下代码执行后，输出将会是2。”引出第6页arr[3>2?1:2]完整程序；候选题干完整保留两段断言和代码，未漏条件。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第7列为√（0起始索引0）；独立验证：z=a>b?x:y按z=(a>b?x:y)求值，3>2为真取下标1，arr[1]=2，输出2，故命题正确，answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析分别验证两断言；条件运算符优先级高于赋值、低于关系运算符的表述正确，arr下标推导1→arr[1]=2正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第9题原文与候选题干逐字一致：从a的二进制右往左扫描，遇第一个1后将其左边所有位取反，得到-a的补码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A-D选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第9列为√（0起始索引0）；独立按固定位宽验证：a=6的00000110经该扫描法得11111010，即-6的8位补码，与原命题一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以a=6演示保持第一个1及其右侧0、取反左侧位，并用“取反加一”交叉验证；00000110→11111010正确，未保留错误括注。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6-7页3.1题干、输入输出格式、样例（6组，输出Y/Y/Y/N/N/N）及3.1.5数据范围（1≤T≤100、每组长度≤100且≥1、仅大小写字母和数字）均与候选question及samples一致；未漏数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无A-D选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引，PDF答案表不涉及编程题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按长度≥8、含大写、含数字三条件重判样例六组，结果Y/Y/Y/N/N/N与样例一致；逐组重置布尔标记、ASCII区间用&&、总字符量≤100×100=10^4，解析正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第8页3.1.6参考程序逐行一致：while(T--)读入，布尔标记在组内初始化为false，isupper/isdigit置位，length()>=8&&has_upper&&has_digit输出Y/N；T≤100且长度≤100，O(T×L)满足1.0s，无越界/溢出问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\na\n",
+            "output": "N",
+            "reason": "T=1、密码长度1，不满足至少8字符，且无大写字母和数字，应输出N。"
+          },
+          {
+            "name": "长度恰为8的边界",
+            "input": "1\nA1234567\n",
+            "output": "Y",
+            "reason": "长度恰为8（满足≥8下界），含大写A和数字1~7，三条件同时成立，应输出Y。"
+          },
+          {
+            "name": "多组标记重置",
+            "input": "2\nA1234567\nabcdefgh\n",
+            "output": "Y\nN",
+            "reason": "第二组长度8但全为小写且无数字应输出N；若布尔标记未在每组内重置，可能残留true而误判为Y。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8-9页3.2题干、输入输出格式、样例（2 5与五件文具，输出4、样例解释1+3=4）及3.2.5数据范围（1≤M≤N≤10^5，1≤K_i≤M，1≤P_i≤10^3）与候选question及samples一致；数据范围已完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无A-D选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引，PDF答案表不涉及编程题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按每种取最低价再求和重推样例：种类1最低1、种类2最低3，总价4；数据范围最坏总价10^5×10^3=10^8<int上限约2.1×10^9，解析对初始极大值、数组容量、k<=M及int精度的说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第10页3.2.6参考程序逐行一致：min_price[100005]覆盖M≤10^5，初始化0..M为10^9，N次min更新，累加1..M后输出；O(N+M)约2×10^5，最大下标100000<100005，总价≤10^8未溢出int。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1\n",
+            "output": "1",
+            "reason": "M=N=1，仅种类1一件价格1，必须购买，总价为1。"
+          },
+          {
+            "name": "同种类取最小且含价格上界",
+            "input": "2 3\n1 1000\n2 1000\n1 999\n",
+            "output": "1999",
+            "reason": "种类1两件取最低999，种类2一件价格1000，总价999+1000=1999；覆盖同种多件取最小、K_i取1和M、P_i取10^3上界。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号22、24、26、27均与PDF原卷核对通过；判断题答案符号与独立推导一致，编程题数据范围、样例及参考程序完整，未发现需修改项。"
+  }
+}

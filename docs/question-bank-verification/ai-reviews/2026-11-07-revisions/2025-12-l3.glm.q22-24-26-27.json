@@ -1,0 +1,236 @@
+{
+  "paperId": "2025-12-l3",
+  "phase": "glm",
+  "questionIds": [
+    22,
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-14T05:47:38.680Z",
+  "completedAt": "2026-11-14T05:49:58.207Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 68313,
+    "completion_tokens": 13110,
+    "total_tokens": 81423,
+    "prompt_tokens_details": {
+      "cached_tokens": 67456
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9936
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00870723,
+      "allowance": 0.00870723,
+      "tokens": {
+        "input": 857,
+        "output": 13110,
+        "reasoning": 9936,
+        "cache_read": 67456,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "95b3d0e8f35254e2cdd098628763080daeadb5c8235f100e6461192575fa8caf",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1723012369874976.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++3级.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "mirrorBytes": 937724,
+    "shaVerified": true,
+    "sha256": "0bc5efa99dd7be2a4d737b58e645d9084c0e048d961e41f8def580e2078739d3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-12-l3",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 / GESP / C++ 三级 / 2025 年 12 月」，与 paperId 的年份 2025、月份 12、等级 3 一致；本轮仅核验题号 22、24、26、27。"
+    },
+    "questions": [
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 7 题给出「C++ 表达式 z = a > b ? x : y 等同于：」及 if-else 代码块，页末以「以下代码执行后，输出将会是 2。」引出第 6 页 int arr[5]={1,2,3,4,5}; cout << arr[3 > 2 ? 1 : 2] << endl; 完整程序；候选题干两段断言与两段代码均完整保留，与原卷一致（仅缩进/空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 7 列为 √（0 起始索引 0），候选 answer=0。独立验证：①条件运算符优先级高于赋值，z = a > b ? x : y 解析为 z = (a > b ? x : y)，与 if(a>b) z=x; else z=y; 的赋值效果一致；②3 > 2 为真，下标表达式取 1，arr[1]=2，输出 2。两断言均成立，命题为「正确」，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立复核：条件运算符优先级高于赋值运算符、低于关系运算符的表述符合 C++ 优先级表；下标表达式 3>2?1:2 求值为 1、arr[1]=2 的推导正确；解析覆盖两段断言，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其判定题面完整、答案符号与解析无误的结论经我独立复核全部成立——两断言分别验证通过（三目与 if-else 等价、arr[1]=2 输出 2），answer=0 与官方答案表第 7 列 √ 一致，候选题干已含第二段断言与完整代码，无需任何修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 9 题原文与候选逐字一致：给定一个正整数 a，计算 -a 的补码时，将 a 的二进制形式从右往左扫描，遇到第一个 1 之后，将找到的第一个 1 左边的所有位都取反，能得到 -a 的补码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 9 列为 √（0 起始索引 0），候选 answer=0。独立数学验证：设 a 在 n 位补码下最低位的 1 位于第 k 位，则 ~a+1 的低 k 位（原本全 0，取反后全 1，加 1 进位归零）为 0、第 k 位为 1、更高位为按位取反，恰等于「保持第一个 1 及其右侧不变、左侧全部取反」，与题干技巧等价（a=6: 00000110→11111010，即 -6 的 8 位补码），命题正确，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以 a=6 演示：从右往左首个 1 在第 1 位，保持该 1 及右侧 0 不变、左侧取反得 11111010；并以「取反加一」交叉验证（00000110→11111001→11111010），两法结果一致即 -6 补码；旧版本中「10000110 的补码也是 11111010」的错误括注已删除，推导自洽无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：其核验结论经我独立验证成立——扫描技巧与「取反加一」数学等价、a=6 示例各步正确、候选解析确已删除上一轮指认的错误括注，answer=0 与答案表第 9 列 √ 一致，维持无修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6—7 页 3.1 题目描述（至少 8 字符、至少一个大写字母、至少一个数字，及 PAs1s2an、ab1da3cd、Paabdbcd、Pa2 四例）、3.1.2/3.1.3 输入输出格式、3.1.4 样例（输入 6 组：PAs1s2an/1a2bCql3/Pa12bsna/ab1da3cd/Paabdbcd/Pa2，输出 Y/Y/Y/N/N/N）与候选 question、samples 一致；第 7 页 3.1.5 数据范围原文「保证 1 ≤ T ≤ 100，并且每组密码长度不超过 100 且至少为 1，每组密码仅由大小写字母和数字组成」已完整保留在候选 question 中，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无 A-D 选项，PDF 原卷亦无，本维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引；PDF 第 1 页单选答案表与第 5 页判断答案表均不涉及编程题，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按「长度≥8、含大写字母、含数字」三条件重判样例六组：PAs1s2an（8 位，含 P/A 与 1/2）Y、1a2bCql3（8 位，含 C 与 1/2/3）Y、Pa12bsna（8 位，含 P 与 1/2）Y、ab1da3cd（无大写）N、Paabdbcd（无数字）N、Pa2（3 位）N，合计 Y/Y/Y/N/N/N 与样例一致；T≤100 且每组长度≤100 时总字符量 ≤10^4，解析中组内重置布尔标记、三条件用 && 联合判定、ASCII 区间用逻辑与及复杂度说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 8 页 3.1.6 参考程序逐行语义一致（仅空行差异）：while(T--) 多组处理，has_upper/has_digit 在每组内初始化为 false，以 size_t 下标遍历 password.length()，isupper/isdigit 置位，length()>=8 && has_upper && has_digit 成立输出 \"Y\\n\" 否则 \"N\\n\"；按 T≤100、长度≤100 复核约 10^4 次字符判断，满足 1.0 s 限制，密码仅含字母数字故 isupper/isdigit 实参无越界风险，无溢出问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\na\n",
+            "output": "N",
+            "reason": "T=1、密码长度 1，不满足至少 8 字符，也无大写字母和数字，独立判定输出 N。"
+          },
+          {
+            "name": "长度恰为 8 的边界",
+            "input": "1\nA1234567\n",
+            "output": "Y",
+            "reason": "长度恰为 8（满足≥8 下界），含大写 A 和数字 1~7，三条件同时成立，独立判定输出 Y。"
+          },
+          {
+            "name": "多组标记重置",
+            "input": "2\nA1234567\nabcdefgh\n",
+            "output": "Y\nN",
+            "reason": "第一组三条件满足输出 Y；第二组长度 8 但全为小写且无数字输出 N；若布尔标记未在每组内重置，残留 true 会使第二组误判为 Y，可检验组内重置逻辑。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题面（含数据范围）、样例、解析与参考程序的核验结论经我独立重推样例六组判定和逐行比对参考程序后确认无误；其三个 tests 的期望输出（N、Y、Y\\nN）我已按判定规则独立推演核对成立，且覆盖最小规模、长度下界与组间状态重置场景，予以沿用。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8—9 页 3.2 题目描述（购买 M 种文具、每种只买最便宜一件、同价最低只买一件）、3.2.2/3.2.3 输入输出格式（第一行 M,N，之后 N 行 K_i 和 P_i，每个种类至少一件）、3.2.4 样例（输入 2 5 与五件文具，输出 4，样例解释种类 1 最低价 1、种类 2 最低价 3、总价 1+3=4）与候选 question、samples 一致；第 9 页 3.2.5 数据范围原文「保证 1 ≤ M ≤ N ≤ 10^5，1 ≤ K_i ≤ M，1 ≤ P_i ≤ 10^3」已完整保留在候选 question 中，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无 A-D 选项，PDF 原卷亦无，本维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案索引；PDF 答案表仅覆盖单选与判断题，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重推样例：种类 1 三件价格 1/2/1 取最低 1，种类 2 两件价格 3/10 取最低 3，总价 1+3=4 与样例输出一致；按官方数据范围最坏总价 10^5×10^3=10^8 小于 int 上限约 2.1×10^9，解析对极大值 10^9 初始化、min 更新、k<=M 累加及 int 精度的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第 10 页 3.2.6 参考程序逐行一致：min_price[100005] 覆盖 M≤10^5，下标 0..M 初始化为 1000000000，N 次 min 更新 min_price[K]，再累加 k=1..M 输出 total_cost；O(N+M) 约 2×10^5 满足 1.0 s，最大下标 100000 < 100005 无越界，K_i≤M 保证不越界访问，总价 ≤10^8 不溢出 int；头文件 <cstring> 为官方原文，未作改动。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1\n",
+            "output": "1",
+            "reason": "M=N=1，仅种类 1 一件文具、价格 1，必须购买，独立推演总价为 1。"
+          },
+          {
+            "name": "同种类取最小且含价格上界",
+            "input": "2 3\n1 1000\n2 1000\n1 999\n",
+            "output": "1999",
+            "reason": "种类 1 两件取最低价 999，种类 2 一件为单价上界 1000，总价 999+1000=1999；覆盖同种多件取最小、K_i 取 1 与 M、P_i 取 10^3 上界，且满足 1≤M≤N≤10^5、每个种类至少一件的保证。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：数据范围、样例与参考程序的核验结论经我独立确认（逐行比对第 10 页参考程序、独立复算最坏总价 10^8 未超 int）；其两个 tests 的期望输出（1、1999）我已按 min 更新与累加过程独立推演核对成立，且用例满足全部官方约束，予以沿用。"
+      }
+    ],
+    "summary": "本轮仅复核题号 22、24、26、27，其余题目未核验。两道判断题（第 7、9 题）题干与 PDF 第 5—6 页原文一致，答案符号 √（索引 0）与独立推导一致：22 题两断言分别成立（三目与 if-else 等价、arr[3>2?1:2]=arr[1]=2）；24 题补码扫描技巧经数学推导与「取反加一」等价。两道编程题题面（含第 7 页 3.1.5 与第 9 页 3.2.5 数据范围）、样例与参考程序逐行核对通过，复杂度、数组越界与 int 溢出分析在官方数据范围内成立；五个 tests 的期望输出均由我独立推演核对。四题全部 approve，无待决问题，无需修改。"
+  }
+}
