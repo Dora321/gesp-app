@@ -23,6 +23,7 @@ import { buildQuestionInsight, selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
+import CodingProblemView from '../../components/CodingProblemView';
 import { integrityNoticeTiming } from '../../utils/sourceIntegrity';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
@@ -339,8 +340,6 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     const analysisView = selectAnalysisView(currentQ, paperData.level);
     const useGenericHint = analysisView.mode === 'generic';
     const displayedAnalysis = analysisView.analysis;
-    const isReformed = (currentQ.type === 'coding' || currentQ.type === 'programming') && getQuestionContent(currentQ).trim().startsWith('# ');
-    const programmingPracticeMarkdown = (currentQ.type === 'coding' || currentQ.type === 'programming') ? buildProgrammingMarkdown(currentQ) : '';
     const programmingAnalysisMarkdown = (currentQ?.type === 'coding' || currentQ?.type === 'programming')
         ? buildProgrammingMarkdown(currentQ, { includeReference: true })
         : '';
@@ -431,24 +430,24 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
                 <section className="min-w-0 space-y-4">
                     <div className="bg-white rounded-2xl border border-slate-200 p-5 md:p-8">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="text-sm text-slate-500">第 {currentQuestionIndex + 1} 题 / 共 {questions.length} 题</div>
+                        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                            <div className="whitespace-nowrap text-sm text-slate-500">第 {currentQuestionIndex + 1} 题 / 共 {questions.length} 题</div>
                             <div className="inline-flex bg-slate-100 rounded-lg p-1">
                                 <button
                                     onClick={() => setActiveTab('practice')}
-                                    className={`px-3 py-1.5 rounded-md text-sm ${activeTab === 'practice' ? 'bg-white shadow text-slate-800' : 'text-slate-500'}`}
+                                    className={`px-3 py-1.5 rounded-md text-sm whitespace-nowrap ${activeTab === 'practice' ? 'bg-white shadow text-slate-800' : 'text-slate-600'}`}
                                 >
                                     <span className="inline-flex items-center gap-1"><BookOpen size={14} /> 作答</span>
                                 </button>
                                 <button
                                     onClick={() => setActiveTab('analysis')}
-                                    className={`px-3 py-1.5 rounded-md text-sm ${activeTab === 'analysis' ? 'bg-white shadow text-slate-800' : 'text-slate-500'}`}
+                                    className={`px-3 py-1.5 rounded-md text-sm whitespace-nowrap ${activeTab === 'analysis' ? 'bg-white shadow text-slate-800' : 'text-slate-600'}`}
                                 >
                                     <span className="inline-flex items-center gap-1"><Lightbulb size={14} /> 解析</span>
                                 </button>
                                 <button
                                     onClick={() => setActiveTab('knowledge')}
-                                    className={`px-3 py-1.5 rounded-md text-sm ${activeTab === 'knowledge' ? 'bg-white shadow text-slate-800' : 'text-slate-500'}`}
+                                    className={`px-3 py-1.5 rounded-md text-sm whitespace-nowrap ${activeTab === 'knowledge' ? 'bg-white shadow text-slate-800' : 'text-slate-600'}`}
                                 >
                                     <span className="inline-flex items-center gap-1"><BrainCircuit size={14} /> 知识点</span>
                                 </button>
@@ -478,7 +477,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                             </div>
                         )}
 
-                        {!( (currentQ.type === 'coding' || currentQ.type === 'programming') && (getQuestionContent(currentQ) === programmingPracticeMarkdown || isReformed) ) && (
+                        {!isProgrammingQuestion(currentQ) && (
                             <div className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
                                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
                             </div>
@@ -486,76 +485,59 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
                         {activeTab === 'practice' && (
                             <div className="space-y-3">
-                                {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
-                                    <>
-                                    <div className="luogu-problem">
-                                        <div className="problem-header">
-                                            <span className="problem-tag">上机编程</span>
-                                            <span className="problem-title">第 {currentQuestionIndex + 1} 题</span>
-                                        </div>
-                                        <div className="problem-content">
-                                            <MarkdownRenderer content={isReformed ? getQuestionContent(currentQ) : programmingPracticeMarkdown} />
-                                        </div>
-                                    </div>
-                                    {(() => {
-                                        const luoguUrl = getLuoguProblemUrl(paperId, currentQ.id);
-                                        return luoguUrl ? (
-                                            <a
-                                                href={luoguUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
-                                            >
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                                前往洛谷提交代码
-                                            </a>
-                                        ) : null;
-                                    })()}
-                                    </>
+                                {isProgrammingQuestion(currentQ) ? (
+                                    <CodingProblemView
+                                        q={currentQ}
+                                        questionNumber={currentQuestionIndex + 1}
+                                        luoguUrl={getLuoguProblemUrl(paperId, currentQ.id)}
+                                        onReveal={revealCurrent}
+                                    />
                                 ) : (
-                                    (currentQ.options || []).map((opt, idx) => {
-                                        const isSelected = selected === idx;
-                                        const optionState = isRevealed
-                                            ? idx === currentQ.answer
-                                                ? 'border-emerald-400 bg-emerald-50 text-emerald-950 shadow-emerald-100'
+                                    <>
+                                        {(currentQ.options || []).map((opt, idx) => {
+                                            const isSelected = selected === idx;
+                                            const optionState = isRevealed
+                                                ? idx === currentQ.answer
+                                                    ? 'border-emerald-400 bg-emerald-50 text-emerald-950 shadow-emerald-100'
+                                                    : isSelected
+                                                        ? 'border-rose-300 bg-rose-50 text-rose-900 shadow-rose-100'
+                                                        : 'border-slate-200 bg-slate-50/70 text-slate-500 opacity-75'
                                                 : isSelected
-                                                    ? 'border-rose-300 bg-rose-50 text-rose-900 shadow-rose-100'
-                                                    : 'border-slate-200 bg-slate-50/70 text-slate-500 opacity-75'
-                                            : isSelected
-                                                ? 'border-indigo-400 bg-indigo-50 text-indigo-950 shadow-indigo-100'
-                                                : 'border-slate-200 bg-white text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/40 hover:shadow-md';
-                                        const badgeState = isRevealed
-                                            ? idx === currentQ.answer
-                                                ? 'bg-emerald-600 text-white'
+                                                    ? 'border-indigo-400 bg-indigo-50 text-indigo-950 shadow-indigo-100'
+                                                    : 'border-slate-200 bg-white text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/40 hover:shadow-md';
+                                            const badgeState = isRevealed
+                                                ? idx === currentQ.answer
+                                                    ? 'bg-emerald-600 text-white'
+                                                    : isSelected
+                                                        ? 'bg-rose-500 text-white'
+                                                        : 'bg-slate-200 text-slate-500'
                                                 : isSelected
-                                                    ? 'bg-rose-500 text-white'
-                                                    : 'bg-slate-200 text-slate-500'
-                                            : isSelected
-                                                ? 'bg-indigo-600 text-white'
-                                                : 'bg-slate-100 text-slate-600 group-hover:bg-indigo-100 group-hover:text-indigo-700';
+                                                    ? 'bg-indigo-600 text-white'
+                                                    : 'bg-slate-100 text-slate-600 group-hover:bg-indigo-100 group-hover:text-indigo-700';
 
-                                        return (
-                                            <button
-                                                key={idx}
-                                                onClick={() => handleOptionSelect(currentQ.id, idx)}
-                                                className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${optionState}`}
-                                            >
-                                                <span className={`option-badge ${badgeState}`}>{String.fromCharCode(65 + idx)}</span>
-                                                <span className="question-option-content">
-                                                    <MarkdownRenderer content={formatOptionDisplay(opt)} inline={true} className="text-inherit" />
-                                                </span>
-                                            </button>
-                                        );
-                                    })
+                                            return (
+                                                <button
+                                                    key={idx}
+                                                    onClick={() => handleOptionSelect(currentQ.id, idx)}
+                                                    className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${optionState}`}
+                                                >
+                                                    <span className={`option-badge ${badgeState}`}>{String.fromCharCode(65 + idx)}</span>
+                                                    <span className="question-option-content">
+                                                        <MarkdownRenderer content={formatOptionDisplay(opt)} inline={true} className="text-inherit" />
+                                                    </span>
+                                                </button>
+                                            );
+                                        })}
+
+                                        <button
+                                            onClick={revealCurrent}
+                                            disabled={(currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined}
+                                            className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${((currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                                        >
+                                            <CheckCircle2 size={18} /> {(currentQ.type === 'coding' || currentQ.type === 'programming') ? '标记已阅读并查看复盘' : '查看答案与解析'}
+                                        </button>
+                                    </>
                                 )}
-
-                                <button
-                                    onClick={revealCurrent}
-                                    disabled={(currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined}
-                                    className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${((currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
-                                >
-                                    <CheckCircle2 size={18} /> {(currentQ.type === 'coding' || currentQ.type === 'programming') ? '标记已阅读并查看复盘' : '查看答案与解析'}
-                                </button>
                             </div>
                         )}
 
