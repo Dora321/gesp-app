@@ -289,41 +289,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第2页第7题题干及四个选项均与站内 question/options 对应，考查 min() 的错误描述。",
-          "review": "PDF 第 2 页第 7 题题干“以下关于 C++ 求最小值函数 min() 的描述，不正确的是（ ）”与站内一致。"
+          "initial": "PDF 第2页第7题题干“以下关于 C++ 求最小值函数 min() 的描述，不正确的是（ ）”与候选一致。",
+          "review": "PDF 第 2 页第 7 题题干「以下关于 C++ 求最小值函数 min() 的描述，不正确的是（ ）」与候选一致。"
         },
         "options": {
-          "initial": "PDF第2页选项依次为 A 函数必须返回一个值、B 可嵌套调用、C min(5) 不能编译、D min() 可编译且结果为0，站内顺序一致。",
-          "review": "PDF 第 2 页四个选项（A 函数必须返回一个值 / B 可嵌套调用 / C min(5) 不能通过编译 / D min() 可编译且结果为 0）与站内 options 顺序、内容一致。"
+          "initial": "PDF 第2页选项依次 A. 函数必须返回一个值、B. 该函数可以嵌套调用、C. 调用 min(5) 是错误的，不能通过编译、D. 调用 min()（不传任何参数）可以通过编译，结果为 0，顺序和内容一致。",
+          "review": "PDF 第 2 页选项依次 A. 函数必须返回一个值、B. 该函数可以嵌套调用、C. 调用 min(5) 是错误的，不能通过编译、D. 调用 min()（不传任何参数）可以通过编译，结果为 0，与候选顺序、内容一致。"
         },
         "answer": {
-          "initial": "PDF第1页单选答案表第7题为 D，D 对应 0 起始索引 3；站内 answer=3，一致。",
-          "review": "PDF 第 1 页答案表第 7 题为 D（索引 3）；独立确认 std::min 无无参重载，min() 不能编译，D 为不正确表述；站内 answer=3 一致。"
+          "initial": "PDF 第1页答案表第7题为 D（0 起始索引 3）；std::min 各标准重载均无无参形式，min() 不能通过编译，D 是唯一错误表述，answer=3 正确。",
+          "review": "PDF 第 1 页答案表第 7 题为 D（0 起始索引 3）。独立核对 std::min 标准重载集：min(a,b)、min(initializer_list)、min(a,b,comp)、min(initializer_list,comp) 均不存在无参形式，故 min() 无匹配重载、无法编译，D 是唯一错误表述，候选 answer=3 正确。"
         },
         "explanation": {
-          "initial": "官答 D 成立，但解析末尾称 std::min“需要至少两个参数”，与初始化列表重载 std::min({a,b,c}) 冲突；应改为双参数重载需两个实参、初始化列表重载至少一个元素、无参重载不存在。",
-          "review": "官答 D 成立、主体推导正确；但原解析“易错提醒”称 std::min() “需要至少两个参数”，与其自身列出的初始化列表重载 std::min({a,b,c})（至少一个元素）矛盾，亦不符合标准重载集，属事实性错误；已在 changes 提供修订稿并独立核验（双参数重载恰需两个实参、初始化列表重载至少一个元素、无无参重载），修复后核验通过。"
+          "initial": "修订后已列出双参数、initializer_list 及带比较器的重载，并明确它们均不接受无参调用；C 项 min(5) 无匹配重载亦不能编译，选项辨析与结论一致。",
+          "review": "独立复核候选解析：已完整列出双参数、initializer_list 及带比较器的重载，并指出它们均不接受无参或单实参调用；C 项以「常见重载都不接受单个整数实参」表述严谨（min(5) 无匹配重载不可编译）；A（min 的职责即返回值）、B（std::min(a, std::min(b, c)) 嵌套合法）辨析正确；无参调用既不可能编译通过也不会得到 0；反向选择题提醒（问「不正确的是」）无误。上一轮指认的「只有双参数和初始化列表版本」遗漏已修复，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2025-12-l3.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2025-12-l3.glm.json"
       ]
     },
     {
@@ -1172,16 +1175,6 @@
         "修改 code 未获得两模型一致批准，待回流",
         "statement 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 7,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [
@@ -1194,5 +1187,5 @@
     }
   ],
   "programmingChecks": "ai-reviews/2026-11-07/2025-12-l3.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-12-l3.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2025-12-l3.integration.json"
 }

@@ -1,0 +1,27 @@
+{
+  "paperId": "2025-12-l3",
+  "integratedAt": "2026-11-14T06:48:33.615Z",
+  "accepted": [
+    {
+      "id": 7,
+      "fields": [
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 3,
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "{\n    int sum = 0;\n    for (int i = 1; i <= 10; i++) {\n        if (i % 3 == 8>>2)\n            continue;\n        sum += i;\n    }\n}"
+      }
+    }
+  ],
+  "codeChecks": []
+}
