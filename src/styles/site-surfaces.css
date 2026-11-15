@@ -184,6 +184,11 @@
     box-shadow: var(--mw-shadow-overlay);
 }
 
+.mw-chat-panel {
+    /* The assistant uses a light surface even inside dark lesson viewers. */
+    color: var(--mw-ink);
+}
+
 .mw-chat-panel .mw-panel-heading {
     border-radius: 0;
     border-bottom: 3px solid var(--mw-brand-mustard);

@@ -22,6 +22,18 @@ async function openFromCorner(page, scope = page) {
   await button.click();
 }
 
+async function verifyComposerInk(page) {
+  const input = page.getByRole('textbox', { name: '对话输入', exact: true });
+  const message = '一个常见的科创作品通常为几个板块？';
+  await input.fill(message);
+  const appearance = await input.evaluate(node => ({
+    text: node.value,
+    ink: getComputedStyle(node).webkitTextFillColor,
+    unselected: node.selectionStart === node.selectionEnd,
+  }));
+  assert.deepEqual(appearance, { text: message, ink: 'rgb(35, 40, 61)', unselected: true });
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   try {
@@ -42,6 +54,7 @@ async function openFromCorner(page, scope = page) {
     assert.equal(await page.getByRole('dialog', { name: 'AI 问答助手', exact: true }).evaluate(
       panel => document.fullscreenElement.contains(panel),
     ), true);
+    await verifyComposerInk(page);
     await page.getByRole('button', { name: closeLabel, exact: true }).click();
     await page.evaluate(() => document.exitFullscreen());
 
@@ -76,6 +89,7 @@ async function openFromCorner(page, scope = page) {
       assert.equal(await button.evaluate(node => getComputedStyle(node).opacity), '1');
       await button.tap();
       await mobile.getByRole('dialog', { name: 'AI 问答助手', exact: true }).waitFor();
+      if (path === '/hardware/arduino/1') await verifyComposerInk(mobile);
     }
     console.log('AI availability passed on desktop, touch screens, fullscreen slide viewer and standalone resources.');
   } finally { await browser.close(); }
