@@ -114,6 +114,31 @@ test('OpenCode Go keeps its own key and routes student messages through the Go s
   assert.equal(JSON.parse(f.calls[2].body).reasoning_effort, 'low');
 });
 
+test('classroom chat sends inline images to the model and rejects links and oversized attachments before charging', async t => {
+  const f = await fixture(t);
+  const state = await f.start(5);
+  const redeemed = await f.req('/api/classroom/redeem', { code: state.code });
+  assert.equal(redeemed.body.supportsImages, true);
+  const role = 'user';
+  const content = '看这张接线图';
+  const submit = messages => f.req('/api/chat', { requestId: crypto.randomUUID(), messages }, redeemed.cookie);
+  const image = 'data:image/jpeg;base64,/9j/2Q==';
+  assert.equal((await submit([{ role, content, image: 'https://example.org/picture.jpg' }])).status, 400);
+  assert.equal((await submit([{ role, content, image: `data:image/jpeg;base64,/9j/${'A'.repeat(900_000)}` }])).status, 400);
+  assert.equal((await submit([{ role: 'assistant', content, image }, { role, content }])).status, 400);
+  assert.equal((await submit(Array.from({ length: 3 }, () => ({ role, content, image })))).status, 400);
+  assert.equal((await submit([{ role, content, image: 'x'.repeat(1_950_000) }])).status, 413);
+  assert.equal(f.calls.length, 0);
+  assert.equal((await f.req('/api/session', undefined, redeemed.cookie)).body.remaining, 5);
+
+  const response = await submit([{ role, content, image }, { role: 'assistant', content: '看到了' }, { role, content: '这里是什么？' }]);
+  assert.equal(response.status, 200);
+  const prepared = JSON.parse(f.calls[0].body).messages;
+  assert.deepEqual(prepared[1], { role, content: [{ type: 'text', text: content }, { type: 'image_url', image_url: { url: image } }] });
+  assert.deepEqual(prepared.at(-1), { role, content: '这里是什么？' });
+  assert.equal((await f.req('/api/session', undefined, redeemed.cookie)).body.remaining, 4);
+});
+
 test('concurrent students cannot exceed shared quota; repeated request ID is not charged twice', async t => {
   const f = await fixture(t); const state = await f.start(2);
   const students = await Promise.all(Array.from({ length: 8 }, () => f.student(state.code)));

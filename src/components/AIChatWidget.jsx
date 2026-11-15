@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
+import { X, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save } from 'lucide-react';
+import { keepRecentChatImages, toModelMessages } from '../utils/chatImages';
 import { assistantStorage, ASSISTANT_KEY, loadAssistantKey, saveAssistantKey, buildClassroomPrompt, deepSeekReasoningEffort } from '../utils/classroomAssistant';
 import { classroomRequest, classroomFetch, classroomConversationId } from '../utils/classroomClient';
 import {
@@ -16,7 +17,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AI_PERSONAS, AI_MODEL } from '../utils/aiChatConstants';
 import { chatMarkdownComponents } from './AIChatMarkdown';
-import ChatReasoningSelect from './ChatReasoningSelect';
+import ChatComposer from './ChatComposer';
 
 const AIChatWidget = ({ onClose }) => {
     const [keyStatus, setKeyStatus] = useState('');
@@ -33,10 +34,12 @@ const AIChatWidget = ({ onClose }) => {
     const [messages, setMessages] = useState(() => {
         try {
             const stored = JSON.parse(assistantStorage.get('sessionStorage', 'ai_chat_messages') || '[]');
-            return Array.isArray(stored) ? stored.filter(message => ['user', 'assistant'].includes(message?.role) && typeof message.content === 'string') : [];
+            return Array.isArray(stored) ? keepRecentChatImages(stored.filter(message => ['user', 'assistant'].includes(message?.role) && typeof message.content === 'string')) : [];
         } catch { return []; }
     });
     const [inputValue, setInputValue] = useState('');
+    const [draftImage, setDraftImage] = useState(null);
+    const [composerVersion, setComposerVersion] = useState(0);
     const [reasoningLevel, setReasoningLevel] = useState(() => (
         assistantStorage.get('localStorage', 'ai_reasoning_level') === 'medium' ? 'medium' : 'low'
     ));
@@ -48,6 +51,7 @@ const AIChatWidget = ({ onClose }) => {
     const [classroom, setClassroom] = useState(null);
     const [activating, setActivating] = useState(false);
     const authorized = mode === 'personal' ? Boolean(personalKey) : classroomActive;
+    const supportsImages = mode === 'personal' || classroom?.supportsImages === true;
     const quotaExhausted = mode === 'classroom' && classroom?.remaining === 0;
     const [customPersona, setCustomPersona] = useState(null);
     const [editingCustomPersona, setEditingCustomPersona] = useState(null);
@@ -299,6 +303,8 @@ const AIChatWidget = ({ onClose }) => {
         classroomConversationId(true);
         shouldAutoScrollRef.current = true;
         setMessages([]);
+        setDraftImage(null);
+        setComposerVersion(version => version + 1);
         assistantStorage.remove('sessionStorage', 'ai_chat_messages');
     };
 
@@ -374,18 +380,21 @@ const AIChatWidget = ({ onClose }) => {
     };
 
     const sendMessage = async () => {
-        if (!inputValue.trim() || isLoading || !authorized || quotaExhausted) return;
+        const text = inputValue.trim();
+        if ((!text && !draftImage) || (draftImage && !supportsImages) || isLoading || !authorized || quotaExhausted) return;
 
         const currentPersona = (selectedPersona === 'custom' && customPersona)
             ? customPersona
             : (AI_PERSONAS.find(p => p.id === selectedPersona) || AI_PERSONAS[0]);
 
-        const userMessage = { role: 'user', content: inputValue.trim() };
+        const userMessage = { role: 'user', content: text || '请分析这张图片。', ...(draftImage ? { image: draftImage, imageMode: mode } : {}) };
         shouldAutoScrollRef.current = true;
 
-        const newMessages = [...messages, userMessage];
+        const newMessages = keepRecentChatImages([...messages, userMessage]);
+        const history = toApiHistory(newMessages, { includeImages: supportsImages, imageMode: mode });
         setMessages(newMessages);
         setInputValue('');
+        setDraftImage(null);
         setIsLoading(true);
 
         abortControllerRef.current = new AbortController();
@@ -401,7 +410,7 @@ const AIChatWidget = ({ onClose }) => {
                     reasoning_effort: deepSeekReasoningEffort(reasoningLevel),
                     messages: [
                         { role: 'system', content: buildClassroomPrompt(currentPersona.systemPrompt) },
-                        ...toApiHistory(newMessages),
+                        ...toModelMessages(history),
                     ],
                 }),
                 signal: abortControllerRef.current.signal,
@@ -415,7 +424,7 @@ const AIChatWidget = ({ onClose }) => {
                     requestId: crypto.randomUUID(),
                     conversationId: classroomConversationId(),
                     persona: currentPersona.systemPrompt, reasoningLevel,
-                    messages: toApiHistory(newMessages).map(message => ({ ...message, content: message.content.slice(0, 4000) })),
+                    messages: history.map(message => ({ ...message, content: message.content.slice(0, 4000) })),
                 }),
                 signal: abortControllerRef.current.signal
             });
@@ -893,7 +902,10 @@ const AIChatWidget = ({ onClose }) => {
                             : 'bg-white text-slate-700 rounded-bl-sm border border-slate-200 shadow-sm'
                             }`}>
                             {msg.role === 'user' ? (
-                                <div className="whitespace-pre-wrap break-words">{msg.content}</div>
+                                <div className="whitespace-pre-wrap break-words">
+                                    {msg.image && <img src={msg.image} alt="已发送的图片" className="mb-2 max-h-48 max-w-full rounded-lg bg-white object-contain" />}
+                                    {msg.content}
+                                </div>
                             ) : (
                                 msg.content ? (
                                     <ReactMarkdown
@@ -919,49 +931,13 @@ const AIChatWidget = ({ onClose }) => {
             </div>
 
             {/* Input Area */}
-            <div className="p-3 bg-white border-t border-slate-200 shrink-0">
-                <ChatReasoningSelect value={reasoningLevel} disabled={isLoading} onChange={level => {
+            <ChatComposer key={composerVersion} inputRef={inputRef} value={inputValue} onChange={setInputValue}
+                onSend={sendMessage} onStop={stopGeneration} disabled={!authorized || quotaExhausted} loading={isLoading}
+                reasoningLevel={reasoningLevel} onReasoningChange={level => {
                     setReasoningLevel(level);
                     assistantStorage.set('localStorage', 'ai_reasoning_level', level);
-                }} />
-                {isHistoryNearLimit(messages) && (
-                    <p role="status" className="mb-2 text-xs leading-5 text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-                        对话已经比较长，发送时只会带上最近几轮。建议点左上角「新对话」再问，回答更稳、也更省额度。
-                    </p>
-                )}
-                <div className="flex gap-2 items-end">
-                    <textarea
-                        ref={inputRef}
-                        rows={2}
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter' && !e.shiftKey) {
-                                e.preventDefault();
-                                sendMessage();
-                            }
-                        }}
-                        placeholder={authorized ? "输入你的问题…（Enter 发送，Shift+Enter 换行）" : mode === 'personal' ? '请先设置 API Key' : "请先输入课堂口令"}
-                        disabled={!authorized || quotaExhausted || isLoading}
-                        aria-label="对话输入"
-                        className="min-h-11 max-h-36 min-w-0 flex-1 resize-y px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all disabled:bg-slate-100 disabled:cursor-not-allowed text-sm leading-6"
-                    />
-                    <button
-                        type="button"
-                        onClick={isLoading ? stopGeneration : sendMessage}
-                        disabled={!authorized || (!isLoading && (quotaExhausted || !inputValue.trim()))}
-                        className={`shrink-0 min-h-11 px-4 py-2.5 rounded-xl font-medium transition-colors flex items-center gap-1 text-white
-                            ${isLoading
-                                ? 'bg-red-500 hover:bg-red-600'
-                                : 'bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed'
-                            }`}
-                        title={isLoading ? "停止生成" : "发送"}
-                        aria-label={isLoading ? "停止生成" : "发送"}
-                    >
-                        {isLoading ? <Square size={18} fill="currentColor" /> : <Send size={18} />}
-                    </button>
-                </div>
-            </div>
+                }} historyNearLimit={isHistoryNearLimit(messages)} supportsImages={supportsImages} image={draftImage} onImageChange={setDraftImage}
+                placeholder={authorized ? '输入你的问题…（Enter 发送，Shift+Enter 换行）' : mode === 'personal' ? '请先设置 API Key' : '请先输入课堂口令'} />
             </div>
             {/* Resize Handle — desktop floating panel only */}
             {!isSheet && (

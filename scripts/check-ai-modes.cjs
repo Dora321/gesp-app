@@ -8,13 +8,13 @@ const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
     for (const width of [390, 1366]) {
       const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
       const page = await context.newPage();
-      const personal = [], classroom = [], errors = [];
+      const personal = [], personalMessages = [], classroom = [], errors = [];
       page.on('pageerror', error => errors.push(error.message));
       let active = false, remaining = 3, gatewayCalls = 0;
       await page.route('**/api/**', async route => {
         gatewayCalls++;
         const path = new URL(route.request().url()).pathname;
-        const state = { remaining, expiresAt: Date.now() + 3600000 };
+        const state = { remaining, expiresAt: Date.now() + 3600000, supportsImages: true };
         if (path.endsWith('/redeem')) { active = true; return route.fulfill({ json: { ...state, token: 'test-classroom-session' } }); }
         if (!active) return route.fulfill({ status: 401, json: { message: '课堂已结束或口令已更换。' } });
         if (path === '/api/chat') {
@@ -30,6 +30,7 @@ const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
       });
       await page.route('https://api.deepseek.com/chat/completions', async route => {
         const body = route.request().postDataJSON();
+        personalMessages.push(body.messages);
         personal.push({ auth: route.request().headers().authorization, effort: body.reasoning_effort });
         assert.equal(body.messages[0].role, 'system');
         assert.ok(!body.messages[0].content.includes('页面背景'));
@@ -71,6 +72,22 @@ const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
       await careful.click();
       assert.equal(await careful.getAttribute('aria-pressed'), 'true');
       assert.equal(await fast.getAttribute('aria-pressed'), 'false');
+      const chooser = page.waitForEvent('filechooser');
+      await page.getByRole('button', { name: '添加图片', exact: true }).click();
+      const pixel = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a9ioAAAAASUVORK5CYII=', 'base64');
+      await (await chooser).setFiles({ name: 'wiring.png', mimeType: 'image/png', buffer: pixel });
+      const preview = page.getByRole('img', { name: '待发送的图片', exact: true });
+      await preview.waitFor();
+      await page.getByRole('button', { name: '移除图片', exact: true }).click();
+      await preview.waitFor({ state: 'detached' });
+      await input.evaluate(async node => {
+        const canvas = document.createElement('canvas');
+        const blob = await new Promise(resolve => canvas.toBlob(resolve));
+        const data = new DataTransfer();
+        data.items.add(new File([blob], 'screenshot.png', { type: 'image/png' }));
+        node.dispatchEvent(new ClipboardEvent('paste', { clipboardData: data, bubbles: true, cancelable: true }));
+      });
+      await preview.waitFor();
       await input.fill('使用课堂额度'); await input.press('Enter');
       await page.getByText('课堂回答', { exact: true }).waitFor();
       await page.getByText(/全班剩余 0 次/).waitFor();
@@ -78,22 +95,32 @@ const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
       assert.equal(personal.length, 1, 'Exhausted classroom quota must not fall back to personal billing');
       assert.equal(classroom.length, 1);
       assert.equal(classroom[0].reasoningLevel, 'medium');
+      assert.match(classroom[0].messages.at(-1).image, /^data:image\/jpeg;base64,/);
+      await page.getByRole('img', { name: '已发送的图片', exact: true }).waitFor();
       assert.match(classroom[0].conversationId, /^[a-f0-9-]{36}$/);
       await settings(); await page.getByRole('button', { name: '个人模式', exact: true }).click();
       await page.getByLabel('DeepSeek API Key', { exact: true }).fill('new-personal-key');
       await page.getByRole('button', { name: '保存个人密钥', exact: true }).click();
       await page.reload(); await open();
       await page.getByText('个人模式 · 使用自己的 API Key', { exact: true }).waitFor();
+      await page.getByRole('img', { name: '已发送的图片', exact: true }).waitFor();
       await input.fill('刷新后使用新密钥'); await input.press('Enter');
       await page.waitForFunction(() => document.body.innerText.split('个人回答').length >= 3);
       assert.deepEqual(personal.at(-1), { auth: 'Bearer new-personal-key', effort: 'high' });
+      assert.ok(personalMessages.at(-1).every(message => typeof message.content === 'string'), 'Classroom attachment must not cross into personal mode');
+      await page.locator('input[type="file"]').setInputFiles({ name: 'wiring.png', mimeType: 'image/png', buffer: pixel });
+      await preview.waitFor();
+      await page.getByRole('button', { name: '发送', exact: true }).click();
+      await page.waitForFunction(() => document.body.innerText.split('个人回答').length >= 4);
+      const imagePart = personalMessages.at(-1).at(-1).content.find(part => part.type === 'image_url');
+      assert.match(imagePart.image_url.url, /^data:image\/jpeg;base64,/);
       await settings(); await page.getByRole('button', { name: '清除个人密钥', exact: true }).click();
       assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), null);
       await page.getByRole('button', { name: '返回对话', exact: true }).click();
       assert.ok(await input.isDisabled());
       assert.deepEqual(errors, []);
       await context.close();
-      console.log(`AI checks passed at ${width}px: both modes, separate credentials, settings scrolling and no page context.`);
+      console.log(`AI checks passed at ${width}px: both modes, image upload and paste, separate credentials and settings.`);
     }
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -6,6 +6,7 @@ import { resolve, extname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { once } from 'node:events';
 import { buildClassroomPrompt, deepSeekReasoningEffort } from '../src/utils/classroomAssistant.js';
+import { CHAT_IMAGE_HISTORY_LIMIT, CHAT_IMAGE_LIMIT, isChatImage, toModelMessages } from '../src/utils/chatImages.js';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const equal = (a, b) => typeof a === 'string' && typeof b === 'string' && timingSafeEqual(Buffer.from(hash(a)), Buffer.from(hash(b)));
@@ -27,6 +28,8 @@ const providers = {
   },
 };
 const keyColumn = provider => provider === 'opencode-go' ? 'opencode_go_key' : 'api_key';
+const supportsImages = model => ['deepseek-flash', 'deepseek-v4.1-flash', 'deepseek-v4-flash-vision-exp'].includes(model);
+const CHAT_BODY_LIMIT = 100_000 + CHAT_IMAGE_HISTORY_LIMIT * CHAT_IMAGE_LIMIT;
 
 export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_DIR || resolve('.classroom'), adminPassword, fetchAI = fetch, now = Date.now, secure = process.env.NODE_ENV === 'production', studentOrigin = process.env.CLASSROOM_STUDENT_ORIGIN || '' } = {}) {
   mkdirSync(directory, { recursive: true, mode: 0o700 });
@@ -64,6 +67,7 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
     maxQuestions: s.max_questions,
     providerName: providers[s.provider].name,
     modelName: providers[s.provider].modelName,
+    supportsImages: supportsImages(providers[s.provider].model),
     ...(teacher ? {
       code: s.code,
       provider: s.provider,
@@ -101,11 +105,21 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
   };
   const stopStreams = () => { for (const controller of streams) controller.abort(); };
   const json = (res, status, data) => { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(data)); };
-  const body = async req => {
+  const body = async (req, maxBytes = 100_000) => {
     if (!req.headers['content-type']?.startsWith('application/json')) throw error(415, '请使用 JSON 请求。');
-    let data = '';
-    for await (const chunk of req) { data += chunk; if (Buffer.byteLength(data) > 100000) throw error(413, '内容过长，请缩短后重试。'); }
-    try { return JSON.parse(data); } catch { throw error(400, '请求格式不正确。'); }
+    const tooLarge = () => {
+      req.resume();
+      return error(413, '内容过长，请缩短文字或缩小图片后重试。');
+    };
+    if (Number(req.headers['content-length']) > maxBytes) throw tooLarge();
+    const chunks = [];
+    let size = 0;
+    for await (const chunk of req.iterator({ destroyOnReturn: false })) {
+      size += chunk.length;
+      if (size > maxBytes) throw tooLarge();
+      chunks.push(chunk);
+    }
+    try { return JSON.parse(Buffer.concat(chunks, size).toString('utf8')); } catch { throw error(400, '请求格式不正确。'); }
   };
   const server = createServer(async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
@@ -202,8 +216,13 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
         }
         if (req.method === 'POST' && path === '/api/chat') {
           const student = session(req, 'student');
-          const data = await body(req);
-          if (!Array.isArray(data.messages) || !data.messages.length || data.messages.length > 32 || data.messages.some(m => !m || !['user', 'assistant'].includes(m.role) || typeof m.content !== 'string' || m.content.length > 4000) || data.messages.reduce((n, m) => n + m.content.length, 0) > 24000 || data.messages.at(-1).role !== 'user') throw error(400, '对话过长或格式不正确，请新建对话并缩短问题。');
+          const data = await body(req, CHAT_BODY_LIMIT);
+          const { messages } = data || {};
+          if (!Array.isArray(messages) || !messages.length || messages.length > 32 || messages.some(m => !m || !['user', 'assistant'].includes(m.role) || typeof m.content !== 'string' || m.content.length > 4000) || messages.reduce((n, m) => n + m.content.length, 0) > 24000 || messages.at(-1).role !== 'user') throw error(400, '对话过长或格式不正确，请新建对话并缩短问题。');
+          const withImages = messages.filter(message => message.image !== undefined);
+          if (withImages.length > CHAT_IMAGE_HISTORY_LIMIT || withImages.some(message => message.role !== 'user' || !isChatImage(message.image))) {
+            throw error(400, '图片过大或格式不正确，请重新添加图片。');
+          }
           const reasoningLevel = data.reasoningLevel === undefined ? 'low' : data.reasoningLevel;
           if (!['low', 'medium'].includes(reasoningLevel)) throw error(400, '思考强度仅支持极速或认真思考。');
           if (typeof data.requestId !== 'string' || !/^[a-zA-Z0-9-]{16,80}$/.test(data.requestId)) throw error(400, '请求编号不正确。');
@@ -217,6 +236,7 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
           try {
             const s = configuration = state();
             if (!s.active || s.expires <= now() || s.generation !== student.generation) throw error(401, '课堂授权已失效。');
+            if (withImages.length && !supportsImages(providers[s.provider].model)) throw error(400, '当前课堂模型不支持图片，请联系老师。');
             if (db.prepare('SELECT id FROM requests WHERE id=?').get(requestId)) throw error(409, '该问题已受理，请勿重复提交。');
             if (s.used >= s.max_questions) throw error(403, '本堂课的提问次数已用完。');
             db.prepare('INSERT INTO requests VALUES(?,?)').run(requestId, now());
@@ -246,7 +266,7 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
               headers,
               body: JSON.stringify({
                 model: provider.model,
-                messages: [{ role: 'system', content: buildClassroomPrompt(persona) }, ...data.messages],
+                messages: [{ role: 'system', content: buildClassroomPrompt(persona) }, ...toModelMessages(messages)],
                 stream: true,
                 reasoning_effort: deepSeekReasoningEffort(reasoningLevel),
                 max_tokens: reasoningLevel === 'medium' ? 2400 : 1200,

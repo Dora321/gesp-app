@@ -1,4 +1,5 @@
 /** Pure helpers for AI chat widget (history trim + error copy). */
+import { CHAT_IMAGE_HISTORY_LIMIT, keepRecentChatImages } from './chatImages.js';
 
 /** 发给 API 的对话历史上限：最近若干条 + 字符预算（不含 system）。 */
 export const MAX_HISTORY_MESSAGES = 16; // 约 8 轮问答
@@ -13,9 +14,11 @@ export const estimateMessagesChars = (msgs) =>
  * 界面上的错误/提示气泡（isError）只给学生看，不能当成助教说过的话回传给模型，
  * 否则模型会在下一轮"接着"一条报错继续回答。发送前先过滤，再做截断。
  */
-export const toApiHistory = (msgs) => truncateChatHistory(
+export const toApiHistory = (msgs, { includeImages = true, imageMode } = {}) => keepRecentChatImages(truncateChatHistory(
     (Array.isArray(msgs) ? msgs : []).filter((message) => message && !message.isError),
-).map((message) => ({ role: message.role, content: message.content }));
+).map(({ role, content, image, imageMode: source }) => ({
+    role, content, image: !imageMode || source === imageMode ? image : undefined,
+})), includeImages ? CHAT_IMAGE_HISTORY_LIMIT : 0);
 
 export const truncateChatHistory = (msgs) => {
     let truncated = Array.isArray(msgs) ? [...msgs] : [];
