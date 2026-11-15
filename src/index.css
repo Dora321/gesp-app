@@ -220,6 +220,24 @@
 .syntax-highlight .tok-operator { color: #f97583; }
 .syntax-highlight .tok-punct { color: #8b949e; }
 
+/* --- Light code block (question-bank templates / reference solutions) ---
+   The same token classes are reused on a pale background, so every colour is
+   overridden with a darker tone that keeps at least 4.5:1 against #f8fafc. */
+.copyable-code-block .syntax-highlight { color: #1e293b; }
+.copyable-code-block .syntax-highlight .tok-plain { color: #1e293b; }
+.copyable-code-block .syntax-highlight .tok-keyword { color: #1d4ed8; }
+.copyable-code-block .syntax-highlight .tok-type { color: #0f766e; }
+.copyable-code-block .syntax-highlight .tok-builtin { color: #9a3412; }
+.copyable-code-block .syntax-highlight .tok-function { color: #6d28d9; }
+.copyable-code-block .syntax-highlight .tok-string { color: #b91c1c; }
+.copyable-code-block .syntax-highlight .tok-number { color: #047857; }
+.copyable-code-block .syntax-highlight .tok-comment {
+  color: #475569;
+  font-style: italic;
+}
+.copyable-code-block .syntax-highlight .tok-operator { color: #be123c; }
+.copyable-code-block .syntax-highlight .tok-punct { color: #475569; }
+
 /* --- Table --- */
 .markdown-body table {
   border-collapse: collapse;
