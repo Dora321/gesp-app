@@ -1,9 +1,30 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { readFile } from 'node:fs/promises'
+import { embeddedAiPages, embedAiLauncher } from './scripts/lib/embedded-ai-pages.mjs'
+
+const embeddedAiPreview = {
+  name: 'embedded-ai-preview',
+  configureServer(server) {
+    server.middlewares.use(async (req, res, next) => {
+      if (req.method !== 'GET') return next();
+      let page;
+      try { page = decodeURIComponent(new URL(req.url, 'http://localhost').pathname.slice(1)); }
+      catch { return next(); }
+      if (page.endsWith('/')) page += 'index.html';
+      if (!embeddedAiPages.has(page)) return next();
+      try {
+        const html = await readFile(new URL(`./public/${page}`, import.meta.url), 'utf8');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.end(embedAiLauncher(html, '/src/embeddedAILauncher.js'));
+      } catch (error) { next(error); }
+    });
+  },
+}
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
-  plugins: [react()],
+  plugins: [react(), embeddedAiPreview],
   server: {
     proxy: {
       '/api': 'http://127.0.0.1:8787',
@@ -15,6 +36,11 @@ export default defineConfig(({ command }) => ({
   build: {
     manifest: true,
     rollupOptions: {
+      input: {
+        index: 'index.html',
+        assistant: 'ai-assistant.html',
+        assistantLauncher: 'src/embeddedAILauncher.js',
+      },
       output: {
         // Function form (not the object form): the object form hoists shared
         // vendor chunks into the entry's static graph, which was pulling the

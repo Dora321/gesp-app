@@ -178,15 +178,14 @@ async function run() {
   if (eagerHomeRequest) {
     throw new Error(`Question bank route eagerly loaded the home chunk: ${eagerHomeRequest}`);
   }
-  const eagerWidgetRequest = directQuestionBankRequests.find((url) => /\/(AIChat|ClassroomPoints)-[^/]+\.js/.test(url));
+  const eagerWidgetRequest = directQuestionBankRequests.find((url) => /\/(AIChatWidget|ClassroomPoints)-[^/]+\.js/.test(url));
   if (eagerWidgetRequest) {
     throw new Error(`Question bank route eagerly loaded a floating widget chunk: ${eagerWidgetRequest}`);
   }
-  const focusModeButtons = await page
-    .locator('button[aria-label="打开课堂积分榜"], button[aria-label="打开 AI 问答助手"]')
-    .count();
-  if (focusModeButtons !== 0) {
-    throw new Error('Question bank flow should not render global floating widgets.');
+  const cornerAI = page.getByRole('button', { name: '打开 AI 问答助手', exact: true });
+  await cornerAI.waitFor();
+  if (await cornerAI.evaluate(button => getComputedStyle(button).opacity) !== '0') {
+    throw new Error('Question bank AI should stay quiet until the pointer reaches the corner.');
   }
 
   const unverifiedPaper = await pickUnverifiedPaper();

@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { getRouteSeo, lessonRouteMeta, SITE_ORIGIN, withSiteMeta } from '../src/seo/routeMeta.js';
 import { cppLessonIndex, getCppLesson } from '../src/data/cppLessonIndex.js';
+import { embeddedAiPages, embedAiLauncher } from './lib/embedded-ai-pages.mjs';
 
 // 课名索引在构建期没有体积代价，静态 shell 直接用精修标题，
 // 让爬虫看到 96 个各不相同的页面而不是一套模板。
@@ -112,3 +113,13 @@ for (const route of allRoutes) {
 }
 
 console.log(`Generated static metadata shells for ${allRoutes.length} routes.`);
+
+const manifest = JSON.parse(fs.readFileSync(path.join(distDir, '.vite', 'manifest.json'), 'utf8'));
+const launcher = manifest['src/embeddedAILauncher.js'];
+if (!launcher) throw new Error('The embedded AI launcher is missing from the build.');
+const base = new URL(SITE_ORIGIN).pathname.replace(/\/$/, '');
+for (const page of embeddedAiPages) {
+  const file = path.join(distDir, page);
+  const html = fs.readFileSync(file, 'utf8');
+  fs.writeFileSync(file, embedAiLauncher(html, `${base}/${launcher.file}`), 'utf8');
+}

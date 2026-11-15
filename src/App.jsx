@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import RouteSeo from './components/RouteSeo';
-import PageAnnotations from './components/PageAnnotations';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
 const InnovationLesson = lazy(() => import('./pages/InnovationLesson'));
@@ -68,6 +67,7 @@ const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
 const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
 const LearningStorageNotice = lazy(() => import('./components/LearningStorageNotice'));
 const AIChat = lazy(() => import('./components/AIChat'));
+const PageAnnotations = lazy(() => import('./components/PageAnnotations'));
 
 // Loading fallback
 import LoadingScreen from './components/LoadingScreen';
@@ -75,10 +75,12 @@ const PageLoader = () => <LoadingScreen message="正在为您加载" />;
 
 const GlobalWidgets = () => {
   const { pathname } = useLocation();
-  const isQuestionBankFlow = pathname.startsWith('/question-bank');
   const usesHeaderActions = pathname === '/' || pathname === '/museum';
-
-  if (isQuestionBankFlow || pathname.startsWith('/innovation/') || pathname.startsWith('/innovation-foundation/') || (pathname.startsWith('/hardware/esp32/') || pathname.startsWith('/hardware/esp32-contest/') || pathname.startsWith('/hardware/arduino/'))) return null;
+  // Science lessons mount their own button inside the fullscreen stage.
+  if (/^\/(?:innovation(?:-foundation)?|hardware\/(?:esp32(?:-contest)?|arduino))\/[^/]+/.test(pathname)) return null;
+  if (pathname.startsWith('/question-bank')) {
+    return <Suspense fallback={null}><AIChat corner /></Suspense>;
+  }
 
   return (
     <Suspense fallback={null}>
@@ -88,8 +90,8 @@ const GlobalWidgets = () => {
         aria-label="快捷工具"
       >
         <ClassroomPoints mobileDocked={!usesHeaderActions} />
-        <AIChat mobileDocked={!usesHeaderActions} />
       </div>
+      <div className={usesHeaderActions ? 'hidden md:contents' : 'contents'}><AIChat /></div>
     </Suspense>
   );
 };
@@ -187,7 +189,7 @@ function App() {
         </Suspense>
         <Suspense fallback={null}><LearningStorageNotice /></Suspense>
         <GlobalWidgets />
-        <PageAnnotations />
+        <Suspense fallback={null}><PageAnnotations /></Suspense>
       </ErrorBoundary>
     </BrowserRouter>
   );

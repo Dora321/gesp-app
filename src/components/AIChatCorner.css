@@ -1,0 +1,57 @@
+.mw-ai-corner {
+    position: fixed;
+    z-index: 40;
+    right: env(safe-area-inset-right, 0px);
+    bottom: env(safe-area-inset-bottom, 0px);
+    display: grid;
+    width: 68px;
+    height: 68px;
+    place-items: center;
+    pointer-events: none;
+}
+
+.mw-ai-corner .mw-ai-corner-button {
+    position: relative;
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid #84775e;
+    border-radius: 50%;
+    background: #f9f0dd;
+    color: #23283d;
+    box-shadow: 0 3px 14px #15192933;
+    cursor: pointer;
+    pointer-events: auto;
+    transform: none;
+}
+
+.mw-ai-corner .mw-ai-corner-button:hover {
+    background: #f5dfb0;
+}
+
+.mw-ai-corner .mw-ai-corner-button:focus-visible {
+    outline: 2px solid #936414;
+    outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .mw-ai-corner::before {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 22px;
+        height: 22px;
+        pointer-events: auto;
+        content: '';
+    }
+
+    .mw-ai-corner:not(:hover):not(:focus-within) .mw-ai-corner-button {
+        opacity: 0;
+    }
+}
+
+@media print {
+    .mw-ai-corner { display: none; }
+}

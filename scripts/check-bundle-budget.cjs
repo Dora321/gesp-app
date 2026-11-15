@@ -56,7 +56,7 @@ const findKey = (predicate, label) => {
   return entry[0];
 };
 
-const entryKey = findKey(value => value.isEntry, 'entry');
+const entryKey = findKey((value, key) => value.isEntry && key === 'index.html', 'entry');
 const mathKey = findKey(value => value.src === 'src/components/MathMarkdownContent.jsx', 'MathMarkdownContent');
 const museumKey = findKey(value => value.src === 'src/pages/ComputingMuseum.jsx', 'ComputingMuseum');
 const luoguKey = findKey(value => value.src === 'src/data/gesp/luoguCodingByLevel.js', 'luoguCodingByLevel');
@@ -111,9 +111,9 @@ assertBudget('On-demand math incremental graph', difference(mathAssets, entryAss
 assertBudget('Museum route chunk', new Set([manifest[museumKey].file]), { raw: 135 * 1024, gzip: 36 * 1024 });
 assertBudget('Luogu question data chunk', new Set([manifest[luoguKey].file]), { raw: 190 * 1024, gzip: 52 * 1024 });
 
-const globalCss = [...entryAssets].find(asset => asset.endsWith('.css'));
-if (!globalCss) throw new Error('The initial app graph has no CSS asset.');
-assertBudget('Global CSS', new Set([globalCss]), { raw: 290 * 1024, gzip: 35 * 1024 });
+const globalCss = new Set([...entryAssets].filter(asset => asset.endsWith('.css')));
+if (!globalCss.size) throw new Error('The initial app graph has no CSS asset.');
+assertBudget('Global CSS', globalCss, { raw: 290 * 1024, gzip: 35 * 1024 });
 
 const mathFile = manifest[mathKey].file;
 for (const relativePath of manifestJsAssets) {

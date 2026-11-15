@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { scienceCourses, innovationLessonUrl } from '../data/innovationCourseCatalog';
 import { recordLessonVisit } from '../utils/lessonProgress';
+
+const AIChat = lazy(() => import('../components/AIChat'));
 
 export default function InnovationLesson({ courseId = 'advanced', redirectLegacy = false }) {
     const { id, num } = useParams();
@@ -60,6 +62,7 @@ export default function InnovationLesson({ courseId = 'advanced', redirectLegacy
             </div>
             <div ref={stageRef} className="relative min-h-[55vh] w-full flex-1 overflow-hidden bg-black" style={{ height: 'calc(100dvh - 230px)' }}>
                 <iframe ref={frameRef} key={lesson.path} onLoad={() => setLoadedPath(lesson.path)} src={url} title={`第 ${lesson.id} 课：${lesson.title}`} className="absolute left-1/2 top-1/2 border-0" style={{ width: 1280, height: 720, transform: `translate(-50%, -50%) scale(${scale})` }} allow="fullscreen" />
+                <Suspense fallback={null}><AIChat corner /></Suspense>
             </div>
             <nav aria-label="课件导航" className="flex flex-wrap items-center justify-between gap-3 px-4 pb-16 pt-3 text-sm">
                 {previous ? <Link to={previous.path} className="inline-flex items-center gap-2"><ArrowLeft size={16} />第 {previous.id} 课 · {previous.title}</Link> : <span>从点亮第一盏灯开始</span>}

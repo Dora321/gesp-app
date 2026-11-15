@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import AIChat from './AIChat';
 
 export default function LessonMobileHeader({ label, labelClass = 'bg-blue-600 text-white', open, onToggle }) {
     return (
@@ -16,7 +15,6 @@ export default function LessonMobileHeader({ label, labelClass = 'bg-blue-600 te
                 <span className={`min-w-0 truncate rounded-md px-2 py-1 text-xs font-black ${labelClass}`}>{label}</span>
             </div>
             <div className="ml-2 flex shrink-0 items-center gap-2">
-                <div className="sm:hidden"><AIChat mobileInline /></div>
                 <button
                     type="button"
                     onClick={onToggle}
