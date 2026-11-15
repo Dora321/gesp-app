@@ -418,9 +418,15 @@ const AIChatWidget = ({ onClose }) => {
 
             if (!response.ok) {
                 if (mode === 'personal') throw new Error(await mapHttpErrorMessage(response));
-                if (response.status === 401) { setClassroomActive(false); setClassroom(null); setShowSettings(true); }
                 const result = await response.json().catch(() => ({}));
-                throw new Error(result.message || '课堂服务暂时不可用，请联系老师。');
+                const message = result.message || '课堂服务暂时不可用，请联系老师。';
+                if (response.status === 401) {
+                    setClassroomActive(false);
+                    setClassroom(null);
+                    setKeyStatus(message);
+                    setShowSettings(true);
+                }
+                throw new Error(message);
             }
 
             if (!response.body) {
@@ -682,20 +688,17 @@ const AIChatWidget = ({ onClose }) => {
                     <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
                             <BrainCircuit size={16} className="text-slate-500" />
-                            <span className="text-sm font-medium text-slate-700">选择模型</span>
+                            <span className="text-sm font-medium text-slate-700">当前模型</span>
                         </div>
                         <div className="flex items-center gap-2 p-2.5 rounded-lg border border-indigo-500 bg-indigo-50 text-indigo-700 ring-1 ring-indigo-500">
                             <div className="w-8 h-8 rounded-lg bg-white/80 flex items-center justify-center shrink-0">
                                 <Sparkles size={14} />
                             </div>
                             <div className="min-w-0">
-                                <div className="text-sm font-bold">{AI_MODEL.name}</div>
-                                <div className="text-xs text-indigo-600">{AI_MODEL.description}</div>
+                                <div className="text-sm font-bold">{mode === 'personal' ? AI_MODEL.name : classroom?.modelName || '由老师配置'}</div>
+                                <div className="text-xs text-indigo-600">{mode === 'personal' ? AI_MODEL.description : classroom?.providerName || '输入课堂口令后显示'}</div>
                             </div>
                         </div>
-                        <p className="text-xs text-slate-400 mt-1.5 px-1">
-                            固定使用 DeepSeek Flash，不再提供 V3 / R1 切换。
-                        </p>
                     </div>
 
                     {/* Persona Section */}

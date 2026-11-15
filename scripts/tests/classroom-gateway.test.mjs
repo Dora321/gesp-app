@@ -51,9 +51,51 @@ test('student receives only HttpOnly authorization; upstream key stays on server
   assert.equal((await f.req('/api/session', undefined, activated.cookie)).status, 200);
   const response = await f.chat(activated.cookie);
   assert.equal(response.status, 200); assert.match(response.body, /你好/);
+  assert.equal(f.calls[0].url, 'https://api.deepseek.com/chat/completions');
   assert.equal(f.calls[0].headers.Authorization, 'Bearer sk-classroom-secret-test');
   assert.equal(JSON.parse(f.calls[0].body).max_tokens, 1200);
   assert.equal(readFileSync(join(f.directory, 'classroom.sqlite')).includes(Buffer.from('sk-classroom-secret-test')), false);
+});
+
+test('OpenCode Go keeps its own key and routes student messages through the Go subscription endpoint', async t => {
+  const f = await fixture(t);
+  const settings = '/api/admin/settings';
+  const key = 'test-opencode-go-key';
+  assert.equal((await f.req(settings, { provider: 'https://example.org', apiKey: key }, f.admin)).status, 400);
+  assert.equal((await f.req(settings, { provider: 'opencode-go', apiKey: '' }, f.admin)).status, 400);
+  const configured = await f.req(settings, { provider: 'opencode-go', apiKey: key }, f.admin);
+  assert.equal(configured.status, 200);
+  assert.equal(configured.body.provider, 'opencode-go');
+  assert.equal(configured.body.hasKey, true);
+  assert.equal(JSON.stringify(configured.body).includes(key), false);
+  const state = await f.start(3);
+  const redeemed = await f.req('/api/classroom/redeem', { code: state.code });
+  assert.equal(redeemed.body.modelName, 'GLM-5.3-Flash');
+  assert.equal(redeemed.body.providers, undefined);
+  assert.equal(JSON.stringify(redeemed.body).includes(key), false);
+  await f.restart();
+  const streamed = await f.req('/api/chat', {
+    requestId: crypto.randomUUID(),
+    messages: [{ role: 'user', content: '解释循环' }],
+    context: { title: '历史前端可能发送的标题', path: '/old-path' },
+    model: 'untrusted-model',
+  }, redeemed.cookie);
+  assert.equal(streamed.status, 200);
+  assert.match(streamed.body, /你好/);
+  const [goCall] = f.calls;
+  assert.equal(goCall.url, 'https://opencode.ai/inference/go/openai/v1/chat/completions');
+  assert.equal(goCall.headers.Authorization, `Bearer ${key}`);
+  assert.equal(JSON.parse(goCall.body).model, 'glm-5.3-flash');
+  assert.equal(goCall.body.includes('/old-path'), false);
+
+  const switched = await f.req(settings, { provider: 'deepseek', apiKey: '' }, f.admin);
+  assert.equal(switched.body.provider, 'deepseek');
+  assert.equal(switched.body.remaining, 2);
+  assert.equal((await f.chat(redeemed.cookie)).status, 200);
+  assert.equal(f.calls[1].headers.Authorization, 'Bearer sk-classroom-secret-test');
+  assert.equal((await f.req(settings, { provider: 'opencode-go', apiKey: '' }, f.admin)).body.provider, 'opencode-go');
+  assert.equal((await f.chat(redeemed.cookie)).status, 200);
+  assert.equal(f.calls[2].headers.Authorization, `Bearer ${key}`);
 });
 
 test('concurrent students cannot exceed shared quota; repeated request ID is not charged twice', async t => {

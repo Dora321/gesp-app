@@ -17,9 +17,10 @@ try {
   await teacher.goto(`${base}/classroom-admin`);
   await teacher.getByLabel('教师密码').fill('ui-test-teacher');
   await teacher.getByRole('button', { name: '进入设置' }).click();
+  await teacher.getByLabel('课堂服务商').selectOption('opencode-go');
   await teacher.locator('#key').fill('sk-ui-mock-not-real');
-  await teacher.getByRole('button', { name: '保存密钥' }).click();
-  await teacher.getByText('密钥已保存，仅由后端使用。').waitFor();
+  await teacher.getByRole('button', { name: '保存设置' }).click();
+  await teacher.getByText('设置已保存，课堂使用 OpenCode Go。').waitFor();
   await teacher.getByRole('button', { name: '开启课堂' }).click();
   await teacher.locator('#live').waitFor({ state: 'visible' });
   const code = await teacher.locator('#code').textContent();
@@ -35,6 +36,9 @@ try {
   await input.fill('什么是循环？'); await input.press('Enter');
   await student.getByText('循环可以重复执行一段代码。', { exact: true }).waitFor();
   await student.getByText(/全班剩余 499 次/).waitFor();
+  await student.getByRole('button', { name: '打开 AI 设置' }).click();
+  await student.getByText('GLM-5.3-Flash', { exact: true }).waitFor();
+  await student.getByRole('button', { name: '返回对话', exact: true }).click();
   await student.screenshot({ path: resolve('screenshots/classroom-student.png'), fullPage: true });
   assert.equal(await student.evaluate(() => document.cookie.includes('classroom_session')), false);
   await student.reload();
@@ -51,7 +55,7 @@ try {
   await teacher.getByRole('button', { name: '换一个', exact: true }).click();
   await teacher.waitForFunction(old => document.getElementById('code').textContent !== old, code);
   await input.fill('旧授权还有效吗？'); await input.press('Enter');
-  await student.getByText(/课堂已结束或口令已更换/).waitFor();
+  await student.getByRole('region', { name: 'AI 设置', exact: true }).getByText(/课堂已结束或口令已更换/).waitFor();
   assert.deepEqual(errors, []);
   console.log('UI PASS: teacher setup, student activation, streamed answer, shared quota, refresh, mobile, rotation rejection. Mock AI only.');
 } finally {

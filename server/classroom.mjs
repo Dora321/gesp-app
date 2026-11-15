@@ -12,6 +12,22 @@ const equal = (a, b) => typeof a === 'string' && typeof b === 'string' && timing
 const token = () => randomBytes(32).toString('base64url');
 const error = (status, message) => Object.assign(new Error(message), { status });
 
+const providers = {
+  deepseek: {
+    name: 'DeepSeek',
+    endpoint: 'https://api.deepseek.com/chat/completions',
+    model: process.env.CLASSROOM_MODEL || 'deepseek-flash',
+    modelName: process.env.CLASSROOM_MODEL || 'DeepSeek Flash',
+  },
+  'opencode-go': {
+    name: 'OpenCode Go',
+    endpoint: 'https://opencode.ai/inference/go/openai/v1/chat/completions',
+    model: 'glm-5.3-flash',
+    modelName: 'GLM-5.3-Flash',
+  },
+};
+const keyColumn = provider => provider === 'opencode-go' ? 'opencode_go_key' : 'api_key';
+
 export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_DIR || resolve('.classroom'), adminPassword, fetchAI = fetch, now = Date.now, secure = process.env.NODE_ENV === 'production', studentOrigin = process.env.CLASSROOM_STUDENT_ORIGIN || '' } = {}) {
   mkdirSync(directory, { recursive: true, mode: 0o700 });
   const secretFile = resolve(directory, 'secrets.json');
@@ -36,8 +52,27 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
     CREATE TABLE IF NOT EXISTS sessions (hash TEXT PRIMARY KEY, kind TEXT, generation INTEGER, expires INTEGER);
     CREATE TABLE IF NOT EXISTS requests (id TEXT PRIMARY KEY, created INTEGER);
     CREATE TABLE IF NOT EXISTS limits (id TEXT PRIMARY KEY, count INTEGER, expires INTEGER);`);
+  const columns = db.prepare('PRAGMA table_info(classroom)').all().map(column => column.name);
+  if (!columns.includes('provider')) db.exec("ALTER TABLE classroom ADD COLUMN provider TEXT NOT NULL DEFAULT 'deepseek'");
+  if (!columns.includes('opencode_go_key')) db.exec('ALTER TABLE classroom ADD COLUMN opencode_go_key TEXT');
   const state = () => db.prepare('SELECT * FROM classroom WHERE id=1').get();
-  const publicState = (s, teacher = false) => ({ active: Boolean(s.active && now() < s.expires), expiresAt: s.expires, remaining: Math.max(0, s.max_questions - s.used), used: s.used, maxQuestions: s.max_questions, ...(teacher ? { code: s.code, hasKey: Boolean(s.api_key) } : {}) });
+  const publicState = (s, teacher = false) => ({
+    active: Boolean(s.active && now() < s.expires),
+    expiresAt: s.expires,
+    remaining: Math.max(0, s.max_questions - s.used),
+    used: s.used,
+    maxQuestions: s.max_questions,
+    providerName: providers[s.provider].name,
+    modelName: providers[s.provider].modelName,
+    ...(teacher ? {
+      code: s.code,
+      provider: s.provider,
+      hasKey: Boolean(s[keyColumn(s.provider)]),
+      providers: Object.entries(providers).map(([id, entry]) => ({
+        id, name: entry.name, modelName: entry.modelName, hasKey: Boolean(s[keyColumn(id)]),
+      })),
+    } : {}),
+  });
   const streams = new Set();
   const inFlight = new Set();
   const limit = (id, max, ms) => {
@@ -114,13 +149,22 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
           }
           if (req.method === 'POST' && path === '/api/admin/settings') {
             const data = await body(req);
-            if (typeof data.apiKey !== 'string' || data.apiKey.trim().length < 10 || data.apiKey.length > 512 || /[\r\n]/.test(data.apiKey)) throw error(400, '请输入有效的 API key。');
-            db.prepare('UPDATE classroom SET api_key=? WHERE id=1').run(encrypt(data.apiKey.trim()));
+            const provider = data.provider === undefined ? 'deepseek' : data.provider;
+            if (typeof provider !== 'string' || !Object.hasOwn(providers, provider)) throw error(400, '请选择支持的服务商。');
+            if (typeof data.apiKey !== 'string' || data.apiKey.length > 512 || /[\r\n]/.test(data.apiKey)) throw error(400, '请输入有效的 API Key。');
+            const key = data.apiKey.trim();
+            const column = keyColumn(provider);
+            const savedKey = state()[column];
+            if (!key && !savedKey) throw error(400, `请填写 ${providers[provider].name} 的 API Key。`);
+            if (key && key.length < 10) throw error(400, '请输入有效的 API Key。');
+            // The column is selected from two fixed names. Save the key and provider together.
+            db.prepare(`UPDATE classroom SET provider=?, ${column}=? WHERE id=1`).run(provider, key ? encrypt(key) : savedKey);
             return json(res, 200, publicState(state(), true));
           }
           if (req.method === 'POST' && path === '/api/admin/start') {
             const data = await body(req);
-            if (!state().api_key) throw error(400, '请先保存 AI 密钥。');
+            const configuration = state();
+            if (!configuration[keyColumn(configuration.provider)]) throw error(400, '请先保存 AI 密钥。');
             if (!Number.isInteger(data.minutes) || data.minutes < 5 || data.minutes > 480 || !Number.isInteger(data.maxQuestions) || data.maxQuestions < 1 || data.maxQuestions > 5000) throw error(400, '时长需为 5–480 分钟，提问上限需为 1–5000 次。');
             if (state().active && state().expires > now()) throw error(409, '请先结束当前课堂，再开启新课堂。');
             db.prepare('UPDATE classroom SET active=1, code=?, generation=generation+1, expires=?, max_questions=?, used=0 WHERE id=1').run(String(randomInt(100000, 1000000)), now() + data.minutes * 60000, data.maxQuestions);
@@ -166,9 +210,10 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
           limit('chat:global', 180, 60000);
           const requestId = hash(`${student.hash}:${data.requestId}`);
           // No awaits inside the transaction: quota reservation is atomic, including across processes.
+          let configuration;
           db.exec('BEGIN IMMEDIATE');
           try {
-            const s = state();
+            const s = configuration = state();
             if (!s.active || s.expires <= now() || s.generation !== student.generation) throw error(401, '课堂授权已失效。');
             if (db.prepare('SELECT id FROM requests WHERE id=?').get(requestId)) throw error(409, '该问题已受理，请勿重复提交。');
             if (s.used >= s.max_questions) throw error(403, '本堂课的提问次数已用完。');
@@ -178,15 +223,21 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
           } catch (e) { db.exec('ROLLBACK'); throw e; }
           const controller = new AbortController();
           streams.add(controller); inFlight.add(student.hash);
-          const timer = setTimeout(() => controller.abort(), Math.min(90000, Math.max(1, state().expires - now())));
+          const timer = setTimeout(() => controller.abort(), Math.min(90000, Math.max(1, configuration.expires - now())));
           const disconnect = () => controller.abort();
           res.on('close', disconnect);
           try {
-            const context = data.context && typeof data.context.title === 'string' && typeof data.context.path === 'string' ? data.context : null;
-            const up = await fetchAI('https://api.deepseek.com/chat/completions', {
-              method: 'POST', signal: controller.signal,
-              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${decrypt(state().api_key)}` },
-              body: JSON.stringify({ model: process.env.CLASSROOM_MODEL || 'deepseek-flash', messages: [{ role: 'system', content: buildClassroomPrompt(typeof data.persona === 'string' ? data.persona.slice(0, 1200) : '使用简短、易懂的语言。', context) }, ...data.messages], stream: true, max_tokens: 1200 }),
+            const provider = providers[configuration.provider];
+            const persona = typeof data.persona === 'string' ? data.persona.slice(0, 1200) : '使用简短、易懂的语言。';
+            const up = await fetchAI(provider.endpoint, {
+              method: 'POST', signal: controller.signal, redirect: 'error',
+              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${decrypt(configuration[keyColumn(configuration.provider)])}` },
+              body: JSON.stringify({
+                model: provider.model,
+                messages: [{ role: 'system', content: buildClassroomPrompt(persona) }, ...data.messages],
+                stream: true,
+                max_tokens: 1200,
+              }),
             });
             if (!up.ok || !up.body) throw error(502, 'AI 服务暂时不可用，请老师检查密钥或稍后重试。');
             res.writeHead(200, { 'Content-Type': 'text/event-stream; charset=utf-8', 'X-Accel-Buffering': 'no' });
