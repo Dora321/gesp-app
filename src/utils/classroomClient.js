@@ -1,7 +1,19 @@
+import { assistantStorage } from './classroomAssistant';
+
 const gateway = (import.meta.env.VITE_CLASSROOM_API_URL || '').replace(/\/$/, '');
 const tokenKey = 'classroom_session_token';
+const conversationKey = 'ai_conversation_id';
+let conversationId = assistantStorage.get('sessionStorage', conversationKey);
 let sessionToken = '';
 try { sessionToken = gateway ? sessionStorage.getItem(tokenKey) || '' : ''; } catch { /* Memory-only fallback. */ }
+
+export function classroomConversationId(reset = false) {
+    if (reset || !conversationId) {
+        conversationId = crypto.randomUUID();
+        assistantStorage.set('sessionStorage', conversationKey, conversationId);
+    }
+    return conversationId;
+}
 
 export function classroomFetch(path, options = {}) {
     return fetch(`${gateway}${path}`, {

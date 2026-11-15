@@ -37,7 +37,7 @@ try {
   await student.getByText('循环可以重复执行一段代码。', { exact: true }).waitFor();
   await student.getByText(/全班剩余 499 次/).waitFor();
   await student.getByRole('button', { name: '打开 AI 设置' }).click();
-  await student.getByText('GLM-5.3-Flash', { exact: true }).waitFor();
+  await student.getByText('DeepSeek V4.1 Flash', { exact: true }).waitFor();
   await student.getByRole('button', { name: '返回对话', exact: true }).click();
   await student.screenshot({ path: resolve('screenshots/classroom-student.png'), fullPage: true });
   assert.equal(await student.evaluate(() => document.cookie.includes('classroom_session')), false);

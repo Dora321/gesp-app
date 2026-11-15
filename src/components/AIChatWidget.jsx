@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
-import { assistantStorage, ASSISTANT_KEY, loadAssistantKey, saveAssistantKey, buildClassroomPrompt } from '../utils/classroomAssistant';
-import { classroomRequest, classroomFetch } from '../utils/classroomClient';
+import { assistantStorage, ASSISTANT_KEY, loadAssistantKey, saveAssistantKey, buildClassroomPrompt, deepSeekReasoningEffort } from '../utils/classroomAssistant';
+import { classroomRequest, classroomFetch, classroomConversationId } from '../utils/classroomClient';
 import {
     toApiHistory,
     isHistoryNearLimit,
@@ -16,6 +16,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AI_PERSONAS, AI_MODEL } from '../utils/aiChatConstants';
 import { chatMarkdownComponents } from './AIChatMarkdown';
+import ChatReasoningSelect from './ChatReasoningSelect';
 
 const AIChatWidget = ({ onClose }) => {
     const [keyStatus, setKeyStatus] = useState('');
@@ -36,6 +37,9 @@ const AIChatWidget = ({ onClose }) => {
         } catch { return []; }
     });
     const [inputValue, setInputValue] = useState('');
+    const [reasoningLevel, setReasoningLevel] = useState(() => (
+        assistantStorage.get('localStorage', 'ai_reasoning_level') === 'medium' ? 'medium' : 'low'
+    ));
     const [isLoading, setIsLoading] = useState(false);
     const [selectedPersona, setSelectedPersona] = useState(() => {
         const saved = assistantStorage.get('localStorage', 'ai_selected_persona_id');
@@ -292,6 +296,7 @@ const AIChatWidget = ({ onClose }) => {
     };
 
     const clearChat = () => {
+        classroomConversationId(true);
         shouldAutoScrollRef.current = true;
         setMessages([]);
         assistantStorage.remove('sessionStorage', 'ai_chat_messages');
@@ -378,17 +383,11 @@ const AIChatWidget = ({ onClose }) => {
         const userMessage = { role: 'user', content: inputValue.trim() };
         shouldAutoScrollRef.current = true;
 
-        // Optimistically add user message and empty assistant message placeholder
         const newMessages = [...messages, userMessage];
         setMessages(newMessages);
         setInputValue('');
         setIsLoading(true);
 
-        const apiMessages = [
-            ...toApiHistory(newMessages).map(message => ({ ...message, content: message.content.slice(0, 4000) }))
-        ];
-
-        // Create new AbortController
         abortControllerRef.current = new AbortController();
 
         try {
@@ -396,10 +395,15 @@ const AIChatWidget = ({ onClose }) => {
                 method: 'POST',
                 referrerPolicy: 'no-referrer',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${personalKey}` },
-                body: JSON.stringify({ model: AI_MODEL.id, stream: true, messages: [
-                    { role: 'system', content: buildClassroomPrompt(currentPersona.systemPrompt) },
-                    ...toApiHistory(newMessages),
-                ] }),
+                body: JSON.stringify({
+                    model: AI_MODEL.id,
+                    stream: true,
+                    reasoning_effort: deepSeekReasoningEffort(reasoningLevel),
+                    messages: [
+                        { role: 'system', content: buildClassroomPrompt(currentPersona.systemPrompt) },
+                        ...toApiHistory(newMessages),
+                    ],
+                }),
                 signal: abortControllerRef.current.signal,
             }) : await classroomFetch('/api/chat', {
                 method: 'POST',
@@ -409,9 +413,9 @@ const AIChatWidget = ({ onClose }) => {
                 },
                 body: JSON.stringify({
                     requestId: crypto.randomUUID(),
-                    persona: currentPersona.systemPrompt,
-                    messages: apiMessages,
-                    stream: true // Enable streaming
+                    conversationId: classroomConversationId(),
+                    persona: currentPersona.systemPrompt, reasoningLevel,
+                    messages: toApiHistory(newMessages).map(message => ({ ...message, content: message.content.slice(0, 4000) })),
                 }),
                 signal: abortControllerRef.current.signal
             });
@@ -452,7 +456,6 @@ const AIChatWidget = ({ onClose }) => {
                 });
             };
 
-            // Add placeholder for assistant message
             setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
 
             while (true) {
@@ -917,6 +920,10 @@ const AIChatWidget = ({ onClose }) => {
 
             {/* Input Area */}
             <div className="p-3 bg-white border-t border-slate-200 shrink-0">
+                <ChatReasoningSelect value={reasoningLevel} disabled={isLoading} onChange={level => {
+                    setReasoningLevel(level);
+                    assistantStorage.set('localStorage', 'ai_reasoning_level', level);
+                }} />
                 {isHistoryNearLimit(messages) && (
                     <p role="status" className="mb-2 text-xs leading-5 text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                         对话已经比较长，发送时只会带上最近几轮。建议点左上角「新对话」再问，回答更稳、也更省额度。

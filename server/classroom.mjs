@@ -5,7 +5,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { once } from 'node:events';
-import { buildClassroomPrompt } from '../src/utils/classroomAssistant.js';
+import { buildClassroomPrompt, deepSeekReasoningEffort } from '../src/utils/classroomAssistant.js';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const equal = (a, b) => typeof a === 'string' && typeof b === 'string' && timingSafeEqual(Buffer.from(hash(a)), Buffer.from(hash(b)));
@@ -22,8 +22,8 @@ const providers = {
   'opencode-go': {
     name: 'OpenCode Go',
     endpoint: 'https://opencode.ai/inference/go/openai/v1/chat/completions',
-    model: 'glm-5.3-flash',
-    modelName: 'GLM-5.3-Flash',
+    model: 'deepseek-v4.1-flash',
+    modelName: 'DeepSeek V4.1 Flash',
   },
 };
 const keyColumn = provider => provider === 'opencode-go' ? 'opencode_go_key' : 'api_key';
@@ -204,6 +204,8 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
           const student = session(req, 'student');
           const data = await body(req);
           if (!Array.isArray(data.messages) || !data.messages.length || data.messages.length > 32 || data.messages.some(m => !m || !['user', 'assistant'].includes(m.role) || typeof m.content !== 'string' || m.content.length > 4000) || data.messages.reduce((n, m) => n + m.content.length, 0) > 24000 || data.messages.at(-1).role !== 'user') throw error(400, '对话过长或格式不正确，请新建对话并缩短问题。');
+          const reasoningLevel = data.reasoningLevel === undefined ? 'low' : data.reasoningLevel;
+          if (!['low', 'medium'].includes(reasoningLevel)) throw error(400, '思考强度仅支持极速或认真思考。');
           if (typeof data.requestId !== 'string' || !/^[a-zA-Z0-9-]{16,80}$/.test(data.requestId)) throw error(400, '请求编号不正确。');
           if (inFlight.has(student.hash)) throw error(429, '请等待当前回答完成。');
           limit(`chat:${student.hash}`, 8, 60000);
@@ -229,16 +231,28 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
           try {
             const provider = providers[configuration.provider];
             const persona = typeof data.persona === 'string' ? data.persona.slice(0, 1200) : '使用简短、易懂的语言。';
+            const headers = {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${decrypt(configuration[keyColumn(configuration.provider)])}`,
+            };
+            if (configuration.provider === 'opencode-go') {
+              const conversation = typeof data.conversationId === 'string' && /^[a-zA-Z0-9-]{16,80}$/.test(data.conversationId)
+                ? data.conversationId : '';
+              headers['User-Agent'] = 'gesp-classroom/1.0';
+              headers['x-opencode-session'] = hash(`opencode:${student.hash}:${conversation}`);
+            }
             const up = await fetchAI(provider.endpoint, {
               method: 'POST', signal: controller.signal, redirect: 'error',
-              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${decrypt(configuration[keyColumn(configuration.provider)])}` },
+              headers,
               body: JSON.stringify({
                 model: provider.model,
                 messages: [{ role: 'system', content: buildClassroomPrompt(persona) }, ...data.messages],
                 stream: true,
-                max_tokens: 1200,
+                reasoning_effort: deepSeekReasoningEffort(reasoningLevel),
+                max_tokens: reasoningLevel === 'medium' ? 2400 : 1200,
               }),
             });
+            if (up.status === 401) throw error(502, `${provider.name} 拒绝了当前 API Key，请联系老师更新密钥。`);
             if (!up.ok || !up.body) throw error(502, 'AI 服务暂时不可用，请老师检查密钥或稍后重试。');
             res.writeHead(200, { 'Content-Type': 'text/event-stream; charset=utf-8', 'X-Accel-Buffering': 'no' });
             for await (const chunk of up.body) { if (controller.signal.aborted) break; if (!res.write(chunk)) await once(res, 'drain', { signal: controller.signal }); }
