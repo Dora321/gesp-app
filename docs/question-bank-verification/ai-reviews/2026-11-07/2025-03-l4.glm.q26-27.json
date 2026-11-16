@@ -1,0 +1,187 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T13:49:10.404Z",
+  "completedAt": "2026-11-16T13:57:08.456Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54895,
+    "completion_tokens": 31040,
+    "total_tokens": 85935,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 26937
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02375425,
+      "allowance": 0.02375425,
+      "tokens": {
+        "input": 54895,
+        "output": 31040,
+        "reasoning": 26937,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bdec477bc399cb4d14df8a423111d9cd28c6a47fe6845049f9f3356c74bcca60",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF 编程能力等级认证（GESP）、C++ 四级、2025 年 03 月，与 2025-03-l4 的年份、月份、等级一致；PDF 第 7 页 3.1 试题名称“荒地开垦”、第 9 页 3.2 “二阶矩阵”与网站两道编程题名称一致，输出样例 11 与 2 亦与网站 samples 吻合。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核修复。独立复核确认：(1) PDF 第 8 页 3.1.8 明确数据范围 1≤n,m≤1000，网站题面缺失，补入必要；(2) 原 referenceCode 对每个 # 全图重算，最坏约 10^12 次操作，1.0s 限制下无法完成，替换为 O(nm) 增益法（与 PDF 第 8 页官方参考程序逐格统计增益的思路等价）必要；(3) 本人独立手推样例：base=6，清除第2行第2列杂物新增 5 块得 11，清除第2行第5列杂物新增 4 块得 10，最大 11，与官方输出样例一致；(4) 修复代码在 1×1、1×3、L 形多 # 等边界场景手推结果一致，无否决初核的理由。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 3.1.1–3.1.3 题面描述、输入格式、输出格式与网站一致，第 7–8 页样例（3 5 / ..... / .#..# / ..... → 11）与网站 samples 一致；PDF 第 8 页 3.1.8 数据范围“对于全部数据，保证有 1 ≤ n, m ≤ 1000”为网站缺失的必要约束，已补入题面；修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表项（答案表仅覆盖单选与判断题），officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析按 O((nm)^2) 整图重算展开并自述参考代码为整图重算，与 PDF 第 8 页官方参考程序（逐格统计每个 # 的增益、O(nm)）不符，且该复杂度在 n,m≤1000、1.0s 限制下不可行；已重写为与官方思路一致的增益法解析，样例走查（base=6；清除第2行第2列杂物 +5 → 11；清除第2行第5列杂物 +4 → 10）经独立手推验证；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "原全图重算代码最坏约 10^12 次基本操作必然超时；已替换为 O(nm) 增益法实现（与 PDF 第 8 页官方参考程序逻辑等价：'.' 且恰有 1 个 # 邻居则给该 # 记增益、'.' 且无 # 邻居计入 base、'#' 且无 # 邻居给自身记增益，答案为 base+最大增益），手推样例输出 11，并在 1×1 两种、1×3、L 形多 # 等边界场景手推一致；修复后核验通过。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 四级] 荒地开垦\n\n## 题目描述\n\n小杨有一大片荒地，可以表示为一个 $n$ 行 $m$ 列的网格图。\n\n小杨想要开垦这块荒地，但荒地中一些位置存在杂物，对于一块不存在杂物的荒地，该荒地可以开垦当且仅当其上下左右四个方向相邻的格子均不存在杂物。\n\n小杨可以选择至多一个位置，清除该位置的杂物，移除杂物后该位置变为荒地。小杨想知道在清除至多一个位置的杂物的情况下，最多能够开垦多少块荒地。\n\n## 输入格式\n\n第一行包含两个正整数 $n, m$，含义如题面所示。\n\n之后 $n$ 行，每行包含一个长度为 $m$ 且仅包含字符 `.` 和 `#` 的字符串。如果为 `.`，代表该位置为荒地；如果为 `#`，代表该位置为杂物。\n\n## 输出格式\n\n输出一个整数，代表在清除至多一个位置的杂物的情况下，最多能够开垦的荒地块数。\n\n## 数据范围\n\n对于全部数据，保证 $1 \\le n,m \\le 1000$。\n",
+          "explanation": "**解析：**\n\n开垦条件：格子本身为 `.`，且界内上下左右四邻没有 `#`；边界外不视为杂物。\n\n记 base 为不清除任何杂物时已可开垦的格子数。清除一个 # 只会影响它自身及上下左右至多 5 个格子，因此可以预处理每个 # 被清除后能新增的可开垦数 gain[i][j]。\n\n遍历每个格子 (i,j)，统计其界内四邻中 # 的个数 bad，并记录唯一的 # 位置：\n- 若当前为 `.`：bad==0 时 base++；bad==1 时，清除那个唯一相邻的 # 后该格可开垦，故 gain[该#]++；bad>=2 时无贡献。\n- 若当前为 `#`：bad==0 时，清除它自身后该格可开垦，故 gain[i][j]++；否则清除自身后仍有相邻杂物，不能开垦。\n\n最后答案为 base + max(gain[i][j])；若没有可清除的 # 或最大增益为 0，则相当于不清除。总时间 O(nm)，空间 O(nm)。\n\n样例中初始 base=6；清除第 2 行第 2 列的杂物可新增 5 块，得到 11；清除第 2 行第 5 列的杂物可新增 4 块，得到 10，故最大为 11。",
+          "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; ++i) cin >> g[i];\n\n    const int dx[4] = {-1, 1, 0, 0};\n    const int dy[4] = {0, 0, -1, 1};\n    vector<vector<int>> gain(n, vector<int>(m, 0));\n    int base = 0;\n\n    for (int i = 0; i < n; ++i) {\n        for (int j = 0; j < m; ++j) {\n            int bad = 0, bi = -1, bj = -1;\n            for (int k = 0; k < 4; ++k) {\n                int ni = i + dx[k], nj = j + dy[k];\n                if (ni >= 0 && ni < n && nj >= 0 && nj < m && g[ni][nj] == '#') {\n                    ++bad;\n                    bi = ni;\n                    bj = nj;\n                }\n            }\n            if (g[i][j] == '.') {\n                if (bad == 0) {\n                    ++base;\n                } else if (bad == 1) {\n                    ++gain[bi][bj];\n                }\n            } else {\n                if (bad == 0) {\n                    ++gain[i][j];\n                }\n            }\n        }\n    }\n\n    int bestGain = 0;\n    for (int i = 0; i < n; ++i)\n        for (int j = 0; j < m; ++j)\n            bestGain = max(bestGain, gain[i][j]);\n\n    cout << base + bestGain << '\\n';\n    return 0;\n}\n"
+        },
+        "tests": [
+          {
+            "name": "最小全荒地",
+            "input": "1 1\n.",
+            "output": "1",
+            "reason": "n=m=1 且唯一格为 .，无界内邻居，无需清除即可开垦 1 块；手推 base=1、增益 0。"
+          },
+          {
+            "name": "最小全杂物",
+            "input": "1 1\n#",
+            "output": "1",
+            "reason": "清除唯一 # 后变为 . 且无界内邻居（边界外不算杂物），可开垦 1 块；手推 base=0、gain[0][0]=1，覆盖代码 '#' 自身增益路径。"
+          },
+          {
+            "name": "单行间隔杂物",
+            "input": "1 3\n.#.",
+            "output": "3",
+            "reason": "清除中间 # 后为 ...，三格四邻均无杂物；手推 base=0，两侧 '.' 各给中间 # 记 1 次增益、# 自身记 1 次，增益 3，输出 3。"
+          },
+          {
+            "name": "多杂物相互作用",
+            "input": "3 3\n.#.\n.#.\n...",
+            "output": "5",
+            "reason": "手推 base=2（(2,0)、(2,2)）；清除中心 (1,1) 可新增 (1,0)、(1,2)、(2,1) 共 3 块（清除 (0,1) 仅新增 2 块），最大增益 3，输出 5；验证多 # 相邻时增益归属与取最大逻辑正确。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核修复。独立复核确认：(1) PDF 第 9 页 3.2.15 数据范围 1≤n≤500、1≤m≤500、-100≤Aij≤100，网站题面缺失，补入必要；(2) 原解析“乘积可能超出 32 位 int”与 |Aij|≤100 矛盾（乘积绝对值≤10000），修正必要；(3) 原 referenceCode 未修改，本人独立核验其枚举边界 i+1<n、j+1<m、判定式与样例输出 2 均正确；(4) 新 tests 的期望输出均由本人独立手推，无否决初核的理由。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 3.2.11–3.2.13 题面、公式 D_{1,1}×D_{2,2}=D_{1,2}×D_{2,1}、输入格式、输出格式与网站一致，3.2.14 样例（3 4 矩阵 → 2）与网站 samples 一致；PDF 3.2.15 数据范围“1 ≤ n ≤ 500，1 ≤ m ≤ 500，-100 ≤ A_{i,j} ≤ 100”为网站缺失的必要约束，已补入题面；修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表项（答案表仅覆盖单选与判断题），officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析称“乘积可能超出 32 位有符号 int 的表示范围”与 PDF 3.2.15 数据范围 |Aij|≤100 矛盾（乘积绝对值最大 10000，int 安全），该说法会误导；已修正溢出表述，样例走查（6 个 2×2 子矩阵中左上角 (0,0) 与 (0,1) 两个满足）经独立手推验证正确；修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "未修改。独立核验：现有代码枚举左上角范围 i+1<n、j+1<m 恰好覆盖全部 (n-1)(m-1) 个连续 2×2 子矩阵，判定式 a[i][j]*a[i+1][j+1]==a[i][j+1]*a[i+1][j] 与题面 D_{1,1}×D_{2,2}=D_{1,2}×D_{2,1} 一致，n=1 或 m=1 时循环不执行输出 0，样例输出 2，long long 保证乘法无溢出，O(nm) 满足 500×500、1.0s；核验通过。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 四级] 二阶矩阵\n\n## 题目描述\n\n小 A 有一个 $n$ 行 $m$ 列的矩阵 $A$。\n\n小 A 认为一个 $2 \\times 2$ 的矩阵 $D$ 是好的，当且仅当 $D_{1,1} \\times D_{2,2} = D_{1,2} \\times D_{2,1}$。其中 $D_{i,j}$ 表示矩阵 $D$ 的第 $i$ 行第 $j$ 列的元素。\n\n小 A 想知道 $A$ 中有多少个好的子矩阵。\n\n## 输入格式\n\n第一行，两个正整数 $n, m$。\n\n接下来 $n$ 行，每行 $m$ 个整数 $A_{i,1}, A_{i,2}, \\ldots, A_{i,m}$。\n\n## 输出格式\n\n一行，一个整数，表示 $A$ 中好的子矩阵的数量。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n \\le 500$，$1 \\le m \\le 500$，$-100 \\le A_{i,j} \\le 100$。\n",
+          "explanation": "**解析：**\n\n本题考查二维数组遍历与连续 2x2 子矩阵判定。对左上角 (i,j)（0-based），四个元素为 a[i][j]、a[i][j+1]、a[i+1][j]、a[i+1][j+1]，好子矩阵条件为 a[i][j] * a[i+1][j+1] == a[i][j+1] * a[i+1][j]。枚举 i=0..n-2、j=0..m-2 逐格判断并计数即可；当 n=1 或 m=1 时没有 2x2 子矩阵，答案为 0。\n\n数据范围 |A[i][j]| <= 100，乘积绝对值不超过 10000，32 位 int 也安全；参考代码使用 long long 更保守。\n\n**样例走查：** 左上角 (0,0) 的 [[1,2],[2,4]] 满足 1*4=2*2=4；左上角 (0,1) 的 [[2,1],[4,2]] 满足 2*2=1*4=4；其余四个 2x2 子矩阵不满足，故输出 2。\n\n**复杂度：** 时间 O(nm)，空间 O(nm)。"
+        },
+        "tests": [
+          {
+            "name": "最小单格",
+            "input": "1 1\n-100",
+            "output": "0",
+            "reason": "n=1,m=1，不存在 2×2 子矩阵，输出 0；同时覆盖数据范围下界 -100。"
+          },
+          {
+            "name": "2x2全零",
+            "input": "2 2\n0 0\n0 0",
+            "output": "1",
+            "reason": "唯一的 2×2 子矩阵满足 0*0=0*0，输出 1。"
+          },
+          {
+            "name": "2x2比例矩阵",
+            "input": "2 2\n1 2\n2 4",
+            "output": "1",
+            "reason": "1*4=2*2=4，满足好子矩阵条件，输出 1。"
+          },
+          {
+            "name": "负数对角",
+            "input": "2 2\n-1 2\n2 -4",
+            "output": "1",
+            "reason": "D_{1,1}×D_{2,2}=(-1)×(-4)=4，D_{1,2}×D_{2,1}=2×2=4，相等，输出 1；覆盖负数元素乘法且无溢出风险。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核第 26、27 题（编程题），其余题目不在范围内。卷头（CCF GESP C++ 四级 2025 年 03 月）与题目名称、样例均匹配。第 26 题：网站题面缺 PDF 3.1.8 数据范围 1≤n,m≤1000；原解析与参考代码为 O((nm)^2) 整图重算，在满数据（1000×1000、1.0s）下必然超时，且与 PDF 第 8 页官方参考程序的 O(nm) 增益统计思路不符，已按官方思路替换修复；独立手推样例（base=6、清除第2行第2列杂物增益 5 → 11）及 1×1 两种、1×3、L 形多 # 边界场景全部一致，修复后核验通过。第 27 题：网站题面缺 PDF 3.2.15 数据范围；原解析“乘积可能超出 32 位 int”与 |Aij|≤100 矛盾，已修正；原参考代码枚举边界与判定式经独立核验正确，保持不变。两题 officialAnswer 为 null（编程题无官方答案表项），tests 期望输出均由本人独立手推而非运行，覆盖最小规模与特殊边界。未发现需保留争议的问题。"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:58:37.483Z",
+  "completedAt": "2026-11-16T13:01:12.822Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35635,
+    "completion_tokens": 21825,
+    "total_tokens": 57460,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 35584,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 18957,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0132094,
+      "allowance": 0.00792564,
+      "tokens": {
+        "input": 51,
+        "output": 21825,
+        "reasoning": 18957,
+        "cache_read": 35584,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bdec477bc399cb4d14df8a423111d9cd28c6a47fe6845049f9f3356c74bcca60",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 CCF 编程能力等级认证 GESP、C++ 四级、2025 年 03 月，与 2025-03-l4 的等级和年月一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页题干与第2-3页代码为：先声明 int multiply(int,int);，main 中调用，函数定义位于 main 之后；网站 question 的代码顺序和文字均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2-3页 A-D 与网站 options 顺序、内容一致：A 使用 Person p(...) 但未定义构造函数，B 的成员声明使用逗号，C 为聚合初始化，D 将 new 返回的指针赋给 Person 变量；仅忽略换行差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 C；网站 answer=2，0 起始即 C，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：函数在前向声明后可以将定义放在 main 之后，A 的“应该放到 main 之前”错误；B、C、D 的描述分别对应返回类型、实参形参和输出结果，均正确，因此选 A，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页的 Person 嵌套 Address 代码与网站 question 一致，包括 Address address; 成员和 std::string 类型。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 与网站 options 内容及顺序一致；D 为“结构的嵌套可以减少命名冲突，因此可以不必控制嵌套层次”。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 D；网站 answer=3，0 起始即 D，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：A、B 描述嵌套类型和成员声明，C 描述 p.address.street 的逐层赋值，均成立；D 的“不必控制嵌套层次”绝对化且不符合工程规范，是错误的，故选 D。解析结论与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3-4页题干为 int arr[2][3] = {{1,2,3},{4,5,6}};，问 arr[1][2] 的值；网站 question 与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3-4页选项依次为 A.2、B.3、C.5、D.6，网站 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 D；网站 answer=3，0 起始即 D，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：二维数组行优先，arr[1][2] 是第2行第3列，值为 6；2、3、5 分别是 arr[0][1]、arr[0][2]、arr[1][1]。解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干为“下面（ ）正确定义了二维数组”，网站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 依次为 int arr[3,4];、int arr[3][4];、int arr(3,4);、int a[3-4];，网站 options 与顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 B；网站 answer=1，0 起始即 B，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案判断正确，但原解析对 A 的说明有事实错误：标准 C++ 中 int arr[3,4]; 不会把逗号表达式的结果 4 当作数组长度，而是数组维度中出现非法逗号导致语法错误；此外“C++14 之后可使用 constexpr”表述不够准确，C++11 起已可用 constexpr 变量作为维度。已提供修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (int arr[3][4];)**\n\n**核心解析：**\n本题考查 C++ 中二维数组的定义语法。\n\n1. C++ 定义二维数组使用两个方括号，每个维度用一个方括号包围其长度。\n2. `int arr[3][4]` 定义了一个 3 行 4 列的二维整型数组，共 12 个元素。\n3. 其他选项均使用了非法的数组定义语法。\n\n**选项逐项分析：**\n- **A int arr[3,4];**：❌ 错误。C++ 数组声明中的方括号内只能放一个常量表达式；逗号不能用来分隔两个维度，这种写法会导致语法错误，不能理解为 `int arr[4]`。\n- **B int arr[3][4];**：✅ 正确。这是 C++ 定义二维数组的标准语法，第一个维度指定行数，第二个维度指定列数。\n- **C int arr(3,4);**：❌ 错误。圆括号 `()` 不能用于数组维度的定义，此处不是合法的数组声明语法。\n- **D int a[3-4];**：❌ 错误。数组维度必须是大于 0 的整型常量表达式。`3-4` 的结果为 -1，不能作为数组大小，编译会报错。\n\n**易错提醒：**\n- 二维数组定义必须是 `类型 变量名[行数][列数];`，两个维度都不能省略方括号。\n- 数组大小表达式必须能计算出正整数值，否则编译失败。\n\n**知识延伸：**\n三维或更高维数组的定义遵循相同规则，例如 `int arr[2][3][4]` 定义了一个 2×3×4 的三维数组。C++ 标准要求数组维度为大于 0 的编译期常量表达式；C++11 起可用 `constexpr` 变量作为维度。\n\n**考点：** 二维数组的定义语法与维度规范。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干为爬 n 阶、每次可爬 1 或 2 阶，并给出递推函数 f；网站 question 包含完整条件、代码和填空位置，与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 的三行代码与网站 options 顺序和内容一致；B 为 res = f1+f2; f1 = f2; f2 = res;。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 B；网站 answer=1，0 起始即 B，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案判断正确，但原解析 A 项示例有事实错误：按 A 的赋值顺序，f2=res 会把累加后的结果带入下一轮；n=5 时 A 实际返回 19，而不是 f(3)+f(4)+f(5)=16，B 才返回正确的 8。已提供修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B (res = f1+f2; f1 = f2; f2 = res;)**\n\n**核心解析：**\n本题考查递推算法（动态规划思想）求解爬楼梯问题。题目要求填写循环体内的代码，使函数正确计算爬到第 n 阶楼顶的方法数。\n\n1. 爬楼梯问题的递推关系：设 f(n) 为爬到第 n 阶的方法数。最后一步要么跨 1 阶到达（第 n-1 阶再跨 1 步），要么跨 2 阶到达（第 n-2 阶再跨 2 步），因此 f(n) = f(n-1) + f(n-2)。\n2. 代码已初始化 f1 = 1（即 f(1)）和 f2 = 2（即 f(2)），并将 res 置 0。\n3. 循环从 i = 3 开始，每次迭代计算第 i 阶的方法数：\n   - 计算当前结果：res = f1 + f2（即 f(i) = f(i-2) + f(i-1)）\n   - 更新滑动窗口：f1 = f2（将 f(i-1) 移为新的 f(i-2)），f2 = res（将新计算的 f(i) 移为新的 f(i-1)）\n4. 循环结束后 res 保存 f(n) 的值，函数返回。\n\n**选项逐项分析：**\n- **A res += f1+f2; f1 = f2; f2 = res;**：❌ 错误。res += f1 + f2 会将当前计算结果累加到 res 上；并且 f2 = res 会把累加后的 res 带入下一轮，导致结果远大于正确答案。例如 n=5 时该选项返回 19，而正确答案为 8。\n- **B res = f1+f2; f1 = f2; f2 = res;**：✅ 正确。每次循环将当前计算的 f1+f2 赋值给 res（非累加），然后正确更新滑动窗口的两个变量，为下一轮迭代做准备。\n- **C res += f1+f2; f2 = res; f1 = f2;**：❌ 错误。同样使用 res +=，会错误累加结果；而且赋值顺序 f2 = res; f1 = f2; 导致 f1 和 f2 最终值相同，破坏了滑动窗口逻辑。\n- **D res = f1+f2; f2 = res; f1 = f2;**：❌ 错误。虽然 res = f1+f2 正确，但赋值顺序 f2 = res; f1 = f2; 会导致 f1 和 f2 都被赋值为 res，而非分别保存前一次和当前的结果值，递推逻辑错误。\n\n**易错提醒：**\n- 递推过程中变量更新必须遵循“先保存旧值，再更新”的顺序，防止数据被覆盖。\n- 滑动窗口技术要求每次迭代后两个变量分别保存相邻的两个状态值，切不可让它们相等。\n- res 在每次循环中应被覆盖而非累加，除非题目明确要求计算累计值。\n\n**知识延伸：**\n爬楼梯问题的递推公式 f(n) = f(n-1) + f(n-2) 实际上是斐波那契数列的变体。初始条件不同导致序列偏移：标准斐波那契 F(0)=0, F(1)=1，而本题中 f(1)=1, f(2)=2 相当于 F(2)=1, F(3)=2。理解这一对应关系可简化代码编写。\n\n**考点：** 递推算法的实现（滑动窗口技术）、斐波那契数列与爬楼梯问题的关联。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验的 5 题中，Q6-Q8 五个维度均通过；Q9-Q10 的题干、选项和官方答案映射均与 PDF 一致，但现有解析各有一处事实性细节错误（Q9 对 int arr[3,4] 的编译行为说明、Q10 对 A 选项累加结果的示例），已在 changes 中给出完整修正解析。未发现需要修改题干、选项或答案的问题。"
+  }
+}

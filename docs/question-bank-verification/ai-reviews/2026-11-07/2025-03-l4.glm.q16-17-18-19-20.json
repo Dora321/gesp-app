@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T13:16:19.681Z",
+  "completedAt": "2026-11-16T13:20:41.269Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53451,
+    "completion_tokens": 17296,
+    "total_tokens": 70747,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14992
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01666565,
+      "allowance": 0.01666565,
+      "tokens": {
+        "input": 53451,
+        "output": 17296,
+        "reasoning": 14992,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bdec477bc399cb4d14df8a423111d9cd28c6a47fe6845049f9f3356c74bcca60",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头原图显示“CCF 编程能力等级认证 GESP”“C++ 四级”“2025 年 03 月”，与 paperId 2025-03-l4（2025年3月、C++四级）一致；来源 git-blob SHA 58f97855061202fbd8a7faf8bab5839c8604895b 对应该官方PDF。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第1题原文“函数是C++中的核心概念，用于封装可重用的代码块。”，与网站question逐字一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设A-D选项；网站options第0项为正确、第1项为错误，属固定判断映射，其顺序已在answer维度一并核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表（图片）自左起第1位为√，按正确=0、错误=1映射为0；网站answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：函数将特定功能代码封装为具名单元供重复调用，是C++代码复用与模块化的基本手段，题干表述正确；网站解析结论“正确”，论证无事实错误，与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对题面、答案表第1位√（=0）与解析的结论与本次独立对照一致，网站数据无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第2题原文“在C++中，函数的返回类型可以省略，默认为 int。”，与网站question一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设A-D选项；正确/错误为固定判断映射，顺序在answer维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表（图片）第2位为×，映射为1（错误）；网站answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++函数声明必须写出返回类型，隐式int仅是C89的C规则且C++从未允许；即使使用auto推导也必须写出auto关键字，故题干错误。网站解析结论“错误”且论证与语言规则相符，与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核结论（题面一致、官方×=1、解析判错误）经独立复核成立，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第3题原文“结构体的成员默认是 public 访问权限。”，与网站question一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设A-D选项；正确/错误为固定判断映射，顺序在answer维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表（图片）第3位为√，映射为0（正确）；网站answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++中struct未显式声明访问修饰符时成员默认public（class默认private），题干正确；网站解析结论“正确”并正确补充struct默认继承亦为public，与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核结论与本次独立对照一致，无需修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第4题原文“假设整数数组 arr[4]= {0, 1, 2, 3}; 的第一个元素在内存中的地址为 0x7ffee4065820, 经过 int* p = arr; p += 1; 后，指针 p 的值是1。”，与网站question一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设A-D选项；正确/错误为固定判断映射，顺序在answer维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表（图片）第4位为×，映射为1（错误）；网站answer=1，一致。独立语义核验：p += 1按元素单位移动，p新值为0x7ffee4065820+4=0x7ffee4065824（arr[1]的地址）而非整数1，题干确为错误，与官方×相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立推导p经p += 1后为地址0x7ffee4065824（sizeof(int)=4），指出题干把指针值与所指元素内容混淆，结论“错误”；十六进制进位与指针算术均正确，与官方×及网站answer一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决初核结论：初核称答案表第4题为√并据此判unresolved冲突，经对照第6页答案表原图逐位核对，序列为√×√××√√××√，第4位为×（=1），与网站answer=1及解析结论完全一致，不存在官方冲突；officialAnswer应为1而非初核所记0。网站数据无需修改，19题可定案为全部verified。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题第5题原文“二维数组作为函数参数时，必须显式指定所有维度的大小。”，与网站question逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设A-D选项；正确/错误为固定判断映射，顺序在answer维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表（图片）第5位为×，映射为1（错误）；网站answer=1，一致。独立语义核验：二维数组作参数时第一维可省略（int arr[][3]合法、int arr[][]非法），题干错误，与官方×相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出第一维（行数）可省略、第二维（列数）必须显式指定，并给出合法/非法示例及按i×列数+j解释偏移计算，结论“错误”，论证正确，与官方×及网站answer一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对题面、答案表第5位×（=1）与解析的核验与本次独立对照一致，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核判断题16-20共5题：题面均与原卷逐字一致（仅空格排版差异）；第6页判断题答案表（图片）序列为√×√××√√××√，对应officialAnswer为0/1/0/1/1，与网站answer全部一致；四条解析经独立推导均成立。重点纠正初核草稿：其误读答案表第4题为√并判冲突，实际第4位为×，网站answer=1与官方一致，19题不存在冲突、可定案verified。5题均无需修改（changes为空），无编程题故tests为空，无遗留unresolved。"
+  }
+}

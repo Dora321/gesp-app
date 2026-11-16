@@ -1,0 +1,234 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T13:20:41.273Z",
+  "completedAt": "2026-11-16T13:23:21.030Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35635,
+    "completion_tokens": 26237,
+    "total_tokens": 61872,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 35584,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 24252,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0158566,
+      "allowance": 0.00951396,
+      "tokens": {
+        "input": 51,
+        "output": 26237,
+        "reasoning": 24252,
+        "cache_read": 35584,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bdec477bc399cb4d14df8a423111d9cd28c6a47fe6845049f9f3356c74bcca60",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证”“C++ 四级”“2025 年 03 月”，与 2025-03-l4 一致；判断题答案表位于 PDF 第 6 页。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 6 题原文为“递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。”，当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；采用“正确/错误”二元判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 6 格为 √，对应正确=0；当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明递推依赖初始值和递推关系逐步求解，并以斐波那契为例；独立支持答案为正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 7 页判断题第 7 题页图公式为 T(n)=T(n-1)+n、T(0)=1；当前题面写成了 T(n)=T(n-1)+(n-1)、T(1)=0，需按页图更正。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；采用“正确/错误”二元判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 7 格为 √，对应正确=0；当前 answer=0 与官方答案表一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析按精确比较次数 n(n-1)/2 立论，与页图 +n、T(0)=1 的复杂度口径不一致；需改为按每轮线性工作量 n 展开说明 O(n^2)。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "考虑最坏情况下冒泡排序算法的时间复杂度，$T(n)$ 为待排序数字的数目为 $n$ 的复杂度，则其递推关系式为 $T(n)=T(n-1)+n$，$T(0)=1$。",
+          "explanation": "**答案：正确**\n\n**判定依据：**\nPDF 题面给出的递推式为 $T(n)=T(n-1)+n$，$T(0)=1$。在分析最坏情况复杂度时，可把冒泡排序每一轮对当前规模元素所做的线性工作量记为 $n$，之后问题规模减 1；基准 $T(0)=1$ 表示规模为 0 时的常数开销。展开得 $T(n)=1+n+(n-1)+\\cdots+1$，其量级为 $O(n^2)$，与冒泡排序最坏情况复杂度一致，因此该说法正确。\n\n**易错提醒：**\n- 若按“精确比较次数”计数，最坏情况为 $(n-1)+(n-2)+\\cdots+1=n(n-1)/2$，递推可写成 $T(n)=T(n-1)+(n-1)$；本题 PDF 采用每轮 $n$ 个工作量并加常数基例的复杂度写法，不能把两种计数口径混在一起。\n- $T(0)=1$ 是常数项，不影响最终 $O(n^2)$ 的阶。\n\n**知识延伸：**\n递推式展开后最高次项决定复杂度；常数项和低次项在渐近分析中可忽略。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 8 题原文为“插入排序在最好情况（已有序）下的时间复杂度是 O(n^2)。”，当前使用大写 N，数学含义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；采用“正确/错误”二元判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 8 格为 ×，对应错误=1；当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "已有序时每个待插入元素只需与前一个元素比较一次，总比较次数 n-1，时间复杂度 O(n)，故题面 O(n^2) 错误；解析独立支持该结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题给出数组 {4, 3, 1, 5, 2} 及第一轮选择排序后为 {1, 4, 3, 5, 2} 的说法，当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；采用“正确/错误”二元判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 格为 ×，对应错误=1；当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称交换后剩余未排序部分相对顺序保持不变，不准确；标准选择排序第一轮将 arr[0]=4 与最小值 1 交换后为 {1, 3, 4, 5, 2}，足以判定题面错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n对 `arr[] = {4, 3, 1, 5, 2}` 执行第一轮选择排序时，在当前整个未排序区间 `[0,4]` 中找到最小值 1（下标为 2），然后将它与区间首元素 `arr[0]=4` 交换。交换后数组为 `{1, 3, 4, 5, 2}`，而不是题面给出的 `{1, 4, 3, 5, 2}`。因此该说法错误。\n\n**易错提醒：**\n- 标准选择排序每轮只做一次交换，即“最小值”与“本轮起始位置”交换；不要按边扫描边交换的变体模拟。\n- 交换后原来位于首位的 4 会移动到最小值原来的位置，因此不能简单认为除最小值外其余元素的相对位置都不变。\n\n**知识延伸：**\n选择排序无论初始顺序如何，每轮都要在剩余区间中扫描找最小值，比较次数固定为 `(n-1)+(n-2)+...+1 = n(n-1)/2`，时间复杂度恒为 `O(n^2)`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 10 题原文为“未捕获异常会调用 std::terminate 终止程序。”，当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选选项；采用“正确/错误”二元判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 10 格为 √，对应正确=0；当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "未捕获异常会触发 std::terminate，默认终止处理最终调用 std::abort；解析准确支持答案为正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验 21—25 题，对应 PDF 判断题第 6—10 题。五题答案均与 PDF 第 6 页答案表一致。第 22 题页图递推式为 T(n)=T(n-1)+n、T(0)=1，当前题面公式不同，已给出题面与解析修正；第 24 题原解析对选择排序交换后数组变化的描述不准确，已按标准选择排序改写解析。其余题面、答案与解析未发现需修改之处。"
+  }
+}

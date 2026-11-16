@@ -1,0 +1,259 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T13:09:51.474Z",
+  "completedAt": "2026-11-16T13:15:47.766Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54406,
+    "completion_tokens": 23432,
+    "total_tokens": 77838,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19548
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0198769,
+      "allowance": 0.0198769,
+      "tokens": {
+        "input": 54406,
+        "output": 23432,
+        "reasoning": 19548,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bdec477bc399cb4d14df8a423111d9cd28c6a47fe6845049f9f3356c74bcca60",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 GESP C++ 四级 2025 年 03 月』，与 2025-03-l4（2025年3月、四级）一致；第1页单选答案表第11—15题依次为 B B A A C，题干与代码均可按页图核对。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页末题干『给定如下算法，其时间复杂度为（ ）。』与第5页函数代码（外层 for (int i = 0; i < (1 << n); i++)，内层 for (int j = 0; j < n; j++)，if (i & (1 << j)) sum += arr[j];，if (sum == target) return true;）与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页图选项为 A O(n²)、B O(n × 2ⁿ)、C O(1)、D O(n³)；网站 A/C/D 误作 O(2ⁿ)/O(N²)/O(N)，仅 B 等价。已提供按 PDF 的修正选项（changes.options），修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11题为 B（0起始索引1），网站 answer=1；修正后选项 B 仍为 O(n × 2ⁿ)。独立推导：外层 2ⁿ 次 × 每轮内层 n 次 = O(n·2ⁿ)，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按旧选项 A=O(2ⁿ)、C=O(N²)、D=O(N) 逐项分析，与 PDF 选项错位。已提供按 PDF 选项重写的解析（changes.explanation），结论 B 不变，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "O($n^2$)",
+            "O(n × $2^n$)",
+            "O(1)",
+            "O($n^3$)"
+          ],
+          "explanation": "**答案：B（O(n × $2^n$)）**\n\n**核心解析：**\n1. 外层循环 `for (int i = 0; i < (1 << n); i++)`：位运算 `1 << n` 即 $2^n$，外层共迭代 $2^n$ 次，本质是枚举 n 个元素的全部 $2^n$ 个子集（i 的每个二进制位对应一个元素选或不选）。\n2. 内层循环 `for (int j = 0; j < n; j++)`：对每个 i 都要检查全部 n 个二进制位，`i & (1 << j)` 的位测试与 `sum += arr[j]` 的累加均为常数时间操作，故每轮外层耗时 $O(n)$。\n3. 总基本操作次数约为 $2^n \\times n$，因此最坏情况时间复杂度为 $O(n \\times 2^n)$。命中 target 时会提前 return true，但复杂度按最坏情况分析。\n\n**选项逐项分析：**\n- **A $O(n^2)$**：❌ 错误。平方级复杂度无法刻画外层 $2^n$ 的指数级增长。\n- **B $O(n \\times 2^n)$**：✅ 正确。完整计入外层 $2^n$ 次与每轮内层 n 次的乘积。\n- **C $O(1)$**：❌ 错误。循环规模随 n 指数增长，显然不是常数时间。\n- **D $O(n^3)$**：❌ 错误。代码只有两层嵌套循环，不存在立方级结构。\n\n**易错提醒：**\n- `1 << n` 易被误读为线性增长，实际表示 $2^n$。\n- 提前返回只影响最好情况，不改变最坏情况复杂度。\n\n**知识延伸：**\n该函数在枚举数组所有子集并判断是否存在和为 target 的子集（子集和问题的暴力解法）：位掩码 i 的第 j 位为 1 表示选中 arr[j]，这是竞赛中用位运算枚举子集的标准写法。\n\n**考点：** 位运算枚举子集的时间复杂度分析。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：第5页图确认选项为 A O(n²)、B O(n × 2ⁿ)、C O(1)、D O(n³)，网站 A/C/D 内容错位属实；独立推导确认 B=O(n·2ⁿ) 正确。初核修正方向正确，予以采纳，仅将选项记法调整为与网站其余题目一致的 LaTeX 风格。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页题干『下面关于排序稳定性的描述，正确的是（ ）。』与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页图四个选项文字与顺序均与网站一致：A 稳定性指算法的时间复杂度恒定；B 稳定排序保证相同元素的相对顺序不变；C 选择排序是稳定排序；D 插入排序不是稳定排序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第12题为 B（索引1），网站 answer=1。按稳定性定义，『稳定排序保证相同元素的相对顺序不变』为正确表述，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：稳定性即相同关键字元素排序后相对次序保持不变；选择排序因远距离交换不稳定（如 {5a,3,5b,1}），标准插入排序稳定。解析结论 B 与官方一致，无修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、选项、答案与解析均与第5页图相符，独立推导无异议，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页题干『对数组 arr[]={5, 3, 8, 1} 进行升序排序，执行第一轮冒泡排序后数组 arr 中的内容为（ ）。』与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页图选项顺序内容与网站一致：A 3, 5, 1, 8；B 3, 1, 5, 8；C 3, 5, 8, 1；D 5, 3, 8, 1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第13题为 A（索引0），网站 answer=0。独立模拟第一轮冒泡（n−1=3 次相邻比较：5↔3 交换得 {3,5,8,1}；5<8 不交换；8↔1 交换得 {3,5,1,8}），A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的三步比较过程与独立模拟一致；对 B（两轮后状态）、C（漏第三次比较）、D（初始态）的排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立模拟第一轮冒泡结果 {3,5,1,8} 与官方 A、网站 answer=0 一致，题干与选项均与 PDF 相符，无修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页图题干为『运行下面的代码，将出现（ ）。』，网站误作『将输出』；代码部分 PDF 未加 std:: 限定（runtime_error/cout/endl），网站补 std:: 属等价写法，语义不变。已提供修正后的完整题干（changes.question），修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页图选项为 A 屏幕上输出 Caught: Runtime error occurred.；B 屏幕上输出 Caught an unknown exception.；C 程序调用 std::terminate()；D 编译错误。网站 C 误作 hmean: 0，A/B 缺『屏幕上输出』。已按 PDF 提供修正（changes.options），修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第14题为 A（索引0），网站 answer=0。独立分析：x=10、y=−10 使 a==−b 成立抛出 runtime_error，被第一个 catch 精确捕获并输出 Caught: Runtime error occurred.，异常已捕获不会调用 std::terminate，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析针对网站错误选项 C（hmean: 0）展开，与源卷不符。已提供按 PDF 选项重写的解析（changes.explanation），修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "运行下面的代码，将出现（ ）。\n```cpp\ndouble hmean(double a, double b) {\n    if (a == -b)\n        throw std::runtime_error(\"Runtime error occurred.\");\n    return 2.0*a*b/(a+b);\n}\nint main() {\n    double x = 10;\n    double y = -10;\n    try {\n        int result = hmean(x, y);\n        std::cout << \"hmean: \" << result << std::endl;\n    } catch (const std::runtime_error& e) {\n        std::cout << \"Caught: \" << e.what() << std::endl;\n    } catch (...) {\n        std::cout << \"Caught an unknown exception.\" << std::endl;\n    }\n    return 0;\n}\n```",
+          "options": [
+            "屏幕上输出 Caught: Runtime error occurred.",
+            "屏幕上输出 Caught an unknown exception.",
+            "程序调用 std::terminate()",
+            "编译错误"
+          ],
+          "explanation": "**答案：A（屏幕上输出 Caught: Runtime error occurred.）**\n\n**核心解析：**\n1. main 中 `x = 10`、`y = -10`，调用 `hmean(x, y)` 时函数内判断 `a == -b` 即 `10 == -(-10)` 成立，立即执行 `throw std::runtime_error(\"Runtime error occurred.\");` 抛出异常，hmean 随即中断，其后的 return 不会执行，try 块内 `int result = hmean(x, y);` 的赋值与 `std::cout << \"hmean: \" ...` 的输出均被跳过。\n2. 异常由调用处的 try-catch 接管：第一个 `catch (const std::runtime_error& e)` 与异常类型精确匹配，`e.what()` 返回创建异常时传入的字符串 \"Runtime error occurred.\"，因此屏幕输出 `Caught: Runtime error occurred.`。\n3. 匹配成功后跳过其余 catch 块，main 正常返回 0 结束。\n\n**选项逐项分析：**\n- **A 屏幕上输出 Caught: Runtime error occurred.**：✅ 正确。异常被第一个 catch 精确捕获，并通过 e.what() 打印对应信息。\n- **B 屏幕上输出 Caught an unknown exception.**：❌ 错误。该输出来自 `catch (...)` 兜底分支；异常已被前面的具体类型捕获，此分支不会执行。\n- **C 程序调用 std::terminate()**：❌ 错误。std::terminate() 只在异常传播出 main 且无人捕获等严重错误时触发；本例异常在 try 块内抛出并被对应 catch 捕获，不会发生。\n- **D 编译错误**：❌ 错误。throw-try-catch 结构书写规范，能正常编译；hmean 返回 double 赋给 int 属合法隐式转换（可能有警告但非错误），且本例在返回前已抛出异常。\n\n**易错提醒：**\n- 多个 catch 块按声明顺序自上而下匹配，前面的分支命中后跳过其余 catch（含 catch(...)）。\n- `throw` 会立即中断当前函数并回溯调用栈，不会继续执行其后的语句。\n\n**考点：** C++ 异常的抛出、捕获与 catch 顺序匹配。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：第5页图确认为『将出现（ ）』，第6页图确认选项 C 为『程序调用 std::terminate()』且 A/B 含『屏幕上输出』，网站选项 C『hmean: 0』与源卷不符属实；解析按源选项重写正确。初核保留网站 std:: 限定属等价转换，予以采纳。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页题干『下面哪种方式不能实现将字符串 \"Happy Spring!\" 输出重定向到文件 log.txt（ ）。』与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页图 A—D 均为完整代码片段：A 含 freopen(\"log.txt\", \"w\", stdout); 与 fclose(stdout);，B/C 输出语句含 << endl，D 为五行 rdbuf 重定向代码（ofstream log_file... cout.rdbuf(org_cout);）。网站 A 缺 fclose 行、B/C 缺 endl、D 被改为文字描述，漏掉必要代码。已按 PDF 提供修正选项（changes.options），std:: 限定为等价写法，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第15题为 C（索引2），网站 answer=2。C 中 cout 未做任何重定向，字符串仍输出到屏幕，log.txt 不会被写入，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析对 A（freopen 把 stdout 改到 log.txt）、B（outFile 直写文件）、C（cout 仍指向屏幕、文件无内容）、D（rdbuf 替换 cout 缓冲区后写文件）的判定与修正后代码片段一致，结论 C 与官方一致，无需改写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "freopen(\"log.txt\", \"w\", stdout);\nstd::cout << \"Happy Spring!\" << std::endl;\nfclose(stdout);",
+            "std::ofstream outFile(\"log.txt\");\noutFile << \"Happy Spring!\" << std::endl;\noutFile.close();",
+            "std::ofstream outFile(\"log.txt\");\nstd::cout << \"Happy Spring!\" << std::endl;\noutFile.close();",
+            "std::ofstream log_file(\"log.txt\");\nstd::streambuf* org_cout = std::cout.rdbuf();\nstd::cout.rdbuf(log_file.rdbuf());\nstd::cout << \"Happy Spring!\" << std::endl;\nstd::cout.rdbuf(org_cout);"
+          ]
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：第6页图确认 A 段含 fclose(stdout);、B/C 含 << endl、D 为完整 rdbuf 五行代码，网站漏行及 D 改为文字描述属实；恢复完整片段后答案 C 映射不变，现有解析对修正后选项仍然成立。初核的 std:: 归一化属等价写法，予以采纳。"
+      }
+    ],
+    "summary": "本次仅独立复核第11—15题（均为单选题），其余题目与编程题按指令不输出。第1页答案表与网站 answer 映射全部一致：11=B、12=B、13=A、14=A、15=C。题11：网站选项 A/C/D（O(2ⁿ)、O(N²)、O(N)）与第5页图（O(n²)、O(1)、O(n³)）不符，解析逐项分析随之错位，需按 PDF 修正选项与解析（结论 B=O(n·2ⁿ) 经独立推导确认不变）；题14：题干『将输出』应为『将出现』，选项 C 应为『程序调用 std::terminate()』且 A/B 需补『屏幕上输出』，解析按源卷选项重写（A 正确：异常被第一个 catch 捕获，不会触发 std::terminate）；题15：网站选项缺 fclose(stdout)、<< endl，D 由完整代码误改为文字描述，需恢复 PDF 代码片段，答案 C 映射不变；题12、13 经独立推导与 PDF 完全一致，无修改。五题均为单选题，referenceCode 不适用、tests 为空；未运行任何源码，全部结论基于 PDF 页图与文本层人工推导。"
+  }
+}

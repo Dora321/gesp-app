@@ -1,0 +1,245 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:55:35.134Z",
+  "completedAt": "2026-11-16T12:58:37.478Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53938,
+    "completion_tokens": 11833,
+    "total_tokens": 65771,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8548
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0140072,
+      "allowance": 0.0140072,
+      "tokens": {
+        "input": 53938,
+        "output": 11833,
+        "reasoning": 8548,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bdec477bc399cb4d14df8a423111d9cd28c6a47fe6845049f9f3356c74bcca60",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP，C++ 四级，2025 年 03 月”，与 2025-03-l4（2025 年 3 月 C++ 四级）一致；第 1 页单选答案表题 1–5 依次为 A、B、B、D、D。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页代码框共 13 行：第 1 行函数声明 int multiply(int x, int y);，main 中调用 multiply(a, b)，函数定义位于 main 之后；与网站代码逐行语义一致，仅花括号排版差异。题干“关于下述代码，说法错误的是（ ）。”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A–D 与网站基本一致；唯一差异是选项 C 末尾：PDF 原文为“形参 x 和 y”，网站误录为“形参x and y”。已按 PDF 修正，修正后核验通过，不影响选项含义与答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 1 为 A，0 起始索引 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第 1 行前向声明使 main 中的调用合法，定义放在 main 之后完全合规，A 说法错误应选 A；B（声明指定返回类型 int）、C（实参 a、b 按值传给形参 x、y）、D（输出 The result is: 20）均正确。与解析逐项分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "函数multiply的定义应该放到函数main之前。",
+            "函数声明int multiply(int x, int y);中明确指定了函数multiply()的返回值为整数类型。",
+            "在main函数中，函数multiply通过multiply(a, b)被调用，其中a和b是定义在main函数中的变量，它们作为实参传递给了multiply函数的形参x 和 y。",
+            "运行上述代码，将输出The result is: 20。"
+          ]
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核对选项 C 的转录修正：“x and y”确为网站误录，PDF 第 1 页原文是“形参 x 和 y”，修正不影响答案映射。其余维度独立核对通过，官方答案 A（索引 0）与网站 answer=0 一致。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题代码（共 7 行，func 为紧凑单行）与网站展开排版语义一致：全局 x=10，func 内局部 x=20 并输出，main 调用 func 后输出全局 x。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A–C 为 2020、2010、1010，第 2 页顶部 D 为编译错误，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 2 为 B，0 起始索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析“第 3-6 行：func() 函数内部定义局部变量”与网站代码排版不符（func 定义实际位于第 2–5 行；其余“第 4 行”“第 8 行”在网站排版下正确）。已重写为不依赖行号的表述：func 内输出局部 20，main 输出全局 10，总输出 2010，遮蔽合法非编译错误。独立推导无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（2010）**\n\n本题考查变量作用域中的**遮蔽效应**（Shadowing）。代码中存在两个名为 `x` 的变量：全局变量（值为 10）和 `func()` 内的局部变量（值为 20），它们是两个不同的变量，占用不同的内存位置。\n\n执行过程：\n1. 定义全局变量 `int x = 10;`。\n2. 调用 `func()`：函数内部定义局部变量 `int x = 20;`。在 `func()` 内部，作用域由内向外查找，`std::cout << x` 访问的是局部变量，因此先输出 20。这一操作不会修改全局变量。\n3. 回到 `main()`：`main` 中没有定义局部变量 `x`，`std::cout << x` 访问全局变量，输出 10。\n\n综合输出顺序：先 20 后 10，结果为 **2010**。\n\n**选项逐项分析：**\n- **A 2020**：❌ 错误。`func()` 确实输出 20，但 `main` 中的 `x` 是全局变量 10。\n- **B 2010**：✅ 正确。\n- **C 1010**：❌ 错误。`func()` 内访问的是遮蔽后的局部变量 20，不是全局变量。\n- **D 编译错误**：❌ 错误。局部变量与全局变量同名是合法的变量遮蔽，可以正常编译运行。\n\n**易错提醒：**\n- 不要误以为 `func()` 修改了全局变量：其内部的 `x` 是独立的局部变量，全局变量的值始终为 10。\n- 局部变量只在其所属大括号范围内有效，离开作用域即销毁。\n\n**知识延伸：**\n若需要在 `func()` 内访问全局变量，可使用作用域解析运算符 `::x`（如 `std::cout << ::x;`）。\n\n**考点：** 变量的作用域（全局变量与局部变量）、变量遮蔽效应。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核对解析的重写，但需修正初核的表述：原解析仅“第 3-6 行”一处行号与网站代码排版不符（func 定义位于第 2–5 行），“第 4 行”“第 8 行”在网站排版下是正确的，初核称行号引用整体错误略有夸大，不影响修正结论。重写版内容经独立推导正确（输出 2010），并保留了易错提醒与知识延伸。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 3 题代码第 3 行印刷为“*p = 20”，漏排分号（页图与文本层均无分号），属卷面印刷瑕疵；官方答案 B=20 表明原意是含分号的赋值语句（否则应选 D 编译错误）。网站补为“*p = 20;”，与题意一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 10、20、随机值、编译错误，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 3 为 B，0 起始索引 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：p 存 &a，*p 解引用即 a 本体，*p = 20 使 a 由 10 变为 20；p 指向确定有效地址，非野指针；语法正确可编译。与解析三步推导及逐项排除一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核判断。PDF 第 2 页第 3 行确缺分号（页图可见“*p = 20”），官方答案 B（20）证明原意含分号；网站补全属合理修复，核验通过，无需额外 changes。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页题干“以下哪种参数传递方式可以避免拷贝大型对象？”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为只能用值传递、只能用引用传递、只能用指针传递、引用传递和指针传递均可，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 4 为 D，0 起始索引 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析含无依据且失实的耗时数字（“耗时约 0.04ms（假设）”“约 0.0001ns”，后者量级明显不可能）。已重写为定性说明：值传递复制整个对象，引用传递与指针传递均只传地址、不复制大型对象，答案 D。独立推导一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（引用传递和指针传递均可）**\n\n**值传递**：形参是实参的副本，传递时复制整个对象。对大型对象（如大数组、大结构体）复制的时间和内存开销都较大，且在函数内修改形参不影响外部变量。\n\n**引用传递**：如 `void f(T& obj)`，形参是实参的别名，与实参共享同一对象；底层只需传递一个地址，不复制对象本身。\n\n**指针传递**：如 `void f(T* ptr)`，传递的是实参的地址，同样只复制一个指针值（通常 4 或 8 字节），不复制所指向的大型对象。\n\n因此引用传递和指针传递都能避免拷贝大型对象。\n\n**选项逐项分析：**\n- **A 只能用值传递**：❌ 错误。值传递恰恰需要复制整个对象，无法避免拷贝。\n- **B 只能用引用传递**：❌ 错误。指针传递同样可以避免拷贝。\n- **C 只能用指针传递**：❌ 错误。引用传递同样可以避免拷贝。\n- **D 引用传递和指针传递均可**：✅ 正确。两者都只传递地址，不复制大型对象。\n\n**易错提醒：**\n- 引用传递通过别名直接操作，指针传递需解引用，语法不同，但两者都只传地址。\n- 若不需要在函数内修改实参，建议使用 `const T&`，既避免拷贝又防止意外修改。\n- 对 `int`、`double` 等小型对象，值传递开销可忽略，语义更清晰。\n\n**知识延伸：**\nC++11 引入移动语义与右值引用（`T&&`），对临时对象可以“移动”而非“拷贝”，进一步减少不必要的复制开销。\n\n**考点：** C++ 参数传递机制（值传递、引用传递、指针传递）与性能。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核对解析的重写：原解析“约 0.0001ns”等耗时数字属臆测且量级失实，删除正确；重写版对值/引用/指针传递的定性说明经独立推导成立，答案 D 与答案表索引 3 一致。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页代码与网站一致：void swap(int a, int &b)（第一形参值传递、第二形参引用传递），main 中 x=1、y=2，调用 swap(x, y) 后输出 x、y。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 12、21、22、11，与网站选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 5 为 D，0 起始索引 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a 是 x 的副本（=1），b 是 y 的引用；temp=a=1，a=b=2（仅副本，不影响 x），b=temp=1（经引用改 y）。返回后 x=1、y=1，输出 11。与解析逐步分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "无需修改。五维独立核对与 PDF 一致；swap 混合传参（a 值传递、b 引用传递）推导输出 11，与答案表 D（索引 3）及网站 answer=3 一致。网站解析中值/引用对比与修正示例（两个参数均用引用或指针）无误。"
+      }
+    ],
+    "summary": "独立复核 2025-03-l4 第 1–5 题（均为单选题，每题 2 分）。卷头“CCF 编程能力等级认证 C++ 四级 2025 年 03 月”与来源一致；官方答案表题 1–5 为 A、B、B、D、D（0 起始索引 0、1、1、3、3），与网站 answer 全部一致。确认三处修正并已核验通过：题 1 选项 C 网站误录“x and y”，按 PDF 改为“x 和 y”；题 2 解析中“第 3-6 行”与网站代码排版不符（func 定义在第 2–5 行），重写为不依赖行号的表述（仅该处行号有误，初核表述略夸大但不影响结论）；题 4 解析删除“0.04ms/0.0001ns”等无依据且失实的耗时数字后重写。题 3 的 PDF 卷面第 3 行印刷漏分号（“*p = 20”），官方答案 B=20 证明原意含分号，网站补全属合理修复。题 5 五维均与 PDF 一致，无需修改。五题 verdict 均为 approve，无 unresolved，无编程题故无 tests。"
+  }
+}

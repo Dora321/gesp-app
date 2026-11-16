@@ -1,0 +1,255 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T13:07:30.624Z",
+  "completedAt": "2026-11-16T13:09:51.469Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35635,
+    "completion_tokens": 21973,
+    "total_tokens": 57608,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 35584,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 19207,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0132982,
+      "allowance": 0.00797892,
+      "tokens": {
+        "input": 51,
+        "output": 21973,
+        "reasoning": 19207,
+        "cache_read": 35584,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "bdec477bc399cb4d14df8a423111d9cd28c6a47fe6845049f9f3356c74bcca60",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 页图卷头为“CCF 编程能力等级认证 C++ 四级 2025年03月”，与 2025-03-l4 对应；题号 11—15 的题干、代码/选项和答案表均可在 PDF 第4—6页核对。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4—5页题干与函数代码和网站一致：外层 for(i=0; i<(1<<n); i++)，内层 for(j=0; j<n; j++)，以 i & (1<<j) 枚举子集并累加。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页选项为 A O(n^2)、B O(n × 2^n)、C O(1)、D O(n^3)；网站为 A O(2^n)、B O(n * 2^n)、C O(N^2)、D O(N)。除 B 项文字等价外，其余选项内容不一致，需按 PDF 修正。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第11题答案为 B，对应 0 起始索引 1；网站 answer=1，且选项 B 在 PDF 中为 O(n × 2^n)，答案映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析按网站旧选项 A=O(2^n)、C=O(N^2)、D=O(N) 逐项分析，与 PDF 选项 O(n^2)、O(1)、O(n^3) 不符，需按 PDF 选项重写；结论 B 不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "O(n^2)",
+            "O(n × 2^n)",
+            "O(1)",
+            "O(n^3)"
+          ],
+          "explanation": "答案：B（O(n × 2^n)）。外层 i 从 0 到 (1<<n)-1，共 2^n 次；每轮内层 j 从 0 到 n-1，共 n 次，每次位运算与加法为 O(1)。最坏情况下总操作量为 n·2^n，因此时间复杂度为 O(n × 2^n)。A 的 O(n^2) 没有体现子集枚举的指数级外层循环；C 的 O(1) 和 D 的 O(n^3) 也不符合该双重循环结构。函数可能提前返回，但复杂度按最坏情况分析。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干“下面关于排序稳定性的描述，正确的是（ ）。”与网站一致，考查排序稳定性定义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项 A—D 与网站文字及顺序一致：A 时间复杂度恒定、B 相同元素相对顺序不变、C 选择排序稳定、D 插入排序不稳定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第12题答案为 B，对应 0 起始索引 1；网站 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确给出稳定性定义，并正确判定选择排序不稳定、标准插入排序稳定；由定义可知 B 正确，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干数组为 {5, 3, 8, 1}，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页四个选项顺序及内容与网站一致：A 3,5,1,8；B 3,1,5,8；C 3,5,8,1；D 5,3,8,1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第13题答案为 A，对应 0 起始索引 0；网站 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按相邻比较模拟第一轮：5 与 3 交换、5<8 不交换、8 与 1 交换，得到 {3,5,1,8}；与官方答案 A 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5—6页题干为“运行下面的代码，将出现（ ）。”，网站写成“将输出”。代码逻辑一致，网站补全的 std:: 限定不改变语义，但题干措辞需按源卷改为“出现”。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页选项为：A 屏幕上输出 Caught: Runtime error occurred.；B 屏幕上输出 Caught an unknown exception.；C 程序调用 std::terminate()；D 编译错误。网站 C 为 hmean: 0，且 A/B 缺少“屏幕上输出”，与源卷不符。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第14题答案为 A，对应 0 起始索引 0；网站 answer=0，A 项均为异常被第一个 catch 捕获后的屏幕输出。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析按网站错误选项 C（hmean: 0）分析；PDF 的 C 是程序调用 std::terminate()。异常已由第一个 catch 捕获，不会调用 terminate，解析需按 PDF 选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "运行下面的代码，将出现（ ）。\n```cpp\ndouble hmean(double a, double b) {\n    if (a == -b)\n        throw std::runtime_error(\"Runtime error occurred.\");\n    return 2.0*a*b/(a+b);\n}\nint main() {\n    double x = 10;\n    double y = -10;\n    try {\n        int result = hmean(x, y);\n        std::cout << \"hmean: \" << result << std::endl;\n    } catch (const std::runtime_error& e) {\n        std::cout << \"Caught: \" << e.what() << std::endl;\n    } catch (...) {\n        std::cout << \"Caught an unknown exception.\" << std::endl;\n    }\n    return 0;\n}\n```",
+          "options": [
+            "屏幕上输出 Caught: Runtime error occurred.",
+            "屏幕上输出 Caught an unknown exception.",
+            "程序调用 std::terminate()",
+            "编译错误"
+          ],
+          "explanation": "答案：A（屏幕上输出 Caught: Runtime error occurred.）。main 中 x=10、y=-10，调用 hmean 时 a == -b 成立，立即抛出 std::runtime_error，try 块中后续赋值和输出被跳过。第一个 catch 精确匹配 std::runtime_error，e.what() 返回“Runtime error occurred.”，因此屏幕输出“Caught: Runtime error occurred.”。catch(...) 不执行；异常已被捕获，不会调用 std::terminate；代码可正常编译。C 的 std::terminate 仅用于未捕获异常等情形，D 的编译错误也不成立。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页题干与网站一致：下面哪种方式不能实现将字符串 \"Happy Spring!\" 输出重定向到文件 log.txt。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页 A—D 均为完整代码片段：A 含 freopen 与 fclose(stdout)，B/C 含 endl，D 为 rdbuf 重定向代码；网站 A 缺 fclose，B/C 省略 endl，D 被改成文字描述，漏掉必要代码。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第15题答案为 C，对应 0 起始索引 2；网站 answer=2，C 项均表示创建 ofstream 后仍用 cout 输出，未把 cout 重定向到文件，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确说明 C 未把 cout 重定向到 outFile，A/B/D 分别可通过 freopen、ofstream、rdbuf 实现写入，结论与官方 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "freopen(\"log.txt\", \"w\", stdout);\nstd::cout << \"Happy Spring!\" << std::endl;\nfclose(stdout);",
+            "std::ofstream outFile(\"log.txt\");\noutFile << \"Happy Spring!\" << std::endl;\noutFile.close();",
+            "std::ofstream outFile(\"log.txt\");\nstd::cout << \"Happy Spring!\" << std::endl;\noutFile.close();",
+            "std::ofstream log_file(\"log.txt\");\nstd::streambuf* org_cout = std::cout.rdbuf();\nstd::cout.rdbuf(log_file.rdbuf());\nstd::cout << \"Happy Spring!\" << std::endl;\nstd::cout.rdbuf(org_cout);"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题11—15，均为单选题，referenceCode 不适用。官方答案表与网站 answer 映射一致：11 B、12 B、13 A、14 A、15 C。题11网站选项内容与 PDF 不一致且解析逐项分析错位，需修正选项和解析；题14题干“输出”应为“出现”，选项 C 应为“程序调用 std::terminate()”，解析需按源选项重写；题15网站选项应恢复 PDF 的完整代码片段。题12、13无修改。未执行任何源码运行。"
+  }
+}
