@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Pencil, MousePointer2, Eraser, Undo2, Redo2, Trash2, X } from 'lucide-react';
+import { setTeacherToolsEnabled } from '../utils/teacherTools';
 import './PageAnnotations.css';
 
 const colors = [['红色', '#dc2626'], ['蓝色', '#2563eb'], ['绿色', '#15803d'], ['黄色', '#eab308']];
@@ -119,8 +120,9 @@ function AnnotationLayer() {
         </div>
         <p aria-live="polite">{mode === 'pen' ? '拖动画笔标注，Esc 返回浏览。' : mode === 'erase' ? '点选笔画可整笔擦除。' : '浏览模式可正常点击、滚动页面。'}</p>
         <p>临时标注，刷新或切换页面后清除。</p>
+        <button type="button" className="annotation-disable" onClick={() => setTeacherToolsEnabled(false)}>关闭教师工具</button>
       </div>}
-      {!open && <button className="annotation-launcher" aria-label="打开页面标注" onClick={() => { setOpen(true); setMode('pen'); }}><Pencil size={19} /><span className="annotation-launcher-label">标注</span></button>}
+      {!open && <button className="annotation-launcher" aria-label="打开页面标注" onClick={() => { setOpen(true); setMode('browse'); }}><Pencil size={19} /><span className="annotation-launcher-label">标注</span></button>}
     </div>
   </>;
 }

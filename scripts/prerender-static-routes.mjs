@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getRouteSeo, lessonRouteMeta, SITE_ORIGIN, withSiteMeta } from '../src/seo/routeMeta.js';
+import { absoluteUrl, getRouteSeo, lessonRouteMeta, normalizePathname, SITE_ORIGIN, withSiteMeta } from '../src/seo/routeMeta.js';
 import { cppLessonIndex, getCppLesson } from '../src/data/cppLessonIndex.js';
 import { embeddedAiPages, embedAiLauncher } from './lib/embedded-ai-pages.mjs';
 
@@ -50,13 +50,13 @@ const renderNoscriptContent = (pathname, seo) => {
       lines.push(`<p>本课属于 GESP C++ ${lessonMatch[1]} 级互动课程，共 16 课。</p>`);
       lines.push('<ul>');
       for (const sibling of cppLessonIndex.filter(item => item.level === lesson.level)) {
-        lines.push(`<li><a href="${SITE_ORIGIN}${sibling.path}">${escapeHtml(sibling.fullTitle)}</a></li>`);
+        lines.push(`<li><a href="${absoluteUrl(sibling.path)}">${escapeHtml(sibling.fullTitle)}</a></li>`);
       }
       lines.push('</ul>');
     }
   }
 
-  lines.push(`<p><a href="${SITE_ORIGIN}/">返回首页</a> · <a href="${SITE_ORIGIN}/question-bank">GESP 真题题库</a></p>`);
+  lines.push(`<p><a href="${absoluteUrl('/')}">返回首页</a> · <a href="${absoluteUrl('/question-bank')}">GESP 真题题库</a></p>`);
   return lines.join('\n      ');
 };
 
@@ -95,7 +95,8 @@ const routes = urls.map(url => {
   const route = pathname.startsWith(new URL(SITE_ORIGIN).pathname)
     ? pathname.slice(new URL(SITE_ORIGIN).pathname.length)
     : pathname;
-  return route || '/';
+  // sitemap 用的是带斜杠的公开地址，静态 shell 仍按不带斜杠的路由生成「路由/index.html」。
+  return normalizePathname(route || '/');
 });
 
 const allRoutes = [...new Set([...routes, ...PRERENDER_ONLY_ROUTES])];

@@ -31,7 +31,8 @@ async function main() {
   const escapeXml = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const body = routes.map(route => [
     '  <url>',
-    `    <loc>${escapeXml(`${origin}${route === '/' ? '/' : route}`)}</loc>`,
+    // 带尾斜杠：GitHub Pages 上「路由/index.html」只有这个形式直接 200，不带斜杠会先 301。
+    `    <loc>${escapeXml(`${origin}${route === '/' ? '/' : `${route}/`}`)}</loc>`,
     `    <changefreq>${route.startsWith('/question-bank/') ? 'monthly' : 'weekly'}</changefreq>`,
     `    <priority>${route === '/' ? '1.0' : route === '/question-bank' ? '0.9' : route.startsWith('/lesson/') ? '0.8' : '0.7'}</priority>`,
     '  </url>',

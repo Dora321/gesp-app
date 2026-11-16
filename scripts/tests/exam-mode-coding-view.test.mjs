@@ -23,3 +23,10 @@ test('exam mode resolves Luogu links through the shared coding helper', () => {
   assert.match(source, /getLuoguProblemUrl/);
   assert.doesNotMatch(source, /paperCodingMap/);
 });
+
+test('exam mode only shows answers and analysis after submit, and never for programming questions', () => {
+  assert.match(source, /const showAnswerReview = isSubmitted && !isProgramming && !isScoringExcluded\(currentQ\);/);
+  assert.match(source, /\{showAnswerReview && \(/);
+  // AnswerReview 只出现在 showAnswerReview 分支里。
+  assert.equal(source.match(/<AnswerReview/g).length, 1);
+});

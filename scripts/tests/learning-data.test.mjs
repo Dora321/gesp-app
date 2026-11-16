@@ -26,13 +26,24 @@ import {
 } from '../../src/utils/examProgress.js';
 import {
   MAX_ATTEMPTS_PER_PAPER,
+  buildMistakePracticePaper,
   clearPaperAttempts,
+  currentWrongIdsByPaper,
   latestWrongIdsByPaper,
+  pickWrongQuestions,
+  recordQuestionResult,
   readPaperAttempts,
   recordExamAttempt,
   summarizePaperAttempts,
 } from '../../src/utils/examHistory.js';
 import { PROGRAMMING_ACK } from '../../src/utils/questionHelpers.js';
+import {
+  clearAnalysisProgress,
+  loadAnalysisProgress,
+  questionSignature,
+  saveAnalysisProgress,
+} from '../../src/utils/analysisProgress.js';
+import { reviewQuestionIndexes } from '../../src/utils/examScoring.js';
 
 class MemoryStorage {
   #values = new Map();
@@ -296,4 +307,134 @@ test('imported attempt records are sanitised', () => {
   assert.deepEqual(Object.keys(imported.attempts), ['2025-03-l6']);
   assert.equal(imported.attempts['2025-03-l6'].length, 1);
   assert.deepEqual(imported.attempts['2025-03-l6'][0].wrongIds, [3, 'x']);
+});
+
+// ─── 错题集合（mistakes）与解析模式进度（analysis） ─────────────────────
+
+test('a blank submission does not wipe the wrong-answer book', () => {
+  installStorage();
+  const questions = [
+    { id: 1, type: 'single', answer: 0, score: 2 },
+    { id: 2, type: 'single', answer: 0, score: 2 },
+    { id: 3, type: 'single', answer: 0, score: 2 },
+  ];
+  recordExamAttempt('2025-09-l3', { questions, answers: { 1: 1, 2: 1, 3: 0 } });
+  assert.deepEqual(currentWrongIdsByPaper()['2025-09-l3'], [1, 2]);
+
+  // 误点「现在交卷」，一题没答：错题不能消失。
+  recordExamAttempt('2025-09-l3', { questions, answers: {} });
+  assert.deepEqual(currentWrongIdsByPaper()['2025-09-l3'], [1, 2]);
+
+  // 只答对第 1 题、第 2 题没答：第 1 题移出，第 2 题留下。
+  recordExamAttempt('2025-09-l3', { questions, answers: { 1: 0 } });
+  assert.deepEqual(currentWrongIdsByPaper()['2025-09-l3'], [2]);
+
+  // 新做错的第 3 题并入。
+  recordExamAttempt('2025-09-l3', { questions, answers: { 3: 2 } });
+  assert.deepEqual(currentWrongIdsByPaper()['2025-09-l3'], [2, 3]);
+});
+
+test('analysis-mode results merge into the wrong-answer book', () => {
+  installStorage();
+  recordQuestionResult('2024-03-l4', 5, false);
+  recordQuestionResult('2024-03-l4', 12, false);
+  assert.deepEqual(currentWrongIdsByPaper()['2024-03-l4'], [5, 12]);
+
+  recordQuestionResult('2024-03-l4', 5, true);
+  assert.deepEqual(currentWrongIdsByPaper()['2024-03-l4'], [12]);
+
+  recordQuestionResult('2024-03-l4', 12, true);
+  assert.equal(currentWrongIdsByPaper()['2024-03-l4'], undefined);
+});
+
+test('documents without a mistakes field derive it from the latest answered attempt', () => {
+  const storage = installStorage();
+  storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify({
+    version: LEARNING_DATA_VERSION,
+    attempts: {
+      // 最新一次是空白交卷（旧版正是在这里把错题清空的），应跳过它。
+      '2025-06-l2': [
+        { at: 30, score: 0, total: 50, correct: 0, wrong: 0, unanswered: 25, wrongIds: [] },
+        { at: 20, score: 40, total: 50, correct: 20, wrong: 2, unanswered: 3, wrongIds: [4, 9] },
+        { at: 10, score: 30, total: 50, correct: 15, wrong: 3, unanswered: 7, wrongIds: [1, 4, 9] },
+      ],
+      '2025-06-l1': [{ at: 5, score: 50, total: 50, correct: 25, wrong: 0, wrongIds: [] }],
+    },
+  }));
+
+  const data = readLearningData();
+  assert.deepEqual(currentWrongIdsByPaper(data), { '2025-06-l2': [4, 9] });
+  assert.deepEqual(data.analysis, {});
+
+  // 已有 mistakes 字段时以它为准，不再从交卷记录推导。
+  storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify({ ...data, mistakes: {} }));
+  assert.deepEqual(currentWrongIdsByPaper(readLearningData()), {});
+});
+
+test('clearing a paper also clears its mistakes and analysis progress', () => {
+  installStorage();
+  const questions = [{ id: 1, type: 'single', answer: 0, score: 2 }];
+  recordExamAttempt('2024-12-l5', { questions, answers: { 1: 1 } });
+  saveAnalysisProgress('2024-12-l5', { answers: { 1: 1 }, revealed: { 1: true }, currentQuestionIndex: 0 });
+  recordQuestionResult('2024-12-l6', 3, false);
+
+  clearPaperAttempts('2024-12-l5');
+
+  const data = readLearningData();
+  assert.equal(data.mistakes['2024-12-l5'], undefined);
+  assert.equal(data.analysis['2024-12-l5'], undefined);
+  assert.deepEqual(currentWrongIdsByPaper(data), { '2024-12-l6': [3] });
+});
+
+test('analysis progress persists per paper and ignores a changed question set', () => {
+  installStorage();
+  saveAnalysisProgress('2023-12-l1', { answers: { 1: 2, 3: 0 }, revealed: { 1: true, 3: true }, currentQuestionIndex: 4 });
+  const restored = loadAnalysisProgress('2023-12-l1');
+  assert.deepEqual(restored.answers, { 1: 2, 3: 0 });
+  assert.deepEqual(restored.revealed, { 1: true, 3: true });
+  assert.equal(restored.currentQuestionIndex, 4);
+
+  const topicQuestions = [{ id: 1, sourcePaperId: 'a', sourceQuestionId: 3 }, { id: 2, sourcePaperId: 'b', sourceQuestionId: 7 }];
+  const signature = questionSignature(topicQuestions);
+  saveAnalysisProgress('topic-1-循环', { answers: { 1: 0 }, revealed: { 1: true }, signature });
+  assert.ok(loadAnalysisProgress('topic-1-循环', signature));
+  assert.equal(loadAnalysisProgress('topic-1-循环', questionSignature(topicQuestions.slice(0, 1))), null);
+
+  clearAnalysisProgress('2023-12-l1');
+  assert.equal(loadAnalysisProgress('2023-12-l1'), null);
+});
+
+test('only wrong or unanswered gradable objective questions are reviewed after submit', () => {
+  const questions = [
+    { id: 1, type: 'single', answer: 0 },
+    { id: 2, type: 'single', answer: 1 },
+    { id: 3, type: 'judge', answer: 0 },
+    { id: 4, type: 'single', answer: 2, sourceIntegrity: 'missing-code' },
+    { id: 5, type: 'programming' },
+  ];
+  assert.deepEqual(reviewQuestionIndexes(questions, { 1: 0, 2: 0, 5: PROGRAMMING_ACK }), [1, 2]);
+});
+
+test('wrong-question practice paper keeps source ids and paper verification fields', () => {
+  const paper = {
+    id: '2025-03-l3',
+    title: '2025年3月 三级',
+    level: 3,
+    verification: { answer: 'verified' },
+    questions: [
+      { id: 1, type: 'single', question: 'A', options: ['x', 'y'], answer: 0 },
+      { id: 7, type: 'single', question: 'B', options: ['x', 'y'], answer: 1 },
+    ],
+    programmingQuestions: [{ id: 26, type: 'programming' }],
+  };
+  const wrong = pickWrongQuestions(paper, [7, 99]);
+  assert.deepEqual(wrong.map((q) => q.id), [7]);
+
+  const practice = buildMistakePracticePaper(paper, wrong);
+  assert.equal(practice.id, 'review-2025-03-l3');
+  assert.equal(practice.level, 3);
+  assert.deepEqual(practice.verification, { answer: 'verified' });
+  assert.equal(practice.programmingQuestions, undefined);
+  assert.deepEqual(practice.questions.map((q) => [q.id, q.sourcePaperId, q.sourceQuestionId]), [[1, '2025-03-l3', 7]]);
+  assert.equal(buildMistakePracticePaper(paper, []), null);
 });

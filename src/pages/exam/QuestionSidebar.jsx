@@ -9,6 +9,7 @@ const QuestionSidebar = ({
   answers,
   currentQuestionIndex,
   isSubmitted,
+  reviewIndexes = null,
   showSidebar,
   answeredCount,
   progress,
@@ -36,10 +37,12 @@ const QuestionSidebar = ({
               const isAnswered = answers[q.id] !== undefined;
               const isCurrent = idx === currentQuestionIndex;
               const isProgramming = isProgrammingQuestion(q);
+              // 「只看错题」时其余题号淡化，仍可点开。
+              const dimmed = Array.isArray(reviewIndexes) && !reviewIndexes.includes(idx);
               let statusColor = 'bg-white border-slate-200 text-slate-600';
               if (isSubmitted) {
                 if (isProgramming) {
-                  statusColor = isAnswered ? 'bg-violet-100 border-violet-300 text-violet-700' : 'bg-slate-100 border-slate-200 text-slate-600';
+                  statusColor = isAnswered ? 'bg-[var(--mw-info-tint)] border-[var(--mw-info)] text-[var(--mw-info)]' : 'bg-slate-100 border-slate-200 text-slate-600';
                 } else {
                   const isCorrect = answers[q.id] === q.answer;
                   statusColor = isCorrect ? 'bg-green-100 border-green-300 text-green-700' : answers[q.id] !== undefined ? 'bg-red-100 border-red-300 text-red-700' : 'bg-slate-100 border-slate-200 text-slate-600';
@@ -54,7 +57,7 @@ const QuestionSidebar = ({
                   aria-label={`第 ${idx + 1} 题`}
                   aria-current={isCurrent ? 'step' : undefined}
                   onClick={() => onQuestionSelect(idx)}
-                  className={`relative aspect-square rounded-lg border flex items-center justify-center text-sm font-semibold transition-all ${statusColor}`}
+                  className={`relative aspect-square rounded-lg border flex items-center justify-center text-sm font-semibold transition-all ${statusColor} ${dimmed && !isCurrent ? 'opacity-35' : ''} ${isSubmitted && isCurrent ? 'ring-2 ring-slate-800 ring-offset-1' : ''}`}
                 >
                   {idx + 1}
                   {isCurrent && <span className="absolute top-1 right-1 text-[10px]">&bull;</span>}

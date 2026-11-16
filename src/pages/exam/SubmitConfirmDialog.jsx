@@ -21,7 +21,7 @@ const SubmitConfirmDialog = ({
 
         <div className="grid grid-cols-2 gap-3 mb-6 sm:grid-cols-4">
           <div className="bg-blue-50 rounded-lg p-3"><div className="text-xs text-blue-600">已答</div><div className="text-2xl font-bold text-blue-700">{answeredCount}</div></div>
-          <div className="bg-violet-50 rounded-lg p-3"><div className="text-xs text-violet-700">编程已标记</div><div className="text-2xl font-bold text-violet-700">{programmingMarkedCount}</div></div>
+          <div className="bg-[var(--mw-info-tint)] rounded-lg p-3"><div className="text-xs text-[var(--mw-info)]">编程已标记</div><div className="text-2xl font-bold text-[var(--mw-info)]">{programmingMarkedCount}</div></div>
           <div className="bg-amber-50 rounded-lg p-3"><div className="text-xs text-amber-700">未答</div><div className="text-2xl font-bold text-amber-700">{unansweredCount}</div></div>
           <div className="bg-orange-50 rounded-lg p-3"><div className="text-xs text-orange-700">不计分题</div><div className="text-2xl font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>

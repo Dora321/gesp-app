@@ -7,47 +7,47 @@ const cases = [
   {
     file: 'dist/hardware/arduino/index.html',
     title: 'Arduino UNO 零基础课程 · 16 节网页课',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/arduino',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/arduino/',
   },
   {
     file: 'dist/hardware/arduino/16/index.html',
     title: 'Arduino UNO · 第 16 课 · 智能垃圾桶 · 下',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/arduino/16',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/arduino/16/',
   },
   {
     file: 'dist/hardware/esp32/16.5/index.html',
     title: '高阶科创 · 第 16.5 课 · 联网预备包',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/16.5',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/16.5/',
   },
   {
     file: 'dist/hardware/esp32/23/index.html',
     title: '高阶科创 · 第 23 课 · 智能家居模块上',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/23',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/23/',
   },
   {
     file: 'dist/innovation-foundation/index.html',
     title: '初阶科创 · 15 节探究课',
-    canonical: 'https://Dora321.github.io/gesp-app/innovation-foundation',
+    canonical: 'https://Dora321.github.io/gesp-app/innovation-foundation/',
   },
   {
     file: 'dist/innovation-foundation/15/index.html',
     title: '初阶科创 · 第 15 课 · 小型发电站下',
-    canonical: 'https://Dora321.github.io/gesp-app/innovation-foundation/15',
+    canonical: 'https://Dora321.github.io/gesp-app/innovation-foundation/15/',
   },
   {
     file: 'dist/hardware/esp32/10/index.html',
     title: '高阶科创 · 第 10 课 · 需求文档大挑战',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/10',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/10/',
   },
   {
     file: 'dist/question-bank/2/2026-03-l2/index.html',
     title: '2026年3月 GESP C++ 2级真题',
-    canonical: 'https://Dora321.github.io/gesp-app/question-bank/2/2026-03-l2',
+    canonical: 'https://Dora321.github.io/gesp-app/question-bank/2/2026-03-l2/',
   },
   {
     file: 'dist/hardware/esp32-curriculum/index.html',
     title: 'ESP32 MicroPython 高阶科创',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32-curriculum',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32-curriculum/',
   },
 ];
 
@@ -62,5 +62,10 @@ for (const item of cases) {
 for (const file of ['dist/manifest.webmanifest', 'dist/sw.js', 'dist/icon-192.png', 'dist/icon-512.png']) {
   if (!fs.existsSync(path.join(root, file))) throw new Error(`Missing PWA asset: ${file}`);
 }
+
+// canonical 必须是 GitHub Pages 直接 200 的带斜杠地址（不带斜杠会 301）。
+const sitemap = fs.readFileSync(path.join(root, 'dist', 'sitemap.xml'), 'utf8');
+const slashless = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).filter(url => !url.endsWith('/'));
+if (slashless.length) throw new Error(`Sitemap URLs must end with "/" (GitHub Pages 301s the slashless form): ${slashless.slice(0, 3).join(', ')}`);
 
 console.log('Static route metadata and PWA assets are present.');

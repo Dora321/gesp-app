@@ -11,14 +11,16 @@ const ResultDialog = ({
   timeElapsed,
   objectiveCorrectCount,
   objectiveWrongCount,
+  objectiveUnansweredCount = 0,
   programmingMarkedCount,
   excludedObjectiveCount,
   onViewAnalysis,
+  onClose,
   onBackToBank,
   onOpenReview,
   autoSubmitted = false,
 }) => {
-  const dialogRef = useDialogFocus(onViewAnalysis);
+  const dialogRef = useDialogFocus(onClose || onViewAnalysis);
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
@@ -39,12 +41,13 @@ const ResultDialog = ({
         <div className="text-6xl font-black text-indigo-600 mb-2 font-mono tracking-tighter">
           {objectiveScore} <span className="text-2xl text-slate-400 font-normal">/ {objectiveScoreTotal}</span>
         </div>
-        <div className="grid grid-cols-2 gap-2 mb-6 mt-6 sm:grid-cols-5">
-          <div className="bg-slate-50 p-3 rounded-lg"><div className="text-xs text-slate-600 uppercase">用时</div><div className="font-bold text-slate-700 font-mono">{formatTime(timeElapsed)}</div></div>
-          <div className="bg-green-50 p-3 rounded-lg"><div className="text-xs text-green-700 uppercase">客观正确</div><div className="font-bold text-green-700">{objectiveCorrectCount}</div></div>
-          <div className="bg-red-50 p-3 rounded-lg"><div className="text-xs text-red-700 uppercase">客观错误</div><div className="font-bold text-red-700">{objectiveWrongCount}</div></div>
-          <div className="bg-violet-50 p-3 rounded-lg"><div className="text-xs text-violet-700 uppercase">编程已标记</div><div className="font-bold text-violet-700">{programmingMarkedCount}</div></div>
-          <div className="bg-orange-50 p-3 rounded-lg"><div className="text-xs text-orange-700 uppercase">不计分题</div><div className="font-bold text-orange-700">{excludedObjectiveCount}</div></div>
+        <div className="grid grid-cols-3 gap-2 mb-6 mt-6">
+          <div className="bg-slate-50 p-3 rounded-lg"><div className="text-sm text-slate-600">用时</div><div className="font-bold text-slate-700 font-mono">{formatTime(timeElapsed)}</div></div>
+          <div className="bg-green-50 p-3 rounded-lg"><div className="text-sm text-green-700">答对</div><div className="font-bold text-green-700">{objectiveCorrectCount}</div></div>
+          <div className="bg-red-50 p-3 rounded-lg"><div className="text-sm text-red-700">答错</div><div className="font-bold text-red-700">{objectiveWrongCount}</div></div>
+          <div className="bg-slate-50 p-3 rounded-lg"><div className="text-sm text-slate-600">没做</div><div className="font-bold text-slate-700">{objectiveUnansweredCount}</div></div>
+          <div className="bg-[var(--mw-info-tint)] p-3 rounded-lg"><div className="text-sm text-[var(--mw-info)]">编程已标记</div><div className="font-bold text-[var(--mw-info)]">{programmingMarkedCount}</div></div>
+          <div className="bg-orange-50 p-3 rounded-lg"><div className="text-sm text-orange-700">不计分</div><div className="font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>
         <p className="text-sm text-slate-500 mb-3">编程题不自动判分；题面待核验的客观题也不计入分数，请结合官方原卷复盘。</p>
         <p className="text-sm text-slate-500 mb-6">本次成绩与错题已记入错题本，关掉这个窗口也不会丢。</p>

@@ -15,7 +15,24 @@ const LEVEL_FOCUS = {
   8: '综合算法、面向对象与竞赛级问题建模',
 };
 
-export const routeMeta = (pathname) => {
+// GitHub Pages 的静态 shell 是「路由/index.html」，所以 /question-bank 会被 301 到
+// /question-bank/（2026-11-16 线上实测），而带斜杠的地址直接 200。
+// - 站内逻辑一律用不带斜杠的路径（App 在路由层把带斜杠的地址 replace 掉）；
+// - 对外公布的地址（canonical、og:url、sitemap）用带斜杠的形式，爬虫和分享链接不再先吃一次 301。
+export const normalizePathname = (pathname = '/') => {
+  const trimmed = String(pathname || '/').replace(/\/+$/, '');
+  return trimmed === '' ? '/' : trimmed;
+};
+
+export const publicPath = (pathname) => {
+  const normalized = normalizePathname(pathname);
+  return normalized === '/' ? '/' : `${normalized}/`;
+};
+
+export const absoluteUrl = (pathname) => `${SITE_ORIGIN}${publicPath(pathname)}`;
+
+export const routeMeta = (rawPathname) => {
+  const pathname = normalizePathname(rawPathname);
   const foundationLesson = foundationLessons.find((lesson) => lesson.path === pathname);
   if (foundationLesson) return { title: `初阶科创 · 第 ${foundationLesson.id} 课 · ${foundationLesson.title}`, description: '初阶科创网页课件，从电路实验到电磁探究与小型发电站。' };
   if (pathname === '/innovation-foundation') return { title: '初阶科创 · 15 节探究课', description: '从点亮小灯开始，探索电路、导电材料、电与磁，制作小型发电站。' };
@@ -74,7 +91,7 @@ export const lessonRouteMeta = (level, lessonId, lesson) => (lesson ? {
 export const withSiteMeta = (meta, pathname) => ({
   ...meta,
   fullTitle: `${meta.title} | ${SITE_NAME}`,
-  canonicalUrl: `${SITE_ORIGIN}${pathname === '/' ? '/' : pathname}`,
+  canonicalUrl: absoluteUrl(pathname),
 });
 
 export const getRouteSeo = (pathname) => {

@@ -6,7 +6,9 @@ import { getPaper } from '../data/gesp/index';
 import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
 import useLuoguPool from '../hooks/useLuoguPool';
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
-import { scoreExam } from '../utils/examScoring';
+import { reviewQuestionIndexes, scoreExam } from '../utils/examScoring';
+import { resolveVerification } from '../data/gesp/verificationModel';
+import { setExamFocus } from '../utils/teacherTools';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import { recordExamAttempt } from '../utils/examHistory';
 import { needsSynthesizedCoding, withSynthesizedCoding } from '../data/gesp/codingQuestions';
@@ -46,6 +48,8 @@ const ExamPaper = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
   const [mode, setMode] = useState(null);
+  // 交卷后复盘：只在答错/没做的题之间翻页。
+  const [reviewWrongOnly, setReviewWrongOnly] = useState(false);
 
   // Paper data
   const [paperData, setPaperData] = useState(null);
@@ -99,8 +103,15 @@ const ExamPaper = () => {
     setShowResult(false);
     setShowSidebar(false);
     setShowSubmitConfirm(false);
+    setReviewWrongOnly(false);
     setMode(null);
   }, [paperId]);
+
+  // 考试模式期间不挂载页面标注等教师工具。
+  useEffect(() => {
+    setExamFocus(mode === 'exam');
+    return () => setExamFocus(false);
+  }, [mode]);
 
   // Persist exam progress so an accidental refresh / tab close doesn't wipe
   // answers and the clock mid-paper. Only saves while actively in exam mode,
@@ -131,9 +142,13 @@ const ExamPaper = () => {
     objectiveScoreTotal,
     objectiveCorrectCount,
     objectiveWrongCount,
+    objectiveUnansweredCount,
     programmingMarkedCount,
     excludedObjectiveCount,
   } = scoreExam(allQuestions, answers);
+  const reviewIndexes = isSubmitted ? reviewQuestionIndexes(allQuestions, answers) : [];
+  const wrongOnly = isSubmitted && reviewWrongOnly && reviewIndexes.length > 0;
+  const verification = paperData ? resolveVerification(paperData) : null;
 
   // ─── Handlers ──────────────────────────────────────────────────────
 
@@ -185,19 +200,43 @@ const ExamPaper = () => {
     }
     setSubmittedRemaining(null);
     setAutoSubmitted(false);
+    setReviewWrongOnly(false);
     setMode('exam');
   };
 
-  // Navigation
-  const goToPrevious = useCallback(() => setCurrentQuestionIndex(prev => Math.max(0, prev - 1)), []);
+  // 「看每题解析」：关掉成绩弹窗，打开「只看错题」，停在第一道错题上。
+  const openReview = () => {
+    setShowResult(false);
+    if (reviewIndexes.length > 0) {
+      setReviewWrongOnly(true);
+      setCurrentQuestionIndex(reviewIndexes[0]);
+    }
+  };
+
+  // Navigation（「只看错题」时只在错题之间跳）
+  const reviewKey = reviewIndexes.join(',');
+  const goToPrevious = useCallback(() => {
+    if (wrongOnly) {
+      const previous = reviewKey.split(',').map(Number).filter((index) => index < currentQuestionIndex).pop();
+      if (previous !== undefined) setCurrentQuestionIndex(previous);
+      return;
+    }
+    setCurrentQuestionIndex(prev => Math.max(0, prev - 1));
+  }, [wrongOnly, reviewKey, currentQuestionIndex]);
   const goToNext = useCallback(() => {
+    if (wrongOnly) {
+      const next = reviewKey.split(',').map(Number).find((index) => index > currentQuestionIndex);
+      if (next !== undefined) setCurrentQuestionIndex(next);
+      else setShowResult(true);
+      return;
+    }
     if (currentQuestionIndex >= questionCount - 1) {
       if (isSubmitted) setShowResult(true);
       else setShowSubmitConfirm(true);
       return;
     }
     setCurrentQuestionIndex(currentQuestionIndex + 1);
-  }, [currentQuestionIndex, questionCount, isSubmitted]);
+  }, [wrongOnly, reviewKey, currentQuestionIndex, questionCount, isSubmitted]);
 
   useQuestionKeyboardNavigation({
     enabled: mode === 'exam' && !showSubmitConfirm && !showResult,
@@ -366,6 +405,7 @@ const ExamPaper = () => {
           answers={answers}
           currentQuestionIndex={currentQuestionIndex}
           isSubmitted={isSubmitted}
+          reviewIndexes={wrongOnly ? reviewIndexes : null}
           showSidebar={showSidebar}
           answeredCount={answeredCount}
           progress={progress}
@@ -381,6 +421,21 @@ const ExamPaper = () => {
             answers={answers}
             isSubmitted={isSubmitted}
             paperId={paperId}
+            level={paperData.level}
+            trust={{
+              answerVerified: verification?.dimensions.answer === 'verified',
+              explanationVerified: verification?.dimensions.explanation === 'verified',
+            }}
+            reviewCount={reviewIndexes.length}
+            reviewPosition={wrongOnly ? reviewIndexes.indexOf(currentQuestionIndex) : -1}
+            wrongOnly={wrongOnly}
+            onToggleWrongOnly={() => {
+              const next = !wrongOnly;
+              setReviewWrongOnly(next);
+              if (next && !reviewIndexes.includes(currentQuestionIndex)) setCurrentQuestionIndex(reviewIndexes[0]);
+            }}
+            onOpenAnalysisMode={() => { setCurrentQuestionIndex(0); setMode('analysis'); }}
+            onShowResult={() => setShowResult(true)}
             onOptionSelect={handleOptionSelect}
             onProgrammingMark={handleProgrammingMark}
             onPrev={goToPrevious}
@@ -409,9 +464,11 @@ const ExamPaper = () => {
           autoSubmitted={autoSubmitted}
           objectiveCorrectCount={objectiveCorrectCount}
           objectiveWrongCount={objectiveWrongCount}
+          objectiveUnansweredCount={objectiveUnansweredCount}
           programmingMarkedCount={programmingMarkedCount}
           excludedObjectiveCount={excludedObjectiveCount}
-          onViewAnalysis={() => setShowResult(false)}
+          onViewAnalysis={openReview}
+          onClose={() => setShowResult(false)}
           onBackToBank={() => navigate('/question-bank')}
           onOpenReview={() => navigate('/question-bank/review')}
         />

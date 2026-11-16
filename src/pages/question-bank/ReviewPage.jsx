@@ -1,21 +1,28 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
-    ChevronLeft, NotebookPen, TrendingUp, TrendingDown, Minus,
-    Target, ListChecks, Trash2, ArrowRight,
+    ChevronLeft, ChevronDown, NotebookPen, TrendingUp, TrendingDown, Minus,
+    Target, ListChecks, Trash2, ArrowRight, PencilLine,
 } from 'lucide-react';
 import LoadingBlocks from '../../components/LoadingBlocks';
+import MarkdownRenderer from '../../components/MarkdownRenderer';
 import { getPaper, paperMeta } from '../../data/gesp/index';
 import { resolveTopicTags } from '../../data/gesp/topics';
+import { resolveVerification } from '../../data/gesp/verificationModel';
 import {
     aggregateWeakTopics,
+    buildMistakePracticePaper,
     clearPaperAttempts,
-    latestWrongIdsByPaper,
-    readExamAttempts,
+    currentWrongIdsByPaper,
+    pickWrongQuestions,
     summarizePaperAttempts,
 } from '../../utils/examHistory';
-import { LEARNING_DATA_EVENT } from '../../utils/learningData';
+import { LEARNING_DATA_EVENT, readLearningData } from '../../utils/learningData';
+import { buildQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import LearningDataManager from '../../components/LearningDataManager';
+// 错题点开才需要解析，按需加载。
+const AnswerReview = lazy(() => import('./AnswerReview'));
+import InteractiveAnalysisPage from './InteractiveAnalysisPage';
 
 const LEVEL_NAMES = '一二三四五六七八';
 
@@ -25,10 +32,17 @@ const formatDate = (timestamp) => new Date(timestamp).toLocaleString('zh-CN', {
 
 const percent = (rate) => `${Math.round(rate * 100)}%`;
 
+const plainSnippet = (question) => stripLeadingNumber(String(question.question || ''))
+    .replace(/```[\s\S]*?```/g, ' [代码] ')
+    .replace(/[`*#>$]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 60);
+
 const TrendBadge = ({ delta }) => {
     if (Math.abs(delta) < 0.01) {
         return (
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500">
+            <span className="inline-flex items-center gap-1 text-sm font-semibold text-slate-500">
                 <Minus size={14} aria-hidden="true" /> 与首次持平
             </span>
         );
@@ -36,49 +50,127 @@ const TrendBadge = ({ delta }) => {
     const improved = delta > 0;
     const Icon = improved ? TrendingUp : TrendingDown;
     return (
-        <span className={`inline-flex items-center gap-1 text-xs font-semibold ${improved ? 'text-emerald-700' : 'text-orange-700'}`}>
+        <span className={`inline-flex items-center gap-1 text-sm font-semibold ${improved ? 'text-emerald-700' : 'text-orange-700'}`}>
             <Icon size={14} aria-hidden="true" />
             较首次{improved ? '提高' : '下降'} {percent(Math.abs(delta))}
         </span>
     );
 };
 
+/** 一道错题：点开看题干、选项、正确答案和解析。内容只在展开时渲染，错题多时也不卡。 */
+const WrongQuestionItem = ({ question, paper, paperId }) => {
+    const [open, setOpen] = useState(false);
+    const verification = resolveVerification(paper);
+    const panelId = `wrong-${paperId}-${question.id}`;
+
+    return (
+        <li className="rounded-lg border border-slate-200 bg-white">
+            <button
+                type="button"
+                onClick={() => setOpen((value) => !value)}
+                aria-expanded={open}
+                aria-controls={panelId}
+                className="flex min-h-12 w-full items-start gap-3 px-4 py-3 text-left hover:bg-slate-50"
+            >
+                <span className="shrink-0 text-base font-bold tabular-nums text-orange-700">第 {question.id} 题</span>
+                <span className="min-w-0 flex-1 text-base text-slate-700">{plainSnippet(question)}</span>
+                <span className="inline-flex shrink-0 items-center gap-1 text-sm text-slate-500">
+                    {open ? '收起' : '看题和解析'}
+                    <ChevronDown size={16} className={`transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+                </span>
+            </button>
+            {open && (
+                <div id={panelId} className="space-y-4 border-t border-slate-100 px-4 py-4">
+                    <div className="question-stem">
+                        <span className="question-number">{question.id}.</span>
+                        <MarkdownRenderer content={stripLeadingNumber(buildQuestionContent(question))} />
+                    </div>
+                    <ul className="space-y-2" aria-label="选项">
+                        {(question.options || []).map((option, index) => {
+                            const isAnswer = index === question.answer;
+                            return (
+                                <li
+                                    key={index}
+                                    className={`question-option rounded-xl border px-4 py-3 ${isAnswer ? 'border-emerald-400 bg-emerald-50 text-emerald-950' : 'border-slate-200 bg-white text-slate-800'}`}
+                                >
+                                    <span className={`option-badge ${isAnswer ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-600'}`}>
+                                        {String.fromCharCode(65 + index)}
+                                    </span>
+                                    <span className="question-option-content">
+                                        <MarkdownRenderer content={formatOptionDisplay(option)} inline={true} className="text-inherit" />
+                                    </span>
+                                    {isAnswer && <span className="sr-only">（正确答案）</span>}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    <Suspense fallback={<p className="text-base text-slate-500">正在加载解析…</p>}>
+                        <AnswerReview
+                            q={question}
+                            level={paper.level}
+                            showGiven={false}
+                            answerVerified={verification.dimensions.answer === 'verified'}
+                            explanationVerified={verification.dimensions.explanation === 'verified'}
+                        />
+                    </Suspense>
+                </div>
+            )}
+        </li>
+    );
+};
+
 export default function ReviewPage() {
     const navigate = useNavigate();
-    const [attempts, setAttempts] = useState(() => readExamAttempts());
+    const [searchParams, setSearchParams] = useSearchParams();
+    const practicePaperId = searchParams.get('practice') || '';
+    const [data, setData] = useState(() => readLearningData());
     const [papers, setPapers] = useState({});
     const [loading, setLoading] = useState(true);
+    const [loadError, setLoadError] = useState(false);
+    // 「只练错题」开始时把题目定格：练的过程中做对的题会从错题本移出，
+    // 但不能让正在练的这组题跟着变。
+    const [practice, setPractice] = useState(null);
 
-    // 学习数据可能被导入/重置面板改写，跟着刷新而不是停留在旧快照上。
+    // 学习数据可能被导入/重置面板、或「只练错题」改写，跟着刷新而不是停留在旧快照上。
     useEffect(() => {
-        const refresh = () => setAttempts(readExamAttempts());
+        const refresh = () => setData(readLearningData());
         window.addEventListener(LEARNING_DATA_EVENT, refresh);
         return () => window.removeEventListener(LEARNING_DATA_EVENT, refresh);
     }, []);
 
-    const paperIdsWithAttempts = useMemo(() => Object.keys(attempts).sort(), [attempts]);
+    const { attempts } = data;
+    const wrongIdsByPaper = useMemo(() => currentWrongIdsByPaper(data), [data]);
+    const paperIds = useMemo(
+        () => [...new Set([...Object.keys(attempts), ...Object.keys(wrongIdsByPaper)])]
+            .filter((id) => paperMeta[id])
+            .sort(),
+        [attempts, wrongIdsByPaper],
+    );
+    const paperIdsKey = paperIds.join('|');
 
     useEffect(() => {
         let cancelled = false;
+        const ids = paperIdsKey ? paperIdsKey.split('|') : [];
         setLoading(true);
-        Promise.all(paperIdsWithAttempts.map(async (id) => [id, await getPaper(id)]))
+        setLoadError(false);
+        Promise.all(ids.map(async (id) => [id, await getPaper(id)]))
             .then((entries) => {
                 if (cancelled) return;
                 setPapers(Object.fromEntries(entries.filter(([, paper]) => paper)));
                 setLoading(false);
+            })
+            .catch(() => {
+                if (cancelled) return;
+                setLoadError(true);
+                setLoading(false);
             });
         return () => { cancelled = true; };
-    }, [paperIdsWithAttempts]);
-
-    const wrongIdsByPaper = useMemo(() => latestWrongIdsByPaper(attempts), [attempts]);
+    }, [paperIdsKey]);
 
     const wrongQuestionsByPaper = useMemo(() => {
         const result = {};
         for (const [paperId, ids] of Object.entries(wrongIdsByPaper)) {
-            const paper = papers[paperId];
-            if (!paper) continue;
-            const byId = new Map((paper.questions || []).map((question) => [question.id, question]));
-            const questions = ids.map((id) => byId.get(id)).filter(Boolean);
+            const questions = pickWrongQuestions(papers[paperId], ids);
             if (questions.length > 0) result[paperId] = questions;
         }
         return result;
@@ -91,10 +183,40 @@ export default function ReviewPage() {
 
     const totalWrong = Object.values(wrongQuestionsByPaper).reduce((sum, list) => sum + list.length, 0);
 
+    if (!practicePaperId && practice) setPractice(null);
+    if (practicePaperId && !loading && practice?.paperId !== practicePaperId) {
+        setPractice({
+            paperId: practicePaperId,
+            paper: buildMistakePracticePaper(
+                papers[practicePaperId],
+                wrongQuestionsByPaper[practicePaperId] || [],
+                practicePaperId,
+            ),
+        });
+    }
+
     const removePaper = (paperId) => {
+        const title = paperMeta[paperId]?.title || '这张卷';
+        if (!window.confirm(`确定清除「${title}」的全部记录吗？成绩、错题和解析模式里的作答都会删除，不能恢复。`)) return;
         clearPaperAttempts(paperId);
-        setAttempts(readExamAttempts());
+        setData(readLearningData());
     };
+
+    const startPractice = (paperId) => setSearchParams({ practice: paperId });
+    const leavePractice = () => setSearchParams({});
+
+    if (practicePaperId && practice?.paper) {
+        return (
+            <InteractiveAnalysisPage
+                key={practice.paper.id}
+                paperData={practice.paper}
+                paperId={practice.paper.id}
+                storageKey={null}
+                backLabel="返回错题本"
+                onBack={leavePractice}
+            />
+        );
+    }
 
     return (
         <div className="mw-surface mw-line-bank min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
@@ -111,17 +233,24 @@ export default function ReviewPage() {
                         <NotebookPen size={32} aria-hidden="true" /> 错题本与成绩历史
                     </h1>
                     <p className="text-indigo-100">
-                        每次交卷都会记录成绩与错题。已经订正做对的题会自动移出错题本。
+                        考试模式交卷、解析模式答题时做错的题都会记在这里；之后做对了才会移出。没作答的题不会把错题清掉。
                     </p>
                 </div>
             </div>
 
             <div className="mx-auto mt-6 max-w-5xl space-y-6 px-4 md:px-8">
-                {paperIdsWithAttempts.length === 0 ? (
+                {practicePaperId && !loading && !practice?.paper && (
+                    <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-base text-emerald-900">
+                        这张卷已经没有错题了，不用再练。
+                        <button type="button" onClick={leavePractice} className="ml-2 font-bold underline underline-offset-2">回到错题本</button>
+                    </div>
+                )}
+
+                {paperIds.length === 0 ? (
                     <div className="rounded-xl border border-slate-200 bg-white p-10 text-center">
-                        <p className="text-slate-600">还没有交卷记录。</p>
+                        <p className="text-slate-600">还没有做题记录。</p>
                         <p className="mt-1 text-sm text-slate-500">
-                            在题库里用「考试模式」做完一套卷并交卷，这里就会出现成绩趋势和错题清单。
+                            用「考试模式」交一次卷，或在「解析模式」里做题，这里就会出现成绩趋势和错题。
                         </p>
                         <Link
                             to="/question-bank"
@@ -134,6 +263,17 @@ export default function ReviewPage() {
                     <div className="flex items-center justify-center gap-2.5 py-20 text-slate-500" role="status">
                         <LoadingBlocks /> 正在汇总成绩与错题
                     </div>
+                ) : loadError ? (
+                    <div role="alert" className="rounded-xl border border-amber-200 bg-amber-50 p-6 text-center text-amber-950">
+                        <p className="font-bold">试卷没能加载出来，可能是网络不稳定。</p>
+                        <button
+                            type="button"
+                            onClick={() => window.location.reload()}
+                            className="mw-button mw-button--secondary mw-button--small mt-4"
+                        >
+                            重新加载
+                        </button>
+                    </div>
                 ) : (
                     <>
                         <section aria-labelledby="weak-topics-heading" className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -141,11 +281,11 @@ export default function ReviewPage() {
                                 <Target className="text-orange-500" size={20} aria-hidden="true" /> 薄弱考点
                             </h2>
                             <p className="mb-4 text-sm text-slate-500">
-                                按最近一次交卷仍做错的题统计，共 {totalWrong} 道错题。点考点直接进入集中练习。
+                                按做错过、之后还没做对的题统计，共 {totalWrong} 道错题。点考点直接进入集中练习。
                             </p>
                             {weakTopics.length === 0 ? (
                                 <p className="rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-                                    最近一次交卷没有留下错题，继续保持。
+                                    目前没有错题，继续保持。
                                 </p>
                             ) : (
                                 <ul className="flex flex-wrap gap-2.5">
@@ -171,72 +311,86 @@ export default function ReviewPage() {
 
                         <section aria-labelledby="history-heading" className="space-y-4">
                             <h2 id="history-heading" className="flex items-center gap-2 text-lg font-bold">
-                                <ListChecks className="text-indigo-500" size={20} aria-hidden="true" /> 各卷成绩趋势
+                                <ListChecks className="text-indigo-500" size={20} aria-hidden="true" /> 各卷错题与成绩
                             </h2>
-                            {paperIdsWithAttempts.map((paperId) => {
+                            {paperIds.map((paperId) => {
                                 const meta = paperMeta[paperId];
-                                const summary = summarizePaperAttempts(attempts[paperId]);
-                                if (!meta || !summary) return null;
+                                const summary = summarizePaperAttempts(attempts[paperId] || []);
                                 const wrongQuestions = wrongQuestionsByPaper[paperId] || [];
+                                if (!summary && wrongQuestions.length === 0) return null;
 
                                 return (
                                     <article key={paperId} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
                                         <div className="flex flex-wrap items-start justify-between gap-3">
                                             <div>
-                                                <h3 className="font-bold text-slate-800">{meta.title}</h3>
-                                                <p className="mt-0.5 text-xs text-slate-500">
-                                                    {LEVEL_NAMES[meta.level - 1]}级 · 共交卷 {summary.attemptCount} 次 · 最近 {formatDate(summary.latest.at)}
+                                                <h3 className="text-lg font-bold text-slate-800">{meta.title}</h3>
+                                                <p className="mt-0.5 text-sm text-slate-500">
+                                                    {LEVEL_NAMES[meta.level - 1]}级
+                                                    {summary
+                                                        ? ` · 共交卷 ${summary.attemptCount} 次 · 最近 ${formatDate(summary.latest.at)}`
+                                                        : ' · 还没在考试模式交过卷'}
                                                 </p>
                                             </div>
                                             <button
                                                 type="button"
                                                 onClick={() => removePaper(paperId)}
-                                                className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-500 transition hover:bg-red-50 hover:text-red-700"
+                                                className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold text-slate-500 transition hover:bg-red-50 hover:text-red-700"
                                             >
                                                 <Trash2 size={14} aria-hidden="true" /> 清除本卷记录
                                             </button>
                                         </div>
 
-                                        <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                                            {[
-                                                ['最近得分', `${summary.latest.score}/${summary.latest.total}`, percent(summary.latestRate)],
-                                                ['最好成绩', `${summary.best.score}/${summary.best.total}`, percent(summary.bestRate)],
-                                                ['最近答对', `${summary.latest.correct} 题`, `错 ${summary.latest.wrong} · 未答 ${summary.latest.unanswered ?? 0}`],
-                                                ['不计分题', `${summary.latest.excluded ?? 0} 题`, '原卷内容缺失'],
-                                            ].map(([label, value, hint]) => (
-                                                <div key={label} className="rounded-lg bg-slate-50 px-3 py-2">
-                                                    <dt className="text-[11px] font-semibold text-slate-500">{label}</dt>
-                                                    <dd className="text-base font-bold text-slate-800">{value}</dd>
-                                                    <dd className="text-[11px] text-slate-500">{hint}</dd>
-                                                </div>
-                                            ))}
-                                        </dl>
+                                        {summary && (
+                                            <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                                                {[
+                                                    ['最近得分', `${summary.latest.score}/${summary.latest.total}`, percent(summary.latestRate)],
+                                                    ['最好成绩', `${summary.best.score}/${summary.best.total}`, percent(summary.bestRate)],
+                                                    ['最近答对', `${summary.latest.correct} 题`, `错 ${summary.latest.wrong} · 没做 ${summary.latest.unanswered ?? 0}`],
+                                                    ['不计分题', `${summary.latest.excluded ?? 0} 题`, '原卷内容缺失'],
+                                                ].map(([label, value, hint]) => (
+                                                    <div key={label} className="rounded-lg bg-slate-50 px-3 py-2">
+                                                        <dt className="text-xs font-semibold text-slate-500">{label}</dt>
+                                                        <dd className="text-base font-bold text-slate-800">{value}</dd>
+                                                        <dd className="text-xs text-slate-500">{hint}</dd>
+                                                    </div>
+                                                ))}
+                                            </dl>
+                                        )}
 
                                         <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-                                            <TrendBadge delta={summary.improved} />
-                                            <Link
-                                                to={`/question-bank/${meta.level}/${paperId}`}
-                                                className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 transition hover:bg-indigo-100"
-                                            >
-                                                重做本卷 <ArrowRight size={15} aria-hidden="true" />
-                                            </Link>
+                                            {summary ? <TrendBadge delta={summary.improved} /> : <span />}
+                                            <div className="flex flex-wrap gap-2">
+                                                {wrongQuestions.length > 0 && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => startPractice(paperId)}
+                                                        className="mw-button mw-button--primary mw-button--small"
+                                                    >
+                                                        <PencilLine size={15} aria-hidden="true" /> 只练错题（{wrongQuestions.length}）
+                                                    </button>
+                                                )}
+                                                <Link
+                                                    to={`/question-bank/${meta.level}/${paperId}`}
+                                                    className="mw-button mw-button--secondary mw-button--small"
+                                                >
+                                                    重做整张卷 <ArrowRight size={15} aria-hidden="true" />
+                                                </Link>
+                                            </div>
                                         </div>
 
                                         {wrongQuestions.length > 0 && (
                                             <div className="mt-4 border-t border-slate-100 pt-3">
-                                                <h4 className="mb-2 text-xs font-bold text-slate-500">
-                                                    仍做错的题（{wrongQuestions.length}）
+                                                <h4 className="mb-2 text-sm font-bold text-slate-600">
+                                                    错题（{wrongQuestions.length}）· 点开看题、正确答案和解析
                                                 </h4>
-                                                <ul className="space-y-1.5">
+                                                <ul className="space-y-2">
                                                     {wrongQuestions.map((question) => (
-                                                        <li key={question.id} className="flex gap-2 text-sm text-slate-600">
-                                                            <span className="shrink-0 font-mono font-bold text-orange-600">
-                                                                第 {question.id} 题
-                                                            </span>
-                                                            <span className="line-clamp-2">
-                                                                {String(question.question || '').replace(/\s+/g, ' ').slice(0, 90)}
-                                                            </span>
-                                                        </li>
+                                                        <WrongQuestionItem
+                                                            key={question.id}
+                                                            question={question}
+                                                            paper={papers[paperId]}
+                                                            paperId={paperId}
+                                                        />
                                                     ))}
                                                 </ul>
                                             </div>

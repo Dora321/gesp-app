@@ -79,6 +79,8 @@ export function buildTopicPaper(level, tag, tagQuestions) {
     const questions = tagQuestions.map((q, index) => ({
         ...q,
         id: index + 1,
+        // 重编号后仍记得原题号：考点练习里做错的题要记回原卷的错题本。
+        sourceQuestionId: q.sourceQuestionId ?? q.id,
         tags: [
             ...new Set([
                 ...resolveTopicTags(q),

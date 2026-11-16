@@ -99,12 +99,11 @@
   --tw-enter-translate-x: calc(--value(integer) * var(--spacing));
 }
 
-/* ===== Markdown Body – Full Typography ===== */
+/* ===== Markdown Body – Full Typography =====
+ * 不写死字号和字体：继承站点字体（--mw-font-sans），字号由调用方决定
+ * （题干 .question-stem、选项 .question-option-content、解析的 text-* 类）。
+ * 这里写死的 15px 不在 Tailwind 层里，会压过所有 text-* 工具类。 */
 .markdown-body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 15px;
   line-height: 1.7;
   word-wrap: break-word;
   color: #1e293b;
@@ -159,7 +158,7 @@
 .markdown-body blockquote {
   margin: 0.6em 0;
   padding: 0.3em 1em;
-  border-left: 4px solid #6366f1;
+  border-left: 4px solid var(--mw-line, var(--mw-ink));
   background: #f1f5f9;
   color: #475569;
   border-radius: 0 6px 6px 0;
@@ -179,9 +178,9 @@
   padding: 0.15em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(99, 102, 241, 0.08);
+  background-color: var(--mw-surface-sunk);
   border-radius: 4px;
-  color: #4338ca;
+  color: var(--mw-ink);
   font-family:
     ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
     Liberation Mono, monospace;
@@ -269,8 +268,9 @@
 
 /* --- Links --- */
 .markdown-body a {
-  color: #4f46e5;
-  text-decoration: none;
+  color: var(--mw-info);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .markdown-body a:hover {
   text-decoration: underline;
@@ -314,7 +314,7 @@
   transform: scale(0.95);
 }
 .code-copy-label {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: inherit;
   font-weight: 500;
 }
 
@@ -327,6 +327,43 @@
   display: inline;
   margin: 0;
   padding: 0;
+}
+
+/* ===== Question stem =====
+ * 题干：手机 19px / 桌面 21px，题号浮在第一行行首，与题干同一行。 */
+.question-stem {
+  display: flow-root;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--mw-ink);
+}
+.question-stem .markdown-body {
+  color: inherit;
+  /* 与题号浮动框同一行高，第二行才会回到行首而不是缩进 */
+  line-height: inherit;
+}
+.question-stem .markdown-body > :first-child {
+  margin-top: 0;
+}
+.question-stem .question-number {
+  float: left;
+  margin-right: 0.45em;
+  font-weight: 700;
+  color: var(--mw-line-ink, var(--mw-ink));
+  font-variant-numeric: tabular-nums;
+}
+.question-stem pre {
+  font-size: 15px;
+  line-height: 1.6;
+}
+@media (min-width: 768px) {
+  .question-stem {
+    font-size: 21px;
+  }
+  .question-stem pre {
+    font-size: 16px;
+  }
 }
 
 /* ===== Question bank option cards ===== */
@@ -357,7 +394,7 @@
 }
 .question-option-content .markdown-body {
   color: inherit;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
 }
 .question-option-content .inline-markdown {
@@ -381,77 +418,6 @@
     font-size: 0.82rem;
   }
   .question-option-content .markdown-body {
-    font-size: 14px;
+    font-size: 17px;
   }
-}
-
-/* ===== Luogu-style Problem Container ===== */
-.luogu-problem {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
-}
-.luogu-problem .problem-header {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.luogu-problem .problem-header .problem-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #fff;
-  backdrop-filter: blur(4px);
-}
-.luogu-problem .problem-header .problem-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-}
-.luogu-problem .problem-content {
-  padding: 20px 24px 24px;
-}
-
-/* Section separators inside problem content */
-.luogu-problem .markdown-body h1 {
-  font-size: 1.35em;
-  margin: 0 0 0.5em;
-  padding-bottom: 0.2em;
-  border-bottom: 2px solid #e2e8f0;
-}
-.luogu-problem .markdown-body h2 {
-  font-size: 1.05em;
-  font-weight: 700;
-  margin: 1.2em 0 0.4em;
-  padding: 6px 12px;
-  background: linear-gradient(90deg, #eef2ff, transparent);
-  border-left: 3px solid #6366f1;
-  border-bottom: none;
-  border-radius: 0 6px 6px 0;
-  color: #4338ca;
-}
-.luogu-problem .markdown-body h3 {
-  font-size: 0.95em;
-  font-weight: 600;
-  margin: 0.9em 0 0.3em;
-  padding: 4px 10px;
-  background: linear-gradient(90deg, #f0fdf4, transparent);
-  border-left: 3px solid #22c55e;
-  border-radius: 0 4px 4px 0;
-  color: #15803d;
-}
-
-/* Nicer code blocks inside problem */
-.luogu-problem .markdown-body pre {
-  border-radius: 10px;
-  border: 1px solid #334155;
-  background: #1e293b;
-  margin: 0.5em 0;
 }

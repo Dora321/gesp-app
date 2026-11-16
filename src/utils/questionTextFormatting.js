@@ -11,6 +11,23 @@ export const buildQuestionContent = (question) => {
   return `${text}\n\n\`\`\`${question.codeLanguage || 'cpp'}\n${code}\n\`\`\``;
 };
 
+// LaTeX commands that start with "\n". A literal "\n" escape followed by one of
+// these (as a whole word) is a math command, not a line break: "$i\neq j$".
+const LATEX_N_COMMANDS = new Set([
+  'ne', 'neq', 'newline', 'nu', 'not', 'notin', 'nabla', 'neg', 'ni', 'nmid',
+  'nleq', 'ngeq', 'nless', 'ngtr', 'nleqslant', 'ngeqslant', 'nexists',
+  'nparallel', 'nsubseteq', 'nsupseteq', 'nsubset', 'nsupset', 'napprox',
+  'ncong', 'nsim', 'nvdash', 'nleftarrow', 'nrightarrow', 'nLeftarrow',
+  'nRightarrow', 'nleftrightarrow', 'nearrow', 'nwarrow', 'natural',
+  'nolimits', 'nonumber', 'normalsize',
+]);
+
+const readLetters = (value, start) => {
+  let end = start;
+  while (end < value.length && /[a-zA-Z]/.test(value[end])) end += 1;
+  return value.slice(start, end);
+};
+
 export const normalizeEscapedLineBreaks = (value) => {
   if (typeof value !== 'string') return value || '';
 
@@ -43,7 +60,9 @@ export const normalizeEscapedLineBreaks = (value) => {
     }
 
     if (char === '\\' && value[i + 1] === 'n' && !inlineCode) {
-      if (!(fencedCode && quote)) {
+      const letters = readLetters(value, i + 1);
+      const isLatexCommand = !fencedCode && LATEX_N_COMMANDS.has(letters);
+      if (!(fencedCode && quote) && !isLatexCommand) {
         result += '\n';
         i += 1;
         continue;
