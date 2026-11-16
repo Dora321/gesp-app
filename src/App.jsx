@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import RouteSeo from './components/RouteSeo';
+import { normalizePathname } from './seo/routeMeta';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
 const InnovationLesson = lazy(() => import('./pages/InnovationLesson'));
@@ -106,6 +107,16 @@ const TeacherWidgets = () => {
   return <Suspense fallback={null}><PageAnnotations /></Suspense>;
 };
 
+// GitHub Pages 会把 /question-bank 301 到 /question-bank/。带斜杠的 pathname 会让
+// 标题、canonical、课程范围说明、浮钮规则等全等/`$` 结尾的判断走错分支，
+// 所以在路由层统一去掉尾斜杠，下游只会看到一种写法。
+const TrailingSlashGuard = ({ children }) => {
+  const { pathname, search, hash } = useLocation();
+  const normalized = normalizePathname(pathname);
+  if (normalized !== pathname) return <Navigate replace to={{ pathname: normalized, search, hash }} />;
+  return children;
+};
+
 const RoutedLesson = () => {
   const { pathname } = useLocation();
   return <LessonRouter key={pathname} />;
@@ -123,6 +134,7 @@ function App() {
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
     >
       <ErrorBoundary>
+        <TrailingSlashGuard>
         <RouteSeo />
         <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
@@ -200,6 +212,7 @@ function App() {
         <Suspense fallback={null}><LearningStorageNotice /></Suspense>
         <GlobalWidgets />
         <TeacherWidgets />
+        </TrailingSlashGuard>
       </ErrorBoundary>
     </BrowserRouter>
   );
