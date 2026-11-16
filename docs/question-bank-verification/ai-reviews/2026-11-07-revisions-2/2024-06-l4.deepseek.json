@@ -1,0 +1,103 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    17
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T11:34:37.582Z",
+  "completedAt": "2026-11-16T11:35:53.496Z",
+  "finishReason": "stop",
+  "inputSha256": "017fa3569a11103479ed895f318c14632bdb236b4fe45ed1d37aab72b09376bb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“C++ 四级 2024 年 06 月”；第 8 页为判断题及其答案表，第 2 题代码和答案符号均在该页。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8 页判断题第 2 题代码第 1 行含 #include<iostream>，第 7 行是 ra=&a;；候选题干内嵌代码第 7 行仍是 ra=a;，与官方原图不一致。候选独立 code 字段已含 #include 且第 7 行为 ra=&a;，与原图逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项；PDF 答案表用 √/×，网站以“正确/错误”呈现，顺序符合正确=0、错误=1 的约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 2 格为 √，按正确=0 映射为 0；候选 answer=0，与官方一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析围绕 ra=a; 解释，未按原卷第 7 行 ra=&a; 指出 int* 不能赋给 int& 所引用 int 的类型错误；虽然“引用未初始化导致编译失败”这一条足以支持“不能够正确执行”的结论，但解析依据与原代码不完全对应，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序；候选独立 code 字段已与 PDF 第 8 页原图逐行一致（含首行 #include<iostream> 和第 7 行 ra=&a;）。"
+          }
+        },
+        "changes": {
+          "question": "以下代码不能够正确执行。\n```cpp\n#include<iostream>\nusing namespace std;\nint main()\n{\n    int a=20;\n    int& ra;\n    ra=&a;\n    cout<<ra<<endl;\n}\n```",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n\n1. `int& ra;` 违反 C++ 引用必须在定义时初始化并绑定到对象的规则，编译会直接失败。\n2. 即使暂时不考虑第一条，第 7 行 `ra=&a;` 中 `&a` 的类型是 `int*`，不能赋给 `int&`（也不能把 `int*` 赋给引用所绑定的 `int` 对象），仍是类型错误。\n\n因此该程序不能正确执行，官方判断为 √，对应“正确”。\n\n正确写法例如：\n```cpp\nint& ra = a;   // ra 是 a 的别名\ncout << ra << endl;\n```\n若本意是保存地址，则应使用指针：\n```cpp\nint* p = &a;\ncout << *p << endl;\n```\n\n**易错提醒：** 引用必须在定义时绑定，`ra = ...` 是给引用所指对象赋值，并不会让引用改绑；`&a` 取得的是地址，类型为 `int*`。\n\n**考点：** 引用的初始化和类型匹配。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        17
+      ],
+      "usage": {
+        "prompt_tokens": 17334,
+        "completion_tokens": 6973,
+        "total_tokens": 24307,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6125
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0067839,
+          "allowance": 0.00407034,
+          "tokens": {
+            "input": 17334,
+            "output": 6973,
+            "reasoning": 6125,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T11:34:37.582Z",
+      "completedAt": "2026-11-16T11:35:53.496Z"
+    }
+  ]
+}
