@@ -274,6 +274,11 @@ int main() {
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> a(n);\n    for (auto &x : a) cin >> x;\n    int q;\n    cin >> q;\n    while (q--) {\n        int l, r;\n        cin >> l >> r;\n        sort(a.begin() + l - 1, a.begin() + r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n - 1 ? \"\\n\" : \" \");\n    return 0;\n}",
       answer: '',
+      "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      "sourcePage": 9,
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["code","sourcePage","reviewedBy","reviewedAt"],
     }
 ];
 
@@ -294,31 +299,13 @@ export const paperData = {
             options: ["int add(int a, int b) { return a+b; }", "void add(int a, int b) { return a+b; }", "int add(a, b) { return a+b; }", "void add(int a, int b) { return a-b; }"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A (int add(int a, int b) { return a+b; })**
-
-**核心解析：**
-C++ 函数定义需要包含四个要素：返回类型、函数名、参数列表、函数体。
-选项 A 完整具备所有要素：\`int\` 指定返回类型，\`add\` 是函数名，\`int a, int b\` 定义了两个整型形参，\`return a+b;\` 返回两数之和。
-
-**选项逐项分析：**
-- **A (int add(int a, int b) { return a+b; })**：✅ 正确。返回类型 \`int\` 与返回值 \`a+b\` 类型匹配，形参列表完整且每个参数都有类型声明。
-- **B (void add(int a, int b) { return a+b; })**：❌ 错误。返回类型 \`void\` 表示函数不返回任何值，而 \`return a+b;\` 试图返回一个整数，两者矛盾，编译错误。
-- **C (int add(a, b) { return a+b; })**：❌ 错误。C++ 是强类型语言，函数定义时形参必须显式声明类型，不能只写形参名。
-- **D (void add(int a, int b) { return a-b; })**：❌ 错误。虽然语法上可能通过编译，但返回类型 \`void\` 与 \`return\` 语句冲突；此外 \`a-b\` 不符合"求和"的语义要求。
-
-**易错提醒：**
-- \`void\` 类型函数不能使用 \`return\` 返回值，除非 \`return;\` 单独使用（仅表示结束函数）。
-- 形参列表中每个参数都必须是"类型+参数名"的形式。
-
-**知识延伸：**
-函数定义的标准形式为：\`返回类型 函数名(参数列表) { 函数体 }\`，与 GESP 三级的变量声明规则一致——任何标识符在使用前都必须先声明类型。
-
-**考点：** C++ 函数定义语法规范`,
+            explanation: "**答案：A (int add(int a, int b) { return a+b; })**\n\n**核心解析：**\nC++ 函数定义包含四个要素：返回类型、函数名、参数列表、函数体。选项 A 中返回类型 `int` 与返回值 `a+b`（int）匹配，两个形参均显式声明为 `int`，完全符合“返回整数值并接受两个整数参数”的要求。\n\n**选项逐项分析：**\n- **A (int add(int a, int b) { return a+b; })**：✅ 正确。要素齐备，类型匹配。\n- **B (void add(int a, int b) { return a+b; })**：❌ 错误。`void` 函数不得用 `return 表达式;` 返回值，`a+b` 是 `int`，编译器直接报错（如 “return-statement with a value, in function returning 'void'”）。\n- **C (int add(a, b) { return a+b; })**：❌ 错误。C++ 中形参必须逐个声明类型，只写 `a, b` 无法通过编译。\n- **D (void add(int a, int b) { return a-b; })**：❌ 错误。同样是 `void` 函数返回表达式，属编译错误；且 `a-b` 也不符合“求和”的语义。\n\n**易错提醒：**\n- `void` 函数只能写不带值的 `return;`（仅表示提前结束），不能 `return 值;`。\n- 形参列表中每个参数都必须写成“类型 + 参数名”的形式。\n\n**考点：** C++ 函数定义语法规范",
             sourceVerified: true,
             sourcePage: 1,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 2,
@@ -387,39 +374,13 @@ int main() {
             options: ["100 200 100 200", "100 200 100 300", "100 200 200 200", "100 200 200 300"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A (100 200 100 200)**
-
-**核心解析：**
-程序按执行顺序产生 4 个输出：
-
-| 步骤 | 语句 | 输出 | 说明 |
-|---|---|---|---|
-| 1 | \`main\` 中 \`cout << var << " "\` | 100 | 此时只有全局 \`var = 100\` |
-| 2 | \`function()\` 中 \`cout << var << " "\` | 200 | 函数内定义同名局部 \`var = 200\`，遮蔽全局变量 |
-| 3 | \`function()\` 中 \`cout << ::var << " "\` | 100 | \`::var\` 强制访问全局作用域，得到 100 |
-| 4 | \`main\` 中 \`var += 100\` 后输出 | 200 | 全局 \`var\` 由 100 变 200 |
-
-拼起来就是 \`100 200 100 200\`。
-
-**选项逐项分析：**
-- **A (100 200 100 200)**：✅ 正确。第 4 个输出是 \`main\` 里 \`var += 100\` 之后的值，全局指针已变为 200。
-- **B (100 200 100 300)**：❌ 错误。全局 \`var\` 只加了 100（100→200），不会变成 300。
-- **C (100 200 200 200)**：❌ 错误。把 \`::var\` 也当成局部变量了。\`::\` 前缀明确指定全局作用域，结果必须是 100。
-- **D (100 200 200 300)**：❌ 错误。同时错在 \`::var\` 的取值和最后一步的增量上。
-
-**易错提醒：**
-- 局部变量一旦与全局变量同名，函数体内直接写变量名只会访问局部变量；想访问全局必须用 \`::\` 前缀。
-- 别漏掉 \`main\` 里的 \`var += 100\`——这是最后一位从 100 变 200 的原因。
-
-**知识延伸：**
-\`::\` 称为作用域解析运算符。\`::name\` 前不带类名时表示全局命名空间，用于突破局部变量的遮蔽。在类成员函数中写 \`::name\` 同样表示全局变量，而 \`Class::name\` 表示类作用域。
-
-**考点：** 局部变量的遮蔽效应与作用域解析运算符 \`::\``,
+            explanation: "**答案：A (100 200 100 200)**\n\n**核心解析：**\n程序按执行顺序产生 4 段输出：\n\n| 步骤 | 语句 | 输出 | 说明 |\n|---|---|---|---|\n| 1 | `main` 中 `cout << var` | 100 | 此时只有全局 `var = 100` |\n| 2 | `function()` 中 `cout << var` | 200 | 函数内局部 `var = 200` 遮蔽全局变量 |\n| 3 | `function()` 中 `cout << ::var` | 100 | `::` 强制访问全局作用域 |\n| 4 | `main` 中 `var += 100` 后输出 | 200 | 全局变量 `var` 由 100 变为 200 |\n\n拼接结果为 `100 200 100 200`。\n\n**选项逐项分析：**\n- **A (100 200 100 200)**：✅ 正确。第 4 段输出是 `main` 里 `var += 100` 之后全局变量 `var` 的值 200。\n- **B (100 200 100 300)**：❌ 错误。全局 `var` 只做了一次 `+= 100`（100→200），不会是 300。\n- **C (100 200 200 200)**：❌ 错误。`::var` 明确指定全局作用域，取值必为 100。\n- **D (100 200 200 300)**：❌ 错误。第 3、4 段输出均判断错误。\n\n**易错提醒：**\n- 局部变量与全局变量同名时，函数体内直接写变量名只访问局部变量；访问全局必须加 `::` 前缀。\n- `main` 中的 `var += 100` 作用在全局 `var` 上（此处无同名局部变量遮蔽），这是最后一段输出从 100 变为 200 的原因。\n\n**知识延伸：**\n`::` 是作用域解析运算符，`::name` 表示全局命名空间中的 `name`，用于突破局部遮蔽；`Class::name` 则表示类作用域。\n\n**考点：** 局部变量的遮蔽效应与作用域解析运算符 `::`",
             sourceVerified: true,
             sourcePage: 1,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 4,
@@ -577,10 +538,11 @@ int arr[3][4];   // 3 行 4 列，共 12 个 int
 
 **考点：** 二维数组的声明语法与行列含义`,
             sourceVerified: true,
-            sourcePage: 2,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            sourcePage: 1,
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 8,
@@ -634,41 +596,13 @@ int factorial(int n) {
             options: ["result *= i;", "result += i;", "result *= result;", "result += result;"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A (result *= i;)**
-
-**核心解析：**
-阶乘的定义是连续相乘：\`n! = 1 × 2 × 3 × ... × n\`。代码已经把 \`result\` 初始化为 1（乘法单位元），循环变量 \`i\` 从 2 遍历到 n，因此循环体只需要做一件事：**把 \`i\` 累乘进 \`result\`**。
-
-以 \`n = 5\` 为例逐轮验证：
-| 轮次 | i | result 变化 |
-|---|---|---|
-| 初始 | — | 1 |
-| 1 | 2 | 1×2 = 2 |
-| 2 | 3 | 2×3 = 6 |
-| 3 | 4 | 6×4 = 24 |
-| 4 | 5 | 24×5 = 120 |
-
-结果 120 = 5!，正确。
-
-**选项逐项分析：**
-- **A (result *= i)**：✅ 正确。原地累乘，正是阶乘的递推式 \`f(i) = f(i-1) × i\`。
-- **B (result += i)**：❌ 错误。这是求 1+2+…+n 的累加，n=5 得 15，不是 120。
-- **C (result *= result)**：❌ 错误。每轮把 \`result\` 平方，n=5 时得 1→4→16→256→65536，与阶乘无关。
-- **D (result += result)**：❌ 错误。每轮翻倍，n=5 时得 16，仍是 2 的幂而非阶乘。
-
-**易错提醒：**
-- 累乘的初值必须是 1，累加的初值才是 0。把 \`result\` 初始化成 0 会让整个循环结果恒为 0。
-- 阶乘增长极快：\`13!\` 已超出 \`int\` 范围（约 62 亿），实际编程需用 \`long long\`，这也是这类题常见的延伸考点。
-
-**知识延伸：**
-本题是"递推"（从已知的 \`f(i-1)\` 推出 \`f(i)\`）而非"递归"（函数自己调用自己）。两者数学基础相同，但递推用循环实现，没有函数调用开销，也不会栈溢出，是 GESP 四级重点要求的写法。
-
-**考点：** 递推思想与累乘操作`,
+            explanation: "**答案：A (`result *= i;`)**\n\n**核心解析：**\n阶乘的定义是连续相乘：`n! = 1 × 2 × 3 × ... × n`。代码已经把 `result` 初始化为 1（乘法单位元），循环变量 `i` 从 2 遍历到 n，因此循环体只需要把 `i` 累乘进 `result`。\n\n以 `n = 5` 为例逐轮验证：\n| 轮次 | i | result 变化 |\n|---|---|---|\n| 初始 | — | 1 |\n| 1 | 2 | 1×2 = 2 |\n| 2 | 3 | 2×3 = 6 |\n| 3 | 4 | 6×4 = 24 |\n| 4 | 5 | 24×5 = 120 |\n\n结果 120 = 5!，正确。\n\n**选项逐项分析：**\n- **A (`result *= i`)**：✅ 正确。原地累乘，正是阶乘的递推式 `f(i) = f(i-1) × i`。\n- **B (`result += i`)**：❌ 错误。这是求 `1+2+…+n` 的累加，`n=5` 得 15，不是 120。\n- **C (`result *= result`)**：❌ 错误。`result` 初值为 1，执行 `result *= result` 后仍然是 1，之后每轮也仍为 1；它不会得到阶乘。\n- **D (`result += result`)**：❌ 错误。每轮把当前值翻倍，`n=5` 时依次得到 2、4、8、16，不是阶乘。\n\n**易错提醒：**\n- 累乘的初值必须是 1，累加的初值才是 0。把 `result` 初始化成 0 会让整个循环结果恒为 0。\n- 阶乘增长极快：`13!` 已超出 32 位 `int` 范围（约 62 亿），实际编程需用 `long long`，这也是这类题常见的延伸考点。\n\n**知识延伸：**\n本题是“递推”（从已知的 `f(i-1)` 推出 `f(i)`）而非“递归”（函数自己调用自己）。两者数学基础相同，但递推用循环实现，没有函数调用开销，也不会栈溢出，是 GESP 四级重点要求的写法。\n\n**考点：** 递推思想与累乘操作",
             sourceVerified: true,
-            sourcePage: 3,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            sourcePage: 1,
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 10,
@@ -964,9 +898,11 @@ int main() {
 **考点：** 异常抛出与捕获的执行流程、\`e.what()\` 的作用`,
             sourceVerified: true,
             sourcePage: 5,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "code": "#include <iostream>\nusing namespace std;\n\nint divide(int a, int b) {\n    if (b == 0) {\n        throw runtime_error(\"division by zero error \");\n    }\n    return a / b;\n}\n\nint main() {\n\nint x = 10;\n    int y = 0;  // 设为 0 会导致除零错误\n\ntry {\n        int result = divide(x, y);\n        cout << \"result: \" << result << endl;\n    } catch (const runtime_error& e) {\n        cout << \"caught an exception: \" << e.what() << endl;\n    }\n\nreturn 0;\n\n}",
+      "reviewedFields": ["code","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 16,

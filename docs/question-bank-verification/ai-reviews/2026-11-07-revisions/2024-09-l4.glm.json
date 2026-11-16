@@ -1,0 +1,385 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    3,
+    7,
+    9,
+    11,
+    15,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T11:47:04.789Z",
+  "completedAt": "2026-11-16T12:07:06.329Z",
+  "finishReason": "stop",
+  "inputSha256": "8dfbed4b6614f3fb3b7bb7a464e7173f47303783514a08d67818511dd7ac706a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 Grade Examination of Software Programming」「C++ 四级」「2024 年 09 月」，与 2024-09-l4（2024年9月四级）一致。\nPDF 第1页页图卷头为“CCF 编程能力等级认证 GESP / C++ 四级 / 2024年09月”，与 paperId 2024-09-l4（2024年9月四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干原文「在 C++ 中，（ ）正确定义了一个返回整数值并接受两个整数参数的函数。」，与站点逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页页图选项依次为 A. int add(int a, int b) { return a + b; }、B. void add(int a, int b) { return a + b; }、C. int add(a, b) { return a + b; }、D. void add(int a, int b) { return a - b; }；站点仅 a+b 与 a + b 的空格差异，语义不变、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题为 A，对应 0 起始索引 0；独立判断：A 返回类型 int、两个形参均声明为 int、返回 a+b，符合题意；B/D 为 void 函数 return 带值（编译错误）、C 形参未声明类型（编译错误）。站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析判定 B、D 的 void 返回表达式为编译错误（GCC 报 return-statement with a value, in function returning void）、C 形参缺类型无法编译，与本人独立确认的 C++ 语义一致；A 项要素齐备的说明正确，原稿“语法上可能通过编译”的矛盾表述已不在候选中。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论：题面、四个选项及答案映射经 PDF 第1页页图与答案表独立复核一致；候选解析对 B/D（void 函数 return 带值属编译错误）与 C（形参未声明类型）的判定与本人独立确认的 C++ 语义一致，上一轮修正已落实在候选中，核验通过，无需修改。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页页图给出题干及代码第1–19行，第2页页图续接第20–22行（return 0; 与收尾大括号），拼接后与站点代码逐行一致（含空行位置与 ::var 写法）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页页图选项依次为 100 200 100 200 / 100 200 100 300 / 100 200 200 200 / 100 200 200 300，与站点文字和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 A，对应索引 0；独立演算：main 输出全局 var=100 → function 内局部 var 遮蔽输出 200、::var 输出 100 → main 中 var+=100 后全局 var 为 200 并输出，合计 100 200 100 200，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析四步表格逐步推导正确，全文以“全局变量 var”表述（上一轮指出的“全局指针”误称已消除），易错提醒与 :: 作用域解析运算符的知识延伸亦准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论：跨页代码与选项经第1–2页页图独立复核一致；输出序列 100 200 100 200 本人独立演算吻合（main 100 → 局部 200 → ::var 100 → var+=100 后 200）；上一轮指出的“全局指针”误称已不在候选解析中，修复后核验通过。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页末为第7题题干「在 C++ 中，（ ）正确声明了一个 3 行 4 列的二维数组。」及选项 A，第3页页图续接选项 B/C/D，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2–3页页图选项依次为 int arr[3, 4];、int arr[3][4];、int arr[4][3];、int arr(3, 4);，文字与顺序与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 B，对应索引 1；int arr[3][4] 即 3 行 4 列，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：B 正确；C 为 4 行 3 列维度颠倒；D 圆括号不能声明数组维度；A 项“逗号表达式 3,4 的值为 4、等价一维 int arr[4]、部分编译器仅警告”的限定表述与 g++ 实际行为（警告后按大小 4 声明一维数组）相容；行优先存储与地址偏移的知识延伸（arr[1][0] 距 arr[0][0] 16 字节、偏移 i*4+j）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段，PDF 亦未提供实现。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论：题面、选项与答案 B（索引1）经页图与答案表独立复核一致；A 项关于逗号表达式的表述带有限定且与 g++ 实际行为相容，行优先存储的知识延伸经独立推导无误，维持候选解析、不做纯文风改写。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页页图给出代码框架（factorial、result=1、for i=2..n、横线待填）及公式 n! = n × (n−1) × … × 2 × 1，与站点题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页页图选项依次为 result *= i;、result += i;、result *= result;、result += result;，与站点文字和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 A，对应索引 0；i 从 2 到 n 将 result（初值 1）累乘得 n!，站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：A 项 n=5 逐轮表 1×2×3×4×5=120 正确；B 项 result 初值 1 加 2..5 得 15 正确；C 项 result 初值 1 自乘恒为 1 正确（上一轮指出的 1→4→16 推演错误已修正）；D 项翻倍得 2、4、8、16 正确；13!≈6.23×10⁹（约62亿）超出 32 位 int 上限（约21.5亿）的延伸说法无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段，仅需补全一行循环体。"
+          }
+        },
+        "verdict": "approve",
+        "reviewNote": "接受初核通过结论：答案 A（索引0）与选项经答案表与页图独立复核一致；解析中 A 项逐轮表（120）、B 项（15）、C 项（恒为 1）、D 项（2、4、8、16）及 13!≈62 亿超 32 位 int 上限均经本人独立推演确认，上一轮对 C 项推演的修正已落实在候选中，核验通过。",
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：题面与代码第1–11行（PDF 第3页页图）、第12–21行（PDF 第4页页图）逐行一致，第14行 swap(arr, i, j); 按原卷原样保留；独立 code 字段含 PDF 第1行注释 //交换数组arr的第i个元素和第j个元素（上一轮补全项已落实）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图选项依次为 A for (int j = 0; j < arr.size() - 1; j++)、B for (int j = arr.size() - 1; j > 0; j--)、C for (int j = 0; j < i; j++)、D for (int j = i-1; j <=0; j--)，文字与顺序与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 C，对应 0 起始索引 2；站点 answer=2 与官方答案表一致。独立推导：按冒泡语义（第14行应为相邻交换 swap(arr,j,j+1)），内层需覆盖待排序区间 [0,i] 内全部相邻对，上界须满足 j+1<=i 即 j<i，为选项 C。需保留的争议：按预期语义修正后 A（j<arr.size()-1，全量扫描加 flag 提前退出）在功能上也能完成排序，单选唯一性受损；严格按原卷 swap(arr,i,j) 则任何选项都无法正确排序。该源卷瑕疵已记入解析与 unresolved，不影响站点答案与官方答案表的映射核验。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析三处不准确已按独立推演重写——① D 项称“循环体根本不执行”错误：外层最后一轮 i=1 时初值 j=0 满足 j<=0，执行一次后 j-- 为负仍满足条件，将带负下标持续循环（越界且不终止）；② A 项核心解析称“结果仍然正确”又在选项列表标“❌ 错误”自相矛盾，且“会反复访问越界风险更高的位置”无依据（j<arr.size()-1 时 arr[j+1] 最大下标为 size-1，并不越界）；③ B 项的主要失败原因是首轮即访问 arr[arr.size()] 越界，候选仅称“比较方向相反”不确切。重写稿对 A/B/C/D 的判定与 C 的官方预期推导均经本人独立验证成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序维度。"
+          }
+        },
+        "verdict": "revise",
+        "reviewNote": "接受初核对题面/选项/代码字段的核验及“解析需修正”的判断；但否决其将 answer 维度标为 unresolved 的处理：官方答案表第11题明确为 C（索引2），站点 answer=2 与之完全一致，映射本身可核验，源卷 swap 笔误与 A 项功能歧义作为争议保留在解析“原卷笔误说明”与 unresolved 中即可。解析按本人独立推演重写：修正候选中 D 项“循环体根本不执行”的错误（i=1 时会进入循环体并因负下标无法正常结束）、删除 A 项“越界风险更高”的无据表述并如实说明 A 修正后功能上可排序、补全 B 项首轮即访问 arr[size] 越界的主要失败原因，保留 flag 优化等易错提醒；修正后解析核验通过。",
+        "changes": {
+          "explanation": "**答案：C（官方答案表；按原题预期填 `for (int j = 0; j < i; j++)`）**\n\n**核心解析：**\n外层循环 `for (int i = arr.size() - 1; i > 0; i--)` 让 `i` 从末尾递减，其设计意图是：每执行完一轮，位置 `i` 及其之后的部分已经有序，待排序区间收缩为 `[0, i]`。内层循环要在该区间内比较相邻元素 `arr[j]` 与 `arr[j+1]`，上界必须保证 `j + 1 <= i`，即 `j < i`，故填选项 C。\n\n**选项逐项分析：**\n- **A (for (int j = 0; j < arr.size() - 1; j++))**：不选。若把第 14 行按冒泡语义理解为相邻交换 `swap(arr, j, j+1)`，A 在功能上也能完成排序，只是每轮都扫到末尾，未利用外层 `i` 收缩待排序区间，与本题“每轮收缩右边界”的设计不符；它并非语法错误，官方预期按收缩边界取 C。\n- **B (for (int j = arr.size() - 1; j > 0; j--))**：❌ 错误。`j` 从 `arr.size()-1` 开始，循环体第一步就要访问 `arr[j+1]` 即 `arr[arr.size()]`，直接越界。\n- **C (for (int j = 0; j < i; j++))**：✅ 正确。`j` 遍历 `0 … i-1`，恰好覆盖待排序区间 `[0, i]` 内的全部相邻对。\n- **D (for (int j = i-1; j <=0; j--))**：❌ 错误。当 `i > 1` 时初值 `j = i-1 > 0`，条件 `j <= 0` 不成立，循环体一次都不执行；当 `i = 1`（最后一轮）时 `j = 0` 使条件成立，执行一次后 `j--` 变为负数仍满足 `j <= 0`，将带着负下标持续循环（越界且无法正常结束）。\n\n**原卷笔误说明：**\nPDF 第 14 行原样为 `swap(arr, i, j);`，按冒泡语义应为相邻交换 `swap(arr, j, j + 1)`，属原卷笔误；若严格按原码执行，任何选项都无法得到正确的排序结果（如 [3,2,1,5,4] 按原码与 C 执行后得 [1,2,4,3,5]，未排好）。本题按预期语义考查内层循环边界，官方答案为 C。\n\n**易错提醒：**\n- 冒泡排序的内层边界有三种常见写法：`j < n-1`（不收缩）、`j < n-1-i`（`i` 从 0 递增）、`j < i`（`i` 从 n-1 递减），判断依据是待排序区间的右端点位置。\n- `flag` 标志位是“提前退出”优化：某轮一次交换都没发生说明已有序，可直接跳出；加上该优化后，最好情况（原本有序）的时间复杂度从 O(n²) 降为 O(n)。\n\n**考点：** 冒泡排序的双重循环边界"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷第 14 行代码为 swap(arr, i, j);，与冒泡排序的相邻交换 swap(arr, j, j+1) 语义不符，严格按原码任何选项都无法正确排序；且按预期语义修正后 A 与 C 在功能上均能完成排序，单选唯一性受损。官方答案表明确为 C，站点 answer=2 与之一致，本争议仅作源卷瑕疵保留记录，不影响答案映射。"
+        ]
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图第15题代码第1—23行与候选 question 内嵌代码逐行一致：#include <iostream>、throw runtime_error(\"division by zero error \")（字符串末尾含空格）、int y = 0; // 设为 0 会导致除零错误、try/catch 结构均原样保留；独立 code 字段含全部 23 行内容（仅缩进排版差异，无缺失）。题干“运行下面的代码，屏幕上将输出（ ）。”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图选项依次为 A“division by zero error result: caught an exception:”、B“result: caught an exception: division by zero error”、C“caught an exception: division by zero error”、D“division by zero error caught an exception: division by zero error”，文字与顺序和候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 C，对应 0 起始索引 2。独立推导：divide(10,0) 中 b==0 成立，抛出 runtime_error(\"division by zero error \")，函数立即中断，try 中 cout << \"result: \" 不会执行；catch (const runtime_error&) 匹配，输出前缀“caught an exception: ”拼接 e.what()（即“division by zero error ”），屏幕显示 caught an exception: division by zero error，对应选项 C，answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析流程经独立复演成立：throw 后函数内后续语句与 try 剩余语句均跳过，仅 catch 输出前缀加 e.what()；对 A（异常信息不会先输出、result: 不出现）、B（result: 不出现）、D（顺序错误）的排除理由正确；关于 throw 字符串末尾空格被四个选项统一忽略的说明与实际输出行为相符。解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核 approve 结论：经本人对照 PDF 第5页页图与第1页答案表独立复核，题面代码（含 throw 字符串末尾空格与 y=0 注释）、四个选项及答案 C（索引 2）均一致；异常抛出/捕获执行流程独立推导与解析吻合，无需修改，维持通过。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页 3.2.1—3.2.4：题面（含 n 个正整数的序列 a、q 次选择区间 [l,r]（l≤r）升序排序、每次在上一次排序结果上进行）、输入格式（n / n 个正整数 / q / q 行 l_i r_i）、输出格式（一行 n 个正整数）、样例输入 5 / 3 4 5 2 1 / 3 / 4 5 / 3 4 / 1 3、样例输出 1 3 4 5 2、约束 1≤n≤100、1≤a_i≤100、1≤q≤100、1≤l_i≤r_i≤n，均与候选一致；PDF 标注的三次中间序列 [3,4,5,1,2]、[3,4,1,5,2]、[1,3,4,5,2] 在候选解析样例走查中完整保留且经独立复算一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表条目，officialAnswer 按约定置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例：初始 [3,4,5,2,1]，排 [4,5]（2,1→1,2）得 [3,4,5,1,2]；排 [3,4]（此时为 5,1→1,5）得 [3,4,1,5,2]；排 [1,3]（3,4,1→1,3,4）得 [1,3,4,5,2]，与样例输出及 PDF 第9页标注一致。1-based 区间 [l,r] 到 sort(a.begin()+l-1, a.begin()+r) 的左闭右开换算正确；q·n·log n ≈ 100×100×7≈7×10^4 量级比较次数的复杂度估计合理，n,q≤100 下远低于时限。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考代码独立复核：读入 n 与序列、q 次循环内 sort(a.begin()+l-1, a.begin()+r) 原地排序，每次在上一次结果上累积生效，符合题意；n=1、l=r 时为单元素区间等价空操作；输出空格分隔、末尾换行，与 PDF 第10页官方参考程序（1-based 数组冒泡实现）功能等价；n,q≤100、a_i≤100 下无溢出与超时风险。独立 code 字段为仅读入 n 的正确起始模板，与本题输入格式（不含 m）一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模单点区间",
+            "input": "1\n7\n1\n1 1\n",
+            "output": "7\n",
+            "reason": "n=1、l=r=1，单元素区间排序为空操作，原样输出 7。"
+          },
+          {
+            "name": "全区间逆序一次排序",
+            "input": "5\n5 4 3 2 1\n1\n1 5\n",
+            "output": "1 2 3 4 5\n",
+            "reason": "对整个区间 [1,5] 升序排序，逆序序列变为递增序列。"
+          },
+          {
+            "name": "重叠区间累积生效",
+            "input": "4\n4 3 2 1\n2\n1 2\n2 4\n",
+            "output": "3 1 2 4\n",
+            "reason": "第一次排 [1,2] 得 [3,4,2,1]；第二次在上次结果上排 [2,4]，4,2,1→1,2,4，最终 [3,1,2,4]，验证排序累积生效而非各自独立。"
+          },
+          {
+            "name": "重复元素与单点区间",
+            "input": "3\n2 1 2\n2\n2 2\n1 3\n",
+            "output": "1 2 2\n",
+            "reason": "l=r 的单点排序不改变序列；随后全区间排序处理重复元素得 [1,2,2]。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核 approve 结论：题面、样例、约束、解析样例走查及参考代码均经本人独立复算/复核成立，四个 tests 的期望输出由本人逐步推演核对无误。补充观察：候选 template 字段仍保留 int n, m（本题输入不含 m），该字段不在本次允许修改范围（仅允许 changes.code），独立 code 字段已为仅读入 n 的正确起始模板，不影响五维核验结论，仅提示平台侧留意。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        3,
+        7,
+        9,
+        11
+      ],
+      "usage": {
+        "prompt_tokens": 46899,
+        "completion_tokens": 30387,
+        "total_tokens": 77286,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 26506
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.02222835,
+          "allowance": 0.02222835,
+          "tokens": {
+            "input": 46899,
+            "output": 30387,
+            "reasoning": 26506,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T11:47:04.789Z",
+      "completedAt": "2026-11-16T11:50:03.486Z"
+    },
+    {
+      "questionIds": [
+        15,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 46011,
+        "completion_tokens": 8827,
+        "total_tokens": 54838,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6958
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01131515,
+          "allowance": 0.01131515,
+          "tokens": {
+            "input": 46011,
+            "output": 8827,
+            "reasoning": 6958,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T12:06:08.281Z",
+      "completedAt": "2026-11-16T12:07:06.329Z"
+    }
+  ]
+}

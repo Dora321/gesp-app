@@ -1,0 +1,154 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    15,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:06:08.281Z",
+  "completedAt": "2026-11-16T12:07:06.329Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 46011,
+    "completion_tokens": 8827,
+    "total_tokens": 54838,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6958
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01131515,
+      "allowance": 0.01131515,
+      "tokens": {
+        "input": 46011,
+        "output": 8827,
+        "reasoning": 6958,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "8dfbed4b6614f3fb3b7bb7a464e7173f47303783514a08d67818511dd7ac706a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页页图卷头为“CCF 编程能力等级认证 GESP / C++ 四级 / 2024年09月”，与 paperId 2024-09-l4（2024年9月四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图第15题代码第1—23行与候选 question 内嵌代码逐行一致：#include <iostream>、throw runtime_error(\"division by zero error \")（字符串末尾含空格）、int y = 0; // 设为 0 会导致除零错误、try/catch 结构均原样保留；独立 code 字段含全部 23 行内容（仅缩进排版差异，无缺失）。题干“运行下面的代码，屏幕上将输出（ ）。”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图选项依次为 A“division by zero error result: caught an exception:”、B“result: caught an exception: division by zero error”、C“caught an exception: division by zero error”、D“division by zero error caught an exception: division by zero error”，文字与顺序和候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 C，对应 0 起始索引 2。独立推导：divide(10,0) 中 b==0 成立，抛出 runtime_error(\"division by zero error \")，函数立即中断，try 中 cout << \"result: \" 不会执行；catch (const runtime_error&) 匹配，输出前缀“caught an exception: ”拼接 e.what()（即“division by zero error ”），屏幕显示 caught an exception: division by zero error，对应选项 C，answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析流程经独立复演成立：throw 后函数内后续语句与 try 剩余语句均跳过，仅 catch 输出前缀加 e.what()；对 A（异常信息不会先输出、result: 不出现）、B（result: 不出现）、D（顺序错误）的排除理由正确；关于 throw 字符串末尾空格被四个选项统一忽略的说明与实际输出行为相符。解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核 approve 结论：经本人对照 PDF 第5页页图与第1页答案表独立复核，题面代码（含 throw 字符串末尾空格与 y=0 注释）、四个选项及答案 C（索引 2）均一致；异常抛出/捕获执行流程独立推导与解析吻合，无需修改，维持通过。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页 3.2.1—3.2.4：题面（含 n 个正整数的序列 a、q 次选择区间 [l,r]（l≤r）升序排序、每次在上一次排序结果上进行）、输入格式（n / n 个正整数 / q / q 行 l_i r_i）、输出格式（一行 n 个正整数）、样例输入 5 / 3 4 5 2 1 / 3 / 4 5 / 3 4 / 1 3、样例输出 1 3 4 5 2、约束 1≤n≤100、1≤a_i≤100、1≤q≤100、1≤l_i≤r_i≤n，均与候选一致；PDF 标注的三次中间序列 [3,4,5,1,2]、[3,4,1,5,2]、[1,3,4,5,2] 在候选解析样例走查中完整保留且经独立复算一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表条目，officialAnswer 按约定置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例：初始 [3,4,5,2,1]，排 [4,5]（2,1→1,2）得 [3,4,5,1,2]；排 [3,4]（此时为 5,1→1,5）得 [3,4,1,5,2]；排 [1,3]（3,4,1→1,3,4）得 [1,3,4,5,2]，与样例输出及 PDF 第9页标注一致。1-based 区间 [l,r] 到 sort(a.begin()+l-1, a.begin()+r) 的左闭右开换算正确；q·n·log n ≈ 100×100×7≈7×10^4 量级比较次数的复杂度估计合理，n,q≤100 下远低于时限。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选参考代码独立复核：读入 n 与序列、q 次循环内 sort(a.begin()+l-1, a.begin()+r) 原地排序，每次在上一次结果上累积生效，符合题意；n=1、l=r 时为单元素区间等价空操作；输出空格分隔、末尾换行，与 PDF 第10页官方参考程序（1-based 数组冒泡实现）功能等价；n,q≤100、a_i≤100 下无溢出与超时风险。独立 code 字段为仅读入 n 的正确起始模板，与本题输入格式（不含 m）一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模单点区间",
+            "input": "1\n7\n1\n1 1\n",
+            "output": "7\n",
+            "reason": "n=1、l=r=1，单元素区间排序为空操作，原样输出 7。"
+          },
+          {
+            "name": "全区间逆序一次排序",
+            "input": "5\n5 4 3 2 1\n1\n1 5\n",
+            "output": "1 2 3 4 5\n",
+            "reason": "对整个区间 [1,5] 升序排序，逆序序列变为递增序列。"
+          },
+          {
+            "name": "重叠区间累积生效",
+            "input": "4\n4 3 2 1\n2\n1 2\n2 4\n",
+            "output": "3 1 2 4\n",
+            "reason": "第一次排 [1,2] 得 [3,4,2,1]；第二次在上次结果上排 [2,4]，4,2,1→1,2,4，最终 [3,1,2,4]，验证排序累积生效而非各自独立。"
+          },
+          {
+            "name": "重复元素与单点区间",
+            "input": "3\n2 1 2\n2\n2 2\n1 3\n",
+            "output": "1 2 2\n",
+            "reason": "l=r 的单点排序不改变序列；随后全区间排序处理重复元素得 [1,2,2]。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核 approve 结论：题面、样例、约束、解析样例走查及参考代码均经本人独立复算/复核成立，四个 tests 的期望输出由本人逐步推演核对无误。补充观察：候选 template 字段仍保留 int n, m（本题输入不含 m），该字段不在本次允许修改范围（仅允许 changes.code），独立 code 字段已为仅读入 n 的正确起始模板，不影响五维核验结论，仅提示平台侧留意。"
+      }
+    ],
+    "summary": "本次仅核验题15与题27。题15：题面代码（含 throw 字符串末尾空格、y=0 注释）、四个选项与答案 C（索引 2）均经 PDF 第5页页图及第1页答案表独立复核一致，异常执行流程推导成立，维持通过。题27：题面、样例、约束与解析走查经独立复算一致，参考代码原地累积排序正确且与官方冒泡实现功能等价，四个边界测试期望输出独立推演核对无误，维持通过；另提示 template 字段仍含多余的 m 读入，不属本次可修改字段范围。两题均无待决问题。"
+  }
+}
