@@ -86,3 +86,16 @@ GitHub Actions会自动重新部署网站。
 ## 课堂服务反向代理
 
 课堂服务默认只信任回环地址上的代理，并取 `X-Forwarded-For` 最右侧一跳作为客户端 IP。若反向代理不在本机，请用 `CLASSROOM_TRUSTED_PROXIES`（逗号分隔的精确 IP；`none` 表示不信任任何代理）配置，然后重启 `gesp-classroom`。
+
+## 上线后验证直达链接不再 301
+
+构建脚本会为每个非根路由额外生成一份 `dist/<route>.html`，内容与 `dist/<route>/index.html` 一致。GitHub Pages 的 `.html` 规则优先于目录重定向，因此站内链接、分享链接和收藏里不带斜杠的地址应直接返回 200（canonical 与 sitemap 仍使用带斜杠地址）。部署后执行：
+
+```bash
+curl -sI https://dora321.github.io/gesp-app/question-bank | head -1   # 期望 HTTP/2 200
+curl -sI https://dora321.github.io/gesp-app/question-bank/ | head -1  # 期望 HTTP/2 200
+curl -sI https://dora321.github.io/gesp-app/question-bank/2/2026-03-l2 | head -1
+curl -sI https://dora321.github.io/gesp-app/hardware/esp32/16.5 | head -1
+```
+
+若不带斜杠的地址仍返回 301，说明 GitHub Pages 的实际行为与预期不符；可直接回退此改动（回退后只是少了多出来的 `.html` 文件，对现有页面没有副作用）。

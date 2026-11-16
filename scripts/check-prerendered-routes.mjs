@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { normalizePathname, SITE_ORIGIN } from '../src/seo/routeMeta.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cases = [
@@ -51,21 +52,70 @@ const cases = [
   },
 ];
 
+const readFile = relativePath => {
+  const filePath = path.join(root, relativePath);
+  if (!fs.existsSync(filePath)) throw new Error(`Missing prerendered route: ${relativePath}`);
+  return fs.readFileSync(filePath, 'utf8');
+};
+
+const titleOf = html => (html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1];
+const canonicalOf = html => (html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i) || [])[1];
+
 for (const item of cases) {
-  const filePath = path.join(root, item.file);
-  if (!fs.existsSync(filePath)) throw new Error(`Missing prerendered route: ${item.file}`);
-  const html = fs.readFileSync(filePath, 'utf8');
-  if (!html.includes(item.title)) throw new Error(`${item.file} does not contain its route title.`);
-  if (!html.includes(`rel="canonical" href="${item.canonical}"`)) throw new Error(`${item.file} has an incorrect canonical URL.`);
+  const aliasFile = item.file.replace(/\/index\.html$/, '.html');
+  if (aliasFile === item.file) throw new Error(`Cannot derive the slashless shell for ${item.file}`);
+
+  const indexHtml = readFile(item.file);
+  const aliasHtml = readFile(aliasFile);
+  const indexTitle = titleOf(indexHtml);
+  const aliasTitle = titleOf(aliasHtml);
+  const indexCanonical = canonicalOf(indexHtml);
+  const aliasCanonical = canonicalOf(aliasHtml);
+
+  if (!indexTitle?.includes(item.title)) throw new Error(`${item.file} does not contain its route title.`);
+  if (!aliasTitle?.includes(item.title)) throw new Error(`${aliasFile} does not contain its route title.`);
+  if (indexCanonical !== item.canonical) throw new Error(`${item.file} has an incorrect canonical URL.`);
+  if (aliasCanonical !== item.canonical) throw new Error(`${aliasFile} has an incorrect canonical URL.`);
+  if (indexTitle !== aliasTitle) throw new Error(`${aliasFile} title differs from ${item.file}.`);
+  if (indexCanonical !== aliasCanonical) throw new Error(`${aliasFile} canonical differs from ${item.file}.`);
 }
 
 for (const file of ['dist/manifest.webmanifest', 'dist/sw.js', 'dist/icon-192.png', 'dist/icon-512.png']) {
   if (!fs.existsSync(path.join(root, file))) throw new Error(`Missing PWA asset: ${file}`);
 }
 
+// 只有本机学习记录、不进 sitemap 的路由也要有两份 shell，并且两份都 noindex。
+for (const file of ['dist/question-bank/review/index.html', 'dist/question-bank/review.html']) {
+  const html = readFile(file);
+  if (!html.includes('<meta name="robots" content="noindex" />')) throw new Error(`${file} is missing its noindex meta.`);
+}
+
 // canonical 必须是 GitHub Pages 直接 200 的带斜杠地址（不带斜杠会 301）。
-const sitemap = fs.readFileSync(path.join(root, 'dist', 'sitemap.xml'), 'utf8');
-const slashless = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).filter(url => !url.endsWith('/'));
+const sitemap = readFile('dist/sitemap.xml');
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+const slashless = sitemapUrls.filter(url => !url.endsWith('/'));
 if (slashless.length) throw new Error(`Sitemap URLs must end with "/" (GitHub Pages 301s the slashless form): ${slashless.slice(0, 3).join(', ')}`);
 
-console.log('Static route metadata and PWA assets are present.');
+const basePath = new URL(SITE_ORIGIN).pathname.replace(/\/$/, '');
+const routes = [...new Set(sitemapUrls.map(url => {
+  const pathname = new URL(url).pathname;
+  return normalizePathname(pathname.startsWith(basePath) ? pathname.slice(basePath.length) : pathname);
+}))];
+let shellPairs = 0;
+for (const route of routes) {
+  if (route === '/') continue;
+  const relative = route.replace(/^\//, '');
+  const indexFile = `dist/${relative}/index.html`;
+  const aliasFile = `dist/${relative}.html`;
+  const indexHtml = readFile(indexFile);
+  const aliasHtml = readFile(aliasFile);
+  const indexTitle = titleOf(indexHtml);
+  const aliasTitle = titleOf(aliasHtml);
+  const indexCanonical = canonicalOf(indexHtml);
+  const aliasCanonical = canonicalOf(aliasHtml);
+  if (!indexTitle || indexTitle !== aliasTitle) throw new Error(`${aliasFile} title differs from ${indexFile}.`);
+  if (!indexCanonical || indexCanonical !== aliasCanonical) throw new Error(`${aliasFile} canonical differs from ${indexFile}.`);
+  shellPairs += 1;
+}
+
+console.log(`Static route metadata and PWA assets are present (${shellPairs} sitemap route shell pairs).`);
