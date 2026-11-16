@@ -1,0 +1,113 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    11
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T14:38:29.231Z",
+  "completedAt": "2026-11-16T14:40:08.118Z",
+  "finishReason": "stop",
+  "inputSha256": "3bb4c25f6324fb7df28b050a3ff267854c3ac021e38badc14fb6274ba745b1bb",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页页图卷头为“CCF 编程能力等级认证”“C++ 四级”“2024 年 09 月”，与 paperId 2024-09-l4、level 4、year 2024、month 9 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题题干“下面代码实现了冒泡排序函数，则横线上应填写（ ）。”与候选题干一致。按页图逐行核对第3页第1–11行与第4页第12–21行：第14行原卷为 swap(arr, i, j);，候选按原样保留；第12行为空行，候选 code 字段在横线行后保留该空行；if (arr[j] > arr[j + 1]) {、swap(arr, i, j);、if (!flag)、break; 等各层缩进与页图一致；候选 code 字段首行已含注释“//交换数组arr的第i个元素和第j个元素”，与页图逐行对照一致。question 内 fenced code 仅有注释空格、省略空行、中文引号作直引号等排版等价差异，语义等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图选项依次为 A. for (int j = 0; j < arr.size() - 1; j++)、B. for (int j = arr.size() - 1; j > 0; j--)、C. for (int j = 0; j < i; j++)、D. for (int j = i-1; j <=0; j--)，文字与顺序和候选 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 C，对应 0 起始索引 2，候选 answer=2 一致。独立推导：按冒泡预期语义（第14行应为相邻交换 swap(arr, j, j+1)），外层 i 自 n-1 递减，第 i 轮开始时待排序区间为 [0, i]，内层须覆盖全部相邻对 (j, j+1)，上界需 j+1<=i 即 j<i，为选项 C。B 首轮即访问 arr[arr.size()] 越界；D 当 i>1 时循环体一次不执行、flag 保持 false 触发 if(!flag) break（n>2 时到不了 i=1），仅 n=2 时以 i=1 进入并带负下标越界死循环；A 在修正语义下功能可行但不符合“每轮收缩右边界”的设计意图，官方答案表取 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析主干（C 的边界推导、B/D 错误、原卷笔误说明、易错提醒）经独立推演成立；查出三处不足：① D 项“当 i=1（最后一轮）……”未说明 n>2 时首轮 i>1 空转后 flag 仍为 false、触发 if(!flag) break 直接跳出外层，实际到不了 i=1（仅 n=2 时以 i=1 进入并负下标越界死循环）；② “任何选项都不能保证排序”仅给 C 的原码反例，未给 A 的原码反例；③ 未提原函数 int bubble_sort 声明返回 int 但无 return 的源卷瑕疵。changes.explanation 已补正三点，独立复核：逐步追踪 [4,3,2,1] 配 A 得 [1,4,2,3]（i=3 轮末 [1,4,2,3]，i=2 轮末 [1,2,4,3]，i=1 轮将 arr 改回 [1,4,2,3]），并纠正上一轮 GLM 意见中的 [1,2,4,3]——该值实为 i=2 轮末中间状态而非最终结果；[3,2,1,5,4] 配 C 得 [1,2,4,3,5] 复核成立；修改稿其余表述逐句复核无新错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；题面代码已在 statement 维度按 PDF 第3–4页页图核对。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（官方答案表；按原题预期填 `for (int j = 0; j < i; j++)`）**\n\n**核心解析：**\n外层循环 `for (int i = arr.size() - 1; i > 0; i--)` 让 `i` 从末尾递减。第 `i` 轮开始时，位置 `i+1` 及其之后的部分已经有序，本轮待排序区间为 `[0, i]`；本轮结束后位置 `i` 归位，下一轮待排序区间缩为 `[0, i-1]`。内层循环要在本轮区间内比较相邻元素 `arr[j]` 与 `arr[j+1]`，上界必须保证 `j + 1 <= i`，即 `j < i`，故填选项 C。\n\n**选项逐项分析：**\n- **A (for (int j = 0; j < arr.size() - 1; j++))**：不选。若把第 14 行按冒泡语义理解为相邻交换 `swap(arr, j, j+1)`，A 在功能上也能完成排序，只是每轮都扫到末尾，未利用外层 `i` 收缩待排序区间，与本题“每轮收缩右边界”的设计不符；它并非语法错误，官方预期按收缩边界取 C。若严格保留原码 `swap(arr, i, j)`，A 也不能保证排序，例如 `[4,3,2,1]` 执行后为 `[1,4,2,3]`。\n- **B (for (int j = arr.size() - 1; j > 0; j--))**：❌ 错误。`j` 从 `arr.size()-1` 开始，循环体第一步就要访问 `arr[j+1]` 即 `arr[arr.size()]`，直接越界。\n- **C (for (int j = 0; j < i; j++))**：✅ 正确。`j` 遍历 `0 … i-1`，恰好覆盖待排序区间 `[0, i]` 内的全部相邻对。\n- **D (for (int j = i-1; j <=0; j--))**：❌ 错误。当 `i > 1` 时初值 `j = i-1 > 0`，条件 `j <= 0` 不成立，循环体一次都不执行；此时 `flag` 仍为 `false`，后续 `if (!flag) break;` 会直接跳出外层循环（因此 n>2 时实际上到不了 i=1）。若 n=2 使 i=1，则 `j = 0` 使条件成立，执行一次后 `j--` 变为负数仍满足 `j <= 0`，将带着负下标持续循环（越界且无法正常结束）。\n\n**原卷笔误说明：**\nPDF 第 14 行原样为 `swap(arr, i, j);`，按冒泡语义应为相邻交换 `swap(arr, j, j + 1)`，属原卷笔误；若严格按原码执行，任何选项都不能保证对所有输入正确排序（如 `[3,2,1,5,4]` 按原码与 C 执行后得 `[1,2,4,3,5]`，未排好）。本题按预期语义考查内层循环边界，官方答案为 C。另原函数声明为 `int bubble_sort` 但无返回值，也是源卷代码瑕疵，不影响本题填边界。\n\n**易错提醒：**\n- 冒泡排序的内层边界有三种常见写法：`j < n-1`（不收缩）、`j < n-1-i`（`i` 从 0 递增）、`j < i`（`i` 从 n-1 递减），判断依据是待排序区间的右端点位置。\n- `flag` 标志位是“提前退出”优化：某轮一次交换都没发生说明已有序，可直接跳出；加上该优化后，最好情况（原本有序）的时间复杂度从 O(n²) 降为 O(n)。\n\n**考点：** 冒泡排序的双重循环边界"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷第 14 行代码为 swap(arr, i, j);，与冒泡排序相邻交换 swap(arr, j, j+1) 语义不符。严格按原码执行时，A/C 均不能保证排序（独立追踪：[4,3,2,1] 配 A 得 [1,4,2,3]；[3,2,1,5,4] 配 C 得 [1,2,4,3,5]）。若将第 14 行修正为相邻交换，A（全量扫描 + flag 提前退出）与 C（收缩边界）在功能上均能完成排序，单选题唯一性依赖官方答案表 C（索引 2），站点 answer=2 与之一致，该争议仅作源卷瑕疵保留记录，不影响答案映射。",
+          "原函数声明为 int bubble_sort 但函数体无任何 return，属源卷代码瑕疵（非 void 函数到达末尾为未定义行为），不影响本题考查内层循环边界的答案映射。"
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核：其 statement/options/answer 核验结论经本人对照 PDF 第1、3、4页页图独立复核成立；其指出的解析三点不足（D 项 n>2 时 flag=false 触发 break 到不了 i=1、A 项缺严格原码反例、int bubble_sort 无返回值）经独立推演确认成立，其改写稿逐句复核无新错误，采纳进 changes.explanation。特别说明：其 A 项反例 [4,3,2,1]→[1,4,2,3] 经本人逐步追踪确认正确，上一轮 GLM 意见中的 [1,2,4,3] 系 i=2 轮末中间状态而非最终结果，予以纠正。当前候选 code 字段经页图逐行核对已含首行注释、缩进正确并保留第12行空行，statement 无需再改。原卷 swap(arr,i,j) 笔误、修正语义下 A/C 功能重叠及 bubble_sort 无返回值保留于 unresolved，官方答案 C 的映射不受影响。changes.explanation 应用后方可上线，故 verdict=revise。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        11
+      ],
+      "usage": {
+        "prompt_tokens": 37293,
+        "completion_tokens": 17342,
+        "total_tokens": 54635,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 14664,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01426495,
+          "allowance": 0.01426495,
+          "tokens": {
+            "input": 37293,
+            "output": 17342,
+            "reasoning": 14664,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T14:38:29.231Z",
+      "completedAt": "2026-11-16T14:40:08.118Z"
+    }
+  ]
+}
