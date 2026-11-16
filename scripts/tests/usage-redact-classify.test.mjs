@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { redact } from '../../server/usage/redact.mjs';
 import { CLASSIFIER_VERSION, PROMPT_TYPE_LABELS, classifyPrompt, knowledgeTags } from '../../server/usage/classify.mjs';
 
-test('redact covers phone, id card, email, QQ, WeChat, name, student id and class', () => {
+test('redact covers phone, id card, email, QQ and WeChat', () => {
   const cases = [
     ['电话 13800138000', 'phone', '13800138000'],
     ['电话 138 0013 8000', 'phone', '138 0013 8000'],
@@ -18,11 +18,6 @@ test('redact covers phone, id card, email, QQ, WeChat, name, student id and clas
     ['微信号是 abc_123', 'wechat', 'abc_123'],
     ['vx：wxid_student01', 'wechat', 'wxid_student01'],
     ['wx: classmate_42', 'wechat', 'classmate_42'],
-    ['我叫张三', 'name', '张三'],
-    ['我的名字是李四', 'name', '李四'],
-    ['学号 20230101', 'student_id', '20230101'],
-    ['我是三年二班的', 'class', '三年二班'],
-    ['我在五年三班', 'class', '五年三班'],
   ];
   for (const [input, flag, secret] of cases) {
     const result = redact(input);
@@ -33,14 +28,18 @@ test('redact covers phone, id card, email, QQ, WeChat, name, student id and clas
 });
 
 test('redact merges rules and de-duplicates flags', () => {
-  const result = redact('我叫张三，电话 13800138000 / 13900139000，邮箱 a@b.com，QQ：123456，学号 20230101，班级是三班的');
-  assert.deepEqual(result.flags, ['email', 'qq', 'phone', 'name', 'student_id', 'class']);
-  assert.equal(result.text.includes('张三'), false);
+  const result = redact('电话 13800138000 / 13900139000，邮箱 a@b.com，QQ：123456');
+  assert.deepEqual(result.flags, ['email', 'qq', 'phone']);
   assert.equal(result.text.includes('13800138000'), false);
   assert.equal(result.text.includes('13900139000'), false);
   assert.equal(result.text.includes('a@b.com'), false);
-  assert.equal(result.text.includes('20230101'), false);
-  assert.equal(result.text.includes('三班'), false);
+  assert.equal(result.text.includes('123456'), false);
+});
+
+test('redact no longer masks self-described names, student-number phrases or classes', () => {
+  for (const text of ['我叫张三', '我的名字是李四', '学号 20230101', '我是三年二班的', '我在五年三班']) {
+    assert.deepEqual(redact(text), { text, flags: [] });
+  }
 });
 
 test('redact leaves ordinary C++ numbers and array lengths alone', () => {
