@@ -1,0 +1,217 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:34:11.279Z",
+  "completedAt": "2026-11-16T23:37:28.199Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 59717,
+    "completion_tokens": 21645,
+    "total_tokens": 81362,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18542
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01978005,
+      "allowance": 0.01978005,
+      "tokens": {
+        "input": 59717,
+        "output": 21645,
+        "reasoning": 18542,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "79c653b18d21b27b63704027e7d47c47d7dfc692fe777cc1c88f3230c8139ca8",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示「CCF 编程能力等级认证 GESP」「C++ 四级」「2025 年 12 月」，与 2025-12-l4（2025 年 12 月 GESP C++ 四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。PDF 第 8 页判断第 9 题题干「下面代码可以正常编译并输出 10 。」及代码（#include <iostream>、using namespace std;、声明 int calculate(int x, int y = 10);、main 中 cout << calculate(5);（注释 // 调用1）、定义 int calculate(int x, int y){return x*y;} 与 int calculate(int x){return x*2;}（注释 // 重载函数））与候选一致；候选仅紧凑排版并省略两条不影响语义的注释，未漏必要代码、未改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 无 A-D 选项列表，网站为固定「正确/错误」形式，无可对照内容。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 9 格为 ×，按「正确=0、错误=1」映射为 1；候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。独立推演：调用点 main() 内可见声明仅有 int calculate(int x, int y = 10)；单参数重载 calculate(int) 的首个声明出现在 main 之后，不参与该次重载决议，故 calculate(5) 绑定双参数版本，y 取默认实参 10，实际输出 5*10=50 而非 10；默认实参仅在声明给出一次、单参重载定义位置合法，程序可正常编译，故「正常编译并输出 10」不成立，判 × 正确。补充辨析「若把 int calculate(int x) 声明前置到 main 之前，两候选对实参 5 的 ICS 同为精确匹配、参数个数与默认实参均非决胜规则、将产生二义」符合 C++ 重载决议规则（经典 void f(int,int=0); void f(int); f(5); 即二义），经核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对 24 各维 verified 且未提出修改。我独立按 C++ 名字查找与重载决议规则复核，确认调用点仅可见双参数默认实参声明、单参重载定义于 main 之后不参与决议、程序可编译但输出 50 而非 10，判 ×（answer=1）成立；候选解析及其二义性补充辨析经独立验证正确，候选无需进一步修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。PDF 第 9 页题面（M 行 N 列地形图、a_ij 为 (i,j) 海拔；停机坪 3×3 且内部 9 点最大高度与最小高度之差不超过 H；求适合区域中 9 点海拔和的最大值）、输入格式、输出格式、样例（5 5 3 网格 → 40）与 3.1.5 数据范围「1 ≤ M, N ≤ 10³，1 ≤ H, a_ij ≤ 10⁵」均与候选题干一致（候选仅在「3×3 的区域」后补逗号，属标点等价）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项维度。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。独立复算样例：0 基左上角共 9 个 3×3 窗口；含海拔 1（点 (1,1) 或 (1,3)）与海拔 5 的六个窗口极差 4 > 3 不合法；(2,0) 窗口 5 5 5/5 2 5/3 5 5 极差 3 ≤ 3、和 40；(2,1) 和 39；(2,2) 和 39；最大 40 与样例一致。解析的枚举边界 i+2<M、j+2<N、9 格 mx/mn/sum 统计、best 初值结论（a_ij ≥ 1 且保证存在合法区域时 0 或 -1 均不漏解）、溢出说明（9×10⁵=900000，int 可容纳、long long 安全）与 O(MN) 复杂度均经独立验证成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "0 基枚举左上角并以 i+2<m、j+2<n 防越界，与官方第 10 页 1 基 i ≤ M-2、j ≤ N-2 的枚举范围等价（均对应 0 基 i,j ≤ M/N-3）；每窗口统计 9 格 mx/mn/sum，极差 ≤ H 时更新 best；best=-1 初值在 a_ij ≥ 1 且保证存在合法区域下不会漏解；M,N ≤ 10³ 时约 9×10⁶ 次基本运算、约 8MB 的二维数组均在 1.0s/512MB 限制内；全程 long long 无溢出风险。算法与官方参考程序等价，核验通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模唯一窗口且极差恰等于 H",
+            "input": "3 3 8\n1 2 3\n4 5 6\n7 8 9\n",
+            "output": "45",
+            "reason": "M=N=3 仅一个 3×3 窗口；max=9、min=1，极差 8 恰好 ≤ H=8；和 1+2+…+9=45，独立手算确认。"
+          },
+          {
+            "name": "纵向多窗口仅底部合法（下边界）",
+            "input": "4 3 1\n1 1 1\n10 10 10\n10 10 10\n10 10 10\n",
+            "output": "90",
+            "reason": "i=0 窗口含 1 与 10，极差 9 > 1 不合法；i=1 窗口全为 10，极差 0 ≤ 1，和 90；检验 i+2<M 边界枚举。"
+          },
+          {
+            "name": "多个合法窗口取最大",
+            "input": "3 4 1\n1 1 1 2\n1 1 1 2\n1 1 1 2\n",
+            "output": "12",
+            "reason": "j=0 窗口全 1，和 9；j=1 窗口每行含 1,1,2，极差 1 ≤ 1，和 12；答案取两合法窗口最大 12。"
+          },
+          {
+            "name": "高度上界 10^5 验证溢出边界",
+            "input": "3 3 1\n100000 100000 100000\n100000 100000 100000\n100000 100000 100000\n",
+            "output": "900000",
+            "reason": "窗口内全相等极差 0 ≤ 1；和 9×10^5=900000，int 可容纳、long long 安全。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对 26 各维 verified 且未提出修改（GLM 上一轮已修复题干数据范围与解析「海拔可能为负」问题）。我独立复算 9 个 3×3 窗口的极差与求和（仅 (2,0)/(2,1)/(2,2) 合法，和为 40/39/39，最大 40），确认候选题面、样例走查与解析无误；4 组测试期望值（45/90/12/900000）均独立手算确认；referenceCode 与官方参考程序枚举范围等价、复杂度与溢出分析成立，候选无需进一步修改。未实际运行程序。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。PDF 第 10-11 页题面（M 元预算、N 个商品 S/P/V 三属性、V 越小优先级越高、三条购物策略、按字典序输出购买商品名）、输入格式、样例（20 4 …→ bus/cab/water）与 3.2.5 数据范围「1 ≤ |S_i| ≤ 10，1 ≤ M, P_i ≤ 10⁵，1 ≤ N ≤ 10³，1 ≤ V_i ≤ 10；商品名仅由小写字母组成且不存在两个相同的商品名」均与候选题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项维度。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：按 (pri, price, name) 升序得考察顺序 bus(15,1)、water(4,8)、apple(6,8)、cab(1,10)；预算 20 依次购 bus 余 5、购 water 余 1、apple 6>1 跳过、购 cab 余 0；已购 {bus, water, cab} 按字典序输出 bus/cab/water 与样例一致。解析中两轮排序目的不同、买不起仅跳过当前件继续考察、long long 建议均与第 12 页官方参考程序逻辑相符，核验通过。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "多关键字排序（pri 升序、price 升序、name 字典序升序）后贪心购买（买得起即购并扣减预算、买不起跳过继续），再对已购商品名二次排序输出，与官方第 12 页 cmp 与贪心逻辑一致；N ≤ 10³ 时 O(N log N) 充分，M、P_i ≤ 10⁵ 用 long long 安全，vector 替代官方 VLA（Item items[N]）写法更规范且语义不变，核验通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模唯一商品可购",
+            "input": "1 1\na 1 1\n",
+            "output": "a",
+            "reason": "N=1、M=1，商品价格 1 ≤ 预算 1，购入后输出其名。"
+          },
+          {
+            "name": "最高优先级商品买不起时跳过继续",
+            "input": "5 3\nx 6 1\ny 5 2\nz 1 3\n",
+            "output": "y",
+            "reason": "排序后考察顺序 x,y,z；x 价 6 > 5 跳过，y 价 5 ≤ 5 购入后预算 0，z 价 1 > 0 跳过；仅购 y。"
+          },
+          {
+            "name": "同优先级同价按名字序购买并按字典序输出",
+            "input": "4 3\nb 2 1\na 2 1\nc 2 1\n",
+            "output": "a\nb",
+            "reason": "三者优先级与价格相同，按名字排序 a,b,c；预算 4 购 a、b 后归零，c 跳过；输出按字典序 a、b。"
+          },
+          {
+            "name": "预算不足无任何购买（输出为空）",
+            "input": "1 2\na 5 1\nb 3 2\n",
+            "output": "",
+            "reason": "a 价 5 > 1、b 价 3 > 1 均买不起，按官方贪心逻辑不输出任何行，检验空输出边界。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对 27 各维 verified 且未提出修改（GLM 上一轮已补题干数据范围）。我独立复算排序后考察顺序 bus→water→apple→cab 与购买过程（余 5→1→0），字典序输出 bus/cab/water 与样例一致；4 组测试期望值（a / y / a b / 空）均独立手算确认；referenceCode 的 cmp 与贪心逻辑与官方一致，候选无需进一步修改。未实际运行程序。"
+      }
+    ],
+    "summary": "本轮独立复核题号 24、26、27。24（判断第 9 题）：答案表第 9 格 × 映射 1；独立推演确认调用点仅见 calculate(int,int=10)、单参重载定义于 main 之后不可见、程序可编译但输出 50 而非 10，判 × 成立，候选 question/explanation 与原卷一致且二义性补充辨析符合重载决议规则，verdict approve。26（建造）：候选题干含数据范围与原卷一致，9 窗口样例走查（40/39/39）、枚举边界、best 初值与 O(MN) 复杂度经独立复算成立，referenceCode 与官方等价，4 组测试期望值独立手算正确，verdict approve。27（优先购买）：候选题干含数据范围，排序贪心样例走查与参考代码逻辑经独立确认，4 组测试期望值（含空输出边界）独立手算正确，verdict approve。三题均无新增修改（changes 为空），全部测试期望值均为独立手算，未声称已运行程序。"
+  }
+}

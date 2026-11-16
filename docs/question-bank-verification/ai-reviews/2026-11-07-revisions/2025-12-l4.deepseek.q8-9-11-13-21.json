@@ -1,0 +1,233 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    8,
+    9,
+    11,
+    13,
+    21
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T22:45:19.377Z",
+  "completedAt": "2026-11-16T22:47:05.587Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38052,
+    "completion_tokens": 10684,
+    "total_tokens": 48736,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8920
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0121182,
+      "allowance": 0.00727092,
+      "tokens": {
+        "input": 38052,
+        "output": 10684,
+        "reasoning": 8920,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "79c653b18d21b27b63704027e7d47c47d7dfc692fe777cc1c88f3230c8139ca8",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“CCF 编程能力等级认证 GESP”“C++ 四级”“2025 年 12 月”，与 paperId 2025-12-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干“运行如下代码会输出（ ）”及完整代码包含 Point/Rectangle 嵌套结构体、rect = {{10,10},{20,20}}、rect.topLeft.x = 5、Point* p = &rect.bottomRight、p->y = 5 和最终 cout 表达式；候选用单行结构体声明属排版等价，未改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. 10、B. 30、C. 15、D. 20，候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选题答案表第 8 题为 A，按 0 起始索引 A=0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：rect.topLeft.x 被改为 5，p 指向 bottomRight 且 p->y=5 将 bottomRight.y 改为 5，输出 5+5=10；候选对 B=10+20、C=10+5、D 四种组合均不能得到 20 的干扰项分析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页末给出题干，PDF 第 4 页给出完整 climbStairs 函数；候选的 if(n <= 2) return n、a=1,b=2、i=3..n 循环及 return b 与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A. 5、B. 8、C. 13、D. 10，候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 B，按 0 起始索引 B=1，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立迭代：i=3 时 b=3，i=4 时 b=5，i=5 时 b=8，返回 8；climbStairs(4)=5、climbStairs(6)=13，候选对 A/C/D 的排除和斐波那契型递推说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干和 selectTopK 代码与候选一致；候选省略“（不需要对所有学生完全排序，只需要找出前 k 名）”这一括注，但该括注不改写待填内层循环边界，核心题意完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A. int j = 0; j < n; j++、B. int j = i + 1; j < n; j++、C. int j = i; j < n; j++、D. int j = 1; j <= n; j++，候选四项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 B，候选 answer=1 对应 B；但选项 C 与 B 执行结果等价，单选题唯一性另见 unresolved。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：B 在 [i+1,n-1] 找最大值；C 的 j=i 时 maxIdx 初值同为 i，自比较必假，之后等价于 B；A 每轮从 0 扫描会反复选中已处理元素并在输入非降序时破坏前 k 个位置，D 还有 students[n] 越界风险。候选已纠正旧解析对 C 的“丢数据”误判。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方单选答案 B 与选项 C（j=i）在逻辑上等价，均能完成前 k 名选择，单选唯一性存疑；answer 保留官方 B（索引 1），不擅自改答案。"
+        ]
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干及第 6 页函数代码与候选一致：外层 i<n、内层 j<n，条件为 i & (1 << j)，循环次数不依赖位运算结果。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)；候选已按页图修正为这四项，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 B，候选 answer=1 对应 O(n^2)，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：外层执行 n 次，内层对每个 i 执行 n 次，位与与加法均为常数时间，总计 O(n^2)；i 仅取 0..n-1，并非枚举 2^n 个子集，候选说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 6 题题干为“时间复杂度是 O(n)”，代码含 int n=10、int f[20]、f[0]=0、f[1]=1 及 i=2..n 的递推循环；候选已补全变量 n 并保持等价排版。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，候选仅使用固定“正确/错误”形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 6 题为 √，按正确=0 映射，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析：循环 i=2..n 共 n-1 次，每次一次加法，时间复杂度 O(n)；数组 f 需存储 n+1 个状态，空间复杂度 O(n)，候选说明成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮仅核验题号 8、9、11、13、21。第 8、9、13、21 题的题干、选项（判断题无选项）、官方答案对应关系和解析均与 PDF 页图及答案表一致；第 11 题候选答案与官方 B 一致，修订解析已正确指出 C 项（j=i）与 B 等价，故保留单选题唯一性争议于 unresolved，不擅自改答案。未发现需提交字段修改；本组无编程题，tests 均为空。"
+  }
+}

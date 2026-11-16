@@ -1,0 +1,211 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    24,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T22:48:47.404Z",
+  "completedAt": "2026-11-16T22:50:18.580Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38048,
+    "completion_tokens": 11249,
+    "total_tokens": 49297,
+    "prompt_tokens_details": {
+      "cached_tokens": 37888
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8965
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00688706,
+      "allowance": 0.00413224,
+      "tokens": {
+        "input": 160,
+        "output": 11249,
+        "reasoning": 8965,
+        "cache_read": 37888,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "79c653b18d21b27b63704027e7d47c47d7dfc692fe777cc1c88f3230c8139ca8",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 四级”“2025 年 12 月”，与 2025-12-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页第9题代码含 #include <iostream>、using namespace std;、函数声明、main 调用及两个函数定义；候选 question 仅作紧凑排版，未漏必要代码或改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，仅固定“正确/错误”形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第9格为 ×，按“错误=1”映射，候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按 C++ 名字查找推演：调用点仅可见 calculate(int, int = 10)，calculate(int) 定义在 main 之后不参与该次重载决议，故 calculate(5) 调用双参数版本并输出 50，不是 10，判“错误”成立；不存在候选所澄清之外的重载二义性。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页题面要求 M 行 N 列地形图中寻找 3×3 区域，内部 9 点最大高度与最小高度之差不超过 H，并使 9 点海拔和最大；输入输出、样例 5 5 3→40 及数据范围 1≤M,N≤10^3、1≤H,a_ij≤10^5 均与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例：3×3 窗口 (2,0) 为 5 5 5/5 2 5/3 5 5，极差 3≤H，和为 40；(2,1) 与 (2,2) 均为 39；其余窗口含 1 与 5，差 4>H，不合法。解析中的算法步骤、best 初值处理与复杂度 O(MN) 均成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码以 0 基枚举左上角，i+2<m、j+2<n 防越界；每个窗口统计 9 格 mx、mn、sum，极差≤H 时更新 best；a_ij≥1 且题目保证至少一个合法区域，best=-1 不漏解；M,N≤10^3 时约 9×10^6 次基本运算，long long 无溢出风险，算法与官方参考程序等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模唯一窗口且极差恰等于 H",
+            "input": "3 3 8\n1 2 3\n4 5 6\n7 8 9\n",
+            "output": "45",
+            "reason": "仅一个 3×3 窗口，max=9、min=1，极差 8≤H=8，和为 45；独立手算。"
+          },
+          {
+            "name": "纵向多窗口仅底部合法",
+            "input": "4 3 1\n1 1 1\n10 10 10\n10 10 10\n10 10 10\n",
+            "output": "90",
+            "reason": "i=0 窗口含 1 与 10，差 9>1 不合法；i=1 窗口全为 10，差 0≤1，和为 90；检验 i+2<m 边界；独立手算。"
+          },
+          {
+            "name": "多个合法窗口取最大",
+            "input": "3 4 1\n1 1 1 2\n1 1 1 2\n1 1 1 2\n",
+            "output": "12",
+            "reason": "j=0 窗口全为 1，和为 9；j=1 窗口每行含 1、1、2，差 1≤1，和为 12；取最大 12；独立手算。"
+          },
+          {
+            "name": "高度上界验证溢出边界",
+            "input": "3 3 1\n100000 100000 100000\n100000 100000 100000\n100000 100000 100000\n",
+            "output": "900000",
+            "reason": "窗口内全部为 100000，极差 0≤1；9×100000=900000，int 可容纳且 long long 安全；独立手算。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10-11页题面给出 M 元预算、N 个商品及名称 S、价格 P、优先级 V，V 越小优先级越高；同优先级比价格，仍相同比名称字典序；按字典序输出购买商品名。输入输出、样例 20 4→bus/cab/water 及数据范围 1≤|S_i|≤10、1≤M,P_i≤10^5、1≤N≤10^3、1≤V_i≤10，均与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例排序后购买顺序为 bus(15)→water(4)→apple(6，预算不足跳过)→cab(1)，已购集合为 bus、water、cab，按字典序输出 bus/cab/water；解析中的两轮排序目的、买不起跳过继续、long long 建议均与第12页官方参考程序逻辑相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码按 pri 升序、price 升序、name 字典序升序多关键字排序，再按预算贪心购买，最后对已购商品名再次排序输出；与第12页官方 cmp 和贪心逻辑一致。N≤10^3 时 O(N log N) 充分，M、P_i≤10^5 使用 long long 安全。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模唯一商品可购",
+            "input": "1 1\na 1 1\n",
+            "output": "a",
+            "reason": "N=1、M=1，商品价格 1≤预算 1，购入并输出 a；独立手算。"
+          },
+          {
+            "name": "最高优先级商品买不起时跳过继续",
+            "input": "5 3\nx 6 1\ny 5 2\nz 1 3\n",
+            "output": "y",
+            "reason": "排序后考察 x、y、z；x 价 6>5 跳过，y 价 5≤5 购入后预算 0，z 价 1>0 跳过；仅购 y；独立手算。"
+          },
+          {
+            "name": "同优先级同价按名字序购买并按字典序输出",
+            "input": "4 3\nb 2 1\na 2 1\nc 2 1\n",
+            "output": "a\nb",
+            "reason": "三者优先级与价格相同，按名字排序 a、b、c；预算 4 购 a、b 后归零，c 跳过；输出按字典序 a、b；独立手算。"
+          },
+          {
+            "name": "预算不足无任何购买",
+            "input": "1 2\na 5 1\nb 3 2\n",
+            "output": "",
+            "reason": "a 价 5>1、b 价 3>1 均买不起，按官方贪心逻辑不输出任何商品名，检验空输出边界；独立手算。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核对题号 24、26、27。24 的判断答案 ×（映射为 1）及“调用点仅见双参数默认实参版本、实际输出 50”解析成立；26 的题面数据范围、样例走查、复杂度和参考代码经独立复算均成立；27 的题面、样例、排序贪心逻辑、参考代码和边界用例均成立。三题未发现需要修改的字段，编程题测试期望值均为独立手算，未声称已运行。"
+  }
+}
