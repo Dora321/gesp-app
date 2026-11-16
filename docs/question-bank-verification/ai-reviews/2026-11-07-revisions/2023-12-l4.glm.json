@@ -1,0 +1,624 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    3,
+    4,
+    7,
+    9,
+    10,
+    15,
+    16,
+    21,
+    22,
+    24,
+    25,
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T01:57:19.050Z",
+  "completedAt": "2026-11-16T03:10:00.498Z",
+  "finishReason": "stop",
+  "inputSha256": "15f381db6dfb4c8cfa4d0a79be83e05f246009af46b522a777d3fcee27f7af2e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示「CCF 编程能力等级认证 GESP」「C++ 四级」「2023 年 12 月」，与 paperId 2023-12-l4（四级、2023 年 12 月）对应。\nPDF 第 1 页卷头显示「CCF 编程能力等级认证（GESP）C++ 四级，2023 年 12 月」，与 paperId 2023-12-l4 的年份、月份、等级一致。\nPDF 第1页卷头为『CCF 编程能力等级认证 GESP / C++ 四级 / 2023 年 12 月』，与 paperId 的等级 4、年份 2023、月份 12 一致；题 24、25 对应第 6 页判断题第 9、10 题（答案表在第 5 页），题 26『小杨的字典』见第 6-8 页。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题代码图逐行为 `int arr[10]={1};`、`string strArr=\"chen a dai\";`、`cout<<strArr[arr[1]]<<endl;`，题干「下面C++代码执行后，输出的是( )」，与候选 question/code 完全一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 A. chen、B. c、C. chen a dai、D. dai，与候选 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 2 题为 B，0 起始索引 1，候选 answer=1 一致；独立推导：{1} 聚合初始化使 arr[0]=1、其余零初始化，故 arr[1]=0，strArr[0]='c'，输出 c，对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析基于原代码推导 arr[1]=0 与 strArr[0]='c'；核对 'd' 在 \"chen a dai\" 中确为下标 7（c0 h1 e2 n3 空格4 a5 空格6 d7），解析的 D 项分析准确；逐项分析与答案 B 自洽，无与原卷不符的表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决初核草稿中无需修改的判断本身成立：本批题目中该题候选与原卷逐字一致，解析（本批修订候选）已按原代码正确推导，五维全部核验通过，无需 changes。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码图逐行为 `int fun1(int *n){ return *n**n; }` 及 main 中 `int arr[10]={2}; arr[1]=fun1(arr); cout<<arr[1]<<endl;`，题干「下面C++代码最后执行后输出是( )」，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页显示 A. 1、B. 2，PDF 第 2 页显示 C. 3、D. 4，与候选 options [\"1\",\"2\",\"3\",\"4\"] 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 3 题为 D（索引 3），候选 answer=3 一致；独立推导：arr 退化为 &arr[0]，fun1 返回 (*n)*(*n)=2*2=4，经 arr[1]=fun1(arr) 赋值后输出 4，对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析严格依据原代码：数组名退化、`*n**n` 按优先级读作 (*n)*(*n)、返回值经 `arr[1]=fun1(arr)` 赋给 arr[1]，推导链完整且结论 D 正确；未出现早期版本改写为假设代码结构的问题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认候选题面、选项、答案（D/索引3）与解析均与 PDF 第 1、2 页原图一致；初核草稿的判定可接受，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题代码图逐行为 `int arr[3][3]={{1,2,3},{4,5,6},{7,8,9}};`、外层 `for(int i=0;i<3;i++)`、内层 `for(int j=2;j>=0;j--)`、`cout<<arr[i][j]<<\" \";`、行末 `cout<<endl;`，题干「下面C++代码执行后的结果是(   )」，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项图：A 为三行 `1 2 3 / 4 5 6 / 7 8 9`；B 为单行 `1 2 3 4 5 6 7 8 9`；C 为三行 `3 2 1 / 6 5 4 / 9 8 7`；D 为单行 `9 8 7 6 5 4 3 2 1`；候选 options（含 \\n 换行表示）逐项一致，仅行末空格差异不影响语义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 4 题为 C（索引 2），候选 answer=2 一致；独立推导：i=0 输出 arr[0][2..0] 即 `3 2 1 `、i=1 输出 `6 5 4 `、i=2 输出 `9 8 7 `，各配 endl，结果为三行 3 2 1/6 5 4/9 8 7，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 PDF 实际选项展开：A 三行正序（j 正序时的结果）、B 单行正序（无换行且未逆序）、D 单行完全逆序（无分行），并正确判定 C；与独立推导一致，早期版本对 B/D 的错误描述已不存在。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认候选选项已与 PDF 第 2 页原图一致（A 三行正序、B 单行正序、C 三行行内逆序、D 单行完全逆序），答案表 C 与独立推导吻合，解析与修正后选项自洽，无需 changes。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 7 题代码图逐行为 `int point(int *p){ return *p**p; }` 及 main 中 `int a=20; int *p=&a; *p=point(p); cout<<*p<<endl;`，题干「在C++中,执行下面代码后，输出的是（ ）」，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 A. 400、B. 200、C. 20、D. 100，与候选 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 7 题为 A（索引 0），候选 answer=0 一致；独立推导：point(p) 返回 (*p)*(*p)=20*20=400，main 中 `*p=point(p)` 将 400 写回 a，`cout<<*p` 输出 400，对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分：函数体仅 `return *p**p;` 求值无赋值、形参为 int *p、写回发生在 main 的 `*p=point(p)`、输出语句为 `cout<<*p`；与原卷代码及答案 A 自洽，早期误述（*n 赋值、输出 a）已不存在。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认候选与 PDF 第 3 页原图逐字一致，答案 A 与独立推导（400）吻合，解析对函数求值与 main 写回的区分正确，无需 changes。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题代码图逐行为 `string str=\"HELLO CHEN A DAI\";`、`int strlen=str.length();`、`char alpha[26]={65};`、`int cnt[26]={0};`、`for(int i=1;i<26;i++)` 内留横线，后续 alpha 输出、双重计数循环（alpha[i]==str[j] 时 cnt[i]++）与 cnt 输出均与候选 code 一致，题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页选项依次为 `alpha[i]=alpha[i-1]+1;`、`alpha[i]=alpha[i]+1;`、`alpha[i+1]=alpha[i]+1;`、`alpha[i-1]=alpha[i]+1;`，与候选 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 9 题为 A（索引 0），候选 answer=0 一致；独立推导：alpha[0]=65、其余零初始化；A 递推生成 66..90 即 'B'~'Z' 使统计正确；B 得 {65,1,…,1}；C 跳过 alpha[1] 且 i=25 时写 alpha[26] 越界（UB）；D 在 i=1 时将 alpha[0] 覆盖为 1；仅 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确使用聚合初始化零初始化语义（纠正早期「读取未初始化」的误述），B/C/D 的错误机理（{65,1,…,1}、alpha[1] 恒 0 加越界写 alpha[26]、覆盖 alpha[0]）均与独立推导一致，答案 A 自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认候选与 PDF 第 3 页原图一致，答案表 A 与独立推导吻合；解析的零初始化论证、C 项越界判断与 D 项覆盖分析均经独立验证成立，无需 changes。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 10 题题干「下面C++代码执行后生成的文件其字节数为（ ）」及代码图（ofstream fout; fout.open(\"1.txt\"); for(int i=1;i<=10;i++) 内 if(i%5==0) 分支 int x=6; fout<<x;，else 分支 char ch='A'; fout<<ch;）与候选题干、code 逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A 10、B 16、C 40、D 24，与候选内容和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 10 题为 A（0 起始索引 0），候选 answer=0；独立推导：i=5、10 时 fout<<x 对 int 按十进制文本输出数字 6，各 1 字节；其余 8 次 fout<<ch 输出字符 A，各 1 字节；合计 2+8=10 字节，全程无换行，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按文本输出推得 2 个「6」加 8 个「A」共 10 字节，并正确排除 sizeof(int)=4 的二进制误算（C 40）及 B、D 干扰项；与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照第 4 页代码原图与第 1 页答案表复核：代码逐行一致、选项一致、答案 A（索引 0）及 10 字节的文本输出推导均成立；DeepSeek 初核结论经独立验证成立，予以采纳，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 15 题题干「输入一个正整数N（N>=7)，想找出它所有相邻的因数对，比如，输入12，因数对有(1,2)、(2,3)、(3.4)。下面哪段代码找不到所有的因数对?()」与候选语义一致；原卷示例「(3.4)」为官方排版笔误（应为 (3,4)），候选照录，不影响题意；候选中个别空格（如「一 个」「比 如」）为 PDF 文本提取痕迹，属排版等价，不改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四条 for 语句的循环起点/上界、取模条件与 printf 输出对象与候选逐项一致；printf 格式串中的 \\n 为字面反斜杠加 n 的转义序列，候选原样保留，未被替换为真实换行；顺序一致，答案映射不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 15 题为 B（索引 1），候选 answer=1；独立验证：合法对 (i,i+1) 要求两数均整除 N，较大数 L 为 N 的约数，L=N 时需 N-1 整除 N 而 N≥7 时 N mod (N-1)=1，故合法对的大数只能是不超过 N/2 的真约数；B 自 i=2 起漏检 (1,2)，题面示例 N=12 时 (1,2) 合法，故 B 找不到全部因数对；A 检查 i=1..N-1 覆盖全部起点；C 实查 (i-1,i) 自 (1,2) 起，其唯一未覆盖候选 (N/2-1,N/2) 由 N=2(N/2-1)+2 余 2（N≥8）知不合法，奇数 N 本无合法对（N=7 时 2∤7）；D 覆盖大数 ≤N/2 的全部对。仅 B 漏对，与官方一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的「合法对大数 ≤ N/2」论证、B 漏检 (1,2)、C 实查 (i-1,i) 且上界外候选对不合法（含 N=7 特例）、D 的覆盖范围论证均经独立推演成立，结论 B 与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 5 页选项原文（含 printf 的 \\n 字面量）与第 1 页答案表 B；对 A/B/C/D 的循环边界逐一推演（含 N=12、N=14、N=7 等情形）确认仅 B 漏检 (1,2)；DeepSeek 初核结论成立，予以采纳，无需修改。"
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 1 题原文「C++的内置函数 sort() 支持数组的局部排序。例如 int a={10,9,8,7,6,5,4,3,2,1} ，可以用 sort(a,a+5) ,排序成 {6,7,8,9,10,5,4,3,2,1} 。( )」与候选逐字一致；其中 int a={...} 缺数组方括号系官方原卷自身排版笔误，候选照录，局部排序语义无歧义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无 ABCD 单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 1 格为√（正确=0），候选 answer=0；独立推导：sort(a,a+5) 按半开区间排序前 5 个元素 10,9,8,7,6 → 6,7,8,9,10，后 5 个 5,4,3,2,1 保持不变，结果恰为 {6,7,8,9,10,5,4,3,2,1}，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以函数原型与半开区间 [first,last) 说明 sort(a,a+5) 只排序下标 0~4、区间外元素保持原序，并提醒第二参数指向末元素之后位置；与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 5 页判断题原文与答案表第 1 格√；对 sort(a,a+5) 的区间语义与前 5 元素排序结果独立推演成立；原卷 int a={...} 缺方括号为官方笔误、照录不改变语义，无需修改；DeepSeek 初核结论采纳。"
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 6 题原文「执行C++代码 cout<<(5||2); 后将输出 1 。（ ）」与候选题干一致，表达式与断言均无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无 ABCD 单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 格为√（正确=0），候选 answer=0；独立推导：5 非零按 true 处理，|| 短路求值使整个表达式为 bool 型 true，cout 默认格式将 true 输出为 1，题干断言成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明短路求值与 bool 默认输出；纠正「非零整数直接输出都显示 1」的过度推广（cout<<5 仍输出 5）；区分按位或 |（5|2=101|010=111=7）；并指出 Java 的 || 要求 boolean 操作数、5||2 无法编译——各延伸点均经独立复核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 6 页题面与第 5 页答案表第 6 格√；对 5||2 的短路求值、bool 输出 1，以及 5|2=7、Java 编译差异等延伸论证逐点独立验证成立；DeepSeek 初核结论采纳，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 7 题题干「在C++中，两个字符串相加的运算符为+相当于字符串的合并运算。下面C++代码执行后，将输出 chenadai 。（ ）」及代码图（string a=\"chen\"; string b=\"a\"; string c=\"dai\"; string name=a+b+c; cout<<name<<endl;）与候选逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，无 ABCD 单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 7 格为√（正确=0），候选 answer=0；独立推导：a+b 按左结合得 \"chena\"，再连接 c 得 \"chenadai\"，cout 输出 chenadai，题干断言成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 a+b+c 左结合链式拼接推导，与实际三变量代码一致；并正确提醒两个纯字符串字面量相加属非法的指针运算（无法编译），而本题每步 + 至少一方为 std::string 故合法；独立复核一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核第 6 页代码原图与第 5 页答案表第 7 格√；对 a+b+c 的左结合拼接结果 chenadai 及字面量相加非法的提醒独立验证成立；DeepSeek 初核结论采纳，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 9 题原文『小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）』，候选 question 语义逐字一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以 √/× 作答，options 不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表为『√ √ × × × √ √ √ × √』，第 9 格为 ×，按错误=1 映射，候选 answer=1 一致；独立判断：Dev-C++ 集成编辑器、编译器（MinGW/GCC）与调试器，运行于操作系统之上，不承担进程调度、内存与设备管理职能，属 IDE 应用软件，非操作系统，× 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确界定 IDE（应用软件）与操作系统（系统软件）的层次，指出其不负责软硬件资源管理，未再出现 Borland 等史实错误；易错提醒与知识延伸无误，结论『错误』与答案 × 自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对第 5 页答案表第 9 格确为 ×（answer=1），解析已无史实错误且 IDE/操作系统层次论证成立，题面与原卷一致，三处判定均经本人复核成立，无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 10 题原文『任何一个while循环都可以转化为等价的for循环（ ）。』，候选 question 语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以 √/× 作答，options 不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 10 格为 √，按正确=0 映射，候选 answer=0 一致；独立验证：while(condition){body} 与 for(;condition;){body} 均为先判断后执行、条件为假退出的控制流，表达能力等价，√ 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以 for(;condition;) 给出直接等价转换式；并准确说明 continue 语义差异——while 中 continue 直接跳回条件判断（不执行习惯上置于循环体末尾的更新语句），for 中 continue 先执行第三子句再判断——给出『用 for(;condition;) 形式或将 update 放在循环体内』两种保持等价的做法，推理严谨，结论与 √ 自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对答案表第 10 格为 √（answer=0），解析的等价转换式与 continue 语义说明经本人独立推演均准确，题面与原卷一致，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第 6 页页面图像：问题描述与输入描述两处标点集合均为 !()-[]{}\\|;:'\\\",./?<>（`<>` 因 PDF 换行排至下一行行首），候选 question 两处均已含 `<>`；约束 N≤100、A 与 B 长度≤10、S 长度≤1000、『所有 A 不重复』『每个单词之间必定由至少一个标点符号分割』均与候选一致；例句 abc.d.d.abc.abcd. → a.def.def.a.UNK. 一致。PDF 第 6 页样例框经第 7 页核对：样例 1 输入 abc.d.d.abc.abcd. 与输出 a.def.def.a.UNK. 均带末尾句点，候选 samples[0] 均已补齐；样例 2 输入 abc,(d)d!-abc?abcd 输出 a,(def)def!-a?xxxx、样例 3 输入 !()-[]{}\\|;:'\\\",./?<>abcdefghijklmnopqrstuvwxyz 输出 !()-[]{}\\|;:'\\\",./?<>UNK（整串 26 字母非字典词 abcdefghij，UNK 正确）均与候选逐字符一致。PDF 3.1.4『特别提醒』属考场系统行为提示（不要附带输入输出提示信息），不改变输入输出语义，站点数据未收录，两轮核验均未列为缺陷，本核验认可不构成缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF 第 1 页、第 5 页答案表仅覆盖单选 15 题与判断 10 题，编程题无对应条目，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析主体思路（map 建典、遇小写字母累积 word、遇标点先查词翻译/UNK 再原样输出标点、循环后补收尾处理）正确。样例 1 走查逐行独立复核：最后的句点触发 abcd→UNK 并输出句点，最终结果 a.def.def.a.UNK. 与 PDF 第 7 页样例输出一致，走查表内部无自相矛盾；易错提醒正确区分样例 1（句点结尾，由句点触发翻译）与样例 2（结尾 abcd 无标点，靠循环后收尾处理）两种情形，连续标点不触发空查词、UNK 大写、整词匹配（abcd 不因前缀 abc 误译）各条均成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立推演：S 不含空格，cin>>s 可整篇读入；flush 仅在 word 非空时查典，连续标点第二次 flush 中 word 为空直接返回，不误触发查词；循环后 flush 覆盖末尾无标点单词；dict.find 整词匹配；N=0 空字典时所有词输出 UNK 亦正确；与官方参考程序（content+=\"\\n\" 技巧版）语义等价（输出内容加换行）；复杂度 O(|S|·log N)、空间 O(N·L+|S|)，对 N≤100、|S|≤1000 完全满足；三元运算两分支均为 string，编译无误。修复后核验通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "空字典最小条目数",
+            "input": "0\nabc.def",
+            "output": "UNK.UNK",
+            "reason": "题面仅约束 N≤100 未给下界，N=0 为合法边界；独立推演：abc、def 均不在空字典中，各替换为 UNK，句点原样输出，得 UNK.UNK。"
+          },
+          {
+            "name": "前缀词不得部分匹配",
+            "input": "1\nabc a\nabcd.abc.",
+            "output": "UNK.a.",
+            "reason": "独立推演：abcd 整词不在典中，不得因前缀 abc 在典而译为 a，输出 UNK；随后 abc 命中译为 a；两个句点原样输出，得 UNK.a.。"
+          },
+          {
+            "name": "尖括号标点与末尾无标点",
+            "input": "2\na x\nb y\na?b<ab>a",
+            "output": "x?y<UNK>x",
+            "reason": "覆盖官方标点集特有的 ? < >；独立推演：a→x、b→y 命中字典，ab 未收录输出 UNK，各标点原样输出；末尾单词 a 无标点结尾，靠循环后 flush 译为 x，得 x?y<UNK>x。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面两处标点集合含 <>、样例 1 输入输出末尾句点均已在候选中，经本人对照第 6、7 页页面图像独立确认；解析走查逐行复核与官方样例一致；参考代码经独立推演（含 N=0、连续标点、末尾无标点、整词匹配）正确；三条 tests 的期望输出 UNK.UNK、UNK.a.、x?y<UNK>x 逐字符独立推演一致。无需新增修改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        3,
+        4,
+        7,
+        9
+      ],
+      "usage": {
+        "prompt_tokens": 56062,
+        "completion_tokens": 4833,
+        "total_tokens": 60895,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2201
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0108258,
+          "allowance": 0.0108258,
+          "tokens": {
+            "input": 56062,
+            "output": 4833,
+            "reasoning": 2201,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T01:57:19.050Z",
+      "completedAt": "2026-11-16T01:58:42.852Z"
+    },
+    {
+      "questionIds": [
+        10,
+        15,
+        16,
+        21,
+        22
+      ],
+      "usage": {
+        "prompt_tokens": 56034,
+        "completion_tokens": 19189,
+        "total_tokens": 75223,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16542
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0179996,
+          "allowance": 0.0179996,
+          "tokens": {
+            "input": 56034,
+            "output": 19189,
+            "reasoning": 16542,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T02:54:53.612Z",
+      "completedAt": "2026-11-16T03:00:02.731Z"
+    },
+    {
+      "questionIds": [
+        24,
+        25,
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 55492,
+        "completion_tokens": 9796,
+        "total_tokens": 65288,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7486
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0132218,
+          "allowance": 0.0132218,
+          "tokens": {
+            "input": 55492,
+            "output": 9796,
+            "reasoning": 7486,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T03:07:00.964Z",
+      "completedAt": "2026-11-16T03:10:00.498Z"
+    }
+  ]
+}

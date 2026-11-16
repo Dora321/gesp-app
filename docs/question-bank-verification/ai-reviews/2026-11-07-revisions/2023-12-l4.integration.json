@@ -1,0 +1,149 @@
+{
+  "paperId": "2023-12-l4",
+  "integratedAt": "2026-11-16T03:10:01.271Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 3,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 16,
+      "fields": []
+    },
+    {
+      "id": 21,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 25,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "samples",
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2\nabc a\nd def\nabc.d.d.abc.abcd.",
+          "output": "a.def.def.a.UNK.",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "a.def.def.a.UNK.\n",
+          "passed": true
+        },
+        {
+          "input": "3\nabc a\nd def\nabcd xxxx\nabc,(d)d!-abc?abcd",
+          "output": "a,(def)def!-a?xxxx",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "a,(def)def!-a?xxxx\n",
+          "passed": true
+        },
+        {
+          "input": "1\nabcdefghij klmnopqrst\n!()-[]{}\\|;:'\",./?<>abcdefghijklmnopqrstuvwxyz",
+          "output": "!()-[]{}\\|;:'\",./?<>UNK",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "!()-[]{}\\|;:'\",./?<>UNK\n",
+          "passed": true
+        },
+        {
+          "name": "空字典最小条目数",
+          "input": "0\nabc.def",
+          "output": "UNK.UNK",
+          "reason": "题面仅约束 N≤100 未给下界，N=0 为合法边界；独立推演：abc、def 均不在空字典中，各替换为 UNK，句点原样输出，得 UNK.UNK。",
+          "kind": "boundary",
+          "actual": "UNK.UNK\n",
+          "passed": true
+        },
+        {
+          "name": "前缀词不得部分匹配",
+          "input": "1\nabc a\nabcd.abc.",
+          "output": "UNK.a.",
+          "reason": "独立推演：abcd 整词不在典中，不得因前缀 abc 在典而译为 a，输出 UNK；随后 abc 命中译为 a；两个句点原样输出，得 UNK.a.。",
+          "kind": "boundary",
+          "actual": "UNK.a.\n",
+          "passed": true
+        },
+        {
+          "name": "尖括号标点与末尾无标点",
+          "input": "2\na x\nb y\na?b<ab>a",
+          "output": "x?y<UNK>x",
+          "reason": "覆盖官方标点集特有的 ? < >；独立推演：a→x、b→y 命中字典，ab 未收录输出 UNK，各标点原样输出；末尾单词 a 无标点结尾，靠循环后 flush 译为 x，得 x?y<UNK>x。",
+          "kind": "boundary",
+          "actual": "x?y<UNK>x\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "12f298d15aa23ae330c83d9a3f6cb3415efc20c4b76c863a1b5590232968bd72"
+    }
+  ]
+}

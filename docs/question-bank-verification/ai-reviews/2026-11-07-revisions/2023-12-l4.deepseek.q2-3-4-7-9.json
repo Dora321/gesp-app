@@ -1,0 +1,230 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    3,
+    4,
+    7,
+    9
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T01:55:52.004Z",
+  "completedAt": "2026-11-16T01:57:19.033Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38355,
+    "completion_tokens": 12513,
+    "total_tokens": 50868,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 10824,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0265221,
+      "allowance": 0.01591326,
+      "tokens": {
+        "input": 38355,
+        "output": 12513,
+        "reasoning": 10824,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "15f381db6dfb4c8cfa4d0a79be83e05f246009af46b522a777d3fcee27f7af2e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示：CCF 编程能力等级认证（GESP），C++ 四级，2023 年 12 月；与 paperId 2023-12-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题代码图显示 int arr[10]={1}; string strArr=...; cout<<strArr[arr[1]]<<endl;，题干与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项依次为 A chen、B c、C chen a dai、D dai，与候选 options 内容和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第2题为 B（0 起始索引 1），候选 answer=1；独立推导 arr[1]=0，strArr[0]='c'，输出 c，对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确使用 arr[10]={1} 的零初始化推出 arr[1]=0，并将 std::string 下标 0 取为 'c'；逐项分析与答案 B 自洽，未再误述为字符串常量退化指针。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题代码图显示 int fun1(int *n){ return *n**n; } 及 main 中 arr[10]={2}; arr[1]=fun1(arr); cout<<arr[1]<<endl;，与候选 code 一致；题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页选项 A.1、B.2，第2页选项 C.3、D.4；候选 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 D（索引 3），候选 answer=3；独立推导 (*n)*(*n)=2*2=4，赋给 arr[1] 后输出 4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析严格按 arr[1]=fun1(arr) 与 return *p**p 推导，正确解释一元解引用高于二元乘法；未再改写为假设代码结构，结论 D 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第4题代码图显示二维数组初始化、外层 for(i=0;i<3;i++)、内层 for(j=2;j>=0;j--)、输出 arr[i][j] 和行末 endl，与候选 code 一致；题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项为：A 三行 1 2 3/4 5 6/7 8 9；B 单行 1 2 3 4 5 6 7 8 9；C 三行 3 2 1/6 5 4/9 8 7；D 单行 9 8 7 6 5 4 3 2 1；候选逐项一致（仅行末空格不计）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题为 C（索引 2），候选 answer=2；独立推导外层行正序、内层列逆序，输出 3 2 1/6 5 4/9 8 7，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 PDF 实际选项解释 A 为正序三行、B 为单行正序、D 为单行整体逆序，并正确给出 C；与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第7题代码图显示 int point(int *p){ return *p**p; } 及 main 中 a=20、p=&a、*p=point(p)、cout<<*p<<endl;，与候选 code 一致；题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A.400、B.200、C.20、D.100，与候选 options 内容和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 A（索引 0），候选 answer=0；独立推导 point 返回 20*20=400，经 *p=point(p) 写回 a 后输出 400，对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分函数体内只做 return *p**p 求值、不赋值，以及 main 中 *p=point(p) 将返回值写回；未再误述形参或输出语句，结论 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第9题代码图显示 string str=...; int strlen=str.length(); char alpha[26]={65}; int cnt[26]={0}; for(i=1;i<26;i++) 内留空；后续 alpha 输出、双重计数循环与 cnt 输出均与候选 code 一致；题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项 A-D 依次为 alpha[i]=alpha[i-1]+1;、alpha[i]=alpha[i]+1;、alpha[i+1]=alpha[i]+1;、alpha[i-1]=alpha[i]+1;；候选 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 A（索引 0），候选 answer=0；独立推导 A 递推生成 65..90，B 得到 {65,1,...,1}，C 保留 alpha[1]=0 且 i=25 写 alpha[26] 越界，D 覆盖 alpha[0]；仅 A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明 {65} 的聚合初始化及剩余元素零初始化，A 生成完整大写字母表；B/C/D 的具体错误和 C 的越界判断均与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "指定题号 2、3、4、7、9 已逐题完成五维核对：题面与代码、选项顺序、官方答案映射、解析独立推导均与原卷一致；未发现需要修订的字段，changes 和 unresolved 均为空。单选题 referenceCode 不适用。"
+  }
+}

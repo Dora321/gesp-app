@@ -1,0 +1,186 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    24,
+    25,
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T03:05:24.662Z",
+  "completedAt": "2026-11-16T03:07:00.940Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38409,
+    "completion_tokens": 14007,
+    "total_tokens": 52416,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 38272,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 12626,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01707913,
+      "allowance": 0.01024748,
+      "tokens": {
+        "input": 137,
+        "output": 14007,
+        "reasoning": 12626,
+        "cache_read": 38272,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "15f381db6dfb4c8cfa4d0a79be83e05f246009af46b522a777d3fcee27f7af2e",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 四级”“2023 年 12 月”，与 paperId 的年份、月份、等级一致；题24、25位于第5-6页，题26位于第6-8页。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第9题原文为“小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）”，候选 question 语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，正确/错误为作答映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题为 ×，按错误=1 映射，候选 answer=1 一致；独立判断 Dev-C++ 是 IDE 而非操作系统。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 IDE 与操作系统，指出 Dev-C++ 运行在操作系统之上、不承担进程/内存/设备管理；未再出现 Borland 史实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第10题原文为“任何一个while循环都可以转化为等价的for循环（ ）”，候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，正确/错误为作答映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题为 √，按正确=0 映射，候选 answer=0 一致；for(;condition;) 与 while 控制流等价。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出 for(;condition;) 的直接等价转换，并说明 continue 在 while/for 中的语义差异及保持等价的做法，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页问题描述与输入描述两处标点集合均含尖括号 <>，候选已补齐；第7页样例1输入/输出末尾句点均已补齐，样例2、3与PDF一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF答案表仅覆盖单选与判断，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的建典、逐字符分词、标点原样输出、末尾补 flush 思路正确；样例1走查末行已按末尾句点修正为 a.def.def.a.UNK.，与PDF样例输出一致；易错提醒正确区分样例1与样例2的结尾情形。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考代码用 map 整词匹配，遇非小写字母先 flush 再输出标点，循环后补 flush；N=0、连续标点、末尾无标点、前缀不匹配均正确；复杂度 O(|S| log N)，空间 O(N+|S|)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "空字典最小条目数",
+            "input": "0\nabc.def",
+            "output": "UNK.UNK",
+            "reason": "题面仅约束 N≤100，N=0 为合法边界；空字典时 abc、def 均未收录，替换为 UNK，句点原样输出。"
+          },
+          {
+            "name": "前缀词不得部分匹配",
+            "input": "1\nabc a\nabcd.abc.",
+            "output": "UNK.a.",
+            "reason": "abcd 必须整体查词，不能因前缀 abc 在字典中而译成 a；随后 abc 正常翻译，句点保留。"
+          },
+          {
+            "name": "尖括号标点与末尾无标点",
+            "input": "2\na x\nb y\na?b<ab>a",
+            "output": "x?y<UNK>x",
+            "reason": "覆盖标点集合中的 < >；ab 未收录输出 UNK，末尾 a 无标点，靠循环后 flush 译为 x。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题24、25、26。题24、25的题面、答案表符号与解析均独立核对通过；题26的题面标点集合与样例1末尾句点已按PDF补齐，解析走查与参考代码正确，三个边界测试期望输出独立推演一致。三题均无需新增修改。"
+  }
+}
