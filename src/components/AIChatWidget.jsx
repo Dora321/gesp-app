@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save } from 'lucide-react';
 import { keepRecentChatImages, toModelMessages } from '../utils/chatImages';
 import { assistantStorage, ASSISTANT_KEY, loadAssistantKey, saveAssistantKey, buildClassroomPrompt, deepSeekReasoningEffort } from '../utils/classroomAssistant';
-import { classroomRequest, classroomFetch, classroomConversationId } from '../utils/classroomClient';
+import { classroomRequest, classroomFetch, classroomConversationId, classroomAnonId } from '../utils/classroomClient';
 import {
     toApiHistory,
     isHistoryNearLimit,
@@ -423,6 +423,7 @@ const AIChatWidget = ({ onClose }) => {
                 body: JSON.stringify({
                     requestId: crypto.randomUUID(),
                     conversationId: classroomConversationId(),
+                    anonId: classroomAnonId(),
                     persona: currentPersona.systemPrompt, reasoningLevel,
                     messages: history.map(message => ({ ...message, content: message.content.slice(0, 4000) })),
                 }),

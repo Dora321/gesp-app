@@ -1,4 +1,7 @@
-import { assistantStorage } from './classroomAssistant';
+import { assistantStorage } from './classroomAssistant.js';
+import { classroomAnonId } from './classroomAnon.js';
+
+export { classroomAnonId };
 
 const gateway = (import.meta.env.VITE_CLASSROOM_API_URL || '').replace(/\/$/, '');
 const tokenKey = 'classroom_session_token';

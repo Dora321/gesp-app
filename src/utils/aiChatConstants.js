@@ -1,4 +1,4 @@
-import { ASSISTANT_KEY } from './classroomAssistant';
+import { ASSISTANT_KEY } from './classroomAssistant.js';
 
 const AI_PERSONAS = [
     {

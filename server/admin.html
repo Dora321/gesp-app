@@ -18,4 +18,5 @@ select{font:inherit;min-height:44px;width:100%;padding:10px;border:1px solid #c9
 <form id="start-form"><div class="row"><div><label for="minutes">有效时间（分钟）</label><input id="minutes" type="number" min="5" max="480" value="120" required></div><div><label for="max">全班提问上限（次）</label><input id="max" type="number" min="1" max="5000" value="500" required></div></div><div class="row"><button id="start">开启课堂</button></div></form>
 <p id="status" aria-live="polite"></p><div class="row"><button id="stop" hidden>结束课堂</button><button id="logout" class="secondary">退出后台</button></div>
 <p>换口令会让所有学生重新激活，剩余次数不变。提问受理即计次，生成中断或上游失败也计入，以避免反复重试超额。</p>
+<p><a href="/classroom-usage">使用分析 →</a></p>
 </section><p id="notice" role="status"></p><p><a href="https://dora321.github.io/gesp-app/">返回学生课堂 →</a></p></main><script src="/classroom-admin.js" defer></script></body></html>

@@ -2,12 +2,14 @@ import { createServer } from 'node:http';
 import { isIP } from 'node:net';
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, randomInt, createHash, createCipheriv, createDecipheriv, timingSafeEqual } from 'node:crypto';
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { chmodSync, mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { once } from 'node:events';
 import { buildClassroomPrompt, deepSeekReasoningEffort } from '../src/utils/classroomAssistant.js';
+import { AI_PERSONAS } from '../src/utils/aiChatConstants.js';
 import { CHAT_IMAGE_HISTORY_LIMIT, CHAT_IMAGE_LIMIT, isChatImage, toModelMessages } from '../src/utils/chatImages.js';
+import { createUsageStore } from './usage/store.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const equal = (a, b) => typeof a === 'string' && typeof b === 'string' && timingSafeEqual(Buffer.from(hash(a)), Buffer.from(hash(b)));
@@ -31,6 +33,63 @@ const providers = {
 const keyColumn = provider => provider === 'opencode-go' ? 'opencode_go_key' : 'api_key';
 const supportsImages = model => ['deepseek-flash', 'deepseek-v4.1-flash', 'deepseek-v4-flash-vision-exp'].includes(model);
 const CHAT_BODY_LIMIT = 100_000 + CHAT_IMAGE_HISTORY_LIMIT * CHAT_IMAGE_LIMIT;
+const personaIds = new Map(AI_PERSONAS.map(persona => [persona.systemPrompt, persona.id]));
+const personaIdFor = persona => {
+  if (typeof persona !== 'string' || !persona.trim()) return 'default';
+  return personaIds.get(persona) || 'custom';
+};
+const timezoneOffset = value => {
+  if (typeof value !== 'string' || !/^-?\d{1,4}$/.test(value)) return 0;
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.max(-840, Math.min(840, Math.trunc(number))) : 0;
+};
+
+// 只旁路解析转发给浏览器的 SSE，解析失败绝不影响学生端的原始字节。
+function createSseCollector(maxChars) {
+  const decoder = new TextDecoder();
+  let buffer = '';
+  let answer = '';
+  let usage = null;
+  const consume = event => {
+    for (const line of event.split('\n')) {
+      if (!line.startsWith('data:')) continue;
+      const payload = line.slice(5).trim();
+      if (!payload || payload === '[DONE]') continue;
+      try {
+        const data = JSON.parse(payload);
+        if (data?.usage && typeof data.usage === 'object') usage = data.usage;
+        const content = data?.choices?.[0]?.delta?.content;
+        if (typeof content === 'string' && content) {
+          const remaining = maxChars - answer.length;
+          if (remaining > 0) answer += content.slice(0, remaining);
+        }
+      } catch { /* 保留原始转发，忽略无法解析的事件。 */ }
+    }
+  };
+  return {
+    push(chunk) {
+      try {
+        buffer += decoder.decode(chunk, { stream: true });
+        buffer = buffer.replace(/\r\n/g, '\n');
+        let index;
+        while ((index = buffer.indexOf('\n\n')) >= 0) {
+          consume(buffer.slice(0, index));
+          buffer = buffer.slice(index + 2);
+        }
+      } catch { /* 解析异常不得影响转发。 */ }
+    },
+    flush() {
+      try {
+        buffer += decoder.decode();
+        buffer = buffer.replace(/\r\n/g, '\n');
+        if (buffer.trim()) consume(buffer);
+        buffer = '';
+      } catch { /* 解析异常不得影响转发。 */ }
+    },
+    text: () => answer,
+    usage: () => usage,
+  };
+}
 
 const normalizeIp = value => {
   const ip = typeof value === 'string' ? value.trim() : '';
@@ -62,11 +121,29 @@ export function clientIp(req, trustedProxies = 'loopback') {
   return isIP(address) ? address : peer;
 }
 
-export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_DIR || resolve('.classroom'), adminPassword, fetchAI = fetch, now = Date.now, secure = process.env.NODE_ENV === 'production', studentOrigin = process.env.CLASSROOM_STUDENT_ORIGIN || '', trustedProxies = process.env.CLASSROOM_TRUSTED_PROXIES || 'loopback' } = {}) {
+export function createClassroomServer({
+  directory = process.env.CLASSROOM_DATA_DIR || resolve('.classroom'),
+  adminPassword,
+  fetchAI = fetch,
+  now = Date.now,
+  secure = process.env.NODE_ENV === 'production',
+  studentOrigin = process.env.CLASSROOM_STUDENT_ORIGIN || '',
+  trustedProxies = process.env.CLASSROOM_TRUSTED_PROXIES || 'loopback',
+  usageLog = process.env.CLASSROOM_USAGE_LOG !== '0',
+  usageRetentionDays = Number(process.env.CLASSROOM_USAGE_RETENTION_DAYS) || 365,
+  usageResponseMaxChars = Number(process.env.CLASSROOM_USAGE_RESPONSE_MAX_CHARS) || 8000,
+  usagePromptMaxChars = Number(process.env.CLASSROOM_USAGE_PROMPT_MAX_CHARS) || 4000,
+  usageStoreResponse = process.env.CLASSROOM_USAGE_STORE_RESPONSE || 'full',
+  usageStoreFactory = createUsageStore,
+} = {}) {
   mkdirSync(directory, { recursive: true, mode: 0o700 });
   const secretFile = resolve(directory, 'secrets.json');
   if (!existsSync(secretFile)) writeFileSync(secretFile, JSON.stringify({ encryptionKey: randomBytes(32).toString('hex'), adminPassword: token() }), { mode: 0o600 });
   const secrets = JSON.parse(readFileSync(secretFile, 'utf8'));
+  const retentionDays = Number.isFinite(Number(usageRetentionDays)) && Number(usageRetentionDays) >= 0 ? Math.floor(Number(usageRetentionDays)) : 365;
+  const responseMaxChars = Number.isFinite(Number(usageResponseMaxChars)) && Number(usageResponseMaxChars) > 0 ? Math.floor(Number(usageResponseMaxChars)) : 8000;
+  const promptMaxChars = Number.isFinite(Number(usagePromptMaxChars)) && Number(usagePromptMaxChars) > 0 ? Math.floor(Number(usagePromptMaxChars)) : 4000;
+  const storeResponse = ['full', 'summary', 'none'].includes(usageStoreResponse) ? usageStoreResponse : 'full';
   const password = adminPassword || process.env.CLASSROOM_ADMIN_PASSWORD || secrets.adminPassword;
   const encrypt = value => {
     const iv = randomBytes(12);
@@ -78,6 +155,34 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
     const cipher = createDecipheriv('aes-256-gcm', Buffer.from(secrets.encryptionKey, 'hex'), Buffer.from(iv, 'hex'));
     cipher.setAuthTag(Buffer.from(tag, 'hex'));
     return Buffer.concat([cipher.update(Buffer.from(body, 'hex')), cipher.final()]).toString('utf8');
+  };
+  let usageHmacKey = secrets.usageHmacKey;
+  if (!usageHmacKey) {
+    usageHmacKey = randomBytes(32).toString('hex');
+    try {
+      secrets.usageHmacKey = usageHmacKey;
+      writeFileSync(secretFile, JSON.stringify(secrets), { mode: 0o600 });
+      chmodSync(secretFile, 0o600);
+    } catch (e) {
+      console.error('[usage]', e.message);
+      usageHmacKey = null;
+    }
+  }
+  let usage = null;
+  if (usageLog && usageHmacKey) {
+    try {
+      usage = usageStoreFactory({
+        directory, encrypt, decrypt, hmacKey: usageHmacKey, now,
+        retentionDays, responseMaxChars, promptMaxChars, storeResponse,
+      });
+    } catch (e) {
+      console.error('[usage]', e.message);
+      usage = null;
+    }
+  }
+  const usageSafe = (fn, fallback = null) => {
+    if (!usage) return fallback;
+    try { return fn(usage); } catch (e) { console.error('[usage]', e.message); return fallback; }
   };
   const db = new DatabaseSync(resolve(directory, 'classroom.sqlite'));
   db.exec(`PRAGMA journal_mode=WAL;
@@ -152,6 +257,34 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
     }
     try { return JSON.parse(Buffer.concat(chunks, size).toString('utf8')); } catch { throw error(400, '请求格式不正确。'); }
   };
+  const usageFilters = req => {
+    const query = new URL(req.url, 'http://localhost').searchParams;
+    const tz = timezoneOffset(query.get('tz'));
+    const time = (value, end) => {
+      if (!value) return undefined;
+      if (/^\d+$/.test(value)) return Number(value);
+      if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        const timestamp = Date.parse(`${value}T00:00:00.000Z`);
+        if (!Number.isFinite(timestamp)) return undefined;
+        return timestamp - tz * 60000 + (end ? 86399999 : 0);
+      }
+      return undefined;
+    };
+    const lessonId = Number(query.get('lessonId'));
+    const page = Number(query.get('page'));
+    const pageSize = Number(query.get('pageSize'));
+    const pseudonym = query.get('pseudonym');
+    return {
+      tz,
+      from: time(query.get('from'), false),
+      to: time(query.get('to'), true),
+      lessonId: Number.isInteger(lessonId) && lessonId > 0 ? lessonId : undefined,
+      pseudonym: pseudonym ? pseudonym.slice(0, 128) : undefined,
+      granularity: query.get('granularity') === 'week' ? 'week' : 'day',
+      page: Number.isInteger(page) && page > 0 ? page : 1,
+      pageSize: Number.isInteger(pageSize) && pageSize > 0 ? Math.min(100, pageSize) : 20,
+    };
+  };
   const server = createServer(async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
     res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -186,6 +319,49 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
         }
         if (path.startsWith('/api/admin/')) {
           session(req, 'admin');
+          if (req.method === 'GET' && path.startsWith('/api/admin/usage/')) {
+            const origin = req.headers.origin;
+            const expected = process.env.CLASSROOM_ORIGIN || `${secure ? 'https' : 'http'}://${req.headers.host}`;
+            if ((origin && origin !== expected) || req.headers['sec-fetch-site'] === 'cross-site') throw error(403, '请求来源不受信任。');
+            limit(`usage:${hash(cookies(req).classroom_admin)}`, 120, 60000);
+            const enabled = Boolean(usage);
+            if (path === '/api/admin/usage/status') return json(res, 200, { enabled, retentionDays, storeResponse, responseMaxChars });
+            const filter = usageFilters(req);
+            if (path === '/api/admin/usage/summary') return json(res, 200, {
+              enabled, ...usageSafe(u => u.summary(filter), { total: 0, pseudonyms: 0, errors: 0, errorRate: 0, types: [] }),
+            });
+            if (path === '/api/admin/usage/lessons') return json(res, 200, { enabled, lessons: usageSafe(u => u.lessons(), []) });
+            if (path === '/api/admin/usage/types') return json(res, 200, { enabled, types: usageSafe(u => u.types(filter), []) });
+            if (path === '/api/admin/usage/knowledge') return json(res, 200, { enabled, knowledge: usageSafe(u => u.knowledge(filter), []) });
+            if (path === '/api/admin/usage/trends') return json(res, 200, {
+              enabled, granularity: filter.granularity, buckets: [],
+              ...usageSafe(u => u.trends(filter), {}),
+            });
+            if (path === '/api/admin/usage/pseudonyms') return json(res, 200, {
+              enabled, ...usageSafe(u => u.pseudonyms(filter), { total: 0, pseudonyms: [] }),
+            });
+            if (path === '/api/admin/usage/turns') return json(res, 200, {
+              enabled, ...usageSafe(u => u.turns(filter), { total: 0, page: filter.page, pageSize: filter.pageSize, turns: [] }),
+            });
+            const detail = path.match(/^\/api\/admin\/usage\/turns\/(\d+)$/);
+            if (detail) {
+              const record = usageSafe(u => u.turn(Number(detail[1])), null);
+              if (!record) return json(res, enabled ? 404 : 200, enabled ? { message: '记录不存在。' } : { enabled: false });
+              return json(res, 200, { enabled, ...record });
+            }
+            throw error(404, '接口不存在。');
+          }
+          if (req.method === 'POST' && path === '/api/admin/usage/purge') {
+            let data = {};
+            if (req.headers['content-type']?.startsWith('application/json') && Number(req.headers['content-length'] || 0) > 0) data = await body(req);
+            const raw = String(data?.before ?? '');
+            const tz = timezoneOffset(new URL(req.url, 'http://localhost').searchParams.get('tz'));
+            const before = /^\d+$/.test(raw) ? Number(raw)
+              : /^\d{4}-\d{2}-\d{2}$/.test(raw) ? Date.parse(`${raw}T00:00:00.000Z`) - tz * 60000
+                : NaN;
+            const result = usageSafe(u => u.purge(Number.isFinite(before) ? { before } : {}), { turns: 0, lessons: 0, total: 0 });
+            return json(res, 200, { enabled: Boolean(usage), ...result });
+          }
           if (req.method === 'GET' && path === '/api/admin/state') return json(res, 200, publicState(state(), true));
           if (req.method === 'POST' && path === '/api/admin/logout') {
             db.prepare('DELETE FROM sessions WHERE hash=?').run(hash(cookies(req).classroom_admin));
@@ -213,6 +389,11 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
             if (!Number.isInteger(data.minutes) || data.minutes < 5 || data.minutes > 480 || !Number.isInteger(data.maxQuestions) || data.maxQuestions < 1 || data.maxQuestions > 5000) throw error(400, '时长需为 5–480 分钟，提问上限需为 1–5000 次。');
             if (state().active && state().expires > now()) throw error(409, '请先结束当前课堂，再开启新课堂。');
             db.prepare('UPDATE classroom SET active=1, code=?, generation=generation+1, expires=?, max_questions=?, used=0 WHERE id=1').run(String(randomInt(100000, 1000000)), now() + data.minutes * 60000, data.maxQuestions);
+            const started = state();
+            usageSafe(u => u.startLesson({
+              generation: started.generation, maxQuestions: data.maxQuestions,
+              provider: started.provider, model: providers[started.provider].model,
+            }));
             stopStreams();
             return json(res, 200, publicState(state(), true));
           }
@@ -222,6 +403,9 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
             if (path.endsWith('/rotate') && (!s.active || s.expires <= now())) throw error(400, '请先开启课堂。');
             let nextCode; do { nextCode = String(randomInt(100000, 1000000)); } while (nextCode === s.code);
             db.prepare('UPDATE classroom SET active=?, code=?, generation=generation+1 WHERE id=1').run(path.endsWith('/stop') ? 0 : 1, nextCode);
+            const changed = state();
+            if (path.endsWith('/stop')) usageSafe(u => u.endLesson(s.generation));
+            else usageSafe(u => u.rotateLesson(changed.generation));
             stopStreams();
             return json(res, 200, publicState(state(), true));
           }
@@ -274,7 +458,33 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
             db.prepare('UPDATE classroom SET used=used+1 WHERE id=1').run();
             db.exec('COMMIT');
           } catch (e) { db.exec('ROLLBACK'); throw e; }
+          const conversationId = typeof data.conversationId === 'string' && /^[a-zA-Z0-9-]{16,80}$/.test(data.conversationId) ? data.conversationId : '';
+          const personaId = personaIdFor(data.persona);
+          const turnStartedAt = now();
+          const turnId = usageSafe(u => {
+            const pseudonym = u.pseudonymFor(data.anonId, student.hash);
+            return u.beginTurn({
+              lessonId: u.currentLessonId(configuration.generation),
+              generation: configuration.generation,
+              pseudonym,
+              anonId: data.anonId,
+              sessionHash: student.hash,
+              conversationHash: conversationId ? u.conversationHash(pseudonym, conversationId) : null,
+              conversationId,
+              turnIndex: messages.filter(message => message.role === 'user').length,
+              prompt: messages.at(-1).content,
+              hasImage: withImages.length > 0,
+              personaId,
+              reasoningLevel,
+              provider: configuration.provider,
+              model: providers[configuration.provider].model,
+            });
+          });
           const controller = new AbortController();
+          const collector = createSseCollector(responseMaxChars * 2);
+          let outcome = 'ok';
+          let errorClass = null;
+          let upstreamStarted = false;
           streams.add(controller); inFlight.add(student.hash);
           const timer = setTimeout(() => controller.abort(), Math.min(90000, Math.max(1, configuration.expires - now())));
           const disconnect = () => controller.abort();
@@ -287,11 +497,10 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
               Authorization: `Bearer ${decrypt(configuration[keyColumn(configuration.provider)])}`,
             };
             if (configuration.provider === 'opencode-go') {
-              const conversation = typeof data.conversationId === 'string' && /^[a-zA-Z0-9-]{16,80}$/.test(data.conversationId)
-                ? data.conversationId : '';
               headers['User-Agent'] = 'gesp-classroom/1.0';
-              headers['x-opencode-session'] = hash(`opencode:${student.hash}:${conversation}`);
+              headers['x-opencode-session'] = hash(`opencode:${student.hash}:${conversationId}`);
             }
+            upstreamStarted = true;
             const up = await fetchAI(provider.endpoint, {
               method: 'POST', signal: controller.signal, redirect: 'error',
               headers,
@@ -303,22 +512,45 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
                 max_tokens: reasoningLevel === 'medium' ? 2400 : 1200,
               }),
             });
-            if (up.status === 401) throw error(502, `${provider.name} 拒绝了当前 API Key，请联系老师更新密钥。`);
-            if (!up.ok || !up.body) throw error(502, 'AI 服务暂时不可用，请老师检查密钥或稍后重试。');
+            if (up.status === 401) { outcome = 'error'; errorClass = 'upstream_auth'; throw error(502, `${provider.name} 拒绝了当前 API Key，请联系老师更新密钥。`); }
+            if (!up.ok || !up.body) { outcome = 'error'; errorClass = 'upstream_unavailable'; throw error(502, 'AI 服务暂时不可用，请老师检查密钥或稍后重试。'); }
             res.writeHead(200, { 'Content-Type': 'text/event-stream; charset=utf-8', 'X-Accel-Buffering': 'no' });
-            for await (const chunk of up.body) { if (controller.signal.aborted) break; if (!res.write(chunk)) await once(res, 'drain', { signal: controller.signal }); }
-            res.end();
-          } finally { clearTimeout(timer); streams.delete(controller); inFlight.delete(student.hash); res.off('close', disconnect); }
+            try {
+              for await (const chunk of up.body) {
+                if (controller.signal.aborted) break;
+                collector.push(chunk);
+                if (!res.write(chunk)) await once(res, 'drain', { signal: controller.signal });
+              }
+              collector.flush();
+              res.end();
+            } catch (e) {
+              if (!controller.signal.aborted) { outcome = 'error'; errorClass = 'upstream_stream'; }
+              throw e;
+            }
+          } catch (e) {
+            if (controller.signal.aborted) { outcome = 'aborted'; errorClass = 'aborted'; }
+            else if (outcome === 'ok') { outcome = 'error'; errorClass = upstreamStarted ? 'upstream_unavailable' : 'internal'; }
+            throw e;
+          } finally {
+            if (controller.signal.aborted) { outcome = 'aborted'; errorClass = 'aborted'; }
+            clearTimeout(timer); streams.delete(controller); inFlight.delete(student.hash); res.off('close', disconnect);
+            usageSafe(u => u.finishTurn(turnId, {
+              status: outcome, responseText: collector.text(), errorClass,
+              usage: collector.usage(), latencyMs: Math.max(0, now() - turnStartedAt),
+            }));
+          }
           return;
         }
         throw error(404, '接口不存在。');
       }
       if (!['GET', 'HEAD'].includes(req.method)) throw error(405, '请求方法不支持。');
-      if (path === '/classroom-admin' || path === '/classroom-admin.js') {
+      if (path === '/classroom-admin' || path === '/classroom-admin.js' || path === '/classroom-usage' || path === '/classroom-usage.js') {
         res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
         const js = path.endsWith('.js');
+        const usagePage = path.startsWith('/classroom-usage');
         res.setHeader('Content-Type', js ? 'text/javascript; charset=utf-8' : 'text/html; charset=utf-8');
-        return res.end(readFileSync(new URL(js ? './admin.js' : './admin.html', import.meta.url)));
+        const file = usagePage ? (js ? './usage.js' : './usage.html') : (js ? './admin.js' : './admin.html');
+        return res.end(readFileSync(new URL(file, import.meta.url)));
       }
       const root = resolve('dist');
       const relative = decodeURIComponent(path).replace(/^\/gesp-app\/?/, '').replace(/^\/+/, '');
@@ -337,9 +569,10 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
     db.prepare('DELETE FROM sessions WHERE expires<?').run(now());
     db.prepare('DELETE FROM limits WHERE expires<?').run(now());
     db.prepare('DELETE FROM requests WHERE created<?').run(now() - 86400000);
+    usageSafe(u => u.maybeDailyPurge());
   }, 60000);
   cleanup.unref();
-  server.on('close', () => { clearInterval(cleanup); stopStreams(); db.close(); });
+  server.on('close', () => { clearInterval(cleanup); stopStreams(); usageSafe(u => u.close()); db.close(); });
   return server;
 }
 
