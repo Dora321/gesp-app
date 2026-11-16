@@ -1,0 +1,105 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    3
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T02:55:54.812Z",
+  "completedAt": "2026-11-16T02:56:43.113Z",
+  "finishReason": "stop",
+  "inputSha256": "8f4aa4239066a43d967aacf9643467592024b32ea1a1703e4de9cad9b5a6b6b9",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头图像显示『CCF 编程能力等级认证 GESP』『C++ 四级』『2023 年 9 月』，与 2023-09-l4（2023 年 9 月 GESP C++ 四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图第 3 题题干为『对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。』，其后页末即接选项 A。当前修订候选 question 与原卷逐字一致，上轮发现的页末『A』残留标记已删除，核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页页末可见选项 A『O(n)』（跨页截断），第 2 页原图自上而下为 B『O(n log n)』、C『O(n²)』、D『以上都不正确』。候选 options 内容与顺序完全一致，答案索引映射无冲突。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 3 题为 C，即 0 起始索引 2。独立推导：基本冒泡排序总比较次数恒为 (n-1)+(n-2)+…+1 = n(n-1)/2 = Θ(n²)；交换次数等于逆序对数，均匀随机排列期望为 n(n-1)/4，仍为 Θ(n²)；故平均时间复杂度为 O(n²)，对应选项 C，answer=2 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析两处事实性问题经独立核算确认：①『平均情况 O(n²)：比较和交换次数均为 n(n-1)/2』有误——共 n(n-1)/2 对元素、每对逆序概率 1/2，期望交换次数应为 n(n-1)/4；②『最好情况 O(n)：数组已有序，只需一轮遍历』仅对带提前退出优化的实现成立，基本版冒泡（如本卷第 15 题代码）即使有序仍需 n(n-1)/2 次比较。changes 已提供修正后完整解析，其中比较次数 n(n-1)/2、最坏交换 n(n-1)/2、期望交换 n(n-1)/4、最好 O(n) 注明提前退出前提，均经独立推导无误，选项分析与知识延伸无事实错误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码，维度不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (O(n²))**\n\n**核心解析：**\n冒泡排序反复遍历待排序序列，比较相邻元素并在逆序时交换，使较大（或较小）元素逐步移动到序列一端。\n\n**时间复杂度分析：**\n- 未优化（按固定轮数执行）的冒泡排序：第 1 轮比较 n-1 次，第 2 轮比较 n-2 次，……，第 n-1 轮比较 1 次，总比较次数为 (n-1)+(n-2)+…+1 = n(n-1)/2 = Θ(n²)，与输入无关。\n- 交换次数等于数组的逆序对数：最坏情况（逆序数组）每对都逆序，交换 n(n-1)/2 次；最好情况（已有序）无交换。\n- 对均匀随机排列，每一对元素逆序的概率为 1/2，共 n(n-1)/2 对，故期望交换次数为 n(n-1)/4，与比较次数同为 Θ(n²) 量级。\n- 若实现带\"本轮无交换则提前结束\"的优化，已有序数组只需一轮比较即可结束，最好情况为 O(n)；但平均与最坏情况仍为 O(n²)。\n\n因此，冒泡排序的平均时间复杂度为 O(n²)，对应选项 C。\n\n**选项逐项分析：**\n- A. O(n)：错误。仅带提前退出优化的冒泡排序在最好情况（已有序）下为 O(n)，不能代表平均情况。\n- B. O(n log n)：错误。这是快速排序、归并排序、堆排序等高效比较排序的典型平均复杂度，冒泡排序达不到。\n- C. O(n²)：正确。\n- D. 以上都不正确：错误，C 已正确。\n\n**易错提醒：**\n- 不能只看外层循环是 O(n) 就认为整个算法是 O(n)，需按内外层循环的总执行次数估算。\n- 平均交换次数是期望逆序对数 n(n-1)/4，而不是 n(n-1)/2；n(n-1)/2 是比较次数与最坏情况交换次数。\n- 冒泡排序的 O(n) 最好情况依赖\"提前退出\"优化，基本版冒泡即使数组有序仍需 Θ(n²) 次比较。\n\n**知识延伸：**\n- 平均/最坏 O(n²)：冒泡排序、选择排序、插入排序。\n- 平均 O(n log n)：快速排序、归并排序、堆排序。\n- O(n) 量级的非比较排序：计数排序、桶排序、基数排序（通常需额外内存空间）。\n\n**考点：** 基础排序算法（冒泡排序）的时间复杂度分析"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核对 statement/options/answer 判 verified，经独立核对接受：当前修订候选题干已删除上轮指出的页末『A』残留，与原卷第 1 页逐字一致；选项跨页内容与顺序一致；答案表第 3 题为 C（索引 2），与独立推导（比较次数恒 n(n-1)/2、期望交换 n(n-1)/4，均 Θ(n²)）相符。初核对 explanation 判 needs_fix 的两点批评经独立核算属实：平均交换次数应为期望逆序对数 n(n-1)/4 而非 n(n-1)/2；『最好情况 O(n)』须注明依赖提前退出优化，否则与基本版冒泡（本卷第 15 题代码）矛盾。其修复文本经逐条数学核算无误，采纳；无否决项。应用 changes.explanation 后即为最终版，故 verdict=revise。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3
+      ],
+      "usage": {
+        "prompt_tokens": 28114,
+        "completion_tokens": 8129,
+        "total_tokens": 36243,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6543
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0082816,
+          "allowance": 0.0082816,
+          "tokens": {
+            "input": 28114,
+            "output": 8129,
+            "reasoning": 6543,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T02:55:54.812Z",
+      "completedAt": "2026-11-16T02:56:43.113Z"
+    }
+  ]
+}

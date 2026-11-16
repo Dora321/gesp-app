@@ -1,0 +1,103 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    3
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T02:54:48.542Z",
+  "completedAt": "2026-11-16T02:55:54.808Z",
+  "finishReason": "stop",
+  "inputSha256": "8f4aa4239066a43d967aacf9643467592024b32ea1a1703e4de9cad9b5a6b6b9",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示为 CCF GESP C++ 四级、2023 年 9 月；第1页答案表第 3 题标为 C，与 2023-09-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题原文为：对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。候选 question 与原文一致，未发现页末选项 A 的残留文本。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页页末可见 A. O(n)；第2页依次为 B. O(n log n)、C. O(n²)、D. 以上都不正确。候选 options 的内容和顺序一致，答案索引映射未改变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 C（0 起始索引 2）。独立推导：冒泡排序固定轮数下总比较次数为 (n-1)+(n-2)+…+1=n(n-1)/2=Θ(n²)；随机排列期望交换次数为 n(n-1)/4，仍为 Θ(n²)，故平均时间复杂度为 O(n²)，对应 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析把平均情况的交换次数写成 n(n-1)/2，这不符合随机排列的期望逆序对数 n(n-1)/4；并称数组已有序只需一轮遍历即 O(n)，该结论仅对带提前退出优化的冒泡排序成立，应注明前提。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (O(n²))**\n\n**核心解析：**\n冒泡排序反复遍历待排序序列，比较相邻元素并在逆序时交换，使较大（或较小）元素逐步移动到序列一端。\n\n**时间复杂度分析：**\n- 未优化（或按固定轮数执行）的冒泡排序，第 1 轮比较 n-1 次，第 2 轮比较 n-2 次，……，第 n-1 轮比较 1 次，总比较次数为 (n-1)+(n-2)+…+1=n(n-1)/2=Θ(n²)。\n- 逆序数组为最坏情况，每次比较都发生交换，交换次数为 n(n-1)/2。\n- 对均匀随机排列，逆序对数的期望为 n(n-1)/4，因此交换次数的期望为 n(n-1)/4；与比较次数同为 Θ(n²) 量级。\n- 若实现带“本轮无交换则提前结束”的优化，已有序数组可在一轮比较后结束，最好情况为 O(n)；但平均和最坏情况仍为 O(n²)。\n\n因此平均时间复杂度为 O(n²)，对应选项 C。\n\n**选项逐项分析：**\n- A. O(n)：错误。仅在带提前退出优化的最好情况下出现，不是平均复杂度。\n- B. O(n log n)：错误。这是快速排序、归并排序、堆排序等高效排序的典型平均复杂度。\n- C. O(n²)：正确。\n- D. 以上都不正确：错误。\n\n**易错提醒：**\n- 不能只看外层循环为 O(n) 就认为总复杂度为 O(n)，两层循环的总工作量是 Θ(n²)。\n- 平均交换次数不是 n(n-1)/2；随机排列的期望逆序对数为 n(n-1)/4。\n- 冒泡排序的 O(n) 最好情况依赖提前退出优化，且不能代表平均情况。\n\n**知识延伸：**\n- 平均/最坏 O(n²)：冒泡排序、选择排序、插入排序。\n- 平均 O(n log n)：快速排序、归并排序、堆排序。\n- O(n) 量级的非比较排序：计数排序、桶排序、基数排序（通常需要额外空间）。\n\n**考点：** 基础排序算法（冒泡排序）的时间复杂度分析"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3
+      ],
+      "usage": {
+        "prompt_tokens": 13884,
+        "completion_tokens": 6685,
+        "total_tokens": 20569,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5662
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0121872,
+          "allowance": 0.00731232,
+          "tokens": {
+            "input": 13884,
+            "output": 6685,
+            "reasoning": 5662,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T02:54:48.542Z",
+      "completedAt": "2026-11-16T02:55:54.808Z"
+    }
+  ]
+}
