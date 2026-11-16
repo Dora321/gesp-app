@@ -68,6 +68,7 @@ const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
 const LearningStorageNotice = lazy(() => import('./components/LearningStorageNotice'));
 const AIChat = lazy(() => import('./components/AIChat'));
 const PageAnnotations = lazy(() => import('./components/PageAnnotations'));
+import { useExamFocus, useTeacherTools } from './utils/teacherTools';
 
 // Loading fallback
 import LoadingScreen from './components/LoadingScreen';
@@ -94,6 +95,15 @@ const GlobalWidgets = () => {
       <div className={usesHeaderActions ? 'hidden md:contents' : 'contents'}><AIChat /></div>
     </Suspense>
   );
+};
+
+// 页面标注是老师投屏用的，默认不给学生显示（?teacher=1 打开），考试模式不挂载。
+const TeacherWidgets = () => {
+  const { search } = useLocation();
+  const enabled = useTeacherTools(search);
+  const examFocus = useExamFocus();
+  if (!enabled || examFocus) return null;
+  return <Suspense fallback={null}><PageAnnotations /></Suspense>;
 };
 
 const RoutedLesson = () => {
@@ -189,7 +199,7 @@ function App() {
         </Suspense>
         <Suspense fallback={null}><LearningStorageNotice /></Suspense>
         <GlobalWidgets />
-        <Suspense fallback={null}><PageAnnotations /></Suspense>
+        <TeacherWidgets />
       </ErrorBoundary>
     </BrowserRouter>
   );

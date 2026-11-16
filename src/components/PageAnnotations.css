@@ -14,4 +14,7 @@
 .annotation-row select { background: #1e293b; color: white; padding: 6px 2px; border-radius: 6px; }
 .annotation-panel p { font-size: 12px; color: #cbd5e1; margin: 5px 0 0; }
 .annotation-tools .annotation-launcher { border-radius: 24px; padding: 10px 16px; background: #4338ca; box-shadow: 0 4px 16px #0003; }
+.annotation-tools .annotation-disable { width: 100%; margin-top: 10px; background: transparent; border-style: dashed; color: #cbd5e1; }
+/* 手机竖屏不显示：浮钮会压住「上一步」、搜索框和题面 */
+@media (max-width: 639px) { .annotation-tools, .annotation-layer { display: none; } }
 @media print { .annotation-tools { display: none; } }

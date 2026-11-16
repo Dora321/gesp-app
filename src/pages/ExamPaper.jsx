@@ -8,6 +8,7 @@ import useLuoguPool from '../hooks/useLuoguPool';
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
 import { reviewQuestionIndexes, scoreExam } from '../utils/examScoring';
 import { resolveVerification } from '../data/gesp/verificationModel';
+import { setExamFocus } from '../utils/teacherTools';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import { recordExamAttempt } from '../utils/examHistory';
 import { needsSynthesizedCoding, withSynthesizedCoding } from '../data/gesp/codingQuestions';
@@ -105,6 +106,12 @@ const ExamPaper = () => {
     setReviewWrongOnly(false);
     setMode(null);
   }, [paperId]);
+
+  // 考试模式期间不挂载页面标注等教师工具。
+  useEffect(() => {
+    setExamFocus(mode === 'exam');
+    return () => setExamFocus(false);
+  }, [mode]);
 
   // Persist exam progress so an accidental refresh / tab close doesn't wipe
   // answers and the clock mid-paper. Only saves while actively in exam mode,
