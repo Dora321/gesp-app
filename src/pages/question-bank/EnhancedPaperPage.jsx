@@ -69,16 +69,16 @@ const GENERIC_CODING_STEPS = ['读懂题意，圈出输入和输出', '用样例
 const GENERIC_CODING_PITFALLS = ['数据范围可能很大，注意 int 是否会溢出', '边界值（0、1、只有一个数）要单独试一试', '输出格式要和题目完全一致'];
 
 const ANALYSIS_CARD_TONES = {
-    emerald: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+    neutral: 'border-slate-200 bg-slate-50 text-slate-700',
     amber: 'border-amber-200 bg-amber-50 text-amber-800',
     indigo: 'border-indigo-200 bg-indigo-50 text-indigo-800',
 };
 
-const AnalysisCard = ({ icon: Icon, title, tone = 'emerald', children }) => (
+const AnalysisCard = ({ icon: Icon, title, tone = 'neutral', children }) => (
     <section className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 md:p-5">
         <h3 className="flex items-center gap-2.5 text-[15px] font-semibold text-slate-800 md:text-base">
             <span
-                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${ANALYSIS_CARD_TONES[tone] || ANALYSIS_CARD_TONES.emerald}`}
+                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${ANALYSIS_CARD_TONES[tone] || ANALYSIS_CARD_TONES.neutral}`}
                 aria-hidden="true"
             >
                 <Icon size={16} />
@@ -90,14 +90,14 @@ const AnalysisCard = ({ icon: Icon, title, tone = 'emerald', children }) => (
 );
 
 const sectionMetaByLevel = {
-    1: { tone: '语法启蒙', focus: '语句规则与基础逻辑', color: 'from-emerald-500 to-teal-500' },
-    2: { tone: '流程强化', focus: '循环与分支协同', color: 'from-blue-500 to-indigo-500' },
-    3: { tone: '算法入门', focus: '枚举、模拟与结构化表达', color: 'from-indigo-500 to-violet-500' },
-    4: { tone: '结构进阶', focus: '数据组织与流程控制', color: 'from-violet-500 to-purple-500' },
-    5: { tone: '综合建模', focus: '多步骤推理与状态管理', color: 'from-purple-500 to-fuchsia-500' },
-    6: { tone: '算法深化', focus: '复杂度与策略优化', color: 'from-orange-500 to-rose-500' },
-    7: { tone: '竞赛视角', focus: '抽象化与高效实现', color: 'from-rose-500 to-pink-500' },
-    8: { tone: '高阶压轴', focus: '综合算法与工程稳健性', color: 'from-slate-700 to-slate-900' },
+    1: { tone: '语法启蒙', focus: '语句规则与基础逻辑' },
+    2: { tone: '流程强化', focus: '循环与分支协同' },
+    3: { tone: '算法入门', focus: '枚举、模拟与结构化表达' },
+    4: { tone: '结构进阶', focus: '数据组织与流程控制' },
+    5: { tone: '综合建模', focus: '多步骤推理与状态管理' },
+    6: { tone: '算法深化', focus: '复杂度与策略优化' },
+    7: { tone: '竞赛视角', focus: '抽象化与高效实现' },
+    8: { tone: '高阶压轴', focus: '综合算法与工程稳健性' },
 };
 
 // Local MarkdownRenderer removed in favor of shared component
@@ -243,7 +243,6 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     const levelMeta = sectionMetaByLevel[paperData?.level] || {
         tone: '综合训练',
         focus: '核心知识点巩固',
-        color: 'from-indigo-500 to-blue-600'
     };
 
     // Programming questions have no option answer: revealing one stores a
@@ -300,7 +299,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     return (
         <div className="mw-surface mw-line-bank min-h-screen bg-slate-100">
             <header className="sticky top-0 z-20 bg-white border-b border-slate-200">
-                <div className={`h-1 w-full bg-gradient-to-r ${levelMeta.color}`} />
+                <div className="h-1 w-full bg-[var(--mw-line)]" />
                 <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
                     <button onClick={() => navigate(-1)} className="p-2 rounded-lg hover:bg-slate-100" aria-label="返回">
                         <ChevronLeft size={18} />
@@ -431,7 +430,8 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                         )}
 
                         {!isProgrammingQuestion(currentQ) && (
-                            <div className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
+                            <div className="question-stem mb-6">
+                                <span className="question-number">{currentQuestionIndex + 1}.</span>
                                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
                             </div>
                         )}
@@ -521,7 +521,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                                                     href={luoguUrl}
                                                                     target="_blank"
                                                                     rel="noopener noreferrer"
-                                                                    className="mx-1 font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900"
+                                                                    className="mx-1 font-semibold text-slate-900 underline underline-offset-2"
                                                                 >
                                                                     洛谷
                                                                 </a>
@@ -540,9 +540,9 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
                                                 {currentQ.template && (
                                                     <details className="min-w-0 rounded-xl border border-slate-200 bg-white">
-                                                        <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2.5 px-4 py-3 text-[15px] font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500 md:px-5 md:text-base [&::-webkit-details-marker]:hidden">
+                                                        <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2.5 px-4 py-3 text-[15px] font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-500 md:px-5 md:text-base [&::-webkit-details-marker]:hidden">
                                                             <span
-                                                                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-800"
+                                                                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-700"
                                                                 aria-hidden="true"
                                                             >
                                                                 <Code2 size={16} />
@@ -623,8 +623,8 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
                                                 {/* 核心知识点 */}
                                                 {displayedAnalysis && (
-                                                    <div className="bg-white border border-violet-100 rounded-lg p-3">
-                                                        <div className="text-sm font-semibold text-violet-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
+                                                    <div className="bg-white border border-slate-200 rounded-lg p-3">
+                                                        <div className="text-sm font-semibold text-slate-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
                                                         <MarkdownRenderer content={displayedAnalysis?.keyPoint || buildQuestionInsight(currentQ, paperData.level)} className="text-sm text-slate-700 leading-relaxed" />
                                                     </div>
                                                 )}
@@ -655,7 +655,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                         )}
                                         <div className="flex flex-wrap gap-2">
                                             {tags.map((tag) => (
-                                                <span key={tag} className={`text-xs px-2 py-1 rounded-full bg-white border ${isProgramming ? 'border-emerald-200 text-emerald-800' : 'border-blue-200 text-blue-700'}`}>#{tag}</span>
+                                                <span key={tag} className={`text-xs px-2 py-1 rounded-full bg-white border border-slate-200 text-slate-600`}>#{tag}</span>
                                             ))}
                                         </div>
                                     </>

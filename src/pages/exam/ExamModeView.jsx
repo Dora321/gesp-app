@@ -35,10 +35,10 @@ const ExamModeView = ({
       onClick={onProgrammingMark}
       disabled={isSubmitted}
       aria-pressed={programmingMarked}
-      className={`flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 ${
+      className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 ${
         programmingMarked
-          ? 'border border-emerald-200 bg-emerald-50 text-emerald-900 hover:bg-emerald-100'
-          : 'bg-emerald-700 text-white hover:bg-emerald-800'
+          ? 'border-emerald-300 bg-emerald-50 text-emerald-900 hover:bg-emerald-100'
+          : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-100'
       }`}
     >
       {programmingMarked && <Check size={16} aria-hidden="true" />}
@@ -48,9 +48,9 @@ const ExamModeView = ({
 
   return (
     <main className="min-w-0 flex-1 overflow-y-auto p-4 pb-24 md:p-8">
-      <div className="max-w-3xl mx-auto space-y-8">
-        {/* Question Card */}
-        <div className={`bg-white rounded-2xl shadow-sm border border-slate-200 animate-fade-in relative overflow-hidden ${isProgramming ? 'p-3 md:p-5' : 'p-6 md:p-10'}`}>
+      <div className={`mx-auto space-y-8 ${isProgramming ? 'max-w-[54rem]' : 'max-w-3xl'}`}>
+        {/* Question Card：编程题也只有这一层白底，内部小节不再套卡 */}
+        <div className={`bg-white rounded-2xl shadow-sm border border-slate-200 animate-fade-in relative overflow-hidden ${isProgramming ? 'p-5 md:p-10' : 'p-6 md:p-10'}`}>
           {!isProgramming && (
             <div className="absolute top-0 left-0 bg-slate-100 px-4 py-1.5 rounded-br-xl text-xs font-bold text-slate-600 uppercase tracking-wider">
               {currentQ.type === 'single' ? '单选题' : '判断题'} &bull; {currentQ.score}分
@@ -78,8 +78,8 @@ const ExamModeView = ({
             />
           ) : (
             <>
-              <div className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
-                <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
+              <div className="question-stem mt-6 mb-8">
+                <span className="question-number">{currentQuestionIndex + 1}.</span>
                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
               </div>
 
@@ -89,7 +89,7 @@ const ExamModeView = ({
                   const isSelected = answers[currentQ.id] === idx;
                   const isExcluded = isScoringExcluded(currentQ);
                   const showAnswer = isSubmitted && !isExcluded;
-                  let optionClass = 'hover:border-blue-400 hover:bg-slate-50 cursor-pointer';
+                  let optionClass = 'border-slate-300 hover:border-blue-400 hover:bg-slate-50 cursor-pointer';
                   if (isExcluded) {
                     optionClass = 'border-slate-200 bg-slate-50 text-slate-500 cursor-not-allowed';
                   } else if (showAnswer) {

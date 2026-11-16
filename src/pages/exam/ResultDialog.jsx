@@ -43,7 +43,7 @@ const ResultDialog = ({
           <div className="bg-slate-50 p-3 rounded-lg"><div className="text-xs text-slate-600 uppercase">用时</div><div className="font-bold text-slate-700 font-mono">{formatTime(timeElapsed)}</div></div>
           <div className="bg-green-50 p-3 rounded-lg"><div className="text-xs text-green-700 uppercase">客观正确</div><div className="font-bold text-green-700">{objectiveCorrectCount}</div></div>
           <div className="bg-red-50 p-3 rounded-lg"><div className="text-xs text-red-700 uppercase">客观错误</div><div className="font-bold text-red-700">{objectiveWrongCount}</div></div>
-          <div className="bg-violet-50 p-3 rounded-lg"><div className="text-xs text-violet-700 uppercase">编程已标记</div><div className="font-bold text-violet-700">{programmingMarkedCount}</div></div>
+          <div className="bg-[var(--mw-info-tint)] p-3 rounded-lg"><div className="text-xs text-[var(--mw-info)]">编程已标记</div><div className="font-bold text-[var(--mw-info)]">{programmingMarkedCount}</div></div>
           <div className="bg-orange-50 p-3 rounded-lg"><div className="text-xs text-orange-700 uppercase">不计分题</div><div className="font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>
         <p className="text-sm text-slate-500 mb-3">编程题不自动判分；题面待核验的客观题也不计入分数，请结合官方原卷复盘。</p>

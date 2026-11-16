@@ -39,7 +39,7 @@ const QuestionSidebar = ({
               let statusColor = 'bg-white border-slate-200 text-slate-600';
               if (isSubmitted) {
                 if (isProgramming) {
-                  statusColor = isAnswered ? 'bg-violet-100 border-violet-300 text-violet-700' : 'bg-slate-100 border-slate-200 text-slate-600';
+                  statusColor = isAnswered ? 'bg-[var(--mw-info-tint)] border-[var(--mw-info)] text-[var(--mw-info)]' : 'bg-slate-100 border-slate-200 text-slate-600';
                 } else {
                   const isCorrect = answers[q.id] === q.answer;
                   statusColor = isCorrect ? 'bg-green-100 border-green-300 text-green-700' : answers[q.id] !== undefined ? 'bg-red-100 border-red-300 text-red-700' : 'bg-slate-100 border-slate-200 text-slate-600';

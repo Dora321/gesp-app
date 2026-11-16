@@ -213,7 +213,8 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                             </div>
                         )}
 
-                        <div className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
+                        <div className="question-stem mb-6">
+                            <span className="question-number">{currentQuestionIndex + 1}.</span>
                             <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
                         </div>
 
@@ -316,8 +317,8 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
 
                                         {/* 核心知识点 */}
                                         {displayedAnalysis && (
-                                            <div className="bg-white border border-violet-100 rounded-lg p-3">
-                                                <div className="text-sm font-semibold text-violet-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
+                                            <div className="bg-white border border-slate-200 rounded-lg p-3">
+                                                <div className="text-sm font-semibold text-slate-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
                                                 <MarkdownRenderer content={displayedAnalysis?.keyPoint || '暂无解析'} className="text-sm text-slate-700 leading-relaxed" />
                                             </div>
                                         )}
