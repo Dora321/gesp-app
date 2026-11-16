@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>课堂 AI · 使用分析</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,"Microsoft YaHei",sans-serif;color:#292824;background:#f5f3ed}*{box-sizing:border-box}body{margin:0;padding:48px 20px}main{max-width:1040px;margin:auto}small{letter-spacing:2px;color:#77756d}h1{font-family:serif;font-size:34px;font-weight:500;margin:12px 0}h2{font-family:serif;font-size:22px;font-weight:500;margin:0 0 16px}h3{font-size:16px;margin:24px 0 12px}p{color:#737168;line-height:1.7;margin:8px 0}a{color:#526653}.card{padding:28px;background:#fffef9;border:1px solid #dedbd2;border-radius:12px;margin-top:28px}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.head-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:14px}.notice p{margin:4px 0}.notice strong{color:#3e5240}.switch{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#4c4b44;cursor:pointer}.switch input{width:18px;height:18px;accent-color:#526653}.filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:end}.filters label{display:grid;gap:6px;font-size:14px;color:#4c4b44}.filters input,.filters select,#granularity{font:inherit;min-height:44px;width:100%;padding:9px 10px;border:1px solid #c9c5ba;border-radius:6px;background:#fff;color:inherit}.filters .actions{display:flex;gap:8px;flex-wrap:wrap}button{font:inherit;min-height:44px;padding:9px 16px;border:0;border-radius:6px;background:#526653;color:#fff;cursor:pointer}button.secondary{background:#eae7de;color:#35372e}button.danger{background:#8a4a3d}button:disabled{opacity:.5;cursor:not-allowed}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}.stat{display:grid;gap:6px;margin:0}.stat span{font-size:13px;color:#77756d}.stat strong{font-size:32px;font-weight:500;color:#3e5240;font-variant-numeric:tabular-nums}.stat small{letter-spacing:0;color:#8a887f}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid .card{margin-top:14px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}.section-head h2{margin:0}#granularity{width:auto;min-width:110px}.bar-row{display:grid;grid-template-columns:110px minmax(0,1fr) 86px;gap:10px;align-items:center;margin:10px 0;font-size:14px}.bar{height:10px;background:#eae7de;border-radius:999px;overflow:hidden}.bar-fill{height:100%;background:#72866f;border-radius:999px}.bar-row .value{text-align:right;color:#77756d;font-variant-numeric:tabular-nums}.knowledge-row{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,2fr) 54px;gap:10px;align-items:center;margin:10px 0;font-size:14px}.knowledge-row .value{text-align:right;color:#77756d;font-variant-numeric:tabular-nums}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #e8e4da;vertical-align:top}th{font-weight:500;color:#77756d;white-space:nowrap}td{color:#3f3e38}.pseudo-list{display:grid;gap:8px}.pseudo{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 14px;width:100%;text-align:left;background:#f7f5ef;color:#35372e;border:1px solid #e2ded4}.pseudo[aria-pressed="true"]{background:#e6ece4;border-color:#72866f}.pseudo strong{font-size:15px;color:#3e5240;font-variant-numeric:tabular-nums}.pseudo .muted{grid-column:2;font-size:13px;color:#77756d}.pseudo .tags{grid-column:1/-1;font-size:13px;color:#77756d}.empty{color:#77756d;font-size:14px;padding:8px 0}.turn{padding:14px 0;border-bottom:1px solid #e8e4da}.turn:last-child{border-bottom:0}.turn-head{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;font-size:14px}.turn-head .who{font-weight:600;color:#3e5240}.turn-head .time{color:#77756d;font-variant-numeric:tabular-nums}.turn-head .spacer{flex:1}.turn-meta{font-size:13px;color:#77756d;margin-top:6px}.turn .view-original{padding:6px 12px;min-height:38px;font-size:13px}.transcript{margin-top:12px;padding:14px;background:#f7f5ef;border:1px solid #e2ded4;border-radius:8px}.transcript h4{font-size:13px;color:#77756d;margin:10px 0 6px}.transcript h4:first-child{margin-top:0}.transcript pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:14px;line-height:1.65;color:#3f3e38}.pager{display:flex;align-items:center;gap:12px;justify-content:flex-end;margin-top:16px;font-size:14px;color:#77756d}.notice-text{min-height:26px;color:#765b35}.status-line{min-height:26px;color:#77756d;font-size:14px}[hidden]{display:none!important}body.screen-mode .transcript{display:none!important}@media(max-width:760px){body{padding:28px 14px}.card{padding:20px}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.cards,.grid{grid-template-columns:1fr}.bar-row{grid-template-columns:88px minmax(0,1fr) 76px}.pseudo{grid-template-columns:1fr}.pseudo .muted{grid-column:1}}
+</style></head><body><main>
+<div class="page-head"><div><small>CLASSROOM / AI</small><h1>课堂使用分析</h1><p>看孩子们怎么提问，用来补课堂，不用于排名或点名。</p></div>
+<div class="head-actions"><label class="switch"><input id="screen-mode" type="checkbox">投屏模式</label><a href="/classroom-admin">返回教师设置 →</a></div></div>
+
+<section class="card notice" aria-label="记录范围说明">
+<p><strong>仅覆盖课堂模式。</strong>个人模式直连 DeepSeek，不经过课堂网关，不记录。</p>
+<p><strong>知识点来自提问关键词，不是题库标签。</strong>一期没有试卷、题号或页面上下文；提问太短或没有点明概念时，可能没有标签或标错。</p>
+<p><strong>「同学-XXXX」是浏览器匿名代号。</strong>公共电脑、清除站点数据或更换设备都会生成新代号，先后两个孩子也可能算成同一人。</p>
+<p><strong>请勿对号入座。</strong>代号不得用于点名、排名或批评；原文默认不显示，投屏时请开启投屏模式。</p>
+</section>
+
+<section class="card" id="login-required" hidden>
+<h2>需要教师登录</h2>
+<p>请先在 <a href="/classroom-admin">/classroom-admin</a> 登录，然后回到本页查看课堂使用分析。</p>
+<p><a href="/classroom-admin">请先在 /classroom-admin 登录 →</a></p>
+</section>
+
+<section id="app" hidden>
+<form class="card filters" id="filters">
+<label>开始日期<input id="from" type="date"></label>
+<label>结束日期<input id="to" type="date"></label>
+<label>场次<select id="lesson"><option value="">全部场次</option></select></label>
+<div class="actions"><button type="submit">应用筛选</button><button type="button" class="secondary" id="reset">清除筛选</button></div>
+</form>
+
+<p class="status-line" id="status" role="status"></p>
+
+<div class="cards">
+<article class="card stat"><span>提问次数</span><strong id="stat-total">0</strong><small id="stat-total-detail">&nbsp;</small></article>
+<article class="card stat"><span>匿名人数</span><strong id="stat-people">0</strong><small>同一浏览器代号计为一人</small></article>
+<article class="card stat"><span>错误率</span><strong id="stat-error">0%</strong><small id="stat-error-detail">0 条错误</small></article>
+</div>
+
+<div class="grid">
+<section class="card"><h2>提问类型占比</h2><div id="types"><p class="empty">暂无数据</p></div></section>
+<section class="card"><h2>知识点次数</h2><div id="knowledge"><p class="empty">暂无数据</p></div></section>
+</div>
+
+<section class="card">
+<div class="section-head"><h2>按日 / 周趋势</h2><select id="granularity" aria-label="趋势粒度"><option value="day">按日</option><option value="week">按周</option></select></div>
+<div class="table-wrap" id="trends"><p class="empty">暂无数据</p></div>
+</section>
+
+<section class="card">
+<h2>按匿名代号</h2>
+<p>按代号名排序，不做排名。点开某个代号可以查看该浏览器代号在本筛选范围内的提问时间线，不显示原文。</p>
+<div class="pseudo-list" id="pseudonyms"><p class="empty">暂无数据</p></div>
+<div id="timeline-wrap" hidden><h3 id="timeline-title"></h3><div class="table-wrap" id="timeline"></div></div>
+</section>
+
+<section class="card">
+<div class="section-head"><h2>提问明细</h2><span class="status-line" id="turns-meta"></span></div>
+<p>默认只显示时间、类型、知识点、场次和状态。点「查看原文」才会读取该条提问与完整回答；原文已脱敏，仍请谨慎对待。</p>
+<div id="turns"><p class="empty">暂无数据</p></div>
+<div class="pager"><button type="button" class="secondary" id="prev">上一页</button><span id="page-info"></span><button type="button" class="secondary" id="next">下一页</button></div>
+</section>
+
+<section class="card">
+<h2>数据维护</h2>
+<p>默认保留 365 天，过期记录会每天自动清理。也可以现在删除超过保留期的记录。</p>
+<button type="button" class="danger" id="purge">立即清理过期记录</button>
+<p class="notice-text" id="purge-result" role="status"></p>
+</section>
+</section>
+
+<p class="notice-text" id="notice" role="status"></p>
+</main><script src="/classroom-usage.js" defer></script></body></html>
