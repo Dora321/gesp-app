@@ -5,20 +5,10 @@ const openLabel = '打开 AI 问答助手';
 const closeLabel = '关闭 AI 问答助手';
 
 async function openFromCorner(page, scope = page) {
+  // U10: the corner launcher stays visible without a hover reveal.
   const button = scope.getByRole('button', { name: openLabel, exact: true });
   await button.waitFor();
-  assert.equal(await button.evaluate(node => getComputedStyle(node).opacity), '0');
-  const { width, height } = page.viewportSize();
-  await page.mouse.move(width - 2, height - 2);
-  await button.evaluate(node => new Promise((resolve, reject) => {
-    const deadline = performance.now() + 1500;
-    function check() {
-      if (getComputedStyle(node).opacity === '1') resolve();
-      else if (performance.now() > deadline) reject(new Error('Corner did not reveal the AI button'));
-      else requestAnimationFrame(check);
-    }
-    check();
-  }));
+  assert.equal(await button.evaluate(node => getComputedStyle(node).opacity), '1');
   await button.click();
 }
 
