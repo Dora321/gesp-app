@@ -480,42 +480,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
-        1,
-        4
+        4,
+        1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第4页第11题题干、1.txt内容与代码均完整；网站将string line与int x合并到一行，属于排版等价转换，未改变语义。",
-          "review": "PDF 第 4 页题干「如果文件 1.txt 中的内容如下，则执行下面C++代码时，注释了 #### 那行代码所输出的 x 的值为（ ）」及文件内容框（50 2024 3.16 I / love / GESP!）、代码（ifstream fin; string line; int x; fin.open(\"1.txt\",ios::in); 循环 i<2 两次 fin>>line 并输出；fin>>x; cout << x << endl; //####）完整；网站将 string line 与 int x 合并为一行、省略空行，属排版等价转换，语义未变。"
+          "initial": "对照PDF第4页原图：文件内容框为三行“50 2024 3.16 I / love / GESP!”；代码依次声明 ifstream fin、string line、int x，fin.open 的参数为 1.txt 和 ios::in，循环两次 fin>>line 并输出，随后 fin>>x、cout<<x<<endl，行尾注释 ####。候选把 string line 与 int x 合并一行并省略行号、空行，但输入内容、循环次数、提取顺序和注释位置均未改变，属排版等价。",
+          "review": "对照 PDF 第 4 页原图逐项核对：题干“如果文件 1.txt 中的内容如下，则执行下面C++代码时，注释了 #### 那行代码所输出的 x 的值为（ ）”；文件内容框为三行“50 2024 3.16 I / love / GESP!”；代码为第3行 ifstream fin; 第4行 string line; 第5行 int x; 第6行 fin.open(\"1.txt\",ios::in); 第8-11行 for (int i=0; i< 2; i++){ fin >> line; cout << line << endl; } 第12行 fin>>x; 第13行 cout << x << endl; //####。候选将 string line 与 int x 合并一行、省略空行与行号，但声明、打开参数、循环次数、提取顺序与注释位置均未变，属排版等价，语义无差异。"
         },
         "options": {
-          "initial": "PDF第4页选项为A 5、B 2024、C 3、D 0，与网站文字及顺序一致。",
-          "review": "PDF 第 4 页选项为 A. 5、B. 2024、C. 3、D. 0，与网站文字及顺序一致。"
+          "initial": "PDF第4页原图选项为 A. 5、B. 2024、C. 3、D. 0；候选 options 依序为 5、2024、3、0，顺序与含义完全一致。",
+          "review": "PDF 第 4 页原图选项为 A. 5、B. 2024、C. 3、D. 0，候选 options 依序 [\"5\",\"2024\",\"3\",\"0\"]，文字与顺序完全一致，无选项顺序映射风险。"
         },
         "answer": {
-          "initial": "PDF第1页单选答案表第11题对应C，转换为0起始索引为2。",
-          "review": "PDF 第 1 页单选答案表第 11 题为 C，0 起始索引 2，与网站 answer=2 一致；独立推导 x=3 对应选项 C。"
+          "initial": "PDF第1页单选答案表第11题对应 C（0起始索引2），候选 answer=2。独立推导：两次 fin>>line 依次消耗记号 50、2024；fin>>x 面对 3.16，按 int 格式成功读取整数前缀 3 后停在 '.'，故 x=3，对应选项 C。",
+          "review": "PDF 第 1 页单选答案表（原图）为 C C D D C C D A C B C C B C C，第 11 题对应 C，0 起始索引 2，候选 answer=2。独立推导：文件按空白切分记号依次为 50、2024、3.16、I、love、GESP!；循环两次 fin>>line 消耗 50 与 2024；fin>>x 面对记号 3.16，int 提取按 strtol 规则读取整数前缀 '3'，遇 '.' 停止且至少一位数字转换成功故无 failbit，x=3，对应选项 C。与官方答案表一致。"
         },
         "explanation": {
-          "initial": "核心推导x=3正确；但原文把5说成50的个位，实际5是50的十位数字，需修正该选项说明。",
-          "review": "修复后核验通过：初核指出的错误成立——原解析「该项是文件中第一个数据 50 的个位」有误，5 是 50 的十位数字；修正版按 operator>> 整数前缀解析推导 x=3（'.' 停止并留在流中），四个选项说明均经独立验证无误。"
+          "initial": "解析的记号切分、两次 line 读取、int 前缀解析及四个选项排除均与代码一致。重点复核修正句：int 提取消费字符 3 后流停在 '.'，后续 double 提取会读入 .16 即 0.16，不会重新得到 3.16，该表述成立；D项以提取成功得到3否定0，结论正确。解析不改变答案C。",
+          "review": "修复后核验通过。独立复核：①记号切分与两次 line 消耗 50、2024 正确；②int 前缀解析得 3、'.' 留在流中正确；③关键修正句独立验证成立——int 提取已消费字符 '3'，流位置停在 '.'，后续 double 提取从 '.' 起按 strtod 规则读入 \".16\"=0.16，不会重新得到 3.16，原错误表述已被替换；④四个选项分析均无事实错误（A 项“5 是 50 的十位数字”表述为真，排除理由以记号已消耗为主，成立；B 项 2024 已被第二次 line 读取消耗；C 项正确；D 项提取成功得 3 故非 0）；解析结论与官方答案 C 无冲突。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2024-03-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2024-03-l4.glm.json"
       ]
     },
     {
@@ -1131,18 +1134,7 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 11,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [
     {
       "id": 5,
@@ -1170,5 +1162,5 @@
     }
   ],
   "programmingChecks": "ai-reviews/2026-11-07/2024-03-l4.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-03-l4.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2024-03-l4.integration.json"
 }

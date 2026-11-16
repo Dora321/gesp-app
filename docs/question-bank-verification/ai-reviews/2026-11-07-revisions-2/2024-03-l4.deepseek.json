@@ -1,0 +1,101 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:22:48.499Z",
+  "completedAt": "2026-11-16T10:25:29.351Z",
+  "finishReason": "stop",
+  "inputSha256": "95301a27ef69633aee73d9f9d16b82337af90f1d91c5b32f3c150b63d6d83c4f",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证 ... C++ 四级 / 2024年03月”，与2024年3月C++四级一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照PDF第4页原图：文件内容框为三行“50 2024 3.16 I / love / GESP!”；代码依次声明 ifstream fin、string line、int x，fin.open 的参数为 1.txt 和 ios::in，循环两次 fin>>line 并输出，随后 fin>>x、cout<<x<<endl，行尾注释 ####。候选把 string line 与 int x 合并一行并省略行号、空行，但输入内容、循环次数、提取顺序和注释位置均未改变，属排版等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页原图选项为 A. 5、B. 2024、C. 3、D. 0；候选 options 依序为 5、2024、3、0，顺序与含义完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选答案表第11题对应 C（0起始索引2），候选 answer=2。独立推导：两次 fin>>line 依次消耗记号 50、2024；fin>>x 面对 3.16，按 int 格式成功读取整数前缀 3 后停在 '.'，故 x=3，对应选项 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的记号切分、两次 line 读取、int 前缀解析及四个选项排除均与代码一致。重点复核修正句：int 提取消费字符 3 后流停在 '.'，后续 double 提取会读入 .16 即 0.16，不会重新得到 3.16，该表述成立；D项以提取成功得到3否定0，结论正确。解析不改变答案C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，PDF无参考程序，参考代码维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        11
+      ],
+      "usage": {
+        "prompt_tokens": 15340,
+        "completion_tokens": 15100,
+        "total_tokens": 30440,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 14456
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.011361,
+          "allowance": 0.0068166,
+          "tokens": {
+            "input": 15340,
+            "output": 15100,
+            "reasoning": 14456,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T10:22:48.499Z",
+      "completedAt": "2026-11-16T10:25:29.351Z"
+    }
+  ]
+}
