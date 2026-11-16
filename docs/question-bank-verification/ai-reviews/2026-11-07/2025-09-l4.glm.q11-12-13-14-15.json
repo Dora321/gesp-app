@@ -1,0 +1,255 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T16:06:03.724Z",
+  "completedAt": "2026-11-16T16:10:15.303Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 56789,
+    "completion_tokens": 15574,
+    "total_tokens": 72363,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10626
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01630535,
+      "allowance": 0.01630535,
+      "tokens": {
+        "input": 56789,
+        "output": 15574,
+        "reasoning": 10626,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF GESP 标志、『C++ 四级』、『2025 年 09 月』，与目标 2025-09-l4（level 4，2025-09）一致；第 1 页单选答案表（15 题）与第 6 页判断题答案表完整可见，可供映射核对。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 11 题题干『下面程序实现插入排序（升序排序），则横线上应分别填写（ ）』与代码逐行一致：insertionSort(int arr[], int n)、key = arr[i]、j = i - 1、while ( j >= 0 && ___ )、arr[j + 1] = arr[j]、j--、第二横线，仅空格/排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页四选项为 A: arr[j] > key 与 arr[j + 1] = key；B: arr[j] < key 与 arr[j + 1] = key；C: arr[j] > key 与 arr[j] = key；D: arr[j] < key 与 arr[j] = key，与当前顺序、内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 A；当前 answer=0 映射 A，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：升序插入排序中 while 条件应为 arr[j] > key（较大元素右移让位），循环结束后 key 应写入 arr[j + 1]；A 正确，B 比较方向相反，C/D 用 arr[j] = key 会覆盖 arr[j] 造成数据丢失。与当前解析逐项结论一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。我独立核对 PDF 第 4 页题面、代码、四选项及第 1 页答案表（第 11 题 A→索引 0），并独立推导插入排序填空逻辑，确认当前题面、选项、答案与解析均正确，初核的 verified 判定成立。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 12 题题干『关于插入排序的时间复杂度，下列说法正确的是（ ）』与当前一致，仅 N/n 大小写与 LaTeX 排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "核对 PDF 第 4 页原图：C 项为『最好情况是 O(n)，最坏情况是 O(2^n)』，D 项为『最好情况是 O(n^2)，最坏情况是 O(2^n)』；当前网站 C 写成『最好 O(N^2)、最坏 O(N)』、D 写成『最好 O(1)、最坏 O(N)』，与原卷不符。已按 PDF 原文（小写 n 记法）修正四个选项，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 B；当前 answer=1 映射 B。原 C/D 选项文字错误未改变正确项位置，答案无需修改。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析对 C、D 项的分析沿用了错误选项文字，已重写：最好情况（有序输入）内层首次比较即失败，总比较 O(n)；最坏（逆序）为 1+2+…+(n-1)=n(n-1)/2 即 O(n^2)；C 项最坏应为 O(n^2) 而非 O(2^n)，D 项两项均不符。重写后与 PDF 原选项逐项对应，独立推导无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {
+          "options": [
+            "最好情况和最坏情况的时间复杂度都是 $O(n^2)$",
+            "最好情况是 $O(n)$，最坏情况是 $O(n^2)$",
+            "最好情况是 $O(n)$，最坏情况是 $O(2^n)$",
+            "最好情况是 $O(n^2)$，最坏情况是 $O(2^n)$"
+          ],
+          "explanation": "**答案：B（最好情况是 $O(n)$，最坏情况是 $O(n^2)$）**\n\n**核心解析：**\n插入排序的时间复杂度取决于输入数据的有序程度。\n1. **最好情况（数组已经有序）**：每次取出的 key 都大于等于前一个元素，while 条件 `arr[j] > key` 第一次判断即为假，内层不移动元素；外层仍执行 $n-1$ 次，总比较次数为 $O(n)$。\n2. **最坏情况（数组完全逆序）**：第 $i$ 次迭代时，key 需要与前面 $i$ 个元素比较并右移，总次数为 $1+2+\\cdots+(n-1)=\\frac{n(n-1)}{2}$，时间复杂度为 $O(n^2)$。\n\n**选项逐项分析：**\n- **A（最好和最坏都是 $O(n^2)$）**：❌ 错误。已排序输入时最好情况可达到 $O(n)$。\n- **B（最好 $O(n)$，最坏 $O(n^2)$）**：✅ 正确。\n- **C（最好 $O(n)$，最坏 $O(2^n)$）**：❌ 错误。最好情况正确，但最坏情况是 $O(n^2)$，双层循环不会产生指数级 $O(2^n)$。\n- **D（最好 $O(n^2)$，最坏 $O(2^n)$）**：❌ 错误。最好情况和最坏情况均不符合。\n\n**易错提醒：**\n- 插入排序并非任何输入下都是 $O(n^2)$；接近有序时性能明显改善。\n- $O(2^n)$ 是指数级复杂度，插入排序的双层循环不会达到。\n\n**知识延伸：**\n插入排序平均复杂度为 $O(n^2)$，空间复杂度 $O(1)$，且是稳定排序，常用于小规模或基本有序数据。\n\n**考点：** 插入排序时间复杂度分析。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核。我核对 PDF 第 4 页原图确认 C、D 项文字（O(n)/O(2^n)、O(n^2)/O(2^n)）与当前网站不符，答案映射（第 12 题 B）不受影响；解析逐项分析需按原卷选项重写。初核给出的修正值与我对原图的读数一致，予以采纳；修复后 options 与 explanation 均复核通过。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干位于 PDF 第 4 页末（『小杨正在爬楼梯，需要 n 阶才能到达楼顶，每次可以爬 1 阶或 2 阶……横线上应填写（ ）』），代码与选项在第 5 页：climbStairs 结构（n<=2 返回 n，prev2=1、prev1=2、current=0，i 从 3 到 n 的循环含横线，返回 current）与当前一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项分别为：A 先更新 prev2/prev1 再算 current；B 先算 current 再更新 prev2/prev1；C 先算 current 再更新 prev1/prev2；D 先更新 prev1/prev2 再算 current，与当前顺序、内容一致，仅空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 B；当前 answer=1 映射 B。独立模拟 n=4：B 填入返回 5 = F(4)，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析对 A 项称『prev1 和 prev2 相等后 current=2*prev1』与实际执行不符：A 项先执行 prev2=prev1 得 2、prev1=current 得 0，再算 current=0+2=2。已按四种填空在 n=4 下的独立模拟重写解析（A 返回 2、B 返回 5、C 返回 6、D 返回 0），并修正『第 3 次循环』的计数表述，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**核心解析：**\n设 $F(i)$ 为到达第 $i$ 阶的方法数，则 $F(1)=1$、$F(2)=2$，且 $F(i)=F(i-1)+F(i-2)$。代码中 `prev2=1`、`prev1=2` 分别对应第 1、2 阶，循环内应先用旧值计算 `current = prev1 + prev2`，再执行 `prev2 = prev1; prev1 = current;` 完成状态后移。\n\n**选项逐项分析（以 $n=4$ 独立模拟验证）：**\n- **A**：❌ 错误。首轮执行 `prev2 = prev1` 得 2，`prev1 = current` 得 0，再算 `current = prev1 + prev2 = 0 + 2 = 2`；首轮就得不到 3，状态被破坏，最终返回错误值（模拟结果为 2）。\n- **B**：✅ 正确。先算 `current`，再依次更新 `prev2`、`prev1`。模拟：$i=3$ 时 `current=3`，更新为 `prev2=2、prev1=3`；$i=4$ 时 `current=5`，返回 5，与 $F(4)=5$ 一致。\n- **C**：❌ 错误。首轮 `current=3` 后执行 `prev1=3`、`prev2=3`，丢失了原来的 `prev1=2`；模拟 $n=4$ 时返回 6，而正确结果为 5。\n- **D**：❌ 错误。`prev1 = current` 先把 prev1 置为初值 0，随后 `prev2` 与 `current` 也全为 0，$n \\ge 3$ 时返回 0。\n\n**易错提醒：**\n- 必须先用旧的 `prev1`、`prev2` 算出 `current`，再更新状态，顺序不能颠倒。\n- 更新顺序颠倒会丢失前两项之一，导致递推值错误。\n\n**知识延伸：**\n该递推本质是斐波那契数列变体；朴素递归可能达到指数级时间，而滚动变量递推为 $O(n)$ 时间、$O(1)$ 空间。\n\n**考点：** 递推算法（斐波那契数列应用）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核。题面、选项、答案（第 13 题 B→索引 1）与 PDF 一致；但当前解析对 A 项的推导确有错误（初核指出『prev1 与 prev2 相等后 current=2*prev1』不成立）。我独立模拟四种填空在 n=4 下的执行结果（A→2、B→5、C→6、D→0），确认初核正确，解析需重写；初核重写版推导无误，予以采纳，修复后复核通过。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干含『班级成绩单』背景与 scores 数组说明；当前题干压缩了背景但完整保留核心条件（scores[i]+scores[j]+scores[k] == 300、i<j<k、三层循环代码、求时间复杂度），属可接受等价转换，不改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "核对 PDF 第 5 页原图：选项为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)；当前网站 B 写成 O(n log n)、D 写成 O(3^n)，与原卷不符。已按原卷修正四个选项（统一小写 n 记法），修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C；当前 answer=2 映射 C。三层循环枚举 C(n,3) 个三元组为 O(n^3)，正确项不变。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析按错误的 B=O(n log n)、D=O(3^n) 排除；重写版按原卷 O(n^2)、O(2^n) 分析：B 少一层循环、D 无指数来源，组合数 n(n-1)(n-2)/6 支撑 O(n^3)。独立推导无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {
+          "options": [
+            "$O(n)$",
+            "$O(n^2)$",
+            "$O(n^3)$",
+            "$O(2^n)$"
+          ],
+          "explanation": "**答案：C（$O(n^3)$）**\n\n**核心解析：**\n代码使用三层嵌套循环：外层 $i$ 从 0 到 $n-1$，中层 $j$ 从 $i+1$ 开始，内层 $k$ 从 $j+1$ 开始，恰好枚举所有满足 $i<j<k$ 的三元组。三元组个数为组合数 $C_n^3=\\frac{n(n-1)(n-2)}{6}$，每次内层判断为 $O(1)$，因此总时间复杂度为 $O(n^3)$。\n\n**选项逐项分析：**\n- **A（$O(n)$）**：❌ 错误。单层循环才是线性复杂度。\n- **B（$O(n^2)$）**：❌ 错误。内层还有 $k$ 循环，整体是三层嵌套而非两层。\n- **C（$O(n^3)$）**：✅ 正确。三层嵌套决定立方级复杂度。\n- **D（$O(2^n)$）**：❌ 错误。代码没有递归或指数级分支，三层循环不会产生指数复杂度。\n\n**易错提醒：**\n- 嵌套层数决定数量级，不要把 $O(n^3)$ 与 $O(2^n)$ 混淆。\n- 组合数 $C_n^3$ 展开后最高次项为 $n^3$，常数因子在复杂度记法中忽略。\n\n**知识延伸：**\n该问题可用排序加双指针或哈希表优化到约 $O(n^2)$，但题干代码仍是三重枚举，复杂度为 $O(n^3)$。\n\n**考点：** 嵌套循环时间复杂度分析。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核。我核对 PDF 第 5 页原图确认 B 应为 O(n^2)、D 应为 O(2^n)，当前网站 B/D 文字与原卷不符；答案（第 14 题 C→索引 2）不受影响；解析需按原卷选项重写。初核修正值与我的读数一致，予以采纳；修复后 options 与 explanation 复核通过。题干背景压缩不构成漏必要约束，statement 维持 verified。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页末至第 6 页第 15 题题干『关于异常处理，以下说法错误的是（ ）』与当前一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页四选项：A try 块中的代码可能会抛出异常；B catch 块可以有多个，处理不同类型的异常；C throw 语句用于抛出异常；D 所有异常都必须被捕获，否则程序会崩溃，与当前内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 D；当前 answer=3 映射 D，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析把 D 项错误的依据放在『未捕获异常是受控终止而非崩溃』上，可能误导（std::terminate 默认调用 std::abort，程序会异常终止）；重写版将核心依据改为『C++ 不强制捕获所有异常』并准确描述未捕获异常的栈展开与 std::terminate()/std::abort() 流程，保留 catch(...)、noexcept 要点，独立确认无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（所有异常都必须被捕获，否则程序会崩溃）**\n\n**核心解析：**\n1. `try` 块用于包围可能抛出异常的代码，A 项正确。\n2. 一个 `try` 后可以跟多个 `catch`，按异常类型匹配、处理不同类型的异常，B 项正确。\n3. `throw` 用于抛出异常对象并中断当前流程，C 项正确。\n4. C++ 并不强制要求捕获所有异常（没有 Java 式的受检异常机制，捕获与否由开发者决定）。若抛出的异常没有匹配的 `catch`，会沿调用链进行栈展开；若到最外层仍未捕获，则调用 `std::terminate()`，其默认处理是调用 `std::abort()` 异常终止程序。因此 D 项『所有异常都必须被捕获』的强制说法错误，符合题意；『否则程序会崩溃』只是对异常终止的通俗描述，并非判定 D 错误的关键。\n\n**选项逐项分析：**\n- **A**：✅ 说法正确。`try` 块中的代码可能抛出异常。\n- **B**：✅ 说法正确。多个 `catch` 块可按类型分别处理。\n- **C**：✅ 说法正确。`throw` 用于抛出异常。\n- **D**：❌ 说法错误，符合题意。C++ 不强制捕获所有异常。\n\n**易错提醒：**\n- `catch (...)` 可捕获任意类型的异常，常作兜底处理。\n- 未捕获异常会触发 `std::terminate()`，但『必须捕获』不是 C++ 的语法强制要求。\n\n**知识延伸：**\n`noexcept` 函数若向外抛出异常，会调用 `std::terminate()`；析构函数默认是 `noexcept` 的。\n\n**考点：** C++ 异常处理机制（try/catch/throw、未捕获异常的行为）。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核。题面、选项与答案（第 15 题 D→索引 3）我独立核对一致，维持 verified；解析维度：原解析以『受控终止不等于崩溃』作为 D 错误主依据，存在误导风险（未捕获异常最终经 std::terminate()→std::abort() 确实会异常终止程序），属实质性论证缺陷而非纯文风问题。初核重写版以『C++ 不强制捕获所有异常』为核心依据并准确描述 std::terminate 流程，我确认无技术错误，予以采纳，修复后复核通过。"
+      }
+    ],
+    "summary": "本次独立复核题 11-15 共 5 题（其余题目未核验）。答案映射：PDF 第 1 页单选答案表第 11=A、12=B、13=B、14=C、15=D，与当前 answer 0/1/1/2/3 全部一致，五题答案均无需修改。题 11 全维度通过，verdict=approve。题 12、14 的选项 C/D、B/D 文字与 PDF 原图不符（PDF：C 最坏 O(2^n)、D 最好 O(n^2) 最坏 O(2^n)；B 为 O(n^2)、D 为 O(2^n)），且解析沿用了错误选项，已按原卷修正并重写解析，正确项索引不变。题 13 答案 B 正确，但原解析对 A 项推导有误（实际执行 prev2=2、prev1=0、current=2，而非 current=2*prev1），我以 n=4 独立模拟四种填空（A→2、B→5、C→6、D→0）后重写解析。题 15 答案 D 正确，原解析『受控终止≠崩溃』的论证有误导性，已改为以『C++ 不强制捕获所有异常』为核心依据并准确描述 std::terminate/std::abort 行为。所有修改均经我对 PDF 原图的独立读数与独立推导确认，修复后对应维度复核通过；未发现题面代码冲突或需保留争议的事项；五题均为单选题，无编程题测试项。"
+  }
+}

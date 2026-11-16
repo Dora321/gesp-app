@@ -1,0 +1,240 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T15:55:55.534Z",
+  "completedAt": "2026-11-16T15:58:30.738Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 55391,
+    "completion_tokens": 8485,
+    "total_tokens": 63876,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5317
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01255115,
+      "allowance": 0.01255115,
+      "tokens": {
+        "input": 55391,
+        "output": 8485,
+        "reasoning": 5317,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「C++ 四级 2025 年 09 月」，与 2025-09-l4 一致；单选答案表前五题为 B C D A D，与网站客观题答案映射全部吻合。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干「运行下面程序后变量 a 的值是（ ）。」及代码 int a=42; int* p=&a; *p=*p+1; 与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图选项 A.42、B.43、C.编译错误、D.不确定，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 1 题 B，映射索引 1；网站 answer=1。独立推导：*p=*p+1 即 a=a+1，a 由 42 变 43，选 B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：p 指向 a，*p=*p+1 等价 a=a+1=43，解析的逐层推导与四选项排除（无编译错误、无未定义行为）均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，PDF 第 1 题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案映射与解析推导均经独立复核一致，无修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干「以下关于数组的描述中，（ ）是错误的。」与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图选项 A.数组名是一个指针常量、B.随机访问数组的元素方便快捷、C.数组可以像指针一样进行自增操作、D.sizeof(arr) 返回的是整个数组 arr 占用的字节数，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 2 题 C，映射索引 2；网站 answer=2。独立推导：arr++ 要求可修改标量左值，数组名是数组类型左值，自增为编译错误，C 是唯一明确错误项，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析核心结论（C 为错误项、arr++ 非法、sizeof 与随机访问说明）正确，但将 A 项解释为「数组名是一个地址常量」不准确：严格 C++ 标准下数组名是数组类型的左值而非指针/地址常量，属教学简化。已替换为注明命题语境与严格术语差异的修正解析；修复后核验通过：修正解析各项推导正确，答案 C 不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，PDF 第 2 题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：不正确的是 C（数组可以像指针一样进行自增操作）**\n\n**核心解析：**\n本题按命题语境把 A 项“数组名是一个指针常量”视为正确说法：数组名在多数表达式中会转换为指向首元素的指针，且不能像指针变量那样改变指向。严格按 C++ 标准，数组名本身是数组类型的左值，不是指针常量；多数表达式中的数组名转换为指向首元素的指针，该转换结果是纯右值。此术语争议不影响本题唯一明确错误项 C。\n\n1. 数组名不能被赋值，也不能执行 `arr++`、`arr--`、`arr += 1` 等修改操作；这些操作要求操作数可修改，而数组名所代表的数组对象不可这样修改。\n2. 指针变量（如 `int *p`）保存地址，可以执行 `p++` 改变指向。\n3. `sizeof(arr)` 在数组声明作用域内直接作用于数组名时，返回整个数组占用的字节数，不按指针大小计算。\n4. 数组元素在内存中连续存放，可用首地址加下标直接定位，随机访问为 O(1)。\n\n**选项逐项分析：**\n- **A 数组名是一个指针常量**：按本题命题语境视为正确；严格标准下术语不严谨，见上。\n- **B 随机访问数组的元素方便快捷**：正确。连续存储，下标访问 O(1)。\n- **C 数组可以像指针一样进行自增操作**：❌ 错误，符合题意。`arr++` 试图修改数组名，不能通过编译。\n- **D sizeof(arr) 返回的是整个数组 arr 占用的字节数**：正确。`sizeof` 直接作用于数组名时不退化为指针。\n\n**易错提醒：**\n- 区分 `arr + 1`（合法，得到首元素后一位置的指针）与 `arr++`（非法，试图修改数组名）。\n- 数组作为函数形参时会退化为指针，此时函数内 `sizeof(arr)` 得到的是指针大小。\n\n**知识延伸：**\n数组名不作为 `sizeof` 操作数、也不与 `&` 配合时，多数表达式会转换为指向首元素的指针；`&arr` 的类型是指向整个数组的指针。\n\n**考点：** 数组名与指针的区别、数组随机访问、`sizeof` 作用于数组的规则。"
+        },
+        "tests": [],
+        "unresolved": [
+          "A 项「数组名是一个指针常量」在严格 C++ 术语下有争议（数组名是数组类型左值，仅在使用中退化为指针）；源卷按教学语境将其作为正确说法，答案 C 不变，修正解析已注明该差异。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核的题面/选项/答案结论；其 explanation 修改经我独立复核后采纳：原解析「地址常量」表述在严格标准下不准确，修正解析按命题语境说明并保留术语差异，核心推导与答案 C 不变且正确。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题题干含表达式 *(*(arr + 1) + 2)，代码 int arr[2][3] = {{1, 2, 3}, {4, 5, 6}}; 与网站一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图选项 A.2、B.5、C.4、D.6，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 3 题 D，映射索引 3；网站 answer=3。独立推导：arr 退化为 int(*)[3]，arr+1 指向第二行，*(arr+1) 退化为指向 arr[1][0] 的 int*，再 +2 得 &arr[1][2]，解引用为 6，选 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐层推导（int(*)[3] 指针算术、二次退化、偏移到 arr[1][2]=6）与独立推导一致；对 A/B/C 分别对应 arr[0][1]、arr[1][1]、arr[1][0] 的排除说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，PDF 第 3 题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：全部维度独立复核一致，解析推导正确，无修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在 PDF 第 1 页末「下面这段代码会输出（ ）。」，代码在 PDF 第 2 页：声明 int add(int a, int b = 1);、main 中输出 add(2) 与 add(2, 3)、定义 int add(int a, int b){return a+b;}，含「// 函数声明」「// 函数定义」注释，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A.3 5、B.编译失败：定义处少了默认参数、C.运行错误、D.链接失败：未定义引用，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 4 题 A，映射索引 0；网站 answer=0。独立推导：add(2) 用默认 b=1 得 3，add(2,3) 得 5，输出「3 5」，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析两处违反 C++ 默认实参规则：「定义处可不重复或重复指定（重复且相同也可以）」——同一作用域内同一形参的默认实参不得重新指定，重复相同值亦为编译错误。已替换为修正解析；修复后核验通过：add(2)=3、add(2,3)=5，答案 A 不变，B/C/D 排除理由（声明处省略合法、无运行错误、有定义可链接）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，PDF 第 4 题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (3 5)**\n\n**核心解析：**\n1. 函数声明 `int add(int a, int b = 1);` 为形参 `b` 指定默认值 1。C++ 规定同一作用域内同一形参的默认实参只能指定一次；本题声明处已经指定，定义处不能再重复指定（即使重复相同的值也会编译错误）。定义 `int add(int a, int b) { ... }` 没有重复指定，合法。\n2. `add(2)`：只传一个实参，`a=2`，`b` 使用默认值 1，结果为 3。\n3. `add(2, 3)`：传入两个实参，`b` 使用实参 3，默认值被覆盖，结果为 5。\n4. 输出 `3 5`。\n\n**选项逐项分析：**\n- **A (3 5)**：✅ 正确。\n- **B (编译失败：定义处少了默认参数)**：❌ 错误。默认实参在声明处指定后，定义处省略是合法且常见的写法；定义处不得重复指定。\n- **C (运行错误)**：❌ 错误。程序逻辑正常。\n- **D (链接失败：未定义引用)**：❌ 错误。程序提供了 `add` 的定义，可以正常链接。\n\n**易错提醒：**\n- 默认实参通常在函数声明中给出，且同一作用域内只能指定一次；声明有默认值后，定义处不能再写默认值。\n- 调用时传入实参会覆盖默认值。\n\n**知识延伸：**\n默认参数应放在参数列表右侧；默认参数与函数重载、作用域规则结合时容易产生二义性。\n\n**考点：** C++ 函数默认参数（Default Arguments）的语法规则与调用机制。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核；其 explanation 修改经我独立复核后采纳：原解析「重复且相同也可以」的说法违反默认实参不得在后续声明中重新指定的规则，修正解析表述准确且答案 A 不变。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题代码：全局 int x=5; foo 内局部 int x=10; 并输出 x；bar 输出 x；main 依次调用 foo()、bar(); 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图选项 A.5 5、B.10 10、C.5 10、D.10 5，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第 5 题 D，映射索引 3；网站 answer=3。独立推导：foo 中局部 x=10 遮蔽全局变量，输出 10；bar 无局部 x，输出全局 5，结果「10 5」，D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析关于局部变量遮蔽全局变量的推导与四个选项的排除说明均正确，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，PDF 第 5 题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：全部维度独立复核一致，解析正确，无修改。"
+      }
+    ],
+    "summary": "题 1–5 题面、选项与官方答案表（B C D A D → 索引 1/2/3/0/3）经原图逐项对照全部一致，映射无误；解析按独立推导复核，题 1、3、5 原解析正确。两处解析经独立确认后采纳修正：题 2 原解析将数组名表述为「地址常量/指针常量」在严格 C++ 标准下不准确，修正后按命题语境说明并保留术语差异（答案 C 不变）；题 4 原解析称默认参数可在定义处重复指定（重复相同也可以），违反同一作用域内默认实参不得重新指定的规则，修正后明确「声明处指定后定义处不得重复，省略合法」（答案 A 不变）。两处修复均核验通过，未做任何纯文风改写；本卷余下题目（6–15、判断题、编程题）本次未核验。"
+  }
+}

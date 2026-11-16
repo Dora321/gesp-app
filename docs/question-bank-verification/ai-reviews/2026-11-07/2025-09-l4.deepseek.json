@@ -1,0 +1,1219 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T15:50:26.813Z",
+  "completedAt": "2026-11-16T20:06:24.584Z",
+  "finishReason": "stop",
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头为“C++ 四级 2025年09月”，与 2025-09-l4 一致；第1页答案表前5题答案为 B C D A D。\nPDF第1页卷头为“CCF 编程能力等级认证 C++ 四级 2025年09月”，与paperId 2025-09-l4一致。\nPDF 第 1 页卷头为 CCF GESP、C++ 四级、2025 年 09 月，与目标 2025-09-l4 一致；第 1 页答案表与第 6 页判断题答案表均可见。\nPDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 四级 2025 年 09 月”，与题集“2025 年 9 月 GESP C++ 四级真题”一致。\nPDF第1页卷头显示“CCF 编程能力等级认证 C++ 四级 2025年09月”，与目标2025-09-l4一致；判断题答案表位于第6页。\nPDF 第1页卷头为“C++ 四级”“2025 年 09 月”，与 2025-09-l4 的四级、2025年9月一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题题干和三行代码与网站一致；空格/换行差异不影响。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页选项 A.42、B.43、C.编译错误、D.不确定，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第1页第1题 B，对应索引1；网站 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按取地址、解引用、赋值回原对象推导 a 从42变为43，并排除编译错误与不确定，核心推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF第1题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第2题题干“以下关于数组的描述中，（ ）是错误的。”及四项与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项 A.数组名是指针常量、B.随机访问数组的元素方便快捷、C.数组可以像指针一样进行自增操作、D.sizeof(arr) 返回整个数组字节数，顺序与网站一致；A项术语争议见 unresolved。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第2题 C，对应索引2；网站 answer=2，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析核心结论C正确，但将A直接断言为正确且未说明严格术语争议；已在 changes 提供修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF第2题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：不正确的是 C（数组可以像指针一样进行自增操作）**\n\n**核心解析：**\n本题按命题语境把 A 项“数组名是一个指针常量”视为正确说法：数组名在多数表达式中会转换为指向首元素的指针，且不能像指针变量那样改变指向。严格按 C++ 标准，数组名本身是数组类型的左值，不是指针常量；多数表达式中的数组名转换为指向首元素的指针，该转换结果是纯右值。此术语争议不影响本题唯一明确错误项 C。\n\n1. 数组名不能被赋值，也不能执行 `arr++`、`arr--`、`arr += 1` 等修改操作；这些操作要求操作数可修改，而数组名所代表的数组对象不可这样修改。\n2. 指针变量（如 `int *p`）保存地址，可以执行 `p++` 改变指向。\n3. `sizeof(arr)` 在数组声明作用域内直接作用于数组名时，返回整个数组占用的字节数，不按指针大小计算。\n4. 数组元素在内存中连续存放，可用首地址加下标直接定位，随机访问为 O(1)。\n\n**选项逐项分析：**\n- **A 数组名是一个指针常量**：按本题命题语境视为正确；严格标准下术语不严谨，见上。\n- **B 随机访问数组的元素方便快捷**：正确。连续存储，下标访问 O(1)。\n- **C 数组可以像指针一样进行自增操作**：❌ 错误，符合题意。`arr++` 试图修改数组名，不能通过编译。\n- **D sizeof(arr) 返回的是整个数组 arr 占用的字节数**：正确。`sizeof` 直接作用于数组名时不退化为指针。\n\n**易错提醒：**\n- 区分 `arr + 1`（合法，得到首元素后一位置的指针）与 `arr++`（非法，试图修改数组名）。\n- 数组作为函数形参时会退化为指针，此时函数内 `sizeof(arr)` 得到的是指针大小。\n\n**知识延伸：**\n数组名不作为 `sizeof` 操作数、也不与 `&` 配合时，多数表达式会转换为指向首元素的指针；`&arr` 的类型是指向整个数组的指针。\n\n**考点：** 数组名与指针的区别、数组随机访问、`sizeof` 作用于数组的规则。"
+        },
+        "tests": [],
+        "unresolved": [
+          "A项“数组名是一个指针常量”严格C++术语有争议；官方答案C未变，解析已按命题语境说明并保留争议。"
+        ]
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第3题表达式 *(*(arr + 1) + 2) 与数组初始化 {{1, 2, 3}, {4, 5, 6}} 与网站一致；空格差异不影响。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项 A.2、B.5、C.4、D.6，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第3题 D，对应索引3；网站 answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 arr 退化为 int(*)[3]、*(arr+1) 退化为 int*、再+2 指向 arr[1][2] 得6，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF第3题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页末给出题干，第2页代码为声明 int add(int a, int b = 1);、main 中 add(2) 与 add(2, 3)、定义 int add(int a, int b)，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项 A.3 5、B.编译失败：定义处少了默认参数、C.运行错误、D.链接失败：未定义引用，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第4题 A，对应索引0；网站 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析两处称定义处可重复指定默认参数/重复且相同也可以，违反同一作用域默认实参只能指定一次的规则；已在 changes 修正，答案A不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF第4题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (3 5)**\n\n**核心解析：**\n1. 函数声明 `int add(int a, int b = 1);` 为形参 `b` 指定默认值 1。C++ 规定同一作用域内同一形参的默认实参只能指定一次；本题声明处已经指定，定义处不能再重复指定（即使重复相同的值也会编译错误）。定义 `int add(int a, int b) { ... }` 没有重复指定，合法。\n2. `add(2)`：只传一个实参，`a=2`，`b` 使用默认值 1，结果为 3。\n3. `add(2, 3)`：传入两个实参，`b` 使用实参 3，默认值被覆盖，结果为 5。\n4. 输出 `3 5`。\n\n**选项逐项分析：**\n- **A (3 5)**：✅ 正确。\n- **B (编译失败：定义处少了默认参数)**：❌ 错误。默认实参在声明处指定后，定义处省略是合法且常见的写法；定义处不得重复指定。\n- **C (运行错误)**：❌ 错误。程序逻辑正常。\n- **D (链接失败：未定义引用)**：❌ 错误。程序提供了 `add` 的定义，可以正常链接。\n\n**易错提醒：**\n- 默认实参通常在函数声明中给出，且同一作用域内只能指定一次；声明有默认值后，定义处不能再写默认值。\n- 调用时传入实参会覆盖默认值。\n\n**知识延伸：**\n默认参数应放在参数列表右侧；默认参数与函数重载、作用域规则结合时容易产生二义性。\n\n**考点：** C++ 函数默认参数（Default Arguments）的语法规则与调用机制。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第5题全局 int x=5、foo 内局部 int x=10、bar 输出 x、main 依次调用 foo/bar，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF选项 A.5 5、B.10 10、C.5 10、D.10 5，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "官方答案表第5题 D，对应索引3；网站 answer=3，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按局部变量遮蔽全局变量推导 foo 输出10、bar 输出5，得到10 5，核心推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序；PDF第5题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题代码与网站题干一致：increaseA(int x) 为值传递，increaseB(int* p) 通过解引用修改实参，main 中依次输出 a。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2-3页选项为 A. 6 7、B. 6 6、C. 5 6、D. 5 5，与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题标 C，对应0起始索引2；独立推导输出为 5 6，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析分别按值传递与指针传递推导：increaseA 不改变 a，输出5；increaseB 将 a 改为6，输出6，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第7题给出 struct Point {int x,y;};，与网站题干结构体定义语义一致，考查结构体初始化。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 Point p = (1,2);、Point p = {1,2};、Point p = new {1,2};、Point p = <1,2>;，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题标 B，对应0起始索引1；独立判断仅列表初始化 {1,2} 合法，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确说明聚合类型可用花括号列表初始化，并逐项排除圆括号、new 与尖括号写法，结论与 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第8题代码为 Cat kitty{\"Mimi\", 2};，网站写作 Cat kitty = {\"Mimi\", 2};，二者均为合法的列表初始化且语义等价；其余代码和输出语句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项为 A. Mimi 2、B. Mimi 3、C. kitty 3、D. kitty 2，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题标 B，对应0起始索引1；birthday 通过引用把 age 从2改为3，输出 Mimi 3，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确说明 Cat& 引用传递使 c 成为 kitty 的别名，c.age++ 修改原对象，最终 name 不变、age 为3。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第9题题干为“关于排序算法的稳定性，以下说法错误的是（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次涉及稳定性定义、冒泡排序稳定、选择排序稳定、插入排序稳定，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题标 C，对应0起始索引2；选择排序因跨位置交换可破坏相等元素相对顺序，确实不稳定，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析用 {5a,5b,2} 示例展示选择排序首轮交换后相等元素次序改变，并正确判断冒泡、插入稳定，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题选择排序代码及两个待填空位与网站题干一致：内层用 minIndex 记录最小值，循环后交换到 i 位置。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页四个选项分别为 A. nums[j] < nums[minIndex] 与 swap(nums[i], nums[minIndex])；B. > 与同一交换；C. <= 与 swap(nums[j], nums[minIndex])；D. <= 与 swap(nums[i], nums[j])，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题标 A，对应0起始索引0；升序选择排序应找较小值并与 nums[i] 交换，独立推导答案为 A，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析 A 项称“相等时不更新，保持稳定性”，该说法错误：选择排序的长距离交换仍可能破坏相等元素相对顺序；且第二空位于内层 for 之后，C/D 使用已超出作用域的 j，不能通过编译，解析未指出。需更正解析表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (nums[j] < nums[minIndex] 和 swap(nums[i], nums[minIndex]))**\n\n**核心解析：**\n选择排序每一轮在未排序区间 `[i, n)` 中寻找最小值，并记录其下标 `minIndex`，最后把该最小值交换到位置 `i`。\n1. 内层循环从 `j = i+1` 开始扫描。若 `nums[j] < nums[minIndex]`，说明发现了更小的元素，更新 `minIndex = j`。使用严格小于时，遇到相等元素不更新，会保留扫描到的第一个最小值；这只是标准写法，并**不能**使选择排序变成稳定排序。\n2. 内层循环结束后，`minIndex` 指向未排序区间的最小值，应执行 `swap(nums[i], nums[minIndex])`，把最小值放到当前待填位置 `i`。\n\n**选项逐项分析：**\n- **A**：✅ 正确。条件能找到未排序区间的最小值，交换位置也正确。\n- **B**：❌ 错误。`>` 会寻找最大值，不能完成升序选择排序。\n- **C**：❌ 错误。`<=` 会在相等时更新为更靠右的最小值；更关键的是，第二空位于内层 `for` 之后，变量 `j` 已超出作用域，`nums[j]` 无法通过编译。即便只按算法意图看，也应与 `i` 位置交换，而不是与遍历下标 `j` 交换。\n- **D**：❌ 错误。同样存在 `j` 越出作用域的问题；并且交换 `nums[i]` 与 `nums[j]` 没有使用记录的最小值下标 `minIndex`。\n\n**易错提醒：**\n- 严格小于只影响相等最小值的选择，会保留靠左者，但并不能保证选择排序稳定；选择排序的长距离交换仍可能改变相等元素的相对顺序。\n- 两个空分别位于 `if` 条件和内层循环之后，第二空不能引用已离开作用域的 `j`。\n- 每轮只需在最后交换一次 `nums[i]` 与 `nums[minIndex]`。\n\n**知识延伸：**\n选择排序时间复杂度为 O(n²)，空间复杂度 O(1)，原地排序但通常不稳定；其优点是交换次数少，每轮最多交换一次。\n\n**考点：** 选择排序（Selection Sort）的算法过程与代码实现。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 11 题题干、insertionSort 函数签名、while 横线与插入赋值横线均与当前一致，仅有排版和空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A 项为 arr[j] > key 与 arr[j + 1] = key；B 项为 arr[j] < key 与 arr[j + 1] = key；C 项为 arr[j] > key 与 arr[j] = key；D 项为 arr[j] < key 与 arr[j] = key，顺序和内容与当前一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 A；当前 answer=0 映射 A 项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：升序插入排序中，while 条件应为 arr[j] > key，较大元素右移；循环结束后 key 应写入 arr[j + 1]。A 项正确，B 项比较方向相反，C、D 项赋值位置错误。与当前解析结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 12 题题干为“关于插入排序的时间复杂度，下列说法正确的是（ ）。”，当前题干一致，仅 O(N)/n 大小写与 LaTeX 排版差异。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 4 页 C 项为“最好情况是 O(n)，最坏情况是 O(2^n)”，D 项为“最好情况是 O(n^2)，最坏情况是 O(2^n)”；当前 C 项写成“最好 O(N^2)，最坏 O(N)”，D 项写成“最好 O(1)，最坏 O(N)”，与 PDF 不符。A、B 项含义与 PDF 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 B；当前 answer=1 映射 B 项，C、D 项文字错误未改变正确项索引。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析对 C、D 项的分析沿用了错误选项文字：把 C 说成“最好 O(N^2)、最坏 O(N)”，把 D 说成“最好 O(1)、最坏 O(N)”。应按 PDF 的 C、D 项改为：C 最坏为指数级 O(2^n) 错误；D 最好为 O(n^2) 且最坏为 O(2^n) 错误。B 项结论仍成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码字段。"
+          }
+        },
+        "changes": {
+          "options": [
+            "最好情况和最坏情况的时间复杂度都是 $O(n^2)$",
+            "最好情况是 $O(n)$，最坏情况是 $O(n^2)$",
+            "最好情况是 $O(n)$，最坏情况是 $O(2^n)$",
+            "最好情况是 $O(n^2)$，最坏情况是 $O(2^n)$"
+          ],
+          "explanation": "**答案：B（最好情况是 $O(n)$，最坏情况是 $O(n^2)$）**\n\n**核心解析：**\n插入排序的时间复杂度取决于输入数据的有序程度。\n1. **最好情况（数组已经有序）**：每次取出的 key 都大于等于前一个元素，while 条件 `arr[j] > key` 第一次判断即为假，内层不移动元素；外层仍执行 $n-1$ 次，总比较次数为 $O(n)$。\n2. **最坏情况（数组完全逆序）**：第 i 次迭代时，key 需要与前面 i 个元素比较并右移，总次数为 $1+2+\\cdots+(n-1)=n(n-1)/2$，时间复杂度为 $O(n^2)$。\n\n**选项逐项分析：**\n- **A（最好和最坏都是 $O(n^2)$）**：错误。已排序输入时最好情况可达到 $O(n)$。\n- **B（最好 $O(n)$，最坏 $O(n^2)$）**：正确。\n- **C（最好 $O(n)$，最坏 $O(2^n)$）**：错误。最好情况正确，但最坏情况是 $O(n^2)$，不是指数级 $O(2^n)$。\n- **D（最好 $O(n^2)$，最坏 $O(2^n)$）**：错误。最好情况和最坏情况均不符合。\n\n**易错提醒：**\n- 插入排序并非任何输入下都是 $O(n^2)$；接近有序时性能会明显改善。\n- $O(2^n)$ 表示指数级复杂度，插入排序的双层循环不会产生这种复杂度。\n\n**知识延伸：**\n插入排序平均复杂度为 $O(n^2)$，空间复杂度 $O(1)$，并且是稳定排序；在小规模或基本有序数据上常被使用。\n\n**考点：** 插入排序时间复杂度分析。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末给出第 13 题题干，第 5 页给出 climbStairs 代码；当前题干、函数结构和横线位置与 PDF 一致，仅有排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四项分别对应：A 先更新 prev2、prev1 再算 current；B 先算 current 再移位；C 先算 current 再更新 prev1、prev2；D 先更新 prev1、prev2 再算 current。当前四项顺序和内容一致，仅空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 B；当前 answer=1 映射 B 项。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析对 A 项的推导错误：A 项先执行 prev2=prev1=2、prev1=current=0，再算 current=0+2=2，并不会出现“prev1 和 prev2 相等后 current=2*prev1”。B 项结论正确，但需按实际执行结果重写 A 项及更新顺序说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**核心解析：**\n设 F(i) 为到达第 i 阶的方法数，则 F(1)=1、F(2)=2，且 F(i)=F(i-1)+F(i-2)。代码中 `prev2=1`、`prev1=2`，每次循环应先用旧值计算 `current=prev1+prev2`，再执行 `prev2=prev1`、`prev1=current`，完成状态后移。\n\n**选项逐项分析：**\n- **A**：错误。执行 `prev2=prev1` 得 2，执行 `prev1=current` 得 0，再算 `current=prev1+prev2=0+2=2`；首轮就得不到 3，且状态被破坏。\n- **B**：正确。先算 `current=prev1+prev2`，再正确更新 `prev2` 和 `prev1`。\n- **C**：错误。先算 `current=3` 后，`prev1=3`、`prev2=3`，丢失了原来的 `prev1=2`；例如 n=4 时会算成 6，而正确结果为 5。\n- **D**：错误。`prev1=current` 先被置为初值 0，随后 `prev2` 和 `current` 也变为 0，n>=3 时会返回 0。\n\n以 n=4 验证 B 项：i=3 时 `current=3`，更新为 `prev2=2、prev1=3`；i=4 时 `current=5`，返回 5，正确。\n\n**易错提醒：**\n- 必须先用旧的 `prev1`、`prev2` 算出 `current`，再更新状态。\n- 更新顺序不能颠倒，否则会丢失前两项中的一项。\n\n**知识延伸：**\n该递推本质是斐波那契数列；递归实现可能达到指数级，而滚动变量递推为 $O(n)$ 时间、$O(1)$ 空间。\n\n**考点：** 递推算法与斐波那契数列应用。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干含成绩单背景，并明确 scores 长度为 n、条件为 scores[i]+scores[j]+scores[k]==300 且 i<j<k；当前压缩了背景描述，但保留了条件、代码和复杂度提问，不改变题意。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 5 页选项为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)；当前 B 项写成 O(n log n)，D 项写成 O(3^n)，与 PDF 不符。A、C 项含义一致，正确项仍为 C。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C；当前 answer=2 映射 C 项，B、D 选项文字错误未改变正确项索引。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析按错误的 B=O(n log n)、D=O(3^n) 进行排除。实际 PDF 中 B 为 O(n^2)、D 为 O(2^n)，二者同样不是三层循环的复杂度；需按官方选项重写逐项分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码字段。"
+          }
+        },
+        "changes": {
+          "options": [
+            "$O(n)$",
+            "$O(n^2)$",
+            "$O(n^3)$",
+            "$O(2^n)$"
+          ],
+          "explanation": "**答案：C（$O(n^3)$）**\n\n**核心解析：**\n代码使用三层嵌套循环：外层 i 从 0 到 n-1，中层 j 从 i+1 开始，内层 k 从 j+1 开始，恰好枚举所有满足 i<j<k 的三元组。三元组总数为组合数 $C_n^3=\\frac{n(n-1)(n-2)}{6}$，每次内层判断为 $O(1)$，因此总时间复杂度为 $O(n^3)$。\n\n**选项逐项分析：**\n- **A（$O(n)$）**：错误。单层循环才是线性复杂度。\n- **B（$O(n^2)$）**：错误。内层还有 k 循环，整体不是两层循环。\n- **C（$O(n^3)$）**：正确。三层嵌套决定立方级复杂度。\n- **D（$O(2^n)$）**：错误。代码没有递归或指数级分支，三层循环不会产生指数复杂度。\n\n**易错提醒：**\n- 嵌套层数决定数量级，不能把 $O(n^3)$ 与 $O(3^n)$ 混淆。\n- 组合数 $C_n^3$ 展开后最高次项为 $n^3$，常数因子在复杂度中忽略。\n\n**知识延伸：**\n本题可用排序加双指针或哈希表优化到 $O(n^2)$，但题干代码仍是三重枚举，复杂度为 $O(n^3)$。\n\n**考点：** 嵌套循环时间复杂度分析。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页末至第 6 页第 15 题题干为“关于异常处理，以下说法错误的是（ ）。”，当前题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页 A-D 项分别为 try 块可能抛出异常、catch 可有多个处理不同类型、throw 用于抛出异常、所有异常都必须被捕获否则程序会崩溃，当前四项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 D；当前 answer=3 映射 D 项。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 D 正确，但现有解析把未捕获异常说成“不是崩溃”并强调受控终止，表述有争议，也不是判断 D 错误的核心依据。更准确的依据是：C++ 不强制要求捕获所有异常；未捕获时会对异常进行栈展开，最终未匹配则调用 std::terminate()，默认通常调用 std::abort()，因此 D 的前半句“必须被捕获”错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程题参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（所有异常都必须被捕获，否则程序会崩溃）**\n\n**核心解析：**\n1. `try` 块用于包围可能抛出异常的代码，A 项正确。\n2. 一个 `try` 后可以跟多个 `catch`，按异常类型匹配并处理不同异常，B 项正确。\n3. `throw` 用于抛出异常对象，C 项正确。\n4. C++ 并不强制要求捕获所有异常。若抛出的异常没有匹配的 `catch`，会进行栈展开；若一直到最外层仍未捕获，则调用 `std::terminate()`，默认通常调用 `std::abort()` 终止程序。因此 D 项“所有异常都必须被捕获”错误；后半句“否则程序会崩溃”只是对异常终止的通俗描述，不等于标准规定的精确行为。\n\n**选项逐项分析：**\n- **A**：正确。`try` 块中的代码可能抛出异常。\n- **B**：正确。多个 `catch` 可按类型处理不同异常。\n- **C**：正确。`throw` 用于抛出异常。\n- **D**：错误，符合题意。C++ 没有受检异常强制捕获机制。\n\n**易错提醒：**\n- `catch (...)` 可捕获任意类型异常，常作兜底处理。\n- 未捕获异常会触发 `std::terminate()`，但“必须捕获”不是 C++ 的语法强制要求。\n\n**知识延伸：**\n`noexcept` 函数若抛出异常，会调用 `std::terminate()`；析构函数默认是 `noexcept` 的。\n\n**考点：** C++ 异常处理机制。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题题面为“以下代码能正确初始化指针。”，代码为 `int a = 5; int *p = a;`，与网站题面等价，仅空格格式差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案，网站对应“正确/错误”二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 1 题为“×”，按正确=0、错误=1 映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：`a` 是 int，`p` 是 int*，C++ 不存在 int 到 int* 的隐式转换，故 `int *p = a;` 不能编译，题干说法错误；网站解析结论和理由正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题题面和代码为 `int x = 10; void f(){ int x = x + 1; ... }`，网站补充“假设全局变量 x 为 10”与代码声明等价，不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 2 题为“×”，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：局部 `x` 的声明点在初始化器之前，右侧 `x` 指向尚未初始化的局部变量，读取未初始化的 int 属于未定义行为，结果不确定，不能保证输出 11；因此题干错误，网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题定义 `struct Student { string name; int age; float score; };` 并写 `Student* students = new Student[20];`，网站仅将结构体排成单行，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站使用“正确/错误”二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 题为“√”，按正确=0、错误=1 映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：`new Student[20]` 返回 `Student*`，可赋给 `Student* students`；结构体定义语法合法，代码片段在标准库头文件已具备的前提下合法，网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题代码与网站一致：`func(int* p)` 内 `*p = 10;`，`main` 中 `int a = 5; func(&a); cout << a << endl;`。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 题为“√”，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：`func(&a)` 把 `a` 的地址传给 `p`，`*p = 10` 直接修改 `a` 的内存，输出 10；网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题题面和代码为 `void f(int arr[][4], int rows)` 与 `int arr[3][4]`，网站题面、代码及注释位置一致，仅块注释排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 5 题为“×”，按正确=0、错误=1 映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：二维数组形参 `int arr[][4]` 会调整为指向含 4 个 int 的数组的指针，与 `int arr[3][4]` 匹配，故“声明为 int arr[][4] 是错误的”这一说法为假；网站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第6题原文为“递推是在给定初始条件下，已知前一项（或前几项）求后一项的过程。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第6格为√（正确，索引0）；网站 answer=0；独立判断递推定义成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明递推需有初始条件，并由已知前项推出后项，与官方定义及斐波那契示例一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第7题原文为“虽然插入排序的时间复杂度为 O(n^2)，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢迎。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第7格为√（正确，索引0）；网站 answer=0；独立判断：插入排序小规模时常数小、可原地且稳定，适合小数据量。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出最好 O(N)、最坏/平均 O(N²)，并说明小规模低常数优势；推导与题干判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第8题原文为“对整数数组 {4, 1, 3, 1, 5, 2} 进行冒泡排序（将最大元素放到最后），执行一轮之后是 {4, 1, 3, 1, 2, 5}。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第8格为×（错误，索引1）；网站 answer=1。标准冒泡一轮逐对交换后为 {1, 3, 1, 4, 2, 5}，题干结果错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐对模拟 4>1、4>3、4>1、4<5、5>2 的交换过程，得到 {1,3,1,4,2,5}，支持错误判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第7页第9题代码包含 int main()、try { throw 42; }、catch (...) { cout << \"Caught\" << endl; } 与 return 0;；网站以 `try { /* codes */ } catch (...) { /* codes */ }` 占位，遗漏了具体抛出与输出代码，题面证据不完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第9格为×（错误，索引1）；网站 answer=1。catch(...) 为全捕获，并非只能捕获 int，题干判断错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 catch(...) 可捕获任意类型异常，与官方答案“错误”一致；恢复官方 throw 42 代码后结论仍成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "以下代码只能捕获 `int` 类型异常。\n```cpp\nint main() {\n    try {\n        throw 42;\n    } catch (...) {\n        cout << \"Caught\" << endl;\n    }\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第10题代码为 ofstream file(\"data.txt\"); cout<<\"Hello\"<< endl; file.close();，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第10格为×（错误，索引1）；网站 answer=1。输出写向 cout 而非 file，因此不会把 Hello 写入 data.txt。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 cout 面向标准输出、file 才是文件流对象，data.txt 为空，与错误判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页题目描述、输入输出及第8页样例与站点一致；但PDF第8页“3.1.5 数据范围”明确给出 1≤n,m≤12、0≤a_{i,j}≤1，当前 question 中完全没有该约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案表，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用的逐行高度+单调栈思路可独立复现样例：样例1逐行最大面积依次为2、2、3、4，样例2为1、1、3，最终分别为4、3，与PDF输出一致；0格清零、末尾哨兵、空栈宽度处理均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序能处理最小1×1、全0、全1和一般含0网格；样例1/2输出4/3。主体时间O(nm)。需注意 largestRectangleArea 每次向 heights 追加0哨兵，导致多次调用后尾部0累积，实际会多处理 O(n^2) 个零；因 n,m≤12 且零不贡献正面积，不改变答案，仅为实现瑕疵。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202509 四级] 排兵布阵\n\n## 题目描述\n\n作为将军，你自然需要合理地排兵布阵。地图可以视为 $n$ 行 $m$ 列的网格，适合排兵的网格以 1 标注，不适合排兵的网格以 0 标注。现在你需要在地图上选择一个矩形区域排兵，这个矩形区域内不能包含不适合排兵的网格。请问可选择的矩形区域最多能包含多少网格？\n\n## 输入格式\n\n第一行，两个正整数 $n, m$，分别表示地图网格的行数与列数。\n\n接下来 $n$ 行，每行 $m$ 个整数 $a_{i,1}, a_{i,2}, \\ldots, a_{i,m}$，表示各行中的网格是否适合排兵。\n\n## 输出格式\n\n一行，一个整数，表示适合排兵的矩形区域包含的最大网格数。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n,m \\le 12$，$0 \\le a_{i,j} \\le 1$。\n"
+        },
+        "tests": [
+          {
+            "name": "最小网格且为0",
+            "input": "1 1\n0",
+            "output": "0",
+            "reason": "唯一单元格为0，不能选含0的非空矩形，答案0；官方参考程序ans初值也是0。"
+          },
+          {
+            "name": "最大规模全1",
+            "input": "12 12\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1",
+            "output": "144",
+            "reason": "12×12全部为1，整张地图构成合法矩形，面积144；任何子矩形面积不超过144，故最大144。"
+          },
+          {
+            "name": "含0的2×2网格",
+            "input": "2 2\n1 1\n1 0",
+            "output": "2",
+            "reason": "可选第一行两个1或第一列两个1，面积均为2；2×2全图含0不可选，故最大为2。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第9页题目描述、输入输出、样例与站点 question 一致；但PDF第9页“3.2.5 数据范围”给出40%测试点1≤n≤8、全部测试点1≤n≤10^5、-10^9≤a_i≤10^9，当前 question 中没有任何数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案表，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析将问题化归为排序去重后的最长相邻差1连续段；样例1去重[0,1,2,4]得3，样例2去重[2,3,4,5,8,9]得4，与PDF输出一致。重复值不能延长连续段、末尾需要结算等说明也正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点代码读入 vector<long long>，排序、unique去重后单遍扫描；n=1、全相同值、负数及跨0连续段均能正确处理。样例1/2分别输出3/4，n≤10^5时O(n log n)排序时间和O(n)空间满足限制；long long足以容纳±10^9。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202509 四级] 最长连续段\n\n## 题目描述\n\n对于 $k$ 个整数构成的数组 $[b_1, b_2, \\ldots, b_k]$，如果对 $1 \\leq i < k$ 都有 $b_{i+1} = b_i + 1$，那么称数组 $b$ 是一个连续段。\n\n给定由 $n$ 个整数构成的数组 $[a_1, a_2, \\ldots, a_n]$，你可以任意重排数组 $a$ 中元素顺序。请问在重排顺序之后，$a$ 所有是连续段的子数组中，最长的子数组长度是多少？\n\n例如，对于数组 $[1, 0, 2, 4]$，可以将其重排为 $[4, 0, 1, 2]$，有以下 $10$ 个子数组：\n\n$[4], [0], [1], [2], [4, 0], [0, 1], [1, 2], [4, 0, 1], [0, 1, 2], [4, 0, 1, 2]$\n\n其中除 $[4, 0], [4, 0, 1], [4, 0, 1, 2]$ 以外的子数组均是连续段，因此是连续段的子数组中，最长子数组长度为 3。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示数组长度。\n\n第二行，$n$ 个整数 $a_1, a_2, \\ldots, a_n$，表示数组中的整数。\n\n## 输出格式\n\n一行，一个整数，表示数组 $a$ 重排顺序后，所有是连续段的子数组的最长长度。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le n \\le 8$。\n\n对于所有测试点，保证 $1 \\le n \\le 10^5$，$-10^9 \\le a_i \\le 10^9$。\n"
+        },
+        "tests": [
+          {
+            "name": "n=1最小值",
+            "input": "1\n-1000000000",
+            "output": "1",
+            "reason": "单元素数组去重后只有该元素，最长连续段长度为1；任何非空连续段至少含一个元素，故答案为1。"
+          },
+          {
+            "name": "全部为重复值",
+            "input": "5\n7 7 7 7 7",
+            "output": "1",
+            "reason": "连续段要求后项严格比前项大1，重复的7不能连续使用；去重后仅剩{7}，最长长度为1。"
+          },
+          {
+            "name": "跨0的连续负数到正数",
+            "input": "5\n-2 -1 0 1 2",
+            "output": "5",
+            "reason": "可重排为[-2,-1,0,1,2]，整段满足后项等于前项加1，长度为5；不可能超过元素总数5。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "usage": {
+        "prompt_tokens": 36574,
+        "completion_tokens": 13010,
+        "total_tokens": 49584,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10681
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0132921,
+          "allowance": 0.00797526,
+          "tokens": {
+            "input": 36574,
+            "output": 13010,
+            "reasoning": 10681,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T15:50:26.813Z",
+      "completedAt": "2026-11-16T15:55:55.524Z"
+    },
+    {
+      "questionIds": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "usage": {
+        "prompt_tokens": 36574,
+        "completion_tokens": 9319,
+        "total_tokens": 45893,
+        "prompt_tokens_details": {
+          "cached_tokens": 36480
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7255
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00571494,
+          "allowance": 0.00342896,
+          "tokens": {
+            "input": 94,
+            "output": 9319,
+            "reasoning": 7255,
+            "cache_read": 36480,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T15:58:30.743Z",
+      "completedAt": "2026-11-16T15:59:39.955Z"
+    },
+    {
+      "questionIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 36574,
+        "completion_tokens": 19762,
+        "total_tokens": 56336,
+        "prompt_tokens_details": {
+          "cached_tokens": 36480
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 15965
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01198074,
+          "allowance": 0.00718844,
+          "tokens": {
+            "input": 94,
+            "output": 19762,
+            "reasoning": 15965,
+            "cache_read": 36480,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T16:03:37.289Z",
+      "completedAt": "2026-11-16T16:06:03.720Z"
+    },
+    {
+      "questionIds": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "usage": {
+        "prompt_tokens": 36574,
+        "completion_tokens": 9171,
+        "total_tokens": 45745,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7704
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0109887,
+          "allowance": 0.00659322,
+          "tokens": {
+            "input": 36574,
+            "output": 9171,
+            "reasoning": 7704,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T19:54:55.324Z",
+      "completedAt": "2026-11-16T19:56:36.332Z"
+    },
+    {
+      "questionIds": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 36574,
+        "completion_tokens": 9923,
+        "total_tokens": 46497,
+        "prompt_tokens_details": {
+          "cached_tokens": 36480
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8561
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00607734,
+          "allowance": 0.0036464,
+          "tokens": {
+            "input": 94,
+            "output": 9923,
+            "reasoning": 8561,
+            "cache_read": 36480,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T19:57:49.180Z",
+      "completedAt": "2026-11-16T19:59:41.810Z"
+    },
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 36568,
+        "completion_tokens": 20785,
+        "total_tokens": 57353,
+        "prompt_tokens_details": {
+          "cached_tokens": 36480
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18602
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01259364,
+          "allowance": 0.00755618,
+          "tokens": {
+            "input": 88,
+            "output": 20785,
+            "reasoning": 18602,
+            "cache_read": 36480,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T20:02:39.945Z",
+      "completedAt": "2026-11-16T20:06:24.584Z"
+    }
+  ]
+}

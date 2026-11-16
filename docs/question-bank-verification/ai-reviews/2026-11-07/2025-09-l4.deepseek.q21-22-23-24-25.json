@@ -1,0 +1,225 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T19:57:49.180Z",
+  "completedAt": "2026-11-16T19:59:41.810Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36574,
+    "completion_tokens": 9923,
+    "total_tokens": 46497,
+    "prompt_tokens_details": {
+      "cached_tokens": 36480
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8561
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00607734,
+      "allowance": 0.0036464,
+      "tokens": {
+        "input": 94,
+        "output": 9923,
+        "reasoning": 8561,
+        "cache_read": 36480,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证 C++ 四级 2025年09月”，与目标2025-09-l4一致；判断题答案表位于第6页。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第6题原文为“递推是在给定初始条件下，已知前一项（或前几项）求后一项的过程。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第6格为√（正确，索引0）；网站 answer=0；独立判断递推定义成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明递推需有初始条件，并由已知前项推出后项，与官方定义及斐波那契示例一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第7题原文为“虽然插入排序的时间复杂度为 O(n^2)，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢迎。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第7格为√（正确，索引0）；网站 answer=0；独立判断：插入排序小规模时常数小、可原地且稳定，适合小数据量。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出最好 O(N)、最坏/平均 O(N²)，并说明小规模低常数优势；推导与题干判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第8题原文为“对整数数组 {4, 1, 3, 1, 5, 2} 进行冒泡排序（将最大元素放到最后），执行一轮之后是 {4, 1, 3, 1, 2, 5}。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第8格为×（错误，索引1）；网站 answer=1。标准冒泡一轮逐对交换后为 {1, 3, 1, 4, 2, 5}，题干结果错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐对模拟 4>1、4>3、4>1、4<5、5>2 的交换过程，得到 {1,3,1,4,2,5}，支持错误判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第7页第9题代码包含 int main()、try { throw 42; }、catch (...) { cout << \"Caught\" << endl; } 与 return 0;；网站以 `try { /* codes */ } catch (...) { /* codes */ }` 占位，遗漏了具体抛出与输出代码，题面证据不完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第9格为×（错误，索引1）；网站 answer=1。catch(...) 为全捕获，并非只能捕获 int，题干判断错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 catch(...) 可捕获任意类型异常，与官方答案“错误”一致；恢复官方 throw 42 代码后结论仍成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "以下代码只能捕获 `int` 类型异常。\n```cpp\nint main() {\n    try {\n        throw 42;\n    } catch (...) {\n        cout << \"Caught\" << endl;\n    }\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页第10题代码为 ofstream file(\"data.txt\"); cout<<\"Hello\"<< endl; file.close();，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不使用单选题 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题答案表第10格为×（错误，索引1）；网站 answer=1。输出写向 cout 而非 file，因此不会把 Hello 写入 data.txt。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出 cout 面向标准输出、file 才是文件流对象，data.txt 为空，与错误判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验题21-25：题面、官方答案表与网站答案整体一致；题24网站题面用占位符简化，遗漏官方 throw 42 等具体代码，已提出题面修复，答案仍为错误。五题 officialAnswer 均与PDF第6页判断题答案表匹配。"
+  }
+}

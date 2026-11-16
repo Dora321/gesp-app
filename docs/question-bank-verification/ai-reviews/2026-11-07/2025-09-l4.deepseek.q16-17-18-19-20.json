@@ -1,0 +1,223 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T19:54:55.324Z",
+  "completedAt": "2026-11-16T19:56:36.332Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36574,
+    "completion_tokens": 9171,
+    "total_tokens": 45745,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7704
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0109887,
+      "allowance": 0.00659322,
+      "tokens": {
+        "input": 36574,
+        "output": 9171,
+        "reasoning": 7704,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 C++ 四级 2025 年 09 月”，与题集“2025 年 9 月 GESP C++ 四级真题”一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题题面为“以下代码能正确初始化指针。”，代码为 `int a = 5; int *p = a;`，与网站题面等价，仅空格格式差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案，网站对应“正确/错误”二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 1 题为“×”，按正确=0、错误=1 映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：`a` 是 int，`p` 是 int*，C++ 不存在 int 到 int* 的隐式转换，故 `int *p = a;` 不能编译，题干说法错误；网站解析结论和理由正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题题面和代码为 `int x = 10; void f(){ int x = x + 1; ... }`，网站补充“假设全局变量 x 为 10”与代码声明等价，不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 2 题为“×”，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：局部 `x` 的声明点在初始化器之前，右侧 `x` 指向尚未初始化的局部变量，读取未初始化的 int 属于未定义行为，结果不确定，不能保证输出 11；因此题干错误，网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题定义 `struct Student { string name; int age; float score; };` 并写 `Student* students = new Student[20];`，网站仅将结构体排成单行，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；网站使用“正确/错误”二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 题为“√”，按正确=0、错误=1 映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：`new Student[20]` 返回 `Student*`，可赋给 `Student* students`；结构体定义语法合法，代码片段在标准库头文件已具备的前提下合法，网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题代码与网站一致：`func(int* p)` 内 `*p = 10;`，`main` 中 `int a = 5; func(&a); cout << a << endl;`。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 题为“√”，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：`func(&a)` 把 `a` 的地址传给 `p`，`*p = 10` 直接修改 `a` 的内存，输出 10；网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题题面和代码为 `void f(int arr[][4], int rows)` 与 `int arr[3][4]`，网站题面、代码及注释位置一致，仅块注释排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用单选 options 维度；PDF 以判断符号呈现答案。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 5 题为“×”，按正确=0、错误=1 映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：二维数组形参 `int arr[][4]` 会调整为指向含 4 个 int 的数组的指针，与 `int arr[3][4]` 匹配，故“声明为 int arr[][4] 是错误的”这一说法为假；网站解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 16—20（PDF 第 6 页判断题第 1—5 题）。五题题面、代码、判断答案均与 PDF 第 6 页答案表一致，解析独立推导成立，无需修改；判断题的 options 与 referenceCode 维度不适用，编程边界测试不适用。"
+  }
+}

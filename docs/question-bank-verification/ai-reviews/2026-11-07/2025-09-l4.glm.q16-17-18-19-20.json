@@ -1,0 +1,233 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T19:56:36.341Z",
+  "completedAt": "2026-11-16T19:57:49.172Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54507,
+    "completion_tokens": 6261,
+    "total_tokens": 60768,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3938
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01130655,
+      "allowance": 0.01130655,
+      "tokens": {
+        "input": 54507,
+        "output": 6261,
+        "reasoning": 3938,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 C++ 四级 2025 年 09 月」，与题集 id 2025-09-l4、title「2025年9月 GESP C++ 四级真题」、level=4、year=2025、month=9 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照 PDF 第 6 页判断题第 1 题，题面「以下代码能正确初始化指针。」及代码 int a = 5; int *p = a; 与网站一致；答案表该题为 ×，映射 1，与网站 answer=1 相符；网站解析经独立推导正确，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 1 题原文「以下代码能正确初始化指针。」及代码 `int a = 5; int *p = a;` 与网站题面逐字等价，仅换行排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以 ×/√ 呈现答案，无四选项；网站使用「正确/错误」二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 1 题为 ×，按错误=1 映射为 1，与网站 answer=1 一致；独立推导印证：`int *p = a;` 不存在 int→int* 隐式转换，无法编译，「能正确初始化」为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：p 为 int*、a 为 int，C++ 不允许用整型值初始化指针（仅字面量 0 或 nullptr 可作空指针常量），正确写法为 int *p = &a;；网站解析结论与理由均正确，无误导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照 PDF 第 6 页判断题第 2 题，代码逐行一致；网站括注「假设全局变量 x 为 10」与代码中已有的全局声明 int x = 10; 等价，属冗余澄清而非含义改变；答案表为 ×，映射 1，与网站 answer=1 相符；网站解析（名字遮蔽导致读取未初始化变量、未定义行为）经独立推导正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 2 题原文「执行下面C++代码将输出 11。」及代码 `int x = 10; void f(){ int x = x + 1; cout << x << endl; } int main(){ f(); }` 与网站一致；网站补充的括注与代码自带的全局声明语义等价，不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以 ×/√ 呈现答案，无四选项；网站使用「正确/错误」二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 2 题为 ×，按错误=1 映射为 1，与网站 answer=1 一致；独立推导印证：局部 x 的声明点在初始化器之前，右侧 x 指向尚未初始化的局部变量，读取不确定值属未定义行为，不能保证输出 11。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：局部声明遮蔽全局 x，初始化表达式读取的是未初始化的局部变量，构成 UB，输出不可预测；网站解析结论（错误）与理由正确，且明确区分 UB 与确定性错误值。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照 PDF 第 6 页判断题第 3 题，结构体定义与 new Student[20] 语句逐字一致（网站仅将多行定义并为等价排版）；答案表为 √，映射 0，与网站 answer=0 相符；网站解析经独立推导正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 3 题原文「以下C++代码合法。」，代码 `struct Student { string name; int age; float score; }; Student* students = new Student[20];` 与网站题面语义逐字一致，仅排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以 ×/√ 呈现答案，无四选项；网站使用「正确/错误」二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 3 题为 √，按正确=0 映射为 0，与网站 answer=0 一致；独立推导印证：new Student[20] 返回 Student*，可直接赋给同类型指针，片段合法（默认已含所需标准头文件）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：结构体定义语法合法，new[] 返回 Student* 与左值类型匹配；网站解析结论正确，并正确提示需 delete[] 释放内存。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照 PDF 第 6 页判断题第 4 题，代码逐行一致；答案表为 √，映射 0，与网站 answer=0 相符；网站解析经独立推导正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文「执行下面C++代码将输出 10。」，代码 `void func(int* p){ *p = 10; } int main(){ int a = 5; func(&a); cout << a << endl; return 0; }` 与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以 ×/√ 呈现答案，无四选项；网站使用「正确/错误」二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 题为 √，按正确=0 映射为 0，与网站 answer=0 一致；独立推导印证：func(&a) 传入 a 的地址，*p = 10 直接改写 a 所在内存，输出 10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：指针传参按地址写入，main 中 a 由 5 改为 10，输出 10；网站解析结论正确，并正确说明形参 p 本身是副本但可经解引用修改实参内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照 PDF 第 6 页判断题第 5 题，题面与代码一致（网站将行注释 // 访问 arr[i][j] 转为等价块注释）；答案表为 ×，映射 1，与网站 answer=1 相符；网站解析（int arr[][4] 被调整为 int(*)[4]，与 int arr[3][4] 兼容）经独立推导正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文「…函数参数声明为 int arr[][4] 是错误的。」，代码 `void f(int arr[][4], int rows)` 与 `int arr[3][4] = { /* 初始化 */ }; f(arr, 3);` 与网站题面逐字等价，仅注释形式差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 以 ×/√ 呈现答案，无四选项；网站使用「正确/错误」二元项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 5 题为 ×，按错误=1 映射为 1，与网站 answer=1 一致；独立推导印证：二维数组形参 int arr[][4] 合法（首维可省、次维必须给定），与实参 int arr[3][4] 类型兼容，「是错误的」说法为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：形参声明会调整为指向 int[4] 的指针，偏移计算需已知列数，故 int arr[][4] 正确且必需；网站解析结论正确，并正确指出 int arr[][] 等写法才非法。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次独立复核题号 16—20（PDF 第 6 页判断题第 1—5 题），全部 approve。五题题面与代码经 PDF 原图逐字对照一致：Q17 网站补充的「假设全局变量 x 为 10」与代码自带全局声明等价、Q20 注释形式差异均为等价转换，不改变含义。判断题答案表为 × × √ √ ×，按错误=1、正确=0 映射为 1 1 0 0 1，与网站 answer 逐一对应；解析均经独立推导成立（Q16 无 int→int* 隐式转换、Q17 名字遮蔽致 UB、Q18 new Student[20] 合法、Q19 指针传参改写 a 输出 10、Q20 int arr[][4] 形参合法）。判断题 options 与 referenceCode 维度不适用，编程题 tests 不适用。无需任何修改，网站原数据保留。"
+  }
+}

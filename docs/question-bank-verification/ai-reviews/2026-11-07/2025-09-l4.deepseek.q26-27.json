@@ -1,0 +1,169 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T20:02:39.945Z",
+  "completedAt": "2026-11-16T20:06:24.584Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36568,
+    "completion_tokens": 20785,
+    "total_tokens": 57353,
+    "prompt_tokens_details": {
+      "cached_tokens": 36480
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18602
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01259364,
+      "allowance": 0.00755618,
+      "tokens": {
+        "input": 88,
+        "output": 20785,
+        "reasoning": 18602,
+        "cache_read": 36480,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 四级”“2025 年 09 月”，与 2025-09-l4 的四级、2025年9月一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页题目描述、输入输出及第8页样例与站点一致；但PDF第8页“3.1.5 数据范围”明确给出 1≤n,m≤12、0≤a_{i,j}≤1，当前 question 中完全没有该约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案表，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用的逐行高度+单调栈思路可独立复现样例：样例1逐行最大面积依次为2、2、3、4，样例2为1、1、3，最终分别为4、3，与PDF输出一致；0格清零、末尾哨兵、空栈宽度处理均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序能处理最小1×1、全0、全1和一般含0网格；样例1/2输出4/3。主体时间O(nm)。需注意 largestRectangleArea 每次向 heights 追加0哨兵，导致多次调用后尾部0累积，实际会多处理 O(n^2) 个零；因 n,m≤12 且零不贡献正面积，不改变答案，仅为实现瑕疵。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202509 四级] 排兵布阵\n\n## 题目描述\n\n作为将军，你自然需要合理地排兵布阵。地图可以视为 $n$ 行 $m$ 列的网格，适合排兵的网格以 1 标注，不适合排兵的网格以 0 标注。现在你需要在地图上选择一个矩形区域排兵，这个矩形区域内不能包含不适合排兵的网格。请问可选择的矩形区域最多能包含多少网格？\n\n## 输入格式\n\n第一行，两个正整数 $n, m$，分别表示地图网格的行数与列数。\n\n接下来 $n$ 行，每行 $m$ 个整数 $a_{i,1}, a_{i,2}, \\ldots, a_{i,m}$，表示各行中的网格是否适合排兵。\n\n## 输出格式\n\n一行，一个整数，表示适合排兵的矩形区域包含的最大网格数。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n,m \\le 12$，$0 \\le a_{i,j} \\le 1$。\n"
+        },
+        "tests": [
+          {
+            "name": "最小网格且为0",
+            "input": "1 1\n0",
+            "output": "0",
+            "reason": "唯一单元格为0，不能选含0的非空矩形，答案0；官方参考程序ans初值也是0。"
+          },
+          {
+            "name": "最大规模全1",
+            "input": "12 12\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1",
+            "output": "144",
+            "reason": "12×12全部为1，整张地图构成合法矩形，面积144；任何子矩形面积不超过144，故最大144。"
+          },
+          {
+            "name": "含0的2×2网格",
+            "input": "2 2\n1 1\n1 0",
+            "output": "2",
+            "reason": "可选第一行两个1或第一列两个1，面积均为2；2×2全图含0不可选，故最大为2。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第9页题目描述、输入输出、样例与站点 question 一致；但PDF第9页“3.2.5 数据范围”给出40%测试点1≤n≤8、全部测试点1≤n≤10^5、-10^9≤a_i≤10^9，当前 question 中没有任何数据范围。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案表，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析将问题化归为排序去重后的最长相邻差1连续段；样例1去重[0,1,2,4]得3，样例2去重[2,3,4,5,8,9]得4，与PDF输出一致。重复值不能延长连续段、末尾需要结算等说明也正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点代码读入 vector<long long>，排序、unique去重后单遍扫描；n=1、全相同值、负数及跨0连续段均能正确处理。样例1/2分别输出3/4，n≤10^5时O(n log n)排序时间和O(n)空间满足限制；long long足以容纳±10^9。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202509 四级] 最长连续段\n\n## 题目描述\n\n对于 $k$ 个整数构成的数组 $[b_1, b_2, \\ldots, b_k]$，如果对 $1 \\leq i < k$ 都有 $b_{i+1} = b_i + 1$，那么称数组 $b$ 是一个连续段。\n\n给定由 $n$ 个整数构成的数组 $[a_1, a_2, \\ldots, a_n]$，你可以任意重排数组 $a$ 中元素顺序。请问在重排顺序之后，$a$ 所有是连续段的子数组中，最长的子数组长度是多少？\n\n例如，对于数组 $[1, 0, 2, 4]$，可以将其重排为 $[4, 0, 1, 2]$，有以下 $10$ 个子数组：\n\n$[4], [0], [1], [2], [4, 0], [0, 1], [1, 2], [4, 0, 1], [0, 1, 2], [4, 0, 1, 2]$\n\n其中除 $[4, 0], [4, 0, 1], [4, 0, 1, 2]$ 以外的子数组均是连续段，因此是连续段的子数组中，最长子数组长度为 3。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示数组长度。\n\n第二行，$n$ 个整数 $a_1, a_2, \\ldots, a_n$，表示数组中的整数。\n\n## 输出格式\n\n一行，一个整数，表示数组 $a$ 重排顺序后，所有是连续段的子数组的最长长度。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le n \\le 8$。\n\n对于所有测试点，保证 $1 \\le n \\le 10^5$，$-10^9 \\le a_i \\le 10^9$。\n"
+        },
+        "tests": [
+          {
+            "name": "n=1最小值",
+            "input": "1\n-1000000000",
+            "output": "1",
+            "reason": "单元素数组去重后只有该元素，最长连续段长度为1；任何非空连续段至少含一个元素，故答案为1。"
+          },
+          {
+            "name": "全部为重复值",
+            "input": "5\n7 7 7 7 7",
+            "output": "1",
+            "reason": "连续段要求后项严格比前项大1，重复的7不能连续使用；去重后仅剩{7}，最长长度为1。"
+          },
+          {
+            "name": "跨0的连续负数到正数",
+            "input": "5\n-2 -1 0 1 2",
+            "output": "5",
+            "reason": "可重排为[-2,-1,0,1,2]，整段满足后项等于前项加1，长度为5；不可能超过元素总数5。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验26、27题。卷头身份与PDF一致；两题题面、样例、解析和站点参考程序均可对应，但两题 question 字段均遗漏PDF中的数据范围，已分别给出补全草稿。除此之外未发现答案冲突或算法错误；编程题边界测试已按定义独立计算，未声称实际运行。"
+  }
+}

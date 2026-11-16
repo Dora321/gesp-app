@@ -1,0 +1,227 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T15:58:30.743Z",
+  "completedAt": "2026-11-16T15:59:39.955Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36574,
+    "completion_tokens": 9319,
+    "total_tokens": 45893,
+    "prompt_tokens_details": {
+      "cached_tokens": 36480
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7255
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00571494,
+      "allowance": 0.00342896,
+      "tokens": {
+        "input": 94,
+        "output": 9319,
+        "reasoning": 7255,
+        "cache_read": 36480,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "4f162b662e1f632c1100d9e24ee00e5bb5d0f97c65d85548d0481471edeb0a90",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 C++ 四级 2025年09月”，与paperId 2025-09-l4一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页第6题代码与网站题干一致：increaseA(int x) 为值传递，increaseB(int* p) 通过解引用修改实参，main 中依次输出 a。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2-3页选项为 A. 6 7、B. 6 6、C. 5 6、D. 5 5，与网站选项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第6题标 C，对应0起始索引2；独立推导输出为 5 6，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析分别按值传递与指针传递推导：increaseA 不改变 a，输出5；increaseB 将 a 改为6，输出6，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第7题给出 struct Point {int x,y;};，与网站题干结构体定义语义一致，考查结构体初始化。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 Point p = (1,2);、Point p = {1,2};、Point p = new {1,2};、Point p = <1,2>;，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第7题标 B，对应0起始索引1；独立判断仅列表初始化 {1,2} 合法，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确说明聚合类型可用花括号列表初始化，并逐项排除圆括号、new 与尖括号写法，结论与 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第8题代码为 Cat kitty{\"Mimi\", 2};，网站写作 Cat kitty = {\"Mimi\", 2};，二者均为合法的列表初始化且语义等价；其余代码和输出语句一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项为 A. Mimi 2、B. Mimi 3、C. kitty 3、D. kitty 2，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第8题标 B，对应0起始索引1；birthday 通过引用把 age 从2改为3，输出 Mimi 3，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确说明 Cat& 引用传递使 c 成为 kitty 的别名，c.age++ 修改原对象，最终 name 不变、age 为3。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第9题题干为“关于排序算法的稳定性，以下说法错误的是（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次涉及稳定性定义、冒泡排序稳定、选择排序稳定、插入排序稳定，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第9题标 C，对应0起始索引2；选择排序因跨位置交换可破坏相等元素相对顺序，确实不稳定，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析用 {5a,5b,2} 示例展示选择排序首轮交换后相等元素次序改变，并正确判断冒泡、插入稳定，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页第10题选择排序代码及两个待填空位与网站题干一致：内层用 minIndex 记录最小值，循环后交换到 i 位置。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页四个选项分别为 A. nums[j] < nums[minIndex] 与 swap(nums[i], nums[minIndex])；B. > 与同一交换；C. <= 与 swap(nums[j], nums[minIndex])；D. <= 与 swap(nums[i], nums[j])，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第10题标 A，对应0起始索引0；升序选择排序应找较小值并与 nums[i] 交换，独立推导答案为 A，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析 A 项称“相等时不更新，保持稳定性”，该说法错误：选择排序的长距离交换仍可能破坏相等元素相对顺序；且第二空位于内层 for 之后，C/D 使用已超出作用域的 j，不能通过编译，解析未指出。需更正解析表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (nums[j] < nums[minIndex] 和 swap(nums[i], nums[minIndex]))**\n\n**核心解析：**\n选择排序每一轮在未排序区间 `[i, n)` 中寻找最小值，并记录其下标 `minIndex`，最后把该最小值交换到位置 `i`。\n1. 内层循环从 `j = i+1` 开始扫描。若 `nums[j] < nums[minIndex]`，说明发现了更小的元素，更新 `minIndex = j`。使用严格小于时，遇到相等元素不更新，会保留扫描到的第一个最小值；这只是标准写法，并**不能**使选择排序变成稳定排序。\n2. 内层循环结束后，`minIndex` 指向未排序区间的最小值，应执行 `swap(nums[i], nums[minIndex])`，把最小值放到当前待填位置 `i`。\n\n**选项逐项分析：**\n- **A**：✅ 正确。条件能找到未排序区间的最小值，交换位置也正确。\n- **B**：❌ 错误。`>` 会寻找最大值，不能完成升序选择排序。\n- **C**：❌ 错误。`<=` 会在相等时更新为更靠右的最小值；更关键的是，第二空位于内层 `for` 之后，变量 `j` 已超出作用域，`nums[j]` 无法通过编译。即便只按算法意图看，也应与 `i` 位置交换，而不是与遍历下标 `j` 交换。\n- **D**：❌ 错误。同样存在 `j` 越出作用域的问题；并且交换 `nums[i]` 与 `nums[j]` 没有使用记录的最小值下标 `minIndex`。\n\n**易错提醒：**\n- 严格小于只影响相等最小值的选择，会保留靠左者，但并不能保证选择排序稳定；选择排序的长距离交换仍可能改变相等元素的相对顺序。\n- 两个空分别位于 `if` 条件和内层循环之后，第二空不能引用已离开作用域的 `j`。\n- 每轮只需在最后交换一次 `nums[i]` 与 `nums[minIndex]`。\n\n**知识延伸：**\n选择排序时间复杂度为 O(n²)，空间复杂度 O(1)，原地排序但通常不稳定；其优点是交换次数少，每轮最多交换一次。\n\n**考点：** 选择排序（Selection Sort）的算法过程与代码实现。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第1页答案表及第2-4页原文完成第6-10题五维初核。5题题面、选项顺序和 officialAnswer 均与源卷一致；第8题网站的等号列表初始化与 PDF 直接列表初始化语义等价。第10题解析存在“严格小于是稳定排序”的错误表述，且未指出 C/D 中 j 超出作用域的问题，已提交解析更正草稿。其余4题解析核验通过。本次题目均为单选题，无编程题测试项。"
+  }
+}
