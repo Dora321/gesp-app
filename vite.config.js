@@ -1,7 +1,66 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { readFile } from 'node:fs/promises'
+import { readFile, readdir } from 'node:fs/promises'
+import { join, resolve } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { embeddedAiPages, embedAiLauncher } from './scripts/lib/embedded-ai-pages.mjs'
+import { applyVerifiedQuestionCorrections } from './src/data/gesp/verifiedQuestionCorrections.js'
+import { buildKnowledgeTagStats } from './src/utils/knowledgeTagStats.js'
+
+const ROOT_DIR = fileURLToPath(new URL('.', import.meta.url))
+const GESP_LEVEL_DIRS = ['level1', 'level2', 'level3', 'level4', 'level5', 'level6', 'level7', 'level8']
+const TAG_STATS_ID = 'virtual:gesp-tag-stats'
+const RESOLVED_TAG_STATS_ID = `\0${TAG_STATS_ID}`
+let paperImportNonce = 0
+
+// 知识点页签的标签统计必须跟题库一起变，不能提交一份需要手改的计数文件。
+// 构建/开发时直接导入各试卷文件，只把计数内联进虚拟模块，题目内容不进 bundle。
+async function loadQuestionBankPapers() {
+  const papers = []
+  for (const levelDir of GESP_LEVEL_DIRS) {
+    const dirPath = resolve(ROOT_DIR, 'src/data/gesp', levelDir)
+    let files
+    try {
+      files = await readdir(dirPath)
+    } catch {
+      continue
+    }
+    const paperFiles = files.filter(name => /^\d{4}-\d{2}-l\d\.js$/.test(name)).sort()
+    const modules = await Promise.all(paperFiles.map((name) => {
+      const fileUrl = pathToFileURL(join(dirPath, name)).href
+      // 带 query 导入：开发时改卷后重新 load 不会拿到 Node 的模块缓存。
+      return import(`${fileUrl}?gespTagStats=${paperImportNonce++}`)
+    }))
+    for (const module of modules) {
+      // 与 getPaper 同一条勘误链路：修正过的 tags 也要进统计。
+      if (module?.paperData) papers.push(applyVerifiedQuestionCorrections(module.paperData))
+    }
+  }
+  return papers
+}
+
+const gespTagStats = () => ({
+  name: 'gesp-tag-stats',
+  resolveId(id) {
+    if (id === TAG_STATS_ID) return RESOLVED_TAG_STATS_ID
+  },
+  async load(id) {
+    if (id !== RESOLVED_TAG_STATS_ID) return null
+    const stats = buildKnowledgeTagStats(await loadQuestionBankPapers())
+    return `export const tagStats = ${JSON.stringify(stats)};\n`
+  },
+  configureServer(server) {
+    const refresh = (file) => {
+      if (!/[\\/]src[\\/]data[\\/]gesp[\\/]level\d[\\/]/.test(file)) return
+      const virtualModule = server.moduleGraph.getModuleById(RESOLVED_TAG_STATS_ID)
+      if (virtualModule) server.moduleGraph.invalidateModule(virtualModule)
+      server.ws.send({ type: 'full-reload' })
+    }
+    server.watcher.on('add', refresh)
+    server.watcher.on('change', refresh)
+    server.watcher.on('unlink', refresh)
+  },
+})
 
 const embeddedAiPreview = {
   name: 'embedded-ai-preview',
@@ -24,7 +83,7 @@ const embeddedAiPreview = {
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
-  plugins: [react(), embeddedAiPreview],
+  plugins: [react(), embeddedAiPreview, gespTagStats()],
   server: {
     proxy: {
       '/api': 'http://127.0.0.1:8787',

@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2, NotebookPen } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
 import { formatTimeLimitMinutes } from '../utils/examTimer';
 import { DIMENSION_STATUS, VERIFICATION_DIMENSIONS, resolveVerification } from '../data/gesp/verificationModel';
+import { useTeacherTools } from '../utils/teacherTools';
 
 const LEVEL_STORAGE_KEY = 'gesp_qb_selected_level';
 
@@ -41,6 +42,8 @@ const reviewStatusMeta = {
 
 const QuestionBankHome = () => {
     const navigate = useNavigate();
+    const { search } = useLocation();
+    const teacherMode = useTeacherTools(search);
     const [searchParams, setSearchParams] = useSearchParams();
     // 优先跟随链接里的 ?level=N，其次恢复上次选择的等级；非法值一律忽略。
     const urlLevel = parseLevelValue(searchParams.get('level'));
@@ -167,27 +170,32 @@ const QuestionBankHome = () => {
                                 GESP 真题题库
                             </h1>
                             <p className="text-indigo-100 max-w-2xl text-lg">
-                                收录 {paperStats.firstYear}-{paperStats.latestYear} 年、{paperStats.levelCount} 个等级共 {paperStats.questionCount} 题。每套试卷均标明核验状态与范围。
+                                收录 {paperStats.firstYear}-{paperStats.latestYear} 年、{paperStats.levelCount} 个等级共 {paperStats.questionCount} 题。
+                                {teacherMode && '每套试卷均标明核验状态与范围。'}
                             </p>
                         </div>
-                        {/* Stats */}
-                        <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 md:w-auto">
+                        {/* Stats：核验统计只给教师看，学生只保留收录规模。 */}
+                        <div className={`grid w-full gap-3 md:w-auto ${teacherMode ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-1'}`}>
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.paperCount}</div>
                                 <div className="text-xs text-indigo-200">收录试卷</div>
                             </div>
-                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
-                                <div className="text-2xl font-bold">{paperStats.verifiedPaperCount}</div>
-                                <div className="text-xs text-indigo-200">五项均已核验</div>
-                            </div>
-                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
-                                <div className="text-2xl font-bold">{paperStats.partialPaperCount}</div>
-                                <div className="text-xs text-indigo-200">已有核验进展</div>
-                            </div>
-                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
-                                <div className="text-2xl font-bold">{paperStats.unverifiedPaperCount}</div>
-                                <div className="text-xs text-indigo-200">尚无可用核验记录</div>
-                            </div>
+                            {teacherMode && (
+                                <>
+                                    <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
+                                        <div className="text-2xl font-bold">{paperStats.verifiedPaperCount}</div>
+                                        <div className="text-xs text-indigo-200">五项均已核验</div>
+                                    </div>
+                                    <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
+                                        <div className="text-2xl font-bold">{paperStats.partialPaperCount}</div>
+                                        <div className="text-xs text-indigo-200">已有核验进展</div>
+                                    </div>
+                                    <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
+                                        <div className="text-2xl font-bold">{paperStats.unverifiedPaperCount}</div>
+                                        <div className="text-xs text-indigo-200">尚无可用核验记录</div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -320,16 +328,18 @@ const QuestionBankHome = () => {
                                             <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded text-xs font-bold font-mono w-fit">
                                                 {paper.year} 年 {paper.month} 月
                                             </div>
-                                            <div className={`inline-flex w-fit items-center gap-1.5 rounded px-2 py-1 text-[11px] font-semibold ${status.className}`}>
-                                                <StatusIcon size={13} aria-hidden="true" />
-                                                {status.label}
-                                            </div>
+                                            {teacherMode && (
+                                                <div className={`inline-flex w-fit items-center gap-1.5 rounded px-2 py-1 text-[11px] font-semibold ${status.className}`}>
+                                                    <StatusIcon size={13} aria-hidden="true" />
+                                                    {status.label}
+                                                </div>
+                                            )}
                                             {paper.isPlaceholder && (
                                                 <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-amber-50 text-amber-700">
                                                     当前仅 {paper.questions} 题
                                                 </div>
                                             )}
-                                            {!paper.isPlaceholder && paper.needsReview && (
+                                            {teacherMode && !paper.isPlaceholder && paper.needsReview && (
                                                 <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-amber-50 text-amber-700">
                                                     解析待精修
                                                 </div>
@@ -351,7 +361,7 @@ const QuestionBankHome = () => {
                                         {paper.title}
                                     </h3>
 
-                                    {(paper.reviewedAt || paper.reviewScope) && (
+                                    {teacherMode && (paper.reviewedAt || paper.reviewScope) && (
                                         <p className="mb-3 text-xs leading-5 text-slate-500">
                                             {paper.reviewScope || '已校订内容'}
                                             {paper.reviewedAt && ` · ${paper.reviewedAt}`}
@@ -373,28 +383,30 @@ const QuestionBankHome = () => {
                                         </p>
                                     )}
 
-                                    <div className="mb-3 flex flex-wrap gap-1.5">
-                                        {VERIFICATION_DIMENSIONS.map(({ key, label }) => {
-                                            const state = paper.dimensions[key];
-                                            const tone = state === 'verified'
-                                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                                                : state === 'partial'
-                                                    ? 'bg-blue-50 text-blue-700 border-blue-200'
-                                                    : 'bg-slate-50 text-slate-500 border-slate-200';
-                                            return (
-                                                <span
-                                                    key={key}
-                                                    className={`rounded border px-1.5 py-0.5 text-[11px] font-medium ${tone}`}
-                                                    title={`${label}：${DIMENSION_STATUS[state].label}${paper.coverage?.[key]?.reviewed ? `；已登记核验覆盖 ${paper.coverage[key].reviewed}/${paper.coverage[key].total} 题` : state === 'partial' ? '；已有局部核验记录，尚无完整逐题覆盖计数' : ''}`}
-                                                >
-                                                    {label}
-                                                    {state === 'verified' ? ' ✓' : state === 'partial' ? ' ~' : ' —'}
-                                                </span>
-                                            );
-                                        })}
-                                    </div>
+                                    {teacherMode && (
+                                        <div className="mb-3 flex flex-wrap gap-1.5">
+                                            {VERIFICATION_DIMENSIONS.map(({ key, label }) => {
+                                                const state = paper.dimensions[key];
+                                                const tone = state === 'verified'
+                                                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                                    : state === 'partial'
+                                                        ? 'bg-blue-50 text-blue-700 border-blue-200'
+                                                        : 'bg-slate-50 text-slate-500 border-slate-200';
+                                                return (
+                                                    <span
+                                                        key={key}
+                                                        className={`rounded border px-1.5 py-0.5 text-[11px] font-medium ${tone}`}
+                                                        title={`${label}：${DIMENSION_STATUS[state].label}${paper.coverage?.[key]?.reviewed ? `；已登记核验覆盖 ${paper.coverage[key].reviewed}/${paper.coverage[key].total} 题` : state === 'partial' ? '；已有局部核验记录，尚无完整逐题覆盖计数' : ''}`}
+                                                    >
+                                                        {label}
+                                                        {state === 'verified' ? ' ✓' : state === 'partial' ? ' ~' : ' —'}
+                                                    </span>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
 
-                                    {paper.evidence && <a className="mb-3 inline-flex min-h-11 items-center text-xs font-semibold text-blue-700 underline" href={`https://github.com/Dora321/gesp-app/blob/main/docs/question-bank-verification/${paper.id}.json`} target="_blank" rel="noreferrer" onClick={event => event.stopPropagation()}>查看核验证据（AI 审校记录）</a>}
+                                    {teacherMode && paper.evidence && <a className="mb-3 inline-flex min-h-11 items-center text-xs font-semibold text-blue-700 underline" href={`https://github.com/Dora321/gesp-app/blob/main/docs/question-bank-verification/${paper.id}.json`} target="_blank" rel="noreferrer" onClick={event => event.stopPropagation()}>查看核验证据（AI 审校记录）</a>}
                                     <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
                                         <span className="flex items-center gap-1">
                                             <Clock size={14} /> {paper.time}
@@ -407,7 +419,7 @@ const QuestionBankHome = () => {
                                     <button
                                         type="button"
                                         onClick={() => navigate(`/question-bank/${paper.level}/${paper.id}`)}
-                                        className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-slate-50 py-2 text-sm font-medium text-slate-600 transition-all group-hover:bg-blue-600 group-hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                        className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                     >
                                         立即练习 <ChevronRight size={14} />
                                     </button>

@@ -9,6 +9,8 @@ GESP App 是一个基于 **React + Vite** 的互动教学与题库网站，包�
 
 线上示例：<https://dora321.github.io/gesp-app/>
 
+课堂模式与教师工具（任意页面地址后加 `?teacher=1`）见 [课堂 AI 快速上手](docs/classroom-quickstart.md#老师入口教师工具)。
+
 ---
 
 ## 技术栈

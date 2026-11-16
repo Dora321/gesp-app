@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, RefreshCw, BookOpen, CheckCircle2, Lightbulb, RotateCcw, Tags } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, RefreshCw, BookOpen, CheckCircle2, Lightbulb, RotateCcw, Tags } from 'lucide-react';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import AnswerReview from './AnswerReview';
@@ -45,6 +45,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId, storageKey
     const questions = allQuestions; 
 
     const [activeTab, setActiveTab] = useState('practice');
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const {
         answers,
         revealed,
@@ -146,10 +147,23 @@ export default function InteractiveAnalysisPage({ paperData, paperId, storageKey
                 </div>
             </header>
 
-            <main className="max-w-6xl mx-auto grid md:grid-cols-[220px_1fr] gap-4 p-4">
-                <aside className="bg-white rounded-xl border border-slate-200 p-3 h-fit">
-                    <div className="text-sm font-semibold text-slate-700 mb-3">题号导航</div>
-                    <div className="grid grid-cols-5 md:grid-cols-4 gap-2">
+            <main className="max-w-6xl mx-auto grid grid-cols-[minmax(0,1fr)] md:grid-cols-[220px_minmax(0,1fr)] gap-4 p-4">
+                <aside className="min-w-0 bg-white rounded-xl border border-slate-200 p-3 h-fit">
+                    <button
+                        type="button"
+                        onClick={() => setMobileNavOpen(open => !open)}
+                        aria-expanded={mobileNavOpen}
+                        aria-controls="analysis-question-nav"
+                        className="flex min-h-11 w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 md:hidden"
+                    >
+                        <span>题号 ({currentQuestionIndex + 1}/{questions.length})</span>
+                        {mobileNavOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </button>
+                    <div className="mb-3 hidden text-sm font-semibold text-slate-700 md:block">题号导航</div>
+                    <div
+                        id="analysis-question-nav"
+                        className={`${mobileNavOpen ? 'grid' : 'hidden'} mt-2 grid-cols-5 gap-2 md:mt-0 md:grid md:grid-cols-4`}
+                    >
                         {questions.map((q, idx) => {
                             const isCurrent = idx === currentQuestionIndex;
                             const navStatus = getQuestionNavStatus({
@@ -167,6 +181,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId, storageKey
                                     onClick={() => {
                                         setCurrentQuestionIndex(idx);
                                         setActiveTab('practice');
+                                        setMobileNavOpen(false);
                                     }}
                                     className={`aspect-square rounded-lg border text-sm font-semibold ${navStatus.className}`}
                                 >
@@ -177,7 +192,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId, storageKey
                     </div>
                 </aside>
 
-                <section className="space-y-4">
+                <section className="min-w-0 space-y-4">
                     <div className="bg-white rounded-2xl border border-slate-200 p-5 md:p-8">
                         <div className="flex items-center justify-between mb-4">
                             <div className="text-sm text-slate-500">第 {currentQuestionIndex + 1} 题 / 共 {questions.length} 题</div>

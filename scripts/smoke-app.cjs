@@ -166,13 +166,31 @@ async function run() {
   });
 
   const directQuestionBankStart = requestUrls.length;
-  await page.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
+  // 核验/教研信息只在教师模式显示，先按教师模式核对原有信息，再回到学生视图。
+  await page.goto(`${baseUrl}/question-bank?teacher=1`, { waitUntil: 'domcontentloaded' });
   await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
   await page.getByRole('main').getByText('五项均已核验', { exact: true }).first().waitFor({ timeout: 10000 });
   await page.getByText('已有核验进展', { exact: true }).waitFor({ timeout: 10000 });
   await page.getByText('尚无可用核验记录', { exact: true }).waitFor({ timeout: 10000 });
   await page.getByText(/一级真题列表/).waitFor({ timeout: 10000 });
   await page.getByText(/\d+ 卷 · \d+ 题 · 最新/).first().waitFor({ timeout: 10000 });
+
+  await page.goto(`${baseUrl}/question-bank?teacher=0`, { waitUntil: 'domcontentloaded' });
+  await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
+  await page.getByText('已有核验进展', { exact: true }).waitFor({ state: 'hidden', timeout: 10000 });
+  const studentPracticeButton = page.getByRole('main').getByRole('button', { name: /立即练习/ }).first();
+  await studentPracticeButton.waitFor({ timeout: 10000 });
+  const studentPracticeClass = await studentPracticeButton.getAttribute('class');
+  if (!studentPracticeClass?.includes('bg-blue-600') || !studentPracticeClass?.includes('text-white')) {
+    throw new Error(`Student paper practice button should be a primary blue button: ${studentPracticeClass}`);
+  }
+  if (await page.getByText('查看核验证据（AI 审校记录）').count()) {
+    throw new Error('Student question-bank cards should not expose verification evidence links.');
+  }
+  if (await page.getByText('五项均已核验', { exact: true }).count()) {
+    throw new Error('Student question-bank view should not expose verification status labels.');
+  }
+
   const directQuestionBankRequests = requestUrls.slice(directQuestionBankStart);
   const eagerHomeRequest = directQuestionBankRequests.find((url) => /\/Home-[^/]+\.js/.test(url));
   if (eagerHomeRequest) {
