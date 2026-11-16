@@ -1,0 +1,99 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    11
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:53:30.023Z",
+  "completedAt": "2026-11-16T23:57:14.530Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 41179,
+    "completion_tokens": 23643,
+    "total_tokens": 64822,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 21187
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01799835,
+      "allowance": 0.01799835,
+      "tokens": {
+        "input": 41179,
+        "output": 23643,
+        "reasoning": 21187,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "e68909f8226e64d902471ef3c7bc1685b2facfcc3feb01e63b787198faff87ab",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图卷头为「CCF 编程能力等级认证 GESP」「C++ 四级」「2025 年 12 月」，页脚「第 1 页 / 共 12 页」，与 paperId 2025-12-l4（2025 年 12 月、C++ 四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图题干「下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。」；候选省略括注「（不需要对所有学生完全排序，只需要找出前 k 名）」，但主句「选出前 k 名成绩最好的学生」与代码外层 for(i=0;i<k;i++) 已完整表达该约束，属不影响作答的辅助性说明省略。第 4 页页图代码（struct Student 定义、maxIdx=i、填空内层循环、students[j].score > students[maxIdx].score、maxIdx != i 时交换）与候选逐行一致，仅排版折叠。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页页图选项依次为 A. int j = 0; j < n; j++、B. int j = i + 1; j < n; j++、C. int j = i; j < n; j++、D. int j = 1; j <= n; j++；候选四项文字与顺序一致（「i+1」与「i + 1」仅空格差异，可忽略），无顺序错位，answer 映射不受影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 格为 B，候选 answer=1（0 起始映射 B）与官方一致。独立推演确认：选项 C 在 j=i 时 students[i].score > students[i].score 为严格大于、恒为假，maxIdx 保持 i，maxIdx != i 不成立、不发生交换，随后 j=i+1..n-1 过程与 B 完全相同，C 与 B 执行结果无条件等价；此为源卷单选唯一性固有缺陷，answer 忠实保留官方 B，争议记录于 unresolved，不影响 answer 与官方答案表的对应关系。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前候选解析仍含两处错误论断：①选项 C 分析称「交换后 temp 被覆盖会丢失数据」；②易错提醒称「不能从 i 开始（否则自身交换会丢失数据）」。经独立推演两者均为假：C 的 j=i 自比较恒假，不触发交换，无任何覆盖或丢失，C 与 B 等价（上一轮意见声称已删除该错误理由，但候选实际文本仍在，修订未落实）。另核实：A 的破坏性由反例证实（成绩 [100,10,90,80]、k=2：第 1 轮无交换，第 2 轮 j=0 的 100>10 使 maxIdx=0，交换 0/1 后为 [10,100,90,80]，前两位 {10,100} 不含真正的第二名 90）；D 的 j<=n 在 j=n 时越界访问 students[n] 成立，且范围 [1,n] 在 i≥2 轮包含已排前缀下标 1..i-1 亦会打乱名次（[100,90,10,80]、k=3：第 3 轮 i=2 时 j=1 的 90>10 使 maxIdx=1，交换后前三位 {100,10,90}≠正确前三名 {100,90,80}）。已在 changes 提供按上述独立推演重写的完整解析：如实说明 B/C 等价并保留官方 B，以反例排除 A、以越界与范围缺陷排除 D，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（官方答案；注意选项 C 与 B 执行结果等价，见选项 C 分析）**\n\n**核心解析：**\n1. 函数采用选择排序思想：外层循环执行 k 轮，第 i 轮把剩余未排序部分中的最高分交换到下标 i，k 轮结束后下标 0..k-1 即为前 k 名。\n2. 每轮开始时 `maxIdx = i`，先默认位置 i 为剩余部分的最大值候选，随后应在 `[i+1, n-1]` 中寻找更高分者，故内层循环应填 `int j = i+1; j < n; j++`，即选项 B。\n3. 找完后若 `maxIdx != i`，交换 `students[i]` 与 `students[maxIdx]`，把本轮最高分放到位置 i。\n\n**选项逐项分析：**\n- **A（int j = 0; j < n; j++）**：❌ 错误。扫描范围包含已确定的前缀，会破坏已选出的名次。反例：成绩 [100,10,90,80]、k=2。第 1 轮（i=0）：无元素大于 100，maxIdx=0，不交换；第 2 轮（i=1）：j=0 时 100>10 使 maxIdx=0，交换下标 0/1 后数组变为 [10,100,90,80]，前两位为 {10,100}，真正的第二名 90 被排除。\n- **B（int j = i+1; j < n; j++）**：✅ 官方答案。在未排序区 [i+1, n-1] 中寻找最大值下标，是选择排序的标准写法。\n- **C（int j = i; j < n; j++）**：⚠️ 与 B 执行结果等价。j=i 时条件 `students[i].score > students[i].score` 为严格大于、恒为假，maxIdx 不变，不会发生交换，也不存在「覆盖 temp 丢失数据」的问题；此后 j=i+1..n-1 的过程与 B 完全相同，仅多一次无效自比较。官方答案表取 B（规范写法），但严格说 C 同样能完成任务，本题单选唯一性存在源卷争议，已记录待官方确认。\n- **D（int j = 1; j <= n; j++）**：❌ 错误。j<=n 使 j=n 时访问 `students[n]`，数组越界（未定义行为），仅此一点已足以否定；此外其扫描范围 [1, n] 在 i≥2 的轮次会包含已排好前缀中的下标 1..i-1，这些位置存放的是此前各轮的最大值，一旦在比较中胜出会被交换走，打乱已确定的名次（如成绩 [100,90,10,80]、k=3：第 3 轮 i=2 时 j=1 的 90>10 使 maxIdx=1，交换下标 1/2 后前三位变为 {100,10,90}，而正确前三名为 {100,90,80}）。\n\n**易错提醒：**\n- 内层从 i+1 开始是选择排序规范写法；从 i 开始（选项 C）不会丢数据，但多一次无意义的自比较，官方取规范写法 B。\n- 上界必须是 j < n；写成 j <= n 会越界访问 students[n]。\n\n**知识延伸：**\n本函数执行 k 轮、每轮最多比较约 n 次，时间复杂度 O(kn)；k=n 时为 O(n²)。\n\n**考点：** 选择排序（Selection Sort）的内层循环边界控制。"
+        },
+        "tests": [],
+        "unresolved": [
+          "官方答案表第 11 题为 B，候选 answer=1 与官方一致，故不擅改；但独立推演确认选项 C（int j = i; j < n; j++）在 j=i 时自比较恒假、不产生交换，随后过程与 B 完全相同，执行结果与 B 无条件等价，官方单选存在唯一性争议，属源卷固有缺陷，保留待命题方/官方确认。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "接受初核（DeepSeek）对 C 错误论断的识别及其修复方向，并独立复算确认其 A 反例与 D 越界论据成立；但两处修正后采纳：①初核解释 D 时称「漏掉下标 0」并不准确——i=0 轮下标 0 已由 maxIdx=i 初始化覆盖、i≥1 轮下标 0 本不应扫描，D 的真正附加缺陷是 i≥2 轮扫描范围 [1,n] 含已排前缀下标 1..i-1 会打乱名次，最终解析已按此改写；②初核将 answer 维标为 unresolved，本人判定 answer=1 忠实对应官方答案表第 11 格 B，应标 verified，B/C 等价作为源卷争议单列于 unresolved。另核实上一轮意见声称「已删除 C 丢数据理由」与候选实际文本不符，错误论断仍在（选项分析与易错提醒两处），故重新提供经独立推演的完整解析修复。题干/选项/代码与 PDF 第 1/4/5 页一致。因 B/C 等价导致官方单选不唯一属源卷固有缺陷，无法本轮定案，verdict 记为 unresolved。"
+      }
+    ],
+    "summary": "题号 11：卷头、题干、代码与选项转录经与 PDF 第 1/4/5 页页图逐项比对一致，官方答案表第 11 题为 B，候选 answer=1 映射正确，题干括注省略属不影响作答的辅助性说明。独立推演确认核心争议：选项 C 在 j=i 时自比较恒假、不发生交换，与 B 执行结果无条件等价，官方单选唯一性存疑，属源卷固有缺陷，answer 维持官方 B 并保留争议记录。当前候选解析仍错误声称 C「交换后 temp 被覆盖会丢失数据」（上一轮修复未实际落实），已提供按独立推演重写的完整解析：如实说明 B/C 等价、以反例（[100,10,90,80]、k=2）排除 A、以越界访问 students[n] 及已排前缀干扰（[100,90,10,80]、k=3）排除 D，修复后核验通过。因源卷单选不唯一无法定案，verdict 记为 unresolved。"
+  }
+}
