@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:01:18.104Z",
+  "completedAt": "2026-11-15T16:03:33.320Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31380,
+    "completion_tokens": 11478,
+    "total_tokens": 42858,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9454
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0115938,
+      "allowance": 0.00695628,
+      "tokens": {
+        "input": 31380,
+        "output": 11478,
+        "reasoning": 9454,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "860ee1e58c90bc21f16620851910ee56b01786d7b2b3fee06931adc0cb453c2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 四级 2023年9月”，题号6—10与官方单选答案表 B A B B C 可读，卷别、年月、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页图像及文本层第6题为“下列关于C++语言中函数的叙述，正确的是（ ）。”，网站题面语义一致，仅空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项依次为 A 函数调用前必须定义、B 函数调用时必须提供足够的实际参数、C 函数定义前必须声明、D 函数声明只能写在函数调用前；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题标为 B，按0起始索引为1，与网站 answer=1 一致。独立判断：声明可在定义前，定义本身可充当声明；调用时实参须满足形参要求，B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析围绕“实参数量与类型匹配形参（含默认参数例外）”推导B，并以声明/定义区别排除A、C、D，推导与C++规则一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页图像及文本层第7题为“下列关于C++语言中函数的叙述，不正确的是（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项依次为 A 两个函数的声明可以相同、B 两个函数的局部变量可以重名、C 两个函数的参数可以重名、D 两个函数可以重名；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题标为 A，按0起始索引为0，与网站 answer=0 一致。独立判断：两个相互独立的函数不能具有完全相同的声明；B、C关于不同函数作用域隔离，D关于函数重载，均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析指出两个独立函数不能有完全相同的声明，并解释不同函数的局部变量、形参可重名以及函数可重载，与官方答案A相符；未发现实质性推导错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页图像及文本层第8题为“一个二维数组定义为 char array[3][10]; ，则这个二维数组占用内存的大小为（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项为 A 10、B 30、C 32、D 48；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题标为 B，按0起始索引为1，与网站 answer=1 一致。独立计算：3×10=30 个 char 元素，sizeof(char) 为1字节，总占用30字节。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析用3×10×1=30推导B，并排除10、32、48；关于char占1字节和二维数组连续存储的说明正确，未发现实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页底部题面为“如果 n 为 int 类型的变量，一个指针变量定义为 int *p = &n; ，则下列说法正确的是（ ）。”，第3页续排选项，网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页至第3页四个选项依次为 A 指针变量p的值与变量n是相同的、B 指针变量p的值与变量n的地址是相同的、C 指针变量p指向的值为'n'、D 指针变量p指向的值与变量n的地址是相同的；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题标为 B，按0起始索引为1，与网站 answer=1 一致。独立判断：int *p=&n 使 p 存储 n 的地址，故 p 的值等于 &n，B正确；A混同值与地址，C/D混淆 *p 与 &n。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析区分 p 的值、*p 与 &n，指出 p 存 n 的地址且 *p 为 n 的值，逐项排除A、C、D；与官方答案B及指针语义一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页图像及文本层第10题为“一个三维数组定义为 long long array[6][6][6]; ，则 array[1][2][3] 和 array[3][2][1] 在内存中的位置相差多少字节？（ ）”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页四个选项为 A 70字节、B 198字节、C 560字节、D 无法确定；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题标为 C，按0起始索引为2，与网站 answer=2 一致。独立计算：array[1][2][3] 的偏移为1×36+2×6+3=51，array[3][2][1] 的偏移为3×36+2×6+1=121，差70个元素；long long 按8字节计，70×8=560字节。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析按行优先公式计算偏移差70个元素，再乘 long long 的8字节得560，排除70、198、无法确定；推导与官方答案C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核范围为第6—10题。卷头、官方答案表及对应页图/文本均可读，5题的题面、选项、答案与官方一致；解析未发现需修改的实质性错误，故 changes 均为空。本批均为单选题，无编程题测试。"
+  }
+}

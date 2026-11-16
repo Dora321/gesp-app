@@ -1,0 +1,228 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:24:54.701Z",
+  "completedAt": "2026-11-15T16:25:37.484Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31318,
+    "completion_tokens": 3662,
+    "total_tokens": 34980,
+    "prompt_tokens_details": {
+      "cached_tokens": 31232
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2347
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0023038,
+      "allowance": 0.00138228,
+      "tokens": {
+        "input": 86,
+        "output": 3662,
+        "reasoning": 2347,
+        "cache_read": 31232,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "860ee1e58c90bc21f16620851910ee56b01786d7b2b3fee06931adc0cb453c2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示“CCF 编程能力等级认证”“C++ 四级”“2023 年 9 月”，与 paperId 2023-09-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文：“在C++语言中，指针变量在逻辑上指向另一个变量在内存中的位置，指针变量本身不占用内存。”当前题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题；判断题答案采用“正确/错误”固定映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 1 题为“×”；按正确=0、错误=1 映射为 1，与当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明指针变量本身用于存储地址，作为变量必须占用内存，并区分“指针指向的内存”与“指针变量自身占用的内存”，可支持“错误”结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文为“对 N 个元素的数组执行插入排序算法，通常的时间复杂度是 O(N²)。”当前题面含义与原题一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 题为“√”；按正确=0 映射为 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明插入排序两层循环、最坏与平均情况为 O(N²)，并指出最佳情况 O(N) 不改变“通常”结论，推导充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题原文为“在C++语言中，每个变量都有其作用域。”当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 题为“√”；按正确=0 映射为 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析围绕 C++ 的全局作用域、局部作用域、命名空间作用域、类作用域说明每个变量均从属于一定作用域，可支持“正确”结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文为“在C++语言中，在函数调用时，通过引用传递的参数不会复制实际参数，因此不会额外占用内存。”当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 题为“×”；按错误=1 映射为 1，与当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析区分“不复制被引用对象”与“引用形参在实现层面可能仍需保存地址信息”两个层面，指出题干“不会额外占用内存”的绝对化表述不成立，与官方判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 5 题原文为“在C++语言中，可以通过定义结构体，定义一个新的数据类型。”当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 题为“√”；按正确=0 映射为 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 struct 可将多个成员组合为用户自定义类型，并可像内置类型一样声明变量、数组及作为函数参数，推导可支持“正确”结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已依据 PDF 第 1 页卷头与第 4 页判断题题面、答案表核验题号 16-20。5 题题面、官方答案映射及解析结论均一致，未发现需修改的题面、选项、答案或解析；判断题 options 与 referenceCode 维度按要求记为 not_applicable。"
+  }
+}

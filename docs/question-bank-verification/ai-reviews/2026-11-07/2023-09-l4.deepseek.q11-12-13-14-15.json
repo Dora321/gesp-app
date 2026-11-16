@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:04:55.373Z",
+  "completedAt": "2026-11-15T16:06:42.749Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31318,
+    "completion_tokens": 8389,
+    "total_tokens": 39707,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6312
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0097311,
+      "allowance": 0.00583866,
+      "tokens": {
+        "input": 31318,
+        "output": 8389,
+        "reasoning": 6312,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "860ee1e58c90bc21f16620851910ee56b01786d7b2b3fee06931adc0cb453c2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证 C++ 四级 2023年9月”，单选题答案表第11—15题依次为 C、A、A、D、C，与提交卷的等级、年月及题号一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页原题为“如果 a 为 int 类型的变量，且 a 的值为6，则执行 a = ~a; 之后，a 的值会是（ ）。”网站题面语义、代码和标点等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. -6、B. 6、C. -7、D. 7；网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 C；C 在网站选项中为索引2，与 officialAnswer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析使用补码恒等式 ~x = -(x+1)，独立计算 ~6 = -7，并逐项排除错误选项，结论与 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页原题定义 int a[5] = {1,2,3,4,5};、int *p = &a[2];，并执行 *p = a[1];；网站题面与下标、赋值方向一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A—D 分别为 {1,2,2,4,5}、{1,3,3,4,5}、{1,2,3,3,5}、{1,2,4,4,5}，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 A；A 为索引0，与 officialAnswer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 p 指向 a[2]，*p = a[1] 将 a[2] 改为2，得到 {1,2,2,4,5}，并非只复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第13题关于 C++ 异常处理的题干与网站一致，未改变 try/catch 语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A—D 依次为：一个 try 可有多个 catch；发生异常一定会进入某个 catch；try 中没有可能异常语句会编译错误；catch 后重新执行对应 try；网站文本与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 A；A 为索引0，与 officialAnswer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明多 catch 合法、未匹配异常会继续传播、无异常语句不构成编译错误、catch 后不会重新执行 try，能独立推出 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页末给出题干、第4页给出完整代码：int fib[10];、循环 for (int i=2; i<10; i++) 填充后输出 fib[10]；网站 code 与页图逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 0、B. 5、C. 55、D. 无法确定。；网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 D；D 为索引3，与 officialAnswer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 fib[10] 越界，属于未定义行为，标准不保证读到55或其他值，因此输出无法确定；该推导独立于官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码为外层 for (int i=n; i>=2; i--)，内层空白 for (_______) 后比较 array[j] 与 array[j+1]；网站题面和代码与页图一致，仅空白长度和排版略有差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A—D 分别为 int j=1; j<n; j++、int j=0; j<n; j++、int j=0; j<i-1; j++、int j=0; j<i; j++；网站选项与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 C；C 为索引2，与 officialAnswer=2 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 C 和最终边界结论正确，但解析正文先称内层边界应为 j < n-i-1，随后又称 j < i-1，与本题外层 i 从 n 递减到2的代码不一致；对 D 也只说“可能导致越界”，而首轮 i=n 时 j 可取 n-1，比较 array[n] 已确定越界。需替换为完整正确解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（int j = 0; j < i - 1; j++）**\n\n**核心解析：**\n外层循环 `for (int i = n; i >= 2; i--)` 中，`i` 表示当前待排序区间包含前 `i` 个元素（下标 `0` 到 `i-1`）。每轮从 `j=0` 开始比较相邻的 `array[j]` 与 `array[j+1]`；由于 `j+1` 最大只能到 `i-1`，故 `j` 的最大取值为 `i-2`，循环条件应为 `j < i-1`。这样首轮比较下标 `0..n-2` 与 `1..n-1`，随后 `i` 递减，比较范围逐步缩小，最终完成由小到大排序。\n\n**选项逐项分析：**\n- **A `int j = 1; j < n; j++`**：❌ 错误。首轮漏掉 `array[0]` 与 `array[1]` 的比较；且 `j=n-1` 时会访问 `array[n]`，越界。\n- **B `int j = 0; j < n; j++`**：❌ 错误。每轮都固定比较到数组末尾，`i<n` 时仍会访问已排序区，且 `j=n-1` 时访问 `array[n]`，越界。\n- **C `int j = 0; j < i - 1; j++`**：✅ 正确。恰好覆盖当前未排序区间，`array[j+1]` 的最大下标为 `i-1`，不越界。\n- **D `int j = 0; j < i; j++`**：❌ 错误。当 `j=i-1` 时会访问 `array[i]`；首轮 `i=n` 即访问 `array[n]`，确定越界。\n\n**易错提醒：**\n本题外层 `i` 是从 `n` 递减到 `2` 的“当前待排序元素个数”，内层上界应直接写成 `j < i - 1`；不要套用外层 `i` 从 `1` 递增时的 `j < n - i` 形式。\n\n**考点：** 冒泡排序内层循环边界与数组越界防范。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第11—15题，共5题，均为单选题。题11—14各适用维度与官方页图及答案表一致；题15题面、选项、答案正确，但解析中的冒泡内层边界公式前后矛盾，且对 D 的越界判断不够准确，已给出完整解析修正草稿。未发现需要修改题面、选项或答案的项；本批无编程题，故未列编程边界测试。"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "executedAt": "2026-11-16T01:27:25.400Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2\n8 1362\n16 3F0",
+          "output": "754\n1008",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "754\n1008\n",
+          "passed": true
+        },
+        {
+          "input": "2\n2 11011\n10 123456789",
+          "output": "27\n123456789",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "27\n123456789\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1\n2 1\n",
+          "output": "1\n",
+          "reason": "N=1、K=2（下界）、数1为不以0开头时的最小合法数，二进制1即十进制1，独立按定义计算。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "大写字母映射",
+          "input": "1\n16 A\n",
+          "output": "10\n",
+          "reason": "十六进制 A 按映射 c-'A'+10 得 10，独立按权展开验证。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "9位十六进制上界",
+          "input": "1\n16 FFFFFFFFF\n",
+          "output": "68719476735\n",
+          "reason": "16^9=2^36=68719476736，FFFFFFFFF=16^9-1=68719476735，覆盖最大位数与 long long 累加上界。",
+          "kind": "boundary",
+          "actual": "68719476735\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "a768e54c91e5879b444ee1ab013a5d263b3705a1ea7375926ddfe81776a4e18d"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "0",
+          "output": "00",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "00\n",
+          "passed": true
+        },
+        {
+          "input": "926",
+          "output": "9E 07",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "9E 07\n",
+          "passed": true
+        },
+        {
+          "input": "987654321012345678",
+          "output": "CE 96 C8 A6 F4 CB B6 DA 0D",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "CE 96 C8 A6 F4 CB B6 DA 0D\n",
+          "passed": true
+        },
+        {
+          "name": "最小值 0",
+          "input": "0\n",
+          "output": "00\n",
+          "reason": "0 的二进制为一组全0且即末组，最高位补0，输出两位十六进制 00，与样例1一致并由本复核独立推演确认。",
+          "kind": "boundary",
+          "actual": "00\n",
+          "passed": true
+        },
+        {
+          "name": "单字节上界 127",
+          "input": "127\n",
+          "output": "7F\n",
+          "reason": "127=2^7-1，单组即末组，不置延续位，十六进制 7F。",
+          "kind": "boundary",
+          "actual": "7F\n",
+          "passed": true
+        },
+        {
+          "name": "跨组边界 128",
+          "input": "128\n",
+          "output": "80 01\n",
+          "reason": "128 低7位为0且高位余1：低组 0+128=0x80（置延续位），末组 1=0x01。",
+          "kind": "boundary",
+          "actual": "80 01\n",
+          "passed": true
+        },
+        {
+          "name": "10^18 上界",
+          "input": "1000000000000000000\n",
+          "output": "80 80 90 BB BA D6 AD F0 0D\n",
+          "reason": "本复核独立做128带余除法得9组（低位到高位）0,0,16,59,58,86,45,112,13；前8组加0x80延续位（128,128,144,187,186,214,173,240），末组13=0x0D，覆盖约束上界。",
+          "kind": "boundary",
+          "actual": "80 80 90 BB BA D6 AD F0 0D\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "9d4cb2269308dfcc1866317cc07534de6b92ed86af5482e30aed7e055615b37c"
+    }
+  ]
+}

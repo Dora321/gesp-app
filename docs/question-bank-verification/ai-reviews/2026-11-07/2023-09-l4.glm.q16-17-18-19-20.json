@@ -1,0 +1,233 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:25:37.491Z",
+  "completedAt": "2026-11-15T16:27:15.144Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45865,
+    "completion_tokens": 7080,
+    "total_tokens": 52945,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4999
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01041975,
+      "allowance": 0.01041975,
+      "tokens": {
+        "input": 45865,
+        "output": 7080,
+        "reasoning": 4999,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "860ee1e58c90bc21f16620851910ee56b01786d7b2b3fee06931adc0cb453c2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头清晰显示 CCF 标志、'GESP'、'CCF 编程能力等级认证 Grade Examination of Software Programming'、'C++ 四级'、'2023 年 9 月'，与 paperId 2023-09-l4（2023 年 9 月 GESP C++ 四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文（图像）:'在C++语言中，指针变量在逻辑上指向另一个变量在内存中的位置，指针变量本身不占用内存。'与网站题面逐字一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，答案采用 正确=0/错误=1 映射，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 1 题符号为'×'（答案行图像清晰可读：×√√×√√√××√），按错误=1 映射为 1，与网站 answer=1 一致。独立推导：指针变量是存储地址值的变量，32 位系统占 4 字节、64 位系统占 8 字节，题干'本身不占用内存'的说法错误，与官方判定一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析独立区分'指针指向的内存'与'指针变量自身的存储空间'，指出指针作为变量必须占用内存存放地址值（32/64 位分别 4/8 字节），并给出 NULL 指针仍占内存的提醒，可独立支持'错误'结论，推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第 4 页题面原文与答案表'×'符号后，与初核结论（statement/answer/explanation 均 verified、officialAnswer=1）完全一致，接受初核。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文（图像）:'对N个元素的数组执行插入排序算法，通常的时间复杂度是O(N²)。'；文本层公式缺字，但页面图像中 N 与 O(N²)（带上标 2）清晰可读，与网站题面含义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 题符号为'√'，按正确=0 映射为 0，与网站 answer=0 一致。独立推导：插入排序外层遍历 n-1 次、内层在已排序区间向前比较移动，最坏（逆序）与平均情况下总比较/移动约 n(n-1)/2 次，量级 O(N²)，'通常'表述成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明两层嵌套循环结构、最坏与平均 O(N²)、并区分最佳情况 O(N)（近有序）不影响'通常'的结论，推导方向正确且完整，可支持官方'√'。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "该题已有 sourceVerified 标记；本次独立复核第 4 页题面（含图像中 O(N²) 公式）与答案表'√'，结论与初核一致，接受初核。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题原文（图像）:'在C++语言中，每个变量都有其作用域。'与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 题符号为'√'，按正确=0 映射为 0，与网站 answer=0 一致。独立推导：C++ 中变量按声明位置必然从属全局作用域、局部（块）作用域、命名空间作用域或类作用域之一，不存在无作用域的变量，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析列举全局/局部/命名空间/类作用域，补充全局变量跨文件需 extern、名字遮蔽等细节，并区分作用域与生命周期，可独立支持'正确'结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第 4 页题面与答案表'√'，结论与初核一致，接受初核。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文（图像）:'在C++语言中，在函数调用时，通过引用传递的参数不会复制实际参数，因此不会额外占用内存。'与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 题符号为'×'，按错误=1 映射为 1，与网站 answer=1 一致。独立推导：前半句'不复制实参内容'成立，但由此外推'不会额外占用内存'的绝对化结论不成立——引用形参在实现层面通常需保存被引用对象的地址（栈槽或寄存器绑定，典型 4/8 字节），故整句判错误，与官方判定一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析区分'不拷贝对象内容'与'引用形参自身的存储开销'两个层面，指出题干绝对化表述不成立，并提醒基本类型传引用可能反而有地址开销，可独立支持官方'×'结论。（严格标准语义中引用是否占存储由实现决定，但该细节不改变与官方判定的一致性，解析在教学语境下推导方向正确。）"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第 4 页题面与答案表'×'，解析以'引用底层按指针/地址绑定实现、仍需存储开销'支持官方结论，推导充分，接受初核。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 5 题原文（图像）:'在C++语言中，可以通过定义结构体，定义一个新的数据类型。'与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 题符号为'√'，按正确=0 映射为 0，与网站 answer=0 一致。独立推导：struct 将多个不同类型成员组合为新的复合类型，定义后可像内置类型一样声明变量、数组并作函数参数，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明 struct 构成用户自定义类型、可与内置类型同等使用，并补充 struct 与 class 默认访问权限区别、enum/union 等延伸，可独立支持'正确'结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第 4 页题面与答案表'√'，结论与初核一致，接受初核。"
+      }
+    ],
+    "summary": "本次独立复核题号 16-20（判断题第 1-5 题，均位于 PDF 第 4 页）。依据第 4 页页面图像逐题核对题面原文，与网站数据逐字一致（第 2 题公式 O(N²) 在图像中清晰，文本层缺字不影响判定）；答案表符号行'×√√×√√√××√'经图像确认，映射为 1/0/0/1/0，与网站 answer 全部一致；五题解析均经独立推导（指针占用内存、插入排序平均 O(N²)、变量必有作用域、引用传递的绝对化内存开销表述不成立、struct 定义新类型），结论与官方判定吻合。五题全部 approve，无需修改，初核结论全部接受；判断题 options/referenceCode 按规则记 not_applicable。仅处理 16-20，未涉及其他题目。"
+  }
+}

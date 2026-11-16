@@ -1,0 +1,1213 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T14:06:12.265Z",
+  "completedAt": "2026-11-15T16:40:45.668Z",
+  "finishReason": "stop",
+  "inputSha256": "860ee1e58c90bc21f16620851910ee56b01786d7b2b3fee06931adc0cb453c2d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“GESP / CCF 编程能力等级认证 / C++ 四级 / 2023 年 9 月”，与 2023-09-l4 的年份、月份、语言和等级一致。\nPDF 第1页卷头为“C++ 四级 2023年9月”，题号6—10与官方单选答案表 B A B B C 可读，卷别、年月、等级一致。\nPDF 第1页卷头显示“CCF 编程能力等级认证 C++ 四级 2023年9月”，单选题答案表第11—15题依次为 C、A、A、D、C，与提交卷的等级、年月及题号一致。\nPDF 第 1 页卷头显示“CCF 编程能力等级认证”“C++ 四级”“2023 年 9 月”，与 paperId 2023-09-l4 对应。\nPDF 第 1 页卷头显示“CCF GESP C++ 四级”“2023 年 9 月”，与 2023-09-l4 的等级和年月一致。\nPDF 第1页卷头为 CCF GESP C++ 四级 2023 年 9 月；第5—8页编程题编号 2023-09-23-04-C-01/02 分别对应“进制转换”“变长编码”，题号、题名和样例均与站点一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题原文为“人们所使用的手机上安装的App通常指的是（ ）。”，与网站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项为 A. 一款操作系统、B. 一款应用软件、C. 一种通话设备、D. 以上都不对，顺序与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 1 题答案为 B；B 的 0 起始索引为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析将 App 解释为 Application（应用程序、应用软件），排除操作系统和通话设备，独立推导结论 B，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第 1 题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页第 2 题包含流程图：m=1,n=1；判断 m*n>20；是则 m=m-2，否则 m=2*m+1；n=n+1；判断 n>5，否则回环，是则输出 m。网站 question 仅有“下列流程图的输出结果是？”，缺失必要流程图或等价逻辑。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项为 A. 9、B. 7、C. 5、D. 11，顺序与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 2 题答案为 A；A 的 0 起始索引为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析臆造了 m=5,n=2、m>0 循环和无限循环，均与 PDF 流程图不符；按图模拟初始 m=1,n=1，逐轮得到 3、7、5、11、9，最终输出 9。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第 2 题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "下列流程图的输出结果是？ ( )\n\n流程图逻辑：开始；m=1，n=1；判断 m*n>20，若“是”执行 m=m-2，若“否”执行 m=2*m+1；然后 n=n+1；判断 n>5，若“否”返回判断 m*n>20，若“是”输出 m 并结束。",
+          "explanation": "**答案：A (9)**\n\n按流程图逐轮模拟：初始 m=1，n=1。\n1. n=1：m*n=1≤20，走“否”分支，m=2*1+1=3，n=2；\n2. n=2：m*n=6≤20，m=2*3+1=7，n=3；\n3. n=3：m*n=21>20，走“是”分支，m=7-2=5，n=4；\n4. n=4：m*n=20，不满足“>20”，m=2*5+1=11，n=5；\n5. n=5：m*n=55>20，m=11-2=9，n=6；\n6. n=6>5，输出 m=9。\n\n因此选 A。易错点：第 4 轮 20 不满足“大于 20”，应走“否”分支；n 自增后才判断 n>5。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页题干为“对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。”；网站 question 末尾多出“ A”，不属于题干。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项为 A. O(n)、B. O(n log n)、C. O(n²)、D. 以上都不正确，顺序与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 3 题答案为 C；C 的 0 起始索引为 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按冒泡排序双层循环推导总比较次数为 n(n-1)/2，平均和最坏均为 O(n²)，最好为 O(n)，结论 C，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第 3 题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题原文与网站 question“下列关于 C++ 语言中指针的叙述，不正确的是（ ）。”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项为 A. 可以定义指向 int 类型的指针。B. 可以定义指向自定义结构体类型的指针。C. 自定义结构体类型可以包含指针类型的元素。D. 不能定义指向 void 类型的指针，那没有意义。顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 4 题答案为 D；D 的 0 起始索引为 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 void* 可以定义、可保存任意对象地址但不能直接解引用，判定 D 的“不能定义 void*”说法错误，故选 D，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第 4 题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题原文与网站 question“下列关于 C++ 语言中数组的叙述，不正确的是（ ）。”一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项为 A. 一维数组可以用来表示数列。B. 二维数组可以用来表示矩阵。C. 三维数组可以用来表示空间中物体的形状。D. 世界是三维的，所以定义四维数组没有意义。顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 5 题答案为 D；D 的 0 起始索引为 3，与网站 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项判定 A、B、C 叙述正确，D 将物理三维强加于数组逻辑维度，四维数组在视频、气象、张量等场景有意义，故 D 为不正确项，与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "第 5 题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页图像及文本层第6题为“下列关于C++语言中函数的叙述，正确的是（ ）。”，网站题面语义一致，仅空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项依次为 A 函数调用前必须定义、B 函数调用时必须提供足够的实际参数、C 函数定义前必须声明、D 函数声明只能写在函数调用前；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题标为 B，按0起始索引为1，与网站 answer=1 一致。独立判断：声明可在定义前，定义本身可充当声明；调用时实参须满足形参要求，B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析围绕“实参数量与类型匹配形参（含默认参数例外）”推导B，并以声明/定义区别排除A、C、D，推导与C++规则一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页图像及文本层第7题为“下列关于C++语言中函数的叙述，不正确的是（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项依次为 A 两个函数的声明可以相同、B 两个函数的局部变量可以重名、C 两个函数的参数可以重名、D 两个函数可以重名；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题标为 A，按0起始索引为0，与网站 answer=0 一致。独立判断：两个相互独立的函数不能具有完全相同的声明；B、C关于不同函数作用域隔离，D关于函数重载，均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析指出两个独立函数不能有完全相同的声明，并解释不同函数的局部变量、形参可重名以及函数可重载，与官方答案A相符；未发现实质性推导错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页图像及文本层第8题为“一个二维数组定义为 char array[3][10]; ，则这个二维数组占用内存的大小为（ ）。”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项为 A 10、B 30、C 32、D 48；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题标为 B，按0起始索引为1，与网站 answer=1 一致。独立计算：3×10=30 个 char 元素，sizeof(char) 为1字节，总占用30字节。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析用3×10×1=30推导B，并排除10、32、48；关于char占1字节和二维数组连续存储的说明正确，未发现实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页底部题面为“如果 n 为 int 类型的变量，一个指针变量定义为 int *p = &n; ，则下列说法正确的是（ ）。”，第3页续排选项，网站题面语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页至第3页四个选项依次为 A 指针变量p的值与变量n是相同的、B 指针变量p的值与变量n的地址是相同的、C 指针变量p指向的值为'n'、D 指针变量p指向的值与变量n的地址是相同的；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题标为 B，按0起始索引为1，与网站 answer=1 一致。独立判断：int *p=&n 使 p 存储 n 的地址，故 p 的值等于 &n，B正确；A混同值与地址，C/D混淆 *p 与 &n。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析区分 p 的值、*p 与 &n，指出 p 存 n 的地址且 *p 为 n 的值，逐项排除A、C、D；与官方答案B及指针语义一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页图像及文本层第10题为“一个三维数组定义为 long long array[6][6][6]; ，则 array[1][2][3] 和 array[3][2][1] 在内存中的位置相差多少字节？（ ）”，网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页四个选项为 A 70字节、B 198字节、C 560字节、D 无法确定；网站选项文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题标为 C，按0起始索引为2，与网站 answer=2 一致。独立计算：array[1][2][3] 的偏移为1×36+2×6+3=51，array[3][2][1] 的偏移为3×36+2×6+1=121，差70个元素；long long 按8字节计，70×8=560字节。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现解析按行优先公式计算偏移差70个元素，再乘 long long 的8字节得560，排除70、198、无法确定；推导与官方答案C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页原题为“如果 a 为 int 类型的变量，且 a 的值为6，则执行 a = ~a; 之后，a 的值会是（ ）。”网站题面语义、代码和标点等价。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项依次为 A. -6、B. 6、C. -7、D. 7；网站选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 C；C 在网站选项中为索引2，与 officialAnswer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析使用补码恒等式 ~x = -(x+1)，独立计算 ~6 = -7，并逐项排除错误选项，结论与 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页原题定义 int a[5] = {1,2,3,4,5};、int *p = &a[2];，并执行 *p = a[1];；网站题面与下标、赋值方向一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A—D 分别为 {1,2,2,4,5}、{1,3,3,4,5}、{1,2,3,3,5}、{1,2,4,4,5}，与网站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 A；A 为索引0，与 officialAnswer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 p 指向 a[2]，*p = a[1] 将 a[2] 改为2，得到 {1,2,2,4,5}，并非只复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第13题关于 C++ 异常处理的题干与网站一致，未改变 try/catch 语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A—D 依次为：一个 try 可有多个 catch；发生异常一定会进入某个 catch；try 中没有可能异常语句会编译错误；catch 后重新执行对应 try；网站文本与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 A；A 为索引0，与 officialAnswer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明多 catch 合法、未匹配异常会继续传播、无异常语句不构成编译错误、catch 后不会重新执行 try，能独立推出 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页末给出题干、第4页给出完整代码：int fib[10];、循环 for (int i=2; i<10; i++) 填充后输出 fib[10]；网站 code 与页图逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 0、B. 5、C. 55、D. 无法确定。；网站选项内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 D；D 为索引3，与 officialAnswer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 fib[10] 越界，属于未定义行为，标准不保证读到55或其他值，因此输出无法确定；该推导独立于官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页代码为外层 for (int i=n; i>=2; i--)，内层空白 for (_______) 后比较 array[j] 与 array[j+1]；网站题面和代码与页图一致，仅空白长度和排版略有差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项 A—D 分别为 int j=1; j<n; j++、int j=0; j<n; j++、int j=0; j<i-1; j++、int j=0; j<i; j++；网站选项与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 C；C 为索引2，与 officialAnswer=2 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案 C 和最终边界结论正确，但解析正文先称内层边界应为 j < n-i-1，随后又称 j < i-1，与本题外层 i 从 n 递减到2的代码不一致；对 D 也只说“可能导致越界”，而首轮 i=n 时 j 可取 n-1，比较 array[n] 已确定越界。需替换为完整正确解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（int j = 0; j < i - 1; j++）**\n\n**核心解析：**\n外层循环 `for (int i = n; i >= 2; i--)` 中，`i` 表示当前待排序区间包含前 `i` 个元素（下标 `0` 到 `i-1`）。每轮从 `j=0` 开始比较相邻的 `array[j]` 与 `array[j+1]`；由于 `j+1` 最大只能到 `i-1`，故 `j` 的最大取值为 `i-2`，循环条件应为 `j < i-1`。这样首轮比较下标 `0..n-2` 与 `1..n-1`，随后 `i` 递减，比较范围逐步缩小，最终完成由小到大排序。\n\n**选项逐项分析：**\n- **A `int j = 1; j < n; j++`**：❌ 错误。首轮漏掉 `array[0]` 与 `array[1]` 的比较；且 `j=n-1` 时会访问 `array[n]`，越界。\n- **B `int j = 0; j < n; j++`**：❌ 错误。每轮都固定比较到数组末尾，`i<n` 时仍会访问已排序区，且 `j=n-1` 时访问 `array[n]`，越界。\n- **C `int j = 0; j < i - 1; j++`**：✅ 正确。恰好覆盖当前未排序区间，`array[j+1]` 的最大下标为 `i-1`，不越界。\n- **D `int j = 0; j < i; j++`**：❌ 错误。当 `j=i-1` 时会访问 `array[i]`；首轮 `i=n` 即访问 `array[n]`，确定越界。\n\n**易错提醒：**\n本题外层 `i` 是从 `n` 递减到 `2` 的“当前待排序元素个数”，内层上界应直接写成 `j < i - 1`；不要套用外层 `i` 从 `1` 递增时的 `j < n - i` 形式。\n\n**考点：** 冒泡排序内层循环边界与数组越界防范。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 1 题原文：“在C++语言中，指针变量在逻辑上指向另一个变量在内存中的位置，指针变量本身不占用内存。”当前题面与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题；判断题答案采用“正确/错误”固定映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 1 题为“×”；按正确=0、错误=1 映射为 1，与当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立说明指针变量本身用于存储地址，作为变量必须占用内存，并区分“指针指向的内存”与“指针变量自身占用的内存”，可支持“错误”结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 2 题原文为“对 N 个元素的数组执行插入排序算法，通常的时间复杂度是 O(N²)。”当前题面含义与原题一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 2 题为“√”；按正确=0 映射为 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明插入排序两层循环、最坏与平均情况为 O(N²)，并指出最佳情况 O(N) 不改变“通常”结论，推导充分。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 3 题原文为“在C++语言中，每个变量都有其作用域。”当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 3 题为“√”；按正确=0 映射为 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析围绕 C++ 的全局作用域、局部作用域、命名空间作用域、类作用域说明每个变量均从属于一定作用域，可支持“正确”结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文为“在C++语言中，在函数调用时，通过引用传递的参数不会复制实际参数，因此不会额外占用内存。”当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 4 题为“×”；按错误=1 映射为 1，与当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析区分“不复制被引用对象”与“引用形参在实现层面可能仍需保存地址信息”两个层面，指出题干“不会额外占用内存”的绝对化表述不成立，与官方判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "type": "judge",
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 5 题原文为“在C++语言中，可以通过定义结构体，定义一个新的数据类型。”当前题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，按协作规则 options 维度仅适用于单选题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 5 题为“√”；按正确=0 映射为 0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明 struct 可将多个成员组合为用户自定义类型，并可像内置类型一样声明变量、数组及作为函数参数，推导可支持“正确”结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题原文与当前 question 一致（空格、标点等价）：可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有单选题 options 设计；按本次维度规则，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 6 题为√；正确=0，当前 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "命题本身正确：结构体可作数组元素类型，结构体成员也可为数组。但当前解析称“C++11 才支持变长数组”，不符合标准 C++；标准 C++ 的数组长度应为常量表达式，变长数组仅是个别编译器的扩展。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nC++ 的结构体是用户自定义类型，定义后可以像内置类型一样声明数组，例如 `struct Node { int v; }; Node a[10];`。结构体成员也可以是任意合法类型，包括数组，例如 `struct Student { char name[50]; int score[5]; };`。因此“可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员”成立。\n\n**易错提醒：**\n不要把“结构体数组”和“结构体包含数组成员”混为一谈，两者都合法。标准 C++ 的数组长度应为常量表达式；部分编译器支持变长数组只是扩展，不能表述为 C++11 标准特性。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 7 题原文与当前 question 一致：如果希望记录 10 个最长为 99 字节的字符串，可以将字符串数组定义为 char s[10][100];。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有单选题 options 设计；按本次维度规则，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 7 题为√；正确=0，当前 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "char s[10][100] 每行可存 100 个 char，能容纳最多 99 字节有效内容加 1 个字符串结束符；共 10 行，命题正确。当前解析对结束符、strlen 与 sizeof 的说明也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 8 题原文与当前 question 一致：一个可能抛出异常的函数，调用它的位置没有在 try 子句中，会引起编译错误。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有单选题 options 设计；按本次维度规则，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 8 题为×；错误=1，当前 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C++ 不要求可能抛异常的调用必须置于 try 中；未捕获异常会在运行时向外传播，可能调用 std::terminate，但不会因此产生编译错误。当前解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 9 题原文与当前 question 一致：== 和 := 都是 C++ 语言的运算符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有单选题 options 设计；按本次维度规则，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 9 题为×；错误=1，当前 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "== 是 C++ 的相等比较运算符；:= 不是 C++ 运算符（Pascal、Go 等语言中另有含义）。命题错误，当前解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 10 题原文与当前 question 一致：通过使用文件重定向操作，可以将程序中输出到 cout 的内容输出到文件中，这是常用的记录程序运行日志的方法之一。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有单选题 options 设计；按本次维度规则，options 维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 10 题为√；正确=0，当前 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "操作系统或 shell 的输出重定向可将 stdout（C++ 的 cout）”写入文件，常用于保存日志；命题正确。当前解析对重定向与 fstream 的区分也成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用编程题参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页 3.1.1—3.1.4、第6页 3.1.5—3.1.9 的问题描述、输入输出、约束和两组样例，与站点 question 一致。PDF 的 3.1.2 提示和 3.1.5 特别提醒未收录，但不包含必要代码、图、约束或样例，不改变题意和判题要求。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 答案表选项索引。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立采用秦九韶逐位累乘 value=value*K+d，正确给出数字和大写字母到数值的映射，并用 16^9-1=68719476735 论证必须使用 64 位累加变量；两组样例走查 1362_8=754、3F0_16=1008 均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点 referenceCode 用 long long 保存累计值，逐字符 O(总位数) 转换，能处理 K=2..16、9 位十六进制和 0，结果与 PDF 官方参考程序等价且实现正确。PDF 官方程序本身亦正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1\n2 1\n",
+            "output": "1\n",
+            "reason": "N=1、K=2、单位数 1，覆盖 K 和位数下界，按定义直接得到十进制 1。"
+          },
+          {
+            "name": "大写字母映射",
+            "input": "1\n16 A\n",
+            "output": "10\n",
+            "reason": "十六进制 A 映射为 10，验证字母字符 c-'A'+10 的映射。"
+          },
+          {
+            "name": "9 位十六进制上界",
+            "input": "1\n16 FFFFFFFFF\n",
+            "output": "68719476735\n",
+            "reason": "16^9-1=68719476735，覆盖最大位数与 long long 累加上界。"
+          }
+        ],
+        "unresolved": [
+          "站点 question.template 与本题输入格式不符：现模板读取 long long n 和 int b，只处理一组；本题应先读 N，再循环 N 次读 K 和字符串。changes 字段白名单不含 template，保留待后台修正。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7—8页 3.2.1—3.2.3 的编码规则、输入输出和三个样例与站点 question 一致；源文“正整数 N”与同段约束 0≤N≤10^18 存在措辞矛盾，但约束和样例 0 均表明 0 合法，按源文保留争议。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 答案表选项索引。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立按 7 bit 分组、最高位延续标志推导，正确走查 0→00、926→9E 07，并说明 10^18 需要 64 位整型、0 需特判。首段“必须使用无符号”表述偏强，signed long long 也可容纳 0..10^18，但同段后文及站点代码结论正确，不构成字段级错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点 referenceCode 对 0 特判输出 00；循环中把低 7 位加 128 作为非末组，最后压入终止组；再用 hex/uppercase/setw(2)/setfill('0') 输出。0、926、987654321012345678 与 10^18 上界均可正确处理。PDF 官方参考程序未特判 0，和样例 1 冲突，站点实现已修正。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值 0",
+            "input": "0\n",
+            "output": "00\n",
+            "reason": "唯一终止组全 0，最高位补 0，输出两字符十六进制 00。"
+          },
+          {
+            "name": "单字节上界 127",
+            "input": "127\n",
+            "output": "7F\n",
+            "reason": "127=2^7-1，属于最后一组，不置延续位，十六进制为 7F。"
+          },
+          {
+            "name": "跨组边界 128",
+            "input": "128\n",
+            "output": "80 01\n",
+            "reason": "低 7 位为 0 且仍有高位，低字节为 0x80；高位为 1 的终止组为 0x01。"
+          },
+          {
+            "name": "10^18 上界",
+            "input": "1000000000000000000\n",
+            "output": "80 80 90 BB BA D6 AD F0 0D\n",
+            "reason": "独立按 128 反复取余分组得到 9 个 7 bit 组：0,0,16,59,58,86,45,112,13；前 8 组置 0x80 延续位，末组 0x0D 终止，覆盖题目最大范围。"
+          }
+        ],
+        "unresolved": [
+          "源卷输入描述写“正整数 N”，但约束给出 0≤N≤10^18 且样例 1 为 0；按源文保留该措辞争议，未擅自改题。",
+          "PDF 官方参考程序使用 while(n>0)，未为 0 做特判，与样例 0→00 存在源码冲突；站点 referenceCode 已补 0 特判，保留官方源码争议。"
+        ]
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "usage": {
+        "prompt_tokens": 31318,
+        "completion_tokens": 13984,
+        "total_tokens": 45302,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12123
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0130881,
+          "allowance": 0.00785286,
+          "tokens": {
+            "input": 31318,
+            "output": 13984,
+            "reasoning": 12123,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-15T14:06:12.265Z",
+      "completedAt": "2026-11-15T14:09:09.359Z"
+    },
+    {
+      "questionIds": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "usage": {
+        "prompt_tokens": 31380,
+        "completion_tokens": 11478,
+        "total_tokens": 42858,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 9454
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0115938,
+          "allowance": 0.00695628,
+          "tokens": {
+            "input": 31380,
+            "output": 11478,
+            "reasoning": 9454,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-15T16:01:18.104Z",
+      "completedAt": "2026-11-15T16:03:33.320Z"
+    },
+    {
+      "questionIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 31318,
+        "completion_tokens": 8389,
+        "total_tokens": 39707,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6312
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0097311,
+          "allowance": 0.00583866,
+          "tokens": {
+            "input": 31318,
+            "output": 8389,
+            "reasoning": 6312,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-15T16:04:55.373Z",
+      "completedAt": "2026-11-15T16:06:42.749Z"
+    },
+    {
+      "questionIds": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "usage": {
+        "prompt_tokens": 31318,
+        "completion_tokens": 3662,
+        "total_tokens": 34980,
+        "prompt_tokens_details": {
+          "cached_tokens": 31232
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2347
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0023038,
+          "allowance": 0.00138228,
+          "tokens": {
+            "input": 86,
+            "output": 3662,
+            "reasoning": 2347,
+            "cache_read": 31232,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-15T16:24:54.701Z",
+      "completedAt": "2026-11-15T16:25:37.484Z"
+    },
+    {
+      "questionIds": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "usage": {
+        "prompt_tokens": 31318,
+        "completion_tokens": 7330,
+        "total_tokens": 38648,
+        "prompt_tokens_details": {
+          "cached_tokens": 31232
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5825
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0045046,
+          "allowance": 0.00270276,
+          "tokens": {
+            "input": 86,
+            "output": 7330,
+            "reasoning": 5825,
+            "cache_read": 31232,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-15T16:27:15.151Z",
+      "completedAt": "2026-11-15T16:28:40.092Z"
+    },
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 31368,
+        "completion_tokens": 33298,
+        "total_tokens": 64666,
+        "prompt_tokens_details": {
+          "cached_tokens": 31232
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 31783
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0200929,
+          "allowance": 0.01205574,
+          "tokens": {
+            "input": 136,
+            "output": 33298,
+            "reasoning": 31783,
+            "cache_read": 31232,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-15T16:34:12.476Z",
+      "completedAt": "2026-11-15T16:40:45.668Z"
+    }
+  ]
+}
