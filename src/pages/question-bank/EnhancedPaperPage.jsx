@@ -13,9 +13,7 @@ import {
     ClipboardList,
     Tags,
     AlertTriangle,
-    Code2,
-    Gauge,
-    Workflow
+    Code2
 } from 'lucide-react';
 import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
@@ -65,42 +63,11 @@ const inferKnowledgeTags = (q, level) => {
     return Array.from(new Set(tags)).slice(0, 5);
 };
 
-const buildCodingGuide = (q) => {
-    const text = `${q?.question || ''} ${q?.explanation || ''}`;
-    const isGrid = /矩阵|网格|坐标|格|H\s*行|W\s*列/.test(text);
-    const isNumberTheory = /取模|整除|质数|最大公约数|闰年|年份/.test(text);
-    const isSorting = /排序|冒泡|选择|插入|快排|归并/.test(text);
-    const isSearch = /二分|查找|搜索|DFS|BFS|队列|栈/.test(text);
+// 没有站内题解时才显示的通用做题步骤。刻意不按题干关键词套模板：按「格」
+// 「排序」等字眼猜出来的复杂度、步骤会和真实题意矛盾（见 2025-12 四级第 26 题）。
+const GENERIC_CODING_STEPS = ['读懂题意，圈出输入和输出', '用样例手算一遍', '写出核心循环或判断', '检查边界情况', '对照样例运行'];
+const GENERIC_CODING_PITFALLS = ['数据范围可能很大，注意 int 是否会溢出', '边界值（0、1、只有一个数）要单独试一试', '输出格式要和题目完全一致'];
 
-    let idea = '先抽象状态与转移，再通过循环/函数逐步求解。';
-    let steps = ['读入输入参数', '确定核心判定/转移', '循环或递归求解', '处理边界与特判', '输出结果'];
-    let complexity = '优先保证正确性，再评估复杂度并优化。';
-    let pitfalls = ['输入范围可能很大，注意类型溢出', '边界值（0/1/空）要单独验证', '输出格式要与题面完全一致'];
-
-    if (isGrid) {
-        idea = '把问题转成"遍历每个格子并判定是否满足条件"，统计满足条件的数量。';
-        steps = ['读入 H、W、x', '双层循环遍历 (r,c)', '按公式判定是否满足', '满足则计数 +1', '输出计数'];
-        complexity = '时间复杂度 O(H×W)，空间复杂度 O(1)。';
-        pitfalls = ['行列索引从 1 开始还是 0 开始要统一', '公式中开方比较建议注意浮点误差', '边界格子也要参与判定'];
-    } else if (isNumberTheory) {
-        idea = '先把数学判定写成函数或清晰条件，再按题目范围枚举、统计或构造答案。';
-        steps = ['读入数据', '整理整除/取模/质数等判定条件', '枚举候选值并应用判定', '维护答案或计数', '输出结果'];
-        complexity = '通常为 O(n) 或 O(n√n)，若数据范围较大要考虑筛法、预处理或数学化简。';
-        pitfalls = ['0、1、负数等边界值要单独判断', '取模表达式要加括号避免优先级误读', '乘法中间结果可能超过 int'];
-    } else if (isSorting) {
-        idea = '先明确排序关键字和方向，再判断题目需要完整排序、局部排序还是只取最值。';
-        steps = ['读入序列', '确定比较规则', '选择合适排序或维护结构', '处理相等元素顺序', '输出目标结果'];
-        complexity = '常规排序时间复杂度 O(n log n)，若只取最大/最小可优化到 O(n)。';
-        pitfalls = ['升序和降序不要写反', '多关键字排序要处理平局规则', '稳定性要求不能忽略'];
-    } else if (isSearch) {
-        idea = '把状态、边界和转移写清楚，再选择二分、DFS/BFS 或栈队列模拟。';
-        steps = ['定义状态和搜索范围', '确定转移或判定函数', '维护访问/边界信息', '找到目标或统计答案', '验证极端情况'];
-        complexity = '二分通常 O(log n)，图/网格搜索通常 O(状态数 + 转移数)。';
-        pitfalls = ['二分左右边界更新容易漏解', 'DFS/BFS 要标记 visited 防止重复访问', '队列和栈对应的遍历顺序不同'];
-    }
-
-    return { idea, steps, complexity, pitfalls, isGrid, isNumberTheory, isSorting, isSearch };
-};
 const ANALYSIS_CARD_TONES = {
     emerald: 'border-emerald-200 bg-emerald-50 text-emerald-800',
     amber: 'border-amber-200 bg-amber-50 text-amber-800',
@@ -316,7 +283,6 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     const isRevealed = !!revealed[currentQ.id];
     const noticeTiming = integrityNoticeTiming(currentQ);
     const tags = inferKnowledgeTags(currentQ, paperData.level);
-    const codingGuide = (currentQ?.type === 'coding' || currentQ?.type === 'programming') ? buildCodingGuide(currentQ) : null;
     // Answer and explanation are verified independently — see verificationModel.
     const verification = resolveVerification(paperData);
     const answerVerified = verification.dimensions.answer === 'verified';
@@ -329,6 +295,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     const isProgramming = isProgrammingQuestion(currentQ);
     const syntheticLuoguCoding = currentQ?.type === 'coding' && !currentQ.description && Boolean(currentQ.explanation);
     const luoguUrl = isProgramming ? getLuoguProblemUrl(paperId, currentQ.id) : null;
+    const hasAuthoredSolution = !syntheticLuoguCoding && Boolean(currentQ?.explanation || currentQ?.referenceCode);
 
     return (
         <div className="mw-surface mw-line-bank min-h-screen bg-slate-100">
@@ -595,30 +562,18 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                                     </AnalysisCard>
                                                 )}
 
-                                                <AnalysisCard icon={Lightbulb} title="解题思路">
-                                                    <p className="text-[15px] font-normal leading-7 text-slate-700 md:text-base">{codingGuide?.idea}</p>
-                                                </AnalysisCard>
-
-                                                <AnalysisCard icon={Gauge} title="复杂度评估">
-                                                    <p className="text-[15px] font-normal leading-7 text-slate-700 md:text-base">{codingGuide?.complexity}</p>
-                                                </AnalysisCard>
-
-                                                <AnalysisCard icon={Workflow} title="图解流程（可视化）">
-                                                    <div className="flex flex-wrap items-center gap-2 text-xs">
-                                                        {codingGuide?.steps?.map((step, idx) => (
-                                                            <React.Fragment key={step}>
-                                                                <span className="rounded border border-emerald-200 bg-emerald-50 px-2 py-1 text-emerald-800">{idx + 1}. {step}</span>
-                                                                {idx < codingGuide.steps.length - 1 && <span className="text-emerald-500" aria-hidden="true">→</span>}
-                                                            </React.Fragment>
-                                                        ))}
-                                                    </div>
-                                                </AnalysisCard>
-
-                                                <AnalysisCard icon={AlertTriangle} title="易错点" tone="amber">
-                                                    <ul className="list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
-                                                        {(codingGuide?.pitfalls || []).map((it) => <li key={it}>{it}</li>)}
-                                                    </ul>
-                                                </AnalysisCard>
+                                                {!hasAuthoredSolution && (
+                                                    <AnalysisCard icon={Lightbulb} title="通用做题步骤" tone="amber">
+                                                        <p className="mb-3 text-sm font-semibold text-amber-800">通用提示，不针对本题</p>
+                                                        <ol className="list-decimal space-y-1 pl-5 text-base leading-7 text-slate-700">
+                                                            {GENERIC_CODING_STEPS.map((step) => <li key={step}>{step}</li>)}
+                                                        </ol>
+                                                        <p className="mt-4 text-sm font-semibold text-slate-700">常见易错点</p>
+                                                        <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
+                                                            {GENERIC_CODING_PITFALLS.map((it) => <li key={it}>{it}</li>)}
+                                                        </ul>
+                                                    </AnalysisCard>
+                                                )}
                                             </div>
                                         ) : (
                                             <div className="space-y-3">
