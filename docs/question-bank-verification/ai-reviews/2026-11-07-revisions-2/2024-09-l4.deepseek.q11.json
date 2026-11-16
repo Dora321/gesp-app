@@ -1,0 +1,97 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:53:42.210Z",
+  "completedAt": "2026-11-16T12:58:56.013Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18480,
+    "completion_tokens": 25537,
+    "total_tokens": 44017,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 23913
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0180942,
+      "allowance": 0.01085652,
+      "tokens": {
+        "input": 18480,
+        "output": 25537,
+        "reasoning": 23913,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "60e5777b3de7323fd72748365386fd11fd222563d1c673e018c7aba464785aee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 四级 2024 年 09 月”，与 2024-09-l4 匹配。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第1–11行与第4页第12–21行逐行对照：题面保留第14行原卷 swap(arr, i, j);，函数名、vector 参数、flag 及注释一致；首行注释在题面 fenced code 中已保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项顺序与文字为 A for (int j = 0; j < arr.size() - 1; j++)、B for (int j = arr.size() - 1; j > 0; j--)、C for (int j = 0; j < i; j++)、D for (int j = i-1; j <=0; j--)，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 C，对应 0 起始索引 2；站点 answer=2 一致。独立推导：若按冒泡语义将第14行理解为相邻交换，内层需覆盖本轮 [0,i] 的相邻对，j+1<=i 即 j<i，选 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案与选项分析基本正确，且已如实保留原卷第14行笔误和 A/C 功能歧义；但“每执行完一轮……待排序区间收缩为 [0, i]”存在边界表述错误：第 i 轮结束后位置 i 已归位，下一轮待排序区间应为 [0,i-1]；第 i 轮开始时才是 [0,i]。已在 changes.explanation 修正该句。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考程序维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（官方答案表；按原题预期填 `for (int j = 0; j < i; j++)`）**\n\n**核心解析：**\n外层循环 `for (int i = arr.size() - 1; i > 0; i--)` 让 `i` 从末尾递减。第 `i` 轮开始时，位置 `i+1` 及其之后的部分已经有序，本轮待排序区间为 `[0, i]`；本轮结束后位置 `i` 归位，下一轮待排序区间缩为 `[0, i-1]`。内层循环要在本轮区间内比较相邻元素 `arr[j]` 与 `arr[j+1]`，上界必须保证 `j + 1 <= i`，即 `j < i`，故填选项 C。\n\n**选项逐项分析：**\n- **A (for (int j = 0; j < arr.size() - 1; j++))**：不选。若把第 14 行按冒泡语义理解为相邻交换 `swap(arr, j, j+1)`，A 在功能上也能完成排序，只是每轮都扫到末尾，未利用外层 `i` 收缩待排序区间，与本题“每轮收缩右边界”的设计不符；它并非语法错误，官方预期按收缩边界取 C。\n- **B (for (int j = arr.size() - 1; j > 0; j--))**：❌ 错误。`j` 从 `arr.size()-1` 开始，循环体第一步就要访问 `arr[j+1]` 即 `arr[arr.size()]`，直接越界。\n- **C (for (int j = 0; j < i; j++))**：✅ 正确。`j` 遍历 `0 … i-1`，恰好覆盖待排序区间 `[0, i]` 内的全部相邻对。\n- **D (for (int j = i-1; j <=0; j--))**：❌ 错误。当 `i > 1` 时初值 `j = i-1 > 0`，条件 `j <= 0` 不成立，循环体一次都不执行；当 `i = 1`（最后一轮）时 `j = 0` 使条件成立，执行一次后 `j--` 变为负数仍满足 `j <= 0`，将带着负下标持续循环（越界且无法正常结束）。\n\n**原卷笔误说明：**\nPDF 第 14 行原样为 `swap(arr, i, j);`，按冒泡语义应为相邻交换 `swap(arr, j, j + 1)`，属原卷笔误；若严格按原码执行，任何选项都不能保证对所有输入正确排序（如 [3,2,1,5,4] 按原码与 C 执行后得 [1,2,4,3,5]，未排好）。本题按预期语义考查内层循环边界，官方答案为 C。\n\n**易错提醒：**\n- 冒泡排序的内层边界有三种常见写法：`j < n-1`（不收缩）、`j < n-1-i`（`i` 从 0 递增）、`j < i`（`i` 从 n-1 递减），判断依据是待排序区间的右端点位置。\n- `flag` 标志位是“提前退出”优化：某轮一次交换都没发生说明已有序，可直接跳出；加上该优化后，最好情况（原本有序）的时间复杂度从 O(n²) 降为 O(n)。\n\n**考点：** 冒泡排序的双重循环边界"
+        },
+        "tests": [],
+        "unresolved": [
+          "PDF 第14行原样为 swap(arr, i, j);，与冒泡排序相邻交换语义不符；严格按原码任何选项都不能保证正确排序。若按预期改为 swap(arr, j, j+1)，A 与 C 在功能上均能完成排序，单选题唯一性受损。官方答案表明确第11题为 C（索引2），站点 answer=2 与之一致；该争议仅作源卷瑕疵保留记录，不影响答案映射。"
+        ]
+      }
+    ],
+    "summary": "题号11：PDF 第1页答案表为 C（索引2），站点 answer=2 一致；题面与选项对照 PDF 第3–4页通过。解析核心结论正确，但待排序区间“收缩为 [0,i]”的边界表述已修正。第14行原卷 swap(arr, i, j) 笔误及 A/C 功能歧义保留为未决源卷瑕疵。"
+  }
+}
