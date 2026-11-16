@@ -1,0 +1,244 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    5,
+    9,
+    13,
+    14
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:40:18.353Z",
+  "completedAt": "2026-11-16T12:44:04.795Z",
+  "finishReason": "stop",
+  "inputSha256": "44326641da1aa03ac39fe91680911b020e8a4ac04e9f0c5f9873412fb86450ca",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头标明“CCF GESP”“C++ 四级”“2024 年 12 月”，与 2024-12-l4 一致；第1页单选题答案表用于核对各题官方选项索引。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页末行题干“第2题 下面代码的描述中，正确的是（ ）。”；第2页页图给出 n_chars 函数、my_char='w'、times=5 及调用 n_chars(my_char, times)，与候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与候选四项内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为B，0起始索引为1，与候选 answer=1 一致；独立判断：n 是定义处形参，times 是调用处实参，B正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对A的值传递不回写、C的概念颠倒、D的参数隐式转换及语义变化均解释正确；D中 times=5 转为 char 的 ASCII 5 控制字符，my_char='w' 提升为 int 的119，输出119个ASCII 5控制字符，与代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页末行题干“第5题 运行下面代码片段后，x 和 *p 的结果分别是（ ）。”；第3页页图三行代码为 int x = 20; / int* p = &x; / *p = *p + 2;，均为半角分号，候选 question 与独立 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页页图选项A“20 20”、B“20 22”、C“22 20”、D“22 22”，与候选完全一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题为D，0起始索引为3，与候选 answer=3 一致；独立推导 p=&x 后 *p 与 x 为同一对象，*p=*p+2 将22写回该对象，故二者均为22。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 p（地址）、*p（所指对象的值）、&p（指针自身地址），并逐项排除20 20、20 22、22 20，推导与代码一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页题干“下面代码采用递推算法来计算斐波那契数列 f(n)=f(n-1)+f(n-2)，则横线上应填写（ ）。”并给出 fib 函数及填空行；第5页页图给出选项D，题面与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图给出A/B/C三组三行赋值，第5页页图给出D组；四组中 result 与 f1/f2 的赋值次序与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为A，0起始索引为0，与候选 answer=0 一致；独立模拟 n=5，A返回5、B返回17、C返回27、D返回8，A为唯一正确项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对A的滚动变量过程用 n=5 验证正确；B的 result 依次为1、3、7、17，C为27，D为8，均与独立逐轮模拟一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页末行题干“第13题 下面代码实现了插入排序函数，则横线上应填写（ ）。”；第6页给出函数及选项。原图 while 后排版缺左花括号，按选项A及 nums[j+1]=base 的结构会不自洽；候选 question/code 已补为 while {...}，属必要排版修复，修复后与填空意图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页页图A“int base = nums[i], j = i - 1;”、B“int base = nums[i], j = i;”、C“int base = nums[0], j = i - 1;”、D“int base = nums[0], j = i;”，与候选 options 完全一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为A，0起始索引为0，与候选 answer=0 一致；独立推导标准插入排序应暂存 nums[i] 并从 i-1 向左扫描，A正确。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析称“base = nums[i]：正确，暂存当前元素（四个选项都写对了）”，但C/D实际写的是 nums[0]，与该句及后文C/D分析自相矛盾；且“把 i=1 代入……第一个元素与第二个元素的位置关系立刻错乱”表述不准确。需修正解析，不改答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（int base = nums[i], j = i - 1;）**\n\n**核心解析：**\n插入排序每轮先用 `base` 暂存当前待插入元素 `nums[i]`，再从它前一个位置 `i - 1` 开始向左扫描。\n\n- `base = nums[i]`：正确；A、B 这样取，C、D 误取 `nums[0]`。\n- `j = i - 1`：正确；A、C 这样取，B、D 误取 `j = i`。\n- 若取 `j = i`：第一次判断 `nums[j] > base` 就是 `nums[i] > nums[i]`，恒为假，`while` 一次也不执行；随后 `nums[j + 1] = base;` 变成 `nums[i + 1] = base;`，会覆盖下一个元素，`i` 为末位时还会越界。\n\n**选项逐项分析：**\n- **A**：正确。`base = nums[i]` 暂存待插入元素，`j = i - 1` 从正确位置向左扫描。\n- **B**：错误。`base = nums[i]` 正确，但 `j = i` 使 `while` 条件恒假，并把元素写到 `nums[i+1]`，破坏数据且可能越界。\n- **C**：错误。`j = i - 1` 正确，但 `base = nums[0]` 不是当前元素；逐轮执行会把 `nums[1..]` 都写成 `nums[0]`，无法完成插入排序。\n- **D**：错误。同时犯了 C 的 `base = nums[0]` 和 B 的 `j = i` 两处错误。\n\n**易错提醒：**\n- 判断这类题可先代入 `i = 1`：若 `j = 1`，`nums[j+1] = nums[2] = base`，会直接写坏下一个位置；若数组只有两个元素，`nums[2]` 还会越界。\n- `base` 必须取 `nums[i]`，因为随后 `nums[i]` 会被前面的元素覆盖，不暂存就会丢失待插入值。\n\n**知识延伸：**\n`while (j >= 0 && nums[j] > base)` 先判 `j >= 0` 再访问 `nums[j]`，利用 `&&` 的短路特性避免越界；若交换两个条件，当 `j = -1` 时会先读 `nums[-1]`，属于未定义行为。\n\nPDF 第 1 页答案表第 13 题为 A，与网站 `answer = 0` 一致。\n\n**考点：** 插入排序的变量初始化与边界"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页题干“下面哪种方式不能实现将字符串\"Welcome to GESP!\"输出重定向到文件 log.txt（ ）。”与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页A/B/C与候选逐行一致；D第5行原卷印作 cout.rdbuf(oorg_cout);，而第2行声明为 streambuf* org_cout，候选据上下文校正为 org_cout。结合官方唯一答案C，该处判为原卷排版笔误；D第4行输出句与题干字符串不同，候选解释已明确保留说明，不影响按重定向机制判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为C，0起始索引为2，与候选 answer=2 一致；独立判断：C仅打开 ofstream 后仍用 cout 输出，cout 未重定向，不能把指定内容写入文件；A/B/D分别通过 freopen、文件流写入或 rdbuf 重定向。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项说明 freopen、ofstream 直接写入、仅声明 ofstream 不改变 cout、rdbuf 重定向的机制；并披露原卷 oorg_cout 笔误及D输出字符串与题干不一致的源卷瑕疵，推导与官方答案C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        5,
+        9,
+        13,
+        14
+      ],
+      "usage": {
+        "prompt_tokens": 26476,
+        "completion_tokens": 21489,
+        "total_tokens": 47965,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18936
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0168648,
+          "allowance": 0.01011888,
+          "tokens": {
+            "input": 26476,
+            "output": 21489,
+            "reasoning": 18936,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T12:40:18.353Z",
+      "completedAt": "2026-11-16T12:44:04.795Z"
+    }
+  ]
+}

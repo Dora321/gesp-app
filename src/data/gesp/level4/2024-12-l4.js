@@ -450,9 +450,11 @@ C++ 中改用引用 \`void swap(int& a, int& b)\` 更简洁，底层原理完全
 **考点：** 指针解引用与所指对象的修改`,
             sourceVerified: true,
             sourcePage: 3,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "code": "int x = 20;\nint* p = &x;\n*p = *p + 2;",
+      "reviewedFields": ["code","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 6,
@@ -610,44 +612,13 @@ int fib(int n) {
             options: ["```cpp\nresult = f1 + f2;\nf1 = f2;\nf2 = result;\n```", "```cpp\nresult += f1 + f2;\nf1 = f2;\nf2 = result;\n```", "```cpp\nresult += f1 + f2;\nf2 = result;\nf1 = f2;\n```", "```cpp\nresult = f1 + f2;\nf2 = result;\nf1 = f2;\n```"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-**核心解析：**
-这段递推用两个变量滚动保存相邻两项：\`f1\` 保存 \`f(i-2)\`，\`f2\` 保存 \`f(i-1)\`。每轮要做两件事：
-
-1. **算出当前项**：\`result = f1 + f2;\`（即 \`f(i) = f(i-2) + f(i-1)\`）
-2. **把窗口右移一格**：\`f1 = f2;\`（旧的 \`f(i-1)\` 变成新的 \`f(i-2)\`），\`f2 = result;\`（新算出的 \`f(i)\` 成为新的 \`f(i-1)\`）
-
-以 \`n = 5\` 验证（初值 \`f1=0, f2=1\`）：
-
-| i | 执行前 f1, f2 | result | 执行后 f1, f2 |
-|---|---|---|---|
-| 2 | 0, 1 | 1 | 1, 1 |
-| 3 | 1, 1 | 2 | 1, 2 |
-| 4 | 1, 2 | 3 | 2, 3 |
-| 5 | 2, 3 | 5 | 3, 5 |
-
-循环结束 \`result = 5\`，正是 \`f(5)\`，正确。
-
-**选项逐项分析：**
-- **A**：✅ 正确。先算出当前项，再把 \`f2\` 存给 \`f1\`、\`result\` 存给 \`f2\`，两句赋值的顺序不能反。
-- **B**：❌ 错误。\`result += f1 + f2;\` 是**累加**，会让 \`result\` 变成所有项之和（\`1+2+3+5 = 11\`），不是斐波那契项。
-- **C**：❌ 错误。除了累加错误，还先把 \`f1 = f2\` 执行了？看顺序：\`f2 = result; f1 = f2;\` —— 这里 \`f1\` 拿到的是新的 \`f2\`（即 \`result\`），两个变量变成相同的值，滚动窗口直接失效。
-- **D**：❌ 错误。\`result\` 计算对了，但 \`f2 = result; f1 = f2;\` 让 \`f1\` 和 \`f2\` 都等于 \`result\`，下一轮的 \`f1 + f2\` 会变成 \`2 × result\`，结果错乱（n=5 时算出 8 而不是 5）。
-
-**易错提醒：**
-- 两句赋值的顺序是本题核心：必须先 \`f1 = f2\`（用旧的 \`f2\`），再 \`f2 = result\`。若反序，\`f1\` 就会取到已经被覆盖的新 \`f2\`。
-- 也可写成 \`f1 = f2; f2 = result;\` 的等价形式 \`t = f1 + f2; f1 = f2; f2 = t;\`，本质相同。
-
-**知识延伸：**
-这种"两个变量滚动"的写法把空间复杂度从递归版的 \`O(n)\` 栈空间降到 \`O(1)\`，时间复杂度 \`O(n)\`。相比之下，朴素递归 \`fib(n) = fib(n-1) + fib(n-2)\` 的时间复杂度是 \`O(2ⁿ)\`——同一递推式，实现方式不同，效率相差指数级。
-
-**考点：** 斐波那契的递推实现与滚动变量`,
+            explanation: "**答案：A**\n\n**核心解析：**\n这段递推用两个变量滚动保存相邻两项：`f1` 保存 `f(i-2)`，`f2` 保存 `f(i-1)`。每轮先算出当前项 `result = f1 + f2;`，再把窗口右移一格：`f1 = f2;`、`f2 = result;`。\n\n以 `n = 5` 验证（初值 `f1=0, f2=1`）：\n\n| i | 执行前 f1, f2 | result | 执行后 f1, f2 |\n|---|---|---|---|\n| 2 | 0, 1 | 1 | 1, 1 |\n| 3 | 1, 1 | 2 | 1, 2 |\n| 4 | 1, 2 | 3 | 2, 3 |\n| 5 | 2, 3 | 5 | 3, 5 |\n\n循环结束 `result = 5`，正是 `f(5)`，A 正确。\n\n**选项逐项分析：**\n- **A**：✅ 正确。先算当前项，再按 `f1 = f2; f2 = result;` 的顺序更新滚动变量。\n- **B**：❌ 错误。`result += f1 + f2;` 是累加，且随后 `f2 = result;` 使 `f2` 变成累计值，后续轮次的 `f1 + f2` 也随之失真。以 `n=5` 模拟，`result` 依次为 1、3、7、17，最终返回 17，不是斐波那契数 5。\n- **C**：❌ 错误。除累加错误外，`f2 = result; f1 = f2;` 还会让 `f1` 与 `f2` 相等，滚动窗口失效（每轮起点都是两个相等的值）；`n=5` 时最终返回 27。\n- **D**：❌ 错误。`result = f1 + f2;` 本身算对，但 `f2 = result; f1 = f2;` 让 `f1` 和 `f2` 都等于 `result`，下一轮的 `f1 + f2` 变成 `2 × result`；`n=5` 时返回 8 而不是 5。\n\n**易错提醒：**\n- 更新顺序必须是先 `f1 = f2`（用旧值）再 `f2 = result`，否则 `f1` 会取到已被覆盖的新值。\n- 不能把 `result` 写成 `+=`，否则保存的是累计和而非当前斐波那契项。\n\n**知识延伸：**\n这种“两个变量滚动”的写法把空间复杂度降到 `O(1)`、时间复杂度为 `O(n)`；朴素递归 `fib(n)=fib(n-1)+fib(n-2)` 的时间复杂度为 `O(2ⁿ)`。\n\n**考点：** 斐波那契的递推实现与滚动变量",
             sourceVerified: true,
             sourcePage: 4,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 10,
@@ -847,27 +818,13 @@ void insertion_sort(vector<int> &nums) {
             options: ["```cpp\nfreopen(\"log.txt\", \"w\", stdout);\ncout << \"Welcome to GESP!\" << endl;\nfclose(stdout);\n```", "```cpp\nstd::ofstream outFile(\"log.txt\");\noutFile << \"Welcome to GESP!\" << endl;\noutFile.close();\n```", "```cpp\nstd::ofstream outFile(\"log.txt\");\ncout << \"Welcome to GESP!\" << endl;\noutFile.close();\n```", "```cpp\nofstream log_file(\"log.txt\");\nstreambuf* org_cout = cout.rdbuf();\ncout.rdbuf(log_file.rdbuf());\ncout << \"This output will go to the log file.\" << endl;\ncout.rdbuf(org_cout);\n```"],
             answer: 2,
             score: 2,
-            explanation: `**答案：不正确的是 C（仅定义了文件流但未写入，\`cout\` 依然输出到屏幕）**
-
-**核心解析：**
-输出重定向是指将原本输出到控制台终端（屏幕）的内容，改变流向转存到指定目标（如文本文件）中。
-本题中，C 定义了 \`std::ofstream outFile("log.txt")\` 并打开文件，但输出仍用 \`cout\`。\`cout\` 默认连着屏幕，单独声明 \`ofstream\` 不会改变它的去向，字符串仍显示在屏幕上，\`log.txt\` 是空文件。因此 C 不能完成重定向。
-
-**选项逐项分析：**
-- **A**：能实现。\`freopen("log.txt", "w", stdout)\` 把 \`stdout\` 绑到 \`log.txt\`。\`cout\` 默认与 \`stdout\` 同步，之后的输出写入文件，最后 \`fclose(stdout)\` 关闭。
-- **B**：能实现。代码创建了文件输出流对象 \`outFile\` 并关联 \`log.txt\`，随后通过流插入运算符 \`outFile << "Welcome to GESP!" << endl;\` 将字符串直接写入目标文件，最后关闭文件流。该方式成功将字符串输出到了目标文件中。
-- **C**：不能实现（本题正确选项）。\`outFile\` 仅被打开和关闭，后续代码并未向 \`outFile\` 写入任何内容；而 \`cout\` 未经重定向，依然输出到屏幕，导致 \`log.txt\` 始终为空。
-- **D**：能实现。\`cout.rdbuf()\` 用于读取或设置流的底层缓冲区。代码先保存了 \`cout\` 原有的缓冲区指针 \`org_cout\`，接着用 \`cout.rdbuf(log_file.rdbuf())\` 将 \`cout\` 的输出缓冲区替换为文件的缓冲区，随后的 \`cout\` 输出便会流入 \`log.txt\`，最后恢复原有缓冲区。机制上已经完成重定向。（D 打印的句子与题干不同，但重定向本身是对的。）
-
-
-**易错提醒：**
-- **创建流对象并不等于重定向**：\`ofstream outFile("log.txt");\` 仅仅是创建并打开了一个新的文件流，它与全局标准流 \`cout\` 是两个互不干扰的独立对象。若想写入文件，必须直接向 \`outFile\` 写入，或者显式将 \`cout\` 的缓冲区重定向到该文件流。
-- **\`freopen\` 会改掉后续所有输出**：重定向 \`stdout\` 后，后面的 \`cout\` 和 \`printf\` 都进文件。若还要打回屏幕，需要再绑回控制台；D 先保存再恢复 \`rdbuf\`，切换更灵活。`,
+            explanation: "**答案：C（仅定义了文件流但未写入，`cout` 依然输出到屏幕）**\n\n**核心解析：**\n输出重定向是指将原本输出到控制台终端（屏幕）的内容，改变流向转存到指定目标（如文本文件）中。\n本题中，C 定义了 `std::ofstream outFile(\"log.txt\")` 并打开文件，但输出仍用 `cout`。`cout` 默认连着屏幕，单独声明 `ofstream` 不会改变它的去向，字符串仍显示在屏幕上，`log.txt` 是空文件。因此 C 不能完成重定向。\n\n**选项逐项分析：**\n- **A**：能实现。`freopen(\"log.txt\", \"w\", stdout)` 把 `stdout` 绑到 `log.txt`。`cout` 默认与 `stdout` 同步，之后的输出写入文件，最后 `fclose(stdout)` 关闭。\n- **B**：能实现。创建了文件输出流对象 `outFile` 并关联 `log.txt`，随后通过流插入运算符 `outFile << \"Welcome to GESP!\" << endl;` 将字符串直接写入目标文件，最后关闭文件流。\n- **C**：不能实现（本题正确选项）。`outFile` 仅被打开和关闭，后续代码并未向 `outFile` 写入任何内容；而 `cout` 未经重定向，依然输出到屏幕，导致 `log.txt` 始终为空。\n- **D**：能实现。`cout.rdbuf()` 用于读取或设置流的底层缓冲区。代码先保存 `cout` 原有的缓冲区指针 `org_cout`，接着用 `cout.rdbuf(log_file.rdbuf())` 将 `cout` 的输出缓冲区替换为文件的缓冲区，随后的 `cout` 输出便会流入 `log.txt`，最后恢复原有缓冲区。机制上已经完成重定向。\n\n**源卷笔误说明：**\nPDF 第 6 页 D 选项第 5 行印作 `cout.rdbuf(oorg_cout);`，而第 2 行声明的变量名为 `org_cout`。若照原文，D 会因未声明标识符编译失败，D 也变成“不能实现”的选项，与官方答案表的唯一答案 C 矛盾；故 `oorg_cout` 应为 `org_cout` 的排版笔误，网站已据此校正，按校正后 D 能实现重定向、唯一不能实现的是 C。\n\n**易错提醒：**\n- **创建流对象并不等于重定向**：`ofstream outFile(\"log.txt\");` 仅仅是创建并打开了一个新的文件流，它与全局标准流 `cout` 是两个互不干扰的独立对象。若想写入文件，必须直接向 `outFile` 写入，或者显式将 `cout` 的缓冲区重定向到该文件流。\n- **`freopen` 会改掉后续所有输出**：重定向 `stdout` 后，后面的 `cout` 和 `printf` 都进文件。若还要打回屏幕，需要再绑回控制台；D 先保存再恢复 `rdbuf`，切换更灵活。\n- D 输出的句子是 \"This output will go to the log file.\"，与题干字符串不同，属原题措辞瑕疵，不影响对重定向机制的判断。",
             sourceVerified: true,
             sourcePage: 6,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "单选题", "GESP4级"],
+      "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
             id: 15,

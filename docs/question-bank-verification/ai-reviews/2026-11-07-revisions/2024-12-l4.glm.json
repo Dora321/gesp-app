@@ -1,0 +1,256 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    5,
+    9,
+    13,
+    14
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:53:42.633Z",
+  "completedAt": "2026-11-16T13:04:29.510Z",
+  "finishReason": "stop",
+  "inputSha256": "44326641da1aa03ac39fe91680911b020e8a4ac04e9f0c5f9873412fb86450ca",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为“CCF 编程能力等级认证 GESP / C++ 四级 / 2024 年 12 月”，与 paperId 2024-12-l4（2024年12月、C++四级）一致；第1页单选题答案表 1–15 依次为 A B B B D D D D A C B B A C A，用作各题官方选项索引核对依据。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页页图末行题干“第 2 题 下面代码的描述中，正确的是（ ）。”；第2页页图8行代码 void n_chars(char c, int n){ while (n-- > 0) cout << c; } 及 char my_char = 'w'; int times = 5; n_chars(my_char, times); 与候选 question 内嵌代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图 A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与候选 options 内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为B，0起始索引为1，与候选 answer=1 一致；独立判断：n 在定义处为形参、times 在调用处为实参，B 正确；A 错在值传递不回写实参（times 仍为5）；C 概念颠倒；D 因隐式转换改变语义、不能说“也可以”。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析主体（含上一轮对 D 项的修正“输出119个 ASCII 5 控制字符”：times=5 转 char 为 ASCII 5、'w'=119 为循环次数）经独立核验正确；但“知识延伸”称“若要把 times 真正改为 0，应将形参写成引用 int& n”有误：n-- 先用后减，循环结束时 n 为 -1，即便改成引用，调用后 times 也是 -1 而非 0，且与同解析“易错提醒”中“循环结束后形参 n 变为 -1”自相矛盾。已在 changes 提交仅修正该句的完整解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（n 是形参，times 是实参）**\n\n**核心解析：**\n- 形参出现在函数定义的参数列表中，是函数内部的占位变量，本题为 `char c` 和 `int n`。\n- 实参出现在函数调用中，是调用方传入的具体数据，本题为 `my_char` 和 `times`。\n\n因此 B 正确。\n\n**选项逐项分析：**\n- **A**：错误。`n--` 修改的是形参 `n`，它只是 `times` 的副本；函数返回后 `times` 仍为 5。\n- **B**：正确。定义处是形参，调用处是实参。\n- **C**：错误。把形参与实参的概念说反了。\n- **D**：错误。`n_chars` 的形参顺序是 `(char, int)`。调用 `n_chars(times, my_char)` 时，`times` 的值 5 被转换为 `char` 类型，成为 ASCII 码为 5 的控制字符；`my_char` 的 `'w'`（ASCII 119）被提升为 `int`，作为循环次数 119。程序会输出 119 个 ASCII 5 控制字符，而不是 5 个 `'w'`。隐式转换可能让代码通过编译，但语义已经完全改变，不能说“也可以”。\n\n**易错提醒：**\n- 形参与实参的数量、类型、顺序应逐一对应。顺序错误可能因隐式转换而编译通过，却产生完全不同的结果。\n- `while (n-- > 0)` 先用后减：`n` 为 5 时判断 5 > 0 成立、`n` 变为 4，如此循环 5 次。循环结束后形参 `n` 变为 -1，但该形参随函数返回销毁，不影响 `times`。\n\n**知识延伸：**\n若希望函数内对 `n` 的修改能影响实参 `times`，应将形参写成引用 `int& n`，使 `n` 成为 `times` 的别名。注意 `n--` 是先用后减，循环结束时 `n` 为 -1，因此即便改成引用，调用后 `times` 也会是 -1 而不是 0；若想让它最终留在 0，应写成先判断后自减的形式，如 `while (n > 0) { cout << c; n--; }`。\n\n**考点：** 形参与实参的概念、值传递的单向性"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核“题2通过”的主体结论（答案B、题面、选项及解析对A/C/D的分析均经我独立核验无误），但否决其“解析无须再改”的判断：候选解析“知识延伸”称“若要把 times 真正改为 0，应将形参写成引用 int& n”，而 n-- 先用后减、循环结束时 n 为 -1，即便改成引用，调用后 times 也是 -1 而非 0，且与同解析“易错提醒”“循环结束后形参 n 变为 -1”自相矛盾，属初核漏判的事实错误。已提交仅修正该句的完整解析；答案、选项、题面不变。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页页图末行题干“第 5 题 运行下面代码片段后， x 和 *p 的结果分别是（ ）。”；第3页页图三行代码 int x = 20; / int* p = &x; / *p = *p + 2; 均为半角分号，与候选 question 及独立 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页页图 A 20 20 / B 20 22 / C 22 20 / D 22 22，与候选 options 完全一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题为D，0起始索引为3，与候选 answer=3 一致；独立推导：p=&x 后 *p 与 x 为同一对象，*p=*p+2 将 22 写回该对象，故二者均为 22。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 p（地址）、*p（所指对象的值）、&p（指针自身的地址）三个层次，逐项排除 20 20 / 20 22 / 22 20，推导与代码事实一致；swap 延伸无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核全部通过的结论。独立推导：p=&x 后 *p 与 x 为同一对象，*p=*p+2 将 22 写回，x 与 *p 均为 22，D（索引3）与第1页答案表一致；第3页页图第三行分号为半角，候选 question 与独立 code 字段均已正确，无遗留问题，无需修改。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页页图题干“第 9 题 下面代码采用递推算法来计算斐波那契数列 f(n)=f(n-1)+f(n-2)，则横线上应填写（ ）。”并给出 fib 函数12行代码（含填空行与“// 在此处填入代码”注释）；第5页页图给出选项D，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图给出A/B/C三组三行赋值、第5页页图给出D组；四组中 result 与 f1/f2 的赋值次序与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为A，0起始索引为0，与候选 answer=0 一致；独立按 n=5 逐轮模拟：A 返回 5=f(5)，B 返回 17、C 返回 27、D 返回 8，A 为唯一正确项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析中 A 的滚动表（i=2..5 时 result 依次为 1、2、3、5）与 B(17)、C(27)、D(8) 的模拟值经我独立逐轮复算全部一致（B/C 的累加失真、D 的 f1=f2=result 双写均已验证）；“先 f1=f2 再 f2=result 的更新顺序”与“不可写成 +=”的提醒正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核全部通过的结论。我按 n=5 对四个选项独立逐轮模拟：A 返回 5=f(5)，B 返回 17、C 返回 27、D 返回 8，仅 A 正确，与第1页答案表 A（索引0）一致；候选解析（上一轮修正稿）各数值与我的模拟逐项相符，答案、题面、选项均无须改动。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第5页页图末行题干“第 13 题 下面代码实现了插入排序函数，则横线上应填写（ ）。”与候选一致；第6页页图原卷填空行后带 `{` 而 while 行后无 `{`，照字面 while 体仅含 nums[j+1]=nums[j];（j 不减）会死循环，结构不自洽，属原卷排版残缺；候选 question 在 while 后补 `{` 与填空块配对，成为语义等价标准插入排序的自洽结构，官方答案 A 在该结构下成立；独立 code 字段与 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页页图 A“int base = nums[i], j = i - 1;”、B“int base = nums[i], j = i;”、C“int base = nums[0], j = i - 1;”、D“int base = nums[0], j = i;”，与候选完全一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为A，0起始索引为0，与候选 answer=0 一致；独立推导：标准插入排序需暂存 nums[i] 并从 i-1 向左扫描，仅 A 同时满足两条件。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析两处与事实不符：①“base = nums[i]：正确，暂存当前元素（四个选项都写对了）”——C/D 实际写的是 nums[0]，该句与后文 C/D 分析自相矛盾；②“易错提醒”称“把 i=1 代入……第一个元素与第二个元素的位置关系立刻错乱”——实际是 while 恒假后执行 nums[2]=base 覆盖写坏下一个位置（数组仅两个元素时 nums[2] 越界），与第一、二个元素的位置关系无关。其余推导（j=i 恒假并写 nums[i+1]、C 使 nums[1..] 全变 nums[0]、&&短路防越界）经我独立验证正确。已在 changes 提交修正后的完整解析，答案不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（int base = nums[i], j = i - 1;）**\n\n**核心解析：**\n插入排序每轮先用 `base` 暂存当前待插入元素 `nums[i]`，再从它前一个位置 `i - 1` 开始向左扫描。\n\n- `base = nums[i]`：正确；A、B 这样取，C、D 误取 `nums[0]`。\n- `j = i - 1`：正确；A、C 这样取，B、D 误取 `j = i`。\n- 若取 `j = i`：第一次判断 `nums[j] > base` 就是 `nums[i] > nums[i]`，恒为假，`while` 一次也不执行；随后 `nums[j + 1] = base;` 变成 `nums[i + 1] = base;`，会覆盖下一个元素，`i` 为末位时还会越界。\n\n**选项逐项分析：**\n- **A**：正确。`base = nums[i]` 暂存待插入元素，`j = i - 1` 从正确位置向左扫描。\n- **B**：错误。`base = nums[i]` 正确，但 `j = i` 使 `while` 条件恒假，并把元素写到 `nums[i+1]`，破坏数据且可能越界。\n- **C**：错误。`j = i - 1` 正确，但 `base = nums[0]` 不是当前元素；逐轮执行会把 `nums[1..]` 都写成 `nums[0]`，无法完成插入排序。\n- **D**：错误。同时犯了 C 的 `base = nums[0]` 和 B 的 `j = i` 两处错误。\n\n**易错提醒：**\n- 判断这类题可先代入 `i = 1`：若 `j = 1`，`nums[j+1] = nums[2] = base`，会直接写坏下一个位置；若数组只有两个元素，`nums[2]` 还会越界。\n- `base` 必须取 `nums[i]`，因为随后 `nums[i]` 会被前面的元素覆盖，不暂存就会丢失待插入值。\n\n**知识延伸：**\n`while (j >= 0 && nums[j] > base)` 先判 `j >= 0` 再访问 `nums[j]`，利用 `&&` 的短路特性避免越界；若交换两个条件，当 `j = -1` 时会先读 `nums[-1]`，属于未定义行为。\n\nPDF 第 1 页答案表第 13 题为 A，与网站 `answer = 0` 一致。\n\n**考点：** 插入排序的变量初始化与边界"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：题面修复（while 后补 `{`，与填空块配成自洽结构，语义等价标准插入排序）、选项、答案（答案表 A=索引0）核验通过；同时接受初核对解析两处错误的否决并独立复核成立——①“四个选项都写对了”与 C/D 实际取 nums[0] 矛盾；②“第一个元素与第二个元素的位置关系立刻错乱”不准确（实际是 nums[i+1] 被覆盖写坏，仅两元素时 nums[2] 越界）。我另以多组数组独立模拟验证修正稿断言：j=i 时 while 恒假并写 nums[i+1]；base=nums[0] 时逐轮执行使 nums[1..] 全部变为 nums[0]。已提交修正解析，答案、选项、题面不变。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页页图题干“第 14 题 下面哪种方式不能实现将字符串“Welcome to GESP!”输出重定向到文件 log.txt（ ）。”与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：A/B/C 与第6页页图逐行一致；D 第5行原卷印作 cout.rdbuf(oorg_cout); 而第2行声明为 streambuf* org_cout，oorg_cout 无声明，且官方唯一答案 C 的成立要求 D 能实现重定向（照原文 D 编译失败会与答案冲突），故判为原卷排版笔误，候选校正为 cout.rdbuf(org_cout); 成立；D 第4行输出句为 This output will go to the log file. 与题干字符串不同，属源卷措辞瑕疵，候选解析已披露保留。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为C，0起始索引为2，与候选 answer=2 一致；独立判断：C 仅打开 ofstream 后仍用 cout 输出且未做任何重定向，字符串到屏幕、log.txt 为空文件；A 经 freopen 绑定 stdout（cout 默认与 stdout 同步）、B 直接向文件流写入、D 经 rdbuf 替换缓冲区均可实现。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项说明 freopen（cout 默认与 stdout 同步）、ofstream 直接写入、“仅声明流对象不等于重定向”、rdbuf 缓冲区替换的机制，判断与官方答案 C 一致；并披露源卷 oorg_cout 笔误及其与答案 C 唯一性的依存关系、D 输出句差异，推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核全部通过的结论。独立判断：C 不能实现重定向（仅打开文件流、仍用 cout 输出屏幕），是唯一正确选项（索引2，与答案表 C 一致）；A/B/D 的实现机制经逐项核验成立。原卷 D 第5行 oorg_cout 无声明而第2行声明 org_cout，结合官方唯一答案 C 判为排版笔误并按 org_cout 校正，依据充分；D 输出句与题干字符串不同属源卷措辞瑕疵，解析已披露。候选已含全部修复，无须再改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        5,
+        9,
+        13,
+        14
+      ],
+      "usage": {
+        "prompt_tokens": 46927,
+        "completion_tokens": 37286,
+        "total_tokens": 84213,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 32758
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.02568205,
+          "allowance": 0.02568205,
+          "tokens": {
+            "input": 46927,
+            "output": 37286,
+            "reasoning": 32758,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T12:53:42.633Z",
+      "completedAt": "2026-11-16T13:04:29.510Z"
+    }
+  ]
+}

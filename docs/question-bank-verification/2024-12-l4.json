@@ -189,43 +189,47 @@
       "id": 5,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
         2,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第3页代码与网站question中的Markdown代码一致，均为int x=20; int* p=&x; *p=*p+2;（半角分号）；但网站独立code字段末行误用了全角分号“；”，与PDF页图不一致，作为C++代码片段不能正确编译。",
-          "review": "第2页页图题干“第 5 题 运行下面代码片段后， x 和 *p 的结果分别是（ ）。”；第3页页图代码三行 int x = 20; / int* p = &x; / *p = *p + 2; 均为半角分号，与网站question内嵌代码一致；网站独立code字段末行误为全角“；”，已按页图修正——修复后核验通过。"
+          "initial": "第2页末行题干“第5题 运行下面代码片段后，x 和 *p 的结果分别是（ ）。”；第3页页图三行代码为 int x = 20; / int* p = &x; / *p = *p + 2;，均为半角分号，候选 question 与独立 code 字段一致。",
+          "review": "第2页页图末行题干“第 5 题 运行下面代码片段后， x 和 *p 的结果分别是（ ）。”；第3页页图三行代码 int x = 20; / int* p = &x; / *p = *p + 2; 均为半角分号，与候选 question 及独立 code 字段一致。"
         },
         "options": {
-          "initial": "PDF第3页选项A-D为20 20、20 22、22 20、22 22，与网站options完全一致且顺序未变。",
-          "review": "第3页页图选项 A.20 20、B.20 22、C.22 20、D.22 22，与网站options完全一致且顺序未变。"
+          "initial": "第3页页图选项A“20 20”、B“20 22”、C“22 20”、D“22 22”，与候选完全一致且顺序未变。",
+          "review": "第3页页图 A 20 20 / B 20 22 / C 22 20 / D 22 22，与候选 options 完全一致且顺序未变。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第5题标D，换算为索引3；*p=*p+2后x和*p均为22，网站answer=3。",
-          "review": "第1页答案表第5题标D，0起始索引为3；网站answer=3。独立推导：p=&x后*p与x为同一对象，*p=*p+2把22写回x，故x与*p均为22。"
+          "initial": "第1页答案表第5题为D，0起始索引为3，与候选 answer=3 一致；独立推导 p=&x 后 *p 与 x 为同一对象，*p=*p+2 将22写回该对象，故二者均为22。",
+          "review": "第1页答案表第5题为D，0起始索引为3，与候选 answer=3 一致；独立推导：p=&x 后 *p 与 x 为同一对象，*p=*p+2 将 22 写回该对象，故二者均为 22。"
         },
         "explanation": {
-          "initial": "解析正确说明p=&x后*p与x是同一对象，*p=*p+2把22写回x，因此x与*p均为22；四个选项均有排除依据。",
-          "review": "解析正确区分p（地址）、*p（所指对象）、&p（指针自身地址）三层，指出x与*p读出必然相同，并对20 20/20 22/22 20逐一排除，推导完整。"
+          "initial": "解析正确区分 p（地址）、*p（所指对象的值）、&p（指针自身地址），并逐项排除20 20、20 22、22 20，推导与代码一致。",
+          "review": "解析正确区分 p（地址）、*p（所指对象的值）、&p（指针自身的地址）三个层次，逐项排除 20 20 / 20 22 / 22 20，推导与代码事实一致；swap 延伸无误。"
         }
       },
-      "unresolved": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l4.glm.json"
       ]
     },
     {
@@ -352,42 +356,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页给出 fib 函数及横线，第5页给出选项 D；站内题面、代码和 f(n)=f(n-1)+f(n-2) 描述一致。",
-          "review": "第4页给出 fib 函数 12 行代码（含横线与“// 在此处填入代码”注释）、第5页给出选项 D；题干“下面代码采用递推算法来计算斐波那契数列 f(n)=f(n-1)+f(n-2)，则横线上应填写（ ）”与站内一致。"
+          "initial": "第4页题干“下面代码采用递推算法来计算斐波那契数列 f(n)=f(n-1)+f(n-2)，则横线上应填写（ ）。”并给出 fib 函数及填空行；第5页页图给出选项D，题面与候选一致。",
+          "review": "第4页页图题干“第 9 题 下面代码采用递推算法来计算斐波那契数列 f(n)=f(n-1)+f(n-2)，则横线上应填写（ ）。”并给出 fib 函数12行代码（含填空行与“// 在此处填入代码”注释）；第5页页图给出选项D，与候选题面一致。"
         },
         "options": {
-          "initial": "A、B、C 见 PDF 第4页，D 见第5页，四组三行代码及顺序与站内一致。",
-          "review": "A/B/C 三组三行赋值语句见第4页图像，D 组见第5页图像，四组内容与顺序（result 与 f1/f2 的赋值次序）与站内逐项一致。"
+          "initial": "第4页页图给出A/B/C三组三行赋值，第5页页图给出D组；四组中 result 与 f1/f2 的赋值次序与候选 options 逐项一致。",
+          "review": "第4页页图给出A/B/C三组三行赋值、第5页页图给出D组；四组中 result 与 f1/f2 的赋值次序与候选 options 逐项一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选答案表第9题标为 A，按 0 起始索引为 0。",
-          "review": "第1页答案表第9题标 A，0 起始索引为 0，与站内 answer=0 一致；独立模拟确认 A 为唯一正确项（n=5 时 A 返回 5=f(5)）。"
+          "initial": "第1页答案表第9题为A，0起始索引为0，与候选 answer=0 一致；独立模拟 n=5，A返回5、B返回17、C返回27、D返回8，A为唯一正确项。",
+          "review": "第1页答案表第9题为A，0起始索引为0，与候选 answer=0 一致；独立按 n=5 逐轮模拟：A 返回 5=f(5)，B 返回 17、C 返回 27、D 返回 8，A 为唯一正确项。"
         },
         "explanation": {
-          "initial": "答案和选项判断正确，但现有解析称 B 项的 result 为 1+2+3+5=11；实际逐轮模拟 B 项（初值 f1=0、f2=1）时 result 依次为 1、3、7、17，n=5 最终返回 17。B 仍为错误项，但解析中的数值依据需更正。",
-          "review": "原解析对选项 B 的模拟值有误：原文称 result 变成“1+2+3+5=11”，但按 B 代码（result += f1+f2; f1=f2; f2=result;）独立模拟 n=5，result 依次为 1、3、7、17，返回 17。已提交修正后的完整解析，其中 A→5、B→17、C→27、D→8（n=5）均经独立逐轮模拟核验无误，修复后核验通过。"
+          "initial": "解析对A的滚动变量过程用 n=5 验证正确；B的 result 依次为1、3、7、17，C为27，D为8，均与独立逐轮模拟一致。",
+          "review": "修复后核验通过：候选解析中 A 的滚动表（i=2..5 时 result 依次为 1、2、3、5）与 B(17)、C(27)、D(8) 的模拟值经我独立逐轮复算全部一致（B/C 的累加失真、D 的 f1=f2=result 双写均已验证）；“先 f1=f2 再 f2=result 的更新顺序”与“不可写成 +=”的提醒正确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l4.glm.json"
       ]
     },
     {
@@ -560,44 +567,46 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
+        "options",
+        "answer",
+        "explanation"
       ],
-      "blockedDimensions": [
-        "explanation",
-        "options"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第6页题干要求判断哪种方式不能把字符串 \"Welcome to GESP!\" 重定向到 log.txt，与网站题干一致。",
-          "review": "PDF 第 6 页题干“下面哪种方式不能实现将字符串”Welcome to GESP!“输出重定向到文件 log.txt（ ）”，与网站一致。"
+          "initial": "第6页题干“下面哪种方式不能实现将字符串\"Welcome to GESP!\"输出重定向到文件 log.txt（ ）。”与候选 question 一致。",
+          "review": "第6页页图题干“第 14 题 下面哪种方式不能实现将字符串“Welcome to GESP!”输出重定向到文件 log.txt（ ）。”与候选 question 一致。"
         },
         "options": {
-          "initial": "PDF第6页 D 第5行图像与文本层均作 cout.rdbuf(oorg_cout);，但变量声明为 org_cout；网站把该行改成了 cout.rdbuf(org_cout);。其余选项一致。",
-          "review": "修复后核验通过：A/B/C 与 PDF 第 6 页逐行一致；D 第 5 行原卷印作 cout.rdbuf(oorg_cout);，而第 2 行声明为 streambuf* org_cout，无 oorg_cout 声明；且官方答案 C 的唯一性要求 D 能实现重定向（照原文 D 编译失败会与答案冲突），故 oorg_cout 判为源卷排版笔误。网站校正为 cout.rdbuf(org_cout); 成立。另记录：D 第 4 行输出句子为 "
+          "initial": "第6页A/B/C与候选逐行一致；D第5行原卷印作 cout.rdbuf(oorg_cout);，而第2行声明为 streambuf* org_cout，候选据上下文校正为 org_cout。结合官方唯一答案C，该处判为原卷排版笔误；D第4行输出句与题干字符串不同，候选解释已明确保留说明，不影响按重定向机制判断。",
+          "review": "修复后核验通过：A/B/C 与第6页页图逐行一致；D 第5行原卷印作 cout.rdbuf(oorg_cout); 而第2行声明为 streambuf* org_cout，oorg_cout 无声明，且官方唯一答案 C 的成立要求 D 能实现重定向（照原文 D 编译失败会与答案冲突），故判为原卷排版笔误，候选校正为 cout.rdbuf(org_cout); 成立；D 第4行输出句为 This output will go to the log file. 与题干字符串不同，属源卷措辞瑕疵，候选解析已披露保留。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第14题为 C；网站 answer=2，对应 C。",
-          "review": "PDF 第 1 页答案表第 14 题为 C；网站 answer=2（C）。"
+          "initial": "第1页答案表第14题为C，0起始索引为2，与候选 answer=2 一致；独立判断：C仅打开 ofstream 后仍用 cout 输出，cout 未重定向，不能把指定内容写入文件；A/B/D分别通过 freopen、文件流写入或 rdbuf 重定向。",
+          "review": "第1页答案表第14题为C，0起始索引为2，与候选 answer=2 一致；独立判断：C 仅打开 ofstream 后仍用 cout 输出且未做任何重定向，字符串到屏幕、log.txt 为空文件；A 经 freopen 绑定 stdout（cout 默认与 stdout 同步）、B 直接向文件流写入、D 经 rdbuf 替换缓冲区均可实现。"
         },
         "explanation": {
-          "initial": "当前解析按网站已校正的 org_cout 解释 D 能重定向，但未说明 PDF 原卷 D 的 oorg_cout 笔误；若照原文 D 会编译失败，需保留源卷争议并说明官方答案仍为 C。",
-          "review": "原解析对 A-D 的机制判断正确，但未披露源卷 oorg_cout 笔误及其与答案 C 的依存关系，透明度不足；已提供补充“源卷笔误说明”的修正稿，其余推导经独立复核无误。"
+          "initial": "解析逐项说明 freopen、ofstream 直接写入、仅声明 ofstream 不改变 cout、rdbuf 重定向的机制；并披露原卷 oorg_cout 笔误及D输出字符串与题干不一致的源卷瑕疵，推导与官方答案C一致。",
+          "review": "解析逐项说明 freopen（cout 默认与 stdout 同步）、ofstream 直接写入、“仅声明流对象不等于重定向”、rdbuf 缓冲区替换的机制，判断与官方答案 C 一致；并披露源卷 oorg_cout 笔误及其与答案 C 唯一性的依存关系、D 输出句差异，推导无误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-12-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-12-l4.glm.json"
       ]
     },
     {
@@ -1064,28 +1073,6 @@
       ]
     },
     {
-      "id": 5,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 9,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 13,
       "dimensions": [
         "statement",
@@ -1098,20 +1085,9 @@
         "statement 尚无一致、完整的原卷核验结论",
         "explanation 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "explanation",
-        "options"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-12-l4.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2024-12-l4.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-12-l4.integration.json"
 }
