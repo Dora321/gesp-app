@@ -11,6 +11,7 @@ import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 import { integrityNoticeTiming } from '../../utils/sourceIntegrity';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
+import { navigateBack } from '../../utils/navigateBack';
 
 const inferTags = (q) => {
     if (Array.isArray(q?.tags) && q.tags.length) return q.tags;
@@ -117,12 +118,13 @@ export default function InteractiveAnalysisPage({ paperData, paperId, storageKey
     const explanationVerified = verification.dimensions.explanation === 'verified';
     // Show the authored explanation whenever one exists; verification status only
     // drives the trust notice. The generic hint is for questions with no explanation.
+    const backFallback = paperData.level ? `/question-bank/topics/${paperData.level}` : '/question-bank';
 
     return (
         <div className="mw-surface mw-line-bank min-h-screen bg-slate-100">
             <header className="sticky top-0 z-20 bg-white border-b border-slate-200">
                 <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
-                    <button type="button" onClick={onBack || (() => navigate(-1))} className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg hover:bg-slate-100" aria-label={backLabel}>
+                    <button type="button" onClick={onBack || (() => navigateBack(navigate, backFallback))} className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg hover:bg-slate-100" aria-label={backLabel}>
                         <ChevronLeft size={18} />
                     </button>
                     <div className="flex-1 min-w-0">

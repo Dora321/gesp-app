@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowDownToLine,
   ArrowUpFromLine,
@@ -141,7 +140,6 @@ export default function CodingProblemView({
   variant = 'practice',
   actions = null,
 }) {
-  const reduceMotion = useReducedMotion();
   const parsed = useMemo(() => parseCodingProblem(q), [q]);
   const { title, sections, samples, extraNotes } = parsed;
 
@@ -156,13 +154,14 @@ export default function CodingProblemView({
   const tags = Array.isArray(q?.tags) ? q.tags.filter(Boolean) : [];
   const template = typeof q?.template === 'string' ? q.template : '';
 
-  const enter = (index) => (reduceMotion
-    ? {}
-    : {
-      initial: { opacity: 0, y: 8 },
-      animate: { opacity: 1, y: 0 },
-      transition: { duration: 0.28, delay: Math.min(index * 0.04, 0.24) },
-    });
+  // 纯 CSS 入场（见 index.css 的 animate-fade-in）：逐项错开 0~0.24s，
+  // 时长保持原来的 0.28s；prefers-reduced-motion 下由全局样式直接关闭。
+  const enter = (index) => ({
+    style: {
+      animationDelay: `${Math.min(index * 0.04, 0.24)}s`,
+      animationDuration: '0.28s',
+    },
+  });
 
   const PRE_KEYS = ['background', 'description', 'input', 'output'];
   const preSections = sections.filter((section) => PRE_KEYS.includes(section.key));
@@ -174,10 +173,10 @@ export default function CodingProblemView({
     const Icon = SECTION_ICONS[section.key] || FileText;
     const isConstraints = section.key === 'constraints';
     return (
-      <motion.section
+      <section
         key={section.key}
         {...enter(index + 1)}
-        className="coding-section border-t border-slate-200 pt-5 first:border-t-0 first:pt-0"
+        className="animate-fade-in coding-section border-t border-slate-200 pt-5 first:border-t-0 first:pt-0"
       >
         <h3 className="flex items-center gap-2 text-lg font-bold text-slate-900">
           <Icon size={18} className="shrink-0 text-slate-500" aria-hidden="true" />
@@ -189,7 +188,7 @@ export default function CodingProblemView({
             className={`text-[17px] font-normal leading-8 md:text-lg ${isConstraints ? 'text-amber-950' : 'text-slate-800'}`}
           />
         </div>
-      </motion.section>
+      </section>
     );
   };
 
@@ -235,7 +234,7 @@ export default function CodingProblemView({
 
   const body = (
     <div className="coding-problem space-y-6">
-      <motion.header {...enter(0)} className="border-b border-slate-200 pb-5">
+      <header {...enter(0)} className="animate-fade-in border-b border-slate-200 pb-5">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-3 py-1 text-sm font-semibold text-white">
             <Code2 size={14} aria-hidden="true" />
@@ -257,7 +256,7 @@ export default function CodingProblemView({
             ))}
           </div>
         )}
-      </motion.header>
+      </header>
 
       {actionBar}
 
@@ -265,9 +264,9 @@ export default function CodingProblemView({
         {preSections.map((section) => renderSection(section, sections.indexOf(section)))}
 
         {samples.length > 0 && (
-          <motion.section
+          <section
             {...enter(sections.length + 1)}
-            className="coding-section border-t border-slate-200 pt-5"
+            className="animate-fade-in coding-section border-t border-slate-200 pt-5"
           >
             <h3 className="flex items-center gap-2 text-lg font-bold text-slate-900">
               <FlaskConical size={18} className="shrink-0 text-slate-500" aria-hidden="true" />
@@ -303,13 +302,13 @@ export default function CodingProblemView({
                 </div>
               ))}
             </div>
-          </motion.section>
+          </section>
         )}
 
         {extraNotes.length > 0 && (
-          <motion.section
+          <section
             {...enter(sections.length + 2)}
-            className="coding-section border-t border-slate-200 pt-5"
+            className="animate-fade-in coding-section border-t border-slate-200 pt-5"
           >
             <h3 className="flex items-center gap-2 text-lg font-bold text-slate-900">
               <Lightbulb size={18} className="shrink-0 text-amber-600" aria-hidden="true" />
@@ -324,7 +323,7 @@ export default function CodingProblemView({
                 />
               ))}
             </div>
-          </motion.section>
+          </section>
         )}
         {postSections.map((section) => renderSection(section, sections.indexOf(section) + 2))}
       </div>

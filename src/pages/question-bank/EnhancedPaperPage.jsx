@@ -33,6 +33,7 @@ import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripL
 import { RESET_ANALYSIS_CONFIRM } from '../../utils/analysisProgress';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
 import { isProgrammingQuestion } from '../../utils/questionHelpers';
+import { navigateBack } from '../../utils/navigateBack';
 
 const inferKnowledgeTags = (q, level) => {
     const merged = `${getQuestionContent(q)} ${q?.explanation || ''} ${(q?.options || []).join(' ')}`;
@@ -257,11 +258,13 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     };
 
     // Programming questions have no option answer: revealing one stores a
-    // placeholder 0 while q.answer is undefined, so they must not count as wrong.
+    // placeholder 0 while q.answer is undefined, so they are neither 答对 nor 答错.
+    let correctCount = 0;
     let wrongCount = 0;
     questions.forEach((q) => {
-        if (isProgrammingQuestion(q)) return;
-        if (revealed[q.id] && answers[q.id] !== q.answer) wrongCount += 1;
+        if (isProgrammingQuestion(q) || !revealed[q.id]) return;
+        if (answers[q.id] === q.answer) correctCount += 1;
+        else wrongCount += 1;
     });
 
     const resetAll = () => {
@@ -299,7 +302,11 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
             <header className="sticky top-0 z-20 bg-white border-b border-slate-200">
                 <div className="h-1 w-full bg-[var(--mw-line)]" />
                 <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
-                    <button onClick={() => navigate(-1)} className="p-2 rounded-lg hover:bg-slate-100" aria-label="返回">
+                    <button
+                        onClick={() => navigateBack(navigate, paperData.level ? `/question-bank?level=${paperData.level}` : '/question-bank')}
+                        className="p-2 rounded-lg hover:bg-slate-100"
+                        aria-label="返回"
+                    >
                         <ChevronLeft size={18} />
                     </button>
                     <div className="flex-1 min-w-0">
@@ -321,7 +328,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                     </button>
                 </div>
 
-                <div className="max-w-6xl mx-auto px-4 pb-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                <div className="max-w-6xl mx-auto px-4 pb-4 grid grid-cols-2 md:grid-cols-5 gap-2 text-xs">
                     <div className="rounded-lg bg-slate-50 border border-slate-200 px-3 py-2">
                         <div className="text-slate-500">答题进度</div>
                         <div className="font-semibold text-slate-700">{answeredCount}/{questions.length}</div>
@@ -331,14 +338,18 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                         <div className="font-semibold text-slate-700">{revealedCount}/{questions.length}</div>
                     </div>
                     <div className="rounded-lg bg-slate-50 border border-slate-200 px-3 py-2">
-                        <div className="text-slate-500">已订正错题</div>
-                        <div className="font-semibold text-slate-700">{Math.max(0, revealedCount - wrongCount)}</div>
+                        <div className="text-slate-500">答对</div>
+                        <div className="font-semibold text-emerald-700">{correctCount}</div>
                     </div>
                     <div className="rounded-lg bg-slate-50 border border-slate-200 px-3 py-2">
+                        <div className="text-slate-500">答错</div>
+                        <div className="font-semibold text-rose-700">{wrongCount}</div>
+                    </div>
+                    <div className="col-span-2 rounded-lg bg-slate-50 border border-slate-200 px-3 py-2 md:col-span-1">
                         <div className="text-slate-500">当前题号</div>
                         <div className="font-semibold text-slate-700">第 {currentQuestionIndex + 1} 题</div>
                     </div>
-                    <div className="col-span-2 md:col-span-4">
+                    <div className="col-span-2 md:col-span-5">
                         <div className="w-full bg-slate-200 rounded-full h-2">
                             <div className="bg-indigo-600 h-2 rounded-full transition-all" style={{ width: `${progress}%` }} />
                         </div>

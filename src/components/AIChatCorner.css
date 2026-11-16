@@ -36,22 +36,6 @@
     outline-offset: 3px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .mw-ai-corner::before {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 22px;
-        height: 22px;
-        pointer-events: auto;
-        content: '';
-    }
-
-    .mw-ai-corner:not(:hover):not(:focus-within) .mw-ai-corner-button {
-        opacity: 0;
-    }
-}
-
 @media print {
     .mw-ai-corner { display: none; }
 }

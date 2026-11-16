@@ -184,8 +184,8 @@ async function run() {
   }
   const cornerAI = page.getByRole('button', { name: '打开 AI 问答助手', exact: true });
   await cornerAI.waitFor();
-  if (await cornerAI.evaluate(button => getComputedStyle(button).opacity) !== '0') {
-    throw new Error('Question bank AI should stay quiet until the pointer reaches the corner.');
+  if (await cornerAI.evaluate(button => getComputedStyle(button).opacity) === '0') {
+    throw new Error('Question bank AI launcher should be visible without hovering the corner.');
   }
 
   const unverifiedPaper = await pickUnverifiedPaper();
