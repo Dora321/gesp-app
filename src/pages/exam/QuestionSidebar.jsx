@@ -9,6 +9,7 @@ const QuestionSidebar = ({
   answers,
   currentQuestionIndex,
   isSubmitted,
+  reviewIndexes = null,
   showSidebar,
   answeredCount,
   progress,
@@ -36,6 +37,8 @@ const QuestionSidebar = ({
               const isAnswered = answers[q.id] !== undefined;
               const isCurrent = idx === currentQuestionIndex;
               const isProgramming = isProgrammingQuestion(q);
+              // 「只看错题」时其余题号淡化，仍可点开。
+              const dimmed = Array.isArray(reviewIndexes) && !reviewIndexes.includes(idx);
               let statusColor = 'bg-white border-slate-200 text-slate-600';
               if (isSubmitted) {
                 if (isProgramming) {
@@ -54,7 +57,7 @@ const QuestionSidebar = ({
                   aria-label={`第 ${idx + 1} 题`}
                   aria-current={isCurrent ? 'step' : undefined}
                   onClick={() => onQuestionSelect(idx)}
-                  className={`relative aspect-square rounded-lg border flex items-center justify-center text-sm font-semibold transition-all ${statusColor}`}
+                  className={`relative aspect-square rounded-lg border flex items-center justify-center text-sm font-semibold transition-all ${statusColor} ${dimmed && !isCurrent ? 'opacity-35' : ''} ${isSubmitted && isCurrent ? 'ring-2 ring-slate-800 ring-offset-1' : ''}`}
                 >
                   {idx + 1}
                   {isCurrent && <span className="absolute top-1 right-1 text-[10px]">&bull;</span>}

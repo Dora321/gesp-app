@@ -26,3 +26,16 @@ export function scoreExam(questions = [], answers = {}) {
         excludedObjectiveCount,
     };
 }
+
+/**
+ * 交卷后「只看错题」要走的题：参与判分的客观题里答错或没作答的，返回它们在 questions 里的下标。
+ * 编程题不判分、不计分题不进错题本，都不算。
+ */
+export function reviewQuestionIndexes(questions = [], answers = {}) {
+    const indexes = [];
+    questions.forEach((question, index) => {
+        if (!question || isProgrammingQuestion(question) || isScoringExcluded(question)) return;
+        if (answers[question.id] !== question.answer) indexes.push(index);
+    });
+    return indexes;
+}

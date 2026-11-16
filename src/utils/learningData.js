@@ -29,6 +29,8 @@ const emptyLearningData = () => ({
     practice: {},
     exams: {},
     attempts: {},
+    analysis: {},
+    mistakes: {},
     hardware: { esp32Ai: null },
     museum: { collected: [] },
 });
@@ -130,6 +132,40 @@ const normalizeAttempts = (value) => cleanEntries(value, (list) => {
     return entries.length > 0 ? entries : null;
 });
 
+// 解析模式的作答进度，按卷号（或考点练习的虚拟卷号）存。revealed 只认 true。
+const normalizeAnalysis = (value) => cleanEntries(value, (entry) => {
+    if (!isRecord(entry)) return null;
+    const snapshot = {
+        answers: normalizeAnswers(entry.answers),
+        revealed: cleanEntries(entry.revealed, (flag) => (flag === true ? true : null)),
+    };
+    const index = nonNegativeInt(entry.currentQuestionIndex);
+    if (index !== undefined) snapshot.currentQuestionIndex = index;
+    const savedAt = finiteNumber(entry.savedAt);
+    if (savedAt !== undefined) snapshot.savedAt = savedAt;
+    if (typeof entry.signature === 'string' && entry.signature.length <= 64) snapshot.signature = entry.signature;
+    return snapshot;
+});
+
+// 错题集合：{ 卷号: { 题号: 记入时间 } }。做错（考试或解析模式）就记入，之后做对才移出；
+// 没作答不改变状态——空白交卷不能把攒下的错题清掉。
+const normalizeMistakes = (value) => cleanEntries(value, (entry) => {
+    const ids = cleanEntries(entry, (at) => finiteNumber(at) ?? null);
+    return Object.keys(ids).length > 0 ? ids : null;
+});
+
+// 旧数据（没有 mistakes 字段）从交卷记录推导：取每卷最近一次「真的作答过」的交卷，
+// 一题没答的空白交卷跳过，旧版正是在这里把错题清空的。
+const deriveMistakesFromAttempts = (attempts) => {
+    const mistakes = {};
+    for (const [paperId, list] of Object.entries(attempts)) {
+        const latest = list.find((attempt) => (attempt.correct ?? 0) > 0 || attempt.wrongIds.length > 0);
+        if (!latest?.wrongIds.length) continue;
+        mistakes[paperId] = Object.fromEntries(latest.wrongIds.map((id) => [String(id), latest.at]));
+    }
+    return mistakes;
+};
+
 const normalizeEsp32Ai = (value) => {
     if (!isRecord(value)) return null;
     const activeNum = Number.isInteger(value.activeNum) && value.activeNum >= 1 && value.activeNum <= 16
@@ -157,6 +193,8 @@ export function normalizeLearningData(value) {
         ? (source.museumCollection || source.museum?.collected)
         : source.museum?.collected;
 
+    const attempts = normalizeAttempts(source.attempts);
+
     return {
         version: LEARNING_DATA_VERSION,
         updatedAt: finiteNumber(source.updatedAt) ?? null,
@@ -164,7 +202,11 @@ export function normalizeLearningData(value) {
         practice: cleanEntries(source.practice, value => Array.isArray(value) ? [0, 1, 2].map(index => value[index] === true) : null),
         exams: normalizeExams(exams),
         // v1/v2 没有 attempts，缺省为空即可——旧数据里本来就没有成绩历史。
-        attempts: normalizeAttempts(source.attempts),
+        attempts,
+        analysis: normalizeAnalysis(source.analysis),
+        mistakes: source.mistakes === undefined
+            ? deriveMistakesFromAttempts(attempts)
+            : normalizeMistakes(source.mistakes),
         hardware: { esp32Ai: normalizeEsp32Ai(esp32Ai) },
         museum: { collected: normalizeCollection(collected) },
     };

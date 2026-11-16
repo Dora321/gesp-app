@@ -1,4 +1,4 @@
-import { Check, CheckCircle, X, ChevronRight } from 'lucide-react';
+import { Check, CheckCircle, X, ChevronRight, Filter, Lightbulb } from 'lucide-react';
 import { getLuoguProblemUrl } from '../../data/gesp/codingQuestions';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import CodingProblemView from '../../components/CodingProblemView';
@@ -8,6 +8,7 @@ import {
 } from '../../utils/questionHelpers';
 import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
+import AnswerReview from '../question-bank/AnswerReview';
 import { hasSourceDefect, isScoringExcluded } from '../../utils/sourceIntegrity';
 
 /**
@@ -20,13 +21,25 @@ const ExamModeView = ({
   answers,
   isSubmitted,
   paperId,
+  level,
+  trust = {},
+  reviewCount = 0,
+  reviewPosition = -1,
+  wrongOnly = false,
+  onToggleWrongOnly,
+  onOpenAnalysisMode,
+  onShowResult,
   onOptionSelect,
   onProgrammingMark,
   onPrev,
   onNext,
 }) => {
   const isProgramming = isProgrammingQuestion(currentQ);
-  const isLastQuestion = currentQuestionIndex === questions.length - 1;
+  const isLastQuestion = wrongOnly
+    ? reviewPosition === reviewCount - 1
+    : currentQuestionIndex === questions.length - 1;
+  // 交卷后每道客观题下面直接给答案和解析（不计分题原卷有缺陷，仍只看完整性说明）。
+  const showAnswerReview = isSubmitted && !isProgramming && !isScoringExcluded(currentQ);
   const programmingMarked = answers[currentQ.id] !== undefined;
 
   const programmingActions = isProgramming ? (
@@ -49,6 +62,50 @@ const ExamModeView = ({
   return (
     <main className="min-w-0 flex-1 overflow-y-auto p-4 pb-24 md:p-8">
       <div className={`mx-auto space-y-8 ${isProgramming ? 'max-w-[54rem]' : 'max-w-3xl'}`}>
+        {isSubmitted && (
+          <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-base font-semibold text-slate-800">
+              已交卷 · 每道题下面可以看答案和解析
+              {wrongOnly && reviewPosition >= 0 && (
+                <span className="ml-2 font-normal text-slate-600">第 {reviewPosition + 1} / {reviewCount} 道</span>
+              )}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {reviewCount > 0 && (
+                <button
+                  type="button"
+                  onClick={onToggleWrongOnly}
+                  aria-pressed={wrongOnly}
+                  className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg border px-4 text-sm font-bold transition-colors ${wrongOnly
+                    ? 'border-red-300 bg-red-50 text-red-800 hover:bg-red-100'
+                    : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-100'}`}
+                >
+                  <Filter size={16} aria-hidden="true" />
+                  只看错题和没做的题（{reviewCount}）
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={onOpenAnalysisMode}
+                className="mw-button mw-button--secondary mw-button--small"
+              >
+                <Lightbulb size={16} aria-hidden="true" />
+                进入解析模式
+              </button>
+              {/* 最后一题时底部按钮就是「查看结果」，这里不再重复 */}
+              {!isLastQuestion && (
+                <button
+                  type="button"
+                  onClick={onShowResult}
+                  className="mw-button mw-button--secondary mw-button--small"
+                >
+                  查看结果
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Question Card：编程题也只有这一层白底，内部小节不再套卡 */}
         <div className={`bg-white rounded-2xl shadow-sm border border-slate-200 animate-fade-in relative overflow-hidden ${isProgramming ? 'p-5 md:p-10' : 'p-6 md:p-10'}`}>
           {!isProgramming && (
@@ -121,7 +178,25 @@ const ExamModeView = ({
                   );
                 })}
               </div>
+
+              {showAnswerReview && (
+                <section aria-label="本题答案与解析" className="mt-8 border-t border-slate-200 pt-6">
+                  <h2 className="mb-3 text-lg font-bold text-slate-900">答案与解析</h2>
+                  <AnswerReview
+                    q={currentQ}
+                    level={level}
+                    given={answers[currentQ.id]}
+                    {...trust}
+                  />
+                </section>
+              )}
             </>
+          )}
+
+          {isSubmitted && isProgramming && (
+            <p className="mt-6 rounded-lg bg-slate-50 px-4 py-3 text-base text-slate-700">
+              编程题这里不判分。解题思路和参考代码请点上面的「进入解析模式」查看。
+            </p>
           )}
         </div>
 
@@ -129,17 +204,17 @@ const ExamModeView = ({
         <div className="flex justify-between items-center">
           <button
             onClick={onPrev}
-            disabled={currentQuestionIndex === 0}
+            disabled={wrongOnly ? reviewPosition <= 0 : currentQuestionIndex === 0}
             className="px-6 py-3 rounded-xl bg-white border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 disabled:opacity-50"
           >
-            上一题
+            {wrongOnly ? '上一道错题' : '上一题'}
           </button>
 
           <button
             onClick={onNext}
             className={`px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-sm transition-all ${isLastQuestion ? 'bg-green-600 text-white hover:bg-green-700' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
           >
-            {isLastQuestion ? (isSubmitted ? '查看结果' : '检查交卷') : <>下一题 <ChevronRight size={18} /></>}
+            {isLastQuestion ? (isSubmitted ? '查看结果' : '检查交卷') : <>{wrongOnly ? '下一道错题' : '下一题'} <ChevronRight size={18} /></>}
           </button>
         </div>
       </div>

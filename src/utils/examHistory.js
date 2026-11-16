@@ -31,6 +31,7 @@ export function recordExamAttempt(paperId, { questions = [], answers = {}, elaps
     ));
 
     const wrongIds = [];
+    const correctIds = [];
     let score = 0;
     let total = 0;
     let correct = 0;
@@ -43,6 +44,7 @@ export function recordExamAttempt(paperId, { questions = [], answers = {}, elaps
             unanswered += 1;
         } else if (given === question.answer) {
             correct += 1;
+            correctIds.push(question.id);
             score += question.score || 0;
         } else {
             wrongIds.push(question.id);
@@ -67,22 +69,71 @@ export function recordExamAttempt(paperId, { questions = [], answers = {}, elaps
             ...data.attempts,
             [paperId]: [attempt, ...(data.attempts[paperId] || [])].slice(0, MAX_ATTEMPTS_PER_PAPER),
         },
+        mistakes: applyMistakeResults(data.mistakes, paperId, { wrongIds, correctIds, at: attempt.at }),
     }), 'exam-attempt');
 
     return attempt;
 }
 
+/**
+ * 把一批作答结果合进错题集合：做错的记入，做对的移出，没作答的题不在两个列表里、保持原状。
+ * 返回新的 mistakes 对象（不改入参）。
+ */
+export function applyMistakeResults(mistakes = {}, paperId, { wrongIds = [], correctIds = [], at = Date.now() } = {}) {
+    if (!paperId) return mistakes;
+    const entry = { ...(mistakes[paperId] || {}) };
+    for (const id of wrongIds) entry[String(id)] = at;
+    for (const id of correctIds) delete entry[String(id)];
+    const next = { ...mistakes };
+    if (Object.keys(entry).length > 0) next[paperId] = entry;
+    else delete next[paperId];
+    return next;
+}
+
+/** 解析模式（或只练错题）里揭晓了一道客观题：答错记入错题集合，答对移出。 */
+export function recordQuestionResult(paperId, questionId, isCorrect) {
+    if (!paperId || questionId === undefined || questionId === null) return;
+    updateLearningData((data) => ({
+        ...data,
+        mistakes: applyMistakeResults(
+            data.mistakes,
+            paperId,
+            isCorrect ? { correctIds: [questionId] } : { wrongIds: [questionId] },
+        ),
+    }), 'mistake-update');
+}
+
+/** 「清除本卷记录」：成绩、错题和解析模式作答一起删。 */
 export function clearPaperAttempts(paperId) {
     updateLearningData((data) => {
         const attempts = { ...data.attempts };
+        const mistakes = { ...data.mistakes };
+        const analysis = { ...data.analysis };
         delete attempts[paperId];
-        return { ...data, attempts };
+        delete mistakes[paperId];
+        delete analysis[paperId];
+        return { ...data, attempts, mistakes, analysis };
     }, 'exam-attempt-clear');
 }
 
 /**
- * 每张卷当前还错着的题号。只看最近一次交卷——一道题订正后又做对了，
- * 就不该继续躺在错题本里，否则错题本只增不减，很快就没人看了。
+ * 每张卷当前还错着的题号（错题本用）：做错过、之后还没做对的题。
+ * 题号按卷内顺序返回；题号原本是数字的还原成数字。
+ */
+export function currentWrongIdsByPaper(data = readLearningData()) {
+    const result = {};
+    for (const [paperId, entry] of Object.entries(data.mistakes || {})) {
+        const ids = Object.keys(entry)
+            .map((id) => (/^\d+$/.test(id) ? Number(id) : id))
+            .sort((a, b) => (Number(a) - Number(b)) || String(a).localeCompare(String(b)));
+        if (ids.length > 0) result[paperId] = ids;
+    }
+    return result;
+}
+
+/**
+ * 每张卷最近一次交卷留下的错题号（只看交卷记录）。错题本现在读 currentWrongIdsByPaper：
+ * 它同时算上解析模式，而且空白交卷不会把错题清掉。
  */
 export function latestWrongIdsByPaper(attempts = readExamAttempts()) {
     const result = {};
@@ -129,4 +180,34 @@ export function aggregateWeakTopics(wrongQuestionsByPaper, resolveTags) {
         }
     }
     return [...topics.values()].sort((a, b) => b.wrongCount - a.wrongCount || a.tag.localeCompare(b.tag, 'zh'));
+}
+
+/**
+ * 某张卷的错题对应的题目对象（只取客观题），按 currentWrongIdsByPaper 给出的题号顺序。
+ * 卷里已经找不到的题号（题库调整过）直接略过。
+ */
+export function pickWrongQuestions(paper, wrongIds = []) {
+    if (!paper) return [];
+    const byId = new Map((paper.questions || []).map((question) => [String(question.id), question]));
+    return wrongIds.map((id) => byId.get(String(id))).filter(Boolean);
+}
+
+/**
+ * 「只练错题」用的临时卷：保留原卷的核验信息（解析页的可信度提示据此判断），
+ * 题目重编号为 1..n，但带着原卷号和原题号——做对了才能从错题本里移出。
+ */
+export function buildMistakePracticePaper(paper, wrongQuestions = [], paperId = paper?.id) {
+    if (!paper || !paperId || wrongQuestions.length === 0) return null;
+    const { programmingQuestions: _programming, codingQuestions: _coding, ...rest } = paper;
+    return {
+        ...rest,
+        id: `review-${paperId}`,
+        title: `${paper.title} · 只练错题（${wrongQuestions.length} 题）`,
+        questions: wrongQuestions.map((question, index) => ({
+            ...question,
+            id: index + 1,
+            sourcePaperId: paperId,
+            sourceQuestionId: question.id,
+        })),
+    };
 }

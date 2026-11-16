@@ -20,14 +20,17 @@ import { getPaper } from '../../data/gesp';
 import { getLuoguProblemUrl, needsSynthesizedCoding, withSynthesizedCoding } from '../../data/gesp/codingQuestions';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import useLuoguPool from '../../hooks/useLuoguPool';
-import { buildQuestionInsight, selectAnalysisView } from './analysisEngine';
+import { selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
+import AnswerReview from './AnswerReview';
+import useAnalysisSession from '../../hooks/useAnalysisSession';
 import { resolveVerification } from '../../data/gesp/verificationModel';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 import CodingProblemView from '../../components/CodingProblemView';
 import { CopyableCodeBlock } from '../../components/CodingProblemView';
 import { integrityNoticeTiming } from '../../utils/sourceIntegrity';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
+import { RESET_ANALYSIS_CONFIRM } from '../../utils/analysisProgress';
 import { getQuestionNavStatus } from '../../utils/questionNavStatus';
 import { isProgrammingQuestion } from '../../utils/questionHelpers';
 
@@ -160,19 +163,27 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     );
 
     const [activeTab, setActiveTab] = useState('practice');
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [answers, setAnswers] = useState({});
-    const [revealed, setRevealed] = useState({});
+    // 作答按卷号存进 learningData.analysis：刷新不丢；答错的客观题并入错题本。
+    const mistakeSource = useCallback((q) => ({ paperId, questionId: q.id }), [paperId]);
+    const {
+        answers,
+        revealed,
+        currentQuestionIndex,
+        setCurrentQuestionIndex,
+        selectOption,
+        reveal,
+        reset,
+    } = useAnalysisSession({ storageKey: paperId, questions, mistakeSource });
 
     const goToPreviousQuestion = useCallback(() => {
         setCurrentQuestionIndex((prev) => Math.max(0, prev - 1));
         setActiveTab('practice');
-    }, []);
+    }, [setCurrentQuestionIndex]);
 
     const goToNextQuestion = useCallback(() => {
         setCurrentQuestionIndex((prev) => Math.min(questions.length - 1, prev + 1));
         setActiveTab('practice');
-    }, [questions.length]);
+    }, [questions.length, setCurrentQuestionIndex]);
 
     useQuestionKeyboardNavigation({
         enabled: !loading && !!paperData,
@@ -254,28 +265,17 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     });
 
     const resetAll = () => {
-        setAnswers({});
-        setRevealed({});
-        setCurrentQuestionIndex(0);
+        if (answeredCount > 0 && !window.confirm(RESET_ANALYSIS_CONFIRM)) return;
+        reset();
         setActiveTab('practice');
     };
 
-    const handleOptionSelect = (qId, optionIdx) => {
-        if (revealed[qId]) return;
-        setAnswers((prev) => ({ ...prev, [qId]: optionIdx }));
-        setRevealed((prev) => ({ ...prev, [qId]: true }));
-        setActiveTab('analysis');
+    const handleOptionSelect = (q, optionIdx) => {
+        if (selectOption(q, optionIdx)) setActiveTab('analysis');
     };
 
     const revealCurrent = () => {
-        if (!currentQ) return;
-        const isProgramming = currentQ.type === 'coding' || currentQ.type === 'programming';
-        if (!isProgramming && answers[currentQ.id] === undefined) return;
-        if (isProgramming && answers[currentQ.id] === undefined) {
-            setAnswers((prev) => ({ ...prev, [currentQ.id]: 0 }));
-        }
-        setRevealed((prev) => ({ ...prev, [currentQ.id]: true }));
-        setActiveTab('analysis');
+        if (reveal(currentQ)) setActiveTab('analysis');
     };
 
     const selected = answers[currentQ.id];
@@ -288,9 +288,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     const explanationVerified = verification.dimensions.explanation === 'verified';
     // Show the authored explanation whenever one exists; verification status only
     // drives the trust notice. The generic hint is for questions with no explanation.
-    const analysisView = selectAnalysisView(currentQ, paperData.level);
-    const useGenericHint = analysisView.mode === 'generic';
-    const displayedAnalysis = analysisView.analysis;
+    const useGenericHint = selectAnalysisView(currentQ, paperData.level).mode === 'generic';
     const isProgramming = isProgrammingQuestion(currentQ);
     const syntheticLuoguCoding = currentQ?.type === 'coding' && !currentQ.description && Boolean(currentQ.explanation);
     const luoguUrl = isProgramming ? getLuoguProblemUrl(paperId, currentQ.id) : null;
@@ -315,8 +313,9 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                         </div>
                     </div>
                     <button
+                        type="button"
                         onClick={resetAll}
-                        className="px-3 py-2 rounded-lg text-sm border border-slate-200 hover:bg-slate-50 flex items-center gap-1"
+                        className="min-h-11 px-3 py-2 rounded-lg text-sm border border-slate-200 hover:bg-slate-50 flex items-center gap-1"
                     >
                         <RotateCcw size={14} /> 重置进度
                     </button>
@@ -471,7 +470,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                             return (
                                                 <button
                                                     key={idx}
-                                                    onClick={() => handleOptionSelect(currentQ.id, idx)}
+                                                    onClick={() => handleOptionSelect(currentQ, idx)}
                                                     className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${optionState}`}
                                                 >
                                                     <span className={`option-badge ${badgeState}`}>{String.fromCharCode(65 + idx)}</span>
@@ -576,82 +575,14 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                                 )}
                                             </div>
                                         ) : (
-                                            <div className="space-y-3">
-                                                {/* 答案速览 */}
-                                                <div className="flex items-center gap-3 flex-wrap">
-                                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-sm font-bold text-green-800">
-                                                        <CheckCircle2 size={16} className="text-green-600" />
-                                                        {answerVerified ? '已核验答案' : '题库答案（尚未完成核验）'}：{String.fromCharCode(65 + currentQ.answer)}
-                                                    </span>
-                                                    <MarkdownRenderer content={formatOptionDisplay(currentQ.options[currentQ.answer])} inline={true} className="text-sm text-slate-600" />
-                                                    {answers[currentQ.id] !== undefined && answers[currentQ.id] !== currentQ.answer && (
-                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-red-50 border border-red-200 text-xs text-red-600">
-                                                            你选了 {String.fromCharCode(65 + answers[currentQ.id])}
-                                                        </span>
-                                                    )}
-                                                </div>
-
-                                                {/* 题库原解析：存在解析但无法拆成逐项理由时原文展示，不用通用模板替换 */}
-                                                {analysisView.mode === 'authored' && (
-                                                    <div className="bg-white border border-blue-100 rounded-lg p-3" data-testid="authored-explanation">
-                                                        <div className="text-sm font-semibold text-slate-800 mb-2">📝 题库解析</div>
-                                                        <MarkdownRenderer content={analysisView.explanation} className="text-sm text-slate-700 leading-relaxed" />
-                                                    </div>
-                                                )}
-
-                                                {/* 选项逐项分析 */}
-                                                {displayedAnalysis?.optionAnalysis?.length > 0 && (
-                                                    <div className="bg-white border border-blue-100 rounded-lg p-3">
-                                                        <div className="text-sm font-semibold text-slate-800 mb-2">📋 选项逐项分析</div>
-                                                        <div className="space-y-2">
-                                                            {displayedAnalysis.optionAnalysis.map((oa) => (
-                                                                <div key={oa.idx} className={`flex items-start gap-2 text-sm p-2 rounded-lg ${oa.isCorrect ? 'bg-green-50' : 'bg-slate-50'}`}>
-                                                                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${oa.isCorrect ? 'bg-green-200 text-green-800' : 'bg-slate-200 text-slate-600'}`}>
-                                                                        {oa.label}
-                                                                    </span>
-                                                                    <div className="flex-1 min-w-0">
-                                                                        <MarkdownRenderer content={oa.text} inline={true} className="text-slate-700 leading-relaxed" />
-                                                                        <div className={`mt-0.5 text-xs ${oa.isCorrect ? 'text-green-700' : 'text-slate-500'}`}>
-                                                                            {oa.isCorrect ? '✓ ' : '✗ '}<MarkdownRenderer content={oa.reason} inline={true} />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                )}
-
-                                                {/* 核心知识点 */}
-                                                {displayedAnalysis && (
-                                                    <div className="bg-white border border-slate-200 rounded-lg p-3">
-                                                        <div className="text-sm font-semibold text-slate-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
-                                                        <MarkdownRenderer content={displayedAnalysis?.keyPoint || buildQuestionInsight(currentQ, paperData.level)} className="text-sm text-slate-700 leading-relaxed" />
-                                                    </div>
-                                                )}
-
-                                                {/* 易错点 */}
-                                                {displayedAnalysis?.pitfalls?.length > 0 && (
-                                                    <div className="bg-white border border-amber-100 rounded-lg p-3">
-                                                        <div className="text-sm font-semibold text-amber-800 mb-1.5">⚠️ 易错提醒</div>
-                                                        <ul className="space-y-1">
-                                                            {displayedAnalysis.pitfalls.map((p, idx) => (
-                                                                <li key={idx} className="text-sm text-slate-700 flex items-start gap-1.5">
-                                                                    <span className="text-amber-500 flex-shrink-0 mt-0.5">•</span>
-                                                                    <MarkdownRenderer content={p} inline={true} className="leading-relaxed" />
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                )}
-
-                                                {/* 知识延伸 */}
-                                                {displayedAnalysis?.extension && (
-                                                    <div className="bg-white border border-emerald-100 rounded-lg p-3">
-                                                        <div className="text-sm font-semibold text-emerald-800 mb-1">🚀 {useGenericHint ? '练习建议' : '知识延伸'}</div>
-                                                        <MarkdownRenderer content={displayedAnalysis.extension} className="text-sm text-slate-700 leading-relaxed" />
-                                                    </div>
-                                                )}
-                                            </div>
+                                            <AnswerReview
+                                                q={currentQ}
+                                                level={paperData.level}
+                                                given={answers[currentQ.id]}
+                                                answerVerified={answerVerified}
+                                                explanationVerified={explanationVerified}
+                                                showTrustNotice={false}
+                                            />
                                         )}
                                         <div className="flex flex-wrap gap-2">
                                             {tags.map((tag) => (
