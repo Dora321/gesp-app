@@ -34,6 +34,22 @@ async function verifyComposerInk(page) {
   assert.deepEqual(appearance, { text: message, ink: 'rgb(35, 40, 61)', unselected: true });
 }
 
+// Standalone resources such as the three.js electronics courseware keep a WebGL scene
+// rendering behind the assistant. Headless CI renders WebGL in software, so that page's
+// frames take hundreds of milliseconds and every input round trip is slow there.
+const heavyResourceTimeout = 90000;
+
+async function closeOwnFrame(button, frame, timeout = 30000) {
+  // The close button lives inside the assistant iframe, and closing removes that iframe,
+  // so the click acknowledgement can arrive after the frame is gone. Detachment is the
+  // outcome being checked; a click that fails while the frame is still attached still fails.
+  let detached = false;
+  const gone = frame.waitFor({ state: 'detached', timeout }).then(() => { detached = true; });
+  const click = button.click({ timeout }).catch(error => { if (!detached) throw error; });
+  await Promise.race([gone, click]);
+  await gone;
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   try {
@@ -65,7 +81,7 @@ async function verifyComposerInk(page) {
     await page.waitForFunction(() => Boolean(document.fullscreenElement?.contentDocument?.fullscreenElement), undefined, { timeout: 8000 });
     await openFromCorner(page, deck);
     const fullscreenAssistant = deck.frameLocator('iframe[title="AI 问答助手"]');
-    await fullscreenAssistant.getByRole('button', { name: closeLabel, exact: true }).click();
+    await closeOwnFrame(fullscreenAssistant.getByRole('button', { name: closeLabel, exact: true }), deck.locator('iframe[title="AI 问答助手"]'));
     await page.evaluate(() => document.exitFullscreen());
 
     const standaloneUrl = await page.getByRole('link', { name: /独立打开课件/ }).getAttribute('href');
@@ -74,10 +90,9 @@ async function verifyComposerInk(page) {
       await page.goto(url);
       await openFromCorner(page);
       const ownAssistant = page.frameLocator('iframe[title="AI 问答助手"]');
-      await ownAssistant.getByRole('dialog', { name: 'AI 问答助手', exact: true }).waitFor();
-      await ownAssistant.getByRole('button', { name: closeLabel, exact: true }).click();
-      await page.locator('iframe[title="AI 问答助手"]').waitFor({ state: 'detached' });
-      await page.getByRole('button', { name: openLabel, exact: true }).waitFor();
+      await ownAssistant.getByRole('dialog', { name: 'AI 问答助手', exact: true }).waitFor({ timeout: heavyResourceTimeout });
+      await closeOwnFrame(ownAssistant.getByRole('button', { name: closeLabel, exact: true }), page.locator('iframe[title="AI 问答助手"]'), heavyResourceTimeout);
+      await page.getByRole('button', { name: openLabel, exact: true }).waitFor({ timeout: heavyResourceTimeout });
     }
 
     const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
