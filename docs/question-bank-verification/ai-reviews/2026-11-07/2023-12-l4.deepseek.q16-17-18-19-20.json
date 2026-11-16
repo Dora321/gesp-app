@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:41:17.998Z",
+  "completedAt": "2026-11-15T16:42:26.265Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36292,
+    "completion_tokens": 13223,
+    "total_tokens": 49515,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11939
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0133776,
+      "allowance": 0.00802656,
+      "tokens": {
+        "input": 36292,
+        "output": 13223,
+        "reasoning": 11939,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“GESP CCF 编程能力等级认证 C++ 四级 2023年12月”；第5页判断题答案表第1-5项依次为√√×××，对应题号16-20。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "unresolved",
+            "evidence": "PDF第5页第1题原文为“例如 int a={10,9,8,7,6,5,4,3,2,1}”，示例缺数组方括号；网站题面照录原卷，无法据图确认应补 int a[10] 还是 int a[]，保留待核。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选题选项；正确/错误由答案表判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第1项为√，对应 officialAnswer=0；网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 sort 的半开区间 [a,a+5) 独立推导，说明排序 a[0]~a[4] 后为 6,7,8,9,10，其余元素不动；与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方PDF第5页示例 int a={...} 缺数组方括号，题面保留原样；按上下文应理解为数组。"
+        ]
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第2题“用递归法求n的阶乘，时间复杂度是O(n)。”网站题面语义一致，仅空格/标点排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选题选项；正确/错误由答案表判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第2项为√，对应 officialAnswer=0；网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立按 f(n)=n*f(n-1)、f(0)=1 推得共 n+1 次调用、每层常数工作，时间 O(n)，并说明栈空间 O(n)；无矛盾。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第3题表达式为 [(1,2)*2]*3，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选题选项；正确/错误由答案表判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第3项为×，对应 officialAnswer=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据 C++ 下标运算符语法：左方括号前须有数组或指针对象，不能作数学中括号；故表达式非法，与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第4题题干与代码一致：ifstream filein; ofstream fileout; filein.open(\"1.txt\"); fileout<<\"hello\";。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选题选项；正确/错误由答案表判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第4项为×，对应 officialAnswer=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析指出打开的是输入流 filein，输出流 fileout 未 open，写入不会落到 1.txt，结论错误；推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5-6页第5题题干与代码一致：第1行 01234，int buff 后 filein >> buff，再 cout<<buff；题干起于第5页，代码在第6页。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无单选题选项；正确/错误由答案表判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第5项为×，对应 officialAnswer=1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按整数格式化输入将 01234 读为 1234 推导，输出行内容长 4，故“长度为5”为假；与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核5题均为判断题，卷头与答案表匹配。16-20题答案均与PDF答案表一致；17-20题题干、解析无实质问题。第16题官方示例 int a={...} 缺数组方括号，网站照录原卷，无法据图确定补法，保留待核；其余无改动。"
+  }
+}

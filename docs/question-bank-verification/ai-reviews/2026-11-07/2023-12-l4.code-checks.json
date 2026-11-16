@@ -1,0 +1,136 @@
+{
+  "executedAt": "2026-11-16T01:45:12.926Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2\nabc a\nd def\nabc.d.d.abc.abcd",
+          "output": "a.def.def.a.UNK",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "a.def.def.a.UNK\n",
+          "passed": true
+        },
+        {
+          "input": "3\nabc a\nd def\nabcd xxxx\nabc,(d)d!-abc?abcd",
+          "output": "a,(def)def!-a?xxxx",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "a,(def)def!-a?xxxx\n",
+          "passed": true
+        },
+        {
+          "input": "1\nabcdefghij klmnopqrst\n!()-[]{}\\|;:'\",./?<>abcdefghijklmnopqrstuvwxyz",
+          "output": "!()-[]{}\\|;:'\",./?<>UNK",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "!()-[]{}\\|;:'\",./?<>UNK\n",
+          "passed": true
+        },
+        {
+          "name": "空字典最小条目数",
+          "input": "0\nabc.def",
+          "output": "UNK.UNK",
+          "reason": "题面仅约束 N≤100 未给下界，N=0 为合法最小值；空字典时 abc、def 均查不到，替换为 UNK，句点原样保留。期望输出由扫描逻辑手工推演。",
+          "kind": "boundary",
+          "actual": "UNK.UNK\n",
+          "passed": true
+        },
+        {
+          "name": "前缀词不得部分匹配",
+          "input": "1\nabc a\nabcd.abc.",
+          "output": "UNK.a.",
+          "reason": "abcd 不等于 abc，必须整体查词输出 UNK，不能因前缀 abc 在典中而译为 a；随后 abc 译为 a，两个句点原样输出。",
+          "kind": "boundary",
+          "actual": "UNK.a.\n",
+          "passed": true
+        },
+        {
+          "name": "尖括号标点与末尾无标点",
+          "input": "2\na x\nb y\na?b<ab>a",
+          "output": "x?y<UNK>x",
+          "reason": "覆盖官方标点集特有的 < >；a、b 命中字典译为 x、y，ab 未收录输出 UNK，各标点原样输出；末尾单词 a 无标点结尾，靠循环后 flush 译为 x。",
+          "kind": "boundary",
+          "actual": "x?y<UNK>x\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "12f298d15aa23ae330c83d9a3f6cb3415efc20c4b76c863a1b5590232968bd72"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3\n1 3 5\n2 4 6",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "5\n10 3 5 8 7\n4 6 1 2 9",
+          "output": "5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模且失败",
+          "input": "1\n1\n2\n",
+          "output": "0",
+          "reason": "N=1 为最小规模，我方速度 1 小于田忌 2，无法获胜，最多赢 0 轮。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模且胜利",
+          "input": "1\n2\n1\n",
+          "output": "1",
+          "reason": "N=1，我方速度 2 大于田忌 1，可赢 1 轮。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "部分胜利与排序匹配",
+          "input": "4\n1 4 5 8\n2 3 6 7\n",
+          "output": "3",
+          "reason": "排序后 u=[1,4,5,8]、v=[2,3,6,7]，配对 (4,2)、(5,3)、(8,6) 获胜，1 无法胜任何马，最多 3 胜且已验证为最优。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "全胜边界",
+          "input": "3\n4 5 6\n1 2 3\n",
+          "output": "3",
+          "reason": "排序后我方每匹马都严格快于对应田忌马，可赢全部 3 轮。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "全负边界",
+          "input": "3\n1 2 3\n4 5 6\n",
+          "output": "0",
+          "reason": "排序后我方每匹马都慢于田忌对应马，无法获胜，最多赢 0 轮。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "23bae5cb0b1937d82b682629ff9571444128fe91af2201aa0f6176ecd41863d0"
+    }
+  ]
+}

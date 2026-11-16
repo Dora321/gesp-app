@@ -1,0 +1,234 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T19:59:28.456Z",
+  "completedAt": "2026-11-15T20:01:56.708Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53895,
+    "completion_tokens": 12237,
+    "total_tokens": 66132,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10215
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01420275,
+      "allowance": 0.01420275,
+      "tokens": {
+        "input": 53895,
+        "output": 12237,
+        "reasoning": 10215,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF编程能力等级认证 GESP C++ 四级 2023年12月”，与题库 year=2023、month=12、level=4 一致；第5页含“2 判断题（每题2分，共20分）”及10格判断题答案表，本次核验的题16-20对应其中第1-5格。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断第1题原文：“C++的内置函数 sort() 支持数组的局部排序。例如 int a={10,9,8,7,6,5,4,3,2,1} ，可以用 sort(a,a+5) ,排序成 {6,7,8,9,10,5,4,3,2,1} 。( )”。网站题面逐字一致；其中 int a={...} 缺数组方括号系官方原卷自身笔误，网站照录原卷，站点与源卷之间无差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，正确/错误由答案表符号判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第1格为√（正确=0）；网站 answer=0。按语义独立验证：对10元素数组 sort(a,a+5) 排序前5个元素 10,9,8,7,6 → 6,7,8,9,10，其余 5,4,3,2,1 不变，得 {6,7,8,9,10,5,4,3,2,1}，命题为真，√成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按半开区间 [a, a+5) 独立推导：排序 a[0]~a[4]，a[5]~a[9] 保持不动，结果与命题一致；推导正确，与答案√自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核对 answer/explanation 的核验；否决其将 statement 标为 unresolved 的处理：页面图与文本层均可确认原卷确实写作 int a={10,9,8,7,6,5,4,3,2,1}（缺方括号为官方原卷笔误），网站逐字照录即与源卷一致，不存在待定的改法；语义（10元素数组、局部排序前5个）无歧义且与答案√自洽，题面无需改动，statement 应为 verified 而非 unresolved。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断第2题：“用递归法求 n 的阶乘，时间复杂度是 O(n)。”网站题面文字与语义一致，仅排版空格差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，正确/错误由答案表符号判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第2格为√（正确=0）；网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：f(n)=n·f(n-1)、f(0)=1，递归为单链共 n+1 次调用，每层常数次运算，时间 O(n)、栈空间 O(n)，判定√正确；解析关于“递归深度×单层工作量只适用于单链递归、多分支需统计全部调用结点”的限定说明也正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论全部成立，直接采纳，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断第3题：“[(1,2)*2]*3 在C++中是合法的表达式。( )”。网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，正确/错误由答案表符号判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第3格为×（错误=1）；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 中 [] 为下标运算符，左侧必须是数组或指针对象；[(1,2)*2] 的左方括号前无任何数组/指针，属语法错误，表达式非法，命题为假；解析同时正确指出 (1,2) 为逗号表达式值为2、(1,2)*2=4，但 [] 用法非法，推导与×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论成立，采纳；网站解析中“依据 GESP 官方答案表核对修正”的标注与答案表×相符。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断第4题题干“在下面的C++代码中，将对1.txt文件写入 hello 。( )”，代码四行 ifstream filein; ofstream fileout; filein.open(\"1.txt\"); fileout<<\"hello\"; 与网站题面及代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，正确/错误由答案表符号判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第4格为×（错误=1）；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：仅 filein 以输入方式打开 1.txt，fileout 从未 open，向未关联文件的输出流写入失败，1.txt 不会被写入 hello，命题为假；推导与×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论成立，采纳，无需修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页判断第5题题干“文本文件 1.txt 第1行由 01234 共5个字符组成其间没有空格，当用C++代码正常打开文件成功并执行如下代码以后，第1行长度为5”，配套代码 ifstream filein; int buff; filein.open(\"1.txt\"); filein>>buff; cout<<buff<<endl; 位于第6页顶部；网站题面与代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无单选选项，正确/错误由答案表符号判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第5格为×（错误=1）；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：filein>>buff 将 \"01234\" 按十进制整数解析为 1234（前导零不保留），输出行为 \"1234\" 长4≠5，命题为假；解析关于“若要保留前导零应读入 string”的补充亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码核验项。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核结论成立，采纳，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核题号16-20共5道判断题。卷头（C++ 四级、2023年12月）与第5页判断题答案表（第1-10格依次为 √ √ × × × √ √ √ × √）均已按页面图核对；五题 officialAnswer 依次为 0,0,1,1,1，与网站 answer 全部吻合；题面文字与代码均与原卷一致，解析独立推导均成立，五维核验全部通过、无任何改动。对初核的唯一分歧点：其将第16题 statement 标为 unresolved——经核对，原卷图确系官方原文写作 int a={10,9,8,7,6,5,4,3,2,1}（缺数组方括号为官方原卷自身笔误），网站逐字照录即与源卷一致，且不影响答案√的正确性，故否决该 unresolved，改为 verified；该笔误属源卷完整性备注，不构成站点缺陷。"
+  }
+}

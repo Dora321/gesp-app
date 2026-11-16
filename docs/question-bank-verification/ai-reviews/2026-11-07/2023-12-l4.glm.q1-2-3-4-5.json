@@ -1,0 +1,246 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T14:09:20.531Z",
+  "completedAt": "2026-11-15T14:12:30.736Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54912,
+    "completion_tokens": 12596,
+    "total_tokens": 67508,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8920
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0145348,
+      "allowance": 0.0145348,
+      "tokens": {
+        "input": 54912,
+        "output": 12596,
+        "reasoning": 8920,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP C++ 四级 2023 年 12 月」，含 15 题单选答案表（A B D C C C A B A A D A C B B）、10 题判断答案表与 2 道编程题，与 paperId 2023-12-l4 匹配。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干「下面有关函数参数的说法，正确的是( )。」与网站 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A-D 四项（值传递不改变主函数参数值 / 值传递随之改变 / 地址传递不改变 / 可不满足参数个数要求）与网站 options 逐项一致，仅换行排版差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 1 题为 A，0 起始索引 0，与网站 answer=0 一致；独立推导：值传递复制副本不改变实参，A 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析一致：值传递修改副本不影响原变量，B 与值传递语义相反，C 中地址传递经解引用修改会反映到主函数，D 违反实参个数须匹配形参的语法要求。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：五个维度独立复核均与 PDF 一致，解析推导成立。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题代码图 `int arr[10]={1}; string strArr=\"chen a dai\"; cout<<strArr[arr[1]]<<endl;` 与网站 code 逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A chen、B c、C chen a dai、D dai 与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 2 题为 B（索引 1），与网站 answer=1 一致；独立推导：{1} 零初始化使 arr[1]=0，strArr[0]='c'，输出 c，对应 B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析称「代码中没有给出完整代码」，并把 strArr 误述为字符串常量按 const char* 退化解释，且完全未使用已给代码中 arr[1]=0 的推导，与原卷代码不符，需按实际代码重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（c）**\n\n**核心解析：**\n`int arr[10]={1};` 只显式初始化 `arr[0]=1`，其余 9 个元素被值初始化为 0，因此 `arr[1]=0`。`strArr` 是内容为 `chen a dai` 的 `std::string` 对象，`strArr[arr[1]]` 即 `strArr[0]`，通过 `operator[]` 取出首字符 `'c'`。`cout` 输出该字符，结果为 `c`。\n\n**选项逐项分析：**\n- **A (chen)**：❌ 错误。下标访问只取出一个字符，不会输出整个单词。\n- **B (c)**：✅ 正确。`arr[1]=0`，访问的是下标 0 的首字符 `'c'`。\n- **C (chen a dai)**：❌ 错误。未输出整个字符串。\n- **D (dai)**：❌ 错误。`'d'` 在字符串中位于下标 7，不是下标 0 对应的内容。\n\n**易错提醒：**\n- 数组部分初始化时，未显式赋值的元素自动置 0，`arr[1]` 并非未定义。\n- `std::string` 下标从 0 开始，`strArr[0]` 是首字符。\n\n**考点：** 数组部分初始化规则与 `std::string` 下标访问"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核并采用其修正：独立确认网站解析遗漏 arr[1]=0 推导且把 std::string 误述为字符串常量退化指针；修正版基于原代码推导，与答案 B 自洽。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 3 题代码图 `int fun1(int *n){ return *n**n; } int main(){ int arr[10]={2}; arr[1]=fun1(arr); cout<<arr[1]<<endl; }` 与网站 code 一致，题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 1、B 2 见 PDF 第 1 页，C 3、D 4 见 PDF 第 2 页，与网站 options 顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 3 题为 D（索引 3），与网站 answer=3 一致；独立推导：fun1 返回 (*n)*(*n)=2*2=4，赋给 arr[1]，输出 4。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析将已给出的完整代码改写为「假设核心代码结构如下：int arr[3]={2,0,0}; fun1(arr);」，并称「该值被赋给 arr[1] 或作为返回值」，未依据原代码 `arr[1]=fun1(arr)` 的实际赋值关系，需重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（4）**\n\n**核心解析：**\n`int arr[10]={2};` 使 `arr[0]=2`，其余元素为 0，调用前 `arr[1]=0`。调用 `fun1(arr)` 时数组名退化为指向首元素的指针，形参 `n` 指向 `arr[0]`。函数体 `return *n**n;` 中，一元解引用运算符优先级高于二元乘法，表达式等价于 `(*n) * (*n)`，即 `arr[0] * arr[0] = 2 * 2 = 4`。该返回值通过 `arr[1]=fun1(arr);` 赋给 `arr[1]`，随后 `cout<<arr[1]` 输出 `4`。\n\n**选项逐项分析：**\n- **A (1)**：❌ 错误。任何运算路径都得不到 1。\n- **B (2)**：❌ 错误。2 是 `arr[0]` 的原始值，未经平方。\n- **C (3)**：❌ 错误。与 `2 * 2 = 4` 的运算结果不符。\n- **D (4)**：✅ 正确。函数返回 4 赋给 `arr[1]` 并输出。\n\n**易错提醒：**\n- `*n**n` 应读作 `(*n) * (*n)`：中间的 `*` 是二元乘法，两侧是一元解引用，不要误解为先做指针运算。\n- 数组名作实参传递的是首元素地址，函数内通过 `*n` 操作的就是 `arr[0]` 本身。\n\n**考点：** 数组名退化为指针、一元解引用与乘法运算符的优先级"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立确认网站解析把原代码改写为假设结构且赋值关系表述含糊；修正版严格依据 `arr[1]=fun1(arr)` 推导，结论 D 正确。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题代码图 `int arr[3][3]={{1,2,3},{4,5,6},{7,8,9}};` 外层 `for(int i=0;i<3;i++)`、内层 `for(int j=2;j>=0;j--)`、`cout<<arr[i][j]<<\" \";`、每行后 `cout<<endl;` 与网站 code 一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 2 页选项为：A 三行 `1 2 3 / 4 5 6 / 7 8 9`；B 单行 `1 2 3 4 5 6 7 8 9`；C 三行 `3 2 1 / 6 5 4 / 9 8 7`；D 单行 `9 8 7 6 5 4 3 2 1`。网站 A 缺换行、B 误作行反转 `789 456 123`、D 误作列遍历 `147 258 369`，与原卷不符。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 4 题为 C（索引 2），与网站 answer=2 一致；独立推导输出为三行 `3 2 1 / 6 5 4 / 9 8 7`，对应 C；修正选项后 C 仍为索引 2，答案不变。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析按网站错误选项展开（称 B 为行反转、D 为按列遍历），与 PDF 实际选项 B 单行正序、D 单行完全逆序不符，需按修正后选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "1 2 3\n4 5 6\n7 8 9",
+            "1 2 3 4 5 6 7 8 9",
+            "3 2 1\n6 5 4\n9 8 7",
+            "9 8 7 6 5 4 3 2 1"
+          ],
+          "explanation": "**答案：C**\n\n**核心解析：**\n外层循环 `i` 从 0 到 2 按行正序遍历，内层循环 `j` 从 2 到 0 逆序访问每行元素，每个元素后输出一个空格，每行结束输出 `endl` 换行。程序依次输出：\n- i=0 行：`arr[0][2]=3`、`arr[0][1]=2`、`arr[0][0]=1`，即 `3 2 1 `\n- i=1 行：`arr[1][2]=6`、`arr[1][1]=5`、`arr[1][0]=4`，即 `6 5 4 `\n- i=2 行：`arr[2][2]=9`、`arr[2][1]=8`、`arr[2][0]=7`，即 `9 8 7 `\n\n因此结果为 C 所表示的三行：`3 2 1 / 6 5 4 / 9 8 7`。\n\n**选项逐项分析：**\n- **A**（三行正序 `1 2 3 / 4 5 6 / 7 8 9`）：❌ 错误。这是内层 j 也按正序（0→2）遍历的结果。\n- **B**（单行正序 `1 2 3 4 5 6 7 8 9`）：❌ 错误。既无换行也未逆序，与代码的分行输出、列逆序均不符。\n- **C**（三行逆序 `3 2 1 / 6 5 4 / 9 8 7`）：✅ 正确。行正序、每行内列逆序，与代码执行结果一致。\n- **D**（单行完全逆序 `9 8 7 6 5 4 3 2 1`）：❌ 错误。这是单行输出且整体逆序，与代码的分行结构不符。\n\n**易错提醒：**\n- 本题代码每行内是列逆序（j 从 2 到 0），行本身仍按 0→2 正序；不要与「行反转」或「按列遍历」混淆。\n- `endl` 使每行单独成行，单行形式的选项可直接排除。\n\n**考点：** 二维数组嵌套循环遍历与行内逆序输出"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对 PDF 第 2 页确认网站选项 A/B/D 与原卷不符（网站 B 为行反转、D 为列遍历，原卷 B 为单行正序、D 为单行完全逆序），修正选项与答案表 C（索引 2）兼容；初核 answer 证据中「第 2 页答案表」的表述有误（答案表在第 1 页），已在 evidence 中更正，不影响判定。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题代码图 `int arr[3]={1,2,3}; int *p=NULL; p=arr; p++; cout<<*p<<endl;` 与网站 code 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A `1,2,3`、B `1`、C `2`、D `3` 与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 5 题为 C（索引 2），与网站 answer=2 一致；独立推导：p=arr 指向 arr[0]，p++ 后指向 arr[1]，*p=2，输出 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与网站解析一致：p++ 使指针从 &arr[0] 移到 &arr[1]（按 int 步长），*p=arr[1]=2；B 是自增前的 arr[0]，D 是 arr[2]，A 是整个数组，排除均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：代码、选项、答案、解析均与 PDF 一致，指针算术推导正确，无需修改。"
+      }
+    ],
+    "summary": "独立复核题 1-5：卷头「GESP C++ 四级 2023 年 12 月」与 paperId 匹配，五题官方答案（A B D C C → 索引 0,1,3,2,2）均与网站 answer 一致。题 1、5 五维通过；题 2、3 的解析未依据已给代码推导（题 2 遗漏 arr[1]=0 的零初始化推导并误述 strArr 为字符串常量，题 3 将原代码改写为假设结构且赋值关系表述含糊），已按原代码重写修正；题 4 网站选项 A/B/D 与 PDF 第 2 页原卷不符（原卷 A 为三行正序、B 为单行正序、D 为单行完全逆序），已修正 options 并重写解析，answer 索引不变。未运行代码（本批无编程题），无待决问题。"
+  }
+}

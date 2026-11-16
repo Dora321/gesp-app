@@ -1,0 +1,242 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:32:58.427Z",
+  "completedAt": "2026-11-15T16:41:17.992Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54316,
+    "completion_tokens": 30444,
+    "total_tokens": 84760,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 27146
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0233694,
+      "allowance": 0.0233694,
+      "tokens": {
+        "input": 54316,
+        "output": 30444,
+        "reasoning": 27146,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为「CCF 编程能力等级认证 GESP C++ 四级 / 2023年12月」，含单选题1-15答案表（A B D C C C A B A A D A C B B）与判断题表，第6-10页为编程题「小杨的字典」「田忌赛马」，与 2023-12-l4 及已校验 blob SHA 35a12a9b23ece4c7477614c2e862ab8233af8612 对应内容一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干「下列C++代码输入 1,2,3,4 ，执行后，将输出的是（ ）。」；图像代码为 string str=\"\"; cin>>str; int strlen=str.length(); for(int i=0;i<strlen;i++){ if(str[i]<='9'&&str[i]>='0') cout<<str[i]; else cout<<\"#\"; }，与当前 code 字段逐行一致，数字端点为字符字面量'0''9'。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D依次为 1#4#、1#3#、1#2#3#4#、1#2#3#4，与当前选项顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11题为D（0起始索引3）。独立执行推导：cin 读入单个 token「1,2,3,4」共7字符，'1'输出、','→'#'、'2'输出、','→'#'、'3'输出、','→'#'、'4'输出，得 1#2#3#4，即D，与当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析与独立推导一致：数字保留、逗号变#、末尾字符'4'后无多余井号。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面、选项、答案D（索引3）及解析均经PDF第4页图像与独立逐字符执行推导复核一致，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干「以下C++代码用于实现每个整数对应的因数，如输入 12 ，则输出 1 2 3 4 6 12 ；如输入 18 ，则输出 1 2 3 6 9 18 。横线处应填入代码是（ ）。」；代码 int n; cin>>n; for(int i=1;i<=n;i++){ ____________ { cout<<i<<\" \"; } } 与当前一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A if(n%i==0) 在第4页，B if(n/i==0)、C if(n%i!=0)、D if(n/i!=0) 在第5页，顺序与内容与当前一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为A（索引0）。独立验证：n%i==0 即 i 整除 n；输入12得 1 2 3 4 6 12，输入18得 1 2 3 6 9 18，均与题面示例吻合；n/i 为商不能判定整除。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析以12逐点验证 n%i==0 并正确排除 B/C/D，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：整除判定 n%i==0、官方答案A及解析均独立复核通过，无需修改。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干「某公司新出了一款无人驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车目的地，车子就能自动选择一条优化路线，告诉乘客后驶达那里。请问下面哪项不是驾驶系统完成选路所必须的。（ ）」与当前一致（个别空格为提取噪声，不影响含义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A麦克风、B扬声器、C油量表、D传感器，与当前一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为C（索引2）。独立分析：选路需要语音输入（麦克风）、结果播报（扬声器）、环境感知（传感器）；油量表仅为能源状态显示，不参与路径决策。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析按输入/输出/感知/状态显示逐项推导，结论C与答案表及独立分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：官方答案C与独立功能分析一致，题面选项无差异，无需修改。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干「现代计算机是指电子计算机，它所基于的是（ ）体系结构。」与当前一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A艾伦·图灵、B冯·诺依曼、C阿塔纳索夫、D埃克特-莫克利，与当前一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为B（索引1）。独立知识核对：现代电子计算机基于存储程序+二进制的冯·诺依曼体系结构；图灵为理论模型，阿塔纳索夫与埃克特-莫克利为早期机器研制者。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "当前解析对四人贡献的区分准确，结论B成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：官方答案B与计算机体系结构常识独立核对一致，无需修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干「输入一个正整数N（N>=7)，想找出它所有相邻的因数对，比如，输入12，因数对有(1,2)、(2,3)、(3.4)。下面哪段代码找不到所有的因数对?()」与当前一致；源卷示例「(3.4)」为官方排版笔误（应为(3,4)），当前按原卷保留，不影响作答。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页四个选项的 printf 格式串均为字面反斜杠加n的C++转义序列 printf(\"(%d,%d)\\n\", ...)；当前数据将其存为真实换行符，渲染会断行失真。选项顺序、代码内容本身与原卷一致，答案映射不变，仅需恢复 \\n 字面量。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为B（索引1）。独立验证：合法对(i,i+1)要求两者都整除N，合法对的大数L为真约数故L≤N/2（L=N时另一数N-1不整除N）。B从i=2起漏检(1,2)，N=12时(1,2)合法，故B找不到所有因数对；A覆盖(1,2)…(N-1,N)全部起点；C实际检查(i-1,i)自(1,2)起，其N/2上界仅可能漏(N/2-1,N/2)，而N=2(N/2-1)+2知N≥8时余2不整除（N=7时2∤7；N奇时大数上限(N-1)/2满足N mod (N-1)/2=1），不漏对；D覆盖大数≤N/2的所有对，(N-1,N)本不合法。结论B与官方一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析D项理由「若 i>N/2，则 i+1 必大于 N」不成立（N=12、i=7 时 i+1=8<12），仅结论碰巧正确；B项存在「✅ 正确。错误。」的冲突表述；「循环必须从 i=1 开始」对C型(i-1,i)写法不成立；且解析首行内嵌代码同样把 \\n 存成了换行。需按独立推导重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {
+          "options": [
+            "for(i=1;i<N;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);",
+            "for(i=2;i<N;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);",
+            "for(i=2;i<N/2;i++) if(!(N%(i-1)) && !(N%i)) printf(\"(%d,%d)\\n\", i-1, i);",
+            "for(i=1;i<N/2;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);"
+          ],
+          "explanation": "**答案：B (for(i=2;i<N;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);)**\n\n**核心解析：**\n相邻因数对是满足 i 与 i+1 都整除 N 的数对 (i, i+1)。例如 N=12 时，因数对为 (1,2)、(2,3)、(3,4)。设某对中较大的数为 L，则 L 必是 N 的约数；若 L=N，则另一数为 N-1，而 N≥7 时 N-1 不整除 N（N mod (N-1)=1），故合法对的大数只能是不超过 N/2 的真约数。\n\n**选项逐项分析：**\n- **A**：i 从 1 到 N-1，逐一检查 (i, i+1)。合法对的大数 ≤ N/2 < N，全部落在检查范围内，能找出所有因数对，不是答案。\n- **B**：✅ 循环从 i=2 开始，第一对检查的是 (2,3)，永远漏掉起点 (1,2)。只要 N 为偶数（如题面示例 N=12），1 和 2 都整除 N，(1,2) 即为合法因数对，故 B 找不到所有因数对，为本题答案。\n- **C**：i 从 2 开始，但检查的是 (i-1, i)，第一步即覆盖 (1,2)。其范围外可能漏掉的对只有：N 为偶数时大数等于 N/2 的 (N/2-1, N/2)——由 N=2(N/2-1)+2 知 N≥8 时 N/(N/2-1) 余 2，即 N/2-1 不整除 N，该对不合法；N 为奇数时大数上限 (N-1)/2 满足 N mod (N-1)/2=1，同样不整除 N（N=7 时 (2,3) 中 2 也不整除 7）。故 C 不漏对。\n- **D**：i 从 1 到 N/2-1，检查 (i, i+1)，恰好覆盖大数不超过 N/2 的所有对；大数超过 N/2 的对只能是 (N-1, N)（真约数 ≤ N/2），本就不合法，故 D 也不漏对。\n\n综上，只有 B 漏检 (1,2)，选 B。\n\n**易错提醒：**\n- C 检查的是 (i-1, i) 而非 (i, i+1)，i=2 时恰好从 (1,2) 查起，不要误判它与 B 犯同样的错误。\n- B 的漏检只在 N 为偶数时造成实际缺失（N 为奇数时 2 不是 N 的因数，(1,2) 本不存在），但题面示例 N=12 为偶数，足以判定 B 不合题意。\n\n**考点：** 循环边界与因数对检测完整性"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：初核对答案B的判定与options中\\n转义修复的方向正确，经独立验证（B漏检(1,2)、C自(1,2)起检查(i-1,i)、A/D的N/2上界均不漏对）予以采纳；但初核重写稿对C项上界论证不足，且未点明原解析「✅ 正确。错误。」的冲突表述，最终explanation采用本核验补充边界论证后的完整版本。原网站解析D项「i>N/2则i+1必大于N」的错误推断确需修复，故Q15标revise。"
+      }
+    ],
+    "summary": "题11-14经PDF图像逐项核对：题面、选项、答案表映射（11=D→3、12=A→0、13=C→2、14=B→1）与解析推导全部一致，approve。题15官方答案B经独立验证成立（B从i=2起漏检(1,2)，题面示例N=12即中招；C检查(i-1,i)自(1,2)起，A/D的N/2上界均不漏对）；但网站选项中printf的\\n被存为真实换行符、解析含D项错误的不等式推断与B项「✅ 正确。错误。」冲突表述，已提交options与explanation修复值，revise。源卷示例「(3.4)」为官方排版笔误，按原卷保留并在题面证据中注明。"
+  }
+}

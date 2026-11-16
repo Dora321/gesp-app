@@ -1,0 +1,199 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T21:35:41.569Z",
+  "completedAt": "2026-11-15T21:42:02.949Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54740,
+    "completion_tokens": 31075,
+    "total_tokens": 85815,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 25973
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0237485,
+      "allowance": 0.0237485,
+      "tokens": {
+        "input": 54740,
+        "output": 31075,
+        "reasoning": 25973,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 GESP C++ 四级 2023年12月」，与 paperId 2023-12-l4（2023年12月四级卷）一致；第6-10页编程题1「小杨的字典」、编程题2「田忌赛马」与网站题26、27一一对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "verdict": "revise",
+        "reviewNote": "接受初核的两处缺陷判断：我对照第6页页面图像独立确认两处标点集合均含 <>（`<>` 因 PDF 换行位于下一行行首，样例3文章与输出也实测含 <>），对照第7页样例框确认样例1输入/输出均带末尾句点；初核对 explanation 的联动修正判断也成立，但其给出的精简版丢弃了原有走查表结构，我改为在保留原解析结构的基础上修正走查末行、最终输出与易错提醒，并复核每一行与官方样例一致。初核三条 tests 的期望输出我已逐字符独立推演（N=0 空字典、abcd 不得前缀匹配、<> 标点与末尾 flush），全部采纳。参考代码经独立验证无需修改。按协议，已提供充分修复且明确复核通过的维度标 verified（修复后核验通过）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页问题描述原文为「这段文章由标点符号 !()-[]{}\\|;:'\",./?<> 和一些 A 语言单词构成」，输入描述为「保证字符串 S 只包含小写字母以及标点符号 !()-[]{}\\|;:'\",./?<>」，两处均含 <>（<> 因换行排在下一行行首）；样例3文章与输出亦含 <>。网站 question 两处均漏 <>。PDF 第7页样例1输入为 abc.d.d.abc.abcd.、输出为 a.def.def.a.UNK.，均带末尾句点，网站 samples[0] 均漏。已在 changes 补齐并逐字符对照 PDF 复核，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF 第1页、第5页答案表仅覆盖单选15题与判断10题，编程题无对应条目，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析的 map 建典、遇小写字母累积单词、遇标点触发查词并原样输出标点、循环后补 flush 的主体思路正确；但原样例走查基于缺失句点的样例：表末行写成「遍历结束/收尾处理」且最终结果为 a.def.def.a.UNK（少一个句点），与同节开头标注的文章 abc.d.d.abc.abcd. 自相矛盾；易错提醒还将「末尾无标点」错引为样例1（修正后样例1以句点结尾，该情形的实例是样例2结尾 abcd）。已在 changes 中修正走查表（最后的句点触发 abcd→UNK 并输出句点，结果 a.def.def.a.UNK.）、最终输出行与易错提醒，逐行复核与官方样例一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立推演：dict.find 整词匹配，遇非小写字符先 flush（word 非空才查典，连续标点不触发空查词）再输出标点，循环后补 flush 处理末尾无标点单词；N=0 空字典、前导标点、末尾无标点均正确；文章不含空格，cin>>s 可整篇读入；复杂度 O(|S|·logN)、空间 O(N+|S|)，与官方参考程序（content+=\\\"\\\\n\\\" 技巧版）语义等价。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 四级] 小杨的字典\n\n## 题目描述\n\n在遥远的星球，有两个国家 A 国和 B 国，他们使用着不同的语言：A 语言和 B 语言。小杨是 B 国的翻译官，他的工作是将 A 语言的文章翻译成 B 语言的文章。\n\n为了顺利完成工作，小杨制作了一本字典，里面记录了 $N$ 个 A 语言单词对应的 B 语言单词，巧合的是，这些单词都由地球上的 26 个小写英文字母组成。\n\n小杨希望你写一个程序，帮助他根据这本字典翻译一段 A 语言文章。这段文章由标点符号 `!()-[]{}\\|;:'\",./?<>` 和一些 A 语言单词构成，每个单词之间必定由至少一个标点符号分割，你的程序需要把这段话中的所有 A 语言单词替换成它的 B 语言翻译。特别地，如果遇到不在字典中的单词，请使用大写 UNK 来替换它。\n\n例如，小杨的字典中包含 $2$ 个 A 语言单词 `abc` 和 `d`，它们的 B 语言翻译分别为 `a` 和 `def`，那么我们可以把 A 语言文章 `abc.d.d.abc.abcd.` 翻译成 B 语言文章 `a.def.def.a.UNK.` 其中，单词 `abcd` 不在词典内，因此我们需要使用 UNK 来替换它。\n\n## 输入格式\n\n第一行一个整数 $N$，表示词典中的条目数。保证 $N \\le 100$。\n\n接下来 $N$ 行，每行两个用单个空格隔开的字符串 $A$， $B$ ,分别表示字典中的一个 A 语言单词以及它对应的 B 语言翻译。保证所有 $A$ 不重复；保证 $A$ 和 $B$ 的长度不超过 $10$。\n\n最后一行一个字符串 $S$ ，表示需要翻译的 A 语言文章。保证字符串 $S$ 的长度不超过 $1000$，保证字符串 $S$ 只包含小写字母以及标点符号 `!()-[]{}\\|;:'\",./?<>` 。\n\n## 输出格式\n\n输出一行，表示翻译后的结果。\n",
+          "samples": [
+            {
+              "input": "2\nabc a\nd def\nabc.d.d.abc.abcd.",
+              "output": "a.def.def.a.UNK."
+            },
+            {
+              "input": "3\nabc a\nd def\nabcd xxxx\nabc,(d)d!-abc?abcd",
+              "output": "a,(def)def!-a?xxxx"
+            },
+            {
+              "input": "1\nabcdefghij klmnopqrst\n!()-[]{}\\|;:'\",./?<>abcdefghijklmnopqrstuvwxyz",
+              "output": "!()-[]{}\\|;:'\",./?<>UNK"
+            }
+          ],
+          "explanation": "**解析：**\n\n本题考察字符串模拟与映射（字典）查找。题目要求我们将文章中的所有 A 语言单词翻译成 B 语言单词，未知单词替换为 `UNK`，而标点符号保持原样输出。\n\n### 完整算法步骤\n\n1. **建立字典映射**：\n   - 读入词典条目数 `N`。\n   - 使用 C++ 标准库中的 `std::map<string, string>` 存储 A 语言单词到 B 语言单词的键值对。由于 `N <= 100`，`map` 的单次查找时间复杂度为 `O(L * log N)`（`L` 为单词长度），查询效率完全满足要求。\n\n2. **扫描文章与动态分词**：\n   - 维护一个临时字符串 `word`，用于累加当前正在提取的单词；维护一个结果字符串 `result`（或直接边处理边输出）。\n   - 从头到尾遍历文章字符串 `S` 的每个字符 `c`：\n     - **情况 1：如果是小写字母**（`c >= 'a' && c <= 'z'`），说明它属于某个单词的一部分，执行 `word += c`。\n     - **情况 2：如果是标点符号**，说明前一个单词已经结束：\n       - 如果 `word` 非空，先对该单词进行字典查找：若在字典中能找到该单词，则将翻译词追加到 `result`；若找不到，则将大写 `UNK` 追加到 `result`。随后将 `word` 清空。\n       - 将当前标点符号原样追加到 `result`。\n\n3. **收尾边界处理**：\n   - 遍历完整个字符串后，文章末尾可能直接以字母结尾（没有标点）。因此必须检查 `word` 是否非空，若非空，同样需要查词翻译并追加到 `result` 中。\n\n---\n\n### 样例走查\n\n以样例 1 为例：\n- 字典条目数：`N = 2`\n- 字典映射：`abc -> a`，`d -> def`\n- 待翻译文章：`abc.d.d.abc.abcd.`\n\n逐字符扫描过程如下：\n\n| 当前字符 `c` | 类型 | 临时单词 `word` | 触发操作 | 累积输出 `result` |\n| :--- | :--- | :--- | :--- | :--- |\n| `a`, `b`, `c` | 字母 | `\"abc\"` | 累加字母 | `\"\"` |\n| `.` | 标点 | `\"abc\"` -> `\"\"` | `abc` 存在于字典，翻译为 `a`；输出 `.` | `\"a.\"` |\n| `d` | 字母 | `\"d\"` | 累加字母 | `\"a.\"` |\n| `.` | 标点 | `\"d\"` -> `\"\"` | `d` 存在于字典，翻译为 `def`；输出 `.` | `\"a.def.\"` |\n| `d` | 字母 | `\"d\"` | 累加字母 | `\"a.def.\"` |\n| `.` | 标点 | `\"d\"` -> `\"\"` | `d` 存在于字典，翻译为 `def`；输出 `.` | `\"a.def.def.\"` |\n| `a`, `b`, `c` | 字母 | `\"abc\"` | 累加字母 | `\"a.def.def.\"` |\n| `.` | 标点 | `\"abc\"` -> `\"\"` | `abc` 存在于字典，翻译为 `a`；输出 `.` | `\"a.def.def.a.\"` |\n| `a`, `b`, `c`, `d` | 字母 | `\"abcd\"` | 累加字母 | `\"a.def.def.a.\"` |\n| `.` | 标点 | `\"abcd\"` -> `\"\"` | `abcd` 不在字典中，替换为 `UNK`；输出 `.` | `\"a.def.def.a.UNK.\"` |\n\n最终输出：`a.def.def.a.UNK.`，与样例输出完全一致。\n\n---\n\n### 参考代码实现\n\n```cpp\n#include <iostream>\n#include <string>\n#include <map>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n\n    map<string, string> dict;\n    for (int i = 0; i < n; i++) {\n        string a, b;\n        cin >> a >> b;\n        dict[a] = b;\n    }\n\n    string s;\n    cin >> s;\n\n    string result = \"\";\n    string word = \"\";\n\n    for (char c : s) {\n        if (c >= 'a' && c <= 'z') {\n            word += c; // 遇到小写字母，累积单词\n        } else {\n            // 遇到标点符号，若之前有单词，先翻译该单词\n            if (!word.empty()) {\n                if (dict.count(word)) {\n                    result += dict[word];\n                } else {\n                    result += \"UNK\";\n                }\n                word.clear();\n            }\n            result += c; // 标点符号原样输出\n        }\n    }\n\n    // 处理末尾可能残留的单词\n    if (!word.empty()) {\n        if (dict.count(word)) {\n            result += dict[word];\n        } else {\n            result += \"UNK\";\n        }\n    }\n\n    cout << result << endl;\n    return 0;\n}\n```\n\n**易错提醒：**\n- **末尾单词的处理**：若文章末尾没有标点符号（例如样例 2 的结尾 `abcd`），循环结束后必须单独补一次查词与输出；而样例 1 以句点结尾，末尾的 `abcd` 由最后的句点触发翻译，句点本身随后原样输出。\n- **连续标点的处理**：当遇到连续两个标点（如 `!?`）时，处理第一个标点后 `word` 已经被清空，处理第二个标点时 `word` 为空，此时切记不可触发查词，直接输出标点即可。\n- **未识别单词替换**：题干明确要求使用大写的 `UNK`，注意不要拼错或写成小写 `unk`。\n- **整体匹配**：查字典必须以完整单词匹配，`abcd` 不能因其前缀 `abc` 在字典中就被翻译为 `a`。"
+        },
+        "tests": [
+          {
+            "name": "空字典最小条目数",
+            "input": "0\nabc.def",
+            "output": "UNK.UNK",
+            "reason": "题面仅约束 N≤100 未给下界，N=0 为合法最小值；空字典时 abc、def 均查不到，替换为 UNK，句点原样保留。期望输出由扫描逻辑手工推演。"
+          },
+          {
+            "name": "前缀词不得部分匹配",
+            "input": "1\nabc a\nabcd.abc.",
+            "output": "UNK.a.",
+            "reason": "abcd 不等于 abc，必须整体查词输出 UNK，不能因前缀 abc 在典中而译为 a；随后 abc 译为 a，两个句点原样输出。"
+          },
+          {
+            "name": "尖括号标点与末尾无标点",
+            "input": "2\na x\nb y\na?b<ab>a",
+            "output": "x?y<UNK>x",
+            "reason": "覆盖官方标点集特有的 < >；a、b 命中字典译为 x、y，ab 未收录输出 UNK，各标点原样输出；末尾单词 a 无标点结尾，靠循环后 flush 译为 x。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核「题面、样例、解析、参考代码均通过」的结论。我独立复推了贪心最优性（双方升序排序后，u 从小到大，能胜最慢未匹配对手则配对，否则该马连最慢对手都不敌、必无胜场可弃；交换论证保证胜场数最大）、样例1走查得2、样例2走查得5，与官方输出一致；五条测试的期望输出（N=1 胜/负、部分胜利得3且验证其最优性、全胜3、全负0）均为手工推演并核对约束 1≤u_i,v_i≤2N。statement 中 `$u_1,u_2,\\cdots，u_n$` 存在全角逗号与下标大小写的排版瑕疵，语义不变，按「不做纯文风改写」原则不修改，仅在此记录。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8-9页题面为 N 匹马、N 轮比赛、田忌按顺序派出马匹、双方所有马匹速度两两不同故无平局；约束 1≤N≤5×10^4、1≤u_i≤2N、1≤v_i≤2N；输出为最多获胜轮数。网站 question 的题意、约束与两组样例（3/[1 3 5]/[2 4 6]→2；5/[10 3 5 8 7]/[4 6 1 2 9]→5）均与 PDF 一致，仅 `$u_1,u_2,\\cdots，u_n$` 存在全角逗号及下标大小写的排版差异，不改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案；PDF 答案表仅覆盖单选15题与判断10题，编程题无对应条目，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立成立：胜负仅取决于配对而与出场时序无关，故可对双方速度分别升序排序后双指针贪心——u[i]>v[j] 时用刚好能胜的马拿下该胜场并双方后移，u[i]<v[j] 时该马连最慢未匹配对手都不敌、必无胜场，弃之仅 i 后移；交换论证可证胜场数最优。样例1得2、样例2得5，与官方样例输出及样例解释（第3轮田忌胜）一致；复杂度 O(N log N) 正确；「勿生搬四指针经典田忌赛马」「勿写 O(N²) 暴力」的易错提醒合理。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与官方参考程序（第10页：a、b 升序排序后遍历 a，h 指向最慢未匹配 b，a[i]>b[h] 则 ++ans,++h）逻辑等价：网站以 i 遍历 u、j 指向 v，胜利才 j++，循环条件 i<n&&j<n 正确处理 j 提前耗尽或 i 耗尽；N=1、全胜、全负、部分胜利边界均正确；wins≤5×10^4、速度≤2N=10^5，int 无溢出；时间 O(N log N)、空间 O(N)，满足 1.0s/128MB。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模且失败",
+            "input": "1\n1\n2\n",
+            "output": "0",
+            "reason": "N=1 为最小规模，我方速度 1 小于田忌 2，无法获胜，最多赢 0 轮。"
+          },
+          {
+            "name": "最小规模且胜利",
+            "input": "1\n2\n1\n",
+            "output": "1",
+            "reason": "N=1，我方速度 2 大于田忌 1，可赢 1 轮。"
+          },
+          {
+            "name": "部分胜利与排序匹配",
+            "input": "4\n1 4 5 8\n2 3 6 7\n",
+            "output": "3",
+            "reason": "排序后 u=[1,4,5,8]、v=[2,3,6,7]，配对 (4,2)、(5,3)、(8,6) 获胜，1 无法胜任何马，最多 3 胜且已验证为最优。"
+          },
+          {
+            "name": "全胜边界",
+            "input": "3\n4 5 6\n1 2 3\n",
+            "output": "3",
+            "reason": "排序后我方每匹马都严格快于对应田忌马，可赢全部 3 轮。"
+          },
+          {
+            "name": "全负边界",
+            "input": "3\n1 2 3\n4 5 6\n",
+            "output": "0",
+            "reason": "排序后我方每匹马都慢于田忌对应马，无法获胜，最多赢 0 轮。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "按分工仅独立复核第26、27题（对照 PDF 第6-10页页面图像，未采信文本层缺字）。题26确认两处真实缺陷并已给出修复：题面两处标点集合漏官方的 `<>`（第6页两处原文及样例3均含 <>），样例1输入/输出漏官方末尾句点（第7页样例框），解析的样例走查末行与最终输出、易错提醒随之联动修正；修复内容逐字符对照 PDF 复核，相关维度按协议标注「修复后核验通过」。其参考代码（map 整词匹配+标点触发 flush+末尾补 flush）经边界推演（N=0 空字典、连续标点、前导标点、末尾无标点、整词匹配）验证正确，复杂度 O(|S|·logN)。题27题面、两组样例、排序+双指针贪心解析与参考代码全部独立验证通过，并补充五条覆盖 N=1、全胜、全负、部分胜利的测试（期望输出均为手工推演，未实际运行）。DeepSeek 初核两题结论经独立复核后采纳，未发现不可靠修改；其 explanation 精简重写方案被替换为保留原走查表结构的修正版。"
+  }
+}

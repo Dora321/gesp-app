@@ -1,0 +1,232 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:28:27.809Z",
+  "completedAt": "2026-11-15T16:32:58.420Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36292,
+    "completion_tokens": 21690,
+    "total_tokens": 57982,
+    "prompt_tokens_details": {
+      "cached_tokens": 36224
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19966
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01313287,
+      "allowance": 0.00787972,
+      "tokens": {
+        "input": 68,
+        "output": 21690,
+        "reasoning": 19966,
+        "cache_read": 36224,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为CCF GESP C++四级、2023年12月；答案表含单选题1-15与判断题1-10，与paperId 2023-12-l4及本次核验范围一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页原题为“下列C++代码输入 1,2,3,4，执行后，将输出的是（ ）。”；当前仅空格差异，含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D依次为1#4#、1#3#、1#2#3#4#、1#2#3#4，当前选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第11题为D，对应0起始索引3；逐字符处理数字保留、逗号变#，得到1#2#3#4。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按代码逐字符验证了数字与逗号的处理，且末尾4后无额外#，与执行结果一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为“以下C++代码用于实现每个整数对应的因数……”，当前文字与n、i循环约束一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4-5页A-D依次为if(n%i==0)、if(n/i==0)、if(n%i!=0)、if(n/i!=0)，当前顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第12题为A，对应0起始索引0；n%i==0表示i整除n。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以12、18为例验证n%i==0筛选因数，并正确排除除法条件、非零余数条件。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干描述无人驾驶汽车通过声控系统选路并告知乘客，当前文本仅空格差异，含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A麦克风、B扬声器、C油量表、D传感器，当前选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第13题为C，对应0起始索引2；油量表不属于完成选路所必需的组件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按语音输入、结果输出、环境感知和油量显示功能逐项推导，结论C与答案表一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干为“现代计算机是指电子计算机，它所基于的是（ ）体系结构。”，当前题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A艾伦·图灵、B冯·诺依曼、C阿塔纳索夫、D埃克特-莫克利，当前顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第14题为B，对应0起始索引1；现代电子计算机基于冯·诺依曼体系结构。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析说明了冯·诺依曼存储程序体系结构，并区分图灵、阿塔纳索夫和埃克特-莫克利的贡献，结论B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干与当前一致；源卷示例写作(3.4)，按上下文应为(3,4)的排版笔误，当前保留原样。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF四项代码的printf格式串均含反斜杠加n的C++转义序列；当前JSON字符串中的换行被解析为实际换行，需恢复为字面反斜杠加n，选项顺序与答案映射不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页单选题答案表第15题为B，对应0起始索引1；B从i=2开始，当N为偶数时漏检(1,2)，故为找不到所有因数对的代码。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析对D项称“i>N/2则i+1>N”，该推理不成立；对B漏检(1,2)也应说明在N为偶数时发生，故需修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码要求，不适用。"
+          }
+        },
+        "changes": {
+          "options": [
+            "for(i=1;i<N;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);",
+            "for(i=2;i<N;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);",
+            "for(i=2;i<N/2;i++) if(!(N%(i-1)) && !(N%i)) printf(\"(%d,%d)\\n\", i-1, i);",
+            "for(i=1;i<N/2;i++) if(!(N%i) && !(N%(i+1))) printf(\"(%d,%d)\\n\", i, i+1);"
+          ],
+          "explanation": "答案：B。相邻因数对是(i,i+1)，要求i与i+1都整除N。A从i=1开始、在i<N内检查所有可能起点，能覆盖全部相邻因数对；C从i=2开始，实际检查的是(i-1,i)，第一步就检查(1,2)，且其上界N/2对N>=7足以覆盖可能的相邻因数对；D从i=1开始，上界N/2同样不会漏掉合法对（除N本身外，任何真因数都不大于N/2，而N-1不可能是N的因数）。B从i=2开始，第一步检查(2,3)，漏掉了起点i=1；当N为偶数时(1,2)是合法因数对，例如N=12时的(1,2)，因此B不能找出所有相邻因数对。故选B。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题11-14的题面、选项顺序、官方答案和解析均与PDF原卷及第1页答案表一致，无需改动。题15官方答案B正确；但当前选项代码中的换行转义被存成实际换行，且解析中关于D项上界的理由有误，已给出options与explanation的修正草稿。题15源卷示例(3.4)按原样保留，视为(3,4)的排版笔误，不影响答案判定。"
+  }
+}

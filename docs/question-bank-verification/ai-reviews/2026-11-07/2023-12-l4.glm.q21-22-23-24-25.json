@@ -1,0 +1,246 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T20:03:33.393Z",
+  "completedAt": "2026-11-15T20:06:09.732Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54897,
+    "completion_tokens": 12627,
+    "total_tokens": 67524,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9223
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01454805,
+      "allowance": 0.01454805,
+      "tokens": {
+        "input": 54897,
+        "output": 12627,
+        "reasoning": 9223,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP / C++ 四级 / 2023年12月”，与 paperId 2023-12-l4（2023年12月·C++四级）一致；判断题部分标注“每题2分，共20分、共10题”，与网站 27 题结构（15 单选+10 判断+2 编程）相符。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第6题原文“执行C++代码 cout<<(5||2); 后将输出 1 。（ ）”，网站题面表达式 (5||2) 与断言“输出1”一致，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，非 ABCD 单选，options 不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第6题为√，按判断题 正确=0 映射，网站 answer=0 一致；且 (5||2) 短路求值为 true、cout 默认输出 1，题干与官方答案语义自洽。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论正确，但解析末段“C++ 中所有非零值都视为真，输出时都显示为 1”过度推广（直接输出 int 5 仍为 5，仅 bool 经默认 cout 才显示 1）；“这一规则与 Java 等语言相同”失实——Java 的 || 要求 boolean 操作数，5||2 在 Java 中无法通过编译。需修正延伸表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n`cout << (5 || 2);` 中 `(5 || 2)` 是逻辑或表达式。C++ 在逻辑运算中把非零整数按 `true` 处理、零按 `false` 处理：左操作数 `5` 非零为真，根据 `||` 的短路求值规则，整个表达式的值即为 `true`，右侧的 `2` 不再参与计算。`true` 是 bool 类型，经 `cout` 默认输出格式显示为 `1`，因此代码输出 `1`。\n\n**易错提醒：**\n- `||` 是逻辑或，结果类型为 bool；`|` 是按位或，结果是整数。若写成 `cout << (5 | 2)`，输出的是 `7`（101 | 010 = 111）。\n- `cout` 默认把 bool 的 `true` 输出为 `1`、`false` 输出为 `0`；只有启用 `boolalpha` 后才输出 `true`/`false` 字样。注意“非零按真处理”不等于“非零整数直接输出都显示 1”——直接执行 `cout << 5;` 得到的仍是 `5`。\n\n**知识延伸：**\n逻辑与 `&&`、逻辑或 `||` 都具有短路求值特性。C++ 的“非零即真”规则与 Java 不同：Java 的 `||` 要求操作数本身是 boolean，`5 || 2` 在 Java 中无法通过编译。\n\n**考点：** 逻辑或运算、短路求值与 bool 类型的默认输出。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：独立复核确认延伸表述两处失实（“所有非零值输出都为1”过度推广；“与 Java 相同”错误，Java 的 || 不接受整数操作数），修正方向成立；在其基础上补充 5|2=7 与 Java 编译差异的具体依据。officialAnswer=0 与答案表第6题√一致。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第7题代码 string a=\"chen\"; string b=\"a\"; string c=\"dai\"; string name=a+b+c; cout<<name<<endl; 与网站 code 逐行一致，题面“将输出 chenadai”一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，非 ABCD 单选，options 不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7题为√，映射正确=0，网站 answer=0 一致；a+b+c=\"chenadai\" 语义自洽。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论正确，但现解析围绕 cout<<\"chen\"+\"adai\" 展开，并假设双变量代码 string a=\"chen\", b=\"adai\"，与实际三变量 a、b、c 链式拼接不符，推导对象错误，应按实际代码重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n代码中 `a`、`b`、`c` 均为 `std::string` 对象：`a=\"chen\"`、`b=\"a\"`、`c=\"dai\"`。`+` 运算符被 `std::string` 重载为字符串连接，表达式 `a+b+c` 按左结合依次求值：先 `a+b` 得 `\"chena\"`，再与 `c` 连接得 `\"chenadai\"`。因此 `name` 为 `\"chenadai\"`，`cout<<name<<endl;` 输出 `chenadai` 后换行，题干说法正确。\n\n**易错提醒：**\n- 字符串字面量（如 `\"chen\"`）的类型是 `const char` 数组/指针，两个纯字面量直接相加（如 `\"chen\"+\"adai\"`）不是字符串拼接，而是非法的指针运算，无法通过编译。\n- 本题每一步 `+` 至少有一个操作数是 `std::string`，因此合法；这也是实践中总是先定义 string 变量再拼接的原因。\n\n**知识延伸：**\n`std::string` 的 `+` 支持链式拼接，也支持 `string + 字面量`、`字面量 + string` 等混合形式（只要有一方是 string）。\n\n**考点：** `std::string` 的连接运算符与左结合求值。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：原解析推导对象与实际代码不符属实，修正稿按 a+b+c 左结合链式拼接重写，并保留 const char* 相加非法的提醒。officialAnswer=0 与答案表第7题√一致。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第8题原文“C++内置函数 sort() 可以对整数、浮点数、字符数组进行从大到小，从小到大，局部排序。（ ）”，网站题面等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，非 ABCD 单选，options 不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第8题为√，映射正确=0，网站 answer=0 一致；sort 通过比较器支持降序、通过迭代器区间支持局部排序，题干自洽。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析准确说明 std::sort 对 int/double/char 数组的适用性（数组指针作随机访问迭代器）、默认升序与 greater<T>()/自定义比较器降序、[first,last) 区间局部排序，并提示 list 等非随机访问容器不适用；未发现影响本题结论的实质错误，维持原文。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核“无需修改”：逐条核对解析内容均与 C++ 标准行为相符，题面、答案（答案表第8题√→0）与网站一致。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第9题原文“小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，非 ABCD 单选，options 不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题为×，映射错误=1，网站 answer=1 一致；Dev-C++ 是 IDE 而非操作系统，语义自洽。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "核心判断正确，但“Dev-C++ 是 Borland 公司开发”为史实错误（Dev-C++ 由 Bloodshed Software 开发，后续版本由 Orwell 维护），且该句与本题层次论证无关，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\nDev-C++ 是一款 Windows 平台上常用的 C/C++ 集成开发环境（IDE），集成了代码编辑器、编译器（MinGW/GCC）和调试器等工具，用于编写、编译和调试程序。它必须安装在 Windows 等操作系统之上运行，本身不负责进程调度、内存管理、设备管理等软硬件资源管理，因此不是操作系统，更不是“小型操作系统”。题干说法错误。\n\n**易错提醒：**\n- IDE 属于应用软件，操作系统属于系统软件，二者是不同层次的概念；Visual Studio、Code::Blocks、CLion 等常见 IDE 同样不是操作系统。\n- 编译器（如 GCC/MinGW）是开发工具，“开发环境 + 编译器”的组合仍然运行在操作系统之上，不能替代操作系统的职能。\n\n**知识延伸：**\n操作系统的核心职能是管理计算机软硬件资源并提供人机交互界面，例如 Windows、Linux、macOS。\n\n**考点：** 系统软件与应用软件的层次划分，IDE 与操作系统的区分。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：“Borland 公司开发”确为史实错误，修正稿删除该句并保留 IDE/操作系统层次区分的核心论证。officialAnswer=1 与答案表第9题×一致。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页第10题原文“任何一个while循环都可以转化为等价的for循环（ ）”，网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题以√/×作答，非 ABCD 单选，options 不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题为√，映射正确=0，网站 answer=0 一致；for(;cond;) 与 while 等价，语义自洽。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论正确，但原解析称“while 循环的三个部分顺序为‘初始化→判断→循环体→更新’”不准确（while 语句本身只有条件与循环体）；且把 update 移入 for 第三子句的朴素转换未考虑 continue 语义差异（while 中 continue 跳过 update 直接回到条件判断，for 中 continue 先执行第三子句再判断），需补充严谨转换规则。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\nwhile 循环与 for 循环在表达能力上等价，可以互相转换。最直接的转换：`while (condition) { body; }` 与 `for (; condition; ) { body; }` 的控制流完全相同——都是先判断条件，为真则执行循环体，如此往复。若 while 前有初始化语句、循环体末尾有更新语句，也可写成 `for (init; condition; update) { body; }` 的形式；但此时要注意 `continue` 的语义差异：在 while 中 `continue` 直接跳回条件判断（不会执行 update），而在 for 中 `continue` 会先执行第三子句的 update 再回到条件判断。因此含 `continue` 的循环应使用 `for (; condition; )` 形式，或将 update 放在循环体内，以保持语义一致。无论哪种写法，总能找到等价的 for 循环，题干说法正确。\n\n**易错提醒：**\n- while 语句本身只包含“条件判断 + 循环体”，初始化和更新并非 while 的组成部分，只是习惯写在循环前、后或循环体内。\n- 转换时需保持 `break`、`continue` 等控制流的语义一致，不能只做表面替换。\n\n**知识延伸：**\nfor、while、do-while 三种循环结构在计算能力上等价，选择哪种主要取决于可读性与变量作用域需求。\n\n**考点：** 循环结构的等价转换与 continue 语义。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：“while 三部分”表述与 continue 语义疏漏均属实，修正稿给出 for(;cond;) 等价式与 continue 注意事项。officialAnswer=0 与答案表第10题√一致。"
+      }
+    ],
+    "summary": "仅复核判断题第 21~25 题。来源一致（卷头 2023年12月·C++四级）。从 PDF 第5页判断题答案表图像读出答案行：√ √ × × × √ √ √ × √，第6~10题对应 21√、22√、23√、24×、25√，映射为 0/0/0/1/0，与网站 answer 全部一致，且各题语义独立推导均与官方答案自洽（(5||2) 短路输出 1；a+b+c=\"chenadai\"；sort 支持升降序与局部排序；Dev-C++ 非 OS；while 可等价转 for）。题面均与 PDF 第6页原文一致。题23解析核验通过、维持原文；题21、22、24、25 的解析分别存在“非零输出推广失实/Java 类比错误”“推导代码与实际 a+b+c 不符”“Borland 开发者史实错误”“while 三部分表述与 continue 语义疏漏”，已在 changes 提供修正稿（替换 explanation，不影响题面与答案）。判断题 options 与 referenceCode 均不适用；无未决项，无源卷错误冲突。"
+  }
+}

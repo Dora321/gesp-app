@@ -1,0 +1,195 @@
+{
+  "paperId": "2023-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T21:33:30.992Z",
+  "completedAt": "2026-11-15T21:35:41.563Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36398,
+    "completion_tokens": 18705,
+    "total_tokens": 55103,
+    "prompt_tokens_details": {
+      "cached_tokens": 36224
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16195
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01135777,
+      "allowance": 0.00681466,
+      "tokens": {
+        "input": 174,
+        "output": 18705,
+        "reasoning": 16195,
+        "cache_read": 36224,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "d5fbf4641b5cc7728afdc4debeeb5e5b2c19c00947719f24e21c8401a6dd532d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++4级.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "mirrorBytes": 1884497,
+    "shaVerified": true,
+    "sha256": "33e280e2c9b90d722abce262766e771499ef3610f293d8a3428b26ff5f63add2"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2023-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头为“CCF 编程能力等级认证 C++ 四级 2023年12月”，题号26为编程题1“小杨的字典”，题号27为编程题2“田忌赛马”，与 paperId 2023-12-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6页问题描述和输入描述中的标点集合均为 `!()-[]{}\\|;:'\",./?<>`，当前 question 两处漏掉 `< >`；PDF 第7页样例1的输入为 `abc.d.d.abc.abcd.`、输出为 `a.def.def.a.UNK.`，当前 samples 漏掉末尾句点。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不设客观答案，PDF 答案表无对应项。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析的 map 查词、单词缓冲和末尾 flush 思路正确，但样例走查按当前缺失末尾句点的样例展开，最终写成 `a.def.def.a.UNK`；官方样例带末尾句点，需同步更新解析。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "map 查词、单词缓冲和末尾 flush 在题面字符集（无空格）下正确；连续标点、末尾无标点、N=0 空字典均可处理；复杂度约为 O(|S| log N)，空间 O(N+|S|)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202312 四级] 小杨的字典\n\n## 题目描述\n\n在遥远的星球，有两个国家 A 国和 B 国，他们使用着不同的语言：A 语言和 B 语言。小杨是 B 国的翻译官，他的工作是将 A 语言的文章翻译成 B 语言的文章。\n\n为了顺利完成工作，小杨制作了一本字典，里面记录了 $N$ 个 A 语言单词对应的 B 语言单词，巧合的是，这些单词都由地球上的 26 个小写英文字母组成。\n\n小杨希望你写一个程序，帮助他根据这本字典翻译一段 A 语言文章。这段文章由标点符号 `!()-[]{}\\|;:'\",./?<>` 和一些 A 语言单词构成，每个单词之间必定由至少一个标点符号分割，你的程序需要把这段话中的所有 A 语言单词替换成它的 B 语言翻译。特别地，如果遇到不在字典中的单词，请使用大写 UNK 来替换它。\n\n例如，小杨的字典中包含 $2$ 个 A 语言单词 `abc` 和 `d`，它们的 B 语言翻译分别为 `a` 和 `def`，那么我们可以把 A 语言文章 `abc.d.d.abc.abcd.` 翻译成 B 语言文章 `a.def.def.a.UNK.` 其中，单词 `abcd` 不在词典内，因此我们需要使用 UNK 来替换它。\n\n## 输入格式\n\n第一行一个整数 $N$，表示词典中的条目数。保证 $N \\le 100$。\n\n接下来 $N$ 行，每行两个用单个空格隔开的字符串 $A$， $B$ ,分别表示字典中的一个 A 语言单词以及它对应的 B 语言翻译。保证所有 $A$ 不重复；保证 $A$ 和 $B$ 的长度不超过 $10$。\n\n最后一行一个字符串 $S$ ，表示需要翻译的 A 语言文章。保证字符串 $S$ 的长度不超过 $1000$，保证字符串 $S$ 只包含小写字母以及标点符号 `!()-[]{}\\|;:'\",./?<>` 。\n\n## 输出格式\n\n输出一行，表示翻译后的结果。",
+          "samples": [
+            {
+              "input": "2\nabc a\nd def\nabc.d.d.abc.abcd.",
+              "output": "a.def.def.a.UNK."
+            },
+            {
+              "input": "3\nabc a\nd def\nabcd xxxx\nabc,(d)d!-abc?abcd",
+              "output": "a,(def)def!-a?xxxx"
+            },
+            {
+              "input": "1\nabcdefghij klmnopqrst\n!()-[]{}\\|;:'\",./?<>abcdefghijklmnopqrstuvwxyz",
+              "output": "!()-[]{}\\|;:'\",./?<>UNK"
+            }
+          ],
+          "explanation": "**解析：** 本题用 `map<string,string>` 保存 A 语言到 B 语言的词典，并扫描文章字符串 `S`。遇到小写字母时累积到 `word`；遇到非小写字母（题面标点符号）时，若 `word` 非空则查词典：找到输出对应译文，找不到输出 `UNK`，随后清空 `word`，并原样输出当前标点。扫描结束后必须再 flush 一次，处理末尾没有标点结尾的单词。\n\n以样例 1 的 `abc.d.d.abc.abcd.` 为例：`abc` 译为 `a`，两个 `d` 均译为 `def`，第二个 `abc` 译为 `a`；`abcd` 不在词典中，遇到末尾句点时替换为 `UNK`，再输出该句点，因此结果为 `a.def.def.a.UNK.`。连续标点不会触发空单词查词；未识别单词统一为大写 `UNK`。\n\n复杂度约为 O(|S| log N)（map 查找），空间 O(N+|S|)。"
+        },
+        "tests": [
+          {
+            "name": "空字典最小条目数",
+            "input": "0\nabc.def",
+            "output": "UNK.UNK",
+            "reason": "题面只限定 N≤100 未给下界；N=0 时词典为空，abc、def 都应替换为 UNK，句点保留。"
+          },
+          {
+            "name": "前缀词与末尾句点",
+            "input": "1\nabc a\nabcd.abc.",
+            "output": "UNK.a.",
+            "reason": "abcd 不是 abc，必须整体查词，不能被前缀匹配；末尾句点保留。"
+          },
+          {
+            "name": "连续标点与尖括号",
+            "input": "2\na x\nb y\na?b<ab>a",
+            "output": "x?y<UNK>x",
+            "reason": "连续及特殊标点原样输出，ab 未收录输出 UNK，末尾单词需在循环后 flush。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8-9页题面为 N 匹马、N 轮、双方速度两两不同且无平局；约束为 1≤N≤5×10^4、1≤u_i,v_i≤2N；网站 question 的题意、约束和两组样例均一致，仅 u_n/u_N 大小写排版差异，不改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不设客观答案，PDF 答案表无对应项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立使用升序排序加双指针：若 u[i] > v[j] 则获胜并让 j 后移，否则舍弃当前 u[i]；该策略用最小可胜马匹配当前最慢未匹配对手，胜场数最大。样例1得2、样例2得5，与官方输出一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "代码排序双方后，i 遍历所有 u，j 只在胜利时移动，等价于官方参考程序；N=1、全胜、全负、部分胜利边界均正确；时间 O(N log N)，空间 O(N)，int 范围足够。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模且失败",
+            "input": "1\n1\n2\n",
+            "output": "0",
+            "reason": "N=1，我方速度 1 小于田忌 2，无法获胜，最多赢 0 轮。"
+          },
+          {
+            "name": "最小规模且胜利",
+            "input": "1\n2\n1\n",
+            "output": "1",
+            "reason": "N=1，我方速度 2 大于田忌 1，可赢 1 轮。"
+          },
+          {
+            "name": "部分胜利与排序匹配",
+            "input": "4\n1 4 5 8\n2 3 6 7\n",
+            "output": "3",
+            "reason": "排序后 u=[1,4,5,8]、v=[2,3,6,7]，可配对 (4,2)、(5,3)、(8,6) 获胜，1 对 7 失败，最多 3 胜。"
+          },
+          {
+            "name": "全胜边界",
+            "input": "3\n4 5 6\n1 2 3\n",
+            "output": "3",
+            "reason": "排序后我方每匹马都严格快于对应田忌马，可赢全部 3 轮。"
+          },
+          {
+            "name": "全负边界",
+            "input": "3\n1 2 3\n4 5 6\n",
+            "output": "0",
+            "reason": "排序后我方每匹马都慢于田忌对应马，无法获胜，最多赢 0 轮。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号 26、27。26 题题面漏掉标点集合中的 `< >`，样例1漏掉官方末尾句点，解析样例走查也随之少一个句点，需修复 question、samples 和 explanation；其参考代码算法正确。27 题题面、样例、解析与参考代码均与 PDF 一致，参考代码的排序加双指针贪心在 N=1、全胜、全负和部分胜利边界上成立。"
+  }
+}
