@@ -1,0 +1,207 @@
+{
+  "paperId": "2025-03-l4",
+  "integratedAt": "2026-11-16T14:40:54.081Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "question",
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 19,
+      "fields": []
+    },
+    {
+      "id": 22,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation",
+        "referenceCode"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3 5\n.....\n.#..#\n.....",
+          "output": "11",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "11\n",
+          "passed": true
+        },
+        {
+          "name": "最小单格荒地",
+          "input": "1 1\n.",
+          "output": "1",
+          "reason": "唯一格为 '.'，界内无邻居，无需清除即可开垦；手推 base=1、增益 0。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小单格杂物",
+          "input": "1 1\n#",
+          "output": "1",
+          "reason": "清除唯一 '#' 后变为 '.' 且界内无邻居（边界外不算杂物），可开垦 1 块；覆盖 '#' 自身增益路径。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单行间隔杂物",
+          "input": "1 3\n.#.",
+          "output": "3",
+          "reason": "手推 base=0，两侧 '.' 各给中间 '#' 记 1、'#' 自身记 1，增益 3；清除后 ... 三格均可开垦。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "多杂物相互作用",
+          "input": "3 3\n.#.\n.#.\n...",
+          "output": "5",
+          "reason": "手推 base=2（(2,0)、(2,2)）；清除中心 '#' 新增 (1,0)、(1,2)、(2,1) 共 3 块（清除上方 '#' 仅新增 2 块），2+3=5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "相邻双杂物",
+          "input": "1 2\n##",
+          "output": "0",
+          "reason": "两 '#' 互为相邻，清除任一个后被清除格仍邻接剩余 '#'，不可开垦；全部增益为 0，输出 base+0=0；覆盖 '#' 且 bad>0 不计增益的路径。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "9825c6c0d2ba46f39c867c4dbc1ab4fe2eba39fe96e8fc3903323b1d782618d5"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3 4\n1 2 1 0\n2 4 2 1\n0 3 3 0",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "最小单格",
+          "input": "1 1\n-100",
+          "output": "0",
+          "reason": "n=1,m=1 不存在 2×2 子矩阵，循环不执行输出 0；同时覆盖元素下界 -100。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "2x2全零",
+          "input": "2 2\n0 0\n0 0",
+          "output": "1",
+          "reason": "唯一 2×2 子矩阵满足 0×0=0×0，计数 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "2x2比例矩阵",
+          "input": "2 2\n1 2\n2 4",
+          "output": "1",
+          "reason": "1×4=2×2=4，满足好子矩阵条件。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "负数对角",
+          "input": "2 2\n-1 2\n2 -4",
+          "output": "1",
+          "reason": "D_{1,1}×D_{2,2}=(-1)×(-4)=4，D_{1,2}×D_{2,1}=2×2=4，相等计数 1；覆盖负数元素乘法，乘积远小于溢出范围。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "b4b9a3cfe935784609bd0b88f9f14ec7d8459b08967e137b69b9f69dbf44924b"
+    }
+  ]
+}

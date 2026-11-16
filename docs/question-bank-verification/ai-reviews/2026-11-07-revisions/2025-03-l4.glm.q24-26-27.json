@@ -1,0 +1,226 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T14:37:46.070Z",
+  "completedAt": "2026-11-16T14:39:05.464Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 56744,
+    "completion_tokens": 13405,
+    "total_tokens": 70149,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 54656
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 10405,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00865538,
+      "allowance": 0.00865538,
+      "tokens": {
+        "input": 2088,
+        "output": 13405,
+        "reasoning": 10405,
+        "cache_read": 54656,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "baa6ded70255a244cebcee3ccade41b8bba70b35bb80513655c62347122a958b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP」「C++ 四级」「2025 年 03 月」，与 paperId 2025-03-l4（level 4，2025 年 3 月）一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题原文：「对数组 arr[]={4, 3, 1, 5, 2} 进行升序排序，执行第一轮选择排序后数组arr中的内容是 {1, 4, 3, 5, 2} 。」，与候选题面逐字一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅「正确/错误」二元判定，无 A–D 选项列表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表（页图）序列为 √×√××√√××√，第 9 格为 ×，映射 officialAnswer=1（错误），候选 answer=1 一致。独立模拟标准选择排序：{4,3,1,5,2} 第一轮在 [0,4] 找最小值 1（下标 2）与 arr[0]=4 交换得 {1,3,4,5,2}≠{1,4,3,5,2}，题干说法确为错误，与官方 × 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演验证解析两点：① 标准选择排序每轮仅一次交换，1 换到首位、4 换到下标 2、3 不动，结果 {1,3,4,5,2}；② 解析所称 {1,4,3,5,2} 来自「逐次交换」变体亦经独立复现：4 与 3 交换得 {3,4,1,5,2}，再与 1 交换得 {1,4,3,5,2}，与题面错误数组来源吻合。解析结论「错误」与答案表 ×、候选 answer=1 全部一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对确认：候选题面与第 7 页原文一致，答案表第 9 格为 ×（officialAnswer=1）与候选 answer=1 一致，解析的模拟结果与变体来源说明均经本人独立推演成立。网站原数据无需修改，接受候选（与初核结论相同，但系本人独立重核，非沿用）。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 3.1.1 题面描述（n 行 m 列网格、四邻无杂物方可开垦、至多清除一个杂物）、3.1.2 输入格式、3.1.3 输出格式与候选一致；第 7—8 页样例「3 5 / ..... / .#..# / .....」输出 11 与候选 samples 一致；第 8 页 3.1.8「对于全部数据，保证有 1 ≤ n,m ≤ 1000」已补入候选题面数据范围，核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在 PDF 答案表内（答案表仅覆盖单选与判断题），officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立手推样例：base=6（(1,1)、(1,3)、(1,4)、(3,1)、(3,3)、(3,4) 六个无相邻杂物的 '.'）；'#'(2,2) 的增益=四个相邻 '.'（(1,2)、(3,2)、(2,1)、(2,3)）各记 1 加自身 bad==0 记 1 共 5；'#'(2,5) 增益=（(1,5)、(3,5)、(2,4)）加自身共 4；答案 6+max(5,4)=11，与输出样例及第 8 页样例解释（清除后 4+3+4=11）一致；清除 (2,5) 得 6+4=10 亦核对无误。增益法与官方参考程序逐格统计思路等价。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 O(nm) 代码与第 8 页官方参考程序逐条等价：'.' 且四邻无 '#' 计入 base；'.' 恰有 1 个 '#' 邻居给该 '#' 记增益；'#' 自身无 '#' 邻居给自己记增益；输出 base+最大增益（无:'#' 可清除或增益为 0 时等价于不清除，符合「至多一个」）。边界处理：官方依赖全局零初始化数组使界外读为非 '#'，候选用显式越界判断，语义相同（界外不算杂物）。复杂度 O(nm)≈10^6，满足 n,m≤1000 与 1.0s 限制；无溢出风险。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小单格荒地",
+            "input": "1 1\n.",
+            "output": "1",
+            "reason": "唯一格为 '.'，界内无邻居，无需清除即可开垦；手推 base=1、增益 0。"
+          },
+          {
+            "name": "最小单格杂物",
+            "input": "1 1\n#",
+            "output": "1",
+            "reason": "清除唯一 '#' 后变为 '.' 且界内无邻居（边界外不算杂物），可开垦 1 块；覆盖 '#' 自身增益路径。"
+          },
+          {
+            "name": "单行间隔杂物",
+            "input": "1 3\n.#.",
+            "output": "3",
+            "reason": "手推 base=0，两侧 '.' 各给中间 '#' 记 1、'#' 自身记 1，增益 3；清除后 ... 三格均可开垦。"
+          },
+          {
+            "name": "多杂物相互作用",
+            "input": "3 3\n.#.\n.#.\n...",
+            "output": "5",
+            "reason": "手推 base=2（(2,0)、(2,2)）；清除中心 '#' 新增 (1,0)、(1,2)、(2,1) 共 3 块（清除上方 '#' 仅新增 2 块），2+3=5。"
+          },
+          {
+            "name": "相邻双杂物",
+            "input": "1 2\n##",
+            "output": "0",
+            "reason": "两 '#' 互为相邻，清除任一个后被清除格仍邻接剩余 '#'，不可开垦；全部增益为 0，输出 base+0=0；覆盖 '#' 且 bad>0 不计增益的路径。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受候选（数据范围补入与 O(nm) 参考代码替换均必要且正确）：本人独立手推样例 base=6、增益 5/4、答案 11，与官方样例解释 4+3+4=11 一致；候选代码与第 8 页官方参考程序逻辑等价，5 个测试期望输出均经独立推演核对无误。无否决理由。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 3.2.11 题面（n 行 m 列矩阵 A、2×2 矩阵 D 好的条件 D_{1,1}×D_{2,2}=D_{1,2}×D_{2,1}）、3.2.12 输入格式、3.2.13 输出格式与候选一致；3.2.14 样例「3 4 / 1 2 1 0 / 2 4 2 1 / 0 3 3 0」输出 2 与候选 samples 一致；3.2.15 数据范围「1 ≤ n ≤ 500，1 ≤ m ≤ 500，−100 ≤ A_{i,j} ≤ 100」已补入候选题面，核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不在 PDF 答案表内，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举样例全部 6 个连续 2×2 子矩阵：左上 (0,0) 的 [[1,2],[2,4]] 满足 1×4=2×2=4；(0,1) 的 [[2,1],[4,2]] 满足 2×2=1×4=4；(0,2)、(1,0)、(1,1)、(1,2) 四个均不满足（如 1×1≠0×2、2×3≠4×0、4×3≠2×3、2×0≠1×3），计数 2，与第 9 页样例解释图高亮的两个子矩阵位置（左上两列、右上相邻两列）一致。|A|≤100 时乘积绝对值≤10000，32 位 int 亦安全、long long 更保守；n=1 或 m=1 时无 2×2 子矩阵答案为 0，解析表述均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码（未改动）枚举左上角 i+1<n、j+1<m，恰好覆盖全部 (n−1)(m−1) 个连续 2×2 子矩阵；判定式 a[i][j]*a[i+1][j+1]==a[i][j+1]*a[i+1][j] 与题面 D_{1,1}×D_{2,2}=D_{1,2}×D_{2,1} 一致（与第 10 页官方参考程序的 a[i][j]*a[i+1][j+1]==a[i+1][j]*a[i][j+1] 仅乘法交换序差异，等价）；long long 无溢出；O(nm) 满足 500×500 与 1.0s；n=1 或 m=1 时循环不执行输出 0。独立手推样例输出 2。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小单格",
+            "input": "1 1\n-100",
+            "output": "0",
+            "reason": "n=1,m=1 不存在 2×2 子矩阵，循环不执行输出 0；同时覆盖元素下界 -100。"
+          },
+          {
+            "name": "2x2全零",
+            "input": "2 2\n0 0\n0 0",
+            "output": "1",
+            "reason": "唯一 2×2 子矩阵满足 0×0=0×0，计数 1。"
+          },
+          {
+            "name": "2x2比例矩阵",
+            "input": "2 2\n1 2\n2 4",
+            "output": "1",
+            "reason": "1×4=2×2=4，满足好子矩阵条件。"
+          },
+          {
+            "name": "负数对角",
+            "input": "2 2\n-1 2\n2 -4",
+            "output": "1",
+            "reason": "D_{1,1}×D_{2,2}=(-1)×(-4)=4，D_{1,2}×D_{2,1}=2×2=4，相等计数 1；覆盖负数元素乘法，乘积远小于溢出范围。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受候选（数据范围补入必要、参考代码无需改动）：本人独立枚举样例 6 个 2×2 子矩阵得 2，与第 9 页样例解释图高亮位置一致；候选代码枚举边界、判定式、溢出与 n=1/m=1 边界均经独立核验，4 个测试期望输出独立推演无误。无否决理由。"
+      }
+    ],
+    "summary": "本轮独立复核 24、26、27 三题，均基于原卷页图与文本层重推，未沿用初核结论。24 题：第 7 页题面一致，第 6 页判断题答案表第 9 格为 ×（officialAnswer=1），候选 answer=1 一致；独立模拟标准选择排序第一轮得 {1,3,4,5,2}，题干 {1,4,3,5,2} 确为错误，解析及变体来源说明成立。26 题：题面、样例与第 7—8 页一致，数据范围 1≤n,m≤1000 已补入；O(nm) 增益法参考代码与官方参考程序等价，样例（base=6、增益 5/4、答案 11）及 5 个边界测试期望输出均独立手推通过。27 题：题面、样例与第 9—10 页一致，数据范围已补入；参考代码枚举边界、判定式、溢出与 n=1/m=1 边界核验通过，样例独立枚举 6 个子矩阵得 2，4 个测试期望输出核对无误。三题五维均已核验，无未决冲突，changes 均为空，无需修改。"
+  }
+}

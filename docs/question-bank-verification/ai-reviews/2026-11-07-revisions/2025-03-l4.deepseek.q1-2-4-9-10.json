@@ -1,0 +1,230 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    4,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T14:33:06.787Z",
+  "completedAt": "2026-11-16T14:33:58.205Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38311,
+    "completion_tokens": 9768,
+    "total_tokens": 48079,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 8096,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01160745,
+      "allowance": 0.00696447,
+      "tokens": {
+        "input": 38311,
+        "output": 9768,
+        "reasoning": 8096,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "baa6ded70255a244cebcee3ccade41b8bba70b35bb80513655c62347122a958b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示：CCF 编程能力等级认证，C++ 四级，2025 年 03 月，与 2025-03-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题代码框共 13 行，含函数声明、main 中调用 multiply(a, b) 以及位于 main 之后的函数定义；题干与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A–D 与候选逐项一致；仅 C 项 PDF 为“形参 x 和 y”，候选为“形参x 和 y”，属空格排版差异，不影响含义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题为 A，按 0 起始索引为 0；候选 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第 1 行的前向声明已使 main 中的调用合法，函数定义放在 main 之后可以正常编译，因此 A“必须放到 main 之前”错误，应选 A；B 指定返回 int、C 实参传给形参、D 输出 The result is: 20 均正确，解析逐项分析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题代码共 7 行：全局 x=10，func 内局部 x=20 并输出，main 调用 func 后输出全局 x；与候选代码语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A–C 为 2020、2010、1010，第 2 页顶部 D 为编译错误，候选选项顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题为 B，0 起始索引为 1；候选 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：func 内 std::cout << x 访问局部变量 20，返回 main 后 std::cout << x 访问全局变量 10，合计输出 2010；局部与全局同名遮蔽合法，不是编译错误。解析不依赖错误行号，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题题干为“以下哪种参数传递方式可以避免拷贝大型对象？”，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为只能用值传递、只能用引用传递、只能用指针传递、引用传递和指针传递均可，候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 4 题为 D，0 起始索引为 3；候选 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：值传递会复制整个对象；引用传递以别名绑定实参，不复制大型对象；指针传递复制的是地址而非所指向的大型对象，因此引用传递和指针传递均可，D 正确。解析中的定性说明成立，无失实耗时数字。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 9 题题干为“下面（ ）正确定义了二维数组。”，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A 为 int arr[3,4];、B 为 int arr[3][4];、C 为 int arr(3,4);、D 为 int a[3-4];，候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 9 题为 B，0 起始索引为 1；候选 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按 C++ 文法核对：二维数组应写作 int arr[3][4];；A 用逗号分隔维度非法，C 用圆括号定义数组维度非法，D 的维度 3-4 为 -1 非法。解析修正后准确说明 A 为语法错误而非取逗号表达式结果，并正确指出 constexpr 自 C++11 起可用，结论与答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 10 题给出爬 n 阶、每次 1 或 2 阶的题干及递推函数代码，循环内第 9 行为填空处；候选题面、代码和填空位置一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A–D 代码块依次为 res += f1+f2; f1=f2; f2=res;、res = f1+f2; f1=f2; f2=res;、res += f1+f2; f2=res; f1=f2;、res = f1+f2; f2=res; f1=f2;，候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题为 B，0 起始索引为 1；候选 answer=1。独立验证 f(1)=1、f(2)=2、f(3)=3、f(4)=5、f(5)=8，B 在 n=5 时返回 8，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐项推演 n=5：A 得 19，B 得 8，C 得 27，D 得 12；只有 B 的滑动窗口更新正确。解析中 res=f1+f2、f1=f2、f2=res 的递推解释及各错误选项数值均与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题 1、2、4、9、10。五维对照后，题面与选项均与 PDF 原卷一致，官方答案分别为 A、B、D、B、B（0 起始索引 0、1、3、1、1），候选答案映射正确；解析经独立推导均成立，未发现需要修改的字段。"
+  }
+}

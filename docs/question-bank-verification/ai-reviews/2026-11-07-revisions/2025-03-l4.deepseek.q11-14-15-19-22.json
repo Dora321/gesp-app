@@ -1,0 +1,233 @@
+{
+  "paperId": "2025-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    14,
+    15,
+    19,
+    22
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T14:34:52.660Z",
+  "completedAt": "2026-11-16T14:35:42.865Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38311,
+    "completion_tokens": 8477,
+    "total_tokens": 46788,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 36864,
+      "cache_creation_input_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 6952,
+      "rejected_prediction_tokens": 0
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00541384,
+      "allowance": 0.00324831,
+      "tokens": {
+        "input": 1447,
+        "output": 8477,
+        "reasoning": 6952,
+        "cache_read": 36864,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "baa6ded70255a244cebcee3ccade41b8bba70b35bb80513655c62347122a958b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++4级.pdf",
+    "mirrorSha": "58f97855061202fbd8a7faf8bab5839c8604895b",
+    "mirrorBytes": 1339540,
+    "shaVerified": true,
+    "sha256": "07cb7531f3b31cc19ce701cfa15ca6cdaf1a3c5f0271aa9240b75e054b2eb415"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF GESP C++ 四级，2025 年 03 月，与 2025-03-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末题干为“给定如下算法，其时间复杂度为（ ）。”；第 5 页代码的循环、位运算与返回结构与候选一致，仅缩进和空格不同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A. O(n²)、B. O(n×2ⁿ)、C. O(1)、D. O(n³)，候选顺序与含义一致；LaTeX 记法为等价转换。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 B，0 起始索引为 1，候选 answer=1；独立分析外层 2^n 次、内层 n 次，复杂度为 O(n×2^n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出外层循环共 2^n 次、每轮内层执行 n 次，得到 O(n×2^n)；对 A、C、D 的排除及位掩码枚举子集说明均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干为“运行下面的代码，将出现（ ）。”；代码中 x=10、y=-10 并调用 hmean，候选补全 std:: 限定属于等价写法，语义不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项依次为 A. 屏幕上输出 Caught: Runtime error occurred.、B. 屏幕上输出 Caught an unknown exception.、C. 程序调用 std::terminate()、D. 编译错误，候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 A，0 起始索引为 0，候选 answer=0；独立分析 a==-b 成立并抛出 runtime_error，被第一个 catch 精确捕获。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：throw 后 hmean 中断，try 中后续输出被跳过，catch(const runtime_error&) 捕获并输出 Caught: Runtime error occurred.；catch(...) 不执行，也不会 terminate 或编译错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干为“下面哪种方式不能实现将字符串\"Happy Spring!\"输出重定向到文件 log.txt（ ）。”，候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页 A 含 freopen 与 fclose(stdout)，B 用 outFile 写入，C 打开 outFile 但用 cout 输出，D 用 rdbuf 重定向；候选恢复了完整代码片段，std:: 限定为等价写法。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 C，0 起始索引为 2，候选 answer=2；独立判断 C 中 cout 未重定向，字符串不会写入 log.txt。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：A 通过 freopen 重定向 stdout，B 直接写 outFile，D 通过替换 cout 的 streambuf 写入文件；C 仅打开文件流后用 cout 输出，无法写入文件。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 4 题给出 arr[4]={0,1,2,3}、首元素地址 0x7ffee4065820、int* p=arr; p+=1; 后指针 p 的值是 1，候选题干与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A-D 选项，仅有正确/错误判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 4 格为×，映射为 1（错误），候选 answer=1；p+=1 后 p 保存的是 arr[1] 的地址，而非整数 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确：指针算术按 int 元素大小移动，典型 sizeof(int)=4 时地址为 0x7ffee4065824；即使 int 大小不同，p 的值仍是地址而非 1，因此题干说法错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 7 题的递推关系为 T(n)=T(n-1)+n、T(0)=1，候选题干与页图公式一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A-D 选项，仅有正确/错误判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 7 格为√，映射为 0（正确），候选 answer=0；展开 T(n)=1+n(n+1)/2，量级为 O(n²)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按题给递推式展开得到 O(n²)，与冒泡排序最坏情况复杂度一致；并正确区分了精确比较次数递推 T(n)=T(n-1)+(n-1)、T(1)=0 的另一种计数口径。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮仅核验题号 11、14、15、19、22。五题题面、选项（单选）、答案与解析均与原卷页图及答案表一致，无需修改；判断题 options 与参考程序维度不适用。"
+  }
+}
