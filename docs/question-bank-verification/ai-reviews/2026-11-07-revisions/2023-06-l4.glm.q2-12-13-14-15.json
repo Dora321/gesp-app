@@ -1,0 +1,237 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T01:57:54.585Z",
+  "completedAt": "2026-11-16T02:00:19.357Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 71016,
+    "completion_tokens": 8583,
+    "total_tokens": 79599,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5014
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0149439,
+      "allowance": 0.0149439,
+      "tokens": {
+        "input": 71016,
+        "output": 8583,
+        "reasoning": 5014,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "3e52e8babe46b7add8b0d08bff3d277ea983414ad86f3967e9c1faf8355b9b72",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 6 月 GESP C++ 四级真题解析”，与 paperId 2023-06-l4 的年份2023、月份6、语言C++、等级4完全一致；本次核验的五道单选题分别见于第1—8页。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页末题干为“排序算法是稳定的（Stable Sorting），就是指排序算法可以保证，在待排序数据中有两个相等记录的关键字 R 和 S（R 出现在 S 之前），在排序后的列表中 R 也一定在 S 前。下面关于排序稳定性的描述，正确的是（ ）。”，候选题干逐句一致，仅括号全半角与空格属排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为 A 冒泡排序是不稳定的。B 插入排序是不稳定的。C 选择排序是不稳定的。D 以上都不正确。；候选四项内容与顺序一致，句末句号为纯标点差异，不影响选项映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页【答案】C（解析：冒泡、插入一般是稳定的，选择排序一般是不稳定的），C 对应 0 起始索引 2，候选 answer=2 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：①冒泡排序仅在相邻元素严格逆序（左>右）时交换，相等记录永不互换，稳定；②标准插入排序从已排序区右端向左扫描、仅当已排序元素严格大于当前元素才后移、遇相等即停并插到相等元素之后，稳定；候选括注所述反例经独立验证成立——已排序区 [5a] 插入 5b 时若在第一个“不小于当前元素”位置之前插入得 [5b,5a]，破坏稳定性，故必须“严格大于才后移”；③选择排序反例 {5a,5b,2}：i=0 轮 j=1 时 5>5 不更新，j=2 时 5>2 更新 min=2，随后 array[0]=5a 与 array[2]=2 长距离交换得 {2,5b,5a}，5a 落到 5b 之后，原相对次序被破坏，不稳定；候选“下标 i 的元素与 i+1 至最小元素下标之间的相等记录因交换变序”机理与该反例吻合，且未沿用上轮已否决的“最小元素前方存在与其相等的记录”错误表述。结论 C 与 PDF 官方解析一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：题干、选项顺序与内容、答案映射（C→2）均与 PDF 第1—2页一致；对候选解析中的插入排序稳定性条件（严格大于才后移）与选择排序反例 {5a,5b,2}→{2,5b,5a} 逐步推演均成立，且上轮指出的两处解析缺陷（前向扫描表述、错误的最小值相等机理）在候选中已修复无残留。DeepSeek 初核结论与本人独立核验一致，其无修改建议（changes 为空）正确，予以采纳；五维全部核验通过，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第12题题干为“以下哪个函数声明在调用时可以传递二维数组的名字作为参数？（ ）”，候选题干一致（问号句式与空白括号属排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A void BubbleSort(int a[][4]);、B void BubbleSort(int a[3][]);、C void BubbleSort(int a[][]);、D void BubbleSort(int ** a);；候选四项代码文本、顺序与 PDF 一致，星号旁空格差异可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页【答案】A（解析续于第6页“只有形式参数的第一维的长度可以省略，形式参数的其他维的长度都不能省略”），A 对应索引 0，候选 answer=0 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：二维数组名作实参时退化为指向首行的指针，类型为 int(*)[4]；C++ 形参除最左一维外其余各维必须在编译期确定，故 A 省略行数保留列数 4 合法，B（int a[3][]）与 C（int a[][]）省略列数导致 a[i][j] 地址无法计算，声明本身非法；D 的 int** 是指向指针的指针，与 int(*)[4] 类型不兼容，不能接收二维数组名。候选解析的易错提醒与知识延伸（三维数组同理）均无误，且不存在上轮已修复的 Markdown 撕裂问题。与 PDF 第6页官方解析（只传递首指针、仅第一维可省略）一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：题干、四个选项代码、答案 A→0 与 PDF 第5—6页一致；独立推演确认 A 合法、B/C 语法非法、D 类型不兼容，候选解析（含上轮修复的 D 项完整表述）逻辑自洽无误。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；五维全部核验通过。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第13题代码为：3 void xchg(______) { // 在此处填入代码；4 int t = *x; 5 *x = *y; 6 *y = t; 7 }；8 int main() { 9 int a = 10, b = 20; 10 xchg(&a, &b); 11 cout << a << \" \" << b << endl; 12 return 0; 13 }。候选单行题面保留了填空语义所需的全部关键行（xchg 空白签名、函数体解引用三句、调用实参 &a 与 &b、输出 a 和 b），省略头文件/using/return 0 属等价转换；候选 cout 中 ' ' 与 PDF 的 \" \" 输出同为空格分隔，不改变填空判定。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页选项为 A int x, int y、B int * x, int * y、C int a, int b、D int & a, int & b；候选内容与顺序一致，星号/与符号旁空格差异可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页【答案】B（解析：传递了 a 和 b 的内存地址，需要使用相应类型的指针来存放），B 对应索引 1，候选 answer=1 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：调用处实参 &a、&b 类型为 int*，函数体通过 *x、*y 解引用交换所指内存，故形参必须为 int*（B）；A/C 的 int 形参不能接收 int* 实参（int* 到 int 无隐式转换，编译报错）且 int 变量不支持 *x 解引用；D 的 int& 形参只能绑定 int 左值，不能绑定 int* 实参，且函数体 *x/*y 对引用非法——候选关于“若改用引用传递须把调用写成 xchg(a,b) 并直接交换”的补充说明成立。交换后 a=20、b=10，输出 20 10，与题面要求吻合。候选已不含上轮指出的“引用传递也可实现交换”“&a 隐式转换为整数”两处错误表述，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：候选题面保留 PDF 第6页代码的全部填空关键行（实参 &a/&b、函数体解引用、输出 a b），省略样板行属等价转换；选项与答案 B→1 一致；独立推演确认仅 int* 形参同时满足实参类型与函数体用法，候选解析已修复上轮指出的 D 项与 A 项两处错误说法。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；五维全部核验通过。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页代码逐行为：int array[3][3];、双重循环 array[i][j] = i * 10 + j;、第8行 int sum;（未初始化）、for 循环 sum += array[i][i];、cout << sum << endl;。候选 question 中第8行为“int sum;”，与 PDF 一致（上轮已将误写的 int sum=0; 修复）；题干句“执行以下 C++语言程序后，输出结果是（ ）。”见于第6页末，代码在第7页，来源页 [6,7] 正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页选项为 A 3、B 30、C 33、D 无法确定。；候选内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页【答案】D（解析：sum 是在函数内部定义的，初始值并不一定是 0，无法确定最终输出），D 对应索引 3，候选 answer=3 映射正确（上轮已由错误的 2 修正为 3，修复后核验通过）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：按 array[i][j]=i*10+j 初始化得 array[0][0]=0、array[1][1]=11、array[2][2]=22，主对角线之和为 33；但 sum 定义为 int sum; 是未初始化的局部自动变量，sum += array[i][i] 读取其不确定初值属未定义行为，故输出无法确定，D 正确；仅当写成 int sum = 0; 时才输出 33。候选对 A（3 为对角线元素个数）、B（30 为漏加 +i 的错误结果）、C（假定初值 0 才得的 33）的排除理由均成立，与 PDF 官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：PDF 第7页原图第8行确为未初始化的 int sum;，候选题面已与原卷一致（上轮修复已落实）；独立复算对角线和为 33，但 sum 读取未定义行为使输出无法确定，答案 D→3 正确，候选解析完整。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；上轮的 question/answer/explanation 三处修改经本轮复核确认无误，五维全部核验通过。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页给出 SelectionSort 完整代码：1 void SelectionSort(int array[], int n) { 2 int i, j, min, temp; 3 for (i = 0; i < n - 1; i++) { 4 min = i; 5 for (j = i + 1; j < n; j++) 6 if (______) // 在此处填入代码 7 min = j; 8 temp = array[min]; 9 array[min] = array[i]; 10 array[i] = temp; 11 } 12 }；第8页续选项 B/C/D。候选单行题面保留全部代码语义（外层 i<n-1、min=i、内层 j=i+1 起、空白 if、min=j、交换三行），其中“$n-1$”为 LaTeX 等价写法，含义与 i < n - 1 相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7—8页选项为 A array[min] > array[j]、B array[min] > array[i]、C min > array[j]、D min > array[i]；候选内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页【答案】A（解析：对所有的 i+1<=j<n，找到最小的 array[j]），A 对应索引 0，候选 answer=0 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：选择排序每轮令 min=i 暂定最小候选，内层 j 从 i+1 遍历到 n-1，仅当 array[min] > array[j] 时更新 min=j，内层结束后交换 array[i] 与 array[min]，将本轮最小值放到位置 i，实现升序；A 为正确更新条件。B 中 array[i] 在整个 j 循环内固定不变，无法遍历未排序区比较各 array[j]；C/D 将下标 min 与元素值 array[j]/array[i] 比较，虽同为 int 可编译通过，但语义完全错误——候选已将上轮指出的“本身非法”与“编译可能通过”自相矛盾表述改为“可编译但语义错误”，修复后核验通过。与 PDF 第8页官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：候选题面完整保留 PDF 第7页 SelectionSort 代码语义（$n-1$ 为 LaTeX 等价排版，不作纯文风改写），选项与答案 A→0 与 PDF 第7—8页一致；独立推演确认 array[min]>array[j] 为唯一正确条件，B 固定 array[i] 无法找最小，C/D 可编译但语义错误，候选解析已修复上轮指出的自相矛盾表述。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；五维全部核验通过。"
+      }
+    ],
+    "summary": "本轮独立复核题号 2、12、13、14、15 共五道单选题：依据 PDF 原图（第1—8页）逐题核对题干、选项顺序与内容、答案符号及解析推导。五题候选均已包含上一轮的全部修复（题2/12/13/15 的解析修正、题14 的题面 int sum; 与答案 D→3），本轮逐项独立推演确认修复后内容与原卷一致且逻辑成立：题2 答案 C（索引2），题12 答案 A（索引0），题13 答案 B（索引1），题14 答案 D（索引3），题15 答案 A（索引0），均与 PDF 答案表映射正确。五题均为单选题，referenceCode 维度不适用，无编程边界测试需求。未发现需修改的实质问题，changes 均为空，五题 verdict 均为 approve；DeepSeek 初核草稿结论与本人独立核验一致，予以采纳。"
+  }
+}

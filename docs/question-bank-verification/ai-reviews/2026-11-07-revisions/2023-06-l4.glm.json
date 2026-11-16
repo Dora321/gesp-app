@@ -1,0 +1,510 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    12,
+    13,
+    14,
+    15,
+    17,
+    23,
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T01:57:54.585Z",
+  "completedAt": "2026-11-16T03:16:17.449Z",
+  "finishReason": "stop",
+  "inputSha256": "3e52e8babe46b7add8b0d08bff3d277ea983414ad86f3967e9c1faf8355b9b72",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 6 月 GESP C++ 四级真题解析”，与 paperId 2023-06-l4 的年份2023、月份6、语言C++、等级4完全一致；本次核验的五道单选题分别见于第1—8页。\nPDF第1页卷头为「2023年6月 GESP C++ 四级真题解析」，与2023年6月、C++四级定位一致；第8—16页判断题与编程题编排与题号17、23、25、26、27一一对应，来源一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页末题干为“排序算法是稳定的（Stable Sorting），就是指排序算法可以保证，在待排序数据中有两个相等记录的关键字 R 和 S（R 出现在 S 之前），在排序后的列表中 R 也一定在 S 前。下面关于排序稳定性的描述，正确的是（ ）。”，候选题干逐句一致，仅括号全半角与空格属排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为 A 冒泡排序是不稳定的。B 插入排序是不稳定的。C 选择排序是不稳定的。D 以上都不正确。；候选四项内容与顺序一致，句末句号为纯标点差异，不影响选项映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页【答案】C（解析：冒泡、插入一般是稳定的，选择排序一般是不稳定的），C 对应 0 起始索引 2，候选 answer=2 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：①冒泡排序仅在相邻元素严格逆序（左>右）时交换，相等记录永不互换，稳定；②标准插入排序从已排序区右端向左扫描、仅当已排序元素严格大于当前元素才后移、遇相等即停并插到相等元素之后，稳定；候选括注所述反例经独立验证成立——已排序区 [5a] 插入 5b 时若在第一个“不小于当前元素”位置之前插入得 [5b,5a]，破坏稳定性，故必须“严格大于才后移”；③选择排序反例 {5a,5b,2}：i=0 轮 j=1 时 5>5 不更新，j=2 时 5>2 更新 min=2，随后 array[0]=5a 与 array[2]=2 长距离交换得 {2,5b,5a}，5a 落到 5b 之后，原相对次序被破坏，不稳定；候选“下标 i 的元素与 i+1 至最小元素下标之间的相等记录因交换变序”机理与该反例吻合，且未沿用上轮已否决的“最小元素前方存在与其相等的记录”错误表述。结论 C 与 PDF 官方解析一致，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：题干、选项顺序与内容、答案映射（C→2）均与 PDF 第1—2页一致；对候选解析中的插入排序稳定性条件（严格大于才后移）与选择排序反例 {5a,5b,2}→{2,5b,5a} 逐步推演均成立，且上轮指出的两处解析缺陷（前向扫描表述、错误的最小值相等机理）在候选中已修复无残留。DeepSeek 初核结论与本人独立核验一致，其无修改建议（changes 为空）正确，予以采纳；五维全部核验通过，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第12题题干为“以下哪个函数声明在调用时可以传递二维数组的名字作为参数？（ ）”，候选题干一致（问号句式与空白括号属排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项为 A void BubbleSort(int a[][4]);、B void BubbleSort(int a[3][]);、C void BubbleSort(int a[][]);、D void BubbleSort(int ** a);；候选四项代码文本、顺序与 PDF 一致，星号旁空格差异可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页【答案】A（解析续于第6页“只有形式参数的第一维的长度可以省略，形式参数的其他维的长度都不能省略”），A 对应索引 0，候选 answer=0 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：二维数组名作实参时退化为指向首行的指针，类型为 int(*)[4]；C++ 形参除最左一维外其余各维必须在编译期确定，故 A 省略行数保留列数 4 合法，B（int a[3][]）与 C（int a[][]）省略列数导致 a[i][j] 地址无法计算，声明本身非法；D 的 int** 是指向指针的指针，与 int(*)[4] 类型不兼容，不能接收二维数组名。候选解析的易错提醒与知识延伸（三维数组同理）均无误，且不存在上轮已修复的 Markdown 撕裂问题。与 PDF 第6页官方解析（只传递首指针、仅第一维可省略）一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：题干、四个选项代码、答案 A→0 与 PDF 第5—6页一致；独立推演确认 A 合法、B/C 语法非法、D 类型不兼容，候选解析（含上轮修复的 D 项完整表述）逻辑自洽无误。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；五维全部核验通过。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页第13题代码为：3 void xchg(______) { // 在此处填入代码；4 int t = *x; 5 *x = *y; 6 *y = t; 7 }；8 int main() { 9 int a = 10, b = 20; 10 xchg(&a, &b); 11 cout << a << \" \" << b << endl; 12 return 0; 13 }。候选单行题面保留了填空语义所需的全部关键行（xchg 空白签名、函数体解引用三句、调用实参 &a 与 &b、输出 a 和 b），省略头文件/using/return 0 属等价转换；候选 cout 中 ' ' 与 PDF 的 \" \" 输出同为空格分隔，不改变填空判定。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页选项为 A int x, int y、B int * x, int * y、C int a, int b、D int & a, int & b；候选内容与顺序一致，星号/与符号旁空格差异可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页【答案】B（解析：传递了 a 和 b 的内存地址，需要使用相应类型的指针来存放），B 对应索引 1，候选 answer=1 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：调用处实参 &a、&b 类型为 int*，函数体通过 *x、*y 解引用交换所指内存，故形参必须为 int*（B）；A/C 的 int 形参不能接收 int* 实参（int* 到 int 无隐式转换，编译报错）且 int 变量不支持 *x 解引用；D 的 int& 形参只能绑定 int 左值，不能绑定 int* 实参，且函数体 *x/*y 对引用非法——候选关于“若改用引用传递须把调用写成 xchg(a,b) 并直接交换”的补充说明成立。交换后 a=20、b=10，输出 20 10，与题面要求吻合。候选已不含上轮指出的“引用传递也可实现交换”“&a 隐式转换为整数”两处错误表述，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：候选题面保留 PDF 第6页代码的全部填空关键行（实参 &a/&b、函数体解引用、输出 a b），省略样板行属等价转换；选项与答案 B→1 一致；独立推演确认仅 int* 形参同时满足实参类型与函数体用法，候选解析已修复上轮指出的 D 项与 A 项两处错误说法。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；五维全部核验通过。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页代码逐行为：int array[3][3];、双重循环 array[i][j] = i * 10 + j;、第8行 int sum;（未初始化）、for 循环 sum += array[i][i];、cout << sum << endl;。候选 question 中第8行为“int sum;”，与 PDF 一致（上轮已将误写的 int sum=0; 修复）；题干句“执行以下 C++语言程序后，输出结果是（ ）。”见于第6页末，代码在第7页，来源页 [6,7] 正确。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页选项为 A 3、B 30、C 33、D 无法确定。；候选内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页【答案】D（解析：sum 是在函数内部定义的，初始值并不一定是 0，无法确定最终输出），D 对应索引 3，候选 answer=3 映射正确（上轮已由错误的 2 修正为 3，修复后核验通过）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：按 array[i][j]=i*10+j 初始化得 array[0][0]=0、array[1][1]=11、array[2][2]=22，主对角线之和为 33；但 sum 定义为 int sum; 是未初始化的局部自动变量，sum += array[i][i] 读取其不确定初值属未定义行为，故输出无法确定，D 正确；仅当写成 int sum = 0; 时才输出 33。候选对 A（3 为对角线元素个数）、B（30 为漏加 +i 的错误结果）、C（假定初值 0 才得的 33）的排除理由均成立，与 PDF 官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：PDF 第7页原图第8行确为未初始化的 int sum;，候选题面已与原卷一致（上轮修复已落实）；独立复算对角线和为 33，但 sum 读取未定义行为使输出无法确定，答案 D→3 正确，候选解析完整。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；上轮的 question/answer/explanation 三处修改经本轮复核确认无误，五维全部核验通过。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页给出 SelectionSort 完整代码：1 void SelectionSort(int array[], int n) { 2 int i, j, min, temp; 3 for (i = 0; i < n - 1; i++) { 4 min = i; 5 for (j = i + 1; j < n; j++) 6 if (______) // 在此处填入代码 7 min = j; 8 temp = array[min]; 9 array[min] = array[i]; 10 array[i] = temp; 11 } 12 }；第8页续选项 B/C/D。候选单行题面保留全部代码语义（外层 i<n-1、min=i、内层 j=i+1 起、空白 if、min=j、交换三行），其中“$n-1$”为 LaTeX 等价写法，含义与 i < n - 1 相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7—8页选项为 A array[min] > array[j]、B array[min] > array[i]、C min > array[j]、D min > array[i]；候选内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页【答案】A（解析：对所有的 i+1<=j<n，找到最小的 array[j]），A 对应索引 0，候选 answer=0 映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验通过：选择排序每轮令 min=i 暂定最小候选，内层 j 从 i+1 遍历到 n-1，仅当 array[min] > array[j] 时更新 min=j，内层结束后交换 array[i] 与 array[min]，将本轮最小值放到位置 i，实现升序；A 为正确更新条件。B 中 array[i] 在整个 j 循环内固定不变，无法遍历未排序区比较各 array[j]；C/D 将下标 min 与元素值 array[j]/array[i] 比较，虽同为 int 可编译通过，但语义完全错误——候选已将上轮指出的“本身非法”与“编译可能通过”自相矛盾表述改为“可编译但语义错误”，修复后核验通过。与 PDF 第8页官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：候选题面完整保留 PDF 第7页 SelectionSort 代码语义（$n-1$ 为 LaTeX 等价排版，不作纯文风改写），选项与答案 A→0 与 PDF 第7—8页一致；独立推演确认 array[min]>array[j] 为唯一正确条件，B 固定 array[i] 无法找最小，C/D 可编译但语义错误，候选解析已修复上轮指出的自相矛盾表述。DeepSeek 初核结论与本人独立核验一致，采纳其无修改建议；五维全部核验通过。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第2题原文含：数列定义「从第三个数开始，每个数是前面两项之和」、n>3、方法①令fib(1)=fib(2)=1 ②用循环for i=3 to n分别计算f(i) ③输出fib(n)、「这体现了递推的编程思想」；候选题面与页图逐字一致（②处源卷即作f(i)，系源卷原有笔误，不影响判定真值）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A—D选项列表；站内[正确,错误]为平台标准展示项，不参与原文核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页该题【答案】符号为√，按正确=0映射为0，候选answer=0一致；独立复核：①②③用循环从小到大由前两项逐项推出各项，正是递推思想，√成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出F(1)=F(2)=1、F(n)=F(n-1)+F(n-2)，并区分递推（迭代顺序计算）与递归（函数自调用），独立推导成立；PDF官方解析末句「这和递归的编程思想一致」应为「递推」之笔误（页图中该词被高亮标注），候选已正确规避，不影响答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立确认：候选题面已含完整①②③方法描述，与PDF第8页页图逐字一致；答案√→索引0、解析独立推导成立。源卷两处瑕疵（官方解析「递归/递推」笔误、题面f(i)笔误）均不影响判定真值，候选已正确处理。无字段需要修改。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第8题原文为「字符常量'0'和'\\0'是等价的。」，候选题面与页图一致（解析见第10页），不存在「@」或双引号字符串的失真写法。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项列表；站内[正确,错误]仅作平台展示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页【答案】为×，按错误=1映射，候选answer=1一致；独立核对：'0'的ASCII码为48，'\\0'的ASCII码为0，二者数值与用途均不同，不等价，×成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF第10页解析以ASCII码48与0对照说明不等价；候选解析方向一致，并正确补充双引号字符串字面量与单引号字符常量的存储区别（字面量含空字符且编译器附加结束符），独立核对无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立确认：题面与PDF第9页页图一致，答案×→索引1正确，解析独立成立。无字段需要修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第10题原文「由于文件重定向操作，程序员在使用C++语言编写程序时无法确定通过cout输出的内容是否会被输出到屏幕上。」与候选题面一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项列表；站内[正确,错误]仅作平台展示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页【答案】为√，按正确=0映射，候选answer=0一致；独立确认：重定向由Shell或运行环境在进程启动时改变标准输出流向，仅凭代码中的cout语句无法预知输出到屏幕还是文件，√成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以stdout与Shell重定向机制解释题意，与PDF第10页官方解析（cout可能被写入文件，由程序用户决定，程序员无法确定）核心一致；并正确指出标准错误流同样可被2>等方式重定向，避免了「cerr不被重定向」的常见误述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立确认：题面、答案√（索引0）与PDF第10页一致，解析技术表述经独立推敲无误。无字段需要修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10—11页：幸运数规则（个位为第1位；奇数位数字乘7，结果不大于9即为变换结果，否则反复把各位数字相加直到不大于9；偶数位不变；变换后各位数字之和为8的倍数即为幸运数）、输入约束1≤N≤20与x<10^12、输出N行T/F、样例2/16347/76344对应T/F，候选题面均完整保留或等价转述；官方提示「可以输入一个数就判断一个数」为实现方式建议，省略不改变题意与判定结果。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算两样例：16347自个位起为7→4、4不变、3→3、6不变、1→7，总和24，24%8=0输出T（变换结果76344与PDF第10页示例一致）；76344为4→1、4不变、3→3、6不变、7→4，总和18，18%8=2输出F。数根公式(t*7-1)%9+1对t=1..9逐一验证得7,5,3,1,8,6,4,2,9，与「反复数位求和至不大于9」等价；t=0时0×7=0不大于9，trans返回0正确。x<10^12至多12位，sum≤108，int不溢出。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与PDF第12页官方参考程序逐行对照：trans的数根公式与t==0分支、judge自d=1按位奇偶分别累加、sum%8==0判定均一致；网站版以while(n--)替代for循环、以输出换行替代endl、三目运算符输出，均为等价写法。long long读入覆盖x<10^12，无越界、无溢出。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 N=1，x=1",
+            "input": "1\n1\n",
+            "output": "F\n",
+            "reason": "个位1为奇数位，1×7=7不大于9，变换结果7，总和7不是8的倍数，独立推算输出F。"
+          },
+          {
+            "name": "最小幸运数 x=5",
+            "input": "1\n5\n",
+            "output": "T\n",
+            "reason": "5×7=35>9，各位求和3+5=8，总和8是8的倍数，输出T；枚举1—4（变换结果7,5,3,1）均非8的倍数，5为最小幸运数。"
+          },
+          {
+            "name": "奇数位数字0触发trans(0)分支",
+            "input": "1\n500\n",
+            "output": "T\n",
+            "reason": "个位0（奇数位）变换结果0，十位0（偶数位）保持0，百位5变换为8（35→8），总和8是8的倍数，输出T；覆盖参考代码t==0分支。"
+          },
+          {
+            "name": "最大位数全9边界",
+            "input": "1\n999999999999\n",
+            "output": "F\n",
+            "reason": "12位全9：6个奇数位9×7=63→9，6个偶数位保持9，总和108，108 mod 8=4，输出F；同时覆盖x<10^12的12位上界与long long读入。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论并独立确认：题面约束完整（1≤N≤20、x<10^12），样例经独立复算吻合，参考代码与PDF第12页官方程序逻辑等价；4组测试期望（含trans(0)分支与12位全9边界）均由本人独立推算核对，未声称实际运行。无字段需要修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第12—13页：压缩规则（统计各灰阶数量；取数量最多的前16种，同数量按灰阶值从小到大编号0-F；其余灰阶按绝对差最近转换，绝对值相等取编号较小者）、输出格式（首行32字符十六进制编码，随后N行每像素一位十六进制）、约束10≤N≤20、每行等长偶数、至少16种灰阶、每行最多20像素及样例，候选题面均完整保留；「最接近」按灰阶值一维绝对差理解，与原文「相减绝对值最小即为最近」一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重数样例140个像素：AB逐行清点为14次，CF、FF各14次，00为10次、CB为9次、09为7次、AC为6次、07为5次、10/11/98各4次、01/1B/67/76/FC各3次，与PDF第14页样例解释一致；按频次降序、同频灰度值升序编号得首行ABCFFF00CB09AC07101198011B6776FC；首行像素5C(92)与67(103)绝对差11为最小，映射为编号D，首行压缩输出321032657CD10E，均与样例吻合。选色用严格大于、映射用严格小于实现两个平局规则的说明与代码行为一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "trans/itrans/compress逻辑正确：compress以dis=256起始（最大绝对差255）、严格小于保留同距较小编号。选色部分与PDF第15—16页官方程序存在有意差异：官方版his初始化为-1且阈值max=0，仅能选出频次不小于2的灰阶，若第16常见灰阶仅出现1次会得到max_id=-1并写下标-1越界；候选版his置0、mx=-1，在「至少16种灰阶」约定下总能正确选满16个（含频次1灰阶），属必要修正而非偏离。N≤20、每行≤20像素下image/cpimg[20][20]、line[50]不越界；各行等长保证以单一m处理全部行正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小N=10且恰好16种灰阶（含频次1灰阶）",
+            "input": "10\n0001\n0203\n0405\n0607\n0809\n0A0B\n0C0D\n0E0F\n0001\n0203\n",
+            "output": "000102030405060708090A0B0C0D0E0F\n01\n23\n45\n67\n89\nAB\nCD\nEF\n01\n23\n",
+            "reason": "独立清点：00—03各出现2次，04—0F各出现1次，共恰16种灰阶；按频次降序、同频灰度值升序编号00→0、01→1、…、0F→F，首行32字符；所有像素均为选中灰阶，逐像素精确映射得10行输出。该用例中频次1灰阶进入前16，候选版可正确选满，官方PDF版在此类输入会失效。"
+          },
+          {
+            "name": "同频选色与等距映射平局",
+            "input": "11\n000408\n0C1014\n181C20\n24282C\n303438\n3C0004\n080C10\n14181C\n202428\n2C3034\n383C02\n",
+            "output": "0004080C1014181C2024282C3034383C\n012\n345\n678\n9AB\nCDE\nF01\n234\n567\n89A\nBCD\nEF0\n",
+            "reason": "独立清点：16个代表灰阶各出现2次，02出现1次（共17种，满足至少16种）；同频按灰度值升序编号00→0、04→1、…、3C→F。未选灰度02到00与04的距离均为2，按规则取编号更小的0，故末行第三像素输出0；同时覆盖选色平局与映射平局两类判定。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核主结论并独立确认：题面约束完整，样例频次与映射经独立重数吻合；参考代码选色起点差异（his置0、mx=-1）经独立分析确认为对官方版频次1边界缺陷的必要修正。2组测试期望（含双平局用例）均由本人独立推算核对，未声称实际运行。无字段需要修改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        12,
+        13,
+        14,
+        15
+      ],
+      "usage": {
+        "prompt_tokens": 71016,
+        "completion_tokens": 8583,
+        "total_tokens": 79599,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5014
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0149439,
+          "allowance": 0.0149439,
+          "tokens": {
+            "input": 71016,
+            "output": 8583,
+            "reasoning": 5014,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T01:57:54.585Z",
+      "completedAt": "2026-11-16T02:00:19.357Z"
+    },
+    {
+      "questionIds": [
+        17,
+        23,
+        25,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 71890,
+        "completion_tokens": 25083,
+        "total_tokens": 96973,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 21627,
+          "rejected_prediction_tokens": null
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.023325,
+          "allowance": 0.023325,
+          "tokens": {
+            "input": 71890,
+            "output": 25083,
+            "reasoning": 21627,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T03:13:48.059Z",
+      "completedAt": "2026-11-16T03:16:17.449Z"
+    }
+  ]
+}

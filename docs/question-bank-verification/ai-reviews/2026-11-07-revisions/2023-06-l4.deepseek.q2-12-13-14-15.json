@@ -1,0 +1,232 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T01:55:51.872Z",
+  "completedAt": "2026-11-16T01:57:54.574Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 43186,
+    "completion_tokens": 12147,
+    "total_tokens": 55333,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10478
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0275322,
+      "allowance": 0.01651932,
+      "tokens": {
+        "input": 43186,
+        "output": 12147,
+        "reasoning": 10478,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "3e52e8babe46b7add8b0d08bff3d277ea983414ad86f3967e9c1faf8355b9b72",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为‘2023年6月 GESP C++ 四级真题解析’，与 paperId 2023-06-l4 的年月、语言、等级一致；本次核验的题号2、12、13、14、15分别位于第1—8页。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "type": "single",
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页末给出稳定性定义与题干，第2页接选项；候选题干与PDF一致，仅空格、括号等排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页选项为 A 冒泡排序是不稳定的、B 插入排序是不稳定的、C 选择排序是不稳定的、D 以上都不正确；候选顺序与内容一致，句末句号差异可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页【答案】C；候选 answer=2（0起始索引），映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：冒泡仅在相邻元素严格逆序时交换，相等不换，稳定；标准插入从已排序区右端左扫、严格大于才后移、遇相等即停，稳定；选择排序反例 {5a,5b,2} 第一轮将5a与2交换得{2,5b,5a}，5a落到5b之后，不稳定。故C正确，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "type": "single",
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第12题题干为‘以下哪个函数声明在调用时可以传递二维数组的名字作为参数？’，候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项 A void BubbleSort(int a[][4]);、B void BubbleSort(int a[3][]);、C void BubbleSort(int a[][]);、D void BubbleSort(int ** a);，候选顺序与内容一致，空格差异可忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页【答案】A；候选 answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：二维数组名退化为指向首行的指针 int (*)[4]；函数形参除最左维外其余维必须显式给出，故 A 合法，B/C 非法；int ** 与 int (*)[4] 类型不兼容。答案 A 与 PDF 第5页【答案】一致，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "type": "single",
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页代码含 void xchg(空白){ int t=*x; *x=*y; *y=t; }，main 中调用 xchg(&a,&b) 并输出 a、b；候选保留这些填空关键行，省略头文件、using 与 return 0 及空格/引号差异不改变填空语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第6页选项 A int x, int y；B int * x, int * y；C int a, int b；D int & a, int & b；候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第6页【答案】B；候选 answer=1，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：实参 &a、&b 为 int*；函数体使用 *x、*y，故形参必须为 int*。A/C 的 int 形参不能接收 int* 且解引用非法；D 的 int& 不能绑定 int*，函数体解引用亦非法；B 匹配。答案 B 与 PDF 第6页【答案】一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "type": "single",
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页代码第8行为 int sum;（未初始化），候选 question 已为 int sum;；其余 array[3][3]、i*10+j 赋值、对角线累加与输出均逐行一致，缩进差异不影响。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7页选项 A 3、B 30、C 33、D 无法确定；候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页【答案】D；候选 answer=3，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：array[0][0]=0、array[1][1]=11、array[2][2]=22，对角线和为33；但 sum 定义为 int sum; 未初始化，sum += 读取不确定初值，属未定义行为，输出无法确定，故 D 正确。只有 int sum=0 时才输出33。解析与 PDF 第7页官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "type": "single",
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页给出 SelectionSort 函数（for(i=0; i<n-1; i++)、min=i、内层 j 循环、空白 if、交换三行），第8页续选项；候选保留全部代码语义，$n-1$ 为 LaTeX 等价排版，不改变 i<n-1 含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第7—8页选项 A array[min] > array[j]、B array[min] > array[i]、C min > array[j]、D min > array[i]；候选顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页【答案】A；候选 answer=0，映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：选择排序每轮令 min=i，内层 j 从 i+1 到 n-1，条件应为 array[min] > array[j] 时更新 min=j；内层结束交换 array[i] 与 array[min]。B 使用固定的 array[i] 无法找最小值；C/D 比较下标与元素值，虽可编译但逻辑错误。答案 A 与 PDF 第8页【答案】一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已独立核验题号2、12、13、14、15：五题的题干、选项顺序、官方答案映射与解析均与原卷PDF第1—8页一致，未发现需修改的实质问题；均为单选题，无参考代码与编程边界测试。候选答案分别为C、A、B、D、A，与PDF答案表一致。"
+  }
+}

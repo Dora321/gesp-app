@@ -1,0 +1,268 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    17,
+    23,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T02:54:53.602Z",
+  "completedAt": "2026-11-16T02:59:39.593Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 43186,
+    "completion_tokens": 32685,
+    "total_tokens": 75871,
+    "prompt_tokens_details": {
+      "cached_tokens": 43136
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 29877
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.03949582,
+      "allowance": 0.02369749,
+      "tokens": {
+        "input": 50,
+        "output": 32685,
+        "reasoning": 29877,
+        "cache_read": 43136,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "3e52e8babe46b7add8b0d08bff3d277ea983414ad86f3967e9c1faf8355b9b72",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023年6月 GESP C++ 四级真题解析”，第8—16页的判断题与编程题编排与指定题号17、23、25、26、27一一对应，来源一致。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第2题包含斐波那契数列定义、n>3、①②③循环方法及“这体现了递推的编程思想”，候选题面与之逐字一致，仅有平台排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A—D选项；站内“正确/错误”为标准展示项，不作为选项内容核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页【答案】为√，按“正确=0”映射，候选officialAnswer=0一致；独立复核循环由前两项逐项向后计算，确实属于递推。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出F(1)=F(2)=1、F(n)=F(n-1)+F(n-2)，并区分递推与递归，推导成立；PDF官方解析末句“递归”为源文笔误/标注，不影响本题√的判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第8题原文为“字符常量'0'和'\\0'是等价的。”；候选题面已恢复该文本，与页图一致，不再出现“@”或双引号字符串的误写。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项列表；站内“正确/错误”仅作平台展示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页【答案】为×，按“错误=1”映射，候选answer=1一致；独立核对：'0'的ASCII码为48，'\\0'的ASCII码为0，二者不等价。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "PDF第10页官方解析以ASCII码48与0说明二者不等价；候选解析方向一致，并正确补充'\\0'与双引号字符串字面量的区别，独立核对无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第10题原文与候选题面一致，均为“由于文件重定向操作，程序员在使用C++语言编写程序时无法确定通过cout输出的内容是否会被输出到屏幕上”，仅有空格排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项列表；站内“正确/错误”仅作平台展示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页【答案】为√，按“正确=0”映射，候选answer=0一致；独立确认重定向由Shell或运行环境在进程启动时完成，代码中的cout无法预知最终目标是终端还是文件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以stdout与Shell重定向解释题意，并说明cerr同样可被2>重定向；与PDF第10页官方解析一致，技术表述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10—11页的幸运数规则（个位为第1位、奇数位变换、偶数位不变、变换后各位和是8的倍数）、输入约束1≤N≤20与x<10^12、样例2/16347/76344及输出T/F均保留或等价表达，未改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例：16347变换后各位和为24，输出T；76344变换后各位和为18，输出F。候选解析中数根公式(t*7-1)%9+1对t=1..9及t=0分支均正确，sum上界约108，分析无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码从个位开始按d奇偶分别累加，trans处理t=0，long long读入满足x<10^12，sum不溢出，逐行输出T/F；与PDF第12页官方程序逻辑等价，while(n--)和三目输出为等价写法。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 N=1，x=1",
+            "input": "1\n1\n",
+            "output": "F\n",
+            "reason": "个位1为奇数位，1×7=7，变换结果7，总和7不是8的倍数，独立推算输出F。"
+          },
+          {
+            "name": "最小幸运数 x=5",
+            "input": "1\n5\n",
+            "output": "T\n",
+            "reason": "5×7=35，各位相加3+5=8，总和8是8的倍数；枚举1—4均不为幸运数，5为最小幸运数。"
+          },
+          {
+            "name": "奇数位数字0触发trans(0)分支",
+            "input": "1\n500\n",
+            "output": "T\n",
+            "reason": "个位0为奇数位，变换结果0；十位0为偶数位保持0；百位5变换为8；总和8是8的倍数，输出T。"
+          },
+          {
+            "name": "最大位数全9边界",
+            "input": "1\n999999999999\n",
+            "output": "F\n",
+            "reason": "12位全9：6个奇数位9变换为9，6个偶数位保持9，总和108；108 mod 8=4，输出F；同时覆盖x<10^12的12位边界。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第12—13页的压缩规则（统计频次；频次降序、同频灰度升序编号0—F；其他灰度映射到最近代表色，同距取较小号）、约束10≤N≤20、各行等长偶数长度、至少16种灰阶、每行最多20像素及样例均保留；“最接近”按一维灰度绝对差理解，与原文含义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案，officialAnswer为null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立重数样例140个像素：AB、CF、FF各14次，00为10次，CB为9次，09为7次，AC为6次，07为5次，10/11/98各4次，01/1B/67/76/FC各3次；首行排序为ABCFFF00CB09AC07101198011B6776FC；首行5C(92)最近67(103)，差11，映射为D，压缩首行为321032657CD10E。候选解析与样例吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码的trans/itrans/compress逻辑正确；选色用his从0计数、mx=-1并以严格>保留同频较小灰度；compress以严格<保留同距较小编号。N≤20、每行≤20像素，image/cpimg[20][20]与line[50]不越界。PDF官方程序以his=-1、max=0起始，在入选灰阶频次为1的合法输入下可能选出max_id=-1；候选改为his=0、mx=-1，是必要且正确的边界修正。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小N=10且恰好16种灰阶（含频次1灰阶）",
+            "input": "10\n0001\n0203\n0405\n0607\n0809\n0A0B\n0C0D\n0E0F\n0001\n0203\n",
+            "output": "000102030405060708090A0B0C0D0E0F\n01\n23\n45\n67\n89\nAB\nCD\nEF\n01\n23\n",
+            "reason": "00—03各出现2次，04—0F各出现1次，共恰好16种灰阶；按频次降序、同频灰度升序编号为00→0、01→1、…、0F→F；所有像素均精确映射。该用例覆盖频次1灰阶进入前16的边界。"
+          },
+          {
+            "name": "同频选色与等距映射平局",
+            "input": "11\n000408\n0C1014\n181C20\n24282C\n303438\n3C0004\n080C10\n14181C\n202428\n2C3034\n383C02\n",
+            "output": "0004080C1014181C2024282C3034383C\n012\n345\n678\n9AB\nCDE\nF01\n234\n567\n89A\nBCD\nEF0\n",
+            "reason": "16个代表灰阶各出现2次，02出现1次；同频按灰度值升序编号。未选灰度02到00与04距离均为2，按规则取编号更小的0，故末行第三像素输出0；覆盖选色平局与映射平局。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按PDF页图核验题17、23、25、26、27：判断题题面、答案符号与0/1映射均正确，解析独立成立；两道编程题的约束、样例、解析和参考代码均通过，边界测试覆盖最小规模、频次1、平局及最大位数。未发现需修改字段；仅记录源卷两处不影响最终答案的瑕疵：17题官方解析末句“递归”应为“递推”的笔误，27题官方参考程序对频次1灰阶存在边界缺陷，候选已规避或修正。"
+  }
+}
