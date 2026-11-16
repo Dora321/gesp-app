@@ -1,0 +1,181 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T20:04:38.044Z",
+  "completedAt": "2026-11-16T20:08:29.931Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50859,
+    "completion_tokens": 21067,
+    "total_tokens": 71926,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17804
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01816235,
+      "allowance": 0.01816235,
+      "tokens": {
+        "input": 50859,
+        "output": 21067,
+        "reasoning": 17804,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头原图为“CCF 编程能力等级认证 GESP”“C++ 四级”“2025 年 06 月”，与 paperId 2025-06-l4 的年份 2025、月份 6、等级 4 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 6 页列有“试题名称：画布裁剪”“时间限制：1.0 s”“内存限制：512.0 MB”及题目描述；第 7 页 3.1.2/3.1.3 输入输出格式与 3.1.4 两组样例（>_<；Cd/hI）与网站题面一致；3.1.5 数据范围原文“保证 1≤h,w≤100，1≤x1≤x2≤h，1≤y1≤y2≤w”。网站原题面缺时限/内存与数据范围，changes.question 已按 PDF 原文补全。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，PDF 答案表仅覆盖单选与判断题，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核对：1-based 转 0-based 后行列区间为 [x1-1,x2-1]×[y1-1,y2-1]；样例 1 取 canvas[1] 下标 1..3 得 >_<，样例 2 得 Cd/hI，均与 PDF 输出一致；解析中 substr(y1-1, y2-y1+1) 写法正确；复杂度 O(hw) 在 h,w≤100 下成立，区间含边界的闭区间说明无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态逐行核对（未编译运行）：网站代码以 vector<string> 读入、双重循环输出 x1-1..x2-1 行、y1-1..y2-1 列并逐行换行，边界与换行位置正确；与 PDF 3.1.6 官方参考程序（cstdio/char 数组，s[i][y2+1]=0 后 printf(\"%s\\n\", s[i]+y1) 输出子串）实现方式不同但功能等价；h,w≤100 无越界，O(hw)≈10^4 远低于 1 s 时限，无溢出风险。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 四级] 画布裁剪\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小 A 在高为 $h$ 宽为 $w$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 $h$ 行 $w$ 列的字符矩阵，其中的字符均为 ASCII 码位于 $33 \\sim 126$ 之间的可见字符，小 A 只保留画布中由第 $x_1$ 行到第 $x_2$ 行、第 $y_1$ 列到第 $y_2$ 列构成的子矩阵。\n\n小 A 将画布交给了你，你能帮他完成画布的裁剪吗？\n\n## 输入格式\n\n第一行，两个正整数 $h, w$，分别表示画布的行数与列数。\n\n第二行，四个正整数 $x_1, x_2, y_1, y_2$，表示保留的行列边界。\n\n接下来 $h$ 行，每行一个长度为 $w$ 的字符串，表示画布内容。\n\n## 输出格式\n\n输出共 $x_2 - x_1 + 1$ 行，每行一个长度为 $y_2 - y_1 + 1$ 的字符串，表示裁剪后的画布。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le h, w \\le 100$，$1 \\le x_1 \\le x_2 \\le h$，$1 \\le y_1 \\le y_2 \\le w$。"
+        },
+        "tests": [
+          {
+            "name": "最小画布与最小裁剪区域",
+            "input": "1 1\n1 1 1 1\n!",
+            "output": "!",
+            "reason": "h=w=1，x1=x2=y1=y2=1，闭区间仅含唯一字符 '!'（ASCII 33）；1-based 转 0-based 后取 canvas[0][0]，独立推导输出 '!'。"
+          },
+          {
+            "name": "右边界闭区间与 ASCII 上界",
+            "input": "3 4\n2 3 4 4\nabcd\nefg~\nijk~",
+            "output": "~\n~",
+            "reason": "x2=h 且 y1=y2=w，验证区间含右边界：第 2、3 行第 4 列均为 '~'（ASCII 126），独立推导输出两行 '~'。"
+          },
+          {
+            "name": "整幅画布全保留",
+            "input": "2 3\n1 2 1 3\nAbC\ndEf",
+            "output": "AbC\ndEf",
+            "reason": "x1=1,x2=h,y1=1,y2=w 时输出应与画布完全一致，独立验证 1-based→0-based 转换在首行首列不错位。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核并独立确认：(1) statement 遗漏属实——PDF 第 6 页“时间限制：1.0 s/内存限制：512.0 MB”、第 7 页数据范围原文逐字核对一致，修复后核验通过；(2) explanation 的坐标转换与两个样例走查（>_<、Cd/hI）经独立复算无误；(3) referenceCode 静态核对正确，其为与官方实现不同的等价写法（官方用 printf 子串技巧），按正确性/复杂度/边界标准判定通过；(4) 初核 sourcePages [6,7] 漏第 8 页（官方参考程序第 16-20 行续于第 8 页），已修正为 [6,7,8]；(5) 初核 2 条测试的期望输出独立复算一致，另补充整幅画布场景。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 8 页列有“试题名称：排序”“时间限制：1.0 s”“内存限制：512.0 MB”及题目描述、输入输出格式、两组样例（输出 8 与 1），与网站题面一致；第 9 页 3.2.5 数据范围原文“保证 1≤n≤3000，0≤hi,wi≤10^9”。网站原题面缺时限/内存与数据范围，changes.question 已按 PDF 原文补全；输入格式“正整数”照 PDF 原文保留（与 0 的矛盾见 unresolved）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，PDF 答案表仅覆盖单选与判断题，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核对：“仅相邻交换时最少交换次数等于相对目标顺序的严格逆序对数”结论正确；样例 1 目标名次序列 5,3,4,1,2 复算逆序对 4+2+2+0=8，样例 2 名次 1,1,4,3,5 复算 1 个，均与 PDF 输出一致；相等双关键字不计逆序的处理正确；O(n^2) 在 n≤3000 下可行。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态逐行核对（未编译运行）：compare 先身高降序再体重降序，冒泡仅在后者严格优先时交换并计数，等价元素不交换，交换数等于严格逆序对数；swaps 上限 n(n-1)/2=4,498,500 在 int 范围内，hi,wi≤10^9 读取比较无溢出；n≤3000 时约 4.5×10^6 次内层迭代满足 1 s 时限。与 PDF 3.2.6 官方参考程序（pair 字典序直接统计 i<j 且 a[i]<a[j] 的逆序对）实现不同但等价，两种写法对相等关键字均不计数。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 四级] 排序\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n体育课上有 $n$ 名同学排成一队，从前往后数第 $i$ 位同学的身高为 $h_i$，体重为 $w_i$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示队伍人数。\n\n接下来 $n$ 行，每行两个正整数 $h_i$ 和 $w_i$，分别表示第 $i$ 位同学的身高和体重。\n\n## 输出格式\n\n输出一行，一个整数，表示最少需要的交换次数。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n \\le 3000$，$0 \\le h_i, w_i \\le 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "最小人数与数值上界",
+            "input": "1\n1000000000 1000000000",
+            "output": "0",
+            "reason": "n=1 时无相邻交换，期望 0；hi=wi=10^9 取数据范围上界，int 读取与比较无溢出。"
+          },
+          {
+            "name": "相等关键字不重复计数",
+            "input": "3\n2 10\n1 5\n2 10",
+            "output": "1",
+            "reason": "目标顺序 (2,10),(2,10),(1,5)；初始名次序列 1,3,1 中仅 (1,5) 对其后 (2,10) 构成 1 个严格逆序对，两个相等的 (2,10) 不产生交换，独立推导为 1。"
+          },
+          {
+            "name": "同身高按体重降序",
+            "input": "4\n2 10\n1 5\n2 5\n1 10",
+            "output": "2",
+            "reason": "目标顺序 (2,10),(2,5),(1,10),(1,5)，名次 1,2,3,4；初始名次序列 1,4,2,3 中仅 (1,5) 对 (2,5) 与 (1,5) 对 (1,10) 构成逆序，独立推导为 2。"
+          },
+          {
+            "name": "完全逆序场景",
+            "input": "3\n1 1\n2 2\n3 3",
+            "output": "3",
+            "reason": "目标顺序 (3,3),(2,2),(1,1)，初始名次 3,2,1 的全部 3 个数对均为逆序，最少相邻交换 3 次，独立推导为 3。"
+          }
+        ],
+        "unresolved": [
+          "源卷自身矛盾：PDF 第 8 页输入格式写“每行两个正整数 hi 和 wi”，但同页样例 2 出现 wi=0，第 9 页数据范围又为 0≤hi,wi≤10^9。changes 中“正整数”照 PDF 原文保留、数据范围照原文补全，未擅自改为“非负整数”，待官方澄清。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核并独立确认：(1) statement 遗漏属实，修复内容与 PDF 第 8/9 页原文逐字一致，修复后核验通过；(2) explanation 独立复算样例 1 逆序对 8、样例 2 逆序对 1，与输出一致，“最少相邻交换=严格逆序对数”推导无误；(3) referenceCode 冒泡计数正确，n≤3000 时 O(n^2) 约 4.5×10^6 次内层迭代可在 1 s 内完成，swaps 上限 4,498,500 与 hi,wi≤10^9 均不溢出 int；(4) 初核指出的“正整数 vs 0”源卷矛盾经我独立核实（样例 2 含 0、数据范围允许 0），维持 unresolved 记录、不擅改题面表述；(5) 初核 3 条测试期望输出（0/1/2）逐条独立复算正确，另补充完全逆序场景（输出 3）。"
+      }
+    ],
+    "summary": "本次仅核验题号 26、27。PDF 卷头（第 1 页：CCF 编程能力等级认证 GESP、C++ 四级、2025 年 06 月）与 paperId 一致。两题题面均缺官方时限（1.0 s）、内存（512.0 MB）与数据范围，已按 PDF 原文补全并确认修复后核验通过；两题网站参考代码均为与官方实现不同的等价写法，静态核对正确（Q26 O(hw)≤10^4；Q27 冒泡 O(n^2) 在 n≤3000 下约 4.5×10^6 次迭代、swaps 上限 4,498,500 不溢出 int），未声称实际编译运行；tests 期望输出全部由独立推导得出（Q26：最小画布、右边界列、整幅画布；Q27：n=1 上界、相等关键字 1、同身高体重序 2、完全逆序 3）。Q27 保留源卷“正整数”与样例 2/数据范围允许 0 的矛盾待官方澄清，未擅改题面表述；初核 Q26 sourcePages 漏第 8 页已修正。"
+  }
+}

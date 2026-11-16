@@ -1,0 +1,238 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T15:56:57.567Z",
+  "completedAt": "2026-11-16T16:00:27.899Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50122,
+    "completion_tokens": 11793,
+    "total_tokens": 61915,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9098
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0134148,
+      "allowance": 0.0134148,
+      "tokens": {
+        "input": 50122,
+        "output": 11793,
+        "reasoning": 9098,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示『CCF 编程能力等级认证 GESP / C++ 四级 / 2025 年 06 月』，与目标 2025-06-l4（2025年6月 GESP C++ 四级）的年月、等级一致；登记来源 git-blob SHA 32d30f90dba97cc941be04cefa80002a1cb16eb1 相符。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题原文『以下哪个选项正确描述了C++中形参和实参的区别？』，站内题干逐字一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图四选项：A『形参是函数调用时传递给函数的具体值，实参是函数定义中声明的变量』、B『形参是函数定义中声明的变量，实参是函数调用时传递给函数的具体值』、C『形参和实参在函数调用时是完全相同的』、D『形参只在函数内部可见，实参在函数外部可见』，与站内顺序、内容一致（仅句末句号差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题为 B（0 起索引 1）；站内 answer=1 对应选项 B，且 B 的表述本身正确（形参在定义处声明、实参在调用处给出）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立区分形参（定义阶段的占位/局部变量）与实参（调用阶段传入的常量、变量或表达式），并逐项指出 A 完全颠倒二者定义、C 混同两个不同概念、D 只谈作用域可见性而非本质区别，结论指向 B，推导成立且与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：DeepSeek 对题干、选项、答案映射与解析的核验结论与本轮独立复核完全一致，未发现遗漏问题，维持网站原数据。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 7 题代码：全局 int value=100；print1 内局部 int value=50，先输出 value 再输出 ::value；print2 输出 value；原卷末尾为裸的 print1(); print2();（无 main 外壳，系代码片段）。站内补 int main(){ print1(); print2(); return 0; } 外壳属保证可编译的等价规范化，未改变变量遮蔽与 :: 的考查语义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图 A. 100 100 100、B. 50 50 50、C. 50 100 100、D. 50 50 100，与站内完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "独立推演：print1 先输出局部 value=50（遮蔽全局），再经 ::value 输出全局 100；print2 无局部遮蔽直接输出全局 100；合计输出 50 100 100，对应选项 C。PDF 第 1 页答案表第 7 题为 C（索引 2），站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析分两段推导：局部变量遮蔽（最近作用域优先）、:: 强制访问全局作用域、print2 直接命中全局变量，得到输出序列 50 100 100，与代码行为一致，并说明了 A/B/D 的错误来源。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核已正确指出 PDF 原卷代码无 main 外壳、站内补壳属等价规范化；本人独立推演输出 50 100 100 与选项 C 一致，维持原数据。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 8 题原文描述：第 1 张牌视为已排序，自第 2 张起每次将新牌插入有序部分的正确位置，直至抓完所有牌，与站内题干语义一致（仅『第 1 张/第 2 张』等空格排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图 A. 冒泡排序、B. 插入排序、C. 选择排序、D. 直接排序，与站内顺序、文字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "『维护有序区、逐个将新元素插入正确位置』是插入排序的定义性特征；PDF 第 1 页答案表第 8 题为 B（索引 1），站内 answer=1 对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析将抓牌过程逐步对应插入排序思想，并排除 A（冒泡靠相邻元素交换）、C（选择靠每轮选最值后交换）、D（『直接排序』非标准算法名），识别与排除均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干抓牌描述、四选项与官方答案 B 的映射均复核一致，解析对插入排序的识别正确。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题原文『以下哪种情况是使用插入排序的合适场景？』，与站内题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图四选项：A『数据量非常大，且乱序严重』、B『希望获得稳定排序，但不要求实时性』、C『数据几乎有序，只需少量调整』、D『想在交换次数最少的前提下排好大数组』，与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "插入排序在数据近乎有序时比较与移动次数大幅减少、复杂度趋近 O(n)，是四个选项中唯一发挥其优势的场景；PDF 第 1 页答案表第 9 题为 C（索引 2），站内 answer=2 对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以最好 O(n)、最坏/平均 O(n²) 为核心论证 C；排除 A（大数据乱序时退化为 O(n²)，应选 O(n log n) 算法）、D（大数组追求最少交换应考虑选择/堆排序）均成立；对 B 以『优势场景而非仅稳定』排除，论证略软但无事实错误，不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案 C 无疑；解析对选项 B 的排除论证偏软，但不构成事实错误，无需修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题原文『以下关于递推算法基本思想的描述，正确的是（ ）。』，与站内题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 原图四选项：A『通过将问题分解为相互独立的子问题来解决』、B『从已知的基础情况出发，通过某种关系逐步推导出更大规模问题的解』、C『通常用于穷举所有可能的解决方案』、D『适用于在每一步做出局部最优选择以达到全局最优』，与站内顺序、语义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "递推 = 初始条件 + 递推关系，自底向上推出更大规模问题的解，对应 B；A 属分治、C 属穷举/枚举、D 属贪心；PDF 第 1 页答案表第 10 题为 B（索引 1），站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以斐波那契数列、阶乘等典型递推例子支撑 B，并把 A/C/D 分别归入分治、穷举、贪心，另说明递推（自底向上、循环实现）与递归（自顶向下、函数自调用）的区别，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：B 为递推本质描述，A/C/D 的归类（分治/穷举/贪心）正确，解析推导完整，与本人独立复核一致。"
+      }
+    ],
+    "summary": "本轮独立复核仅覆盖单选题 6-10。以 PDF 第 1 页答案表（第 6-10 题官方答案依次为 B、C、B、C、B，0 起索引 1、2、1、2、1）及第 2-3 页题面原图逐题比对：五题题干、选项顺序与内容、官方答案映射、解析推导均与站内数据一致，全部 approve，changes 均为空；五题均为单选题，referenceCode 不适用，无编程题故无 tests，unresolved 均为空。Q7 站内将 PDF 裸代码片段补 main 外壳已确认为等价规范化并记录依据。DeepSeek 初核结论全部接受，无需修改任何字段。"
+  }
+}

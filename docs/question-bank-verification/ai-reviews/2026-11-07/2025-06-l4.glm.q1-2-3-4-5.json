@@ -1,0 +1,236 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T15:51:43.492Z",
+  "completedAt": "2026-11-16T15:56:10.500Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50503,
+    "completion_tokens": 13033,
+    "total_tokens": 63536,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10634
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01409195,
+      "allowance": 0.01409195,
+      "tokens": {
+        "input": 50503,
+        "output": 13033,
+        "reasoning": 10634,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头页图显示 CCF 编程能力等级认证（GESP，Grade Examination of Software Programming）、C++ 四级、2025 年 06 月，与目标 2025-06-l4（2025 年 6 月、四级）一致；来源 git-blob SHA 32d30f90dba97cc941be04cefa80002a1cb16eb1 已校验。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题原文为：在C++中，声明一个指向整型变量的指针的正确语法是（ ）。页图与文本层一致，与网站题干相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页页图选项依次为 A. int* ptr;、B. *int ptr;、C. int ptr*;、D. ptr int;，内容与顺序和网站 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第1题标为 A，按 A=0 映射为 0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：int* ptr; 为合法指针声明，其余三项均违反声明语法。网站解析结论为 A，关于星号属于声明符、int* a, b 中 a 为指针 b 为 int 的歧义说明等均无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对第1页页图与答案表，题干、选项顺序、答案 A 均与网站一致；解析围绕指针声明语法展开，无事实错误，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页页图第2题题干为接收 3 行 4 列二维数组的函数、横线上不能填写哪项；代码 void printArray(________)、双重循环 i<3、j<4、std::cout << arr[i][j] 与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. int arr[3][4]、B. int arr[][4]、C. int (*arr)[4]、D. int** arr，与网站 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题标为 D，映射 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：二维数组作形参退化为 int(*)[4]，第二维不可省略，int** 与连续存放的二维数组类型不兼容会编译报错，故 D 不能填。网站解析结论与推导一致，并正确提示 (*arr) 括号优先级问题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：页图代码与四个选项同网站一致，答案表为 D；解析关于数组退化与 int** 不兼容的推导独立成立，无需修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页页图第3题题干为 int arr[3][4] 与 int* arr = new int[12] 均可模拟 3 行 4 列二维数组、选错误说法，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A-D 依次为：栈上分配适合较小数组；堆上分配较大数组也适用；两种方式内存均连续；两种方式内存均能自动释放。仅行尾标点（分号/句号）与网站略有差异，语义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题标为 D，映射 3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：栈上局部数组离开作用域自动回收，new[] 申请的堆内存不会自动释放、必须 delete[]，故 D 说法错误。网站解析与此一致，new/delete 与 new[]/delete[] 配对等提醒无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表为 D；解析对栈自动释放与堆内存需手动 delete[] 的区分正确，选项仅标点差异可忽略，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在第1页末行：关于以下 C++代码，说法正确的是（ ）。代码与选项在第2页页图：int main() 先调用 greet() 并 return 0;，void greet() 定义在其后输出 Hello!，与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图选项依次为：A. 正确编译并输出 Hello!；B. 编译错误：找不到函数 greet()；C. 编译警告但可以运行；D. 链接错误。与网站 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第4题标为 B，映射 1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析中“函数定义本身不是声明”与 C++ 规则不符（函数定义兼有声明作用，只是可见性从定义出现的位置开始），且“在定义之前调用（此时定义本身充当声明）”表述自相矛盾；已在 changes 提供修正稿，答案结论仍为 B（调用点之前无任何声明导致编译错误，非链接错误），修正稿事实表述已独立复核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（编译错误：找不到函数 greet()）**\n\n**核心解析：**\nC++ 要求名字在首次使用之前已被声明或定义，且不支持隐式函数声明。编译器按源码顺序处理：处理 `main` 中的 `greet()` 调用时，此前尚未出现 `greet` 的任何声明或定义，`greet` 是未声明的标识符，编译阶段直接报错。\n\n需要澄清的是：函数定义本身兼有声明作用，但其可见性从定义出现的位置才开始；把定义写在调用之后，无法为之前的调用提供声明。修复方法有两种：把 `greet` 的定义移到 `main` 之前，或在 `main` 之前添加函数原型 `void greet();`。\n\n**选项逐项分析：**\n- **A 正确编译并输出 Hello!**：❌ 错误。调用点处 `greet` 尚未声明，编译无法通过。\n- **B 编译错误：找不到函数 greet()**：✅ 正确。调用时 `greet` 未声明，触发编译错误。\n- **C 编译警告但可以运行**：❌ 错误。未声明的函数调用是编译错误而非警告，不会生成可执行文件。\n- **D 链接错误**：❌ 错误。链接错误通常发生在有声明但缺少定义等情形；本题属于编译阶段的标识符未声明错误。\n\n**易错提醒：**\n- 不能笼统地说“函数定义不是声明”：定义兼有声明作用，只是该声明可见的起点是定义所在位置。\n- 区分两类错误：调用点之前无任何声明属于编译错误；有声明但整个程序缺少函数体才可能导致链接错误。\n\n**考点：** 函数的声明与定义、名字可见性顺序"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的 needs_fix 判定并采纳其修复：原解析“函数定义本身不是声明”确为事实错误（C++ 中函数定义兼有声明作用，仅可见性起点不同），“在定义之前调用（此时定义本身充当声明）”亦自相矛盾；独立复核修正稿后确认结论仍为 B、表述无误，故 explanation 修复后标 verified，需将修正稿应用到网站数据。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页页图第5题原文：在C++中，如果希望通过函数修改传入的结构体对象的内容，应该使用哪种参数传递方式? 与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次为 A. 值传递或引用传递、B. 值传递或指针传递、C. 引用传递或指针传递、D. 仅指针传递，与网站 options 内容及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题标为 C，映射 2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：值传递只修改副本，引用传递与指针传递均能作用于原结构体对象，故 C 正确、D 过于绝对。网站解析与此一致，const Type& 只读场景等提醒无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：第2页题干与选项、答案表 C 均与网站一致；解析对值/引用/指针三种传参方式的区分正确，无需修改。"
+      }
+    ],
+    "summary": "本次仅复核第1-5题（其余题目按要求不输出、不核验）。官方答案表（PDF 第1页页图与文本层一致）显示单选 1-5 题为 A、D、D、B、C，按 0 起始映射为 0/3/3/1/2，与网站 answer 全部一致；五题题面、选项、代码均与页图逐字对应，未发现漏项或顺序错位。唯一实质问题是第4题解析中“函数定义本身不是声明”的事实性错误及前后矛盾表述，已提供完整修正稿并复核通过（答案不变为 B），该题 verdict 为 revise；第1、2、3、5 题无需改动，verdict 均为 approve。五题均为单选题，referenceCode 不适用，无编程题故无 tests；无未决争议。"
+  }
+}

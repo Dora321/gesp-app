@@ -1,0 +1,224 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T16:05:46.908Z",
+  "completedAt": "2026-11-16T16:07:33.817Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33824,
+    "completion_tokens": 9501,
+    "total_tokens": 43325,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8220
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0107742,
+      "allowance": 0.00646452,
+      "tokens": {
+        "input": 33824,
+        "output": 9501,
+        "reasoning": 8220,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头为“CCF 编程能力等级认证 C++ 四级 2025 年 06 月”，与 paperId 2025-06-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第1题题干为“下面 C++ 代码正确声明了一个返回 int 类型、接受两个 int 参数的函数”，代码为 `int add(int, int);`，与站内题意一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1项为√，对应正确；站内 answer=0，映射一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：函数声明可省略形参名，返回类型与两个形参类型均完整，故 `int add(int, int);` 合法；解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题代码为 `foo(int x)` 内执行 `x += 5`，`main` 中 `int a=10; foo(a); cout<<a<<endl;`，站内代码字段与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2项为×；值传递不会改变 `a`，输出 10 而非 15，站内 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：形参 `x` 是值传递副本，函数内修改不影响实参 `a`，故输出 10；解析正确指出引用或指针才可修改原变量。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5—6页判断题第3题给出 `Library` 内嵌 `Book`、`Book` 内嵌 `Author` 的结构体代码，站内嵌套主体与题目判断语义一致；代码跨页，末尾 `};` 在第6页。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第3项为×；C++ 允许结构体嵌套定义，题干“语法不正确”为假，站内 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：嵌套类型仅引入作用域层级，`Book`、`Author` 定义及成员使用合法；解析对作用域、内存布局及自包含成员限制的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第4题表述为引用传递相比值传递可直接操作原始变量、避免数据拷贝并提高效率，与站内题意一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4项为√；站内 answer=0 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：引用形参绑定实参本身，可修改原变量且避免大对象拷贝；解析结论正确，补充的 `const T&` 与空值语义说明合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第5题代码为 `int arr[2][3] = {{1, 2}, {3}};`，题干称其不合法，站内题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定选项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第5项为×；二维数组未显式写出的元素会补 0，该初始化合法，站内 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：`{{1,2},{3}}` 等价于 `{{1,2,0},{3,0,0}}`；解析对补零、内层花括号数量及局部数组未初始化值的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核题号 16—20。五题题干、代码主体、判断题答案表映射及解析均与 PDF 第5—6页一致，未发现需修正项；判断题的 options 与 referenceCode 维度不适用，故未作无意义改写。"
+  }
+}

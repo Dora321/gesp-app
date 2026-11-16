@@ -1,0 +1,235 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T19:57:27.760Z",
+  "completedAt": "2026-11-16T19:59:45.738Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 50319,
+    "completion_tokens": 12229,
+    "total_tokens": 62548,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10151
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01366235,
+      "allowance": 0.01366235,
+      "tokens": {
+        "input": 50319,
+        "output": 12229,
+        "reasoning": 10151,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『C++ 四级 / 2025 年 06 月』，与 2025-06-l4 的年份（2025）、月份（6）、等级（四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 6 题题干：『以下程序中使用了递推方式计算阶乘（n! = 1×2…×n），计算结果正确。』并附 factorial 代码（res 初值 1，for 从 i=0 起 res *= i）。网站题干与代码逐行一致，仅将括号内的定义式简写为 $n!$，属不改变题意的等价简化。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的『正确/错误』两标签，PDF 未给出选项列表，选项顺序核验不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 题为 ×（错误=1）；网站 answer=1 一致。独立推导：i 从 0 开始，首轮 res *= 0 使 res 恒为 0，n≥1 时返回 0 而非阶乘，『计算结果正确』不成立，应判错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出乘 0 归零、循环应改为从 1 开始、累乘初值应为 1，以及 13! 超出 int 范围需 long long，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序；题干代码片段已在 statement 维度逐行核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核对题干、答案、解析的核验与我的独立推导一致；定义式简写不构成漏必要内容，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页页图公式显示判断题第 7 题原文为『无论初始数组是否有序、选择排序都执行 O(n²) 次比较』；网站误将 O(n²) 替换为精确计数 $n(n-1)/2$，两式虽同为真但属实质性改写而非排版等价转换。changes 已按原卷恢复为 $O(n^2)$，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的『正确/错误』两标签，PDF 未给出选项列表，选项顺序核验不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 7 题为 √（正确=0）；网站 answer=0 一致。选择排序比较次数固定为 (n-1)+(n-2)+…+1 = n(n-1)/2 = O(n²)，与初始顺序无关，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析推导比较次数固定 n(n-1)/2、交换次数不固定、与插入排序近乎有序时降近 O(n) 的对比均正确；恢复 O(n²) 表述后解析仍完全支撑结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序。"
+          }
+        },
+        "changes": {
+          "question": "无论初始数组是否有序，选择排序都执行 $O(n^2)$ 次比较。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的修改：独立核对 PDF 第 6 页页图确为 O(n²) 次比较，网站写成精确次数 n(n-1)/2 属实质性改写；恢复原卷表述的修复必要且充分，已采纳。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 8 题引导语后附完整选择排序代码（外层固定 i、内层在 [i+1,n) 找 minIndex、minIndex≠i 时 swap）；网站 question 字段已包含与 PDF 逐行一致的该代码，无缺失。初核所称『网站缺少待判断代码』与网站实际数据不符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的『正确/错误』两标签，PDF 未给出选项列表，选项顺序核验不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 8 题为 √（正确=0）；网站 answer=0 一致。该代码每轮选出未排序区最小值放到 arr[i]，确为选择排序，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对选择排序判定、与冒泡（相邻交换）/插入（移动插入）的区别、swap 导致不稳定的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序；题干代码片段已在 statement 维度逐行核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "否决初核的修改：初核称网站缺少待判断代码，但网站 question 字段实际已含与 PDF 逐行一致的选择排序代码，其 proposed question 与现有内容完全相同，属基于错误前提的无效操作，不予采纳；本题无需任何变更。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 9 题原文：『如果一个异常在 try 块中抛出但没有任何 catch 匹配，它将在编译时报错。』网站题干一致（反引号排版等价）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的『正确/错误』两标签，PDF 未给出选项列表，选项顺序核验不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 9 题为 ×（错误=1）；网站 answer=1 一致。catch 匹配在运行期发生，无匹配时异常沿调用栈传播并触发 std::terminate 终止，绝非编译错误，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分编译期错误与运行期错误，指出 std::terminate、异常沿栈传播及 catch(...) 兜底须置于最后的细节，推导无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、答案、解析核验一致，无需修改。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 10 题题干『下面C++代码实现将 Hello 写入 data.txt』及三行代码 ofstream out(\"data.txt\"); out << \"Hello\"; out.close();；网站题干与代码逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的『正确/错误』两标签，PDF 未给出选项列表，选项顺序核验不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 10 题为 √（正确=0）；网站 answer=0 一致。ofstream 以写方式打开（不存在则创建、存在默认截断），<< 写入 Hello，close() 刷盘，代码确将 Hello 写入 data.txt，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析关于默认 ios::out|ios::trunc、追加需 ios::app、打开失败应检查 if(!out)、析构亦会关闭文件等说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序；题干代码片段已在 statement 维度逐行核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、代码、答案、解析核验一致，无需修改。"
+      }
+    ],
+    "summary": "本次独立复核判断题第 6–10 题（站点题号 21–25，正文在 PDF 第 6 页，官方答案表在 PDF 第 5 页：× √ √ × √，对应 1/0/0/1/0，与网站 answer 全部一致）。id 21/24/25 题干、代码、答案与解析均与原卷一致，approve；id 22 原卷（页图公式）为『选择排序都执行 O(n²) 次比较』，网站误写为精确次数 n(n-1)/2，属实质性改写，已提供恢复原卷表述的修改（修复后核验通过），revise；id 23 初核所称『网站缺少待判断代码』与事实不符——question 字段已含与 PDF 逐行一致的选择排序代码，其修改被否决，本题无变更、approve。无未决事项。"
+  }
+}

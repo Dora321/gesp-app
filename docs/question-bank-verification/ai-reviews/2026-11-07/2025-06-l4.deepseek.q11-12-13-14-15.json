@@ -1,0 +1,247 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T16:00:27.904Z",
+  "completedAt": "2026-11-16T16:02:25.041Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33824,
+    "completion_tokens": 16294,
+    "total_tokens": 50118,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13292
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01485,
+      "allowance": 0.00891,
+      "tokens": {
+        "input": 33824,
+        "output": 16294,
+        "reasoning": 13292,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证”“C++ 四级”“2025 年 06 月”，与 2025-06-l4 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干为“给定如下算法，其时间复杂度为（ ）”，代码 `bool f(int arr[], int n, int target)`、双层 `for` 循环及 `i & (1 << j)` 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页选项依次为 A. O(n)、B. O(n²)、C. O(n³)、D. O(2ⁿ)，与网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第11题为 B；0-based 索引为 1，网站 `answer=1`。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立统计双层循环在最坏情况下的 n×n 次内层迭代，并说明 `if` 不改变循环次数，排除 O(2ⁿ) 干扰，与官方 B 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页末为第12题题干，PDF第4页代码 `int fibonacci(int n)` 及两个边界返回、`fibonacci(n-1)+fibonacci(n-2)` 递归调用与网站一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页原图选项为 A. O(n)、B. O(n²)、C. O(n³)、D. O(2ⁿ)；网站 C 误作 `$O(log n)$`，与官方 O(n³) 不符。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第12题为 D；0-based 索引为 3，网站 `answer=3`。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析按网站错误选项 C=O(log n) 展开，并将“对数级增长”描述为极快，与官方 C=O(n³) 及数学事实不符；需按官方选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {
+          "options": [
+            "$O(n)$",
+            "$O(n^2)$",
+            "$O(n^3)$",
+            "$O(2^n)$"
+          ],
+          "explanation": "**答案：D（$O(2^n)$）**\n\n**核心解析：**\n设 $T(n)$ 为计算 `fibonacci(n)` 的基本操作次数。边界 $T(0)=T(1)=O(1)$；当 $n\\ge 2$ 时，函数进行两次递归调用并相加：$T(n)=T(n-1)+T(n-2)+O(1)$。该递推的增长阶为 $\\Theta(\\varphi^n)$，其中 $\\varphi=(1+\\sqrt{5})/2\\approx1.618$。因为 $\\varphi<2$，所以可用指数上界 $O(2^n)$ 表示；本题四个选项中只有 D 是指数级。\n\n**选项逐项分析（按官方顺序）：**\n- **A $O(n)$**：❌ 只有线性迭代或记忆化后才是线性级。\n- **B $O(n^2)$**：❌ 多项式级，低于递归树的指数增长。\n- **C $O(n^3)$**：❌ 多项式级，同样不符合递归调用次数的量级。\n- **D $O(2^n)$**：✅ 正确。递归调用树节点数呈指数级增长，标准答案取 $O(2^n)$ 作为上界。\n\n**易错提醒：**\n- 本题没有记忆化，`fibonacci(n-1)` 与 `fibonacci(n-2)` 会反复展开相同子问题。\n- 更精确的阶是 $\\Theta(\\varphi^n)$，但 $O(2^n)$ 仍是合法且符合选项的指数级上界。\n\n**知识延伸：**\n若加入记忆化或改为自底向上递推，时间复杂度可降为 $O(n)$。\n\n**考点：** 递归算法的时间复杂度分析。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干及代码使用 `ifstream in(\"data.txt\")`、`getline(in, line)` 和 `cout << line`，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页四个选项分别对应：标准输入读取、getline 只能读 cin、读取 data.txt 并输出、创建并写入默认文本；网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第13题为 C；0-based 索引为 2，网站 `answer=2`。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 `ifstream` 与 `cin`，说明 `getline` 可作用于任意输入流，并指出 `ofstream` 才用于写入，能独立得出 C。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为“在C++中，异常处理机制（try-catch块）的主要目的是（ ）”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项依次为提高运行速度、结构化处理运行时错误、确保编译无错、减少内存占用；网站四项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第14题为 B；0-based 索引为 1，网站 `answer=1`。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析从运行时错误、try/catch 分离错误处理逻辑及异常沿调用栈传播三方面说明目的，与官方 B 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第4页题面代码为 `bool flag;` 加两处空白横线；网站题面已填入 `bool flag = false;` 和 `flag = true;`，既改变原题又提前泄露答案。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF第5页官方顺序为 A. false,false；B. false,true；C. true,false；D. true,true。网站顺序为 A. true,false；B. false,true；C. true,true；D. false,false，A、C、D 位置与官方不一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表第15题为 B；0-based 索引为 1，网站 `answer=1`，修正官方选项顺序后正确项仍在索引 1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现解析按网站错误选项顺序逐项标号，并沿用题面已填答案；需按官方选项顺序重写，且说明 `flag` 用于记录本轮是否发生交换。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {
+          "question": "为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n```cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n    for (int i = nums.size() - 1; i > 0; i--) {\n        bool flag;\n        ________________    // 在此处填入代码\n        for (int j = 0; j < i; j++) {\n            if (nums[j] > nums[j + 1]) {\n                swap(nums[j], nums[j + 1]);\n                ___________________________    // 在此处填入代码\n            }\n        }\n        if (!flag)\n            break;\n    }\n}\n```",
+          "options": [
+            "flag = false; flag = false;",
+            "flag = false; flag = true;",
+            "flag = true; flag = false;",
+            "flag = true; flag = true;"
+          ],
+          "explanation": "**答案：B（`flag = false; flag = true;`）**\n\n**核心解析：**\n`flag` 用来记录本轮内层循环是否发生过交换。每轮开始时先置为 `false`；一旦发生交换就置为 `true`。内层循环结束后若 `flag` 仍为 `false`，说明本轮没有交换，数组已有序，可执行 `break` 提前结束。\n\n**选项逐项分析（按官方顺序）：**\n- **A `flag = false; flag = false;`**：❌ 第二处永远不置真，第一轮结束后 `!flag` 为真，通常会直接 `break`，数组尚未排完。\n- **B `flag = false; flag = true;`**：✅ 正确。每轮先假设没有交换，发生交换才置真；本轮无交换时提前结束。\n- **C `flag = true; flag = false;`**：❌ 逻辑相反。若本轮发生交换反而置假并触发 `break`；若无交换则保持真而不结束，既可能排不完，也没有正确实现优化。\n- **D `flag = true; flag = true;`**：❌ `flag` 始终为真，`!flag` 恒假，提前结束优化永远不生效。\n\n**易错提醒：**\n- 横线 1 是每轮开始前的初始化，必须重置为 `false`；横线 2 只在发生交换时置为 `true`。\n- 两个位置不能写反；写反后，发生交换与提前结束的条件会相反。\n\n**知识延伸：**\n带标志的冒泡排序在数组已有序时可只扫描一趟，最好情况为 $O(n)$，最坏和平均仍为 $O(n^2)$，额外空间为 $O(1)$。\n\n**考点：** 冒泡排序的 Flag 提前结束优化。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次只核验第11—15题：第11、13、14题五维与官方页图及答案表一致；第12题代码、答案正确，但选项 C 应为 O(n³) 而非 O(log n)，解析需按官方选项重写；第15题答案索引正确，但题面已填入答案、选项顺序与官方不一致，需修正题面、选项和解析。五题 officialAnswer 与网站 answer 均一致。"
+  }
+}

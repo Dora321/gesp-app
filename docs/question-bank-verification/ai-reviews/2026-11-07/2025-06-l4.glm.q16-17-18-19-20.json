@@ -1,0 +1,236 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T16:07:33.822Z",
+  "completedAt": "2026-11-16T16:10:01.532Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49965,
+    "completion_tokens": 7981,
+    "total_tokens": 57946,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5667
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01148525,
+      "allowance": 0.01148525,
+      "tokens": {
+        "input": 49965,
+        "output": 7981,
+        "reasoning": 5667,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP / C++ 四级 / 2025 年 06 月』，与 paperId 2025-06-l4 对应；本批题目出自第 5 页判断题答案表与第 5—6 页判断题题面。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。独立重推：`int add(int, int);` 含返回类型、函数名与两个形参类型且以分号结尾，形参名可省略，是合法函数声明，官方答案表第 1 格为 √（正确），与站内 answer=0 一致；初核对各维的判定经独立核对无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 1 题题干『下面C++代码正确声明了一个返回 int 类型、接受两个 int 参数的函数。』及代码行 `int add(int, int);`，与站内 question 完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷面不印选项列表，站内固定『正确/错误』两项为平台格式，不属于单选 options 核验对象。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 1 格为 √，按 正确=0 映射为 0；独立推导亦为『正确』（声明合法）；站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：函数原型只需返回类型+函数名+形参类型，形参名可省略而类型不可省；带分号即为声明、缺分号才构成定义开头。解析结论及易错点说明与此相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。独立重推：形参 `int x` 为值传递副本，`x += 5` 不影响实参，`cout << a` 输出 10 而非 15，故『输出是 15』为假，官方答案表第 2 格为 ×，与站内 answer=1 一致；初核判定无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 2 题题干『下面C++代码的输出是 15 。』及 8 行代码（foo 内 `x += 5`，main 中 `int a=10; foo(a); cout<<a<<endl;`）与站内 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷面不印选项列表，站内固定『正确/错误』两项为平台格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页答案表第 2 格为 ×，按 错误=1 映射为 1；独立推导（输出 10）支持『错误』；站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：值传递复制实参，函数改副本不改原变量，须改为引用 `int &x` 或指针方可修改；解析正确指出输出为 10，并准确区分值/引用/指针传递。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论，并补充一点初核未提及的事实：站内题面代码省略了原卷开头的 `#include <string>`、`#include <vector>` 与 `using namespace std;` 三行样板，但 Library/Book/Author 全部嵌套定义与成员使用逐行完整保留，省略部分与本题主旨（嵌套定义是否合法）无交互，属不改变含义的等价转换，不列为问题。独立重推：嵌套结构体定义合法，『语法不正确』为假，官方答案表第 3 格为 ×，与站内 answer=1 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5—6 页判断题第 3 题题干一致；代码共 20 行跨两页（第 5 页 1—19 行，第 6 页第 20 行 `};`），站内保留了全部嵌套结构体主体，仅省略 include/using 样板行，不影响题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷面不印选项列表，站内固定『正确/错误』两项为平台格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页答案表第 3 格为 ×，按 错误=1 映射为 1；独立推导：C++ 允许结构体嵌套定义（内层类型引入作用域，不占外层存储），题干说法为假；站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：嵌套定义合法、可用 `Library::Book` 等限定名访问、类型声明不影响 Library 内存布局、自包含成员 `Node next;` 非法而 `Node *next;` 合法等说明均正确，与原卷含头文件的完整代码可编译这一事实相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论，并补充：原卷第 6 页该题原文为『……使用引用传递作的优点可以直接操作和修改原始变量……』，其中『传递作的优点…可以』系原卷病句/脱字；站内顺句为『使用引用传递的优点是可以直接操作和修改原始变量』，为不改变命题含义的等价整理。独立重推：引用传递绑定实参本身，可修改原变量且免拷贝，说法为真，官方答案表第 4 格为 √，与站内 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题表述与站内题意一致；站内对原卷『使用引用传递作的优点可以直接操作』的病句做了顺句（『的优点是可以直接操作』），语义未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷面不印选项列表，站内固定『正确/错误』两项为平台格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页答案表第 4 格为 √，按 正确=0 映射为 0；独立推导支持『正确』；站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：`T &x` 形参是实参别名，修改直接作用于原变量且省去拷贝开销；只读场景用 `const T&`、引用不可为空等补充说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核结论。独立重推：`int arr[2][3] = {{1, 2}, {3}};` 属部分初始化，未写出的元素按零初始化补全，内层花括号元素数可少于列数，代码合法，『不合法』说法为假，官方答案表第 5 格为 ×，与站内 answer=1 一致；初核判定无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题题干『下面这段代码不合法，因为每一行都必须显式初始化3个元素。』及代码 `int arr[2][3] = {{1, 2}, {3}};` 与站内一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷面不印选项列表，站内固定『正确/错误』两项为平台格式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页答案表第 5 格为 ×，按 错误=1 映射为 1；独立推导（部分初始化合法、缺失元素补 0）支持『错误』；站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：`{{1,2},{3}}` 等价于 `{{1,2,0},{3,0,0}}`；内层花括号可少于列数但不可多于；不带内层花括号的扁平初始化按行填充、含义不同；未初始化的局部数组值不确定——各项说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅复核题 16—20（判断题 1—5）。依据 PDF 第 5 页判断题答案表『√ × × √ ×』逐格重读，官方答案映射为 0/1/1/0/1，与站内 answer 全部一致；题干与代码对照第 5—6 页逐行核对：16、17、20 题完全一致，18 题站内省略 include/using 样板行（嵌套定义主体完整、不影响判断语义），19 题站内对原卷病句做等价顺句，均不改变命题含义与答案。五题解析均经独立推导（声明合法性、值传递不改实参、嵌套结构体合法、引用传递优点、二维数组部分初始化补零）确认无误，五维记录完整，无需要修改项；判断题的 options 与 referenceCode 维度不适用。"
+  }
+}

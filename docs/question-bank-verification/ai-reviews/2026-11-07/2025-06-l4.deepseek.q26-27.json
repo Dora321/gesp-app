@@ -1,0 +1,164 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T19:59:45.743Z",
+  "completedAt": "2026-11-16T20:04:38.038Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33818,
+    "completion_tokens": 26261,
+    "total_tokens": 60079,
+    "prompt_tokens_details": {
+      "cached_tokens": 33664
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 24060
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01588069,
+      "allowance": 0.00952842,
+      "tokens": {
+        "input": 154,
+        "output": 26261,
+        "reasoning": 24060,
+        "cache_read": 33664,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "31c2c3503a330938f51a236bb07c2adb3a2e7c4aa3749b2a53846d345826cc37",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP”“C++ 四级”“2025 年 06 月”，与 paperId 2025-06-l4 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 6—7 页的题目描述、输入格式、输出格式和两组样例与当前题面主体一致；但 PDF 第 6 页标明“时间限制：1.0 s，内存限制：512.0 MB”，第 7 页有数据范围“1≤h,w≤100，1≤x1≤x2≤h，1≤y1≤y2≤w”，当前 question 均未收录。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案；PDF 答案表仅覆盖客观题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析中 1-based 转 0-based、闭区间行列为 [x1-1,x2-1]×[y1-1,y2-1]、逐字符输出且行末换行的推导正确；样例 1 得到 >_<，样例 2 得到 Cd/hI，与 PDF 一致；时间与空间复杂度推导未见错误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态逐行核对当前参考代码（未实际编译运行）：读取 H,W 和 x1,x2,y1,y2 的顺序正确，vector<string> 按行读取可见字符串正确，切片边界 x1-1..x2-1、y1-1..y2-1 正确，每行内层循环后换行；在 1≤h,w≤100 范围内无越界与溢出问题，算法复杂度为 O(hw)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 四级] 画布裁剪\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小 A 在高为 $h$ 宽为 $w$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 $h$ 行 $w$ 列的字符矩阵，其中的字符均为 ASCII 码位于 $33 \\sim 126$ 之间的可见字符，小 A 只保留画布中由第 $x_1$ 行到第 $x_2$ 行、第 $y_1$ 列到第 $y_2$ 列构成的子矩阵。\n\n小 A 将画布交给了你，你能帮他完成画布的裁剪吗？\n\n## 输入格式\n\n第一行，两个正整数 $h, w$，分别表示画布的行数与列数。\n\n第二行，四个正整数 $x_1, x_2, y_1, y_2$，表示保留的行列边界。\n\n接下来 $h$ 行，每行一个长度为 $w$ 的字符串，表示画布内容。\n\n## 输出格式\n\n输出共 $x_2 - x_1 + 1$ 行，每行一个长度为 $y_2 - y_1 + 1$ 的字符串，表示裁剪后的画布。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le h,w \\le 100$，$1 \\le x_1 \\le x_2 \\le h$，$1 \\le y_1 \\le y_2 \\le w$。"
+        },
+        "tests": [
+          {
+            "name": "最小画布与最小裁剪区域",
+            "input": "1 1\n1 1 1 1\n!",
+            "output": "!",
+            "reason": "h=w=1，x1=x2=y1=y2=1，唯一字符 '!'（ASCII 33）必须保留；按 1-based 转 0-based 后取 canvas[0][0]。"
+          },
+          {
+            "name": "末行末列与闭区间",
+            "input": "3 4\n2 3 4 4\nabcd\nefg~\nijk~",
+            "output": "~\n~",
+            "reason": "保留第 2 至第 3 行、第 4 列。按题意含边界，应取每行最后一个字符；两行第 4 列均为 '~'（ASCII 126），独立推导输出两行。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 8—9 页的题目描述、输入输出格式和两组样例与当前题面主体一致；但 PDF 第 8 页标明“时间限制：1.0 s，内存限制：512.0 MB”，第 9 页有数据范围“1≤n≤3000，0≤h_i,w_i≤10^9”，当前 question 均未收录。另 PDF 输入格式写“每行两个正整数”，而样例 2 与数据范围允许 0，源卷自身存在表述冲突，当前题面沿用了“正整数”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案；PDF 答案表仅覆盖客观题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立按“身高降序、同身高体重降序、仅相邻交换”推导：最少相邻交换数等于相对目标顺序的严格逆序对数；样例 1 逐对统计为 8，与 PDF 输出一致；相等关键字不交换的说明正确；O(n^2) 方法在 n≤3000 下可接受。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态逐行核对当前参考代码（未实际编译运行）：compare 正确实现双关键字严格降序，bubbleSort 仅在后者严格优于前者时交换并计数，等价元素不交换；swaps 最大约 3000×2999/2=4,498,500，int 足够；h_i,w_i≤1e9，int 足够；n≤3000 时 O(n^2) 可接受，未发现越界或溢出问题。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202506 四级] 排序\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n体育课上有 $n$ 名同学排成一队，从前往后数第 $i$ 位同学的身高为 $h_i$，体重为 $w_i$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示队伍人数。\n\n接下来 $n$ 行，每行两个正整数 $h_i$ 和 $w_i$，分别表示第 $i$ 位同学的身高和体重。\n\n## 输出格式\n\n输出一行，一个整数，表示最少需要的交换次数。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n \\le 3000$，$0 \\le h_i,w_i \\le 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "最小人数与数值上界",
+            "input": "1\n1000000000 1000000000",
+            "output": "0",
+            "reason": "n=1 时不存在相邻交换，期望 0；同时取 h_i=w_i=10^9，验证 int 范围内上界读取与比较。"
+          },
+          {
+            "name": "相等关键字不重复计数",
+            "input": "3\n2 10\n1 5\n2 10",
+            "output": "1",
+            "reason": "目标顺序为 (2,10),(2,10),(1,5)。初始序列中只有 (1,5) 与后一个 (2,10) 构成一次严格逆序，两个相同的 (2,10) 不应产生交换，故独立推导为 1。"
+          },
+          {
+            "name": "同身高按体重降序",
+            "input": "4\n2 10\n1 5\n2 5\n1 10",
+            "output": "2",
+            "reason": "目标顺序为 (2,10),(2,5),(1,10),(1,5)。初始序列相对目标顺序的严格逆序对为 2，分别涉及 (1,5) 越过 (2,5) 与 (1,10)；同身高、同体重之外按体重降序，独立推导答案为 2。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第 8 页输入格式写“每行两个正整数 h_i 和 w_i”，但第 8 页样例 2 出现 0，第 9 页数据范围又允许 0≤h_i,w_i≤10^9；本次保留原文“正整数”和官方数据范围，不擅自将表述改为“非负整数”，待官方澄清。"
+        ]
+      }
+    ],
+    "summary": "仅核验题号 26、27。PDF 卷头为 GESP C++ 四级 2025 年 06 月，与 paperId 相符。两题参考程序经静态推导未见算法错误，期望测试均按题意独立计算，未声称实际编译运行。两题题面均漏收 PDF 中的 1.0 s/512.0 MB 限制和数据范围，已给出补全草稿；Q27 还存在官方“正整数”与样例/数据范围允许 0 的源卷矛盾，保留待核。"
+  }
+}
