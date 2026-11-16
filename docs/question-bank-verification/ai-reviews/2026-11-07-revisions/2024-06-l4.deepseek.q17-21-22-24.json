@@ -1,0 +1,194 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    17,
+    21,
+    22,
+    24
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:57:11.013Z",
+  "completedAt": "2026-11-16T11:00:33.969Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21572,
+    "completion_tokens": 19614,
+    "total_tokens": 41186,
+    "prompt_tokens_details": {
+      "cached_tokens": 21504
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 17846
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01184311,
+      "allowance": 0.00710587,
+      "tokens": {
+        "input": 68,
+        "output": 19614,
+        "reasoning": 17846,
+        "cache_read": 21504,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5cc71beb7c2698fc639fecbbaacb49302d684010a413838a9c071428e722af2c",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“C++ 四级 2024 年 06 月”，与 paperId 2024-06-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第2题题干为“以下代码不能够正确执行。”；代码含#include<iostream>、using namespace std;、int main(){ int a=20; int& ra; ra=&a; cout<<ra<<endl; }，候选 question 字段逐行一致。独立 code 字段仍缺首行#include<iostream>，见 changes.code。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 单选选项；PDF 答案表以√/×表示，网站以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第2格为√，按正确=0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：int& ra; 未初始化即违反引用必须绑定对象的规则，无法通过编译；ra=&a; 即使先绑定，也把 int* 赋给 int，类型错误。故“不能够正确执行”成立，解析结论与官方√一致。解析未依赖运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "code": "#include<iostream>\nusing namespace std;\nint main()\n{\n    int a=20;\n    int& ra;\n    ra=&a;\n    cout<<ra<<endl;\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第6题原文为“函数参数传递过程中，如果传常量值、常量引用和常量指针都是不能被修改的，它们可以防止函数对实参的值或地址进行修改。”候选题干与其一致，仅存在不影响含义的标点差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 单选选项；PDF 答案表以√/×表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第6格为√，按正确=0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：const 值形参、const 引用形参、指向常量的指针形参在函数体内都不能通过该形参改写。const 值形参保护的是副本，不能借此改实参，解析的易错提醒已明确这一点；题干按整体效果判√，与官方答案一致。“常量指针”存在 const int* 与 int* const 的常见术语歧义，但解析已区分两种形式并按题意说明，不影响答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题第7题题干为“下面代码输出的值等于0。”；代码在PDF第9页，含#include<iostream>、using namespace std;、int *p=NULL;、cout<<p<<endl;，候选 question 与独立 code 字段均已完整一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 单选选项；PDF 答案表以√/×表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第7格为√，按正确=0，候选 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：p 为空指针时，cout<<p 插入的是指针值；按官方命题语义空指针值为0，故判√。解析已正确区分输出 p 与解引用 *p，并说明 nullptr 与 NULL 的差异；标准层面指针输出格式由实现定义，解析也提示了格式差异，不构成答案错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第9题原文为“一个一维数组，至少含有一个自然数N，是一个合法的数列。可以在一维数组末尾加入一个自然数M，M不能超过一维数组末尾元素的一半，形成一个新的合法的一维数组，如果N=6，那么可以有6个不同的合法数组。”候选题干与其一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无 A-D 单选选项；PDF 答案表以√/×表示。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第9格为√，按正确=0，候选 answer=0 一致；独立枚举得 [6]、[6,1]、[6,2]、[6,2,1]、[6,3]、[6,3,1] 共6个，验证√成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修订后的解析已纠正原“末尾为2即终止”的错误：末尾为1时⌊1/2⌋=0才终止，末尾为2时仍可追加1。独立递推 f(1)=1、f(2)=2、f(3)=2、f(6)=1+f(1)+f(2)+f(3)=6，与枚举一致。解析明确 M 取正整数是该题按官方√计数6的必要解释；若允许0会无限延伸，此说明成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "四题分别对应2024年6月C++四级判断题第2、6、7、9题，PDF第8页答案表均为√，候选 answer=0 均正确。题面与PDF一致；id24修订后的终止条件、枚举与递推计数正确；id22独立代码字段已完整。发现id17独立 code 字段仍缺#include<iostream>，已在 changes.code 补全。id21“常量指针”术语和id22指针输出格式存在术语或实现层面的说明空间，但不影响官方答案，未发现答案冲突。"
+  }
+}

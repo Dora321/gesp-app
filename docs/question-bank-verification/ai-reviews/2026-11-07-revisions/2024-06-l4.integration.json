@@ -1,0 +1,36 @@
+{
+  "paperId": "2024-06-l4",
+  "integratedAt": "2026-11-16T11:02:52.723Z",
+  "accepted": [
+    {
+      "id": 21,
+      "fields": []
+    },
+    {
+      "id": 22,
+      "fields": [
+        "code"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 17,
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "#include<iostream>\nusing namespace std;\nint main()\n{\n    int a=20;\n    int& ra;\n    ra=&a;\n    cout<<ra<<endl;\n}"
+      }
+    }
+  ],
+  "codeChecks": []
+}
