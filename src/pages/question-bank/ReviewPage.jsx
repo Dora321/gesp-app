@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
     ChevronLeft, ChevronDown, NotebookPen, TrendingUp, TrendingDown, Minus,
@@ -20,7 +20,8 @@ import {
 import { LEARNING_DATA_EVENT, readLearningData } from '../../utils/learningData';
 import { buildQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import LearningDataManager from '../../components/LearningDataManager';
-import AnswerReview from './AnswerReview';
+// 错题点开才需要解析，按需加载。
+const AnswerReview = lazy(() => import('./AnswerReview'));
 import InteractiveAnalysisPage from './InteractiveAnalysisPage';
 
 const LEVEL_NAMES = '一二三四五六七八';
@@ -103,13 +104,15 @@ const WrongQuestionItem = ({ question, paper, paperId }) => {
                             );
                         })}
                     </ul>
-                    <AnswerReview
-                        q={question}
-                        level={paper.level}
-                        showGiven={false}
-                        answerVerified={verification.dimensions.answer === 'verified'}
-                        explanationVerified={verification.dimensions.explanation === 'verified'}
-                    />
+                    <Suspense fallback={<p className="text-base text-slate-500">正在加载解析…</p>}>
+                        <AnswerReview
+                            q={question}
+                            level={paper.level}
+                            showGiven={false}
+                            answerVerified={verification.dimensions.answer === 'verified'}
+                            explanationVerified={verification.dimensions.explanation === 'verified'}
+                        />
+                    </Suspense>
                 </div>
             )}
         </li>

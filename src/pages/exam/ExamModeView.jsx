@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { Check, CheckCircle, X, ChevronRight, Filter, Lightbulb } from 'lucide-react';
 import { getLuoguProblemUrl } from '../../data/gesp/codingQuestions';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
@@ -8,7 +9,8 @@ import {
 } from '../../utils/questionHelpers';
 import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
-import AnswerReview from '../question-bank/AnswerReview';
+// 只有交卷后才用得到解析：按需加载，考试进行中不下载解析引擎。
+const AnswerReview = lazy(() => import('../question-bank/AnswerReview'));
 import { hasSourceDefect, isScoringExcluded } from '../../utils/sourceIntegrity';
 
 /**
@@ -182,12 +184,14 @@ const ExamModeView = ({
               {showAnswerReview && (
                 <section aria-label="本题答案与解析" className="mt-8 border-t border-slate-200 pt-6">
                   <h2 className="mb-3 text-lg font-bold text-slate-900">答案与解析</h2>
-                  <AnswerReview
-                    q={currentQ}
-                    level={level}
-                    given={answers[currentQ.id]}
-                    {...trust}
-                  />
+                  <Suspense fallback={<p className="text-base text-slate-500">正在加载解析…</p>}>
+                    <AnswerReview
+                      q={currentQ}
+                      level={level}
+                      given={answers[currentQ.id]}
+                      {...trust}
+                    />
+                  </Suspense>
                 </section>
               )}
             </>
