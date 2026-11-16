@@ -122,26 +122,12 @@ C++ 程序运行时，内存主要划分为栈区（Stack）和堆区（Heap）�
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B (编译错误：找不到函数 greet())**
-
-**核心解析：**
-C++ 遵循“先声明，后使用”的原则。编译器从上至下逐行分析代码，当 \`main\` 函数内部调用 \`greet()\` 时，编译器尚未遇到 \`greet\` 的声明或定义，因此无法确认 \`greet\` 是否存在、参数类型及返回值类型。编译器会在编译阶段报错，提示找不到标识符 \`greet\`。这不是链接错误，因为链接发生在编译通过之后；也不是警告，因为语法上无法为未声明的函数调用生成目标代码。
-
-**选项逐项分析：**
-- **A 正确编译并输出 Hello!**：❌ 错误。虽然函数 \`greet\` 本身定义正确，但因未声明就被调用，导致编译失败。
-- **B 编译错误：找不到函数 greet()**：✅ 正确。编译器在处理 \`main\` 函数时，发现调用了未声明的标识符 \`greet\`，触发编译错误。
-- **C 编译警告但可以运行**：❌ 错误。未声明函数调用是严重错误，会导致编译失败，不会产生可执行文件。
-- **D 链接错误**：❌ 错误。链接错误发生在编译之后，此时源文件尚未生成目标文件，链接器无法介入。
-
-**易错提醒：**
-- 函数定义本身不是声明。必须显式提供函数声明（原型），或在定义之前调用（此时定义本身充当声明）。本题中 \`greet\` 的定义在 \`main\` 之后，且之前无声明，因此违反规则。
-- 常见误解是“代码从上到下执行，调用时函数还没定义没关系”，但编译器并不按执行顺序分析，而是按源码顺序分析。
-
-**知识延伸：**
-解决方法有两种：一是将 \`greet\` 的定义移到 \`main\` 之前；二是在 \`main\` 之前添加前置声明 \`void greet();\`。这与 GESP 二级知识点“函数的基本使用”相关，但本题要求理解编译器的分析机制。
-
-**考点：** 函数的声明（Declaration）与定义（Definition）顺序规则。`,
-            tags: ["客观题", "单选题", "函数声明", "GESP4级"]
+            explanation: "**答案：B（编译错误：找不到函数 greet()）**\n\n**核心解析：**\nC++ 要求名字在首次使用之前已被声明或定义，且不支持隐式函数声明。编译器按源码顺序处理：处理 `main` 中的 `greet()` 调用时，此前尚未出现 `greet` 的任何声明或定义，`greet` 是未声明的标识符，编译阶段直接报错。\n\n需要澄清的是：函数定义本身兼有声明作用，但其可见性从定义出现的位置才开始；把定义写在调用之后，无法为之前的调用提供声明。修复方法有两种：把 `greet` 的定义移到 `main` 之前，或在 `main` 之前添加函数原型 `void greet();`。\n\n**选项逐项分析：**\n- **A 正确编译并输出 Hello!**：❌ 错误。调用点处 `greet` 尚未声明，编译无法通过。\n- **B 编译错误：找不到函数 greet()**：✅ 正确。调用时 `greet` 未声明，触发编译错误。\n- **C 编译警告但可以运行**：❌ 错误。未声明的函数调用是编译错误而非警告，不会生成可执行文件。\n- **D 链接错误**：❌ 错误。链接错误通常发生在有声明但缺少定义等情形；本题属于编译阶段的标识符未声明错误。\n\n**易错提醒：**\n- 不能笼统地说“函数定义不是声明”：定义兼有声明作用，只是该声明可见的起点是定义所在位置。\n- 区分两类错误：调用点之前无任何声明属于编译错误；有声明但整个程序缺少函数体才可能导致链接错误。\n\n**考点：** 函数的声明与定义、名字可见性顺序",
+            tags: ["客观题", "单选题", "函数声明", "GESP4级"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 5,
@@ -438,43 +424,15 @@ bool f(int arr[], int n, int target) {
             id: 12,
             type: "single",
             question: `下述斐波那契数列计算的时间复杂度是（ ）。\n\`\`\`cpp\nint fibonacci(int n) {\n if (n == 0) return 0;\n if (n == 1) return 1;\n return fibonacci(n-1)+fibonacci(n-2);\n}\n\`\`\``,
-            options: [
-                "$O(N)$",
-                "$O(N^2)$",
-                "$O(log n)$",
-                "O($2^n$)"
-            ],
+            options: ["$O(n)$","$O(n^2)$","$O(n^3)$","$O(2^n)$"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D (O($2^n$))**
-
-**核心解析：**
-分析递归调用 fibonacci(n) 的执行过程：
-
-设 $T(n)$ 为计算 fibonacci(n) 所需的基本操作数（比较、返回、加法等）。根据代码结构：
-
-- 当 $n = 0$ 或 $n = 1$ 时，直接返回，$T(n) = O(1)$。
-- 当 $n \\geq 2$ 时，执行一次加法和两次递归调用：$T(n) = T(n-1) + T(n-2) + O(1)$。
-
-这是一个齐次递归方程，其解与斐波那契数列本身增长趋势相同。斐波那契数列第 $n$ 项的精确公式为 $F(n) = \\frac{\\phi^n - \\psi^n}{\\sqrt{5}}$，其中 $\\phi = \\frac{1+\\sqrt{5}}{2} \\approx 1.618$（黄金分割比），$\\psi = \\frac{1-\\sqrt{5}}{2} \\approx -0.618$。
-
-由于 $|\\psi| < 1$，当 $n$ 增大时 $\\psi^n$ 可忽略，故 $F(n)$ 增长趋近于 $\\phi^n$，这是指数级增长。渐进上界记为 $O(2^n)$（常数底取 2 是对 $\\phi$ 的上界估计）。
-
-**选项逐项分析：**
-- **A $O(N)$**：❌ 错误。线性复杂度意味着每增加 1，执行时间线性增长。而递归版本中每增加 1，调用次数呈指数增长。
-- **B $O(N^2)$**：❌ 错误。平方级仍属多项式增长，远慢于指数级。
-- **C $O(log n)$**：❌ 错误。对数级增长极快（如二分查找），与指数级的递归斐波那契性质相反。
-- **D O($2^n$)**：✅ 正确。递归树节点数呈指数级增长，常数底取 2 是合理的渐进表示。
-
-**易错提醒：**
-- 不能将递归方程的解误认为就是斐波那契数列项的通项公式，而应关注其增长趋势。
-- 斐波那契数列增长速度约为 $1.618^n$，小于 $2^n$，但教材和竞赛中常简化为 $O(2^n)$ 以简化讨论。
-
-**知识延伸：**
-若对递归斐波那契应用记忆化搜索（Memoization）或自底向上的动态规划，时间复杂度可降为 $O(n)$，空间复杂度为 $O(n)$。这是算法优化中"以空间换时间"的典型案例。
-
-**考点：** 递归算法的时间复杂度分析（指数级增长）`,
-            tags: ["客观题", "单选题", "递归", "时间复杂度", "GESP4级"]
+            explanation: "**答案：D（$O(2^n)$）**\n\n**核心解析：**\n设 $T(n)$ 为计算 `fibonacci(n)` 所需的基本操作数。$n=0$ 或 $n=1$ 时直接返回，$T(n)=O(1)$；$n\\ge 2$ 时执行两次递归调用再加一次加法：$T(n)=T(n-1)+T(n-2)+O(1)$。该递推式的增长阶与斐波那契数本身相同，为 $\\Theta(\\varphi^n)$，其中 $\\varphi=\\frac{1+\\sqrt{5}}{2}\\approx1.618$。由于 $\\varphi<2$，可用指数上界 $O(2^n)$ 表示；本题四个选项中只有 D 是指数级，故选 D。\n\n**选项逐项分析（按官方顺序）：**\n- **A $O(n)$**：❌ 线性复杂度对应迭代实现或记忆化后的递归；本代码没有记忆化，相同子问题被反复展开。\n- **B $O(n^2)$**：❌ 多项式级，远低于递归调用树的指数增长。\n- **C $O(n^3)$**：❌ 同为多项式级，与递归调用次数的量级不符。\n- **D $O(2^n)$**：✅ 正确。每个非边界调用分裂为两个子调用，递归树节点数随 $n$ 指数增长；严格阶为 $\\Theta(\\varphi^n)$，$O(2^n)$ 是通行的指数上界表示。\n\n**易错提醒：**\n- 不要混淆“函数返回值是斐波那契数”与“运行时间的量级”，本题二者恰好同阶（均为 $\\varphi^n$ 级）。\n- $\\varphi^n < 2^n$，因此 $O(2^n)$ 是偏松的上界，但在给定选项中它是唯一的指数级选项，也是教材通行的答案写法。\n\n**知识延伸：**\n加入记忆化（Memoization）或改为自底向上递推，时间复杂度可降为 $O(n)$，空间 $O(n)$（用滚动变量可降为 $O(1)$）。这是“以空间换时间”的典型案例。\n\n**考点：** 递归算法的时间复杂度分析（指数级增长）",
+            tags: ["客观题", "单选题", "递归", "时间复杂度", "GESP4级"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 13,
@@ -557,41 +515,16 @@ C++ 中使用 \`throw\` 关键字抛出异常，异常对象可以是内置类�
         {
             id: 15,
             type: "single",
-            question: `为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n\`\`\`cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n for (int i = nums.size()-1; i > 0; i--) {\n bool flag = false; // 横线 1\n for (int j = 0; j < i; j++) {\n if (nums[j] > nums[j+1]) {\n swap(nums[j], nums[j+1]);\n flag = true; // 横线 2\n }\n }\n if (!flag) break;\n }\n}\n\`\`\``,
-            options: [
-                "flag = true; flag = false;",
-                "flag = false; flag = true;",
-                "flag = true; flag = true;",
-                "flag = false; flag = false;"
-            ],
+            question: "为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n```cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n    for (int i = nums.size() - 1; i > 0; i--) {\n        bool flag;\n        ________________    // 在此处填入代码\n\n        for (int j = 0; j < i; j++) {\n            if (nums[j] > nums[j + 1]) {\n                swap(nums[j], nums[j + 1]);\n                ___________________________    // 在此处填入代码\n            }\n        }\n        if (!flag)\n            break;\n    }\n}\n```",
+            options: ["flag = false; flag = false;","flag = false; flag = true;","flag = true; flag = false;","flag = true; flag = true;"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B (flag = false; flag = true;)**
-
-**核心解析：**
-分析冒泡排序优化中两条横线的逻辑含义：
-
-1. **横线 1**：位于外层循环一开始。每次开始新一轮冒泡前，先假设本轮不会发生交换，因此把 \`flag\` 初始化为 \`false\`。
-
-2. **横线 2**：位于内层 \`if\` 里、\`swap\` 之后。只有发现逆序并交换时，才把 \`flag\` 设为 \`true\`，表示本轮还不是完全有序。
-
-3. **提前结束**：内层循环结束后若 \`flag\` 仍为 \`false\`，说明整趟没有任何交换，数组已经升序，执行 \`break\`。
-
-**选项逐项分析：**
-- **A flag = true; flag = false;**：❌ 错误。每轮开始 \`flag\` 已是 \`true\`，一旦交换又被改成 \`false\`。有交换时 \`!flag\` 为真，会提前 \`break\`，数组往往还没排好；没有交换时 \`flag\` 仍是 \`true\`，又不会 \`break\`。
-- **B flag = false; flag = true;**：✅ 正确。每轮开始设为 \`false\`，发生交换再设为 \`true\`；本轮结束若仍是 \`false\`，说明没有交换，执行 \`break\`。
-- **C flag = true; flag = true;**：❌ 错误。有没有交换，\`flag\` 都保持 \`true\`，\`!flag\` 恒为假，\`break\` 一次也不会执行，提前结束的优化不起作用。
-- **D flag = false; flag = false;**：❌ 错误。有没有交换，\`flag\` 都保持 \`false\`。第一轮结束后 \`!flag\` 为真，必定 \`break\`，后面各轮不再执行，结果一般不正确。
-
-**易错提醒：**
-- 横线 1 在每轮冒泡开始时重置为 \`false\`，横线 2 在发现逆序并交换后写成 \`true\`。
-- 两处都填 \`false\` 时，\`flag\` 一直为假，第一轮后就会 \`break\`，排序不完整。
-
-**知识延伸：**
-数组已经有序时，第一轮没有交换就会 \`break\`，比较次数与 \`n\` 成正比。不做这个优化时，即使已经有序也要做满所有轮，比较次数与 \`n*n\` 成正比。额外空间只要一个布尔变量 \`flag\`。
-
-**考点：** 冒泡排序的优化策略（Flag 哨兵机制）`,
-            tags: ["客观题", "单选题", "冒泡排序", "GESP4级"]
+            explanation: "**答案：B（`flag = false; flag = true;`）**\n\n**核心解析：**\n`flag` 用于记录本轮冒泡是否发生过交换。横线 1 位于每轮内层循环开始前，应先把 `flag` 置为 `false`，表示“本轮尚未发生交换”；横线 2 位于 `swap` 之后，只有确实发生交换时才把 `flag` 置为 `true`。内层循环结束后，若 `flag` 仍为 `false`，说明本轮没有任何交换，数组已经有序，`if (!flag) break;` 即可提前结束。\n\n**选项逐项分析（按官方顺序）：**\n- **A `flag = false; flag = false;`**：❌ 第二条横线永远不把 `flag` 置真，`flag` 恒为 `false`，第一轮结束后必定 `break`，一般只扫描一趟，数组尚未排完。\n- **B `flag = false; flag = true;`**：✅ 正确。每轮先假定无交换置 `false`，发生交换才置 `true`；整轮无交换时 `!flag` 成立，提前结束。\n- **C `flag = true; flag = false;`**：❌ 逻辑颠倒。一旦发生交换反而把 `flag` 置 `false` 并触发 `break`，在还存在逆序对时就提前退出，可能排不完；完全无交换时 `flag` 恒为 `true`，永远不 `break`，优化失效。\n- **D `flag = true; flag = true;`**：❌ `flag` 恒为 `true`，`!flag` 恒假，`break` 永远不会执行，提前结束的优化完全不起作用（退化为普通冒泡排序）。\n\n**易错提醒：**\n- 横线 1 是每轮开始时的初始化，必须重置为 `false`；横线 2 只在发生交换后置 `true`，两处不能写反。\n- 原题中 `bool flag;` 未初始化：若横线 1 不赋值就读取 `if (!flag)`，属于未定义行为，结果不可预期。\n\n**知识延伸：**\n加入该标志后，数组已有序时一趟扫描即可结束，最好情况比较次数为 O(n)；最坏、平均仍为 O(n²)，额外空间 O(1)。\n\n**考点：** 冒泡排序的 Flag 提前结束优化",
+            tags: ["客观题", "单选题", "冒泡排序", "GESP4级"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 16,
@@ -789,7 +722,7 @@ int factorial(int n) {
         {
             id: 22,
             type: "judge",
-            question: `无论初始数组是否有序，选择排序都执行 $n(n-1)/2$ 次比较。`,
+            question: "无论初始数组是否有序，选择排序都执行 $O(n^2)$ 次比较。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -805,9 +738,10 @@ int factorial(int n) {
 **考点：** 排序 · 选择排序的复杂度`,
             sourceVerified: true,
             sourcePage: 6,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "判断题", "GESP4级"],
+      "reviewedFields": ["question","reviewedBy","reviewedAt"]
         },
         {
             id: 23,
@@ -841,9 +775,10 @@ for (int i = 0; i < n - 1; ++i) {
 **考点：** 排序 · 选择排序实现`,
             sourceVerified: true,
             sourcePage: 6,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ["客观题", "判断题", "GESP4级"],
+      "reviewedFields": ["reviewedBy","reviewedAt"]
         },
         {
             id: 24,
@@ -920,27 +855,7 @@ qRsTu
 VwXyZ`, output: `Cd
 hI` }
       ],
-      question: `
-# [GESP202506 四级] 画布裁剪
-
-## 题目描述
-
-小 A 在高为 $h$ 宽为 $w$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 $h$ 行 $w$ 列的字符矩阵，其中的字符均为 ASCII 码位于 $33 \\sim 126$ 之间的可见字符，小 A 只保留画布中由第 $x_1$ 行到第 $x_2$ 行、第 $y_1$ 列到第 $y_2$ 列构成的子矩阵。
-
-小 A 将画布交给了你，你能帮他完成画布的裁剪吗？
-
-## 输入格式
-
-第一行，两个正整数 $h, w$，分别表示画布的行数与列数。
-
-第二行，四个正整数 $x_1, x_2, y_1, y_2$，表示保留的行列边界。
-
-接下来 $h$ 行，每行一个长度为 $w$ 的字符串，表示画布内容。
-
-## 输出格式
-
-输出共 $x_2 - x_1 + 1$ 行，每行一个长度为 $y_2 - y_1 + 1$ 的字符串，表示裁剪后的画布。
-`,
+      question: "# [GESP202506 四级] 画布裁剪\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小 A 在高为 $h$ 宽为 $w$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 $h$ 行 $w$ 列的字符矩阵，其中的字符均为 ASCII 码位于 $33 \\sim 126$ 之间的可见字符，小 A 只保留画布中由第 $x_1$ 行到第 $x_2$ 行、第 $y_1$ 列到第 $y_2$ 列构成的子矩阵。\n\n小 A 将画布交给了你，你能帮他完成画布的裁剪吗？\n\n## 输入格式\n\n第一行，两个正整数 $h, w$，分别表示画布的行数与列数。\n\n第二行，四个正整数 $x_1, x_2, y_1, y_2$，表示保留的行列边界。\n\n接下来 $h$ 行，每行一个长度为 $w$ 的字符串，表示画布内容。\n\n## 输出格式\n\n输出共 $x_2 - x_1 + 1$ 行，每行一个长度为 $y_2 - y_1 + 1$ 的字符串，表示裁剪后的画布。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le h, w \\le 100$，$1 \\le x_1 \\le x_2 \\le h$，$1 \\le y_1 \\le y_2 \\le w$。",
       score: 25,
       explanation: `**解析：**
 
@@ -1060,6 +975,10 @@ for (int i = x1 - 1; i <= x2 - 1; ++i) {
       referenceCode: `#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int H, W;\n    cin >> H >> W;\n    int x1, x2, y1, y2;\n    cin >> x1 >> x2 >> y1 >> y2;\n    vector<string> canvas(H);\n    for (int i = 0; i < H; ++i) cin >> canvas[i];\n    for (int i = x1-1; i <= x2-1; ++i) {\n        for (int j = y1-1; j <= y2-1; ++j) {\n            cout << canvas[i][j];\n        }\n        cout << endl;\n    }\n    return 0;\n}`,
       tags: ["编程题", "矩阵操作", "GESP4级"],
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
         {
       id: 27,
@@ -1078,23 +997,7 @@ for (int i = x1 - 1; i <= x2 - 1; ++i) {
 3 0
 1 0`, output: `1` }
       ],
-      question: `
-# [GESP202506 四级] 排序
-
-## 题目描述
-
-体育课上有 $n$ 名同学排成一队，从前往后数第 $i$ 位同学的身高为 $h_i$，体重为 $w_i$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示队伍人数。
-
-接下来 $n$ 行，每行两个正整数 $h_i$ 和 $w_i$，分别表示第 $i$ 位同学的身高和体重。
-
-## 输出格式
-
-输出一行，一个整数，表示最少需要的交换次数。
-`,
+      question: "# [GESP202506 四级] 排序\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n体育课上有 $n$ 名同学排成一队，从前往后数第 $i$ 位同学的身高为 $h_i$，体重为 $w_i$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示队伍人数。\n\n接下来 $n$ 行，每行两个正整数 $h_i$ 和 $w_i$，分别表示第 $i$ 位同学的身高和体重。\n\n## 输出格式\n\n输出一行，一个整数，表示最少需要的交换次数。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n \\le 3000$，$0 \\le h_i, w_i \\le 10^9$。",
       score: 25,
       explanation: `**解析：**
 
@@ -1206,6 +1109,10 @@ for (int i = x1 - 1; i <= x2 - 1; ++i) {
       referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstruct Student {\n    int h, w;\n};\n\nbool compare(const Student& a, const Student& b) {\n    if (a.h != b.h) return a.h > b.h;\n    return a.w > b.w;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<Student> sts(n);\n    for (int i = 0; i < n; ++i) cin >> sts[i].h >> sts[i].w;\n    \n    int swaps = 0;\n    for (int i = 0; i < n-1; ++i) {\n        for (int j = 0; j < n-1-i; ++j) {\n            if (compare(sts[j+1], sts[j])) {\n                swap(sts[j], sts[j+1]);\n                swaps++;\n            }\n        }\n    }\n    cout << swaps << endl;\n    return 0;\n}`,
       tags: ["编程题", "排序", "逆序对", "GESP4级"],
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
     ]
 };

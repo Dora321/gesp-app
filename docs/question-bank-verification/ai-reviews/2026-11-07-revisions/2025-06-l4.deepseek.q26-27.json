@@ -1,0 +1,173 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T22:45:31.083Z",
+  "completedAt": "2026-11-16T22:47:12.949Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28824,
+    "completion_tokens": 10310,
+    "total_tokens": 39134,
+    "prompt_tokens_details": {
+      "cached_tokens": 28672
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8911
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00629482,
+      "allowance": 0.00377689,
+      "tokens": {
+        "input": 152,
+        "output": 10310,
+        "reasoning": 8911,
+        "cache_read": 28672,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5d67ada2a1ba54cd42ef33465787e8d0dbd8eeefab710014947eab075854100e",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷首为 CCF GESP C++ 四级，2025 年 06 月；与 2025-06-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页有试题名称“画布裁剪”、时间限制 1.0 s、内存限制 512.0 MB 及题述；第 7 页 3.1.2 至 3.1.5 的输入输出格式、两组样例和数据范围与候选逐项一致，含 1<=h,w<=100 等约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，答案表不覆盖编程题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算：样1取第2行下标1至3列得 >_<；样2取第1至2行第3至4列得 Cd 和 hI；1-based 转 0-based 的区间、闭边界、换行位置均正确，O(hw) 时间与空间分析成立，substr(y1-1,y2-y1+1) 示例正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态逐行核对（未编译运行）：vector<string> 读入 h 行，循环 i=x1-1..x2-1、j=y1-1..y2-1 逐字符输出并在每行末换行；边界均在 h,w<=100 内，复杂度 O(hw)，与 PDF 3.1.6 官方实现不同但功能等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小画布与最小裁剪区域",
+            "input": "1 1\n1 1 1 1\n!",
+            "output": "!",
+            "reason": "h=w=1 且四个边界均为1，闭区间只含唯一字符 '!'，独立按 0-based 转换应输出 '!'。"
+          },
+          {
+            "name": "右边界闭区间与 ASCII 上界",
+            "input": "3 4\n2 3 4 4\nabcd\nefg~\nijk~",
+            "output": "~\n~",
+            "reason": "x1=2,x2=3,y1=y2=4 验证保留第2至3行第4列，两字符均为 ASCII 126 的 '~'。"
+          },
+          {
+            "name": "整幅画布全保留",
+            "input": "2 3\n1 2 1 3\nAbC\ndEf",
+            "output": "AbC\ndEf",
+            "reason": "边界覆盖全部行列时应原样输出，验证首行首列转换不错位。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页有试题名称“排序”、时间限制 1.0 s、内存限制 512.0 MB、题目描述、输入输出格式及两组样例；第 9 页 3.2.5 数据范围为 1<=n<=3000、0<=hi,wi<=10^9，候选与原文一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案，答案表不覆盖编程题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：最少相邻交换等于相对目标降序的严格逆序对数；样1复算 4+2+2+0=8，样2对 (3,0) 与 (2,0) 计 1 个逆序得 1；相等关键字不交换的说明与双关键字降序规则一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "静态逐行核对（未编译运行）：compare 按身高降序、身高相同按体重降序；冒泡仅在后者严格优先时交换并计数，等价于严格逆序对数，不交换相等元素；n<=3000 时约 4.5e6 次内层比较，swaps 上限 4498500 与 hi,wi<=1e9 均在 int 范围内。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小人数与数值上界",
+            "input": "1\n1000000000 1000000000",
+            "output": "0",
+            "reason": "n=1 无相邻交换，上界值 hi=wi=10^9 读取比较不溢出 int。"
+          },
+          {
+            "name": "相等关键字不重复计数",
+            "input": "3\n2 10\n1 5\n2 10",
+            "output": "1",
+            "reason": "目标顺序两个 (2,10) 在前、(1,5) 在后；初始仅 (1,5) 与其后 (2,10) 构成 1 个严格逆序。"
+          },
+          {
+            "name": "同身高按体重降序",
+            "input": "4\n2 10\n1 5\n2 5\n1 10",
+            "output": "2",
+            "reason": "目标顺序为 (2,10),(2,5),(1,10),(1,5)，初始名次 1,4,2,3，逆序为 2 个。"
+          },
+          {
+            "name": "完全逆序场景",
+            "input": "3\n1 1\n2 2\n3 3",
+            "output": "3",
+            "reason": "目标降序为 (3,3),(2,2),(1,1)，初始名次 3,2,1，全部3对均为逆序。"
+          }
+        ],
+        "unresolved": [
+          "源卷自身存在表述矛盾：第8页输入格式称 hi、wi 为正整数，但样例2含 wi=0，第9页数据范围又允许 0<=hi,wi<=10^9；候选按 PDF 原文保留，未擅自统一，待官方说明。"
+        ]
+      }
+    ],
+    "summary": "仅核验题号26、27。两题题面、样例、数据范围与 PDF 对照无缺漏；26 的坐标切片解析和 vector<string> 参考代码正确，27 的逆序对解析和冒泡计数参考代码正确。未发现需修改字段；27 保留源卷“正整数”与允许0的矛盾作为悬置项。"
+  }
+}

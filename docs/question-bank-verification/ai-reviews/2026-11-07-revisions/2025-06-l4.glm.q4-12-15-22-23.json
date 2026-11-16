@@ -1,0 +1,240 @@
+{
+  "paperId": "2025-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    4,
+    12,
+    15,
+    22,
+    23
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T22:34:41.528Z",
+  "completedAt": "2026-11-16T22:36:20.513Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 45218,
+    "completion_tokens": 9213,
+    "total_tokens": 54431,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6678
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0113892,
+      "allowance": 0.0113892,
+      "tokens": {
+        "input": 45218,
+        "output": 9213,
+        "reasoning": 6678,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "5d67ada2a1ba54cd42ef33465787e8d0dbd8eeefab710014947eab075854100e",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++4级.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "mirrorBytes": 1521779,
+    "shaVerified": true,
+    "sha256": "e162212428548e82ca81fd5629bd85f7291d2ebb5b600b1d6bee5f5ed28bb3d3"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 GESP』『C++ 四级』『2025 年 06 月』，与 paperId 2025-06-l4（2025年6月 C++ 四级）一致；单选题答案表位于第1页（题号1—15），判断题答案表位于第5页（题号1—10）。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页末行题干『关于以下 C++代码，说法正确的是（ ）。』；第2页页图代码为 int main(){ greet(); return 0; } 在前、void greet(){ cout << \"Hello!\" << endl; } 定义在后，与候选代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图选项依次为 A. 正确编译并输出 Hello!、B. 编译错误：找不到函数 greet()、C. 编译警告但可以运行、D. 链接错误；候选顺序与官方一致，正确项 B 对应索引 1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第4题为 B，0 起始索引为 1，候选 answer=1。独立判断：C++ 不支持隐式函数声明，main 中调用 greet() 时其声明/定义尚未出现，属编译阶段错误而非警告或链接错误，故 B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选修正稿：『函数定义兼有声明作用，但可见性从定义出现的位置才开始』符合 C++ 规则，无自相矛盾；调用点之前无任何声明导致编译错误、修复方法（前置定义或添加函数原型）及 A/C/D 逐项分析（链接错误对应有声明缺定义的情形）均正确，与官方答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对第1页答案表（第4题=B）与第2页代码、选项后，确认修订候选与原卷一致；解析已修正旧稿『函数定义本身不是声明』的事实错误，修正表述经独立复核无误，无需再改，接受候选并予通过。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页末题干『下述斐波那契数列计算的时间复杂度是（ ）。』；第4页页图代码为 n==0 返回 0、n==1 返回 1、否则 return fibonacci(n-1)+fibonacci(n-2)，与候选代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页页图选项依次为 A. O(n)、B. O(n²)、C. O(n³)、D. O(2ⁿ)；候选 $O(n)$/$O(n^2)$/$O(n^3)$/$O(2^n)$ 顺序与官方一致，正确项 D 对应索引 3，旧稿 C=O(log n) 的错置已消除。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为 D，0 起始索引为 3，候选 answer=3。独立判断：无记忆化的双重递归调用树节点数随 n 指数增长，四个选项中仅 D 为指数级。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：T(n)=T(n-1)+T(n-2)+O(1)，增长阶 Θ(φⁿ)（φ=(1+√5)/2≈1.618<2），O(2ⁿ) 为通行的指数上界表示；候选对 A（线性对应迭代/记忆化）、B/C（多项式级）的排除理由与记忆化降为 O(n) 的知识延伸均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "官方第4页选项 C 确为 O(n³)，候选已按官方顺序修正选项并重写解析；递推推导、答案映射（答案表第12题=D）经独立复核无误，接受候选。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页页图题面为 `bool flag;` 未初始化声明加两条空白横线（注释『// 在此处填入代码』），未预填任何答案；候选 question 与页图逐行一致（外层 i>0 递减、内层 j<i 相邻比较交换、末尾 if(!flag) break），未泄露答案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页末至第5页页图选项顺序为 A. flag=false; flag=false;、B. flag=false; flag=true;、C. flag=true; flag=false;、D. flag=true; flag=true;；候选顺序与官方一致，正确项 B 对应索引 1。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为 B，0 起始索引为 1，候选 answer=1。独立判断：横线1为每轮开始置 false，横线2为发生交换后置 true，整轮无交换时 !flag 成立 break 提前结束，故 B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立分析四种填法：A 恒 false 首轮后必 break 排不完；B 正确；C 发生交换反置 false 会提前退出、无交换时恒 true 永不 break，优化失效；D 恒 true 永不 break 退化为普通冒泡。候选解析与之一致；关于 bool flag 未初始化即读入属未定义行为的提示不改变答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选已恢复原卷未初始化声明与空白横线结构（消除旧稿预填答案的问题），选项按官方第5页顺序排列，答案索引 1 经答案表与逻辑双重核对无误，接受候选。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页页图判断题第7题原文为『无论初始数组是否有序、选择排序都执行 O(n²) 次比较』（O(n²) 为行内公式）；候选以 $O(n^2)$ 表述，与原文仅连接标点（、/，）差异，属排版等价，无实质改写。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的『正确/错误』两个标签，PDF 未给出选项列表，选项顺序核验不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第7题为 √，正确对应索引 0，候选 answer=0。独立判断：选择排序每轮在无序区做线性扫描找最值，比较次数恒为 (n-1)+(n-2)+…+1=n(n-1)/2=O(n²)，与初始顺序无关，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选推导比较次数固定为 n(n-1)/2、交换次数不固定（有序时几乎不交换、逆序时最多 n-1 次）、与插入排序近乎有序时接近 O(n) 的对比均成立，完整支撑 √ 判定。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选已将网站旧稿的精确计数 n(n-1)/2 恢复为原卷 O(n²) 表述，与第6页页图一致；答案表第7题为√（索引0）、解析推导经独立核对无误，接受该修复。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页页图判断题第8题引导语『以下C++代码，尝试对有 n 个整数的数组 arr 进行排序。这个代码实现了选择排序算法。』后附完整代码（外层 i<n-1、内层 j=i+1 在 [i+1,n) 找 minIndex、minIndex≠i 时 swap），与候选 question 中代码逐行一致，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅有固定的『正确/错误』两个标签，PDF 未给出选项列表，选项顺序核验不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第8题为 √，正确对应索引 0，候选 answer=0。独立判断：该代码每轮在未排序区选出最小值放到 arr[i]，符合选择排序定义，if(minIndex!=i) 仅省去自交换，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选对选择排序判定、与冒泡（相邻交换）/插入（移动插入）的区别、以及交换可能打乱相等元素相对次序导致不稳定的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无编程题参考程序，本维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核曾称网站缺失待判断代码，但候选 question 已含与 PDF 第6页逐行一致的选择排序代码，该前提不成立；本轮独立核对确认题面完整、答案（√=0）与解析均正确，无需任何变更，维持通过。"
+      }
+    ],
+    "summary": "本轮独立复核 2025-06-l4 的第4、12、15、22、23 共5题：单选题题面代码、判断题题面（含 O(n²) 表述与完整选择排序代码）、选项顺序（第4页/第5页页图）与答案表映射（单选第4题=B→1、第12题=D→3、第15题=B→1；判断题第7、8题均为√→0）全部与 PDF 页图一致；解析经独立推导复核无误（第4题调用先于定义属编译错误且修正后的声明/定义表述符合 C++ 规则；第12题 T(n)=T(n-1)+T(n-2)+O(1) 增长阶 Θ(φⁿ)、四选项唯 D 指数级；第15题四种填法逐一分析 B 正确；第22题比较次数恒为 n(n-1)/2；第23题代码确为选择排序）。修订候选已消除旧稿的选项错置（第12题 O(log n)）、题面预填答案（第15题）与解析事实错误（第4题），全部无需再改，5题均 approve，无遗留未决问题；判断题无选项/参考代码维度，编程题不在本批核验范围。"
+  }
+}
