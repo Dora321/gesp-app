@@ -69,41 +69,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第1页第2题题干“以下关于数组的描述中，（ ）是错误的。”及四项与网站一致。",
-          "review": "PDF 第 1 页第 2 题题干「以下关于数组的描述中，（ ）是错误的。」与网站一致。"
+          "initial": "PDF 第 1 页第 2 题题干为「以下关于数组的描述中，（ ）是错误的。」，与候选题面一致。",
+          "review": "PDF 第 1 页第 2 题题干「以下关于数组的描述中，（ ）是错误的。」与候选题面逐字一致。"
         },
         "options": {
-          "initial": "PDF选项 A.数组名是指针常量、B.随机访问数组的元素方便快捷、C.数组可以像指针一样进行自增操作、D.sizeof(arr) 返回整个数组字节数，顺序与网站一致；A项术语争议见 unresolved。",
-          "review": "PDF 原图选项 A.数组名是一个指针常量、B.随机访问数组的元素方便快捷、C.数组可以像指针一样进行自增操作、D.sizeof(arr) 返回的是整个数组 arr 占用的字节数，顺序与网站一致。"
+          "initial": "PDF 第 1 页 A-D 四项依次为：数组名是一个指针常量；随机访问数组的元素方便快捷；数组可以像指针一样进行自增操作；sizeof(arr) 返回的是整个数组 arr 占用的字节数。候选选项文字与顺序均一致。",
+          "review": "PDF 第 1 页原图 A-D 依次为：A. 数组名是一个指针常量；B. 随机访问数组的元素方便快捷；C. 数组可以像指针一样进行自增操作；D. sizeof(arr) 返回的是整个数组 arr 占用的字节数，与候选文字、顺序一致。"
         },
         "answer": {
-          "initial": "官方答案表第2题 C，对应索引2；网站 answer=2，映射一致。",
-          "review": "官方答案表第 2 题 C，映射索引 2；网站 answer=2。独立推导：arr++ 要求可修改标量左值，数组名是数组类型左值，自增为编译错误，C 是唯一明确错误项，与官方答案一致。"
+          "initial": "PDF 第 1 页单选题答案表第 2 题为 C，映射索引 2；独立判断 arr++ 不能通过编译，C 项符合题意，候选 answer=2 正确。",
+          "review": "第 1 页单选答案表第 2 题为 C，映射索引 2，候选 answer=2。独立推导：`arr++` 的 ++ 要求可修改左值，数组名不可修改，无法通过编译，为唯一明确错误项；A（命题语境下数组名退化为指针且不可改指向）、B（连续存储下标访问 O(1)）、D（sizeof 直接作用于数组名返回整组字节数）均成立，与官方答案一致。"
         },
         "explanation": {
-          "initial": "原解析核心结论C正确，但将A直接断言为正确且未说明严格术语争议；已在 changes 提供修正解析。",
-          "review": "原解析核心结论（C 为错误项、arr++ 非法、sizeof 与随机访问说明）正确，但将 A 项解释为「数组名是一个地址常量」不准确：严格 C++ 标准下数组名是数组类型的左值而非指针/地址常量，属教学简化。已替换为注明命题语境与严格术语差异的修正解析；修复后核验通过：修正解析各项推导正确，答案 C 不变。"
+          "initial": "候选解析正确指出 C 项 arr++ 非法、D 项 sizeof(arr) 不退化、B 项随机访问为 O(1)；同时说明 A 项「数组名是指针常量」是命题语境下的教学简化，严格标准下数组名是数组类型左值，术语差异不影响官方答案 C。",
+          "review": "候选解析逐条符合 C++ 规则：arr++ 非法、sizeof(arr) 不退化为指针、随机访问 O(1)、arr+1 与 arr++ 区别、形参退化提醒；并明确 A 项「指针常量」为教学简化、严格标准下数组名是数组类型左值。修复后核验通过，结论与官方答案 C 一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
@@ -151,42 +154,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第1页末给出题干，第2页代码为声明 int add(int a, int b = 1);、main 中 add(2) 与 add(2, 3)、定义 int add(int a, int b)，与网站题面一致。",
-          "review": "题干在 PDF 第 1 页末「下面这段代码会输出（ ）。」，代码在 PDF 第 2 页：声明 int add(int a, int b = 1);、main 中输出 add(2) 与 add(2, 3)、定义 int add(int a, int b){return a+b;}，含「// 函数声明」「// 函数定义」注释，与网站一致。"
+          "initial": "PDF 第 1 页末第 4 题题干为「下面这段代码会输出（ ）。」；第 2 页代码含 int add(int a, int b = 1);、main 中调用 add(2) 与 add(2, 3)、以及定义 int add(int a, int b) { return a + b; }，与候选一致。",
+          "review": "PDF 第 1 页末第 4 题题干「下面这段代码会输出（ ）。」，代码位于第 2 页：`int add(int a, int b = 1); // 函数声明`、main 中 `cout << add(2) << \" \" << add(2, 3);`、`int add(int a, int b) { // 函数定义 return a + b; }`，与候选一致。"
         },
         "options": {
-          "initial": "PDF第2页选项 A.3 5、B.编译失败：定义处少了默认参数、C.运行错误、D.链接失败：未定义引用，顺序与网站一致。",
-          "review": "PDF 第 2 页选项 A.3 5、B.编译失败：定义处少了默认参数、C.运行错误、D.链接失败：未定义引用，顺序与网站一致。"
+          "initial": "PDF 第 2 页选项依次为 A. 3 5；B. 编译失败：定义处少了默认参数；C. 运行错误；D. 链接失败：未定义引用。候选顺序与内容一致。",
+          "review": "PDF 第 2 页 A. 3 5；B. 编译失败：定义处少了默认参数；C. 运行错误；D. 链接失败：未定义引用，与候选顺序、内容一致。"
         },
         "answer": {
-          "initial": "官方答案表第4题 A，对应索引0；网站 answer=0，映射一致。",
-          "review": "官方答案表第 4 题 A，映射索引 0；网站 answer=0。独立推导：add(2) 用默认 b=1 得 3，add(2,3) 得 5，输出「3 5」，A 正确。"
+          "initial": "PDF 第 1 页答案表第 4 题为 A，映射索引 0；独立计算 add(2) 使用默认 b=1 得 3，add(2, 3) 得 5，输出「3 5」，候选 answer=0 正确。",
+          "review": "第 1 页答案表第 4 题为 A，映射索引 0，候选 answer=0。独立推导：声明处默认 b=1，add(2)=3、add(2,3)=5，输出「3 5」；定义处未重复指定默认实参，声明加定义可正常编译链接。"
         },
         "explanation": {
-          "initial": "原解析两处称定义处可重复指定默认参数/重复且相同也可以，违反同一作用域默认实参只能指定一次的规则；已在 changes 修正，答案A不变。",
-          "review": "原解析两处违反 C++ 默认实参规则：「定义处可不重复或重复指定（重复且相同也可以）」——同一作用域内同一形参的默认实参不得重新指定，重复相同值亦为编译错误。已替换为修正解析；修复后核验通过：add(2)=3、add(2,3)=5，答案 A 不变，B/C/D 排除理由（声明处省略合法、无运行错误、有定义可链接）正确。"
+          "initial": "候选正确说明默认实参在声明处指定后，定义处不得再次指定，但本题定义处省略默认实参合法；调用结果与 B/C/D 排除理由均正确。",
+          "review": "候选解析「同一作用域内同一形参的默认实参只能指定一次，声明处已指定则定义处不得再写」符合 C++ 默认实参规则，修复后核验通过；B（定义处省略合法）、C（逻辑正常）、D（提供了定义可链接）排除理由正确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
@@ -391,42 +397,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第3页第10题选择排序代码及两个待填空位与网站题干一致：内层用 minIndex 记录最小值，循环后交换到 i 位置。",
-          "review": "PDF第3页第10题代码（vector<int>& nums、minIndex=i、内层 j 从 i+1 遍历、第6行 if 填空与第10行语句填空及两处「在此处填入代码」注释）与网站题干代码一致。"
+          "initial": "PDF 第 3 页第 10 题代码含 selectionSort、minIndex、内层 j 循环及两处「在此处填入代码」空位，与候选题面一致。",
+          "review": "PDF 第 3 页第 10 题题干与代码（selectionSort(vector<int>& nums)、minIndex=i、内层 for j=i+1..n-1、if 填空处、内层闭合后的第二空及两处「在此处填入代码」注释）与候选一致。"
         },
         "options": {
-          "initial": "PDF第4页四个选项分别为 A. nums[j] < nums[minIndex] 与 swap(nums[i], nums[minIndex])；B. > 与同一交换；C. <= 与 swap(nums[j], nums[minIndex])；D. <= 与 swap(nums[i], nums[j])，与网站选项及顺序一致。",
-          "review": "第4页四组填空 A：nums[j] < nums[minIndex] / swap(nums[i], nums[minIndex])；B：> / 同一交换；C：<= / swap(nums[j], nums[minIndex])；D：<= / swap(nums[i], nums[j])，与网站选项顺序一致；C 首行在页面栅格图中疑似显示为 nums(minIndex]，但 PDF 文本层为 nums[minIndex]，判断为字形渲染伪影，与网站写法语义一致。"
+          "initial": "PDF 第 4 页 A-D 依次为：nums[j] < nums[minIndex] / swap(nums[i], nums[minIndex])；nums[j] > nums[minIndex] / swap(nums[i], nums[minIndex])；nums[j] <= nums[minIndex] / swap(nums[j], nums[minIndex])；nums[j] <= nums[minIndex] / swap(nums[i], nums[j])。候选选项文字与顺序一致。",
+          "review": "PDF 第 4 页 A-D 四组填空与候选一致：A < / swap(nums[i], nums[minIndex])；B > / 同一交换；C <= / swap(nums[j], nums[minIndex])；D <= / swap(nums[i], nums[j])。C 组首行原图字形呈 nums(minIndex]，PDF 文本层为 nums[minIndex]，判定为渲染伪影，语义与候选一致。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第10题标 A，对应0起始索引0；升序选择排序应找较小值并与 nums[i] 交换，独立推导答案为 A，与网站 answer=0 一致。",
-          "review": "第1页答案表第10题为 A，对应索引0；独立推导：升序选择排序需在未排序区间找最小值（nums[j] < nums[minIndex] 更新 minIndex），内层循环结束后执行 swap(nums[i], nums[minIndex])，仅 A 同时满足两点，与网站 answer=0 一致。"
+          "initial": "PDF 第 1 页答案表第 10 题为 A，映射索引 0；升序选择排序应在未排序区间找最小值并交换到 i 位置，只有 A 同时满足两个空，候选 answer=0 正确。",
+          "review": "第 1 页答案表第 10 题为 A，映射索引 0，候选 answer=0。独立推导：升序选择排序需在未排序区间 [i,n) 找最小值（nums[j] < nums[minIndex] 时更新 minIndex），内层结束后 swap(nums[i], nums[minIndex])；B 为找最大值；C、D 第二空位于内层 for 闭合之后，j 已离开作用域无法编译，且交换对象均未把记录的最小值换到 i 位。仅 A 同时满足两空。"
         },
         "explanation": {
-          "initial": "网站解析 A 项称“相等时不更新，保持稳定性”，该说法错误：选择排序的长距离交换仍可能破坏相等元素相对顺序；且第二空位于内层 for 之后，C/D 使用已超出作用域的 j，不能通过编译，解析未指出。需更正解析表述。",
-          "review": "网站解析存在两处缺陷：(1) A 项称「相等时不更新，保持稳定性」为错误论断——严格小于只是保留最左最小值，选择排序的长距离交换仍会破坏相等元素相对顺序，且与第9题解析「选择排序不稳定」自相矛盾；(2) 第二空位于内层 for（第9行右花括号）之后，C/D 中引用的 j 已超出作用域、无法通过编译，解析仅以「交换位置错误」的逻辑层面带过，遗漏该编译层面错误。已提交经独立逐条核验的更正解析。"
+          "initial": "候选正确说明严格小于只保留最左最小值，并不能使选择排序稳定；同时指出第二空在内层 for 之后，C/D 引用已离开作用域的 j 无法编译，A 的交换对象为 nums[i] 与 nums[minIndex]，推导与官方答案一致。",
+          "review": "候选解析两处关键论断经独立复核成立：①严格小于只保留最左最小值，并不能使选择排序稳定（与本卷第 9 题官方口径一致）；②第二空在内层循环闭合之后，C/D 中 j 出作用域属编译层面错误。修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
@@ -472,44 +481,47 @@
       "id": 12,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页第 12 题题干为“关于插入排序的时间复杂度，下列说法正确的是（ ）。”，当前题干一致，仅 O(N)/n 大小写与 LaTeX 排版差异。",
-          "review": "PDF 第 4 页第 12 题题干『关于插入排序的时间复杂度，下列说法正确的是（ ）』与当前一致，仅 N/n 大小写与 LaTeX 排版差异。"
+          "initial": "PDF 第 4 页第 12 题题干为「关于插入排序的时间复杂度，下列说法正确的是（ ）。」，与候选一致。",
+          "review": "PDF 第 4 页第 12 题题干「关于插入排序的时间复杂度，下列说法正确的是（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 4 页 C 项为“最好情况是 O(n)，最坏情况是 O(2^n)”，D 项为“最好情况是 O(n^2)，最坏情况是 O(2^n)”；当前 C 项写成“最好 O(N^2)，最坏 O(N)”，D 项写成“最好 O(1)，最坏 O(N)”，与 PDF 不符。A、B 项含义与 PDF 一致。",
-          "review": "核对 PDF 第 4 页原图：C 项为『最好情况是 O(n)，最坏情况是 O(2^n)』，D 项为『最好情况是 O(n^2)，最坏情况是 O(2^n)』；当前网站 C 写成『最好 O(N^2)、最坏 O(N)』、D 写成『最好 O(1)、最坏 O(N)』，与原卷不符。已按 PDF 原文（小写 n 记法）修正四个选项，修复后核验通过。"
+          "initial": "PDF 第 4 页四项依次为：A. 最好和最坏都是 O(n^2)；B. 最好 O(n)、最坏 O(n^2)；C. 最好 O(n)、最坏 O(2^n)；D. 最好 O(n^2)、最坏 O(2^n)。候选四个选项的文字与顺序一致。",
+          "review": "PDF 第 4 页原图：A. 最好情况和最坏情况的时间复杂度都是 O(n²)；B. 最好情况是 O(n)，最坏情况是 O(n²)；C. 最好情况是 O(n)，最坏情况是 O(2ⁿ)；D. 最好情况是 O(n²)，最坏情况是 O(2ⁿ)。候选（LaTeX 记法）与原图逐项一致，修复后核验通过。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 12 题为 B；当前 answer=1 映射 B 项，C、D 项文字错误未改变正确项索引。",
-          "review": "PDF 第 1 页答案表第 12 题为 B；当前 answer=1 映射 B。原 C/D 选项文字错误未改变正确项位置，答案无需修改。"
+          "initial": "PDF 第 1 页答案表第 12 题为 B，映射索引 1；插入排序最好情况为 O(n)、最坏情况为 O(n^2)，候选 answer=1 正确。",
+          "review": "第 1 页答案表第 12 题为 B，映射索引 1，候选 answer=1。独立推导：输入有序时每趟 key 首次比较即失败，共 n-1 次比较为 O(n)；完全逆序时第 i 趟需比较并右移 i 次，共 1+2+…+(n-1)=n(n-1)/2 为 O(n²)，B 正确。"
         },
         "explanation": {
-          "initial": "当前解析对 C、D 项的分析沿用了错误选项文字：把 C 说成“最好 O(N^2)、最坏 O(N)”，把 D 说成“最好 O(1)、最坏 O(N)”。应按 PDF 的 C、D 项改为：C 最坏为指数级 O(2^n) 错误；D 最好为 O(n^2) 且最坏为 O(2^n) 错误。B 项结论仍成立。",
-          "review": "原解析对 C、D 项的分析沿用了错误选项文字，已重写：最好情况（有序输入）内层首次比较即失败，总比较 O(n)；最坏（逆序）为 1+2+…+(n-1)=n(n-1)/2 即 O(n^2)；C 项最坏应为 O(n^2) 而非 O(2^n)，D 项两项均不符。重写后与 PDF 原选项逐项对应，独立推导无误，修复后核验通过。"
+          "initial": "候选按已排序输入与逆序输入分别推导最好 O(n) 和最坏 O(n^2)，并逐项排除 A、C、D，推导符合插入排序实际复杂度。",
+          "review": "候选解析推导最好 O(n)、最坏 O(n²)，并逐项排除 A（最好非 O(n²)）、C（最坏非 O(2ⁿ)，双层循环无指数来源）、D（两项均不符），与原卷选项一一对应，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
@@ -518,86 +530,93 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页末给出第 13 题题干，第 5 页给出 climbStairs 代码；当前题干、函数结构和横线位置与 PDF 一致，仅有排版差异。",
-          "review": "题干位于 PDF 第 4 页末（『小杨正在爬楼梯，需要 n 阶才能到达楼顶，每次可以爬 1 阶或 2 阶……横线上应填写（ ）』），代码与选项在第 5 页：climbStairs 结构（n<=2 返回 n，prev2=1、prev1=2、current=0，i 从 3 到 n 的循环含横线，返回 current）与当前一致。"
+          "initial": "PDF 第 4 页末第 13 题题干为爬楼梯问题；第 5 页代码含 if (n <= 2) return n;、prev2 = 1、prev1 = 2、current = 0 及 i 从 3 到 n 的循环，与候选一致。",
+          "review": "PDF 第 4 页末第 13 题题干（爬楼梯、n 阶、每次 1 阶或 2 阶、求方法数）与第 5 页代码（n<=2 返回 n、prev2=1、prev1=2、current=0、for i=3..n 内填空、返回 current）与候选一致；仅「楼顶，横线上」与「楼顶。横线上」一处标点差异，不影响题意。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A-D 四项分别对应：A 先更新 prev2、prev1 再算 current；B 先算 current 再移位；C 先算 current 再更新 prev1、prev2；D 先更新 prev1、prev2 再算 current。当前四项顺序和内容一致，仅空格差异。",
-          "review": "PDF 第 5 页 A-D 四项分别为：A 先更新 prev2/prev1 再算 current；B 先算 current 再更新 prev2/prev1；C 先算 current 再更新 prev1/prev2；D 先更新 prev1/prev2 再算 current，与当前顺序、内容一致，仅空格差异。"
+          "initial": "PDF 第 5 页 A-D 的四组语句顺序与候选完全一致：A 先更新 prev2/prev1 再算 current；B 先算 current 再更新 prev2/prev1；C 先算 current 再更新 prev1/prev2；D 先更新 prev1/prev2 再算 current。",
+          "review": "PDF 第 5 页 A-D 四组赋值语句与候选完全一致：A 先更新 prev2/prev1 再算 current；B 先算 current 再更新 prev2/prev1；C 先算 current 再更新 prev1/prev2；D 先更新 prev1/prev2 再算 current。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 13 题为 B；当前 answer=1 映射 B 项。",
-          "review": "PDF 第 1 页答案表第 13 题为 B；当前 answer=1 映射 B。独立模拟 n=4：B 填入返回 5 = F(4)，正确。"
+          "initial": "PDF 第 1 页答案表第 13 题为 B，映射索引 1；n=4 时 B 项得到 5，符合 F(4)=5，候选 answer=1 正确。",
+          "review": "第 1 页答案表第 13 题为 B，映射索引 1，候选 answer=1。独立模拟 n=4（F(1..4)=1,2,3,5）：B 项首轮 current=3、更新 prev2=2/prev1=3，次轮 current=5 返回 5=F(4)，正确。"
         },
         "explanation": {
-          "initial": "现有解析对 A 项的推导错误：A 项先执行 prev2=prev1=2、prev1=current=0，再算 current=0+2=2，并不会出现“prev1 和 prev2 相等后 current=2*prev1”。B 项结论正确，但需按实际执行结果重写 A 项及更新顺序说明。",
-          "review": "原解析对 A 项称『prev1 和 prev2 相等后 current=2*prev1』与实际执行不符：A 项先执行 prev2=prev1 得 2、prev1=current 得 0，再算 current=0+2=2。已按四种填空在 n=4 下的独立模拟重写解析（A 返回 2、B 返回 5、C 返回 6、D 返回 0），并修正『第 3 次循环』的计数表述，修复后核验通过。"
+          "initial": "候选以 n=4 独立模拟四种填空，得到 A=2、B=5、C=6、D=0，并正确说明必须先计算 current 再更新 prev2、prev1；推导与代码执行顺序一致。",
+          "review": "候选解析四种填空的 n=4 模拟结果（A→2、B→5、C→6、D→0）经我逐步独立模拟完全一致：A 首轮 prev2=2/prev1=0/current=2 状态被破坏；C 首轮后 prev2=prev1=3 丢失旧值得 6；D 首轮全为 0。先算 current 再更新 prev2/prev1 的次序说明正确，修复后核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
       "id": 14,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
+        1,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页题干含成绩单背景，并明确 scores 长度为 n、条件为 scores[i]+scores[j]+scores[k]==300 且 i<j<k；当前压缩了背景描述，但保留了条件、代码和复杂度提问，不改变题意。",
-          "review": "PDF 第 5 页题干含『班级成绩单』背景与 scores 数组说明；当前题干压缩了背景但完整保留核心条件（scores[i]+scores[j]+scores[k] == 300、i<j<k、三层循环代码、求时间复杂度），属可接受等价转换，不改变题意。"
+          "initial": "PDF 第 5 页第 14 题说明 scores 是长度为 n 的班级成绩数组，要求找出满足 scores[i]+scores[j]+scores[k]==300 且 i<j<k 的三元组，并判断代码时间复杂度；候选题干压缩了背景，但保留 scores、n、i<j<k、条件 300 和代码，未改变题意。",
+          "review": "PDF 第 5 页第 14 题题干为「假设有一个班级的成绩单，存储在一个长度为 n 的数组 scores 中……老师想要找出所有满足 scores[i] + scores[j] + scores[k] == 300 的三元组，其中 i < j < k。下面代码实现该功能，请问其时间复杂度是（ ）」，代码为 10 行三层嵌套 for（i 从 0 起、j 从 i+1 起、k 从 j+1 起，若三数之和等于 300 则 cnt++）。候选题干压缩了班级/老师背景，但完整保留 scores、条件 300、i<j<k 与全部代码，属等价转换，不改变题意。"
         },
         "options": {
-          "initial": "PDF 第 5 页选项为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)；当前 B 项写成 O(n log n)，D 项写成 O(3^n)，与 PDF 不符。A、C 项含义一致，正确项仍为 C。",
-          "review": "核对 PDF 第 5 页原图：选项为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)；当前网站 B 写成 O(n log n)、D 写成 O(3^n)，与原卷不符。已按原卷修正四个选项（统一小写 n 记法），修复后核验通过。"
+          "initial": "PDF 第 5 页原图选项为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)，与候选四个选项及顺序一致。",
+          "review": "PDF 第 5 页原图选项依次为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)，与候选四个选项内容与顺序一致，仅 LaTeX 记法差异。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 14 题为 C；当前 answer=2 映射 C 项，B、D 选项文字错误未改变正确项索引。",
-          "review": "PDF 第 1 页答案表第 14 题为 C；当前 answer=2 映射 C。三层循环枚举 C(n,3) 个三元组为 O(n^3)，正确项不变。"
+          "initial": "PDF 第 1 页答案表第 14 题为 C，映射索引 2；三层嵌套循环枚举 C(n,3) 个三元组，每次判断 O(1)，总复杂度 O(n^3)，答案 C 正确。",
+          "review": "PDF 第 1 页答案表第 14 题为 C，映射 0 起始索引 2，与候选 answer=2 一致。独立推导：三层嵌套循环恰好枚举全部 i<j<k 组合共 C(n,3)=n(n-1)(n-2)/6 个，每次判断 O(1)，总复杂度 O(n^3)，故选 C。"
         },
         "explanation": {
-          "initial": "当前解析按错误的 B=O(n log n)、D=O(3^n) 进行排除。实际 PDF 中 B 为 O(n^2)、D 为 O(2^n)，二者同样不是三层循环的复杂度；需按官方选项重写逐项分析。",
-          "review": "原解析按错误的 B=O(n log n)、D=O(3^n) 排除；重写版按原卷 O(n^2)、O(2^n) 分析：B 少一层循环、D 无指数来源，组合数 n(n-1)(n-2)/6 支撑 O(n^3)。独立推导无误，修复后核验通过。"
+          "initial": "候选解析按三层循环、组合数 C_n^3、每轮 O(1) 推导 O(n^3)，并按原卷 O(n^2)、O(2^n) 正确排除 B、D，未依赖错误选项文字。",
+          "review": "候选解析按三层嵌套与组合数推导 O(n^3)，逐项排除：A 单层循环才线性、B 是三层而非两层、D 无递归或指数分支；延伸说明可优化到约 O(n^2) 亦正确。我对每项独立复推无误。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
@@ -606,42 +625,46 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
+        1,
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页末至第 6 页第 15 题题干为“关于异常处理，以下说法错误的是（ ）。”，当前题干一致。",
-          "review": "PDF 第 5 页末至第 6 页第 15 题题干『关于异常处理，以下说法错误的是（ ）』与当前一致。"
+          "initial": "PDF 第 5 页末至第 6 页第 15 题题干为“关于异常处理，以下说法错误的是（ ）”，与候选一致。",
+          "review": "PDF 第 5 页末第 15 题题干「关于异常处理，以下说法错误的是（ ）」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 5-6 页 A-D 项分别为 try 块可能抛出异常、catch 可有多个处理不同类型、throw 用于抛出异常、所有异常都必须被捕获否则程序会崩溃，当前四项内容与顺序一致。",
-          "review": "PDF 第 5-6 页四选项：A try 块中的代码可能会抛出异常；B catch 块可以有多个，处理不同类型的异常；C throw 语句用于抛出异常；D 所有异常都必须被捕获，否则程序会崩溃，与当前内容、顺序一致。"
+          "initial": "PDF 第 5-6 页四项依次为：A try 块中的代码可能会抛出异常；B catch 块可以有多个，处理不同类型的异常；C throw 语句用于抛出异常；D 所有异常都必须被捕获，否则程序会崩溃。与候选顺序和内容一致。",
+          "review": "PDF 第 5-6 页选项依次为 A. try 块中的代码可能会抛出异常、B. catch 块可以有多个，处理不同类型的异常、C. throw 语句用于抛出异常、D. 所有异常都必须被捕获，否则程序会崩溃，与候选内容、顺序一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 15 题为 D；当前 answer=3 映射 D 项。",
-          "review": "PDF 第 1 页答案表第 15 题为 D；当前 answer=3 映射 D，一致。"
+          "initial": "PDF 第 1 页答案表第 15 题为 D，映射索引 3；C++ 不强制要求捕获所有异常，未捕获异常最终触发 std::terminate()，D 的“必须捕获”错误，符合题意。",
+          "review": "PDF 第 1 页答案表第 15 题为 D，映射索引 3，与候选 answer=3 一致。独立判断：A、B、C 均为正确说法；C++ 并不强制捕获所有异常，D 的「必须捕获」错误，符合题意。"
         },
         "explanation": {
-          "initial": "答案 D 正确，但现有解析把未捕获异常说成“不是崩溃”并强调受控终止，表述有争议，也不是判断 D 错误的核心依据。更准确的依据是：C++ 不强制要求捕获所有异常；未捕获时会对异常进行栈展开，最终未匹配则调用 std::terminate()，默认通常调用 std::abort()，因此 D 的前半句“必须被捕获”错误。",
-          "review": "原解析把 D 项错误的依据放在『未捕获异常是受控终止而非崩溃』上，可能误导（std::terminate 默认调用 std::abort，程序会异常终止）；重写版将核心依据改为『C++ 不强制捕获所有异常』并准确描述未捕获异常的栈展开与 std::terminate()/std::abort() 流程，保留 catch(...)、noexcept 要点，独立确认无误，修复后核验通过。"
+          "initial": "候选解析正确说明 A、B、C 均正确；D 的错误核心是“所有异常都必须被捕获”，并准确描述未捕获异常会栈展开并最终调用 std::terminate()、默认调用 std::abort()，未把“崩溃”当作唯一依据。",
+          "review": "候选解析以「C++ 不强制要求捕获所有异常」为 D 错误的核心依据，并准确描述未捕获异常沿调用链栈展开、最终调用 std::terminate()（默认处理为调用 std::abort()）的行为；A/B/C 的肯定理由正确；延伸中「noexcept 函数向外抛异常会 std::terminate()」「析构函数默认 noexcept」亦无误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
@@ -992,183 +1015,91 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第7页题目描述、输入输出及第8页样例与站点一致；但PDF第8页“3.1.5 数据范围”明确给出 1≤n,m≤12、0≤a_{i,j}≤1，当前 question 中完全没有该约束。",
-          "review": "PDF 第7页 3.1.1-3.1.3 题目描述/输入格式/输出格式与站点 question 逐句一致；第7-8页两个样例与站点 samples 完全相同。PDF 第8页 3.1.5 数据范围明确「对于所有测试点，保证 1≤n,m≤12，0≤a_{i,j}≤1」，站点原 question 缺失该必要约束；changes 补全的「## 数据范围」文本与 PDF 逐字对应，修复后核验通过。"
+          "initial": "PDF 第 7 页 3.1.1-3.1.3 的题目描述、输入输出格式与候选一致；第 7-8 页两组样例及输出 4、3 与候选 samples 一致；第 8 页 3.1.5 数据范围“对于所有测试点，保证 1 <= n,m <= 12，0 <= a_{i,j} <= 1”已包含在候选 question 中。",
+          "review": "PDF 第 7 页 3.1.1-3.1.3 题目描述（1 标注适合/0 标注不适合、选不含 0 的矩形、求最多网格数）、输入格式（第一行 n,m；接下来 n 行每行 m 个整数 a_{i,1..m}）、输出格式与候选逐句一致；第 7-8 页样例 1（4 3 / 0 1 1 / 1 0 1 / 0 1 1 / 1 1 1 → 4）与样例 2（3 5 / 1 0 1 0 1 / 0 1 0 1 0 / 0 1 1 1 0 → 3）与候选 samples 完全相同；第 8 页 3.1.5 数据范围「对于所有测试点，保证 1 ≤ n,m ≤ 12，0 ≤ a_{i,j} ≤ 1」已包含在候选 question 中，无缺失。"
         },
         "explanation": {
-          "initial": "解析采用的逐行高度+单调栈思路可独立复现样例：样例1逐行最大面积依次为2、2、3、4，样例2为1、1、3，最终分别为4、3，与PDF输出一致；0格清零、末尾哨兵、空栈宽度处理均正确。",
-          "review": "独立复算解析走查：样例1第0行 heights=[0,1,1] 最大面积2，第1行 [1,0,2] 为2，第2行 [0,1,3] 为3，第3行 [1,2,4] 中 4×1=4、2×2=4、1×3=3 故为4，输出4；样例2各行最大 1、1、3（第2行 heights=[0,2,1,2,0]，高度1跨列1-3得3），输出3，与 PDF 输出一致。单调栈「>= 弹出、空栈宽度取 i、末尾压0哨兵、遇0清零」等描述与参考代码逐条吻合，无需修改。"
+          "initial": "候选解析按行维护连续 1 高度并用单调栈求直方图最大矩形，遇 0 清零、末尾 0 哨兵、空栈宽度取当前下标，均与候选代码一致；样例 1 逐行最大面积 2、2、3、4，输出 4；样例 2 各行最大 1、1、3，输出 3，推导正确。",
+          "review": "候选解析按行维护连续 1 高度，用单调栈（栈顶高度 ≥ 当前则弹出、空栈宽度取当前下标、末尾压 0 哨兵、遇 0 清零）求直方图最大矩形，与参考代码逐条吻合。我独立走查：样例 1 各行 heights 与最大面积为 [0,1,1]→2、[1,0,2]→2、[0,1,3]→3、[1,2,4]→4，输出 4；样例 2 各行为 1、1、3，输出 3，均与 PDF 样例一致。"
         },
         "referenceCode": {
-          "initial": "站点参考程序能处理最小1×1、全0、全1和一般含0网格；样例1/2输出4/3。主体时间O(nm)。需注意 largestRectangleArea 每次向 heights 追加0哨兵，导致多次调用后尾部0累积，实际会多处理 O(n^2) 个零；因 n,m≤12 且零不贡献正面积，不改变答案，仅为实现瑕疵。",
-          "review": "对站点单调栈代码逐行模拟：样例1/2 分别输出 4、3；1×1 全0输出0、全1输出1、12×12 全1输出144、阶梯用例输出6，均正确。n,m≤12 下每行 O(m) 摊还；push_back 的0哨兵逐行累积（最多多出12个零柱）不产生正面积，不影响正确性与效率。与 PDF 第8页官方四重枚举参考程序（chk 短路版）属等价的不同实现，在全部测试上结果一致。"
+          "initial": "候选单调栈代码独立推演样例 1、2 分别得 4、3；1x1 全 0 得 0、全 1 得 1，3x4 阶梯用例得 6。每行 push_back 一个 0 哨兵会累计少量额外 0 柱，但不产生正面积，不影响答案；n,m <= 12 时效率充足。与 PDF 第 8 页官方四重枚举参考程序结果等价。",
+          "review": "对站点单调栈代码独立推演：样例 1/2 分别输出 4、3；1×1 全 0 得 0、全 1 得 1；3×4 阶梯得 6；12×12 全 1 得 144（末行 heights 全为 12，按 h=12、w=12 结算）。每行 push_back 的 0 哨兵逐行累积，但 0 高度柱面积为 0，不影响正确性；n,m ≤ 12 时效率充足。与 PDF 第 8 页官方四重枚举参考程序（chk 短路）在上述全部用例上结果一致，属等价实现。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9,
         10
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第9页题目描述、输入输出、样例与站点 question 一致；但PDF第9页“3.2.5 数据范围”给出40%测试点1≤n≤8、全部测试点1≤n≤10^5、-10^9≤a_i≤10^9，当前 question 中没有任何数据范围。",
-          "review": "PDF 第9页 3.2.1-3.2.3 题目描述/输入格式/输出格式与站点 question 逐句一致（含 [1,0,2,4] 重排为 [4,0,1,2] 及 10 个子数组的示例）；两个样例与站点 samples 完全相同。PDF 第9页 3.2.5 数据范围为「对于 40% 的测试点，保证 1≤n≤8。对于所有测试点，保证 1≤n≤10^5，−10^9≤a_i≤10^9」，站点原 question 缺失；changes 补全文本与 PDF 逐字对应，修复后核验通过。"
+          "initial": "PDF 第 9 页 3.2.1-3.2.3 的连续段定义、重排说明、[1,0,2,4] 示例、输入输出格式与候选一致；两组样例及输出 3、4 与候选 samples 一致；第 9 页 3.2.5 的“40% 测试点 1 <= n <= 8；所有测试点 1 <= n <= 10^5，-10^9 <= a_i <= 10^9”已包含在候选 question 中。",
+          "review": "PDF 第 9 页 3.2.1-3.2.3 连续段定义（b_{i+1}=b_i+1）、任意重排说明、[1,0,2,4] 重排为 [4,0,1,2] 及 10 个子数组示例（除 [4,0]、[4,0,1]、[4,0,1,2] 外均为连续段，最长 3）与候选逐句一致；样例 1（4 / 1 0 2 4 → 3）、样例 2（9 / 9 9 8 2 4 4 3 5 3 → 4）与候选 samples 相同；3.2.5 数据范围「40% 测试点 1 ≤ n ≤ 8；所有测试点 1 ≤ n ≤ 10^5，-10^9 ≤ a_i ≤ 10^9」已包含在候选 question 中。"
         },
         "explanation": {
-          "initial": "解析将问题化归为排序去重后的最长相邻差1连续段；样例1去重[0,1,2,4]得3，样例2去重[2,3,4,5,8,9]得4，与PDF输出一致。重复值不能延长连续段、末尾需要结算等说明也正确。",
-          "review": "独立推演：样例1排序去重后 [0,1,2,4]，扫描得最长连续段3；样例2去重后 [2,3,4,5,8,9]，2-5连续长度4、8-9长度2，输出4，与 PDF 样例一致。「重复值不能延长连续段、末尾需再取 max、n=1 输出1、|a_i|≤10^9 用 long long 足够（int 亦不溢出）」等说明均经复核正确，无需修改。"
+          "initial": "候选解析说明重复值不能延长连续段、排序去重后扫描相邻差 1 的最长段、末尾需再取 max；样例 1 去重后为 0,1,2,4，最长 3；样例 2 去重后为 2,3,4,5,8,9，最长 4，推导正确。",
+          "review": "候选解析要点（重复值差 0 不能延长连续段、排序去重后单遍扫描相邻差 1、末尾需再取 max、n=1 输出 1、|a_i|≤10^9 用 long long 足够且 int 亦不溢出）经我独立复核均正确；样例 1 去重后 [0,1,2,4] 最长 3、样例 2 去重后 [2,3,4,5,8,9] 最长 4，与 PDF 输出一致。"
         },
         "referenceCode": {
-          "initial": "站点代码读入 vector<long long>，排序、unique去重后单遍扫描；n=1、全相同值、负数及跨0连续段均能正确处理。样例1/2分别输出3/4，n≤10^5时O(n log n)排序时间和O(n)空间满足限制；long long足以容纳±10^9。",
-          "review": "对站点代码（sort + unique 去重 + 单遍扫描）独立模拟：样例1输出3、样例2输出4；n=1、全相同值（5个7→1）、负数跨界（-2..2→5）、重复值混入（1 2 2 3→3）均正确；末尾 max(maxLen,currentLen) 覆盖最长段延续到末尾的情形。a_i≤10^9 无溢出，O(n log n) 满足 n≤10^5 与 1s/512MB 限制。与 PDF 第9-10页官方参考程序（sort 后用 last 跳过重复）算法等价，结果一致。"
+          "initial": "候选代码排序、unique 去重后单遍扫描相邻差 1 的连续段，末尾用 max(maxLen,currentLen) 结算；n=1 输出 1，全重复值输出 1，负数跨 0 输出 5，重复值混入 1,2,2,3 输出 3，均与题意一致；long long 存储可覆盖给定范围，O(n log n) 满足 n <= 10^5。",
+          "review": "对站点代码（sort + unique 去重 + 单遍扫描 + 末尾 max 结算）独立模拟：样例 1 输出 3、样例 2 输出 4；n=1（-10^9）输出 1、全重复（5 个 7）输出 1、负数跨 0（-2..2）输出 5、重复混入（1 2 2 3）输出 3，均正确；与 PDF 第 9-10 页官方参考程序（sort 后用 last 跳过重复、cnt/mx 滚动更新）算法等价、结果一致。a_i 上界 10^9 无溢出，O(n log n) 满足 n ≤ 10^5 与 1s/512MB 限制。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l4.glm.json"
       ]
     }
   ],
   "unresolved": [
     {
-      "id": 2,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 4,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 13,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 24,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
       "dimensions": [
         "statement"
       ],
@@ -1194,5 +1125,6 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l4.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l4.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-09-l4.integration.json"
 }

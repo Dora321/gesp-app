@@ -1,0 +1,270 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    14,
+    15,
+    24,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T22:45:31.066Z",
+  "completedAt": "2026-11-16T22:48:09.083Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 36628,
+    "completion_tokens": 15143,
+    "total_tokens": 51771,
+    "prompt_tokens_details": {
+      "cached_tokens": 36480
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12638
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00921744,
+      "allowance": 0.00553046,
+      "tokens": {
+        "input": 148,
+        "output": 15143,
+        "reasoning": 12638,
+        "cache_read": 36480,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1146332041eb5b4e654fa2324edbd7bbbea0bd0f166947d39717332a221b17d3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 / C++ 四级 / 2025 年 09 月”；第 1 页单选题答案表和第 6 页判断题答案表可用于核对官方答案。"
+    },
+    "questions": [
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 14 题说明 scores 是长度为 n 的班级成绩数组，要求找出满足 scores[i]+scores[j]+scores[k]==300 且 i<j<k 的三元组，并判断代码时间复杂度；候选题干压缩了背景，但保留 scores、n、i<j<k、条件 300 和代码，未改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图选项为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)，与候选四个选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C，映射索引 2；三层嵌套循环枚举 C(n,3) 个三元组，每次判断 O(1)，总复杂度 O(n^3)，答案 C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按三层循环、组合数 C_n^3、每轮 O(1) 推导 O(n^3)，并按原卷 O(n^2)、O(2^n) 正确排除 B、D，未依赖错误选项文字。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页末至第 6 页第 15 题题干为“关于异常处理，以下说法错误的是（ ）”，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页四项依次为：A try 块中的代码可能会抛出异常；B catch 块可以有多个，处理不同类型的异常；C throw 语句用于抛出异常；D 所有异常都必须被捕获，否则程序会崩溃。与候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 D，映射索引 3；C++ 不强制要求捕获所有异常，未捕获异常最终触发 std::terminate()，D 的“必须捕获”错误，符合题意。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确说明 A、B、C 均正确；D 的错误核心是“所有异常都必须被捕获”，并准确描述未捕获异常会栈展开并最终调用 std::terminate()、默认调用 std::abort()，未把“崩溃”当作唯一依据。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题题干为“以下代码只能捕获 int 类型异常”，代码为 try { throw 42; } catch (...) { cout << \"Caught\" << endl; } 并 return 0，与候选完整一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项列表。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 格为 ×（错误，映射索引 1）；catch(...) 是全捕获处理器，可捕获任意类型异常，“只能捕获 int 类型异常”错误，故答案为“错误”。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析核心判断正确：catch(...) 捕获任意类型，throw 42 会被捕获但不能说明只捕获 int。但知识延伸称“优先匹配最具体的类型”不准确；C++ 的 catch 处理器按书写顺序尝试匹配，若 catch(...) 写在前面，后面的具体类型 catch 不可达，并非自动选择最具体类型。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\nC++ 的 `catch(...)` 是全捕获处理器，能捕获任意类型的异常；题干称“只能捕获 int 类型异常”与该语义相反。本题实际抛出的 `42` 是 int，会被 `catch(...)` 捕获并输出 Caught，但这不能说明它只能捕获 int。\n\n**易错提醒：**\n- `catch(int)` 只处理 int 类型的异常；`catch(const std::exception&)` 处理 std::exception 及其派生类；`catch(...)` 处理所有异常。\n- `catch(...)` 中无法访问具体异常对象，常用于兜底清理后重新抛出。\n- 多个 catch 按书写顺序尝试匹配；`catch(...)` 通常应放在最后，否则后面的处理器不可达。\n\n**知识延伸：**\n异常处理器按类型匹配，并按照出现顺序检查；没有“自动选择最具体类型”的规则。若希望先处理具体类型，应把具体类型的 catch 写在 `catch(...)` 前面。\n\n**考点：** C++ 异常处理机制中的全捕获语法 `catch(...)`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 3.1.1-3.1.3 的题目描述、输入输出格式与候选一致；第 7-8 页两组样例及输出 4、3 与候选 samples 一致；第 8 页 3.1.5 数据范围“对于所有测试点，保证 1 <= n,m <= 12，0 <= a_{i,j} <= 1”已包含在候选 question 中。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不参与答案表，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按行维护连续 1 高度并用单调栈求直方图最大矩形，遇 0 清零、末尾 0 哨兵、空栈宽度取当前下标，均与候选代码一致；样例 1 逐行最大面积 2、2、3、4，输出 4；样例 2 各行最大 1、1、3，输出 3，推导正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选单调栈代码独立推演样例 1、2 分别得 4、3；1x1 全 0 得 0、全 1 得 1，3x4 阶梯用例得 6。每行 push_back 一个 0 哨兵会累计少量额外 0 柱，但不产生正面积，不影响答案；n,m <= 12 时效率充足。与 PDF 第 8 页官方四重枚举参考程序结果等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小1x1且为0",
+            "input": "1 1\n0\n",
+            "output": "0",
+            "reason": "唯一网格为 0，不能选择含 0 的矩形，最大面积为 0。"
+          },
+          {
+            "name": "最小1x1且为1",
+            "input": "1 1\n1\n",
+            "output": "1",
+            "reason": "唯一网格为 1，可构成 1x1 全 1 矩形。"
+          },
+          {
+            "name": "阶梯状全1区域",
+            "input": "3 4\n1 1 1 0\n1 1 1 0\n1 1 0 0\n",
+            "output": "6",
+            "reason": "前两行前三列构成 2x3 全 1 矩形，面积 6；任何更大矩形都会包含 0。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 3.2.1-3.2.3 的连续段定义、重排说明、[1,0,2,4] 示例、输入输出格式与候选一致；两组样例及输出 3、4 与候选 samples 一致；第 9 页 3.2.5 的“40% 测试点 1 <= n <= 8；所有测试点 1 <= n <= 10^5，-10^9 <= a_i <= 10^9”已包含在候选 question 中。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不参与答案表，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明重复值不能延长连续段、排序去重后扫描相邻差 1 的最长段、末尾需再取 max；样例 1 去重后为 0,1,2,4，最长 3；样例 2 去重后为 2,3,4,5,8,9，最长 4，推导正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码排序、unique 去重后单遍扫描相邻差 1 的连续段，末尾用 max(maxLen,currentLen) 结算；n=1 输出 1，全重复值输出 1，负数跨 0 输出 5，重复值混入 1,2,2,3 输出 3，均与题意一致；long long 存储可覆盖给定范围，O(n log n) 满足 n <= 10^5。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n=1最小负数",
+            "input": "1\n-1000000000\n",
+            "output": "1",
+            "reason": "单个元素自身构成长度 1 的连续段。"
+          },
+          {
+            "name": "全部重复值",
+            "input": "5\n7 7 7 7 7\n",
+            "output": "1",
+            "reason": "重复值不能形成严格后项等于前项加 1 的连续段，去重后只剩一个值。"
+          },
+          {
+            "name": "负数跨0连续段",
+            "input": "5\n-2 -1 0 1 2\n",
+            "output": "5",
+            "reason": "可重排为 -2,-1,0,1,2，整段满足相邻差 1，长度 5。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 14、15、24、26、27 题。第 14、15 题的题面、选项、答案和解析与原卷一致；第 24 题题面、答案正确，但解析中“优先匹配最具体类型”不准确，已改为按 catch 书写顺序匹配；第 26、27 题的题面、数据范围、样例、解析和参考代码经独立边界推演均正确。"
+  }
+}

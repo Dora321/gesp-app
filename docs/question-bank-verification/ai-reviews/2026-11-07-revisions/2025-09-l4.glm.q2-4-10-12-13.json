@@ -1,0 +1,238 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    4,
+    10,
+    12,
+    13
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T22:34:50.988Z",
+  "completedAt": "2026-11-16T22:36:59.187Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 54880,
+    "completion_tokens": 12786,
+    "total_tokens": 67666,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10121
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.014625,
+      "allowance": 0.014625,
+      "tokens": {
+        "input": 54880,
+        "output": 12786,
+        "reasoning": 10121,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "1146332041eb5b4e654fa2324edbd7bbbea0bd0f166947d39717332a221b17d3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 Grade Examination of Software Programming」「C++ 四级」「2025 年 09 月」，与目标 2025-09-l4（2025年9月 GESP C++ 四级）一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干「以下关于数组的描述中，（ ）是错误的。」与候选题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图 A-D 依次为：A. 数组名是一个指针常量；B. 随机访问数组的元素方便快捷；C. 数组可以像指针一样进行自增操作；D. sizeof(arr) 返回的是整个数组 arr 占用的字节数，与候选文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 2 题为 C，映射索引 2，候选 answer=2。独立推导：`arr++` 的 ++ 要求可修改左值，数组名不可修改，无法通过编译，为唯一明确错误项；A（命题语境下数组名退化为指针且不可改指向）、B（连续存储下标访问 O(1)）、D（sizeof 直接作用于数组名返回整组字节数）均成立，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐条符合 C++ 规则：arr++ 非法、sizeof(arr) 不退化为指针、随机访问 O(1)、arr+1 与 arr++ 区别、形参退化提醒；并明确 A 项「指针常量」为教学简化、严格标准下数组名是数组类型左值。修复后核验通过，结论与官方答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "A 项「数组名是一个指针常量」在严格 C++ 标准下并非精确表述（数组名是数组类型左值，仅多数表达式中转换为指针）；官方按教学语境取 C，候选解析已注明该差异，不影响答案映射。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立核对题面、选项、答案表（第 2 题 C→索引 2）与解析后确认初核 approve 成立；候选解析对 A 项命题语境与严格术语差异的处理恰当，无需修改，维持网站现值。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末第 4 题题干「下面这段代码会输出（ ）。」，代码位于第 2 页：`int add(int a, int b = 1); // 函数声明`、main 中 `cout << add(2) << \" \" << add(2, 3);`、`int add(int a, int b) { // 函数定义 return a + b; }`，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A. 3 5；B. 编译失败：定义处少了默认参数；C. 运行错误；D. 链接失败：未定义引用，与候选顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 A，映射索引 0，候选 answer=0。独立推导：声明处默认 b=1，add(2)=3、add(2,3)=5，输出「3 5」；定义处未重复指定默认实参，声明加定义可正常编译链接。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「同一作用域内同一形参的默认实参只能指定一次，声明处已指定则定义处不得再写」符合 C++ 默认实参规则，修复后核验通过；B（定义处省略合法）、C（逻辑正常）、D（提供了定义可链接）排除理由正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认题面/选项/答案映射与解析均正确，初核 approve 成立，无需修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题题干与代码（selectionSort(vector<int>& nums)、minIndex=i、内层 for j=i+1..n-1、if 填空处、内层闭合后的第二空及两处「在此处填入代码」注释）与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 四组填空与候选一致：A < / swap(nums[i], nums[minIndex])；B > / 同一交换；C <= / swap(nums[j], nums[minIndex])；D <= / swap(nums[i], nums[j])。C 组首行原图字形呈 nums(minIndex]，PDF 文本层为 nums[minIndex]，判定为渲染伪影，语义与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 A，映射索引 0，候选 answer=0。独立推导：升序选择排序需在未排序区间 [i,n) 找最小值（nums[j] < nums[minIndex] 时更新 minIndex），内层结束后 swap(nums[i], nums[minIndex])；B 为找最大值；C、D 第二空位于内层 for 闭合之后，j 已离开作用域无法编译，且交换对象均未把记录的最小值换到 i 位。仅 A 同时满足两空。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析两处关键论断经独立复核成立：①严格小于只保留最左最小值，并不能使选择排序稳定（与本卷第 9 题官方口径一致）；②第二空在内层循环闭合之后，C/D 中 j 出作用域属编译层面错误。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认初核 approve 成立；候选解析对稳定性与 j 作用域的更正均正确，答案映射不变，维持网站现值。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 12 题题干「关于插入排序的时间复杂度，下列说法正确的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图：A. 最好情况和最坏情况的时间复杂度都是 O(n²)；B. 最好情况是 O(n)，最坏情况是 O(n²)；C. 最好情况是 O(n)，最坏情况是 O(2ⁿ)；D. 最好情况是 O(n²)，最坏情况是 O(2ⁿ)。候选（LaTeX 记法）与原图逐项一致，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 B，映射索引 1，候选 answer=1。独立推导：输入有序时每趟 key 首次比较即失败，共 n-1 次比较为 O(n)；完全逆序时第 i 趟需比较并右移 i 次，共 1+2+…+(n-1)=n(n-1)/2 为 O(n²)，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析推导最好 O(n)、最坏 O(n²)，并逐项排除 A（最好非 O(n²)）、C（最坏非 O(2ⁿ)，双层循环无指数来源）、D（两项均不符），与原卷选项一一对应，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对原图选项文字（此前网站 C/D 曾误录，候选已按原卷修正为 O(n)/O(2ⁿ)、O(n²)/O(2ⁿ)）与答案映射（第 12 题 B→索引 1），解析推导无误，初核 approve 成立。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末第 13 题题干（爬楼梯、n 阶、每次 1 阶或 2 阶、求方法数）与第 5 页代码（n<=2 返回 n、prev2=1、prev1=2、current=0、for i=3..n 内填空、返回 current）与候选一致；仅「楼顶，横线上」与「楼顶。横线上」一处标点差异，不影响题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四组赋值语句与候选完全一致：A 先更新 prev2/prev1 再算 current；B 先算 current 再更新 prev2/prev1；C 先算 current 再更新 prev1/prev2；D 先更新 prev1/prev2 再算 current。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 B，映射索引 1，候选 answer=1。独立模拟 n=4（F(1..4)=1,2,3,5）：B 项首轮 current=3、更新 prev2=2/prev1=3，次轮 current=5 返回 5=F(4)，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析四种填空的 n=4 模拟结果（A→2、B→5、C→6、D→0）经我逐步独立模拟完全一致：A 首轮 prev2=2/prev1=0/current=2 状态被破坏；C 首轮后 prev2=prev1=3 丢失旧值得 6；D 首轮全为 0。先算 current 再更新 prev2/prev1 的次序说明正确，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认初核 approve 成立；候选解析对 A/C/D 项的模拟推导已修正且与我的独立模拟一致，答案映射不变，维持网站现值。"
+      }
+    ],
+    "summary": "本轮独立复核仅限题号 2、4、10、12、13。五题题面、选项与答案表映射（2→C/索引2、4→A/索引0、10→A/索引0、12→B/索引1、13→B/索引1）均与 PDF 第 1-5 页原图一致；此前修订的解析（第 2 题数组名术语说明、第 4 题默认实参规则、第 10 题稳定性与 j 作用域、第 12 题选项文字与复杂度推导、第 13 题四种填空模拟）经独立推导与逐项模拟全部复核通过；无需要修改的字段，五题维持网站现值，verdict 均为 approve。第 2 题 A 项「数组名是一个指针常量」的教学术语争议已在解析中注明并保留说明，不影响官方答案 C。DeepSeek 初核对五题的 approve 结论经独立验证后全部采纳，其草稿中无需要否决的修改。"
+  }
+}

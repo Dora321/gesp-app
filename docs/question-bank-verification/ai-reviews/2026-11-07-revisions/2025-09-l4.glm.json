@@ -1,0 +1,521 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    4,
+    10,
+    12,
+    13,
+    14,
+    15,
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T22:34:50.988Z",
+  "completedAt": "2026-11-16T23:39:57.692Z",
+  "finishReason": "stop",
+  "inputSha256": "1146332041eb5b4e654fa2324edbd7bbbea0bd0f166947d39717332a221b17d3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 Grade Examination of Software Programming」「C++ 四级」「2025 年 09 月」，与目标 2025-09-l4（2025年9月 GESP C++ 四级）一致。\nPDF 第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 四级 / 2025 年 09 月」，与站点 2025-09-l4（2025年9月 GESP C++ 四级，level 4）一致；第 1 页单选题答案表（15 题）与第 6 页判断题答案表（10 题）可据以核对官方答案。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干「以下关于数组的描述中，（ ）是错误的。」与候选题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图 A-D 依次为：A. 数组名是一个指针常量；B. 随机访问数组的元素方便快捷；C. 数组可以像指针一样进行自增操作；D. sizeof(arr) 返回的是整个数组 arr 占用的字节数，与候选文字、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 2 题为 C，映射索引 2，候选 answer=2。独立推导：`arr++` 的 ++ 要求可修改左值，数组名不可修改，无法通过编译，为唯一明确错误项；A（命题语境下数组名退化为指针且不可改指向）、B（连续存储下标访问 O(1)）、D（sizeof 直接作用于数组名返回整组字节数）均成立，与官方答案一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐条符合 C++ 规则：arr++ 非法、sizeof(arr) 不退化为指针、随机访问 O(1)、arr+1 与 arr++ 区别、形参退化提醒；并明确 A 项「指针常量」为教学简化、严格标准下数组名是数组类型左值。修复后核验通过，结论与官方答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "A 项「数组名是一个指针常量」在严格 C++ 标准下并非精确表述（数组名是数组类型左值，仅多数表达式中转换为指针）；官方按教学语境取 C，候选解析已注明该差异，不影响答案映射。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立核对题面、选项、答案表（第 2 题 C→索引 2）与解析后确认初核 approve 成立；候选解析对 A 项命题语境与严格术语差异的处理恰当，无需修改，维持网站现值。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末第 4 题题干「下面这段代码会输出（ ）。」，代码位于第 2 页：`int add(int a, int b = 1); // 函数声明`、main 中 `cout << add(2) << \" \" << add(2, 3);`、`int add(int a, int b) { // 函数定义 return a + b; }`，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A. 3 5；B. 编译失败：定义处少了默认参数；C. 运行错误；D. 链接失败：未定义引用，与候选顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 A，映射索引 0，候选 answer=0。独立推导：声明处默认 b=1，add(2)=3、add(2,3)=5，输出「3 5」；定义处未重复指定默认实参，声明加定义可正常编译链接。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「同一作用域内同一形参的默认实参只能指定一次，声明处已指定则定义处不得再写」符合 C++ 默认实参规则，修复后核验通过；B（定义处省略合法）、C（逻辑正常）、D（提供了定义可链接）排除理由正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认题面/选项/答案映射与解析均正确，初核 approve 成立，无需修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 10 题题干与代码（selectionSort(vector<int>& nums)、minIndex=i、内层 for j=i+1..n-1、if 填空处、内层闭合后的第二空及两处「在此处填入代码」注释）与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 四组填空与候选一致：A < / swap(nums[i], nums[minIndex])；B > / 同一交换；C <= / swap(nums[j], nums[minIndex])；D <= / swap(nums[i], nums[j])。C 组首行原图字形呈 nums(minIndex]，PDF 文本层为 nums[minIndex]，判定为渲染伪影，语义与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 A，映射索引 0，候选 answer=0。独立推导：升序选择排序需在未排序区间 [i,n) 找最小值（nums[j] < nums[minIndex] 时更新 minIndex），内层结束后 swap(nums[i], nums[minIndex])；B 为找最大值；C、D 第二空位于内层 for 闭合之后，j 已离开作用域无法编译，且交换对象均未把记录的最小值换到 i 位。仅 A 同时满足两空。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析两处关键论断经独立复核成立：①严格小于只保留最左最小值，并不能使选择排序稳定（与本卷第 9 题官方口径一致）；②第二空在内层循环闭合之后，C/D 中 j 出作用域属编译层面错误。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认初核 approve 成立；候选解析对稳定性与 j 作用域的更正均正确，答案映射不变，维持网站现值。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 12 题题干「关于插入排序的时间复杂度，下列说法正确的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图：A. 最好情况和最坏情况的时间复杂度都是 O(n²)；B. 最好情况是 O(n)，最坏情况是 O(n²)；C. 最好情况是 O(n)，最坏情况是 O(2ⁿ)；D. 最好情况是 O(n²)，最坏情况是 O(2ⁿ)。候选（LaTeX 记法）与原图逐项一致，修复后核验通过。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 B，映射索引 1，候选 answer=1。独立推导：输入有序时每趟 key 首次比较即失败，共 n-1 次比较为 O(n)；完全逆序时第 i 趟需比较并右移 i 次，共 1+2+…+(n-1)=n(n-1)/2 为 O(n²)，B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析推导最好 O(n)、最坏 O(n²)，并逐项排除 A（最好非 O(n²)）、C（最坏非 O(2ⁿ)，双层循环无指数来源）、D（两项均不符），与原卷选项一一对应，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对原图选项文字（此前网站 C/D 曾误录，候选已按原卷修正为 O(n)/O(2ⁿ)、O(n²)/O(2ⁿ)）与答案映射（第 12 题 B→索引 1），解析推导无误，初核 approve 成立。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末第 13 题题干（爬楼梯、n 阶、每次 1 阶或 2 阶、求方法数）与第 5 页代码（n<=2 返回 n、prev2=1、prev1=2、current=0、for i=3..n 内填空、返回 current）与候选一致；仅「楼顶，横线上」与「楼顶。横线上」一处标点差异，不影响题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A-D 四组赋值语句与候选完全一致：A 先更新 prev2/prev1 再算 current；B 先算 current 再更新 prev2/prev1；C 先算 current 再更新 prev1/prev2；D 先更新 prev1/prev2 再算 current。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 B，映射索引 1，候选 answer=1。独立模拟 n=4（F(1..4)=1,2,3,5）：B 项首轮 current=3、更新 prev2=2/prev1=3，次轮 current=5 返回 5=F(4)，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析四种填空的 n=4 模拟结果（A→2、B→5、C→6、D→0）经我逐步独立模拟完全一致：A 首轮 prev2=2/prev1=0/current=2 状态被破坏；C 首轮后 prev2=prev1=3 丢失旧值得 6；D 首轮全为 0。先算 current 再更新 prev2/prev1 的次序说明正确，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认初核 approve 成立；候选解析对 A/C/D 项的模拟推导已修正且与我的独立模拟一致，答案映射不变，维持网站现值。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 14 题题干为「假设有一个班级的成绩单，存储在一个长度为 n 的数组 scores 中……老师想要找出所有满足 scores[i] + scores[j] + scores[k] == 300 的三元组，其中 i < j < k。下面代码实现该功能，请问其时间复杂度是（ ）」，代码为 10 行三层嵌套 for（i 从 0 起、j 从 i+1 起、k 从 j+1 起，若三数之和等于 300 则 cnt++）。候选题干压缩了班级/老师背景，但完整保留 scores、条件 300、i<j<k 与全部代码，属等价转换，不改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图选项依次为 A. O(n)、B. O(n^2)、C. O(n^3)、D. O(2^n)，与候选四个选项内容与顺序一致，仅 LaTeX 记法差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C，映射 0 起始索引 2，与候选 answer=2 一致。独立推导：三层嵌套循环恰好枚举全部 i<j<k 组合共 C(n,3)=n(n-1)(n-2)/6 个，每次判断 O(1)，总复杂度 O(n^3)，故选 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按三层嵌套与组合数推导 O(n^3)，逐项排除：A 单层循环才线性、B 是三层而非两层、D 无递归或指数分支；延伸说明可优化到约 O(n^2) 亦正确。我对每项独立复推无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，PDF 第 14 题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "我对照 PDF 第 1 页答案表与第 5 页原图独立复核：题干压缩不丢失任何技术约束，四个选项与原卷一致，answer=2（C）正确；解析的组合数推导与逐项排除经我复推无误。DeepSeek 初核结论与我一致，维持无字段修改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页末第 15 题题干「关于异常处理，以下说法错误的是（ ）」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页选项依次为 A. try 块中的代码可能会抛出异常、B. catch 块可以有多个，处理不同类型的异常、C. throw 语句用于抛出异常、D. 所有异常都必须被捕获，否则程序会崩溃，与候选内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 D，映射索引 3，与候选 answer=3 一致。独立判断：A、B、C 均为正确说法；C++ 并不强制捕获所有异常，D 的「必须捕获」错误，符合题意。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以「C++ 不强制要求捕获所有异常」为 D 错误的核心依据，并准确描述未捕获异常沿调用链栈展开、最终调用 std::terminate()（默认处理为调用 std::abort()）的行为；A/B/C 的肯定理由正确；延伸中「noexcept 函数向外抛异常会 std::terminate()」「析构函数默认 noexcept」亦无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题干、四选项与 PDF 第 5-6 页一致，答案 D→索引 3 经答案表与独立技术判断双重确认；解析论证无技术错误。DeepSeek 初核结论与我一致，无字段修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断第 9 题题干「以下代码只能捕获 int 类型异常」，代码为完整 main：try { throw 42; } catch (...) { cout << \"Caught\" << endl; } 及 return 0;，与候选逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无选项列表（仅正确/错误两态），不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题答案表第 9 格为 ×（错误，映射索引 1），与候选 answer=1 一致。独立判断：catch(...) 是全捕获处理器，可捕获任意类型异常，「只能捕获 int 类型异常」不成立，题干说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析核心结论（catch(...) 全捕获、答案为错误）正确，但知识延伸称「优先匹配最具体的类型，catch(int) 会先被尝试匹配」不符合 C++ 语义：异常处理器按书写顺序依次尝试、命中即止，catch(...) 写在前面会使后面的 catch(int) 不可达，不存在按类型具体性自动择优的规则。已替换为按书写顺序匹配的准确表述，其余内容保留；修复后核验通过，答案仍为「错误」。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\nC++ 的 `catch(...)` 是**全捕获（catch-all handler）**处理器，其设计目的就是捕获**任意类型**的异常。\n\n```cpp\ntry {\n    throw 10;          // 抛出 int\n    // 也可以抛出 const char*、类对象等任意类型\n} catch(...) {\n    // 无论抛出什么类型，都会在这里被捕获\n}\n```\n\n题干声称“只能捕获 `int` 类型异常”，与 `catch(...)` 的语义完全矛盾。本题抛出的 `42` 是 int，会被 `catch(...)` 捕获并输出 Caught，但这只能说明它捕获了这一个 int 异常，不能说明它“只能捕获 int”。\n\n**易错提醒：**\n- 准确区分三种 catch 形式：`catch(int i)` 仅捕获 int 类型异常；`catch(const std::exception& e)` 捕获 std::exception 及其派生类；`catch(...)` 捕获所有异常。\n- 使用 `catch(...)` 时无法访问具体异常对象（因为不知道其类型），常用于资源清理（如关闭文件、释放锁）后用 `throw;` 重新抛出。\n- 多个 catch 处理器按**书写顺序**依次尝试匹配，命中即止；`catch(...)` 通常应放在最后，否则写在它后面的处理器永远不可达。\n\n**知识延伸：**\nC++ 异常按类型匹配，处理器严格按出现顺序检查，并不存在“自动优先匹配最具体类型”的规则。若希望先处理具体类型，应把具体类型的 catch 写在 `catch(...)` 之前。\n\n**考点：** C++ 异常处理机制中的全捕获语法 `catch(...)`。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "题面（完整 throw 42 代码）与答案 ×→1 我对照 PDF 第 6-7 页确认无误；但解析知识延伸「优先匹配最具体的类型，catch(int) 会先被尝试匹配」是技术错误——C++ 处理器按书写顺序依次匹配，若 catch(...) 在前则后续具体处理器不可达，并不存在「最具体类型优先」的自动规则。我独立确认该错误属实，采纳修正解析（重写易错提醒与知识延伸，核心结论「错误」不变），修复后核验通过。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页 3.1.1-3.1.3 题目描述（1 标注适合/0 标注不适合、选不含 0 的矩形、求最多网格数）、输入格式（第一行 n,m；接下来 n 行每行 m 个整数 a_{i,1..m}）、输出格式与候选逐句一致；第 7-8 页样例 1（4 3 / 0 1 1 / 1 0 1 / 0 1 1 / 1 1 1 → 4）与样例 2（3 5 / 1 0 1 0 1 / 0 1 0 1 0 / 0 1 1 1 0 → 3）与候选 samples 完全相同；第 8 页 3.1.5 数据范围「对于所有测试点，保证 1 ≤ n,m ≤ 12，0 ≤ a_{i,j} ≤ 1」已包含在候选 question 中，无缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不参与答案表，officialAnswer 记 null；候选 answer 为空串，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按行维护连续 1 高度，用单调栈（栈顶高度 ≥ 当前则弹出、空栈宽度取当前下标、末尾压 0 哨兵、遇 0 清零）求直方图最大矩形，与参考代码逐条吻合。我独立走查：样例 1 各行 heights 与最大面积为 [0,1,1]→2、[1,0,2]→2、[0,1,3]→3、[1,2,4]→4，输出 4；样例 2 各行为 1、1、3，输出 3，均与 PDF 样例一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "对站点单调栈代码独立推演：样例 1/2 分别输出 4、3；1×1 全 0 得 0、全 1 得 1；3×4 阶梯得 6；12×12 全 1 得 144（末行 heights 全为 12，按 h=12、w=12 结算）。每行 push_back 的 0 哨兵逐行累积，但 0 高度柱面积为 0，不影响正确性；n,m ≤ 12 时效率充足。与 PDF 第 8 页官方四重枚举参考程序（chk 短路）在上述全部用例上结果一致，属等价实现。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小1×1且全为0",
+            "input": "1 1\n0",
+            "output": "0",
+            "reason": "唯一网格为 0，任何非空矩形都含 0 不可选；官方枚举程序 ans 保持初值 0，站点单调栈代码对 [0] 结算面积 0，我按两种实现分别推演均输出 0。"
+          },
+          {
+            "name": "最小1×1且为1",
+            "input": "1 1\n1",
+            "output": "1",
+            "reason": "单个 1 可构成 1×1 全 1 矩形，面积 1；站点代码 heights=[1] 经哨兵按 h=1、w=1 结算，官方枚举 u=d=l=r=1 得 1。"
+          },
+          {
+            "name": "阶梯状全1区域",
+            "input": "3 4\n1 1 1 0\n1 1 1 0\n1 1 0 0",
+            "output": "6",
+            "reason": "最优为前两行前 3 列的 2×3 全 1 矩形，面积 6；站点代码逐行 heights 为 [1,1,1,0]→3、[2,2,2,0]→6、[3,3,0,0]→6，官方枚举 u=1,d=2,l=1,r=3 同得 6。"
+          },
+          {
+            "name": "最大规模12×12全1",
+            "input": "12 12\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1 1 1 1",
+            "output": "144",
+            "reason": "整图即合法矩形，面积 12×12=144 为上界且可达；官方枚举 u=1,d=12,l=1,r=12 取得，站点代码在末行 heights 全为 12 时按 h=12、w=12 结算 144。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面（含数据范围 1≤n,m≤12、0≤a_{i,j}≤1）与两组样例均与 PDF 逐字一致；解析的单调栈流程与参考代码逐条吻合，样例走查经我复算正确；参考代码经 1×1、阶梯、12×12 全 1 等边界独立推演均正确，与官方四重枚举程序等价。无字段修改；tests 的期望输出均由我按两种实现独立推演核对。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9 页 3.2.1-3.2.3 连续段定义（b_{i+1}=b_i+1）、任意重排说明、[1,0,2,4] 重排为 [4,0,1,2] 及 10 个子数组示例（除 [4,0]、[4,0,1]、[4,0,1,2] 外均为连续段，最长 3）与候选逐句一致；样例 1（4 / 1 0 2 4 → 3）、样例 2（9 / 9 9 8 2 4 4 3 5 3 → 4）与候选 samples 相同；3.2.5 数据范围「40% 测试点 1 ≤ n ≤ 8；所有测试点 1 ≤ n ≤ 10^5，-10^9 ≤ a_i ≤ 10^9」已包含在候选 question 中。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不参与答案表，officialAnswer 记 null；候选 answer 为空串，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析要点（重复值差 0 不能延长连续段、排序去重后单遍扫描相邻差 1、末尾需再取 max、n=1 输出 1、|a_i|≤10^9 用 long long 足够且 int 亦不溢出）经我独立复核均正确；样例 1 去重后 [0,1,2,4] 最长 3、样例 2 去重后 [2,3,4,5,8,9] 最长 4，与 PDF 输出一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "对站点代码（sort + unique 去重 + 单遍扫描 + 末尾 max 结算）独立模拟：样例 1 输出 3、样例 2 输出 4；n=1（-10^9）输出 1、全重复（5 个 7）输出 1、负数跨 0（-2..2）输出 5、重复混入（1 2 2 3）输出 3，均正确；与 PDF 第 9-10 页官方参考程序（sort 后用 last 跳过重复、cnt/mx 滚动更新）算法等价、结果一致。a_i 上界 10^9 无溢出，O(n log n) 满足 n ≤ 10^5 与 1s/512MB 限制。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n=1最小值",
+            "input": "1\n-1000000000",
+            "output": "1",
+            "reason": "单个元素自身即长度 1 的连续段；站点代码去重后仅 1 个元素、循环不进入，输出初始 maxLen=1，官方程序 cnt=mx=1 直接输出 1。"
+          },
+          {
+            "name": "全部为重复值",
+            "input": "5\n7 7 7 7 7",
+            "output": "1",
+            "reason": "连续段要求后项恰比前项大 1，相同值不能相邻延续；去重后仅剩一个 7，站点与官方实现均输出 1。"
+          },
+          {
+            "name": "负数跨0连续段",
+            "input": "5\n-2 -1 0 1 2",
+            "output": "5",
+            "reason": "可重排为 [-2,-1,0,1,2]，整段相邻差 1，长度 5；不超过元素总数 5。"
+          },
+          {
+            "name": "重复值混入连续段",
+            "input": "4\n1 2 2 3",
+            "output": "3",
+            "reason": "排序去重后为 [1,2,3]，最长连续段 3；站点 unique 去重与官方 last 跳重实现我分别推演结果一致。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面、数据范围与样例与 PDF 3.2.1-3.2.5 一致；解析要点经我复核正确；参考代码我独立模拟样例与四组边界（n=1、全重复、负数跨 0、重复混入 → 1/1/5/3）均正确，与官方 last 跳重程序等价，long long 足够、复杂度满足限制。无字段修改；tests 的期望输出均由我独立推演核对。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        4,
+        10,
+        12,
+        13
+      ],
+      "usage": {
+        "prompt_tokens": 54880,
+        "completion_tokens": 12786,
+        "total_tokens": 67666,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10121
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.014625,
+          "allowance": 0.014625,
+          "tokens": {
+            "input": 54880,
+            "output": 12786,
+            "reasoning": 10121,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T22:34:50.988Z",
+      "completedAt": "2026-11-16T22:36:59.187Z"
+    },
+    {
+      "questionIds": [
+        14,
+        15,
+        24,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 55669,
+        "completion_tokens": 37404,
+        "total_tokens": 93073,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 32759
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.02705235,
+          "allowance": 0.02705235,
+          "tokens": {
+            "input": 55669,
+            "output": 37404,
+            "reasoning": 32759,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T23:34:11.257Z",
+      "completedAt": "2026-11-16T23:39:57.692Z"
+    }
+  ]
+}
