@@ -1,0 +1,94 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    3
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T02:09:42.293Z",
+  "completedAt": "2026-11-16T02:10:57.220Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14576,
+    "completion_tokens": 6754,
+    "total_tokens": 21330,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6316
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0124776,
+      "allowance": 0.00748656,
+      "tokens": {
+        "input": 14576,
+        "output": 6754,
+        "reasoning": 6316,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "49a2d790c47dc0fdcb45f69eeec22ffdf6d5fb6a31e40b4ad1f8ed31126db345",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标有“CCF 编程能力等级认证 C++ 四级 2023 年 9 月”，与 2023-09-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 1 页题干为“对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。”，候选 question 末尾多出“ A”，属于残留的选项标记，应删除。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页底部选项 A 为 O(n)，第 2 页依次为 B. O(n log n)、C. O(n²)、D. 以上都不正确；候选 options 顺序和含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 3 题为 C（0 起始索引 2）；独立分析冒泡排序平均比较与交换总量为 Θ(n²)，平均时间复杂度为 O(n²)，与 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立给出基本版总比较次数 n(n-1)/2、最坏逆序交换次数 n(n-1)/2、随机期望交换次数 n(n-1)/4，并说明最好 O(n) 需带提前退出优化；结论与推导均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "对包含n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题 3：题干末尾残留“ A”需修正；选项、答案 C（索引 2）及解析均与原卷和独立推导一致，无其他未决问题。"
+  }
+}
