@@ -4,6 +4,8 @@ import MarkdownRenderer from '../../components/MarkdownRenderer';
 import {
     ChevronLeft,
     ChevronRight,
+    ChevronDown,
+    ChevronUp,
     RotateCcw,
     BookOpen,
     Lightbulb,
@@ -17,6 +19,8 @@ import {
 } from 'lucide-react';
 import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
+import { normalizeTopicTags } from '../../data/gesp/topicTaxonomy';
+import { tagStats } from 'virtual:gesp-tag-stats';
 import { getLuoguProblemUrl, needsSynthesizedCoding, withSynthesizedCoding } from '../../data/gesp/codingQuestions';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import useLuoguPool from '../../hooks/useLuoguPool';
@@ -35,36 +39,41 @@ import { getQuestionNavStatus } from '../../utils/questionNavStatus';
 import { isProgrammingQuestion } from '../../utils/questionHelpers';
 import { navigateBack } from '../../utils/navigateBack';
 
-const inferKnowledgeTags = (q, level) => {
+// 只在题目没有人工知识点标签时兜底。规则刻意保守：不把普通题干里的「判断」
+// 当成条件分支，也不再把题型（单选题 / 判断题 / 编程题）混进知识点标签。
+const FALLBACK_TAG_RULES = [
+    [/循环|for\s*\(|while\s*\(|do\s*\{/i, '循环'],
+    [/(?:条件|if\s*\(|else|switch|case)/i, '条件判断'],
+    [/数组|vector|下标|索引/i, '数组'],
+    [/字符串|string|字符|ASCII/i, '字符串'],
+    [/函数|递归|参数|返回值/i, '函数'],
+    [/排序|冒泡|选择排序|插入排序|快排|归并/i, '排序算法'],
+    [/二分|折半/i, '二分查找'],
+    [/DFS|深度优先/i, '深度优先搜索'],
+    [/BFS|广度优先/i, '广度优先搜索'],
+    [/复杂度|O\(|时间复杂度|空间复杂度/i, '复杂度分析'],
+    [/位运算|按位|异或|<<|>>/i, '位运算'],
+    [/模|余数|%|整除/i, '算术运算'],
+    [/输入|输出|cin|cout|printf|scanf/i, '输入输出'],
+    [/逻辑|真|假|布尔/i, '逻辑运算'],
+];
+
+const inferKnowledgeTags = (q) => {
     const merged = `${getQuestionContent(q)} ${q?.explanation || ''} ${(q?.options || []).join(' ')}`;
     const tags = [];
 
-    const ruleMap = [
-        [/循环|for|while|do\s*while/i, '循环结构'],
-        [/条件|判断|if|else|switch|case/i, '条件分支'],
-        [/数组|vector|下标|索引/i, '数组与容器'],
-        [/字符串|string|字符|ASCII/i, '字符串处理'],
-        [/函数|递归|参数|返回值/i, '函数与递归'],
-        [/排序|冒泡|选择|插入|快排|归并/i, '排序算法'],
-        [/搜索|查找|二分|DFS|BFS/i, '搜索策略'],
-        [/复杂度|O\(|时间复杂度|空间复杂度/i, '复杂度分析'],
-        [/位运算|按位|\^|&|\|/i, '位运算'],
-        [/模|余数|%|整除/i, '数论基础'],
-        [/输入|输出|cin|cout|printf|scanf/i, '输入输出'],
-        [/逻辑|真|假|布尔/i, '逻辑表达式'],
-    ];
-
-    for (const [regex, label] of ruleMap) {
+    for (const [regex, label] of FALLBACK_TAG_RULES) {
         if (regex.test(merged)) tags.push(label);
-        if (tags.length >= 4) break;
+        if (tags.length >= 5) break;
     }
 
-    if (q?.type === 'tf' || q?.type === 'judge') tags.push('判断题技巧');
-    if (q?.type === 'single' || q?.type === 'choice') tags.push('单选题策略');
-    if (q?.type === 'coding' || q?.type === 'programming') tags.push('上机编程');
-    tags.push(`L${level}能力点`);
+    return tags;
+};
 
-    return Array.from(new Set(tags)).slice(0, 5);
+const resolveKnowledgeTags = (q) => {
+    const authored = normalizeTopicTags(q?.tags);
+    if (authored.length) return { tags: authored, inferred: false };
+    return { tags: inferKnowledgeTags(q), inferred: true };
 };
 
 // 没有站内题解时才显示的通用做题步骤。刻意不按题干关键词套模板：按「格」
@@ -164,6 +173,8 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     );
 
     const [activeTab, setActiveTab] = useState('practice');
+    const [mobileStatsOpen, setMobileStatsOpen] = useState(false);
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
     // 作答按卷号存进 learningData.analysis：刷新不丢；答错的客观题并入错题本。
     const mistakeSource = useCallback((q) => ({ paperId, questionId: q.id }), [paperId]);
     const {
@@ -284,7 +295,9 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
     const noticeTiming = integrityNoticeTiming(currentQ);
-    const tags = inferKnowledgeTags(currentQ, paperData.level);
+    const { tags: questionTags, inferred: tagsInferred } = resolveKnowledgeTags(currentQ);
+    const levelTagStats = tagStats[paperData.level] || { paperCount: 0, tags: {} };
+    const knowledgeTagSet = new Set(questionTags);
     // Answer and explanation are verified independently — see verificationModel.
     const verification = resolveVerification(paperData);
     const answerVerified = verification.dimensions.answer === 'verified';
@@ -328,7 +341,30 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                     </button>
                 </div>
 
-                <div className="max-w-6xl mx-auto px-4 pb-4 grid grid-cols-2 md:grid-cols-5 gap-2 text-xs">
+                <div className="max-w-6xl mx-auto px-4 pb-4 md:hidden">
+                    <div className="flex items-center justify-between gap-2">
+                        <div className="text-xs font-medium text-slate-600">
+                            第 {currentQuestionIndex + 1} 题 · 进度 {answeredCount}/{questions.length}
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => setMobileStatsOpen(open => !open)}
+                            aria-expanded={mobileStatsOpen}
+                            aria-controls="paper-stats"
+                            className="min-h-11 rounded-lg border border-slate-200 px-3 text-sm text-slate-700 hover:bg-slate-50"
+                        >
+                            {mobileStatsOpen ? '收起统计' : '展开统计'}
+                        </button>
+                    </div>
+                    <div className="mt-1 h-1 w-full rounded-full bg-slate-200">
+                        <div className="h-1 rounded-full bg-indigo-600 transition-all" style={{ width: `${progress}%` }} />
+                    </div>
+                </div>
+
+                <div
+                    id="paper-stats"
+                    className={`max-w-6xl mx-auto px-4 pb-4 ${mobileStatsOpen ? 'grid' : 'hidden'} grid-cols-2 gap-2 text-xs md:grid md:grid-cols-5`}
+                >
                     <div className="rounded-lg bg-slate-50 border border-slate-200 px-3 py-2">
                         <div className="text-slate-500">答题进度</div>
                         <div className="font-semibold text-slate-700">{answeredCount}/{questions.length}</div>
@@ -358,11 +394,24 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
             </header>
 
             <main className="max-w-6xl mx-auto grid grid-cols-[minmax(0,1fr)] md:grid-cols-[240px_minmax(0,1fr)] gap-4 p-4">
-                <aside className="min-w-0 bg-white rounded-xl border border-slate-200 p-3 h-fit">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
+                <aside className="min-w-0 h-fit rounded-xl border border-slate-200 bg-white p-3">
+                    <button
+                        type="button"
+                        onClick={() => setMobileNavOpen(open => !open)}
+                        aria-expanded={mobileNavOpen}
+                        aria-controls="paper-question-nav"
+                        className="flex min-h-11 w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 md:hidden"
+                    >
+                        <span>题号 ({currentQuestionIndex + 1}/{questions.length})</span>
+                        {mobileNavOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </button>
+                    <div className="mb-3 hidden items-center gap-2 text-sm font-semibold text-slate-700 md:flex">
                         <ClipboardList size={15} /> 题号导航
                     </div>
-                    <div className="grid grid-cols-6 md:grid-cols-4 gap-1.5 md:gap-2">
+                    <div
+                        id="paper-question-nav"
+                        className={`${mobileNavOpen ? 'grid' : 'hidden'} mt-2 grid-cols-6 gap-1.5 md:mt-0 md:grid md:grid-cols-4 md:gap-2`}
+                    >
                         {questions.map((q, idx) => {
                             const isCurrent = idx === currentQuestionIndex;
                             const navStatus = getQuestionNavStatus({
@@ -380,6 +429,7 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                     onClick={() => {
                                         setCurrentQuestionIndex(idx);
                                         setActiveTab('practice');
+                                        setMobileNavOpen(false);
                                     }}
                                     className={`h-11 md:h-auto md:aspect-square rounded-lg border text-sm font-semibold ${navStatus.className}`}
                                 >
@@ -595,10 +645,18 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
                                                 showTrustNotice={false}
                                             />
                                         )}
-                                        <div className="flex flex-wrap gap-2">
-                                            {tags.map((tag) => (
-                                                <span key={tag} className={`text-xs px-2 py-1 rounded-full bg-white border border-slate-200 text-slate-600`}>#{tag}</span>
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            {questionTags.map((tag) => (
+                                                <span
+                                                    key={tag}
+                                                    className={`text-xs px-2 py-1 rounded-full border ${tagsInferred ? 'border-dashed border-amber-300 bg-amber-50 text-amber-800' : 'border-slate-200 bg-white text-slate-600'}`}
+                                                >
+                                                    #{tag}
+                                                </span>
                                             ))}
+                                            {tagsInferred && questionTags.length > 0 && (
+                                                <span className="text-xs text-amber-700">按题干关键词推测，仅供参考</span>
+                                            )}
                                         </div>
                                     </>
                                 ) : (
@@ -609,48 +667,67 @@ export default function EnhancedPaperPage({ forcedPaperId, paperData: providedPa
 
                         {activeTab === 'knowledge' && (
                             <div className="rounded-xl border border-slate-200 p-4 bg-slate-50 space-y-4">
-                                <div className="flex items-center gap-2 text-slate-700 font-semibold text-sm"><Tags size={14} /> 本题能力画像</div>
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                    <div className="flex items-center gap-2 text-slate-700 font-semibold text-sm"><Tags size={14} /> 本题能力画像</div>
+                                    <span className="text-xs text-slate-500">
+                                        {questionTags.length === 0 ? '未标注知识点' : tagsInferred ? '题干推测' : '题库人工标注'}
+                                    </span>
+                                </div>
+                                {tagsInferred && questionTags.length > 0 && (
+                                    <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-5 text-amber-800">
+                                        本题没有人工知识点标签，以下按题干关键词推测，仅供参考。
+                                    </p>
+                                )}
                                 <div className="flex flex-wrap gap-2">
-                                    {tags.map((tag) => (
-                                        <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-white border border-indigo-200 text-indigo-700 font-medium">#{tag}</span>
-                                    ))}
+                                    {questionTags.length ? questionTags.map((tag) => (
+                                        <span
+                                            key={tag}
+                                            className={`text-xs px-2.5 py-1 rounded-full border font-medium ${tagsInferred ? 'border-dashed border-amber-300 bg-amber-50 text-amber-800' : 'border-indigo-200 bg-white text-indigo-700'}`}
+                                        >
+                                            #{tag}
+                                        </span>
+                                    )) : (
+                                        <span className="text-sm text-slate-500">题库未标注知识点，题干中也未识别到明确关键词。</span>
+                                    )}
                                 </div>
 
                                 <div className="border-t border-slate-200 pt-3">
-                                    <div className="text-sm font-semibold text-slate-700 mb-2">🎯 考点归纳</div>
-                                    <div className="text-sm text-slate-600 leading-relaxed space-y-1">
-                                        {(() => {
-                                            const core = `${getQuestionContent(currentQ)} ${(currentQ?.options || []).join(' ')}`;
-                                            if (/循环|for|while/i.test(core)) return (
-                                                <>
-                                                    <p>• 循环结构是 GESP L{paperData.level} 的<strong>核心考点</strong>，几乎每次必考</p>
-                                                    <p>• 重点掌握 <code className="bg-slate-200 px-1 rounded text-xs">for</code>、<code className="bg-slate-200 px-1 rounded text-xs">while</code>、<code className="bg-slate-200 px-1 rounded text-xs">do-while</code> 三种循环的区别</p>
-                                                    <p>• 嵌套循环的执行次数计算是高频题型</p>
-                                                </>
-                                            );
-                                            if (/if|else|条件|判断|switch/i.test(core)) return (
-                                                <>
-                                                    <p>• 条件分支是程序逻辑的基础，GESP 各等级均有涉及</p>
-                                                    <p>• 注意 <code className="bg-slate-200 px-1 rounded text-xs">if-else</code> 的配对规则和逻辑运算符优先级</p>
-                                                    <p>• <code className="bg-slate-200 px-1 rounded text-xs">switch-case</code> 需要配合 <code className="bg-slate-200 px-1 rounded text-xs">break</code> 防止穿透</p>
-                                                </>
-                                            );
-                                            if (/数组|下标|索引|vector/i.test(core)) return (
-                                                <>
-                                                    <p>• 数组是数据组织的基本方式，L{paperData.level} 重点考查</p>
-                                                    <p>• 下标从 <code className="bg-slate-200 px-1 rounded text-xs">0</code> 开始，最大下标为 <code className="bg-slate-200 px-1 rounded text-xs">n-1</code></p>
-                                                    <p>• 二维数组的行列遍历顺序影响程序结果</p>
-                                                </>
-                                            );
+                                    <div className="text-sm font-semibold text-slate-700 mb-2">📊 本站题库统计</div>
+                                    <p className="text-xs leading-5 text-slate-500">
+                                        统计口径：本站题库 L{paperData.level} 共 {levelTagStats.paperCount} 套试卷；选择题、判断题和编程题都计入，历史占位等非正式卷（如有）也计入，按题目的知识点标注汇总，不代表官方考情。
+                                    </p>
+                                    <div className="mt-2 space-y-1 text-sm text-slate-600 leading-relaxed">
+                                        {questionTags.map((tag) => {
+                                            const stat = levelTagStats.tags[tag];
+                                            const paperHits = stat?.papers || 0;
+                                            const questionHits = stat?.questions || 0;
                                             return (
-                                                <>
-                                                    <p>• 本题考查 L{paperData.level} 级别的基础能力点</p>
-                                                    <p>• 建议结合课程内容系统复习相关章节</p>
-                                                </>
+                                                <p key={tag}>
+                                                    • 本站题库 L{paperData.level} 共 {levelTagStats.paperCount} 套试卷中，有 {paperHits} 套出现「{tag}」（共 {questionHits} 题）
+                                                    {tagsInferred && <span className="text-xs text-amber-700"> · 推测标签，仅供参考</span>}
+                                                </p>
                                             );
-                                        })()}
+                                        })}
+                                        {!questionTags.length && <p>暂无可用于统计的知识点标签。</p>}
                                     </div>
                                 </div>
+
+                                {(knowledgeTagSet.has('循环') || knowledgeTagSet.has('条件判断') || knowledgeTagSet.has('数组') || knowledgeTagSet.has('二维数组')) && (
+                                    <div className="border-t border-slate-200 pt-3">
+                                        <div className="text-sm font-semibold text-slate-700 mb-2">🎯 考点归纳</div>
+                                        <div className="text-sm text-slate-600 leading-relaxed space-y-1">
+                                            {knowledgeTagSet.has('循环') && (
+                                                <p>• <code className="bg-slate-200 px-1 rounded text-xs">for</code>、<code className="bg-slate-200 px-1 rounded text-xs">while</code> 先判断条件再执行循环体，<code className="bg-slate-200 px-1 rounded text-xs">do-while</code> 先执行一次再判断</p>
+                                            )}
+                                            {knowledgeTagSet.has('条件判断') && (
+                                                <p>• <code className="bg-slate-200 px-1 rounded text-xs">if-else</code> 就近配对；<code className="bg-slate-200 px-1 rounded text-xs">switch-case</code> 通常配合 <code className="bg-slate-200 px-1 rounded text-xs">break</code> 防止穿透</p>
+                                            )}
+                                            {(knowledgeTagSet.has('数组') || knowledgeTagSet.has('二维数组')) && (
+                                                <p>• 数组下标从 <code className="bg-slate-200 px-1 rounded text-xs">0</code> 开始，长度为 <code className="bg-slate-200 px-1 rounded text-xs">n</code> 的数组最大下标是 <code className="bg-slate-200 px-1 rounded text-xs">n-1</code>；二维数组按行或按列遍历会影响处理顺序</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
 
                                 <div className="border-t border-slate-200 pt-3">
                                     <div className="text-sm font-semibold text-slate-700 mb-2">📚 复盘建议</div>
