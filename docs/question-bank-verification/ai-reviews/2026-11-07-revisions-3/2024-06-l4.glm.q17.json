@@ -1,0 +1,95 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    17
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:41:42.859Z",
+  "completedAt": "2026-11-16T12:44:42.062Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38160,
+    "completion_tokens": 11006,
+    "total_tokens": 49166,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9857
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.011227,
+      "allowance": 0.011227,
+      "tokens": {
+        "input": 38160,
+        "output": 11006,
+        "reasoning": 9857,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a1166341c1f7c89aebbed413c0ea57add564588f0e5b56cda615c0a19850f1ba",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP』『C++ 四级』『2024 年 06 月』，等级、年份、月份与 paperId 2024-06-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 2 题题干为『以下代码不能够正确执行。』，随题代码图共 9 行：#include<iostream> / using namespace std; / int main() / { / int a=20; / int& ra; / ra=&a; / cout<<ra<<endl; / }。候选 question 内嵌代码块与之逐行一致，第 7 行确为 ra=&a;（含取地址符，非 ra=a;），核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在原卷中不以 A–D 选项呈现，第 8 页答案表以 ×/√ 作答；站内二元选项『正确/错误』按 正确=0、错误=1 映射，与原卷呈现方式等价，不涉及选项顺序问题。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表为 × √ √ √ × √ √ √ √ √，第 2 格为 √，按 正确=0 映射为 0，候选 answer=0 一致。独立推导：第 6 行 int& ra; 声明引用却未初始化，C++ 规定引用定义时必须绑定已存在的对象，该行直接编译失败；即使忽略此点，第 7 行 ra=&a; 右侧 &a 类型为 int*，既不存在 int* 到 int& 的绑定转换，赋给已绑定 int 对象的引用又等价于把 int* 赋给 int 的非法转换，仍无法编译。『不能够正确执行』成立，判断『正确』与官方 √ 相符。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析两层依据均经独立推导成立：(1) int& ra; 未初始化引用直接导致编译失败；(2) &a 为 int*，既不能绑定到 int&，赋给已绑定 int 对象的引用亦为 int*→int 的非法赋值；解析所述行号（第 6、7 行）与 9 行原图对应正确。正确写法 int& ra=a; 与指针替代写法 int* p=&a; 准确，易错提醒（指针可后置赋值/可为空、引用必须定义即绑定且不可改绑、ra=… 是给被引用对象赋值）无误，未编造源码运行结果，结论与官方 √ 一致，核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序，本维不适用。但站内独立 code 字段（requiresCode=true）对照 PDF 第 8 页原图仅 8 行，缺首行 #include<iostream>，其余 8 行与原图第 2–9 行一致；已通过 changes.code 补全首行，补全后 9 行与原图逐行一致，修复后核验通过。"
+          }
+        },
+        "changes": {
+          "code": "#include<iostream>\nusing namespace std;\nint main()\n{\n    int a=20;\n    int& ra;\n    ra=&a;\n    cout<<ra<<endl;\n}"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "独立核对 PDF 第 8 页判断题第 2 题原图：代码共 9 行，第 1 行为 #include<iostream>，第 7 行为 ra=&a;；答案表第 2 格为 √。接受 DeepSeek 初核对独立 code 字段缺首行的判断及 changes.code 修复：当前候选 code 字段实测仅 8 行、无 #include<iostream>，上一轮 GLM 意见中『code 字段已补全为 9 行、无需再改』的记录与实际候选不符，不予沿用，该修复并非重复提案。question 内嵌代码（含 ra=&a;）、answer=0、修订后 explanation 均经独立推导与原卷一致，无需改动，否决对这三者的任何进一步修改。补全 code 后本题各维核验通过。"
+      }
+    ],
+    "summary": "本轮仅核验题 17（PDF 第 8 页判断题第 2 题）。题干与内嵌代码、官方答案 √→answer=0（引用未初始化与 int* 类型不匹配双重编译错误，『不能够正确执行』成立）、修订后解析均独立核对通过；唯一遗留问题是站内独立 code 字段缺首行 #include<iostream>（上轮 GLM『已补全』的说法与实际候选不符），已确认 changes.code 补全，补全后与原图 9 行逐行一致。判断题无 options/参考程序/测试用例适用项，verdict=revise 仅因 code 字段修复。"
+  }
+}
