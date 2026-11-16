@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import { isIP } from 'node:net';
 import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, randomInt, createHash, createCipheriv, createDecipheriv, timingSafeEqual } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
@@ -31,7 +32,37 @@ const keyColumn = provider => provider === 'opencode-go' ? 'opencode_go_key' : '
 const supportsImages = model => ['deepseek-flash', 'deepseek-v4.1-flash', 'deepseek-v4-flash-vision-exp'].includes(model);
 const CHAT_BODY_LIMIT = 100_000 + CHAT_IMAGE_HISTORY_LIMIT * CHAT_IMAGE_LIMIT;
 
-export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_DIR || resolve('.classroom'), adminPassword, fetchAI = fetch, now = Date.now, secure = process.env.NODE_ENV === 'production', studentOrigin = process.env.CLASSROOM_STUDENT_ORIGIN || '' } = {}) {
+const normalizeIp = value => {
+  const ip = typeof value === 'string' ? value.trim() : '';
+  return /^::ffff:\d{1,3}(?:\.\d{1,3}){3}$/i.test(ip) ? ip.slice(7) : ip;
+};
+const loopbackIp = ip => ip === '::1' || /^127\./.test(ip);
+const trustedProxyConfig = value => {
+  const entries = Array.isArray(value) ? value : String(value ?? 'loopback').split(',');
+  const addresses = new Set();
+  let loopback = false;
+  for (const entry of entries) {
+    const name = String(entry).trim();
+    if (!name || name.toLowerCase() === 'none') continue;
+    if (name.toLowerCase() === 'loopback') { loopback = true; continue; }
+    addresses.add(normalizeIp(name));
+  }
+  return { addresses, loopback };
+};
+
+export function clientIp(req, trustedProxies = 'loopback') {
+  const peer = normalizeIp(req.socket?.remoteAddress);
+  const trusted = trustedProxyConfig(trustedProxies);
+  if (!(trusted.loopback && loopbackIp(peer)) && !trusted.addresses.has(peer)) return peer;
+  // Node joins repeated X-Forwarded-For headers with commas; the trusted proxy appends the closest hop on the right.
+  const header = req.headers?.['x-forwarded-for'];
+  const forwarded = Array.isArray(header) ? header.join(',') : header;
+  if (typeof forwarded !== 'string' || !forwarded.trim()) return peer;
+  const address = normalizeIp(forwarded.split(',').at(-1));
+  return isIP(address) ? address : peer;
+}
+
+export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_DIR || resolve('.classroom'), adminPassword, fetchAI = fetch, now = Date.now, secure = process.env.NODE_ENV === 'production', studentOrigin = process.env.CLASSROOM_STUDENT_ORIGIN || '', trustedProxies = process.env.CLASSROOM_TRUSTED_PROXIES || 'loopback' } = {}) {
   mkdirSync(directory, { recursive: true, mode: 0o700 });
   const secretFile = resolve(directory, 'secrets.json');
   if (!existsSync(secretFile)) writeFileSync(secretFile, JSON.stringify({ encryptionKey: randomBytes(32).toString('hex'), adminPassword: token() }), { mode: 0o600 });
@@ -126,7 +157,7 @@ export function createClassroomServer({ directory = process.env.CLASSROOM_DATA_D
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'no-referrer');
     const path = new URL(req.url, 'http://localhost').pathname;
-    const ip = req.socket.remoteAddress; // Never trust arbitrary X-Forwarded-For.
+    const ip = clientIp(req, trustedProxies); // Only trust the right-most X-Forwarded-For hop appended by a trusted proxy.
     try {
       if (path.startsWith('/api/')) {
         const isStudentPath = ['/api/classroom/redeem', '/api/session', '/api/chat', '/api/logout'].includes(path);

@@ -80,3 +80,9 @@ GitHub Actions会自动重新部署网站。
 1. 访问 https://netlify.com
 2. 使用GitHub登录
 3. 导入仓库 → 自动部署
+
+---
+
+## 课堂服务反向代理
+
+课堂服务默认只信任回环地址上的代理，并取 `X-Forwarded-For` 最右侧一跳作为客户端 IP。若反向代理不在本机，请用 `CLASSROOM_TRUSTED_PROXIES`（逗号分隔的精确 IP；`none` 表示不信任任何代理）配置，然后重启 `gesp-classroom`。

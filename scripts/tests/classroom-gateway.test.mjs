@@ -4,9 +4,9 @@ import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { once } from 'node:events';
-import { createClassroomServer } from '../../server/classroom.mjs';
+import { clientIp, createClassroomServer } from '../../server/classroom.mjs';
 
-async function fixture(t) {
+async function fixture(t, overrides = {}) {
   const directory = mkdtempSync(join(tmpdir(), 'classroom-test-'));
   let time = Date.now();
   const calls = [];
@@ -20,7 +20,7 @@ async function fixture(t) {
       init.signal.addEventListener('abort', () => controller.close(), { once: true });
     } }));
     return new Response('data: {"choices":[{"delta":{"content":"你好"}}]}\n\ndata: [DONE]\n\n', { headers: { 'Content-Type': 'text/event-stream' } });
-  } };
+  }, ...overrides };
   let server = createClassroomServer(options);
   let base;
   async function listen() { server.listen(0, '127.0.0.1'); await once(server, 'listening'); base = `http://127.0.0.1:${server.address().port}`; }
@@ -39,6 +39,41 @@ async function fixture(t) {
   const chat = (cookie, requestId = crypto.randomUUID()) => req('/api/chat', { messages: [{ role: 'user', content: '解释循环' }], requestId }, cookie);
   return { req, start, student, chat, admin, calls, directory, advance: ms => { time += ms; }, block: () => { blocking = true; }, fail: () => { fail = true; }, restart: async () => { await new Promise(resolve => server.close(resolve)); server = createClassroomServer(options); await listen(); } };
 }
+
+test('clientIp reads only the right-most forwarded hop from trusted proxies', () => {
+  const request = (remoteAddress, forwarded) => ({
+    socket: { remoteAddress },
+    headers: forwarded === undefined ? {} : { 'x-forwarded-for': forwarded },
+  });
+  assert.equal(clientIp(request('203.0.113.9', '1.1.1.1, 2.2.2.2')), '203.0.113.9');
+  assert.equal(clientIp(request('127.0.0.1', '1.1.1.1, 2.2.2.2')), '2.2.2.2');
+  assert.equal(clientIp(request('127.0.0.1', ['1.1.1.1', '2.2.2.2'])), '2.2.2.2');
+  assert.equal(clientIp(request('127.0.0.1', '1.1.1.1, not-an-ip')), '127.0.0.1');
+  assert.equal(clientIp(request('127.0.0.1', '1.1.1.1, ')), '127.0.0.1');
+  assert.equal(clientIp(request('::ffff:127.0.0.1', '2.2.2.2')), '2.2.2.2');
+  assert.equal(clientIp(request('::1', '2.2.2.2')), '2.2.2.2');
+  assert.equal(clientIp(request('::ffff:127.0.0.1')), '127.0.0.1');
+  assert.equal(clientIp(request('::ffff:1.2.3.4', '2.2.2.2')), '1.2.3.4');
+  assert.equal(clientIp(request('127.0.0.1', '2.2.2.2'), []), '127.0.0.1');
+  assert.equal(clientIp(request('127.0.0.1', '2.2.2.2'), 'none'), '127.0.0.1');
+  assert.equal(clientIp(request('10.0.0.2', '2.2.2.2'), ['10.0.0.2']), '2.2.2.2');
+});
+
+test('forwarded client IPs get independent login rate limits behind a trusted proxy', async t => {
+  const f = await fixture(t);
+  const login = (forwarded, password = 'wrong-password') => f.req('/api/admin/login', { password }, '', undefined, { 'X-Forwarded-For': forwarded });
+  for (let i = 0; i < 10; i++) assert.equal((await login('198.51.100.10')).status, 401);
+  assert.equal((await login('198.51.100.10')).status, 429);
+  assert.equal((await login('198.51.100.11', 'teacher-test-password')).status, 200);
+});
+
+test('trustedProxies: [] ignores forwarded headers so rotating them cannot bypass the login limit', async t => {
+  const f = await fixture(t, { trustedProxies: [] });
+  f.advance(600001); // Expire the fixture's own login attempt so the limit window starts fresh.
+  const login = (forwarded, password = 'wrong-password') => f.req('/api/admin/login', { password }, '', undefined, { 'X-Forwarded-For': forwarded });
+  for (let i = 0; i < 10; i++) assert.equal((await login(`198.51.100.${i + 1}`)).status, 401);
+  assert.equal((await login('203.0.113.99', 'teacher-test-password')).status, 429);
+});
 
 test('student receives only HttpOnly authorization; upstream key stays on server', async t => {
   const f = await fixture(t);
