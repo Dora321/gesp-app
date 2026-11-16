@@ -28,7 +28,9 @@ export default function ScrollToTop() {
     }, []);
 
     return (
-        <div className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-[100] transition-all duration-300">
+        // 手机上 AI 助手固定在 bottom-20（80px 起，高 44px），回到顶部放在它上方，
+        // 避免 375px 宽度下两者完全重叠；sm 起 AI 助手已到 bottom-40，恢复 bottom-24。
+        <div className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-[100] transition-all duration-300">
             {isVisible && (
                 <button
                     onClick={scrollToTop}

@@ -1,10 +1,26 @@
-import React, { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2, NotebookPen } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
 import { formatTimeLimitMinutes } from '../utils/examTimer';
 import { DIMENSION_STATUS, VERIFICATION_DIMENSIONS, resolveVerification } from '../data/gesp/verificationModel';
+
+const LEVEL_STORAGE_KEY = 'gesp_qb_selected_level';
+
+const parseLevelValue = (value) => {
+    const parsed = Number(value);
+    return Number.isInteger(parsed) && parsed >= 1 && parsed <= 8 ? parsed : null;
+};
+
+const readStoredLevel = () => {
+    if (typeof window === 'undefined') return null;
+    try {
+        return parseLevelValue(window.localStorage.getItem(LEVEL_STORAGE_KEY));
+    } catch {
+        return null;
+    }
+};
 
 const levels = [
     { id: 1, name: '一级', desc: '零基础入门', badgeClass: 'bg-blue-500' },
@@ -25,9 +41,35 @@ const reviewStatusMeta = {
 
 const QuestionBankHome = () => {
     const navigate = useNavigate();
-    const [selectedLevel, setSelectedLevel] = useState(1);
+    const [searchParams, setSearchParams] = useSearchParams();
+    // 优先跟随链接里的 ?level=N，其次恢复上次选择的等级；非法值一律忽略。
+    const urlLevel = parseLevelValue(searchParams.get('level'));
+    const [selectedLevel, setSelectedLevel] = useState(() => urlLevel ?? readStoredLevel() ?? 1);
     const [searchTerm, setSearchTerm] = useState('');
     const [showPractice, setShowPractice] = useState(false);
+    const levelScrollerRef = useRef(null);
+
+    // 手机上的等级条是横向滚动，切等级或首次恢复后把选中项带进可视区。
+    // 只在 <md 生效，避免桌面端 scrollIntoView 让整页纵向跳动；behavior
+    // 固定为 auto，不制造额外动画，也天然满足 reduced-motion。
+    useEffect(() => {
+        const scroller = levelScrollerRef.current;
+        if (!scroller || typeof window === 'undefined' || !window.matchMedia('(max-width: 767px)').matches) return;
+        const activeButton = scroller.querySelector(`[data-level="${selectedLevel}"]`);
+        activeButton?.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'auto' });
+    }, [selectedLevel]);
+
+    const selectLevel = (levelId) => {
+        setSelectedLevel(levelId);
+        try {
+            window.localStorage.setItem(LEVEL_STORAGE_KEY, String(levelId));
+        } catch {
+            // localStorage 不可用时仍允许本次切换，只是不记忆。
+        }
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.set('level', String(levelId));
+        setSearchParams(nextParams, { replace: true });
+    };
 
     // Papers are built directly from paperMeta (questionCount now pre-injected)
     const papers = useMemo(() => {
@@ -159,37 +201,48 @@ const QuestionBankHome = () => {
                         <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 p-3 font-bold text-slate-700 md:p-4">
                             <Award size={18} /> 选择等级
                         </div>
-                        <div className="flex gap-2 overflow-x-auto p-2 md:block md:space-y-1">
-                            {levels.map(level => (
-                                <button
-                                    key={level.id}
-                                    onClick={() => setSelectedLevel(level.id)}
-                                    aria-pressed={selectedLevel === level.id}
-                                    className={`flex min-w-[160px] items-center justify-between rounded-lg px-3 py-3 text-left transition-all md:w-full md:min-w-0 md:px-4 ${selectedLevel === level.id
-                                        ? 'bg-blue-50 text-blue-600 font-bold shadow-sm'
-                                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                                        }`}
-                                >
-                                    <span className="flex items-center gap-3">
-                                        <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs text-white bg-[var(--mw-ink)] font-bold">
-                                            {level.id}
-                                        </span>
-                                        <span>
-                                            <span className="block">{level.name}</span>
-                                            <span className="block text-xs font-medium text-slate-600">
-                                                {levelStats[level.id]?.paperCount || 0} 卷 · {levelStats[level.id]?.questionCount || 0} 题
+                        <div className="relative md:static">
+                            <div
+                                ref={levelScrollerRef}
+                                className="flex gap-2 overflow-x-auto p-2 pr-12 scroll-px-3 md:block md:space-y-1 md:pr-2"
+                            >
+                                {levels.map(level => (
+                                    <button
+                                        key={level.id}
+                                        data-level={level.id}
+                                        onClick={() => selectLevel(level.id)}
+                                        aria-pressed={selectedLevel === level.id}
+                                        className={`flex min-w-[160px] items-center justify-between rounded-lg px-3 py-3 text-left transition-all md:w-full md:min-w-0 md:px-4 ${selectedLevel === level.id
+                                            ? 'bg-blue-50 text-blue-600 font-bold shadow-sm'
+                                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                                            }`}
+                                    >
+                                        <span className="flex items-center gap-3">
+                                            <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs text-white bg-[var(--mw-ink)] font-bold">
+                                                {level.id}
                                             </span>
-                                            {((levelStats[level.id]?.partialCount || 0) + (levelStats[level.id]?.unverifiedCount || 0)) > 0 && (
-                                                <span className="block text-xs font-semibold text-amber-800">
-                                                    {(levelStats[level.id]?.partialCount || 0) + (levelStats[level.id]?.unverifiedCount || 0)} 卷待完成核验
+                                            <span>
+                                                <span className="block">{level.name}</span>
+                                                <span className="block text-xs font-medium text-slate-600">
+                                                    {levelStats[level.id]?.paperCount || 0} 卷 · {levelStats[level.id]?.questionCount || 0} 题
                                                 </span>
-                                            )}
+                                                {((levelStats[level.id]?.partialCount || 0) + (levelStats[level.id]?.unverifiedCount || 0)) > 0 && (
+                                                    <span className="block text-xs font-semibold text-amber-800">
+                                                        {(levelStats[level.id]?.partialCount || 0) + (levelStats[level.id]?.unverifiedCount || 0)} 卷待完成核验
+                                                    </span>
+                                                )}
+                                            </span>
                                         </span>
-                                    </span>
-                                    <ChevronRight size={16} className={`hidden transition-transform md:block ${selectedLevel === level.id ? 'opacity-100' : 'opacity-0'}`} />
-                                </button>
-                            ))}
+                                        <ChevronRight size={16} className={`hidden transition-transform md:block ${selectedLevel === level.id ? 'opacity-100' : 'opacity-0'}`} />
+                                    </button>
+                                ))}
+                            </div>
+                            <div
+                                className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white via-white/80 to-transparent md:hidden"
+                                aria-hidden="true"
+                            />
                         </div>
+                        <p className="px-3 pb-2 text-xs leading-5 text-slate-500 md:hidden">左右滑动查看更多等级</p>
                     </div>
 
                     {/* Main Content Area */}

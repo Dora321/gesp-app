@@ -1,6 +1,20 @@
 export const CHAT_IMAGE_LIMIT = 900_000;
 export const CHAT_IMAGE_HISTORY_LIMIT = 2;
 export const CHAT_IMAGE_INPUT_TYPES = 'image/jpeg,image/png,image/webp';
+export const CHAT_IMAGE_MAX_FILE_SIZE_MB = 10;
+export const CHAT_IMAGE_MAX_FILE_SIZE_BYTES = CHAT_IMAGE_MAX_FILE_SIZE_MB * 1024 * 1024;
+
+const IMAGE_TYPE_LABELS = {
+    'image/jpeg': 'JPG',
+    'image/png': 'PNG',
+    'image/webp': 'WebP',
+};
+
+export const CHAT_IMAGE_FORMATS_LABEL = CHAT_IMAGE_INPUT_TYPES
+    .split(',')
+    .map(type => IMAGE_TYPE_LABELS[type])
+    .filter(Boolean)
+    .join('、');
 
 const jpegDataUrl = /^data:image\/jpeg;base64,\/9j\/[A-Za-z0-9+/]*={0,2}$/;
 
@@ -34,8 +48,8 @@ export function toModelMessages(messages) {
 }
 
 export async function prepareChatImage(file) {
-    if (!CHAT_IMAGE_INPUT_TYPES.split(',').includes(file.type)) throw new Error('请选择 JPG、PNG 或 WebP 图片。');
-    if (file.size > 10 * 1024 * 1024) throw new Error('图片最大支持 10 MB，请缩小后再试。');
+    if (!CHAT_IMAGE_INPUT_TYPES.split(',').includes(file.type)) throw new Error(`请选择 ${CHAT_IMAGE_FORMATS_LABEL} 图片。`);
+    if (file.size > CHAT_IMAGE_MAX_FILE_SIZE_BYTES) throw new Error(`图片最大支持 ${CHAT_IMAGE_MAX_FILE_SIZE_MB} MB，请缩小后再试。`);
     const url = URL.createObjectURL(file);
     try {
         const source = new Image();

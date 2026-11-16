@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Paperclip, Send, Square, X } from 'lucide-react';
-import { CHAT_IMAGE_INPUT_TYPES, prepareChatImage } from '../utils/chatImages';
+import {
+    CHAT_IMAGE_FORMATS_LABEL,
+    CHAT_IMAGE_INPUT_TYPES,
+    CHAT_IMAGE_MAX_FILE_SIZE_MB,
+    prepareChatImage,
+} from '../utils/chatImages';
 import ChatReasoningSelect from './ChatReasoningSelect';
 
 export default function ChatComposer({
@@ -41,17 +46,27 @@ export default function ChatComposer({
                 {supportsImages && <button
                     type="button"
                     aria-label="添加图片"
-                    title="添加图片，也可直接粘贴截图"
+                    title={`添加图片，支持 ${CHAT_IMAGE_FORMATS_LABEL}，单张不超过 ${CHAT_IMAGE_MAX_FILE_SIZE_MB} MB；也可直接粘贴截图`}
                     onClick={() => fileInput.current?.click()}
                     disabled={disabled || loading || preparing}
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-stone-300 text-stone-700 hover:bg-stone-100 disabled:opacity-40"
-                ><Paperclip size={17} aria-hidden="true" /></button>}
+                    className="inline-flex h-11 min-w-11 items-center justify-center gap-1.5 rounded-xl border border-stone-300 px-3 text-stone-700 hover:bg-stone-100 disabled:opacity-40"
+                >
+                    <Paperclip size={17} aria-hidden="true" />
+                    <span className="text-sm font-medium">图片</span>
+                </button>}
                 <input ref={fileInput} type="file" accept={CHAT_IMAGE_INPUT_TYPES} hidden onChange={event => {
                     const file = event.target.files[0];
                     event.target.value = '';
                     attachImage(file);
                 }} />
             </div>
+            {supportsImages ? (
+                <p className="mb-2 text-xs leading-5 text-stone-600">
+                    支持 {CHAT_IMAGE_FORMATS_LABEL}，单张不超过 {CHAT_IMAGE_MAX_FILE_SIZE_MB} MB；也可直接粘贴截图。
+                </p>
+            ) : (
+                <p className="mb-2 text-xs leading-5 text-stone-600">当前模型不支持图片。</p>
+            )}
             {image && (
                 <div className="mb-2 flex items-center gap-2">
                     <img src={image} alt="待发送的图片" className="max-h-16 max-w-28 rounded border border-stone-200 object-contain" />
@@ -75,7 +90,11 @@ export default function ChatComposer({
                     onChange={event => onChange(event.target.value)}
                     onPaste={event => {
                         const file = Array.from(event.clipboardData.files).find(item => item.type.startsWith('image/'));
-                        if (!file || !supportsImages) return;
+                        if (!file) return;
+                        if (!supportsImages) {
+                            setImageStatus('当前模型不支持图片，无法粘贴图片。');
+                            return;
+                        }
                         event.preventDefault();
                         attachImage(file);
                     }}
