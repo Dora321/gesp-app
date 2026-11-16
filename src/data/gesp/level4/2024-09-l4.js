@@ -538,7 +538,7 @@ int arr[3][4];   // 3 行 4 列，共 12 个 int
 
 **考点：** 二维数组的声明语法与行列含义`,
             sourceVerified: true,
-            sourcePage: 1,
+            sourcePage: 2,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
             tags: ["客观题", "单选题", "GESP4级"],
@@ -598,7 +598,7 @@ int factorial(int n) {
             score: 2,
             explanation: "**答案：A (`result *= i;`)**\n\n**核心解析：**\n阶乘的定义是连续相乘：`n! = 1 × 2 × 3 × ... × n`。代码已经把 `result` 初始化为 1（乘法单位元），循环变量 `i` 从 2 遍历到 n，因此循环体只需要把 `i` 累乘进 `result`。\n\n以 `n = 5` 为例逐轮验证：\n| 轮次 | i | result 变化 |\n|---|---|---|\n| 初始 | — | 1 |\n| 1 | 2 | 1×2 = 2 |\n| 2 | 3 | 2×3 = 6 |\n| 3 | 4 | 6×4 = 24 |\n| 4 | 5 | 24×5 = 120 |\n\n结果 120 = 5!，正确。\n\n**选项逐项分析：**\n- **A (`result *= i`)**：✅ 正确。原地累乘，正是阶乘的递推式 `f(i) = f(i-1) × i`。\n- **B (`result += i`)**：❌ 错误。这是求 `1+2+…+n` 的累加，`n=5` 得 15，不是 120。\n- **C (`result *= result`)**：❌ 错误。`result` 初值为 1，执行 `result *= result` 后仍然是 1，之后每轮也仍为 1；它不会得到阶乘。\n- **D (`result += result`)**：❌ 错误。每轮把当前值翻倍，`n=5` 时依次得到 2、4、8、16，不是阶乘。\n\n**易错提醒：**\n- 累乘的初值必须是 1，累加的初值才是 0。把 `result` 初始化成 0 会让整个循环结果恒为 0。\n- 阶乘增长极快：`13!` 已超出 32 位 `int` 范围（约 62 亿），实际编程需用 `long long`，这也是这类题常见的延伸考点。\n\n**知识延伸：**\n本题是“递推”（从已知的 `f(i-1)` 推出 `f(i)`）而非“递归”（函数自己调用自己）。两者数学基础相同，但递推用循环实现，没有函数调用开销，也不会栈溢出，是 GESP 四级重点要求的写法。\n\n**考点：** 递推思想与累乘操作",
             sourceVerified: true,
-            sourcePage: 1,
+            sourcePage: 3,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
             tags: ["客观题", "单选题", "GESP4级"],

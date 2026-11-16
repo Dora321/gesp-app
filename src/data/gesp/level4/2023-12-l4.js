@@ -412,7 +412,7 @@ for(int i=1;i<=10;i++)
     }
 }`,
             requiresCode: true,
-            sourcePage: 1,
+            sourcePage: 4,
             sourceVerified: true,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
@@ -874,7 +874,7 @@ string c="dai";
 string name=a+b+c;
 cout<<name<<endl;`,
             requiresCode: true,
-            sourcePage: 5,
+            sourcePage: 6,
             sourceVerified: true,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
