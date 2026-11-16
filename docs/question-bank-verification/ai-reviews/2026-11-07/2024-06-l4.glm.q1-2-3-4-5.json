@@ -1,0 +1,235 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:54:20.409Z",
+  "completedAt": "2026-11-16T05:55:46.923Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 60053,
+    "completion_tokens": 5850,
+    "total_tokens": 65903,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3859
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01193295,
+      "allowance": 0.01193295,
+      "tokens": {
+        "input": 60053,
+        "output": 5850,
+        "reasoning": 3859,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 GESP C++ 四级 2024年06月』，等级与年月和 2024-06-l4 一致；单选15题、判断10题、编程2题的结构也与卷面吻合。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第1题图片代码：func(int x,int y) 内 int a=x,b=y 经 t=a;a=b;b=t; 交换后 cout<<a<<\" \"<<b<<\" \";，main 中 c=12、d=24、func(12,24)、cout<<c<<\" \"<<d<<endl;，与站内 question 逐行一致，无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页四个选项依次为 A. 12 24 24 12、B. 24 12 12 24、C. 12 12 24 24、D. 24 24 12 12，与站内 options 顺序内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第1题标为 B，0 起始索引为 1，与站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：值传递下 func 内 a=12、b=24，交换后输出『24 12 』；main 的 c、d 为独立副本完全不受影响，输出『12 24』，合并为 24 12 12 24，对应 B。站内解析的逐项排除与易错提醒均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论；补充说明：源题 func 声明为 int 却无 return，属源题瑕疵，但返回值未被使用，不影响输出的确定与官方答案，故不列为未决问题。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页题干『下面函数不能正常执行的是（）』，第2页 A-D 四段代码：A 定义 func 在 main 前且未调用、B main 中先调用 func() 后才给出定义且无声明、C 定义在前调用在后、D 第3行有原型 int func();，与站内 question 内嵌的四段代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "站内 options 为 A/B/C/D 四个标签，与 PDF 第2页四段代码的标注顺序一一对应，未漏项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题标为 B，0 起始索引为 1，与站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 遵循先声明后使用，B 中 main 调用 func() 前既无声明也无定义，编译报『func 未声明』无法执行；A、C 定义先于 main，D 有前置原型声明，均可正常编译链接。选 B 正确，站内解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论，题干、四段代码、选项与答案均与 PDF 图页核对一致。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页代码：int func();、main 内 int i=2; cout<<i;、for(int x=0;x<1;x++){ int i=10; cout<<i; }、i=i+1; cout<<i;、随后无声明块 { i=i*i; cout<<i; }，与站内 question 逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项依次为 2 2 3 9、2 10 3 9、2 10 11 121、2 10 3 100，与站内 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题标为 B，0 起始索引为 1，与站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：先输出 2；循环体内 int i=10 为新块作用域变量（遮蔽外层），输出 10；循环结束内层 i 销毁，外层 i=i+1 得 3 输出 3；末尾块中 i=i*i 无类型名属赋值，3×3=9 输出 9，即 2 10 3 9，选 B。站内解析对遮蔽与赋值/声明区别的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论，输出序列经独立执行推演与 B 选项吻合。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第4题题干给出变量 a 的地址 0x6ffe14，代码 int *p; int a=10; p=&a; p++; cout<<p<<endl; 与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项依次为 10、0x6ffe14、0x6ffe15、0x6ffe18，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第4题标为 D，0 起始索引为 3，与站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：p 为 int*，p++ 步长为 sizeof(int)=4 字节，0x6ffe14+4=0x6ffe18；代码输出的是 p 本身（地址）而非 *p，故 D。站内解析的步长说明与 A/B/C 排除理由均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论，指针算术步长推导与官方答案一致。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页末题干『如果下列程序输出的地址是 0x6ffe00，则 cout<<a+1<<endl; 输出的是（）』，第4页代码 int a[2][3]={0}; cout<<a<<endl; 与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项依次为 0x6ffe04、0x6ffe0C、0x6ffe08、0x6ffe00，与站内 options 一致（大小写书写差异不影响判定）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题标为 B，0 起始索引为 1，与站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a 作为表达式退化为 int(*)[3] 行指针，a+1 跳过一整行 3 个 int 即 12 字节（0x0C），0x6ffe00+0x0C=0x6ffe0C，故 B；A（+4 字节）对应元素指针步长，C、D 分别为误算步长与未加步长。站内解析对退化类型与三种地址值相同但类型不同的说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论，二维数组名退化与指针加法步长推导与官方答案一致。"
+      }
+    ],
+    "summary": "本次仅独立复核题1-5（单选题）。卷头『CCF 编程能力等级认证 C++ 四级 2024年06月』与 2024-06-l4 相符。第1页答案表前五题为 B B B D B，与站内 answer=1,1,1,3,1 逐一对应；题干代码、选项与解析均经独立推导核对一致，五题全部 approve，无需修改。题1存在源题 func 缺 return 的瑕疵，但不影响输出判定与官方答案，已在 reviewNote 记录，未列为未决。未涉及题6及以后与编程题。"
+  }
+}

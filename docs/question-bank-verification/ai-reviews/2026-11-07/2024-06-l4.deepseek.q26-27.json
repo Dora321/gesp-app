@@ -1,0 +1,167 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:34:26.341Z",
+  "completedAt": "2026-11-16T10:37:07.624Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 39036,
+    "completion_tokens": 15246,
+    "total_tokens": 54282,
+    "prompt_tokens_details": {
+      "cached_tokens": 38912
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13871
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00928294,
+      "allowance": 0.00556976,
+      "tokens": {
+        "input": 124,
+        "output": 15246,
+        "reasoning": 13871,
+        "cache_read": 38912,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 四级”“2024 年 06 月”，与 paperId 2024-06-l4 的等级和年月一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9—10页的题面描述、输入输出格式、样例（输入 4 5 / 00000 / 01111 / 00011 / 00011，输出 16）及数据范围 1≤n,m≤10，均与当前数据一致；Markdown 标题和公式排版不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无客观题答案，officialAnswer 应为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：平衡条件等价于子矩形内黑色格子数乘 2 等于面积。二维前缀和可 O(1) 求任意子矩形内 1 的个数，再四重循环枚举左上、右下边界。样例取 (1,2) 到 (4,5) 的 4×4 子矩形，面积 16，含 8 个 1 和 8 个 0，故输出 16；最大面积不超过 100，int 足够。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前代码用二维前缀和替代 PDF 参考程序中逐矩形统计，算法不同但正确：建 (n+1)×(m+1) 前缀和，四重枚举全部子矩形，奇数面积跳过，用容斥求 ones 并判断 ones*2==area。复杂度 O(n^2 m^2)、空间 O(nm)，在 n,m≤10 内安全，无解时输出 0。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模无平衡",
+            "input": "1 1\n0\n",
+            "output": "0",
+            "reason": "唯一子矩形面积为 1，黑白格数量不可能相等。"
+          },
+          {
+            "name": "最小平衡矩形",
+            "input": "1 2\n01\n",
+            "output": "2",
+            "reason": "整行含 1 个黑格和 1 个白格，面积为 2，且没有更大子矩形。"
+          },
+          {
+            "name": "完整二维平衡",
+            "input": "2 2\n01\n10\n",
+            "output": "4",
+            "reason": "整个 2×2 含 2 个 1 和 2 个 0，面积 4 达到本题规模上界。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11—12页的“宝箱”题面、输入输出格式、样例（5 1 / 1 2 3 1 2，输出 7）及数据范围 1≤n≤1000、0≤k≤1000、1≤a_i≤1000 与当前数据一致。PDF 原文称第一行是“两个正整数 n,k”，但约束允许 k=0，属源卷字面矛盾，当前数据保留原文。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，无客观题答案，officialAnswer 应为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：所有宝箱价值为正，若已选定最小值 y 与最大值 x 且 x-y≤k，则把区间内所有价值全部带走只会增大总和。排序后可化为求极差≤k 的最大和连续子段。滑动窗口对每个右端点 r 收缩左端点直到 a[r]-a[l]≤k，窗口和即该右端点下的最优值。样例排序为 1,1,2,2,3，最佳窗口 2,2,3 的和为 7；总价值上限 10^6，long long 更安全。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "当前代码读入 n,k，排序后维护滑动窗口和 sum、左指针 l，while(a[r]-a[l]>k) 时移出 a[l]；k≥0 保证 while 在 l≤r 时终止，n=1、k=0 等边界均正确。复杂度 O(n log n)，较 PDF 的 O(n^2) 参考程序更优且等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模单宝箱",
+            "input": "1 0\n7\n",
+            "output": "7",
+            "reason": "只能选择唯一宝箱，极差为 0，总价值 7。"
+          },
+          {
+            "name": "k=0 且含重复值",
+            "input": "4 0\n5 1 5 1\n",
+            "output": "10",
+            "reason": "k=0 时只能选择价值相同的宝箱；两个价值 5 的宝箱总和 10，优于两个价值 1 的总和 2。"
+          },
+          {
+            "name": "存在价值断层",
+            "input": "4 1\n1 2 100 101\n",
+            "output": "201",
+            "reason": "1 与 2 可组和 3，100 与 101 可组和 201；两组间极差过大不能合并，最大为 201。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第11页写“第一行包含两个正整数 n,k”，但数据范围允许 k=0，属于源卷原文表述矛盾；当前题面与 PDF 一致，未擅自改写。"
+        ]
+      }
+    ],
+    "summary": "本次仅核验题号 26、27。PDF 卷头与 paperId 2024-06-l4 匹配。26 题题面、样例、约束与 PDF 一致，二维前缀和参考代码正确；27 题题面、样例、约束与 PDF 一致，排序加滑动窗口参考代码正确。两题均无需修改；27 题保留 PDF 原文“n,k 为正整数”与 k 可为 0 的源卷字面矛盾。所列边界测试均为独立构造，未声称已运行。"
+  }
+}

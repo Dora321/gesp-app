@@ -1,0 +1,228 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T06:01:40.403Z",
+  "completedAt": "2026-11-16T06:04:43.394Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 39048,
+    "completion_tokens": 18765,
+    "total_tokens": 57813,
+    "prompt_tokens_details": {
+      "cached_tokens": 38912
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 16463
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02279227,
+      "allowance": 0.01367536,
+      "tokens": {
+        "input": 136,
+        "output": 18765,
+        "reasoning": 16463,
+        "cache_read": 38912,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头为 CCF GESP C++ 四级 2024 年 06 月；单选题答案表第 11-15 题为 A、D、A、B、D，与 paperId 2024-06-l4 的题号对应。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页给出第 11 题题干，数组为 {45,66,23,1,10,97,52,88,5,33}，要求从小到大冒泡排序第一遍后的序列；选项 A 在页 5，B-D 在页 6，本站题面与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5-6 页 A-D 四项与本站 options 逐项一致且顺序未变：A {45,23,1,10,66,52,88,5,33,97}、B {45,66,1,23,10,97,52,88,5,33}、C {45,66,23,1,10,52,88,5,33,97}、D {45,66,23,1,10,97,52,88,33,5}。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 A；本站 answer=0，映射到选项 A，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立模拟第一趟相邻比较：45 与 66 不换，66 依次与 23、1、10 交换；97 依次与 52、88、5、33 交换，最终末尾为 97，序列为选项 A。本站解析的逐步表格和选项分析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页第 12 题代码为插入排序框架：a[8]={2,3,4,5,6,2,3,1}，while(a[j]>key && j>=0) 中留空，后接 j-=1 和 a[j+1]=key；本站题面代码、数组和空位均一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页选项 A a[j]=a[j-1];、B a[j]=a[j+1];、C a[j+1]=a[j-1];、D a[j+1]=a[j]; 与本站 options 逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 D；本站 answer=3，映射到选项 D，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导插入排序腾位：若 a[j]>key，应把 a[j] 右移到 a[j+1]，即 a[j+1]=a[j]，随后 j-- 并最终执行 a[j+1]=key，故填 D。本站解析与之一致，并指出原卷 while 条件先访问 a[j] 的越界隐患。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "PDF 原卷 while(a[j]>key && j>=0) 将数组访问放在 j>=0 之前，j 减到 -1 时会先读取 a[-1]，存在越界/未定义行为；这是源卷代码瑕疵，不改变填空 D 的官方答案。"
+        ]
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页给出第 13 题题干和输入 10 0，第 7 页给出 Division、func、main 及 try-catch 完整代码；本站题面中的 throw 字符串、两个 catch 和输入均与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页选项 A Division by zero condition!、B 0、C 10、D 100 与本站 options 逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 A；本站 answer=0，映射到选项 A，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立代入输入 10 0：Division(10,0) 中 b==0 成立，抛出字符串字面量，按数组到指针转换其异常类型为 const char*；第一个 catch(const char*) 匹配并输出 Division by zero condition!，不会执行除法，也不会进入第二个 catch，结果选 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页第 14 题为：10 条直线，最多可以把平面分为多少个区域；本站题干、数字和设问一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页选项 A 55、B 56、C 54、D 58 与本站 options 逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 B；本站 answer=1，映射到选项 B，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立递推：第 n 条直线与前面 n-1 条直线各交于不同点，被分成 n 段，新增 n 个区域，故 f(n)=f(n-1)+n 且 f(1)=2，得 f(n)=1+n(n+1)/2；n=10 时为 56。本站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页给出第 15 题题干，第 8 页代码为 int x[10][10][10]={{0}}; int *p; p=&x[0][0][0]; cout<<p<<endl; cout<<++p<<endl; 本站以 {(0)} 表示该零初始化，二者均将三维数组零初始化，取 &x[0][0][0] 的行为一致；其余代码和输入假设一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页选项 A 0x6ffe0c、B 0x6ffe09、C 0x6ffe06、D 0x6ffe04 与本站 options 逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 D；本站 answer=3，映射到选项 D，正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：p 的类型是 int*，不是指向二维或三维数组的指针；++p 使地址增加 sizeof(int)=4 字节，0x6ffe00+4=0x6ffe04，且前置 ++ 输出自增后的值，故选 D。本站解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号 11-15 的题干、选项顺序与官方答案表均匹配，逐题独立推导后答案分别为 A、D、A、B、D，与本站 answer 的 0 起始映射一致；五题解析均可支持对应答案。Q12 原卷 while(a[j]>key && j>=0) 存在先访问 a[-1] 的越界隐患，已作为源卷代码问题保留记录，不影响填空 D。Q15 本站用 {(0)} 表示 PDF 的 {{0}}，在零初始化语义上等价。五题均为单选题，referenceCode 不适用，tests 为空。"
+  }
+}

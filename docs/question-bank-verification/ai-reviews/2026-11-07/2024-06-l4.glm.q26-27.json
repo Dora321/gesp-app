@@ -1,0 +1,189 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:42:31.567Z",
+  "completedAt": "2026-11-16T10:46:45.465Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 60031,
+    "completion_tokens": 10569,
+    "total_tokens": 70600,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8455
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01428915,
+      "allowance": 0.01428915,
+      "tokens": {
+        "input": 60031,
+        "output": 10569,
+        "reasoning": 8455,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示「CCF 编程能力等级认证」「C++ 四级」「2024 年 06 月」，与 paperId 2024-06-l4（2024年6月、C++ 四级）一致；编程题部分位于第9—12页，试题名称分别为黑白方块与宝箱。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9—11页：题面描述（n 行 m 列网格、平衡当且仅当黑白格数量相同、求最大平衡子矩形格子数）、输入格式（第一行 n,m；之后 n 行长度为 m 的 01 串，0 为白）、输出格式（不存在输出 0）、样例1（输入 4 5 / 00000 / 01111 / 00011 / 00011，输出 16，样例解释四顶点 (1,2)、(1,5)、(4,2)、(4,5)）、数据范围 1≤n,m≤10，逐项与网站题面一致；Markdown/LaTeX 排版等价，无遗漏无改义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF 无对应答案表条目，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：平衡 ⇔ 面积为偶数且 2×黑格数=面积。二维前缀和可 O(1) 求任意子矩形黑格数，四重循环枚举边界，复杂度 O(n²m²)，n,m≤10 规模安全。手算样例：(1,2)-(4,5) 的 4×4 子矩形黑格 0+4+2+2=8，白 8，平衡，面积 16；面积 18 在 4×5 网格内无法构造，面积 20 的整图为 8 黑 12 白不平衡，故最大为 16，与解析及 PDF 样例解释顶点一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立核对网站参考代码：建 (n+1)×(m+1) 前缀和，容斥式 s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1] 求黑格数，奇数面积剪枝后判 ones*2==area；无解时保持初始 0 输出；最大面积 ≤100 无溢出风险。与 PDF 参考程序（check 函数逐矩形计数）算法不同但结果等价、均正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小网格无平衡解",
+            "input": "1 1\n0\n",
+            "output": "0",
+            "reason": "唯一子矩形面积 1 为奇数，黑白格数量不可能相等。"
+          },
+          {
+            "name": "最小平衡矩形",
+            "input": "1 2\n01\n",
+            "output": "2",
+            "reason": "整行含 1 黑 1 白，面积 2 平衡，无更大子矩形。"
+          },
+          {
+            "name": "官方样例复现",
+            "input": "4 5\n00000\n01111\n00011\n00011\n",
+            "output": "16",
+            "reason": "(1,2)-(4,5) 子矩形含 8 黑 8 白，与 PDF 样例输出一致。"
+          },
+          {
+            "name": "全白无平衡解",
+            "input": "1 2\n00\n",
+            "output": "0",
+            "reason": "任何子矩形黑色数均为 0，不等于白色数，最大平衡面积为初始 0。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立复核确认题面、样例、约束与 PDF 一致；参考代码经独立推演（前缀和+容斥+奇面积剪枝）正确；初核三条测试期望 0/2/4 经我独立手算成立，另补官方样例 16 与全白 0 两条边界测试。无需修改，changes 为空。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第11—12页：题面描述（n 个宝箱价值 a_i，所选最大 x、最小 y 需 x-y≤k，求最大总价值）、输入格式（第一行 n,k；第二行 n 个正整数）、输出格式、样例1（5 1 / 1 2 3 1 2 → 7）、样例解释（两个价值 2 和一个价值 3）、数据范围 1≤n≤1000、0≤k≤1000、1≤a_i≤1000，逐项与网站题面一致；PDF 原文「两个正整数 n,k」与 k≥0 的矛盾系源卷自身表述，网站忠实保留原文。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选择题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题，PDF 无对应答案表条目，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：价值全为正，若选定极差 ≤k 的集合，补入价值介于最小与最大之间的宝箱只会增大总和，故排序后化为求极差 ≤k 的最大和连续区间。滑动窗口对每个右端点 r 收缩左端 l 至 a[r]-a[l]≤k，窗口和即该右端点最优。手算样例：排序 [1,1,2,2,3]，最优窗口 {2,2,3} 极差 1、和 7；窗口 {1,1,2,2} 和仅 6，故 7 正确。总和上限 1000×1000=10^6，long long 更稳妥。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "独立核对网站参考代码：排序后维护 sum 与左指针 l，while(a[r]-a[l]>k) 时移出 a[l]；k≥0 保证 l==r 时 a[r]-a[r]=0≤k，while 必然终止，n=1、k=0 等边界正确；long long 无溢出；复杂度 O(n log n)，与 PDF 参考程序（对每个 i 向左累加至极差超限即 break，O(n²)）结果等价且更优，两者在 n≤1000 下均正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模单宝箱",
+            "input": "1 0\n7\n",
+            "output": "7",
+            "reason": "仅一个宝箱必选，极差 0≤k=0，总价值 7。"
+          },
+          {
+            "name": "官方样例复现",
+            "input": "5 1\n1 2 3 1 2\n",
+            "output": "7",
+            "reason": "排序 [1,1,2,2,3]，窗口 {2,2,3} 极差 1、和 7，与 PDF 样例一致。"
+          },
+          {
+            "name": "k=0 相同价值",
+            "input": "4 0\n5 1 5 1\n",
+            "output": "10",
+            "reason": "k=0 只能取价值相同的宝箱，两个 5 之和 10 大于两个 1 之和 2。"
+          },
+          {
+            "name": "k=0 极差超限",
+            "input": "2 0\n3 5\n",
+            "output": "5",
+            "reason": "5-3=2>0 不能同取，窗口收缩后取较大值 5。"
+          },
+          {
+            "name": "价值断层",
+            "input": "4 1\n1 2 100 101\n",
+            "output": "201",
+            "reason": "排序 [1,2,100,101]，{1,2} 与 {100,101} 各自极差 1，两组不能合并，最大和 201。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第11页原文称第一行为「两个正整数 n,k」，但数据范围允许 k=0，属源卷字面矛盾；网站题面忠实保留 PDF 原文，未擅自改写，保留争议。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立复核题面、样例、约束与 PDF 一致；参考代码排序+滑动窗口经独立推演正确（含 k=0、n=1 边界）；初核三条测试期望 7/10/201 经我独立手算成立，另补样例 7 与「2 0 / 3 5 → 5」边界。k=0 与「正整数」的矛盾确属源卷问题，保留 unresolved，不改动题面。无需修改，changes 为空。"
+      }
+    ],
+    "summary": "按授权范围仅核验第 26、27 题（编程题）。卷头「C++ 四级 / 2024 年 06 月」与 paperId 匹配。26 题题面、样例（输出 16）、约束与 PDF 一致，网站二维前缀和参考代码独立推演正确；27 题题面、样例（输出 7）、约束与 PDF 一致，网站排序+滑动窗口参考代码独立推演正确且与 PDF 的 O(n²) 参考程序等价。两题均 approve、changes 为空；27 题保留 PDF 原文「正整数 n,k」与 k 可为 0 的源卷矛盾为 unresolved。全部测试期望输出均由我独立手算核对，未声称实际运行。"
+  }
+}

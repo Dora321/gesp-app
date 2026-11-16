@@ -1,0 +1,232 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:12:26.645Z",
+  "completedAt": "2026-11-16T10:17:06.421Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38986,
+    "completion_tokens": 29340,
+    "total_tokens": 68326,
+    "prompt_tokens_details": {
+      "cached_tokens": 38912
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 26601
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01773184,
+      "allowance": 0.0106391,
+      "tokens": {
+        "input": 74,
+        "output": 29340,
+        "reasoning": 26601,
+        "cache_read": 38912,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“C++ 四级 2024 年 06 月”，与paperId 2024-06-l4一致；判断题答案表见PDF第8页，题6-10题干见第9页。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第6题文字与网站题干一致，仅存在空格/标点差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D单选选项；网站使用“正确/错误”选项，不影响题干。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第6题为√；按正确=0，网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析中“const形参只读”基本正确，但“三者都能有效防止函数意外修改调用方数据”与后文“const值传递与实参无关”矛盾；应说明const值只保护副本，const引用和指向常量的指针才直接保护实参对象/所指数据。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n`const` 修饰的形参在函数体内只读，不能通过该形参写入：\n```cpp\nvoid f1(const int x);      // 常量值：x 是只读副本\nvoid f2(const int& x);     // 常量引用：不能通过 x 修改实参\nvoid f3(const int* x);     // 常量指针（指向常量的指针）：不能通过 *x 修改所指对象\n```\n- `f1` 中写 `x = 5;` → 编译错误；但值传递的副本本来就和实参分离，函数无法借它修改实参，`const` 保护的是副本。\n- `f2` 中写 `x = 5;` → 编译错误，且引用绑定实参，能防止修改实参的值。\n- `f3` 中写 `*x = 5;` → 编译错误，能防止修改所指对象的值；指针本身的指向是否可改，要看它是否为 `int* const`。\n\n因此，`const` 形参在函数内均不可写入；其中常量引用和指向常量的指针可直接阻止函数修改实参对象/所指数据。题干按此考试语境判断为正确。\n\n**易错提醒：**\n- 区分 `const int* p`（指向常量的指针，不能改 `*p`，可以改 `p` 的指向）与 `int* const p`（指针常量，不能改 `p`，可以改 `*p`）。题干中的“常量指针”按前者理解。\n- `const int x`（值传递）只保证形参副本只读；它之所以不能影响实参，根本原因是值传递复制了副本。\n\n**知识延伸：**\n`const` 引用（`const T&`）是传递大对象的标准方式：既避免拷贝开销，又保证不会被修改。C++ 中拷贝构造函数的参数通常写成 `const T&`。\n\n**考点：** `const` 形参的写保护作用"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第7题题干为“下面代码输出的值等于0”，代码为 `int *p=NULL; cout<<p<<endl;`，与网站question内代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D单选选项；网站使用“正确/错误”选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第7题为√；按正确=0，网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出空指针p的值为0，并区分输出p与解引用*p；与官方√结论一致。具体输出格式可能随实现不同，但本题按目标环境判为0。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第8题题干为“在下面这个程序里，a[i][j] 和一个普通的整型变量一样使用”，代码与网站一致；“在这个程序里”为等价表述。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D单选选项；网站使用“正确/错误”选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第8题为√；按正确=0，网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明a[i][j]是二维数组中的一个int左值，可像普通整型变量一样赋值、读取；结论与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第9题文字与网站题干一致，仅存在空格差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D单选选项；网站使用“正确/错误”选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第9题为√；按正确=0，网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "枚举出的6个合法数组正确，但解析中“直到末尾变成1或2——此时M<=1/2=0”表述错误：末尾为1时才不能追加，末尾为2时M<=1仍可追加1，之后才终止。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n按题意，在末尾 `k` 之后可以追加一个正整数 `M <= k/2`（向下取整）。当末尾为1时无法再追加；末尾为2时只能追加1，之后也终止。从 `N=6` 出发枚举所有可延伸的情形：\n\n| 首元素 | 可追加 | 继续延伸 | 完整数组 |\n|---|---|---|---|\n| 6 | — | — | `[6]` |\n| 6 | 1 | 1/2 = 0，终止 | `[6,1]` |\n| 6 | 2 | 2/2 = 1 → 再追加1，终止 | `[6,2]`、`[6,2,1]` |\n| 6 | 3 | 3/2 = 1 → 再追加1，终止 | `[6,3]`、`[6,3,1]` |\n\n数一数：`[6]`、`[6,1]`、`[6,2]`、`[6,2,1]`、`[6,3]`、`[6,3,1]`，正好 **6个**，命题正确。\n\n若用递推计数，设 `f(n)` 为以 `n` 开头的合法数组个数（含只含 `n` 本身的这一个）：\n```cpp\nf(1) = 1\nf(2) = 1 + f(1) = 2\nf(3) = 1 + f(1) = 2\nf(6) = 1 + f(1) + f(2) + f(3) = 1 + 1 + 2 + 2 = 6\n```\n结果一致。\n\n**易错提醒：**\n- `M` 的取值范围是 `1 <= M <= n/2`，**不含0**。若允许 `M = 0`，则会陷入“末尾0只能再接0”的无限情形，题目就不成立了。\n- `n/2` 是整数除法下取整：`3/2 = 1`，不是1.5；末尾为2时仍可追加1，不要误以为末尾一到2就立即终止。\n\n**知识延伸：**\n这类“每个位置可接若干后继、求所有可能序列数”的问题，用递推（记忆化搜索）计数是最直接的思路，与树的计数、整数划分同属一类。把 `f(n) = 1 + Σf(i)`（`i` 取遍可选后继）写清楚，就能用一层循环算出任意 `n` 的答案。\n\n**考点：** 递推计数与枚举验证"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第10题题干与网站一致，O(n²)在PDF中为公式/图片，网站用等价文本表示。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无A-D单选选项；网站使用“正确/错误”选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第8页判断题答案表第10题为√；按正确=0，网站answer=0一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确给出平均O(n²)、逆序最坏比较/移动次数n(n-1)/2，并与选择排序作了区分；结论与官方√一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已完成21-25题五维核验。PDF第8页判断题答案表对应题6-10均为√，与网站answer=0一致。题21解析中关于const值传递保护范围的表述需要修正；题24解析中“末尾变成1或2即终止”的条件表述需要修正。题22、23、25题面、答案和解析与PDF一致，无需改动。"
+  }
+}

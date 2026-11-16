@@ -1,0 +1,234 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:57:00.838Z",
+  "completedAt": "2026-11-16T05:58:57.003Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 60032,
+    "completion_tokens": 7641,
+    "total_tokens": 67673,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5251
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0128253,
+      "allowance": 0.0128253,
+      "tokens": {
+        "input": 60032,
+        "output": 7641,
+        "reasoning": 5251,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“CCF 编程能力等级认证 GESP”“C++ 四级”“2024 年 06 月”，与 paperId 2024-06-l4 的等级（4级）、年份（2024）、月份（6）完全一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为“C++中，关于文件路径说法错误的是（）”，与当前 question 语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D四项与当前 options 逐字对应：A \"GESP.txt\"（当前目录）、B \"../data/GESP.txt\"（上一级）、C \"./data/GESP.txt\"（同级data）、D \"GESP.txt\"是绝对路径，仅空格排版差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题6为D，0起始映射为3，与当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：\"GESP.txt\"无盘符且不以根斜杠/开头，须依赖当前工作目录定位，属相对路径，D称其为绝对路径错误；A文件名默认当前目录、B中..为父目录、C中.为当前目录，均为相对路径正确用法；解析对绝对/相对路径的判定与秒判技巧（看开头盘符或根斜杠）成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对题面、四个选项与PDF第4页页图一致，答案D→索引3与第1页答案表吻合，解析经独立推导无实质错误，无需修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为“关于直接插入排序，下列说法错误的是（）”，与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页页图：A为最好情况有序时 n−1 次比较、O(n)；B为逆序时 n(n−1)/2 次比较及 n−1 次赋值操作（插入）；C为平均 O(n²)；D为就地排序空间复杂度 O(n)。LaTeX公式以纯文本 n-1、n(n-1)/2、O(n²)、O(n) 呈现，语义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题7为D，0起始映射为3，与当前 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：直接插入排序全程在原数组内完成，额外仅需暂存 key 的临时变量与下标，空间复杂度为 O(1)，D称 O(n) 错误；A最好情形每个元素比较1次共 n−1 次为 O(n)、B逆序时比较次数 1+2+…+(n−1)=n(n−1)/2、每轮一次插入放置共 n−1 次、C平均同阶 O(n²)，均成立，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项（含公式转写）与PDF第4页一致，答案D→3与答案表吻合；独立验证插入排序空间O(1)确认D为错误项，解析各项推导成立。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干“下列程序横线处，应该输入的是（ ）。”位于PDF第4页底部，完整代码与选项位于第5页；当前题面代码（int n,a[10001]、自定义 void swap(int &a,int &b)、外层 i=n;i>1;i--、内层 j=1;j<i、判定 if(a[j]>a[j+1]) 后接横线）与第5页页图逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A-D依次为 swap(a[j],a[j+1]);、swap(a[j-1],a[j]);、swap(a[j-1],a[j+1]);、swap(&a[j-1],&a[j+1]);，与当前 options 完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题8为A，0起始映射为0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：判定条件 if(a[j]>a[j+1]) 针对相邻元素，交换必须作用于同一对 a[j] 与 a[j+1]，A正确；B交换 j-1 与 j，与判定对象不一致且 j=1 时访问未初始化的 a[0]（数组自下标1起使用）；C交换隔位元素破坏序列；D传入 int* 地址无法绑定 int& 引用形参，编译失败。解析对引用形参调用方式的说明（直接传变量、不取地址）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核，但修正其 sourcePages 记录：题干在PDF第4页底部、代码与选项在第5页，故登记为[4,5]。代码、选项、答案A→0及解析均独立核对无误。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干为“下面关于递推的说法不正确的是（ ）。”，与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A“递推表现为自己调用自己”、B“递推是从简单问题出发，一步步的向前发展，最终求得问题。是正向的”、C“递推中，问题的n要求是在计算中确定，不要求计算前就知道n”、D“斐波那契数列可以用递推实现求解”，与当前 options 对应；B项页图句号“问题。是正向的”与当前逗号“问题，是正向的”仅标点之差，语义不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题9为A，0起始映射为0，与当前 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：“自己调用自己”是递归（函数自调用、自顶向下拆解到边界回溯）的机制特征；递推从已知初值出发，用循环沿递推式自底向上正向推进，不包含函数自调用，故A错误符合题意。B为递推正向定义、D斐波那契满足 f[i]=f[i-1]+f[i-2] 可循环求解、C按原卷语境理解为终止规模可在计算过程中动态确定，均为正确项。解析的递推/递归对照表与易错提醒成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：选项与PDF第5页一致（B项句号/逗号为纯标点差异，不改含义），答案A→0与答案表吻合；独立确认“自己调用自己”属递归而非递推，解析结论正确。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干为“关于几种排序算法的说法，下面说法错误的是（ ）。”，与当前 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页A“选择排序不是一个稳定的排序算法”、B“冒泡排序算法不是一种稳定的排序算法”、C“插入排序是一种稳定的排序算法”、D“如果排序前2个相等的数……则称为一种稳定的排序算法”，与当前 options 对应；C项页图开头的反引号`为排版残留符号，当前文本去除后语义不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页答案表题10为B，0起始映射为1，与当前 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：冒泡排序仅在 a[j]>a[j+1] 严格逆序时交换相邻元素，遇到相等值不交换，相等元素相对次序全程保持，属稳定算法，B称其不稳定故错误。A选择排序每轮将最小值与未排序区首位跨距离交换，反例 [2a,2b,1]→[1,2b,2a] 使两个2次序颠倒，不稳定成立；C插入排序遇相等元素即停止后移、插于其后，稳定成立；D即稳定排序的标准定义。解析的稳定性分类表（稳定：冒泡/插入/归并/基数；不稳定：选择/快速/堆/希尔）无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与选项和PDF第5页一致（C项反引号为纯排版符号），答案B→1与答案表吻合；独立验证冒泡稳定性判定与选择排序不稳定性反例，解析成立。"
+      }
+    ],
+    "summary": "独立复核题6至题10：五题题面、选项与PDF第4-5页页图逐字核对一致（题9选项B句号改逗号、题10选项C去除反引号，均为纯排版差异不影响语义；题8代码与页图逐行一致，其题干位于第4页底部、代码与选项在第5页，sourcePages 修正为[4,5]）。答案与第1页答案表 D/D/A/A/B 的0起始映射 3/3/0/0/1 全部吻合。解析经独立推导验证：题6相对/绝对路径判定、题7插入排序空间O(1)、题8冒泡交换对象与引用形参调用、题9递归与递推区别、题10排序稳定性（含选择排序反例）均无实质错误。五题均为单选题，referenceCode 不适用，tests 不适用。DeepSeek 初核结论全部经独立确认后接受，仅补充题8页码归属；无修改项，五题均 approve。"
+  }
+}

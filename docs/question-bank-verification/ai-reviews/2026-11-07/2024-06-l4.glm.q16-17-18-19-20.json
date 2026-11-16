@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:07:18.427Z",
+  "completedAt": "2026-11-16T10:12:26.623Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 60347,
+    "completion_tokens": 17477,
+    "total_tokens": 77824,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15060
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01779055,
+      "allowance": 0.01779055,
+      "tokens": {
+        "input": 60347,
+        "output": 17477,
+        "reasoning": 15060,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 四级 2024 年 06 月”，带 CCF GESP 编程能力等级认证标识，与 paperId 2024-06-l4（2024 年 6 月 GESP C++ 四级）一致；判断题部分（共 10 题、每题 2 分共 20 分）及其答案表位于 PDF 第 8 页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、正确/错误选项、答案映射与解析均经独立核对，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 1 题为“int& a 和 &a 是一样的，都是取 a 的地址。”，与网站题干逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以“正确/错误”作答，网站 options 为“正确”“错误”两项，顺序符合 正确=0、错误=1 的映射约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 1 格为 ×（错误），0 起始索引为 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：int& a 是声明语境中的引用符号、&a 是表达式语境中的取地址运算，二者语境与含义不同，命题“一样”不成立；解析结论“错误”与官方 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "接受初核的修复方案：独立核对 PDF 第 8 页原图，第 2 题代码第 7 行确为 ra=&a;（带取地址符），网站 question 字段的 ra=a; 属转录错误，且与网站自身 code 字段（ra=&a;）亦不符；解析需同步改写。已独立复核修复后的题干与解析：题面与原卷一致，解析覆盖 int& ra; 未初始化与 int* 赋给 int& 两层编译错误，结论“正确”与官方 √ 相符。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 8 页第 2 题代码第 7 行为 ra=&a;（原图清晰可见），网站 question 字段原为 ra=a;，与原卷及网站自身 code 字段均不符；changes 已给出与原卷一致的完整题干，应用后与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以“正确/错误”作答，网站 options 为“正确”“错误”两项，顺序符合 正确=0、错误=1 的映射约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 2 格为 √（正确），0 起始索引为 0；网站 answer=0 一致，无需修改。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析按 ra=a; 展开，与原卷代码 ra=&a; 不符；changes 已重写解析，独立推导确认两点依据成立——int& ra; 未初始化即编译失败、ra=&a; 中 int* 无法赋给 int&，结论“正确”与官方 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "以下代码不能够正确执行。\n```cpp\n#include<iostream>\nusing namespace std;\nint main()\n{\n    int a=20;\n    int& ra;\n    ra=&a;\n    cout<<ra<<endl;\n}\n```",
+          "explanation": "**答案：正确**\n\n**判定依据：**\n原卷代码为：\n```cpp\nint a=20;\nint& ra;\nra=&a;\ncout<<ra<<endl;\n```\n\n第 2 行 `int& ra;` 违反了 C++ 的硬性规定——**引用在定义时必须初始化**，因为引用必须绑定到一个已存在的对象，不存在“空引用”。仅这一行就会导致编译失败（典型报错如 `'ra' declared as reference but not initialized`），程序根本无法执行，“不能够正确执行”的判断成立。\n\n此外第 3 行 `ra=&a;` 本身也站不住脚：`&a` 是取地址运算的结果，类型为 `int*`，而 `ra` 是 `int&`，不存在从 `int*` 到 `int` 的隐式转换；即便把引用的初始化问题修好，这句仍是类型错误，同样无法通过编译。\n\n正确写法是定义时直接绑定：\n```cpp\nint& ra = a;   // ra 成为 a 的别名\n```\n\n**易错提醒：**\n- 引用与指针的关键差异：指针可以先声明后赋值、可以为 `nullptr`；引用必须定义即绑定，且终身不能改绑。\n- `&` 的两种身份要分清：跟在类型名后（`int&`）是引用符号，属于类型的一部分；写在变量前（`&a`）是取地址运算符，结果是 `int*`。把取地址结果赋给引用是初学者常见错误。\n\n**考点：** 引用必须初始化的规则，以及取地址运算与引用声明的区别"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与解析均无需修改；解析基于主流编译器的实现模型支撑官方判定，并补充语法层面差异，严谨且不与官方结论冲突。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 3 题为“引用是一个指针常量。”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以“正确/错误”作答，网站 options 为“正确”“错误”两项，顺序符合 正确=0、错误=1 的映射约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 3 格为 √（正确），0 起始索引为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以主流编译器实现（引用内部按地址实现、行为等同 T* const）支撑官方判 √，并注明标准未强制该实现、引用不能为空等差异；表述与官方结论一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、代码、答案与解析均经独立核对，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页第 4 题为“下面程序两个输出结果是一样的。”，代码 int a[2][3]={0}; cout<<a<<endl; cout<<&a[0][0]<<endl; 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以“正确/错误”作答，网站 options 为“正确”“错误”两项，顺序符合 正确=0、错误=1 的映射约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 4 格为 √（正确），0 起始索引为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a 退化为 int(*)[3]，与 &a[0][0]（int*）数值同为该二维数组首字节地址，经到 const void* 的转换后 cout 输出相同地址；解析结论“正确”与官方 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、答案与解析均无需修改；初核对网站 sourcePage=9 与实际页码（第 8 页）不符的提示属实，已记入 unresolved（sourcePage 不在允许修改字段内）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页第 5 题为“函数不可以调用自己。”，与网站题干一致；注意网站 sourcePage=9 标注有误，该题实际位于第 8 页（元数据问题，不影响题面内容核对）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题以“正确/错误”作答，网站 options 为“正确”“错误”两项，顺序符合 正确=0、错误=1 的映射约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题答案表第 5 格为 ×（错误），0 起始索引为 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析以阶乘递归说明函数可以调用自己，并指出递归需有基准情况；结论“错误”与官方 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "网站 sourcePage=9 有误：本题实际位于 PDF 第 8 页；sourcePage 不在本轮允许修改字段内，建议后台修正元数据。"
+        ]
+      }
+    ],
+    "summary": "本批仅核验题号 16–20，均为判断题，无编程题（tests 全为空）。独立核对 PDF 第 8 页判断题答案表前 5 格为 ×√√√×，对应 0 起始索引 1、0、0、0、1，与网站 answer 全部一致。唯一实质问题在第 17 题：原卷代码第 7 行为 ra=&a;（网站自身 code 字段亦如此），网站 question 字段误作 ra=a;，解析同样按 ra=a; 展开；已提供与原卷一致的完整题干及重写解析（覆盖 int& ra; 未初始化的编译错误与 ra=&a; 中 int* 无法赋给 int& 的类型错误），修复后核验通过。第 20 题网站 sourcePage=9 与实际页码（第 8 页）不符，因该字段不在允许修改范围内，记入 unresolved。其余题面、选项、答案、解析均核验通过。"
+  }
+}

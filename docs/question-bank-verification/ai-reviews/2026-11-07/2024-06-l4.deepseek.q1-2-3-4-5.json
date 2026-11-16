@@ -1,0 +1,227 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:42:41.741Z",
+  "completedAt": "2026-11-16T05:45:34.775Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38986,
+    "completion_tokens": 16635,
+    "total_tokens": 55621,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14783
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0158289,
+      "allowance": 0.00949734,
+      "tokens": {
+        "input": 38986,
+        "output": 16635,
+        "reasoning": 14783,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "aa5de563dfdf4d22041f70efa329341ce1bbb75020567c01cc7a5dbd4bc03aa1",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 四级 2024年06月”，与 2024-06-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页代码与站内 question 逐行一致，包含 func(12,24)、main 中 c=12、d=24 及两处输出。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A-D 四项与站内 options 完全一致；B 为 24 12 12 24。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题标为 B；站内 answer=1，对应 0 起始索引的 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "func 为值传递，形参 a、b 交换后输出 24 12；main 的 c、d 未变，输出 12 24，拼成 24 12 12 24，故 B。原题 func 缺少 return 的源题瑕疵不影响该输出判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原题第1题 func 声明为 int 但函数体无 return，严格属于未定义行为；官方答案仍为 B，保留源题瑕疵，不据此改答案。"
+        ]
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页题2题干与第2页 A-D 四段代码对照，站内 question 中四段代码的声明、调用位置与图片一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 四段代码齐全；站内 options 存 A-D 标签，代码在 question 中按同序给出，未漏项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题标为 B；站内 answer=1，对应 0 起始索引的 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "B 在 main 中调用 func 时，前面既无声明也无定义，按 C++ 先声明后使用规则编译失败；A、C、D 均有定义或前置声明，故不能正常执行的是 B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码与站内 question 逐行一致，包含 int func();、for(int x=0;x<1;x++)、内层 int i=10 及末尾无声明块 i=i*i。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 与站内 options 完全一致，依次为 2 2 3 9、2 10 3 9、2 10 11 121、2 10 3 100。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第3页答案表第3题标为 B；站内 answer=1，对应 0 起始索引的 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "外层 i=2 输出 2；循环体内新声明 i=10 输出 10；循环结束外层 i 加 1 为 3 输出 3；随后无声明块执行 i=i*i 得 9 输出 9，故为 2 10 3 9，选 B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码与站内 question 逐行一致，包含 int *p; int a=10; p=&a; p++; cout<<p<<endl;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 与站内 options 完全一致，依次为 10、0x6ffe14、0x6ffe15、0x6ffe18。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第3页答案表第4题标为 D；站内 answer=3，对应 0 起始索引的 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "p 为 int*，p++ 增加 sizeof(int)=4（GESP 常见环境），0x6ffe14+4=0x6ffe18；输出的是 p 本身而非 *p，故 D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题5题干与第4页代码、选项对照，站内代码 int a[2][3]={0}; cout<<a<<endl; 与图片一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 与站内 options 完全一致，依次为 0x6ffe04、0x6ffe0C、0x6ffe08、0x6ffe00。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题标为 B；站内 answer=1，对应 0 起始索引的 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "a 作为表达式退化为 int(*)[3]；a+1 跳过 3 个 int 即 12 字节=0x0C；0x6ffe00+0x0C=0x6ffe0C，故 B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题1-5均为单选题。卷头、题干/代码、选项、答案表均与站内数据一致，答案依次为 B、B、B、D、B。题1源题 func 缺少 return，属源题瑕疵，但不改变官方输出判断；未发现需改字段，未进行编程题测试。"
+  }
+}
