@@ -69,42 +69,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第2页代码与网站question一致：n_chars(char c,int n)、while(n-- > 0)、my_char='w'、times=5、n_chars(my_char,times)。",
-          "review": "题干“第 2 题 下面代码的描述中，正确的是（ ）。”起于第1页页图末行；第2页页图代码 void n_chars(char c, int n){ while (n-- > 0) cout << c; } char my_char = 'w'; int times = 5; n_chars(my_char, times); 与网站question一致。"
+          "initial": "第1页页图末行题干“第 2 题 下面代码的描述中，正确的是（ ）。”；第2页页图 8 行代码 void n_chars(char c, int n){ while (n-- > 0) cout << c; } 及 char my_char = 'w'; int times = 5; n_chars(my_char, times); 与候选 question 内嵌代码逐行一致。",
+          "review": "第1页页图末行题干“第 2 题 下面代码的描述中，正确的是（ ）。”；第2页页图 8 行代码：void n_chars(char c, int n) { while (n-- > 0) cout << c; }、空行、char my_char = 'w';、int times = 5;、n_chars(my_char, times);，与候选 question 内嵌代码逐行一致（含空行位置）。"
         },
         "options": {
-          "initial": "PDF第2页A-D选项与网站options逐项一致：A称times为0，B称n形参且times实参，C反之，D称交换调用参数也可以。",
-          "review": "第2页页图A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与网站options逐项一致，顺序未变。"
+          "initial": "第2页页图 A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与候选 options 内容与顺序一致。",
+          "review": "第2页页图 A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与候选 options 内容与顺序完全一致（A 项仅“值为0/值为 0”排版空格差异）。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第2题标B，换算为索引1；网站answer=1。",
-          "review": "第1页答案表第2题标B，0起始索引为1；网站answer=1。独立判断：n在定义处为形参、times在调用处为实参，B正确；A错在值传递不回写实参；C概念颠倒；D隐式转换改变语义、不能说“也可以”。"
+          "initial": "第1页答案表第2题为 B，0 起始索引为 1，与候选 answer=1 一致；独立判断：n 在定义处为形参、times 在调用处为实参，B 正确；A 错在值传递不回写实参（times 仍为 5）；C 概念颠倒；D 因隐式转换改变语义、不能说“也可以”。",
+          "review": "第1页答案表第2题为 B，对应 0 起始索引 1，与候选 answer=1 一致。独立判断：形参是函数定义参数表中的 c、n，实参是调用 n_chars(my_char, times) 中的 my_char、times，B 正确；A 错——值传递下 n-- 只修改副本，函数返回后 times 仍为 5；C 概念颠倒；D 中 n_chars(times, my_char) 将 times=5 隐式转为 char(5) 控制字符、'w'(ASCII 119) 提升为 int 作循环次数，输出 119 个控制字符而非 5 个 'w'，语义改变，不成立。"
         },
         "explanation": {
-          "initial": "解析对D项的转换说明有事实错误：n_chars(times,my_char)会把times的5转为char值5（ASCII 5控制字符），把'w'（ASCII 119）提升为循环次数119，输出119个ASCII 5控制字符，并非119个'\\0'；119是循环次数，不是被打印字符的编码。",
-          "review": "网站原解析D项称输出“119 个 '\\0'”，与代码事实不符：c=times=(char)5（ASCII 5 控制字符），n='w'=119（循环次数），实际输出 119 个 ASCII 5 控制字符。已提供修正解析，修正后独立复核通过——修复后核验通过。"
+          "initial": "独立复核候选解析：A 项 times 仍为 5；B 项形参/实参判断正确；C 项颠倒；D 项 n_chars(times, my_char) 将 times=5 转为 char（ASCII 5 控制字符）、'w'=119 作为循环次数 119，输出 119 个控制字符，不能称“也可以”。知识延伸中已正确指出 while(n-- > 0) 结束时 n 为 -1，改成引用 int& n 后 times 也会是 -1；若要最终为 0 应写 while(n > 0){ cout << c; n--; }，与解析其他部分一致。",
+          "review": "逐项独立复核成立：A（times 仍为 5）、B 正确、C 颠倒、D（可编译但输出 119 个 ASCII 5 控制字符）；“易错提醒”对 while(n-- > 0) 的推演经独立验证：对 n=5,4,3,2,1 共判断 5 次为真、末次判 0 为假后 n 变为 -1，与“循环 5 次、结束后形参 n 为 -1”一致；“知识延伸”已按上一轮意见改为“n-- 先用后减，即便改成引用 int& n，调用后 times 也是 -1 而非 0；若要留在 0 应写 while (n > 0) { cout << c; n--; }”，该表述经独立验证正确（先判后减时 n=0 时退出、终值为 0），且与易错提醒自洽，上一轮指出的矛盾已消除。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-2/2024-12-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-2/2024-12-l4.glm.json"
       ]
     },
     {
@@ -1063,16 +1066,6 @@
   ],
   "unresolved": [
     {
-      "id": 2,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 13,
       "dimensions": [
         "statement",
@@ -1089,5 +1082,5 @@
   ],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2024-12-l4.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-12-l4.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-2/2024-12-l4.integration.json"
 }

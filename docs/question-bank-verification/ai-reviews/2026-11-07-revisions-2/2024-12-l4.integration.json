@@ -1,0 +1,27 @@
+{
+  "paperId": "2024-12-l4",
+  "integratedAt": "2026-11-16T14:33:06.978Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 13,
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "void insertion_sort(vector<int> &nums) {\n    for (int i = 1; i < nums.size(); i++) {\n\n        ________________________ {   // 在此处填入代码\n\n            while (j >= 0 && nums[j] > base)\n            {\n                nums[j + 1] = nums[j];\n                j--;\n            }\n            nums[j + 1] = base;\n        }\n    }\n}"
+      }
+    }
+  ],
+  "codeChecks": []
+}

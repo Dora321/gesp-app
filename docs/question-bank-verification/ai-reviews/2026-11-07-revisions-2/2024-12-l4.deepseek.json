@@ -1,0 +1,145 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    13
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T13:55:21.647Z",
+  "completedAt": "2026-11-16T13:56:58.799Z",
+  "finishReason": "stop",
+  "inputSha256": "00abaa5a3a81fefbb76864d681a6f1c3f396e8bc6178fb7cbb19be0db7cb35f4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为“CCF 编程能力等级认证 GESP”“C++ 四级”“2024 年 12 月”，与 paperId 的年份 2024、月份 12、level 4 一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页页图末行题干“第 2 题 下面代码的描述中，正确的是（ ）。”；第2页页图 8 行代码 void n_chars(char c, int n){ while (n-- > 0) cout << c; } 及 char my_char = 'w'; int times = 5; n_chars(my_char, times); 与候选 question 内嵌代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图 A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与候选 options 内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为 B，0 起始索引为 1，与候选 answer=1 一致；独立判断：n 在定义处为形参、times 在调用处为实参，B 正确；A 错在值传递不回写实参（times 仍为 5）；C 概念颠倒；D 因隐式转换改变语义、不能说“也可以”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：A 项 times 仍为 5；B 项形参/实参判断正确；C 项颠倒；D 项 n_chars(times, my_char) 将 times=5 转为 char（ASCII 5 控制字符）、'w'=119 作为循环次数 119，输出 119 个控制字符，不能称“也可以”。知识延伸中已正确指出 while(n-- > 0) 结束时 n 为 -1，改成引用 int& n 后 times 也会是 -1；若要最终为 0 应写 while(n > 0){ cout << c; n--; }，与解析其他部分一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第5页页图末行题干“第 13 题 下面代码实现了插入排序函数，则横线上应填写（ ）。”；第6页页图原卷第4行填空行后有 `{`，第6行 while 后无 `{`，按字面 while 只控制 nums[j+1]=nums[j];，j-- 在 while 外，会死循环，属原卷排版残缺。候选 question 在 while 后补 `{`，与填空行 `{` 配对，成为语义等价标准插入排序，官方答案 A 在该结构下成立；但候选独立 code 字段仍为 while 后无 `{` 的旧结构，与 question 不一致，需同步修复。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页页图 A“int base = nums[i], j = i - 1;”、B“int base = nums[i], j = i;”、C“int base = nums[0], j = i - 1;”、D“int base = nums[0], j = i;”，与候选 options 完全一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为 A，0 起始索引为 0，与候选 answer=0 一致；独立推导：标准插入排序需暂存 nums[i] 并从 i-1 向左扫描，仅 A 同时满足两条件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选解析：A 正确；B 的 j=i 在 base=nums[i] 时使 while 恒假，并把 base 写到 nums[i+1]，末位越界；C 的 base=nums[0] 逐轮会把 nums[1..] 写成 nums[0]；D 同时含 C 与 B 的两处错误；while 条件中 j>=0 在前利用 && 短路避免 nums[-1]，均成立。上一轮已修正的两处错误（“四个选项都写对”“第一、二个元素位置关系错乱”）在当前解析中已不存在。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序；候选独立 code 字段的同步问题在 statement 维度记录。"
+          }
+        },
+        "changes": {
+          "code": "void insertion_sort(vector<int> &nums) {\n    for (int i = 1; i < nums.size(); i++) {\n        ________________________ {   // 在此处填入代码\n            while (j >= 0 && nums[j] > base)\n            {\n                nums[j + 1] = nums[j];\n                j--;\n            }\n            nums[j + 1] = base;\n        }\n    }\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        13
+      ],
+      "usage": {
+        "prompt_tokens": 20977,
+        "completion_tokens": 15026,
+        "total_tokens": 36003,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 13515,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01216215,
+          "allowance": 0.00729729,
+          "tokens": {
+            "input": 20977,
+            "output": 15026,
+            "reasoning": 13515,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T13:55:21.647Z",
+      "completedAt": "2026-11-16T13:56:58.799Z"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    13
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T13:56:58.807Z",
+  "completedAt": "2026-11-16T14:05:40.872Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 40340,
+    "completion_tokens": 30492,
+    "total_tokens": 70832,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 28300
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.021297,
+      "allowance": 0.021297,
+      "tokens": {
+        "input": 40340,
+        "output": 30492,
+        "reasoning": 28300,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "00abaa5a3a81fefbb76864d681a6f1c3f396e8bc6178fb7cbb19be0db7cb35f4",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页页图卷头为“CCF 编程能力等级认证 GESP”，标题“C++ 四级”，日期“2024 年 12 月”，与 paperId 2024-12-l4 的年份 2024、月份 12、等级 4 一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页页图末行题干“第 2 题 下面代码的描述中，正确的是（ ）。”；第2页页图 8 行代码：void n_chars(char c, int n) { while (n-- > 0) cout << c; }、空行、char my_char = 'w';、int times = 5;、n_chars(my_char, times);，与候选 question 内嵌代码逐行一致（含空行位置）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图 A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与候选 options 内容与顺序完全一致（A 项仅“值为0/值为 0”排版空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为 B，对应 0 起始索引 1，与候选 answer=1 一致。独立判断：形参是函数定义参数表中的 c、n，实参是调用 n_chars(my_char, times) 中的 my_char、times，B 正确；A 错——值传递下 n-- 只修改副本，函数返回后 times 仍为 5；C 概念颠倒；D 中 n_chars(times, my_char) 将 times=5 隐式转为 char(5) 控制字符、'w'(ASCII 119) 提升为 int 作循环次数，输出 119 个控制字符而非 5 个 'w'，语义改变，不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "逐项独立复核成立：A（times 仍为 5）、B 正确、C 颠倒、D（可编译但输出 119 个 ASCII 5 控制字符）；“易错提醒”对 while(n-- > 0) 的推演经独立验证：对 n=5,4,3,2,1 共判断 5 次为真、末次判 0 为假后 n 变为 -1，与“循环 5 次、结束后形参 n 为 -1”一致；“知识延伸”已按上一轮意见改为“n-- 先用后减，即便改成引用 int& n，调用后 times 也是 -1 而非 0；若要留在 0 应写 while (n > 0) { cout << c; n--; }”，该表述经独立验证正确（先判后减时 n=0 时退出、终值为 0），且与易错提醒自洽，上一轮指出的矛盾已消除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核“题2全部通过、无修改”的结论。我独立核对：第1页答案表第2题=B（索引1）；第1页末行题干与第2页代码、四个选项逐字一致；独立推导确认 B 正确、A（值传递不回写，times 仍为 5）、C（概念颠倒）、D（隐式转换后输出 119 个 ASCII 5 控制字符，语义改变）均错误；候选解析含上一轮修正后的“引用后 times 为 -1”表述，经独立验证与全文自洽，无残留错误。changes 为空。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第5页页图末行题干“第 13 题 下面代码实现了插入排序函数，则横线上应填写（ ）。”与候选一致；第6页页图代码主体（函数签名、for (int i = 1; i < nums.size(); i++)、填空行后带 `{` 及注释 // 在此处填入代码、while (j >= 0 && nums[j] > base)、nums[j + 1] = nums[j]; j--;、nums[j + 1] = base;）与候选 question 一致；但原卷 while 行后无 `{`（其后为空行），按字面填空块在第10行 `}` 即闭合，第11行 nums[j + 1] = base 中 j、base 已出作用域无法编译，且 while 体不含 j-- 会死循环，属原卷排版残缺；候选 question 在 while 后补 `{` 与填空块配对，成为自洽的标准插入排序，官方答案 A 在该结构下成立，该修复予以保留；但候选独立 code 字段仍为 while 后无 `{` 的未修复旧结构，与 question 不一致，需按 changes.code 同步为与 question 逐字符一致的最终值。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页页图 A“int base = nums[i], j = i - 1;”、B“int base = nums[i], j = i;”、C“int base = nums[0], j = i - 1;”、D“int base = nums[0], j = i;”，与候选 options 内容与顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为 A，对应 0 起始索引 0，与候选 answer=0 一致；独立推导：修复后结构下，标准插入排序需暂存当前元素 nums[i] 并从 i-1 向左扫描，四个选项中仅 A 同时满足两个条件。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核各断言成立：B 取 j=i 时 base=nums[i]，首次判断 nums[i] > nums[i] 恒假、while 不执行，随后写 nums[i+1] 覆盖下一元素，i 为末位时 nums[size] 越界；C 取 base=nums[0] 时经多组数组手工模拟（如 [3,1,2]、[2,9,5,8]、[5,9,1,7]）验证：第 1 轮 j=0 处 nums[0] > nums[0] 必假，逐轮无移位地把 nums[1..] 依次写为 nums[0]，无法完成插入排序；D 为 C、B 两处错误叠加；“易错提醒”代入 i=1 得 nums[j+1]=nums[2]=base，两元素数组时 nums[2] 越界，成立；base 须取 nums[i] 因 while 首轮即执行 nums[i]=nums[i-1] 覆盖原值，成立；&& 先判 j>=0 利用短路避免读 nums[-1]，成立；上一轮指出的“四个选项都写对”“第一、二个元素位置关系错乱”两处错误在当前解析中已不存在。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考程序；独立 code 字段的同步修复在 changes.code 给出，并在 statement 维度记录。"
+          }
+        },
+        "changes": {
+          "code": "void insertion_sort(vector<int> &nums) {\n    for (int i = 1; i < nums.size(); i++) {\n\n        ________________________ {   // 在此处填入代码\n\n            while (j >= 0 && nums[j] > base)\n            {\n                nums[j + 1] = nums[j];\n                j--;\n            }\n            nums[j + 1] = base;\n        }\n    }\n}"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：①对第6页原卷 while 后缺 `{` 属排版残缺的认定，经我对照页图独立确认（按字面填空块提前闭合、第11行 j/base 出作用域无法编译，且 while 体缺 j-- 会死循环），候选 question 的补 `{` 修复自洽、答案 A 成立，予以保留；②选项、答案（答案表 A=索引0）核验通过；③解析各断言经我独立手工模拟验证成立，上一轮两处错误已修正。接受初核新增的 code 字段不同步问题及同步方案；但否决其草稿代码文本（删除了空行、注释前空格数与 question 不一致），改为提供与 question 内嵌代码逐字符一致的最终值。verdict=revise 仅因 code 字段同步；题面、选项、答案、解析本身无需再改。"
+      }
+    ],
+    "summary": "卷头“CCF 编程能力等级认证 GESP / C++ 四级 / 2024 年 12 月”与 paperId 一致。本次仅核验题2、13：题2题干、代码、选项与第1—2页页图逐字一致，答案 B（索引1）经独立推导确认，解析（含上一轮修正的“引用后 times 为 -1”表述）自洽无误，通过、无修改。题13选项与第6页页图一致，答案 A（索引0）与第1页答案表一致，解析各断言经独立模拟成立；第6页原卷 while 后缺 `{` 属排版残缺，候选 question 的补 `{` 修复保留；唯一未决缺陷是候选独立 code 字段仍为未修复旧结构，已提供与 question 逐字符一致的 changes.code 同步，应用后该题代码字段与题面一致。两题均无编程题 tests。"
+  }
+}
