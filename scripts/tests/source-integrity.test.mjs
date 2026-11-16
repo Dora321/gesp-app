@@ -240,15 +240,38 @@ test('user rulings: T1 defect questions keep their counted status and say so in 
 // ─── 用户裁定记录与队列门禁 ──────────────────────────────────────────────
 
 test('user-rulings.json records all 22 adjudications consistent with the question data', async () => {
-    const rulings = loadUserRulings(path.join(docs, 'user-rulings.json'));
+    const rulings = loadUserRulings(path.join(docs, 'user-rulings.json')).filter((ruling) => ruling.status === 'user-adjudicated');
     assert.equal(rulings.length, 22);
     for (const ruling of rulings) {
-        assert.equal(ruling.status, 'user-adjudicated');
         assert.equal(ruling.countsAsPassed, false);
         assert.match(ruling.decidedAt, /^2026-11-11T.*\+08:00$/);
         const q = await loadQuestion(ruling.paperId, ruling.questionId);
         assert.equal(ruling.examScoring, isScoringExcluded(q) ? 'excluded' : 'counted', `${ruling.paperId}#${ruling.questionId}`);
         assert.equal(ruling.defectKind, q.defectKind, `${ruling.paperId}#${ruling.questionId} defectKind`);
+    }
+});
+
+test('user-rulings.json original-paper-dispute entries are well-formed and never count as passed', async () => {
+    const all = loadUserRulings(path.join(docs, 'user-rulings.json'));
+    for (const ruling of all) assert.ok(['user-adjudicated', 'original-paper-dispute'].includes(ruling.status), `${ruling.paperId}#${ruling.questionId} status`);
+    const adjudicated = new Set(all.filter((ruling) => ruling.status === 'user-adjudicated').map((ruling) => `${ruling.paperId}#${ruling.questionId}`));
+    const disputes = all.filter((ruling) => ruling.status === 'original-paper-dispute');
+    const seen = new Set();
+    for (const ruling of disputes) {
+        const key = `${ruling.paperId}#${ruling.questionId}`;
+        assert.match(ruling.paperId, /^\d{4}-\d{2}-l[1-8]$/, key);
+        assert.ok(Number.isInteger(ruling.questionId) && ruling.questionId > 0, key);
+        assert.ok(Array.isArray(ruling.dimensions) && ruling.dimensions.length > 0, `${key} dimensions`);
+        assert.equal(ruling.decidedBy, 'user', key);
+        assert.match(ruling.decidedAt, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+08:00$/, key);
+        assert.equal(ruling.countsAsPassed, false, key);
+        assert.equal(typeof ruling.resolution, 'string', `${key} resolution`);
+        assert.ok(ruling.summary && typeof ruling.summary === 'string', `${key} summary`);
+        assert.ok(!adjudicated.has(key), `${key} duplicates a user-adjudicated ruling`);
+        assert.ok(!seen.has(key), `${key} duplicated dispute`);
+        seen.add(key);
+        const q = await loadQuestion(ruling.paperId, ruling.questionId);
+        assert.ok(q, `${key} question exists`);
     }
 });
 
