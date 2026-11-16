@@ -1,0 +1,94 @@
+{
+  "executedAt": "2026-11-15T21:40:58.608Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "2\n16347\n76344",
+          "output": "T\nF",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "T\nF\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 N=1，x=1",
+          "input": "1\n1\n",
+          "output": "F\n",
+          "reason": "个位 1 为第 1 位（奇数位），1×7=7≤9，变换结果 7，总和 7 不是 8 的倍数，输出 F。",
+          "kind": "boundary",
+          "actual": "F\n",
+          "passed": true
+        },
+        {
+          "name": "最小幸运数 x=5",
+          "input": "1\n5\n",
+          "output": "T\n",
+          "reason": "5×7=35>9，各位求和 3+5=8≤9，变换结果 8，8 是 8 的倍数，输出 T；经枚举 1..4 均非幸运数，5 为最小幸运数。",
+          "kind": "boundary",
+          "actual": "T\n",
+          "passed": true
+        },
+        {
+          "name": "奇数位数字 0 触发 trans(0) 分支",
+          "input": "1\n500\n",
+          "output": "T\n",
+          "reason": "个位 0（奇数位）变换结果为 0，十位 0（偶数位）保持 0，百位 5 变换为 8，总和 8 是 8 的倍数，输出 T；覆盖参考代码 trans 中 t==0 的特殊分支。",
+          "kind": "boundary",
+          "actual": "T\n",
+          "passed": true
+        },
+        {
+          "name": "最大位数全 9 边界",
+          "input": "1\n999999999999\n",
+          "output": "F\n",
+          "reason": "x=999999999999<10^12 为 12 位全 9：6 个奇数位 9×7=63→9，6 个偶数位保持 9，总和 108，108 mod 8 = 4，输出 F；同时验证 long long 读入上界。",
+          "kind": "boundary",
+          "actual": "F\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "768058dfb7ba76163b6abfdebddbc04e9d99bc593c6c13552b10f9180f3292cd"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "10\n00FFCFAB00FFAC09071B5CCFAB76\n00AFCBAB11FFAB09981D34CFAF56\n01BFCEAB00FFAC0907F25FCFBA65\n10FBCBAB11FFAB09981DF4CFCA67\n00FFCBFB00FFAC0907A25CCFFC76\n00FFCBAB1CFFCB09FC1AC4CFCF67\n01FCCBAB00FFAC0F071A54CFBA65\n10EFCBAB11FFAB09981B34CFCF67\n01FFCBAB00FFAC0F071054CFAC76\n1000CBAB11FFAB0A981B84CFCF66",
+          "output": "ABCFFF00CB09AC07101198011B6776FC\n321032657CD10E\n36409205ACC16D\nB41032657FD16D\n8F409205ACF14D\n324F326570D1FE\n3240C245FC411D\nBF4032687CD16D\n8F409205ACC11D\nB240326878D16E\n83409205ACE11D",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "ABCFFF00CB09AC07101198011B6776FC\n321032657CD10E\n36409205ACC16D\nB41032657FD16D\n8F409205ACF14D\n324F326570D1FE\n3240C245FC411D\nBF4032687CD16D\n8F409205ACC11D\nB240326878D16E\n83409205ACE11D\n",
+          "passed": true
+        },
+        {
+          "name": "最小 N=10 且恰好 16 种灰阶（含频次 1 灰阶）",
+          "input": "10\n0001\n0203\n0405\n0607\n0809\n0A0B\n0C0D\n0E0F\n0001\n0203\n",
+          "output": "000102030405060708090A0B0C0D0E0F\n01\n23\n45\n67\n89\nAB\nCD\nEF\n01\n23\n",
+          "reason": "00—03 各出现 2 次，04—0F 各出现 1 次，共恰 16 种灰阶；按频次降序、同频灰度值升序编号为 00→0、01→1、…、0F→F，首行 32 字符；所有像素均为选中灰阶，逐像素精确映射。该用例含频次 1 灰阶进入前 16，网站版代码可正确选满，官方 PDF 版（his 初始化 -1、阈值 >0）在此类输入会失效。",
+          "kind": "boundary",
+          "actual": "000102030405060708090A0B0C0D0E0F\n01\n23\n45\n67\n89\nAB\nCD\nEF\n01\n23\n",
+          "passed": true
+        },
+        {
+          "name": "同频选色与等距映射平局",
+          "input": "11\n000408\n0C1014\n181C20\n24282C\n303438\n3C0004\n080C10\n14181C\n202428\n2C3034\n383C02\n",
+          "output": "0004080C1014181C2024282C3034383C\n012\n345\n678\n9AB\nCDE\nF01\n234\n567\n89A\nBCD\nEF0\n",
+          "reason": "16 个代表灰阶各出现 2 次，02 出现 1 次（共 17 种，满足至少 16 种）；同频按灰度值升序编号 00→0、04→1、…、3C→F。未选灰度 02 到 00 与 04 的距离均为 2，按规则选编号更小的 0，故末行第三像素输出 0；同时覆盖选色平局与映射平局两类判定。",
+          "kind": "boundary",
+          "actual": "0004080C1014181C2024282C3034383C\n012\n345\n678\n9AB\nCDE\nF01\n234\n567\n89A\nBCD\nEF0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "32600a1daccfbfa8fce2549cbb3b6618c7ccadb02ce76ebe719165de7f03f669"
+    }
+  ]
+}

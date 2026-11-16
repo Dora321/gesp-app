@@ -1,0 +1,236 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:28:46.699Z",
+  "completedAt": "2026-11-15T16:32:00.295Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 69520,
+    "completion_tokens": 14010,
+    "total_tokens": 83530,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11638
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.017433,
+      "allowance": 0.017433,
+      "tokens": {
+        "input": 69520,
+        "output": 14010,
+        "reasoning": 11638,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a510f9f9a0448db132d0f0edda3c7b25d31c20ff49f793695a69cc48f6557579",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标题为“2023年6月 GESP C++ 四级真题解析”，全卷为单选15题（每题2分共30分）、判断10题（每题2分共20分）、编程2题（每题25分共50分）的四级真题结构，与 paperId=2023-06-l4（2023年6月 C++ 四级）一致；已校验来源 git-blob SHA e56797ac791cc0ee858102eb4e9919e0bd516353。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与 PDF 第8页判断题第1题逐字一致，【答案】符号为'×'，按'错误=1'映射与网站 answer=1 相符；解析经独立推导成立，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第1题原文“域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称，CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。”与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无选项列表，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页该题【答案】符号为'×'，按判断题'错误=1'映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：域名层级从右向左逐级细分，最右端标签 .cn 为顶级域名，gesp 是 ccf.org.cn 下的低层子域，故“顶级域名是 gesp”为假，判定'×'成立；与官方解析“最右边的那个词称为顶级域名，顶级域名是 cn”及网站解析（.cn 为顶级、gesp 为子域）相互印证，非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "部分接受初核：初核对答案√→0与解析的核验意见正确，指出 PDF 官方解析末句“递归”系笔误（页图中该词被标注）亦成立；但初核将概括后的网站题面直接标 statement=verified 过于宽松——原题被判断的对象是①②③所述的具体循环方法，网站删除数列定义与方法描述后陈述由特定泛化为一般，属漏必要内容，故否决其 statement 结论，按 PDF 第8页原文恢复完整题面。注意恢复文本中“f(i)”系按源文本层转录（①③处均用 fib，此处源文即作 f(i)），不影响判定真值。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：网站原题面仅保留概括句“斐波那契数列计算体现了递推的编程思想”，删除了 PDF 第8页原题中数列定义及被判断的方法描述（①令 fib(1)=fib(2)=1 ②用循环 for i=3 to n 分别计算 f(i) ③输出 fib(n)），属漏必要内容且使陈述含义泛化；已按 PDF 原文完整恢复，恢复后与原文一致，判定真值不变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无选项列表，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页该题【答案】符号为'√'，按'正确=0'映射为 0，与网站 answer=0 一致；恢复完整题面后独立复核：题述方法用循环从小到大依次由前两项计算各项，正是递推思想，'√'成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出 F(1)=F(2)=1、F(n)=F(n-1)+F(n-2) 的递推关系，并区分递推（迭代顺序计算）与递归（函数自调用），独立推导支持'√'；PDF 第8页官方解析末句“这和递归的编程思想一致”应为“递推”之笔误（页图中该词被标注），网站解析已正确规避，不影响题面与答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，不适用。"
+          }
+        },
+        "changes": {
+          "question": "数列 1, 1, 2, 3, 5, 8 ... 是以意大利数学家列昂纳多·斐波那契命名的数列，从第三个数开始，每个数是前面两项之和。如果计算该数列的第 n 项（其中 n>3）fib(n)，我们采用如下方法：① 令 fib(1)=fib(2)=1 ②用循环 for i=3 to n 分别计算 f(i) ③输出 fib(n)。这体现了递推的编程思想。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与 PDF 第8页判断题第3题逐字一致（解析续至第9页），【答案】'×'映射 1 与网站一致；解析独立推导成立，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第3题原文“在 C++语言中，函数的参数默认以引用传递方式进行传递。”与网站题面逐字一致；该题【答案】在第8页，【解析】续至第9页。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无选项列表，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页该题【答案】符号为'×'，按'错误=1'映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 函数形参默认按值传递，实参传入时复制副本，引用传递必须显式书写 &，指针传递传递的也是地址副本；故“默认以引用传递”为假，'×'成立，与第9页官方解析“函数的参数默认以值传递方式进行传递”一致，网站解析另附反例代码，非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与 PDF 第9页判断题第4题逐字一致，【答案】'×'映射 1 与网站一致；解析独立推导成立，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第4题原文“在 C++语言中，可以定义四维数组，但在解决实际问题时不可能用到，因为世界是三维的。”与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无选项列表，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】符号为'×'，按'错误=1'映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 语法允许任意维数组的定义，且实际问题（如时间序列上的三维体数据、张量计算等）确会使用四维及以上数组，数组维度是数据组织概念而非物理空间维度；故“不可能用到”为假，'×'成立，与官方解析“实际问题中是有可能使用到四维甚至更多维数组的”一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面与 PDF 第9页判断题第5题逐字一致，【答案】'√'映射 0 与网站一致；解析独立推导成立，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第5题原文“在 C++语言中，一个函数没有被调用时，它的参数不占用内存。”与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，无选项列表，不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】符号为'√'，按'正确=0'映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：函数形参属自动存储期对象，仅在函数被调用时随栈帧分配、返回时随栈帧回收；函数从未被调用则不产生任何栈帧，形参不占用内存，'√'成立，与官方解析“函数的参数只有在函数被调用时才会在调用栈上分配对应内存”一致，网站解析补充了栈帧生命周期机理，非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码，不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次复核范围限于判断题第16–20题（对应 PDF 判断题第1–5题，第8–9页）。五题官方答案符号依次为×、√、×、×、√，按'正确=0、错误=1'映射为 1、0、1、1、0，与网站 answer 全部一致；题面除第17题被概括删减外均与原文逐字一致。第17题已按 PDF 第8页原文恢复完整题面（含斐波那契数列定义与①②③循环方法描述，'f(i)'按源文本转录），修复后核验通过；其余四题无修改。五题解析均经独立推导支撑判定，非仅复述官方答案。备注：PDF 判断题第2题官方解析末句“这和递归的编程思想一致”应为“递推”之笔误（页图中已标注），不影响题面与答案，网站解析表述正确。无未决争议；第1–15题及编程题不在本次复核范围。"
+  }
+}

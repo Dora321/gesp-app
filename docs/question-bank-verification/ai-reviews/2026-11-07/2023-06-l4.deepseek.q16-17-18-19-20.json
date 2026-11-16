@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:26:52.733Z",
+  "completedAt": "2026-11-15T16:28:46.686Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42004,
+    "completion_tokens": 8430,
+    "total_tokens": 50434,
+    "prompt_tokens_details": {
+      "cached_tokens": 41856
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7121
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00520577,
+      "allowance": 0.00312346,
+      "tokens": {
+        "input": 148,
+        "output": 8430,
+        "reasoning": 7121,
+        "cache_read": 41856,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a510f9f9a0448db132d0f0edda3c7b25d31c20ff49f793695a69cc48f6557579",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头标题为“2023年6月 GESP C++ 四级真题解析”，与 paperId=2023-06-l4 对应的2023年6月C++四级一致；给定来源 git-blob SHA e56797ac791cc0ee858102eb4e9919e0bd516353。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第1题原文为“CCF编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中顶级域名是 gesp”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选题 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页该题【答案】为“×”，按判断题“正确=0、错误=1”映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按 DNS 从右向左的层级规则判定 .cn 为顶级域名、gesp 为子域，独立推导同样得出“顶级域名是 gesp”为错误，并非仅复述答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第2题以数列 1,1,2,3,5,8… 及循环计算 fib(n) 说明递推；网站概括为“斐波那契数列计算体现了递推的编程思想”，判断核心与真值未改变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选题 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页该题【答案】为“√”，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出 F(1)=F(2)=1、F(n)=F(n-1)+F(n-2)，并区分顺序迭代的递推与函数自调用的递归；独立推导支持“√”。PDF 解析末句“递归”应为笔误，不影响题干与答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第3题原文为“在C++语言中，函数的参数默认以引用传递方式进行传递”，与网站题面一致，解析续至第9页。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选题 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出 C++ 默认按值传递，引用传递须显式使用 &；独立按 C++ 函数传参规则亦判定原陈述错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第4题原文为“可以定义四维数组，但在解决实际问题时不可能用到，因为世界是三维的”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选题 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“×”，映射为 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析说明数组维度是数据组织维度，不等同物理空间维度，并给出时空体数据等四维以上应用；独立判断“不可能用到”为假。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页判断题第5题原文为“在C++语言中，一个函数没有被调用时，它的参数不占用内存”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，不适用单选题 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第9页该题【答案】为“√”，映射为 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析指出形参随函数调用建立栈帧而分配、随返回而释放，未调用则无相应参数对象；独立按自动存储期与函数调用语义判断原陈述正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号16–20，五题均为判断题。PDF 官方答案依次为 ×、√、×、×、√，网站映射为 1、0、1、1、0，全部一致；题面、解析与判断含义均可核验，未发现需修改内容，无未决争议。Q17 网站题面为概括表达，但保留原判断核心；PDF 解析末句“递归”属笔误，不影响答案。"
+  }
+}

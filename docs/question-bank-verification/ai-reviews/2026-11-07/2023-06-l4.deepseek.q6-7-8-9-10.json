@@ -1,0 +1,224 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:00:53.540Z",
+  "completedAt": "2026-11-15T16:02:52.408Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42066,
+    "completion_tokens": 10197,
+    "total_tokens": 52263,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8941
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0124281,
+      "allowance": 0.00745686,
+      "tokens": {
+        "input": 42066,
+        "output": 10197,
+        "reasoning": 8941,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a510f9f9a0448db132d0f0edda3c7b25d31c20ff49f793695a69cc48f6557579",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“2023 年 6 月 GESP C++ 四级真题解析”，与 paperId 的年月、语言和等级一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干为“下列关于 C++语言中变量的叙述，正确的是（ ）。”，网站仅压缩空格，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页A-D四项与网站options逐项一致：A变量定义后可以一直使用；B两个变量名不能相同；C同名但类型必须不同；D同名但作用域必须不同。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页【答案】D，对应0起始索引3；网站answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：同一作用域不能重名，不同作用域可同名并由内层屏蔽外层，故D正确；A受生命周期限制，B、C过于绝对。网站解析与官方结论一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页末至第4页题干为 double array[3][10]; 求占用内存大小，网站文字与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页末至第4页选项A 30、B 60、C 120、D 240，与网站options一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页【答案】D，对应0起始索引3；网站answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：3×10×sizeof(double)=30×8=240；GESP环境double按8字节计。网站解析结论与推导正确，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为 int *p = nullptr; 判断正确说法，网站文字与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页A-D选项与网站options逐项一致：A指针变量类型为int；B指向类型为int；C地址随机；D访问出现编译错误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页【答案】B，对应0起始索引1；网站answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：p的类型为int*，指向int；nullptr为空指针值而非随机地址；解引用空指针属运行期未定义行为，不是编译错误。网站解析与官方一致，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页题干为 int array[5][3]; 求array[1][2]与array[2][1]内存位置相差字节数，网站仅调整空格和标点，语义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页选项A 2字节、B 4字节、C 8字节、D 无法确定，与网站options一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第4页【答案】C，对应0起始索引2；网站answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：行优先下array[1][2]线性下标为5，array[2][1]为7，相差2个int；GESP环境int为4字节，故相差8字节。网站解析正确，无实质错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页题干为a为int且值为6，执行a &= 3;后a的值，网站文字与之一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页选项A 3、B 9、C 2、D 7，与网站options一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页【答案】C，对应0起始索引2；网站answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：6(0110)&3(0011)=0010=2，故C；7为6|3。网站解析推导正确；官方考纲标注位运算为三级知识点，但不影响本题结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次复核题6-10共5道单选题：题干、选项、官方答案与网站数据逐项一致；解析经独立推导均正确；均为单选题，无参考代码；未发现需修改项。其余题号未处理。"
+  }
+}

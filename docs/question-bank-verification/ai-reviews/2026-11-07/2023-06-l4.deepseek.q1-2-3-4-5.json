@@ -1,0 +1,226 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T14:06:12.286Z",
+  "completedAt": "2026-11-15T14:08:01.963Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42004,
+    "completion_tokens": 7807,
+    "total_tokens": 49811,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5716
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0109848,
+      "allowance": 0.00659088,
+      "tokens": {
+        "input": 42004,
+        "output": 7807,
+        "reasoning": 5716,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a510f9f9a0448db132d0f0edda3c7b25d31c20ff49f793695a69cc48f6557579",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确为“2023 年 6 月 GESP C++ 四级真题解析”，题1-5属于单选题，与 paperId 2023-06-l4、level 4、2023年6月一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页题干为“高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的可执行代码。”网站题干文字一致，无含义变化。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页列出A编辑、B保存、C调试、D编译；网站选项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页【答案】为D；网站answer=3（0起始索引）对应D，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析由“编译将高级语言源代码翻译为机器指令或目标文件，编辑、保存、调试不生成可执行代码”独立推导出D，与PDF解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码可核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页末至第2页给出排序稳定性定义及题干；网站题干与PDF一致，仅有空格、括号等排版差异，未改变含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页A-D依次为“冒泡排序是不稳定的”“插入排序是不稳定的”“选择排序是不稳定的”“以上都不正确”；网站选项及顺序一致，仅句末标点有差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页【答案】为C；网站answer=2（0起始索引）对应C，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "结论C正确，但网站解析把插入排序描述为“从前向后扫描并在遇到不小于当前元素的位置插入”，这会把后出现的相等元素插到先出现的相等元素之前，反而破坏稳定性；应改为从右向左仅在已排序元素严格大于当前元素时后移、遇相等即停。已提供修正解析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码可核验。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（选择排序是不稳定的）**\n\n**核心解析：**\n排序稳定性要求关键字相等的记录在排序前后保持原相对次序。冒泡排序只在相邻元素严格逆序（左 > 右）时交换，相等记录不会互换，故稳定。插入排序若从右向左扫描，仅在已排序元素严格大于当前元素时后移，遇到相等或较小元素即停止，并把当前元素放在相等元素之后，可保持相等记录的相对次序，故稳定。选择排序每轮把待排序区首元素与找到的最小元素交换；若最小元素前方存在与其相等的记录，长距离交换可能把该相等记录换到后方，破坏原相对次序，故不稳定。\n\n**选项逐项分析：**\n- **A（冒泡排序是不稳定的）**：错误。冒泡排序仅在严格逆序时交换，相等记录不改变相对次序。\n- **B（插入排序是不稳定的）**：错误。按“严格大于才后移、遇相等即停”的方式插入时，相等记录保持原次序。\n- **C（选择排序是不稳定的）**：正确。跨位置交换可能改变相等记录的相对次序。\n- **D（以上都不正确）**：错误。选项 C 正确。\n\n**易错提醒：**\n- 插入排序的稳定性取决于相等元素处的处理：若在第一个相等元素之前插入，会人为破坏稳定性。\n- 选择排序不稳定的根源是长距离交换，而不是比较次数。\n\n**知识延伸：**\n归并排序通常稳定；快速排序、堆排序通常不稳定。\n\n**考点：** 冒泡、插入、选择排序的稳定性。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干为“下列关于 C++语言中指针的叙述，不正确的是（ ）。”网站题干一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四项依次为指针存储内存地址、定义时必须指定指向类型、只能指向基本类型不能指向指针变量、指向地址不一定合法访问；网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页【答案】为C；网站answer=2（0起始索引）对应C，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐项核对指针类型、多级指针、野指针与悬空指针，C项“不能指向指针变量”错误，结论可由C++多级指针机制独立推出，与PDF解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码可核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页题干为“下列关于 C++语言中数组的叙述，不正确的是（ ）。”网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页四项依次为一维数组连续存放、二维数组是一维数组的一维数组、每个一维数组连续存放、二维数组可以不是连续存放；网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页【答案】为D；网站answer=3（0起始索引）对应D，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析依据C++数组对象连续存储及二维数组按行优先展开，指出原生二维数组整体连续，D项错误；结论与PDF解析一致，并能独立推导。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码可核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页题干为“下列关于 C++语言中函数的叙述，正确的是（ ）。”网站题干一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第3页四项依次为函数必须有名字、必须有参数、必须有返回值、定义必须写在调用前；网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第3页【答案】为A；网站answer=0（0起始索引）对应A，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析由“函数可无参、返回void、可先声明后定义”排除B/C/D，并说明GESP四级范围内函数名必要；PDF同页注说明lambda属于函数对象而非本题函数范畴，结论与官方解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码可核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按PDF页图核对题1-5的题干、选项、答案与解析。5题答案均与官方一致；发现题2解析中插入排序稳定性的扫描方向描述有误，已在changes中修正，其余四题五维通过。本次仅处理单选题，无编程题，故tests均为空。"
+  }
+}

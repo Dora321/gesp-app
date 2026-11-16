@@ -1,0 +1,229 @@
+{
+  "paperId": "2023-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-15T16:32:00.302Z",
+  "completedAt": "2026-11-15T16:33:59.145Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42004,
+    "completion_tokens": 8966,
+    "total_tokens": 50970,
+    "prompt_tokens_details": {
+      "cached_tokens": 41856
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7242
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00552737,
+      "allowance": 0.00331642,
+      "tokens": {
+        "input": 148,
+        "output": 8966,
+        "reasoning": 7242,
+        "cache_read": 41856,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a510f9f9a0448db132d0f0edda3c7b25d31c20ff49f793695a69cc48f6557579",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年6月-C++4级.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "mirrorBytes": 1377279,
+    "shaVerified": true,
+    "sha256": "816c338e76a3e1996f1e97bd41f1c8f292e12a9d1cc47f45fd33fa08899f4293"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2023-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头明确为“2023 年 6 月 GESP C++ 四级真题解析”，与 paperId 对应。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第6题原文为“在C++语言中，如果一个函数可能抛出异常，那么一定要在try子句里调用这个函数。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF以“【答案】×”给出判断；网站判断题选项统一为“正确/错误”，可完整承载该判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页【答案】×，即“错误”，对应索引1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确说明 try-catch 并非强制，异常可沿调用栈向上传播直到被捕获或未捕获终止，与PDF解析一致，且推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          9
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页判断题第7题原文为“如果希望记录 10 个最长为 99 字节的字符串，可以将字符串数组定义为 char s[100][10];。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF以“【答案】×”给出判断；网站判断题选项为“正确/错误”，映射完整。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页【答案】×，即“错误”，对应索引1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析指出第一维表示字符串个数、第二维表示每个字符串的存储空间，并考虑结尾空字符；正确写法应为 char s[10][100]，与PDF解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第9页判断题第8题原文为“字符常量'0'和'\\0'是等价的。”；网站现题面写成字符常量 '@' 与双引号包裹的空字符转义串，改变了考查对象，与源卷不一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF以“【答案】×”给出判断；网站判断题选项“正确/错误”可承载该答案，无需改动。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第9页【答案】×，即“错误”，对应索引1；网站 answer=1，映射一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "PDF第10页解析比较的是 '0' 的 ASCII 值 48 与 '\\0' 的 ASCII 值 0；网站现解析围绕 '@' 和双引号字符串展开，虽结论同为错误，但理由不对应原题，必须按源题改正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "question": "字符常量'0'和'\\0'是等价的。",
+          "explanation": "**答案：错误**\n\n**判定依据：**\nPDF原题比较的是字符常量 `'0'` 与 `'\\0'`。`'0'` 是数字零字符，ASCII 值为 48；`'\\0'` 是转义字符常量，表示空字符，ASCII 值为 0，常用作字符串结束标志。二者数值和用途不同，并不等价。\n\n**易错提醒：**\n不要把数字字符 `'0'` 与空字符 `'\\0'` 混淆；也不要把单引号字符常量 `'\\0'` 与双引号字符串字面量混为一谈，后者还会附加字符串结束符。\n\n**知识延伸：**\n字符常量用单引号表示单个字符，字符串字面量用双引号表示字符序列并以空字符结束。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第9题原文为“>=和>>=都是 C++语言的运算符。”，与网站题面含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF以“【答案】√”给出判断；网站判断题选项“正确/错误”可承载该判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页【答案】√，即“正确”，对应索引0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "现有解析正确指出 >= 是关系运算符、>>= 是复合位右移赋值运算符，与PDF解析一致；推导可独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          10
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第10页判断题第10题原文为“由于文件重定向操作，程序员在使用 C++语言编写程序时无法确定通过 cout 输出的内容是否会被输出到屏幕上。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF以“【答案】√”给出判断；网站判断题选项“正确/错误”可承载该判断。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第10页【答案】√，即“正确”，对应索引0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "现有解析的核心判断与PDF一致，但知识延伸称 std::cerr“不被重定向”在技术上错误：stderr 也可被 2> 等方式重定向；isatty 只能在运行时检测。该错误会误导读者，需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n`cout` 写入标准输出流 `stdout`。程序直接运行时，标准输出通常连接终端屏幕；若启动时使用 Shell 重定向（如 `program > output.txt`），`stdout` 会改为连接文件。重定向发生在程序之外，仅查看 `cout` 语句本身无法静态确定最终输出设备，因此题述“程序员无法确定”成立。\n\n**易错提醒：**\n`cout` 的输出目标不是由 C++ 语句硬编码的；同一程序在不同重定向环境下可输出到屏幕或文件。\n\n**知识延伸：**\n标准错误流 `cerr` 默认也连接终端，但同样可以被 `2>` 等方式重定向。若程序需要在运行时判断某个文件描述符是否连接终端，可使用平台相关接口（如 POSIX 的 `isatty`），但不能把 `cerr` 绝对化为“永不被重定向”。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮仅核验判断题21-25。21、22、24五维对照通过；23题面及解析与PDF原题不符，已按源卷给出纠正草稿，答案仍为“错误”；25题答案正确，但解析中关于 std::cerr 不被重定向的说法错误，已给出修正。判断题不适用代码测试。"
+  }
+}
