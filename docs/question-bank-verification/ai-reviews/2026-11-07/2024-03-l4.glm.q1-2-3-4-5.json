@@ -1,0 +1,244 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T03:05:28.154Z",
+  "completedAt": "2026-11-16T03:07:48.922Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49445,
+    "completion_tokens": 8313,
+    "total_tokens": 57758,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5135
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01157325,
+      "allowance": 0.01157325,
+      "tokens": {
+        "input": 49445,
+        "output": 8313,
+        "reasoning": 5135,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "964eef652d7aa6a0d0595bfb7236e375ef81d1739f65b30bf1e720ba0a4e63a3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为 CCF 编程能力等级认证（GESP）C++ 四级、2024 年 03 月；第 1 页单选题答案表题号 1—15 为 C C D D C C D A C B C C B C C，与网站 level=4、year=2024、month=3 匹配。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干“若函数声明为 int f(int &x){ x+=3; return x; }，则对声明的变量 int a=3，下面哪个调用能够改变 a 的值”与网站一致，仅排版空格差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图选项 A f(&a);、B f(*a);、C f(a);、D f(a-3); 与网站顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 1 为 C，0 起始索引 2；网站 answer=2。独立推导：引用传参直接传变量名 f(a) 即可修改 a，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析“即使是 const 引用也不能绑定到临时对象”为技术错误——const 左值引用可以绑定右值临时对象；D 项错误的真正原因是非 const 左值引用 int& 不能绑定 a-3 产生的右值。已提供修正稿并独立复核其推导无误，答案 C 不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（f(a);）**\n\n**核心解析：**\n函数形参 `int &x` 是 int 类型的（非 const）左值引用。调用时直接传变量名，`x` 成为 `a` 的别名，函数内 `x += 3` 直接作用于 `a`，故 `a` 由 3 变为 6。\n\n**选项逐项分析：**\n- A `f(&a);`：`&a` 的类型是 `int*`（指针），与形参 `int&`（引用）类型不匹配，编译错误。\n- B `f(*a);`：`a` 是普通 int 变量而非指针，解引用运算符 `*` 不能作用于它，语法错误。\n- C `f(a);`：正确。`a` 是左值，可直接绑定到 `int&`，函数内对 `x` 的修改即对 `a` 的修改。\n- D `f(a-3);`：`a-3` 是表达式求值产生的临时值（右值），非 const 左值引用 `int&` 不能绑定右值，编译错误。注意：若形参是 `const int&`，则可以绑定临时对象，但本题不是这种情形。\n\n**易错提醒：**\n- 引用传参的调用语法与值传参相同，直接写变量名即可，不要画蛇添足加 `&` 或 `*`。\n- `int &x` 与 `int* x` 是完全不同的形参类型：前者是引用，后者是指针。\n\n**考点：** C++ 引用参数的调用语法与左值/右值绑定规则。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 explanation 修正：独立确认原解析关于“const 引用也不能绑定临时对象”的说法错误（const 左值引用可绑定右值），D 项错误的真正机理是非 const 左值引用不能绑定右值；修正稿其余推导（A 类型不匹配、B 非指针解引用、C 正确）均经独立验证无误，予以采纳。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题代码原图：int main() / int x[]={2, 0, 2, 4}; / char geSP[]=\"Grade Examination of SP\"; / cout << geSP[sizeof(x)] << endl; / cout << endl; / return 0;，与网站代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项 A G、B e、C n、D P 与网站完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 2 为 C（索引 2），网站 answer=2。独立推导：sizeof(x)=4 个 int×4 字节=16；逐位索引 \"Grade Examination of SP\" 得 geSP[16]='n'（E 在 6 起，Examination 的末字母 n 在 16），答案 C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 sizeof(x)=16 与 0 起始下标独立核对，网站索引表 0—22 逐项与 \"Grade Examination of SP\" 一致（含空格占位），各选项位置分析正确；知识延伸中 sizeof(arr[1])=64 的说法与第 4 题一致无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定通过，独立复核一致：我重新逐字符建立下标表验证 geSP[16]='n'，与解析表格完全吻合，无需修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1—2 页第 3 题代码跨页连续且与网站一致：int foo(float *f){ return int(*f*2); }；main 中 float fnum[10]={1.1}; fnum[1]=foo(fnum); cout << fnum[0]+fnum[1] << endl;。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A 1、B 1.1、C 3、D 3.1 与网站完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 3 为 D（索引 3），网站 answer=3。独立推导：fnum 部分初始化后 fnum[0]=1.1、其余为 0；foo(fnum) 中数组名退化为 &fnum[0]，*f*2=2.2，int(2.2)=2；输出 1.1f+2.0f=3.1，cout 默认 6 位有效数字输出 3.1，答案 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析完整覆盖部分初始化补零、指针退化、int 截断（非四舍五入）和浮点输出格式，推导与答案 D 一致，选项分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定通过，独立复核一致：int(2.2) 截断为 2、浮点和为 3.1 的推导经独立验证无误，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题题干“对二维数组 int arr[3][16];，则 arr[1] 占用内存的大小为（ ）字节”与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项 A 4、B 16、C 48、D 64 与网站完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 4 为 D（索引 3），网站 answer=3。独立推导：arr[1] 类型为 int[16]，16×4=64 字节，答案 D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 arr[1]（一行）与整个二维数组（3×16×4=192 字节），各干扰项（4/16/48）的成因分析合理，与第 5 题的行偏移知识点衔接一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核判定通过，独立复核一致：16×4=64 的行大小计算无误，无需修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干“对二维数组 int arr[3][16];，若 arr 的地址是 0x28cbc0，则 arr[1] 的值是（ ）”与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第 2 页原图与文本层 D 项均为“不确定”，网站误作 0x28cc40；已按源卷修正 options 为 [0x28cbc4, 0x28cbd0, 0x28cc00, 不确定] 并复核 A—C 三项与 PDF 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表题 5 为 C（索引 2），网站 answer=2。独立推导：每行 16 个 int×4 字节=64=0x40，0x28cbc0+0x40=0x28cc00，C 为正确项，修正 D 项不影响答案映射。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析按错误的 D=0x28cc40 展开，且 A 项解释有误（0x28cbc4 是相对 arr 偏移 4 字节即一个 int 的结果，并非“误以为 int 占 1 字节”）；修正稿按 D=不确定重写并纠正 A 项成因，独立验算 0x28cbc0+0x40=0x28cc00、+0x10=0x28cbd0、+0x80=0x28cc40 均无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "0x28cbc4",
+            "0x28cbd0",
+            "0x28cc00",
+            "不确定"
+          ],
+          "explanation": "**答案：C（0x28cc00）**\n\n**核心解析：**\n`int arr[3][16]` 在内存中按行优先（Row-Major）连续存储，每行 16 个 int。按 GESP 环境 int 占 4 字节，一行占 16×4=64 字节，即十六进制 0x40。\n\n`arr` 表示第 0 行首地址（类型为 `int(*)[16]`），`arr[1]` 是第 1 行的首地址，相对 `arr` 偏移一整行：\n\n```\n0x28cbc0 + 0x40 = 0x28cc00\n```\n\n**选项逐项分析：**\n- A `0x28cbc4`：错误。这是相对 `arr` 偏移 4 字节（一个 int）后的地址，误把 `arr[1]` 当成了下一个 int 元素的位置。\n- B `0x28cbd0`：错误。0x28cbc0+0x10=0x28cbd0，偏移 16 字节相当于 4 个 int，不是一整行的 16 个 int。\n- C `0x28cc00`：正确。偏移一整行 64 字节（0x40）。\n- D 不确定：错误。数组首地址与每行大小都是确定的，`arr[1]` 的地址也随之完全确定。\n\n**易错提醒：**\n- `arr` 的类型是 `int(*)[16]`，指针偏移单位是一行（16 个 int，64 字节），不是单个 int（4 字节）。\n- 十六进制加法注意进位：0x28cbc0+0x40 时 bc 进位为 cc。\n\n**考点：** 二维数组的行优先存储与行地址偏移计算。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 options 与 explanation 修正：PDF 第 2 页原图明确显示 D 项为“不确定”，网站 0x28cc40 系录入错误；原解析 A 项“误以为一个 int 占 1 字节”的归因不成立（偏移 4 字节恰为一个 int），已随修正稿一并纠正。修正内容经独立验算后采纳。"
+      }
+    ],
+    "summary": "本次核验 2024-03-l4 第 1—5 题（恰好 5 题）。题面 5/5 与 PDF 原图一致；答案 5/5 与第 1 页官方答案表（C C D D C）映射一致且均经独立推导验证（题2 sizeof(x)=16→geSP[16]='n'；题3 int(2.2)=2、和为3.1；题4 16×4=64；题5 0x28cbc0+0x40=0x28cc00）。发现并修复两处问题：题 1 解析中“const 引用也不能绑定临时对象”为技术错误（const 左值引用可绑定右值，D 项错因是非 const 左值引用不能绑定右值）；题 5 网站 D 项“0x28cc40”与源卷“不确定”不符，且解析 A 项偏移归因有误，已同步修正选项与解析。题 1、5 修复后核验通过，题 2—4 原数据直接通过；无未决问题。单选题无参考代码维度，均记 not_applicable；tests 不适用于客观题，全部为空。"
+  }
+}

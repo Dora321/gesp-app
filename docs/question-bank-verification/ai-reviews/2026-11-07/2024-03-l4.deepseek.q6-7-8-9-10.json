@@ -1,0 +1,242 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T03:13:48.063Z",
+  "completedAt": "2026-11-16T03:16:09.096Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32606,
+    "completion_tokens": 15504,
+    "total_tokens": 48110,
+    "prompt_cache_hit_tokens": 32512,
+    "prompt_cache_miss_tokens": 94,
+    "prompt_tokens_details": {
+      "cached_tokens": 32512
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13286
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01882807,
+      "allowance": 0.01129684,
+      "tokens": {
+        "input": 94,
+        "output": 15504,
+        "reasoning": 13286,
+        "cache_read": 32512,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "964eef652d7aa6a0d0595bfb7236e375ef81d1739f65b30bf1e720ba0a4e63a3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“CCF GESP C++ 四级 2024年03月”，与 paperId 2024-03-l4 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页代码中指针 p 指向字符串，随后执行 cout << p+5，网站题面的代码结构与核心表达式一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. e、B. I lov、C. e GESP!、D. GESP!，顺序和内容与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题列为 C；当前 answer=2 对应选项 C。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析把 B 项 I lov 解释为 p+2 的输出，实际上 p+2 会输出 love GESP!（从下标2的 l 到结尾），而 I lov 不是该代码从 p 开始的完整后缀输出；需要修正该事实性说明。核心答案 C 的推导仍然成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：C（e GESP!）。字符串逐字符下标为：0 I、1 空格、2 l、3 o、4 v、5 e、6 空格、7 G、8 E、9 S、10 P、11 !。p 指向下标0；p+5 指向下标5的 e，而 cout 输出 char* 时会从该地址连续输出到结束符，所以得到 e GESP!。A 的 e 需用 *(p+5) 或 p[5] 输出单个字符；B 的 I lov 不是本程序从 p 开始的完整后缀输出（p+2 输出的是 love GESP!，p 输出全部字符串）；D 的 GESP! 对应 p+7。答案表第6题 C，与独立推导一致。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页代码为全局 int rc=5、main 内 int rc、随后执行 cout << ++rc；网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. 0、B. 1、C. 6、D. 不确定，顺序和内容与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题列为 D；当前 answer=3 对应选项 D。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析核心结论 D 正确，但 A/B 项的说明自相矛盾：若局部 rc 恰好为0，则 ++rc 得到1而不是0；B 的1也不是标准保证，需要重写选项分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：D（不确定）。main 内定义的局部变量 rc 屏蔽全局 rc=5，并且没有初始化；执行 ++rc 必须先读取未初始化的值，属于未定义行为，结果没有语言保证，因此选不确定。A 的 0 不是保证结果：若某实现恰将局部变量置为0，则 ++rc 得到1，并不能推出0。B 的 1 只是局部变量初值为0时的实现相关结果，不是标准保证。C 的 6 对应误把 main 中的 rc 当成全局 rc=5 再自增。答案表第7题 D，与独立推导一致。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页函数体、循环和返回 f[n] 与网站题面一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第3页选项 D 为“循环”；网站写成“分治”，属于选项内容错误。A/B/C 的顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题列为 A；当前 answer=0 对应选项 A（递推）。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析按错误的 D 项“分治”展开，未针对 PDF 的 D 项“循环”说明；需要按实际选项重写。代码核心是由初始项按循环逐步求出后续项，官方答案 A 对应递推。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "递推",
+            "递归",
+            "迭代",
+            "循环"
+          ],
+          "explanation": "答案：A（递推）。代码先置 f[0]=0、f[1]=1，再用 for 循环按 i=2..n 由 f[i-1]+f[i-2] 依次算出后续项，属于自底向上的递推。B 递归要求函数直接或间接调用自身，本函数没有。C 迭代描述的是循环实现方式，代码确实用了循环，但本题在“递推/递归/迭代/循环”中要求算法思想，官方选项与答案指向“递推”；D 循环是语句结构名称，不是这里的算法名称。另：int f[n]={0,1} 的变长数组写法依赖编译器扩展，不影响本题按扩展语法判断算法。PDF 第8题选项 D 是“循环”，网站原数据误作“分治”，已改正；答案表 A 与推导一致。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页题干为插入排序在最好情况下的时间复杂度，网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 页图选项为 A. O(1)、B. O(N/2)、C. O(N)、D. O(N^2)，网站使用 LaTeX 表示，顺序和含义等价。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题列为 C；当前 answer=2 对应选项 C（O(N)）。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析主干结论正确，但称插入排序平均比较次数约为 N/2，实际平均总比较次数为 Θ(N^2)（约 N^2/4）；关于 B 项 O(N/2) 的说明也应改为非规范大O写法问题，需要修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：C（O(N)）。插入排序把第一个元素视为已排序，从第二个元素起逐个插入。最好情况原序列已升序：每个待插入元素只需与前一个元素比较一次即停止，不发生后移，总比较次数为 N-1，移动或赋值次数也为线性量级，故时间复杂度 O(N)。A 的 O(1) 不符合至少要扫描一遍元素；B 的 O(N/2) 不是教材采用的规范复杂度写法（若按大O定义它与 O(N) 同阶，但本题标准答案是 C）；D 的 O(N^2) 是平均和最坏情况。答案表第9题 C，与独立推导一致。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3至4页的 main 定义 struct pass XiaoYang，第11/12行分别输出 &XiaoYang 与 &(XiaoYang.no)；网站保留两个地址表达式并以注释标明第11/12行，去掉输出前缀字符串不改变地址比较含义。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 选项为 A. X>Y、B. X==Y、C. X<Y、D. 不确定；网站顺序和含义一致，仅空格差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题列为 B；当前 answer=1 对应选项 B（X==Y）。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "当前解析核心结论正确，但称 no 是结构体唯一的基本类型成员不实：同结构体的 level 也是 int 基本类型成员；需要修正该事实性表述。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "答案：B（X == Y）。struct pass 对象 XiaoYang 的起始地址由 &XiaoYang 得到，记为 X；no 是结构体中声明在最前面的非静态数据成员，本题结构体为标准布局，首成员相对对象起始地址的偏移为0，因此 &(XiaoYang.no) 的数值 Y 与 X 相同。name 与 level 是后续成员，它们的地址一般不用于本题比较，level 的地址通常大于起始地址并受对齐影响。A、C 错误；D 错误，因为首成员偏移0是确定规则。答案表第10题 B，与独立推导一致。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次初核题6-10：题6、题7、题9、题10的题面、选项和答案均与PDF答案表一致，但解析分别存在B项说明错误、未初始化变量选项分析矛盾、平均比较次数错误、唯一基本类型成员误述，已草拟修正；题8的选项D应为“循环”，网站误作“分治”，已草拟修正选项并同步重写解析。所有题目均为单选题，不涉及参考程序，未发现答案表冲突。"
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:19:35.982Z",
+  "completedAt": "2026-11-16T05:21:09.795Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32538,
+    "completion_tokens": 17611,
+    "total_tokens": 50149,
+    "prompt_cache_hit_tokens": 32384,
+    "prompt_cache_miss_tokens": 154,
+    "prompt_tokens_details": {
+      "cached_tokens": 32384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15693
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01068685,
+      "allowance": 0.00641211,
+      "tokens": {
+        "input": 154,
+        "output": 17611,
+        "reasoning": 15693,
+        "cache_read": 32384,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "964eef652d7aa6a0d0595bfb7236e375ef81d1739f65b30bf1e720ba0a4e63a3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF GESP C++ 四级 2024年03月”，与目标2024-03-l4一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第6页题面、样例与网站主体一致，但网站输出格式写成“对组 A,B，如果他们相似”，漏掉“输出T行，对于每组A,B”的完整表述；同时漏掉PDF输入描述中的“T≤100、A,B长度不超过50、只含小写字母”约束。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按编辑距离不超过1独立推导，覆盖长度差大于1、长度相等、长度差1三种情形；样例走查结果与PDF第7页样例输出一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码对等长串统计不同字符数，对长度差1用双指针跳过长串多余字符，逻辑正确；补充<cmath>后abs可用；在T≤100、长度≤50范围内复杂度O(总长度)，与PDF第7-8页参考程序思路一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202403 四级] 相似字符串\n\n## 题目描述\n\n对于两个字符串 $A$ 和 $B$，如果 $A$ 可以通过删除一个字符，**或**插入一个字符，**或**修改一个字符变成 $B$，那么我们说 $A$ 和 $B$ 是相似的。\n\n比如 `apple` 可以通过插入一个字符变成 `applee`，可以通过删除一个字符变成 `appe`，也可以通过修改一个字符变成 `bpple`。因此 `apple` 和 `applee`、`appe`、`bpple` 都是相似的。但 `applee` 并不能通过任意一个操作变成 `bpple`，因此它们并不相似。\n\n特别地，两个完全相同的字符串也是相似的。\n\n给定 $T$ 组 $A,B$，请你分别判断它们是否相似。\n\n## 输入格式\n\n第一行一个正整数 $T$。\n接下来 $T$ 行，每行两个用空格隔开的字符串 $A$ 和 $B$。\n\n保证 $T ≤ 100$，$A,B$ 的长度不超过 50。保证 $A$ 和 $B$ 只包含小写字母。\n\n## 输出格式\n\n输出 $T$ 行，对于每组 $A,B$，如果它们相似，则输出 `similar`，否则输出 `not similar`。"
+        },
+        "tests": [
+          {
+            "name": "最小单组相同",
+            "input": "1\na a\n",
+            "output": "similar\n",
+            "reason": "T=1，A=B且长度为1；题面规定完全相同也相似。"
+          },
+          {
+            "name": "长度差2",
+            "input": "1\na abc\n",
+            "output": "not similar\n",
+            "reason": "长度差为2，大于1；一次插入或删除只能改变长度1，修改不改变长度。"
+          },
+          {
+            "name": "长度差1且两处不匹配",
+            "input": "1\nabc axyc\n",
+            "output": "not similar\n",
+            "reason": "abc变axyc需插入x且把b改为y，至少两次操作；双指针会在第二次不匹配时判否。"
+          },
+          {
+            "name": "等长一处不同",
+            "input": "1\nabc abd\n",
+            "output": "similar\n",
+            "reason": "长度相等且只有最后一位不同，可修改一次。"
+          },
+          {
+            "name": "长度差1首部插入",
+            "input": "1\nabc xabc\n",
+            "output": "similar\n",
+            "reason": "在abc首位插入x得到xabc，一次操作即可。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第8页题面、样例与网站主体一致，但网站漏掉数据范围“1≤n≤10^6、1≤a_i≤10^9”；输出格式仅写“输出一行一个整数表示答案”，未按PDF写“小杨同学偷懒前最多做题天数”，语义虽等价但不完整。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析采用排序后线性贪心，按天递增判断a[i]≥day+1，符合尽量用小容量题单满足当前天、为大题留余量的贪心策略；样例模拟结果与PDF第8页一致，复杂度O(n log n)。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码使用vector<int>、排序和线性贪心；n≤10^6、a_i≤10^9均在int范围内，day≤n≤10^6；复杂度O(n log n)，满足题目范围。PDF第9页参考程序采用双重循环，最坏情况复杂度偏高，网站实现未沿用该写法。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202403 四级] 做题\n\n## 题目描述\n\n小杨同学为了提高自己的实力制定了做题计划，在第 $k$ 天时，他必须要完成 $k$ 道题，否则他就会偷懒。\n\n小杨同学现在找到了一个题库，一共有 $n$ 套题单，每一套题单中有一定数量的题目。但是他十分挑剔，每套题单他只会使用一次，每一天也只能使用一套题单里的题目，之后那套题单就会被弃之不用。对于每套题单，他不必完成题单内所有的题。\n\n那么问题来了，小杨同学最多会做题几天才偷懒呢？\n\n## 输入格式\n\n第一行，一个整数为 $n$，表示有多少套题单。\n第二行 $n$ 个整数 $a_1, a_2, ..., a_n$，分别表示每套题单有多少道题。\n\n对于全部数据，保证 $1 ≤ n ≤ 10^6$，$1 ≤ a_i ≤ 10^9$。\n\n## 输出格式\n\n输出一行，小杨同学偷懒前最多做题天数。"
+        },
+        "tests": [
+          {
+            "name": "最小一套且刚好1题",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1，a1=1，第1天需1题可完成；第2天无题单可用。"
+          },
+          {
+            "name": "全部题单仅1题",
+            "input": "5\n1 1 1 1 1\n",
+            "output": "1\n",
+            "reason": "第1天用掉一套后，第2天需2题，其余题单均不足2题，只能做1天。"
+          },
+          {
+            "name": "题量足够全部完成",
+            "input": "5\n1000000000 1000000000 1000000000 1000000000 1000000000\n",
+            "output": "5\n",
+            "reason": "n=5，每套题量均不小于5；第k天（k≤5）任取一套均满足，最多5天。"
+          },
+          {
+            "name": "三套两题",
+            "input": "3\n2 2 2\n",
+            "output": "2\n",
+            "reason": "可完成第1、2天；第3天需3题，所有题单只有2题，最多2天。"
+          },
+          {
+            "name": "样例1",
+            "input": "4\n3 1 4 1\n",
+            "output": "3\n",
+            "reason": "PDF第8页样例，排序后贪心得到3天。"
+          }
+        ],
+        "unresolved": [
+          "PDF第9页参考程序使用双重循环；当全部a_i=1且n接近10^6时，外层j继续递增而内层反复扫描，最坏约O(n^2)，与n≤10^6约束不匹配。网站referenceCode已改为O(n log n)排序贪心，此条仅记录源参考程序差异。"
+        ]
+      }
+    ],
+    "summary": "已核验题26、27。卷头与2024年03月C++四级匹配。两题网站题面均需修正：26补充输入约束并修正输出格式措辞，27补充数据范围并补全输出表述。两题解析推导正确；网站参考代码均正确，26为线性编辑距离判定，27为O(n log n)排序贪心，满足n≤10^6、a_i≤10^9。编程题无选项答案，officialAnswer为null。另记录27 PDF参考程序最坏O(n^2)的源程序性能隐患，网站代码未采用该写法。"
+  }
+}

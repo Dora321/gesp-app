@@ -1,0 +1,197 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:21:09.799Z",
+  "completedAt": "2026-11-16T05:25:39.883Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49170,
+    "completion_tokens": 18670,
+    "total_tokens": 67840,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15533
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0167105,
+      "allowance": 0.0167105,
+      "tokens": {
+        "input": 49170,
+        "output": 18670,
+        "reasoning": 15533,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "964eef652d7aa6a0d0595bfb7236e375ef81d1739f65b30bf1e720ba0a4e63a3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP：C++ 四级 2024年03月”，等级（四级）、年月（2024年3月）与目标 2024-03-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第6页3.1.2输入描述含“保证 T≤100，A,B的长度不超过50。保证 A和B只包含小写字母”，网站原题面缺失该约束；网站输出格式写作“对组 A,B，如果他们相似”，漏掉PDF 3.1.3的“输出 T 行，对于每组 A,B”完整表述；PDF第7页3.1.5/3.1.6样例与网站样例逐行一致。按 changes 替换后题面与PDF逐句相符（3.1.4“特别提醒”为考试系统输入输出提示，非题面必要约束，可省略，不影响题意）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：相似⟺编辑距离≤1。等长时统计对应位置不同数≤1；长度差1时双指针遇不匹配跳过长串字符且差异>1即否。复算样例5组：apple/applee、apple/appe、apple/bpple、apple/apple→similar，applee/bpple→not similar，与PDF第7页样例输出一致；反例 abc/xbcd 需插入加修改共2次操作→not similar，与解析逻辑相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码与PDF第7-8页参考程序同构（等长计差异、长度差1双指针跳长串），并补 <cmath> 使 abs(int) 可用（官方源文件仅含 iostream/string，网站补头文件属合理修复）。边界独立核对：长串末尾多余字符自动匹配、首部插入 abc/xabc→similar、两处不匹配 abc/axyc→not similar 均正确；复杂度 O(串长)，在 T≤100、长度≤50 范围内无性能或溢出问题。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202403 四级] 相似字符串\n\n## 题目描述\n\n对于两个字符串 $A$ 和 $B$，如果 $A$ 可以通过删除一个字符，**或**插入一个字符，**或**修改一个字符变成 $B$，那么我们说 $A$ 和 $B$ 是相似的。\n\n比如 `apple` 可以通过插入一个字符变成 `applee`，可以通过删除一个字符变成 `appe`，也可以通过修改一个字符变成 `bpple`。因此 `apple` 和 `applee`、`appe`、`bpple` 都是相似的。但 `applee` 并不能通过任意一个操作变成 `bpple`，因此它们并不相似。\n\n特别地，两个完全相同的字符串也是相似的。\n\n给定 $T$ 组 $A,B$，请你分别判断它们是否相似。\n\n## 输入格式\n\n第一行一个正整数 $T$。\n接下来 $T$ 行，每行两个用空格隔开的字符串 $A$ 和 $B$。\n\n保证 $T \\le 100$，$A,B$ 的长度不超过 50。保证 $A$ 和 $B$ 只包含小写字母。\n\n## 输出格式\n\n输出 $T$ 行，对于每组 $A,B$，如果它们相似，则输出 `similar`，否则输出 `not similar`。\n"
+        },
+        "tests": [
+          {
+            "name": "最小单组相同",
+            "input": "1\na a\n",
+            "output": "similar\n",
+            "reason": "T=1、A=B 且长度为1；题面规定完全相同亦相似，独立推得 similar。"
+          },
+          {
+            "name": "长度差2",
+            "input": "1\na abc\n",
+            "output": "not similar\n",
+            "reason": "长度差为2，大于1；一次插入或删除只能改变长度1，修改不改变长度，独立复算 not similar。"
+          },
+          {
+            "name": "长度差1且两处不匹配",
+            "input": "1\nabc axyc\n",
+            "output": "not similar\n",
+            "reason": "需插入 x 并把 b 改为 y 共2次操作；双指针在第二次不匹配时返回否，独立复算 not similar。"
+          },
+          {
+            "name": "等长一处不同",
+            "input": "1\nabc abd\n",
+            "output": "similar\n",
+            "reason": "等长且仅末位不同，修改1次即可，独立复算 similar。"
+          },
+          {
+            "name": "长度差1首部插入",
+            "input": "1\nabc xabc\n",
+            "output": "similar\n",
+            "reason": "首位插入 x 一次可得；双指针首字符不匹配跳过长串字符后全部匹配，独立复算 similar。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：statement 两处缺失（输入约束、输出T行表述）经逐句对照PDF第6-7页独立确认，替换文本与PDF相符，修复后核验通过；解析三种情形与5组样例走查独立复算通过；参考代码与官方同构、补cmath合理，复杂度满足约束；5组测试期望输出均由我独立推得并与初核一致。特别提醒段属考试系统说明，不纳入题面，接受省略。无否决项。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF第8页3.2.4样例下方“对于全部数据，保证有 1≤n≤10^6, 1≤a_i≤10^9”为网站原题面缺失的必要数据范围；输出格式PDF原文为“输出一行，小杨同学偷懒前最多做题天数”，网站写作“输出一行一个整数表示答案”（语义等价但应按原文补全）；网站样例 4 / 3 1 4 1 → 3 与PDF第8页3.2.4一致。按 changes 替换后题面与PDF相符。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第k天需一套题量≥k的未用题单，排序升序后从小到大遍历，a[i]≥day+1 则消耗该题单并 day++；小题单尽早满足小需求、大题单留给高需求天，是最大化天数的标准贪心。复算样例排序后 [1,1,3,4]：1≥1→day=1，1<2 舍弃，3≥2→day=2，4≥3→day=3，输出3与PDF样例一致；全1的n套→1天、每套≥n→n天等推论均与解析自洽；复杂度 O(n log n)。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码为排序+线性贪心，独立核对正确：a_i≤10^9<2^31-1、day≤10^6，int 无溢出；n≤10^6 下 O(n log n) 可行。样例 [3,1,4,1] 复算得3。PDF第8-9页官方参考程序为双重循环（j 从1到m、内层从 s 扫描），全1序列时最坏约 O(n²)（后续每天反复全扫失败），与 n≤10^6 约束不匹配；网站实现是其等价且更高效的正确替换，属合理处理，该源程序性能差异在此记录，不影响本维度核验。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202403 四级] 做题\n\n## 题目描述\n\n小杨同学为了提高自己的实力制定了做题计划，在第 $k$ 天时，他必须要完成 $k$ 道题，否则他就会偷懒。\n\n小杨同学现在找到了一个题库，一共有 $n$ 套题单，每一套题单中有一定数量的题目。但是他十分挑剔，每套题单他只会使用一次，每一天也只能使用一套题单里的题目，之后那套题单就会被弃之不用。对于每套题单，他不必完成题单内所有的题。\n\n那么问题来了，小杨同学最多会做题几天才偷懒呢？\n\n## 输入格式\n\n第一行，一个整数为 $n$，表示有多少套题单。\n第二行 $n$ 个整数 $a_1, a_2, \\dots, a_n$，分别表示每套题单有多少道题。\n\n对于全部数据，保证 $1 \\le n \\le 10^6$，$1 \\le a_i \\le 10^9$。\n\n## 输出格式\n\n输出一行，小杨同学偷懒前最多做题天数。\n"
+        },
+        "tests": [
+          {
+            "name": "最小n且刚好1题",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1、a1=1 满足第1天需1题；第2天无题单可用，独立复算输出1（本题为答案下界）。"
+          },
+          {
+            "name": "全部题单仅1题",
+            "input": "5\n1 1 1 1 1\n",
+            "output": "1\n",
+            "reason": "第1天用一套后，第2天需2题而其余题单均只有1题，独立复算输出1。"
+          },
+          {
+            "name": "题量达到上界",
+            "input": "5\n1000000000 1000000000 1000000000 1000000000 1000000000\n",
+            "output": "5\n",
+            "reason": "a_i=10^9 在 int 范围内且均不小于天数需求，5天全部完成，独立复算输出5。"
+          },
+          {
+            "name": "卡在需求上界",
+            "input": "3\n2 2 2\n",
+            "output": "2\n",
+            "reason": "可完成第1、2天；第3天需3题而所有题单仅2题，独立复算输出2。"
+          },
+          {
+            "name": "样例1",
+            "input": "4\n3 1 4 1\n",
+            "output": "3\n",
+            "reason": "PDF第8页样例；排序为 [1,1,3,4] 后贪心得3天，独立复算与样例输出一致。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：数据范围缺失与输出表述经PDF第8页对照独立确认，替换文本与PDF一致，修复后核验通过；解析贪心策略、参考代码边界与溢出、5组测试期望输出均独立复算通过。否决初核一处处理：初核把“官方参考程序最坏 O(n²)”列为 unresolved，复核认为该问题存在于源卷参考程序本身，网站已用等价 O(n log n) 实现替代并复核通过，不构成网站待决事项，改为在 referenceCode 的 evidence 中记录源程序差异。"
+      }
+    ],
+    "summary": "本轮独立复核题26、27（其余题目未核验）。卷头“CCF GESP C++ 四级 2024年03月”与目标一致。两题网站题面均漏PDF必要信息：26缺“T≤100、长度≤50、仅小写字母”约束及“输出T行，对于每组”完整表述；27缺“1≤n≤10^6、1≤a_i≤10^9”数据范围且输出表述不完整；已按PDF提供修复文本并逐句核对，修复后核验通过。两题解析独立推导通过（26为编辑距离≤1判定，27为排序贪心），参考代码独立核验通过（26逻辑与官方同构并补cmath；27为O(n log n)正确实现，int范围足够）。测试期望输出全部由我独立复算确认。编程题无选项，officialAnswer 为 null。另记录：PDF第9页官方参考程序最坏约O(n²)，与n≤10^6不匹配，网站已用等价高效实现替代，属源卷性能特征而非网站缺陷。"
+  }
+}

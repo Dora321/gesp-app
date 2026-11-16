@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:14:38.439Z",
+  "completedAt": "2026-11-16T05:16:01.993Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32544,
+    "completion_tokens": 14938,
+    "total_tokens": 47482,
+    "prompt_cache_hit_tokens": 32384,
+    "prompt_cache_miss_tokens": 160,
+    "prompt_tokens_details": {
+      "cached_tokens": 32384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12827
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00908395,
+      "allowance": 0.00545037,
+      "tokens": {
+        "input": 160,
+        "output": 14938,
+        "reasoning": 12827,
+        "cache_read": 32384,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "964eef652d7aa6a0d0595bfb7236e375ef81d1739f65b30bf1e720ba0a4e63a3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 四级 / 2024 年 03 月”，与 paperId 2024-03-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第6题原文为“在C++语言中，函数的参数为指针时，可以在函数内部修改该参数的值。（ ）”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第6题为“×”，即错误，映射为 0 起始索引 1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分“修改形参指针副本”与“修改实参指针”，并给出二级指针/指针引用替代方案；与官方“错误”结论一致。题干“该参数”存在歧义，解析已按实参语义说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "题干“该参数”若理解为形参本身，则“可以修改”为真；按官方答案应理解为调用者传入的指针实参，函数内改形参副本不影响实参。"
+        ]
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第7题原文为“在C++语言中 try 子句里抛出的结构体等类型的异常无法被 catch 捕获。（ ）”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第7题为“×”，即错误，映射为 0 起始索引 1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 C++ 可抛出并捕获结构体等自定义类型异常，catch(...) 可兜底；与官方“错误”结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第8题原文为“C++语言中 cout << 9^2 << endl; 会输出81。（ ）”，网站题面保留了原式，语义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第8题为“×”，即错误，映射为 0 起始索引 1；网站 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析只按 `9^2` 为异或得到 11，未处理运算符优先级：`<<` 高于 `^`，原式实际解析为 `(cout << 9) ^ (2 << endl)`，不能通过编译；即使写成 `cout << (9 ^ 2)` 也输出 11 而非 81。结论“错误”仍成立，但解析需修正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**判定依据：**\n\n1. C++ 中 `^` 是按位异或运算符，不是乘方运算符。若把表达式写成 `cout << (9 ^ 2) << endl;`，计算过程为：9 的二进制 `1001`，2 的二进制 `0010`，异或结果为 `1011`（十进制 11），输出 11，而不是 81。\n2. 更严格地看，原式 `cout << 9^2 << endl;` 没有加括号，而 `<<` 的优先级高于 `^`，因此会被解析为 `(cout << 9) ^ (2 << endl)`。该表达式不能通过编译（`ostream` 对象不能参与按位异或，且 `2 << endl` 也不是合法整数移位），所以程序不会输出 81。\n\n无论按“加括号后的异或”还是按“原式不能编译”理解，题干“会输出 81”都是错误的。若要计算 9 的平方，应写 `9 * 9` 或使用 `pow(9, 2)`。\n\n**易错提醒：**\n- 不能把 C++ 的 `^` 当成数学乘方。\n- 流插入运算符 `<<` 与按位异或 `^` 混用时，应注意运算符优先级，必要时加括号。\n\n**考点：** C++ 运算符功能与优先级辨析（异或 vs 乘方）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第9题原文为“小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒子具有路由器的功能。（ ）”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题为“√”，即正确，映射为 0 起始索引 0；网站 answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析把题干“设置 IP 地址”直接断言为由 WIFI 盒子的 DHCP 分配，题干并未明确；结论可成立，但论据过强。应改为从家庭网关/路由转发功能说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n**判定依据：**\n\n题干中数字电视需要设置 IP 地址并接入 WIFI 盒子才能收看网络节目，说明该 WIFI 盒子不是单纯的天线或信号线，而是作为家庭网络的接入入口/网关，承担把电视等终端接入网络并转发数据的角色。家庭中这类能够提供网络接入的 WIFI 盒子通常就是无线路由器，具有路由转发、NAT、无线接入等功能，因此说它“具有路由器的功能”是正确的。\n\n需要注意：题干只说电视要“设置 IP 地址”，并未明确该地址一定由 WIFI 盒子通过 DHCP 自动分配，电视也可以手动配置 IP。因此，判断的关键不是“设置 IP”四个字本身，而是该盒子承担了家庭网络接入与转发的网关角色。\n\n**易错提醒：**\n- 不要把“设置 IP 地址”直接等同于“由盒子分配 IP”；手动设置 IP 同样可能。\n- 判断设备是否具有路由器功能，应看它是否承担路由/网关/地址转换/无线接入等网络接入功能。\n\n**考点：** 计算机网络设备的功能辨析（无线路由器/网关的接入与转发功能）。"
+        },
+        "tests": [],
+        "unresolved": [
+          "题干未明确 IP 地址由 WIFI 盒子自动分配还是电视手动设置；按家庭网关/路由器常识判正确。"
+        ]
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第10题原文为“任何一个 for 循环都可以转化为等价的 while 循环（ ）。”，与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为“正确/错误”两项，不属于单选题 options 核验范围。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第10题为“√”，即正确，映射为 0 起始索引 0；网站 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出 for 到 while 的基本转换，并说明 continue 在 for 中会跳到循环后操作、在 while 中不会自动执行递增；与官方“正确”结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅核验判断题 21-25：五题题面均与 PDF 第6页原文一致，官方答案表第5页映射为 1、1、1、0、0，与网站 answer 全部一致。23 解析未处理 `<<` 与 `^` 的优先级，需修正为“原式不能编译；即使加括号也是 11，不是 81”。24 解析不应把“设置 IP”直接断言为 DHCP 分配，需改为从家庭网关/路由转发功能说明；题面本身仍按官方答案判正确。21 题干“该参数”存在形参/实参歧义，按官方答案解释为实参指针；22、25 解析可用。"
+  }
+}

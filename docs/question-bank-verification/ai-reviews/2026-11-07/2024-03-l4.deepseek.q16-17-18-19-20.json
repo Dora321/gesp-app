@@ -1,0 +1,225 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:12:02.618Z",
+  "completedAt": "2026-11-16T05:13:07.469Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32544,
+    "completion_tokens": 12024,
+    "total_tokens": 44568,
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 32544,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10275
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.012096,
+      "allowance": 0.0072576,
+      "tokens": {
+        "input": 32544,
+        "output": 12024,
+        "reasoning": 10275,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "964eef652d7aa6a0d0595bfb7236e375ef81d1739f65b30bf1e720ba0a4e63a3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示为 C++ 四级、2024 年 03 月，与 paperId 2024-03-l4 的年月、等级一致；已校验来源 git-blob SHA 为 0513f1866c7b36e9747223ff21a1441a50f41093。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第1题原文为“对 int a[]={2,0,2,4,3,1,6}，执行第一趟选择排序处理后 a 中数据变为 {0,2,2,4,3,1,6}。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不属于单选题；网站以“正确/错误”作判断项，按规则不适用单选 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第1项为“√”（正确=0），网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：升序选择排序第一趟在全部7个元素中找最小值0（下标1），与 a[0] 的2交换，得到 {0,2,2,4,3,1,6}；解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题第2题原文为“如果待排序数据不能都装进内存，需要使用外排序算法。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不属于单选题；网站以“正确/错误”作判断项，按规则不适用单选 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第2项为“√”（正确=0），网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：数据量超过内存容量时，内排序无法一次性完成，需借助外存分批排序后再归并，属于外排序；题干判断正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第3题原文为“定义变量 int a=5，则 cout << &++a 会输出 6。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不属于单选题；网站以“正确/错误”作判断项，按规则不适用单选 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第3项为“×”（错误=1），网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：++a 先将 a 自增为6并作为左值返回，随后 & 取该对象地址；cout 输出的是地址而非整数6，所以题干错误，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第4题原文为“两个函数之间可以使用全局变量来传递数据。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不属于单选题；网站以“正确/错误”作判断项，按规则不适用单选 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第4项为“√”（正确=0），网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：全局变量具有文件作用域和静态存储期，声明后各函数均可访问，一个函数写入、另一个函数读取即可实现数据传递；题干正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第5题原文为“定义数组 int a[2024][3][16]={2,0,2,4,3,1,6}，则 cout << a[2023][2][15] 的结果不确定。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为判断题，不属于单选题；网站以“正确/错误”作判断项，按规则不适用单选 options 核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第5项为“×”（错误=1），网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：数组共 2024×3×16=97152 个 int，初始化列表只提供前7项，其余元素按聚合初始化规则补零；a[2023][2][15] 为0，结果确定，因此题干“不确定”错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验判断题16—20：五题题面与 PDF 原文一致，判断题答案与 PDF 第5页答案表“√ √ × √ ×”的映射一致，解析独立推导均成立，未发现需要修改项；判断题 options 与 referenceCode 按规则记为不适用。"
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:09:22.370Z",
+  "completedAt": "2026-11-16T05:12:02.614Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49327,
+    "completion_tokens": 11356,
+    "total_tokens": 60683,
+    "prompt_tokens_details": {
+      "cached_tokens": 43520
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7272
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00785465,
+      "allowance": 0.00785465,
+      "tokens": {
+        "input": 5807,
+        "output": 11356,
+        "reasoning": 7272,
+        "cache_read": 43520,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "964eef652d7aa6a0d0595bfb7236e375ef81d1739f65b30bf1e720ba0a4e63a3",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 四级 / 2024 年 03 月」，与目标 2024-03-l4（2024年3月 GESP C++ 四级真题）一致；来源 git-blob SHA 0513f1866c7b36e9747223ff21a1441a50f41093 已登记。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "revise",
+        "reviewNote": "接受初核对 explanation 的修正并经独立复核确认：原解析称选项 A 的 5 是 50 的个位，事实错误（50 的个位是 0，5 是十位数字）；修正版推导（两次 fin>>line 消耗 50、2024，x 按 int 前缀从 3.16 提取 3）与官方答案 C 一致，修复后核验通过。其余维度独立核对无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干「如果文件 1.txt 中的内容如下，则执行下面C++代码时，注释了 #### 那行代码所输出的 x 的值为（ ）」及文件内容框（50 2024 3.16 I / love / GESP!）、代码（ifstream fin; string line; int x; fin.open(\"1.txt\",ios::in); 循环 i<2 两次 fin>>line 并输出；fin>>x; cout << x << endl; //####）完整；网站将 string line 与 int x 合并为一行、省略空行，属排版等价转换，语义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A. 5、B. 2024、C. 3、D. 0，与网站文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 C，0 起始索引 2，与网站 answer=2 一致；独立推导 x=3 对应选项 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：初核指出的错误成立——原解析「该项是文件中第一个数据 50 的个位」有误，5 是 50 的十位数字；修正版按 operator>> 整数前缀解析推导 x=3（'.' 停止并留在流中），四个选项说明均经独立验证无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (3)**\n\n**核心解析：**\n文件 1.txt 内容按空白（空格、换行）分隔后依次为记号：`50`、`2024`、`3.16`、`I`、`love`、`GESP!`。\n\n1. 循环 `for (int i=0; i<2; i++) fin >> line;` 执行两次，分别读取并消耗前两个记号 `50` 和 `2024`。\n2. 随后执行 `fin >> x;`，此时流中下一个记号是 `3.16`。`x` 是 `int` 类型，`operator>>` 按整数格式解析：成功读入字符 `'3'`，遇到不属于整数格式的字符 `'.'` 时停止（`'.'` 保留在流中），因此 `x` 得到的值为 `3`。\n3. 输出 `x` 的值为 `3`。\n\n**选项逐项分析：**\n- **A 5**：❌ 错误。`5` 是第一个记号 `50` 的十位数字（`50` 的个位是 `0`）；且前两次读取已消耗 `50` 和 `2024`，`x` 不可能读到 `5`。\n- **B 2024**：❌ 错误。`2024` 是第二个记号，已被第二次 `fin >> line` 读取并消耗。\n- **C 3**：✅ 正确。第三个记号 `3.16` 的整数前缀为 `3`，被成功提取到 `int` 变量 `x` 中。\n- **D 0**：❌ 错误。`fin >> x` 成功读取了有效数据 `3`，不会得到未初始化默认值 `0`。\n\n**易错提醒：**\n- 容易忽略 `fin >> line` 会消耗数据，导致误以为 `x` 读取 `50` 或 `2024`。\n- `>>` 读取整数时按最大有效前缀解析，遇到第一个非法字符（这里是 `.`）即停止，该字符不会被消费；若后续继续用 `double` 读取，仍可正常读入 `3.16`。\n\n**考点：** C++ 文件输入流（ifstream）的类型匹配与部分读取机制。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "revise",
+        "reviewNote": "接受初核对 explanation 的修正并经独立复核确认：原解析称选项 D 的 3 是「2024 中的单个字符」有误（2024 不含字符 3），3 是 s[1] 所指 3.16 的首字符；修正版推导（*s 即 s[0]，第 2 行输出 *s+1 起的 024）与官方答案 C 一致，修复后核验通过。其余维度独立核对无误。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末题干「执行下列C++代码时输出中的第2行是（ ）」，第 5 页代码 char *s[]={(char*)\"2024\",(char*)\"3.16\",(char*)\"GESP\"}; for (int i=0; i< 2; i++){ cout << *s+i << endl; }；网站逐字一致（仅空行差异），语义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A. 2024、B. 3.16、C. 024、D. 3，与网站文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 12 题为 C，0 起始索引 2，与网站 answer=2 一致；独立推导第 2 行输出 024 对应选项 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：初核指出的错误成立——原解析「该项本身是 2024 中的单个字符」有误，字符 3 来自 s[1] 所指的 3.16；修正版按 *s 即 s[0] 的指针算术推导 i=0 输出 2024、i=1 输出 024，并补充 *s+i 按 (*s)+i 解析的优先级说明，经独立验证无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (024)**\n\n**核心解析：**\n1. `char *s[] = {(char*)\"2024\", (char*)\"3.16\", (char*)\"GESP\"};` 定义指针数组：`s[0]` 指向字符串 `2024`，`s[1]` 指向 `3.16`，`s[2]` 指向 `GESP`。\n2. 表达式 `*s` 等价于 `s[0]`，是指向字符 `'2'` 的 `char*`，与循环变量无关。\n3. 循环执行两次：\n   - `i=0` 时，`*s + 0` 仍指向 `2024` 的首字符，`cout` 输出从该位置开始的整个字符串，得 `2024`（第 1 行）。\n   - `i=1` 时，`*s + 1` 指向 `2024` 下标 1 的字符 `'0'`，输出从该位置开始的字符串，得 `024`（第 2 行）。\n\n因此第 2 行输出 `024`。\n\n**选项逐项分析：**\n- **A 2024**：❌ 错误。这是第 1 行（`i=0` 时）的输出，不是第 2 行。\n- **B 3.16**：❌ 错误。这是 `s[1]` 指向的字符串；但循环中输出的是 `*s`（即 `s[0]`）偏移后的结果，未访问 `s[1]`。\n- **C 024**：✅ 正确。`*s + 1` 从 `2024` 的下标 1 开始输出，得到 `024`。\n- **D 3**：❌ 错误。字符 `'3'` 是 `s[1]` 指向的 `3.16` 的首字符（`2024` 中并不包含字符 `3`）；本题输出的是字符串 `024`，不是单个字符。\n\n**易错提醒：**\n- `*s` 就是 `s[0]`，不会随 `i` 变化；随 `i` 变化的是加在指针上的偏移量。\n- 由于 `*` 优先级高于 `+`，`*s+i` 按 `(*s) + i` 解析（指针算术），而不是 `*(s+i)`（即 `s[i]`）。若写成 `*(s+i)`，第 2 行将输出 `3.16`。\n\n**考点：** 指针数组与指针算术运算的结合应用。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核全部 verified 结论：题面、选项、答案逐字比对一致；解析独立推导成立——static 修饰全局变量/函数时为内部链接，仅在当前翻译单元可见，符合「限定对象的作用域」，extern 扩展外部可见性、inline 建议内联、public 为类成员访问控制，均不限定对象作用域。无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 13 题题干「C++语言中下面哪个关键字能够限定对象的作用域（ ）」，与网站文字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A. extern、B. static、C. inline、D. public，与网站文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 13 题为 B，0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：static 用于全局变量或函数时设为内部链接，标识符仅在当前编译单元可见，其他源文件无法经 extern 访问，符合题意；extern 用于声明外部链接扩展可见性；inline 仅建议内联展开；public 控制类成员访问权限。四个选项分析均无误，与官方答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核全部 verified 结论：题面、选项、答案逐字比对一致；解析独立推导成立——鸿蒙即 HarmonyOS，为华为开发的分布式操作系统，手表「跑的是鸿蒙」指运行系统软件；小程序、计时器是运行于操作系统之上的应用，神话人物仅为词源。无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 14 题题干「小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是（ ）」，与网站文字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A. 小程序、B. 计时器、C. 操作系统、D. 神话人物，与网站文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 14 题为 C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：鸿蒙（HarmonyOS）是华为开发的分布式操作系统，管理手表硬件与软件资源；小程序是轻量级应用、计时器是系统上的应用、神话人物只是名称来源，均非此处所指。选项分析无误，与官方答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核全部 verified 结论：题面省略「的颁奖典礼上」经复核属等义简写——CCF、2024 年 1 月 27 日、王选奖、问王选先生重大贡献等关键信息完整，不影响题意与作答；选项、答案逐字比对一致；解析独立推导成立（王选主持研制汉字激光照排系统，方正公司为成果产业化而非贡献本体）。无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干为「中国计算机学会（CCF）在2024年1月27日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（ ）」；网站省略「的颁奖典礼上」，关键信息（CCF、日期、王选奖、考查点）完整，属等义简写，未改变题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A. 制造自动驾驶汽车、B. 创立培训学校、C. 发明汉字激光照排系统、D. 成立方正公司，与网站文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 15 题为 C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：王选主持研制汉字激光照排系统，使中文印刷告别「铅与火」，被誉为「当代毕昇」，是 CCF 设立王选奖所表彰的核心贡献；成立方正公司是成果产业化，制造自动驾驶汽车、创立培训学校与其贡献无关。选项分析无误，与官方答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "独立复核第 11—15 题共 5 道单选题（判断题、编程题未在本次范围）。五题题面、选项与 PDF 原图逐字比对一致，官方答案（C/C/B/C/C，0 起始索引 2/2/1/2/2）与网站 answer 全部吻合。Q11、Q12 的解析各存在一处选项说明的事实性错误，经我独立确认初核指正成立并采纳修复：Q11 原解析把 5 称为「50 的个位」（实为十位数字），Q12 原解析把 3 称为「2024 中的单个字符」（实为 s[1] 所指 3.16 的首字符），两题解析修复后核验通过，verdict 为 revise；Q13—Q15 各维度复核无误，verdict 为 approve；Q15 题面省略「的颁奖典礼上」属等义简写，不改变题意。单选题无参考代码维度，无测试用例需求，无未决项。"
+  }
+}

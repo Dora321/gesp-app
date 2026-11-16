@@ -1,0 +1,130 @@
+{
+  "executedAt": "2026-11-16T05:42:38.104Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "5\napple applee\napple appe\napple bpple\napplee bpple\napple apple",
+          "output": "similar\nsimilar\nsimilar\nnot similar\nsimilar",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "similar\nsimilar\nsimilar\nnot similar\nsimilar\n",
+          "passed": true
+        },
+        {
+          "name": "最小单组相同",
+          "input": "1\na a\n",
+          "output": "similar\n",
+          "reason": "T=1、A=B 且长度为1；题面规定完全相同亦相似，独立推得 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差2",
+          "input": "1\na abc\n",
+          "output": "not similar\n",
+          "reason": "长度差为2，大于1；一次插入或删除只能改变长度1，修改不改变长度，独立复算 not similar。",
+          "kind": "boundary",
+          "actual": "not similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差1且两处不匹配",
+          "input": "1\nabc axyc\n",
+          "output": "not similar\n",
+          "reason": "需插入 x 并把 b 改为 y 共2次操作；双指针在第二次不匹配时返回否，独立复算 not similar。",
+          "kind": "boundary",
+          "actual": "not similar\n",
+          "passed": true
+        },
+        {
+          "name": "等长一处不同",
+          "input": "1\nabc abd\n",
+          "output": "similar\n",
+          "reason": "等长且仅末位不同，修改1次即可，独立复算 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差1首部插入",
+          "input": "1\nabc xabc\n",
+          "output": "similar\n",
+          "reason": "首位插入 x 一次可得；双指针首字符不匹配跳过长串字符后全部匹配，独立复算 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "3f188ad9ce7a8abdc6d8363bca74a4f08b121be615e7433d02bfb5d60282d7d9"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "4\n3 1 4 1",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小n且刚好1题",
+          "input": "1\n1\n",
+          "output": "1\n",
+          "reason": "n=1、a1=1 满足第1天需1题；第2天无题单可用，独立复算输出1（本题为答案下界）。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "全部题单仅1题",
+          "input": "5\n1 1 1 1 1\n",
+          "output": "1\n",
+          "reason": "第1天用一套后，第2天需2题而其余题单均只有1题，独立复算输出1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "题量达到上界",
+          "input": "5\n1000000000 1000000000 1000000000 1000000000 1000000000\n",
+          "output": "5\n",
+          "reason": "a_i=10^9 在 int 范围内且均不小于天数需求，5天全部完成，独立复算输出5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "卡在需求上界",
+          "input": "3\n2 2 2\n",
+          "output": "2\n",
+          "reason": "可完成第1、2天；第3天需3题而所有题单仅2题，独立复算输出2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "样例1",
+          "input": "4\n3 1 4 1\n",
+          "output": "3\n",
+          "reason": "PDF第8页样例；排序为 [1,1,3,4] 后贪心得3天，独立复算与样例输出一致。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "a5e4bcd1b21c9f30670677bf38ac60d0680016e8f9742fe0458100e1968a8fcd"
+    }
+  ]
+}
