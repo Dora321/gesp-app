@@ -1,0 +1,174 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:19:27.358Z",
+  "completedAt": "2026-11-16T12:24:29.740Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 57538,
+    "completion_tokens": 17100,
+    "total_tokens": 74638,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 14744
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0171807,
+      "allowance": 0.0171807,
+      "tokens": {
+        "input": 57538,
+        "output": 17100,
+        "reasoning": 14744,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头图显示“CCF 编程能力等级认证（GESP）/ C++ 四级 / 2024 年 12 月”，与 paperId 2024-12-l4 的等级、年份、月份完全一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页题面：第一项 a1=1；若 a_{k-1}-k 为正整数且未在数列中出现则 a_k=a_{k-1}-k，否则为 a_{k-1}+k；输出前 n 项升序结果。网站题面（含 LaTeX 等价排版）、输入/输出格式、数据范围 1≤n≤3000 及两个样例（5→1 2 3 6 7；8→1 2 3 6 7 12 13 20）逐字核对一致；PDF 3.1.9 样例解释的 n=5 推导与网站解析走查等价，样例本体已在 samples 字段完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项结构。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方答案表仅覆盖 15 道单选与 10 道判断，编程题无答案表项，officialAnswer=null 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立手算复核：n=5 得 1,3,6,2,7→排序 1 2 3 6 7；n=8 续算 k=6 取 13（7-6=1 已出现）、k=7 取 20（13-7=6 已出现）、k=8 取 12（20-8=12 正且未出现），排序 1 2 3 6 7 12 13 20；n=24 时 a20=62-20=42、a24=18+24=42（加法分支不查重，42 重复出现）。解析的递推规则（down>0 且未出现才取减）、样例走查与易错提醒均与手算一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站代码用 set 查重、long long 存值：down=a[k-2]-k 仅当 down>0 且 !seen.count(down) 取减，否则取加，最后 sort 输出。与官方 vis 数组+冒泡实现（PDF 第9页 3.1.11）逻辑等价且不受上界约束；n=1 时 vector 大小 1、循环不执行、输出“1\\n”正确；n≤3000 时 Recamán 值远小于整型上限，set/sort 复杂度 O(n log n) 充裕；输出格式（末项换行、余项空格）与样例一致。未发现溢出或边界缺陷。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n=1",
+            "input": "1\n",
+            "output": "1\n",
+            "reason": "a1=1，无后续项，排序后仍为 1；同时覆盖 vector 大小为 1 与输出循环的边界。"
+          },
+          {
+            "name": "首次触发减法分支 n=4",
+            "input": "4\n",
+            "output": "1 2 3 6\n",
+            "reason": "独立手算 a1=1,a2=3,a3=6,a4=2（6-4=2 为正且未出现）；升序为 1 2 3 6。"
+          },
+          {
+            "name": "含重复值 n=24",
+            "input": "24\n",
+            "output": "1 2 3 6 7 8 9 10 11 12 13 18 20 21 22 23 24 25 41 42 42 43 62 63\n",
+            "reason": "独立手算前 24 项为 1,3,6,2,7,13,20,12,21,11,22,10,23,9,24,8,25,43,62,42,63,41,18,42：a20=62-20=42，a24 因 18-24=-6 非正整数走加法得 42；加法分支不查重故 42 输出两次，排序后保留两个 42。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其题面对照、样例走查及三项测试期望值（n=1/4/24，含 a20=a24=42 重复值情形）经我独立重新推演全部一致；参考代码 set+sort 与官方 vis 数组+冒泡两种实现等价，n≤3000 内无溢出、复杂度达标；官方答案表不含编程题，officialAnswer=null 处理正确。无字段需要修改。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页题面：n 个小写字母串重排拼接为 t，要求任意 j<i 有 t_j≤t_i，字符大小按字母序（如 e<g<p<s）；输入为首行 T、每组首行 n 及 n 行字符串，存在输出 1 否则 0；样例输入 10 行、输出 1/0/0，均与网站一致。数据范围“1≤t,n≤100、串长≤10”中测试组数作小写 t 系官方原文笔误（与输入格式大写 T 不一致），网站照录，属忠实原文，不改动；网站省略 PDF 中“保证有”的“有”字属排版等价，不影响含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项结构。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "官方答案表仅覆盖客观题，编程题无答案表项，officialAnswer=null 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析三步法（串内自检、字典序排序、拼接全局校验）经我独立交换论证确认：串是 t 的连续子段，故 t 非递减必要蕴含各串内部非递减；若存在可行排列，对其中相邻字典序逆序对交换后可行性保持（hi(p_i)≤lo(p_{i+1}) 且 p_i>p_{i+1} 仅可能发生在两串同字符的特例，交换后各衔接条件仍成立），故字典序排列亦可行，排序后校验为充要判定。三组样例走查：aa+ac+de=aaacde 输出 1；aac+bc=aacbc 在 c>b 处逆序、反序 bcaac 在 c>a 处逆序，输出 0；gesp 内部 g>e 输出 0，均与 PDF 样例解释一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "代码先读完本组全部 n 个串再判定输出（避免多组数据串读错位），任一串内部逆序则输出 0；否则 sort 后拼接并校验 t 相邻字符。串内自检虽与官方参考程序（PDF 第11页，直接排序拼接后校验 t）形式不同，但两者判定等价——串内逆序必然在 t 全局校验中暴露。n=1 时 m=1、校验循环不执行、按串内自检结果输出，边界正确；T,n≤100、串长≤10，复杂度 O(T·n·L·log n) 充裕。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 n=1 且自身有序",
+            "input": "1\n1\na\n",
+            "output": "1\n",
+            "reason": "单字符内部非递减，唯一排列即满足条件；m=1 时全局校验循环不执行，验证边界。"
+          },
+          {
+            "name": "内部逆序直接无解",
+            "input": "1\n1\ngesp\n",
+            "output": "0\n",
+            "reason": "gesp 中第 1 字符 g 大于第 2 字符 e，串内字符次序不因拼接改变，任何排列均无解。"
+          },
+          {
+            "name": "输入顺序非字典序但可重排",
+            "input": "1\n2\nab\na\n",
+            "output": "1\n",
+            "reason": "两串内部均非递减；字典序排序得 a,ab，拼接 aab 全局非递减，输出 1，覆盖排序改变原输入顺序的情形。"
+          },
+          {
+            "name": "多组数据且首组同首字符冲突",
+            "input": "2\n2\nab\nac\n1\na\n",
+            "output": "0\n1\n",
+            "reason": "首组 ab+ac=abac 在 b>a 处逆序，ac+ab=acab 在 c>a 处逆序，均无解输出 0；第二组单字符 a 输出 1；同时验证首组失败前已读完全部串、不影响下一组读入。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、样例与数据范围对照 PDF 第10—11页无误，官方原文小写 t 的照录决定正确；其贪心判定（排序后校验）的正确性由我以交换论证独立复核，且与官方参考程序直接校验拼接串的做法等价；四项测试期望输出（含多组读入与同首字符冲突）独立推演一致。无字段需要修改。"
+      }
+    ],
+    "summary": "本次按分工仅核验题 26（Recamán）与题 27（字符排序）。两题题面、输入输出格式、样例与数据范围均与官方 PDF（第 8—11 页）一致；题 27 数据范围保留官方原文小写 t 的笔误，属忠实照录不改。网站参考代码独立复核通过：题 26 以 set 查重+sort，与官方 vis 数组+冒泡实现等价，n≤3000 无溢出且复杂度充裕；题 27 判定算法经交换论证确认正确，与官方直接校验拼接串的做法等价，多组数据读入边界无误。测试期望输出按题意独立手算（含 Recamán 加法分支产生的重复值 42、字符排序字典序与多组情形），未声称实际运行。官方答案表不含编程题，两题 officialAnswer 均为 null。未发现需要修改的字段，两题 verdict 均为 approve，无 unresolved。"
+  }
+}

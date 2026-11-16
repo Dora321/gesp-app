@@ -1,0 +1,241 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:49:58.489Z",
+  "completedAt": "2026-11-16T10:54:05.977Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 58311,
+    "completion_tokens": 13556,
+    "total_tokens": 71867,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 10581
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01552465,
+      "allowance": 0.01552465,
+      "tokens": {
+        "input": 58311,
+        "output": 13556,
+        "reasoning": 10581,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页图卷头为“CCF 编程能力等级认证 GESP”“C++ 四级”“2024 年 12 月”，与 paperId 2024-12-l4（2024年12月、四级）一致；页图内单选题15题答案表清晰可读（1-15题：A B B B D D D D A C B B A C A），第7页含判断题答案表。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立对照第1页页图题干、四个代码选项与答案表第1题A（0起始索引0），网站数据一致；解析对A/B/C/D的推导经独立复核无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页页图题干“下面的语句中，（ ）正确定义了一个计算浮点数x的平方(x² = x × x)的函数,并成功调用该函数。”与网站question一致，仅排版等价差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图A：float square(float x){return x*x;} float area = square(2);；B：square(float x){...}缺返回类型；C：void square却return x*x；D：void square内x*x; return;后area = square(2);。与网站options逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第1题标A，0起始索引为0；网站answer=0。独立推导：A返回类型float、return x*x、调用处float area接收，三处匹配，为唯一正确项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：B在C++中省略返回类型非法；C中void函数return带值冲突；D中void函数无结果可赋给area，均编译报错；解析中“square(2)整型实参隐式转float合法”提醒正确，与官方答案A一致且推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "接受初核对解析D项的否决：独立推导确认 n_chars(times, my_char) 中 times=5 转为 char 后是 ASCII 码 5 的控制字符、'w'(ASCII 119) 提升为循环次数 119，网站原解析“打印 119 个 '\\0'（因为 'w' 的 ASCII 码是 119）”确属错误——119 是循环次数而非被打印字符编码；采纳初核修正稿并独立复核其事实无误，该维度由 needs_fix 改标 verified（修复后核验通过）。官方答案B不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干“第 2 题 下面代码的描述中，正确的是（ ）。”起于第1页页图末行；第2页页图代码 void n_chars(char c, int n){ while (n-- > 0) cout << c; } char my_char = 'w'; int times = 5; n_chars(my_char, times); 与网站question一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图A“代码执行结束后，times 的值为0”、B“n 是形参，times 是实参”、C“n 是实参，times 是形参”、D“代码最后一行换成 n_chars(times, my_char); 也可以”，与网站options逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题标B，0起始索引为1；网站answer=1。独立判断：n在定义处为形参、times在调用处为实参，B正确；A错在值传递不回写实参；C概念颠倒；D隐式转换改变语义、不能说“也可以”。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站原解析D项称输出“119 个 '\\0'”，与代码事实不符：c=times=(char)5（ASCII 5 控制字符），n='w'=119（循环次数），实际输出 119 个 ASCII 5 控制字符。已提供修正解析，修正后独立复核通过——修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（n 是形参，times 是实参）**\n\n**核心解析：**\n- 形参出现在函数定义的参数列表中，是函数内部的占位变量，本题为 `char c` 和 `int n`。\n- 实参出现在函数调用中，是调用方传入的具体数据，本题为 `my_char` 和 `times`。\n\n因此 B 正确。\n\n**选项逐项分析：**\n- **A**：错误。`n--` 修改的是形参 `n`，它只是 `times` 的副本；函数返回后 `times` 仍为 5。\n- **B**：正确。定义处是形参，调用处是实参。\n- **C**：错误。把形参与实参的概念说反了。\n- **D**：错误。`n_chars` 的形参顺序是 `(char, int)`。调用 `n_chars(times, my_char)` 时，`times` 的值 5 被转换为 `char` 类型，成为 ASCII 码为 5 的控制字符；`my_char` 的 `'w'`（ASCII 119）被提升为 `int`，作为循环次数 119。程序会输出 119 个 ASCII 5 控制字符，而不是 5 个 `'w'`。隐式转换可能让代码通过编译，但语义已经完全改变，不能说“也可以”。\n\n**易错提醒：**\n- 形参与实参的数量、类型、顺序应逐一对应。顺序错误可能因隐式转换而编译通过，却产生完全不同的结果。\n- `while (n-- > 0)` 先用后减：`n` 为 5 时判断 5 > 0 成立、`n` 变为 4，如此循环 5 次。循环结束后形参 `n` 变为 -1，但该形参随函数返回销毁，不影响 `times`。\n\n**知识延伸：**\n若要把 `times` 真正改为 0，应将形参写成引用 `int& n`，使 `n` 成为 `times` 的别名。\n\n**考点：** 形参与实参的概念、值传递的单向性"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立推导引用传递 int& x 使 x 成为 a 的别名，x=x*2 后 a=10，与答案表第3题B（索引1）及网站数据一致，无修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页页图代码 void func(int& x){ x = x * 2; } int a = 5; func(a); 及题干“执行上述代码后，变量 a 的值为（ ）。”与网站question一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图选项 A.5、B.10、C.15、D.20，与网站options完全一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题标B，0起始索引为1；网站answer=1。独立推导：int& x为引用形参，x与a共用同一对象，x=x*2等价于a=a*2，5变10。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出引用传递直接修改实参，并对5（值传递误解）、15（误作加法）、20（需两次调用）逐一排除，推导完整无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核：指针偏移推导独立复核一致（p_arr+=1 后 p_arr[0] 即原 p_arr[1]=0.5），答案表第4题B（索引1）与网站一致；原卷 new[] 配 delete 的瑕疵按规则以 unresolved 保留记录，不影响答案判定。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页页图代码第1-8行：double* p_arr = new double [3]; 三个赋值 0.2/0.5/0.8；p_arr += 1; cout << p_arr[0] << endl; p_arr -= 1; delete p_arr; 与网站question逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页页图选项 A.0.2、B.0.5、C.1.2、D.1.5，与网站options一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第4题标B，0起始索引为1；网站answer=1。独立推导：new double[3]返回指向第0元素的指针，p_arr+=1后指向原第1元素，p_arr[0]即0.5。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按“p_arr[0]相对当前指针位置”独立推出0.5，并说明 p_arr-=1 使 delete 拿回原始地址；同时注明原卷对 new[] 用 delete 属源题瑕疵，处理恰当，不影响输出值判断。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第4题第8行对 new double[3] 使用 delete p_arr 而非 delete[]，严格属未定义行为；该语句在输出之后，官方答案B（0.5）与输出推导不受影响，保留源题瑕疵记录，网站解析已作说明。"
+        ]
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "接受初核对独立code字段全角分号的修正：第3页页图第三行代码为 *p = *p + 2;（半角分号，与同框另两行一致），文本层的“；”应判定为提取痕迹而非原卷内容；网站question内嵌代码本已正确，仅独立code字段误带全角“；”且无法编译，采纳修正。修正后独立复核通过，该维度由 needs_fix 改标 verified（修复后核验通过）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页页图题干“第 5 题 运行下面代码片段后， x 和 *p 的结果分别是（ ）。”；第3页页图代码三行 int x = 20; / int* p = &x; / *p = *p + 2; 均为半角分号，与网站question内嵌代码一致；网站独立code字段末行误为全角“；”，已按页图修正——修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页页图选项 A.20 20、B.20 22、C.22 20、D.22 22，与网站options完全一致且顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题标D，0起始索引为3；网站answer=3。独立推导：p=&x后*p与x为同一对象，*p=*p+2把22写回x，故x与*p均为22。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分p（地址）、*p（所指对象）、&p（指针自身地址）三层，指出x与*p读出必然相同，并对20 20/20 22/22 20逐一排除，推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "code": "int x = 20;\nint* p = &x;\n*p = *p + 2;"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本批仅核验题1-5（均为单选题，无编程题，故无tests）。题1、3、4核验通过且无修改；题2解析D项的ASCII转换说明有误（times=5转为char是被打印字符的编码，'w'=119是循环次数，实际输出119个ASCII码5的控制字符而非'\\0'），已提供修正解析并独立复核通过；题4原卷new[]配delete的源题瑕疵以unresolved保留，不影响答案；题5题干内嵌代码正确，独立code字段的全角分号按第3页页图修正为半角。5题officialAnswer（0,1,1,1,3）经答案表逐题核对均与网站answer一致；官方答案表读数：单选1-15题为 A B B B D D D D A C B B A C A。"
+  }
+}

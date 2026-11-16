@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:06:08.276Z",
+  "completedAt": "2026-11-16T12:07:31.559Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38164,
+    "completion_tokens": 7391,
+    "total_tokens": 45555,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6055
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00457085,
+      "allowance": 0.00274251,
+      "tokens": {
+        "input": 148,
+        "output": 7391,
+        "reasoning": 6055,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 / C++ 四级 / 2024 年 12 月”，与 2024-12-l4 一致；判断题位于第7页，答案表在第7页。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第1题原文为“在 C++ 中，下面代码可以正确定义指针和初始化指针。”并列出 `int* ptr; *ptr = 10;`；网站题目完整保留，含义未变。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "选择题为判断题，PDF 以对错符号作答，不设 A-D 选项；网站用“正确/错误”呈现，不影响判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第1项为 ×，对应错误，即 0 起始索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：`int* ptr;` 只定义指针而未初始化，`*ptr = 10;` 对不确定地址解引用写入属于未定义行为，不能视为正确初始化指针；网站解析结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第2题原文为“一个函数必须在调用之前既声明又定义。”网站题目与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不使用 A-D 选项，网站以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第2项为 ×，对应错误，即索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：调用函数前只需让声明可见，定义可以后置或在另一源文件；定义本身也包含声明作用。网站解析符合 C++ 规则。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第3题原文为“函数参数可以通过值传递、引用传递和指针传递，这样函数内对参数的修改可以直接修改传入变量的值。”网站题目逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A-D 选项，网站正误二选一为等价呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第3项为 ×，对应错误，即索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：值传递复制实参，不能通过形参修改调用方变量；引用传递和指针传递才可直接修改所指对象。网站解析正确指出原命题把三种传递方式一并断言为可修改实参，故为错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第4题原文为“int arr[3][] 是一个正确的二维数组的声明。”网站以代码格式保留 `int arr[3][]`，含义一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A-D 选项，网站“正确/错误”为标准判断题呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第4项为 ×，对应错误，即索引 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：二维数组定义时只有最外层维度可省略，内层维度必须已知；`int arr[3][]` 的内层无界，标准 C++ 不允许。网站解析关于“行可省、列不可省”的结论成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第5题原文为“递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。”网站题目完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A-D 选项，网站以“正确/错误”呈现。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断题答案表第5项为 √，对应正确，即索引 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：递推确实以初始值和递推公式为要素，从已知项逐步推进到目标项；网站解析对初始值、递推公式和推进方向的说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题号 16-20，对应 PDF 第7页判断题第1-5题。卷头信息匹配 2024 年 12 月 C++ 四级；五题均为判断题，题面与 PDF 一致，officialAnswer 与网站 answer 全部对应（× × × × √，映射为 1、1、1、1、0）。独立复核解析未发现事实性错误，无需提交 changes；五题均无编程测试，unresolved 为空。"
+  }
+}

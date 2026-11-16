@@ -1,0 +1,223 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:10:31.975Z",
+  "completedAt": "2026-11-16T12:11:39.029Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38102,
+    "completion_tokens": 6675,
+    "total_tokens": 44777,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5300
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00413195,
+      "allowance": 0.00247917,
+      "tokens": {
+        "input": 86,
+        "output": 6675,
+        "reasoning": 5300,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头标注“CCF GESP C++ 四级 2024 年 12 月”，与 paperId 2024-12-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 6 题原文为“某算法的递推关系式为 T(n)=T(n-1)+n（n 为正整数）及 T(0)=1，则该算法的时间复杂度为 O(n²)。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A-D 选项；网站固定为“正确/错误”，源卷以答案表 √/× 判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断答案表第 6 格为 √；判断题正确=0，网站 answer=0，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "展开递推式可得 T(n)=T(0)+1+2+…+n=1+n(n+1)/2，最高阶为 n²，故复杂度 O(n²)；解析推导正确，与官方 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 7 题原文为“冒泡排序的平均时间复杂度为 O(n²)，但最优情况下为 O(n)。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A-D 选项；网站固定为“正确/错误”，源卷以答案表 √/× 判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断答案表第 7 格为 √；判断题正确=0，网站 answer=0，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "冒泡排序平均为 O(n²)；加入“本轮是否发生交换”的标志位优化后，完全有序输入第一轮无交换即可退出，最好为 O(n)。解析正确，与官方 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 8 题原文为“冒泡排序和插入排序都是稳定的排序算法。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A-D 选项；网站固定为“正确/错误”，源卷以答案表 √/× 判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断答案表第 8 格为 √；判断题正确=0，网站 answer=0，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "冒泡排序仅在 a[j] > a[j+1] 时交换，插入排序仅在 nums[j] > base 时后移，相等元素不改变相对次序，故二者均为稳定排序；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 9 题原文为“选择排序是稳定的排序算法。”与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A-D 选项；网站固定为“正确/错误”，源卷以答案表 √/× 判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断答案表第 9 格为 ×；判断题错误=1，网站 answer=1，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "选择排序每轮将最小值与未排序区间首元素远距离交换，可能打乱相等元素次序。以 [2a,2b,1] 为例，首轮交换后为 [1,2b,2a]，2a 与 2b 相对次序已反转，故不稳定；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题第 10 题原文为“在 C++语言中，如果一个函数可能抛出异常，那么一定要在try 子句里调用这个函数。”与网站题面一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题没有 A-D 选项；网站固定为“正确/错误”，源卷以答案表 √/× 判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断答案表第 10 格为 ×；判断题错误=1，网站 answer=1，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "异常可在 try 块之外调用并沿调用栈传播，只有最终无人捕获时才调用 std::terminate；因此“一定要在 try 子句里调用”错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已核验题 21-25（对应 PDF 判断题第 6-10 题）：题面均与 PDF 一致；官方答案表依次为 √√√××，按判断题正确=0、错误=1 映射后与网站答案 0、0、0、1、1 完全一致；解析推导均正确。未发现需修改项，无未决问题。"
+  }
+}

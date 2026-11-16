@@ -1,0 +1,227 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:57:11.017Z",
+  "completedAt": "2026-11-16T10:59:02.727Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38164,
+    "completion_tokens": 11488,
+    "total_tokens": 49652,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9024
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00702905,
+      "allowance": 0.00421743,
+      "tokens": {
+        "input": 148,
+        "output": 11488,
+        "reasoning": 9024,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 四级 2024年12月”，与目标卷一致；单选答案表清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第6题题干与站内题面一致；卷面用字为“结构数组”，站内同样保留；四个选项中的结构体定义和数组定义均完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A、B、C、D 四项代码及顺序与 PDF 第3页逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第6题标为 D，按 0 起始索引为 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "D 项把 new Student[20] 返回的 Student* 赋给 Student 对象，类型不匹配；A、B 为静态数组定义，C 用 Student* 接收动态数组首地址，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页给出题干，第4页给出 int array[2][3] 初始化代码；站内保留“2 行 3 列”“首地址 0x7ffee4065820”等关键信息，初始化代码块非计算所必需。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A、B、C、D 四个地址选项与站内一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第7题标为 D，按 0 起始索引为 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按行优先存储，&array[1][1] 相对首元素偏移 1*3+1=4 个 int，即 16 字节 0x10；0x7ffee4065820+0x10=0x7ffee4065830，与 D 项一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第8题题干“下面（ ）正确定义二维数组”与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A 为 int a[3][];，B 为 int a[][];，C 为 int a[][4];，D 为 int a[][2] = {{1,2},{1,2},{3,4}};，与 PDF 图像逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第8题标为 D，按 0 起始索引为 3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "二维数组定义时第二维必须明确；A、B 缺少列宽，C 缺少第一维且无初始化列表可推导；D 第二维为 2，初始化列表可推导第一维为 3，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页给出 fib 函数及横线，第5页给出选项 D；站内题面、代码和 f(n)=f(n-1)+f(n-2) 描述一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A、B、C 见 PDF 第4页，D 见第5页，四组三行代码及顺序与站内一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第9题标为 A，按 0 起始索引为 0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "答案和选项判断正确，但现有解析称 B 项的 result 为 1+2+3+5=11；实际逐轮模拟 B 项（初值 f1=0、f2=1）时 result 依次为 1、3、7、17，n=5 最终返回 17。B 仍为错误项，但解析中的数值依据需更正。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**核心解析：**\n这段递推用两个变量滚动保存相邻两项：`f1` 保存 `f(i-2)`，`f2` 保存 `f(i-1)`。每轮先算出当前项 `result = f1 + f2;`，再把窗口右移一格：`f1 = f2;`、`f2 = result;`。\n\n以 `n = 5` 验证（初值 `f1=0, f2=1`）：\n\n| i | 执行前 f1, f2 | result | 执行后 f1, f2 |\n|---|---|---|---|\n| 2 | 0, 1 | 1 | 1, 1 |\n| 3 | 1, 1 | 2 | 1, 2 |\n| 4 | 1, 2 | 3 | 2, 3 |\n| 5 | 2, 3 | 5 | 3, 5 |\n\n循环结束 `result = 5`，正是 `f(5)`，A 正确。\n\n**选项逐项分析：**\n- **A**：✅ 正确。先算当前项，再按 `f1 = f2; f2 = result;` 的顺序更新滚动变量。\n- **B**：❌ 错误。`result += f1 + f2;` 是累加；且随后 `f2 = result;` 使 `f2` 变成累计值。以 `n=5` 模拟，`result` 依次为 1、3、7、17，最终返回 17，不是斐波那契数 5。\n- **C**：❌ 错误。除累加错误外，`f2 = result; f1 = f2;` 还会让 `f1` 与 `f2` 相等，滚动窗口失效；`n=5` 时最终 `result=27`。\n- **D**：❌ 错误。`result` 本身算对，但 `f2 = result; f1 = f2;` 让 `f1` 和 `f2` 都等于 `result`，下一轮 `f1 + f2` 变成 `2 * result`；`n=5` 时返回 8。\n\n**易错提醒：**\n- 更新顺序必须是先 `f1 = f2` 再 `f2 = result`，否则 `f1` 会取到已覆盖的新值。\n- 不能把 `result` 写成 `+=`，否则保存的是累计和而非当前斐波那契项。\n\n**知识延伸：**\n这种“两个变量滚动”的写法把空间复杂度降到 `O(1)`，时间复杂度为 `O(n)`；朴素递归 `fib(n)=fib(n-1)+fib(n-2)` 的时间复杂度为 `O(2^n)`。\n\n**考点：** 斐波那契的递推实现与滚动变量"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第10题题干与站内一致，均要求选出关于冒泡、插入、选择排序描述中不正确的一项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A、B、C、D 四项文字与站内一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第10题标为 C，按 0 起始索引为 2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "选择排序比较次数与初始顺序无关，恒为 O(n²)；带标志位优化的冒泡排序在完全有序时最好可达 O(n)，故 C 项“任何情况都为 O(n²)”错误；A、B、D 的表述与该层知识相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题6、7、8、10的题面、选项、答案与解析均与 PDF 对照通过；题9答案 A 与官方一致，但现有解析对 B 项的模拟值有误，已提交完整解析修正草稿。5题均无未决冲突。"
+  }
+}

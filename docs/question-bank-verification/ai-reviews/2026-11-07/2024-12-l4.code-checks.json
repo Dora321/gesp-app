@@ -1,0 +1,111 @@
+{
+  "executedAt": "2026-11-16T12:33:11.296Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5",
+          "output": "1 2 3 6 7",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1 2 3 6 7\n",
+          "passed": true
+        },
+        {
+          "input": "8",
+          "output": "1 2 3 6 7 12 13 20",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "1 2 3 6 7 12 13 20\n",
+          "passed": true
+        },
+        {
+          "name": "最小 n=1",
+          "input": "1\n",
+          "output": "1\n",
+          "reason": "a1=1，无后续项，排序后仍为 1；同时覆盖 vector 大小为 1 与输出循环的边界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "首次触发减法分支 n=4",
+          "input": "4\n",
+          "output": "1 2 3 6\n",
+          "reason": "独立手算 a1=1,a2=3,a3=6,a4=2（6-4=2 为正且未出现）；升序为 1 2 3 6。",
+          "kind": "boundary",
+          "actual": "1 2 3 6\n",
+          "passed": true
+        },
+        {
+          "name": "含重复值 n=24",
+          "input": "24\n",
+          "output": "1 2 3 6 7 8 9 10 11 12 13 18 20 21 22 23 24 25 41 42 42 43 62 63\n",
+          "reason": "独立手算前 24 项为 1,3,6,2,7,13,20,12,21,11,22,10,23,9,24,8,25,43,62,42,63,41,18,42：a20=62-20=42，a24 因 18-24=-6 非正整数走加法得 42；加法分支不查重故 42 输出两次，排序后保留两个 42。",
+          "kind": "boundary",
+          "actual": "1 2 3 6 7 8 9 10 11 12 13 18 20 21 22 23 24 25 41 42 42 43 62 63\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ed8fb22449743eebb04646bf780ba62a43e6202715230b55f911cb86f2b55a90"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n3\naa\nac\nde\n2\naac\nbc\n1\ngesp",
+          "output": "1\n0\n0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n0\n0\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1 且自身有序",
+          "input": "1\n1\na\n",
+          "output": "1\n",
+          "reason": "单字符内部非递减，唯一排列即满足条件；m=1 时全局校验循环不执行，验证边界。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "内部逆序直接无解",
+          "input": "1\n1\ngesp\n",
+          "output": "0\n",
+          "reason": "gesp 中第 1 字符 g 大于第 2 字符 e，串内字符次序不因拼接改变，任何排列均无解。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "输入顺序非字典序但可重排",
+          "input": "1\n2\nab\na\n",
+          "output": "1\n",
+          "reason": "两串内部均非递减；字典序排序得 a,ab，拼接 aab 全局非递减，输出 1，覆盖排序改变原输入顺序的情形。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "多组数据且首组同首字符冲突",
+          "input": "2\n2\nab\nac\n1\na\n",
+          "output": "0\n1\n",
+          "reason": "首组 ab+ac=abac 在 b>a 处逆序，ac+ab=acab 在 c>a 处逆序，均无解输出 0；第二组单字符 a 输出 1；同时验证首组失败前已读完全部串、不影响下一组读入。",
+          "kind": "boundary",
+          "actual": "0\n1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "5937fb7ee24e94ea9a57c45cbbd1345891d6e7475ba478ba2a6e51da024eb298"
+    }
+  ]
+}

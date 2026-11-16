@@ -1,0 +1,237 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:59:02.750Z",
+  "completedAt": "2026-11-16T11:04:08.363Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 58225,
+    "completion_tokens": 17005,
+    "total_tokens": 75230,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13852
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01723625,
+      "allowance": 0.01723625,
+      "tokens": {
+        "input": 58225,
+        "output": 17005,
+        "reasoning": 13852,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头图像为“CCF 编程能力等级认证 / C++ 四级 / 2024年12月”，与目标 2024-12-l4 一致（来源 git-blob SHA 8c4bd1cdf4f051915eb6913c38592e35e72234ff 已预先校验）；第1页单选答案表“题号1–15：A B B B D D D D A C B B A C A”清晰可读，第6/7/8/9/10题对应 D/D/D/A/C。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第6题题干“下面的描述中，（ ）不能正确定义一个名为 Student 的结构体以及一个包含20个元素的结构数组。”与站内逐字一致（含“结构数组”用字）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页图像：A 为 struct Student{...}; struct Student students[20];，B 为 Student students[20];，C 为 Student* students = new Student[20];，D 为 Student students = new Student[20];，四个选项代码与顺序与站内一致（仅分号/空格等标点差异，忽略）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第6题标 D，0 起始索引为 3，与站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：new Student[20] 返回 Student*，D 项把指针赋给 Student 对象无合法转换，编译报错，符合“不能正确定义”；A/B 为静态数组两种等价写法、C 用 Student* 接收首地址均正确，解析结论与官方答案 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、四选项、答案（D=索引3）与解析均经 PDF 第3页图像独立比对无误，无修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干位于第3页末“假定整型是32位，对一个2行3列的二维整数数组 array，假设数组第一个元素在内存中的地址为 0x7ffee4065820，则第2行第2个元素的地址 &array[1][1]”，与站内一致；第4页顶部的初始化代码 int array[2][3]={{0,1,2},{3,4,5}}; 站内未收录，但行数/列数/元素类型已在题干文字完整给出，初始化数值与地址计算无关，不构成必要代码缺失，含义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页图像四个地址选项 0x7ffee4065824 / 0x7ffee4065828 / 0x7ffee406582c / 0x7ffee4065830 与站内一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第7题标 D，0 起始索引为 3，与站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：行优先存储，&array[1][1] 元素偏移 1*3+1=4，32 位 int 即 4*4=16 字节=0x10，0x7ffee4065820+0x10=0x7ffee4065830，对应 D；解析中逐元素地址表（824/828/82c/830）复算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核；补充独立确认：站内省略 int array[2][3] 初始化代码块不属必要代码缺失（2行3列、int、32位均已由题干文字给出，数值与地址无关），statement 维持 verified。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页题干“下面（ ）正确定义二维数组。”与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页图像：A. int a[3][]; B. int a[][]; C. int a[][4]; D. int a[][2] = {{1,2},{1,2},{3,4}}; 与站内逐项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题标 D，0 起始索引为 3，与站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：二维数组定义时第二维（列宽）不可省略——A、B 缺列宽非法；C 首维为空且无初始化列表可推导，作为变量定义非法（仅在函数形参语境合法，解析已注明该区别）；D 列宽为 2 且初始化列表给出 3 组花括号，可推导 3 行，合法。结论与官方答案 D 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案与解析逐项比对 PDF 第4页图像一致，独立推导结论相同。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页给出 fib 函数 12 行代码（含横线与“// 在此处填入代码”注释）、第5页给出选项 D；题干“下面代码采用递推算法来计算斐波那契数列 f(n)=f(n-1)+f(n-2)，则横线上应填写（ ）”与站内一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "A/B/C 三组三行赋值语句见第4页图像，D 组见第5页图像，四组内容与顺序（result 与 f1/f2 的赋值次序）与站内逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题标 A，0 起始索引为 0，与站内 answer=0 一致；独立模拟确认 A 为唯一正确项（n=5 时 A 返回 5=f(5)）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析对选项 B 的模拟值有误：原文称 result 变成“1+2+3+5=11”，但按 B 代码（result += f1+f2; f1=f2; f2=result;）独立模拟 n=5，result 依次为 1、3、7、17，返回 17。已提交修正后的完整解析，其中 A→5、B→17、C→27、D→8（n=5）均经独立逐轮模拟核验无误，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**核心解析：**\n这段递推用两个变量滚动保存相邻两项：`f1` 保存 `f(i-2)`，`f2` 保存 `f(i-1)`。每轮先算出当前项 `result = f1 + f2;`，再把窗口右移一格：`f1 = f2;`、`f2 = result;`。\n\n以 `n = 5` 验证（初值 `f1=0, f2=1`）：\n\n| i | 执行前 f1, f2 | result | 执行后 f1, f2 |\n|---|---|---|---|\n| 2 | 0, 1 | 1 | 1, 1 |\n| 3 | 1, 1 | 2 | 1, 2 |\n| 4 | 1, 2 | 3 | 2, 3 |\n| 5 | 2, 3 | 5 | 3, 5 |\n\n循环结束 `result = 5`，正是 `f(5)`，A 正确。\n\n**选项逐项分析：**\n- **A**：✅ 正确。先算当前项，再按 `f1 = f2; f2 = result;` 的顺序更新滚动变量。\n- **B**：❌ 错误。`result += f1 + f2;` 是累加，且随后 `f2 = result;` 使 `f2` 变成累计值，后续轮次的 `f1 + f2` 也随之失真。以 `n=5` 模拟，`result` 依次为 1、3、7、17，最终返回 17，不是斐波那契数 5。\n- **C**：❌ 错误。除累加错误外，`f2 = result; f1 = f2;` 还会让 `f1` 与 `f2` 相等，滚动窗口失效（每轮起点都是两个相等的值）；`n=5` 时最终返回 27。\n- **D**：❌ 错误。`result = f1 + f2;` 本身算对，但 `f2 = result; f1 = f2;` 让 `f1` 和 `f2` 都等于 `result`，下一轮的 `f1 + f2` 变成 `2 × result`；`n=5` 时返回 8 而不是 5。\n\n**易错提醒：**\n- 更新顺序必须是先 `f1 = f2`（用旧值）再 `f2 = result`，否则 `f1` 会取到已被覆盖的新值。\n- 不能把 `result` 写成 `+=`，否则保存的是累计和而非当前斐波那契项。\n\n**知识延伸：**\n这种“两个变量滚动”的写法把空间复杂度降到 `O(1)`、时间复杂度为 `O(n)`；朴素递归 `fib(n)=fib(n-1)+fib(n-2)` 的时间复杂度为 `O(2ⁿ)`。\n\n**考点：** 斐波那契的递推实现与滚动变量"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的解释修正并独立复核通过：我对四个选项分别按 n=5 逐轮模拟，A=5、B=17、C=27、D=8，证实原解析“B 累加得 11”的数值错误（B 中 f2 被覆盖为累计值会改变后续求和），修正稿各数值与结论均正确；答案与选项无须改动，故仅提交 explanation 修复。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页题干“下面关于排序算法（冒泡排序、插入排序和选择排序）的描述中，不正确的是（ ）。”与站内一致，均为选“不正确”项。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页图像：A 含“共涉及3个单元操作”“仅需1个单元操作”完整数字，B/C 的 O(n²)、D 的部分有序表述均与站内四项一致，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第10题标 C，0 起始索引为 2，与站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：选择排序每轮必须完整扫描未排序区间找最小值，比较次数恒为 n(n-1)/2，任何情况下 O(n²)，B 正确；带交换标志提前退出的冒泡在完全有序输入下仅比较 n-1 次，最好 O(n)，故 C“任何情况都 O(n²)”不成立，为应选项；A 的交换 3 次赋值对比插入 1 次赋值后移、D 的部分有序下插入比较/移动次数下降均成立。解析与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项（含 A 中的数字 3/1，文本层缺失但图像可辨）、答案 C=索引2 与解析推导均经 PDF 第5页图像独立核对无误。"
+      }
+    ],
+    "summary": "本次独立复核题6–10：官方答案表（第1页）第6/7/8题=D、第9题=A、第10题=C，与站内 answer 完全一致。题6/7/8/10 的题面、选项、解析经 PDF 第3–5页图像逐项对照全部通过，维持原数据（题7站内省略的 int array[2][3] 初始化代码经判定不属必要代码缺失：行列数与元素类型已由题干文字给出，数值与地址计算无关）。题9 原解析对选项 B 的模拟值有误（原称 1+2+3+5=11；按 B 代码独立模拟 n=5 实际 result 依次为 1、3、7、17，返回 17），已提交修正后的完整解析，A→5、B→17、C→27、D→8 均经独立逐轮模拟核验，答案本身（A=索引0）不变。五题均无未决冲突。"
+  }
+}

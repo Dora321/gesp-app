@@ -1,0 +1,245 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T11:56:56.512Z",
+  "completedAt": "2026-11-16T12:03:13.549Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 58068,
+    "completion_tokens": 22339,
+    "total_tokens": 80407,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 18211
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0198797,
+      "allowance": 0.0198797,
+      "tokens": {
+        "input": 58068,
+        "output": 22339,
+        "reasoning": 18211,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“C++ 四级 2024 年 12 月”，与 2024-12-l4 一致；卷面结构为单选 15 题 + 判断 10 题 + 编程 2 题，与题库设定相符。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干“给定数组 arr[]={4, 1, 3, 1, 5, 2}，执行第一轮冒泡排序后数组 arr 中的内容为（ ）”，与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图选项 A {1,4,3,1,5,2}、B {1,3,1,4,2,5}、C {1,4,3,1,2,5}、D {4,1,3,1,5,2}；网站同序，仅补外层花括号（题干本身用花括号记法），纯排版差异不改含义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题为 B；网站 answer=1（B）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演第一轮：4↔1 交换→1,4,3,1,5,2；4↔3 交换→1,3,4,1,5,2；4↔1 交换→1,3,1,4,5,2；4↔5 不交换；5↔2 交换→1,3,1,4,2,5，最大值 5 到末尾，结果为 B；网站解析的逐步推演表与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核 approve。我独立复算冒泡第一轮（4↔1、4↔3、4↔1、4↔5 不换、5↔2），结果 {1,3,1,4,2,5}=B，与 PDF 答案表及网站一致；逐项核对题干与选项仅花括号排版差异。接受初核结论。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页代码 int cellRecur(int n){ if(n==1) return 1; return cellRecur(n-1)+cellRecur(n-1)+1; }，与网站题干逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项 A O(n²)、B O(2ⁿ)、C O(1)、D O(n)；网站同序同值（仅上标字符等价表示）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题为 B；网站 answer=1（B）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：T(n)=2·T(n-1)+O(1)，展开得 T(n)=2^(n-1)·T(1)+(2^(n-1)-1)c，总代价 Θ(2ⁿ)，选 B；网站解析的展开式与调用树解释一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核 approve。我独立写出 T(n)=2T(n-1)+O(1) 并展开为 O(2ⁿ)=B，与答案表及网站一致；选项仅上标记法差异。接受初核结论。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页代码与网站 question 实质一致。原卷 while 行后未见 `{`，而第 10 行 `}` 与第 4 行填空块 `{` 配对后结构不自洽（照字面 `j--;` 落在 while 之外会死循环），属原卷排版丢字；网站 question 在 while 后补 `{`，与填空意图（标准插入排序）自洽，修复后核验通过。网站独立 code 字段仍缺该 `{`，已在 changes.code 同步为与 question 一致的版本。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页四选项 A int base = nums[i], j = i - 1;、B int base = nums[i], j = i;、C int base = nums[0], j = i - 1;、D int base = nums[0], j = i;，与网站完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题为 A；网站 answer=0（A），一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "网站解析开头称“本题官方答案表标为 B”，与 PDF 第 1 页答案表第 13 题 A 直接矛盾；“实测验证”表无来源依据。已提供删除错误声明与实测表、保留正确推导（B 恒假条件、覆盖与越界，C/D 取 nums[0] 错误）的修正稿。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "code": "void insertion_sort(vector<int> &nums) {\n    for (int i = 1; i < nums.size(); i++) {\n\n        ________________________ {   // 在此处填入代码\n\n            while (j >= 0 && nums[j] > base)\n            {\n                nums[j + 1] = nums[j];\n                j--;\n            }\n            nums[j + 1] = base;\n        }\n    }\n}",
+          "explanation": "**答案：A（int base = nums[i], j = i - 1;）**\n\n**核心解析：**\n插入排序单轮要做两件事：用 `base` **暂存**待插入元素 `nums[i]`，然后从它**前一个位置**开始向左扫描。\n\n- `base = nums[i]`：正确，暂存当前元素（四个选项都写对了）。\n- `j = i - 1`：正确，从 `i` 的前一位开始比较。\n- 若写成 `j = i`：第一次判断 `nums[j] > base` 就是 `nums[i] > nums[i]`，恒为假（不可能自己大于自己），`while` 循环一次都不执行；随后 `nums[j + 1] = base;` 变成 `nums[i + 1] = base;`，**把待插入元素写到了下一个位置**，直接覆盖掉 `nums[i+1]` 的原值；当 `i` 为最后一个下标时 `nums[i+1]` 还会越界，属未定义行为。\n\n**选项逐项分析：**\n- **A（int base = nums[i], j = i - 1）**：✅ 正确。标准的插入排序写法。\n- **B（int base = nums[i], j = i）**：❌ 错误。`while` 条件恒假，且 `nums[i+1] = base` 会覆盖并破坏下一个元素，末位时越界。\n- **C（int base = nums[0], j = i - 1）**：❌ 错误。`base` 应取当前元素 `nums[i]`，取 `nums[0]` 会让每个元素都被替换成第一个元素。\n- **D（int base = nums[0], j = i）**：❌ 错误。同时犯了 C 的取值错误和 B 的起点错误。\n\n**易错提醒：**\n- 判断这类题最快的办法：把 `i = 1` 代入。若 `j = i = 1`，`nums[j+1] = nums[2] = base`，第一个元素与第二个元素的位置关系立刻错乱，一眼就能看出问题。\n- `base` 必须取 `nums[i]`：因为随后 `nums[i]` 会被前面的元素覆盖，不暂存就丢数据了。\n\n**知识延伸：**\n这段代码与前面 `while (j >= 0 && nums[j] > base)` 的条件顺序配合得很好——先判 `j >= 0` 再访问 `nums[j]`，靠 `&&` 的短路特性避免越界。若写成 `nums[j] > base && j >= 0`，当 `j = -1` 时会先读 `nums[-1]`，属于未定义行为。\n\nPDF 第 1 页答案表第 13 题为 A，与网站 answer=0 一致；原解析中“官方答案表标为 B”的说法与答案表矛盾，已删除。\n\n**考点：** 插入排序的变量初始化与边界"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核指出解析误称官方答案为 B 并给出修正稿。我核对 PDF 第 1 页答案表第 13 题确为 A（1-15 依次 A B B B D D D D A C B B A C A），初核正确，其 explanation 修正稿技术内容我已独立复核（B 的恒假条件与越界、C/D 的取值错误均成立），接受。同时确认网站 code 字段缺 while 后左花括号（PDF 原图同缺，属原卷排版丢字），初核的 code 修正与网站 question 一致，一并接受。但初核将 statement 标 needs_fix 不当：网站 question 已是自洽的等价修复版且无需再改，我调整为 verified（修复后核验通过）。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题干“下面哪种方式不能实现将字符串”Welcome to GESP!“输出重定向到文件 log.txt（ ）”，与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：A/B/C 与 PDF 第 6 页逐行一致；D 第 5 行原卷印作 cout.rdbuf(oorg_cout);，而第 2 行声明为 streambuf* org_cout，无 oorg_cout 声明；且官方答案 C 的唯一性要求 D 能实现重定向（照原文 D 编译失败会与答案冲突），故 oorg_cout 判为源卷排版笔误。网站校正为 cout.rdbuf(org_cout); 成立。另记录：D 第 4 行输出句子为 "
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题为 C；网站 answer=2（C）。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析对 A-D 的机制判断正确，但未披露源卷 oorg_cout 笔误及其与答案 C 的依存关系，透明度不足；已提供补充“源卷笔误说明”的修正稿，其余推导经独立复核无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（仅定义了文件流但未写入，`cout` 依然输出到屏幕）**\n\n**核心解析：**\n输出重定向是指将原本输出到控制台终端（屏幕）的内容，改变流向转存到指定目标（如文本文件）中。\n本题中，C 定义了 `std::ofstream outFile(\"log.txt\")` 并打开文件，但输出仍用 `cout`。`cout` 默认连着屏幕，单独声明 `ofstream` 不会改变它的去向，字符串仍显示在屏幕上，`log.txt` 是空文件。因此 C 不能完成重定向。\n\n**选项逐项分析：**\n- **A**：能实现。`freopen(\"log.txt\", \"w\", stdout)` 把 `stdout` 绑到 `log.txt`。`cout` 默认与 `stdout` 同步，之后的输出写入文件，最后 `fclose(stdout)` 关闭。\n- **B**：能实现。创建了文件输出流对象 `outFile` 并关联 `log.txt`，随后通过流插入运算符 `outFile << \"Welcome to GESP!\" << endl;` 将字符串直接写入目标文件，最后关闭文件流。\n- **C**：不能实现（本题正确选项）。`outFile` 仅被打开和关闭，后续代码并未向 `outFile` 写入任何内容；而 `cout` 未经重定向，依然输出到屏幕，导致 `log.txt` 始终为空。\n- **D**：能实现。`cout.rdbuf()` 用于读取或设置流的底层缓冲区。代码先保存 `cout` 原有的缓冲区指针 `org_cout`，接着用 `cout.rdbuf(log_file.rdbuf())` 将 `cout` 的输出缓冲区替换为文件的缓冲区，随后的 `cout` 输出便会流入 `log.txt`，最后恢复原有缓冲区。机制上已经完成重定向。\n\n**源卷笔误说明：**\nPDF 第 6 页 D 选项第 5 行印作 `cout.rdbuf(oorg_cout);`，而第 2 行声明的变量名为 `org_cout`。若照原文，D 会因未声明标识符编译失败，D 也变成“不能实现”的选项，与官方答案表的唯一答案 C 矛盾；故 `oorg_cout` 应为 `org_cout` 的排版笔误，网站已据此校正，按校正后 D 能实现重定向、唯一不能实现的是 C。\n\n**易错提醒：**\n- **创建流对象并不等于重定向**：`ofstream outFile(\"log.txt\");` 仅仅是创建并打开了一个新的文件流，它与全局标准流 `cout` 是两个互不干扰的独立对象。若想写入文件，必须直接向 `outFile` 写入，或者显式将 `cout` 的缓冲区重定向到该文件流。\n- **`freopen` 会改掉后续所有输出**：重定向 `stdout` 后，后面的 `cout` 和 `printf` 都进文件。若还要打回屏幕，需要再绑回控制台；D 先保存再恢复 `rdbuf`，切换更灵活。\n- D 输出的句子是 \"This output will go to the log file.\"，与题干字符串不同，属原题措辞瑕疵，不影响对重定向机制的判断。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核将 options 标 unresolved。我复核认为修复证据充分：①第 2 行声明 org_cout，不存在 oorg_cout；②官方答案 C 唯一成立要求 D 可实现重定向，照原文 D 编译失败将导致 C、D 双解。故判为源卷笔误，options 修复后核验通过（verified），调整初核状态，unresolved 清空。explanation 修正稿（补充笔误说明与 D 句子差异说明）技术内容我已独立复核，接受。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6-7 页代码逐行核对一致：hmean 中 `if (a == -b)` 抛 runtime_error(\"Runtime error occurred\")；main 中 x=10、y=-10，try-catch 结构完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页选项 A 屏幕上输出 Caught: Runtime error occurred、B Caught an unknown exception、C 程序调用 std::terminate()、D 编译错误；网站同序同文（仅空格排版差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题为 A；网站 answer=0（A）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立追踪异常流：hmean(10,-10) 满足 10==-(-10)，抛出 runtime_error；第一个 catch (const runtime_error&) 精确匹配，e.what() 返回构造字符串，输出 Caught: Runtime error occurred，选 A；catch(...) 不再执行、不会调用 std::terminate，代码无编译错误。网站解析与此一致，其对 <stdexcept> 未显式包含的注记合理。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核 approve。我独立追踪异常抛出与 catch 匹配顺序：runtime_error 被第一个 catch 精确捕获，输出 Caught: Runtime error occurred=A，与答案表及网站一致；代码与 PDF 第 6-7 页逐行相符。接受初核结论。"
+      }
+    ],
+    "summary": "本次独立复核题 11-15。题 11、12、15 各维 verified（statement/options/answer/explanation 均经原卷图与答案表逐项对照并独立推导），approve。题 13：官方答案表第 13 题为 A，与网站 answer=0 一致，但网站解析误称“官方答案表标为 B”且含无来源的“实测验证”表，已给 explanation 修正稿；网站独立 code 字段缺 while 后左花括号（PDF 原图同缺，属原卷排版丢字），已同步为与 question 一致的版本；statement 修复后核验通过（对初核 needs_fix 的调整已在 reviewNote 说明）。题 14：PDF 原卷 D 第 5 行印作 oorg_cout（变量声明为 org_cout），官方答案 C 的唯一性要求 D 可实现重定向，判为源卷笔误，网站校正为 org_cout 成立，options 修复后核验通过（对初核 unresolved 的调整已在 reviewNote 说明）；解析补充笔误说明，explanation 修正稿已给。题 13、14 为 revise。本次无编程题，tests 为空。"
+  }
+}

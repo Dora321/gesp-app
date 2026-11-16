@@ -1,0 +1,170 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T12:14:48.135Z",
+  "completedAt": "2026-11-16T12:19:27.353Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38096,
+    "completion_tokens": 28476,
+    "total_tokens": 66572,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 26813
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01721165,
+      "allowance": 0.01032699,
+      "tokens": {
+        "input": 80,
+        "output": 28476,
+        "reasoning": 26813,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b6e5815cf8f18c4e9a5ad88aecdfa40644f23895592e62bb5886cc517cafc4ee",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "卷头图显示“CCF 编程能力等级认证 C++ 四级 2024 年 12 月”，与 paperId 2024-12-l4 的等级、年份和月份一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页题面：第一项 a1=1；若 a_{k-1}-k 为正整数且未在数列中出现，则 a_k=a_{k-1}-k，否则 a_k=a_{k-1}+k；要求输出前 n 项排序结果。网站题面、输入输出格式、两则样例（5→1 2 3 6 7；8→1 2 3 6 7 12 13 20）及数据范围 1≤n≤3000 均与 PDF 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案；PDF 无该题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按题意递推：down=a[k-2]-k，仅当 down>0 且未出现时取减，否则取加；随后排序输出。n=5 时序列为 1,3,6,2,7，排序为 1 2 3 6 7；n=8 续算得 13,20,12，排序为 1 2 3 6 7 12 13 20，均与 PDF 第9页样例解释一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站参考代码用 long long 保存数列，set 记录已出现值，按 down>0 且 !seen.count(down) 决定减/加，最后排序并按空格输出。n≤3000 时 O(n log n)、无溢出；n=1 可直接输出 1，n=4 与 n=24（含重复项 42）的手算结果与代码逻辑一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n=1",
+            "input": "1\n",
+            "output": "1\n",
+            "reason": "a1=1，无后续项，排序后仍为 1。"
+          },
+          {
+            "name": "首次触发减法分支 n=4",
+            "input": "4\n",
+            "output": "1 2 3 6\n",
+            "reason": "a1=1,a2=3,a3=6,a4=2；排序得 1 2 3 6。"
+          },
+          {
+            "name": "出现重复加的 n=24",
+            "input": "24\n",
+            "output": "1 2 3 6 7 8 9 10 11 12 13 18 20 21 22 23 24 25 41 42 42 43 62 63\n",
+            "reason": "前 24 项含 a20=42、a24=18+24=42；题目只限制减法分支不得重复，排序结果保留两个 42。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第10页题面：n 个小写字母字符串可重排后拼接为 t，要求任意 j<i 有 t_j≤t_i；样例 3 组输出 1/0/0；数据范围 1≤T,n≤100，串长≤10。网站题面、样例与范围一致；PDF 数据范围将测试组数 T 写作小写 t，网站照录，属原文大小写不一致，不影响上限含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观选项答案；PDF 无该题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析先检查每个字符串内部是否非递减，再按字典序排序并拼接，最后校验 t 相邻字符。样例1 aa+ac+de=aaacde 输出1；样例2 aac+bc 及反序均出现逆序输出0；样例3 gesp 内部 g>e 输出0，均与 PDF 第10页样例解释一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "代码读完全部字符串后，若任一串内部逆序则输出0；否则 sort 字典序并拼接，再检查 t[i]>=t[i-1]。T,n≤100、串长≤10，复杂度约 O(T·n·L log n)，边界 n=1、输入顺序非字典序及多组数据均可处理。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模 n=1 且自身有序",
+            "input": "1\n1\na\n",
+            "output": "1\n",
+            "reason": "单个字符 a 内部非递减，唯一排列满足条件。"
+          },
+          {
+            "name": "内部逆序直接无解",
+            "input": "1\n1\ngesp\n",
+            "output": "0\n",
+            "reason": "字符串内部 g>e，任何拼接顺序都无法改变该逆序。"
+          },
+          {
+            "name": "输入顺序非字典序但可重排",
+            "input": "1\n2\nab\na\n",
+            "output": "1\n",
+            "reason": "重排为 a+ab=aab，全局非递减。"
+          },
+          {
+            "name": "多组数据且首组同首字符冲突",
+            "input": "2\n2\nab\nac\n1\na\n",
+            "output": "0\n1\n",
+            "reason": "首组 ab 与 ac 均以 a 开头且末字符大于 a，任一顺序都会在边界产生逆序；第二组单字符可满足，同时检查首组失败后仍正确读入下一组。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题26、27。两题题面、样例、数据范围与 PDF 第8—11页一致；网站参考程序算法正确，题26以 set 查重并用 long long，题27按内部单调、字典序排序和全局校验处理，复杂度均满足范围。测试期望值按题意独立手算，未声称实际运行。题27数据范围中 T/t 大小写不一致属原文照录，未改动。未发现需要修改的字段。"
+  }
+}
