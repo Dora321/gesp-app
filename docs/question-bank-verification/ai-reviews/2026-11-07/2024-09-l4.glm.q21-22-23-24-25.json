@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:34:26.353Z",
+  "completedAt": "2026-11-16T10:37:10.524Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53003,
+    "completion_tokens": 9310,
+    "total_tokens": 62313,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7258
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01260545,
+      "allowance": 0.01260545,
+      "tokens": {
+        "input": 53003,
+        "output": 9310,
+        "reasoning": 7258,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e2e1bc01a610ee29aff7d23bd55177d6550f5135d542b3ad441d632dcc9db52",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页页图卷头清晰显示「CCF 编程能力等级认证 GESP」「C++ 四级」「2024 年 09 月」，等级、年月与 2024-09-l4 完全对应。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第6题页图原文为「选择排序是稳定的排序算法。」，与站点题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项，站点仅提供「正确/错误」二值。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第6列为「×」，按 正确=0、错误=1 映射为 1；站点 answer=1 一致。独立推导亦支持：选择排序每轮将最小元与区间首位做跨越式交换，可颠倒相等元素的相对次序（反例 [5₁,8,5₂,2,9] 首轮交换后得 [2,8,5₂,5₁,9]，两个 5 次序反转），故「稳定」命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：站点反例演算正确——[5₁,8,5₂,2,9] 第一轮最小值 2 与位置 0 的 5₁ 交换后 5₁ 落到 5₂ 之后，相对顺序被破坏，结论「不稳定」成立；稳定（冒泡/插入/归并）与不稳定（选择/快速/堆）清单为标准结论，解析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表读数（×→1）、题干原文、反例推导均经独立验证，与 DeepSeek 草稿结论一致，无需修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第7题页图原文为「插入排序的时间复杂度总是比冒泡排序低。」（文本层因提取错位显示为「插 排序…入 比」，页图本身无缺字），站点题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第7列为「×」，映射为 1；站点 answer=1 一致。独立推导：插入与冒泡的平均、最坏复杂度均为 O(n²)；最好情况下插入为 O(n)，而带交换标志优化的冒泡同为 O(n)，逆序输入时两者相同，「总是低」过于绝对，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：站点解析指出两算法平均/最坏同为 O(N²)、插入最好 O(N)、标准冒泡无优化时最好仍 O(N²)（加 swapped 优化可降为 O(N)），故「总是」不成立，推理链完整且与官方判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立推导「最好情况也可持平、最坏相同」支持官方 × 判定，站点解析无误，与草稿结论一致。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第8题页图原文为「在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会继续执行而不会终止。」，与站点题干逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第8列为「×」，映射为 1；站点 answer=1 一致。独立推导：throw 后无匹配 catch 时异常沿调用栈向上传播（栈展开），到达顶层仍无捕获则调用 std::terminate()（默认经 std::abort()）强制终止，命题「继续执行而不会终止」为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：站点解析的 Stack Unwinding、std::terminate()/std::abort() 机制及示意代码（main 中 f() 抛出未捕获则后续输出不执行）均正确，与官方判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：未捕获异常终止程序的机制推导与草稿、站点解析一致，无需修改。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第9题题干「以下代码用递推法求斐波那契数列的第 n 项，时间复杂度为指数级。」及 16 行代码页图逐行核对：if(n==0/1) 返回、f0=0/f1=1、for(i=2;i<=n;i++) 中 current=f0+f1 后滚动赋值、return current，与站点题干内嵌代码一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第9列为「×」，映射为 1；站点 answer=1 一致。独立推导：该代码为迭代递推，循环执行 n-1 次、每次 O(1)，总时间 O(n)、空间 O(1)，并非指数级；指数级对应朴素递归 fib(n-1)+fib(n-2) 写法，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：站点解析正确区分「递推（循环）O(n)」与「朴素递归 O(2^n)」，并说明记忆化亦可降为 O(n)，结论与代码事实及官方判定一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序（题内代码属题干，已在 statement 维度核对）。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：代码逐行比对无误，复杂度独立推导为 O(n)，与官方 × 判定及草稿结论一致。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第10题题干「执行下面 C++ 代码后，输出的是20。」及 10 行代码页图逐行核对：point(int* p){return *p * 2;}、main 中 a=10、p=&a、*p=point(p)、cout << *p << endl（main 无 return 0，PDF 亦无），与站点 question/code 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第10列为「√」，按 正确=0 映射为 0；站点 answer=0 一致。独立推导：point(p) 解引用得 10 并返回 20；*p = point(p) 将 20 写入 p 所指的 a；随后输出 *p 即 20，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复推：逐步演算与站点解析一致（10→20 写回 a→输出 20），且解析正确指出形参 p 与外层 p 为同名不同变量、*p= 与 p= 的语义区别，无遗漏。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序（题内代码属题干，已在 statement 维度核对）。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：输出 20 的推演独立验证成立，答案映射 √→0 与站点及草稿一致。"
+      }
+    ],
+    "summary": "本次仅复核站点题号 21–25（对应 PDF 第6页判断题第6–10题）。五题题干与页图原文逐字一致（第9、10题内嵌代码逐行核对通过）；答案表第6–10列依次为 ×、×、×、×、√，映射 officialAnswer=1,1,1,1,0，与站点 answer 全部吻合；各题解析均经独立推导验证无误（选择排序不稳定的反例、两排序复杂度对比、未捕获异常终止机制、迭代斐波那契 O(n)、指针写回输出 20）。判断题 options 与 referenceCode 维度不适用；无编程题故无 tests。全部 approve，无需修改字段；初核结论经独立复核后全部接受。"
+  }
+}

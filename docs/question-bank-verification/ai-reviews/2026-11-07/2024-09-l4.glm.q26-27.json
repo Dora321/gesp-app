@@ -1,0 +1,183 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:57:11.035Z",
+  "completedAt": "2026-11-16T11:03:59.420Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53086,
+    "completion_tokens": 23465,
+    "total_tokens": 76551,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 21255
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0196954,
+      "allowance": 0.0196954,
+      "tokens": {
+        "input": 53086,
+        "output": 23465,
+        "reasoning": 21255,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e2e1bc01a610ee29aff7d23bd55177d6550f5135d542b3ad441d632dcc9db52",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF 编程能力等级认证（GESP）C++ 四级、2024 年 09 月，与 paperId=2024-09-l4（2024年9月四级）一致；卷面结构为单选15题+判断10题+编程2题，与网站数据吻合。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第7-8页 3.1.1-3.1.4：题面（n行m列网格、4行4列子矩形、第1/4行全白、第2/3行仅第1和第4格白、0白否则黑）、输入格式（t 组、每组 n+1 行、先 n 与 m、再 n 个长度 m 的01串）、输出格式（存在输出 Yes 否则 No）、样例输入15行与输出 No/Yes/No、约束 1≤t≤10、1≤n,m≤100，均与网站题面逐句一致；PDF 第8页满足条件的子矩形形如 0000/0110/0110/0000 的图示在网站解析中完整保留，不构成信息缺失。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表条目，officialAnswer 按约定置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导确认：目标形态唯一为 0000/0110/0110/0000；枚举左上角需 i+3<n、j+3<m，n<4 或 m<4 时无解输出 No；三组样例独立复算为 No/Yes/No（样例2在起点(0,0)四行 0000/0110/0110/0000 全匹配；样例3在(0,0)处第3行截断为0111，其余起点亦均不匹配）；复杂度 O(t·n·m·16) 约 1.6×10^6，与解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站参考代码独立复核：对每个候选左上角检查首末两行4格全为0、中间两行两端为0且中间两格为1，恰好覆盖全部16格，与官方参考程序（PDF 第8-9页，match 数组仅第2/3行第2/3列为1、其余为0后逐格比对）逐格等价；循环上界 i+3<n、j+3<m 等价于官方 1-based 的 i≤n-3、j≤m-3，n<4 或 m<4 时内层循环不执行，无越界；t≤10、n,m≤100 下复杂度与内存均安全。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小网格（无法容纳4×4）",
+            "input": "1\n1 1\n0\n",
+            "output": "No\n",
+            "reason": "n=1<4，i+3<n 无解，直接输出 No。"
+          },
+          {
+            "name": "恰好4×4全匹配",
+            "input": "1\n4 4\n0000\n0110\n0110\n0000\n",
+            "output": "Yes\n",
+            "reason": "唯一左上角(0,0)处16格逐一满足目标形态。"
+          },
+          {
+            "name": "列数不足4",
+            "input": "1\n4 3\n000\n011\n011\n000\n",
+            "output": "No\n",
+            "reason": "m=3<4，j+3<m 无解，即使网格内容接近目标也无法构成4列子矩形。"
+          },
+          {
+            "name": "图案出现在偏移位置",
+            "input": "1\n5 5\n11111\n10000\n10110\n10110\n10000\n",
+            "output": "Yes\n",
+            "reason": "仅左上角(1,1)满足：第1/4行列1-4为0000，第2/3行列1、4为0且列2、3为1；其余三个候选起点因首行含1被否决。"
+          }
+        ],
+        "verdict": "approve",
+        "reviewNote": "接受初核：其题面、解析、参考代码三项 verified 结论经本人独立复核全部成立，四条测试的期望输出均由本人独立复算确认；网站原数据无需修改，未采纳任何变更。",
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第9页 3.2.1-3.2.4：题面（n 个正整数、q 次选区间 [l,r] 升序排序且每次在上一次结果上进行）、输入格式（n、n 个数、q、q 行 l r）、输出格式（一行 n 个正整数）、样例（5 / 3 4 5 2 1 / 3 / 4 5 / 3 4 / 1 3 → 1 3 4 5 2）以及约束 1≤n≤100、1≤a_i≤100、1≤q≤100、1≤l_i≤r_i≤n 与网站题面一致；PDF 标注的三次排序中间序列 [3,4,5,1,2]、[3,4,1,5,2]、[1,3,4,5,2] 在网站解析样例走查中完整保留。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表条目，officialAnswer 按约定置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复算样例：[3,4,5,2,1] 排 [4,5] 得 [3,4,5,1,2]；排 [3,4]（此时为 5,1→1,5）得 [3,4,1,5,2]；排 [1,3]（3,4,1→1,3,4）得 [1,3,4,5,2]，与解析及 PDF 第9页标注一致；1-based [l,r] 到 sort(begin()+l-1, begin()+r) 左闭右开的换算正确；复杂度 O(q·n log n) 在 n,q≤100 下约 7×10^4 次比较，结论成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站参考代码独立复核：原地 sort 累积生效，符合每次在上一次结果上排序的要求；l=r 时范围为单元素等价空操作；输出空格分隔、末尾换行，与官方参考程序（PDF 第10页冒泡实现）功能等价；n,q≤100、a_i≤100 无溢出与超时风险。"
+          }
+        },
+        "changes": {
+          "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}"
+        },
+        "tests": [
+          {
+            "name": "最小规模单点区间",
+            "input": "1\n7\n1\n1 1\n",
+            "output": "7\n",
+            "reason": "n=1、l=r=1，排序为空操作，原样输出 7。"
+          },
+          {
+            "name": "全区间逆序一次排序",
+            "input": "5\n5 4 3 2 1\n1\n1 5\n",
+            "output": "1 2 3 4 5\n",
+            "reason": "对整个区间升序排序，得到递增序列。"
+          },
+          {
+            "name": "重叠区间累积生效",
+            "input": "4\n4 3 2 1\n2\n1 2\n2 4\n",
+            "output": "3 1 2 4\n",
+            "reason": "第一次排 [1,2] 后为 3 4 2 1；第二次在上次结果上排 [2,4]（4,2,1→1,2,4），得 3 1 2 4，验证排序在上一次结果上累积。"
+          },
+          {
+            "name": "重复元素与单点区间",
+            "input": "3\n2 1 2\n2\n2 2\n1 3\n",
+            "output": "1 2 2\n",
+            "reason": "l=r 的单点排序不改变序列；随后全区间排序处理重复元素得 1 2 2。"
+          }
+        ],
+        "verdict": "revise",
+        "reviewNote": "接受初核对题面、解析、参考代码三项 verified 的判断（均经本人独立复核成立），但否决其将模板错误仅留在 unresolved 的处理：本轮明确允许以 changes.code 修改独立代码字段，故将误写为读入 int n, m 的起始模板修正为仅读入 n（本题输入不含 m），修正后的模板与输入格式一致，修复后核验通过；该修正不涉及参考代码本体，五个维度状态不变。",
+        "unresolved": []
+      }
+    ],
+    "summary": "按范围仅复核编程题26、27。26（黑白方块）：题面、样例、约束、解析与参考代码经独立复核全部一致，网站参考代码与官方 PDF 参考程序逐格等价，边界（n或m<4）与复杂度安全，最小网格、恰好4×4、列数不足、图案偏移四组测试期望输出均独立复算确认，判定 approve、无修改。27（区间排序）：题面、样例中间序列、解析与参考代码独立复核通过，l=r 单点区间与重叠区间累积排序边界正确，四组测试独立复算确认；唯一缺陷是起始模板误写为读入 int n, m（本题输入无 m），依据本轮允许的 changes.code 修正为仅读入 n，判定 revise、修复后核验通过。两题均为编程题，officialAnswer=null；未发现题面或解析与官方卷面的实质性冲突。"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:07:18.682Z",
+  "completedAt": "2026-11-16T10:08:13.323Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35306,
+    "completion_tokens": 9866,
+    "total_tokens": 45172,
+    "prompt_tokens_details": {
+      "cached_tokens": 35072
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8007
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00605992,
+      "allowance": 0.00363595,
+      "tokens": {
+        "input": 234,
+        "output": 9866,
+        "reasoning": 8007,
+        "cache_read": 35072,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e2e1bc01a610ee29aff7d23bd55177d6550f5135d542b3ad441d632dcc9db52",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页图卷头为“CCF 编程能力等级认证 / C++ 四级 / 2024年09月”，与 paperId 2024-09-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第3页给出第11题题干及代码第1至11行，PDF第4页续出第12至21行；网站题干、函数声明、外循环、flag与待填空位置均与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页页图四个选项依次为A、B、C、D，文字和顺序与网站一致；C为 for (int j = 0; j < i; j++)。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第11题标为C，对应索引2；由待排序区间为[0,i]且需访问arr[j+1]可知必须j<i，独立推导同样选C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析从外循环i自n-1递减和每轮右端有序区扩大出发，推出内层j<i；并明确指出原卷swap(arr,i,j)按冒泡语义应为swap(arr,j,j+1)的笔误，未把笔误当作答案依据。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第12题题干为“上一题算法的时间复杂度为（ ）。”，与网站题干一致，且明确承接第11题冒泡排序。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页页图选项依次为O(n^2)、O(2^n)、O(1)、O(n)，网站改写为O(n²)、O(2ⁿ)、O(1)、O(n)，数学含义和顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第12题标为A，对应索引0；第11题双层循环最坏比较次数为n(n-1)/2，按最坏情况为O(n²)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析区分最好情况O(n)与最坏情况O(n²)，说明flag优化只改善最好情况、不改变最坏量级，并独立推出答案A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页第13题题干、insertion_sort函数、base与j初始化、待填空及后续nums[j+1]=base均与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第4页页图四个选项分别使用j>=0、j>0与nums[j]>base、nums[j]<base的组合，文字和顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第13题标为A，对应索引0；升序插入需在j>=0且nums[j]>base时右移，答案为A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析准确说明j>=0防止下标越界、nums[j]>base控制升序右移，并用[2,1]反例验证j>0会漏掉下标0，独立推导与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第4页末至第5页给出第14题题干及完整代码；ofstream log_file、cout.rdbuf(log_file.rdbuf())、待填空和恢复original_cout均与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页页图四个选项分别使用cout/log_file与<< / >>，顺序和文字与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第14题标为A，对应索引0；在cout.rdbuf已重定向后应继续写cout，使输出落入log.txt。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确指出重定向后写cout即写入文件，并在末尾恢复原始缓冲区；对B说明其语法可用但未体现重定向考点，对C、D指出>>方向错误，足以独立推出A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第5页第15题题干及divide、main、try-catch代码与网站一致；除零条件、throw runtime_error及catch输出语句均无缺失。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第5页页图四个输出选项的文本和顺序与网站一致；C为 caught an exception: division by zero error。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第15题标为C，对应索引2；divide在b==0时抛出异常，try中result输出被跳过，仅catch输出前缀加e.what()。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析按调用divide、抛出异常、跳过try剩余语句、catch执行e.what()的流程独立推导，得到caught an exception: division by zero error，与官方答案C一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不适用参考程序维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本轮仅核验2024年9月GESP C++四级题号11至15。卷头年月、等级与paperId一致；五题题干、代码、选项顺序均能由PDF页图复核，官方答案表分别对应C、A、A、A、C，与网站answer的2、0、0、0、2一致。解析均可独立推导且未发现需改字段；单选题的referenceCode均不适用。"
+  }
+}

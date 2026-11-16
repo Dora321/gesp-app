@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T06:02:28.008Z",
+  "completedAt": "2026-11-16T06:03:39.397Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53426,
+    "completion_tokens": 10922,
+    "total_tokens": 64348,
+    "prompt_tokens_details": {
+      "cached_tokens": 51200
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8007
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0073309,
+      "allowance": 0.0073309,
+      "tokens": {
+        "input": 2226,
+        "output": 10922,
+        "reasoning": 8007,
+        "cache_read": 51200,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e2e1bc01a610ee29aff7d23bd55177d6550f5135d542b3ad441d632dcc9db52",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP / C++ 四级 / 2024 年 09 月”，与站点 level=4、year=2024、month=9 一致；来源 git-blob SHA 6c01612a8d079f90937bb52ba207b054e28fdbdd 已登记。第1页单选答案表第1~5题为 A、B、A、B、D，与站点 answer 0/1/0/1/3 的映射逐题吻合。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干“在 C++ 中，（ ）正确定义了一个返回整数值并接受两个整数参数的函数。”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与第1页图像逐字一致；PDF 中 “return a + b” 与站点 “return a+b” 仅空格差异，语义不变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第1题为 A，对应 0 起始索引 0；站点 answer=0，且独立判定 A 正确（返回类型 int、两个 int 形参、返回 a+b）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析称选项 D“虽然语法上可能通过编译”有误：void 函数用 return 返回 int 表达式在 C++ 中必为编译错误，且与同段“两者矛盾，编译错误”的表述自相矛盾；已提供修正后的完整解析，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (int add(int a, int b) { return a+b; })**\n\n**核心解析：**\nC++ 函数定义包含四个要素：返回类型、函数名、参数列表、函数体。选项 A 中返回类型 `int` 与返回值 `a+b`（int）匹配，两个形参均显式声明为 `int`，完全符合“返回整数值并接受两个整数参数”的要求。\n\n**选项逐项分析：**\n- **A (int add(int a, int b) { return a+b; })**：✅ 正确。要素齐备，类型匹配。\n- **B (void add(int a, int b) { return a+b; })**：❌ 错误。`void` 函数不得用 `return 表达式;` 返回值，`a+b` 是 `int`，编译器直接报错（如 “return-statement with a value, in function returning 'void'”）。\n- **C (int add(a, b) { return a+b; })**：❌ 错误。C++ 中形参必须逐个声明类型，只写 `a, b` 无法通过编译。\n- **D (void add(int a, int b) { return a-b; })**：❌ 错误。同样是 `void` 函数返回表达式，属编译错误；且 `a-b` 也不符合“求和”的语义。\n\n**易错提醒：**\n- `void` 函数只能写不带值的 `return;`（仅表示提前结束），不能 `return 值;`。\n- 形参列表中每个参数都必须写成“类型 + 参数名”的形式。\n\n**考点：** C++ 函数定义语法规范"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的 needs_fix 判定：独立复核确认 C++ 中 void 函数 return 表达式属编译错误，原解析“语法上可能通过编译”与其后文自相矛盾；初核修正方向正确，最终解析文本按本人独立复核结果重写后给出。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题题干“在C++中，形参与实参的关系描述正确的是（ ）。”与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与第1页图像一致；D 末尾句号属纯标点差异，忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为 B，对应索引 1；站点 answer=1，且独立判定正确：形参在函数定义时指定、实参在函数调用时传递。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与解析一致：A 把两个概念颠倒；C 中两者生命周期与作用位置不同、不可互换；D 忽略了隐式类型转换的存在，不要求类型完全相同。解析结论均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核判定各维度通过，与本人独立推导一致，网站原数据无需修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页给出题干及代码第1~19行（含全局 var=100、function 内局部 var=200 与两处输出），第2页图像续接第20~22行（return 0; 与收尾大括号），与站点代码完整一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页四个输出串选项 100 200 100 200 / 100 200 100 300 / 100 200 200 200 / 100 200 200 300 与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题为 A，对应索引 0；独立按序演算：main 输出 100，function 内局部 var 输出 200、::var 输出 100，main 中 var+=100 后输出 200，合计 “100 200 100 200”，与站点 answer=0 吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "原解析第 4 步“全局指针已变为 200”把 int 型全局变量 var 误称为指针，属事实性错误，其余推导正确；已提供修正后的完整解析，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (100 200 100 200)**\n\n**核心解析：**\n程序按执行顺序产生 4 段输出：\n\n| 步骤 | 语句 | 输出 | 说明 |\n|---|---|---|---|\n| 1 | `main` 中 `cout << var` | 100 | 此时只有全局 `var = 100` |\n| 2 | `function()` 中 `cout << var` | 200 | 函数内局部 `var = 200` 遮蔽全局变量 |\n| 3 | `function()` 中 `cout << ::var` | 100 | `::` 强制访问全局作用域 |\n| 4 | `main` 中 `var += 100` 后输出 | 200 | 全局变量 `var` 由 100 变为 200 |\n\n拼接结果为 `100 200 100 200`。\n\n**选项逐项分析：**\n- **A (100 200 100 200)**：✅ 正确。第 4 段输出是 `main` 里 `var += 100` 之后全局变量 `var` 的值 200。\n- **B (100 200 100 300)**：❌ 错误。全局 `var` 只做了一次 `+= 100`（100→200），不会是 300。\n- **C (100 200 200 200)**：❌ 错误。`::var` 明确指定全局作用域，取值必为 100。\n- **D (100 200 200 300)**：❌ 错误。第 3、4 段输出均判断错误。\n\n**易错提醒：**\n- 局部变量与全局变量同名时，函数体内直接写变量名只访问局部变量；访问全局必须加 `::` 前缀。\n- `main` 中的 `var += 100` 作用在全局 `var` 上（此处无同名局部变量遮蔽），这是最后一段输出从 100 变为 200 的原因。\n\n**知识延伸：**\n`::` 是作用域解析运算符，`::name` 表示全局命名空间中的 `name`，用于突破局部遮蔽；`Class::name` 则表示类作用域。\n\n**考点：** 局部变量的遮蔽效应与作用域解析运算符 `::`"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核的 needs_fix 判定：独立确认原解析“全局指针已变为 200”系误称（var 是整型变量而非指针）；输出序列 100/200/100/200 本人独立演算一致，修正解析后核验通过。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第4题题干“运行下面代码，屏幕上输出是（ ）。”及代码 int arr[3]={24,9,7}; int* p=arr; p++; cout<<*p<<endl; 与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页选项 A.24、B.9、C.7、D.不确定 与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第4题为 B，对应索引 1；独立推导：p 初始指向 arr[0]=24，p++ 按 sizeof(int) 步进指向 arr[1]=9，解引用输出 9，与站点 answer=1 吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析三步推导（退化、步进、解引用）与选项排除均正确；D 选项因数组连续存储而确定，排除成立。“数组在栈上”对片段代码的存储位置表述不严谨，但属非实质性细节，不影响结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核通过结论成立；原解析“数组在栈上”一语不够严谨但不足以触发修改，不做纯文风改动。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第5题题干“运行下面代码片段的结果是（ ）。”及代码（x=20、y=24、p=&x、q=&y、p=q）与站点一致，仅空行排版差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 文本层缺失斜体变量名（显示为“将 赋值为24”等），第2页页面图像确认实际选项为“将x赋值为24 / 将y赋值为20 / 将q指向x的地址 / 将p指向y的地址”，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第5题为 D，对应索引 3；独立判定：p=q 是指针间赋值，把 q 中 y 的地址复制给 p，x、y 的值均不变，D 正确，与站点 answer=3 吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 p=q（改指向）与 *p=*q（改指向的值），对 A、B、C 的排除理由（x/y 未被赋值、方向相反）均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初核通过结论成立；文本层缺字已由页面图像补证，选项与答案映射无偏差，无需修改。"
+      }
+    ],
+    "summary": "本批仅核验第1~5题：题干、选项与第1~2页页面图像逐字一致（第5题文本层缺字由图像补证），官方答案 A/B/A/B/D 与站点 answer 0/1/0/1/3 映射无误，均经独立推导确认。发现并修复两处解析错误：第1题称 void 函数返回表达式“语法上可能通过编译”（实为编译错误，且与其自身后文矛盾），第3题把全局 int 变量 var 误称“全局指针”；两处均已提供修正后的完整解析并复核通过，对应题目 verdict=revise。第2、4、5题解析独立推导无误，无修改（approve）。本批无编程题，tests 均留空，无未决事项。"
+  }
+}

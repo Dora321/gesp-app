@@ -1,0 +1,228 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T06:01:40.383Z",
+  "completedAt": "2026-11-16T06:02:28.001Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35306,
+    "completion_tokens": 8203,
+    "total_tokens": 43509,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6462
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0204354,
+      "allowance": 0.01226124,
+      "tokens": {
+        "input": 35306,
+        "output": 8203,
+        "reasoning": 6462,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e2e1bc01a610ee29aff7d23bd55177d6550f5135d542b3ad441d632dcc9db52",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 CCF GESP C++ 四级 2024 年 09 月；单选答案表第1至5题为 A、B、A、B、D，与站点题号及答案映射一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干为“在 C++ 中，（ ）正确定义了一个返回整数值并接受两个整数参数的函数。”，与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与 PDF 第1页一致；仅 a+b 等空格排版差异，不影响语义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题为 A，对应 0 起始索引 0；站点 answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析把选项D写成“虽然语法上可能通过编译”，但 void 函数用 return 返回表达式在 C++ 标准中是编译错误，该表述与前后文冲突。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (int add(int a, int b) { return a+b; })**\n\nC++ 函数定义需要返回类型、函数名、参数列表和函数体。A 中返回类型为 int，两个形参都声明为 int，`return a+b;` 返回整数，符合题意。B 的返回类型为 void，却用 `return a+b;` 返回一个值，编译错误。C 的形参 a、b 没有类型声明，编译错误。D 同样是在 void 函数中用 return 返回表达式，编译错误；而且 `a-b` 也不是求和。\n\n易错点：void 函数只能用 `return;` 提前结束，不能返回一个值；定义函数时每个形参都必须写出类型。\n\n**考点：** C++ 函数定义语法规范"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题题干为“在C++中，形参与实参的关系描述正确的是（ ）。”，与站点题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "四个选项与 PDF 第1页图像一致；D 末尾标点差异忽略。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题为 B，对应 0 起始索引 1；站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分形参在函数定义时指定、实参在函数调用时传递；对隐式类型转换和不可互换性的说明也成立。延伸性表述不影响本题结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题题干及代码第1至19行与站点一致，PDF 第2页续接代码第20至22行；作用域和输出语句完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页四个选项为 100 200 100 200、100 200 100 300、100 200 200 200、100 200 200 300，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 A，对应 0 起始索引 0；站点 answer=0。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析表格推导和最终答案正确，但“全局指针已变为 200”把全局变量 var 误写成全局指针；应改为全局变量 var 由 100 变为 200。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A (100 200 100 200)**\n\n执行顺序：1. `main` 首条 `cout << var` 访问全局 `var`，输出 100。2. 调用 `function()`，局部 `var=200` 遮蔽全局变量，`cout << var` 输出 200；`cout << ::var` 通过 `::` 访问全局变量，输出 100。3. 返回 `main` 后执行 `var += 100`，修改的是全局 `var`，由 100 变成 200，随后输出 200。\n\n因此输出为 `100 200 100 200`。B 错在最后一项算成 300；C、D 错在把 `::var` 或最后一步的值算错。易错点：同名局部变量会遮蔽全局变量，必须用 `::var` 访问全局变量。\n\n**考点：** 局部变量的遮蔽效应与作用域解析运算符 `::`"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第4题题干为“运行下面代码，屏幕上输出是（ ）。”，代码为 arr[3]={24,9,7}; int* p=arr; p++; cout<<*p<<endl;，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项为 A.24、B.9、C.7、D.不确定，与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题为 B，对应 0 起始索引 1；站点 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立推导正确：p 初始指向 arr[0]，p++ 后指向 arr[1]，解引用得 9；数组元素连续，结果确定，D 不成立。栈的实现表述不影响本题结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题题干为“运行下面代码片段的结果是（ ）。”，代码声明 x=20、y=24、p=&x、q=&y 后执行 p=q，与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页图像显示 A.将x赋值为24、B.将y赋值为20、C.将q指向x的地址、D.将p指向y的地址；文本层虽有缺字，图像确认与站点一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题为 D，对应 0 起始索引 3；站点 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 p=q 复制的是地址，使 p 改为指向 y；x、y 的值没有被赋值改变，排除 A、B，C 的方向也相反。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "题号1至5的题面、选项和官方答案均与 PDF 一致；第1题解析中 void 返回值编译判断自相矛盾，第3题解析误写为全局指针，已分别给出解析修正草稿；其余核心解析可独立成立。本次无编程题，未生成边界测试，未发现需改动的答案或选项。"
+  }
+}

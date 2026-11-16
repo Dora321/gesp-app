@@ -1,0 +1,112 @@
+{
+  "executedAt": "2026-11-16T11:25:27.379Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n1 4\n0110\n5 5\n00000\n01100\n01100\n00001\n01100\n5 5\n00000\n01100\n01110\n00001\n01100",
+          "output": "No\nYes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "No\nYes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "最小网格（无法容纳4×4）",
+          "input": "1\n1 1\n0\n",
+          "output": "No\n",
+          "reason": "n=1<4，i+3<n 无解，直接输出 No。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "恰好4×4全匹配",
+          "input": "1\n4 4\n0000\n0110\n0110\n0000\n",
+          "output": "Yes\n",
+          "reason": "唯一左上角(0,0)处16格逐一满足目标形态。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "列数不足4",
+          "input": "1\n4 3\n000\n011\n011\n000\n",
+          "output": "No\n",
+          "reason": "m=3<4，j+3<m 无解，即使网格内容接近目标也无法构成4列子矩形。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "图案出现在偏移位置",
+          "input": "1\n5 5\n11111\n10000\n10110\n10110\n10000\n",
+          "output": "Yes\n",
+          "reason": "仅左上角(1,1)满足：第1/4行列1-4为0000，第2/3行列1、4为0且列2、3为1；其余三个候选起点因首行含1被否决。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "799da5d95c66cb21faf961c898f985914db465fb2968022cab43cb4449cb576a"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5\n3 4 5 2 1\n3\n4 5\n3 4\n1 3",
+          "output": "1 3 4 5 2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1 3 4 5 2\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模单点区间",
+          "input": "1\n7\n1\n1 1\n",
+          "output": "7\n",
+          "reason": "n=1、l=r=1，排序为空操作，原样输出 7。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "全区间逆序一次排序",
+          "input": "5\n5 4 3 2 1\n1\n1 5\n",
+          "output": "1 2 3 4 5\n",
+          "reason": "对整个区间升序排序，得到递增序列。",
+          "kind": "boundary",
+          "actual": "1 2 3 4 5\n",
+          "passed": true
+        },
+        {
+          "name": "重叠区间累积生效",
+          "input": "4\n4 3 2 1\n2\n1 2\n2 4\n",
+          "output": "3 1 2 4\n",
+          "reason": "第一次排 [1,2] 后为 3 4 2 1；第二次在上次结果上排 [2,4]（4,2,1→1,2,4），得 3 1 2 4，验证排序在上一次结果上累积。",
+          "kind": "boundary",
+          "actual": "3 1 2 4\n",
+          "passed": true
+        },
+        {
+          "name": "重复元素与单点区间",
+          "input": "3\n2 1 2\n2\n2 2\n1 3\n",
+          "output": "1 2 2\n",
+          "reason": "l=r 的单点排序不改变序列；随后全区间排序处理重复元素得 1 2 2。",
+          "kind": "boundary",
+          "actual": "1 2 2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "b868a8a135200675b55dcabd3fd0038b2634745f71510ff820b09c3e13ea802e"
+    }
+  ]
+}

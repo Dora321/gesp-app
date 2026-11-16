@@ -1,0 +1,167 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:42:31.577Z",
+  "completedAt": "2026-11-16T10:44:55.948Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35294,
+    "completion_tokens": 10782,
+    "total_tokens": 46076,
+    "prompt_tokens_details": {
+      "cached_tokens": 35200
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9238
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0065889,
+      "allowance": 0.00395334,
+      "tokens": {
+        "input": 94,
+        "output": 10782,
+        "reasoning": 9238,
+        "cache_read": 35200,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e2e1bc01a610ee29aff7d23bd55177d6550f5135d542b3ad441d632dcc9db52",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 C++ 四级 2024 年 09 月”，与 paperId=2024-09-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7-8页题面写明：n行m列、4行4列子矩形、第1与第4行全白、第2与第3行仅第1和第4格白；0白1黑；输入t、n、m及n个01串；输出Yes/No；样例为No/Yes/No；约束1≤t≤10、1≤n,m≤100。网站题面、样例与约束一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，不存在单选题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表索引，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出的目标形态0000/0110/0110/0000、枚举左上角并逐格比对、n<4或m<4直接无解的思路与独立推导一致；三次样例走查与PDF样例输出一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考程序逐格检查每个4×4区域：首末行全为0，中间两行两端为0、中间两格为1；i+3<n、j+3<m保证不越界，n<4或m<4时自然不枚举；复杂度O(t·n·m·16)，在n,m≤100、t≤10内安全。实现与官方参考程序不同但等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小网格",
+            "input": "1\n1 1\n0\n",
+            "output": "No\n",
+            "reason": "n<4且m<4，无法容纳4×4子矩形，必须输出No。"
+          },
+          {
+            "name": "恰好4×4匹配",
+            "input": "1\n4 4\n0000\n0110\n0110\n0000\n",
+            "output": "Yes\n",
+            "reason": "唯一的4×4区域逐格符合0000/0110/0110/0000模式。"
+          },
+          {
+            "name": "尺寸够但中间行错误",
+            "input": "1\n4 5\n00000\n01100\n01110\n00000\n",
+            "output": "No\n",
+            "reason": "第3行中间为111而非0110，所有4×4起点均无法匹配目标模式。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第9页题面：n个正整数序列，q次对区间[l,r]升序排序且在上次结果上累加；输入输出、样例5/3 4 5 2 1/3/4 5/3 4/1 3→1 3 4 5 2，以及1≤n≤100、1≤a_i≤100、1≤q≤100、1≤l_i≤r_i≤n均与网站题面一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "本题为编程题，不存在单选题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表索引，officialAnswer 置 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析中三次区间排序的中间序列[3,4,5,1,2]、[3,4,1,5,2]、[1,3,4,5,2]正确；0-based左闭右开转换begin()+l-1到begin()+r正确；复杂度O(q·n log n)与数据范围相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "参考程序读入n与n个数后，对每次[l,r]调用sort(a.begin()+l-1,a.begin()+r)，原地修改并累积生效；输出空格分隔且末尾换行。l=r时为空操作，边界正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小序列单点排序",
+            "input": "1\n7\n1\n1 1\n",
+            "output": "7\n",
+            "reason": "n=1、l=r=1，排序不改变序列。"
+          },
+          {
+            "name": "全区间逆序排序",
+            "input": "5\n5 4 3 2 1\n1\n1 5\n",
+            "output": "1 2 3 4 5\n",
+            "reason": "对完整区间升序排序，结果应为递增序列。"
+          },
+          {
+            "name": "重叠区间累积排序",
+            "input": "4\n4 3 2 1\n2\n1 2\n2 4\n",
+            "output": "3 1 2 4\n",
+            "reason": "第一次排序[1,2]后为3 4 2 1；第二次在结果上排序[2,4]（4,2,1→1,2,4）得到3 1 2 4。"
+          }
+        ],
+        "unresolved": [
+          "网站 question.template 仍为 int n, m; cin >> n >> m;，与本题实际输入（n、n个数、q、q个区间）不符；五维结构未单列 template 字段，允许修改字段中也未含 template，故保留待修订，未擅自改动。"
+        ]
+      }
+    ],
+    "summary": "26题题面、样例、约束、解析与参考程序一致，参考程序边界和复杂度正确；27题题面、样例、解析与参考程序一致，边界测试覆盖最小序列、全区间排序和重叠区间累积排序；但27题网站的 template 初始化仍错误，因字段限制仅在 unresolved 中标记，建议另行修正 template。两题均为编程题，officialAnswer 不适用。"
+  }
+}

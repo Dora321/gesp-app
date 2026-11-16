@@ -1,0 +1,233 @@
+{
+  "paperId": "2024-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T10:24:18.057Z",
+  "completedAt": "2026-11-16T10:26:01.133Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 53126,
+    "completion_tokens": 5961,
+    "total_tokens": 59087,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4051
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0109494,
+      "allowance": 0.0109494,
+      "tokens": {
+        "input": 53126,
+        "output": 5961,
+        "reasoning": 4051,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "0e2e1bc01a610ee29aff7d23bd55177d6550f5135d542b3ad441d632dcc9db52",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++4级.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "mirrorBytes": 1108545,
+    "shaVerified": true,
+    "sha256": "fe048fa00a33c76db7cc84e925d00d815a4d5dc71ac4d45ecc69503c29a1d657"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证 GESP C++ 四级 2024年09月”，第6页起为“2 判断题（每题2分，共20分）”，与 2024-09-l4（四级、2024年9月）的等级、年月一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第1题原文为“代码 int a = 10; int* p = &a; 可以正确定义指针和初始化指针。”，与站内题面逐字一致；文本层的空格错位系提取问题，第6页原图清晰可辨。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A—D 四选项，站内仅“正确/错误”二元选项，options 维度按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第1格为“√”（题号1—10为 √ √ × × √ × × × × √），按正确=0 映射，officialAnswer=0；站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：int a = 10 定义整型变量 a；&a 取其地址，类型为 int*；int* p = &a 以该地址初始化整型指针，语法与语义均正确，命题成立。站内解析的判定依据（指针定义、取地址初始化、类型匹配）与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立复核 PDF 第6页判断题第1题，题面与站内一致，答案表“√”对应 answer=0，解析推导成立，草稿结论无误，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第2题原文为“在 C++ 中，引用传递允许函数修改传递给它的参数的值。”，与站内题面一致；文本层“用”字错位系提取问题，原图清晰。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A—D 四选项，站内仅“正确/错误”二元选项，options 维度按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第2格为“√”，按正确=0 映射，officialAnswer=0；站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：引用形参是实参的别名，函数内对引用形参的赋值直接作用于调用处的实参，故引用传递允许函数修改传入参数的值，命题正确；与值传递（形参为副本）的区别说明也成立。站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立复核确认题面与站内一致，答案“√”对应 answer=0，解析推导成立，草稿结论无误。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第3题原文为“指针的大小与其所指向的变量的数据类型的大小相同。”，与站内题面一致；文本层的空格错位系提取问题，原图清晰。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A—D 四选项，站内仅“正确/错误”二元选项，options 维度按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第3格为“×”，按错误=1 映射，officialAnswer=1；站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：指针变量存放内存地址，其大小由平台寻址宽度决定（常见32位4字节、64位8字节），与所指对象类型无关——char(1字节)、int(4字节)、double(8字节) 的指针在同平台下大小相同，故“指针大小等于所指类型大小”不成立，命题错误。站内解析结论与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立复核确认题面与站内一致，答案“×”对应 answer=1，解析推导（指针大小与所指类型无关）成立，草稿结论无误。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第4题原文为“二维数组的行的大小必须在定义时确定，列的大小可以动态变化。”，与站内题面一致；文本层的重复“的”及错位系提取问题，原图清晰可辨。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A—D 四选项，站内仅“正确/错误”二元选项，options 维度按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第4格为“×”，按错误=1 映射，officialAnswer=1；站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：C++ 静态二维数组（如 int arr[3][4]）的所有维度均须为编译期常量，行数与列数在定义后均不可动态改变；“列的大小可以动态变化”不成立，故整题命题错误。若需动态行列应使用 vector<vector<int>> 等容器，站内解析的说明亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立复核确认题面（原图读法与站内一致，文本层乱码不构成疑点）与站内一致，答案“×”对应 answer=1，解析推导成立，草稿结论无误。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第5题原文为“递推算法通过逐步求解当前状态和前一个或几个状态之间的关系来解决问题。”，与站内题面一致；文本层“一”“几”二字错位系提取问题，原图清晰。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A—D 四选项，站内仅“正确/错误”二元选项，options 维度按规则不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第5格为“√”，按正确=0 映射，officialAnswer=0；站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：递推算法以已知初始状态为基础，依据状态转移方程由前一个或前几个状态逐级推出后续状态（如斐波那契 f(n)=f(n-1)+f(n-2)），这正是其定义，命题正确。站内解析关于状态转移方程及与递归区别的说明亦成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立复核确认题面与站内一致，答案“√”对应 answer=0，解析推导成立，草稿结论无误。"
+      }
+    ],
+    "summary": "本轮独立复核 PDF 第6页判断题第1—5题（站内题号16—20），逐题对照原图题面与答案表（√ √ × × √）：5题题面均与站内逐字一致（文本层的空格/字符错位均为提取问题，不影响判读），answer 0/0/1/1/0 与答案符号映射全部对应；各题解析经独立推导均成立。判断题的 options、referenceCode 维度不适用，本轮无编程题故无 tests。未发现需要修改的字段，全部 approve，接受 DeepSeek 初核结论。"
+  }
+}
