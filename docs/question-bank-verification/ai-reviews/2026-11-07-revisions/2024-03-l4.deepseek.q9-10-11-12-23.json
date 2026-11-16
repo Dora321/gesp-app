@@ -1,0 +1,232 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    9,
+    10,
+    11,
+    12,
+    23
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:53:37.751Z",
+  "completedAt": "2026-11-16T05:56:45.399Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33450,
+    "completion_tokens": 24102,
+    "total_tokens": 57552,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 21766
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0194787,
+      "allowance": 0.01168722,
+      "tokens": {
+        "input": 33450,
+        "output": 24102,
+        "reasoning": 21766,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c0ab04194b7029e3eacdbf9b8d849355e2a27d98a9cddd305adc845847856b9a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP C++ 四级 2024 年 03 月”，与 paperId=2024-03-l4 及候选标题一致。"
+    },
+    "questions": [
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题题干为“插入排序在最好情况下的时间复杂度是（ ）。”，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页页图选项依次为 A. O(1)、B. O(N/2)、C. O(N)、D. O(N²)；候选以 LaTeX 表示，顺序与含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 9 题为 C，0 起始索引为 2，候选 answer=2；独立推导：已升序时每趟仅比较一次、无元素移动，总比较 N-1 次，复杂度 O(N)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按已升序推导最好情况 N-1 次比较、O(N)；B 为非规范大 O 写法，D 对应平均/最坏情况，答案 C；独立核算未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3-4 页第 10 题给出 struct pass 及 main 中第 11、12 行输出 &XiaoYang 与 &(XiaoYang.no)；候选省略了输出前缀字符串和末尾空行，但保留第 11/12 行注释，X、Y 仍取两个地址值，不改变比较题意。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A. X>Y、B. X==Y、C. X<Y、D. 不确定，与候选顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 10 题为 B，0 起始索引为 1，候选 answer=1；独立推导：标准布局结构体首成员偏移为 0，&XiaoYang 与 &(XiaoYang.no) 数值相等。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出标准布局首成员偏移 0、两者类型不同、name 偏移 4、level 偏移 24（总大小 28），据此排除 A/C/D；独立核算结构体布局与答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 11 题的文件内容为“50 2024 3.16 I / love / GESP!”，代码先循环两次 fin>>line，再 fin>>x，注释 #### 位于输出 x 的行；候选代码语义与逐行结构一致（string line 与 int x 合并排版不改变含义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项为 A. 5、B. 2024、C. 3、D. 0，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 C，0 起始索引为 2，候选 answer=2；独立推导：两次 fin>>line 消耗 50、2024，fin>>x 从 3.16 读取整数前缀 3，故 x=3。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选主体推导正确：两次 fin>>line 消耗 50、2024，fin>>x 从 3.16 读整数前缀 3；但易错提醒中“若后续继续用 double 读取，仍可正常读入 3.16”不成立：字符 '3' 已被 int 提取消耗，流停在 '.'，后续 double 会从 '.' 开始解析（得到 .16，即 0.16），不会重新得到 3.16。该句需改写，答案与选项分析不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (3)**\n\n**核心解析：**\n文件 1.txt 内容按空白（空格、换行）分隔后依次为记号：`50`、`2024`、`3.16`、`I`、`love`、`GESP!`。\n\n1. 循环 `for (int i=0; i<2; i++) fin >> line;` 执行两次，分别读取并消耗前两个记号 `50` 和 `2024`。\n2. 随后执行 `fin >> x;`，此时流中下一个记号是 `3.16`。`x` 是 `int` 类型，`operator>>` 按整数格式解析：成功读入字符 `'3'`，遇到不属于整数格式的字符 `'.'` 时停止（`'.'` 保留在流中），因此 `x` 得到的值为 `3`。\n3. 输出 `x` 的值为 `3`。\n\n**选项逐项分析：**\n- **A 5**：❌ 错误。`5` 是第一个记号 `50` 的十位数字（`50` 的个位是 `0`）；且前两次读取已消耗 `50` 和 `2024`，`x` 不可能读到 `5`。\n- **B 2024**：❌ 错误。`2024` 是第二个记号，已被第二次 `fin >> line` 读取并消耗。\n- **C 3**：✅ 正确。第三个记号 `3.16` 的整数前缀为 `3`，被成功提取到 `int` 变量 `x` 中。\n- **D 0**：❌ 错误。`fin >> x` 成功读取了有效数据 `3`，不会得到未初始化默认值 `0`。\n\n**易错提醒：**\n- 容易忽略 `fin >> line` 会消耗数据，导致误以为 `x` 读取 `50` 或 `2024`。\n- `>>` 读取整数时按最大有效前缀解析，遇到第一个非法字符（这里是 `.`）即停止，该字符不会被消费；若后续继续用 `double` 读取，会从 `.` 开始读入 `.16`（即 0.16），而不是重新得到 3.16。\n\n**考点：** C++ 文件输入流（ifstream）的类型匹配与部分读取机制。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4-5 页第 12 题代码定义 char *s[] 并在循环中输出 *s+i；候选将 for 循环体改为单行，语义与 PDF 第 5 页代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项为 A. 2024、B. 3.16、C. 024、D. 3，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 12 题为 C，0 起始索引为 2，候选 answer=2；独立推导：*s 即 s[0]，*s+0 输出 2024，*s+1 输出 024，第 2 行为 024。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分 *s+i 与 *(s+i)：前者按 (*s)+i 指针算术，i=1 时输出 024；后者第 2 行才会输出 3.16。独立核对运算符优先级与答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 8 题原文为“C++语言中 cout << 9^2 << endl; 会输出81。（ ）”，与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误，不适用单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 8 题为 ×，按正确=0、错误=1 映射为 1，候选 answer=1；独立判断题干“输出 81”错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析覆盖两条路径：加括号后 9^2 按异或得 1001^0010=1011=11；原式因 << 优先级高于 ^ 解析为 (cout<<9)^(2<<endl)，不能编译。独立核对优先级及结论均正确，题干“输出 81”为错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题 9、10、11、12、23。题 9、10、12、23 的题面、选项、答案与解析经页图和答案表独立核对通过；题 10 候选省略输出前缀字符串和末尾空行，但 X、Y 仍取两个地址值，不影响答案。题 11 答案与主要推导正确，但解析中“后续用 double 仍可读入 3.16”不成立：int 提取已消耗字符 3，流停在 '.'，后续 double 会从 '.' 读入 .16（0.16）。已为该题提供修正解析。"
+  }
+}

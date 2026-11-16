@@ -1,0 +1,229 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    24,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T09:59:27.589Z",
+  "completedAt": "2026-11-16T10:01:56.978Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 33554,
+    "completion_tokens": 23605,
+    "total_tokens": 57159,
+    "prompt_tokens_details": {
+      "cached_tokens": 33408
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 21487
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.02857025,
+      "allowance": 0.01714215,
+      "tokens": {
+        "input": 146,
+        "output": 23605,
+        "reasoning": 21487,
+        "cache_read": 33408,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c0ab04194b7029e3eacdbf9b8d849355e2a27d98a9cddd305adc845847856b9a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“CCF 编程能力等级认证”“C++ 四级”“2024年03月”，与 paperId 2024-03-l4 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第9题原文为“小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒子具有路由器的功能。（ ）”，候选题面逐字一致，仅空格排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅“正确/错误”两个判断项，无选择题选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表第9题为√，按正确=0、错误=1映射为0；候选 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析没有把“设置IP地址”直接等同于DHCP分配，而是以WIFI盒子承担家庭网络接入、网关和转发角色论证其具有路由器功能；结论与官方答案一致，论证可接受。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页3.1.1至3.1.3与候选题面逐句相符：字符串相似定义、T组输入、T≤100、长度≤50、仅小写字母及输出相似/不相似均齐；PDF第7页样例输入输出与候选samples一致。3.1.4为考试系统通用提示，省略不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：相似等价于编辑距离≤1。长度差>1直接否；等长时只允许修改至多一处；长度差1时双指针跳过长串一个字符，若出现第二个不匹配则否。候选解析与代码分支均符合此逻辑；5组官方样例复算为similar、similar、similar、not similar、similar。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与PDF第7至8页参考程序同构，等长分支统计不同字符数，长度差1分支跳过长串字符；补充<cmath>后abs(int)可用。独立检查首部插入、尾部多余、两处不匹配等边界均正确；单组时间复杂度O(|A|+|B|)，T≤100、长度≤50，无溢出或性能问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小单组相同",
+            "input": "1\na a\n",
+            "output": "similar\n",
+            "reason": "T=1，A=B且长度为1；题面规定完全相同也相似，独立推得similar。"
+          },
+          {
+            "name": "长度差2",
+            "input": "1\na abc\n",
+            "output": "not similar\n",
+            "reason": "长度差2，一次插入/删除只改变1，修改不改变长度，独立推得not similar。"
+          },
+          {
+            "name": "长度差1中部插入",
+            "input": "1\nabc abxc\n",
+            "output": "similar\n",
+            "reason": "在abc的b后插入x可得abxc，一次插入，独立推得similar。"
+          },
+          {
+            "name": "长度差1两处不匹配",
+            "input": "1\nabc axyc\n",
+            "output": "not similar\n",
+            "reason": "需插入x并把b改为y，共2次操作，双指针在第二次不匹配时否，独立推得not similar。"
+          },
+          {
+            "name": "等长一处不同",
+            "input": "1\nabc abd\n",
+            "output": "similar\n",
+            "reason": "等长且仅末位不同，修改1次即可，独立推得similar。"
+          },
+          {
+            "name": "长度差1尾部多余",
+            "input": "1\nabc abcx\n",
+            "output": "similar\n",
+            "reason": "在abc末尾插入x可得abcx，一次插入，独立推得similar。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第8页3.2.1至3.2.4与候选题面相符：第k天完成k题、n套题单、每天一套且每套只用一次、可不必做完题单、样例4 / 3 1 4 1→3；约束1≤n≤10^6、1≤a_i≤10^9齐全。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按题量升序排序后扫描，day表示已完成天数；若当前题单≥day+1，就用于下一天并day++，否则该题单连当前需求都不满足，后续需求更大必不能用。该贪心保留较大题单给后面的天数，能得到最大连续天数；样例排序[1,1,3,4]复算得3。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码排序后线性扫描，day初值0，条件a[i]≥day+1时day++，实现上述贪心。a_i≤10^9、day≤10^6，int无溢出；n≤10^6，O(n log n)排序可行，样例输出3。PDF第8至9页官方参考程序为等价但较慢的双重扫描实现，候选替代不改变答案。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小n且刚好1题",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1、a1=1满足第1天需1题；第2天无题单可用，独立复算输出1。"
+          },
+          {
+            "name": "全部题单仅1题",
+            "input": "5\n1 1 1 1 1\n",
+            "output": "1\n",
+            "reason": "第1天用一套后，第2天需2题而其余题单均只有1题，独立复算输出1。"
+          },
+          {
+            "name": "题量达到上界",
+            "input": "5\n1000000000 1000000000 1000000000 1000000000 1000000000\n",
+            "output": "5\n",
+            "reason": "a_i=10^9在int范围内且均不小于天数需求，5天全部完成，独立复算输出5。"
+          },
+          {
+            "name": "卡在需求上界",
+            "input": "3\n2 2 2\n",
+            "output": "2\n",
+            "reason": "可完成第1、2天；第3天需3题而所有题单仅2题，独立复算输出2。"
+          },
+          {
+            "name": "样例1",
+            "input": "4\n3 1 4 1\n",
+            "output": "3\n",
+            "reason": "PDF第8页样例；排序为[1,1,3,4]后贪心得3天，独立复算与样例输出一致。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "三题核对完成：24判断题答案√→0正确；26题面、样例、解析和参考代码通过，测试覆盖最小相同、长度差2、中部插入、双不匹配、等长修改和尾部多余；27题面、样例、贪心解析和高效参考代码通过，测试覆盖最小n、全1、最大题量、需求卡界和官方样例。未发现需修改字段或待决争议。"
+  }
+}

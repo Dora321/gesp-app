@@ -1,0 +1,700 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    23,
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:51:44.036Z",
+  "completedAt": "2026-11-16T10:12:22.825Z",
+  "finishReason": "stop",
+  "inputSha256": "c0ab04194b7029e3eacdbf9b8d849355e2a27d98a9cddd305adc845847856b9a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示「CCF 编程能力等级认证 / C++ 四级 / 2024 年 03 月」，与 2024-03-l4 完全对应。\nPDF 第 1 页卷头为“CCF 编程能力等级认证 GESP / C++ 四级 / 2024 年 03 月”，与 paperId=2024-03-l4（2024 年 3 月 C++ 四级）一致。\nPDF 第1页卷头为「CCF 编程能力等级认证」「C++ 四级」「2024 年 03 月」，与 paperId 2024-03-l4 的等级、年份、月份一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干「若函数声明为 int f(int &x){ x+=3; return x; } ，则对声明的变量 int a=3 ，下面哪个调用能够改变 a 的值( )。」与候选逐字一致（仅空格排版差异），代码片段 f(int &x){ x+=3; return x; } 与 int a=3 均完整保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页原图选项依次为 A. f(&a); 、B. f(*a); 、C. f(a); 、D. f(a-3);，与候选顺序及内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第1题答案为 C，0 起始索引为 2，候选 answer=2 一致。独立推导：int &x 为非 const 左值引用，仅 f(a) 以左值变量直接绑定引用，函数内 x+=3 即修改 a（3→6）；A 传 int* 与形参类型不匹配、B 对非指针解引用为语法错误、D 的 a-3 为右值不能绑定非 const 左值引用，均无法改变 a。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已修正原「const 引用不能绑定临时对象」的技术错误，现正确表述为「若形参是 const int& 则可以绑定临时对象，但本题不是这种情形」，与 C++ 语义相符。独立复核四个选项的否定理由（A 类型不匹配、B 非指针解引用、C 正确、D 右值绑定限制）均无技术错误，结论 C 与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选解析为此前修正后的版本，经我独立验证 const 左值引用可绑定右值临时对象这一表述正确，D 项错误的真正机理（非 const 左值引用不能绑定右值）阐述无误，A/B/C 分析亦逐一核对无误，答案映射 C=2 与 PDF 答案表一致，无需进一步修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题题干「对二维数组 int arr[3][16]; ，若 arr 的地址是 0x28cbc0 ，则 arr[1] 的值是（ ）。」与候选一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第2页原图选项为 A. 0x28cbc4、B. 0x28cbd0、C. 0x28cc00、D. 不确定；候选 options [0x28cbc4, 0x28cbd0, 0x28cc00, 不确定] 的 D 项已为「不确定」，与原卷一致（此前网站误作 0x28cc40 的问题已消除）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第5题为 C，0 起始索引为 2，候选 answer=2 一致。独立计算：int 占 4 字节，每行 16 个 int 共 64 字节即 0x40，0x28cbc0+0x40=0x28cc00（0xc0+0x40 进位使 cb 变 cc），C 为正确项；候选 D 项改为「不确定」不影响答案索引映射。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选按 D=不确定重写，A 项归因已纠正为「相对 arr 偏移 4 字节（一个 int）」，不再含此前「误以为 int 占 1 字节」的错误表述。独立验算：0x28cbc0+0x40=0x28cc00（C 正确）、+0x10=0x28cbd0（B 为 4 个 int 的偏移）、每行大小与首地址均确定故 D 不成立，全部无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选 options 的 D 项「不确定」经我对照 PDF 第2页原图独立确认与原卷一致；解析中 A 项的偏移归因（4 字节=一个 int）与 B 项偏移 0x10 的验算均经我独立复核无误，0x28cbc0+0x40=0x28cc00 进位过程正确，答案 C=2 不受 D 项文字修正影响，无需进一步修改。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页代码为 int main() { char *p=\"I love GESP!\"; cout << p+5 << endl; cout << endl; return 0; }，与候选题面逐行一致（候选添加 ```cpp 围栏与行号省略属排版等价转换，语义未变）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. e、B. I lov、C. e GESP!、D. GESP!，与候选顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第6题为 C，0 起始索引为 2，候选 answer=2 一致。独立推导：\"I love GESP!\" 下标 0='I'、1=空格、2='l'、3='o'、4='v'、5='e'、6=空格、7='G'…，p+5 指向下标 5 的 'e'，cout 输出 char* 时从该地址逐字符输出至 '\\0'，得「e GESP!」。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已修正原解析 B 项「p+2 输出 I lov」的事实错误，现明确 p+2 的输出是 love GESP!；下标枚举（12 个字符，下标 0–11）、A 需 *(p+5) 或 p[5] 输出单字符、D 对应 p+7 均经独立验证无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选解析为此前修正后的版本，经我独立复核，B 项否定理由（p+2 输出 love GESP! 而非 I lov，I lov 不是任何 p+n 的完整输出）成立，核心推导 p+5→「e GESP!」与官方答案 C 一致，各选项分析无技术错误，无需进一步修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页末为题干「第 7 题 下面C++代码执行以后输出的是（ ）。」，PDF 第3页代码为全局 int rc=5;，main 内定义 int rc; 后执行 cout << ++rc << endl; cout << endl; return 0;，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. 0、B. 1、C. 6、D. 不确定，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第7题为 D，0 起始索引为 3，候选 answer=3 一致。独立推导：main 内同名局部 int rc 未初始化且屏蔽全局 rc=5，++rc 为先读后写的自增运算，读取未初始化自动变量属未定义行为，输出无语言保证，故选「不确定」。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已重写原 A/B 项混乱分析——A 项现说明「即便某实现恰好将局部变量置 0，++rc 的结果也是 1 而非 0」，B 项现表述为「实现相关结果而非标准保证」，二者区分清晰；C 项「全局变量已被屏蔽不会参与运算」正确。未定义行为的核心结论经独立验证无误，与官方答案 D 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选解析为重写后版本，经我独立复核，A 项（0 无依据，置 0 时输出应为 1）与 B 项（实现相关而非标准保证）的区分逻辑自洽，全局变量被局部同名变量屏蔽且未初始化读取构成未定义行为的结论正确，答案 D=3 与 PDF 答案表一致，无需进一步修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页函数为 int fib(int n) { int i, f[n]={0, 1}; for(int i=2; i<=n; i++) f[i]=f[i-1]+f[i-2]; return f[n]; }，与候选题面一致（仅换行排版差异，内层 for(int i=…) 遮蔽外层 i 的原文细节已忠实保留）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第3页原图选项依次为 A. 递推、B. 递归、C. 迭代、D. 循环；候选 options [递推, 递归, 迭代, 循环] 的 D 项已为「循环」，与原卷一致（此前网站误作「分治」的问题已消除）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第8题为 A，0 起始索引为 0，候选 answer=0 一致。独立推导：初始化给出 f[0]=0、f[1]=1 作为初始条件，循环按 f[i]=f[i-1]+f[i-2] 自底向上由前两项逐项求值至 f[n]，无函数自调用，属递推；D 项文字修正不影响答案索引映射。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已按 PDF 实际四选项（递推/递归/迭代/循环）重写，不再基于错误的「分治」展开。独立复核：B 项否定理由（无函数自调用）、C/D 项「实现手段而非算法思想名称」的辨析均成立；附注 int f[n] 为变长数组（VLA）、依赖 GCC 扩展而非标准 C++ 属实，且不影响算法类型判断，结论 A 与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选 options 的 D 项「循环」经我对照 PDF 第3页原图独立确认与原卷一致；解析按实际四选项重写后，递推（由初始条件与递推关系自底向上求值）的判定与「递归需函数自调用」的否定理由均经我独立验证成立，VLA 附注属实，答案 A=0 不受 D 项文字修正影响，无需进一步修改。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 9 题题干“插入排序在最好情况下的时间复杂度是（ ）。”，与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页页图选项依次为 A. O(1)、B. O(N/2)、C. O(N)、D. O(N²)（该页文本层选项为空，以页图为准）；候选以 LaTeX $O(1)$、$O(N/2)$、$O(N)$、$O(N^2)$ 表示，顺序与含义一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 9 题为 C，0 起始索引 2，候选 answer=2。独立推导：序列已升序时每个元素只需与前一个元素比较 1 次即确认位置、无元素后移，总比较 N-1 次，为线性量级 O(N)，对应选项 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的最好情况推导（N-1 次比较、无后移、O(N)）经独立验算正确；对 B 的否定理由（非规范大 O 记法，按渐进阶与 O(N) 同阶，且最好情况比较次数为 N-1 而非 N/2）与对 D 的说明（第 i 个元素平均约 i/2 次比较、平均总比较约 N²/4，属平均/最坏情况）均符合插入排序复杂度分析，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题面、选项（经页图确认四个复杂度记法及顺序）、答案 C 与解析各选项分析均经独立推导核对无误，无需修改，网站候选即最终值。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4,
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3-4 页给出 struct pass{ int no; char name[20]; int level; };，main 中第 11、12 行分别为 cout << “&XiaoYang=” << &XiaoYang << endl; 与 cout << “&(XiaoYang.no)=” << &(XiaoYang.no) << endl;。候选省略输出前缀字符串 “&XiaoYang=”/“&(XiaoYang.no)=” 及末尾空行，但保留 //第11行、//第12行 注释标识对应语句，X、Y 仍分别为两地址值，比较题意不变，属等价转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图选项 A. X>Y、B. X==Y、C. X<Y、D. 不确定，与候选顺序及内容一致（仅空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 10 题为 B，0 起始索引 1，候选 answer=1。独立推导：standard-layout 结构体首成员 no 相对对象起始偏移为 0，&XiaoYang 与 &(XiaoYang.no) 数值相等，X==Y。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算结构体布局：no 偏移 0-3、name 偏移 4-23、level 因 4 字节对齐位于偏移 24-27，总大小 28，与解析一致；首成员偏移 0 为标准保证、两者指针类型不同（struct pass* 与 int*）的提示正确，A/C/D 的排除理由成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：候选省略的输出前缀字符串仅为输出标签，不影响“比较两地址值”的题意，行号注释已标识对应语句；结构体各成员偏移与答案 B 经独立验证无误，网站候选即最终值。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页文件内容框为三行“50 2024 3.16 I / love / GESP!”，代码依次为 ifstream fin; string line; int x; fin.open(\"1.txt\",ios::in); for(i<2){fin>>line; cout<<line<<endl;} fin>>x; cout<<x<<endl; //####。候选将 string line 与 int x 合并一行、省略空行，属排版等价，语义未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项 A. 5、B. 2024、C. 3、D. 0，与候选文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 C，0 起始索引 2，候选 answer=2。独立推导：两次 fin>>line 消耗记号 50、2024，fin>>x 按 int 前缀从 3.16 提取 3（'.' 留在流中），x=3，对应选项 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选易错提醒中“若后续继续用 double 读取，仍可正常读入 3.16”不成立——int 提取已消耗字符 '3'，流停在 '.'，后续 double 提取将从 '.' 开始按 strtod 规则读入 .16（即 0.16），不能重新得到 3.16；已按此修正该句。其余内容（记号切分、两次 line 消耗 50/2024、int 前缀解析得 3、四个选项分析）经独立验证无误，答案 C 不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (3)**\n\n**核心解析：**\n文件 1.txt 内容按空白（空格、换行）分隔后依次为记号：`50`、`2024`、`3.16`、`I`、`love`、`GESP!`。\n\n1. 循环 `for (int i=0; i<2; i++) fin >> line;` 执行两次，分别读取并消耗前两个记号 `50` 和 `2024`。\n2. 随后执行 `fin >> x;`，此时流中下一个记号是 `3.16`。`x` 是 `int` 类型，`operator>>` 按整数格式解析：成功读入字符 `'3'`，遇到不属于整数格式的字符 `'.'` 时停止（`'.'` 保留在流中），因此 `x` 得到的值为 `3`。\n3. 输出 `x` 的值为 `3`。\n\n**选项逐项分析：**\n- **A 5**：❌ 错误。`5` 是第一个记号 `50` 的十位数字（`50` 的个位是 `0`）；且前两次读取已消耗 `50` 和 `2024`，`x` 不可能读到 `5`。\n- **B 2024**：❌ 错误。`2024` 是第二个记号，已被第二次 `fin >> line` 读取并消耗。\n- **C 3**：✅ 正确。第三个记号 `3.16` 的整数前缀为 `3`，被成功提取到 `int` 变量 `x` 中。\n- **D 0**：❌ 错误。`fin >> x` 成功读取了有效数据 `3`，不会得到未初始化默认值 `0`。\n\n**易错提醒：**\n- 容易忽略 `fin >> line` 会消耗数据，导致误以为 `x` 读取 `50` 或 `2024`。\n- `>>` 读取整数时按最大有效前缀解析，遇到第一个非法字符（这里是 `.`）即停止，该字符不会被消费；若后续继续用 `double` 读取，会从 `.` 开始读入 `.16`（即 0.16），而不是重新得到 3.16。\n\n**考点：** C++ 文件输入流（ifstream）的类型匹配与部分读取机制。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受 DeepSeek 初核对该句的修正并经独立复核确认：int 提取消耗 '3' 后流位于 '.'，后续 double 提取得到 0.16 而非 3.16，原候选“仍可正常读入 3.16”为事实错误；修正句独立验证成立，解析其余内容与官方答案 C 无冲突，予以采纳。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5,
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末题干“执行下列C++代码时输出中的第2行是（ ）”；PDF 第 5 页代码为 char *s[]={(char*)“2024”,(char*)“3.16”,(char*)“GESP”}; 与 for (int i=0; i< 2; i++){ cout << *s+i << endl; } 及 cout << endl; return 0;。候选将 for 循环体压成一行，语义与 PDF 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页页图选项 A. 2024、B. 3.16、C. 024、D. 3，与候选文字及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 12 题为 C，0 起始索引 2，候选 answer=2。独立推导：*s 即 s[0] 指向 “2024”，i=0 输出 2024，i=1 时 *s+1 指向下标 1 的 '0'，输出 024，第 2 行为 024。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确区分 *s+i（按 (*s)+i 解析，单目 * 优先级高于加法）与 *(s+i)：前者第 2 行输出 024，后者第 2 行才会输出 3.16；对 D 的说明（'3' 来自 s[1] 所指的 3.16，2024 中不含字符 3）正确。独立核对优先级、指针算术与两行输出结果无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：题面、选项、答案 C 与解析的优先级/指针算术推导均独立复核通过，无需修改，网站候选即最终值。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 8 题原文“C++语言中 cout << 9^2 << endl; 会输出81。（ ）”，与候选仅空格排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题固定为正确/错误两项，无单选 options 维度。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 8 题为 ×，按正确=0、错误=1 映射为 1，候选 answer=1。独立判断：无论按加括号后的异或（9^2=11）还是按原式优先级解析（不能编译），程序都不会输出 81，题干说法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析两条路径均经独立验证：①加括号时 ^ 为按位异或，1001^0010=1011=十进制 11；②<< 优先级高于 ^，原式解析为 (cout<<9)^(2<<endl)，其中 2<<endl 无匹配重载、ostream 亦无 operator^，表达式不能编译。两路径下题干“输出 81”均为错误，与官方答案 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：官方答案 × 与候选 answer=1 一致；解析对异或语义与运算符优先级（<< 高于 ^，原式不可编译）的论述经独立核对无误，网站候选即最终值。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第9题原文「小杨今年春节回奶奶家了，奶奶家的数字电视要设置ip地址并接入到WIFI盒子才能收看节目，那这个WIFI盒子具有路由器的功能。（ ）」与候选题面逐字一致，仅 ip地址/WIFI盒子 处空格排版差异，不改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅「正确/错误」两个判断项，无单选选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第5页判断题答案表（页图与文本层一致）第9题为 √，按 正确=0/错误=1 映射为 0；候选 answer=0，一致。同表第8题为 ×，与相邻题目已知结论互洽，排除串位可能。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选解析未再把「设置IP地址」直接归因于 DHCP 分配，而是以该 WIFI 盒子承担家庭网络接入入口/网关、接入与转发角色论证其具有路由器功能，并显式辨析「设置IP」不必然等于由盒子分配IP；我独立复核该推理链自洽，结论「正确」与官方答案表第9题 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：我独立读取 PDF 第5页判断题答案表页图确认第9题为 √（映射 0），题面与第6页原文逐字相符；候选解析已采用「接入入口/网关角色」论证并区分「设置IP」与「DHCP分配」，经独立复核无过度断言，结论正确。网站当前数据与原卷一致，无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选题面已包含 PDF 第6页 3.1.2 的约束「保证 T≤100，A,B 的长度不超过 50。保证 A 和 B 只包含小写字母」及 3.1.3 的完整输出表述「输出 T 行，对于每组 A,B，如果它们相似，则输出 similar，否则输出 not similar」；经与 3.1.1 相似定义、apple 示例、「特别地，完全相同的两个字符串也是相似的」逐句对照一致（「他们/它们」为源卷用词差异，不改变含义）；PDF 第7页 3.1.5/3.1.6 样例与候选 samples 逐行一致；3.1.4 特别提醒属考试系统输入输出提示，省略不改变题意。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：相似等价于编辑距离≤1。长度差>1 直接否；等长时统计对应位置不同数≤1（允许完全相同或修改一处）；长度差1时双指针遇不匹配跳过长串一个字符、出现第二次不匹配即否。按此复算官方5组样例得 similar/similar/similar/not similar/similar，与 PDF 第7页 3.1.6 一致；反例 abc/axyc 需插入加修改共2次操作判否，与解析逻辑相符。候选解析的分支描述、样例走查与易错提醒均与此推导一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与 PDF 第7-8页参考程序同构（等长统计差异、长度差1双指针跳长串、主流程读 T 组输出 similar/not similar），补 <cmath> 使 abs(int) 明确可用属合理修复。独立边界验证：首部插入 abc/xabc、中部插入 abc/abxc、尾部插入 abc/abcx 均判 similar，两处不匹配 abc/axyc 判 not similar，长度差2 a/abc 判 not similar；(m<n)?A:B 为同类型左值条件表达式，绑定非 const 引用合法；单组 O(|A|+|B|)，T≤100、长度≤50 无性能或溢出问题。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小单组相同",
+            "input": "1\na a\n",
+            "output": "similar\n",
+            "reason": "T=1 且 A=B（长度1）；题面规定完全相同也相似，独立推得 similar。"
+          },
+          {
+            "name": "长度差2",
+            "input": "1\na abc\n",
+            "output": "not similar\n",
+            "reason": "长度差为2，一次插入/删除只改变长度1、修改不改变长度，独立推得 not similar。"
+          },
+          {
+            "name": "长度差1首部插入",
+            "input": "1\nabc xabc\n",
+            "output": "similar\n",
+            "reason": "首位插入 x 一次可得；双指针首字符不匹配计差异1并跳过长串字符后全部匹配，独立复算 similar。"
+          },
+          {
+            "name": "长度差1中部插入",
+            "input": "1\nabc abxc\n",
+            "output": "similar\n",
+            "reason": "在 b 与 c 之间插入 x 一次可得；双指针在 c/x 处计差异1后长串走完，独立复算 similar。"
+          },
+          {
+            "name": "长度差1尾部插入",
+            "input": "1\nabc abcx\n",
+            "output": "similar\n",
+            "reason": "末尾插入 x 一次可得；前三字符全匹配后短串走完循环结束，独立复算 similar。"
+          },
+          {
+            "name": "长度差1两处不匹配",
+            "input": "1\nabc axyc\n",
+            "output": "not similar\n",
+            "reason": "需插入 x 并把 b 改为 y 共2次操作；双指针第二次不匹配即判否，独立复算 not similar。"
+          },
+          {
+            "name": "等长一处不同",
+            "input": "1\nabc abd\n",
+            "output": "similar\n",
+            "reason": "等长且仅末位不同，修改1次即可，独立复算 similar。"
+          },
+          {
+            "name": "等长两处不同",
+            "input": "1\nabcd abxy\n",
+            "output": "not similar\n",
+            "reason": "等长且第3、4位均不同，需2次修改，独立复算 not similar。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面缺失的输入约束与输出 T 行表述已按 PDF 第6页补齐，我逐句对照确认；解析的编辑距离≤1判定逻辑与5组官方样例走查经独立复算通过；参考代码与官方程序同构、补 <cmath> 合理，首部/中部/尾部插入、两处不匹配、长度差2等边界独立验证正确，复杂度满足 T≤100、长度≤50；tests 期望输出均由我独立推得（含新增首部插入与等长两处不同两组）。无否决项，changes 为空。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选题面已包含 PDF 第8页 3.2.4 下方的数据范围「对于全部数据，保证 1≤n≤10^6，1≤a_i≤10^9」及 3.2.3 输出格式原文「输出一行，小杨同学偷懒前最多做题天数」；经与 3.2.1 题目描述（第 k 天必须完成 k 道题、每套题单只用一次、每天只用一套、可不必做完题单内所有题）、3.2.2 输入格式逐句对照一致（「1个数」与「一个整数」为等价表述）；3.2.4 样例 4 / 3 1 4 1 → 3 与候选 samples 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方选项答案索引，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：第 k 天需一套题量≥k 的未用题单；按题量升序排序后扫描，a[i]≥day+1 则消耗该题单完成下一天并 day++，否则该题单连当前需求都不满足且后续需求只增，必不能再可用——该贪心把小题单留给小需求、大题单留给高需求天，交换论证可得最大天数。复算样例排序 [1,1,3,4]：1≥1→day=1，1<2 弃，3≥2→day=2，4≥3→day=3，输出 3 与 PDF 样例一致；全1的 n 套→1天、每套≥n→n天等推论自洽；复杂度 O(n log n)。候选解析与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码排序+线性贪心正确：day≤10^6、a_i≤10^9<2^31-1，int 无溢出；n≤10^6 下 O(n log n) 排序可行。与 PDF 第8-9页官方参考程序（外层 j=1..m、内层自 s 起找首个 a[k]≥j 后 ans++/a[k]=j/s=k）在样例 [3,1,4,1]、全1、[2,2,2]、[1,1,5] 等情形产出逐一等价（均分别得 3/1/2/2）；官方双重循环在全1序列时最坏约 O(n²)，与 n≤10^6 不匹配，属源卷参考程序自身特征，候选以其等价高效实现替代属合理处理，该差异在此记录，不影响本维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小n且刚好1题",
+            "input": "1\n1\n",
+            "output": "1\n",
+            "reason": "n=1、a1=1 满足第1天需1题；第2天无题单可用，独立复算输出1。"
+          },
+          {
+            "name": "全部题单仅1题",
+            "input": "5\n1 1 1 1 1\n",
+            "output": "1\n",
+            "reason": "第1天用一套后，第2天需2题而其余题单均只有1题，独立复算输出1。"
+          },
+          {
+            "name": "题量达到上界",
+            "input": "5\n1000000000 1000000000 1000000000 1000000000 1000000000\n",
+            "output": "5\n",
+            "reason": "a_i=10^9 在 int 范围内且均不小于当天需求，5天全部完成，独立复算输出5。"
+          },
+          {
+            "name": "卡在需求上界",
+            "input": "3\n2 2 2\n",
+            "output": "2\n",
+            "reason": "可完成第1、2天；第3天需3题而所有题单仅2题，独立复算输出2。"
+          },
+          {
+            "name": "大题单需跨日保留",
+            "input": "3\n1 1 5\n",
+            "output": "2\n",
+            "reason": "排序[1,1,5]：1≥1记第1天，第二个1<2弃用，5≥2记第2天；第3天无剩余题单≥3，独立复算输出2。"
+          },
+          {
+            "name": "样例1",
+            "input": "4\n3 1 4 1\n",
+            "output": "3\n",
+            "reason": "PDF第8页样例；排序为[1,1,3,4]后贪心得3天，独立复算与样例输出一致。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：数据范围与输出表述已按 PDF 第8页补齐并经我逐句对照确认；排序+贪心解析经独立推导与样例复算核验；参考代码排序+线性贪心正确、无溢出，n≤10^6 下 O(n log n) 可行，且与官方双重循环程序在多组情形产出等价——官方参考程序全1时最坏约 O(n²) 属源卷自身特征，已记录于 referenceCode 依据中，不列为网站待决事项；tests 期望输出均由我独立推得（含新增 [1,1,5] 一组）。无否决项，changes 为空。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        5,
+        6,
+        7,
+        8
+      ],
+      "usage": {
+        "prompt_tokens": 49682,
+        "completion_tokens": 7664,
+        "total_tokens": 57346,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4713
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0112843,
+          "allowance": 0.0112843,
+          "tokens": {
+            "input": 49682,
+            "output": 7664,
+            "reasoning": 4713,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T05:51:44.036Z",
+      "completedAt": "2026-11-16T05:53:37.748Z"
+    },
+    {
+      "questionIds": [
+        9,
+        10,
+        11,
+        12,
+        23
+      ],
+      "usage": {
+        "prompt_tokens": 50478,
+        "completion_tokens": 16977,
+        "total_tokens": 67455,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13744
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0160602,
+          "allowance": 0.0160602,
+          "tokens": {
+            "input": 50478,
+            "output": 16977,
+            "reasoning": 13744,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T06:01:40.407Z",
+      "completedAt": "2026-11-16T06:06:17.962Z"
+    },
+    {
+      "questionIds": [
+        24,
+        26,
+        27
+      ],
+      "usage": {
+        "prompt_tokens": 49853,
+        "completion_tokens": 17113,
+        "total_tokens": 66966,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 14059
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.01603445,
+          "allowance": 0.01603445,
+          "tokens": {
+            "input": 49853,
+            "output": 17113,
+            "reasoning": 14059,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T10:07:18.441Z",
+      "completedAt": "2026-11-16T10:12:22.825Z"
+    }
+  ]
+}

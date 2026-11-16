@@ -1,0 +1,238 @@
+{
+  "paperId": "2024-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    5,
+    6,
+    7,
+    8
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T05:51:44.036Z",
+  "completedAt": "2026-11-16T05:53:37.748Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 49682,
+    "completion_tokens": 7664,
+    "total_tokens": 57346,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4713
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0112843,
+      "allowance": 0.0112843,
+      "tokens": {
+        "input": 49682,
+        "output": 7664,
+        "reasoning": 4713,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c0ab04194b7029e3eacdbf9b8d849355e2a27d98a9cddd305adc845847856b9a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++4级.pdf",
+    "mirrorSha": "0513f1866c7b36e9747223ff21a1441a50f41093",
+    "mirrorBytes": 1088838,
+    "shaVerified": true,
+    "sha256": "020795cd8e03585a1918383340c4be22a5703b7c8098e7eb8f77e0d2d36b8246"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示「CCF 编程能力等级认证 / C++ 四级 / 2024 年 03 月」，与 2024-03-l4 完全对应。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干「若函数声明为 int f(int &x){ x+=3; return x; } ，则对声明的变量 int a=3 ，下面哪个调用能够改变 a 的值( )。」与候选逐字一致（仅空格排版差异），代码片段 f(int &x){ x+=3; return x; } 与 int a=3 均完整保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页原图选项依次为 A. f(&a); 、B. f(*a); 、C. f(a); 、D. f(a-3);，与候选顺序及内容完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第1题答案为 C，0 起始索引为 2，候选 answer=2 一致。独立推导：int &x 为非 const 左值引用，仅 f(a) 以左值变量直接绑定引用，函数内 x+=3 即修改 a（3→6）；A 传 int* 与形参类型不匹配、B 对非指针解引用为语法错误、D 的 a-3 为右值不能绑定非 const 左值引用，均无法改变 a。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已修正原「const 引用不能绑定临时对象」的技术错误，现正确表述为「若形参是 const int& 则可以绑定临时对象，但本题不是这种情形」，与 C++ 语义相符。独立复核四个选项的否定理由（A 类型不匹配、B 非指针解引用、C 正确、D 右值绑定限制）均无技术错误，结论 C 与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选解析为此前修正后的版本，经我独立验证 const 左值引用可绑定右值临时对象这一表述正确，D 项错误的真正机理（非 const 左值引用不能绑定右值）阐述无误，A/B/C 分析亦逐一核对无误，答案映射 C=2 与 PDF 答案表一致，无需进一步修改。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题题干「对二维数组 int arr[3][16]; ，若 arr 的地址是 0x28cbc0 ，则 arr[1] 的值是（ ）。」与候选一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第2页原图选项为 A. 0x28cbc4、B. 0x28cbd0、C. 0x28cc00、D. 不确定；候选 options [0x28cbc4, 0x28cbd0, 0x28cc00, 不确定] 的 D 项已为「不确定」，与原卷一致（此前网站误作 0x28cc40 的问题已消除）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第5题为 C，0 起始索引为 2，候选 answer=2 一致。独立计算：int 占 4 字节，每行 16 个 int 共 64 字节即 0x40，0x28cbc0+0x40=0x28cc00（0xc0+0x40 进位使 cb 变 cc），C 为正确项；候选 D 项改为「不确定」不影响答案索引映射。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选按 D=不确定重写，A 项归因已纠正为「相对 arr 偏移 4 字节（一个 int）」，不再含此前「误以为 int 占 1 字节」的错误表述。独立验算：0x28cbc0+0x40=0x28cc00（C 正确）、+0x10=0x28cbd0（B 为 4 个 int 的偏移）、每行大小与首地址均确定故 D 不成立，全部无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选 options 的 D 项「不确定」经我对照 PDF 第2页原图独立确认与原卷一致；解析中 A 项的偏移归因（4 字节=一个 int）与 B 项偏移 0x10 的验算均经我独立复核无误，0x28cbc0+0x40=0x28cc00 进位过程正确，答案 C=2 不受 D 项文字修正影响，无需进一步修改。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页代码为 int main() { char *p=\"I love GESP!\"; cout << p+5 << endl; cout << endl; return 0; }，与候选题面逐行一致（候选添加 ```cpp 围栏与行号省略属排版等价转换，语义未变）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页选项依次为 A. e、B. I lov、C. e GESP!、D. GESP!，与候选顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第6题为 C，0 起始索引为 2，候选 answer=2 一致。独立推导：\"I love GESP!\" 下标 0='I'、1=空格、2='l'、3='o'、4='v'、5='e'、6=空格、7='G'…，p+5 指向下标 5 的 'e'，cout 输出 char* 时从该地址逐字符输出至 '\\0'，得「e GESP!」。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已修正原解析 B 项「p+2 输出 I lov」的事实错误，现明确 p+2 的输出是 love GESP!；下标枚举（12 个字符，下标 0–11）、A 需 *(p+5) 或 p[5] 输出单字符、D 对应 p+7 均经独立验证无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选解析为此前修正后的版本，经我独立复核，B 项否定理由（p+2 输出 love GESP! 而非 I lov，I lov 不是任何 p+n 的完整输出）成立，核心推导 p+5→「e GESP!」与官方答案 C 一致，各选项分析无技术错误，无需进一步修改。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页末为题干「第 7 题 下面C++代码执行以后输出的是（ ）。」，PDF 第3页代码为全局 int rc=5;，main 内定义 int rc; 后执行 cout << ++rc << endl; cout << endl; return 0;，与候选题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项依次为 A. 0、B. 1、C. 6、D. 不确定，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第7题为 D，0 起始索引为 3，候选 answer=3 一致。独立推导：main 内同名局部 int rc 未初始化且屏蔽全局 rc=5，++rc 为先读后写的自增运算，读取未初始化自动变量属未定义行为，输出无语言保证，故选「不确定」。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已重写原 A/B 项混乱分析——A 项现说明「即便某实现恰好将局部变量置 0，++rc 的结果也是 1 而非 0」，B 项现表述为「实现相关结果而非标准保证」，二者区分清晰；C 项「全局变量已被屏蔽不会参与运算」正确。未定义行为的核心结论经独立验证无误，与官方答案 D 相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选解析为重写后版本，经我独立复核，A 项（0 无依据，置 0 时输出应为 1）与 B 项（实现相关而非标准保证）的区分逻辑自洽，全局变量被局部同名变量屏蔽且未初始化读取构成未定义行为的结论正确，答案 D=3 与 PDF 答案表一致，无需进一步修改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页函数为 int fib(int n) { int i, f[n]={0, 1}; for(int i=2; i<=n; i++) f[i]=f[i-1]+f[i-2]; return f[n]; }，与候选题面一致（仅换行排版差异，内层 for(int i=…) 遮蔽外层 i 的原文细节已忠实保留）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "修复后核验通过：PDF 第3页原图选项依次为 A. 递推、B. 递归、C. 迭代、D. 循环；候选 options [递推, 递归, 迭代, 循环] 的 D 项已为「循环」，与原卷一致（此前网站误作「分治」的问题已消除）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页单选答案表第8题为 A，0 起始索引为 0，候选 answer=0 一致。独立推导：初始化给出 f[0]=0、f[1]=1 作为初始条件，循环按 f[i]=f[i-1]+f[i-2] 自底向上由前两项逐项求值至 f[n]，无函数自调用，属递推；D 项文字修正不影响答案索引映射。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选已按 PDF 实际四选项（递推/递归/迭代/循环）重写，不再基于错误的「分治」展开。独立复核：B 项否定理由（无函数自调用）、C/D 项「实现手段而非算法思想名称」的辨析均成立；附注 int f[n] 为变长数组（VLA）、依赖 GCC 扩展而非标准 C++ 属实，且不影响算法类型判断，结论 A 与官方答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核 approve 结论：候选 options 的 D 项「循环」经我对照 PDF 第3页原图独立确认与原卷一致；解析按实际四选项重写后，递推（由初始条件与递推关系自底向上求值）的判定与「递归需函数自调用」的否定理由均经我独立验证成立，VLA 附注属实，答案 A=0 不受 D 项文字修正影响，无需进一步修改。"
+      }
+    ],
+    "summary": "独立复核 2024-03-l4 第 1、5、6、7、8 题：基于 PDF 第 1–3 页页图与文本层逐项对照题面、选项顺序与内容，并依据第 1 页答案表（C/C/C/D/A）独立推导答案映射（索引 2/2/2/3/0），五题题面、选项、答案均与原卷一致；候选解析为此前修订后的版本，经我逐项独立验证（题1 的 const 引用可绑定右值表述、题5 的 0x28cbc0+0x40=0x28cc00 进位计算与 A 项归因、题6 的 p+2 输出 love GESP! 修正、题7 的未定义行为结论与 A/B 项区分、题8 的 D 项「循环」与递推判定）均无技术错误，五题对应维度「修复后核验通过」。初核 approve 结论全部可靠，未发现需否决的修改，无需追加 changes；单选题无 tests 适用。"
+  }
+}

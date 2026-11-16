@@ -1,0 +1,256 @@
+{
+  "paperId": "2024-03-l4",
+  "integratedAt": "2026-11-16T10:12:24.508Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 5,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 7,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 10,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 12,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 23,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 11,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：C (3)**\n\n**核心解析：**\n文件 1.txt 内容按空白（空格、换行）分隔后依次为记号：`50`、`2024`、`3.16`、`I`、`love`、`GESP!`。\n\n1. 循环 `for (int i=0; i<2; i++) fin >> line;` 执行两次，分别读取并消耗前两个记号 `50` 和 `2024`。\n2. 随后执行 `fin >> x;`，此时流中下一个记号是 `3.16`。`x` 是 `int` 类型，`operator>>` 按整数格式解析：成功读入字符 `'3'`，遇到不属于整数格式的字符 `'.'` 时停止（`'.'` 保留在流中），因此 `x` 得到的值为 `3`。\n3. 输出 `x` 的值为 `3`。\n\n**选项逐项分析：**\n- **A 5**：❌ 错误。`5` 是第一个记号 `50` 的十位数字（`50` 的个位是 `0`）；且前两次读取已消耗 `50` 和 `2024`，`x` 不可能读到 `5`。\n- **B 2024**：❌ 错误。`2024` 是第二个记号，已被第二次 `fin >> line` 读取并消耗。\n- **C 3**：✅ 正确。第三个记号 `3.16` 的整数前缀为 `3`，被成功提取到 `int` 变量 `x` 中。\n- **D 0**：❌ 错误。`fin >> x` 成功读取了有效数据 `3`，不会得到未初始化默认值 `0`。\n\n**易错提醒：**\n- 容易忽略 `fin >> line` 会消耗数据，导致误以为 `x` 读取 `50` 或 `2024`。\n- `>>` 读取整数时按最大有效前缀解析，遇到第一个非法字符（这里是 `.`）即停止，该字符不会被消费；若后续继续用 `double` 读取，会从 `.` 开始读入 `.16`（即 0.16），而不是重新得到 3.16。\n\n**考点：** C++ 文件输入流（ifstream）的类型匹配与部分读取机制。"
+      }
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 8,
+      "tests": [
+        {
+          "input": "5\napple applee\napple appe\napple bpple\napplee bpple\napple apple",
+          "output": "similar\nsimilar\nsimilar\nnot similar\nsimilar",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "similar\nsimilar\nsimilar\nnot similar\nsimilar\n",
+          "passed": true
+        },
+        {
+          "name": "最小单组相同",
+          "input": "1\na a\n",
+          "output": "similar\n",
+          "reason": "T=1 且 A=B（长度1）；题面规定完全相同也相似，独立推得 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差2",
+          "input": "1\na abc\n",
+          "output": "not similar\n",
+          "reason": "长度差为2，一次插入/删除只改变长度1、修改不改变长度，独立推得 not similar。",
+          "kind": "boundary",
+          "actual": "not similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差1首部插入",
+          "input": "1\nabc xabc\n",
+          "output": "similar\n",
+          "reason": "首位插入 x 一次可得；双指针首字符不匹配计差异1并跳过长串字符后全部匹配，独立复算 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差1中部插入",
+          "input": "1\nabc abxc\n",
+          "output": "similar\n",
+          "reason": "在 b 与 c 之间插入 x 一次可得；双指针在 c/x 处计差异1后长串走完，独立复算 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差1尾部插入",
+          "input": "1\nabc abcx\n",
+          "output": "similar\n",
+          "reason": "末尾插入 x 一次可得；前三字符全匹配后短串走完循环结束，独立复算 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        },
+        {
+          "name": "长度差1两处不匹配",
+          "input": "1\nabc axyc\n",
+          "output": "not similar\n",
+          "reason": "需插入 x 并把 b 改为 y 共2次操作；双指针第二次不匹配即判否，独立复算 not similar。",
+          "kind": "boundary",
+          "actual": "not similar\n",
+          "passed": true
+        },
+        {
+          "name": "等长一处不同",
+          "input": "1\nabc abd\n",
+          "output": "similar\n",
+          "reason": "等长且仅末位不同，修改1次即可，独立复算 similar。",
+          "kind": "boundary",
+          "actual": "similar\n",
+          "passed": true
+        },
+        {
+          "name": "等长两处不同",
+          "input": "1\nabcd abxy\n",
+          "output": "not similar\n",
+          "reason": "等长且第3、4位均不同，需2次修改，独立复算 not similar。",
+          "kind": "boundary",
+          "actual": "not similar\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "3f188ad9ce7a8abdc6d8363bca74a4f08b121be615e7433d02bfb5d60282d7d9"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 6,
+      "tests": [
+        {
+          "input": "4\n3 1 4 1",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小n且刚好1题",
+          "input": "1\n1\n",
+          "output": "1\n",
+          "reason": "n=1、a1=1 满足第1天需1题；第2天无题单可用，独立复算输出1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "全部题单仅1题",
+          "input": "5\n1 1 1 1 1\n",
+          "output": "1\n",
+          "reason": "第1天用一套后，第2天需2题而其余题单均只有1题，独立复算输出1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "题量达到上界",
+          "input": "5\n1000000000 1000000000 1000000000 1000000000 1000000000\n",
+          "output": "5\n",
+          "reason": "a_i=10^9 在 int 范围内且均不小于当天需求，5天全部完成，独立复算输出5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "卡在需求上界",
+          "input": "3\n2 2 2\n",
+          "output": "2\n",
+          "reason": "可完成第1、2天；第3天需3题而所有题单仅2题，独立复算输出2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "大题单需跨日保留",
+          "input": "3\n1 1 5\n",
+          "output": "2\n",
+          "reason": "排序[1,1,5]：1≥1记第1天，第二个1<2弃用，5≥2记第2天；第3天无剩余题单≥3，独立复算输出2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "样例1",
+          "input": "4\n3 1 4 1\n",
+          "output": "3\n",
+          "reason": "PDF第8页样例；排序为[1,1,3,4]后贪心得3天，独立复算与样例输出一致。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "a5e4bcd1b21c9f30670677bf38ac60d0680016e8f9742fe0458100e1968a8fcd"
+    }
+  ]
+}
