@@ -1,0 +1,233 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T20:02:44.956Z",
+  "completedAt": "2026-11-16T20:04:22.182Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 61313,
+    "completion_tokens": 8420,
+    "total_tokens": 69733,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6495
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01340695,
+      "allowance": 0.01340695,
+      "tokens": {
+        "input": 61313,
+        "output": 8420,
+        "reasoning": 6495,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c79aae3113f9bf1b13f17c0812652aab48872979a7e97f3e9a436008d39aaf8a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 / GESP / C++ 四级 / 2025 年 12 月”，与目标 2025-12-l4（四级、2025年12月）的等级、年份、月份一致；单选15题+判断10题+编程2题的结构也与卷面章节吻合。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第1题原文“小杨正在调试他的温度传感器程序，其中变量 x 保存当前温度。下面这段代码运行后，变量 x 的值变成了 8。”及代码 int x = 5; / int *p = &x; / *p = *p + 3; 与网站题面逐字一致（仅排版空白差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项固定为“正确/错误”，网站顺序为正确、错误，与答案表符号映射（√=正确=索引0，×=错误=索引1）吻合。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第7页判断题答案表第1格为√（图像核对，文本层该行缺失）。独立推导：p 指向 x，*p = *p + 3 等价于 x = x + 3，x 由 5 变为 8，命题为真→正确(0)；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析逐步推导 x 由 5→8，并区分声明中 `int *p` 的 * 与表达式中解引用 *p 的含义，结论与独立推导一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。初核对题面、选项、答案、解析四项的结论经独立比对（含答案表图像核读与代码逐步推导）全部成立，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第2题原文“一个结构体不能包含另一个结构体。”与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序一致，映射规则同上。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第2格为×。独立判断：C++ 允许结构体嵌套（如 Rectangle 含 Point 类型成员），仅禁止按值包含自身类型，题干绝对化命题为假→错误(1)；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析给出合法嵌套代码示例，并正确区分“不能包含自身类型成员”与“不能包含其他结构体”，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。独立判断与官方×及网站错误(1)一致，初核结论无遗漏。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第3题原文“在 C++ 中，定义如下二维数组： int a[3][4]; ，数组 a 在内存中是按行优先连续存放的，即 a[0][0] 、 a[0][1] 、 a[0][2] 、 a[0][3] 在内存中是连续的。”；网站保留核心命题“按行优先连续存放”，省略的为首行四元素连续的举例性从句，被判断命题与真值不变，属等价转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第3格为√。独立判断：C++ 多维数组按行主序连续存储，a[i][j] 对应一维偏移 i*4+j，命题为真→正确(0)；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析的行主序说明与 i*4+j 公式正确，提示 Fortran/MATLAB 列主序差异亦无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。初核认为省略的解释性从句不影响真值，经独立比对成立：无论含否该从句命题均为真，答案映射不受影响，故不发起题面修复。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第4题原文“执行下面程序后，变量 a 的值会变成 15 。”及代码 void add(int &x){ x += 10; } / int a = 5; / add(a); 与网站一致（仅空白排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第4格为√。独立推导：形参 x 是 a 的引用（别名），x += 10 直接作用于 a，5+10=15，命题为真→正确(0)；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确说明引用传参与值传递/指针传递的区别，结论 a=15 与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。独立推导与官方√及网站正确(0)一致，初核无问题。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第7页判断第5题原文“执行下面的C++代码，会输出 8 ，因为两个指针地址相差 8 个字节（假设 int 占 4 字节）。”及代码 int arr[5]={1,2,3,4,5}; / int* p1 = arr; / int* p2 = arr + 2; / cout << p2 - p1; 与网站基本一致；网站省略错误理由从句及注释“// 输出结果”，被判断核心命题“会输出 8”完整保留，真值不变，属等价转换。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项“正确/错误”顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "答案表第5格为×。独立推导：p1 指向 arr[0]，p2 指向 arr[2]，指针相减按元素个数计为 2 而非 8（地址字节差虽为 8，但输出是元素差），命题“输出 8”为假→错误(1)；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析正确指出 p2-p1 单位是元素个数而非字节数，并给出转 char* 后差值为 8 字节的延伸说明，与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核。被省略的理由从句（地址相差8字节）本身虽为真描述，但整体被判断命题“会输出 8”在两种表述下均为假，答案映射不变；初核的等价性判断成立，不发起题面修复。"
+      }
+    ],
+    "summary": "本次独立复核判断题16-20（对应官方判断题第1-5题，均位于PDF第7页）。五题题面与原卷一致（题18、题20存在解释性从句/代码注释的轻微省略，均不改变被判断命题与真值，属等价转换）；“正确/错误”选项顺序正确；判断题答案表经图像核读为 √ × √ √ ×（第6-10格 √ √ × × √ 与网站Q21-25交叉印证），映射为索引 0,1,0,0,1，与网站 answer 完全一致；五题解析均经独立推导确认无误。changes 均为空，无待决事项，全部 approve。"
+  }
+}

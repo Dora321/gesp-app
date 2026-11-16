@@ -1,0 +1,112 @@
+{
+  "executedAt": "2026-11-16T22:38:43.845Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "5 5 3\n5 5 5 5 5\n5 1 5 1 5\n5 5 5 5 5\n5 2 5 2 5\n3 5 5 5 2",
+          "output": "40",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "40\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模唯一窗口且极差恰等于 H",
+          "input": "3 3 8\n1 2 3\n4 5 6\n7 8 9\n",
+          "output": "45",
+          "reason": "M=N=3 仅一个 3×3 窗口；窗口内 max=9、min=1，极差 8 恰好 ≤ H=8；和 1+2+…+9=45，独立手算确认。",
+          "kind": "boundary",
+          "actual": "45\n",
+          "passed": true
+        },
+        {
+          "name": "纵向多窗口仅底部合法（下边界）",
+          "input": "4 3 1\n1 1 1\n10 10 10\n10 10 10\n10 10 10\n",
+          "output": "90",
+          "reason": "i=0 窗口含 1 与 10，极差 9 > 1 不合法；i=1 窗口全为 10，极差 0 ≤ 1，和 90；检验 i+2<M 边界枚举。",
+          "kind": "boundary",
+          "actual": "90\n",
+          "passed": true
+        },
+        {
+          "name": "多个合法窗口取最大",
+          "input": "3 4 1\n1 1 1 2\n1 1 1 2\n1 1 1 2\n",
+          "output": "12",
+          "reason": "j=0 窗口全 1，和 9；j=1 窗口每行含 1,1,2，极差 1 ≤ 1，和 12；答案取两合法窗口最大 12。",
+          "kind": "boundary",
+          "actual": "12\n",
+          "passed": true
+        },
+        {
+          "name": "高度上界 10^5 验证溢出边界",
+          "input": "3 3 1\n100000 100000 100000\n100000 100000 100000\n100000 100000 100000\n",
+          "output": "900000",
+          "reason": "窗口内全相等极差 0 ≤ 1；和 9×10^5=900000，int 可容纳、long long 安全。",
+          "kind": "boundary",
+          "actual": "900000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "c23e46caf1ec9a82f91a8917101e083064f0dc53320efc915184108e37c064ac"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "20 4\napple 6 8\nbus 15 1\ncab 1 10\nwater 4 8",
+          "output": "bus\ncab\nwater",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "bus\ncab\nwater\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模唯一商品可购",
+          "input": "1 1\na 1 1\n",
+          "output": "a",
+          "reason": "N=1、M=1，商品价格 1 ≤ 预算 1，购入后输出其名。",
+          "kind": "boundary",
+          "actual": "a\n",
+          "passed": true
+        },
+        {
+          "name": "最高优先级商品买不起时跳过继续",
+          "input": "5 3\nx 6 1\ny 5 2\nz 1 3\n",
+          "output": "y",
+          "reason": "排序后考察顺序 x,y,z；x 价 6 > 5 跳过，y 价 5 ≤ 5 购入后预算 0，z 价 1 > 0 跳过；仅购 y。",
+          "kind": "boundary",
+          "actual": "y\n",
+          "passed": true
+        },
+        {
+          "name": "同优先级同价按名字序购买并按字典序输出",
+          "input": "4 3\nb 2 1\na 2 1\nc 2 1\n",
+          "output": "a\nb",
+          "reason": "三者优先级与价格相同，按名字排序 a,b,c；预算 4 购 a、b 后归零，c 跳过；输出按字典序 a、b。",
+          "kind": "boundary",
+          "actual": "a\nb\n",
+          "passed": true
+        },
+        {
+          "name": "预算不足无任何购买（输出为空）",
+          "input": "1 2\na 5 1\nb 3 2\n",
+          "output": "",
+          "reason": "a 价 5 > 1、b 价 3 > 1 均买不起，按官方贪心逻辑不输出任何行，检验空输出边界。",
+          "kind": "boundary",
+          "actual": "",
+          "passed": true
+        }
+      ],
+      "codeSha256": "630bc1c442c0721256b25c65175f858a5140ca1b0bca23836684afe7a309c94c"
+    }
+  ]
+}

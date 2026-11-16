@@ -1,0 +1,243 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T20:05:27.207Z",
+  "completedAt": "2026-11-16T20:08:36.516Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 61812,
+    "completion_tokens": 16118,
+    "total_tokens": 77930,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13566
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0173308,
+      "allowance": 0.0173308,
+      "tokens": {
+        "input": 61812,
+        "output": 16118,
+        "reasoning": 13566,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c79aae3113f9bf1b13f17c0812652aab48872979a7e97f3e9a436008d39aaf8a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 / C++ 四级 / 2025 年 12 月”，与目标 2025-12-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页判断题第 6 题代码首行为 `int n = 10;`，并逐行列出 f 数组初始化与循环；网站原数据缺失该行，导致变量 n 未声明。修复后核验通过：补回 `int n = 10;` 后与原卷代码等价（压缩排版为允许的等价转换）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 无 A-D 选项列表，网站仅有固定的“正确/错误”形式，无可对照的选项内容。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页判断题答案表第 6 格为 √，按 正确=0 映射为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：n=10 时循环执行 i=2..10 共 9 次（n-1 次），每次一次加法，时间 O(n)、空间 O(n)，与官方 √ 一致；解析中 f[20] 在 n>19 时越界的提示经核对准确（f 有效下标 0..19）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "考虑用如下递推方式计算斐波那契数列，时间复杂度是 $O(N)$。\n```cpp\nint n = 10;\nint f[20]; f[0] = 0; f[1] = 1;\nfor (int i = 2; i <= n; i++) f[i] = f[i-1]+f[i-2];\n```"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "接受初核：网站原 question 缺 `int n = 10;`（PDF 第 8 页第 1 行），属必要代码缺失，采纳其修复思路并按最小改动补全；答案 √→0 与答案表一致；解析 O(n) 推导经独立计算确认。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页第 7 题原文“冒泡排序和插入排序都是稳定排序算法。”与网站逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 无选项列表，网站为固定“正确/错误”形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 7 格为 √，映射为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立确认：标准冒泡仅在 a[j]>a[j+1] 时交换、标准插入仅在 a[j]>x 时后移，相等元素相对顺序均不改变，故两算法标准实现都稳定，结论与官方 √ 一致；解析将标准选择排序归为不稳定符合教材通行结论。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核无修改；独立复核题面、答案与解析均通过，采纳其结论。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页第 8 题的 sort 代码与网站逐行一致（暂存 a[i]、while 条件 a[j]>x 后移、插入 a[j+1]），该逻辑为插入排序而非选择排序。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 无选项列表，网站为固定“正确/错误”形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 8 格为 ×，按 错误=1 映射为 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐行分析确认该代码是插入排序（把当前元素插入前方有序区），与“实现了选择排序”的题干矛盾；解析对比选择排序（找极值下标并交换）与插入排序（后移腾位插入）特征，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核无修改；独立确认该代码确为插入排序，答案 ×→1 正确，采纳。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页第 9 题代码含 `#include <iostream>` 与 `using namespace std;`，网站原数据缺失使 cout 未声明。修复后核验通过：补全后与原卷代码一致（保留网站紧凑排版，属允许的等价转换）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 无选项列表，网站为固定“正确/错误”形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 9 格为 ×，映射为 1；网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。网站原解析及初核草稿修正稿均以“重载二义性”为由，但按原卷代码顺序，单参数重载 calculate(int) 定义在 main() 之后、调用点不可见，不参与重载决议；实际候选仅 calculate(int,int=10)，程序正常编译并输出 5*10=50 而非 10，“正常编译并输出 10”不成立，判 ×。修正解析已按“声明可见性 + 输出 50≠10”重写，并保留“若声明前置到 main 之前才会二义”的辨析，经独立推演确认。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "question": "下面代码可以正常编译并输出 10。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint calculate(int x, int y = 10); \nint main() { cout << calculate(5); return 0; }\nint calculate(int x, int y) { return x * y; }\nint calculate(int x) { return x * 2; }\n```",
+          "explanation": "**答案：错误**\n\n**判定依据：**\n1. 程序在 `main()` 之前仅声明了 `int calculate(int x, int y = 10);`；单参数重载 `int calculate(int x)` 定义在 `main()` 之后，在调用点不可见，不参与该次调用的重载决议。\n2. 因此 `main()` 中的 `calculate(5)` 只能匹配双参数版本，形参 `y` 取默认实参 10，实际执行 `return 5 * 10;`。\n3. 程序可以正常编译（默认实参只在声明给出一次，无重复定义等错误），但实际输出 **50** 而不是 10，所以“正常编译并输出 10”的说法不成立，应判错误。\n\n**补充辨析：**\n- 若把 `int calculate(int x);` 的声明移到 `main()` 之前，两个候选对实参 5 的隐式转换序列同样好（均为精确匹配），默认实参和参数个数都不是重载决议的决胜规则，届时才会产生真正的重载二义性编译错误。原卷代码顺序下并非这种情况。\n\n**易错提醒：**\n- 重载决议只考虑调用点可见的声明；定义在调用之后的重载不参与匹配。\n- “单参数精确匹配”与“双参数 + 默认实参”在调用点同时可见时才会二义，不要与本题的可见性情形混淆。\n\n**考点：** C++ 函数重载与默认参数（结合声明可见性的重载决议）"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "部分否决初核：接受其 statement 修改（补全头文件与命名空间，网站确实缺失）；否决其 explanation 修改——初核修正稿仍沿用“两个候选都可行导致二义性”，但 calculate(int) 定义于 main() 之后、调用点不可见，实际只有一个候选，程序编译通过并输出 50（非 10），并非编译错误。官方答案 × 本身不受影响（“输出 10”确实不成立），解析已按正确理由重写并经独立推演确认。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页第 10 题代码与网站逐行一致；源卷本身即未列流头文件（直接 int main 使用 ofstream/ifstream），网站忠实于原卷，无需补全。文件先写入 “10 20\\n30 40” 再以 >> 读回四个整数。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 无选项列表，网站为固定“正确/错误”形式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 7 页答案表第 10 格为 √，映射为 0；网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：operator>> 自动跳过空白（含 endl 写入的换行），依次读到 a=10、b=20、c=30、d=40，输出 100，与官方 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "初核无修改；网站与源卷一致（源卷无 include 行，不补），独立确认输出为 100，采纳其结论。"
+      }
+    ],
+    "summary": "独立复核题号 21-25（PDF 判断题 6-10）。官方答案表第 6-10 格为 √ √ × × √，与网站 answer（0/0/1/1/0）全部一致。题 21 需补回缺失的 `int n = 10;`（PDF 第 8 页首行），修复后通过；题 24 需补全 `#include <iostream>` 与 `using namespace std;`，并否决初核沿用“重载二义性”的解释——按原卷代码顺序，单参数重载定义于 main() 之后、调用点不可见，实际只有一个候选，程序正常编译并输出 50 而非 10，解析已按“声明可见性 + 输出 50≠10”重写，官方答案 × 不受影响；题 22/23/25 题面、答案、解析均独立核验通过（题 25 的源卷本身无 include 行，网站忠实原卷不修改）。无未决项。"
+  }
+}

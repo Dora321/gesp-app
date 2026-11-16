@@ -1,0 +1,234 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T17:54:52.192Z",
+  "completedAt": "2026-11-16T17:56:59.694Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 61527,
+    "completion_tokens": 2886,
+    "total_tokens": 64413,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 989
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01067205,
+      "allowance": 0.01067205,
+      "tokens": {
+        "input": 61527,
+        "output": 2886,
+        "reasoning": 989,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "c79aae3113f9bf1b13f17c0812652aab48872979a7e97f3e9a436008d39aaf8a",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页图卷头为“C++ 四级 / 2025 年 12 月”，与 paperId 的等级4、2025年12月一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页页图题干“小杨想让指针 p 指向整数变量 x，正确写法是（ ）。”与网站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页页图 A-D 代码框依次为 int p = &x;、int *p = x;、int *p = &x;、p = *x;，与网站选项及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第1题为C，0起始映射为2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：&x 类型为 int*，可初始化 int* p；A 将地址赋给 int 类型不匹配；B 把 x 的值（非地址）赋给指针；D 中 p 未声明且 *x 对非指针解引用，语法错误，故仅C正确。现有解析逐项分析与此一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、四个选项代码、答案表映射与解析均与PDF页图独立核对一致。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页页图题干及代码 int a = 5; int* p1 = &a; int* p2 = p1; *p2 = 10; 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页页图 A-D 依次为 5 10 10、5 10 15、10 10 10、5 5 10，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第2题为C，0起始映射为2；网站 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：p2 = p1 使两指针均指向 a，*p2 = 10 修改同一内存单元，故 a、*p1、*p2 均为10。现有解析逐步推导正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：代码、选项、答案映射与解析推导均经页图独立核对一致。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1-2页页图题干、int a[3][4] 三行初始化数据 {1,0,1,0},{0,1,0,1},{1,1,0,0} 与网站一致；题干为跨页延续，内容完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第1页页图选项A cout << a[1, 2] << endl;，第2页页图选项B cout << a[1][2] << endl;、C cout << a(1, 2) << endl;、D cout << a{1}{2} << endl;，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第1页页图答案表第3题为B，0起始映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：下标从0开始，第2行第3列对应 a[1][2]，该位置值为0（表示无棋子）；C++ 二维数组只能用 [ ][ ] 逐维下标访问，a[1,2] 是逗号表达式、a(1,2) 与 a{1}{2} 均非合法下标语法。现有解析逐项分析与此一致，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：跨页题面拼接完整，选项与答案映射经页图核对一致，解析推导正确。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页页图题干、int arr[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}}; 与 int* p = &arr[0][0]; 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页页图 A-D 依次为 5 6、6 5、5 5、6 6，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页页图答案表第4题为D，0起始映射为3；网站 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：行优先存储下 arr[1][1] 的线性偏移为 1*4+1=5，故 *(p+5) 与 arr[1][1] 均为6。现有解析索引对应关系逐步正确，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：初始化代码、选项、答案映射与解析均与页图独立核对一致。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第2页页图题干、int arr[2][3][2] 初始化 {{1,2},{3,4},{5,6}},{{7,8},{9,10},{11,12}} 及三重循环与 (i+j+k)%2==0 条件累加结构与网站一致（页图为无花括号链式嵌套，网站缩进等价，语义相同）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF第2页页图 A-D 依次为 36、39、78、30，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第2页页图答案表第5题为B，0起始映射为1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举全部12个组合：满足 (i+j+k)%2==0 的元素为 arr[0][0][0]=1、arr[0][1][1]=4、arr[0][2][0]=5、arr[1][0][1]=8、arr[1][1][0]=9、arr[1][2][1]=12，累加 1+4+5+8+9+12=39，与解析的逐步累加过程一致；解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：三维数组与循环条件与页图一致，独立枚举验证答案39=B与解析推导相符。"
+      }
+    ],
+    "summary": "本次复核题1-5。逐题核对PDF页图：五题题干、代码块、初始化数据、选项及顺序均与网站数据一致；官方答案表（C C B D B）映射到网站0起始 answer（2 1... 即第1题2、第2题2、第3题1、第4题3、第5题1）全部吻合。解析均经独立推导验证：题1取址与解引用、题2双指针同指、题3下标换算与[1][2]=0、题4线性偏移1*4+1=5、题5十二组合枚举和为39，均无事实错误。五题均为单选题，options与answer适用、referenceCode不适用，tests不适用。无改动、无未决项，五题全部approve。"
+  }
+}
