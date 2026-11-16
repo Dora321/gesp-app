@@ -1,0 +1,215 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "glm",
+  "questionIds": [
+    2,
+    3,
+    15,
+    21
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T01:59:28.747Z",
+  "completedAt": "2026-11-16T02:02:37.885Z",
+  "finishReason": "stop",
+  "inputSha256": "29b13a6e828c025f168a154372600d9d0ce8f5bf6943d00925d8a8c656a34f43",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP C++ 四级 2023 年 9 月』，与候选 level=4、year=2023、month=9 一致；单选答案表 B A C D D B A B B C C A A D C 中第 2/3/15 题为 A/C/C，判断题答案表 × √ √ × √ √ √ × × √ 中第 6 题为 √，与候选答案映射一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页原图流程图逐框核对：开始→m=1,n=1→菱形 m*n>20（左『是』→m=m-2，右『否』→m=2*m+1）→汇合后 n=n+1→菱形 n>5（左『否』回环至 m*n>20 判断，下『是』→输出 m）→结束。网站题面缺失图，候选以等价文字描述补全，逐框对照无遗漏、无含义改变，修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题选项依次为 A.9、B.7、C.5、D.11，与候选 options 顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 2 题为 A（0 起始索引 0）。独立按图模拟：m=1,n=1 起，m 依次 3→7→5→11→9：第 1 轮 1×1=1≤20 取 m=3；第 2 轮 3×2=6≤20 取 m=7；第 3 轮 7×3=21>20 取 m=5；第 4 轮 5×4=20 不大于 20 取 m=11；第 5 轮 11×5=55>20 取 m=9，n=6>5 成立输出 9，与 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐轮模拟与我的独立模拟逐步吻合，关键陷阱（第 4 轮 5×4=20 不满足『>20』须走否分支）定位准确，B/C/D 对应第 2/3/4 轮中间值的说明无误，结论 A 与官方答案一致，核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "本人依据 PDF 第 1 页原图独立模拟流程图，得到 m 序列 3→7→5→11→9、退出时输出 9，与候选题面文字补图、答案 A（索引 0）及解析完全一致，四项实质维度均通过，无需修改。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干为『对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。』，与候选 question 一致，无残留字样。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1—2 页选项依次为 A. O(n)、B. O(n log n)、C. O(n²)、D. 以上都不正确，与候选 options 顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 3 题为 C（索引 2）；独立推导冒泡排序总比较次数 n(n-1)/2 为 Θ(n²)，平均时间复杂度 O(n²)，与 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析存在两处事实性不精确：(1)『平均情况 O(n²)：比较和交换次数均为 n(n-1)/2』——冒泡的交换次数恰等于逆序对数，随机排列期望为 n(n-1)/4 而非 n(n-1)/2（每对元素逆序概率 1/2，共 n(n-1)/2 对）；(2)『最好情况 O(n)：数组已有序，只需一轮遍历』未注明该结论仅对带提前退出标志的实现成立（如本题第 15 题的基本版冒泡最好情况仍为 O(n²)）。已按独立推导替换为修正解析（结论仍为 C），修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C (O(n²))**\n\n**核心解析：**\n冒泡排序是一种基于比较和交换的原地排序算法，其基本思想是重复遍历待排序序列，比较相邻元素并在必要时交换它们的位置，使较大（或较小）的元素逐渐\"冒泡\"到序列一端。\n\n**时间复杂度分析：**\n\n冒泡排序包含两层嵌套循环：\n- **外层循环**：控制排序轮数，对于 n 个元素，需要最多 n-1 轮排序。\n- **内层循环**：在每轮排序中，从序列起始位置开始，依次比较相邻元素并进行交换。\n\n设数组有 n 个元素：\n- **第一轮**：比较 n-1 次\n- **第二轮**：比较 n-2 次\n- ...\n- **第 (n-1) 轮**：比较 1 次\n\n**总比较次数（基本版冒泡，与输入无关）** = (n-1) + (n-2) + ... + 1 = n(n-1)/2 = (n²-n)/2\n\n**交换次数**：每次相邻交换恰好消除一个逆序对，故交换次数等于序列的逆序对数。最坏情况（逆序数组）下为 n(n-1)/2；随机排列下每对元素相对顺序随机的概率为 1/2，期望交换次数为 n(n-1)/4，仍与 n² 同阶。\n\n因此，冒泡排序的时间复杂度为：\n- **最好情况 O(n)**：数组已有序且实现带提前退出标志时，一轮遍历即可结束\n- **最坏情况 O(n²)**：数组逆序\n- **平均情况 O(n²)**：比较次数为 Θ(n²)（基本版固定为 n(n-1)/2），期望交换次数 n(n-1)/4，整体仍为 Θ(n²)\n\n**选项逐项分析：**\n- **A O(n)**：❌ 错误。O(n) 是线性时间复杂度，常见于一次遍历即可完成的算法（如查找最大/最小值）。就平均情况而言，冒泡排序的比较与交换总量与 n² 同阶，不可能达到线性复杂度。\n- **B O(n log n)**：❌ 错误。O(n log n) 是高效排序算法（如快速排序、归并排序、堆排序）的平均时间复杂度。冒泡排序基于相邻元素交换，效率较低，无法达到对数级别的优化。\n- **C O(n²)**：✅ 正确。冒泡排序包含两层嵌套循环，比较次数与 n² 同阶，平均情况下时间复杂度为 O(n²)。\n- **D 以上都不正确**：❌ 错误。C 选项已明确正确。\n\n**易错提醒：**\n- 不能仅看外层循环是 O(n) 就认为整个算法是 O(n)，需综合考虑内外层循环的总执行次数。\n- 平均时间复杂度与最坏时间复杂度在冒泡排序中相同，都是 O(n²)。\n- 冒泡排序的 O(n) 最好情况仅当数组已有序且带提前退出优化时成立，不能代表一般情况。\n\n**知识延伸：**\n常见排序算法的时间复杂度对比：\n- O(n²)：冒泡排序、选择排序、插入排序\n- O(n log n)：快速排序、归并排序、堆排序\n- O(n)：桶排序、计数排序、基数排序（后三者需要额外内存空间）\n\n理解各排序算法的复杂度，有助于在不同场景下选择合适的算法。\n\n**考点：** 基础排序算法（冒泡排序）的时间复杂度分析"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核指出原解析平均交换次数表述不准，本人独立验证属实：冒泡交换次数等于逆序对数，随机输入期望为 n(n-1)/4 而非 n(n-1)/2，且『最好 O(n)』须注明带提前退出标志的前提（本题第 15 题的基本版冒泡即无此优化）。采纳修正解析，结论 C（索引 2）不变，题面、选项、答案均无需改动。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页第 15 题代码图逐行对照：void BubbleSort(int array[], int n) 外层 for (int i = n; i >= 2; i--)、内层 for (______) // 在此处填入代码，随后 if (array[j] > array[j + 1]) 交换 array[j] 与 array[j+1]，与候选 code 一致（仅下划线排版差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A. int j = 1; j < n; j++、B. int j = 0; j < n; j++、C. int j = 0; j < i - 1; j++、D. int j = 0; j < i; j++，与候选 options 顺序及内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 答案表第 15 题为 C（索引 2）。独立推导：外层 i 自 n 递减至 2，i 表示未排序前缀长度（下标 0..i-1），内层比较 array[j] 与 array[j+1]，j+1 最大取 i-1，故 j 最大取 i-2，条件为 j < i - 1，即 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析独立推导成立：C 恰覆盖未排序区间且 array[j+1] 最大下标 i-1 不越界；A 漏掉 (0,1) 比较且 j=n-1 时访问 array[n]、B 与 D 均在首轮 i=n 时以 j=n-1 访问 array[n]，确定越界，分析准确，核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "本人按 PDF 第 4 页代码图独立推导内层边界：i 为未排序前缀长度，j+1 最大取 i-1，得 j < i - 1（C，索引 2），并确认 A/B/D 在首轮 i=n 时均确定访问 array[n] 越界；候选代码、选项、答案与解析全部一致，无需修改。"
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 6 题原文『在C++语言中，可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。』与候选 question 逐句一致（仅空格排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设选项，网站以『正确/错误』承载判断结果，不影响答案映射。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题答案表第 6 题为 √（序列 × √ √ × √ √ √ × × √ 中第 6 位），按正确=0 折算 officialAnswer=0，与候选 answer=0 一致；独立判断：C++ 可声明 struct Node arr[10]; 类型的结构体数组，结构体也可含 char name[50]; 类数组成员，命题为真。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析判定正确；关于标准 C++（含 C++11）要求数组长度为常量表达式、VLA 仅是 C99 及个别编译器扩展而从未被任何 C++ 标准采纳的说明经独立核实无误；结构体数组与数组成员两个示例均合法，核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "本人独立确认命题为真（答案表第 6 题 √ → 0），且候选解析中关于 VLA 非任何 C++ 标准正式特性、数组长度须为常量表达式的修正表述符合标准 C++ 事实，题面与答案均与原卷一致，无需修改。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "usage": {
+        "prompt_tokens": 33539,
+        "completion_tokens": 9918,
+        "total_tokens": 43457,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6680
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00998985,
+          "allowance": 0.00998985,
+          "tokens": {
+            "input": 33539,
+            "output": 9918,
+            "reasoning": 6680,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "startedAt": "2026-11-16T01:59:28.747Z",
+      "completedAt": "2026-11-16T02:02:37.885Z"
+    }
+  ]
+}

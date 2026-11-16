@@ -67,45 +67,47 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
-        "options",
-        "answer"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页第 2 题包含流程图：m=1,n=1；判断 m*n>20；是则 m=m-2，否则 m=2*m+1；n=n+1；判断 n>5，否则回环，是则输出 m。网站 question 仅有“下列流程图的输出结果是？”，缺失必要流程图或等价逻辑。",
-          "review": "PDF 第 1 页第 2 题流程图经图像逐框核对：开始→m=1,n=1→判断 m*n>20（是→m=m-2，否→m=2*m+1）→n=n+1→判断 n>5（否→回环继续循环，是→输出 m）→结束。网站题面完全缺失该图，已按等价文字描述补全，修复后核验通过。"
+          "initial": "PDF第1页原图流程图逐框对照：开始→m=1,n=1→判断m*n>20（是→m=m-2；否→m=2*m+1）→n=n+1→判断n>5（否→回到m*n>20；是→输出m）→结束；候选文字描述与图等价，未漏分支。",
+          "review": "PDF 第 1 页原图流程图逐框核对：开始→m=1,n=1→菱形 m*n>20（左『是』→m=m-2，右『否』→m=2*m+1）→汇合后 n=n+1→菱形 n>5（左『否』回环至 m*n>20 判断，下『是』→输出 m）→结束。网站题面缺失图，候选以等价文字描述补全，逐框对照无遗漏、无含义改变，修复后核验通过。"
         },
         "options": {
-          "initial": "PDF 第 1 页选项为 A. 9、B. 7、C. 5、D. 11，顺序与网站 options 一致。",
-          "review": "PDF 第 1 页选项为 A.9、B.7、C.5、D.11，与网站 options 顺序一致。"
+          "initial": "PDF第1页第2题选项依次为A.9、B.7、C.5、D.11，与候选options顺序一致。",
+          "review": "PDF 第 1 页第 2 题选项依次为 A.9、B.7、C.5、D.11，与候选 options 顺序及内容一致。"
         },
         "answer": {
-          "initial": "PDF 答案表第 2 题答案为 A；A 的 0 起始索引为 0，与网站 answer=0 一致。",
-          "review": "PDF 答案表第 2 题为 A（索引 0），与网站 answer=0 一致；按图独立模拟：m 依次 3→7→5→11→9，n=6>5 时输出 m=9，对应选项 A。"
+          "initial": "PDF第1页单选答案表第2题为A（0起始索引0）；独立按图模拟m序列3→7→5→11→9，n=6>5时输出9。",
+          "review": "PDF 答案表第 2 题为 A（0 起始索引 0）。独立按图模拟：m=1,n=1 起，m 依次 3→7→5→11→9：第 1 轮 1×1=1≤20 取 m=3；第 2 轮 3×2=6≤20 取 m=7；第 3 轮 7×3=21>20 取 m=5；第 4 轮 5×4=20 不大于 20 取 m=11；第 5 轮 11×5=55>20 取 m=9，n=6>5 成立输出 9，与 answer=0 一致。"
         },
         "explanation": {
-          "initial": "现有解析臆造了 m=5,n=2、m>0 循环和无限循环，均与 PDF 流程图不符；按图模拟初始 m=1,n=1，逐轮得到 3、7、5、11、9，最终输出 9。",
-          "review": "原解析臆造初始值 m=5,n=2、循环条件 m>0 及无限循环，与流程图不符；替换为按图逐轮模拟（第 4 轮 m*n=20 不满足>20 走否分支，第 5 轮后 n=6>5 输出 9）后核验通过，结论 A 与官方答案一致。"
+          "initial": "候选逐轮模拟正确：第4轮m*n=20不满足>20走否分支得m=11，第5轮后n=6退出输出9；B/C/D分别对应第2/3/4轮中间值，定位准确。",
+          "review": "候选解析逐轮模拟与我的独立模拟逐步吻合，关键陷阱（第 4 轮 5×4=20 不满足『>20』须走否分支）定位准确，B/C/D 对应第 2/3/4 轮中间值的说明无误，结论 A 与官方答案一致，核验通过。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l4.glm.json"
       ]
     },
     {
@@ -593,42 +595,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页代码为外层 for (int i=n; i>=2; i--)，内层空白 for (_______) 后比较 array[j] 与 array[j+1]；网站题面和代码与页图一致，仅空白长度和排版略有差异。",
-          "review": "PDF 第4页代码图为外层 for (int i = n; i >= 2; i--)、内层 for (__________) // 在此处填入代码，随后比较 array[j] 与 array[j+1] 并交换；网站代码与页图一致，仅空白长度排版差异。"
+          "initial": "PDF第4页代码图逐行对照：外层for(int i=n; i>=2; i--)、内层for(_______)及array[j]/array[j+1]交换逻辑均与候选code一致。",
+          "review": "PDF 第 4 页第 15 题代码图逐行对照：void BubbleSort(int array[], int n) 外层 for (int i = n; i >= 2; i--)、内层 for (______) // 在此处填入代码，随后 if (array[j] > array[j + 1]) 交换 array[j] 与 array[j+1]，与候选 code 一致（仅下划线排版差异）。"
         },
         "options": {
-          "initial": "PDF 选项 A—D 分别为 int j=1; j<n; j++、int j=0; j<n; j++、int j=0; j<i-1; j++、int j=0; j<i; j++；网站选项与顺序一致。",
-          "review": "PDF 第4页选项 A—D 依次为 int j = 1; j < n; j++、int j = 0; j < n; j++、int j = 0; j < i - 1; j++、int j = 0; j < i; j++，与网站一致。"
+          "initial": "PDF第4页选项A—D依次为int j=1; j<n; j++、int j=0; j<n; j++、int j=0; j<i-1; j++、int j=0; j<i; j++，与候选options顺序一致。",
+          "review": "PDF 第 4 页选项依次为 A. int j = 1; j < n; j++、B. int j = 0; j < n; j++、C. int j = 0; j < i - 1; j++、D. int j = 0; j < i; j++，与候选 options 顺序及内容一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第15题为 C；C 为索引2，与 officialAnswer=2 一致。",
-          "review": "PDF 第1页答案表第15题为 C，索引 2，与网站 answer=2 一致；独立验证：i 自 n 递减表示未排序前缀长度，j+1 最大取 i-1，故内层条件为 j < i-1，即 C。"
+          "initial": "PDF第1页单选答案表第15题为C（索引2）；独立推导：i为未排序前缀长度，j+1最大取i-1，故j<i-1。",
+          "review": "PDF 答案表第 15 题为 C（索引 2）。独立推导：外层 i 自 n 递减至 2，i 表示未排序前缀长度（下标 0..i-1），内层比较 array[j] 与 array[j+1]，j+1 最大取 i-1，故 j 最大取 i-2，条件为 j < i - 1，即 C。"
         },
         "explanation": {
-          "initial": "答案 C 和最终边界结论正确，但解析正文先称内层边界应为 j < n-i-1，随后又称 j < i-1，与本题外层 i 从 n 递减到2的代码不一致；对 D 也只说“可能导致越界”，而首轮 i=n 时 j 可取 n-1，比较 array[n] 已确定越界。需替换为完整正确解析。",
-          "review": "修复后核验通过：原解析先称内层边界应为 j < n-i-1 又改称 j < i-1，与外层 i 从 n 递减的代码自相矛盾，且对 D 仅称「可能越界」；替换解析按 i 表示未排序前缀、j+1 最大 i-1 推出 j < i-1，并明确 A/B/D 在首轮即访问 array[n] 确定越界，独立推导成立。"
+          "initial": "候选解析正确：C恰好覆盖当前未排序区间且不越界；A/B/D在首轮i=n时均会以j=n-1访问array[n]，确定越界。",
+          "review": "候选解析独立推导成立：C 恰覆盖未排序区间且 array[j+1] 最大下标 i-1 不越界；A 漏掉 (0,1) 比较且 j=n-1 时访问 array[n]、B 与 D 均在首轮 i=n 时以 j=n-1 访问 array[n]，确定越界，分析准确，核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l4.glm.json"
       ]
     },
     {
@@ -806,38 +811,41 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页判断题第 6 题原文与当前 question 一致（空格、标点等价）：可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。",
-          "review": "PDF 第 5 页图像判断题第 6 题原文「在C++语言中，可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。」与网站 question 逐句一致（仅空格排版差异）。"
+          "initial": "PDF第5页判断题第6题原文为“在C++语言中，可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。”，与候选question逐句一致。",
+          "review": "PDF 第 5 页判断题第 6 题原文『在C++语言中，可以定义结构体类型的数组变量，定义结构体时也可以包含数组成员。』与候选 question 逐句一致（仅空格排版差异）。"
         },
         "answer": {
-          "initial": "PDF 第 4 页判断题答案表第 6 题为√；正确=0，当前 answer=0，一致。",
-          "review": "PDF 第 4 页图像判断题答案表第 6 题为√，按正确=0 折算 officialAnswer=0；网站 answer=0，一致。"
+          "initial": "PDF第4页判断题答案表第6题为√，按正确=0；独立判断命题为真：C++可定义结构体数组，结构体也可含数组成员。",
+          "review": "PDF 第 4 页判断题答案表第 6 题为 √（序列 × √ √ × √ √ √ × × √ 中第 6 位），按正确=0 折算 officialAnswer=0，与候选 answer=0 一致；独立判断：C++ 可声明 struct Node arr[10]; 类型的结构体数组，结构体也可含 char name[50]; 类数组成员，命题为真。"
         },
         "explanation": {
-          "initial": "命题本身正确：结构体可作数组元素类型，结构体成员也可为数组。但当前解析称“C++11 才支持变长数组”，不符合标准 C++；标准 C++ 的数组长度应为常量表达式，变长数组仅是个别编译器的扩展。",
-          "review": "原解析命题判断正确，但「int n=10; struct Node arr[n]; 在 C++98 中不合法，C++11 才支持变长数组」不符合标准 C++：任何 C++ 标准（含 C++11）均要求数组长度为常量表达式，变长数组仅是 C99 及个别编译器扩展。已在 changes 中提交修正后的完整解析；修正内容经独立复核事实无误，修复后核验通过。"
+          "initial": "候选判断正确；关于标准C++数组长度需常量表达式、VLA仅为编译器扩展而非任何C++标准正式特性的说明也正确。",
+          "review": "候选解析判定正确；关于标准 C++（含 C++11）要求数组长度为常量表达式、VLA 仅是 C99 及个别编译器扩展而从未被任何 C++ 标准采纳的说明经独立核实无误；结构体数组与数组成员两个示例均合法，核验通过。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l4.glm.json"
       ]
     },
     {
@@ -1054,19 +1062,6 @@
   ],
   "unresolved": [
     {
-      "id": 2,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 3,
       "dimensions": [
         "statement"
@@ -1075,28 +1070,9 @@
         "修改 question 未获得两模型一致批准，待回流",
         "statement 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 21,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2023-09-l4.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2023-09-l4.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-09-l4.integration.json"
 }
