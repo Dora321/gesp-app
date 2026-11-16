@@ -1,0 +1,20 @@
+{
+  "paperId": "2025-09-l4",
+  "integratedAt": "2026-11-16T23:53:09.215Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 24,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "以下代码只能捕获 `int` 类型异常。\n```cpp\nint main() {\n    try {\n        throw 42;\n    } catch (...) {\n        cout << \"Caught\" << endl;\n    }\n    return 0;\n}\n```"
+      }
+    }
+  ],
+  "codeChecks": []
+}
