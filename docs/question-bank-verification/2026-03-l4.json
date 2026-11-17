@@ -226,11 +226,10 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         1,
@@ -238,31 +237,35 @@
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第2-3页第6题题干为“下列关于结构体初始化的写法，正确的是（ ）”，与本站题干一致。",
-          "review": "PDF 第 2 页第 6 题题干“下列关于结构体初始化的写法，正确的是（ ）”与本站逐字一致。"
+          "initial": "PDF 第2页第6题题干“下列关于结构体初始化的写法，正确的是（ ）”与候选一致。",
+          "review": "PDF 第2页第6题题干『下列关于结构体初始化的写法，正确的是（ ）。』与候选逐字一致。"
         },
         "options": {
-          "initial": "PDF 第2页A、B与第3页C、D的代码及顺序均与本站四个选项一致。",
-          "review": "PDF 第 2 页 A 为 Point p = (1,2);、B 为 Point p = {1,2};，第 3 页 C 为 Point p = new Point(1,2);、D 为 Point p = <1,2>;，四项均含 struct Point { int x, y; }; 前置行且顺序与本站一致。"
+          "initial": "PDF 第2页 A 为 Point p = (1,2);、B 为 Point p = {1,2};，第3页 C 为 Point p = new Point(1,2);、D 为 Point p = <1,2>;，四项代码及顺序与候选一致。",
+          "review": "PDF 第2页 A 为 Point p = (1,2);、B 为 Point p = {1,2};，第3页 C 为 Point p = new Point(1,2);、D 为 Point p = <1,2>;，四项均含 struct Point { int x, y; }; 前置行，内容与顺序与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第6题为B；本站 answer=1（0起始）对应B。",
-          "review": "PDF 第 1 页答案表第 6 题为 B，对应 0 起始索引 1，与本站 answer=1 一致。"
+          "initial": "PDF 第1页答案表第6题为 B，按0起始索引为1，与 officialAnswer=1、候选 answer=1 一致。",
+          "review": "PDF 第1页答案表第6题为 B，0 起始索引 1，与 officialAnswer=1、候选 answer=1 一致。"
         },
         "explanation": {
-          "initial": "原解析称“Point 没有构造函数，Point(1,2) 这种写法本身也不成立”，但同一解析又提到 C++20 允许圆括号聚合初始化，表述自相矛盾；实际错误在于 new 返回指针不能赋给 Point 对象。答案B及主体推导仍正确。",
-          "review": "修复后核验通过：原解析既断言“Point 没有构造函数，Point(1,2) 这种写法本身也不成立”，又在知识延伸承认 C++20 允许圆括号聚合初始化 Point p(1,2);，自相矛盾；C 的实质错误是 new 返回 Point* 不能赋给 Point 对象（C++20 下 new Point(1,2) 本身合法但仍返回指针）。已应用修订解析并独立复核：A 的 (1,2) 是逗号表达式值为 2，int 无法转换成聚合类型 Point；B 为聚合初始化；C 类型不匹配；D 为非法语法，均准确，答案 B 不变。"
+          "initial": "独立核对：A 的 (1,2) 是逗号表达式，值为 2，int 不能初始化 Point；B 为聚合初始化；C 的 new Point(1,2) 返回 Point*，不能赋给 Point 对象；D 非 C++ 合法初始化语法。解析与答案 B 相符。",
+          "review": "独立复核：A 的 (1,2) 是逗号表达式、值为 2，int 不能初始化聚合类型 Point，编译报错；B 为聚合初始化 x=1、y=2；C 的 new Point(1,2) 返回 Point* 不能赋给 Point 对象（即使 C++20 允许圆括号聚合初始化，返回值仍是指针）；D 的 <1,2> 非 C++ 合法语法。候选修订解析逐点成立，答案 B 不受影响。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.glm.json"
       ]
     },
     {
@@ -311,42 +314,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         1,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第3页第8题题干为“关于递推算法的描述，正确的是（ ）”，与本站一致。",
-          "review": "PDF 第 3 页第 8 题题干“关于递推算法的描述，正确的是（ ）”与本站一致。"
+          "initial": "PDF 第3页第8题题干“关于递推算法的描述，正确的是（ ）”与候选一致。",
+          "review": "PDF 第3页第8题题干『关于递推算法的描述，正确的是（ ）。』与候选一致。"
         },
         "options": {
-          "initial": "PDF 第3页四个选项内容及顺序与本站一致。",
-          "review": "PDF 第 3 页 A“递推表现为函数自己调用自己”、B“递推从已知初值出发，利用递推关系逐步推出后续结果”、C“递推只能用于指数复杂度问题”、D“递推一定需要回溯”，内容与顺序均与本站一致。"
+          "initial": "PDF 第3页四项依次为 A 递推表现为函数自己调用自己、B 递推从已知初值出发利用递推关系逐步推出后续结果、C 递推只能用于指数复杂度问题、D 递推一定需要回溯，内容与顺序均一致。",
+          "review": "PDF 第3页 A『递推表现为函数自己调用自己』、B『递推从已知初值出发，利用递推关系逐步推出后续结果』、C『递推只能用于指数复杂度问题』、D『递推一定需要回溯』，内容与顺序与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第8题为B；本站 answer=1（0起始）对应B。",
-          "review": "PDF 第 1 页答案表第 8 题为 B（0 起始索引 1），与本站 answer=1 一致。"
+          "initial": "PDF 第1页答案表第8题为 B，按0起始索引为1，与 officialAnswer=1、候选 answer=1 一致。",
+          "review": "PDF 第1页答案表第8题为 B，0 起始索引 1，与 officialAnswer=1、候选 answer=1 一致。"
         },
         "explanation": {
-          "initial": "原解析用 f(1)=1、f(2)=2 作为“斐波那契数列”初值，得到1,2,3,5...并非标准斐波那契数列；递推结论B仍正确，但示例需修正为爬楼梯型递推，或把斐波那契初值改为 f(1)=f(2)=1。",
-          "review": "修复后核验通过：原解析把 f(1)=1、f(2)=2 的数列称为“斐波那契数列”，而标准斐波那契初值为 f(1)=f(2)=1，属事实性标注错误。修订稿改称爬楼梯型数列并注明与标准斐波那契的初值差别；递推结论 B（初值+递推关系+逐步推进）独立复核成立，A 为递归定义、C 应为常见 O(n) 而非只能指数、D 递推单向推进无需回溯，排除理由均正确。"
+          "initial": "独立推导：递推由初值经递推关系顺序推出后续项；A 是递归定义，C 不成立（常见 O(n) 等复杂度），D 无需回溯；候选对爬楼梯型数列与标准斐波那契初值区别的说明正确，答案 B 成立。",
+          "review": "独立推导：递推三要素为初值、递推关系、逐步推进，B 正确；A 是递归的定义；C 不成立，递推常见 O(n) 等多项式复杂度；D 递推单向推进无需回溯。候选对爬楼梯型数列 f(1)=1、f(2)=2 与标准斐波那契初值 f(1)=f(2)=1 的区分表述准确，事实性错误已消除。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.glm.json"
       ]
     },
     {
@@ -592,42 +598,46 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
+        1,
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第5-6页题干及 up 函数代码与网页一致；选项 D 位于第6页顶部。",
-          "review": "PDF 第5-6页题干“下列函数实现排行榜中单个元素的位置调整（类似插入排序的相邻搬移）。当某玩家分数增加，需将其向前移动时， while 循环的条件应为（ ）”及 up 函数代码（暂存 cur、while 横线、players[i]=players[i-1]、i--、players[i]=cur）与网页一致；选项 A-C 在第5页、D 在第6页顶部。"
+          "initial": "PDF 第5—6页第15题题干及 up 函数代码与候选一致；选项 A—C 在第5页，D 在第6页顶部。",
+          "review": "PDF 第5页第15题题干及 up 函数代码（Player cur = players[idx]; int i = idx; while 横线、players[i] = players[i-1]; i--; players[i] = cur;）与候选一致；A—C 选项在第5页、D 在第6页顶部。"
         },
         "options": {
-          "initial": "PDF 第5-6页 A-D 与网页四项一致，比较对象和移动方向未改变。",
-          "review": "PDF 第5页 A. i > 0 && cur.score > players[i-1].score、B. i > 0 && cur.score < players[i-1].score、C. i < n-1 && cur.score > players[i+1].score，第6页 D. i < n-1 && cur.score < players[i+1].score，与网页一致。"
+          "initial": "PDF 第5页 A 为 i > 0 && cur.score > players[i-1].score、B 为 i > 0 && cur.score < players[i-1].score、C 为 i < n-1 && cur.score > players[i+1].score，第6页 D 为 i < n-1 && cur.score < players[i+1].score，与候选顺序一致。",
+          "review": "PDF 第5页 A 为 i > 0 && cur.score > players[i-1].score、B 为 i > 0 && cur.score < players[i-1].score、C 为 i < n-1 && cur.score > players[i+1].score，第6页 D 为 i < n-1 && cur.score < players[i+1].score，与候选顺序一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第15题标 A；网页 answer=0 对应选项 A。",
-          "review": "第1页答案表第15题为 A（索引 0），网页 answer=0；独立推导：排行榜降序（分高在前），分数增加后向前插入，循环体搬移 players[i-1]，条件应为 i>0 且 cur.score>players[i-1].score，一致。"
+          "initial": "PDF 第1页答案表第15题为 A，按0起始索引为0，与 officialAnswer=0、候选 answer=0 一致。",
+          "review": "PDF 第1页答案表第15题为 A，0 起始索引 0，与候选 answer=0 一致；独立推导：循环体向左搬移 players[i-1]，边界须 i>0，排行榜降序（分高在前）、分数增加后应越过分数更低的左邻，条件为 i>0 && cur.score > players[i-1].score，与 A 一致。"
         },
         "explanation": {
-          "initial": "官方答案 A 成立：排行榜按分数从高到低排列，分数增加后只要左邻分数更低（cur.score > players[i-1].score）就继续前移，且需 i > 0 防越界。但网页解析把该排列写成“升序排列里应该更靠前”，方向自相矛盾；同段“前者分数更低”的指代也不清。答案不受影响，解析需改写。",
-          "review": "修复后核验通过：原解析第2点“（分数更高，升序排列里应该更靠前）”与排行榜降序前移的语境自相矛盾（升序中分高应靠后），且 B 选项分析“会把元素错误地往后挪”方向表述不准（实为 cur 会越过分数更高的玩家）。已按“排行榜降序、分数增加向前插入”重写完整解析（见 changes），独立推导与官方答案 A 一致，答案不受影响。"
+          "initial": "独立推导：函数暂存 cur 后向前搬移左邻，排行榜高分在前；分数增加后继续前移的条件是 i>0 且左邻分数低于 cur.score。B 会让低分越过高分，C、D 使用 players[i+1] 与循环体方向不符；候选解析与答案 A 相符。",
+          "review": "独立复核候选修订解析：C、D 使用 players[i+1] 与循环体搬运 players[i-1] 的方向矛盾可先排除；B 会让 cur 越过分数更高的玩家，其示例（降序 [10,8,5] 传入 5 分玩家得 [5,10,8]）我按代码逐步模拟：i=2 时 5<8 搬移，i=1 时 5<10 搬移，i=0 停止写入 5，结果确为 [5,10,8]；A 的方向、边界与短路求值说明均正确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.glm.json"
       ]
     },
     {
@@ -978,135 +988,91 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         7,
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第7—8页题面包含3.1.1题目描述、3.1.2输入格式、3.1.3输出格式、3.1.4样例、3.1.5样例解释和3.1.6数据范围（1≤N,M≤100，1≤h≤10^5）。网站题面LaTeX定界符转义异常，且缺少数据范围与样例解释说明。",
-          "review": "修复后核验通过：原题面公式两侧带成串反斜杠转义（$N$、$M$、$h_{i,j}$ 及省略号命令处渲染异常），且缺 PDF 第 8 页 3.1.5 样例解释与 3.1.6 数据范围。changes.question 已按 PDF 第 7–8 页 3.1.1–3.1.6 逐句重写：8 方向定义与「不高于」判定为原文，样例解释补为绿格 (2,2)、(2,5)、(3,2)（与第 8 页插图绿格及本人独立判定一致），数据范围照抄 3.1.6（1≤N,M≤100，1≤h≤10^5），并补第 7 页的时间/内存限制；样例 I/O 不重复写入（samples 数组已与 PDF 3.1.4 一致）。"
+          "initial": "对照 PDF 第7—8页 3.1.1—3.1.6：网格定义、8方向、不高于判据、输入输出、样例解释绿格(2,2)(2,5)(3,2)、数据范围 1≤N,M≤100、1≤h≤10^5 均一致；samples 数组与 3.1.4 样例一致。",
+          "review": "修复后核验通过：候选 question 与 PDF 第7—8页 3.1.1—3.1.6 对照，8 方向定义与『不高于』判据、输入输出格式逐句一致，时间/内存限制 1.0 s / 512.0 MB 与第7页一致；第8页样例解释图绿色格为第2行第2列（海拔5）、第2行第5列（海拔6）、第3行第2列（海拔5），与候选文字转写一致；数据范围 1≤N,M≤100、1≤h≤10^5 与 3.1.6 一致；samples 与 3.1.4 输入输出样例逐字一致。"
         },
         "explanation": {
-          "initial": "网站解析的8方向、越界检查、严格大于才淘汰、等号视为不高于等判定与PDF第7—8页定义一致；独立按样例数据走查得到3个山谷，与PDF第8页输出3一致。",
-          "review": "独立逐格走查第 8 页样例（与 8 邻比较，严格大于才淘汰、相等满足「不高于」）：山谷恰为 (2,2)=5、(2,5)=6（右边界 5 个邻居最小 7）、(3,2)=5（下边界），共 3 个，与输出样例 3 及插图绿格一致；网站解析的规则阐述、边界越界与 8 方向说明均与 PDF 一致。"
+          "initial": "独立逐格走查样例，山谷为 (2,2)=5、(2,5)=6、(3,2)=5，共3个；边界越界处理、相等不淘汰、8方向完整性说明均正确。",
+          "review": "独立逐格走查 3×5 样例（存在更低邻居即非山谷、相等不淘汰）：山谷恰为 (2,2)=5、(2,5)=6（右边界5个邻居最小7）、(3,2)=5（下边界），共 3 个，与输出样例及第8页插图绿格一致；候选解析的规则阐述、8 方向偏移量、越界判断与易错提醒均正确。"
         },
         "referenceCode": {
-          "initial": "网站参考代码用8方向偏移和边界判断实现，与PDF第9页参考程序的3×3扫描加边界填充等价；N,M≤100、h≤10^5，ans≤10^4，int不溢出；复杂度O(NM)。",
-          "review": "网站代码与 PDF 第 9 页官方参考程序等价：官方为边界填 1e9 + 3×3 扫描（含自身格，h[i][j]>h[i][j] 恒假，break 只跳出内层不影响正确性），网站为 8 方向偏移 + 显式越界判断，语义相同。N,M≤100 时最大下标 100<105；h≤10^5、ans≤10^4，int 无溢出；未初始化区域因越界判断不会被读取；复杂度 O(8NM)。对样例与下方全部测试期望输出独立推演一致。"
+          "initial": "候选代码与 PDF 第9页官方参考程序语义等价：官方采用边界填1e9加3×3扫描，候选采用8方向偏移加显式越界判断；N,M≤100、h≤10^5、ans≤10^4，int 安全，复杂度 O(8NM)。",
+          "review": "候选代码与 PDF 第9页官方参考程序语义等价：官方为边界填 1e9 + 3×3 扫描（含自身格，h[i][j]>h[i][j] 恒假），候选为 8 方向偏移 + 显式越界判断，两者对山谷判定语义相同；候选 dx/dy 覆盖 8 邻域且不含自身，N,M≤100 时最大下标 101 小于 105，h≤10^5、ans≤10^4，int 无溢出；复杂度 O(8NM)。对样例与全部测试期望输出独立推演一致。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         9,
         10,
         11
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第9—10页题面包含3.2.1题目描述、3.2.2输入格式、3.2.3输出格式、3.2.4样例、3.2.5样例解释表格和3.2.6数据范围（1≤n≤10^3，1≤k≤10，商品价格≤10^4）。网站题面缺少数据范围和样例解释表格。",
-          "review": "修复后核验通过：原题面公式定界符同样多重转义，且缺 PDF 第 10 页 3.2.5 样例解释表格与 3.2.6 数据范围。changes.question 已按 PDF 第 9–10 页 3.2.1–3.2.6 重写：四条排序规则逐句一致（第 4 条采用 PDF 原文「如果仍然相同，按礼盒编号从小到大排序」，「编号从 1 开始」在 3.2.3 输出格式中体现），样例解释表格四行数据与第 10 页插图逐格核对一致（1:(10,5,2)、2:(10,5,1)、3:(8,4,2)、4:(10,4,3)），数据范围照抄 3.2.6（1≤n≤10^3，1≤k≤10，商品价格≤10^4），并补第 9 页的时间/内存限制。"
+          "initial": "对照 PDF 第9—10页 3.2.1—3.2.6：四条排序规则、输入输出、样例解释表格四行数据与排序过程、数据范围 1≤n≤10^3、1≤k≤10、商品价格≤10^4 均一致；samples 数组与 3.2.4 样例一致。",
+          "review": "修复后核验通过：候选 question 与 PDF 第9—10页 3.2.1—3.2.6 对照，四条排序规则（总价、最贵商品价、最便宜商品价、编号均从小到大）逐条一致，输入输出格式一致，『编号从 1 开始』出自 3.2.3 原文；时间/内存限制 1.0 s / 512.0 MB 与第9页一致；第10页样例解释表四行数据（1: 3 5 2/10/5/2、2: 4 1 5/10/5/1、3: 2 2 4/8/4/2、4: 3 4 3/10/4/3）与候选表格一致（PDF 价格串排版紧凑为等价转写）；数据范围 1≤n≤10^3、1≤k≤10、商品价格≤10^4 与 3.2.6 一致；samples 与 3.2.4 一致。"
         },
         "explanation": {
-          "initial": "网站解析的四关键字顺序与PDF第9页规则一致；独立计算样例各礼盒sum/mx/mn得到3 4 2 1，与PDF第10页输出一致；并说明了id打破平局与std::sort稳定性的区别。",
-          "review": "独立计算样例四盒 (sum,mx,mn,id)：1:(10,5,2,1)、2:(10,5,1,2)、3:(8,4,2,3)、4:(10,4,3,4)，按四关键字排序得 3 4 2 1，与第 10 页输出样例及排序过程说明一致；网站解析另指出「id 决胜、std::sort 不保证相同关键字的原有次序」，该技术说明正确。"
+          "initial": "独立计算样例四盒为 (10,5,2,1)、(10,5,1,2)、(8,4,2,3)、(10,4,3,4)，按四关键字排序得 3 4 2 1；候选解析关于 id 决胜与 std::sort 不稳定性的说明正确。",
+          "review": "独立计算样例四盒 (sum,mx,mn,id)：1:(10,5,2,1)、2:(10,5,1,2)、3:(8,4,2,3)、4:(10,4,3,4)，按四关键字排序得 3 4 2 1，与第10页输出样例及排序过程说明一致；候选解析关于 id 决胜打破平局、std::sort 不保证相同关键字原有次序的技术说明正确。"
         },
         "referenceCode": {
-          "initial": "网站参考代码与PDF第11页参考程序等价；使用sum/mx/mn/id四关键字，cmp满足严格弱序；n≤10^3、k≤10、价格≤10^4，单盒sum≤1e5，int安全；复杂度O(nk+n log n)。",
-          "review": "与 PDF 第 11 页官方参考程序等价：结构体字段、四关键字 cmp（逐级不等即返回，构成严格弱序）、逐盒边输入边更新 sum/mx/mn、空格分隔输出均一致（网站 mn 初值 1000000000 与官方 1e9 同值，输出分隔写法等价）。n≤10^3、k≤10、价格≤10^4 时 sum≤10^7，int 安全；mn 初值不小于任何可能价格、mx 初值 -1 不大于任何可能价格，与官方同；复杂度 O(nk + n log n)。"
+          "initial": "与 PDF 第11页官方参考程序等价：结构体字段、四关键字 cmp、边读边统计 sum/mx/mn、顺序输出编号一致；n≤10^3、k≤10、价格≤10^4 时 sum≤10^7，int 安全；复杂度 O(nk+n log n)。",
+          "review": "与 PDF 第11页官方参考程序等价：结构体字段、四关键字 cmp（逐级不等即返回，构成严格弱序）、逐盒边输入边更新 sum/mx/mn 一致；mn 初值 1000000000 与官方 1e9 同值，输出分隔写法等价；单盒 sum≤10×10^4=10^5，int 安全，mn 初值不小于任何可能价格；复杂度 O(nk + n log n)。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l4.glm.json"
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 6,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 8,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l4.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l4.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-03-l4.integration.json"
 }

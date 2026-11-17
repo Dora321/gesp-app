@@ -1,0 +1,274 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    6,
+    8,
+    15,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:33:06.715Z",
+  "completedAt": "2026-11-17T00:35:49.601Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 51243,
+    "completion_tokens": 17021,
+    "total_tokens": 68264,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13493
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01619695,
+      "allowance": 0.01619695,
+      "tokens": {
+        "input": 51243,
+        "output": 17021,
+        "reasoning": 13493,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "7e8af116281ff731079ded82e7f2c0bdeb907ad66cebf8dee77a27fb51efe5c4",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示 CCF 编程能力等级认证 GESP、C++ 四级、2026 年 03 月，共 11 页；第1页单选答案表（…6:B…8:B…15:A）、判断题答案表与第7—11页编程题（山之谷、礼盒排序）均属该卷，与候选 title/level/year/month 一致。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题题干『下列关于结构体初始化的写法，正确的是（ ）。』与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A 为 Point p = (1,2);、B 为 Point p = {1,2};，第3页 C 为 Point p = new Point(1,2);、D 为 Point p = <1,2>;，四项均含 struct Point { int x, y; }; 前置行，内容与顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 B，0 起始索引 1，与 officialAnswer=1、候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：A 的 (1,2) 是逗号表达式、值为 2，int 不能初始化聚合类型 Point，编译报错；B 为聚合初始化 x=1、y=2；C 的 new Point(1,2) 返回 Point* 不能赋给 Point 对象（即使 C++20 允许圆括号聚合初始化，返回值仍是指针）；D 的 <1,2> 非 C++ 合法语法。候选修订解析逐点成立，答案 B 不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：上一轮修订已消除旧解析中『Point(1,2) 写法不成立』与『C++20 允许圆括号聚合初始化』的自相矛盾，改以 new 返回指针与 Point 对象的类型不匹配作为 C 的否定理由，修订文本我独立复核无误；题面、选项、答案均与原卷一致，无需再改。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第8题题干『关于递推算法的描述，正确的是（ ）。』与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A『递推表现为函数自己调用自己』、B『递推从已知初值出发，利用递推关系逐步推出后续结果』、C『递推只能用于指数复杂度问题』、D『递推一定需要回溯』，内容与顺序与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 B，0 起始索引 1，与 officialAnswer=1、候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：递推三要素为初值、递推关系、逐步推进，B 正确；A 是递归的定义；C 不成立，递推常见 O(n) 等多项式复杂度；D 递推单向推进无需回溯。候选对爬楼梯型数列 f(1)=1、f(2)=2 与标准斐波那契初值 f(1)=f(2)=1 的区分表述准确，事实性错误已消除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：修订稿已将原『斐波那契数列』误标改为爬楼梯型数列并注明标准初值差异，答案 B 独立推导成立，候选与原卷一致，无需再改。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页第15题题干及 up 函数代码（Player cur = players[idx]; int i = idx; while 横线、players[i] = players[i-1]; i--; players[i] = cur;）与候选一致；A—C 选项在第5页、D 在第6页顶部。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A 为 i > 0 && cur.score > players[i-1].score、B 为 i > 0 && cur.score < players[i-1].score、C 为 i < n-1 && cur.score > players[i+1].score，第6页 D 为 i < n-1 && cur.score < players[i+1].score，与候选顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 A，0 起始索引 0，与候选 answer=0 一致；独立推导：循环体向左搬移 players[i-1]，边界须 i>0，排行榜降序（分高在前）、分数增加后应越过分数更低的左邻，条件为 i>0 && cur.score > players[i-1].score，与 A 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核候选修订解析：C、D 使用 players[i+1] 与循环体搬运 players[i-1] 的方向矛盾可先排除；B 会让 cur 越过分数更高的玩家，其示例（降序 [10,8,5] 传入 5 分玩家得 [5,10,8]）我按代码逐步模拟：i=2 时 5<8 搬移，i=1 时 5<10 搬移，i=0 停止写入 5，结果确为 [5,10,8]；A 的方向、边界与短路求值说明均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：修订解析已按排行榜降序、向前插入的语境重写，并修正了 B 选项『往后搬』的不准确方向表述；其举例 [10,8,5]→[5,10,8] 经我逐步模拟验证正确，答案 A 不变，候选与原卷一致，无需再改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选 question 与 PDF 第7—8页 3.1.1—3.1.6 对照，8 方向定义与『不高于』判据、输入输出格式逐句一致，时间/内存限制 1.0 s / 512.0 MB 与第7页一致；第8页样例解释图绿色格为第2行第2列（海拔5）、第2行第5列（海拔6）、第3行第2列（海拔5），与候选文字转写一致；数据范围 1≤N,M≤100、1≤h≤10^5 与 3.1.6 一致；samples 与 3.1.4 输入输出样例逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，PDF 第1、6页答案表仅覆盖单选15题与判断10题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立逐格走查 3×5 样例（存在更低邻居即非山谷、相等不淘汰）：山谷恰为 (2,2)=5、(2,5)=6（右边界5个邻居最小7）、(3,2)=5（下边界），共 3 个，与输出样例及第8页插图绿格一致；候选解析的规则阐述、8 方向偏移量、越界判断与易错提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选代码与 PDF 第9页官方参考程序语义等价：官方为边界填 1e9 + 3×3 扫描（含自身格，h[i][j]>h[i][j] 恒假），候选为 8 方向偏移 + 显式越界判断，两者对山谷判定语义相同；候选 dx/dy 覆盖 8 邻域且不含自身，N,M≤100 时最大下标 101 小于 105，h≤10^5、ans≤10^4，int 无溢出；复杂度 O(8NM)。对样例与全部测试期望输出独立推演一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "1×1 最小规模",
+            "input": "1 1\n5\n",
+            "output": "1",
+            "reason": "N、M 取最小值1，唯一单元格无有效邻居，『不高于所有相邻』空真成立；候选代码8个方向全部越界、ok 保持 true 输出1；官方参考程序边界填 1e9 后同样判为山谷，结果一致。"
+          },
+          {
+            "name": "1×3 全等高",
+            "input": "1 3\n5 5 5\n",
+            "output": "3",
+            "reason": "横向邻居海拔相等（5 不大于 5）不淘汰，纵向越界，三格均为山谷；检验相等不淘汰与行边界语义，候选代码与官方参考程序输出均为3。"
+          },
+          {
+            "name": "2×2 对角低点",
+            "input": "2 2\n2 2\n2 1\n",
+            "output": "1",
+            "reason": "仅 (2,2)=1 为山谷；(1,1)、(1,2)、(2,1) 的淘汰依赖对角方向的更低邻居1，仅按4方向实现会误判为3，可检验8方向完整性；候选代码与官方参考程序输出均为1。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核主体结论：题面缺 3.1.5 样例解释与 3.1.6 数据范围的问题已在候选中按 PDF 修复并经我逐句复核；参考代码与官方语义等价；三条测试期望输出 1、3、1 我独立逐格走查均正确，其中 2×2 用例确能检验对角方向完整性。无新问题，无需 changes。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：候选 question 与 PDF 第9—10页 3.2.1—3.2.6 对照，四条排序规则（总价、最贵商品价、最便宜商品价、编号均从小到大）逐条一致，输入输出格式一致，『编号从 1 开始』出自 3.2.3 原文；时间/内存限制 1.0 s / 512.0 MB 与第9页一致；第10页样例解释表四行数据（1: 3 5 2/10/5/2、2: 4 1 5/10/5/1、3: 2 2 4/8/4/2、4: 3 4 3/10/4/3）与候选表格一致（PDF 价格串排版紧凑为等价转写）；数据范围 1≤n≤10^3、1≤k≤10、商品价格≤10^4 与 3.2.6 一致；samples 与 3.2.4 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案，PDF 答案表不涵盖编程题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算样例四盒 (sum,mx,mn,id)：1:(10,5,2,1)、2:(10,5,1,2)、3:(8,4,2,3)、4:(10,4,3,4)，按四关键字排序得 3 4 2 1，与第10页输出样例及排序过程说明一致；候选解析关于 id 决胜打破平局、std::sort 不保证相同关键字原有次序的技术说明正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "与 PDF 第11页官方参考程序等价：结构体字段、四关键字 cmp（逐级不等即返回，构成严格弱序）、逐盒边输入边更新 sum/mx/mn 一致；mn 初值 1000000000 与官方 1e9 同值，输出分隔写法等价；单盒 sum≤10×10^4=10^5，int 安全，mn 初值不小于任何可能价格；复杂度 O(nk + n log n)。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "1×1 最小规模",
+            "input": "1 1\n7\n",
+            "output": "1",
+            "reason": "n、k 取最小值1，唯一礼盒 sum=mx=mn=7，排序后仍输出编号1；候选代码与官方参考程序输出一致。"
+          },
+          {
+            "name": "四关键字平局链",
+            "input": "5 3\n1 3 4\n2 2 4\n1 3 4\n1 1 1\n2 3 3\n",
+            "output": "4 5 1 3 2",
+            "reason": "五盒 (sum,mx,mn,id) 独立推演为 (8,4,1,1)、(8,4,2,2)、(8,4,1,3)、(3,1,1,4)、(8,3,2,5)：4号总价3最小排第一；sum=8 中5号 mx=3 最小排第二；mx=4 中1、3号 mn=1 先于2号 mn=2；1号与3号四项全同按原始编号1先于3。输出 4 5 1 3 2，覆盖四关键字逐级决胜与 id 打破平局。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核主体结论：题面缺 3.2.5 样例解释表格与 3.2.6 数据范围的问题已在候选中按 PDF 修复并经我逐条复核；两条测试期望输出 1 与 4 5 1 3 2 我独立推演均正确，平局链用例覆盖四关键字逐级决胜与 id 平局打破。无新问题，无需 changes。"
+      }
+    ],
+    "summary": "本轮独立复核题号 6、8、15、26、27 共 5 题：单选第 6、8、15 题官方答案分别为 B、B、A（0 起始索引 1、1、0），与候选 answer 一致，且候选解析（含上轮修订：第6题改以 new 返回指针说明 C 选项、第8题爬楼梯型数列表述、第15题降序前移语境及 [10,8,5]→[5,10,8] 示例）经我独立推导全部成立；编程题第 26、27 题题面修订（补限制、样例解释、数据范围）与 PDF 第7—11页逐句一致，解析与参考代码经独立走查及与官方参考程序语义比对无误，5 条测试期望输出（1、3、1、1、4 5 1 3 2）均由我独立推演核对正确。五题全部 approve，无需新增 changes，无未决事项。"
+  }
+}

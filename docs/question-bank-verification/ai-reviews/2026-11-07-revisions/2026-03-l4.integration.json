@@ -1,0 +1,118 @@
+{
+  "paperId": "2026-03-l4",
+  "integratedAt": "2026-11-17T00:35:50.854Z",
+  "accepted": [
+    {
+      "id": 6,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 5\n7 6 6 7 9\n6 5 6 7 6\n6 5 7 8 9",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "1×1 最小规模",
+          "input": "1 1\n5\n",
+          "output": "1",
+          "reason": "N、M 取最小值1，唯一单元格无有效邻居，『不高于所有相邻』空真成立；候选代码8个方向全部越界、ok 保持 true 输出1；官方参考程序边界填 1e9 后同样判为山谷，结果一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "1×3 全等高",
+          "input": "1 3\n5 5 5\n",
+          "output": "3",
+          "reason": "横向邻居海拔相等（5 不大于 5）不淘汰，纵向越界，三格均为山谷；检验相等不淘汰与行边界语义，候选代码与官方参考程序输出均为3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "2×2 对角低点",
+          "input": "2 2\n2 2\n2 1\n",
+          "output": "1",
+          "reason": "仅 (2,2)=1 为山谷；(1,1)、(1,2)、(2,1) 的淘汰依赖对角方向的更低邻居1，仅按4方向实现会误判为3，可检验8方向完整性；候选代码与官方参考程序输出均为1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "83ebecf10df2cfa946164de937177c0c714de2977a45d33a976f8e1d71945ea2"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "4 3\n3 5 2\n4 1 5\n2 2 4\n3 4 3",
+          "output": "3 4 2 1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3 4 2 1\n",
+          "passed": true
+        },
+        {
+          "name": "1×1 最小规模",
+          "input": "1 1\n7\n",
+          "output": "1",
+          "reason": "n、k 取最小值1，唯一礼盒 sum=mx=mn=7，排序后仍输出编号1；候选代码与官方参考程序输出一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "四关键字平局链",
+          "input": "5 3\n1 3 4\n2 2 4\n1 3 4\n1 1 1\n2 3 3\n",
+          "output": "4 5 1 3 2",
+          "reason": "五盒 (sum,mx,mn,id) 独立推演为 (8,4,1,1)、(8,4,2,2)、(8,4,1,3)、(3,1,1,4)、(8,3,2,5)：4号总价3最小排第一；sum=8 中5号 mx=3 最小排第二；mx=4 中1、3号 mn=1 先于2号 mn=2；1号与3号四项全同按原始编号1先于3。输出 4 5 1 3 2，覆盖四关键字逐级决胜与 id 打破平局。",
+          "kind": "boundary",
+          "actual": "4 5 1 3 2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "9b224d60b05ca366fea815da6c0d8c2d6fcf95a8b998a92e17792230950854cb"
+    }
+  ]
+}
