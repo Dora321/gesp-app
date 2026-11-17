@@ -1,0 +1,97 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "glm",
+  "questionIds": [
+    11
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:17:23.133Z",
+  "completedAt": "2026-11-17T00:19:06.962Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 42347,
+    "completion_tokens": 10217,
+    "total_tokens": 52564,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8711
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01146055,
+      "allowance": 0.01146055,
+      "tokens": {
+        "input": 42347,
+        "output": 10217,
+        "reasoning": 8711,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a83989005441962774832620fa7c4f49d6b01bd455de3118312da4d2b8d8bdc0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页页图卷头为「C++ 四级 / 2025 年 12 月」（CCF GESP 编程能力等级认证），与 paperId 2025-12-l4 的年份 2025、月份 12、等级 4 一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页页图第 11 题题干为「下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。」，候选主句一致，仅省略括注「（不需要对所有学生完全排序，只需要找出前 k 名）」；经独立判断该括注为解释性说明，函数行为已由代码完整给出（外层 k 轮、每轮将未排序区最大值交换至下标 i），省略不改变含义、不影响作答。页图代码第 1-21 行（struct Student{name,score}、selectTopK(Student[],int,int)、maxIdx=i、内层填空含注释「// 在此处填入代码」、students[j].score > students[maxIdx].score、maxIdx != i 时三行交换）与候选逐行一致，仅排版折叠。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页页图选项依次为 A. int j = 0; j < n; j++、B. int j = i + 1; j < n; j++、C. int j = i; j < n; j++、D. int j = 1; j <= n; j++；候选四项文字与顺序一一对应（候选 B「i+1」与页图「i + 1」仅空格差异，属可忽略排版差异），answer 映射不受影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表单选题行为「C C B D B A C A B B B A B D B」，第 11 格为 B；候选 answer=1（0 起始映射 B）与官方答案一致。独立推演确认 B（int j = i+1; j < n; j++）为选择排序规范写法，k 轮后下标 0..k-1 为前 k 名，能正确完成任务。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "对候选解析逐条独立复算：①选择排序机制描述正确；②选项 A 反例 [100,10,90,80]、k=2 复算成立——第 1 轮无交换，第 2 轮 j=0 时 100>10 使 maxIdx=0，交换后 [10,100,90,80]，前两名 {10,100} 不含真正的第二名 90；③选项 C 分析正确——j=i 时 students[i].score > students[i].score 恒为假，maxIdx 不变、不触发交换，其后 j=i+1..n-1 过程与 B 完全相同，C 与 B 无条件等价（含 k=0、n≤1 等边界亦等价），候选已如实记录等价性，且旧版「temp 覆盖丢数据」错误论断确认已删除（选项 C 分析与易错提醒两处均已改写）；④选项 D 分析正确——j<=n 使 j=n 时访问 students[n] 越界（未定义行为），且 i≥2 轮扫描范围 [1,n] 含已排前缀下标 1..i-1，反例 [100,90,10,80]、k=3 复算成立——第 3 轮 i=2 时 j=1 的 90>10 使 maxIdx=1，交换后前三位 {100,10,90}≠正确前三名 {100,90,80}；⑤复杂度 O(kn)、k=n 时 O(n²) 复算正确。修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案表第 11 题为 B，候选 answer=1 忠实对应，不据此擅改；但独立推演确认选项 C（int j = i; j < n; j++）在 j=i 时自比较恒为假、不产生交换，其后扫描过程与 B 完全相同，执行结果与 B 无条件等价，同样能正确选出前 k 名，本题单选存在两个功能正确选项的源卷唯一性缺陷，属原卷固有争议，保留待命题方/官方确认。"
+        ],
+        "verdict": "unresolved",
+        "reviewNote": "独立复核接受 DeepSeek 初核草稿，理由：①逐字核对 PDF 第 1/4/5 页页图，题干、代码、四个选项及顺序、答案表第 11 格 B 均与候选一致；②独立推演确认 C≡B（j=i 自比较恒假、不交换，其后过程与 B 完全相同），并确认候选解析已删除上一版本中「C 导致 temp 覆盖丢数据」的错误论断，等价性表述如实；③独立复算 A 的反例、D 的越界论据与 [100,90,10,80] 前缀扰动反例、O(kn) 复杂度均成立；④题干省略括注「（不需要对所有学生完全排序，只需要找出前 k 名）」经独立判断属不影响作答的辅助性说明，接受该省略；⑤官方单选存在 B/C 双功能正确选项的源卷固有缺陷，无法本轮定案，verdict 记为 unresolved，保留争议不擅改 answer。无新增问题，changes 为空。"
+      }
+    ],
+    "summary": "题号 11 五维核验完成：题干与代码同 PDF 第 4 页页图一致（省略的括注为不影响作答的辅助说明），选项与第 5 页页图一致，官方答案 B（answer=1）与第 1 页答案表第 11 格一致；候选解析经独立推演全部成立——A 反例、C≡B 等价性、D 越界及前缀扰动反例、O(kn)/O(n²) 复杂度均复算确认，此前版本「C 丢数据」错误论断已确认删除，修复后核验通过，无需修改，changes 为空；官方答案 B 保留，选项 C 与 B 执行结果等价构成的源卷单选唯一性争议单列于 unresolved，待命题方确认。"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "paperId": "2025-12-l4",
+  "integratedAt": "2026-11-17T00:21:51.804Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 11,
+      "reasons": [
+        "复核未明确批准候选"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": []
+}

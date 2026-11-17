@@ -1,0 +1,95 @@
+{
+  "paperId": "2025-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:15:16.212Z",
+  "completedAt": "2026-11-17T00:17:23.129Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21928,
+    "completion_tokens": 12231,
+    "total_tokens": 34159,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11445
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0106278,
+      "allowance": 0.00637668,
+      "tokens": {
+        "input": 21928,
+        "output": 12231,
+        "reasoning": 11445,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "a83989005441962774832620fa7c4f49d6b01bd455de3118312da4d2b8d8bdc0",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++4级.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "mirrorBytes": 1059808,
+    "shaVerified": true,
+    "sha256": "aeb55c9797044f51a1d63cb3601d081d6a3e150a94c2a5e2c0afd28aedd3544e"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页页图卷头为「C++ 四级 / 2025 年 12 月」，与 paperId 的年份、月份、等级一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页页图第11题主句及 selectTopK 代码（struct Student、maxIdx=i、内层填空、students[j].score > students[maxIdx].score、maxIdx != i 时交换）与候选一致；原卷括注「不需要对所有学生完全排序，只需要找出前 k 名」为解释性说明，候选省略未改变作答含义，属可接受的辅助说明省略。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页页图选项依次为 A. int j = 0; j < n; j++、B. int j = i + 1; j < n; j++、C. int j = i; j < n; j++、D. int j = 1; j <= n; j++；候选四项文字与顺序一致，仅 B 的「i + 1」存在空格差异，答案映射不受影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题对应格为 B，候选 answer=1（0 起始映射 B）与官方答案一致。独立推演确认 B 为规范写法；C 因 j=i 时自比较恒假，执行结果与 B 等价，该源卷单选唯一性问题另列 unresolved，不改变候选对官方答案的忠实映射。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析已改正此前「C 会导致 temp 覆盖丢数据」的错误说法，明确 C 与 B 等价；A 的反例 [100,10,90,80]、k=2 复算成立，D 的 j=n 越界及 i≥2 时扫描已排前缀 [1,i-1] 的破坏性复算成立；O(kn) 与 k=n 时 O(n²) 的复杂度结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "官方答案表第11题为 B，候选保留 answer=1；但选项 C（int j = i; j < n; j++）在 j=i 时 students[i].score > students[i].score 恒假，不产生交换，后续过程与 B 完全相同，亦能正确选出前 k 名，故本题单选存在两个可执行正确选项的源卷唯一性争议，待命题方确认。"
+        ]
+      }
+    ],
+    "summary": "题号 11 五维核验完成：题干、选项、官方答案、解析均与 PDF 第1/4/5页页图相符；未发现需要修改候选字段的内容。官方答案 B 保留，B/C 等价作为源卷单选题唯一性争议单列，不擅自改答案。"
+  }
+}
