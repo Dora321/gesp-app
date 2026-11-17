@@ -1,0 +1,153 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:46:18.142Z",
+  "completedAt": "2026-11-17T00:47:58.864Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29826,
+    "completion_tokens": 9967,
+    "total_tokens": 39793,
+    "prompt_tokens_details": {
+      "cached_tokens": 29696
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8977
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00608879,
+      "allowance": 0.00365327,
+      "tokens": {
+        "input": 130,
+        "output": 9967,
+        "reasoning": 8977,
+        "cache_read": 29696,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 四级 / 2026年06月”，与 paperId 2026-06-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页 3.1.1-3.1.8 与网站题面一致：地图 n×m、8邻域相邻定义、输入 q+1 行、输出 n 行每行 m 个空格分隔字符、数据范围 3≤n,m≤500、1≤q≤n·m，样例输入输出相同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观题答案表项；网站 answer 字段为空。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核算：每个非雷格枚举3×3邻域，自身非雷不计；样例逐格统计得 * 2 * 2 / 2 3 3 * / 1 * 2 1，与官方一致；复杂度 O(nm+q)，空间 510×510 合理。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第8页官方参考程序与网站字段逻辑一致：0-based 坐标、雷标记-1、越界检查后累加；仅单字符与字符串字面量写法等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值与角落雷区",
+            "input": "3 3 1\n1 1",
+            "output": "* 1 0\n1 1 0\n0 0 0",
+            "reason": "n,m取最小值3，q取最小值1，雷在左上角；逐格统计8邻域得该输出。"
+          },
+          {
+            "name": "全图雷区上界",
+            "input": "3 3 9\n1 1\n1 2\n1 3\n2 1\n2 2\n2 3\n3 1\n3 2\n3 3",
+            "output": "* * *\n* * *\n* * *",
+            "reason": "q取上界n*m，全部为雷区；参考程序对每个格子走雷区分支，应全输出*，检查不产生非雷计数。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第9页 3.2.1-3.2.8 与网站题面一致：BMI=w/(h*h)，按BMI降序输出编号，输入3行且先读全部体重再读全部身高，样例与数据范围相同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观题答案表项；网站 answer 字段为空。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算样例BMI：id3≈18.81、id1≈18.73、id2≈18.66，降序为3 1 2；解析对 w/(h*h) 写法和两次输入循环的提醒与题面及代码相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第10页官方参考程序与网站字段逐行语义一致：结构体保存id/w/h，按BMI降序冒泡，输出id；仅单字符与字符串字面量写法等价。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小人数",
+            "input": "1\n50\n1.60",
+            "output": "1",
+            "reason": "n取最小值1；仅一名小朋友，编号1直接输出。"
+          },
+          {
+            "name": "身高上下界与BMI公式",
+            "input": "3\n10 100 50\n0.80 1.90 1.00",
+            "output": "3 2 1",
+            "reason": "覆盖h_i下界0.80和上界1.90，BMI分别约15.625、27.7008、50，降序编号3 2 1，可检验BMI公式与降序排序。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题号26、27。两题的题面、样例、数据范围与官方PDF一致，参考程序逻辑与PDF参考程序一致，未发现需修改字段；补充最小值与上界边界测试。未执行代码。"
+  }
+}

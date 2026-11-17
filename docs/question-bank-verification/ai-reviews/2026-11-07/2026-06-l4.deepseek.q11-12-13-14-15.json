@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:34:02.729Z",
+  "completedAt": "2026-11-17T00:34:56.111Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29832,
+    "completion_tokens": 5317,
+    "total_tokens": 35149,
+    "prompt_tokens_details": {
+      "cached_tokens": 29824
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4018
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00328087,
+      "allowance": 0.00196852,
+      "tokens": {
+        "input": 8,
+        "output": 5317,
+        "reasoning": 4018,
+        "cache_read": 29824,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP”“C++ 四级”“2026 年 06 月”，与 2026-06-l4 的身份一致。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干说的是按亮度排序、亮度相同保持原序、选出关于稳定性的错误说法，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A-D 分别为冒泡稳定、插入稳定、选择排序稳定、稳定性定义，文字与顺序均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 列为 C，网站 answer=2 对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：选择排序会把最小值远距离交换到前面，可能破坏相等元素的相对次序，例如 [2a,2b,1] 会变为 [1,2b,2a]，所以 C 错误；冒泡稳定、插入稳定以及 D 的定义均正确，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页递推式为 f(n)=f(n-1)+f(n-2)，且 f(1)=1、f(2)=2，代码求 jump(5)，与网站题面和代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A.5、B.8、C.13、D.21，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 12 列为 B，网站 answer=1 对应 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算 f(3)=3、f(4)=5、f(5)=8；迭代代码在 i=3,4,5 时依次得到 c=3,5,8，最终返回 8，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页异常处理代码、除零条件以及所问输出，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次为 A.0、B.Error Code: 0、C.Caught: Zero Error、D.程序直接崩溃，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 13 列为 C，网站 answer=2 对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：throw \"Zero Error\" 抛出 const char*，第一个 catch(int) 不匹配，第二个 catch(const char*) 捕获并输出 Caught: Zero Error，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4-5 页 sorting 代码完整；函数逐轮记录 minPos 后交换，与网站题面和代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为冒泡排序、插入排序、选择排序、非典型排序，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 14 列为 C，网站 answer=2 对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立识别：内层循环仅寻找未排序区间最小元素下标，外层每轮末将最小值交换至 i，符合选择排序特征；解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页说明文件 quest.txt 内容为“Level 10”，并给出文件流读取代码及输出表达式，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次为 A.50、B.15、C.70、D.5，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 15 列为 A，网站 answer=0 对应 A。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：fin >> s >> v 以空白分隔读得 s=\"Level\"、v=10，s.length()=5，故输出 5×10=50，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 11-15 题，五题均为单选题。PDF 卷头身份与题库一致；逐题核对题干、选项、官方答案表及解析推导，均与网站数据一致，未发现需要修改的字段。无编程题，故未生成边界测试。"
+  }
+}

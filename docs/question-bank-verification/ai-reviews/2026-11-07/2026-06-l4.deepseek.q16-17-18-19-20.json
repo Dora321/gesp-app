@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:36:00.115Z",
+  "completedAt": "2026-11-17T00:36:38.288Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29832,
+    "completion_tokens": 3440,
+    "total_tokens": 33272,
+    "prompt_tokens_details": {
+      "cached_tokens": 29696
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2030
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00217349,
+      "allowance": 0.00130409,
+      "tokens": {
+        "input": 136,
+        "output": 3440,
+        "reasoning": 2030,
+        "cache_read": 29696,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“C++ 四级”和“2026 年 06 月”，与 2026-06-l4 一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 1 题题干和代码逐行一致：modify(int *p) 中执行 *p = *p + 10，main 中 a = 10 后调用 modify(&a)。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题选项为“正确/错误”，网站选项顺序一致；按正确=0、错误=1 映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 1 题为√，映射 officialAnswer=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：&a 传入后 *p 即 a，a 由 10 加 10 变为 20，命题正确；现有解析结论和推导过程与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题第 2 题原文为“引用一旦初始化并绑定到某个变量后，可以通过赋值语句将其重新绑定到另一个变量”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题选项为“正确/错误”，网站顺序一致；正确=0、错误=1 映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 2 题为×，映射 officialAnswer=1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：引用初始化后绑定关系不可更改，r = b 只是把 b 的值赋给 r 所绑定的变量，不会重新绑定；命题错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页末至第 6 页给出判断题第 3 题及完整代码：Student 数组含 3 名学生的成绩 90、80、100，sum / 3.0 后输出 average；与网站题面和代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题选项为“正确/错误”，网站顺序一致；正确=0、错误=1 映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 3 题为√，映射 officialAnswer=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：sum=90+80+100=270，270/3.0=90.0，程序正确输出平均成绩 90，因此命题正确；解析与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 4 题原文为“选择排序算法在寻找每一轮最小值时，如果遇到相等的元素不进行交换，则选择排序是一种稳定的排序算法”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题选项为“正确/错误”，网站顺序一致；正确=0、错误=1 映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 4 题为×，映射 officialAnswer=1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：选择排序的不稳定性来自每轮将最小值与未排序区首元素进行远距离交换，如 [2a,2b,1] 首轮交换后变为 [1,2b,2a]；“查找最小值时不交换相等元素”不能保证整体稳定，命题错误，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题第 5 题原文为“如果使用带 flag 的冒泡排序，且待排序数组一开始就是有序的，那么算法只需一轮扫描即可结束，时间复杂度为 O(n)”，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断题选项为“正确/错误”，网站顺序一致；正确=0、错误=1 映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 5 题为√，映射 officialAnswer=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：带 flag 的冒泡排序在有序数组上第一轮进行 n-1 次相邻比较且不发生交换，flag 未改变而提前结束，时间为 O(n)，命题正确；解析与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第 5、6 页原图核查题 16—20 的题干、代码、选项、答案表符号和解析。五题均无题面缺失或答案冲突；officialAnswer 依次为 0、1、0、1、0，与网站答案及官方判断题答案行“√ × √ × √”一致。判断题不使用参考代码，测试字段为空。"
+  }
+}

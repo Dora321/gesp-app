@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:21:51.745Z",
+  "completedAt": "2026-11-17T00:22:28.552Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29832,
+    "completion_tokens": 3080,
+    "total_tokens": 32912,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1729
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0063228,
+      "allowance": 0.00379368,
+      "tokens": {
+        "input": 29832,
+        "output": 3080,
+        "reasoning": 1729,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头明确标注“CCF 编程能力等级认证”“C++ 四级”“2026 年 06 月”，与 2026-06-l4 的年份、月份和四级身份一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干、函数 exchange 代码及 main 调用与网站题面一致，exchange(&x, y) 的参数类型分别为 int* 和 int&。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页四个选项依次为 100 200、200 100、200 200、编译错误，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题答案为 B，对应 0 起始索引 1；推导：t=100，x=200，y=100。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立按指针与引用传参逐行推导得到 200 100，与答案 B 一致，选项辨析无明显错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 2 题题干、sumScore 函数、main 中横线及变量声明与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页选项依次为 sumScore、sumScore(chinese, math, english)、sumScore(int chinese, int math, int english)、sumScore(a, b, c)，顺序与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题答案为 B，对应 0 起始索引 1；正确调用应传入 main 中实际存在的三个变量。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析准确指出调用处不能写形参类型，且 a、b、c 并非 main 中实际变量，独立推导同样选 B。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页末为第 3 题题干，PDF 第 2 页顶部为 addOne 函数及 main 代码，网站题面完整且含义一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 9、10、11、12，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页答案表第 3 题答案为 C，对应 0 起始索引 2；addOne(6)+addOne(3)=7+4=11。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立计算两次函数调用得到 7 与 4，再相加为 11，与答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 4 题 show 函数、main 中 cout << stars 的代码与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页四个选项内容与顺序均与网站一致，均围绕 stars 的作用域及编译结果。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页答案表第 4 题答案为 C，对应 0 起始索引 2；stars 为 show 局部变量，main 中不可见，故编译失败。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 stars 仅在 show 函数内有效，main 中访问会触发未声明标识符的编译错误，与答案 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题四行指针代码与网站题面完全一致，执行后询问 *p 的值。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页选项依次为 5、6、lv 的地址、next_lv 的地址，与网站选项及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页答案表第 5 题答案为 B，对应 0 起始索引 1；执行后 p 指向 next_lv，而 next_lv 的值为 6。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析逐行跟踪：先使 lv 变为 6，再令 p 指向 next_lv，因此最终 *p=6；与答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按 PDF 第 1、2 页原图逐题核验第 1 至 5 题。五题的题干、代码、选项顺序、答案表映射及解析均与官方 PDF 相符，答案依次为 B、B、C、C、B，对应 0 起始索引 1、1、2、2、1；未发现需修正项。"
+  }
+}

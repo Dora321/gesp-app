@@ -1,0 +1,234 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:44:41.376Z",
+  "completedAt": "2026-11-17T00:46:18.138Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47430,
+    "completion_tokens": 9536,
+    "total_tokens": 56966,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 7370
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0118825,
+      "allowance": 0.0118825,
+      "tokens": {
+        "input": 47430,
+        "output": 9536,
+        "reasoning": 7370,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页原图卷头为『CCF 编程能力等级认证 GESP』『C++ 四级』『2026 年 06 月』，与 2026-06-l4（level=4、year=2026、month=6）一致；第 5 页判断题答案表及第 7-10 页编程题（扫雷、身高体重指数）标题亦与站点结构吻合。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 6 题原文：『在 C++ 中定义二维数组并初始化时，可以省略第一维，但不能省略第二维。因此 int a[][2] = {{1, 2}, {3, 4}}; 是合法的，而 int a[][] = {{1, 2}, {3, 4}}; 是不合法的。』与站点题干逐字一致，含两处示例代码。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项维度；PDF 以题干陈述加答案表 √/× 呈现，站点以固定『正确/错误』两项承载，无独立选项需核。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 6 位为√（正确），按 正确=0 映射为 0，站点 answer=0 一致；站点 reviewStatus 记录的判断答案串 √×√×√√×√×× 第 6 位亦为√，相互印证。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：带完整初始化列表时第一维可由行数推导（2 行），故 int a[][2] 合法；第二维决定每行长度与 a[i][j] 的行主序寻址偏移（首址+(i×列数+j)×元素大小），缺失则不合法；函数形参 void f(int a[][2]) 合法、void f(int a[][]) 非法同理。解析各条结论均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、答案映射与解析均经独立核对一致，无修改。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 7 题题干『下面代码的时间复杂度是 O(2^n)。』及代码（int cnt=0; 外层 i=1..n、内层 j=1..i、cnt++）与站点逐行一致，O(2ⁿ) 为等价上标排版。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项维度；PDF 以答案表 × 呈现，站点以『正确/错误』承载。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 7 位为×（错误），按 错误=1 映射为 1，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立求和：内层执行次数为 1+2+…+n=n(n+1)/2，总复杂度 O(n²) 而非 O(2ⁿ)，故官方判×正确；解析对指数级复杂度典型来源（子集枚举、朴素递归斐波那契）的补充说明亦无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：复杂度独立推导为 O(n²)，题面、答案核对无误。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 8 题题干『假设文件 output.txt 能正常打开，下面代码通过 rdbuf 将 cout 的输出重定向到了文件中。』及五行 rdbuf 代码（保存 old_buf、换 fout 缓冲区、输出 GESP Exam、恢复）与站点逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项维度；PDF 以答案表 √ 呈现，站点以『正确/错误』承载。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 8 位为√（正确），按 正确=0 映射为 0，站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对三步流程：cout.rdbuf() 取回并保存原缓冲区；cout.rdbuf(fout.rdbuf()) 将 cout 缓冲区换为文件缓冲区，此后 cout<< 写入 output.txt；cout.rdbuf(old_buf) 换回屏幕输出。『GESP Exam』确在重定向期间输出，该写法即标准 rdbuf 重定向，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：rdbuf 重定向机制与解析描述一致，官方√与站点 answer=0 吻合。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 9 题题干『小杨想通过下面程序给饭卡充值，程序会输出 70 。』及代码（void recharge(int money){money+=20;}，card=50，值传递调用后输出 card）与站点一致，仅『70 。』空格排版差异，忽略。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项维度；PDF 以答案表 × 呈现，站点以『正确/错误』承载。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 9 位为×（错误），按 错误=1 映射为 1，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立跟踪：recharge(int money) 为值传递，money 是 card 的副本，money+=20 只改副本且函数返回后销毁；card 保持 50，程序实际输出 50 而非 70，题干陈述为假，判×正确；解析给出的引用/指针修正方案亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：值传递行为与『输出 50』的独立推导无误。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页底部为判断第 10 题题干『下面代码可以通过编译。』，对应代码 int a[5]; a++; 位于第 7 页顶部（跨页），两处合并与站点题干及代码块完全一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项维度；PDF 以答案表 × 呈现，站点以『正确/错误』承载。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断题答案表第 10 位为×（错误），按 错误=1 映射为 1，站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：内建前置/后置 ++ 要求操作数为可修改左值；数组名 a 的类型是 int[5]，为不可修改左值，数组-指针转换得到的指针值是纯右值，同样不满足可修改左值要求，故 a++ 无法通过编译，判×正确。解析中『数组类型不是 int* const、int* p=a 后 p++ 才合法』的区分亦符合标准。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：第 6、7 页跨页题干与代码分别核对无误，答案与解析均成立。"
+      }
+    ],
+    "summary": "本次仅复核站点题号 21–25（对应 PDF 判断题第 6–10 题）。卷头确认为 2026 年 6 月 C++ 四级；五题题干分别与 PDF 第 6 页（第 25 题跨第 6–7 页）原图一致；PDF 第 5 页判断题答案表第 6–10 位为 √、×、√、×、×，按 正确=0/错误=1 映射为 0、1、0、1、1，与站点 answer 完全一致。五题解析均经独立推导确认：①二维数组省略第一维合法、省略第二维非法（行主序寻址依赖第二维）；②三角循环次数 n(n+1)/2 为 O(n²) 而非 O(2ⁿ)；③rdbuf 三步重定向使 cout 输出写入文件；④值传递下 card 保持 50、实际输出非 70；⑤数组名非可修改左值，a++ 不能编译。未发现需修改字段，DeepSeek 初核结论经独立复核全部接受，五题均判定 approve，无遗留争议。"
+  }
+}

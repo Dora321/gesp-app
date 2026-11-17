@@ -1,0 +1,234 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:34:56.118Z",
+  "completedAt": "2026-11-17T00:36:00.110Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47371,
+    "completion_tokens": 5838,
+    "total_tokens": 53209,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 3897
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01002465,
+      "allowance": 0.01002465,
+      "tokens": {
+        "input": 47371,
+        "output": 5838,
+        "reasoning": 3897,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 GESP”“C++ 四级”“2026 年 06 月”，与 2026-06-l4 身份一致；单选答案表（第 1 页）15 题、判断答案表（第 5 页）10 题、编程题 2 道与题库结构吻合。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图题干为“小杨在对‘能量晶石’按亮度进行排序。如果两块晶石亮度相同，他希望保持它们在原始序列中的相对顺序。下列关于排序算法稳定性的说法，错误的是（ ）”，与网站逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A 冒泡稳定（左边比右边大才交换）、B 插入稳定（插入到相等元素右侧）、C 选择排序稳定（每次选最小放前面）、D 稳定性定义，四项文字与顺序均与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：选择排序每轮将未排序区最小值与首位做长距离交换，[2a,2b,1] 第一轮交换后变 [1,2b,2a]，2a/2b 相对次序被破坏，故选择排序不稳定，C 说法错误；冒泡仅在相邻逆序时交换、插入停在相等元素右侧、D 为稳定性标准定义，均正确；网站解析与该推导相符。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题面、选项、答案表映射、解析推导均与原卷一致，独立复核与 DeepSeek 结论相同，无需修改。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图：踏板编号 1,2,3,…，递推式 f(n)=f(n-1)+f(n-2)，f(1)=1、f(2)=2，求 jump(5)；jump 代码（含 if(n<=2) return n 及迭代三行）与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次 A.5、B.8、C.13、D.21，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 12 题为 B，0 起始索引 1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立递推：f(3)=1+2=3，f(4)=2+3=5，f(5)=3+5=8；代码跟踪 i=3 时 c=3、i=4 时 c=5、i=5 时 c=8，返回 8，对应 B；网站解析结论与过程正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：递推式图片、代码、选项与答案均已按第 4 页原图核对，独立算得 8 与官方 B 一致，初核结论可靠。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页原图题干“为了防止除以 0 导致崩溃，小杨使用了异常处理机制。执行以下代码将输出（ ）”，try/throw \"Zero Error\"/catch(int)/catch(const char*) 代码逐行与网站一致（文本层缺字已按原图补核）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页选项依次 A.0、B.Error Code: 0、C.Caught: Zero Error、D.程序直接崩溃，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 13 题为 C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：y=0 触发 throw，字符串字面量类型为 const char*，异常传播跳过除法；catch(int) 不匹配，catch(const char*) 匹配并输出 Caught: Zero Error，异常被捕获不崩溃；网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：异常类型匹配关系独立验证无误，官方答案 C 与网站 answer=2 一致，初核结论接受。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干在 PDF 第 4 页末行，代码在 PDF 第 5 页：mystery_sort 外层 i 从 0 到 n-2，内层记录 minPos，每轮末将 arr[i] 与 arr[minPos] 交换，13 行代码与网站逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次 A.冒泡排序、B.插入排序、C.选择排序、D.非典型排序，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 14 题为 C，0 起始索引 2，与网站 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立识别：内层循环只比较并记录最小值下标（不移动元素），外层每轮恰好一次交换将最小值放到 i 位，为选择排序标准结构；冒泡为相邻多次交换、插入为向前挪位，均不符；网站解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：跨页代码按第 4、5 页原图逐行核对无误，算法识别与官方答案 C 一致，初核结论接受。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页原图：文件 quest.txt 内容为 Level 10，五行代码 ifstream fin(\"quest.txt\")/string s/int v/fin >> s >> v/cout << s.length() * v 与网站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页选项依次 A.50、B.15、C.70、D.5，与网站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页单选答案表第 15 题为 A，0 起始索引 0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：>> 以空白分隔，s 读入 \"Level\"（5 字符），v 读入 10，输出 5×10=50；B 为误加、D 为漏乘、C 无依据；网站解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：>> 分隔读取与 length 计算独立复算得 50，官方答案 A 与网站 answer=0 一致，初核结论接受。"
+      }
+    ],
+    "summary": "本次仅核验第 11–15 题（均为单选题）。PDF 卷头身份与题库一致；逐题按原卷页面图像核对题干、选项、代码（含第 13 题“除以 0”与第 12 题递推式等文本层缺失处的原图补核），并对照第 1 页官方答案表确认五题答案映射（C/B/C/C/A → 2/1/2/2/0）与网站 answer 一致；五题解析均经独立推导复核成立。DeepSeek 初核的五项 approve 结论与独立复核结果完全一致，全部接受；未发现需要修改的字段，changes 均为空。无编程题，未生成边界测试，未决问题为零。"
+  }
+}

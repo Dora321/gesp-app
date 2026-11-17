@@ -1,0 +1,225 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:23:18.831Z",
+  "completedAt": "2026-11-17T00:24:23.998Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29832,
+    "completion_tokens": 6271,
+    "total_tokens": 36103,
+    "prompt_tokens_details": {
+      "cached_tokens": 29696
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4768
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00387209,
+      "allowance": 0.00232325,
+      "tokens": {
+        "input": 136,
+        "output": 6271,
+        "reasoning": 4768,
+        "cache_read": 29696,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 卷头显示“CCF 编程能力等级认证 C++ 四级 2026 年 06 月”，页脚为 1/10 至 10/10，与 2026-06-l4 对应。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页原图第 6 题为 int map[5][4]、int 占 4 字节、map 地址 0x2000，求 &map + 1；PDF 文本层漏掉“4”，但原图与网站题面均含“4 字节”，语义完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原图选项顺序为 A. 0x204c、B. 0x205c、C. 0x2050、D. 0x2058，与网站数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 6 题标为 C，即 0 起始索引 2。独立计算：&map 类型为 int (*)[5][4]，+1 跨越 5×4×4=80 字节=0x50，地址为 0x2050。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确区分 &map + 1 跨整个二维数组与 map + 1 跨一行，并给出 0x2000+0x50=0x2050；选项逐项判断与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页末为题干，第 3 页原图代码为 data 五个元素、ptr=data+2、val=*(ptr-1)+*(ptr+1)，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原图选项顺序为 A. 50、B. 60、C. 70、D. 80，与网站数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题标为 B，即索引 1。ptr 指向 data[2]=30，*(ptr-1)=20，*(ptr+1)=40，sum=60。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按元素偏移得到 20+40=60，并正确说明指针加减按元素个数移动；结论与选项映射一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页原图明确为“3 个小组、每组 4 名同学”，并给出 3×4 的 score 初始化；文本层数字缺失但原图与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原图选项顺序为 A. 81、B. 90、C. 92、D. 72，与网站数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题标为 C，即索引 2。score[1] 为第二行 {90,91,92,93}，score[1][2]=92。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明下标从 0 开始，并核对 score[1][2] 是第二行第三列，结果为 92。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页原图题干及 struct Hero { string name; int hp; }; 与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原图选项顺序为 A 聚合初始化、B 先定义后逐成员赋值、C 用 new 返回的 Hero* 初始化 Hero 对象、D 用 Hero* 接收 new；网站选项顺序一致，B 的代码块压缩为单行并附说明括注，不改变语义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题标为 C，即索引 2。A、B、D 均合法；C 将 Hero* 赋给 Hero 类型对象，类型不匹配导致编译失败。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析独立判断 new Hero{...} 返回 Hero*，不能赋给 Hero 对象；对 A、B、D 的合法性说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页原图给出 Book 结构体、books[2] 初始化及输出 books[1].title，与网站题面一致；C、D 选项跨至第 4 页。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "原图选项顺序为 A. Math、B. Science、C. 120、D. 150，与网站数据一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题标为 B，即索引 1。books[1] 为 {\"Science\",150}，故 books[1].title 输出 Science。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确说明 books[0] 与 books[1] 的内容及 books[1].title 的访问结果，和独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验第 6 至 10 题。五题的题面、选项顺序、官方答案及解析均与 PDF 原图和答案表一致，未发现需要纠错的字段。第 6 题 PDF 文本层虽漏“4 字节”，但第 2 页原图及网站题面均含该信息；第 7、10 题跨页内容已核对完整。编程题不在本次范围，故不列测试。"
+  }
+}

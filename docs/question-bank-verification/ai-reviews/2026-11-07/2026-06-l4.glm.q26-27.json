@@ -1,0 +1,163 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:53:20.517Z",
+  "completedAt": "2026-11-17T00:56:01.765Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47202,
+    "completion_tokens": 15109,
+    "total_tokens": 62311,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 12503
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0146348,
+      "allowance": 0.0146348,
+      "tokens": {
+        "input": 47202,
+        "output": 15109,
+        "reasoning": 12503,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头清晰显示「C++ 四级 / 2026年06月」，页脚 1/10–10/10 共10页，与 paperId 2026-06-l4（2026年6月四级）一致；答案表（单选15题、判断10题）与编程题两道均在该卷内。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第7页 3.1.1–3.1.5 与第8页 3.1.6–3.1.8 原图逐项核对：地图 n 行 m 列共 n×m 区块，行号 1..n、列号 1..m；指定 q 个雷区；相邻定义为至少一个公共顶点（非边缘区块周围 8 个相邻）；输入含 q+1 行，首行三个正整数 n、m、q，随后 q 行每行两个整数为雷区行号列号且保证不重复；输出 n 行每行 m 个空格分隔字符，雷区输出 *，非雷输出 0 到 8 的计数；数据范围 3≤n,m≤500、1≤q≤n·m、坐标从 1 开始；输入样例（3 4 4 / 1 1 / 1 3 / 2 4 / 3 2）、输出样例（* 2 * 2 / 2 3 3 * / 1 * 2 1）及输出解释中的四个雷区坐标均与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表项（答案表仅覆盖单选 15 题与判断 10 题），officialAnswer 记 null；网站 answer 字段为空，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导核验：将雷区 (1,1),(1,3),(2,4),(3,2) 转 0-based 为 (0,0),(0,2),(1,3),(2,1)，逐格按 3×3 偏移并裁剪边界统计——第1行 * 2 * 2，第2行 2 3 3 *（(1,1)邻域含雷 (0,0),(0,2),(2,1) 计 3），第3行 1 * 2 1，与官方样例完全一致；解析中各格邻居枚举（如 (1,2) 边缘 5 邻计 2、(2,2) 满邻计 3、(3,4) 角部 3 邻计 1）复算全部无误；复杂度 O(9nm)+O(q)、9×500×500≈2.25×10⁶、510×510 int 约 1MB、时限 1.0s/内存 512MB 均与 PDF 3.1 节信息相符。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第8页 3.1.9 参考程序与网站 referenceCode 逐行语义一致：读入后 mp[x-1][y-1]=-1 标雷；双层遍历地图，雷格输出星号后 continue；否则枚举 di,dj∈[-1,1]，先做 i+di/j+dj 越界 continue 再判 -1 累加；行尾空格与换行。仅星号/空格用字符字面量与字符串字面量、换行符转义写法的差异，输出语义完全等价；n,m≤500 时 510×510 数组无越界风险。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小值与角落雷区",
+            "input": "3 3 1\n1 1",
+            "output": "* 1 0\n1 1 0\n0 0 0",
+            "reason": "独立复算：n,m,q 取最小值，雷在左上角 (0,0)；中心格 (1,1) 经对角线相邻计 1（顺带验证对角相邻），(0,2)、(2,2) 等远格计 0，逐格推演得该输出。"
+          },
+          {
+            "name": "全图雷区上界",
+            "input": "3 3 9\n1 1\n1 2\n1 3\n2 1\n2 2\n2 3\n3 1\n3 2\n3 3",
+            "output": "* * *\n* * *\n* * *",
+            "reason": "独立复算：q 取上界 n·m，9 格全为雷区，参考程序每格命中雷区分支直接输出 *，无任何计数路径；该输入合法（雷区不重复且在图内）。"
+          },
+          {
+            "name": "中心雷对角相邻",
+            "input": "3 3 1\n2 2",
+            "output": "1 1 1\n1 * 1\n1 1 1",
+            "reason": "独立复算：雷位于中心 (1,1)，四个角格仅与中心对角相邻也应计 1；此用例专门检验 8 邻域含对角线及边界裁剪，能区分错误的 4 邻域实现。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：DeepSeek 草稿对题面、参考代码、解析的核对结论经我对照 PDF 第7–8页原图独立确认无误，其两项测试的期望输出与我逐格复算结果完全一致；我在其基础上补充了中心雷对角相邻测试（期望输出为本人独立推演），未发现任何需修改字段，故 changes 为空，两维关键维度按官方原文判 verified。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "对照 PDF 第9页 3.2.1–3.2.8 原图逐项核对：BMI=体重(kg)/身高(m)/身高(m)，含 50kg、1.6m 得 19.53125 kg/m² 的示例；n 个小朋友编号 1..n，按 BMI 从高到低排序且保证无并列，输出编号；输入 3 行——正整数 n、n 个整数体重、n 个浮点身高（h 均恰有两位小数）；数据范围 1≤n≤1000、10≤w≤100、0.8≤h≤1.9；样例输入（3 / 45 33 39 / 1.55 1.33 1.44）、输出（3 1 2）及样例解释（18.73、18.66、18.81）与网站题面逐字一致；第8页 3.2 节试题名称、时限 1.0s、内存 512.0MB 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在 PDF 中无答案表项，officialAnswer 记 null；网站 answer 字段为空，二者一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算样例：45/1.55/1.55=45/2.4025≈18.7305、33/1.33/1.33=33/1.7689≈18.6557、39/1.44/1.44=39/2.0736≈18.8079，降序为 18.8079>18.7305>18.6557，即编号 3 1 2，与官方样例输出及样例解释（保留两位小数 18.73、18.66、18.81）吻合；解析对 w/(h*h) 运算顺序（勿写 w/h*h）、体重/身高须分两轮读入、编号 id=i+1 的提醒均与题面输入格式和参考程序相符；n≤1000 时 O(n²) 冒泡约 5×10⁵ 次比较、每次 4 次除法，1.0s 时限内可行。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第10页 3.2.9 参考程序与网站 referenceCode 逐行语义一致：struct Human{id,w,h} humans[1010]；main 中先赋 id=i+1，再分两个循环读 w、h；bubble_sort 内层 j 从 1 到 n-i，计算 bmi1、bmi2 并在 bmi1<bmi2 时 swap 实现降序；最后输出各 id 加空格并 endl。仅 id 后空格的字符/字符串字面量写法差异，输出等价；humans[1010] 覆盖 n≤1000 上界，无越界。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小人数",
+            "input": "1\n50\n1.60",
+            "output": "1",
+            "reason": "独立复算：n 取最小值 1，唯一小朋友编号 1 直接输出；BMI=50/1.6/1.6=19.53125 不影响结果，覆盖输入三行最简形态。"
+          },
+          {
+            "name": "身高上下界与BMI公式",
+            "input": "3\n10 100 50\n0.80 1.90 1.00",
+            "output": "3 2 1",
+            "reason": "独立复算：覆盖 h 下界 0.80 与上界 1.90、w 下界 10 与上界 100；BMI 分别为 10/0.64=15.625、100/3.61≈27.7008、50/1.00=50，降序为 50>27.7008>15.625，输出编号 3 2 1，可检验 w/h/h 公式与降序方向（结果与输入顺序不同，能暴露升序或稳定序错误）。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：DeepSeek 草稿两项测试的期望输出经我独立复算完全一致（含最小人数与身高/体重边界组合），其对题面（PDF 第9页）、参考程序（PDF 第10页）、样例 BMI 三值的核对结论均与我的独立推导相符；未发现需修改字段，故 changes 为空，相关维度判 verified。"
+      }
+    ],
+    "summary": "仅核验题号 26（扫雷）与 27（身高体重指数）两道编程题。逐项对照官方 PDF 原图（第7–10页）：题面描述、输入输出格式、样例、输出/样例解释、数据范围、时限内存均与网站数据一致；两题网站 referenceCode 与官方参考程序逐行语义等价（仅星号/空格/换行的字符与字符串字面量写法差异，输出等价）。样例输出与解析走查均由我独立复算确认：扫雷样例三行 * 2 * 2 / 2 3 3 * / 1 * 2 1、BMI 样例 18.7305/18.6557/18.8079 降序得 3 1 2。补充的测试覆盖最小规模、q 上界 n·m、对角相邻与身高体重上下界，期望输出全部由我独立推演，未实际运行代码。未发现任何需修改字段，changes 均为空，无未决问题。"
+  }
+}

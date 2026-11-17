@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:43:13.585Z",
+  "completedAt": "2026-11-17T00:44:41.368Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29894,
+    "completion_tokens": 8354,
+    "total_tokens": 38248,
+    "prompt_tokens_details": {
+      "cached_tokens": 29824
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6662
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00511237,
+      "allowance": 0.00306742,
+      "tokens": {
+        "input": 70,
+        "output": 8354,
+        "reasoning": 6662,
+        "cache_read": 29824,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头标明CCF GESP、C++四级、2026年06月；判断题第6至10题及对应页眉、题号和答案表与paperId 2026-06-l4一致。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第6题原文为“在 C++ 中定义二维数组并初始化时，可以省略第一维，但不能省略第二维。因此 int a[][2] = {{1, 2}, {3, 4}}; 是合法的，而 int a[][] = {{1, 2}, {3, 4}}; 是不合法的”，与站点题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A至D选项维度；PDF以判断题形式和答案表√号呈现，站点用“正确”和“错误”作为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第6题为√，正确映射为0，站点answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：带初始化列表时第一维可由行数推导；第二维决定每行元素数和a[i][j]寻址，故a[][2]合法、a[][]非法；解析所述规则与函数参数示例均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第7题原文为“下面代码的时间复杂度是 O(2^n)”，下方双层循环代码与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A至D选项维度；PDF以判断题形式和答案表叉号呈现，站点用“正确”和“错误”作为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第7题为×，错误映射为1，站点answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立求和：内层执行次数为1+2+…+n=n(n+1)/2，时间复杂度为O(n²)，不是O(2^n)，解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第8题题干及rdbuf重定向代码与站点一致，均说明将cout输出重定向到output.txt。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A至D选项维度；PDF以判断题形式和答案表√号呈现，站点用“正确”和“错误”作为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第8题为√，正确映射为0，站点answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：保存cout原缓冲区、指向fout的缓冲区、输出字符串、再恢复原缓冲区，重定向步骤和“GESP Exam”写入文件的结果均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页判断题第9题题干及值传递充值代码与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A至D选项维度；PDF以判断题形式和答案表叉号呈现，站点用“正确”和“错误”作为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第9题为×，错误映射为1，站点answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：recharge采用值传递，money是card的副本，函数内加20不影响card，最终输出50而不是70，解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第6页底部为判断题第10题题干，第7页顶部代码为“int a[5]; a++;”，与站点题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无A至D选项维度；PDF以判断题形式和答案表叉号呈现，站点用“正确”和“错误”作为固定判断项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF第5页判断题答案表第10题为×，错误映射为1，站点answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核对：数组名在多数表达式中可转换为指向首元素的指针值，但该结果不是可修改左值，不能作为a++的操作数，故不能通过编译；解析对数组类型与可修改指针变量的区分正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码要求。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "已按PDF第5至7页原图核验站点题号21至25（对应判断题第6至10题）：题干、官方判断答案、答案索引映射及解析均一致；第25题跨第6、7页，已核对代码位置。五项维度均已记录，未发现需要修改的字段，未提出纠错。"
+  }
+}

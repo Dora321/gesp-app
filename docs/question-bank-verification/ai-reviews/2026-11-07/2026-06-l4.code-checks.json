@@ -1,0 +1,85 @@
+{
+  "executedAt": "2026-11-17T00:56:02.498Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 4 4\n1 1\n1 3\n2 4\n3 2",
+          "output": "* 2 * 2\n2 3 3 *\n1 * 2 1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "* 2 * 2 \n2 3 3 * \n1 * 2 1 \n",
+          "passed": true
+        },
+        {
+          "name": "最小值与角落雷区",
+          "input": "3 3 1\n1 1",
+          "output": "* 1 0\n1 1 0\n0 0 0",
+          "reason": "独立复算：n,m,q 取最小值，雷在左上角 (0,0)；中心格 (1,1) 经对角线相邻计 1（顺带验证对角相邻），(0,2)、(2,2) 等远格计 0，逐格推演得该输出。",
+          "kind": "boundary",
+          "actual": "* 1 0 \n1 1 0 \n0 0 0 \n",
+          "passed": true
+        },
+        {
+          "name": "全图雷区上界",
+          "input": "3 3 9\n1 1\n1 2\n1 3\n2 1\n2 2\n2 3\n3 1\n3 2\n3 3",
+          "output": "* * *\n* * *\n* * *",
+          "reason": "独立复算：q 取上界 n·m，9 格全为雷区，参考程序每格命中雷区分支直接输出 *，无任何计数路径；该输入合法（雷区不重复且在图内）。",
+          "kind": "boundary",
+          "actual": "* * * \n* * * \n* * * \n",
+          "passed": true
+        },
+        {
+          "name": "中心雷对角相邻",
+          "input": "3 3 1\n2 2",
+          "output": "1 1 1\n1 * 1\n1 1 1",
+          "reason": "独立复算：雷位于中心 (1,1)，四个角格仅与中心对角相邻也应计 1；此用例专门检验 8 邻域含对角线及边界裁剪，能区分错误的 4 邻域实现。",
+          "kind": "boundary",
+          "actual": "1 1 1 \n1 * 1 \n1 1 1 \n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "14f643e655caec32074101e40f89ca6df4b82abaef03dea8c7bc784c9afe039a"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "3\n45 33 39\n1.55 1.33 1.44",
+          "output": "3 1 2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3 1 2 \n",
+          "passed": true
+        },
+        {
+          "name": "最小人数",
+          "input": "1\n50\n1.60",
+          "output": "1",
+          "reason": "独立复算：n 取最小值 1，唯一小朋友编号 1 直接输出；BMI=50/1.6/1.6=19.53125 不影响结果，覆盖输入三行最简形态。",
+          "kind": "boundary",
+          "actual": "1 \n",
+          "passed": true
+        },
+        {
+          "name": "身高上下界与BMI公式",
+          "input": "3\n10 100 50\n0.80 1.90 1.00",
+          "output": "3 2 1",
+          "reason": "独立复算：覆盖 h 下界 0.80 与上界 1.90、w 下界 10 与上界 100；BMI 分别为 10/0.64=15.625、100/3.61≈27.7008、50/1.00=50，降序为 50>27.7008>15.625，输出编号 3 2 1，可检验 w/h/h 公式与降序方向（结果与输入顺序不同，能暴露升序或稳定序错误）。",
+          "kind": "boundary",
+          "actual": "3 2 1 \n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "cbfb660db1aec215a7f8265dd6206b14b7cea8e7c2d416d90dcd97d6f3dae3ae"
+    }
+  ]
+}

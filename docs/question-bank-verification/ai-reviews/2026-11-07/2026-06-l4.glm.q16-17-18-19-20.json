@@ -1,0 +1,236 @@
+{
+  "paperId": "2026-06-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-17T00:36:38.294Z",
+  "completedAt": "2026-11-17T00:38:02.298Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 47502,
+    "completion_tokens": 8415,
+    "total_tokens": 55917,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6561
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0113328,
+      "allowance": 0.0113328,
+      "tokens": {
+        "input": 47502,
+        "output": 8415,
+        "reasoning": 6561,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "b5f6f60ec8e65e18ae1ad493753b77c137054a67e63bde44ae001623554c468a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1753295324446752.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年6月-C++4级.pdf",
+    "mirrorSha": "92f0e546aea43cbc24d2b390373ad724df46c7d0",
+    "mirrorBytes": 917216,
+    "shaVerified": true,
+    "sha256": "c06a0d24e8e77bd838c9964669ca88c148d4778b856bdf7bb03c1abf3c89c32c"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2026-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头原图明确标注“C++ 四级”与“2026 年 06 月”，与 2026-06-l4（level=4, year=2026, month=6）一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 1 题题干“运行以下程序后，变量 a 的值最终会变为 20”及 8 行代码（void modify(int *p){ *p = *p + 10; }，main 中 int a = 10; modify(&a);）与网站题面逐行一致，无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "官方判断题以答案表 √/× 作答，网站以选项 [\"正确\",\"错误\"] 呈现，顺序符合 正确=0、错误=1 约定，映射无歧义。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 1 格为 √，映射 officialAnswer=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：modify(&a) 使 p 指向 a，*p = *p + 10 直接把 a 从 10 改为 20，命题为真；网站解析结论与易错点（值传递对照）均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：已独立对照第 5 页原图题干、代码与答案表首格 √ 复核，答案 0 与解析推导无误。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 2 题原文“在 C++ 中，引用一旦初始化并绑定到某个变量后，可以通过赋值语句将其重新绑定到另一个变量”与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "网站选项 [\"正确\",\"错误\"] 顺序符合 正确=0、错误=1 约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 2 格为 ×，映射 officialAnswer=1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：引用是别名，绑定关系初始化后不可更改；int &r = a; r = b; 仅把 b 的值赋给 a（a 变 2），r 仍绑定 a，命题为假；网站解析含代码示例，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：第 5 页答案表第 2 格 × 与网站 answer=1 一致，解析的“改值不改绑定”推导独立成立。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "题干“下面程序可以正确计算并输出 3 名学生的平均成绩”位于第 5 页末，20 行代码（struct Student、students[3]={{1,90},{2,80},{3,100}}、sum 累加循环、double average = sum / 3.0、cout << average << endl）跨第 5–6 页，与网站代码逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "网站选项 [\"正确\",\"错误\"] 顺序符合 正确=0、错误=1 约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 3 格为 √，映射 officialAnswer=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：sum=90+80+100=270，270/3.0=90.0 为精确平均值，默认格式输出 90，命题为真；解析中“sum/3 整数除法此处同为 90 但非整除会丢精度”的补充亦正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：题面代码跨页核对完整，答案表第 3 格 √ 对应 0，sum/3.0=90.0 的推导独立验证通过。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 4 题原文“选择排序算法在寻找每一轮最小值时，如果遇到相等的元素不进行交换，则选择排序是一种稳定的排序算法”与网站题面逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "网站选项 [\"正确\",\"错误\"] 顺序符合 正确=0、错误=1 约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 4 格为 ×，映射 officialAnswer=1；网站 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：选择排序每轮将未排序区最小值与首位做远距离交换，反例 [2a,2b,1] 首轮交换后为 [1,2b,2a]，相等元素相对次序被破坏；“查找时不交换相等元素”无法消除交换步的不稳定性，命题为假；网站解析及示例一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：答案表第 4 格 × 对应 1，解析以 [2a,2b,1] 反例定位交换步根源，与独立推导一致。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页判断第 5 题原文含“时间复杂度为 O(n)”（第 6 页原图可见），题干其余文字与网站逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "网站选项 [\"正确\",\"错误\"] 顺序符合 正确=0、错误=1 约定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 5 格为 √，映射 officialAnswer=0；网站 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：带 flag 冒泡在有序数组上第一轮做 n-1 次相邻比较、零交换，flag 未变化即提前终止，仅一轮扫描为 O(n)，命题为真；网站解析与最坏 O(n²) 的对照说明正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核结论：答案表第 5 格 √ 对应 0，一轮扫描零交换提前退出的 O(n) 推导独立成立。"
+      }
+    ],
+    "summary": "独立复核题 16–20（判断题第 1–5 题），全部 approve、无需修改。五题题干与代码与 PDF 第 5–6 页原图逐行一致（第 18 题代码跨页完整）；第 5 页判断题答案表前五格为 √ × √ × √，映射 officialAnswer=0/1/0/1/0，与网站 answer 完全一致；逐题独立推导（指针解引用改原值、引用不可改绑、270/3.0=90.0、选择排序远距离交换破坏稳定性、flag 冒泡有序输入一轮终止 O(n)）均支持网站解析结论。判断题不适用参考代码与测试。相对 DeepSeek 初稿仅补充：Q18–Q20 的 sourcePages 纳入答案表所在第 5 页，其余结论全部采纳。"
+  }
+}
