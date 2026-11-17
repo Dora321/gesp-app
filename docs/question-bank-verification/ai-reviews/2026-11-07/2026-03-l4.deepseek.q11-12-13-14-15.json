@@ -1,0 +1,227 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:38:18.024Z",
+  "completedAt": "2026-11-16T23:40:50.980Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38088,
+    "completion_tokens": 15423,
+    "total_tokens": 53511,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13565
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00937865,
+      "allowance": 0.00562719,
+      "tokens": {
+        "input": 72,
+        "output": 15423,
+        "reasoning": 13565,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 四级 / 2026 年 03 月”，页脚为第1页/共11页；与 2026-03-l4 的年月、等级一致，答案表可读。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干与代码逐行一致：ins 函数、key、j 的 while 循环及横线位置均无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 与网页四项一一对应：a[j] < key、a[j] > key、a[j+1] > key、a[j] == key，顺序未变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题标 B；网页 answer=1，0 起始索引映射正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按升序插入排序，条件 a[j] > key 时应右移；严格大于可保留相等元素的相对顺序，独立推导与官方答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干和双重循环代码与网页一致，取模条件为 (i+j) % 3 == 0。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项为 A. O(n)、B. O(n log n)、C. O(n^2)、D. O(2^n)，网页为等价 LaTeX 且顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题标 C；网页 answer=2 对应选项 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "两层循环各执行 n 次，if 取模只影响常数比例的执行次数，总复杂度为 Θ(n^2)；解析独立成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4-5页题干及四个代码片段与网页一致，目标字符串 Welcome to 2026! 和文件名 log.txt 均完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A 与第5页 B-D 顺序一致；B 打开文件但用 cout 输出，D 直接写 outFile，选项映射清楚。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题标 B；网页 answer=1 对应选项 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "B 中 outFile 从未被写入，cout 仍输出到控制台，log.txt 无该字符串；A/C 分别用 freopen、rdbuf 重定向 cout，D 直接写文件流。解析与官方答案 B 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干及 divi 函数、try-catch 代码与网页逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页选项为 A. A、B. B、C. 程序崩溃、D. 无输出，网页顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题标 B；网页 answer=1 对应选项 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "throw 0 抛出 int，跳过 catch(const char*)，由 catch(int) 捕获并输出 B；异常已被捕获，不会崩溃。解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5-6页题干及 up 函数代码与网页一致；选项 D 位于第6页顶部。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5-6页 A-D 与网页四项一致，比较对象和移动方向未改变。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题标 A；网页 answer=0 对应选项 A。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "官方答案 A 成立：排行榜按分数从高到低排列，分数增加后只要左邻分数更低（cur.score > players[i-1].score）就继续前移，且需 i > 0 防越界。但网页解析把该排列写成“升序排列里应该更靠前”，方向自相矛盾；同段“前者分数更低”的指代也不清。答案不受影响，解析需改写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**核心解析：**\n循环体 `players[i] = players[i-1]; i--;` 是把前一个元素向后挪一格，为 `cur` 腾出更靠前的位置；因此它适用于排行榜按分数从高到低排列、某玩家分数增加后向前移动的情形。\n1. 边界必须是 `i > 0`，否则 `players[i-1]` 会访问 `players[-1]`，可排除 C、D。\n2. 只要前一名玩家的分数低于 `cur.score`，即 `cur.score > players[i-1].score`，就应继续把前一名后移。若前一名分数不低于 `cur.score`，说明 `cur` 已到达应在位置，停止。\n因此条件为 `i > 0 && cur.score > players[i-1].score`，选择 A。\n\n**选项逐项分析：**\n- **A**：✅ 正确。`i > 0` 防止越界，`cur.score > players[i-1].score` 表示前一名分数更低，需要继续前移。\n- **B**：❌ 错误。`cur.score < players[i-1].score` 表示 `cur` 分数低于前一名，不能向前挤；用它会把元素错误地往后搬。\n- **C**：❌ 错误。`i < n-1` 是向后移动的边界，且比较 `players[i+1]` 与循环体搬移 `players[i-1]` 的方向不一致。\n- **D**：❌ 错误。方向与比较对象均不符合向前移动的要求。\n\n**易错提醒：**\n- 排行榜按分数从高到低排列（降序），不是升序；分数增加后应向前移动。\n- 循环体搬的是 `players[i-1]`，条件必须围绕左邻元素写，并用 `i > 0` 短路保护。\n\n**知识延伸：**\n这是插入排序内层循环的变体：把数值比较换成结构体成员的分数比较，元素整体搬移。若 `Player` 很大，可先移动下标或指针，最后只写回一次，减少拷贝。\n\n**考点：** 插入排序的边界与比较条件、结构体数组的原地搬移"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅核验题11-15：五题题干、选项及官方答案映射均与 PDF 页图一致，官方答案依次为 B、C、B、B、A（网页 answer 依次为 1、2、1、1、0）。题15解析中“升序排列”与排行榜降序前移矛盾，已给出解析修正草案，答案不变；其余解析可独立支持答案。单选题无参考代码，tests 为空。"
+  }
+}

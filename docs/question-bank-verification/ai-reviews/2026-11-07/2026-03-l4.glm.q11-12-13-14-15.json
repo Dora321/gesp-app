@@ -1,0 +1,237 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:40:50.985Z",
+  "completedAt": "2026-11-16T23:44:28.429Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 57881,
+    "completion_tokens": 22379,
+    "total_tokens": 80260,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 19214
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01987165,
+      "allowance": 0.01987165,
+      "tokens": {
+        "input": 57881,
+        "output": 22379,
+        "reasoning": 19214,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头为“CCF 编程能力等级认证 GESP / C++ 四级 / 2026 年 03 月”，页脚“第1页/共11页”，与 2026-03-l4（四级、2026年3月）一致；第1页单选题答案表（1-15：B B B B A B B B B B B C B B A）清晰可读，第6页判断题答案表亦可读。"
+    },
+    "questions": [
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。独立核对第4页题干、ins 函数代码与四个选项，与第1页答案表第11题 B（索引1）及网页 answer=1 一致；升序插入排序应在 a[j]>key 时右移，解析独立推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干“下面代码试图把数组按升序进行“插入排序”，横线处应填写（ ）”及代码（for(i=1;i<n;i++)、key=a[i]、j=i-1、while(j>=0 && ____)、a[j+1]=a[j]、j--、a[j+1]=key）与网页逐行一致，横线位置相同。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A. a[j] < key、B. a[j] > key、C. a[j+1] > key、D. a[j] == key，与网页四项内容和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第11题为 B（0 起始索引 1），网页 answer=1；独立推导：升序插入排序应在 a[j]>key 时右移腾位，选 B，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导成立：a[j]>key 时将更大元素右移、遇小于等于停止，结果升序且稳定；若为 a[j]<key 会把更小元素右移而形成降序，解析中“破坏升序结构”的表述与推导相符，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核。第4页题面与选项一致，官方答案 C（索引2）与网页 answer=2 一致；双层循环 O(n²) 的推导独立成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页题干“下列代码段的时间复杂度为（ ）”及代码（int cnt=0；双重 for，i、j 均从 0 到 n-1；if((i+j)%3==0) cnt++）与网页一致（仅空格差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项 A. O(n)、B. O(n log n)、C. O(n²)、D. O(2ⁿ)，网页以等价 LaTeX（$O(n)$、$O(n \\log n)$、$O(n^2)$、$O(2^n)$）表示，顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为 C（索引 2），网页 answer=2；独立推导：内外循环各 n 次、共 n² 次迭代，取模与判断均为 O(1)，总复杂度 O(n²)，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导成立：if 条件只筛选常数比例的迭代执行 cnt++，不改变循环结构，量级仍为 O(n²)；解析对 A/B/D 的排除理由（无单层结构、无对数因子、无指数分裂）正确，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。第4-5页四段代码与选项一致，官方答案 B（索引1）与网页 answer=1 一致；解析对 A/C/D 可行、B 不可行的分析独立成立，对 D 的阐释不影响唯一不可行项为 B 的结论。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4-5页题干“下面哪种方式不能实现将字符串 Welcome to 2026! 输出重定向到文件 log.txt （ ）”及 A（freopen+cout+fclose，第4页）、B（ofstream 声明后仍用 cout）、C（rdbuf 重定向）、D（outFile 直接写）（第5页）四段代码与网页逐行一致，目标字符串与文件名完整。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4-5页 A-D 顺序与内容均与网页一致；B 打开 log.txt 后仍用 cout 输出，D 直接向 outFile 写入，区分明确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第13题为 B（索引 1），网页 answer=1；独立分析：B 中 outFile 从未接收写入、cout 仍输出到控制台，log.txt 不会含该字符串，是唯一不能达成目标的写法，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导成立：A 依赖 cout 与 stdout 默认同步，freopen 后 cout 内容进文件；C 通过 rdbuf 交换 cout 缓冲实现重定向并可恢复；D 直接写文件流、字符串进 log.txt；B 两者皆未做。解析对 D“直接写文件视为达成目标”的阐释与官方唯一不可行项为 B 的结论不冲突，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。第5页代码与选项一致，官方答案 B（索引1）与网页 answer=1 一致；throw 0 抛 int 被 catch(int) 捕获的推导独立成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页题干“执行下面程序，输出结果是（ ）”及代码（divi 中 if(b==0) throw 0；main 中 try 包住 cout<<divi(10,0)，catch(const char*) 输出 A、catch(int) 输出 B）与网页逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A. A、B. B、C. 程序崩溃、D. 无输出，与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为 B（索引 1），网页 answer=1；独立推导：throw 0 抛出 int 类型异常，const char* 分支不匹配，由 catch(int) 捕获并输出 B，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导成立：catch 按类型自上而下匹配，int 与 const char* 无继承/转换关系不会误配；异常被捕获不会 terminate；cout<<divi(10,0) 中 divi 先抛异常，插入表达式未取得值，不会先输出 0。无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "部分接受初核。答案 A 与官方一致，无需改动；初核指出的“升序排列里应该更靠前”矛盾成立，我确认解析需改写。但初核修改稿的 B 选项分析仍保留“往后搬”的不准确方向表述（实际是 cur 会越过分数更高的玩家、插到过高位置），故否决其文本，采用我重写的版本（见 changes）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5-6页题干“下列函数实现排行榜中单个元素的位置调整（类似插入排序的相邻搬移）。当某玩家分数增加，需将其向前移动时， while 循环的条件应为（ ）”及 up 函数代码（暂存 cur、while 横线、players[i]=players[i-1]、i--、players[i]=cur）与网页一致；选项 A-C 在第5页、D 在第6页顶部。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第5页 A. i > 0 && cur.score > players[i-1].score、B. i > 0 && cur.score < players[i-1].score、C. i < n-1 && cur.score > players[i+1].score，第6页 D. i < n-1 && cur.score < players[i+1].score，与网页一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为 A（索引 0），网页 answer=0；独立推导：排行榜降序（分高在前），分数增加后向前插入，循环体搬移 players[i-1]，条件应为 i>0 且 cur.score>players[i-1].score，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过：原解析第2点“（分数更高，升序排列里应该更靠前）”与排行榜降序前移的语境自相矛盾（升序中分高应靠后），且 B 选项分析“会把元素错误地往后挪”方向表述不准（实为 cur 会越过分数更高的玩家）。已按“排行榜降序、分数增加向前插入”重写完整解析（见 changes），独立推导与官方答案 A 一致，答案不受影响。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**核心解析：**\n排行榜按分数**从高到低**排列（分高者在前）。某玩家分数增加后需**向前**（下标减小的方向）移动，函数的做法是：先暂存 `cur`，再循环把前面的元素逐个向后挪一格、腾出靠前的空位，最后把 `cur` 放入空位。\n\n1. 循环体 `players[i] = players[i-1]; i--;` 搬运的是**左邻元素** `players[i-1]`，因此条件必须围绕 `players[i-1]` 写，且边界必须是 `i > 0`（否则会访问 `players[-1]` 越界）。C、D 用 `i < n-1` 与 `players[i+1]`，是向后移动的写法，与循环体矛盾，可直接排除。\n2. 继续向前挪的条件：左邻玩家的分数比 `cur` 低，即 `cur.score > players[i-1].score`——此时 `cur` 应排到他前面，继续把左邻后移；一旦左邻分数不低于 `cur.score`，说明 `cur` 已到达正确位置，停止。\n\n因此条件为 `i > 0 && cur.score > players[i-1].score`，选 A。\n\n**选项逐项分析：**\n- **A**：✅ 正确。`i > 0` 防止越界；`cur.score > players[i-1].score` 表示左邻分数更低，`cur` 应继续前移越过他。\n- **B**：❌ 错误。条件变成“`cur` 比左邻分数低就继续前移”，会让 `cur` 越过分数比自己高的玩家、插到过高的位置（例如降序 `[10,8,5]` 中把 5 分玩家传入，会得到 `[5,10,8]`）。分数增加后应越过的是分数比自己低的玩家。\n- **C**：❌ 错误。`i < n-1` 与 `players[i+1]` 是向后移动的边界和比较对象，与“向前搬移 `players[i-1]`”的循环体不匹配。\n- **D**：❌ 错误。方向与 C 同样不匹配，且“分数更低就继续”的比较语义与向前移动相反。\n\n**易错提醒：**\n- 排行榜是**降序**（分高在前）。不要因为“插入排序”就默认按升序数组写条件——本题“分数增加→向前移动”正是降序序列中的向前插入。\n- `i > 0` 必须写在 `&&` 左侧，利用短路求值保证 `players[-1]` 不会被访问。\n\n**知识延伸：**\n这是插入排序内层循环的变体：把“数值比较”换成“结构体成员的分数比较”，元素整体搬移。若 `Player` 很大，通常只移动下标、最后写回一次，减少拷贝开销。\n\n**考点：** 插入排序的边界与比较条件、结构体数组的原地搬移"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅复核题11-15。卷面依据：第1页单选答案表 11-15 为 B、C、B、B、A，与网页 answer（1、2、1、1、0）逐一对应；五题题干、代码与选项均与 PDF 页图一致，无缺漏。题11-14解析经独立推导成立，维持原状（approve）。题15答案正确，但解析有两处问题：①“（分数更高，升序排列里应该更靠前）”与排行榜降序前移的语境自相矛盾；②B 选项“往后挪”方向表述不准（实为 cur 会越过分数更高的玩家）。已提供重写后的完整解析（答案不变），修复后核验通过（revise）；初核的修改方向被接受，但其文本未采用。五题均为单选题，无参考代码，tests 为空。"
+  }
+}

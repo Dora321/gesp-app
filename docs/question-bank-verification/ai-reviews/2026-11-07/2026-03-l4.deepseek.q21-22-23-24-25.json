@@ -1,0 +1,224 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:48:28.926Z",
+  "completedAt": "2026-11-16T23:51:12.494Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38088,
+    "completion_tokens": 16524,
+    "total_tokens": 54612,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15228
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01003925,
+      "allowance": 0.00602355,
+      "tokens": {
+        "input": 72,
+        "output": 16524,
+        "reasoning": 15228,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头显示“C++ 四级”“2026 年 03 月”，与 2026-03-l4 对应；PDF 共 11 页，页面标注完整。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第6题原文为“在 C++ 中，如果声明了一个指针变量但没有显式初始化，该指针会自动被初始化为 nullptr。”网站仅省略“被”字，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A-D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第6题为“×”，对应错误、officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "局部自动存储期指针默认初始化后值不确定；全局或静态存储期指针才零初始化为空指针。解析结论与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页末为“下面代码没有语法错误。”，代码在第7页；网站嵌套 struct 代码与 PDF 逐行一致，仅缩进不同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A-D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第7题为“√”，对应正确、officialAnswer=0，与网站 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "C++ 允许在 struct 内定义嵌套 struct，并可在定义嵌套类型的同时声明该类型成员及成员数组；原代码无语法错误，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第8题原文为“下面程序能够把 Hello 写入 data.txt 文件中。”，代码为 ofstream fout 打开文件后用 cout 输出；网站题面与代码一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A-D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第8题为“×”，对应错误、officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "fout 仅打开/截断 data.txt，实际输出走 cout 到标准输出，文件不会写入 Hello，因此原命题错误；解析推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第9题原文为“由于选择排序和插入排序的时间复杂度均为 O(N^2)，在任何实际场景下两者的性能表现几乎相同，可以互相替代。”网站题面与之一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A-D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第9题为“×”，对应错误、officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "插入排序最好可接近 O(N)、平均约 O(N^2)；选择排序比较次数恒为 N(N-1)/2，二者不能仅因同阶就视为任何场景可互换，解析成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第10题原文为“下面用递推方式计算斐波那契数列第 n 项的程序，时间复杂度是 O(2^n)。”网站题面及代码与 PDF 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A-D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第10题为“×”，对应错误、officialAnswer=1，与网站 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "代码仅为从 2 到 n 的单层循环，迭代 n-1 次，时间复杂度 O(n)；指数级复杂度属于朴素递归写法，解析推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅初核判断题 21–25。题面与 PDF 第6–7页一致；判断题答案表第6至第10题依次为 ×、√、×、×、×，对应 officialAnswer 1、0、1、1、1，均与网站答案一致。解析均可独立推出，未发现需修改项；因此 five 题 changes 均为空，unresolved 均为空。判断题无 A-D 选项和参考代码，相应维度记 not_applicable。"
+  }
+}

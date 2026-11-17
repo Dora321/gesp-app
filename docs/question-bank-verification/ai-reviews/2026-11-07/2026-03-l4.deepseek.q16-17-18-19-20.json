@@ -1,0 +1,223 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:44:28.434Z",
+  "completedAt": "2026-11-16T23:47:14.145Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38088,
+    "completion_tokens": 15301,
+    "total_tokens": 53389,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 13776
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00930545,
+      "allowance": 0.00558327,
+      "tokens": {
+        "input": 72,
+        "output": 15301,
+        "reasoning": 13776,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确为“CCF GESP C++ 四级 / 2026 年 03 月”，与 paperId 2026-03-l4（2026年3月四级）一致；卷头等级与年月均匹配。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第1题的题干和代码均与站内一致：add10(int &x) 中执行 x += 10，main 中先令 a=5，再调用 add10(a)。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在 PDF 中没有 A/B/C/D 选项；站内“正确/错误”是固定判定项，不适用选项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第1格为√；正确按0计，故 officialAnswer=0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：形参 x 是 a 的引用，x += 10 等价于 a += 10，a 从5变为15；站内解析的结论与推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考代码；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第2题原文为“引用一旦绑定某个变量，就不能再绑定其他变量。（ ）”，与站内题干一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在 PDF 中没有 A/B/C/D 选项；站内“正确/错误”是固定判定项，不适用选项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第2格为√；正确按0计，故 officialAnswer=0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：引用初始化时绑定对象，之后对引用赋值只改变被引用对象的值，不能改绑到其他变量；站内解析与引用不可重绑定规则一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考代码；题面论述无需参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第3题题干及代码与站内一致：int a[2][3]; cout << &a[1][2]-&a[0][1] << endl;，命题为“输出结果为5”。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在 PDF 中没有 A/B/C/D 选项；站内“正确/错误”是固定判定项，不适用选项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第3格为×；错误按1计，故 officialAnswer=1；站内 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按题目预期的行优先连续存储模型，a[1][2] 的一维下标为1*3+2=5，a[0][1] 为0*3+1=1；int* 相减按元素个数计，结果为4而非5，故原命题错误；站内解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考代码；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第4题的题干、三行 calc 声明/定义及 main 中 calc(5) 调用均与站内一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在 PDF 中没有 A/B/C/D 选项；站内“正确/错误”是固定判定项，不适用选项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第4格为×；错误按1计，故 officialAnswer=1；站内 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：calc(5) 同时匹配 calc(int) 和带默认实参的 calc(int,int=10)，两者均可行且无唯一最佳匹配，构成重载二义性，程序不能正常编译；站内解析与官方×一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考代码；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第5题的题干、全局 x=10、f 内局部 x=20 及调用顺序均与站内一致；站内 main 末尾补 return 0 与 main 隐式返回0等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题在 PDF 中没有 A/B/C/D 选项；站内“正确/错误”是固定判定项，不适用选项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第5格为√；正确按0计，故 officialAnswer=0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：f 内局部 x=20 屏蔽全局 x，先输出20；返回 main 后裸 x 指全局 x=10，随后输出10；连续输出2010，站内解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考代码；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次仅核验题16-20。PDF第1页卷头为 GESP C++ 四级 2026年03月，与 paperId 匹配；五题均位于 PDF 第6页，题面与代码转写一致。判断题答案表前五格为√、√、×、×、√，对应 officialAnswer 0、0、1、1、0，站内答案全部一致。解析经独立静态推导与官方答案符号相符，未发现需要提交的字段修改；判断题的 options 和 referenceCode 维度不适用，未做程序运行测试。"
+  }
+}

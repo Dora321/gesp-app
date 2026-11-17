@@ -1,0 +1,233 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:47:14.148Z",
+  "completedAt": "2026-11-16T23:48:28.922Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 57576,
+    "completion_tokens": 7040,
+    "total_tokens": 64616,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5002
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.0121564,
+      "allowance": 0.0121564,
+      "tokens": {
+        "input": 57576,
+        "output": 7040,
+        "reasoning": 5002,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头明确为「CCF 编程能力等级认证 GESP / C++ 四级 / 2026 年 03 月」，与 paperId 2026-03-l4（2026年3月四级）的等级与年月一致。"
+    },
+    "questions": [
+      {
+        "id": 16,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第1题题干「下面代码执行结束时，变量 a 的值变成 15。」，代码为 add10(int &x){ x += 10; }，main 中 int a = 5; 后调用 add10(a);，与站内题面及代码逐行一致（仅空行排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷不设 A–D 选项，站内「正确/错误」为固定判定项，无需选项对照。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第1格为 √（正确按0计），officialAnswer=0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：形参 x 为 a 的引用别名，x += 10 即 a += 10，a 由 5 变为 15，命题成立；站内解析核心结论与推导一致。解析「易错提醒」中『只有使用 & 声明引用类型时才会改变原变量值』的表述在指针传参场景下略宽泛，但不影响本题结论与判定，不构成修改理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考程序；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、代码、答案符号（√→0）与解析推导均经独立复核一致，无需修改。"
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第2题原文「引用一旦绑定某个变量，就不能再绑定其他变量。（ ）」，与站内题干一致（站内省略句末（ ）为纯排版差异）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷不设 A–D 选项，站内「正确/错误」为固定判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第2格为 √（正确按0计），officialAnswer=0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：引用在定义时必须初始化且不可重绑定，对引用赋值只改变被引对象的值（如 int a=1,b=2; int &r=a; r=b; 后 a=2 而 r 仍绑定 a）；站内解析与该规则一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：题干、答案符号（√→0）与解析均独立复核一致，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第3题题干「执行下面代码，输出结果为 5。」，代码 int a[2][3]; cout << &a[1][2] - &a[0][1] << endl; return 0; 与站内逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷不设 A–D 选项，站内「正确/错误」为固定判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第3格为 ×（错误按1计），officialAnswer=1；站内 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：行优先连续存储下 a[1][2] 的一维下标为 1*3+2=5，a[0][1] 为 1；同一数组的 int* 相减按元素个数计，结果为 4≠5，命题「输出为5」错误；站内解析推导与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考程序；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：指针差独立算得 4，命题为假（×→1），与站内答案和解析一致，无需修改。"
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第4题题干「下面程序可以正常编译并输出 10。」，三行 calc 声明/定义与 main 中 calc(5) 调用与站内一致；站内 main 补写了 return 0;（PDF 原卷无此行），main 隐式返回 0，属语义等价转写，不改变考查点与含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷不设 A–D 选项，站内「正确/错误」为固定判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第4格为 ×（错误按1计），officialAnswer=1；站内 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：calc(5) 对 calc(int) 与 calc(int,int=10) 均为可行候选且使用默认实参不改变实参转换序列，两个候选无唯一更优匹配，构成重载二义性编译错误，程序不能编译、不可能输出 10；站内解析与该结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考程序；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：二义性结论独立成立（×→1）；站内补写 return 0; 为等价转写，已在 statement 证据中说明，不构成修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题第5题题干「下面程序执行后输出 2010。」，全局 int x = 10;、f 内局部 int x = 20; cout << x; 及 main 中 f(); cout << x; 与站内一致；站内补写 return 0; 并合并空行，main 隐式返回 0，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题官方卷不设 A–D 选项，站内「正确/错误」为固定判定项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表第5格为 √（正确按0计），officialAnswer=0；站内 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：f 内局部 x 屏蔽全局 x，先输出 20；返回 main 后裸写的 x 指全局变量 10，再输出 10，两次输出紧连为 2010，命题正确；站内解析推导与结论一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不涉及编程题参考程序；题面代码已在 statement 维度核验。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：输出 2010 的推导独立成立（√→0）；站内补写 return 0; 为等价转写，已在 statement 证据中说明，不构成修改。"
+      }
+    ],
+    "summary": "本轮仅核验题16–20（即官方判断题第1–5题，均位于 PDF 第6页），其余题目未核验、未输出。卷头「C++ 四级 2026年03月」与 paperId 匹配。五题题干与代码与官方卷一致（题19、20站内补写 return 0; 属 main 隐式返回的等价转写，不改变含义）。官方判断题答案表前五格为 √√××√，对应 0/0/1/1/0，与站内 answer 全部一致。各题解析均经独立静态推导复核：q16 引用传参 a=15 成立；q17 引用不可重绑定成立；q18 指针差实为 4 命题为假；q19 默认实参与重载构成二义性不能编译；q20 输出 2010 成立。判断题官方卷无 A–D 选项与参考程序，options/referenceCode 维度不适用；无编程题故无 tests；无修改提交。"
+  }
+}

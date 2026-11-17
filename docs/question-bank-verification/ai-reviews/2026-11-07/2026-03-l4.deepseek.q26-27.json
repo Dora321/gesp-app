@@ -1,0 +1,164 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:52:39.599Z",
+  "completedAt": "2026-11-16T23:55:30.319Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38082,
+    "completion_tokens": 18190,
+    "total_tokens": 56272,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15839
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01103795,
+      "allowance": 0.00662277,
+      "tokens": {
+        "input": 66,
+        "output": 18190,
+        "reasoning": 15839,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页卷头显示“C++ 四级”和“2026 年 03 月”；全卷为单选题15题、判断题10题、编程题2题，符合四级卷结构，月份、年份、级别与 paperId 一致。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第7—8页题面包含3.1.1题目描述、3.1.2输入格式、3.1.3输出格式、3.1.4样例、3.1.5样例解释和3.1.6数据范围（1≤N,M≤100，1≤h≤10^5）。网站题面LaTeX定界符转义异常，且缺少数据范围与样例解释说明。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无单选题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题，无PDF客观题答案表中的选项索引。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析的8方向、越界检查、严格大于才淘汰、等号视为不高于等判定与PDF第7—8页定义一致；独立按样例数据走查得到3个山谷，与PDF第8页输出3一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站参考代码用8方向偏移和边界判断实现，与PDF第9页参考程序的3×3扫描加边界填充等价；N,M≤100、h≤10^5，ans≤10^4，int不溢出；复杂度O(NM)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202603 四级] 山之谷\n\n## 题目描述\n\n现有一片山地，可以视为一个 $N$ 行 $M$ 列的网格图，第 $i$ 行 $j$ 列的海拔为 $h_{i,j}$。如果一个单元格的海拔不高于其所有相邻单元格（相邻包括上、下、左、右、左上、右上、左下、右下，最多 8 个方向）的海拔，则称该单元格为山谷。请你数一数该片山地中有多少山谷。\n\n## 输入格式\n\n第一行包含 2 个整数 $N,M$，表示山地的大小。之后 $N$ 行，每行包含 $M$ 个整数 $h_{i,1},h_{i,2},…,h_{i,M}$，表示海拔。\n\n## 输出格式\n\n输出 1 行，包含 1 个整数 $C$，表示山谷的数量。\n\n## 样例\n\n### 输入样例\n```text\n3 5\n7 6 6 7 9\n6 5 6 7 6\n6 5 7 8 9\n```\n\n### 输出样例\n```text\n3\n```\n\n## 样例解释\n\n样例 1 中，绿色单元格代表山谷，分别为第 2 行第 2 列、第 2 行第 5 列、第 3 行第 2 列。\n\n## 数据范围\n\n保证 $1 ≤ N,M ≤ 100$，$1 ≤ h_{i,j} ≤ 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "1×1 最小规模",
+            "input": "1 1\n5\n",
+            "output": "1",
+            "reason": "唯一单元格没有相邻格，按“不高于所有相邻单元格”的空真判定为山谷；N,M 最小值为 1。"
+          },
+          {
+            "name": "1×3 全等高边界",
+            "input": "1 3\n5 5 5\n",
+            "output": "3",
+            "reason": "相等海拔满足“不高于”；左、中、右三格均不高于相邻格，且覆盖首尾边界，应为 3 个山谷。"
+          },
+          {
+            "name": "2×2 对角低点",
+            "input": "2 2\n2 2\n2 1\n",
+            "output": "1",
+            "reason": "(2,2)=1 不高于其三个邻居，为山谷；其余格均因对角或直邻存在更低的 1 而不是山谷。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF第9—10页题面包含3.2.1题目描述、3.2.2输入格式、3.2.3输出格式、3.2.4样例、3.2.5样例解释表格和3.2.6数据范围（1≤n≤10^3，1≤k≤10，商品价格≤10^4）。网站题面缺少数据范围和样例解释表格。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题，无单选题选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题，无PDF客观题答案表中的选项索引。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "网站解析的四关键字顺序与PDF第9页规则一致；独立计算样例各礼盒sum/mx/mn得到3 4 2 1，与PDF第10页输出一致；并说明了id打破平局与std::sort稳定性的区别。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "网站参考代码与PDF第11页参考程序等价；使用sum/mx/mn/id四关键字，cmp满足严格弱序；n≤10^3、k≤10、价格≤10^4，单盒sum≤1e5，int安全；复杂度O(nk+n log n)。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202603 四级] 礼盒排序\n\n## 题目描述\n\n商店推出了许多礼盒，每个礼盒中包含 $k$ 件商品，每件商品都有一个价格。现在需要对这些礼盒进行排序，排序规则如下：\n1. 先按礼盒总价格从小到大排序；\n2. 如果总价格相同，则按礼盒中最贵商品的价格从小到大排序；\n3. 如果仍然相同，则按礼盒中最便宜商品的价格从小到大排序；\n4. 如果上述规则都相同，则按礼盒原本的编号（从 1 开始）从小到大排序。\n\n请输出排序后的礼盒编号。\n\n## 输入格式\n\n第一行包含两个整数 $n,k$，分别表示礼盒数量和每个礼盒中商品的数量。接下来的 $n$ 行，每行包含 $k$ 个整数，第 $i$ 行表示第 $i$ 个礼盒中各商品的价格。\n\n## 输出格式\n\n输出一行，包含排序后的礼盒编号（编号从 1 开始），用空格分隔。\n\n## 样例\n\n### 输入样例\n```text\n4 3\n3 5 2\n4 1 5\n2 2 4\n3 4 3\n```\n\n### 输出样例\n```text\n3 4 2 1\n```\n\n## 样例解释\n\n4 个礼盒分别为：\n\n| 编号 | 商品价格 | 总价 | 最大值 | 最小值 |\n| --- | --- | --- | --- | --- |\n| 1 | 3 5 2 | 10 | 5 | 2 |\n| 2 | 4 1 5 | 10 | 5 | 1 |\n| 3 | 2 2 4 | 8 | 4 | 2 |\n| 4 | 3 4 3 | 10 | 4 | 3 |\n\n排序过程：\n1. 按总价排序，3 号礼盒总价最小；\n2. 其余总价均为 10，再按最大值排序，4 号最大值更小；\n3. 1 号和 2 号最大值相同，再按最小值排序，2 号更小。\n\n最终顺序为：3 4 2 1。\n\n## 数据范围\n\n保证 $1 ≤ n ≤ 10^3$，$1 ≤ k ≤ 10$，商品价格 $≤ 10^4$。"
+        },
+        "tests": [
+          {
+            "name": "1×1 最小规模",
+            "input": "1 1\n7\n",
+            "output": "1",
+            "reason": "只有一个礼盒，排序后仍为编号 1；n,k 最小值。"
+          },
+          {
+            "name": "四关键字平局链",
+            "input": "5 3\n1 3 4\n2 2 4\n1 3 4\n1 1 1\n2 3 3\n",
+            "output": "4 5 1 3 2",
+            "reason": "总价分别为8,8,8,3,8：4号总价最小；其余总价8中5号最大值3最小；1/3/2号最大值4相同，1/3号最小值1先于2号最小值2；1号与3号全同，按原始编号1先于3。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "已初核题26、27：两题题面均发现缺少PDF中的数据范围（26还缺样例解释并存在LaTeX转义异常），已给出question修复草稿；解析和参考代码独立核对通过；边界测试为独立计算，未声称运行。其余题号不在本次范围。"
+  }
+}

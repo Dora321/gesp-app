@@ -1,0 +1,234 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:33:55.726Z",
+  "completedAt": "2026-11-16T23:34:35.181Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 57477,
+    "completion_tokens": 3804,
+    "total_tokens": 61281,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1858
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01052355,
+      "allowance": 0.01052355,
+      "tokens": {
+        "input": 57477,
+        "output": 3804,
+        "reasoning": 1858,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF第1页页图卷头为「CCF 编程能力等级认证 Grade Examination of Software Programming / C++ 四级 / 2026年03月」，结构为15道单选（每题2分共30分）、10道判断（每题2分共20分）、2道编程（每题25分共50分），共11页，与网站 2026-03-l4 的等级、年月、题量一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF第1页第1题代码 `int f(int x = 2){ return x * 3; }`，main 中 `cout << f() << \" \" << f(4);`，与网站题面逐行一致（源卷 main 亦无 include/return，属原卷省略，转写未改变含义）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次 A. 2 12、B. 6 12、C. 6 4、D. 12 6，与网站 options 内容及顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第1题为 B；独立推导 f()=2*3=6、f(4)=4*3=12，输出 `6 12` 对应 B，0起始索引1，网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：默认参数仅在缺省实参时生效，f() 取 x=2 得 6，f(4) 得 12；网站解析的推导、四个选项分析（A 混淆默认值与返回值、C 漏乘 3、D 顺序颠倒）均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立推导与页图、答案表逐项核对，DeepSeek 初核结论无误，予以接受；无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第2题代码 `int a = 5; int* p = &a; int** q = &p; **q += 7; cout << a << \" \" << *p;` 与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次 A. 5 5、B. 12 12、C. 12 5、D. 5 12，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第2题为 B；独立推导 **q 即 a 本身，a 由 5 变 12，*p 同为 12，输出 `12 12` 对应 B（索引1），网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：q 指向 p、*q 即 p、**q 即 a，`**q += 7` 等价 `a += 7`；网站解析推导及选项分析（C/D 未意识到 *p 与 a 同内存）正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "二级指针解引用链独立推导与初核一致，解析无误，接受初核。"
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第1页给出 `int a[3][4]` 初始化与 `int (*p)[4] = a;`，第2页承接表达式 `*(*(p + 2) + 1)`；网站跨页合并呈现，内容无缺漏。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图第2页选项依次 A. 6、B. 10、C. 9、D. 11，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第3题为 B；独立推导：p 步长为一行，p+2 指向第2行 {9,10,11,12}，*(p+2) 为该行首元素指针，+1 后解引用得 a[2][1]=10，对应 B（索引1），网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：数组指针步长为 4*sizeof(int)，解析对 A(a[1][1])、C(a[2][0] 少偏移)、D(a[2][2] 多偏移) 的归因均与代码语义吻合。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "行指针步长与二级解引用独立推导结果为 10，与初核一致，接受。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第4题函数签名 `void fun(int a, int &b, int *c)`，函数体三行自增，main 中 `int x = 1, y = 1, z = 1; fun(x, y, &z);` 后输出三值，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次 A. 2 3 4、B. 1 3 4、C. 2 1 4、D. 1 1 1，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第4题为 B；独立推导：值传递 a 不影响 x（仍1），引用 b 使 y=3，指针 *c 使 z=4，输出 `1 3 4` 对应 B（索引1），网站 answer=1 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核三种传参方式：网站表格化分析与 C/D 选项的错因归因（传参方式判断颠倒、忽略引用指针）均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "三种传参语义独立核对无误，接受初核。"
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "页图第5题全局 `int x = 3;`、`void f(int& x){ x += 2; }`、main 局部 `int x = 10;`，调用后输出 `x << \" \" << ::x`，与网站题面一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项依次 A. 12 3、B. 10 5、C. 12 5、D. 10 3，与网站 options 及顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "页图答案表第5题为 A；独立推导：f 的引用形参绑定 main 局部 x，局部值 10→12，::x 取全局 3，输出 `12 3` 对应 A（索引0），网站 answer=0 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：局部遮蔽下裸写 x 指局部、::x 指全局；解析对 B/C（误改全局得5）、D（忽略 int& 引用）的错因分析正确，易错提醒表述与语义一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考代码字段。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "作用域遮蔽与 :: 限定独立推导输出 12 3，与初核一致，接受。"
+      }
+    ],
+    "summary": "独立复核题1–5：以PDF第1–2页页图逐行对照题面代码与选项，答案表读得官方答案依次为 B、B、B、B、A（0起始索引 1、1、1、1、0），与网站 answer 完全一致；五题解析均经独立推导验证（默认参数 6 12、二级指针 12 12、行指针 a[2][1]=10、三种传参 1 3 4、作用域遮蔽 12 3），无错误；单选题 referenceCode 不适用。全部 approve，无需 changes，无待核验争议。"
+  }
+}

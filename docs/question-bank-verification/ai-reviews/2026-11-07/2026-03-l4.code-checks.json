@@ -1,0 +1,85 @@
+{
+  "executedAt": "2026-11-17T00:07:28.067Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 5\n7 6 6 7 9\n6 5 6 7 6\n6 5 7 8 9",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "1×1 最小规模",
+          "input": "1 1\n5\n",
+          "output": "1",
+          "reason": "N、M 取最小值 1；唯一单元格无任何相邻格，「不高于所有相邻」空真成立。网站代码中 8 个方向邻居全部越界、ok 保持 true，输出 1；官方参考程序（边界填 1e9 后同样判为山谷）结果一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "1×3 全等高",
+          "input": "1 3\n5 5 5\n",
+          "output": "3",
+          "reason": "n=1 时纵向邻居全部越界；横向邻居海拔相等（5 不大于 5）不淘汰；首、中、尾三格覆盖左右边界形态，均为山谷，输出 3。检验相等不淘汰与行边界语义。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "2×2 对角低点",
+          "input": "2 2\n2 2\n2 1\n",
+          "output": "1",
+          "reason": "(2,2)=1 不高于其 3 个邻居（均为 2），是山谷；(1,1)、(1,2)、(2,1) 均因存在更低的 1 被淘汰——其中 (1,1)、(1,2) 的淘汰依赖对角方向 (2,2)，可检验 8 方向完整性（仅 4 方向实现会误判）。输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "83ebecf10df2cfa946164de937177c0c714de2977a45d33a976f8e1d71945ea2"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "4 3\n3 5 2\n4 1 5\n2 2 4\n3 4 3",
+          "output": "3 4 2 1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3 4 2 1\n",
+          "passed": true
+        },
+        {
+          "name": "1×1 最小规模",
+          "input": "1 1\n7\n",
+          "output": "1",
+          "reason": "n、k 取最小值 1；唯一礼盒 sum=mx=mn=7，排序后仍为编号 1，网站代码与官方参考程序输出一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "四关键字平局链",
+          "input": "5 3\n1 3 4\n2 2 4\n1 3 4\n1 1 1\n2 3 3\n",
+          "output": "4 5 1 3 2",
+          "reason": "五盒 (sum,mx,mn,id) 依次为 (8,4,1,1)、(8,4,2,2)、(8,4,1,3)、(3,1,1,4)、(8,3,2,5)：4 号总价 3 最小排第 1；sum=8 中 5 号 mx=3 最小排第 2；1/2/3 号 mx 均为 4，1、3 号 mn=1 先于 2 号 mn=2；1 号与 3 号四项全同，按原始编号 1 先于 3。独立推演得 4 5 1 3 2，覆盖四关键字逐级决胜与 id 平局打破。",
+          "kind": "boundary",
+          "actual": "4 5 1 3 2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "9b224d60b05ca366fea815da6c0d8c2d6fcf95a8b998a92e17792230950854cb"
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "glm",
+  "questionIds": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:51:12.498Z",
+  "completedAt": "2026-11-16T23:52:39.594Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 57353,
+    "completion_tokens": 8998,
+    "total_tokens": 66351,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 6951
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.01310195,
+      "allowance": 0.01310195,
+      "tokens": {
+        "input": 57353,
+        "output": 8998,
+        "reasoning": 6951,
+        "cache_read": 0,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 四级 / 2026 年 03 月”，正文共 11 页并逐页标注页码，与 2026-03-l4 对应；本次核验范围限于判断题第 6–10 题（网站 id 21–25）。"
+    },
+    "questions": [
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断第6题原文：“在 C++ 中，如果声明了一个指针变量但没有显式初始化，该指针会自动被初始化为 nullptr。”网站题面仅少一个“被”字（“会自动初始化为 nullptr”），属等价转写，不改变含义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A–D 选项，网站以“正确/错误”作答，与官方判定题型一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第6格为“×”，对应错误（0起索引=1），与网站 answer=1 一致；独立推导一致：函数内自动存储期指针未初始化时为不确定值，不会自动为 nullptr，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析区分自动存储期（默认初始化→不确定值）与全局/静态存储期（零初始化）两类规则，与 C++ 标准初始化规则一致，结论“错误”成立，非仅复述官方答案。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：独立核对答案表第6格为“×”且技术推导（局部指针不确定初值）与初核结论一致；“被”字缺失属等价转写，不构成需修改项。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第6页末为“第7题 下面代码没有语法错误。”，代码块位于第7页；网站嵌套 struct 代码（Equipment 成员 equipment、Skill 成员数组 skills[8]、skill_count）与 PDF 逐行一致，仅第16–17行间多一空行，纯排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A–D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第7格为“√”，对应正确（0起索引=0），与网站 answer=0 一致；独立推导一致：C++ 允许在 struct 内定义嵌套 struct、定义类型同时声明该类型成员及成员数组，原代码无语法错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对嵌套类型定义合法性、“} equipment;”为成员声明、结构体默认 public 及 GameCharacter::Equipment 限定访问的说明均正确，推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表第7格“√”与网站一致，代码合法性（嵌套定义、行内成员声明、成员数组）的独立推导与初核一致；空行差异不影响题面。"
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断第8题原文“下面程序能够把 Hello 写入 data.txt 文件中。”及三行代码（ofstream fout(\"data.txt\"); cout << \"Hello\"; fout.close();）与网站完全一致（文本层 OCR 乱码以页面图为准）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A–D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第8格为“×”，对应错误（0起索引=1），与网站 answer=1 一致；独立推导一致：cout 写标准输出，fout 从未被写入，Hello 不会进入 data.txt，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 cout 与 fout 是两个独立流对象、fout.close() 关闭的是未写入的文件，并给出正确写法 fout << \"Hello\"，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表第8格“×”与网站一致，流对象独立性推导与初核一致，无修改项。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断第9题原文“由于选择排序和插入排序的时间复杂度均为 O(n²)，在任何实际场景下两者的性能表现几乎相同，可以互相替代。”与网站一致；PDF 用 O(n²)、网站写作 O(N^2)，仅大小写记号差异，语义等价。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A–D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第9格为“×”，对应错误（0起索引=1），与网站 answer=1 一致；独立推导一致：渐进复杂度相同不等于各场景实际性能相同（插入排序对近有序数据可接近 O(N)、常数因子与交换次数不同、稳定性不同），命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出的插入排序平均比较约 N²/4 且最好情形接近 O(N)、选择排序恒为 N(N-1)/2 次比较等数据均正确，结论推导完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表第9格“×”与网站一致，复杂度渐进表示与实际性能区分的推导与初核一致；O(n²)/O(N^2) 记号差异不构成修改项。"
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页判断第10题原文“下面用递推方式计算斐波那契数列第 n 项的程序，时间复杂度是 O(2^n)。”及 fib 迭代代码（含 if(n<=1) return n; 与 for(i=2;i<=n;i++) 循环体）与网站逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题，PDF 未设 A–D 选项，网站以“正确/错误”作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第10格为“×”，对应错误（0起索引=1），与网站 answer=1 一致；独立推导一致：单层循环 i=2..n 共 n-1 轮、每轮 O(1)，总时间 O(n)、空间 O(1)，非 O(2^n)，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析正确指出 O(2^n) 属朴素递归 return fib(n-1)+fib(n-2) 写法，本代码为递推迭代且每项只算一次，并核对循环边界 i=2 起至 i<=n 止，推导成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受初核：答案表第10格“×”与网站一致，循环轮数与复杂度推导与初核一致，无修改项。"
+      }
+    ],
+    "summary": "本次独立复核判断题第 6–10 题（网站 id 21–25，均出自 PDF 第 6–7 页）。第 6 页判断题答案表第 6–10 格依次为 ×、√、×、×、×，对应 officialAnswer 1、0、1、1、1，与网站 answer 全部一致，且与逐题技术推导（局部指针不确定初值、嵌套 struct 合法、cout 与 fout 独立、同阶复杂度≠性能等同、迭代 fib 为 O(n)）交叉印证。题面仅存在等价转写级差异（21 题缺“被”字、24 题 O(n²)/O(N^2) 记号、22 题一处空行），均不改变含义，故 changes 全部为空，五题均 approve；判断题无 A–D 选项与参考代码，相应维度记 not_applicable。本卷其余题目（单选 1–15、判断 16–20、编程 26–27）不在本次范围，整体核验状态仍为 partial。"
+  }
+}

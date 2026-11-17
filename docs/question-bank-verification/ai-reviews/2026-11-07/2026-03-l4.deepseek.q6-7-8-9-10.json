@@ -1,0 +1,233 @@
+{
+  "paperId": "2026-03-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-16T23:34:35.187Z",
+  "completedAt": "2026-11-16T23:36:18.860Z",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 38088,
+    "completion_tokens": 10620,
+    "total_tokens": 48708,
+    "prompt_tokens_details": {
+      "cached_tokens": 38016
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8404
+    },
+    "cost": 0,
+    "opencode": {
+      "billing_source": "go",
+      "list_cost": 0.00649685,
+      "allowance": 0.00389811,
+      "tokens": {
+        "input": 72,
+        "output": 10620,
+        "reasoning": 8404,
+        "cache_read": 38016,
+        "cache_write_5m": 0,
+        "cache_write_1h": 0
+      }
+    }
+  },
+  "inputSha256": "47cab2c6e1495e2d94f77e5e9c364b1f2ee7cbd4b958fbf1c95ae757fc0186ed",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++4级.pdf",
+    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+    "mirrorBytes": 1093637,
+    "shaVerified": true,
+    "sha256": "d7961807fc6bee11d1b105731fb18acaf4490c7a4408fcbaa0b83f0048db1d57"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2026-03-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头显示“C++ 四级”“2026 年 03 月”，与 paperId 2026-03-l4 相符。"
+    },
+    "questions": [
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2-3页第6题题干为“下列关于结构体初始化的写法，正确的是（ ）”，与本站题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页A、B与第3页C、D的代码及顺序均与本站四个选项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为B；本站 answer=1（0起始）对应B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析称“Point 没有构造函数，Point(1,2) 这种写法本身也不成立”，但同一解析又提到 C++20 允许圆括号聚合初始化，表述自相矛盾；实际错误在于 new 返回指针不能赋给 Point 对象。答案B及主体推导仍正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**核心解析：**\n`Point` 是聚合类型（没有用户声明的构造函数、没有私有成员）。C++ 中常用花括号进行聚合初始化：`Point p = {1,2};` 依次把 `1` 给 `x`、`2` 给 `y`；C++11 起也可写 `Point p{1,2};`。\n\n**选项逐项分析：**\n- **A**：❌ `(1,2)` 是逗号表达式，先算 `1` 再算 `2`，整个表达式的值为 `2`，等价于 `Point p = 2;`，`int` 不能转换成 `Point`，编译报错。\n- **B**：✅ `{1,2}` 是聚合初始化，`x = 1, y = 2`，正确。\n- **C**：❌ `new Point(1,2)` 返回 `Point*`，不能赋给 `Point` 类型的对象；类型不匹配。即使在允许圆括号聚合初始化的 C++20 下，返回值仍是指针，错误依旧。\n- **D**：❌ `<1,2>` 不是 C++ 的合法初始化语法，直接语法错误。\n\n**易错提醒：**\n- 圆括号与花括号语义不同：A 的 `(1,2)` 是逗号表达式，B 的 `{1,2}` 才是初始化列表。\n- `new` 返回指针；若用 `new`，应写 `Point* p = new Point{1,2};`（或使用允许的圆括号初始化形式），不能直接赋给 `Point`。\n\n**知识延伸：**\nC++11 起可用列表初始化 `Point p{1,2};`；C++20 允许一定条件下的圆括号聚合初始化 `Point p(1,2);`，但它与 A 的逗号表达式 `(1,2)` 含义不同。\n\n**考点：** 结构体的聚合初始化、逗号表达式、`new` 返回指针"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第7题代码、题干与本站一致：结构体 S 作为值传递与引用传递参数。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项顺序为A 11 12、B 1 12、C 11 2、D 1 2，与本站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为B；本站 answer=1（0起始）对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：g 按值接收副本，改 s.a 不影响 main 的 s.a；h 按引用绑定 main 的 s，s.b 从2变12，故输出 1 12，与原解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第8题题干为“关于递推算法的描述，正确的是（ ）”，与本站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页四个选项内容及顺序与本站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为B；本站 answer=1（0起始）对应B。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析用 f(1)=1、f(2)=2 作为“斐波那契数列”初值，得到1,2,3,5...并非标准斐波那契数列；递推结论B仍正确，但示例需修正为爬楼梯型递推，或把斐波那契初值改为 f(1)=f(2)=1。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**核心解析：**\n递推的核心是：已知若干初值 + 一个递推关系式，循环/顺序推出后续每一项。例如爬楼梯型数列 `f(1)=1, f(2)=2, f(n)=f(n-1)+f(n-2)`（若写标准斐波那契数列，初值应为 `f(1)=f(2)=1`）。用循环从 `f(3)` 算到 `f(n)`，每一步只依赖已算好的前项，不需要函数自我调用。\n\n**选项逐项分析：**\n- **A**：❌ “函数自己调用自己”是递归的定义。\n- **B**：✅ 初值 + 递推关系 + 逐步推进，是递推的标准描述。\n- **C**：❌ 递推的时间复杂度取决于层数和每步工作量，常见为 `O(n)` 或 `O(nm)`；斐波那契的递推写法是 `O(n)`，并非只能处理指数复杂度。\n- **D**：❌ 递推是单向推进，算过的项直接保留，不需要回溯；回溯常见于 DFS/搜索。\n\n**易错提醒：**\n- 递推与递归要区分：递归从上往下拆、依赖函数栈返回；递推从下往上铺、靠循环推进。\n- 递推也可能需要 `O(n)` 或 `O(nm)` 的空间（如二维 DP 表）。\n\n**知识延伸：**\n动态规划可看成带记忆化的递推：把递推关系写成状态转移方程，用数组保存每个状态的值，避免重复计算。斐波那契/爬楼梯型问题可用滚动变量把空间优化到 `O(1)`。\n\n**考点：** 递推与递归的区别、递推三要素（初值、关系式、推进方向）"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第9题题干“执行 climb(6) 的返回值为（ ）”及代码与本站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页选项A 8、B 13、C 5、D 10，与本站顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为B；本站 answer=1（0起始）对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：n=6时循环 i=3,4,5,6 依次得 c=3,5,8,13，返回13；原解析逐轮表与结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第10题的初始序列、排序后序列及题干均与本站一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页选项A-D内容与顺序均与本站一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为B；本站 answer=1（0起始）对应B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立按稳定性定义判断：关键字score相同的三个元素排序前后均为A、B、D，相对次序不变；C因score=80最小排到最前不影响稳定性，原解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，不涉及参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "本次核验题6-10：题面、选项和官方答案均与PDF一致，答案均对应B（0起始为1）。题6解析中关于C++20下Point(1,2)的表述自相矛盾，题8解析把f(1)=1,f(2)=2误称为标准斐波那契数列初值，二者已给出修订解析；题7、9、10的解析独立推导通过。五题均为单选题，无编程题测试。"
+  }
+}
