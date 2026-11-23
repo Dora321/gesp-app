@@ -1,14 +1,15 @@
-import { assistantStorage } from './classroomAssistant.js';
-import { classroomAnonId } from './classroomAnon.js';
+import { assistantStorage } from './classroomAssistant';
 
-export { classroomAnonId };
-
-const gateway = (import.meta.env.VITE_CLASSROOM_API_URL || '').replace(/\/$/, '');
+const gateways = (import.meta.env.VITE_CLASSROOM_API_URL || '')
+    .split(',')
+    .map(url => url.trim().replace(/\/$/, ''))
+    .filter(Boolean);
+let activeGateway = gateways[0] || '';
 const tokenKey = 'classroom_session_token';
 const conversationKey = 'ai_conversation_id';
 let conversationId = assistantStorage.get('sessionStorage', conversationKey);
 let sessionToken = '';
-try { sessionToken = gateway ? sessionStorage.getItem(tokenKey) || '' : ''; } catch { /* Memory-only fallback. */ }
+try { sessionToken = activeGateway ? sessionStorage.getItem(tokenKey) || '' : ''; } catch { /* Memory-only fallback. */ }
 
 export function classroomConversationId(reset = false) {
     if (reset || !conversationId) {
@@ -18,12 +19,36 @@ export function classroomConversationId(reset = false) {
     return conversationId;
 }
 
-export function classroomFetch(path, options = {}) {
-    return fetch(`${gateway}${path}`, {
+export async function classroomFetch(path, options = {}) {
+    const buildInit = (gateway) => ({
         ...options,
         credentials: gateway ? 'omit' : 'same-origin',
         headers: { ...options.headers, ...(gateway && sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {}) },
     });
+
+    if (gateways.length <= 1) {
+        return fetch(`${activeGateway}${path}`, buildInit(activeGateway));
+    }
+
+    const candidates = [activeGateway, ...gateways.filter(g => g !== activeGateway)];
+    let lastError;
+    let lastResponse;
+    for (const candidate of candidates) {
+        try {
+            const response = await fetch(`${candidate}${path}`, buildInit(candidate));
+            if (response.status >= 502 && response.status <= 504 && candidate !== candidates.at(-1)) {
+                lastResponse = response;
+                continue;
+            }
+            activeGateway = candidate;
+            return response;
+        } catch (err) {
+            lastError = err;
+            if (options.signal?.aborted) throw err;
+        }
+    }
+    if (lastResponse) return lastResponse;
+    throw lastError;
 }
 
 export async function classroomRequest(path, data) {
@@ -32,7 +57,7 @@ export async function classroomRequest(path, data) {
     });
     const result = await response.json().catch(() => { throw new Error('课堂服务未启动，请联系老师。'); });
     if (!response.ok) throw Object.assign(new Error(result.message || '课堂服务暂时不可用。'), { status: response.status });
-    if (gateway && (result.token || path === '/api/logout')) {
+    if (activeGateway && (result.token || path === '/api/logout')) {
         sessionToken = result.token || '';
         try { if (sessionToken) sessionStorage.setItem(tokenKey, sessionToken); else sessionStorage.removeItem(tokenKey); } catch { /* Keep in memory. */ }
         delete result.token;

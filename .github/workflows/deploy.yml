@@ -63,7 +63,7 @@ jobs:
 
       - name: Build
         env:
-          VITE_CLASSROOM_API_URL: https://43.156.68.157.sslip.io
+          VITE_CLASSROOM_API_URL: https://1257025246-1flq3qi91w.ap-shanghai.tencentscf.com,https://43.156.68.157.sslip.io
         run: |
           npm run build
           cp dist/index.html dist/404.html
