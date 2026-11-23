@@ -2,13 +2,21 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+// Box 环境：OpenCode Go 凭据 + g++ PATH（不写进日志）
 const authFile = path.join(os.homedir(), '.local/share/opencode/auth.json');
-const auth = JSON.parse(fs.readFileSync(authFile, 'utf8'))['opencode-go'];
-if (!auth?.key) throw new Error('未找到已连接的 OpenCode Go 凭据');
-process.env.OPENCODE_API_KEY ||= auth.key;
+if (!process.env.OPENCODE_API_KEY) {
+    if (!fs.existsSync(authFile)) throw new Error('未找到 OPENCODE_API_KEY 或 ~/.local/share/opencode/auth.json');
+    const auth = JSON.parse(fs.readFileSync(authFile, 'utf8'))['opencode-go'];
+    if (!auth?.key) throw new Error('未找到已连接的 OpenCode Go 凭据');
+    process.env.OPENCODE_API_KEY = auth.key;
+}
+const extraPath = ['/home/box/bin', '/home/box/cxxenv/bin', '/home/box/.opencode/bin', '/workspace/bin'].join(':');
+process.env.PATH = `${extraPath}:${process.env.PATH || ''}`;
 process.env.GESP_AUDIT_CACHE ||= '/tmp/gesp-five-dim-20261107';
 process.env.GESP_EXISTING_WORKERS ||= '[]';
+process.env.GESP_QUEUE_CONCURRENCY ||= '3';
 const lock = path.join(process.env.GESP_AUDIT_CACHE, 'queue.pid');
+fs.mkdirSync(process.env.GESP_AUDIT_CACHE, { recursive: true });
 if (fs.existsSync(lock)) {
     const pid = Number(fs.readFileSync(lock, 'utf8'));
     try { process.kill(pid, 0); throw new Error(`题库队列已经在运行：PID ${pid}`); }
