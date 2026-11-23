@@ -1,4 +1,7 @@
-import { assistantStorage } from './classroomAssistant';
+import { assistantStorage } from './classroomAssistant.js';
+import { classroomAnonId } from './classroomAnon.js';
+
+export { classroomAnonId };
 
 const gateways = (import.meta.env.VITE_CLASSROOM_API_URL || '')
     .split(',')
