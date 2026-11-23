@@ -55,7 +55,7 @@ const AIChatWidget = ({ onClose }) => {
     const quotaExhausted = mode === 'classroom' && classroom?.remaining === 0;
     const [customPersona, setCustomPersona] = useState(null);
     const [editingCustomPersona, setEditingCustomPersona] = useState(null);
-    const [size, setSize] = useState({ width: 360, height: 500 });
+    const [size, setSize] = useState({ width: 380, height: 580 });
     const isResizing = useRef(false);
     const messagesContainerRef = useRef(null);
     const messagesEndRef = useRef(null);
@@ -97,12 +97,12 @@ const AIChatWidget = ({ onClose }) => {
         // BUT actually it's easier to just use window dimensions minus mouse coordinates
         // because the element is fixed to bottom-right.
 
-        const newWidth = window.innerWidth - e.clientX - 24; // 24px right margin
-        const newHeight = window.innerHeight - e.clientY - 96; // 96px bottom margin (bottom-24)
+        const newWidth = window.innerWidth - e.clientX - 20; // 20px right margin
+        const newHeight = window.innerHeight - e.clientY - 20; // 20px bottom margin
 
         setSize({
             width: Math.max(300, Math.min(newWidth, 800)),
-            height: Math.max(400, Math.min(newHeight, window.innerHeight - 150))
+            height: Math.max(380, Math.min(newHeight, window.innerHeight - 36))
         });
     };
 
@@ -536,8 +536,8 @@ const AIChatWidget = ({ onClose }) => {
         : AI_PERSONAS.find(p => p.id === selectedPersona);
 
     const panelClassName = isSheet
-        ? 'mw-surface mw-line-bank mw-chat-panel mw-chat-sheet fixed inset-x-0 z-[100] bg-white rounded-t-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 border-b-0'
-        : 'mw-surface mw-line-bank mw-chat-panel fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200';
+        ? 'mw-surface mw-line-bank mw-chat-panel mw-chat-sheet fixed inset-x-0 z-[120] bg-white rounded-t-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 border-b-0'
+        : 'mw-surface mw-line-bank mw-chat-panel fixed bottom-4 right-5 z-[120] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200';
 
     const panelStyle = isSheet
         ? {
@@ -550,8 +550,8 @@ const AIChatWidget = ({ onClose }) => {
         : {
             width: `${size.width}px`,
             height: `${size.height}px`,
-            maxWidth: 'calc(100vw - 48px)',
-            maxHeight: 'calc(100vh - 120px)',
+            maxWidth: 'calc(100vw - 32px)',
+            maxHeight: 'calc(100vh - 32px)',
         };
 
     // Chat window when open. aria-modal only for the mobile sheet (it has a backdrop);
@@ -566,7 +566,7 @@ const AIChatWidget = ({ onClose }) => {
         >
             {isSheet && (
                 <div
-                    className="flex shrink-0 touch-none flex-col items-center pt-2 pb-1 cursor-grab active:cursor-grabbing select-none"
+                    className="flex shrink-0 touch-none flex-col items-center pt-1.5 pb-0.5 cursor-grab active:cursor-grabbing select-none"
                     onPointerDown={onSheetPointerDown}
                     onPointerMove={onSheetPointerMove}
                     onPointerUp={finishSheetDrag}
@@ -577,27 +577,27 @@ const AIChatWidget = ({ onClose }) => {
                     aria-label="拖动调整聊天面板高度，双击切换半屏/更高"
                     title="上拉加高，下滑关闭；双击切换半屏/更高"
                 >
-                    <div className="h-1.5 w-12 rounded-full bg-slate-300" />
+                    <div className="h-1 w-10 rounded-full bg-slate-300" />
                     <span className="sr-only">拖动手柄</span>
                 </div>
             )}
             {/* Header */}
             <header
-                className="mw-panel-heading flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0"
+                className="mw-panel-heading flex justify-between items-center px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0"
             >
-                <div className="flex items-center gap-2 select-none">
-                    <span className="text-xl">{currentPersonaInfo?.emoji}</span>
-                    <span className="font-bold">{currentPersonaInfo?.name || 'AI 问答助手'}</span>
+                <div className="flex items-center gap-1.5 select-none min-w-0">
+                    <span className="text-base">{currentPersonaInfo?.emoji}</span>
+                    <span className="font-bold text-sm truncate">{currentPersonaInfo?.name || 'AI 问答助手'}</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-0.5 shrink-0">
                     {!showSettings && <button
                         type="button"
                         onClick={clearChat}
-                        className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
+                        className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
                         title="新对话"
                         aria-label="新对话"
                     >
-                        <Plus size={18} />
+                        <Plus size={16} />
                     </button>}
                     <button
                         type="button"
@@ -605,21 +605,21 @@ const AIChatWidget = ({ onClose }) => {
                             setShowSettings(!showSettings);
                             setClassroomCode('');
                         }}
-                        className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
+                        className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
                         title={showSettings ? '关闭设置' : '设置'}
                         aria-label={showSettings ? '关闭 AI 设置' : '打开 AI 设置'}
                         aria-expanded={showSettings}
                     >
-                        <Settings size={18} />
+                        <Settings size={16} />
                     </button>
                     <button
                         type="button"
                         onClick={onClose}
-                        className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
+                        className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
                         title="关闭"
                         aria-label="关闭 AI 问答助手"
                     >
-                        <X size={18} />
+                        <X size={16} />
                     </button>
                 </div>
             </header>
@@ -850,7 +850,7 @@ const AIChatWidget = ({ onClose }) => {
             )}
 
             <div className={showSettings ? 'hidden' : 'flex min-h-0 flex-1 flex-col'}>
-            <div className="shrink-0 px-3 py-2 text-xs bg-stone-100 text-stone-700 border-b border-stone-200" role="status">
+            <div className="shrink-0 px-3 py-1 text-[11px] leading-4 bg-stone-100 text-stone-700 border-b border-stone-200 truncate" role="status">
                 {mode === 'personal' ? (personalKey ? '个人模式 · 使用自己的 API Key' : '个人模式 · 请在设置中填写 API Key') : classroomActive && classroom
                     ? `课堂已激活 · 全班剩余 ${classroom.remaining} 次 · ${new Date(classroom.expiresAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} 截止`
                     : <button type="button" onClick={() => setShowSettings(true)} className="underline">输入课堂口令，开始提问</button>}
@@ -859,18 +859,18 @@ const AIChatWidget = ({ onClose }) => {
             <div
                 ref={messagesContainerRef}
                 onScroll={updateAutoScrollState}
-                className="min-h-0 flex-1 overflow-y-auto p-3 space-y-3 bg-slate-50"
+                className="min-h-0 flex-1 overflow-y-auto p-2.5 space-y-2.5 bg-slate-50"
             >
                 {!authorized && messages.length === 0 && (
-                    <div className="text-center py-8">
-                        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Key size={32} className="text-indigo-500" />
+                    <div className="text-center py-4 px-2">
+                        <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <Key size={20} className="text-indigo-500" />
                         </div>
-                        <h3 className="text-lg font-medium text-slate-700 mb-2">欢迎使用 AI 助手</h3>
-                        <p className="text-sm text-slate-500 mb-4">{mode === 'personal' ? '粘贴自己的 API Key，或切换课堂模式' : '请输入老师提供的课堂口令，或切换个人模式'}</p>
+                        <h3 className="text-sm font-semibold text-slate-700 mb-1">欢迎使用 AI 助手</h3>
+                        <p className="text-xs text-slate-500 mb-3">{mode === 'personal' ? '粘贴自己的 API Key，或切换课堂模式' : '请输入老师提供的课堂口令，或切换个人模式'}</p>
                         <button
                             onClick={() => setShowSettings(true)}
-                            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors"
+                            className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium rounded-lg transition-colors"
                         >
                             {mode === 'personal' ? '设置 API Key' : '输入课堂口令'}
                         </button>
@@ -878,27 +878,27 @@ const AIChatWidget = ({ onClose }) => {
                 )}
 
                 {authorized && messages.length === 0 && (
-                    <div className="text-center py-8">
-                        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Bot size={32} className="text-indigo-500" />
+                    <div className="text-center py-4 px-2">
+                        <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <Bot size={20} className="text-indigo-500" />
                         </div>
-                        <h3 className="text-lg font-medium text-slate-700 mb-2">把你卡住的那一步告诉我</h3>
-                        <p className="text-sm text-slate-500">可以贴出代码、预期结果和实际结果，我们一步步排查。</p>
+                        <h3 className="text-sm font-semibold text-slate-700 mb-1">把你卡住的那一步告诉我</h3>
+                        <p className="text-xs text-slate-500">可以贴出代码、预期结果和实际结果，我们一步步排查。</p>
                     </div>
                 )}
 
                 {messages.map((msg, idx) => (
                     <div
                         key={idx}
-                        className={`flex gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
+                        className={`flex gap-1.5 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                     >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user'
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${msg.role === 'user'
                             ? 'bg-indigo-600 text-white'
                             : 'bg-slate-200 text-slate-600'
                             }`}>
-                            {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
+                            {msg.role === 'user' ? <User size={13} /> : <Bot size={13} />}
                         </div>
-                        <div className={`${msg.role === 'user' ? 'max-w-[85%]' : 'flex-1 min-w-0'} p-3 rounded-2xl text-sm leading-relaxed overflow-x-hidden ${msg.role === 'user'
+                        <div className={`${msg.role === 'user' ? 'max-w-[88%]' : 'flex-1 min-w-0'} px-3 py-2 rounded-2xl text-sm leading-relaxed overflow-x-hidden ${msg.role === 'user'
                             ? 'bg-indigo-600 text-white rounded-br-sm'
                             : 'bg-white text-slate-700 rounded-bl-sm border border-slate-200 shadow-sm'
                             }`}>
@@ -960,7 +960,7 @@ const AIChatWidget = ({ onClose }) => {
             <>
                 <button
                     type="button"
-                    className="mw-chat-sheet-backdrop fixed inset-0 z-[99] border-0 bg-slate-900/45 p-0 cursor-default"
+                    className="mw-chat-sheet-backdrop fixed inset-0 z-[115] border-0 bg-slate-900/45 p-0 cursor-default"
                     aria-label="点击遮罩关闭 AI 问答助手"
                     onClick={() => onClose?.()}
                 />

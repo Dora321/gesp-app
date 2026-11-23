@@ -17,9 +17,9 @@ const getMessageCount = () => {
 
 const PanelFallback = () => (
     <>
-        <div className="fixed inset-0 z-[99] bg-slate-900/45 md:hidden" aria-hidden="true" />
+        <div className="fixed inset-0 z-[115] bg-slate-900/45 md:hidden" aria-hidden="true" />
         <div
-            className="fixed inset-x-0 bottom-0 z-[100] flex h-[62vh] max-h-[100dvh] items-center justify-center rounded-t-2xl border border-b-0 border-slate-200 bg-white shadow-2xl md:inset-x-auto md:bottom-24 md:right-6 md:h-[500px] md:w-[360px] md:max-h-[calc(100vh-120px)] md:max-w-[calc(100vw-48px)] md:rounded-2xl md:border"
+            className="fixed inset-x-0 bottom-0 z-[120] flex h-[74vh] max-h-[100dvh] items-center justify-center rounded-t-2xl border border-b-0 border-slate-200 bg-white shadow-2xl md:inset-x-auto md:bottom-4 md:right-5 md:h-[580px] md:w-[380px] md:max-h-[calc(100vh-32px)] md:max-w-[calc(100vw-32px)] md:rounded-2xl md:border"
             role="status"
             aria-label="正在加载 AI 问答助手"
         >

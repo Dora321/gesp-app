@@ -101,8 +101,8 @@ export const mapCatchErrorMessage = (error) => {
 
 /** 窄屏用底部抽屉；与 Tailwind `md`（768px）对齐。 */
 export const AI_CHAT_SHEET_BREAKPOINT = 768;
-export const AI_CHAT_SHEET_DEFAULT_RATIO = 0.62;
-export const AI_CHAT_SHEET_EXPANDED_RATIO = 0.92;
+export const AI_CHAT_SHEET_DEFAULT_RATIO = 0.74;
+export const AI_CHAT_SHEET_EXPANDED_RATIO = 0.94;
 /** 相对默认高度再往下拖这么多像素 → 关闭 */
 export const AI_CHAT_SHEET_CLOSE_DRAG_PX = 96;
 
