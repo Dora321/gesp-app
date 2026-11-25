@@ -1,3 +1,5 @@
+import { CODING_DRAFTS_KEY, mergeCodingDrafts, readAllCodingDrafts } from './codingDrafts.js';
+
 export const LEARNING_DATA_SCHEMA = 'gesp-learning-data';
 export const LEARNING_DATA_VERSION = 4;
 
@@ -122,13 +124,13 @@ const normalizeAttempt = (entry) => {
     return attempt;
 };
 
-const normalizeAttempts = (value) => cleanEntries(value, (list) => {
+const normalizeAttempts = (value, limit) => cleanEntries(value, (list) => {
     if (!Array.isArray(list)) return null;
     const entries = list
         .map(normalizeAttempt)
         .filter(Boolean)
         .sort((a, b) => b.at - a.at)
-        .slice(0, MAX_ATTEMPTS_PER_PAPER);
+        .slice(0, limit);
     return entries.length > 0 ? entries : null;
 });
 
@@ -182,6 +184,10 @@ const normalizeCollection = (value) => Array.isArray(value)
     : [];
 
 export function normalizeLearningData(value) {
+    return normalizeData(value, MAX_ATTEMPTS_PER_PAPER);
+}
+
+function normalizeData(value, attemptLimit) {
     const source = isRecord(value?.data) ? value.data : (isRecord(value) ? value : {});
     const isVersionOne = Number(value?.version) === 1;
     const lessons = isVersionOne ? (source.lessonProgress || source.lessons) : source.lessons;
@@ -193,7 +199,7 @@ export function normalizeLearningData(value) {
         ? (source.museumCollection || source.museum?.collected)
         : source.museum?.collected;
 
-    const attempts = normalizeAttempts(source.attempts);
+    const attempts = normalizeAttempts(source.attempts, attemptLimit);
 
     return {
         version: LEARNING_DATA_VERSION,
@@ -209,6 +215,68 @@ export function normalizeLearningData(value) {
             : normalizeMistakes(source.mistakes),
         hardware: { esp32Ai: normalizeEsp32Ai(esp32Ai) },
         museum: { collected: normalizeCollection(collected) },
+    };
+}
+
+const mergeEntries = (current, imported, merge) => {
+    const result = { ...current };
+    for (const [key, entry] of Object.entries(imported)) {
+        result[key] = Object.hasOwn(current, key) ? merge(current[key], entry) : entry;
+    }
+    return result;
+};
+
+const newest = (current, imported) => (
+    (imported.savedAt ?? -Infinity) > (current.savedAt ?? -Infinity) ? imported : current
+);
+
+const mergeLesson = (current, imported) => {
+    const mastered = current.status === 'mastered' || imported.status === 'mastered';
+    const visitedAt = Math.min(current.visitedAt ?? Infinity, imported.visitedAt ?? Infinity);
+    const masteredAt = Math.max(current.masteredAt ?? -Infinity, imported.masteredAt ?? -Infinity);
+    return {
+        status: mastered ? 'mastered' : 'learning',
+        ...(Number.isFinite(visitedAt) && { visitedAt }),
+        ...(mastered && Number.isFinite(masteredAt) && { masteredAt }),
+    };
+};
+
+const dedupeAttempts = (attempts) => {
+    const unique = new Map();
+    for (const attempt of attempts) {
+        const key = JSON.stringify([attempt.at, attempt.score, attempt.total, attempt.wrongIds.join(',')]);
+        unique.set(key, { ...attempt, ...unique.get(key) });
+    }
+    return [...unique.values()].sort((a, b) => b.at - a.at).slice(0, MAX_ATTEMPTS_PER_PAPER);
+};
+
+export function mergeLearningData(current, imported) {
+    const local = normalizeData(current, Infinity);
+    const incoming = normalizeData(imported, Infinity);
+    const localEsp32 = local.hardware.esp32Ai;
+    const importedEsp32 = incoming.hardware.esp32Ai;
+    const incomingIsNewer = (incoming.updatedAt ?? -Infinity) > (local.updatedAt ?? -Infinity);
+    const attempts = mergeEntries(local.attempts, incoming.attempts, (a, b) => [...a, ...b]);
+
+    return {
+        version: LEARNING_DATA_VERSION,
+        updatedAt: incomingIsNewer ? incoming.updatedAt : local.updatedAt,
+        lessons: mergeEntries(local.lessons, incoming.lessons, mergeLesson),
+        practice: mergeEntries(local.practice, incoming.practice, (a, b) => a.map((flag, index) => flag || b[index])),
+        exams: mergeEntries(local.exams, incoming.exams, newest),
+        attempts: Object.fromEntries(Object.entries(attempts).map(([key, list]) => [key, dedupeAttempts(list)])),
+        analysis: mergeEntries(local.analysis, incoming.analysis, newest),
+        // 现有格式只记录做错的时间，两个备份中仍有记录的题目都保留。
+        mistakes: mergeEntries(local.mistakes, incoming.mistakes, (a, b) => mergeEntries(a, b, Math.max)),
+        hardware: {
+            esp32Ai: localEsp32 && importedEsp32
+                ? {
+                    activeNum: incomingIsNewer ? importedEsp32.activeNum : localEsp32.activeNum,
+                    viewed: [...new Set([...localEsp32.viewed, ...importedEsp32.viewed])],
+                }
+                : localEsp32 || importedEsp32,
+        },
+        museum: { collected: [...new Set([...local.museum.collected, ...incoming.museum.collected])] },
     };
 }
 
@@ -326,15 +394,17 @@ export function updateLearningData(updater, reason = 'update') {
 
 export function createLearningDataExport() {
     const data = readLearningData();
+    const codingDrafts = readAllCodingDrafts(getStorage());
     return {
         schema: LEARNING_DATA_SCHEMA,
         version: LEARNING_DATA_VERSION,
         exportedAt: new Date().toISOString(),
         data,
+        ...(Object.keys(codingDrafts).length > 0 ? { codingDrafts } : {}),
     };
 }
 
-export function previewLearningDataImport(payload) {
+function validateImport(payload) {
     const parsed = typeof payload === 'string' ? parseJson(payload) : payload;
     if (!isRecord(parsed) || parsed.schema !== LEARNING_DATA_SCHEMA) {
         throw new Error('不是有效的 GESP 学习数据文件');
@@ -343,13 +413,37 @@ export function previewLearningDataImport(payload) {
     if (!Number.isInteger(version) || version < 1 || version > LEARNING_DATA_VERSION) {
         throw new Error(`不支持的学习数据版本：${parsed.version}`);
     }
-    return normalizeLearningData({ ...parsed, version });
+    return { ...parsed, version };
 }
 
-export function importLearningData(payload) {
-    const normalized = previewLearningDataImport(payload);
-    if (!writeCanonical(normalized, 'import')) throw new Error('浏览器无法保存学习数据');
-    return normalized;
+export function previewLearningDataImport(payload) {
+    return normalizeLearningData(validateImport(payload));
+}
+
+export function importLearningData(payload, { mode = 'replace' } = {}) {
+    const parsed = validateImport(payload);
+    if (mode !== 'merge' && mode !== 'replace') throw new Error('不支持的学习数据导入模式');
+    const data = mode === 'merge'
+        ? mergeLearningData(readLearningData(), parsed)
+        : normalizeLearningData(parsed);
+    if (!writeCanonical(data, 'import')) throw new Error('浏览器无法保存学习数据');
+    const storage = getStorage();
+    if (storage && (mode === 'replace' || isRecord(parsed.codingDrafts))) {
+        try {
+            const incomingDrafts = isRecord(parsed.codingDrafts) ? parsed.codingDrafts : {};
+            const nextDrafts = mode === 'merge'
+                ? mergeCodingDrafts(readAllCodingDrafts(storage), incomingDrafts)
+                : mergeCodingDrafts({}, incomingDrafts);
+            if (Object.keys(nextDrafts).length > 0) {
+                storage.setItem(CODING_DRAFTS_KEY, JSON.stringify(nextDrafts));
+            } else {
+                storage.removeItem(CODING_DRAFTS_KEY);
+            }
+        } catch {
+            // 保留主学习数据已导入状态，草稿写失败不阻塞主流程。
+        }
+    }
+    return data;
 }
 
 export function resetLearningData() {
@@ -357,6 +451,7 @@ export function resetLearningData() {
     if (!storage) return false;
     try {
         storage.removeItem(LEARNING_DATA_STORAGE_KEY);
+        storage.removeItem(CODING_DRAFTS_KEY);
         storage.removeItem(LEGACY_KEYS.lessons);
         storage.removeItem(LEGACY_KEYS.esp32Ai);
         storage.removeItem(LEGACY_KEYS.museum);
@@ -374,6 +469,13 @@ export function resetLearningData() {
     }
 }
 
+const hardwareLessonPrefixes = [
+    '/hardware/esp32/',
+    '/hardware/arduino/',
+    '/hardware/esp32-contest/',
+    '/innovation-foundation/',
+];
+
 export function summarizeLearningData(data = readLearningData()) {
     const attemptLists = Object.values(data.attempts);
     return {
@@ -384,7 +486,8 @@ export function summarizeLearningData(data = readLearningData()) {
         papersAttempted: attemptLists.length,
         // 旧的 esp32Ai.viewed 曾是硬件课进度来源，那个页面已被 35 课新体系取代。
         // 现在硬件课进度和 C++ 课走同一套 lessons 记录，按路径前缀区分。
-        hardwareLessons: Object.keys(data.lessons).filter((path) => path.startsWith('/hardware/esp32/')).length,
+        hardwareLessons: Object.keys(data.lessons)
+            .filter((path) => hardwareLessonPrefixes.some((prefix) => path.startsWith(prefix))).length,
         museumItems: data.museum.collected.length,
     };
 }

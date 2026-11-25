@@ -1,4 +1,16 @@
 @import "tailwindcss";
+@source not "../docs";
+@source not "../scripts";
+@source not "../server";
+@source not "../public";
+@source not "./data/gesp/level1";
+@source not "./data/gesp/level2";
+@source not "./data/gesp/level3";
+@source not "./data/gesp/level4";
+@source not "./data/gesp/level5";
+@source not "./data/gesp/level6";
+@source not "./data/gesp/level7";
+@source not "./data/gesp/level8";
 
 /* ===== Tailwind v4 theme =====
  * v4 不读取 tailwind.config.js（且项目从未写 @config），原配置里的颜色和动画

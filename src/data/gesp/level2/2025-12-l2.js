@@ -1041,6 +1041,8 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
         {
             id: 26,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "环保能量球",
             sourceVerified: true,
             sourcePage: 8,
@@ -1154,6 +1156,8 @@ $1 \\le t \\le 100$，$1 \\le n,x \\le 1000$。
         {
             id: 27,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "黄金格",
             sourceVerified: true,
             sourcePage: 9,

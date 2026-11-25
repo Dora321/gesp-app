@@ -704,6 +704,8 @@ int main() {
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: '7\n0 2 0 3 4 1 9\n9 0 1 2 3 4 5 6 7 8', output: '9 1 9 2 3 0 8' },
       ],
@@ -819,6 +821,8 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: '5\naBc98', output: 'AbC**' },
       ],

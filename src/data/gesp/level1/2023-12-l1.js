@@ -821,6 +821,8 @@ for 的三个子句都可以留空（\`for (;;)\` 等价于 \`while (true)\`）�
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `1
 6`, output: `7` },
@@ -842,6 +844,8 @@ for 的三个子句都可以留空（\`for (;;)\` 等价于 \`while (true)\`）�
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `5
 2`, output: `1

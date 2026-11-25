@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
     Menu,
@@ -9,12 +9,36 @@ import {
     FileQuestion,
     Gamepad2,
     Rocket,
+    Search,
     Cpu,
     Wrench
 } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 import '../styles/design-tokens.css';
 import '../styles/site-chrome.css';
+
+const SiteSearchModal = lazy(() => import('./SiteSearchModal'));
+
+export function SiteSearchOverlay({ onClose }) {
+    return <Suspense fallback={null}><SiteSearchModal onClose={onClose} /></Suspense>;
+}
+
+function SearchButton() {
+    return (
+        <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event('gesp:open-search'))}
+            aria-label="站内搜索"
+            aria-haspopup="dialog"
+            aria-keyshortcuts="Meta+K Control+K"
+            title="站内搜索（⌘K / Ctrl+K）"
+            className="mw-button mw-button--secondary mw-button--small !min-h-11 !min-w-11 shrink-0 justify-center !px-2"
+        >
+            <Search size={17} aria-hidden="true" />
+            <kbd aria-hidden="true" className="hidden text-xs lg:inline">⌘K</kbd>
+        </button>
+    );
+}
 
 // 全站默认使用「学习线路图」导航；home 是旧调用方的兼容名称。
 export default function Navigation({ darkMode = false, afterLogo = null, mobileActions = null, className = '', variant = 'site' }) {
@@ -117,6 +141,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, mobileA
                             </button>
                         </div>
 
+                        <SearchButton />
                         {mobileActions && <div className="mw-nav-mobile-actions">{mobileActions}</div>}
 
                         <button
@@ -248,6 +273,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, mobileA
                             </button>
                         </div>
 
+                        <SearchButton />
                         {mobileActions && (
                             <div className="ml-auto flex items-center gap-1 md:hidden">
                                 {mobileActions}

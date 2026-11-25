@@ -218,7 +218,7 @@ C++ 运算符按目数分为单目（\`!\`、\`++\`、\`--\`）、双目（\`+\`
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "运算符"],
         },
         {
             id: 7,
@@ -287,7 +287,7 @@ C++ 运算符按目数分为单目（\`!\`、\`++\`、\`--\`）、双目（\`+\`
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "算术运算", "类型转换"],
         },
         {
             id: 9,
@@ -321,7 +321,7 @@ C++ 运算符按目数分为单目（\`!\`、\`++\`、\`--\`）、双目（\`+\`
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "字符与ASCII", "赋值"],
         },
         {
             id: 10,
@@ -356,7 +356,7 @@ C++ 运算符按目数分为单目（\`!\`、\`++\`、\`--\`）、双目（\`+\`
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "赋值", "算术运算"],
         },
         {
             id: 11,
@@ -390,7 +390,7 @@ C++ 中整数可以隐式转成 \`bool\`：**0 为假，非 0 为真**。所以 
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "逻辑运算", "比较运算"],
         },
         {
             id: 12,
@@ -422,7 +422,7 @@ ASCII 表里 \`'A'\`~\`'Z'\` 是 65~90、\`'a'\`~\`'z'\` 是 97~122，大小写�
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "字符与ASCII", "比较运算"],
         },
         {
             id: 13,
@@ -475,7 +475,7 @@ int main() {
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "赋值", "算术运算"],
         },
         {
             id: 14,
@@ -523,7 +523,7 @@ int main() {
             sourcePage: 8,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "字符与ASCII", "算术运算"],
         },
         {
             id: 15,
@@ -584,7 +584,7 @@ C++ 中 \`cout\` 输出布尔变量时，会自动将 \`false\` 转换为整数 
             sourcePage: 9,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP2级"],
+            tags: ["客观题", "判断题", "GESP2级", "计算机基础"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -616,7 +616,7 @@ a、b、c、d 都是 **0~255** 之间的十进制整数。
             sourcePage: 10,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "网络基础"],
         },
         {
             id: 18,
@@ -825,6 +825,8 @@ C++ 的算术运算符在处理不同类型操作数时，会遵循"寻常算术
         {
             id: 26,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "画三角形",
             description: "输入一个正整数 n，请使用大写字母拼成一个这样的三角形图案（参考样例输入输出）：三角形图案的第 1 行有 1 个字母，第 2 行有 2 个字母，以此类推；在三角形图案中，由上至下、由左至右依次由大写字母 A-Z 填充，每次使用大写字母 Z 填充后，将从头使用大写字母 A 填充。",
             inputDescription: "一个正整数 n (2≤n≤40)。",
@@ -907,6 +909,8 @@ int main() {
         {
             id: 27,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "百鸡问题",
             description: "公鸡 x 元，母鸡 y 元，z 只小鸡 1 元。有 n 元钱买 m 只鸡，问有多少种方案？",
             inputDescription: "输入一行，包含五个整数，分别为问题描述中的 x、y、z、n、m。约定 1≤x, y, z ≤10，1≤ n, m ≤1000。",

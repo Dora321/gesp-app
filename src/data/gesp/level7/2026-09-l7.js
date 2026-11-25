@@ -517,6 +517,8 @@ arr声明为含10个int的数组，&arr[0]的类型为int*。多数表达式中a
       type: 'programming',
       title: '必经之路',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
       description: `给定一张有 n 个结点 m 条边的有向图 G，G 中的结点依次以 1, 2, ..., n 编号。第 i 条边 (uᵢ, vᵢ) 从结点 uᵢ 指向结点 vᵢ。
 
 G 中任一入度为 0 的结点可以作为合法起点，任一出度为 0 的结点可以作为合法终点。
@@ -546,6 +548,7 @@ G 中任一入度为 0 的结点可以作为合法起点，任一出度为 0 的
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['图论', 'BFS'],
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> graph(n + 1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        graph[u].push_back(v);\n        // TODO: 记录本条有向边的方向信息\n    }\n\n    // TODO: 求出图中所有必经点\n    vector<int> answer;\n\n    cout << answer.size() << '\\n';\n    if (!answer.empty()) {\n        // TODO: 按编号从小到大输出所有必经点\n    }\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 1005;\nconst int E = 2005;\nint n, m;\nint h[N], to[E], nx[E], et;\nint id[N], od[N];\nbool vis[N];\nint q[N], ql, qr;\nint ans[N], cnt;\nbool chk(int ban) {\n    ql = qr = 0;\n    for (int i = 1; i <= n; i++) {\n        vis[i] = (i == ban);\n        if (!vis[i] && !id[i]) {\n            q[++qr] = i;\n            vis[i] = 1;\n        }\n    }\n    while (ql < qr) {\n        int u = q[++ql];\n        for (int i = h[u]; i; i = nx[i]) {\n            int v = to[i];\n            if (vis[v]) continue;\n            if (!od[v]) return 0;   // 绕过 ban 到达合法终点\n            q[++qr] = v;\n            vis[v] = 1;\n        }\n    }\n    return 1;                        // 所有路径都被 ban 封锁\n}\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    for (int i = 1; i <= m; i++) {\n        int u, v;\n        scanf(\"%d%d\", &u, &v);\n        to[++et] = v;\n        nx[et] = h[u];\n        h[u] = et;\n        od[u]++;\n        id[v]++;\n    }\n    for (int i = 1; i <= n; i++)\n        if (chk(i))\n            ans[++cnt] = i;\n    printf(\"%d\\n\", cnt);\n    for (int i = 1; i <= cnt; i++)\n        printf(\"%d%c\", ans[i], \" \\n\"[i == cnt]);\n    return 0;\n}\n",
       explanation: `**解题思路**
 
@@ -560,6 +563,8 @@ G 中任一入度为 0 的结点可以作为合法起点，任一出度为 0 的
       type: 'programming',
       title: '括号序列',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
       description: `对于字符串 s 与 t，如果从 s 中删除任意多个字符可以得到 t，那么 t 是 s 的子序列。换言之，t 是选取 s 中的若干字符按下标顺序连接而成的。两个子序列不同当且仅当所选取的下标不同。
 
 例如 sun 是 sequence 的子序列，因为从 sequence 中删除 eq、e 和 ce 可以得到 sun；sequence 有 2⁸ 个不同的子序列，其中有空字符串，也有三个不同的子序列 e，因为 sequence 的第 2、5、8 个字符都为 e，分别保留这三个字符得到的子序列是不同的。
@@ -589,6 +594,7 @@ G 中任一入度为 0 的结点可以作为合法起点，任一出度为 0 的
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['动态规划', '计数DP'],
+      template: "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n\n    // TODO: 统计 s 的合法括号子序列数量，过程中对 1000000000 取模\n    long long answer = 0;\n\n    cout << answer % 1000000000 << '\\n';\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 2005;\nconst int mod = 1e9;\nint n;\nchar s[N];\nint f[N][N];\nint main() {\n    scanf(\"%d\", &n);\n    scanf(\"%s\", s + 1);\n    f[0][0] = 1;\n    for (int i = 1; i <= n; i++)\n        for (int j = 0; j <= n; j++) {\n            f[i][j] = f[i - 1][j];\n            if (s[i] == '(' && j)\n                f[i][j] = (f[i][j] + f[i - 1][j - 1]) % mod;\n            if (s[i] == ')' && j < n)\n                f[i][j] = (f[i][j] + f[i - 1][j + 1]) % mod;\n        }\n    printf(\"%d\\n\", f[n][0]);\n    return 0;\n}\n",
       explanation: `**解题思路**
 

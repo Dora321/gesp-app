@@ -5,7 +5,8 @@ import CppLevelSupport from '../components/CppLevelSupport';
 import CppLessonDirectory from '../components/CppLessonDirectory';
 import { cppL5Lessons } from '../data/cppL5CourseFlow';
 import { CodeBlock } from '../components/CodeBlock';
-import { Card, Button as AccentButton } from './CourseLevelUI';
+import { Card, Button as AccentButton, PrintCheatSheetButton } from './CourseLevelUI';
+import { paperStats } from '../data/gesp/_stats';
 
 // 本级强调色：蓝
 const Button = (props) => <AccentButton accent="blue" {...props} />;
@@ -19,14 +20,14 @@ const Button = (props) => <AccentButton accent="blue" {...props} />;
 // Overview Module
 const OverviewModule = ({ onStart }) => (
   <div className="space-y-6 animate-fade-in">
-    <div className="bg-gradient-to-r from-red-600 to-pink-600 rounded-2xl p-8 text-white shadow-xl">
+    <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-8 text-white">
       <h1 className="text-3xl font-bold mb-4">GESP C++ 五级冲刺指南</h1>
-      <p className="text-red-100 text-lg mb-6">
+      <p className="text-lg mb-6 text-[var(--mw-on-night-2)]">
         深入数论与二维世界。掌握素数筛法、矩阵运算与高级字符串处理。
       </p>
       <button
         onClick={() => onStart('math')}
-        className="bg-white text-red-700 px-6 py-2 rounded-full font-bold hover:bg-red-50 transition flex items-center gap-2"
+        className="flex min-h-[44px] items-center gap-2 rounded-full bg-[var(--mw-on-night)] px-6 py-2 font-bold text-[var(--mw-night)] transition-colors hover:bg-white"
       >
         开始学习 <ArrowRight size={18} />
       </button>
@@ -107,7 +108,7 @@ const OverviewModule = ({ onStart }) => (
         ].map((item, idx) => (
           <div
             key={idx}
-            className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-lg border border-slate-200 hover:border-red-300 hover:shadow-md transition-all cursor-pointer group"
+            className="bg-slate-50 p-4 rounded-lg border border-slate-200 hover:border-red-300 hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="text-2xl mb-2">{item.icon}</div>
             <div className="font-medium text-slate-700 text-sm group-hover:text-red-600">{item.skill}</div>
@@ -405,11 +406,11 @@ const CodeTraceModule = () => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+      <div className="rounded-xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-6 text-white">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-3">
           <Eye /> 代码跟踪模拟器
         </h2>
-        <p className="text-cyan-100">
+        <p className="text-[var(--mw-on-night-2)]">
           透视递归调用栈与嵌套循环逻辑。
         </p>
       </div>
@@ -583,9 +584,9 @@ ss >> x; // string -> int`}
 // -----------------------------------------------------------------------------
 const ExamTipsModule = () => (
   <div className="space-y-6">
-    <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
+    <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-6 text-white">
       <h2 className="text-2xl font-bold mb-2 flex items-center gap-3"><Lightbulb /> 考场秘籍</h2>
-      <p className="text-amber-100">GESP 五级考点聚焦与避坑指南。</p>
+      <p className="text-[var(--mw-on-night-2)]">GESP 五级考点聚焦与避坑指南。</p>
     </div>
 
     <div className="grid md:grid-cols-3 gap-6">
@@ -774,9 +775,9 @@ export default function CourseLevel5() {
   const activeTabInfo = menuItems.find(item => item.id === activeTab);
 
   return (
-    <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900">
+    <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900 print:h-auto print:overflow-visible">
       {/* Mobile Menu Button - Fixed Top */}
-      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm print:hidden">
         <h1 className="text-lg font-bold text-slate-800 flex items-center gap-2">
           <Link to="/" className="hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
@@ -799,14 +800,14 @@ export default function CourseLevel5() {
       {/* Sidebar Overlay (Mobile) */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 z-40 md:hidden print:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-transform duration-300
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-transform duration-300 print:hidden
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
@@ -819,7 +820,7 @@ export default function CourseLevel5() {
             </Link>
             <h1 className="text-xl font-bold text-slate-800">GESP 五级</h1>
           </div>
-          <p className="text-xs text-slate-500">算法进阶 2026版</p>
+          <p className="text-xs text-slate-500">算法进阶 {paperStats.latestYear} 版</p>
         </div>
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
@@ -843,14 +844,15 @@ export default function CourseLevel5() {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-slate-100 text-center">
-          <p className="text-xs text-slate-400">© 2026 GESP 备考互动课件</p>
+        <div className="p-4 border-t border-slate-100 text-center print:hidden">
+          <PrintCheatSheetButton level={5} className="mb-3" />
+          <p className="text-xs text-slate-400">© {paperStats.latestYear} GESP 备考互动课件</p>
         </div>
       </aside>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 pt-16 md:pt-0">
-        <header className="h-16 bg-white border-b border-slate-200 flex items-center px-8 justify-between shrink-0">
+        <header className="h-16 bg-white border-b border-slate-200 flex items-center px-8 justify-between shrink-0 print:hidden">
           <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
             {activeTabInfo?.icon && <activeTabInfo.icon className="text-red-600" size={24} />}
             {activeTabInfo?.label}
@@ -858,7 +860,7 @@ export default function CourseLevel5() {
           <span className="text-xs font-medium px-2 py-1 bg-green-100 text-green-700 rounded-full">Level 5</span>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-8">
+        <main className="flex-1 overflow-y-auto p-8 print:h-auto print:overflow-visible">
           <div className="max-w-5xl mx-auto">
             {activeTab === 'overview' && <CppLevelSupport level={5} />}
             {activeTab === 'overview' && (

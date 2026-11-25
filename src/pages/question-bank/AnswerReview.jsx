@@ -1,9 +1,11 @@
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
+import { resolveTopicTags } from '../../data/gesp/topics';
 import { formatOptionDisplay } from '../../utils/questionTextFormatting';
 import { buildQuestionInsight, selectAnalysisView } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
+import { AskQuestionButton, RelatedLessonLinks } from './QuestionStudyActions';
 
 const optionLetter = (index) => String.fromCharCode(65 + index);
 
@@ -21,6 +23,7 @@ export default function AnswerReview({
     explanationVerified = false,
     showTrustNotice = true,
     showGiven = true,
+    tags,
 }) {
     if (!q) return null;
     const analysisView = selectAnalysisView(q, level);
@@ -121,6 +124,10 @@ export default function AnswerReview({
                     <MarkdownRenderer content={displayedAnalysis.extension} className="text-base leading-7 text-slate-700" />
                 </div>
             )}
+            <div className="space-y-3 border-t border-[var(--mw-rule)] pt-3">
+                <RelatedLessonLinks tags={tags ?? resolveTopicTags(q)} level={level} />
+                <AskQuestionButton question={q} selected={showGiven ? given : undefined} />
+            </div>
         </div>
     );
 }

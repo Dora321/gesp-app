@@ -1,6 +1,7 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { MessageCircle } from 'lucide-react';
 import LoadingBlocks from './LoadingBlocks';
+import { AI_CHAT_SHEET_BREAKPOINT } from '../utils/aiChatHelpers';
 import './AIChatCorner.css';
 
 // 重量级聊天面板（react-markdown + highlight.js + remark/rehype 全家桶）只在
@@ -31,9 +32,24 @@ const PanelFallback = () => (
     </>
 );
 
-const AIChat = ({ mobileInline = false, corner = false, standalone = false, onClose }) => {
+const AIChat = ({ mobileInline = false, desktopOnly = false, corner = false, standalone = false, onClose }) => {
     const [isOpen, setIsOpen] = useState(standalone);
+    const [initialPrompt, setInitialPrompt] = useState('');
     const messageCount = isOpen ? 0 : getMessageCount();
+
+    useEffect(() => {
+        const openFromQuestion = event => {
+            const mobile = window.innerWidth < AI_CHAT_SHEET_BREAKPOINT;
+            if ((mobileInline && !mobile) || (desktopOnly && mobile)) return;
+            const prompt = event.detail?.prompt;
+            if (typeof prompt !== 'string' || !prompt.trim()) return;
+            // 首次打开需要跨越懒加载边界，先保留这次事件的内容。
+            setInitialPrompt(prompt);
+            setIsOpen(true);
+        };
+        window.addEventListener('gesp:ask-ai', openFromQuestion);
+        return () => window.removeEventListener('gesp:ask-ai', openFromQuestion);
+    }, [mobileInline, desktopOnly]);
 
     if (!isOpen) {
         const launcher = (
@@ -63,7 +79,12 @@ const AIChat = ({ mobileInline = false, corner = false, standalone = false, onCl
 
     return (
         <Suspense fallback={<PanelFallback />}>
-            <AIChatWidget onClose={onClose || (() => setIsOpen(false))} />
+            <AIChatWidget
+                initialPrompt={initialPrompt}
+                mobileInline={mobileInline}
+                desktopOnly={desktopOnly}
+                onClose={onClose || (() => { setInitialPrompt(''); setIsOpen(false); })}
+            />
         </Suspense>
     );
 };

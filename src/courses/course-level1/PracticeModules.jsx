@@ -87,11 +87,11 @@ if (year % 400 == 0) {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl p-6 text-white shadow-lg">
+      <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-6 text-white">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-3">
           <Eye /> 代码跟踪模拟器
         </h2>
-        <p className="text-cyan-100">
+        <p className="text-[var(--mw-on-night-2)]">
           逐步执行代码，观察变量如何变化。这是 GESP 考试中"程序填空"和"程序阅读"的必备技能！
         </p>
       </div>
@@ -191,7 +191,7 @@ if (year % 400 == 0) {
               {Object.entries(step.vars).map(([name, value]) => (
                 <div
                   key={name}
-                  className="bg-gradient-to-r from-purple-50 to-blue-50 p-3 rounded-lg border border-purple-100 animate-in fade-in"
+                  className="bg-slate-50 p-3 rounded-lg border border-slate-200 animate-in fade-in"
                 >
                   <div className="text-xs text-purple-600 font-medium">{name}</div>
                   <div className="text-xl font-bold text-purple-800 font-mono">{value}</div>
@@ -434,11 +434,11 @@ export const ExamTipsSection = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
+      <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-6 text-white">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-3">
           <Lightbulb /> 考试秘籍攻略
         </h2>
-        <p className="text-amber-100">
+        <p className="text-[var(--mw-on-night-2)]">
           掌握这些技巧，让你在考场上事半功倍！
         </p>
       </div>

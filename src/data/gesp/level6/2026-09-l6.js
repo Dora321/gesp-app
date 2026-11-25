@@ -758,6 +758,9 @@ fib(n-1)和fib(n-2)的递归调用会重复求解相同子问题。调用次数�
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['动态规划', '前缀和'],
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; ++i) {\n        cin >> a[i];\n    }\n\n    // TODO: 计算将数组划分为若干连续子段后的最小偏差值\n    long long answer = 0;\n\n    cout << answer << endl;\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 2005;\nconst long long oo = 1e18;\nint n;\nint a[N], pre[N];\nlong long f[N];\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) {\n        scanf(\"%d\", &a[i]);\n        pre[i] = pre[i - 1] + a[i];\n    }\n    for (int i = 1; i <= n; i++) {\n        f[i] = oo;\n        for (int j = 0; j < i; j++)\n            f[i] = min(f[i], f[j] + 1ll * (pre[i] - pre[j]) * (pre[i] - pre[j]));\n    }\n    printf(\"%lld\\n\", f[n]);\n    return 0;\n}\n",
       explanation: `**解题思路**
 
@@ -791,6 +794,9 @@ fib(n-1)和fib(n-2)的递归调用会重复求解相同子问题。调用次数�
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['树与二叉树', 'DFS'],
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<vector<int>> graph(n + 1);\n    for (int i = 1; i < n; ++i) {\n        int u, v;\n        cin >> u >> v;\n        graph[u].push_back(v);\n        graph[v].push_back(u);\n    }\n\n    // TODO: 计算删除一条边后两个连通块结点数之差的最小值\n    int answer = 0;\n\n    cout << answer << endl;\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 2e4 + 5;\nconst int E = N << 1;\nint n;\nint h[N], to[E], nx[E], et;\nint ans;\nvoid ae(int u, int v) {\n    et++;\n    to[et] = v;\n    nx[et] = h[u];\n    h[u] = et;\n}\nint dfs(int u, int p = 0) {\n    int sz = 1;\n    for (int i = h[u]; i; i = nx[i])\n        if (to[i] != p)\n            sz += dfs(to[i], u);\n    ans = min(ans, abs(n - 2 * sz));\n    return sz;\n}\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i < n; i++) {\n        int u, v;\n        scanf(\"%d%d\", &u, &v);\n        ae(u, v);\n        ae(v, u);\n    }\n    ans = n;\n    dfs(1);\n    printf(\"%d\\n\", ans);\n    return 0;\n}\n",
       explanation: `**解题思路**
 

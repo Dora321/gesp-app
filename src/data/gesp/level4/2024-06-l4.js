@@ -33,6 +33,8 @@ const programmingQuestions = [
 对于全部数据，保证 $1 \\leq n, m \\leq 10$。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: `**解析：**
 
 本题是一道关于网格图枚举与二维前缀和的经典问题。我们需要在给定的黑白网格中，找到一个面积最大且黑白格子数量相等的子矩形。
@@ -154,6 +156,8 @@ const programmingQuestions = [
 对于全部数据，保证 $1 \\leq n \\leq 1000$，$0 \\leq k \\leq 1000$，$1 \\leq a_i \\leq 1000$。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: `**解析：**
 
 本题要求从 \`n\` 个宝箱中选出一部分，在满足所选宝箱中“最大价值与最小价值之差不超过 \`k\`”（即 \`x - y <= k\`）的前提下，使得选出宝箱的总价值之和最大。
@@ -292,7 +296,7 @@ int main()
             sourcePage: 1,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "参数传递", "函数"]
         },
         {
             id: 2,
@@ -377,7 +381,7 @@ C++ 属于自顶向下扫描的静态编译型语言，严格遵循“**先声�
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "函数"]
         },
         {
             id: 3,
@@ -446,7 +450,7 @@ C++ 允许内层代码块重新声明同名变量（遮蔽），而 C 语言在 
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "作用域"]
         },
         {
             id: 4,
@@ -497,7 +501,7 @@ int main()
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "指针"]
         },
         {
             id: 5,
@@ -551,7 +555,7 @@ a            →  int (*)[3]       // 指向「含 3 个 int 的数组」的指�
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "二维数组", "指针"]
         },
         {
             id: 6,
@@ -589,7 +593,7 @@ a            →  int (*)[3]       // 指向「含 3 个 int 的数组」的指�
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "文件操作"]
         },
         {
             id: 7,
@@ -625,7 +629,7 @@ a            →  int (*)[3]       // 指向「含 3 个 int 的数组」的指�
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "插入排序"]
         },
         {
             id: 8,
@@ -686,7 +690,7 @@ int main()
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "冒泡排序", "参数传递"]
         },
         {
             id: 9,
@@ -725,7 +729,7 @@ int main()
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "递推"]
         },
         {
             id: 10,
@@ -758,7 +762,7 @@ int main()
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "排序算法", "复杂度分析"]
         },
         {
             id: 11,
@@ -804,7 +808,7 @@ int main()
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "冒泡排序"]
         },
         {
             id: 12,
@@ -859,7 +863,7 @@ j -= 1;            // 继续检查更左边
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "插入排序", "数组"]
         },
         {
             id: 13,
@@ -930,7 +934,7 @@ int main()
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "异常处理"]
         },
         {
             id: 14,
@@ -981,7 +985,7 @@ f(10) = 1 + 10×11/2 = 1 + 55 = 56
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "递推", "数学"]
         },
         {
             id: 15,
@@ -1026,7 +1030,7 @@ cout<<++p<<endl;
             sourcePage: 8,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "指针", "数组"]
         },
         {
             id: 16,
@@ -1064,7 +1068,7 @@ int* p = &a;     // 取地址：p 保存 a 的地址
             sourcePage: 8,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "参数传递", "运算符"]
         },
         {
             id: 17,
@@ -1113,7 +1117,7 @@ int& ra = a;   // 正确：ra 成为 a 的别名
             sourcePage: 8,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "参数传递", "变量初始化"]
         },
         {
             id: 18,
@@ -1154,7 +1158,7 @@ C++ 标准并未规定引用必须用指针实现，但在所有主流编译器�
             sourcePage: 8,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "参数传递", "指针"]
         },
         {
             id: 19,
@@ -1195,7 +1199,7 @@ int main()
             sourcePage: 8,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "数组", "指针"]
         },
         {
             id: 20,
@@ -1234,7 +1238,7 @@ int fact(int n) {
             sourcePage: 9,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "递归", "函数"]
         },
         {
             id: 21,
@@ -1272,7 +1276,7 @@ void f3(const int* x);         // 常量指针（指向常量的指针）：不�
             sourcePage: 8,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP4级"],
+            tags: ["客观题", "判断题", "GESP4级", "参数传递"],
       "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -1314,7 +1318,7 @@ int main()
             sourcePage: 9,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP4级"],
+            tags: ["客观题", "判断题", "GESP4级", "指针"],
       "code": "#include<iostream>\nusing namespace std;\nint main()\n{\n    int *p=NULL;\n    cout<<p<<endl;\n}",
       "reviewedFields": ["code","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -1368,7 +1372,7 @@ int main()
             sourcePage: 9,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "二维数组"]
         },
         {
             id: 24,
@@ -1382,7 +1386,7 @@ int main()
             sourcePage: 9,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP4级"],
+            tags: ["客观题", "判断题", "GESP4级", "递推", "枚举"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -1415,7 +1419,7 @@ int main()
             sourcePage: 9,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "插入排序", "复杂度分析"]
         },
         ...programmingQuestions
     ]

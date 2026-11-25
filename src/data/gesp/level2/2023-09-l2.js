@@ -698,6 +698,8 @@ GESP 一级考查过机器语言与高级语言的区别，二级侧重语法，
         {
             id: 26,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "小杨的 X 字矩阵",
             samples: [
                 {
@@ -815,6 +817,8 @@ GESP 一级考查过机器语言与高级语言的区别，二级侧重语法，
         {
             id: 27,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "数字黑洞",
             samples: [
                 {

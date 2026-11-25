@@ -488,6 +488,8 @@ int main() {
       type: 'programming',
       title: '生成树计数',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
       description: `给定一张有 n 个顶点 m 条边的无向连通图 G，顶点依次以 1, 2, ..., n 编号。G 有以下特殊的性质：
 
 - G 中的每条边至多属于一个简单环。
@@ -514,6 +516,7 @@ int main() {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['图论', 'DFS', '生成树'],
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> graph(n + 1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        graph[u].push_back(v);\n        graph[v].push_back(u);\n    }\n\n    // TODO: 统计不同生成树的数量，并对 998244353 取模\n    long long answer = 0;\n\n    cout << answer % 998244353 << '\\n';\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <vector>\nusing namespace std;\nconst int N = 100005;\nconst int E = 200010;\nconst int MOD = 998244353;\nint head[N], to[E], nextEdge[E], edgeCount;\nint depth[N], parent[N], cursor[N];\nvoid addEdge(int u, int v) {\n    to[++edgeCount] = v;\n    nextEdge[edgeCount] = head[u];\n    head[u] = edgeCount;\n}\nint main() {\n    int n, m;\n    scanf(\"%d%d\", &n, &m);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        scanf(\"%d%d\", &u, &v);\n        addEdge(u, v);\n        addEdge(v, u);\n    }\n    long long answer = 1;\n    vector<int> path;\n    depth[1] = 1;\n    cursor[1] = head[1];\n    path.push_back(1);\n    while (!path.empty()) {\n        int u = path.back();\n        int edge = cursor[u];\n        if (edge == 0) {\n            path.pop_back();\n            continue;\n        }\n        cursor[u] = nextEdge[edge];\n        int v = to[edge];\n        if (v == parent[u]) continue;\n        if (depth[v] == 0) {\n            parent[v] = u;\n            depth[v] = depth[u] + 1;\n            cursor[v] = head[v];\n            path.push_back(v);\n        } else if (depth[v] < depth[u]) {\n            answer = answer * (depth[u] - depth[v] + 1) % MOD;\n        }\n    }\n    printf(\"%lld\\n\", answer);\n    return 0;\n}\n",
       explanation: `**解题思路**
 
@@ -528,6 +531,8 @@ int main() {
       type: 'programming',
       title: '末班车',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
       description: `城市里有 n 个地铁站以及 m 条地铁线路，地铁站依次以 1, 2, ..., n 编号。
 
 第 i 条地铁线路（1 ≤ i ≤ m）的列车从地铁站 uᵢ 单向驶向地铁站 vᵢ，最晚发车时间为第 lᵢ 分钟，途中行驶需要 tᵢ 分钟。从第 0 分钟到第 lᵢ 分钟，每分钟都会有一班列车从地铁站 uᵢ 发出。第 x 分钟（0 ≤ x ≤ lᵢ）发出的列车会在第 x + tᵢ 分钟到达地铁站 vᵢ，乘坐这班列车的乘客可以换乘第 x + tᵢ 分钟以及之后的所有从地铁站 vᵢ 发出的任意线路的列车。
@@ -555,6 +560,7 @@ int main() {
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['最短路', 'Dijkstra', '图论'],
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, q;\n    cin >> n >> m >> q;\n    for (int i = 0; i < m; ++i) {\n        int u, v, l, t;\n        cin >> u >> v >> l >> t;\n        // TODO: 记录地铁线路的起点、终点与时刻信息\n    }\n    for (int i = 0; i < q; ++i) {\n        int x, y, s;\n        cin >> x >> y >> s;\n        // TODO: 判断能否到达，并输出 Yes 或 No\n    }\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\n#include <queue>\nusing namespace std;\nconst int N = 505;\nconst int E = 1005;\nconst int oo = 1e9;\nint n, m;\nint h[N], to[E], nx[E], l[E], t[E];\nint d[N][N];\npriority_queue<pair<int, int> > q;\nvoid calc(int u, int d[]) {\n    for (int i = 1; i <= n; i++)\n        d[i] = -oo;\n    d[u] = oo;\n    q.push(make_pair(d[u], u));\n    while (!q.empty()) {\n        pair<int, int> p = q.top();\n        q.pop();\n        if (d[p.second] != p.first)\n            continue;\n        int u = p.second;\n        for (int i = h[u]; i; i = nx[i]) {\n            int v = to[i];\n            int w = min(d[u] - t[i], l[i]);\n            if (w < 0)\n                continue;\n            if (w > d[v]) {\n                d[v] = w;\n                q.push(make_pair(d[v], v));\n            }\n        }\n    }\n}\nint main() {\n    int q;\n    scanf(\"%d%d%d\", &n, &m, &q);\n    for (int i = 1; i <= m; i++) {\n        int u, v;\n        scanf(\"%d%d%d%d\", &u, &v, &l[i], &t[i]);\n        to[i] = u;          // 反向存边：到达 v 后可查\"从哪来\"\n        nx[i] = h[v];\n        h[v] = i;\n    }\n    for (int i = 1; i <= n; i++)\n        calc(i, d[i]);\n    while (q--) {\n        int u, v, s;\n        scanf(\"%d%d%d\", &u, &v, &s);\n        if (s <= d[v][u])\n            printf(\"Yes\\n\");\n        else\n            printf(\"No\\n\");\n    }\n    return 0;\n}\n",
       explanation: `**解题思路**
 

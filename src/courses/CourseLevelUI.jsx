@@ -1,4 +1,5 @@
 import React from 'react';
+import { Printer } from 'lucide-react';
 
 // CourseLevel4-8 五个总览页此前各自定义了同一套 Card / Button：Card 五份逐字
 // 相同，Button 只差一个主色（四、五级用蓝，六到八级用靛蓝）。改一次圆角、阴影
@@ -23,6 +24,20 @@ const ACCENTS = {
         outline: 'border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50',
     },
 };
+
+// 一级到八级共用的「打印本级速查卡」入口。打印时隐藏侧栏、顶栏和按钮本身，
+// 由各级外壳上的 print:h-auto print:overflow-visible 让整页内容进入打印流。
+export const PrintCheatSheetButton = ({ level, className = '' }) => (
+    <button
+        type="button"
+        onClick={() => window.print()}
+        aria-label={level ? `打印 GESP C++ ${level} 级速查卡` : '打印本级速查卡'}
+        className={`flex min-h-[44px] w-full items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 print:hidden ${className}`}
+    >
+        <Printer size={16} aria-hidden="true" />
+        打印本级速查卡
+    </button>
+);
 
 export const Button = ({
     children,

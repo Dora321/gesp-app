@@ -829,6 +829,8 @@ ASCII 码表中，大写字母 A-Z 的码值为 65-90，小写字母 a-z 的码�
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `3
 3
@@ -909,6 +911,8 @@ No` }
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `4
 abcd

@@ -39,3 +39,35 @@ export function reviewQuestionIndexes(questions = [], answers = {}) {
     });
     return indexes;
 }
+
+/** 当前卷中标为存疑的题目下标，忽略旧题号或重复标记。 */
+export function flaggedQuestionIndexes(questions = [], flagged = new Set()) {
+    return questions.flatMap((question, index) => (
+        question && flagged.has(String(question.id)) ? [index] : []
+    ));
+}
+
+/** 先匹配原题 ID，再尝试按卷面 1-based 序号定位。 */
+export function resolveQuestionIndex(questions, target) {
+    if (!target) return null;
+    const byId = questions.findIndex((question) => String(question.id) === target);
+    if (byId >= 0) return byId;
+    if (!/^[1-9]\d*$/.test(target)) return null;
+    const position = Number(target);
+    return position <= questions.length ? position - 1 : null;
+}
+
+/** 按客观与编程各 50 分折算，目标按编程题需取得的整分向上取整。 */
+export function estimateGespThresholds(objectiveScore, objectiveScoreTotal) {
+    if (!Number.isFinite(objectiveScoreTotal) || objectiveScoreTotal <= 0 || !Number.isFinite(objectiveScore)) return null;
+    const scaledObjective = Math.min(50, Math.max(0, 50 * objectiveScore / objectiveScoreTotal));
+    const programmingRequired = (threshold) => {
+        const gap = Math.max(0, Math.ceil(threshold - scaledObjective));
+        return gap <= 50 ? gap : null;
+    };
+    return {
+        scaledObjective,
+        passRequired: programmingRequired(60),
+        skipRequired: programmingRequired(90),
+    };
+}

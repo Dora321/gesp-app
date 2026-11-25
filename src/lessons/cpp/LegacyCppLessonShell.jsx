@@ -1,5 +1,6 @@
 import CourseScopeNote from '../../components/CourseScopeNote';
 import useLessonPracticeAnchor from '../../hooks/useLessonPracticeAnchor';
+import useLessonSectionUrl, { getRequestedLessonSection } from '../../hooks/useLessonSectionUrl';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -51,7 +52,7 @@ export default function LegacyCppLessonShell({
   lessonTitle,
   sections,
   activeSection,
-  setActiveSection,
+  setActiveSection: setControlledSection,
   nextLessonPath,
   renderIcon,
   topSupport,
@@ -65,6 +66,9 @@ export default function LegacyCppLessonShell({
 }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const setActiveSection = useLessonSectionUrl();
+  const previousLocation = useRef(null);
+  const previousSection = useRef(activeSection);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const scrollRef = useRef(null);
   const currentIndex = sections.findIndex((section) => section.id === activeSection);
@@ -83,9 +87,26 @@ export default function LegacyCppLessonShell({
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 });
-  }, [activeSection]);
+  }, [activeSection, location.pathname]);
 
-  useLessonPracticeAnchor(sections, activeSection, setActiveSection);
+  useEffect(() => {
+    const locationChanged = previousLocation.current !== location;
+    const sectionChanged = previousSection.current !== activeSection;
+    previousLocation.current = location;
+    previousSection.current = activeSection;
+
+    const requested = getRequestedLessonSection(sections, location, true) ?? sections[0]?.id;
+    if (locationChanged && requested != null && requested !== activeSection) {
+      setControlledSection(requested);
+      return;
+    }
+
+    const keepPracticeHash = location.hash === '#programming-practice' && requested === activeSection;
+    // 旧课件也会从正文按钮或键盘直接更新父组件的小节状态。
+    if (sectionChanged || keepPracticeHash) setActiveSection(activeSection, keepPracticeHash);
+  }, [activeSection, location, sections, setActiveSection, setControlledSection]);
+
+  useLessonPracticeAnchor(sections, activeSection, setControlledSection);
 
   const goToSection = (sectionId) => {
     setActiveSection(sectionId);
@@ -164,7 +185,8 @@ export default function LegacyCppLessonShell({
                   <button
                     type="button"
                     onClick={() => goToSection(section.id)}
-                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1 ${
+                    aria-pressed={isActive}
+                    className={`min-h-11 w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1 ${
                       isActive
                         ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
                         : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'

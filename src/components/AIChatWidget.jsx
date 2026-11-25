@@ -19,7 +19,9 @@ import { AI_PERSONAS, AI_MODEL } from '../utils/aiChatConstants';
 import { chatMarkdownComponents } from './AIChatMarkdown';
 import ChatComposer from './ChatComposer';
 
-const AIChatWidget = ({ onClose }) => {
+const PAGE_CONTEXT_KEY = 'ai_share_page_context';
+
+const AIChatWidget = ({ onClose, initialPrompt = '', mobileInline = false, desktopOnly = false }) => {
     const [keyStatus, setKeyStatus] = useState('');
     const [personalKey, setPersonalKey] = useState(() => loadAssistantKey().key);
     const [personalKeyInput, setPersonalKeyInput] = useState('');
@@ -37,7 +39,10 @@ const AIChatWidget = ({ onClose }) => {
             return Array.isArray(stored) ? keepRecentChatImages(stored.filter(message => ['user', 'assistant'].includes(message?.role) && typeof message.content === 'string')) : [];
         } catch { return []; }
     });
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(initialPrompt);
+    const [focusComposer, setFocusComposer] = useState(true);
+    const [editingQuestionDraft, setEditingQuestionDraft] = useState(Boolean(initialPrompt));
+    const [sharePageContext, setSharePageContext] = useState(() => assistantStorage.get('localStorage', PAGE_CONTEXT_KEY) !== 'off');
     const [draftImage, setDraftImage] = useState(null);
     const [composerVersion, setComposerVersion] = useState(0);
     const [reasoningLevel, setReasoningLevel] = useState(() => (
@@ -79,8 +84,32 @@ const AIChatWidget = ({ onClose }) => {
     });
     const sheetDragRef = useRef({ active: false, pointerId: null, startY: 0, startHeight: 0 });
 
+    useEffect(() => {
+        const prefill = event => {
+            const mobile = window.innerWidth < AI_CHAT_SHEET_BREAKPOINT;
+            if ((mobileInline && !mobile) || (desktopOnly && mobile)) return;
+            const prompt = event.detail?.prompt;
+            if (typeof prompt !== 'string' || !prompt.trim()) return;
+            setInputValue(prompt);
+            setDraftImage(null);
+            setComposerVersion(version => version + 1);
+            setShowSettings(false);
+            setEditingQuestionDraft(true);
+            setFocusComposer(true);
+        };
+        window.addEventListener('gesp:ask-ai', prefill);
+        return () => window.removeEventListener('gesp:ask-ai', prefill);
+    }, [mobileInline, desktopOnly]);
 
-    // Initial resize handler
+    useEffect(() => {
+        if (!focusComposer || showSettings || isLoading) return;
+        const frame = window.requestAnimationFrame(() => {
+            inputRef.current?.focus();
+            setFocusComposer(false);
+        });
+        return () => window.cancelAnimationFrame(frame);
+    }, [focusComposer, showSettings, isLoading]);
+
     const startResize = () => {
         isResizing.current = true;
         document.addEventListener('mousemove', handleResize);
@@ -89,13 +118,6 @@ const AIChatWidget = ({ onClose }) => {
 
     const handleResize = (e) => {
         if (!isResizing.current) return;
-
-        // Calculate new size based on mouse position
-        // Since it's bottom-right anchored:
-        // Width increases as mouse moves left (startX - currentX)
-        // Height increases as mouse moves up (startY - currentY) 
-        // BUT actually it's easier to just use window dimensions minus mouse coordinates
-        // because the element is fixed to bottom-right.
 
         const newWidth = window.innerWidth - e.clientX - 20; // 20px right margin
         const newHeight = window.innerHeight - e.clientY - 20; // 20px bottom margin
@@ -232,7 +254,6 @@ const AIChatWidget = ({ onClose }) => {
         return () => { mounted = false; clearInterval(timer); };
     }, [mode]);
 
-    // Save messages to sessionStorage
     useEffect(() => {
         assistantStorage.set('sessionStorage', 'ai_chat_messages', JSON.stringify(messages));
     }, [messages]);
@@ -308,18 +329,9 @@ const AIChatWidget = ({ onClose }) => {
         assistantStorage.remove('sessionStorage', 'ai_chat_messages');
     };
 
-    // Save selected persona to localStorage
     useEffect(() => {
         assistantStorage.set('localStorage', 'ai_selected_persona_id', selectedPersona);
     }, [selectedPersona]);
-
-    // Open: focus the composer. Escape closes the dialog.
-    useEffect(() => {
-        const frame = window.requestAnimationFrame(() => {
-            inputRef.current?.focus();
-        });
-        return () => window.cancelAnimationFrame(frame);
-    }, []);
 
     useEffect(() => {
         const onKeyDown = (event) => {
@@ -381,11 +393,19 @@ const AIChatWidget = ({ onClose }) => {
 
     const sendMessage = async () => {
         const text = inputValue.trim();
-        if ((!text && !draftImage) || (draftImage && !supportsImages) || isLoading || !authorized || quotaExhausted) return;
+        if ((!text && !draftImage) || (draftImage && !supportsImages) || isLoading || quotaExhausted) return;
+        if (!authorized) {
+            setShowSettings(true);
+            return;
+        }
 
         const currentPersona = (selectedPersona === 'custom' && customPersona)
             ? customPersona
             : (AI_PERSONAS.find(p => p.id === selectedPersona) || AI_PERSONAS[0]);
+        const pageContext = sharePageContext ? {
+            title: document.title.slice(0, 160),
+            path: window.location.pathname.slice(0, 160),
+        } : undefined;
 
         const userMessage = { role: 'user', content: text || '请分析这张图片。', ...(draftImage ? { image: draftImage, imageMode: mode } : {}) };
         shouldAutoScrollRef.current = true;
@@ -394,6 +414,7 @@ const AIChatWidget = ({ onClose }) => {
         const history = toApiHistory(newMessages, { includeImages: supportsImages, imageMode: mode });
         setMessages(newMessages);
         setInputValue('');
+        setEditingQuestionDraft(false);
         setDraftImage(null);
         setIsLoading(true);
 
@@ -409,7 +430,7 @@ const AIChatWidget = ({ onClose }) => {
                     stream: true,
                     reasoning_effort: deepSeekReasoningEffort(reasoningLevel),
                     messages: [
-                        { role: 'system', content: buildClassroomPrompt(currentPersona.systemPrompt) },
+                        { role: 'system', content: buildClassroomPrompt(currentPersona.systemPrompt, pageContext) },
                         ...toModelMessages(history),
                     ],
                 }),
@@ -425,6 +446,7 @@ const AIChatWidget = ({ onClose }) => {
                     conversationId: classroomConversationId(),
                     anonId: classroomAnonId(),
                     persona: currentPersona.systemPrompt, reasoningLevel,
+                    pageContext,
                     messages: history.map(message => ({ ...message, content: message.content.slice(0, 4000) })),
                 }),
                 signal: abortControllerRef.current.signal
@@ -554,8 +576,6 @@ const AIChatWidget = ({ onClose }) => {
             maxHeight: 'calc(100vh - 32px)',
         };
 
-    // Chat window when open. aria-modal only for the mobile sheet (it has a backdrop);
-    // the desktop floating panel doesn't block the page and has no focus trap.
     const panel = (
         <div
             className={panelClassName}
@@ -581,7 +601,6 @@ const AIChatWidget = ({ onClose }) => {
                     <span className="sr-only">拖动手柄</span>
                 </div>
             )}
-            {/* Header */}
             <header
                 className="mw-panel-heading flex justify-between items-center px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0"
             >
@@ -624,7 +643,6 @@ const AIChatWidget = ({ onClose }) => {
                 </div>
             </header>
 
-            {/* Settings Panel */}
             {showSettings && (
                 <section aria-label="AI 设置" className="flex min-h-0 flex-1 flex-col bg-slate-50">
                     <div className="flex shrink-0 items-center justify-between gap-2 border-b border-stone-200 px-3 py-1">
@@ -652,7 +670,6 @@ const AIChatWidget = ({ onClose }) => {
                         {personalStatus && <p role="status" className="mt-2 text-sm">{personalStatus}</p>}
                         <p className="mt-2 text-xs leading-5 text-stone-500">密钥保存在当前浏览器，提问时直接发送到 DeepSeek，使用你自己的额度。共享电脑用完请清除密钥。课堂模式不会使用此密钥。</p>
                     </div>}
-                    {/* API Key Section */}
                     {mode === 'classroom' && <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
                             <Key size={16} className="text-slate-500" />
@@ -697,7 +714,6 @@ const AIChatWidget = ({ onClose }) => {
                         </p>
                     </div>}
 
-                    {/* Model */}
                     <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
                             <BrainCircuit size={16} className="text-slate-500" />
@@ -714,7 +730,6 @@ const AIChatWidget = ({ onClose }) => {
                         </div>
                     </div>
 
-                    {/* Persona Section */}
                     <div>
                         <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center gap-2">
@@ -731,7 +746,6 @@ const AIChatWidget = ({ onClose }) => {
                             )}
                         </div>
 
-                        {/* Custom Persona Editor */}
                         {editingCustomPersona && (
                             <div className="mb-4 bg-white p-3 rounded-lg border border-indigo-200 shadow-sm animate-in slide-in-from-top-2">
                                 <h4 className="text-xs font-bold text-slate-500 mb-2 uppercase">编辑自定义角色</h4>
@@ -787,7 +801,6 @@ const AIChatWidget = ({ onClose }) => {
                         )}
 
                         <div className="grid grid-cols-1 gap-2">
-                            {/* Custom Persona Button */}
                             {customPersona && !editingCustomPersona && (
                                 <div className="relative group">
                                     <button
@@ -855,7 +868,6 @@ const AIChatWidget = ({ onClose }) => {
                     ? `课堂已激活 · 全班剩余 ${classroom.remaining} 次 · ${new Date(classroom.expiresAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} 截止`
                     : <button type="button" onClick={() => setShowSettings(true)} className="underline">输入课堂口令，开始提问</button>}
             </div>
-            {/* Messages Area */}
             <div
                 ref={messagesContainerRef}
                 onScroll={updateAutoScrollState}
@@ -931,9 +943,20 @@ const AIChatWidget = ({ onClose }) => {
                 <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Area */}
+            <label className="flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-t border-[var(--mw-rule)] bg-[var(--mw-surface)] px-3 text-xs text-[var(--mw-ink-2)]">
+                <input
+                    type="checkbox"
+                    checked={sharePageContext}
+                    onChange={event => {
+                        const checked = event.target.checked;
+                        setSharePageContext(checked);
+                        assistantStorage.set('localStorage', PAGE_CONTEXT_KEY, checked ? 'on' : 'off');
+                    }}
+                />
+                附带当前页面标题与路径
+            </label>
             <ChatComposer key={composerVersion} inputRef={inputRef} value={inputValue} onChange={setInputValue}
-                onSend={sendMessage} onStop={stopGeneration} disabled={!authorized || quotaExhausted} loading={isLoading}
+                onSend={sendMessage} onStop={stopGeneration} disabled={(!authorized || quotaExhausted) && !editingQuestionDraft} loading={isLoading}
                 reasoningLevel={reasoningLevel} onReasoningChange={level => {
                     setReasoningLevel(level);
                     assistantStorage.set('localStorage', 'ai_reasoning_level', level);

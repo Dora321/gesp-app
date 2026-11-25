@@ -250,3 +250,42 @@ test('GitHub Pages receives revocable bearer authorization without third-party c
   await f.req('/api/logout', {}, '', origin, headers);
   assert.equal((await f.req('/api/session', undefined, '', origin, headers)).status, 401);
 });
+
+test('chat forwards bounded page context only and rejects private fields before charging', async t => {
+  const f = await fixture(t);
+  const { code } = await f.start(10);
+  const cookie = await f.student(code);
+  const submit = pageContext => f.req('/api/chat', {
+    requestId: crypto.randomUUID(),
+    messages: [{ role: 'user', content: '解释循环' }],
+    pageContext,
+  }, cookie);
+  const valid = { title: '课'.repeat(160), path: '/' + 'a'.repeat(159) };
+  for (const context of [
+    null,
+    [valid],
+    'lesson',
+    { title: valid.title },
+    { ...valid, title: valid.title + '课' },
+    { ...valid, title: [] },
+    { ...valid, path: valid.path + 'a' },
+    { ...valid, path: 'https://example.com' },
+    { ...valid, path: '//example.com' },
+    { ...valid, path: '/lesson/1/1?token=PRIVATE#answer' },
+    { ...valid, answers: 'PRIVATE' },
+    JSON.parse('{"title":"课","path":"/","__proto__":{"private":true}}'),
+  ]) {
+    const reply = await submit(context);
+    assert.equal(reply.status, 400, JSON.stringify(context));
+    assert.doesNotMatch(JSON.stringify(reply.body), /PRIVATE/);
+  }
+  assert.equal(f.calls.length, 0);
+  assert.equal((await f.req('/api/session', undefined, cookie)).body.remaining, 10);
+
+  assert.equal((await submit(valid)).status, 200);
+  const withContext = JSON.parse(f.calls[0].body).messages[0].content;
+  assert.ok(withContext.endsWith(JSON.stringify(valid)));
+  assert.equal((await submit(undefined)).status, 200);
+  const withoutContext = JSON.parse(f.calls[1].body).messages[0].content;
+  assert.doesNotMatch(withoutContext, /页面背景/);
+});

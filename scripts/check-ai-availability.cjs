@@ -41,7 +41,9 @@ async function closeOwnFrame(button, frame, timeout = 30000) {
 }
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  let browser;
+  try { browser = await chromium.launch({ headless: true }); }
+  catch { browser = await chromium.launch({ channel: 'chrome', headless: true }); }
   try {
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' });
     await page.addInitScript(() => localStorage.setItem('deepseek_api_key', 'mock-personal-key'));
