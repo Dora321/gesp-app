@@ -678,7 +678,7 @@ i 依次取 0, 3, 6, 9（每次加 3，均小于 10），共 **4 次**满足条�
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `412.00`, output: `Temperature is too high!` },
         { input: `173.56`, output: `-99.59 -147.26` }
@@ -797,7 +797,7 @@ $0 < K < 10^5$。
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `5
 1

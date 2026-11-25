@@ -724,7 +724,7 @@ C++ 标准并未规定 ASCII 为必选字符编码，但 GESP 考试环境默认
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `5 0
 -2 -1 0 1 2`, output: `-2 -2 0 2 2` }
@@ -784,7 +784,7 @@ C++ 标准并未规定 ASCII 为必选字符编码，但 GESP 考试环境默认
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `12230`, output: `****.....................
 ****.****.****.****..***.

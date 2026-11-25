@@ -732,7 +732,7 @@ C++ 的关系运算符 \`<\` 满足**左结合性**，\`3 < X < 5\` 被解析为
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `8
 3
@@ -764,7 +764,7 @@ int main() {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `4
 6`, output: `12` }
