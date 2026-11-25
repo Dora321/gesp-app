@@ -113,6 +113,8 @@ const programmingQuestions = [
 - **时间复杂度**：算法通过一次深度优先搜索遍历整棵树，每个结点和每条边仅访问常数次，时间复杂度为 \`O(n)\`。
 - **空间复杂度**：邻接表建树及递归栈深度最坏情况下均为 \`n\`，空间复杂度为 \`O(n)\`。`,
       tags: ["编程题", "树形DP"],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c(n+1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp(n+1, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}",
       answer: '',
@@ -239,6 +241,8 @@ const programmingQuestions = [
 1. **逆序枚举防止重复选取**：内层循环更新 \`dp\` 数组时，攻击力 \`j\` 必须从大到小逆序倒推，若正序更新会导致同一件道具被多次累加选入（退化为完全背包）。
 2. **状态维度转换的时机**：遇到背包容积上限极大、无法直接作为数组下标的题目时，优先思考将“代价”与“收益”交换维度的反向求解策略。`,
       tags: ["编程题", "动态规划", "0/1背包"],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk+1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            dp[j] = min(dp[j], dp[j-a]+c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if (dp[j] <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       answer: '',
@@ -279,11 +283,7 @@ export const paperData = {
 
             **考点：** C++基础
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 2,
@@ -310,11 +310,7 @@ export const paperData = {
 **关键点：** 继承是多态的前提，但只有加了 \`virtual\` 才真正获得运行时分派。
 
 **考点：** 面向对象、多态`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 3,
@@ -341,11 +337,7 @@ export const paperData = {
 **易错提醒：** \`override\` 是好习惯，它的价值恰恰在于把「我以为覆盖了、其实没有」这类错误从运行期提前到编译期暴露。本题就是这个机制在起作用。
 
 **考点：** 面向对象、虚函数、override`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 4,
@@ -380,11 +372,7 @@ export const paperData = {
 - **D（B C）**：这是从栈底删除的结果，那是队列的行为不是栈。
 
 **考点：** 栈、后进先出`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['栈'],
         },
         {
             id: 5,
@@ -398,46 +386,8 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B（(2, 0)）**
-
-**核心解析：**
-循环队列是一种利用固定大小数组首尾相连实现的先进先出（FIFO）数据结构。在本题中，数组长度为 \`N = 6\`，下标有效范围为 0 到 5。指针的移动规则严格遵循模运算：
-1. **入队操作**：新元素从队尾进入，队尾指针后移，即 \`rear = (rear + 1) % 6\`，队头指针 \`front\` 保持不变；
-2. **出队操作**：队头元素移出，队头指针后移，即 \`front = (front + 1) % 6\`，队尾指针 \`rear\` 保持不变。
-
-题目给定初始状态为 \`front = 1\`，\`rear = 1\`（此时 \`front == rear\`，队列为空）。该队列最多可容纳 \`N - 1 = 5\` 个元素。
-题目给出的操作序列共包含 5 次入队和 1 次出队，队列中最多时仅有 4 个元素，不会触发队满，所有操作均合法。我们按照操作顺序逐步模拟指针的变化：
-
-| 步骤 | 执行操作 | 对应指针计算 | front | rear | 队内元素数量 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| 0 | 初始状态 | 给定初始值 | 1 | 1 | 0（队空） |
-| 1 | 入队 | \`rear = (1 + 1) % 6 = 2\` | 1 | 2 | 1 |
-| 2 | 入队 | \`rear = (2 + 1) % 6 = 3\` | 1 | 3 | 2 |
-| 3 | 入队 | \`rear = (3 + 1) % 6 = 4\` | 1 | 4 | 3 |
-| 4 | 出队 | \`front = (1 + 1) % 6 = 2\` | 2 | 4 | 2 |
-| 5 | 入队 | \`rear = (4 + 1) % 6 = 5\` | 2 | 5 | 3 |
-| 6 | 入队 | \`rear = (5 + 1) % 6 = 0\` | 2 | 0 | 4 |
-
-在第 6 步执行最后一次入队时，\`rear\` 原值为 5，加 1 后为 6，代入公式计算得到 \`(5 + 1) % 6 = 0\`。队尾指针从数组末尾循环折返到了数组起始位置 0。
-因此，经过全部操作后，最终状态为 \`(front, rear) = (2, 0)\`。
-
-**选项逐项分析：**
-- **A (2, 5)**：❌ 错误。\`front = 2\` 正确，但 \`rear = 5\` 是遗漏了最后一次入队操作的结果，或者在计算第 6 步入队时忽略了模运算回绕。
-- **B (2, 0)**：✅ 正确。经历 1 次出队后 \`front = (1 + 1) % 6 = 2\`；经历 5 次入队后 \`rear\` 从 1 递增至 5，最后通过 \`(5 + 1) % 6\` 成功回绕至 0。
-- **C (3, 5)**：❌ 错误。序列中只执行了 1 次出队操作，\`front\` 仅递增一次变为 2，不可能变为 3；且 \`rear\` 也未完成最后一次入队。
-- **D (3, 0)**：❌ 错误。虽然 \`rear = 0\` 正确计算了循环回绕，但出队只有 1 次，\`front\` 应为 2，误算成了出队 2 次后的状态 3。
-
-**易错提醒：**
-- **下标模运算回绕**：当指针指向数组最大下标 \`N - 1\`（即 5）并继续后移时，下一个位置不是 6，而是 \`6 % 6 = 0\`，切勿遗漏取模步骤。
-- **指针职责分工**：牢记「入队只影响 rear，出队只影响 front」，两者各自沿下标增大方向移动，运算时不要混淆操作对象。
-
-**知识延伸：**
-在常见的循环队列设计中，数组容量为 \`N\`，但最多只存 \`N - 1\` 个元素。这是为了空出一个位置，使“队空”条件（\`front == rear\`）与“队满”条件（\`(rear + 1) % N == front\`）区分开来。如果不保留这一个空位，队满和队空时两指针都会重合，将无法直接判断队列状态。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            explanation: "**答案：B（(2, 0)）**\n\n**核心解析：** 初始 front=rear=1，队列为空。入队只移动 rear=(rear+1)%6，出队只移动 front=(front+1)%6。依次执行 3 次入队后 rear=4；1 次出队后 front=2；再入队两次，rear 由 4→5→0。最终 front=2、rear=0。\n\n**选项分析：** A 的 rear=5 漏掉最后一次入队；C 的 front=3 相当于出队两次；D 同时把 front、rear 都算错。\n\n**考点：** 队列、循环队列、取模运算。\n\n**易错点：** **易错点：** 循环队列中入队只动 rear、出队只动 front；指针到达 N-1 后必须取模回到 0，不能直接加 1，否则会越界。本题只有 1 次出队，所以 front 只加一次；5 次入队使 rear 从 1 走到 0。按操作顺序列表模拟最稳妥，不要跳步，并注意初始时 front==rear 表示队空。",
+            tags: ['队列'],
         },
         {
             id: 6,
@@ -486,11 +436,7 @@ bool check(TreeNode* root) {
 - **D 平衡二叉树**：需要比较左右子树高度，代码没有高度信息。
 
 **考点：** 树与二叉树、完全二叉树、队列`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '广度优先搜索'],
         },
         {
             id: 7,
@@ -526,11 +472,7 @@ void traverse(TreeNode* root) {
 
 **考点：** 树与二叉树、后序遍历
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '遍历'],
         },
         {
             id: 8,
@@ -556,11 +498,7 @@ void traverse(TreeNode* root) {
 - **D**：这只是「合并」这一步，缺少前面「取出两个最小节点」的动作，a、b 都还没定义。
 
 **考点：** 哈夫曼编码、贪心`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['哈夫曼编码'],
         },
         {
             id: 9,
@@ -583,11 +521,7 @@ void traverse(TreeNode* root) {
 - **D 不能用于压缩**：错。哈夫曼编码正是经典的无损压缩方法，JPEG、ZIP 等格式里都有它的身影。
 
 **考点：** 哈夫曼编码、前缀码`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['哈夫曼编码'],
         },
         {
             id: 10,
@@ -625,11 +559,7 @@ TreeNode* op(TreeNode* root, int x) {
 
 **考点：** 树与二叉树、二叉排序树、插入
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树'],
         },
         {
             id: 11,
@@ -668,11 +598,7 @@ TreeNode* op(TreeNode* root, int x) {
 
 **知识延伸：**
 若将本题中的栈 \`std::stack\` 替换为队列 \`std::queue\`（使用 \`push()\`、\`pop()\`、\`front()\`），并按照先左后右的顺序入队，即可将深度优先遍历（DFS）转化为**层序遍历（广度优先遍历 BFS）**。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['深度优先搜索', '栈'],
         },
         {
             id: 12,
@@ -708,11 +634,7 @@ TreeNode* op(TreeNode* root, int x) {
 
 **知识延伸：**
 - **BFS 时空复杂度**：设二叉树共有 \`n\` 个结点，最坏情况下需遍历整棵树，每个结点进出队列一次，时间复杂度为 \`O(n)\`；队列中最多同时保存树的最大宽度（最宽一层的结点数），空间复杂度在满二叉树时最坏为 \`O(n)\`。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['广度优先搜索', '队列'],
         },
         {
             id: 13,
@@ -737,11 +659,7 @@ TreeNode* op(TreeNode* root, int x) {
 - **D 一定比普通二叉树快**：错。若 BST 退化成一条链（例如按升序依次插入），查找退化为 $O(N)$，并不比在普通二叉树里逐个遍历更快。BST 的优势来自**平衡**，而不是「是 BST」这件事本身。
 
 **考点：** 二叉排序树、复杂度分析`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '复杂度分析'],
         },
         {
             id: 14,
@@ -769,11 +687,7 @@ TreeNode* op(TreeNode* root, int x) {
 - **D**：初值与遍历方向是两件独立的事，dp 初始化为 0 不能修正方向错误。
 
 **考点：** 动态规划、0/1 背包`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['动态规划'],
         },
         {
             id: 15,
@@ -812,11 +726,7 @@ TreeNode* op(TreeNode* root, int x) {
 **知识延伸：**
 - **递推（自底向上）**：适合能够清晰梳理出状态依赖拓扑序的场景，常数小，便于做空间压缩（如滚动数组优化到一维空间）。
 - **记忆化搜索（自顶向下）**：适合状态转移图较稀疏、部分状态根本无需访问的场景，代码逻辑贴合递归定义，但需注意在递归层数过深时可能引发栈溢出。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['动态规划'],
         },
         {
             id: 16,
@@ -852,11 +762,7 @@ int main() {
 **考点：** 面向对象、构造函数、拷贝构造
 **勘误：** 原录入答案误为「正确」。官方原卷答案表（2025-12 六级）本题答案为 ×，且与独立推导（默认构造 + 拷贝构造共 2 次）一致，已于 2026-10-24 更正。
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 17,
@@ -880,11 +786,7 @@ int main() {
 **别混淆：** 继承讲的是复用与「是一种」的关系，多态讲的是同一接口在运行时表现出不同行为，都不是封装。
 
 **考点：** 面向对象、封装`,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 18,
@@ -918,11 +820,7 @@ int countLeaf(TreeNode* root) {
 
 **考点：** 树与二叉树、递归
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '递归'],
         },
         {
             id: 19,
@@ -952,11 +850,7 @@ int countLeaf(TreeNode* root) {
             sourcePage: 9,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['广度优先搜索', '队列'],
         },
         {
             id: 20,
@@ -983,11 +877,7 @@ int countLeaf(TreeNode* root) {
 
 **考点：** 函数调用与栈
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['栈'],
         },
         {
             id: 21,
@@ -1016,11 +906,7 @@ BST 中最小值结点是**从根一路向左走到的结点**（最左结点）
             sourcePage: 9,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树'],
         },
         {
             id: 22,
@@ -1058,11 +944,7 @@ bool isBST(TreeNode* root, int minVal, int maxVal) {
 
 **考点：** 二叉排序树、递归、区间约束
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '递归'],
         },
         {
             id: 23,
@@ -1086,11 +968,7 @@ bool isBST(TreeNode* root, int minVal, int maxVal) {
 
 **考点：** 格雷码的性质
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['格雷编码'],
         },
         {
             id: 24,
@@ -1123,11 +1001,7 @@ bool isBST(TreeNode* root, int minVal, int maxVal) {
             sourcePage: 10,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['动态规划'],
         },
         {
             id: 25,
@@ -1156,11 +1030,7 @@ bool isBST(TreeNode* root, int minVal, int maxVal) {
 
 **考点：** 完全二叉树的深度公式
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树'],
         },
         ...programmingQuestions
     ]

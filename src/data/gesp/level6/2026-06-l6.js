@@ -140,28 +140,7 @@ int main() {
       options: ['第 ① 行', '第 ② 行', '第 ③ 行', '第 ④ 行'],
       answer: 2,
       score: 2,
-      explanation: `**答案：C（第 ③ 行会导致编译错误）**
-
-**核心解析：**
-面向对象编程的核心思想之一是“数据封装”，C++ 通过访问控制修饰符（\`public\`、\`private\`、\`protected\`）来严格限定类成员的可见性和访问权限：
-1. **\`public\`（公有权限）**：修饰的成员既可以在类的内部使用，也可以在类外部（如全局函数、\`main()\` 函数中）通过类的对象直接访问和调用。
-2. **\`private\`（私有权限）**：修饰的成员用于隐藏类的内部实现细节，只能由当前类的成员函数（或友元）直接访问；在类的外部作用域中，任何外部代码都无法直接通过对象名读取或修改私有成员。
-
-在本题中，\`Student\` 类将两个成员变量 \`string name;\` 和 \`int score;\` 声明在 \`private:\` 控制区域内，因此它们是私有成员变量。而在 \`main()\` 函数中：
-第 ③ 行代码 \`stu.score = 100;\` 位于类定义的外部，它试图通过对象名直接向私有成员变量 \`score\` 赋值。这破坏了类的私有封装与访问控制规则，编译器会提示类似 \`'score' is private within this context\` 的错误信息，无法通过编译。若想安全地修改分数，必须调用类提供的公有成员函数 \`stu.setScore(...)\`。
-
-**选项逐项分析：**
-- **A 第 ① 行（\`cout << stu.getName();\`）**：❌ 不会导致编译错误。\`getName()\` 函数声明在 \`public:\` 下，属于公有成员函数，外部可以通过对象正常调用以获取姓名，语法完全合法。
-- **B 第 ② 行（\`stu.setScore(90);\`）**：❌ 不会导致编译错误。\`setScore(int s)\` 声明在 \`public:\` 下，属于公有的设置器（Setter）函数，允许外部传入参数 \`90\` 间接更新对象内部的私有成员 \`score\`，符合面向对象设计规范。
-- **C 第 ③ 行（\`stu.score = 100;\`）**：✅ 会导致编译错误，符合题意。\`score\` 是类的私有（\`private\`）成员变量，在 \`main()\` 函数中直接进行读写访问违反了访问控制规则，引发编译错误。
-- **D 第 ④ 行（\`cout << stu.getName();\`）**：❌ 不会导致编译错误。与第 ① 行相同，\`getName()\` 作为公有接口始终可以在类外部被正常调用并输出返回值，语法正确。
-
-**易错提醒：**
-- **明确“类内”与“类外”的区别**：在类的成员函数内部（如构造函数或 \`setScore\` 中），直接使用私有成员变量 \`score\` 是完全合法的；但 \`main()\` 函数属于独立的外部函数，不能直接读写对象的私有数据。
-- **区分 \`class\` 与 \`struct\` 的默认权限**：如果在 \`class\` 中未书写任何访问修饰符，其成员默认都是 \`private\`（私有）；而 \`struct\` 中未标注时，成员默认是 \`public\`（公有）。
-
-**知识延伸：**
-将成员变量设为 \`private\`，并提供公有的 \`getName()\`（Getter / 访问器）与 \`setScore()\`（Setter / 修改器），是 C++ 中经典的封装模式。这种设计不仅防止了外部代码对对象内部状态的破坏性修改，还允许在 Setter 函数中加入数据合理性检查（例如限定 \`s >= 0 && s <= 100\`），从而增强程序的健壮性与安全性。`,
+      explanation: "**答案：C（第 ③ 行）**\n\n**核心解析：** Student 将 name、score 声明在 private 区，类外不能直接访问。第 ③ 行 stu.score=100; 位于 main() 中，直接读写私有成员，编译器会报“private within this context”之类的错误；要修改分数应调用公有成员函数 setScore()。\n\n**选项分析：** ① 调用公有 getName()，合法；② 调用公有 setScore()，合法；④ 同样调用公有 getName()，合法。\n\n**考点：** 面向对象、访问控制、封装。\n\n**易错点：** **易错点：** class 的成员默认 private，struct 默认 public；类外访问私有成员必须通过公有成员函数，不能直接读写。构造函数和 setScore 都在类内，可以直接使用私有成员；main 在类外，必须遵守访问控制，这是封装的基本边界。",
       tags: ['面向对象', '封装'],
     },
     {
@@ -885,6 +864,8 @@ $1 \\leq n \\leq 10^3$，$1 \\leq p_i \\leq 10^5$。`,
       template: '#include <iostream>\nusing namespace std;\n\nint dp[1010], p[1010];\n\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; ++i)\n        cin >> p[i];\n    // 在此编写代码\n    return 0;\n}',
       referenceCode: '#include <iostream>\nusing namespace std;\nint dp[1010], p[1010];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; ++i)\n        cin >> p[i];\n    for (int i = 1; i <= n; ++i) {\n        for (int j = i; j <= n; ++j) {\n            dp[j] = max(dp[j], dp[j - i] + p[i]);\n        }\n    }\n    cout << dp[n] << endl;\n    return 0;\n}',
       tags: ['动态规划', '背包'],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
     },
     {
       id: 27,
@@ -947,6 +928,8 @@ $$chk[u] = chk[l_u] \\land chk[r_u] \\land (h[l_u] == h[r_u])$$
       template: '#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint n;\nint l[100010], r[100010];\nint h[100010], chk[100010];\nlong long ans = 0;\n\nvoid dfs(int u) {\n    // 在此编写代码\n}\n\nint main() {\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        cin >> l[i] >> r[i];\n    chk[0] = 1;\n    dfs(1);\n    cout << ans << endl;\n    return 0;\n}',
       referenceCode: '#include <iostream>\n#include <algorithm>\nusing namespace std;\nint n;\nint l[100010], r[100010];\nint h[100010], chk[100010] = {1};\nint ans;\nvoid dfs(int u) {\n    if (!u)\n        return;\n    dfs(l[u]);\n    dfs(r[u]);\n    h[u] = max(h[l[u]], h[r[u]]) + 1;\n    chk[u] = chk[l[u]] && chk[r[u]] && (h[l[u]] == h[r[u]]);\n    ans += chk[u];\n}\nint main() {\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        cin >> l[i] >> r[i];\n    ans = 0;\n    dfs(1);\n    cout << ans << endl;\n    return 0;\n}',
       tags: ['二叉树', '递推与递归', '动态规划'],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
     },
   ],
 };

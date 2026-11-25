@@ -89,6 +89,8 @@ URR`, output: `7` }
 - **根节点向上移动的边界处理**：处于根节点 \`1\` 时执行 \`'U'\` 应当保持为 \`1\`。如果直接进行整除计算 \`1 / 2\` 会得到 \`0\`，使得节点编号偏离有效二叉树范围，后续的所有乘法转移都会错误变为 \`0\` 或 \`1\`，因此务必添加 \`x > 1\` 的条件限制。
 - **复杂度分析**：只需遍历长度为 \`n\` 的字符串一次，每次操作的时间开销为常数级别 \`O(1)\`，总时间复杂度为 \`O(n)\`，空间复杂度为 \`O(1)\`，完全能够在时限内快速运行。`,
       tags: ["编程题", "模拟", "栈"],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    long long x;\n    cin >> n >> x;\n    string s;\n    cin >> s;\n    for (char ch : s) {\n        if (ch == 'U') x /= 2;\n        else if (ch == 'L') x = x * 2;\n        else x = x * 2+1;\n    }\n    cout << x << '\\n';\n    return 0;\n}",
       answer: '',
@@ -231,6 +233,8 @@ URR`, output: `7` }
 - **时间复杂度**：站点的排序耗时为 \`O(n log n)\`，车辆的排序耗时为 \`O(m log m)\`，贪心双指针匹配遍历车辆为 \`O(m)\`。总时间复杂度为 \`O(n log n + m log m)\`，在题目给定的数据规模下可高效在时限内运行完成。
 - **空间复杂度**：存储站点和车辆信息的数组空间复杂度均为 \`O(n + m)\`。`,
       tags: ["编程题", "贪心", "排序"],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    long long x;\n    cin >> n >> m >> x;\n    vector<pair<long long, long long>> stations(n); // {p, c}\n    for (auto &s : stations) cin >> s.first >> s.second;\n    vector<pair<long long, long long>> trucks(m); // {a-b, b}\n    long long fixedPart = 0;\n    for (auto &t : trucks) {\n        long long a, b;\n        cin >> a >> b;\n        fixedPart += 2 * x * b;\n        t = { a - b, b };\n    }\n    // 总路程 = Σ 2x·b + Σ 2p·(a-b)：p 越小越应分给 a-b 越大的货车\n    sort(stations.begin(), stations.end());\n    sort(trucks.begin(), trucks.end(), [](const auto &l, const auto &r) {\n        return l.first > r.first;\n    });\n    long long variablePart = 0;\n    size_t si = 0;\n    long long used = 0;\n    for (const auto &t : trucks) {\n        while (si < stations.size() && used >= stations[si].second) { si++; used = 0; }\n        variablePart += 2 * stations[si].first * t.first;\n        used++;\n    }\n    cout << fixedPart + variablePart << endl;\n    return 0;\n}",
       answer: '',
@@ -274,11 +278,7 @@ export const paperData = {
 
 **考点：** OOP 核心特性
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 2,
@@ -306,11 +306,7 @@ export const paperData = {
 
 **考点：** 类的基本概念（访问控制/构造函数/成员）
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['类'],
         },
         {
             id: 3,
@@ -343,33 +339,8 @@ int main() {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C（obj->display() 语句存在空指针访问错误，obj 应该初始化为一个有效的对象）**
-
-**核心解析：**
-在面向对象编程中，类定义了对象的属性与方法，而指针可以用于指向并管理对象。本题中代码定义了类 \`MyClass\`，并在 \`main()\` 函数中声明了一个类指针 \`MyClass* obj = NULL;\`。
-
-1. **未创建实际对象**：\`NULL\`（空指针）表示该指针不指向任何有效的内存单元。此时并未通过 \`new MyClass()\` 动态开辟堆内存，也没有让指针指向任何已经实例化的栈对象，内存中并不存在一个真正的 \`MyClass\` 对象。
-2. **空指针调用引发未定义行为**：语句 \`obj->display();\` 试图通过空指针调用对象的成员函数。在 C++ 中，当调用非静态成员函数时，编译器会隐式将当前对象的地址作为 \`this\` 指针传入函数内部。对空指针执行 \`->\` 操作属于非法的空指针访问，在 C++ 标准中被归类为**未定义行为（Undefined Behavior, UB）**。在实际运行时，这极易引发程序异常终止（如操作系统的段错误 Segmentation Fault）。
-
-因此，程序存在严重的逻辑与运行时错误，必须先让 \`obj\` 指向一个已经正确初始化的有效对象实例，才能安全调用其成员函数。
-
-**选项逐项分析：**
-- **A NULL 在 C++ 中无法用于指针初始化，应使用 nullptr**：❌ 说法错误。在 C++ 标准中，\`NULL\` 是常用的预处理宏（通常定义为整数 \`0\` 或 \`(void*)0\`），一直都可以合法用于指针初始化。C++11 引入 \`nullptr\` 是为了提供具有强类型安全性的空指针常量、避免函数重载时的整型二义性，属于更推荐的现代编码规范，但绝不代表 \`NULL\` 在 C++ 中“无法用于指针初始化”。
-- **B obj 的定义应该是 MyClass obj; 而不是指针类型**：❌ 说法错误。在 C++ 中，通过指针管理对象生命周期、实现动态绑定与多态是面向对象设计的常规手段。定义指针类型完全合法，问题出在指针“未指向有效内存实体”，而不是“不能定义为指针”。只需在使用前让指针指向有效对象（例如 \`MyClass a; obj = &a;\` 或 \`obj = new MyClass();\`）即可。
-- **C obj->display() 语句存在空指针访问错误，obj 应该初始化为一个有效的对象**：✅ 说法正确，符合题意。\`obj\` 被显式置为 \`NULL\`，直接解引用调用成员函数属于典型的空指针访问错误。只有将其初始化为指向有效对象的地址，成员函数的调用才有意义。
-- **D obj->display() 语句会调用 display() 函数，但它没有输出任何内容**：❌ 说法错误。\`display()\` 内部包含明确的控制台输出语句 \`cout << "Display function called!" << endl;\`。通过空指针进行调用属于未定义行为，程序往往会在执行到该行时直接崩溃退出，并非“能正常调用只是没有输出”。
-
-**易错提醒：**
-- **语法规范 vs 编程实践推荐**：很多同学误以为 C++ 引入了 \`nullptr\` 后 \`NULL\` 就成了语法错误。实际上 \`NULL\` 在编译期完全合法，只有在涉及整型与指针重载解析时才需要注意区分。
-- **指针定义与对象构造的分离**：\`MyClass* obj;\` 仅仅分配了一个存放指针地址的空间（通常为 4 或 8 字节），并没有调用构造函数创建对象本身。使用指针访问成员前，务必牢记“分配对象”与“检查非空”。
-
-**知识延伸：**
-在现代 C++（C++11 及以上）中，推荐优先使用强类型的 \`nullptr\` 代替 \`NULL\`。此外，在涉及动态对象生命周期管理时，建议优先使用智能指针（如 \`std::unique_ptr\` 或 \`std::shared_ptr\`）来代替裸指针，以便借助 RAII 机制自动释放资源，避免空指针悬挂和内存泄漏。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            explanation: "**答案：C**\n\n**核心解析：** obj 被初始化为 NULL，没有指向任何有效对象。执行 obj->display() 等于通过空指针调用非静态成员函数，属于未定义行为，通常直接崩溃，因此 C 正确。\n\n**选项分析：**\n- A 错：NULL 可以用于指针初始化，nullptr 只是 C++11 更类型安全的推荐写法。\n- B 错：用指针管理对象本身合法，问题是指针未指向有效对象。\n- D 错：display() 内有输出语句，且空指针调用并不是“正常调用但没有输出”。\n\n**考点：** 类、指针、未定义行为。\n\n**易错点：** **易错点：** 指针声明只分配存放地址的空间，不会自动创建对象；通过指针访问成员前，必须确保它已经指向有效对象，否则属于未定义行为。在 C++11 中更推荐用 nullptr 初始化空指针，但这不会改变 NULL 本身的语法合法性；解引用前应先 new 或取已有对象地址。",
+            tags: ['类', '指针'],
         },
         {
             id: 4,
@@ -416,11 +387,7 @@ g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 
 
 **考点：** 栈、队列
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['栈', '队列'],
         },
         {
             id: 5,
@@ -453,11 +420,7 @@ g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 
 
 **考点：** 链表的查找复杂度
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['双向链表', '复杂度分析'],
         },
         {
             id: 6,
@@ -485,11 +448,7 @@ g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 
 
 **考点：** 树的基本性质辨析
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树'],
         },
         {
             id: 7,
@@ -527,11 +486,7 @@ g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 
 
 **考点：** 哈夫曼树构建与编码长度
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['哈夫曼编码'],
         },
         {
             id: 8,
@@ -568,11 +523,7 @@ g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 
 
 **考点：** 哈夫曼编码的生成
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['哈夫曼编码'],
         },
         {
             id: 9,
@@ -613,11 +564,7 @@ g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 
 
 **考点：** 格雷码的判定
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['格雷编码'],
         },
         {
             id: 10,
@@ -652,11 +599,7 @@ search 函数**先输出当前节点值**再比较：
 
 **考点：** BST 搜索路径的输出
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '遍历'],
         },
         {
             id: 11,
@@ -692,11 +635,7 @@ TreeNode* node = s.top(); s.pop();
 
 **考点：** 非递归 DFS 的栈操作
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['深度优先搜索', '栈'],
         },
         {
             id: 12,
@@ -730,11 +669,7 @@ TreeNode* node = q.front(); q.pop();
 
 **考点：** BFS 的队列操作
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['广度优先搜索', '队列'],
         },
         {
             id: 13,
@@ -778,11 +713,7 @@ TreeNode* node = q.front(); q.pop();
 **易错点：** BFS 必须先访问完当前层，再访问下一层；孩子进入队列的左右顺序会决定同层访问顺序。
 
 **考点：** 二叉树、宽度优先搜索、队列、层序遍历。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['广度优先搜索'],
         },
         {
             id: 14,
@@ -812,11 +743,7 @@ TreeNode* node = q.front(); q.pop();
 
 **考点：** 动态规划的性质
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['动态规划'],
         },
         {
             id: 15,
@@ -870,11 +797,7 @@ TreeNode* node = q.front(); q.pop();
 
 **考点：** 0/1 背包的手工求解
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['动态规划'],
         },
         {
             id: 16,
@@ -916,11 +839,7 @@ public:
 
 **考点：** 构造函数的重载
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 17,
@@ -961,11 +880,7 @@ public:
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['静态成员'],
         },
         {
             id: 18,
@@ -1002,11 +917,7 @@ public:
 
 **考点：** 栈的链式实现
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['栈', '链表'],
         },
         {
             id: 19,
@@ -1032,11 +943,7 @@ public:
 构造出的树第一层是1，第二层是2、3，第三层依次为4、5、6。前两层全满，最后一层从左到右连续占据前三个位置，空缺仅在最右端，因此是完全二叉树。
 
 花括号中未显式给出的left与right指针会进行零初始化，所以这些新结点的孩子为空。若把6放在3的右侧而空着左侧，才会出现最后一层左边空缺的情况。`,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树'],
         },
         {
             id: 20,
@@ -1066,11 +973,7 @@ public:
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树'],
         },
         {
             id: 21,
@@ -1097,11 +1000,7 @@ public:
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 22,
@@ -1129,11 +1028,7 @@ void preorder(TreeNode* root) {
 
 **考点：** 树与二叉树、递归
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '遍历', '递归'],
         },
         {
             id: 23,
@@ -1166,11 +1061,7 @@ BFS 按「距离起点 0 层、1 层、2 层……」的顺序逐层扩展：每
 
 **考点：** BFS 与最短路径
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['广度优先搜索'],
         },
         {
             id: 24,
@@ -1211,11 +1102,7 @@ dp[i][w] = max(dp[i-1][w], dp[i-1][w - weights[i-1]] + values[i-1]);
 
 **考点：** 0/1 背包状态转移方程
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['动态规划'],
         },
         {
             id: 25,
@@ -1242,11 +1129,7 @@ dp[i][w] = max(dp[i-1][w], dp[i-1][w - weights[i-1]] + values[i-1]);
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['栈', '链表'],
         },
         ...programmingQuestions
     ]
