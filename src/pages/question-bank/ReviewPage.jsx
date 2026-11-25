@@ -1,8 +1,9 @@
-import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
     ChevronLeft, ChevronDown, NotebookPen, TrendingUp, TrendingDown, Minus,
-    Target, ListChecks, Trash2, ArrowRight, PencilLine,
+    Target, ListChecks, Trash2, ArrowRight, PencilLine, Printer,
 } from 'lucide-react';
 import LoadingBlocks from '../../components/LoadingBlocks';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
@@ -18,13 +19,120 @@ import {
     summarizePaperAttempts,
 } from '../../utils/examHistory';
 import { LEARNING_DATA_EVENT, readLearningData } from '../../utils/learningData';
-import { buildQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
+import {
+    buildQuestionContent,
+    formatOptionDisplay,
+    normalizeEscapedLineBreaks,
+    promoteLongInlineCodeBlocks,
+    stripLeadingNumber,
+} from '../../utils/questionTextFormatting';
 import LearningDataManager from '../../components/LearningDataManager';
+import { RelatedLessonLinks } from './QuestionStudyActions';
 // 错题点开才需要解析，按需加载。
 const AnswerReview = lazy(() => import('./AnswerReview'));
-import InteractiveAnalysisPage from './InteractiveAnalysisPage';
+const InteractiveAnalysisPage = lazy(() => import('./InteractiveAnalysisPage'));
 
 const LEVEL_NAMES = '一二三四五六七八';
+
+const PRINT_STYLES = `
+    .mw-wrong-print { position: fixed; left: -200vw; top: 0; width: 180mm; }
+    @media print {
+        body:has(> .mw-wrong-print) { background: white !important; overflow: visible !important; }
+        body:has(> .mw-wrong-print) > :not(.mw-wrong-print) { display: none !important; }
+        .mw-wrong-print { position: static; width: auto; margin: 0; color: #111; font-size: 11pt; line-height: 1.5; }
+        .mw-wrong-print h1 { font-size: 20pt; font-weight: 700; }
+        .mw-wrong-print h2 { font-size: 15pt; font-weight: 700; margin: 5mm 0 2mm; break-after: avoid-page; }
+        .mw-wrong-print h3 { font-size: 11pt; font-weight: 700; break-after: avoid-page; }
+        .mw-wrong-print article { border-top: 1px solid #aaa; padding: 3mm 0; break-inside: avoid-page; }
+        .mw-wrong-print .markdown-body { color: inherit; font-size: inherit; overflow: visible; overflow-wrap: anywhere; }
+        .mw-wrong-print .markdown-body pre { color: inherit; background: #f5f5f5; overflow: visible; white-space: pre-wrap; }
+        .mw-wrong-print .markdown-body pre span { color: inherit !important; }
+        .mw-wrong-print img { max-height: 75mm; object-fit: contain; }
+        .mw-wrong-print img, .mw-wrong-print pre { break-inside: avoid-page; }
+        .mw-wrong-print ul { margin: 2mm 0; padding-left: 5mm; }
+        .mw-wrong-print button { display: none !important; }
+        .mw-wrong-print .mw-write-line { height: 8mm; border-bottom: 1px solid #aaa; }
+    }
+`;
+
+function PrintableWrongPaper({ job, onDone, onError }) {
+    const sheetRef = useRef(null);
+    // 先挂载并准备完整题面（包括题图），再打开系统打印。
+    useEffect(() => {
+        let cancelled = false;
+        const images = [...sheetRef.current.querySelectorAll('img')];
+        const ready = images.map((image) => {
+            image.loading = 'eager';
+            return image.decode();
+        });
+        if (document.fonts) ready.push(document.fonts.ready);
+
+        Promise.allSettled(ready).then(() => {
+            if (cancelled) return;
+            window.addEventListener('afterprint', onDone, { once: true });
+            try {
+                window.print();
+            } catch {
+                onError();
+            }
+        });
+        return () => {
+            cancelled = true;
+            window.removeEventListener('afterprint', onDone);
+        };
+    }, [onDone, onError]);
+
+    const { entries, withAnswers, Renderer } = job;
+    return createPortal(
+        <main className="mw-wrong-print" ref={sheetRef} inert>
+            <style>{PRINT_STYLES}</style>
+            <h1>GESP C++ 错题卷</h1>
+            <p>{withAnswers ? '附答案解析' : '无答案重做'} · 共 {entries.reduce((count, entry) => count + entry.questions.length, 0)} 题</p>
+            {entries.map(({ id, title, questions, answerVerified }) => (
+                <section key={id}>
+                    <h2>{title}</h2>
+                    {questions.map(({ question, explanation, generic }) => (
+                        <article key={question.id}>
+                            <h3>原卷第 {question.id} 题</h3>
+                            <div className="markdown-body">
+                                <Renderer content={promoteLongInlineCodeBlocks(normalizeEscapedLineBreaks(stripLeadingNumber(buildQuestionContent(question))))} />
+                            </div>
+                            <ul aria-label="选项">
+                                {(question.options || []).map((option, index) => (
+                                    <li key={index}>
+                                        {String.fromCharCode(65 + index)}.{' '}
+                                        <span className="markdown-body inline-markdown"><Renderer content={formatOptionDisplay(option)} inline /></span>
+                                    </li>
+                                ))}
+                            </ul>
+                            {withAnswers ? (
+                                <>
+                                    <p><strong>{answerVerified ? '已核验答案' : '题库答案（尚未完成核验）'}：</strong>
+                                        {Number.isInteger(question.answer) && question.options?.[question.answer] !== undefined
+                                            ? String.fromCharCode(65 + question.answer)
+                                            : '暂无'}
+                                    </p>
+                                    {explanation && (
+                                        <>
+                                            <p><strong>{generic ? '通用解题提示' : '核心解析'}</strong></p>
+                                            <div className="markdown-body"><Renderer content={normalizeEscapedLineBreaks(explanation)} /></div>
+                                        </>
+                                    )}
+                                </>
+                            ) : (
+                                <div>
+                                    <p>作答与推演</p>
+                                    <div className="mw-write-line" /><div className="mw-write-line" />
+                                </div>
+                            )}
+                        </article>
+                    ))}
+                </section>
+            ))}
+        </main>,
+        document.body,
+    );
+}
 
 const formatDate = (timestamp) => new Date(timestamp).toLocaleString('zh-CN', {
     year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
@@ -104,6 +212,12 @@ const WrongQuestionItem = ({ question, paper, paperId }) => {
                             );
                         })}
                     </ul>
+                    <Link
+                        to={`/question-bank/${paper.level}/${paperId}?mode=analysis&q=${encodeURIComponent(question.id)}`}
+                        className="mw-button mw-button--secondary mw-button--small min-h-11!"
+                    >
+                        去原卷解析查看 <ArrowRight size={16} aria-hidden="true" />
+                    </Link>
                     <Suspense fallback={<p className="text-base text-slate-500">正在加载解析…</p>}>
                         <AnswerReview
                             q={question}
@@ -127,6 +241,10 @@ export default function ReviewPage() {
     const [papers, setPapers] = useState({});
     const [loading, setLoading] = useState(true);
     const [loadError, setLoadError] = useState(false);
+    const [printJob, setPrintJob] = useState(null);
+    const [preparingPrint, setPreparingPrint] = useState(false);
+    const [printError, setPrintError] = useState(false);
+    const printRequest = useRef(null);
     // 「只练错题」开始时把题目定格：练的过程中做对的题会从错题本移出，
     // 但不能让正在练的这组题跟着变。
     const [practice, setPractice] = useState(null);
@@ -182,6 +300,56 @@ export default function ReviewPage() {
     );
 
     const totalWrong = Object.values(wrongQuestionsByPaper).reduce((sum, list) => sum + list.length, 0);
+    const weakTopicLevel = paperMeta[weakTopics[0]?.questions[0]?.paperId]?.level;
+
+    const finishPrint = useCallback(() => {
+        printRequest.current = null;
+        setPrintJob(null);
+        setPreparingPrint(false);
+    }, []);
+    const failPrint = useCallback(() => {
+        finishPrint();
+        setPrintError(true);
+    }, [finishPrint]);
+
+    useEffect(() => {
+        if (practicePaperId) finishPrint();
+    }, [practicePaperId, finishPrint]);
+
+    const printWrongQuestions = async (withAnswers) => {
+        if (printRequest.current) return;
+        const request = Symbol();
+        printRequest.current = request;
+        setPreparingPrint(true);
+        setPrintError(false);
+        try {
+            const [{ default: Renderer }, analysis] = await Promise.all([
+                import('../../components/MathMarkdownContent'),
+                withAnswers ? import('./analysisEngine') : null,
+            ]);
+            if (printRequest.current !== request) return;
+            const entries = paperIds.filter((id) => wrongQuestionsByPaper[id]?.length).map((id) => {
+                const paper = papers[id];
+                const verification = resolveVerification(paper);
+                return {
+                    id,
+                    title: paperMeta[id].title,
+                    answerVerified: verification.dimensions.answer === 'verified',
+                    questions: wrongQuestionsByPaper[id].map((question) => {
+                        const view = analysis?.selectAnalysisView(question, paper.level);
+                        return {
+                            question,
+                            explanation: view?.analysis?.keyPoint || view?.explanation,
+                            generic: view?.mode === 'generic',
+                        };
+                    }),
+                };
+            });
+            setPrintJob({ entries, withAnswers, Renderer });
+        } catch {
+            if (printRequest.current === request) failPrint();
+        }
+    };
 
     if (!practicePaperId && practice) setPractice(null);
     if (practicePaperId && !loading && practice?.paperId !== practicePaperId) {
@@ -207,19 +375,22 @@ export default function ReviewPage() {
 
     if (practicePaperId && practice?.paper) {
         return (
-            <InteractiveAnalysisPage
-                key={practice.paper.id}
-                paperData={practice.paper}
-                paperId={practice.paper.id}
-                storageKey={null}
-                backLabel="返回错题本"
-                onBack={leavePractice}
-            />
+            <Suspense fallback={<div role="status" className="p-6">正在加载错题练习…</div>}>
+                <InteractiveAnalysisPage
+                    key={practice.paper.id}
+                    paperData={practice.paper}
+                    paperId={practice.paper.id}
+                    storageKey={null}
+                    backLabel="返回错题本"
+                    onBack={leavePractice}
+                />
+            </Suspense>
         );
     }
 
     return (
         <div className="mw-surface mw-line-bank min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
+            {printJob && <PrintableWrongPaper job={printJob} onDone={finishPrint} onError={failPrint} />}
             <div className="mw-page-banner bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white shadow-lg">
                 <div className="mx-auto max-w-5xl">
                     <button
@@ -307,12 +478,34 @@ export default function ReviewPage() {
                                     })}
                                 </ul>
                             )}
+                            {weakTopics.length > 0 && (
+                                <div className="mt-4 border-t border-[var(--mw-rule)] pt-4">
+                                    <RelatedLessonLinks tags={weakTopics.slice(0, 3).map(({ tag }) => tag)} level={weakTopicLevel} />
+                                </div>
+                            )}
                         </section>
 
                         <section aria-labelledby="history-heading" className="space-y-4">
                             <h2 id="history-heading" className="flex items-center gap-2 text-lg font-bold">
                                 <ListChecks className="text-indigo-500" size={20} aria-hidden="true" /> 各卷错题与成绩
                             </h2>
+                            {totalWrong > 0 && (
+                                <div className="flex flex-wrap gap-2">
+                                    {[[false, '无答案重做'], [true, '附答案解析']].map(([withAnswers, label]) => (
+                                        <button
+                                            type="button"
+                                            key={label}
+                                            onClick={() => printWrongQuestions(withAnswers)}
+                                            disabled={preparingPrint}
+                                            className="mw-button mw-button--secondary mw-button--small min-h-11! disabled:opacity-50"
+                                        >
+                                            <Printer size={16} aria-hidden="true" /> 打印错题卷（{label}）
+                                        </button>
+                                    ))}
+                                    {preparingPrint && <p role="status" className="self-center text-sm">正在准备打印…</p>}
+                                    {printError && <p role="alert" className="self-center text-sm text-[var(--mw-err)]">没能打开打印，请重试。</p>}
+                                </div>
+                            )}
                             {paperIds.map((paperId) => {
                                 const meta = paperMeta[paperId];
                                 const summary = summarizePaperAttempts(attempts[paperId] || []);

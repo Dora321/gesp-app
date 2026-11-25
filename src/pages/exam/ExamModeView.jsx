@@ -1,8 +1,9 @@
 import { Suspense, lazy } from 'react';
-import { Check, CheckCircle, X, ChevronRight, Filter, Lightbulb } from 'lucide-react';
+import { Check, CheckCircle, X, ChevronRight, Filter, Flag, Lightbulb } from 'lucide-react';
 import { getLuoguProblemUrl } from '../../data/gesp/codingQuestions';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import CodingProblemView from '../../components/CodingProblemView';
+import ExamScratchpad from '../../components/ExamScratchpad';
 import {
   isProgrammingQuestion,
   getQuestionContent,
@@ -24,6 +25,8 @@ const ExamModeView = ({
   isSubmitted,
   paperId,
   level,
+  flagged = false,
+  onToggleFlag,
   trust = {},
   reviewCount = 0,
   reviewPosition = -1,
@@ -64,6 +67,7 @@ const ExamModeView = ({
   return (
     <main className="min-w-0 flex-1 overflow-y-auto p-4 pb-24 md:p-8">
       <div className={`mx-auto space-y-8 ${isProgramming ? 'max-w-[54rem]' : 'max-w-3xl'}`}>
+        {!isSubmitted && <ExamScratchpad key={paperId} paperId={paperId} />}
         {isSubmitted && (
           <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-base font-semibold text-slate-800">
@@ -110,11 +114,24 @@ const ExamModeView = ({
 
         {/* Question Card：编程题也只有这一层白底，内部小节不再套卡 */}
         <div className={`bg-white rounded-2xl shadow-sm border border-slate-200 animate-fade-in relative overflow-hidden ${isProgramming ? 'p-5 md:p-10' : 'p-6 md:p-10'}`}>
-          {!isProgramming && (
-            <div className="absolute top-0 left-0 bg-slate-100 px-4 py-1.5 rounded-br-xl text-xs font-bold text-slate-600 uppercase tracking-wider">
-              {currentQ.type === 'single' ? '单选题' : '判断题'} &bull; {currentQ.score}分
-            </div>
-          )}
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm font-semibold text-[var(--mw-ink-2)]">
+              {isProgramming ? '编程题' : currentQ.type === 'single' ? '单选题' : '判断题'} · {currentQ.score} 分
+            </p>
+            {isSubmitted ? (
+              flagged && <span className="inline-flex items-center gap-1 text-sm text-[var(--mw-warn)]"><Flag size={16} aria-hidden="true" /> 已标存疑</span>
+            ) : (
+              <button
+                type="button"
+                aria-pressed={flagged}
+                onClick={onToggleFlag}
+                className={`mw-button mw-button--secondary mw-button--small min-h-11! ${flagged ? 'border-[var(--mw-warn)]! bg-[var(--mw-warn-tint)]! text-[var(--mw-warn)]!' : ''}`}
+              >
+                <Flag size={16} aria-hidden="true" fill={flagged ? 'currentColor' : 'none'} />
+                {flagged ? '已标存疑' : '标记存疑'}
+              </button>
+            )}
+          </div>
 
           {hasSourceDefect(currentQ) && (
             <div className="mt-4">
@@ -137,7 +154,7 @@ const ExamModeView = ({
             />
           ) : (
             <>
-              <div className="question-stem mt-6 mb-8">
+              <div className="question-stem mb-8">
                 <span className="question-number">{currentQuestionIndex + 1}.</span>
                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
               </div>

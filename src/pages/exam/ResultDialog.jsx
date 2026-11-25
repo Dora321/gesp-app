@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trophy } from 'lucide-react';
 import useDialogFocus from '../../hooks/useDialogFocus';
+import { estimateGespThresholds } from '../../utils/examScoring';
 
 /**
  * Exam result dialog — shows objective score and stats after submission
@@ -21,6 +22,7 @@ const ResultDialog = ({
   autoSubmitted = false,
 }) => {
   const dialogRef = useDialogFocus(onClose || onViewAnalysis);
+  const estimate = estimateGespThresholds(objectiveScore, objectiveScoreTotal);
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
@@ -49,6 +51,18 @@ const ResultDialog = ({
           <div className="bg-[var(--mw-info-tint)] p-3 rounded-lg"><div className="text-sm text-[var(--mw-info)]">编程已标记</div><div className="font-bold text-[var(--mw-info)]">{programmingMarkedCount}</div></div>
           <div className="bg-orange-50 p-3 rounded-lg"><div className="text-sm text-orange-700">不计分</div><div className="font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>
+        {estimate && (
+          <div className="mb-4 rounded-md border border-[var(--mw-rule)] bg-[var(--mw-canvas)] px-3 py-2 text-left text-sm leading-relaxed text-[var(--mw-ink-2)]">
+            <p>
+              按 GESP 满分 100 分（客观 50 分、编程 50 分）估算，客观题折合 {estimate.scaledObjective.toLocaleString('zh-CN', { maximumFractionDigits: 2 })} 分。
+              {estimate.passRequired === null ? '编程题拿满 50 分也达不到 60 分合格线。' : `编程题需约 ${estimate.passRequired} 分达到 60 分合格线。`}
+              {estimate.skipRequired === null ? '编程题拿满分也达不到 90 分跳级参考线。' : `编程题需约 ${estimate.skipRequired} 分达到 90 分跳级参考线。`}
+            </p>
+            <p className="mt-1">
+              仅供参考，以官方成绩为准。<a href="https://gesp.ccf.org.cn/101/1011/10102.html" className="mw-text-link">CCF GESP 官方规则</a>
+            </p>
+          </div>
+        )}
         <p className="text-sm text-slate-500 mb-3">编程题不自动判分；题面待核验的客观题也不计入分数，请结合官方原卷复盘。</p>
         <p className="text-sm text-slate-500 mb-6">本次成绩与错题已记入错题本，关掉这个窗口也不会丢。</p>
         <div className="flex gap-3">

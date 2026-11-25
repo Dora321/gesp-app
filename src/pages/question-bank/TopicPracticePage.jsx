@@ -4,6 +4,8 @@ import { ChevronLeft, Tags, BookOpen, ShieldCheck, TriangleAlert } from 'lucide-
 import LoadingBlocks from '../../components/LoadingBlocks';
 import { loadLevelTopics, buildTopicPaper } from '../../data/gesp/topics';
 import { TOPIC_GROUP_ORDER } from '../../data/gesp/topicTaxonomy';
+import { getRelatedTagsForLesson } from '../../data/gesp/topicLessonMap';
+import { getCppLesson } from '../../data/cppLessonIndex';
 import InteractiveAnalysisPage from './InteractiveAnalysisPage';
 
 const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -16,6 +18,8 @@ export default function TopicPracticePage() {
     const level = Math.min(8, Math.max(1, Number(levelParam) || 1));
     const activeTag = searchParams.get('tag') || '';
     const includePending = searchParams.get('includePending') === '1';
+    const lessonId = searchParams.get('lesson');
+    const lesson = lessonId && getCppLesson(level, lessonId);
 
     // data 的筛选条件与当前 URL 不一致即视为加载中，避免显示上一组计数。
     const [data, setData] = useState(null);
@@ -32,6 +36,9 @@ export default function TopicPracticePage() {
     const topics = useMemo(() => (loading ? [] : data.topics), [data, loading]);
     const tagMap = loading ? null : data.tagMap;
     const stats = loading ? null : data.stats;
+    const lessonTags = lesson
+        ? getRelatedTagsForLesson(level, lessonId).filter((tag) => tagMap?.has(tag))
+        : [];
     const topicGroups = useMemo(() => {
         const grouped = new Map(TOPIC_GROUP_ORDER.map(group => [group, []]));
         for (const topic of topics) {
@@ -49,6 +56,7 @@ export default function TopicPracticePage() {
     const updatePendingMode = () => {
         const next = new URLSearchParams();
         if (!includePending) next.set('includePending', '1');
+        if (lesson) next.set('lesson', lessonId);
         setSearchParams(next);
     };
 
@@ -56,6 +64,7 @@ export default function TopicPracticePage() {
         const next = new URLSearchParams();
         next.set('tag', tag);
         if (includePending) next.set('includePending', '1');
+        if (lesson) next.set('lesson', lessonId);
         setSearchParams(next);
     };
 
@@ -143,6 +152,24 @@ export default function TopicPracticePage() {
                         包含待核验题
                     </button>
                 </div>
+
+                {lesson && !loading && (
+                    <section aria-label="本课对应真题" className="mw-line-cpp space-y-3 rounded-md border border-[var(--mw-rule)] bg-[var(--mw-line-wash)] p-4">
+                        <h2 className="text-base font-bold text-[var(--mw-ink)]">{lesson.title} · 对应真题考点</h2>
+                        {lessonTags.length > 0 ? (
+                            <ul className="flex flex-wrap gap-2">
+                                {lessonTags.map((tag) => (
+                                    <li key={tag}>
+                                        <button type="button" onClick={() => openTopic(tag)} className="mw-button mw-button--secondary mw-button--small min-h-11!">
+                                            {tag} · {tagMap.get(tag).length} 题
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : <p className="text-sm text-[var(--mw-ink-2)]">当前筛选下暂无这节课对应的真题。</p>}
+                        <Link to={lesson.path} className="mw-text-link inline-flex min-h-11 items-center text-sm font-semibold">返回互动课</Link>
+                    </section>
+                )}
 
                 {loading ? (
                     <div className="flex items-center justify-center gap-2.5 py-20 text-slate-500" role="status">
