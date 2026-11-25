@@ -24,6 +24,7 @@ import MarkdownRenderer from './MarkdownRenderer';
 import HighlightedCode from './HighlightedCode';
 import { parseCodingProblem } from '../utils/codingProblemSections';
 import { clearCodingDraft, MAX_CODING_DRAFT_LENGTH, readCodingDraft, saveCodingDraft } from '../utils/codingDrafts';
+import { LEARNING_DATA_EVENT } from '../utils/learningData';
 
 const SECTION_ICONS = {
   background: Sparkles,
@@ -134,7 +135,7 @@ const InfoChip = ({ icon: Icon, children }) => (
   </span>
 );
 
-const draftButtonClass = 'mw-button mw-button--secondary mw-button--small min-h-11';
+const draftButtonClass = 'mw-button mw-button--secondary mw-button--small !min-h-11';
 
 export function CodingDraftEditor({ problemKey, title, requirement, referenceCode, compareOnly = false }) {
   const [code, setCode] = useState(() => readCodingDraft(problemKey));
@@ -147,6 +148,15 @@ export function CodingDraftEditor({ problemKey, title, requirement, referenceCod
   const hasCode = Boolean(code.trim());
   const canOpenReference = Boolean(referenceCode) && (!compareOnly || hasCode);
   const referenceVisible = canOpenReference && showReference;
+
+  useEffect(() => {
+    const syncDraft = () => {
+      setCode(readCodingDraft(problemKey));
+      setSaved(true);
+    };
+    window.addEventListener(LEARNING_DATA_EVENT, syncDraft);
+    return () => window.removeEventListener(LEARNING_DATA_EVENT, syncDraft);
+  }, [problemKey]);
 
   const updateCode = value => {
     setCode(value);

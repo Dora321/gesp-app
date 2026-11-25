@@ -5,7 +5,9 @@ const { default: AxeBuilder } = require('@axe-core/playwright');
 const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replace(/\/+$/, '');
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  let browser;
+  try { browser = await chromium.launch({ headless: true }); }
+  catch { browser = await chromium.launch({ channel: 'chrome', headless: true }); }
   const errors = [];
   try {
     for (const width of [320, 1440]) {
@@ -52,16 +54,20 @@ const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replac
     assert.equal(await page.evaluate(() => sessionStorage.getItem('deepseek_api_key')), null);
     await page.reload();
     await page.getByRole('button', { name: '打开 AI 问答助手', exact: true }).filter({ visible: true }).click();
+    const pageContextToggle = page.getByLabel('附带当前页面标题与路径');
+    assert.equal(await pageContextToggle.isChecked(), true);
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').fill('循环输出为什么少一项？');
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').press('Enter');
     await page.getByText('先观察循环变量。', { exact: true }).waitFor();
     assert.equal(Object.hasOwn(requests[0], 'context'), false);
+    assert.deepEqual(Object.keys(requests[0].pageContext || {}).sort(), ['path', 'title']);
     assert.ok(requests[0].messages.every(message => message.role !== 'system'));
-    assert.equal(await page.getByLabel('附带当前页面标题与路径').count(), 0);
+    await pageContextToggle.uncheck();
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').fill('再给一个提示');
     await page.getByPlaceholder('输入你的问题…（Enter 发送，Shift+Enter 换行）').press('Enter');
     await page.waitForFunction(() => document.body.innerText.split('先观察循环变量。').length >= 3);
     assert.equal(Object.hasOwn(requests[1], 'context'), false);
+    assert.equal(requests[1].pageContext, undefined);
     await page.getByRole('button', { name: '打开 AI 设置', exact: true }).click();
     assert.equal(await page.evaluate(() => sessionStorage.getItem('deepseek_api_key')), null);
     assert.equal(await page.evaluate(() => localStorage.getItem('deepseek_api_key')), null);
@@ -85,8 +91,8 @@ const base = (process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173').replac
     page.once('dialog', dialog => dialog.accept());
     await page.getByRole('button', { name: '一键重置', exact: true }).click();
     await page.getByText('还没有科创课程记录。进入一节课学习后，再回这里查看。', { exact: true }).waitFor();
-    page.once('dialog', dialog => dialog.accept());
     await page.getByLabel('选择学习数据文件').setInputFiles({ name: 'backup.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(backup)) });
+    await page.getByRole('button', { name: '合并导入（推荐：保留两边记录）', exact: true }).click();
     await page.locator('.mw-lab-records a').first().waitFor();
     await page.goto(base + '/lesson/1/4#programming-practice');
     assert.ok(await page.getByRole('region', { name: '本课上机练习', exact: true }).getByRole('checkbox').first().isChecked());

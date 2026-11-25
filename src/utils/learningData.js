@@ -1,3 +1,5 @@
+import { CODING_DRAFTS_KEY, mergeCodingDrafts, readAllCodingDrafts } from './codingDrafts.js';
+
 export const LEARNING_DATA_SCHEMA = 'gesp-learning-data';
 export const LEARNING_DATA_VERSION = 4;
 
@@ -392,11 +394,13 @@ export function updateLearningData(updater, reason = 'update') {
 
 export function createLearningDataExport() {
     const data = readLearningData();
+    const codingDrafts = readAllCodingDrafts(getStorage());
     return {
         schema: LEARNING_DATA_SCHEMA,
         version: LEARNING_DATA_VERSION,
         exportedAt: new Date().toISOString(),
         data,
+        ...(Object.keys(codingDrafts).length > 0 ? { codingDrafts } : {}),
     };
 }
 
@@ -423,6 +427,22 @@ export function importLearningData(payload, { mode = 'replace' } = {}) {
         ? mergeLearningData(readLearningData(), parsed)
         : normalizeLearningData(parsed);
     if (!writeCanonical(data, 'import')) throw new Error('浏览器无法保存学习数据');
+    const storage = getStorage();
+    if (storage && (mode === 'replace' || isRecord(parsed.codingDrafts))) {
+        try {
+            const incomingDrafts = isRecord(parsed.codingDrafts) ? parsed.codingDrafts : {};
+            const nextDrafts = mode === 'merge'
+                ? mergeCodingDrafts(readAllCodingDrafts(storage), incomingDrafts)
+                : mergeCodingDrafts({}, incomingDrafts);
+            if (Object.keys(nextDrafts).length > 0) {
+                storage.setItem(CODING_DRAFTS_KEY, JSON.stringify(nextDrafts));
+            } else {
+                storage.removeItem(CODING_DRAFTS_KEY);
+            }
+        } catch {
+            // 保留主学习数据已导入状态，草稿写失败不阻塞主流程。
+        }
+    }
     return data;
 }
 
@@ -431,6 +451,7 @@ export function resetLearningData() {
     if (!storage) return false;
     try {
         storage.removeItem(LEARNING_DATA_STORAGE_KEY);
+        storage.removeItem(CODING_DRAFTS_KEY);
         storage.removeItem(LEGACY_KEYS.lessons);
         storage.removeItem(LEGACY_KEYS.esp32Ai);
         storage.removeItem(LEGACY_KEYS.museum);

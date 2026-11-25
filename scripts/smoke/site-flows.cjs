@@ -153,7 +153,7 @@ async function checkSiteFlows(browser, baseUrl) {
           await checkAnchor(page, baseUrl, label, id);
         }
       }
-      for (const route of ['/ekart', '/hardware', '/question-bank', '/museum']) {
+      for (const route of ['/ekart', '/hardware', '/question-bank', '/museum', '/placement']) {
         await page.goto(`${baseUrl}${route}`);
         await page.locator('h1').first().waitFor();
         await assertFits(page, `${route} ${width}`);

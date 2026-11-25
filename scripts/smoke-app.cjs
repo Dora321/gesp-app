@@ -277,13 +277,14 @@ async function run() {
       museum: { collected: [] },
     },
   });
-  page.once('dialog', (dialog) => dialog.accept());
   await page.getByLabel('选择学习数据文件').setInputFiles({
     name: 'learning-data.json',
     mimeType: 'application/json',
     buffer: Buffer.from(importPayload),
   });
-  await page.getByText('学习数据已导入，下次打开课程时生效').waitFor({ timeout: 10000 });
+  await page.getByText('备份已读取，请选择导入方式。').waitFor({ timeout: 10000 });
+  await page.getByRole('button', { name: '合并导入（推荐：保留两边记录）', exact: true }).click();
+  await page.getByText('学习数据已合并。').waitFor({ timeout: 10000 });
   const importedLearningData = await page.evaluate(() => JSON.parse(localStorage.getItem('gesp_learning_data') || 'null'));
   // 只断言「不倒退 + 内容迁移过来了」，不写死版本号——否则每次 schema 升级都会
   // 因为这条断言变红，而它本来要保护的是迁移行为，不是某个具体版本。

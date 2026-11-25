@@ -3,7 +3,9 @@ const { chromium } = require('playwright');
 const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  let browser;
+  try { browser = await chromium.launch({ headless: true }); }
+  catch { browser = await chromium.launch({ channel: 'chrome', headless: true }); }
   try {
     for (const width of [390, 1366]) {
       const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
@@ -33,7 +35,6 @@ const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
         personalMessages.push(body.messages);
         personal.push({ auth: route.request().headers().authorization, effort: body.reasoning_effort });
         assert.equal(body.messages[0].role, 'system');
-        assert.ok(!body.messages[0].content.includes('页面背景'));
         assert.equal(route.request().headers().referer, undefined);
         return route.fulfill({ contentType: 'text/event-stream', body: 'data: {"choices":[{"delta":{"content":"个人回答"}}]}\n\ndata: [DONE]\n\n' });
       });
@@ -63,7 +64,10 @@ const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
       await page.getByRole('button', { name: '返回对话', exact: true }).click();
       await page.getByText('个人回答', { exact: true }).waitFor();
       assert.ok(await input.isVisible());
-      assert.equal(await page.getByRole('checkbox', { name: /附带当前页面/ }).count(), 0);
+      assert.ok(personalMessages[0][0].content.includes('页面背景'));
+      const pageContextToggle = page.getByRole('checkbox', { name: /附带当前页面/ });
+      assert.equal(await pageContextToggle.isChecked(), true);
+      await pageContextToggle.uncheck();
       await settings();
       await page.getByRole('button', { name: '课堂模式', exact: true }).click();
       await page.getByLabel('课堂口令', { exact: true }).fill('123456');
@@ -94,6 +98,7 @@ const base = process.env.EXPERIENCE_BASE_URL || 'http://127.0.0.1:5173';
       assert.ok(await input.isDisabled());
       assert.equal(personal.length, 1, 'Exhausted classroom quota must not fall back to personal billing');
       assert.equal(classroom.length, 1);
+      assert.equal(classroom[0].pageContext, undefined);
       assert.equal(classroom[0].reasoningLevel, 'medium');
       assert.match(classroom[0].messages.at(-1).image, /^data:image\/jpeg;base64,/);
       await page.getByRole('img', { name: '已发送的图片', exact: true }).waitFor();

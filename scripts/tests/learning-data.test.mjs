@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  CODING_DRAFTS_KEY,
+  readCodingDraft,
+  saveCodingDraft,
+} from '../../src/utils/codingDrafts.js';
+import {
   LEARNING_DATA_SCHEMA,
   LEARNING_DATA_STORAGE_KEY,
   LEARNING_DATA_VERSION,
@@ -566,4 +571,29 @@ test('hardware lesson count covers all four maker routes and excludes nearby pat
 
   assert.equal(summarizeLearningData().hardwareLessons, 4);
   assert.equal(summarizeLearningData().lessons, 8);
+});
+
+test('coding drafts are included in learning data export, merged/replaced on import, and cleared on reset', () => {
+  const storage = installStorage();
+  saveCodingDraft('practice:l1-1', 'int main() { return 1; }', storage, 100);
+  saveCodingDraft('practice:l2-1', 'int main() { return 2; }', storage, 200);
+
+  const exported = createLearningDataExport();
+  assert.equal(exported.codingDrafts['practice:l1-1'].code, 'int main() { return 1; }');
+
+  // 新设备有更新版的 l1-1 与独有的 l3-1，合并导入应保留较新的 l1-1 并并入 l2-1 / l3-1。
+  const nextStorage = installStorage();
+  saveCodingDraft('practice:l1-1', 'int main() { return 10; }', nextStorage, 300);
+  saveCodingDraft('practice:l3-1', 'int main() { return 3; }', nextStorage, 150);
+  importLearningData(JSON.stringify(exported), { mode: 'merge' });
+  assert.equal(readCodingDraft('practice:l1-1', nextStorage), 'int main() { return 10; }');
+  assert.equal(readCodingDraft('practice:l2-1', nextStorage), 'int main() { return 2; }');
+  assert.equal(readCodingDraft('practice:l3-1', nextStorage), 'int main() { return 3; }');
+
+  // 覆盖导入替换全部草稿，重置清空草稿存储键。
+  importLearningData(JSON.stringify(exported), { mode: 'replace' });
+  assert.equal(readCodingDraft('practice:l1-1', nextStorage), 'int main() { return 1; }');
+  assert.equal(readCodingDraft('practice:l3-1', nextStorage), '');
+  assert.equal(resetLearningData(), true);
+  assert.equal(nextStorage.getItem(CODING_DRAFTS_KEY), null);
 });

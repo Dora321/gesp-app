@@ -32,7 +32,7 @@ function SearchButton() {
             aria-haspopup="dialog"
             aria-keyshortcuts="Meta+K Control+K"
             title="站内搜索（⌘K / Ctrl+K）"
-            className="mw-button mw-button--secondary mw-button--small min-h-11 min-w-11 shrink-0 justify-center !px-2"
+            className="mw-button mw-button--secondary mw-button--small !min-h-11 !min-w-11 shrink-0 justify-center !px-2"
         >
             <Search size={17} aria-hidden="true" />
             <kbd aria-hidden="true" className="hidden text-xs lg:inline">⌘K</kbd>
