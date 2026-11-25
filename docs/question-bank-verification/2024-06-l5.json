@@ -144,49 +144,52 @@
     },
     {
       "id": 4,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
+        "options",
         "answer",
-        "explanation",
-        "options"
+        "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         2,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "站点第 4 题被替换成“下列哪个时间复杂度最低”，而 PDF 第 2-3 页第 4 题是“在双向链表中加入新歌曲并作为第一首，横线处应填代码”，题面与选项均不符，需还原。",
-          "review": "PDF 第 2 页末第 4 题题干为“小杨想在如上题所述的双向链表中加入一首新歌曲。为了能快速找到该歌曲，他将其作为链表的第一首歌曲，则下面横线上应填入的代码为（ ）。”，代码在 PDF 第 3 页（insert 头插，横线在 if(head != nullptr){} 内）。网站 question 错置为另一道复杂度题（“下列哪个时间复杂度最低”），code 字段为空，整题内容与原卷不符。"
+          "initial": "PDF 第 2 页末题干“小杨想在如上题所述的双向链表中加入一首新歌曲…则下面横线上应填入的代码为（ ）。”与第 3 页 insert() 头插代码（p->prev=nullptr、p->next=head、横线在 if(head!=nullptr) 内）均与候选逐字一致。",
+          "review": "PDF 第 2 页末第 4 题题干「小杨想在如上题所述的双向链表中加入一首新歌曲…则下面横线上应填入的代码为（ ）。」与第 3 页 insert() 头插代码（p->prev=nullptr、p->next=head、横线在 if(head!=nullptr) 内、函数尾 head=p）均与候选逐行一致。"
         },
         "options": {
-          "initial": "PDF 第 3 页 A head->next->prev = p; B head->next = p; C head->prev = p; D 触发异常，不能对空指针进行操作。站点现有四个复杂度选项与原题无关。",
-          "review": "PDF 第 3 页选项为 A head->next->prev = p;/B head->next = p;/C head->prev = p;/D 触发异常，不能对空指针进行操作。；网站 options 错置为复杂度选项（$O(n log n)$ 等）。"
+          "initial": "PDF 第 3 页 A head->next->prev = p; / B head->next = p; / C head->prev = p; / D 触发异常，不能对空指针进行操作。，与候选逐字一致。",
+          "review": "PDF 第 3 页 A head->next->prev = p; / B head->next = p; / C head->prev = p; / D 触发异常，不能对空指针进行操作。，与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 4 题为 C；0 起始映射为 2，站点 answer=2，索引与本卷答案表一致。",
-          "review": "PDF 第 1 页答案表第 4 题标 C，0 起始为索引 2，与网站 answer=2 一致；还原后 C 即 head->prev = p，答案索引不变。"
+          "initial": "PDF 第 1 页答案表第 4 题标 C，索引 2，候选 answer=2。",
+          "review": "PDF 第 1 页答案表第 4 题标 C，索引 2，候选 answer=2。独立推导：p 已成为新首结点且 p->next=head，还须把原首结点的 prev 指向 p，即 head->prev=p，最后 head=p。"
         },
         "explanation": {
-          "initial": "站点解析按“时间复杂度最低”作答，与原题无关；还原后应说明新结点作为首结点时，原首结点的 prev 必须指向 p，即 head->prev = p。",
-          "review": "网站解析为错置复杂度题的解析（O(1)<O(log n)<O(N) 排序），与原卷第 4 题无关。"
+          "initial": "独立推导：p 已成为新首结点且 p->next=head，还需把原首结点的 prev 指向 p，即 head->prev=p，最后 head=p，答案为 C。候选解析逐项对应正确，并保留“形参 head 按值传递、原卷函数不回写调用者头指针”的原卷缺陷说明，不影响填空答案。",
+          "review": "候选解析逐项结论正确，并保留「形参 head 按值传递、原卷函数不回写调用者头指针」的原卷缺陷说明（原卷争议备案，不影响填空答案 C）。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 code 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "code",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
       ]
     },
     {
@@ -230,45 +233,49 @@
     },
     {
       "id": 6,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 3 页第 6 题在“欧几里得算法还可以写成如下形式”后附有递归 gcd 代码，站点 question 未包含该代码，需补入。",
-          "review": "PDF 第 3 页第 6 题题干“欧几里得算法还可以写成如下形式”及递归一行 gcd 代码与网站一致。"
+          "initial": "PDF 第 3 页题干“欧几里得算法还可以写成如下形式”及递归版 gcd() 代码与候选一致。",
+          "review": "PDF 第 3 页题干「欧几里得算法还可以写成如下形式：」及递归版 gcd() 代码（return b == 0 ? a : gcd(b, a % b);）与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 3 页选项 C/D 为“当 $a$ 较大时……”，站点写成“当 较大时”，变量 a 丢失，需补回。",
-          "review": "PDF 第 3 页选项 C、D 均以“当 $a$ 较大时”开头；网站两处漏掉变量 $a$，写成“当 较大时”。"
+          "initial": "PDF 第 3 页 A/B/C/D 与候选一致；C、D 均已含“当 $a$ 较大时”（此前站点漏变量已还原）。",
+          "review": "PDF 第 3 页 A 本题的gcd()实现为递归方式。/ B 本题的gcd()代码量少，更容易理解其辗转相除的思想。/ C 当a较大时，本题的gcd()实现会多次调用自身，需要较多额外的辅助空间。/ D 当a较大时，相比上题中的gcd()的实现，本题的gcd()执行效率更高。，与候选一致（候选 C、D 均含「当 $a$ 较大时」，此前站点漏变量已还原）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 6 题为 D；0 起始映射为 3，站点 answer=3。",
-          "review": "PDF 第 1 页答案表第 6 题标 D，0 起始为索引 3，与网站 answer=3 一致。"
+          "initial": "PDF 第 1 页答案表第 6 题标 D，索引 3，候选 answer=3。",
+          "review": "PDF 第 1 页答案表第 6 题标 D，索引 3，候选 answer=3。独立推导：递归与迭代辗转相除步数相同，递归每次调用需压栈，a 较大时不会更高效，D 为错误说法（本题选错误项）。"
         },
         "explanation": {
-          "initial": "递归版每次调用压栈，a 较大时调用层数多、辅助空间多，执行效率不高于迭代版，故 D 的“效率更高”错误；解析正确。",
-          "review": "独立推导：递归版与循环版算法相同，但递归有调用栈开销，a 较大时效率不会更高，D 说法错误；A/B/C 描述正确。解析与答案 D 吻合。"
+          "initial": "独立推导：递归与迭代辗转相除的步数相同，但递归每次调用都要压栈，a 较大时不会更高效，故 D 是错误说法；A/B/C 正确。候选解析结论一致（解析把条件复述为“a, b 较大”，属放宽表述，不影响判断）。",
+          "review": "候选解析结论与独立推导一致；其 C 项复述把条件写宽为「a, b 较大」，属放宽表述，不影响正确性判定与答案。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
       ]
     },
     {
@@ -394,135 +401,147 @@
       "id": 10,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 10 题“关于分治算法，以下哪个说法正确”与站点一致。",
-          "review": "PDF 第 5 页第 10 题题干“关于分治算法，以下哪个说法正确？”与网站一致。"
+          "initial": "PDF 第 5 页题干“关于分治算法，以下哪个说法正确？”与候选一致。",
+          "review": "PDF 第 5 页题干「关于分治算法，以下哪个说法正确？」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 5 页 D 项为“分治算法的时间复杂度总是优于 $O(n\\log n)$”，站点 D 项丢失公式，写成“总是优于 。”，需补回。",
-          "review": "PDF 第 5 页选项 D 为“分治算法的时间复杂度总是优于 $O(n\\log n)$。”；网站 D 漏掉“$O(n\\log n)$”，写成“分治算法的时间复杂度总是优于 。”。"
+          "initial": "PDF 第 5 页 A 分治算法将问题分成子问题… / B 归并排序不是分治算法的应用。 / C 分治算法通常用于解决小规模问题。 / D 分治算法的时间复杂度总是优于 $O(n\\log n)$。，与候选一致（D 项公式已补回）。",
+          "review": "PDF 第 5 页 A 分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。/ B 归并排序不是分治算法的应用。/ C 分治算法通常用于解决小规模问题。/ D 分治算法的时间复杂度总是优于 O(n log(n))。，与候选一致（D 项 $O(n\\log n)$ 公式已补回）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 10 题为 A；0 起始映射为 0，站点 answer=0。",
-          "review": "PDF 第 1 页答案表第 10 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+          "initial": "PDF 第 1 页答案表第 10 题标 A，索引 0，候选 answer=0。",
+          "review": "PDF 第 1 页答案表第 10 题标 A，索引 0，候选 answer=0。独立判断：A 即分治「分解—解决—合并」的定义；B 与归并排序为分治典型应用矛盾；C 与分治面向大规模问题的价值矛盾；D「总是优于」过绝对（汉诺塔分治为 O(2^n)）。"
         },
         "explanation": {
-          "initial": "A 完整描述分治的分解、解决、合并；B/C/D 均错误，解析正确。",
-          "review": "独立推导：分治=分解+解决+合并，A 正确；B 与事实相反（归并排序正是分治），C 相反（面向大规模问题），D 过于绝对（如朴素分治斐波那契为指数级）。解析与答案 A 吻合。"
+          "initial": "候选解析的 D 项仍写作“总是优于 `O(n^2)`”，而原卷与候选选项 D 为“总是优于 $O(n\\log n)$”；引用公式与选项不一致，需按现选项重写（D 错误的结论不变）。 集成核验：原卷第 5 页的 D 项是 O(n log n)，两模型一致修正解析所引公式。",
+          "review": "候选解析的 D 项仍写作「总是优于 `O(n^2)`」，而原卷与候选选项 D 为「总是优于 $O(n\\log n)$」，引用公式与选项不一致（D 错误的结论不变）。已按现选项重写。 集成核验：原卷第 5 页的 D 项是 O(n log n)，两模型一致修正解析所引公式。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
+      ],
+      "integrationNote": "原卷第 5 页的 D 项是 O(n log n)，两模型一致修正解析所引公式。"
     },
     {
       "id": 11,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
+        "options",
         "answer",
-        "explanation",
-        "options"
+        "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "站点第 11 题被替换成“唯一分解定理……一系列（ ）的乘积”，而 PDF 第 5 页第 11 题是“在数组 1,3,6,9,17,31,39,52,61,79,81,90,96 中二分查找 82，和 82 比较的元素”，题面与选项均不符，需还原。",
-          "review": "PDF 第 5 页第 11 题为二分查找题：“根据下述二分查找法，在排好序的数组 1,3,6,9,17,31,39,52,61,79,81,90,96 中查找数值 82，和 82 比较的数组元素分别是（ ）”，附 binary_search 代码；网站 question 错置为“唯一分解定理”概念题（原卷该内容在第 11 题位置不存在），整题与原卷不符。"
+          "initial": "PDF 第 5 页题干“根据下述二分查找法，在排好序的数组 1,3,6,9,17,31,39,52,61,79,81,90,96 中查找数值 82，和 82 比较的数组元素分别是（ ）。”与 binary_search() 代码均与候选一致。",
+          "review": "PDF 第 5 页题干「根据下述二分查找法，在排好序的数组 1, 3, 6, 9, 17, 31, 39, 52, 61, 79, 81, 90, 96 中查找数值 82，和82比较的数组元素分别是（ ）。」与 binary_search() 代码（mid=(left+right)/2、找不到返回-1）均与候选一致（LaTeX 记法为等价转换）。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A 52,61,81,90；B 52,79,90,81；C 39,79,90,81；D 39,79,90。站点现有“合数/偶数/质数/奇数”与原题无关。",
-          "review": "PDF 第 5 页选项为 A 52,61,81,90/B 52,79,90,81/C 39,79,90,81/D 39,79,90；网站 options 错置为“合数/偶数/质数/奇数”。"
+          "initial": "PDF 第 5 页 A 52,61,81,90 / B 52,79,90,81 / C 39,79,90,81 / D 39,79,90，与候选一致。",
+          "review": "PDF 第 5 页 A 52, 61, 81, 90 / B 52, 79, 90, 81 / C 39, 79, 90, 81 / D 39, 79, 90，与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 11 题为 C；0 起始映射为 2，站点 answer=2，索引与本卷答案表一致。",
-          "review": "PDF 第 1 页答案表第 11 题标 C，0 起始为索引 2，与网站 answer=2 一致；还原后 C 即“39,79,90,81”，答案索引不变。"
+          "initial": "PDF 第 1 页答案表第 11 题标 C，索引 2，候选 answer=2。",
+          "review": "PDF 第 1 页答案表第 11 题标 C，索引 2，候选 answer=2。独立推演：mid=6→39、mid=9→79、mid=11→90、mid=10→81，第四次后 left=11>right=10 退出，比较序列 39,79,90,81。"
         },
         "explanation": {
-          "initial": "站点解析按“质因数分解唯一性”作答，与原题无关；还原后应说明依次比较 39、79、90、81，共 4 次，未找到 82。",
-          "review": "网站解析为错置的“唯一分解定理”解析（质因数分解唯一性），与原卷第 11 题无关。"
+          "initial": "独立推演：mid=6→39、mid=9→79、mid=11→90、mid=10→81，第四次后 left=11>right=10 退出，比较序列 39,79,90,81，答案 C。候选解析一致。",
+          "review": "候选解析给出四步 mid 与区间变化，与我的独立推演逐项一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 code 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "code",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
       ]
     },
     {
       "id": 12,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
+        "options",
         "answer",
-        "explanation",
-        "options"
+        "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "站点第 12 题被替换成“快速排序的基础操作是”，而 PDF 第 5-6 页第 12 题是“高精度减法函数横线处应填代码”，题面与选项均不符，需还原。",
-          "review": "PDF 第 5 页末第 12 题为高精度减法题：“要实现一个高精度减法函数，则下面代码中加划线应该填写的代码为（ ）”，附 minus 借位代码（借位横线后接 a[i] += 10）；网站 question 错置为“快速排序的基础操作”概念题，整题与原卷不符。"
+          "initial": "PDF 第 5 页末题干“要实现一个高精度减法函数，则下面代码中加划线应该填写的代码为（ ）。”与第 5–6 页 minus() 借位代码（横线后接 a[i]+=10）与候选逐字一致。",
+          "review": "PDF 第 5 页末题干「要实现一个高精度减法函数，则下面代码中加划线应该填写的代码为（ ）。」与第 5–6 页 minus() 借位代码（假设a、b均为正数且a表示的数比b大；横线后接 a[i] += 10;）与候选 code 逐行一致。"
         },
         "options": {
-          "initial": "PDF 第 6 页 A a[i+1]--; B a[i]--; C b[i+1]--; D b[i]--; 站点现有“分区/合并/筛选/搜索”与原题无关。",
-          "review": "PDF 第 6 页选项为 A a[i + 1]--;/B a[i]--;/C b[i + 1]--;/D b[i]--;；网站 options 错置为“分区/合并/筛选/搜索”。"
+          "initial": "PDF 第 6 页 A a[i + 1]--; / B a[i]--; / C b[i + 1]--; / D b[i]--;，与候选逐字一致。",
+          "review": "PDF 第 6 页 A a[i + 1]--; / B a[i]--; / C b[i + 1]--; / D b[i]--;，与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 12 题为 A；0 起始映射为 0，站点 answer=0，索引与本卷答案表一致。",
-          "review": "PDF 第 1 页答案表第 12 题标 A，0 起始为索引 0，与网站 answer=0 一致；还原后 A 即 a[i + 1]--，答案索引不变。"
+          "initial": "PDF 第 1 页答案表第 12 题标 A，索引 0，候选 answer=0。",
+          "review": "PDF 第 1 页答案表第 12 题标 A，索引 0，候选 answer=0。独立推导：低位不够减时向高位借 1，应让被减数高一位 a[i+1] 减 1，再 a[i]+=10 相减。"
         },
         "explanation": {
-          "initial": "站点解析按“快速排序核心是 Partition”作答，与原题无关；还原后应说明 a[i]<b[i] 时向高位借位，执行 a[i+1]--，再 a[i]+=10 后相减。",
-          "review": "网站解析为错置的“快速排序分区”解析，与原卷第 12 题无关。"
+          "initial": "独立推导：低位不够减时向高位借 1，应让被减数高一位 a[i+1] 减 1，再 a[i]+=10 相减，答案 A。候选解析逐项对应正确。",
+          "review": "候选解析逐项结论与独立推导一致（B 改当前位无效，C/D 改减数方向错误）。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 code 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "code",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
       ]
     },
     {
@@ -953,318 +972,151 @@
       "id": 25,
       "resolved": true,
       "dimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7 页判断题第 10 题原文与站点 question 一致。",
-          "review": "PDF 第 7 页判断题第 10 题代码末行为 `cout << ptr << endl;`（输出指针值，不涉及解引用）；网站代码误写作 `cout << *ptr << endl;`（delete 后解引用，属未定义行为），与原卷代码不一致。"
+          "initial": "PDF 第 7 页判断题第 10 题代码为 int* ptr=new int(10); cout<<*ptr; delete ptr;，末行 `cout << ptr << endl;`；候选题面末行已还原为 `cout << ptr << endl;`（不做解引用），与原卷一致。",
+          "review": "PDF 第 7 页判断题第 10 题代码为 int* ptr = new int(10); cout << *ptr << endl; delete ptr; cout << ptr << endl;，末行为 `cout << ptr << endl;`（输出指针值，不做解引用）；候选题面末行已还原为 `cout << ptr << endl;`，与原卷逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 10 题为 ×；0 起始映射为 1，与站点 answer=1 一致。",
-          "review": "PDF 第 7 页判断题答案表第 10 题标 ×，0 起始为索引 1（正确=0、错误=1），与网站 answer=1 一致。"
+          "initial": "PDF 第 7 页判断题答案表第 10 题标 ×；正确=0、错误=1，候选 answer=1。",
+          "review": "PDF 第 7 页判断题答案表第 10 题标 ×；站点映射 ×=1，候选 answer=1。独立判断：delete 释放的是 ptr 指向的堆内存，指针变量本身仍存在，最后一行输出地址值可正常编译运行，命题「将报错」不成立。"
         },
         "explanation": {
-          "initial": "delete 后 ptr 成为悬空指针，但再次输出 *ptr 是未定义行为，不保证“报错”；命题错误，答案表第 10 题为 ×。",
-          "review": "独立推导：delete 只释放内存、指针变量仍存在，原卷代码最后仅打印指针值，程序可正常运行，“将报错”说法不成立，判定“错误”；网站解析对网站版代码（解引用）的结论同为错误（未定义行为不一定报错），结论一致，但随题面代码还原，解析对末行的说明需一并核对更新（已随 question 修改提出）。"
+          "initial": "候选解析仍按旧题面叙述，称“最后一行的 `*ptr` 是解引用悬垂指针、属未定义行为”，与现题面末行 `cout << ptr`（只输出指针值）不符；判断结论“错误”不受影响，但解析需按现题面重写。 集成核验：核对原卷第 7 页打印 ptr。两模型都确认原解析引用错了；按 C++17 [basic.stc] §6.7 修正复核稿关于运行结果的过度表述。https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf#page=84",
+          "review": "候选解析仍按旧题面叙述，引用代码写成「cout << *ptr << endl;」并称最后一行是解引用悬垂指针，与现题面末行 `cout << ptr`（只输出指针值）不符；判断结论「错误」不受影响，解析需按现题面重写。 集成核验：核对原卷第 7 页打印 ptr。两模型都确认原解析引用错了；按 C++17 [basic.stc] §6.7 修正复核稿关于运行结果的过度表述。https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf#page=84"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
+      ],
+      "integrationNote": "核对原卷第 7 页打印 ptr。两模型都确认原解析引用错了；按 C++17 [basic.stc] §6.7 修正复核稿关于运行结果的过度表述。https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf#page=84"
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页第 26 题题干、样例与站点一致，但原卷 3.1.6 的数据范围（20% n,m≤10；40% n=1, 1≤m≤100；40% n,m≤100；全部 1≤n,m≤100，1≤k≤n×m）在站点题面中缺失，需补入。",
-          "review": "PDF 第 8 页“3.1.6 数据范围”子任务表（20%: n,m≤10；40%: n=1,1≤m≤100；40%: ≤100；全部 1≤n,m≤100、1≤k≤n×m）与内存限制 512MB 在网站题面中缺失。"
+          "initial": "PDF 第 8 页 3.1.1–3.1.5 与候选题面、样例（4 5 5 / 00000 / 01111 / 00011 / 00011 → 6）一致；3.1.6 数据范围表（20% n,m≤10；40% n=1,1≤m≤100；40% ≤100；全部 1≤n,m≤100、1≤k≤n×m）已补入并与候选逐项一致。",
+          "review": "PDF 第 8 页 3.1.1–3.1.3 与候选题面一致；3.1.4 样例（4 5 5 / 00000 / 01111 / 00011 / 00011 → 6）与 3.1.5 样例解释（顶点 (2,4),(2,5),(4,4),(4,5)，共 6 格）一致；3.1.6 数据范围表（20% n,m≤10；40% n=1,1≤m≤100；40% ≤100；全部 1≤n,m≤100、1≤k≤n×m）已在候选补入并逐项一致。"
         },
         "explanation": {
-          "initial": "解析用二维前缀和枚举上下左右边界，样例 (2,4)-(4,5) 得 6；复杂度 O(n^2 m^2) 在 n,m≤100 时约 2.5×10^7，可接受。",
-          "review": "独立推导：二维前缀和 O(1) 求任意子矩形黑格数，四重循环枚举上下左右边界取面积最小值；n,m≤100 时约 (100·101/2)²≈2.6×10^7 次判定，1.0 s 内可行；不存在时输出 0。"
+          "initial": "独立推导：二维前缀和 O(1) 求任意子矩形黑格数，四重循环枚举上下左右边界取满足 count≥k 的最小面积，不存在输出 0。n,m≤100 时约 2.5×10^7 次判定，1.0 s 可行；候选解析与样例解释（矩形 (2,4)-(4,5) 共 6 格）一致。",
+          "review": "独立推导：二维前缀和 O(1) 求任意子矩形黑格数，四重循环枚举上下左右边界取 count≥k 的最小面积，不存在输出 0；n,m≤100 时约 2.5×10^7 次判定，1.0 s 可行。样例走查：矩形 (2,4)-(4,5) 含 2+2+2=6 黑格面积 6，与解析及官方样例解释一致。"
         },
         "referenceCode": {
-          "initial": "参考程序枚举 r1,r2,c1,c2 并用二维前缀和 O(1) 求黑格数，样例输出 6；2×2 全黑 k=1→1；无黑格 k=5→0；1×3 两黑 k=2→3；3×1 两黑 k=2→3，均正确。",
-          "review": "独立验证：本地 g++ 编译网站参考程序，原样例（4 5 5→6，与官方样例解释顶点 (2,4)-(4,5) 的 6 格一致）通过；另实测 n=1 行内 k=1→1（最小子矩形为单格）、全黑 k=n×m→4（只能取整个网格）、黑格不足 k→0（不存在）、k=1→1、3×3 全黑 k=5→6（2×3 最小），期望输出均独立推演后实测核对。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：官方样例输出 6；另测 n=1,k=1→1、k=n×m 全黑→4、黑格不足 k→0、k=1→1、3×3 全黑 k=5→6；300 组随机 n,m≤6 与独立暴力枚举全矩形对拍零差异；100×100 随机数据 0.03 s 通过。",
+          "review": "本机 g++ -std=c++17 -O2 实际编译候选参考程序并执行：官方样例输出 6；另实际执行四条非样例（1 3 1/010→1、2 2 4/11 11→4、2 2 3/10 01→0、3 3 5/111 111 111→6）全部与独立推演一致；随机 300 组（n,m≤6）与四重循环暴力对拍零差异；100×100 全黑 k=50 实测 0.028 s，低于 1.0 s 限额。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 8
+        }
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         9,
         10,
         11
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 10 页第 27 题题干、样例与站点一致，但原卷 3.2.6 的数据范围（40% n≤100, a_i≤10^5；60% n≤10^4, a_i≤10^6；全部 1≤n≤10^4，2≤a_i≤10^6）在站点题面中缺失，需补入。",
-          "review": "PDF 第 10 页“3.2.6 数据范围”子任务表（40%: n≤100、值≤10^5；60%: n≤10^4、值≤10^6；全部 1≤n≤10^4、2≤a_i≤10^6）在网站题面中缺失。"
+          "initial": "PDF 第 10 页 3.2.1–3.2.5（含样例 3/7/12/30→0/1/0 与样例解释）与 3.2.6 数据范围表（40% n≤100、值≤10^5；60% n≤10^4、值≤10^6；全部 1≤n≤10^4、2≤a_i≤10^6）均与候选逐项一致。",
+          "review": "PDF 第 10 页 3.2.1–3.2.5（题面、样例 3/7/12/30→0/1/0、样例解释 7 一种 / 12 两种 / 30 三种）与 3.2.6 数据范围表（40% n≤100、值≤10^5；60% n≤10^4、值≤10^6；全部 1≤n≤10^4、2≤a_i≤10^6）均与候选逐项一致。"
         },
         "explanation": {
-          "initial": "解析用试除法统计不同质因子个数，等于 2 输出 1；7→0、12→1、30→0，样例走查正确。",
-          "review": "独立推导：试除法统计不同质因子个数（先除尽再计数），恰为 2 输出 1；a_i≤10^6 时试除至 10^3，n≤10^4 次询问总计约 10^7 次操作，1.0 s 内可行；2 的最小输入、质数、质数幂等情形均正确。"
+          "initial": "独立推导：对每个 a_i 试除并除尽每个质因子，统计不同质因子个数，恰为 2 输出 1；a_i≤10^6 时试除到 10^3，n≤10^4 总计约 10^7 次操作，1.0 s 可行。候选解析与样例一致。",
+          "review": "独立推导：对每个 a_i 试除并除尽每个质因子，统计不同质因子个数恰为 2 输出 1；a_i≤10^6 时试除到 10^3，n≤10^4 总计约 10^7 次操作，1.0 s 可行；样例 7/12/30 → 0/1/0 与解析走查一致。"
         },
         "referenceCode": {
-          "initial": "参考程序对每个 x 试除到 p*p<=x，统计不同质因子并处理剩余 x>1；样例 7→0、12→1、30→0，2→0、6→1、1→0、10^6→1、999983→0，均正确。",
-          "review": "独立验证：本地 g++ 编译网站参考程序，原样例（7/12/30→0/1/0，与官方样例解释一致）通过；另实测 x=2→0（最小输入，单质因子）、x=6→1（2×3 恰两种）、x=4→0（2² 单一质因子）、x=1000000→1（2^6×5^6 恰两种，值域上界）、x=999983→0（区间内大素数），期望输出均独立推演后实测核对。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：官方样例输出 0/1/0；另测 2→0、6→1、4→0、10^6→1、999983→0；217 个含随机值（2..10^6）与独立质因数分解对拍零差异；10^4 个随机询问 0.02 s 通过。",
+          "review": "本机 g++ -std=c++17 -O2 实际编译候选参考程序并执行：官方样例输出 0/1/0；另实际执行三组非样例（2/6/4→0/1/0；1000000、999983→1/0；999999、524288、999983、6、12→0/0/0/1/1）全部与独立质因数分解推演一致；随机 200 个值（2..10^6）与独立分解对拍零差异；n=10^4 全素数询问实测 0.031 s，低于 1.0 s 限额。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l5.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 9
+        }
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 4,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation",
-        "options"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 code 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 6,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 11,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation",
-        "options"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 code 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation",
-        "options"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 code 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
-  "pendingChanges": [
-    {
-      "id": 4,
-      "changes": {
-        "question": "小杨想在如上题所述的双向链表中加入一首新歌曲。为了能快速找到该歌曲，他将其作为链表的第一首歌曲，则下面横线上应填入的代码为（ ）。",
-        "code": "void insert(dl_node *head, string my_song) {\n    p = new dl_node;\n    p->song = my_song;\n    p->prev = nullptr;\n    p->next = head;\n\n    if (head != nullptr) {\n        ________________________ // 在此处填入代码\n    }\n    head = p;\n}",
-        "options": [
-          "head->next->prev = p;",
-          "head->next = p;",
-          "head->prev = p;",
-          "触发异常，不能对空指针进行操作。"
-        ],
-        "explanation": "**答案：C**\n\n**解析：** 新结点 p 要成为链表的第一首歌曲，p->next 已指向原首结点 head，p->prev 已置空；此时还必须把原首结点的 prev 改为 p，即 `head->prev = p;`，最后再执行 head = p。\n\n- **A `head->next->prev = p;`**：错误，改的是第二个结点的前驱，且 head->next 可能为空。\n- **B `head->next = p;`**：错误，把原首结点向后链接，方向反了。\n- **C `head->prev = p;`**：正确，补齐新首结点与原首结点的反向链接。\n- **D 触发异常**：错误，head 非空时该操作合法。\n\n需要说明：原卷 insert 的 head 是按值传递，函数内 `head = p` 不会更新调用者的头指针；这是原卷代码的缺陷，不影响本题填空答案 C。\n\n**考点：** 双向链表头插"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 6,
-      "changes": {
-        "question": "欧几里得算法还可以写成如下形式：\n\n```cpp\nint gcd(int a, int b) {\n    return b == 0 ? a : gcd(b, a % b);\n}\n```\n\n下面有关说法，错误的是（ ）。",
-        "options": [
-          "本题的gcd()实现为递归方式。",
-          "本题的gcd()代码量少，更容易理解其辗转相除的思想。",
-          "当 $a$ 较大时，本题的gcd()实现会多次调用自身，需要较多额外的辅助空间。",
-          "当 $a$ 较大时，相比上题中的gcd()的实现，本题的gcd()执行效率更高。"
-        ]
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 10,
-      "changes": {
-        "options": [
-          "分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。",
-          "归并排序不是分治算法的应用。",
-          "分治算法通常用于解决小规模问题。",
-          "分治算法的时间复杂度总是优于 $O(n\\log n)$。"
-        ]
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 11,
-      "changes": {
-        "question": "根据下述二分查找法，在排好序的数组 $1, 3, 6, 9, 17, 31, 39, 52, 61, 79, 81, 90, 96$ 中查找数值 $82$，和 $82$ 比较的数组元素分别是（ ）。",
-        "code": "int binary_search(vector<int>& nums, int target) {\n    int left = 0;\n    int right = nums.size() - 1;\n    while (left <= right) {\n        int mid = (left + right) / 2;\n        if (nums[mid] == target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n    return -1; // 如果找不到目标元素，返回-1\n}",
-        "options": [
-          "52, 61, 81, 90",
-          "52, 79, 90, 81",
-          "39, 79, 90, 81",
-          "39, 79, 90"
-        ],
-        "explanation": "**答案：C**\n\n**解析：** 数组下标 0..12，target=82，二分过程为：\n\n1. `mid=6`，比较 39（39<82，left=7）；\n2. `mid=9`，比较 79（79<82，left=10）；\n3. `mid=11`，比较 90（90>82，right=10）；\n4. `mid=10`，比较 81（81<82，left=11）；\n5. left=11>right=10，循环结束，返回 -1。\n\n与 82 比较的元素依次为 39、79、90、81，对应 C。\n\n**考点：** 二分查找"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 12,
-      "changes": {
-        "question": "要实现一个高精度减法函数，则下面代码中加划线应该填写的代码为（ ）。",
-        "code": "//假设a和b均为正数，且a表示的数比b大\nvector<int> minus(vector<int> a, vector<int> b) {\n    vector<int> c;\n    int len1 = a.size();\n    int len2 = b.size();\n    int i, t;\n\n    for (i = 0; i < len2; i++) {\n        if (a[i] < b[i]) {  //借位\n            __________________ // 在此处填入代码\n            a[i] += 10;\n        }\n        t = a[i] - b[i];\n        c.push_back(t);\n    }\n    for (; i < len1; i++)\n        c.push_back(a[i]);\n\n    len3 = c.size();\n    while (c[len3 - 1] == 0) { //去除前导0\n        c.pop_back();\n        len3--;\n    }\n    return c;\n}",
-        "options": [
-          "a[i + 1]--;",
-          "a[i]--;",
-          "b[i + 1]--;",
-          "b[i]--;"
-        ],
-        "explanation": "**答案：A**\n\n**解析：** 高精度减法从低位向高位处理，数组下标 0 表示最低位。当 `a[i] < b[i]` 时需要向高位借 1，即让 `a[i+1]` 减 1，然后 `a[i] += 10` 再相减。\n\n- **A `a[i + 1]--;`**：正确，向高位借位。\n- **B `a[i]--;`**：错误，改的是当前位，不能补足 10。\n- **C `b[i + 1]--;`**：错误，借位应发生在被减数上。\n- **D `b[i]--;`**：错误，同样是改减数。\n\n**考点：** 高精度减法、借位"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 26,
-      "changes": {
-        "question": "\n# [GESP202406 五级] 黑白格\n\n## 题目描述\n\n小杨有一个 $n$ 行 $m$ 列的网格图，其中每个格子要么是白色，要么是黑色。\n\n小杨想知道至少包含 $k$ 个黑色格子的最小子矩形包含了多少个格子。\n\n## 输入格式\n\n第一行包含三个正整数 $n,m,k$，含义如题面所示。\n\n之后 $n$ 行，每行一个长度为 $m$ 的 $\\texttt{01}$ 串，代表网格图第 $i$ 行格子的颜色，如果为 $\\texttt{0}$，则对应格子为白色，否则为黑色。\n\n## 输出格式\n\n输出一个整数，代表至少包含 $k$ 个黑色格子的最小子矩形包含格子的数量，如果不存在则输出 $0$。\n\n\n## 数据范围\n\n| 子任务编号 | 数据点占比 | $n,m$ |\n| --- | --- | --- |\n| 1 | 20% | $\\le 10$ |\n| 2 | 40% | $n=1, 1 \\le m \\le 100$ |\n| 3 | 40% | $\\le 100$ |\n\n对于全部数据，保证 $1 \\le n,m \\le 100$，$1 \\le k \\le n \\times m$。\n"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "question": "\n# [GESP202406 五级] 小杨的幸运数字\n\n## 题目描述\n\n小杨认为他的幸运数字应该恰好有两种不同的质因子，例如，$12=2\\times 2\\times 3$ 的质因子有 $2,3$，恰好为两种不同的质因子，因此 $12$ 是幸运数字，而 $30=2\\times3\\times5$ 的质因子有 $2,3,5$，不符合要求，不为幸运数字。\n\n小杨现在有 $n$ 个正整数，他想知道每个正整数是否是他的幸运数字。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，代表正整数个数。\n\n之后 $n$ 行，每行一个正整数。\n\n## 输出格式\n\n输出 $n$ 行，对于每个正整数，如果是幸运数字，输出 $1$，否则输出 $0$。\n\n\n## 数据范围\n\n| 子任务编号 | 数据点占比 | $n$ | 正整数值域 |\n| --- | --- | --- | --- |\n| 1 | 40% | $\\le 100$ | $\\le 10^5$ |\n| 2 | 60% | $\\le 10^4$ | $\\le 10^6$ |\n\n对于全部数据，保证 $1 \\le n \\le 10^4$，每个正整数 $a_i$ 满足 $2 \\le a_i \\le 10^6$。\n"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-06-l5.code-checks.json"
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2024-06-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-06-l5.integration.json"
 }

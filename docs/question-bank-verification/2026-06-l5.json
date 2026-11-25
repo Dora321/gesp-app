@@ -618,371 +618,411 @@
       "id": 16,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7 页判断题第 1 题原文“数组的存储空间在物理上通常是连续的，而链表的结点可以存储在不连续的内存空间中。”与站点一致。",
-          "review": "第 7-8 页页图判断题第 1 题原文及代码与站点 question 一致。"
+          "initial": "第 7 页判断题第 1 题「数组的存储空间在物理上通常是连续的，而链表的结点可以存储在不连续的内存空间中。」与候选 question 一致。",
+          "review": "本卷第 7 页判断题第 1 题「数组的存储空间在物理上通常是连续的，而链表的结点可以存储在不连续的内存空间中。」与候选 question 逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 1 题为 √；平台 answer=true，等价于 0（√），映射一致。",
-          "review": "第 7 页判断答案表第 1 题为「√」，映射 0（√=0/×=1）与站点 answer（布尔 true）语义一致；布尔存储需规整为整数 0，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 1 题为 √（索引 0），候选 answer=0。独立判断：数组占用连续空间并靠下标偏移随机访问；链表结点单独分配、由指针链接，可以不相邻，命题正确。",
+          "review": "以本卷自己的答案页（第 7 页判断题答案表）核对（不沿用其他卷次的固定页假设）：第 1 题标 √，映射「正确」=索引 0，候选 answer=0（整数；修订候选已将站点原布尔 true 规整为 0，映射 true→0 与 √=0 一致）。独立判断：数组占用连续空间并靠下标偏移随机访问，链表结点单独分配、由指针链接可不相邻，命题正确。"
         },
         "explanation": {
-          "initial": "独立推导：数组连续存储，链表结点通过指针链接可离散分布，命题正确。",
-          "review": "数组连续、链表结点靠指针离散链接，命题正确，与答案表 √ 一致。"
+          "initial": "候选解析对数组随机访问与链表顺序访问的差异说明正确。",
+          "review": "候选解析对数组随机访问与链表顺序访问差异的说明正确，结论 √ 与答案页一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 17,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7 页判断题第 2 题给出双向循环链表表头插入的四步操作及“无论什么顺序都正确”的命题，与站点一致。",
-          "review": "第 7-8 页页图判断题第 2 题原文及代码与站点 question 一致。"
+          "initial": "第 7 页判断题第 2 题「带哨兵头尾节点的双向循环链表，在表头插入节点 p，以下四步操作无论什么顺序执行结果都正确。」及四步代码与候选 question 一致。",
+          "review": "本卷第 7 页判断题第 2 题「带哨兵头尾节点的双向循环链表，在表头插入节点 p，以下四步操作无论什么顺序执行结果都正确。」及四步代码 ①p->next=head->next; ②p->prev=head; ③head->next->prev=p; ④head->next=p; 与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 2 题为 ×；平台 answer=false，等价于 1（×），映射一致。",
-          "review": "第 7 页判断答案表第 2 题为「×」，映射 1（√=0/×=1）与站点 answer（布尔 false）语义一致；布尔存储需规整为整数 1，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 2 题为 ×（索引 1），候选 answer=1。独立判断：③ 依赖 head->next 仍为原首结点，若先执行 ④ 再执行 ③，head->next 已变为 p，③ 变成 p->prev=p；同理 ④ 先于 ① 会使 p->next 指向自身，故顺序不可任意。",
+          "review": "本卷第 7 页判断答案表第 2 题标 ×，映射「错误」=索引 1，候选 answer=1（原布尔 false 已规整为 1，false→1 与 ×=1 一致）。独立判断：③ 依赖 head->next 仍为原首结点——先执行 ④ 再执行 ③ 会写成 p->prev=p 自环；① 也必须先于 ④（否则 p->next 指向自身），顺序不可任意，命题错误。"
         },
         "explanation": {
-          "initial": "独立推导：③ head->next->prev=p 依赖 head->next 仍为原首结点，若先执行④再执行③会把 p->prev 指向 p，四步不能任意排序，命题错误。",
-          "review": "③ 依赖 head->next 仍为原首结点，先执行④再执行③会使 p->prev 指向自身，「任意顺序」不成立，命题错误，与答案表 × 一致。"
+          "initial": "候选解析正确指出 ①、③ 必须早于 ④，且 ④ 先于 ① 会产生自环。",
+          "review": "候选解析正确指出 ①、③ 必须先于 ④、④ 先行会使 p->prev 指向自身，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 18,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7-8 页判断题第 3 题给出 gcd1（递归）与 gcd2（迭代）代码及“返回值完全相同”的命题，与站点一致。",
-          "review": "第 7-8 页页图判断题第 3 题原文及代码与站点 question 一致。"
+          "initial": "第 7–8 页判断题第 3 题「对任意正整数 a、b，以下两种写法的 gcd 函数返回值完全相同。」及 gcd1/gcd2 代码与候选 question 一致。",
+          "review": "本卷第 7 页判断题第 3 题题干与第 8 页 gcd1/gcd2 代码（gcd1 三目递归、gcd2 while 迭代）与候选逐行一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 3 题为 √；平台 answer=true，等价于 0（√），映射一致。",
-          "review": "第 7 页判断答案表第 3 题为「√」，映射 0（√=0/×=1）与站点 answer（布尔 true）语义一致；布尔存储需规整为整数 0，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 3 题为 √（索引 0），候选 answer=0。独立判断：gcd1 是欧几里得算法的递归版，gcd2 是同一算法的迭代版，每轮都做 (a,b)←(b,a%b)，终止与返回一致，命题正确。",
+          "review": "本卷第 7 页判断答案表第 3 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：对任意正整数 a、b，两版本每轮同为 (a,b)←(b,a%b)、终止与返回一致（如 gcd(1,1) 两版均返回 1），命题正确。"
         },
         "explanation": {
-          "initial": "独立推导：两者都执行 a,b=b,a%b 的欧几里得迭代，终止条件均为 b==0，返回值相同，命题正确。",
-          "review": "递归与迭代为同一欧几里得算法，终止与返回一致，命题正确，与答案表 √ 一致。"
+          "initial": "候选解析对递归与迭代版本等价性的说明正确。",
+          "review": "候选解析对递归/迭代等价性的说明正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 19,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 4 题给出 merge 合并代码及“可以正确合并”的命题，与站点一致。",
-          "review": "第 7-8 页页图判断题第 4 题原文及代码与站点 question 一致。"
+          "initial": "第 8 页判断题第 4 题「在归并排序的合并操作中，如下代码片段可以正确地将两个已排序的子数组 L 和 R 合并回原数组 arr 中。」及 merge 代码与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 4 题「在归并排序的合并操作中，如下代码片段可以正确地将两个已排序的子数组 L 和 R 合并回原数组 arr 中。」及 merge 代码（n1/n2 计算、L/R 复制、双指针比较写回、剩余追加）与候选逐行一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 4 题为 √；平台 answer=true，等价于 0（√），映射一致。",
-          "review": "第 7 页判断答案表第 4 题为「√」，映射 0（√=0/×=1）与站点 answer（布尔 true）语义一致；布尔存储需规整为整数 0，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 4 题为 √（索引 0），候选 answer=0。独立判断：n1/n2 计算、L/R 复制、双指针取较小者写回、末尾追加剩余均正确，`<=` 还保证稳定，命题正确。",
+          "review": "本卷第 7 页判断答案表第 4 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：k 从 left 起、取小者写回、末尾追加剩余均正确，`<=` 相等时优先左半还保证稳定，命题正确。"
         },
         "explanation": {
-          "initial": "独立推导：代码先把左右子数组复制到 L/R，再用双指针取较小者写回，最后追加剩余部分，边界与下标均正确，命题正确。",
-          "review": "复制到 L/R 后双指针取较小者写回、<= 保稳定、末尾追加剩余，边界正确，命题正确，与答案表 √ 一致。"
+          "initial": "候选解析对合并边界与稳定性的说明正确。",
+          "review": "候选解析对合并边界与稳定性的说明正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 20,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 5 题原文“分治法通常将一个规模较大的问题拆分为若干个规模较小、结构相似的子问题，分别求解后再合并子问题的结果。”与站点一致。",
-          "review": "第 7-8 页页图判断题第 5 题原文及代码与站点 question 一致。"
+          "initial": "第 8 页判断题第 5 题「分治法通常将一个规模较大的问题拆分为若干个规模较小、结构相似的子问题，分别求解后再合并子问题的结果。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 5 题「分治法通常将一个规模较大的问题拆分为若干个规模较小、结构相似的子问题，分别求解后再合并子问题的结果。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 5 题为 √；平台 answer=true，等价于 0（√），映射一致。",
-          "review": "第 7 页判断答案表第 5 题为「√」，映射 0（√=0/×=1）与站点 answer（布尔 true）语义一致；布尔存储需规整为整数 0，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 5 题为 √（索引 0），候选 answer=0。独立判断：这正是分治「分—治—合」的定义，命题正确。",
+          "review": "本卷第 7 页判断答案表第 5 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：这正是分治「分—治—合」的定义，命题正确。"
         },
         "explanation": {
-          "initial": "独立推导：这正是分治“分-治-合”的定义，命题正确。",
-          "review": "即分治「分-治-合」定义，命题正确，与答案表 √ 一致。"
+          "initial": "候选解析对分治三步（分、治、合）及典型应用的说明正确。",
+          "review": "候选解析对分治三步及典型应用的说明正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 21,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 6 题原文“贪心算法只要每一步选择当前最优解，就一定能得到全局最优解。”与站点一致。",
-          "review": "第 7-8 页页图判断题第 6 题原文及代码与站点 question 一致。"
+          "initial": "第 8 页判断题第 6 题「贪心算法只要每一步选择当前最优解，就一定能得到全局最优解。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 6 题「贪心算法只要每一步选择当前最优解，就一定能得到全局最优解。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 6 题为 ×；平台 answer=false，等价于 1（×），映射一致。",
-          "review": "第 7 页判断答案表第 6 题为「×」，映射 1（√=0/×=1）与站点 answer（布尔 false）语义一致；布尔存储需规整为整数 1，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 6 题为 ×（索引 1），候选 answer=1。独立判断：贪心需要贪心选择性质与最优子结构，0-1 背包按单位价值贪心即可得到次优解，命题错误。",
+          "review": "本卷第 7 页判断答案表第 6 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：贪心成立需贪心选择性质与最优子结构，0-1 背包按单位价值贪心可得次优解，命题错误。"
         },
         "explanation": {
-          "initial": "独立推导：贪心不保证全局最优，命题错误。",
-          "review": "需贪心选择性质与最优子结构才保证全局最优，命题错误，与答案表 × 一致。"
+          "initial": "候选解析用 0-1 背包反例说明局部最优不保证全局最优，正确。",
+          "review": "候选解析以 0-1 背包反例说明局部最优不保证全局最优，正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 22,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 7 题原文“二分查找不仅可以应用于有序数组，也可以在不增加时间复杂度的情况下应用于有序的单链表，因为链表也支持 O(1) 时间内的随机访问。”与站点一致。",
-          "review": "第 7-8 页页图判断题第 7 题原文及代码与站点 question 一致。"
+          "initial": "第 8 页判断题第 7 题「二分查找不仅可以应用于有序数组，也可以在不增加时间复杂度的情况下应用于有序的单链表，因为链表也支持 O(1)时间内的随机访问。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 7 题「二分查找不仅可以应用于有序数组，也可以在不增加时间复杂度的情况下应用于有序的单链表，因为链表也支持 O(1) 时间内的随机访问。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 7 题为 ×；平台 answer=false，等价于 1（×），映射一致。",
-          "review": "第 7 页判断答案表第 7 题为「×」，映射 1（√=0/×=1）与站点 answer（布尔 false）语义一致；布尔存储需规整为整数 1，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 7 题为 ×（索引 1），候选 answer=1。独立判断：单链表定位第 k 个结点需 O(k) 遍历，不支持 O(1) 随机访问；链表上二分每取中点 O(n)，总时间 O(n log n)，命题两处均错。",
+          "review": "本卷第 7 页判断答案表第 7 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：单链表定位第 k 个结点需 O(k) 遍历，不支持 O(1) 随机访问；链表上取中点 O(n)，总时间 O(n log n)，命题两处均错。"
         },
         "explanation": {
-          "initial": "独立推导：链表不支持 O(1) 随机访问，每次取中点需 O(n)，链表二分总时间退化为 O(n log n)，命题错误。",
-          "review": "链表取中点需 O(k) 遍历，二分退化 O(n log n)，两处说法皆错，命题错误，与答案表 × 一致。"
+          "initial": "候选解析正确指出单链表不支持 O(1) 随机访问，二分退化为 O(n log n)。",
+          "review": "候选解析正确指出单链表不支持 O(1) 随机访问、二分退化为 O(n log n)。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 23,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 8 题给出 f1（i*=2 循环）与 f2（双分支递归）代码及“f1 复杂度更高”的命题，与站点一致。",
-          "review": "第 7-8 页页图判断题第 8 题原文及代码与站点 question 一致。"
+          "initial": "第 8 页判断题第 8 题「以下函数 f1 的时间复杂度比函数 f2 的更高。」及 f1/f2 代码与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 8 题「以下函数 f1 的时间复杂度比函数 f2 的更高。」及 f1（i 每次翻倍）与 f2（双分支递归）代码与候选逐行一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 8 题为 ×；平台 answer=false，等价于 1（×），映射一致。",
-          "review": "第 7 页判断答案表第 8 题为「×」，映射 1（√=0/×=1）与站点 answer（布尔 false）语义一致；布尔存储需规整为整数 1，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 8 题为 ×（索引 1），候选 answer=1。独立判断：f1 的 i 每次翻倍，O(log n)；f2 双分支递归 T(n)=2T(n-1)+O(1)，O(2^n)；f1 更低，命题说反。",
+          "review": "本卷第 7 页判断答案表第 8 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：f1 为 O(log n)，f2 满足 T(n)=2T(n-1)+O(1) 为 O(2^n)，f1 更低，命题说反。"
         },
         "explanation": {
-          "initial": "独立推导：f1 循环约 log n 次，为 O(log n)；f2 每次调用两次、规模减 1，为 O(2^n)，f1 更低，命题错误。",
-          "review": "f1 为 O(log n)、f2 为 O(2^n)，f1 更低，命题错误，与答案表 × 一致。"
+          "initial": "候选解析对 f1 的 O(log n) 与 f2 的 O(2^n) 推导正确。",
+          "review": "候选解析对 f1 的 O(log n) 与 f2 的 O(2^n)（约 2ⁿ−1 次调用）推导正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 24,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 9 题原文“唯一分解定理表明，任何一个大于 1 的自然数都可以唯一地分解为若干个质数的乘积，如果不考虑质因数的顺序，这种分解方式是唯一的。”与站点一致。",
-          "review": "第 7-8 页页图判断题第 9 题原文及代码与站点 question 一致。"
+          "initial": "第 8 页判断题第 9 题「唯一分解定理表明，任何一个大于 1 的自然数都可以唯一地分解为若干个质数的乘积，如果不考虑质因数的顺序，这种分解方式是唯一的。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 9 题「唯一分解定理表明，任何一个大于 1 的自然数都可以唯一地分解为若干个质数的乘积，如果不考虑质因数的顺序，这种分解方式是唯一的。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 9 题为 √；平台 answer=true，等价于 0（√），映射一致。",
-          "review": "第 7 页判断答案表第 9 题为「√」，映射 0（√=0/×=1）与站点 answer（布尔 true）语义一致；布尔存储需规整为整数 0，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 9 题为 √（索引 0），候选 answer=0。独立判断：这正是算术基本定理，不计质因数次序时分解唯一，命题正确。",
+          "review": "本卷第 7 页判断答案表第 9 题标 √，映射索引 0，候选 answer=0（true→0）。独立判断：算术基本定理，不计次序分解唯一，命题正确。"
         },
         "explanation": {
-          "initial": "独立推导：这正是算术基本定理的表述，命题正确。",
-          "review": "即算术基本定理表述，命题正确，与答案表 √ 一致。"
+          "initial": "候选解析对算术基本定理的表述与示例正确。",
+          "review": "候选解析对算术基本定理的表述与 12=2²×3 示例正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
       "id": 25,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 10 题原文“归并排序和快速排序在平均情况下的时间复杂度均为 O(n log n)。但在稳定性方面，归并排序通常是不稳定的，而快速排序是稳定的。”与站点一致。",
-          "review": "第 7-8 页页图判断题第 10 题原文及代码与站点 question 一致。"
+          "initial": "第 8 页判断题第 10 题「归并排序和快速排序在平均情况下的时间复杂度均为 O(nlogn)。但在稳定性方面，归并排序通常是不稳定的，而快速排序是稳定的。」与候选 question 一致。",
+          "review": "本卷第 8 页判断题第 10 题「归并排序和快速排序在平均情况下的时间复杂度均为 O(nlogn)。但在稳定性方面，归并排序通常是不稳定的，而快速排序是稳定的。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断答案表第 10 题为 ×；平台 answer=false，等价于 1（×），映射一致。",
-          "review": "第 7 页判断答案表第 10 题为「×」，映射 1（√=0/×=1）与站点 answer（布尔 false）语义一致；布尔存储需规整为整数 1，已在 changes.answer 登记。"
+          "initial": "第 7 页判断答案表第 10 题为 ×（索引 1），候选 answer=1。独立判断：前半句正确；后半句说反，归并排序稳定（合并时 `<=` 优先左半），快速排序不稳定（远距离交换），命题错误。",
+          "review": "本卷第 7 页判断答案表第 10 题标 ×，映射索引 1，候选 answer=1（false→1）。独立判断：前半句正确；后半句说反——归并排序稳定（合并 `<=` 优先左半）、快速排序不稳定（划分远距离交换），命题错误。"
         },
         "explanation": {
-          "initial": "独立推导：归并稳定、快排不稳定，题干把稳定性说反，命题错误。",
-          "review": "后半句说反（归并稳定、快排不稳定），命题错误，与答案表 × 一致。"
+          "initial": "候选解析对归并稳定、快排不稳定的判断正确。",
+          "review": "候选解析对归并稳定、快排不稳定的判断与典型排序稳定性归纳正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l5.glm.json"
       ]
     },
     {
@@ -1018,7 +1058,15 @@
           "review": "站点参考程序与第 10 页官方程序一致（冒泡降序 + 前缀和累加），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（5 / 7 5 8 9 3→111）与全部复核边界用例（1/5→5、2/1 2→5、4/1 2 3 4→30），输出逐字符一致。"
         }
       },
-      "unresolved": []
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 9
+        }
+      ]
     },
     {
       "id": 27,
@@ -1053,121 +1101,19 @@
           "review": "站点参考程序与第 11 页官方程序一致（递归 gcd + 双重循环枚举），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（5 / 3 5 7 35 105→38）与全部复核边界用例（2/6 35→41、3/6 10 7→17、4/12 18 25 35→53），输出逐字符一致。"
         }
       },
-      "unresolved": []
-    }
-  ],
-  "unresolved": [
-    {
-      "id": 16,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 17,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 18,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 19,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 20,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 21,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 22,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 23,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 24,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 未获得两模型一致批准，待回流",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 10
+        }
       ]
     }
   ],
+  "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l5.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l5.integration.json"
 }

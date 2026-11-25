@@ -20,30 +20,7 @@ const programmingQuestions = [
 2
 6` }
       ],
-      question: `
-# [GESP202403 五级] 成绩排序
-
-## 题目描述
-
-有 $n$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：
-
-1. 比较总分，高者靠前；
-2. 如果总分相同，则比较语文和数学两科的总分，高者靠前；
-3. 如果仍相同，则比较语文和数学两科的最高分，高者靠前；
-4. 如果仍相同，则二人并列。
-
-你需要输出每位同学的排名，如遇 $x$ 人并列，则他们排名相同，并留空后面的 $x - 1$ 个名次。例如，有 $3$ 名同学并列第 $1$，则后一名同学自动成为第 $4$ 名。
-
-## 输入格式
-
-第一行一个整数 $N$，表示同学的人数。 
-接下来 $N$ 行，每行三个非负整数 $c_i, m_i, e_i$ 分别表示该名同学的语文、数学、英语成绩。
-
-## 输出格式
-
-输出 $N$ 行，按输入同学的顺序，输出他们的排名。 
-**注意：请不要按排名输出同学的序号，而是按同学的顺序输出他们各自的排名。**
-`,
+      question: "\n# [GESP202403 五级] 成绩排序\n\n## 题目描述\n\n有 $n$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：\n\n1. 比较总分，高者靠前；\n2. 如果总分相同，则比较语文和数学两科的总分，高者靠前；\n3. 如果仍相同，则比较语文和数学两科的最高分，高者靠前；\n4. 如果仍相同，则二人并列。\n\n你需要输出每位同学的排名，如遇 $x$ 人并列，则他们排名相同，并留空后面的 $x - 1$ 个名次。例如，有 $3$ 名同学并列第 $1$，则后一名同学自动成为第 $4$ 名。\n\n## 输入格式\n\n第一行一个整数 $N$，表示同学的人数。 \n接下来 $N$ 行，每行三个非负整数 $c_i, m_i, e_i$ 分别表示该名同学的语文、数学、英语成绩。\n\n保证 $0 \\le c_i, m_i, e_i \\le 150$。\n\n## 输出格式\n\n输出 $N$ 行，按输入同学的顺序，输出他们的排名。 \n**注意：请不要按排名输出同学的序号，而是按同学的顺序输出他们各自的排名。**\n\n\n## 数据规模\n\n对于 30% 的测试点，保证 $N \\le 100$，且所有同学的总分各不相同。\n\n对于所有测试点，保证 $2 \\le N \\le 10^4$。\n",
       score: 25,
       explanation: `**解析：**
 本题考查结构体的定义、多关键字自定义排序以及并列名次的统计与还原。
@@ -127,10 +104,14 @@ const programmingQuestions = [
 - **不要直接按排名顺序输出**：题干特别强调“按同学的输入顺序输出各自的排名”。如果直接遍历排序后的数组输出，就会把原输入次序打乱。务必在结构体中存储原始下标 \`idx\`，排完序后回填到 \`rank\` 数组中。
 - **并列跳名次的统计技巧**：在从 0 开始计数的排序数组中，当某人与前一人不同时，其名次正好就是 \`i + 1\`。这样即便前面有 \`x\` 人并列，后一位同学也能通过 \`i + 1\` 自动跳过被占用的名次。
 - **自定义比较函数的严格弱序**：在编写 \`sort\` 的比较函数时，如果两名同学条件完全相同，必须返回 \`false\`。若错误写成 \`>=\`，会导致 \`std::sort\` 在排序时产生未定义行为甚至死循环崩溃。`,
-      tags: ["编程题", "数论", "质因数分解"],
+      tags: ["编程题","排序算法"],
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstruct Student { long long total, cm, mx; int idx; };\n\nbool better(const Student &a, const Student &b) {\n    if (a.total != b.total) return a.total > b.total;\n    if (a.cm != b.cm) return a.cm > b.cm;\n    return a.mx > b.mx;\n}\n\nbool equalRank(const Student &a, const Student &b) {\n    return a.total == b.total && a.cm == b.cm && a.mx == b.mx;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<Student> s(n);\n    for (int i = 0; i < n; i++) {\n        long long c, m, e;\n        cin >> c >> m >> e;\n        s[i] = { c + m + e, c + m, max(c, m), i };\n    }\n    vector<Student> sorted = s;\n    sort(sorted.begin(), sorted.end(), [](const Student &a, const Student &b) {\n        return better(a, b);\n    });\n    vector<int> rank(n);\n    for (int i = 0; i < n; i++) {\n        if (i > 0 && equalRank(sorted[i], sorted[i - 1])) {\n            rank[sorted[i].idx] = rank[sorted[i - 1].idx];\n        } else {\n            rank[sorted[i].idx] = i + 1;\n        }\n    }\n    for (int i = 0; i < n; i++) cout << rank[i] << \"\\n\";\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","tags"],
     },
     {
       id: 27,
@@ -140,23 +121,7 @@ const programmingQuestions = [
       samples: [
         { input: `10 3`, output: `7` }
       ],
-      question: `
-# [GESP202403 五级] B-smooth 数
-
-## 题目描述
-
-小杨同学想寻找一种名为 $ B $-smooth 数的正整数。 
-
-如果一个正整数的最大质因子不超过 $ B $，则该正整数为 $ B $-smooth 数。小杨同学想知道，对于给定的 $ n $ 和 $ B $，有多少个不超过 $ n $ 的 $ B $-smooth 数。
-
-## 输入格式
-
-第一行包含两个正整数 $ n $ 和 $ B $，含义如题面所示。
-
-## 输出格式
-
-输出一个非负整数，表示不超过 $ n $ 的 $ B $-smooth 数的数量。
-`,
+      question: "\n# [GESP202403 五级] B-smooth 数\n\n## 题目描述\n\n小杨同学想寻找一种名为 $ B $-smooth 数的正整数。 \n\n如果一个正整数的最大质因子不超过 $ B $，则该正整数为 $ B $-smooth 数。小杨同学想知道，对于给定的 $ n $ 和 $ B $，有多少个不超过 $ n $ 的 $ B $-smooth 数。\n\n## 输入格式\n\n第一行包含两个正整数 $ n $ 和 $ B $，含义如题面所示。\n\n## 输出格式\n\n输出一个非负整数，表示不超过 $ n $ 的 $ B $-smooth 数的数量。\n\n\n## 数据范围\n\n| 子任务编号 | 数据点占比 | $n$ | $B$ |\n| --- | --- | --- | --- |\n| 1 | 30% | $\\le 1000$ | $1 \\le B \\le 1000$ |\n| 2 | 30% | $\\le 10^6$ | $\\sqrt{n} \\le B \\le 10^6$ |\n| 3 | 40% | $\\le 10^6$ | $1 \\le B \\le 10^6$ |\n\n对于全部数据，保证 $1 \\le n \\le 10^6$，$1 \\le B \\le 10^6$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -219,10 +184,14 @@ const programmingQuestions = [
 **知识延伸：**
 - **光滑数（Smooth Number）**：在现代数论和密码学中，\`B\`-smooth 数具有重要地位，如大整数分解算法（二次筛法 QS、数域筛法 NFS）均重度依赖寻找光滑数。
 - **埃氏筛的拓展应用**：除了判断质数和求最大质因子，埃氏筛法通过类似方式还可以高效批量预处理区间的最小质因子、欧拉函数值以及质因子个数等数论信息。`,
-      tags: ["编程题", "搜索", "模拟"],
+      tags: ["编程题","数论","筛法","质因数分解"],
       template: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    long long n, b;\n    cin >> n >> b;\n    // 埃氏筛思想：largest[x] 记录 x 的最大质因子\n    vector<int> largest(n + 1, 0);\n    for (long long p = 2; p <= n; p++) {\n        if (largest[p] == 0) {\n            for (long long x = p; x <= n; x += p) largest[x] = p;\n        }\n    }\n    long long count = 0;\n    for (long long x = 1; x <= n; x++) {\n        if (largest[x] <= b) count++;\n    }\n    cout << count << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","tags"],
     }
 ];
 
@@ -239,53 +208,27 @@ export const paperData = {
             id: 1,
             type: "single",
             question: `唯一分解定理描述的内容是（ ）？`,
-            options: [
-                "任意整数都可以分解为素数的乘积",
-                "每个大于1的整数都可以唯一分解为素数的乘积",
-                "每个大于1的整数都可以唯一分解为素数的乘积，不计顺序",
-                "每一个合数都可以分解为素数的乘积"
-            ],
+            options: ["任意整数都可以分解为素数的乘积","每个合数都可以唯一分解为一系列素数的乘积","两个不同的整数可以分解为相同的素数乘积","以上都不对"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-            **解析：**
-            唯一分解定理（算术基本定理）：任何大于1的整数，要么本身是质数，要么可以写为一系列质数的乘积，且在不计顺序的情况下，这种分解方式是唯一的。
-
-            - **A 任意整数都可以分解为素数的乘积**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
-            - **B 每个大于1的整数都可以唯一分解为素数的乘积**：正确答案。
-            - **C 每个大于1的整数都可以唯一分解为素数的乘积，不计顺序**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
-            - **D 每一个合数都可以分解为素数的乘积**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
-
-            **考点：** 筛法
-            `,
+            explanation: "**答案：B**\n\n**解析：** 官方选项 B 为“每个合数都可以唯一分解为一系列素数的乘积”，这是唯一正确的表述（分解的唯一性不计素数顺序）。\n\n- **A 任意整数都可以分解为素数的乘积**：错误。0、1 和负整数不能表示为若干素数的乘积。\n- **B 每个合数都可以唯一分解为一系列素数的乘积**：正确。\n- **C 两个不同的整数可以分解为相同的素数乘积**：错误。若素数乘积相同，由唯一性可知两个整数相同。\n- **D 以上都不对**：错误，B 正确。\n\n**考点：** 唯一分解定理",
             tags: ["客观题", "单选题", "GESP5级", "数论"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 2,
             type: "single",
             question: `贪心算法的核心思想是（ ）。`,
-            options: [
-                "在每一步选择中都采取局部最优策略",
-                "在每一步选择中都采取全局最优策略",
-                "通过回溯找到最优解",
-                "通过动态规划找到最优解"
-            ],
+            options: ["在每一步选择中都做当前状态下的最优选择","在每一步选择中都选择局部最优解","在每一步选择中都选择全局最优解","以上都对"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            贪心算法在每一步选择中都采取局部最优策略，期望通过局部最优达到全局最优。
-
-            - **A 在每一步选择中都采取局部最优策略**：正确答案。
-            - **B 在每一步选择中都采取全局最优策略**：错误。
-            - **C 通过回溯找到最优解**：错误。
-            - **D 通过动态规划找到最优解**：错误。
-
-            **考点：** C++基础
-            `,
+            explanation: "**答案：A**\n\n**解析：** 贪心算法在每一步都做出当前状态下的最优选择（局部最优），并期望由此得到全局最优。\n\n- **A 在每一步选择中都做当前状态下的最优选择**：正确，符合教材定义。\n- **B 在每一步选择中都选择局部最优解**：语义与 A 相近，但官方答案取 A；B 未强调“当前状态下”。\n- **C 在每一步选择中都选择全局最优解**：错误。贪心每步只知道局部信息，不能直接选择全局最优。\n- **D 以上都对**：错误，C 不成立。\n\n**考点：** 贪心算法",
             tags: ["客观题", "单选题", "GESP5级", "贪心"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 3,
@@ -383,22 +326,15 @@ int fibonacci(int n) {
 }
 \`\`\`
 `,
-            options: ["$O(1)$", "$O(log n)$", "O($2^N$)", "$O(N)$"],
+            options: ["$O(1)$","$O(n)$","$O(2^n)$","$O(\\log n)$"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-            **解析：**
-            朴素递归 Fibonacci 会重复计算大量子问题，时间复杂度呈指数级增长，通常记为 O($2^N$)。
-
-            - **A $O(1)$**：错误。
-            - **B $O(log n)$**：错误。
-            - **C O($2^N$)**：正确答案。
-            - **D $O(N)$**：错误。
-
-            **考点：** 递归
-            `,
+            explanation: "**答案：C**\n\n**解析：** 朴素递归的 fibonacci(n) 每次都分裂成 fibonacci(n-1) 与 fibonacci(n-2) 两个调用，递归树近似满二叉树，调用次数随 n 指数增长，时间复杂度记为 $O(2^n)$（更精确的渐进界为 $O(\\varphi^n)$，$\\varphi\\approx1.618$，教材统一写作 $O(2^n)$）。\n\n- **A $O(1)$**：错误，需要指数级的函数调用。\n- **B $O(n)$**：错误，$O(n)$ 是循环迭代（递推）写法的时间复杂度。\n- **C $O(2^n)$**：正确，重复子问题导致指数级调用。\n- **D $O(\\log n)$**：错误，递归深度为 $O(n)$，调用次数更是指数级。\n\n**考点：** 递归、时间复杂度分析",
             tags: ["客观题", "单选题", "GESP5级", "递归", "斐波那契", "复杂度分析"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
@@ -412,19 +348,11 @@ int fibonacci(int n) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            高精度加法每一位写入结果的应是当前位 sum % 10，进位单独保存在 carry 中，因此选 A。
-
-            - **A $O(1)$**：正确答案。
-            - **B $O(log n)$**：错误。
-            - **C O($2^N$)**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **D $O(N)$**：错误。
-
-            **考点：** 高精度
-            `,
+            explanation: "**答案：A**\n\n**解析：** 高精度加法每一位应把当前位 `sum % 10` 追加到结果，并把 `sum / 10` 作为进位留给下一位。A 正是这个操作。\n\n- **A `result = to_string(sum % 10) + result;`**：正确，取当前位并接到结果高位方向。\n- **B `result = to_string(carry % 10) + result;`**：错误，存入的是进位而不是当前位。\n- **C `result = to_string(sum / 10) + result;`**：错误，存入的是进位部分，当前位丢失。\n- **D `result = to_string(sum % 10 + carry) + result;`**：错误，把进位又加回当前位，重复计算。\n\n**考点：** 高精度加法",
             tags: ["客观题", "单选题", "GESP5级", "高精度", "字符串"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 8,
@@ -433,19 +361,11 @@ int fibonacci(int n) {
             options: ["2", "5", "3", "4"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
-
-            **解析：**
-            按题中二分过程：79→90→81→未找到，共进入 while 循环 4 次，因此 times 为 4，选 D。
-
-            - **A 2**：错误。该数值与正确计算结果不符，请重新验算。
-            - **B 5**：错误。该数值与正确计算结果不符，请重新验算。
-            - **C 3**：错误。该数值与正确计算结果不符，请重新验算。
-            - **D 4**：正确答案。
-
-            **考点：** 二分查找
-            `,
+            explanation: "**答案：D**\n\n**解析：** 13 个元素的下标为 0..12，target=82，依次比较：\n\n1. `mid=6`，arr[6]=39 < 82，left=7；\n2. `mid=9`，arr[9]=79 < 82，left=10；\n3. `mid=11`，arr[11]=90 > 82，right=10；\n4. `mid=10`，arr[10]=81 < 82，left=11；\n\n此时 left=11 > right=10，循环结束，共进入 while 4 次，times=4。故选 D。\n\n**考点：** 二分查找",
             tags: ["客观题", "单选题", "GESP5级", "二分查找"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 9,
@@ -491,7 +411,7 @@ bool isPrime(int num) {
         {
             id: 10,
             type: "single",
-            question: `在埃拉托斯特尼筛法中，要筛选出不大于 n 的所有素数，最外层循环应该遍历什么范围（ ）。`,
+            question: "在埃拉托斯特尼筛法中，要筛选出不大于 n 的所有素数，最外层循环应该遍历什么范围（ ）。\n\n```cpp\nvector<int> sieveOfEratosthenes(int n) {\n    std::vector<bool> isPrime(n + 1, true);\n    std::vector<int> primes;\n    __________________________ {\n        if (isPrime[i]) {\n            primes.push_back(i);\n            for (int j = i * i; j <= n; j += i) {\n                isPrime[j] = false;\n            }\n        }\n    }\n    for (int i = sqrt(n) + 1; i <= n; ++i) {\n        if (isPrime[i]) {\n            primes.push_back(i);\n        }\n    }\n    return primes;\n}\n```",
             options: [
                 "for (int i = 2; i <= n; ++i)",
                 "for (int i = 1; i < n; ++i)",
@@ -500,61 +420,40 @@ bool isPrime(int num) {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-            **解析：**
-            埃氏筛只需要让外层质数筛到 $sqrt{n}$ 即可，再大的合数都会在此前被更小的质因子筛掉，因此选 C。
-
-            - **A 2**：错误。该数值与正确计算结果不符，请重新验算。
-            - **B 5**：错误。该数值与正确计算结果不符，请重新验算。
-            - **C 3**：正确答案。
-            - **D 4**：错误。该数值与正确计算结果不符，请重新验算。
-
-            **考点：** 筛法
-            `,
+            explanation: "**答案：C**\n\n**解析：** 埃氏筛外层只需枚举 `i = 2 .. ⌊√n⌋`：任何合数都有不超过 √n 的质因子，会被更小的素数提前筛掉；大于 √n 的素数由代码后半段的循环补入结果。\n\n- **A `i = 2..n`**：会把大于 √n 的素数也压入 primes，随后后半段循环又压入一次，结果出现重复，不能选。\n- **B `i = 1..n-1`**：从 1 开始会把 1 当作素数处理，且范围过大。\n- **C `i = 2..√n`**：正确且高效，后半段已负责补入剩余素数。\n- **D `i = 1..√n`**：起点 1 错误，会把 1 压入素数表。\n\n**考点：** 埃拉托斯特尼筛法",
             tags: ["客观题", "单选题", "GESP5级", "筛法"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 11,
             type: "single",
             question: `素数的线性筛法时间复杂度为（ ）。`,
-            options: ["$O(N)$", "$O(n log n)$", "O(N log log N)", "$O(N^2)$"],
+            options: ["$O(N)$","$O(N \\log \\log N)$","$O(N \\log N)$","$O(N^2)$"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            线性筛保证每个合数只被其最小质因子筛掉一次，因此总时间复杂度是 $O(N)$。
-
-            - **A $O(N)$**：正确答案。
-            - **B $O(n log n)$**：错误。
-            - **C O(N log log N)**：错误。
-            - **D $O(N^2)$**：错误。该代码逻辑与题目要求不符，请逐步推演。
-
-            **考点：** 筛法
-            `,
+            explanation: "**答案：A**\n\n**解析：** 线性筛（欧拉筛）保证每个合数只被它的最小质因子筛掉一次，标记总次数与 n 成正比，时间复杂度为 $O(N)$。\n\n- **A $O(N)$**：正确。\n- **B $O(N\\log\\log N)$**：错误，这是埃拉托斯特尼筛法的复杂度。\n- **C $O(N\\log N)$**：错误，线性筛不会对每个质数都遍历其全部倍数。\n- **D $O(N^2)$**：错误，线性筛的标记总次数是线性的。\n\n**考点：** 线性筛法",
             tags: ["客观题", "单选题", "GESP5级", "线性筛", "复杂度分析"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
             type: "single",
             question: `归并排序的基本思想是（ ）。`,
-            options: ["动态规划", "分治", "贪心", "搜索"],
+            options: ["动态规划","分治","贪心算法","回溯算法"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-            **解析：**
-            归并排序的基本思想是分而治之。
-
-            - **A 动态规划**：错误。
-            - **B 分治**：正确答案。
-            - **C 贪心**：错误。
-            - **D 搜索**：错误。
-
-            **考点：** 归并排序
-            `,
+            explanation: "**答案：B**\n\n**解析：** 归并排序把序列不断二分，分别递归排序，再把两个有序子序列合并，是“分解—解决—合并”的分治算法。\n\n- **A 动态规划**：错误，归并排序没有重叠子问题与状态转移。\n- **B 分治**：正确。\n- **C 贪心算法**：错误，归并排序不做逐步局部最优选择。\n- **D 回溯算法**：错误，归并排序不搜索解空间，也没有回退过程。\n\n**考点：** 归并排序、分治",
             tags: ["客观题", "单选题", "GESP5级", "归并排序", "分治"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
@@ -568,19 +467,12 @@ bool isPrime(int num) {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-            **解析：**
-            pivot 选得好时，划分更均衡，快速排序更接近 $O(n log n)$；选得差时可能退化到 $O(N^2)$，因此它会影响时间复杂度。
-
-            - **A 动态规划**：错误。
-            - **B 分治**：正确答案。
-            - **C 贪心**：错误。
-            - **D 搜索**：错误。
-
-            **考点：** 快速排序
-            `,
+            explanation: "**答案：B**\n\n**解析：** pivot 选得好时划分均衡，快排接近 O(n log n)；选得差时（如已排序数组取端点为基准）每次只减少一个元素，退化为 O(n^2)。因此 pivot 直接影响算法的时间复杂度。\n\n- **A 不影响**：错误。\n- **B 时间复杂度**：正确，这是最主要的影响。\n- **C 空间复杂度**：递归深度也会随划分均衡程度变化，但教材通常把时间复杂度作为 pivot 的主要影响；官方答案为 B。\n- **D 时间复杂度和空间复杂度**：表述过宽，官方不选。\n\n**考点：** 快速排序",
             tags: ["客观题", "单选题", "GESP5级", "快速排序", "复杂度分析"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 14,
@@ -594,24 +486,17 @@ bool isPrime(int num) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            递归最基本的要求是必须存在终止条件，否则调用会无限进行下去。参数变化常见但不是唯一表述，因此按官方答案区选 A。
-
-            - **A 动态规划**：正确答案。
-            - **B 分治**：错误。
-            - **C 贪心**：错误。
-            - **D 搜索**：错误。
-
-            **考点：** 递归
-            `,
+            explanation: "**答案：A**\n\n**解析：** 递归必须在某个条件下停止并返回，否则会无限递归下去；参数递减或递增只是常见的收敛手段，并不是所有递归都必须满足（例如按区间二分的递归）；返回值固定更不是必要条件。因此最基本的要求是“有终止条件”。\n\n- **A 有终止条件**：正确。\n- **B 函数参数递减（或递增）**：不是必须，参数可以按区间缩小或以其他方式收敛。\n- **C 函数返回值固定**：与终止无关。\n- **D 以上都对**：错误，B、C 不成立。\n\n**考点：** 递归",
             tags: ["客观题", "单选题", "GESP5级", "递归"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 15,
             type: "single",
-            question: `假设给定链表为某单链表，若调用 searchValue(head, 5)，函数返回值为（ ）。`,
+            question: "假设给定链表为：$1 \\to 3 \\to 5 \\to 7 \\to \\text{nullptr}$，若调用 `searchValue(head, 5)`，函数返回值为（ ）。\n\n```cpp\nint searchValue(ListNode* head, int target) {\n    while (head != nullptr) {\n        if (head->val == target) {\n            return 1;\n        }\n        head = head->next;\n    }\n    return 0;\n}\n```",
             options: [
                 "返回 1",
                 "返回 0",
@@ -620,19 +505,12 @@ bool isPrime(int num) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            题面函数会顺着 next 遍历链表，一旦遇到值等于 target 的节点就 return 1；官方答案区给出 A。
-
-            - **A 动态规划**：正确答案。
-            - **B 分治**：错误。
-            - **C 贪心**：错误。
-            - **D 搜索**：错误。
-
-            **考点：** 链表
-            `,
+            explanation: "**答案：A**\n\n**解析：** 链表为 1 → 3 → 5 → 7。searchValue 从 head 开始依次比较：1≠5，3≠5，5==5，命中后返回 1，因此返回值为 1。\n\n- **A 返回 1**：正确。\n- **B 返回 0**：错误，5 在链表中。\n- **C 死循环，无法返回**：错误，每个结点都沿 next 前进，7 之后为 nullptr。\n- **D 返回 -1**：错误，函数只返回 0 或 1。\n\n**考点：** 单链表遍历",
             tags: ["客观题", "单选题", "GESP5级", "链表", "顺序查找"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 16,

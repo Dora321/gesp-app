@@ -595,13 +595,17 @@ t = a[i] - b[i];
       type: 'judge',
       question: `数组的存储空间在物理上通常是连续的，而链表的结点可以存储在不连续的内存空间中。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 数组在内存中占用一段连续空间，依靠下标偏移随机访问；链表的每个结点单独分配，通过指针链接，各结点在内存中的位置可以互不相邻。这正是两者最本质的存储差异，也决定了数组支持 O(1) 随机访问、链表只支持顺序访问。`,
       tags: ['数组', '链表'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 17,
@@ -614,7 +618,7 @@ t = a[i] - b[i];
 ④ head->next = p;
 \`\`\``,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -623,6 +627,10 @@ t = a[i] - b[i];
 
 正确顺序必须保证 ①、③ 都在 ④ 之前执行（② 与其他步无冲突）。因此"无论什么顺序都正确"的说法不成立。`,
       tags: ['链表', '指针与引用'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 18,
@@ -642,13 +650,17 @@ int gcd2(int a, int b) {
 }
 \`\`\``,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 两者是同一个欧几里得算法的递归与迭代版本。gcd1 在 b == 0 时返回 a；gcd2 的 while 循环在 b 变为 0 时结束并返回 a。每轮迭代都是 a、b = b、a % b，与递归调用的参数传递完全一致，所以对任意输入返回值相同。`,
       tags: ['递推与递归', '数论'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 19,
@@ -671,46 +683,58 @@ void merge(int arr[], int left, int mid, int right) {
 }
 \`\`\``,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 代码先把左右两个有序子数组复制到 L、R，再用双指针逐个比较取较小者写回 arr，最后把某个数组剩余部分整体追加。比较使用 \`<=\`，相同时优先取左半部分，还保证了排序的稳定性。各边界（n1、n2 的计算，k 从 left 开始）均正确，是标准的归并实现。`,
       tags: ['排序算法', '归并排序'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 20,
       type: 'judge',
       question: `分治法通常将一个规模较大的问题拆分为若干个规模较小、结构相似的子问题，分别求解后再合并子问题的结果。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 这正是分治法的定义：分（Divide）——把大问题拆成结构相同的子问题；治（Conquer）——递归求解子问题，子问题足够小时直接解；合（Combine）——把子问题的解合并成原问题的解。归并排序、快速排序、快速幂都是典型应用。`,
       tags: ['分治'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 21,
       type: 'judge',
       question: `贪心算法只要每一步选择当前最优解，就一定能得到全局最优解。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
 **解析：**
 贪心算法只保证每一步的局部最优，**不保证**全局最优——全局最优成立需要问题具有贪心选择性质与最优子结构（如本题背景中的装盒问题、区间调度），否则贪心可能得到次优解。例如 0-1 背包问题中按"单位价值最高"贪心就可能错过最优组合（此时需要动态规划）。所以说"一定能"是错误的。`,
       tags: ['贪心'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 22,
       type: 'judge',
       question: `二分查找不仅可以应用于有序数组，也可以在不增加时间复杂度的情况下应用于有序的单链表，因为链表也支持 O(1) 时间内的随机访问。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -719,6 +743,10 @@ void merge(int arr[], int left, int mid, int right) {
 1. 单链表**不支持** O(1) 随机访问——定位第 k 个结点必须从头顺序走 k 步，是 O(k) 时间；
 2. 因此链表上的"二分"每取一个 mid 都要 O(n) 遍历，总时间退化为 O(n log n)，无法保持有序数组二分 O(log n) 的效率。二分查找的高效依赖数组的随机访问特性。`,
       tags: ['二分查找', '链表', '时间复杂度'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 23,
@@ -735,7 +763,7 @@ void f2(int n) {
 }
 \`\`\``,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -746,26 +774,34 @@ f2 每次调用自身两次、问题规模只减 1，调用次数满足 T(n) = 2
 
 O(log n) 远低于 O(2ⁿ)，所以 f1 的复杂度比 f2 **低**，说法相反。`,
       tags: ['时间复杂度'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 24,
       type: 'judge',
       question: `唯一分解定理表明，任何一个大于 1 的自然数都可以唯一地分解为若干个质数的乘积，如果不考虑质因数的顺序，这种分解方式是唯一的。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
 **解析：**
 这就是算术基本定理（唯一分解定理）：任何大于 1 的整数 n 都能写成 n = p₁^a₁ × p₂^a₂ × … × pₖ^aₖ（pᵢ 为质数、aᵢ 为正整数），且在不计次序的前提下该表达方式唯一。例如 12 = 2² × 3，无论怎么分解，最终都归约为同样的质因数组合。`,
       tags: ['数论', '素数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 25,
       type: 'judge',
       question: `归并排序和快速排序在平均情况下的时间复杂度均为 O(n log n)。但在稳定性方面，归并排序通常是不稳定的，而快速排序是稳定的。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -776,12 +812,16 @@ O(log n) 远低于 O(2ⁿ)，所以 f1 的复杂度比 f2 **低**，说法相反
 
 典型记忆：稳定的有归并、插入、冒泡、计数排序；不稳定的有快速、选择、堆排序。`,
       tags: ['排序算法', '归并排序', '快速排序'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       title: '排排坐',
       score: 25,
       description: `老师正在和小朋友们分糖果。
@@ -827,12 +867,13 @@ $$\\sum_{i=1}^{n} (b_1 + b_2 + \\cdots + b_i) = \\sum_{i=1}^{n} (n - i + 1) \\ti
       template: '#include <iostream>\nusing namespace std;\n\nint a[1010];\n\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 0; i < n; ++i)\n        cin >> a[i];\n    // 在此编写代码\n    return 0;\n}',
       referenceCode: '#include <iostream>\nusing namespace std;\nint a[1010];\nvoid bubble_sort(int n) {\n    for (int i = 0; i < n; ++i) {\n        for (int j = 1; j < n - i; ++j) {\n            if (a[j - 1] < a[j])\n                swap(a[j - 1], a[j]);\n        }\n    }\n}\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 0; i < n; ++i)\n        cin >> a[i];\n    bubble_sort(n);\n    int ans = 0, sum = 0;\n    for (int i = 0; i < n; ++i) {\n        sum += a[i];\n        ans += sum;\n    }\n    cout << ans << endl;\n    return 0;\n}',
       tags: ['排序算法', '贪心', '前缀和'],
+      "reviewedFields": ["memoryLimit"],
     },
     {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       title: '晚宴',
       score: 25,
       description: `小明去参加晚宴。晚宴中有 n 个菜肴，每个菜肴都有一个美味度，第 i 个菜肴的美味度为 v_i。
@@ -929,6 +970,7 @@ $2 \\leq n \\leq 1000$，$1 \\leq v_i \\leq 1000000$。
       template: '#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint arr[1010];\n\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 0; i < n; ++i)\n        cin >> arr[i];\n    // 在此编写代码\n    return 0;\n}',
       referenceCode: '#include <iostream>\n#include <algorithm>\nusing namespace std;\nint gcd(int a, int b) {\n    if (b == 0) return a;\n    return gcd(b, a % b);\n}\nint arr[1010];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 0; i < n; ++i)\n        cin >> arr[i];\n    int ans = 0;\n    for (int i = 0; i < n; ++i)\n        for (int j = i + 1; j < n; ++j)\n            if (gcd(arr[i], arr[j]) == 1)\n                ans = max(ans, arr[i] + arr[j]);\n    cout << ans << endl;\n    return 0;\n}',
       tags: ['枚举', '数论', '最大公约数'],
+      "reviewedFields": ["memoryLimit"],
     },
   ],
 };

@@ -5,7 +5,7 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `4 5 5
 00000
@@ -13,25 +13,7 @@ const programmingQuestions = [
 00011
 00011`, output: `6` }
       ],
-      question: `
-# [GESP202406 五级] 黑白格
-
-## 题目描述
-
-小杨有一个 $n$ 行 $m$ 列的网格图，其中每个格子要么是白色，要么是黑色。
-
-小杨想知道至少包含 $k$ 个黑色格子的最小子矩形包含了多少个格子。
-
-## 输入格式
-
-第一行包含三个正整数 $n,m,k$，含义如题面所示。
-
-之后 $n$ 行，每行一个长度为 $m$ 的 $\\texttt{01}$ 串，代表网格图第 $i$ 行格子的颜色，如果为 $\\texttt{0}$，则对应格子为白色，否则为黑色。
-
-## 输出格式
-
-输出一个整数，代表至少包含 $k$ 个黑色格子的最小子矩形包含格子的数量，如果不存在则输出 $0$。
-`,
+      question: "\n# [GESP202406 五级] 黑白格\n\n## 题目描述\n\n小杨有一个 $n$ 行 $m$ 列的网格图，其中每个格子要么是白色，要么是黑色。\n\n小杨想知道至少包含 $k$ 个黑色格子的最小子矩形包含了多少个格子。\n\n## 输入格式\n\n第一行包含三个正整数 $n,m,k$，含义如题面所示。\n\n之后 $n$ 行，每行一个长度为 $m$ 的 $\\texttt{01}$ 串，代表网格图第 $i$ 行格子的颜色，如果为 $\\texttt{0}$，则对应格子为白色，否则为黑色。\n\n## 输出格式\n\n输出一个整数，代表至少包含 $k$ 个黑色格子的最小子矩形包含格子的数量，如果不存在则输出 $0$。\n\n\n## 数据范围\n\n| 子任务编号 | 数据点占比 | $n,m$ |\n| --- | --- | --- |\n| 1 | 20% | $\\le 10$ |\n| 2 | 40% | $n=1, 1 \\le m \\le 100$ |\n| 3 | 40% | $\\le 100$ |\n\n对于全部数据，保证 $1 \\le n,m \\le 100$，$1 \\le k \\le n \\times m$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -126,12 +108,16 @@ const programmingQuestions = [
       template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m, k; cin >> n >> m >> k;\n    vector<vector<int>> s(n+1, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int min_area = 1e9;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int r2 = r1; r2 <= n; r2++) {\n            for (int c1 = 1; c1 <= m; c1++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int count = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (count >= k) min_area = min(min_area, (r2-r1+1) * (c2-c1+1));\n                }\n            }\n        }\n    }\n    if (min_area == 1e9) cout << 0 << endl;\n    else cout << min_area << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `3
 7
@@ -140,25 +126,7 @@ const programmingQuestions = [
 1
 0` }
       ],
-      question: `
-# [GESP202406 五级] 小杨的幸运数字
-
-## 题目描述
-
-小杨认为他的幸运数字应该恰好有两种不同的质因子，例如，$12=2\\times 2\\times 3$ 的质因子有 $2,3$，恰好为两种不同的质因子，因此 $12$ 是幸运数字，而 $30=2\\times3\\times5$ 的质因子有 $2,3,5$，不符合要求，不为幸运数字。
-
-小杨现在有 $n$ 个正整数，他想知道每个正整数是否是他的幸运数字。
-
-## 输入格式
-
-第一行包含一个正整数 $n$，代表正整数个数。
-
-之后 $n$ 行，每行一个正整数。
-
-## 输出格式
-
-输出 $n$ 行，对于每个正整数，如果是幸运数字，输出 $1$，否则输出 $0$。
-`,
+      question: "\n# [GESP202406 五级] 小杨的幸运数字\n\n## 题目描述\n\n小杨认为他的幸运数字应该恰好有两种不同的质因子，例如，$12=2\\times 2\\times 3$ 的质因子有 $2,3$，恰好为两种不同的质因子，因此 $12$ 是幸运数字，而 $30=2\\times3\\times5$ 的质因子有 $2,3,5$，不符合要求，不为幸运数字。\n\n小杨现在有 $n$ 个正整数，他想知道每个正整数是否是他的幸运数字。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，代表正整数个数。\n\n之后 $n$ 行，每行一个正整数。\n\n## 输出格式\n\n输出 $n$ 行，对于每个正整数，如果是幸运数字，输出 $1$，否则输出 $0$。\n\n\n## 数据范围\n\n| 子任务编号 | 数据点占比 | $n$ | 正整数值域 |\n| --- | --- | --- | --- |\n| 1 | 40% | $\\le 100$ | $\\le 10^5$ |\n| 2 | 60% | $\\le 10^4$ | $\\le 10^6$ |\n\n对于全部数据，保证 $1 \\le n \\le 10^4$，每个正整数 $a_i$ 满足 $2 \\le a_i \\le 10^6$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -243,6 +211,10 @@ const programmingQuestions = [
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int L, R;\n    cin >> L >> R;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\nusing namespace std;\n\nint distinctPrimeFactors(long long x) {\n    int count = 0;\n    for (long long p = 2; p * p <= x; p++) {\n        if (x % p == 0) {\n            count++;\n            while (x % p == 0) x /= p;\n        }\n    }\n    if (x > 1) count++;\n    return count;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    while (n--) {\n        long long x;\n        cin >> x;\n        cout << (distinctPrimeFactors(x) == 2 ? 1 : 0) << \"\\n\";\n    }\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 9,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 
@@ -403,23 +375,17 @@ dl_node* search(dl_node* head, string my_song) {
         {
             id: 4,
             type: "single",
-            question: `下列哪个时间复杂度最低（ ）。`,
-            options: ["$O(n log n)$", "$O(N^2)$", "$O(log n)$", "$O(N)$"],
+            question: "小杨想在如上题所述的双向链表中加入一首新歌曲。为了能快速找到该歌曲，他将其作为链表的第一首歌曲，则下面横线上应填入的代码为（ ）。",
+            options: ["head->next->prev = p;","head->next = p;","head->prev = p;","触发异常，不能对空指针进行操作。"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-            **解析：**
-            常见复杂度排序：$O(1)$ < $O(log n)$ < $O(N)$ < $O(n log n)$ < $O(N^2)$。
-
-            - **A $O(n log n)$**：错误。
-            - **B $O(N^2)$**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **C $O(log n)$**：正确答案。
-            - **D $O(N)$**：错误。
-
-            **考点：** 排序算法
-            `,
+            explanation: "**答案：C**\n\n**解析：** 新结点 p 要成为链表的第一首歌曲，p->next 已指向原首结点 head，p->prev 已置空；此时还必须把原首结点的 prev 改为 p，即 `head->prev = p;`，最后再执行 head = p。\n\n- **A `head->next->prev = p;`**：错误，改的是第二个结点的前驱，且 head->next 可能为空。\n- **B `head->next = p;`**：错误，把原首结点向后链接，方向反了。\n- **C `head->prev = p;`**：正确，补齐新首结点与原首结点的反向链接。\n- **D 触发异常**：错误，head 非空时该操作合法。\n\n需要说明：原卷 insert 的 head 是按值传递，函数内 `head = p` 不会更新调用者的头指针；这是原卷代码的缺陷，不影响本题填空答案 C。\n\n**考点：** 双向链表头插",
             tags: ["客观题", "单选题", "GESP5级", "复杂度分析"],
+      "code": "void insert(dl_node *head, string my_song) {\n    p = new dl_node;\n    p->song = my_song;\n    p->prev = nullptr;\n    p->next = head;\n\n    if (head != nullptr) {\n        ________________________ // 在此处填入代码\n    }\n    head = p;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","code","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 5,
@@ -470,9 +436,8 @@ int gcd(int a, int b) {
         {
             id: 6,
             type: "single",
-            question: `欧几里得算法还可以写成如下形式 :
-下面有关说法，错误的是（ ）。`,
-            options: ["本题的gcd()实现为递归方式。", "本题的gcd()代码量少，更容易理解其辗转相除的思想。", "当 较大时，本题的gcd()实现会多次调用自身，需要较多额外的辅助空间。", "当 较大时，相比上题中的gcd()的实现，本题的gcd()执行效率更高。"],
+            question: "欧几里得算法还可以写成如下形式：\n\n```cpp\nint gcd(int a, int b) {\n    return b == 0 ? a : gcd(b, a % b);\n}\n```\n\n下面有关说法，错误的是（ ）。",
+            options: ["本题的gcd()实现为递归方式。","本题的gcd()代码量少，更容易理解其辗转相除的思想。","当 $a$ 较大时，本题的gcd()实现会多次调用自身，需要较多额外的辅助空间。","当 $a$ 较大时，相比上题中的gcd()的实现，本题的gcd()执行效率更高。"],
             answer: 3,
             score: 2,
             explanation: `**答案：不正确的是 D（当数值较大时，相比上题中的 gcd() 实现，本题的递归 gcd() 执行效率更高）**
@@ -497,6 +462,10 @@ int gcd(int a, int b) {
 - **审清反向设问**：题干问的是「错误的是」，看到 A、B、C 说法正确时切勿误选，应重点寻找违背事实的选项。
 - **破除递归误区**：不可误认为「代码简短就代表运行效率更高」。递归的核心优势在于逻辑清晰、自相似结构表达自然，但在底层机器指令和内存消耗上，往往会付出函数调用栈的额外代价。`,
             tags: ["客观题", "单选题", "GESP5级", "数论", "递归", "复杂度分析"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","options","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
@@ -667,79 +636,45 @@ void qsort(vector<int>& arr, int left, int right) {
             id: 10,
             type: "single",
             question: `关于分治算法，以下哪个说法正确？`,
-            options: ["分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。", "归并排序不是分治算法的应用。", "分治算法通常用于解决小规模问题。", "分治算法的时间复杂度总是优于 。"],
+            options: ["分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。","归并排序不是分治算法的应用。","分治算法通常用于解决小规模问题。","分治算法的时间复杂度总是优于 $O(n\\log n)$。"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。）**
-
-**核心解析：**
-分治法（Divide and Conquer，即“分而治之”）是计算机科学中的经典算法设计思想。它的核心逻辑是：当一个大问题直接求解过于困难时，将其拆解为若干个规模较小、与原问题结构相同且相互独立的子问题；递归求解这些子问题；最后将各个子问题的解答合并起来，构成原问题的最终答案。
-
-分治算法的标准执行过程包含三个明确阶段：
-1. **分解（Divide）**：将原问题划分为若干个规模较小的同类子问题。
-2. **解决（Conquer）**：递归求解各个子问题；若子问题规模已经足够小（到达递归边界/递归基），则直接计算并返回结果。
-3. **合并（Combine）**：将各个子问题的解合并为原问题的解。
-因此，选项 A 精准概括了分治算法的标准定义与处理流程。
-
-**选项逐项分析：**
-- **A 分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。**：✅ 正确。这完整对应了分治法“分解、求解、合并”的标准三步流程。
-- **B 归并排序不是分治算法的应用。**：❌ 错误。归并排序（Merge Sort）是分治算法最经典的代表应用之一。它将待排序序列对半拆分成左右两部分，分别递归排序，最后通过双指针合并两个有序子序列。
-- **C 分治算法通常用于解决小规模问题。**：❌ 错误。若问题规模本身较小，直接使用简单模拟或暴力循环即可高效解决，无需引入递归拆解带来的函数调用开销。分治算法的主要价值正是应对大规模、结构复杂的难题，通过“化大为小、逐个击破”来降低解题难度或降低时间复杂度。
-- **D 分治算法的时间复杂度总是优于 \`O(n^2)\`。**：❌ 错误。选项说法过于绝对。分治算法的最终时间复杂度取决于子问题的拆分个数、子问题的规模比例以及合并子问题所消耗的时间。例如汉诺塔问题采用分治递归，其时间复杂度为指数级的 \`O(2^n)\`；若合并步骤耗时过高，分治算法的时间复杂度完全可能达到或超过 \`O(n^2)\`，并不存在“总是优于”的定论。
-
-**易错提醒：**
-- 注意识别绝对化表述：在算法概念选择题中，出现“总是”、“一定”、“所有”等词语时（如 D 选项中的“总是优于”），通常包含逻辑漏洞或存在反例，需重点防范。
-- 区分“分治”与“动态规划”：分治算法要求拆分出的子问题相互独立、互不重叠；如果分解出的子问题存在大量重复计算（如朴素递归计算斐波那契数列），分治效率会极低，此时应采用动态规划通过“记忆化”或“递推制表”避免重复求解。
-
-**知识延伸：**
-分析分治递归算法的时间复杂度通常可以使用主定理（Master Theorem）。对于递推关系式形如 \`T(n) = a * T(n/b) + f(n)\` 的分治过程（将规模为 \`n\` 的问题划分为 \`a\` 个规模为 \`n/b\` 的子问题，分解与合并耗时为 \`f(n)\`），常见分治算法的时间复杂度有：
-- 二分查找：\`O(log n)\`
-- 归并排序 / 快速排序（平均）：\`O(n log n)\`
-- 大整数乘法（Karatsuba 算法）：约 \`O(n^1.585)\`
-- 汉诺塔问题：\`O(2^n)\``,
+            explanation: "**答案：A（分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。）**\n\n**核心解析：**\n分治法把一个大问题拆成若干个规模较小、结构相同的独立子问题，递归求解后再合并子问题的解。标准流程为分解（Divide）、解决（Conquer）、合并（Combine）三步，选项 A 正好概括了这一过程。\n\n**选项逐项分析：**\n- **A 分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。**：✅ 正确，完整对应“分解—解决—合并”。\n- **B 归并排序不是分治算法的应用。**：❌ 错误，归并排序正是分治的典型应用：对半拆分、递归排序、双指针合并。\n- **C 分治算法通常用于解决小规模问题。**：❌ 错误，分治的价值在于把大规模问题化小；规模很小时直接求解即可，不必引入递归开销。\n- **D 分治算法的时间复杂度总是优于 $O(n\\log n)$。**：❌ 错误，说法过于绝对。分治的复杂度取决于子问题个数、规模缩减比例与合并代价：二分查找为 $O(\\log n)$，归并排序/快速排序（平均）为 $O(n\\log n)$，而汉诺塔的分治递归为 $O(2^n)$，朴素分治求斐波那契也是指数级，都谈不上“优于 $O(n\\log n)$”。\n\n**易错提醒：** 见到“总是”“一定”等绝对化表述要警惕；同时区分分治与动态规划：分治要求子问题相互独立，子问题大量重叠时应改用动态规划避免重复计算。\n\n**考点：** 分治算法",
             tags: ["客观题", "单选题", "GESP5级", "分治"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 11,
             type: "single",
-            question: `唯一分解定理表明任何一个大于 1 的整数都可以唯一地表示为一系列（ ）的乘积。`,
-            options: ["合数", "偶数", "质数", "奇数"],
+            question: "根据下述二分查找法，在排好序的数组 $1, 3, 6, 9, 17, 31, 39, 52, 61, 79, 81, 90, 96$ 中查找数值 $82$，和 $82$ 比较的数组元素分别是（ ）。",
+            options: ["52, 61, 81, 90","52, 79, 90, 81","39, 79, 90, 81","39, 79, 90"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-            **解析：**
-            质因数分解唯一性。
-
-            - **A 合数**：错误。
-            - **B 偶数**：错误。
-            - **C 质数**：正确答案。
-            - **D 奇数**：错误。
-
-            **考点：** 数论
-            `,
+            explanation: "**答案：C**\n\n**解析：** 数组下标 0..12，target=82，二分过程为：\n\n1. `mid=6`，比较 39（39<82，left=7）；\n2. `mid=9`，比较 79（79<82，left=10）；\n3. `mid=11`，比较 90（90>82，right=10）；\n4. `mid=10`，比较 81（81<82，left=11）；\n5. left=11>right=10，循环结束，返回 -1。\n\n与 82 比较的元素依次为 39、79、90、81，对应 C。\n\n**考点：** 二分查找",
             tags: ["客观题", "单选题", "GESP5级", "数论"],
+      "code": "int binary_search(vector<int>& nums, int target) {\n    int left = 0;\n    int right = nums.size() - 1;\n    while (left <= right) {\n        int mid = (left + right) / 2;\n        if (nums[mid] == target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n    return -1; // 如果找不到目标元素，返回-1\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","code","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
             type: "single",
-            question: `快速排序的基础操作是（ ）。`,
-            options: ["分区", "合并", "筛选", "搜索"],
+            question: "要实现一个高精度减法函数，则下面代码中加划线应该填写的代码为（ ）。",
+            options: ["a[i + 1]--;","a[i]--;","b[i + 1]--;","b[i]--;"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            快速排序的核心是通过 Partition 操作进行分区。
-
-            - **A 分区**：正确答案。
-            - **B 合并**：错误。
-            - **C 筛选**：错误。
-            - **D 搜索**：错误。
-
-            **考点：** 快速排序
-            `,
+            explanation: "**答案：A**\n\n**解析：** 高精度减法从低位向高位处理，数组下标 0 表示最低位。当 `a[i] < b[i]` 时需要向高位借 1，即让 `a[i+1]` 减 1，然后 `a[i] += 10` 再相减。\n\n- **A `a[i + 1]--;`**：正确，向高位借位。\n- **B `a[i]--;`**：错误，改的是当前位，不能补足 10。\n- **C `b[i + 1]--;`**：错误，借位应发生在被减数上。\n- **D `b[i]--;`**：错误，同样是改减数。\n\n**考点：** 高精度减法、借位",
             tags: ["客观题", "单选题", "GESP5级", "快速排序"],
+      "code": "//假设a和b均为正数，且a表示的数比b大\nvector<int> minus(vector<int> a, vector<int> b) {\n    vector<int> c;\n    int len1 = a.size();\n    int len2 = b.size();\n    int i, t;\n\n    for (i = 0; i < len2; i++) {\n        if (a[i] < b[i]) {  //借位\n            __________________ // 在此处填入代码\n            a[i] += 10;\n        }\n        t = a[i] - b[i];\n        c.push_back(t);\n    }\n    for (; i < len1; i++)\n        c.push_back(a[i]);\n\n    len3 = c.size();\n    while (c[len3 - 1] == 0) { //去除前导0\n        c.pop_back();\n        len3--;\n    }\n    return c;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","code","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
@@ -1042,39 +977,17 @@ int fun(int n) {
         {
             id: 25,
             type: "judge",
-            question: `在下面 C++ 代码中，由于删除了变量 ptr，因此 ptr 所对应的数据也随之删除，故执行下述代码时，将报错。（ ）
-\`\`\`cpp
-int* ptr = new int(10);
-cout << *ptr << endl;
-delete ptr;
-cout << *ptr << endl;
-\`\`\``,
+            question: "在下面 C++ 代码中，由于删除了变量 ptr，因此 ptr 所对应的数据也随之删除，故执行下述代码时，将报错。（ ）\n\n```cpp\nint* ptr = new int(10);\ncout << *ptr << endl;\ndelete ptr;\ncout << ptr << endl;\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: `**答案：×**
-
-**核心解析：**
-
-\`delete ptr;\` 只是把 ptr 所指向的那块**内存**释放，指针变量 \`ptr\` 本身依然存在（它的值变成悬垂指针）。所以「删除了变量 ptr、数据也随之删除」的说法不正确。
-
-代码 \`int* ptr = new int(10); cout << *ptr << endl; delete ptr; cout << *ptr << endl;\` 可以正常通过编译，也能运行——最后一行的 \`*ptr\` 是解引用悬垂指针，属于**未定义行为**（可能输出垃圾值、可能碰巧正常，也可能崩溃），但并不是「执行下述代码时将报错」这样必然发生的编译错误或运行错误。
-
-**判断依据：**
-- 「编译报错」不会发生：悬垂指针的使用在语法上完全合法，编译器至多给警告。
-- 「必然报错」也不成立：未定义行为的结果不可预测，未必以报错形式表现。
-- 正确的说法是：delete 后应将 ptr 置为 nullptr，避免悬垂指针。
-
-**易错提醒：**
-- 区分「指针变量」与「指针指向的内存」：delete 释放的是后者。
-- 未定义行为 ≠ 必然报错，这是本题判断的核心。
-
-**考点：** 动态内存管理、delete 与悬垂指针`,
+            explanation: "**答案：错误**\n\n`delete ptr;` 销毁 `ptr` 指向的动态对象并释放其存储。局部变量 `ptr` 仍在作用域内，此时保存的是失效的指针值。\n\n最后一行 `cout << ptr << endl;` 尝试输出这个指针值，没有解引用。按 C++17，释放存储后这样使用失效指针的行为由实现定义，题目所说的「将报错」并非标准保证。解引用 `*ptr` 或再次释放同一地址则会导致未定义行为。 [C++17 工作草案 §6.7](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf#page=84)",
             sourceVerified: true,
             sourcePage: 7,
-            reviewedBy: 'AI对照官方PDF校订',
-            reviewedAt: '2026-10-27',
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ["客观题", "判断题", "GESP5级", "指针", "内存管理", "未定义行为"],
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt"],
         },
         ...programmingQuestions
     ]

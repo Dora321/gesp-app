@@ -28,88 +28,94 @@
       "id": 1,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页第 1 题“唯一分解定理描述的内容是”与站点一致。",
-          "review": "PDF 第 1 页第 1 题题干“唯一分解定理描述的内容是（ ）?”与网站一致。"
+          "initial": "PDF 第 1 页第 1 题题干“唯一分解定理描述的内容是（ ）？”与候选逐字一致。",
+          "review": "PDF 第 1 页第 1 题题干「唯一分解定理描述的内容是（ ）?」与候选一致（候选句末问号为「？」，等价）。"
         },
         "options": {
-          "initial": "PDF 第 1 页选项为 A 任意整数都可以分解为素数的乘积；B 每个合数都可以唯一分解为一系列素数的乘积；C 两个不同的整数可以分解为相同的素数乘积；D 以上都不对。站点四项全部改写成了另一组关于“大于1的整数”的表述，与原卷不符，需还原。",
-          "review": "PDF 第 1 页选项为 A 任意整数都可以分解为素数的乘积/B 每个合数都可以唯一分解为一系列素数的乘积/C 两个不同的整数可以分解为相同的素数乘积/D 以上都不对；网站四个选项与原卷完全不同（写成“每个大于1的整数…”等另一组表述），属错置。"
+          "initial": "PDF 第 1 页 A 任意整数都可以分解为素数的乘积 / B 每个合数都可以唯一分解为一系列素数的乘积 / C 两个不同的整数可以分解为相同的素数乘积 / D 以上都不对，与候选四项逐字一致（此前网站整题错置已在候选中还原）。",
+          "review": "PDF 第 1 页原图 A 任意整数都可以分解为素数的乘积 / B 每个合数都可以唯一分解为一系列素数的乘积 / C 两个不同的整数可以分解为相同的素数乘积 / D 以上都不对，与候选四项逐字一致（网站整题错置已在候选中还原）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 1 题为 B；0 起始映射为 1，站点 answer=1。",
-          "review": "PDF 第 1 页答案表第 1 题标 B，0 起始为索引 1，与网站 answer=1 一致（还原选项后 B 仍为“每个合数都可以唯一分解为一系列素数的乘积”）。"
+          "initial": "PDF 第 1 页答案表第 1 题标 B，0 起索引为 1，与候选 answer=1 一致。",
+          "review": "PDF 第 1 页答案表第 1 题标 B，0 起索引为 1，候选 answer=1。独立判断：A 对 0、1、负整数不成立；C 与分解唯一性矛盾；B 即算术基本定理，正确。"
         },
         "explanation": {
-          "initial": "站点解析按被改写后的选项 B“每个大于1的整数……”展开，且对 A/C/D 使用“筛法标记范围或起点有误”的错误理由，选项还原后必须重写。",
-          "review": "网站解析针对的是网站那套与原卷不符的选项，且对 A/C/D 的否定理由均为“筛法标记范围或起点有误，请逐步推演标记过程”占位语，与本题无关。"
+          "initial": "独立推导：A 对 0、1 和负整数不成立；B 即算术基本定理（不计素数顺序）；C 与分解唯一性矛盾；D 因 B 正确而不成立。候选解析逐项结论与之一致。",
+          "review": "候选解析按还原后选项逐项分析，A/B/C/D 结论与独立推导一致，无错置标签。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
       "id": 2,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页第 2 题“贪心算法的核心思想是”与站点一致。",
-          "review": "PDF 第 1 页第 2 题题干“贪心算法的核心思想是（ ）?”与网站一致。"
+          "initial": "PDF 第 1 页题干“贪心算法的核心思想是（ ）？”与候选一致；候选按站点体例把句末问号写成句号，语义不变。",
+          "review": "PDF 第 1 页题干「贪心算法的核心思想是（ ）?」与候选一致（候选按站点体例作句号，语义不变）。"
         },
         "options": {
-          "initial": "PDF 第 1 页选项为 A 在每一步选择中都做当前状态下的最优选择；B 在每一步选择中都选择局部最优解；C 在每一步选择中都选择全局最优解；D 以上都对。站点改成了“局部最优策略/全局最优策略/回溯/动态规划”，与原卷不符，需还原。",
-          "review": "PDF 第 1 页选项为 A 在每一步选择中都做当前状态下的最优选择/B 在每一步选择中都选择局部最优解/C 在每一步选择中都选择全局最优解/D 以上都对；网站 A 写成“采取局部最优策略”，与原卷 A 文字不一致（B/D 亦被改写，D 由“以上都对”变为“通过动态规划找到最优解”）。"
+          "initial": "PDF 第 1 页 A 在每一步选择中都做当前状态下的最优选择 / B 在每一步选择中都选择局部最优解 / C 在每一步选择中都选择全局最优解 / D 以上都对，与候选逐字一致。",
+          "review": "PDF 第 1 页 A 在每一步选择中都做当前状态下的最优选择 / B 在每一步选择中都选择局部最优解 / C 在每一步选择中都选择全局最优解 / D 以上都对，与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 2 题为 A；0 起始映射为 0，站点 answer=0。",
-          "review": "PDF 第 1 页答案表第 2 题标 A，0 起始为索引 0，与网站 answer=0 一致（还原选项后 A 为“在每一步选择中都做当前状态下的最优选择”）。"
+          "initial": "PDF 第 1 页答案表第 2 题标 A，索引 0，候选 answer=0。",
+          "review": "PDF 第 1 页答案表第 2 题标 A，索引 0，候选 answer=0。独立判断：贪心每步取当前状态下的局部最优，C 直接选全局最优不可行，D 因 C 不成立而不成立。"
         },
         "explanation": {
-          "initial": "站点解析按改写后的选项展开；还原后应说明 A 是教材定义，C 的“全局最优”错误，D 因 C 错而不成立。B 与 A 语义相近，但官方答案表给 A。",
-          "review": "网站解析围绕网站自拟的选项展开，与原卷选项文字不对应，需随选项一并修正。"
+          "initial": "贪心每步取当前状态下的局部最优；全局最优无法逐步直接选取，C 错、D 不成立；B 只是 A 的近似表述，官方取 A。候选解析结论正确。",
+          "review": "候选解析与官方取 A 的口径一致，并说明 B 与 A 的细微差别，逐项结论正确。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
@@ -234,43 +240,49 @@
       "id": 6,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页第 6 题 fibo 代码与站点 question 内嵌代码一致。",
-          "review": "PDF 第 2 页第 6 题题干与 fibonacci 朴素递归代码与网站一致。"
+          "initial": "PDF 第 2 页第 6 题题干与 fibonacci() 递归代码（n<=1 返回 n，否则两项相加）与候选一致。",
+          "review": "PDF 第 2 页第 6 题题干与 fibonacci() 递归代码（n<=1 返回 n，否则两项相加）与候选逐行一致。"
         },
         "options": {
-          "initial": "PDF 第 2 页选项顺序为 A O(1)、B O(n)、C O(2^n)、D O(log n)；站点把 B 写成 O(log n)、D 写成 O(N)，顺序与原卷不符，需还原。",
-          "review": "PDF 第 2 页选项顺序为 A O(1)/B O(n)/C O(2^n)/D O(log n)；网站写成 A O(1)/B O(log n)/C O(2^N)/D O(N)，B 与 D 内容互换。"
+          "initial": "PDF 第 2 页 A O(1) / B O(n) / C O(2^n) / D O(log n)，与候选逐项一致。",
+          "review": "PDF 第 2 页原图 A. O(1) / B. O(n) / C. O(2ⁿ) / D. O(log n)，与候选 [\"$O(1)$\",\"$O(n)$\",\"$O(2^n)$\",\"$O(\\\\log n)$\"] 逐项一致（网站 B/D 互换已在候选中还原）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 6 题为 C；0 起始映射为 2，站点 answer=2。",
-          "review": "PDF 第 1 页答案表第 6 题标 C，0 起始为索引 2，与网站 answer=2 一致；两种选项顺序下指数项均位于索引 2，答案映射不变。"
+          "initial": "PDF 第 1 页答案表第 6 题标 C，索引 2，候选 answer=2。",
+          "review": "PDF 第 1 页答案表第 6 题标 C，索引 2，候选 answer=2；两种选项顺序下指数项均位于索引 2，映射不变。独立推导：朴素递归 T(n)=T(n-1)+T(n-2)+O(1) 与斐波那契数同阶，为指数级。"
         },
         "explanation": {
-          "initial": "朴素递归 Fibonacci 每次分裂为两个子调用，时间复杂度 O(2^n)，解析结论正确。",
-          "review": "独立推导：朴素递归斐波那契调用数 T(n)=T(n-1)+T(n-2)+O(1)，与斐波那契数本身同阶增长，为指数级 O(2^n)。解析与答案 C 吻合。"
+          "initial": "候选解析的选项标签仍按还原前的顺序书写：“B $O(log n)$”“D $O(N)$”，而候选/原卷选项为 B $O(n)$、D $O(log n)$，B、D 两项复杂度被互换；段落还残留整段缩进。需按现选项重写。 集成核验：重新对照第 2 页恢复的选项，解析中 B 对应 O(n)，D 对应 O(log n)。",
+          "review": "候选解析的选项标签仍按还原前顺序书写：「B $O(log n)$」「D $O(N)$」，而现选项 B=$O(n)$、D=$O(\\\\log n)$，B、D 两项说明被标到错误的选项上；段落还残留整段缩进。已按现选项重写并独立核验每条结论（O(n) 为递推写法的复杂度；递归深度为 O(n) 而非 O(log n)）。 集成核验：重新对照第 2 页恢复的选项，解析中 B 对应 O(n)，D 对应 O(log n)。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
+      ],
+      "integrationNote": "重新对照第 2 页恢复的选项，解析中 B 对应 O(n)，D 对应 O(log n)。"
     },
     {
       "id": 7,
@@ -278,42 +290,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         2,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2-3 页第 7 题高精度加法代码与横线位置和站点 code 一致。",
-          "review": "PDF 第 2 页末第 7 题题干与 PDF 第 3 页 add 高精度加法代码（x、y 取位，sum=x+y+carry，carry=sum/10，横线）与网站一致。"
+          "initial": "PDF 第 3 页题干“将两个高精度整数进行相加…填入（ ）”与 add() 代码（第 10 行横线、carry=sum/10）与候选逐字一致。",
+          "review": "PDF 第 2 页末第 7 题题干与第 3 页 add() 代码（x、y 取位，sum=x+y+carry，carry=sum/10，第 10 行横线）与候选 code 字段逐行一致。"
         },
         "options": {
-          "initial": "PDF 第 3 页 A result=to_string(sum%10)+result；B carry%10；C sum/10；D sum%10+carry 与站点 options 一致。",
-          "review": "PDF 第 3 页四个选项与网站 options 一致。"
+          "initial": "PDF 第 3 页 A result = to_string(sum % 10) + result; / B to_string(carry % 10) / C to_string(sum / 10) / D to_string(sum % 10 + carry)，与候选一致（仅空格差异）。",
+          "review": "PDF 第 3 页 A result = to_string(sum % 10) + result; / B result = to_string(carry % 10) + result; / C result = to_string(sum / 10) + result; / D result = to_string(sum % 10 + carry) + result;，与候选一致（仅空格排版差异）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 7 题为 A；0 起始映射为 0，站点 answer=0。",
-          "review": "PDF 第 1 页答案表第 7 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+          "initial": "PDF 第 1 页答案表第 7 题标 A，索引 0，候选 answer=0。",
+          "review": "PDF 第 1 页答案表第 7 题标 A，索引 0，候选 answer=0。独立推导：本位应存 sum%10、进位 sum/10，A 正确；B 存进位、C 丢本位、D 重复加进位。"
         },
         "explanation": {
-          "initial": "站点解析的选项逐项理由错位成复杂度 $O(1)$/$O(log n)$/$O(2^N)$/$O(N)$，与四个选项内容无关，需重写为逐项说明当前位与进位的处理。",
-          "review": "网站解析虽给出正确结论，但四个选项的标注文字错置为复杂度选项（“A O(1)：正确答案”“B O(log n)：错误”等），与本题代码选项完全不对应。"
+          "initial": "本位应存 sum%10、进位为 sum/10；B 存的是进位，C 丢掉本位，D 把进位重复加回。候选解析逐项对应正确。",
+          "review": "候选解析四个选项的标注与实际选项代码一一对应，逐项结论与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
@@ -322,41 +337,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 3 页第 8 题二分查找代码与站点 code 一致。",
-          "review": "PDF 第 3 页第 8 题题干给出 13 元素序列 1，3，6，9，17，31，39，52，61，79，81，90，96 及 binarySearch 代码（times 在每轮 while 开头自增），与网站一致（网站省略“需要循环多少次，即”若干字，语义等价）。"
+          "initial": "PDF 第 3 页题干“给定序列：1，3，6，9，17，31，39，52，61，79，81，90，96。使用以下代码进行二分查找查找元素 82 时，需要循环多少次，即最后输出的 times 值为（ ）。”候选压缩为“使用给定代码二分查找元素 82 时，最后输出的 times 值”，信息等价、所求未变。",
+          "review": "PDF 第 3 页题干给出 13 元素序列 1，3，6，9，17，31，39，52，61，79，81，90，96 与 binarySearch 代码（times 每轮 while 开头自增）；候选压缩「需要循环多少次，即」数句，所求未变。"
         },
         "options": {
-          "initial": "PDF 第 3 页 A 2、B 5、C 3、D 4 与站点 options 一致。",
-          "review": "PDF 第 3 页 A 2/B 5/C 3/D 4，与网站 options 一致。"
+          "initial": "PDF 第 3 页 A 2 / B 5 / C 3 / D 4，与候选一致。",
+          "review": "PDF 第 3 页 A 2 / B 5 / C 3 / D 4，与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 8 题为 D；0 起始映射为 3，站点 answer=3。",
-          "review": "PDF 第 1 页答案表第 8 题标 D，0 起始为索引 3，与网站 answer=3 一致。"
+          "initial": "PDF 第 1 页答案表第 8 题标 D，索引 3，候选 answer=3。",
+          "review": "PDF 第 1 页答案表第 8 题标 D，索引 3，候选 answer=3。独立推演：mid=6→39<82、mid=9→79<82、mid=11→90>82、mid=10→81<82，四次比较后 left=11>right=10 退出，times=4。"
         },
         "explanation": {
-          "initial": "站点解析写“79→90→81→未找到，共 4 次”，漏掉了第一次比较的 39，比较序列不完整；应写 39→79→90→81，共 4 次。",
-          "review": "网站解析结论正确（times=4），但只写“79→90→81→未找到”，未给出 mid 下标与区间变化的完整可核验过程。"
+          "initial": "独立推演：mid=6→arr[6]=39、mid=9→79、mid=11→90、mid=10→81，四次比较后 left=11>right=10 退出，times=4。候选解析一致。",
+          "review": "候选解析给出 mid 下标与区间变化的完整四步推演，与我的独立推演逐项一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
@@ -403,131 +421,145 @@
       "id": 10,
       "resolved": true,
       "dimensions": [
-        "options",
-        "answer"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页第 10 题埃氏筛代码（外层横线 + 后半段补素数）与站点题意一致，但站点 question 未附代码，缺少横线所在上下文，需补入。",
-          "review": "PDF 第 4 页第 10 题题干下方附有 sieveOfEratosthenes 完整代码（外层横线、内层从 i*i 标记、后半段从 sqrt(n)+1 补收素数）；网站 question 无该代码，判定对象缺失。"
+          "initial": "PDF 第 4 页题干与 sieveOfEratosthenes() 代码（第 4 行横线、第 12 行由 sqrt(n)+1 起补收）与候选一致。",
+          "review": "PDF 第 4 页第 10 题题干与 sieveOfEratosthenes() 完整代码（外层横线、内层 j=i*i 起标记、后半段 sqrt(n)+1 补收）与候选 question/code 逐行一致。"
         },
         "options": {
-          "initial": "PDF 第 4 页 A for i=2..n、B for i=1..<n、C for i=2..sqrt(n)、D for i=1..sqrt(n) 与站点 options 一致。",
-          "review": "PDF 第 4 页四个选项与网站 options 一致。"
+          "initial": "PDF 第 4 页 A i=2..n / B i=1..n-1 / C i=2..√n / D i=1..√n，与候选一致（候选以 $sqrt{n}$ 表示根号）。",
+          "review": "PDF 第 4 页 A for (int i = 2; i <= n; ++i) / B for (int i = 1; i < n; ++i) / C for (int i = 2; i <= sqrt(n); ++i) / D for (int i = 1; i <= sqrt(n); ++i)，与候选一致（候选以 $sqrt{n}$ 记根号）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 10 题为 C；0 起始映射为 2，站点 answer=2。",
-          "review": "PDF 第 1 页答案表第 10 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+          "initial": "PDF 第 1 页答案表第 10 题标 C，索引 2，候选 answer=2。",
+          "review": "PDF 第 1 页答案表第 10 题标 C，索引 2，候选 answer=2。独立推导：合数必有 ≤√n 的质因子被提前筛掉，大于 √n 的素数由后半段循环补入，外层取 2..√n 正确；A 会重复收录、B/D 起点含 1。"
         },
         "explanation": {
-          "initial": "站点解析的逐项理由写成“A 2、B 5、C 3、D 4”，是从第 8 题答案复制而来，与选项完全无关，需重写。",
-          "review": "网站解析结论正确但四个选项标注错置为“A 2/B 5/C 3/D 4”等数值（复制自二分查找题），未结合代码后半段补收循环解释为何外层只需到 √n。"
+          "initial": "独立推演：内层从 i*i 起筛，外层只需枚举到 √n；大于 √n 的素数由后半段循环补收。外层取 2..n 会使 primes 重复收录（A 错）；B/D 起点含 1 会把 1 当素数（错）。候选解析与 C 一致。",
+          "review": "候选解析按现选项逐项分析（A 重复、B/D 起点 1、C 正确），与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
       "id": 11,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页第 11 题“素数的线性筛法时间复杂度为”与站点一致。",
-          "review": "PDF 第 4 页末第 11 题题干“素数的线性筛法时间复杂度为（）”与网站一致。"
+          "initial": "PDF 第 4 页末第 11 题题干“素数的线性筛法时间复杂度为（ ）。”与候选一致。",
+          "review": "PDF 第 4 页末第 11 题题干「素数的线性筛法时间复杂度为（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 4 页 A O(N)、B O(n log n)、C O(N log log N)、D O(N^2) 与站点 options 一致。",
-          "review": "PDF 第 4–5 页选项为 A O(n)/B O(n log log n)/C O(n log n)/D O(n²)；网站 B 写成 $O(n log n)$、C 写成 O(N log log N)，B、C 两项内容与原卷互换。"
+          "initial": "PDF 第 4–5 页 A O(n) / B O(n log log n) / C O(n log n) / D O(n²)，与候选逐项一致；此前网站 B、C 互换已在候选中还原为原卷顺序。",
+          "review": "PDF 第 4–5 页原图 A. O(n) / B. O(n log log n) / C. O(n log n) / D. O(n²)，与候选 [\"$O(N)$\",\"$O(N \\\\log \\\\log N)$\",\"$O(N \\\\log N)$\",\"$O(N^2)$\"] 逐项一致（网站 B/C 互换已在候选中还原）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 11 题为 A；0 起始映射为 0，站点 answer=0。",
-          "review": "PDF 第 1 页答案表第 11 题标 A，0 起始为索引 0，与网站 answer=0 一致；线性筛 O(N) 位于索引 0，互换不影响答案映射。"
+          "initial": "PDF 第 1 页答案表第 11 题标 A，索引 0，候选 answer=0；线性筛 O(N) 位于 A。",
+          "review": "PDF 第 1 页答案表第 11 题标 A，索引 0，候选 answer=0；两种顺序下 O(N) 均在索引 0，映射不变。独立推导：线性筛每个合数只被最小质因子筛一次，总代价线性。"
         },
         "explanation": {
-          "initial": "线性筛每个合数只被最小质因子标记一次，复杂度 O(N)，解析正确。",
-          "review": "独立推导：线性筛每个合数只被最小质因子筛一次，总复杂度 O(N)；埃氏筛才是 O(N log log N)。解析核心结论与答案 A 吻合（其按网站现有选项顺序逐项分析，若选项按原卷还原，分析文字需同步核对，已随 options 修改提出）。"
+          "initial": "候选解析的 B、C 标签仍按还原前的互换顺序书写：“B $O(n log n)$”“C O(N log log N)”，而现选项 B=$O(N\\log\\log N)$、C=$O(N\\log N)$，逐项说明与选项错位。 集成核验：第 4 至 5 页给出 B 为 O(n log log n)、C 为 O(n log n)，修正解析的对应关系。",
+          "review": "候选解析的 B、C 标签仍按还原前的互换顺序书写：「B $O(n log n)$」「C O(N log log N)」，而现选项 B=$O(N\\\\log\\\\log N)$、C=$O(N\\\\log N)$，逐项说明与选项错位；末行还残留与本题无关的「该代码逻辑与题目要求不符」占位语。已按现选项重写。 集成核验：第 4 至 5 页给出 B 为 O(n log log n)、C 为 O(n log n)，修正解析的对应关系。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
+      ],
+      "integrationNote": "第 4 至 5 页给出 B 为 O(n log log n)、C 为 O(n log n)，修正解析的对应关系。"
     },
     {
       "id": 12,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 12 题“归并排序的基本思想是”与站点一致。",
-          "review": "PDF 第 5 页第 12 题题干“归并排序的基本思想是（）”与网站一致。"
+          "initial": "PDF 第 5 页第 12 题题干“归并排序的基本思想是（ ）。”与候选一致。",
+          "review": "PDF 第 5 页第 12 题题干「归并排序的基本思想是（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A 动态规划、B 分治、C 贪心、D 回溯 与站点 options 一致。",
-          "review": "PDF 第 5 页选项为 A 动态规划/B 分治/C 贪心算法/D 回溯算法；网站 D 写成“搜索”、C 写成“贪心”，与原卷不一致（D 属内容差异，C 为用词省略）。"
+          "initial": "PDF 第 5 页 A 动态规划 / B 分治 / C 贪心算法 / D 回溯算法，与候选逐字一致（此前网站 D 项作“搜索”已在候选中还原）。",
+          "review": "PDF 第 5 页原图 A 动态规划 / B 分治 / C 贪心算法 / D 回溯算法，与候选逐字一致（网站 D「搜索」已在候选中还原）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 12 题为 B；0 起始映射为 1，站点 answer=1。",
-          "review": "PDF 第 1 页答案表第 12 题标 B，0 起始为索引 1，与网站 answer=1 一致。"
+          "initial": "PDF 第 1 页答案表第 12 题标 B，索引 1，候选 answer=1。",
+          "review": "PDF 第 1 页答案表第 12 题标 B，索引 1，候选 answer=1。独立推导：归并排序为分解—解决—合并的分治结构，无重叠子问题、无局部最优选择、无解空间回退。"
         },
         "explanation": {
-          "initial": "归并排序采用分治，解析正确。",
-          "review": "独立推导：归并排序分解-解决-合并，是分治算法。解析与答案 B 吻合。"
+          "initial": "候选解析末项仍写“D 搜索：错误”，而现选项 D 为“回溯算法”；标签未随选项还原同步。 集成核验：第 5 页 D 项为回溯算法，解析采用原卷术语。",
+          "review": "候选解析末项仍写「D 搜索：错误」，而现选项 D 为「回溯算法」，标签未随选项还原同步。已按现选项重写。 集成核验：第 5 页 D 项为回溯算法，解析采用原卷术语。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
+      ],
+      "integrationNote": "第 5 页 D 项为回溯算法，解析采用原卷术语。"
     },
     {
       "id": 13,
@@ -535,41 +567,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 13 题“快速排序中选择的主元素会影响算法的”与站点一致。",
-          "review": "PDF 第 5 页第 13 题题干“在快速排序中，选择的主元素（pivot）会影响算法的（）”与网站一致。"
+          "initial": "PDF 第 5 页题干“在快速排序中，选择的主元素（pivot）会影响算法的（ ）。”与候选一致。",
+          "review": "PDF 第 5 页题干「在快速排序中，选择的主元素（pivot）会影响算法的（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A 不影响、B 时间复杂度、C 空间复杂度、D 时间复杂度和空间复杂度 与站点 options 一致。",
-          "review": "PDF 第 5 页 A 不影响/B 时间复杂度/C 空间复杂度/D 时间复杂度和空间复杂度，与网站 options 一致。"
+          "initial": "PDF 第 5 页 A 不影响 / B 时间复杂度 / C 空间复杂度 / D 时间复杂度和空间复杂度，与候选一致。",
+          "review": "PDF 第 5 页 A 不影响 / B 时间复杂度 / C 空间复杂度 / D 时间复杂度和空间复杂度，与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 13 题为 B；0 起始映射为 1，站点 answer=1。",
-          "review": "PDF 第 1 页答案表第 13 题标 B，0 起始为索引 1，与网站 answer=1 一致。"
+          "initial": "PDF 第 1 页答案表第 13 题标 B，索引 1，候选 answer=1。",
+          "review": "PDF 第 1 页答案表第 13 题标 B，索引 1，候选 answer=1。独立推导：pivot 决定划分是否均衡，最坏（已序取端点）退化为 O(n²)，主要影响时间复杂度，官方取 B。"
         },
         "explanation": {
-          "initial": "站点解析的选项理由错位成“A 动态规划、B 分治、C 贪心、D 搜索”，与本题选项无关，需重写。",
-          "review": "网站解析结论正确（划分均衡度影响时间复杂度），但四个选项标注错置为“A 动态规划：错误。B 分治：正确答案”等（复制自第 12 题），与本题选项不对应。"
+          "initial": "独立推导：pivot 决定划分是否均衡，最坏（已排序取端点）退化为 O(n²)，平均/最好为 O(n log n)，主要影响时间复杂度，官方答案 B；候选解析与答案一致。",
+          "review": "候选解析与官方答案 B 一致，并如实注明「递归深度（空间维度）也会随划分均衡度变化，教材以时间复杂度为主要影响」，未把 C/D 误判为正确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
@@ -578,86 +613,91 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 14 题“递归函数在调用自身时，必须满足（ ），以避免无限递归”与站点一致。",
-          "review": "PDF 第 5 页第 14 题题干“递归函数在调用自身时，必须满足（），以避免无限递归?”与网站一致。"
+          "initial": "PDF 第 5 页题干“递归函数在调用自身时，必须满足（ ），以避免无限递归？”与候选一致。",
+          "review": "PDF 第 5 页题干「递归函数在调用自身时，必须满足（ ），以避免无限递归?」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A 有终止条件、B 函数参数递减（或递增）、C 函数返回值固定、D 以上都对 与站点 options 一致。",
-          "review": "PDF 第 5 页 A 有终止条件/B 函数参数递减（或递增）/C 函数返回值固定/D 以上都对，与网站 options 一致。"
+          "initial": "PDF 第 5 页 A 有终止条件 / B 函数参数递减（或递增） / C 函数返回值固定 / D 以上都对，与候选一致。",
+          "review": "PDF 第 5 页 A 有终止条件 / B 函数参数递减（或递增） / C 函数返回值固定 / D 以上都对，与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 14 题为 A；0 起始映射为 0，站点 answer=0。",
-          "review": "PDF 第 1 页答案表第 14 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+          "initial": "PDF 第 1 页答案表第 14 题标 A，索引 0，候选 answer=0。",
+          "review": "PDF 第 1 页答案表第 14 题标 A，索引 0，候选 answer=0。独立判断：终止条件是避免无限递归的必要条件；参数单调变化只是常见收敛手段（如按区间二分并不单调），返回值固定与终止无关。"
         },
         "explanation": {
-          "initial": "站点解析的选项理由错位成“A 动态规划、B 分治、C 贪心、D 搜索”，与本题选项无关，需重写。",
-          "review": "网站解析结论正确但选项标注错置为“A 动态规划：正确答案。B 分治：错误”等（复制自第 12 题）。"
+          "initial": "递归必须有终止条件才能结束；参数递减只是常见收敛方式（区间二分等并不递减），返回值固定更非必要，D 不成立。答案 A 正确。",
+          "review": "候选解析按现选项逐项分析并给出反例式说明，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
       "id": 15,
       "resolved": true,
       "dimensions": [
-        "options",
-        "answer"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 15 题给定链表“1 → 3 → 5 → 7 → nullptr”，站点 question 漏掉了链表内容，只写“假设给定链表为某单链表”，需补回。",
-          "review": "PDF 第 5 页第 15 题题干含链表定义“假设给定链表为: 1 → 3 → 5 → 7 → nullptr”及 searchValue 完整代码；网站题面写成“假设给定链表为某单链表”，既无具体链表也无代码，判定对象缺失。"
+          "initial": "PDF 第 5 页题干含链表 1→3→5→7→nullptr 与 searchValue() 代码，候选完整保留链表内容与代码。",
+          "review": "PDF 第 5 页题干含链表 1→3→5→7→nullptr 与 searchValue() 完整代码（命中 return 1，遍历尽 return 0），与候选逐行一致（LaTeX 记法为等价转换）。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A 返回 1、B 返回 0、C 死循环、D 返回 -1 与站点 options 一致。",
-          "review": "PDF 第 5 页 A 返回 1/B 返回 0/C 死循环，无法返回/D 返回 -1，与网站 options 一致。"
+          "initial": "PDF 第 5 页 A 返回 1 / B 返回 0 / C 死循环，无法返回 / D 返回 -1，与候选一致。",
+          "review": "PDF 第 5 页 A 返回 1 / B 返回 0 / C 死循环，无法返回 / D 返回 -1，与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 15 题为 A；0 起始映射为 0，站点 answer=0。",
-          "review": "PDF 第 1 页答案表第 15 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+          "initial": "PDF 第 1 页答案表第 15 题标 A，索引 0，候选 answer=0。",
+          "review": "PDF 第 1 页答案表第 15 题标 A，索引 0，候选 answer=0。独立推演：1≠5、3≠5、5==5 命中返回 1；7 之后为 nullptr，无死循环，函数只返回 0/1。"
         },
         "explanation": {
-          "initial": "站点解析的选项理由错位成“A 动态规划、B 分治、C 贪心、D 搜索”，与本题选项无关，需重写。",
-          "review": "网站解析结论正确但选项标注错置为“A 动态规划：正确答案”等（复制自第 12 题），且未结合具体链表推演。"
+          "initial": "独立推演：依次比较 1≠5、3≠5、5==5，命中即 return 1；7 之后为 nullptr，不会死循环，函数也不返回 -1。答案 A。",
+          "review": "候选解析按现选项逐项分析，与独立推演一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
       ]
     },
     {
@@ -1014,331 +1054,120 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         6,
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "集成阶段核对原卷或实测结果",
+        "C++17 实际编译、原样例与独立边界用例"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 6-7 页第 26 题题干、样例与站点一致，但原卷 3.1.7 的数据规模（30% N≤100 且总分各不相同；全部 2≤N≤10^4）在站点题面中缺失，需补入。",
-          "review": "PDF 第 7 页“3.1.7 数据规模”（30% 测试点 N≤100 且所有同学总分各不相同；所有测试点 2≤N≤10^4）在网站题面中缺失，影响复杂度与并列规则论证。"
+          "initial": "PDF 第 6 页 3.1.1–3.1.3 与候选题面一致；第 7 页 3.1.7 数据规模（30% N≤100 且总分各不相同；全部 2≤N≤10^4）已在候选中补入。但第 6 页输入描述末句“保证 0 ≤ c_i, m_i, e_i ≤ 150。”在候选题面中缺失，需补回。 集成核验：按原卷第 6 页补回每科 0 至 150 分的约束。实跑成绩上界和并列名次用例。",
+          "review": "PDF 第 6 页 3.1.1–3.1.3 与候选题面一致；第 7 页 3.1.7 数据规模两档约束已在候选补入。但第 6 页 3.1.2 输入描述末句「保证 0 ≤ c_i, m_i, e_i ≤ 150。」在候选题面中缺失（逐字 diff 确认候选与提议值仅差这一句），需补回。另注原卷争议：PDF 第 7 页 3.1.7 原文印作「对于 30 的测试点」（放大核对无 % 号，为官方排版脱字），候选按全卷惯例（20%/40% 等）转录为「对于 30% 的测试点」，属等价修复。 集成核验：按原卷第 6 页补回每科 0 至 150 分的约束。实跑成绩上界和并列名次用例。"
         },
         "explanation": {
-          "initial": "解析按总分、语数总分、语数最高分三级关键字降序，并以 i+1 处理并列跳名次；样例走查 1,3,4,4,2,6 与官方输出一致。",
-          "review": "独立推导：按（总分、语数总分、语数最高分）三元组降序排序，三元组全等者并列同名词，排名为排序后位置 i+1，并列占位留空，与官方样例 1/3/4/4/2/6 逐项吻合；N≤10^4 排序 O(N log N) 可行。"
+          "initial": "独立推导：按（总分, 语数总分, 语数最高分）三元组降序排序，三元组全等者并列，名次取排序后位置 i+1 并自动跳过并列占位；与官方样例 1/3/4/4/2/6 逐项吻合。",
+          "review": "独立推导：按（总分, 语数总分, 语数最高分）三元组降序排序，三元组全等者并列、名次取排序位 i+1 并自动留空并列占位；样例走查 排序序 0/4/1/2/3/5 → 各人名次 1/3/4/4/2/6 与官方样例逐项吻合（同学2与同学3三元组全等并列第4）。"
         },
         "referenceCode": {
-          "initial": "参考程序用 tuple(total, c+m, max(c,m), i) 降序排序，再比较前三项决定并列；样例输出 1,3,4,4,2,6，三人同分时均并列，n=2 与全同分用例也正确。",
-          "review": "独立验证：本地 g++ 编译网站参考程序，原样例（6 人→1/3/4/4/2/6）通过；另实测三人全同→1/1/1、总分同而语数总分不同→2/1、语数总分同而最高分不同→1/2、并列第 1 后空出第 2 名→1/1/3、后段并列→1/2/3/3，期望输出均独立推演后实测核对；成绩≤150 时三元组用 long long 无溢出。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：官方样例输出 1/3/4/4/2/6；另测三人全同→1/1/1、并列后跳名次→1/1/3、总分同按语数总分→2/1、300 组随机 N≤40 与 O(N²) 定义式排名对拍零差异、N=10^4 随机数据 0.03 s 通过。",
+          "review": "本机 g++ -std=c++17 -O2 实际编译候选参考程序并执行：官方样例输出 1/3/4/4/2/6；另实际执行四条非样例（三人全同→1/1/1、并列后留空→1/1/3、总分同按语数总分→2/1、尾段并列→1/2/3/3）全部与独立推演一致；随机 20 组（N≤60）与 O(N²) 定义式暴力对拍零差异；N=10^4 随机数据实测 0.028 s，低于 1.0 s 限额，内存远小于 128 MB。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "tags"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
+      ],
+      "integrationNote": "按原卷第 6 页补回每科 0 至 150 分的约束。实跑成绩上界和并列名次用例。",
+      "sourceNotes": [
+        "原卷第 7 页 3.1.7 的「对于 30 的测试点」缺百分号，按数据范围语境以 30% 转录。"
+      ],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "tags",
+          "value": [
+            "编程题",
+            "排序算法"
+          ],
+          "sourcePage": 6
+        }
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页第 27 题题干、样例与站点一致，但原卷 3.2.6 的数据范围表（30% n≤1000；30% n≤10^6, √n≤B≤10^6；40% n≤10^6, 1≤B≤10^6；全部 1≤n,B≤10^6）在站点题面中缺失，需补入。",
-          "review": "PDF 第 8 页“3.2.6 数据范围”子任务表（30%: n≤1000、1≤B≤1000；30%: n≤10^6、√n≤B≤10^6；40%: n≤10^6、1≤B≤10^6；全部 1≤n≤10^6、1≤B≤10^6）在网站题面中缺失。"
+          "initial": "PDF 第 8 页 3.2.1–3.2.5 与第 8 页 3.2.6 数据范围表（30%: n≤1000、1≤B≤1000；30%: n≤10^6、√n≤B≤10^6；40%: n≤10^6、1≤B≤10^6；全部 1≤n,B≤10^6）与候选逐项一致，样例 10 3→7 一致。",
+          "review": "PDF 第 8 页 3.2.1–3.2.5（题面、输入/输出格式、样例 10 3→7、样例解释 {1,2,3,4,6,8,9} 共 7 个）与 3.2.6 数据范围表（30%: n≤1000、1≤B≤1000；30%: n≤10^6、√n≤B≤10^6；40%: n≤10^6、1≤B≤10^6；全部 1≤n,B≤10^6）与候选逐项一致。"
         },
         "explanation": {
-          "initial": "解析用埃氏筛思想批量求每个数的最大质因子，再统计 largest[x]≤B；1 的最大质因子按 0 处理，样例 10 3 得 7，走查正确。",
-          "review": "独立推导：B-smooth 数即最大质因子≤B 的数（1 的最大质因子记 0 或 1，恒计入，官方样例解释含 1）；线性/埃氏筛预处理每个数的最大质因子后统计，复杂度约 O(n log log n)；子任务 2（B≥√n）时只需质因子判断，统一筛法均可过。"
+          "initial": "独立推导：按 p 递增埃氏筛，对 p 的所有倍数无条件覆盖 largest[x]=p，循环结束时 largest[x] 即最大质因子；1 无质因子、largest[1]=0≤B 恒计入。样例 10 3 得 1,2,3,4,6,8,9 共 7，与候选解析一致。",
+          "review": "独立推导：埃氏筛按 p 递增覆盖 largest[x]=p，循环结束即最大质因子；1 无质因子（largest=0≤B）恒计入——与官方参考程序把 mx_prime_factor[1] 置 1 同样计入 1 的口径一致；样例 10 3 得 {1,2,3,4,6,8,9} 共 7，与解析一致。"
         },
         "referenceCode": {
-          "initial": "参考程序 largest 数组从 2 到 n 枚举质数并无条件覆盖倍数，最终保存最大质因子；n=1,B=1→1，n=10,B=3→7，n=10^6,B=10^6→10^6，n=2,B=1→1，均正确。",
-          "review": "独立验证：本地 g++ 编译网站参考程序（埃氏筛标记 largest[x] 为最大质因子，升序枚举质数使最终写入即最大者），原样例 10 3→7 通过；另实测 n=1,B=1→1、10 2→4（{1,2,4,8}）、10 1→1（仅 1）、上界 1000000 1000000→1000000、100 100→100（B≥n 全部计入），期望输出均独立推演后实测核对；内存 vector<int>(10^6+1) 约 4MB，1.0 s 内可行。"
+          "initial": "本机 g++ -std=c++17 -O2 编译：官方样例输出 7；边界 n=1,B=1→1、n=10,B=2→4、n=10^6,B=1→1、n=10^6,B=10^6→1000000；与官方线性筛参考程序在 B=1,2,3,100,999,1000,5000,10^6 全部一致；n≤119 全枚举 × 8 个 B 与暴力质因数分解对拍零差异。",
+          "review": "本机 g++ -std=c++17 -O2 实际编译候选参考程序并执行：官方样例 10 3→7；另实际执行五条非样例（1 1→1、10 2→4、10 1→1、1000000 1000000→1000000（约 0.00 s）、999983 999983→999983）全部与独立推演一致；随机 30 组（n,B≤300）与试除法暴力对拍零差异；N=B=10^6 时 vector<int> 约 4 MB，内存与 1.0 s 时限均在限额内。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "tags"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l5.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "tags",
+          "value": [
+            "编程题",
+            "数论",
+            "筛法",
+            "质因数分解"
+          ],
+          "sourcePage": 8
+        }
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 1,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 2,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 6,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 7,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 8,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 11,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 13,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
-  "pendingChanges": [
-    {
-      "id": 1,
-      "changes": {
-        "options": [
-          "任意整数都可以分解为素数的乘积",
-          "每个合数都可以唯一分解为一系列素数的乘积",
-          "两个不同的整数可以分解为相同的素数乘积",
-          "以上都不对"
-        ],
-        "explanation": "**答案：B**\n\n**解析：** 官方选项 B 为“每个合数都可以唯一分解为一系列素数的乘积”，这是唯一正确的表述（分解的唯一性不计素数顺序）。\n\n- **A 任意整数都可以分解为素数的乘积**：错误。0、1 和负整数不能表示为若干素数的乘积。\n- **B 每个合数都可以唯一分解为一系列素数的乘积**：正确。\n- **C 两个不同的整数可以分解为相同的素数乘积**：错误。若素数乘积相同，由唯一性可知两个整数相同。\n- **D 以上都不对**：错误，B 正确。\n\n**考点：** 唯一分解定理"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 2,
-      "changes": {
-        "options": [
-          "在每一步选择中都做当前状态下的最优选择",
-          "在每一步选择中都选择局部最优解",
-          "在每一步选择中都选择全局最优解",
-          "以上都对"
-        ],
-        "explanation": "**答案：A**\n\n**解析：** 贪心算法在每一步都做出当前状态下的最优选择（局部最优），并期望由此得到全局最优。\n\n- **A 在每一步选择中都做当前状态下的最优选择**：正确，符合教材定义。\n- **B 在每一步选择中都选择局部最优解**：语义与 A 相近，但官方答案取 A；B 未强调“当前状态下”。\n- **C 在每一步选择中都选择全局最优解**：错误。贪心每步只知道局部信息，不能直接选择全局最优。\n- **D 以上都对**：错误，C 不成立。\n\n**考点：** 贪心算法"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 6,
-      "changes": {
-        "options": [
-          "$O(1)$",
-          "$O(n)$",
-          "$O(2^n)$",
-          "$O(\\log n)$"
-        ]
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 7,
-      "changes": {
-        "explanation": "**答案：A**\n\n**解析：** 高精度加法每一位应把当前位 `sum % 10` 追加到结果，并把 `sum / 10` 作为进位留给下一位。A 正是这个操作。\n\n- **A `result = to_string(sum % 10) + result;`**：正确，取当前位并接到结果高位方向。\n- **B `result = to_string(carry % 10) + result;`**：错误，存入的是进位而不是当前位。\n- **C `result = to_string(sum / 10) + result;`**：错误，存入的是进位部分，当前位丢失。\n- **D `result = to_string(sum % 10 + carry) + result;`**：错误，把进位又加回当前位，重复计算。\n\n**考点：** 高精度加法"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 8,
-      "changes": {
-        "explanation": "**答案：D**\n\n**解析：** 13 个元素的下标为 0..12，target=82，依次比较：\n\n1. `mid=6`，arr[6]=39 < 82，left=7；\n2. `mid=9`，arr[9]=79 < 82，left=10；\n3. `mid=11`，arr[11]=90 > 82，right=10；\n4. `mid=10`，arr[10]=81 < 82，left=11；\n\n此时 left=11 > right=10，循环结束，共进入 while 4 次，times=4。故选 D。\n\n**考点：** 二分查找"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 10,
-      "changes": {
-        "question": "在埃拉托斯特尼筛法中，要筛选出不大于 n 的所有素数，最外层循环应该遍历什么范围（ ）。\n\n```cpp\nvector<int> sieveOfEratosthenes(int n) {\n    std::vector<bool> isPrime(n + 1, true);\n    std::vector<int> primes;\n    __________________________ {\n        if (isPrime[i]) {\n            primes.push_back(i);\n            for (int j = i * i; j <= n; j += i) {\n                isPrime[j] = false;\n            }\n        }\n    }\n    for (int i = sqrt(n) + 1; i <= n; ++i) {\n        if (isPrime[i]) {\n            primes.push_back(i);\n        }\n    }\n    return primes;\n}\n```",
-        "explanation": "**答案：C**\n\n**解析：** 埃氏筛外层只需枚举 `i = 2 .. ⌊√n⌋`：任何合数都有不超过 √n 的质因子，会被更小的素数提前筛掉；大于 √n 的素数由代码后半段的循环补入结果。\n\n- **A `i = 2..n`**：会把大于 √n 的素数也压入 primes，随后后半段循环又压入一次，结果出现重复，不能选。\n- **B `i = 1..n-1`**：从 1 开始会把 1 当作素数处理，且范围过大。\n- **C `i = 2..√n`**：正确且高效，后半段已负责补入剩余素数。\n- **D `i = 1..√n`**：起点 1 错误，会把 1 压入素数表。\n\n**考点：** 埃拉托斯特尼筛法"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 13,
-      "changes": {
-        "explanation": "**答案：B**\n\n**解析：** pivot 选得好时划分均衡，快排接近 O(n log n)；选得差时（如已排序数组取端点为基准）每次只减少一个元素，退化为 O(n^2)。因此 pivot 直接影响算法的时间复杂度。\n\n- **A 不影响**：错误。\n- **B 时间复杂度**：正确，这是最主要的影响。\n- **C 空间复杂度**：递归深度也会随划分均衡程度变化，但教材通常把时间复杂度作为 pivot 的主要影响；官方答案为 B。\n- **D 时间复杂度和空间复杂度**：表述过宽，官方不选。\n\n**考点：** 快速排序"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 14,
-      "changes": {
-        "explanation": "**答案：A**\n\n**解析：** 递归必须在某个条件下停止并返回，否则会无限递归下去；参数递减或递增只是常见的收敛手段，并不是所有递归都必须满足（例如按区间二分的递归）；返回值固定更不是必要条件。因此最基本的要求是“有终止条件”。\n\n- **A 有终止条件**：正确。\n- **B 函数参数递减（或递增）**：不是必须，参数可以按区间缩小或以其他方式收敛。\n- **C 函数返回值固定**：与终止无关。\n- **D 以上都对**：错误，B、C 不成立。\n\n**考点：** 递归"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 15,
-      "changes": {
-        "question": "假设给定链表为：$1 \\to 3 \\to 5 \\to 7 \\to \\text{nullptr}$，若调用 `searchValue(head, 5)`，函数返回值为（ ）。\n\n```cpp\nint searchValue(ListNode* head, int target) {\n    while (head != nullptr) {\n        if (head->val == target) {\n            return 1;\n        }\n        head = head->next;\n    }\n    return 0;\n}\n```",
-        "explanation": "**答案：A**\n\n**解析：** 链表为 1 → 3 → 5 → 7。searchValue 从 head 开始依次比较：1≠5，3≠5，5==5，命中后返回 1，因此返回值为 1。\n\n- **A 返回 1**：正确。\n- **B 返回 0**：错误，5 在链表中。\n- **C 死循环，无法返回**：错误，每个结点都沿 next 前进，7 之后为 nullptr。\n- **D 返回 -1**：错误，函数只返回 0 或 1。\n\n**考点：** 单链表遍历"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 26,
-      "changes": {
-        "question": "\n# [GESP202403 五级] 成绩排序\n\n## 题目描述\n\n有 $n$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：\n\n1. 比较总分，高者靠前；\n2. 如果总分相同，则比较语文和数学两科的总分，高者靠前；\n3. 如果仍相同，则比较语文和数学两科的最高分，高者靠前；\n4. 如果仍相同，则二人并列。\n\n你需要输出每位同学的排名，如遇 $x$ 人并列，则他们排名相同，并留空后面的 $x - 1$ 个名次。例如，有 $3$ 名同学并列第 $1$，则后一名同学自动成为第 $4$ 名。\n\n## 输入格式\n\n第一行一个整数 $N$，表示同学的人数。 \n接下来 $N$ 行，每行三个非负整数 $c_i, m_i, e_i$ 分别表示该名同学的语文、数学、英语成绩。\n\n## 输出格式\n\n输出 $N$ 行，按输入同学的顺序，输出他们的排名。 \n**注意：请不要按排名输出同学的序号，而是按同学的顺序输出他们各自的排名。**\n\n\n## 数据规模\n\n对于 30% 的测试点，保证 $N \\le 100$，且所有同学的总分各不相同。\n\n对于所有测试点，保证 $2 \\le N \\le 10^4$。\n"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "question": "\n# [GESP202403 五级] B-smooth 数\n\n## 题目描述\n\n小杨同学想寻找一种名为 $ B $-smooth 数的正整数。 \n\n如果一个正整数的最大质因子不超过 $ B $，则该正整数为 $ B $-smooth 数。小杨同学想知道，对于给定的 $ n $ 和 $ B $，有多少个不超过 $ n $ 的 $ B $-smooth 数。\n\n## 输入格式\n\n第一行包含两个正整数 $ n $ 和 $ B $，含义如题面所示。\n\n## 输出格式\n\n输出一个非负整数，表示不超过 $ n $ 的 $ B $-smooth 数的数量。\n\n\n## 数据范围\n\n| 子任务编号 | 数据点占比 | $n$ | $B$ |\n| --- | --- | --- | --- |\n| 1 | 30% | $\\le 1000$ | $1 \\le B \\le 1000$ |\n| 2 | 30% | $\\le 10^6$ | $\\sqrt{n} \\le B \\le 10^6$ |\n| 3 | 40% | $\\le 10^6$ | $1 \\le B \\le 10^6$ |\n\n对于全部数据，保证 $1 \\le n \\le 10^6$，$1 \\le B \\le 10^6$。\n"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-03-l5.code-checks.json"
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2024-03-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-03-l5.integration.json"
 }
