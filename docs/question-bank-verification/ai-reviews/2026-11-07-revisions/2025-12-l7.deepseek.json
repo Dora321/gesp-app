@@ -1,0 +1,347 @@
+{
+  "paperId": "2025-12-l7",
+  "phase": "deepseek",
+  "questionIds": [
+    9,
+    12,
+    14,
+    15,
+    20,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T17:05:00.000Z",
+  "completedAt": "2026-11-07T17:42:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "f1f01f256da9b6bf18f066b8f2873da2381f8c99539d1c0d7d1a444d8143a1c5",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2025年12月-C++7级.pdf",
+    "mirrorSha": "55f7f60a89088e624f7a82c56f5ee354cf84d212",
+    "mirrorBytes": 894724,
+    "shaVerified": true,
+    "sha256": "1726f9216733c1c7d890296215f8c8586fdf511c2a431f024ecf836d30e1ddb9"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2025-12-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第1页卷头为「CCF 编程能力等级认证 C++ 七级 2025 年 12 月」，与 2025-12-l7 一致；共 9 页。"
+    },
+    "questions": [
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第9题题干「有 5 个字符，它们出现的次数分别为 2 次、2 次、3 次、3 次、5 次……WPL（每个字符的出现次数×它的编码长度，再把每个字符结果加起来）」与候选一致，乘号已补回。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页选项 A 30、B 34、C 43、D 47，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为 B，0 起始索引 1。独立构造哈夫曼树：2+2=4、3+3=6、4+5=9、6+9=15，非叶结点权值和 4+6+9+15=34，即 WPL。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按哈夫曼合并过程求非叶结点权值和，与独立计算一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页第12题题干「下面关于二叉树的说法正确的是（ ）」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页 A-D 与候选逐字一致：A 任意二叉树中序与后序必定不同、B 已知先序与后序唯一确定、C「若二叉树有 n 个结点，根节点高度为 1，则其高度满足：⌈log₂(n+1)⌉ ≤ h ≤ n。」、D 先序中根后紧跟的结点一定是左孩子；C 项已补回 n、高度与公式。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为 C，0 起始索引 2。n 结点二叉树最小高度为完全二叉树形态 ⌈log₂(n+1)⌉、最大为链状 n，C 正确；A 在单链时中序与后序相同，B 先序+后序一般不唯一，D 根后紧跟的也可能是右孩子。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以单链反例排除 A、以 0/2 度不唯一排除 B、以右孩子反例排除 D，结论 C，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页第14题题干及 9 结点有向图；候选按页图补入 15 条边：1→4、1→5；2→1、2→5、2→6；3→2；4→7；5→4、5→6、5→8；6→3、6→9；8→4、8→7、8→9。已放大页图逐条核对，方向与端点均一致（含 6→3）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页选项 A 1,5,6,3,2,8,9,4,7；B 1,5,8,9,7,4,6,3,2；C 3,2,1,4,7,6,9,5,8；D 2,5,6,3,8,7,9,4,1，与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为 B，0 起始索引 1。独立 DFS 模拟：1→5→8→9，回溯 8→7，回溯 8→4，回溯 5→6→3→2，得到 B；A 在 6 尚有未访出边 9 时提前回溯，C 在 1 尚有 5 未访时越序访问 6，D 在 6 尚有 9 时提前回溯，均不可行。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出 B 可实现、A/C/D 与 DFS 栈行为矛盾，与独立模拟一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页第15题题干及 12 结点有向图；候选按页图补入 18 条边：1→2、2→1；2→3；3→6、3→10；1→4；4→7；5→4；7→8；8→4、8→5、8→9；6→10；10→11、10→9；11→6；9→11；12→9。已放大页图逐条核对，含 8→5、9→11 等方向。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页选项 A 3、B 4、C 5、D 6，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为 C，0 起始索引 2。独立划分强连通分量：{1,2}、{3}、{4,5,7,8}、{6,9,10,11}、{12}，共 5 个；3→6 但无回路返回 3，12 只有出边，均单独成块。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出 5 个分量并提及 Kosaraju/Tarjan 判定，与独立划分一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断第5题「求两个长度为 n 序列的最长公共子序列（LCS）长度时，可以使用滚动数组将空间复杂度从 O(n²) 优化到 O(n)。」与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现「正确/错误」两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第5题为「√」，映射 0。LCS 的 f[i][j] 只依赖上一行，滚动数组可把空间降到 O(min(n,m)) 量级，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按转移只依赖上一行说明滚动数组优化，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页判断第10题「一个包含 V 个顶点的连通无向图，其任何一棵生成树都恰好包含 V−1 条边。」与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只呈现「正确/错误」两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第5页判断题答案表第10题为「√」，映射 0。生成树包含全部 V 个顶点且无环，是一棵 V 个结点的树，恰有 V−1 条边。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按生成树定义推导 V−1 条边，并说明 DFS/BFS/最小生成树算法构造不影响边数，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页 3.1.1 题目描述（连通无向图、d(u,v) 为最少边数、建设难度为到其它城市的最大连通度、并列取最小编号）、3.1.2 输入格式、3.1.3 输出格式与候选 question 一致；第6页两组样例（3 3 三角形→1；4 4→2）与候选 samples 一致；3.1.5 数据范围（40%：1≤n≤300；全部：1≤n≤2000、1≤m≤2000、1≤u_i,v_i≤n）与候选补入文本逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：无权连通图用 BFS 求单源最短路，逐城市求到其它城市的最大距离（离心率），取最小者、并列取最小编号，即图的中心。样例1 三角形各点离心率 1，取 1；样例2 城市 2 离心率 1 最小，输出 2；n,m≤2000 时 O(n(n+m)) 可行。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 逐源点 BFS，dist 初始化为 −1，ecc 取最大距离，严格小于保证并列取最小编号。已用 g++ -std=c++17 -O2 编译并运行两组原样例（1、2）及边界：2 1/1 2→1；3 2 链→2；5 4 链→3，全部正确。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "两城市一条路",
+            "input": "2 1\n1 2\n",
+            "output": "1",
+            "reason": "两城离心率均为1，取编号最小的1。"
+          },
+          {
+            "name": "3 点链",
+            "input": "3 2\n1 2\n2 3\n",
+            "output": "2",
+            "reason": "3的离心率为1，1和2为2，故取3。"
+          },
+          {
+            "name": "5 点链",
+            "input": "5 4\n1 2\n2 3\n3 4\n4 5\n",
+            "output": "3",
+            "reason": "链的中心是3，最大距离2；1和5为4，2和4为3，故取3。"
+          }
+        ],
+        "unresolved": [
+          "原卷标注编程题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7-8页 3.2.1 题目描述（小组综合积极度=a_k+max−min、求所有划分方案的最大总和）、3.2.2 输入格式（第二行 c、第三行 a）、3.2.3 输出格式与候选 question 一致；3.2.4 两组样例（4/2 1 3 2/1 5 6 3→12；8/1 3 2 4 3 5 4 6/0 2 5 6 4 3 3 4→21）与候选 samples 一致；第8页 3.2.5 数据范围（40%：c_i=0；全部：1≤n≤300、0≤c_i≤10^4、0≤a_i≤10^4）与候选补入文本逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：排序后按组数 j 与已用人数 k 做 DP；第 j 组取当前最小 c[j] 与最大 c[n−j+1]，新增贡献 a_s+(s>1?c[n−j+1]−c[j]:0)。样例1 最优 12、样例2 最优 21，与解析一致；该 DP 等价于官方按「组数×人数」枚举的区间划分。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 按组数×已用人数 DP，diff=c[n−j+1]−c[j]，s=1 时不加差值。已用 g++ -std=c++17 -O2 编译并运行两组原样例（12、21）及边界：1/0/5→5；3/1 3 5/3 20 18→27；2/1 10/0 0→9；另 150 组随机小数据与集合划分暴力对拍全部一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单名同学",
+            "input": "1\n0\n5\n",
+            "output": "5",
+            "reason": "单元素组贡献a1=5，无max-min项。"
+          },
+          {
+            "name": "极值配对优于连续分组",
+            "input": "3\n1 3 5\n3 20 18\n",
+            "output": "27",
+            "reason": "分组{1,5}与{3}：20+(5-1)+3=27，优于连续分组[1,3]+[5]的25。"
+          },
+          {
+            "name": "两人一组",
+            "input": "2\n1 10\n0 0\n",
+            "output": "9",
+            "reason": "两人同组贡献a2+(10-1)=9，分成两组为0。"
+          }
+        ],
+        "unresolved": [
+          "原卷标注编程题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      }
+    ],
+    "summary": "对照原卷 9 页逐题复核 8 个候选修订（Q9/Q12 题面与选项、Q14/Q15 边集补全、Q20/Q25 记号补全、Q26/Q27 数据范围）；全部适用维度通过，未提出追加修改。"
+  },
+  "requests": []
+}
