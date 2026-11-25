@@ -1,0 +1,1036 @@
+{
+  "paperId": "2025-03-l6",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T06:20:00.000Z",
+  "completedAt": "2026-11-25T08:05:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "fcc5d9492aade8fd6b0b426f182ab4c273ee4d7aed0aa6dc5db9d4e3c4cb3d65",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1669256961851424.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++6级.pdf",
+    "mirrorSha": "549348b62047e9004972fbb988faed13dd5ecb74",
+    "mirrorBytes": 1458707,
+    "shaVerified": true,
+    "sha256": "43135fac0d7cf99f3b2b592ae77883ee3f404f73b785c53434d8aafb9a034ba4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-03-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「C++ 六级 2025 年 03 月」，与 paperId 2025-03-l6 一致；第 1 页单选答案表 1—15 依次为 D B A B B B B A A A A A B C A，第 7 页判断答案表 1—10 依次为 √ × × √ √ × √ √ √ √，均清晰可读，与站点逐题答案一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受初核。类可被继承扩展，「一旦定义后不能修改或扩展」不正确，答案表第 1 题 D 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图题干「在面向对象编程中，类是一种重要的概念。下面关于类的描述中，不正确的是（ ）。」与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A 类是一个抽象的概念，用于描述具有相同属性和行为的对象集合。；B 类可以包含属性和方法，属性用于描述对象的状态，方法用于描述对象的行为。；C 类可以被实例化，生成具体的对象。；D 类一旦定义后，其属性和方法不能被修改或扩展。，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 D，索引 3，站点 answer=3。独立判断：类可通过继承/派生扩展，D 说法错误，为应选项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析逐项核对 A/B/C 正确性与 D 的错误，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。B 把「低频离根远、高频离根近」说反，答案表第 2 题 B 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图题干「哈夫曼编码是一种数据压缩算法。以下关于哈夫曼编码的描述中，不正确的是（ ）。」与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A 变长编码高频短码低频长码；B 频率越低的字符离根节点越近，频率越高的字符离根节点越远；C 生成过程基于贪心算法，每次选择频率最低的两个节点进行合并；D 前缀编码可实现唯一解码，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 B，索引 1，站点 answer=1。独立判断：低频字符合并得早、位于深层（离根远），B 说反，为应选项；A/C/D 均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析指出 A/B 描述同一事实的两面、B 相反，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。先输出根再递归左右为先序遍历，答案表第 3 题 A 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页末题干「以下代码实现了树的哪种遍历方式？」及 traverse 代码（先输出 root->val 再递归左右）与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "页图选项 A 前序遍历、B 中序遍历、C 后序遍历、D 层次遍历，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 A，索引 0，站点 answer=0。独立判断：输出位于两次递归之前，为先序遍历。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析按输出位置判别遍历类型，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。hasNull 标记后遇到非空结点返回 false 的层序判别即完全二叉树判定，答案表第 4 题 B 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页末题干「以下关于完全二叉树的代码描述，正确的是（ ）。」及第 1—2 页 isCompleteTree 代码（队列层序、空孩子也入队、hasNull 置位后再遇非空返回 false）与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图选项 A 该代码用于判断一棵树是否为满二叉树；B 该代码用于判断一棵树是否为完全二叉树；C 该代码用于判断一棵树是否为二叉搜索树；D 该代码用于计算树的高度，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 B，索引 1，站点 answer=1。独立分析：层序中空位之后不得再出现非空结点，正是完全二叉树的层序判据；未比较数值、允许末层不满、未算高度。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析说明判据与「不能只看函数名」，与独立分析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。op 按值比较递归下探、空位新建结点，为 BST 插入，答案表第 5 题 B 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页页图题干「以下代码实现了二叉排序树的哪种操作？」及 op 代码（root 为空返回新结点，否则按 val 大小递归挂接）与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图选项 A 查找、B 插入、C 删除、D 遍历，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 B，索引 1，站点 answer=1。独立判断：在空位处 new TreeNode(val) 并挂回父结点，是标准 BST 插入。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析说明插入路径与新结点创建，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。频率 {5,1,6,2} 的哈夫曼编码 B 项（A:11, B:100, C:0, D:101）经独立建树核对成立，答案表第 6 题 B 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页页图题干「给定字符集 {A, B, C, D} 的出现频率分别为 {5, 1, 6, 2}，则正确的哈夫曼编码是（ ）。」与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图选项 A A: 0, B: 100, C: 11, D: 101；B A: 11, B: 100, C: 0, D: 101；C A: 0, B: 101, C: 11, D: 100；D A: 10, B: 101, C: 0, D: 100，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 B，索引 1，站点 answer=1。独立建树：B(1)+D(2)=3，3+A(5)=8，8+C(6)=14；C 深度 1、A 深度 2、B/D 深度 3，编码 C:0、A:11、B:100、D:101，与选项 B 完全一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析按合并过程推导编码，与独立建树一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。DP 要求最优子结构与重叠子问题，答案表第 7 题 B 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页末题干「关于动态规划的描述，正确的是（ ）。」与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图选项 A 动态规划算法的时间复杂度总是低于贪心算法。；B 动态规划要求问题必须具有最优子结构和重叠子问题两个性质。；C 动态规划通过递归实现时不需要存储中间结果。；D 动态规划的核心思想是将问题分解为互不重叠的子问题。，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 B，索引 1，站点 answer=1。独立判断：DP 适用前提即最优子结构+重叠子问题，B 正确；A 复杂度无必然高低，C 记忆化恰需存储中间结果，D「互不重叠」与 DP 相悖。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析逐项分析，结论 B 成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。obj1 调用自定义构造 1 次，obj2=obj1 为拷贝初始化不调用之，答案表第 8 题 A 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页页图题干「以下代码中，类的构造函数被调用了（ ）次。」及 MyClass 代码（MyClass obj1; MyClass obj2 = obj1;）与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图选项 A 1、B 2、C 3、D 0，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题为 A，索引 0，站点 answer=0。独立判断：obj1 调用无参构造一次；obj2 = obj1 是拷贝初始化，调用编译器合成的拷贝构造，不计入题面定义的构造函数调用，共 1 次。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析区分构造与拷贝构造的调用时机，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。enQueue 判满、置 front、rear 循环推进并写入，为入队操作，答案表第 9 题 A 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页末题干「以下代码实现了循环队列的哪种操作？」及 CircularQueue::enQueue 代码与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3—4 页页图选项 A 入队、B 出队、C 查看队首元素、D 判断队列是否为空，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题为 A，索引 0，站点 answer=0。独立判断：enQueue 在非满时推进 rear 并写入 value，为入队。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析说明入队流程，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。DFS 数叶结点须把左孩子压栈（代码字段已完整转录原卷 countLeafNodes 代码），答案表第 10 题 A 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页题干「以下代码实现了二叉树的深度优先搜索（DFS），并统计叶子结点的数量，则横线上应填写（ ）。」与站点一致；代码块经站点独立 code 字段完整转录（countLeafNodes：弹栈计数叶结点、先压右孩子、横线处补左孩子），与第 4 页原卷逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图选项 A if (node->left) s.push(node->left);；B if (node->left) s.pop(node->left);；C if (node->left) s.front(node->left);；D if (node->left) s.push(node->right);，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 A，索引 0，站点 answer=0。独立推导：右孩子已压栈，横线处须对称地把左孩子压栈，A 正确；stack 无 pop(x)/front(x) 接口，D 会把右孩子压两次。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析按栈接口与遍历完备性逐项排除，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。BFS 未命中时须把左右孩子依次入队，答案表第 11 题 A 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页末题干「以下代码实现了二叉树的广度优先搜索（BFS），并查找特定值的节点，则横线上应填写（ ）。」及第 4—5 页 findNode 代码与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4—5 页页图选项 A if (current->left) q.push(current->left); if (current->right) q.push(current->right);；B q.pop(...)；C q.front(...)；D 左右孩子交叉入队，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 A，索引 0，站点 answer=0。独立推导：BFS 按层扩展须把非空左右孩子入队，A 正确；queue 无 pop(x)/front(x) 接口，D 交叉入队破坏层序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析说明层序扩展与队列接口，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。格雷码反射构造后半段倒序加前缀 1，答案表第 12 题 A 一致（站点题干省略参数名 n，代码中 generateGrayCode(int n) 自明，属等价转写）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页题干「以下代码用于生成 n 位格雷编码。横线上应填写（ ）。」与站点一致；站点正文作「生成 位格雷编码」，省略的参数名由代码 generateGrayCode(int n) 与注释自明，语义无损。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页页图选项 A result.push_back(\"1\"+prev[i]);；B result.push_back(\"0\"+prev[i]);；C result.push_back(prev[i]+\"1\");；D result.push_back(prev[i]+\"0\");，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 A，索引 0，站点 answer=0。独立推导：前半段正序加 0，后半段倒序加 1，衔接处仅最高位不同；横线位于倒序循环内，应 push \"1\"+prev[i]。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析以 n=2 实例验证镜像法，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。装得下时的转移为 max(dp[i-1][j], dp[i-1][j-weights[i-1]]+values[i-1])，答案表第 13 题 B 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页末题干「以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为 weights[]，价值为 values[]，背包容量为 W，横线上应填写（ ）。」及第 5—6 页 knapsack 代码与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页页图选项 A dp[i-1][j], values[i-1]；B dp[i-1][j], dp[i-1][j-weights[i-1]]+values[i-1]；C dp[i][j-1], values[i-1]；D dp[i-1][j-weights[i-1]]+values[i-1], dp[i][j-1]，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 B，索引 1，站点 answer=1。独立推导：不装取 dp[i-1][j]，装取 dp[i-1][j-weights[i-1]]+values[i-1]，max 的两个实参即 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析说明两个分支的状态含义，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受初核。括号匹配最终返回须栈空（未闭合左括号存在），答案表第 14 题 C 一致（站点代码块在独立 code 字段中完整转录原卷 isBalanced）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页题干「以下代码用于检查字符串中的括号是否匹配，横线上应填写（ ）。」与站点一致；isBalanced 代码经站点独立 code 字段完整转录（循环末 return 横线），与第 6 页原卷一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页页图选项 A true；B false；C st.empty()；D !st.empty()，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 C，索引 2，站点 answer=2。独立推导：循环内已排除所有不匹配右括号，剩余唯一失败情形是栈中尚有未闭合左括号（如 \"(((\")，故返回 st.empty()。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析以 \"(((\" 反例说明，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。Shape* 指向派生类对象并重新赋值完全合法，「出现编译错误」说法错误，答案表第 15 题 A 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页末题干「关于下面代码，说法错误的是（ ）。」及第 6—7 页 Shape/Circle/Rectangle 多态代码与站点一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页页图选项 A 语句 Shape* shapePtr = &circle; 和 shapePtr = &rectangle; 出现编译错误；B Shape 为基类，Circle 和 Rectangle 是派生类；C 通过继承，Circle 和 Rectangle 复用了 Shape 的属性和方法，并扩展了新的功能；D Circle 和 Rectangle 通过重写（override）基类的虚函数 area 和基类指针，实现了运行时多态，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 A，索引 0，站点 answer=0。独立判断：基类指针指向派生类对象并重新指向另一派生类对象均合法（向上转型），A 错误为应选项；B/C/D 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析按继承与多态逐项核对，与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。哈夫曼每次合并最小两结点、WPL 最小，官方答案 √ 与站点 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 1 题原文与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 1 题为 √，映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "哈夫曼树的贪心构造最小化带权路径长度，命题正确；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。格雷码相邻仅一位不同，「必须有多位不同」说反，官方答案 × 与站点 answer=1 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 2 题原文「格雷编码的相邻两个编码之间必须有多位不同，以避免数据传输错误。」与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 2 题为 ×，映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "格雷码的定义恰是相邻仅一位不同，从而消除多位翻转的同步误差，命题说反；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。DFS 用栈（后进先出）而非队列，官方答案 × 与站点 answer=1 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断题第 3 题原文「在树的深度优先搜索（DFS）中，使用队列作为辅助数据结构以实现“先进后出”的访问顺序。」与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 3 题为 ×，映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "DFS 的辅助结构是栈，「先进后出」由栈实现而非队列，命题错误；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。traverse 先递归左、再输出、再递归右为中序遍历，官方答案 √ 与站点 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页末判断题第 4 题原文及第 8 页 traverse 代码与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 4 题为 √，映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "输出位于左右递归之间，为中序遍历，命题正确；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。构造函数可重载、无参默认构造只能有一个，官方答案 √ 与站点 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 5 题原文「C++ 支持构造函数重载，但默认无参数的构造函数只能有一个。」与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 5 题为 √，映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "重载要求参数列表不同，无参版本参数列表唯一，故默认无参构造至多一个，命题正确；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受初核。左子树为空不代表全树最小（反例 10(5(,8))），官方答案 × 与站点 answer=1 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 6 题原文「二叉排序树（BST）中，若某节点的左子树为空，则该节点一定是树中的最小值节点。」与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 6 题为 ×，映射为 1，与站点 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "反例：根 10、左孩子 5、5 的右孩子 8——8 左子树为空但最小值是 5；全树最小须从根一路向左，命题错误；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。硬币 [1,3,4] 凑 6 最少 2 枚（3+3），官方答案 √ 与站点 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 7 题原文「在动态规划解决一维硬币找零问题时，若硬币面额为 [1, 3, 4]，目标金额为 6，则最少需要 2 枚硬币（3+3）。」与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 7 题为 √，映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "dp 递推：dp[6]=min(dp[5]+1, dp[3]+1, dp[2]+1)=min(3,2,3)=2，对应 3+3；贪心先取 4 会得 3 枚，恰好说明 DP 正确，命题成立；站点解析的 dp 表与独立递推一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。封装 = 数据与行为绑定 + 隐藏实现细节，官方答案 √ 与站点 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 8 题原文「面向对象编程中，封装是指将数据和行为绑定在一起，并对外隐藏实现细节。」与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 8 题为 √，映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "封装即以访问控制把状态与操作绑定并隐藏内部实现，命题正确；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。1(2(4),3) 前两层满、末层最左，为完全二叉树，官方答案 √ 与站点 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 9 题原文及 4 结点构建代码与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 9 题为 √，映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "按层序结点 1..4 依次落位（4 为 2 的左孩子），无空洞，满足完全二叉树定义，命题正确；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受初核。双向链表两端插删均 O(1)，可同时高效实现栈与队列，官方答案 √ 与站点 answer=0 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 10 题原文「栈和队列均可以用双向链表实现，插入和删除操作的时间复杂度为 O(1)。」与站点一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 10 题为 √，映射为 0，与站点 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "双向链表持 prev/next，表头表尾插删均 O(1)：栈用表头、队列头出尾入，命题正确；站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "verdict": "revise",
+        "reviewNote": "接受初核对题面的修复（补入官方数据范围），并独立核算：官方样例（2 2 1 / 3 3 1 3）与 4 条边界用例（单结点、两结点、三结点链、五结点星形）在站点参考程序下全部复现；树为二分图、偶数步可达同色结点的转化推导成立。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 9 页 3.1.6 数据范围给出 40% n≤10^3、全部 1≤n≤2×10^5，站点题面缺失。初核已补入 question，批准套用。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观题答案，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：树无奇环、是二分图，每步跨色，偶数步恰停在与起点同色的结点；同色任意两点间可经偶数条边到达（简单路径为偶数，不足处来回折返补 2 步），故答案即起点所在颜色类的大小。样例 1 颜色 1/3 异、1/2 同色得 2 2 1，与站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本地以 g++ -std=c++17 编译站点参考程序并运行：官方样例输出 2 2 1、3 3 1 3；单结点（1）、两结点（1 1）、三结点链（2 1 2）、五结点星形（1 4 4 4 4）四条边界全部正确；BFS 二染色与官方 DFS 实现等价。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 六级] 树上漫步\n\n## 题目描述\n\n小 A 有一棵 $n$ 个结点的树，这些结点依次以 $1,2,\\cdots,n$ 标号。\n\n小 A 想在这棵树上漫步。具体来说，小 A 会从树上的某个结点出发，每一步可以移动到与当前结点相邻的结点，并且小 A 只会在偶数步（可以是零步）后结束漫步。\n\n现在小 A 想知道，对于树上的每个结点，从这个结点出发开始漫步，经过偶数步能结束漫步的结点有多少个（可以经过重复的节点）。\n\n## 输入格式\n\n第一行，一个正整数 $n$。\n\n接下来 $n-1$ 行，每行两个整数 $u_i,v_i$，表示树上有一条连接结点 $u_i$ 和结点 $v_i$ 的边。\n\n## 输出格式\n\n一行，$n$ 个整数。第 $i$ 个整数表示从结点 $i$ 出发开始漫步，能结束漫步的结点数量。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 10^3$。\n\n对于所有测试点，保证 $1\\le n\\le 2\\times 10^5$。\n"
+        },
+        "tests": [
+          {
+            "name": "单结点",
+            "input": "1\n",
+            "output": "1",
+            "reason": "0 步可停在自身，同色结点只有 1 个。"
+          },
+          {
+            "name": "两结点",
+            "input": "2\n1 2\n",
+            "output": "1 1",
+            "reason": "两结点异色，各自同色结点仅自身，各得 1（已实测站点参考程序）。"
+          },
+          {
+            "name": "三结点链",
+            "input": "3\n1 2\n2 3\n",
+            "output": "2 1 2",
+            "reason": "链 1-2-3 二染色为 0,1,0；结点 1、3 同色 2 个，结点 2 同色 1 个。"
+          },
+          {
+            "name": "五结点星形",
+            "input": "5\n1 2\n1 3\n1 4\n1 5\n",
+            "output": "1 4 4 4 4",
+            "reason": "中心 1 为色 0，四个叶子为色 1；中心只能到自身，叶子可到其余 3 个叶子及自身，共 4 个。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "verdict": "revise",
+        "reviewNote": "接受初核对题面的修复（按原卷补全被截断的题干并补入数据范围），并独立核算：官方样例（5 / 5）与 3 条边界用例（单站负值 -5、全负取最大单站 -1、跨端点环形 11）在站点参考程序下全部复现；破环成链 + 滑动窗口最小前缀的推导与站点的单调队列实现一致。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 10 页原卷题干完整给出「车站 i（1≤i<n）的下一个车站是车站 i+1。特别地，车站 n 的下一个车站是车站 1。小 A 会从某个车站出发……小 A 不会经过一个车站多次。当小 A 乘坐地铁环线经过车站 i 时，小 A 会获得 a_i 点快乐值。请你安排小 A 的行程，选择出发车站与结束车站，使得获得的快乐值总和最大。」；站点题干在「车站 i (1≤i≤n)」处截断，核心题意缺失。第 11 页数据范围给出 20% n≤200、40% n≤2000、全部 1≤n≤2×10^5、−10^9≤a_i≤10^9，站点亦缺失。初核已按原卷补全 question，批准套用。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方客观题答案，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：行程为环上不重复经过结点的连续弧段，等价于复制数组后长度不超过 n 的最大区间和；固定右端点 i 时在窗口 [i−n, i−1] 内取最小 pre[j]，单调队列维护。样例 1 最优 [2,3]=5、样例 2 最优 [1,3,-3,4]=5，与站点解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本地以 g++ -std=c++17 编译站点参考程序并运行：官方样例输出 5、5；单站负值（-5）、全负取最大单站（-1）、跨端点环形段（4\n5 -10 5 1 → 11）三条边界全部正确；与官方手写数组单调队列实现语义一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 六级] 环线\n\n## 题目描述\n\n小 A 喜欢坐地铁。地铁环线有 $n$ 个车站，依次以 $1,2,\\cdots,n$ 标号。车站 $i$（$1\\le i<n$）的下一个车站是车站 $i+1$。特别地，车站 $n$ 的下一个车站是车站 $1$。\n\n小 A 会从某个车站出发，乘坐地铁环线到某个车站结束行程，这意味着小 A 至少会经过一个车站。小 A 不会经过一个车站多次。当小 A 乘坐地铁环线经过车站 $i$ 时，小 A 会获得 $a_i$ 点快乐值。请你安排小 A 的行程，选择出发车站与结束车站，使得获得的快乐值总和最大。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示车站的数量。\n\n第二行，$n$ 个整数 $a_i$，分别表示经过每个车站时获得的快乐值。\n\n## 输出格式\n\n一行，一个整数，表示小 A 能获得的最大快乐值。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $1\\le n\\le 200$。\n\n对于 40% 的测试点，保证 $1\\le n\\le 2000$。\n\n对于所有测试点，保证 $1\\le n\\le 2\\times 10^5$，$-10^9\\le a_i\\le 10^9$。\n"
+        },
+        "tests": [
+          {
+            "name": "单站负值",
+            "input": "1\n-5\n",
+            "output": "-5",
+            "reason": "至少经过一个车站，只能选 -5。"
+          },
+          {
+            "name": "全负取最大单站",
+            "input": "3\n-1 -2 -3\n",
+            "output": "-1",
+            "reason": "不能空行程，最大单站为 -1。"
+          },
+          {
+            "name": "跨端点环形段",
+            "input": "4\n5 -10 5 1\n",
+            "output": "11",
+            "reason": "跨环选取车站 3→4→1 得 5+1+5=11（已实测站点参考程序），验证破环成链后跨数组端点的滑动窗口实现；不选含 -10 的区间。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "五维独立复核完成 27 题：25 题通过；Q26/Q27 题面按原卷补全（数据范围与被截断题干），与初核一致批准。编程题 Q26/Q27 经 g++ 编译并复现官方样例与边界用例；Q27 另以跨端点环形段用例验证破环成链窗口实现。"
+  }
+}
