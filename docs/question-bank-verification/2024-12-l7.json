@@ -5,7 +5,7 @@
   "reviewedBy": {
     "type": "AI",
     "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
-    "coordinator": "Grok CLI（调度）+ 本机机械队列（资料、自动校验与发布）"
+    "coordinator": "本机任务调度、自动校验与集成"
   },
   "source": {
     "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650239779897376.pdf",
