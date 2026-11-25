@@ -1,0 +1,378 @@
+{
+  "paperId": "2025-09-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    6,
+    12,
+    14,
+    15,
+    18,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T14:40:00.000Z",
+  "completedAt": "2026-11-25T15:18:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "8195e6b2f65d68ba990cf8119accfe4b80829536553724e9fc711d9f629b2a56",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703973079744544.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++6级.pdf",
+    "mirrorSha": "4a394061035a728cbebd82c14f41c2731d5b9ce0",
+    "mirrorBytes": 1206040,
+    "shaVerified": true,
+    "sha256": "9a64ca1030998488b541569144f6ca0937167298ed695d5966c2e3f352124074"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 C++ 六级 2025年09月」，与 2025-09-l6 一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题题干与候选 question 逐字一致；题干下 27 行 class Vehicle / class Car 代码（move() 为普通成员函数，Car 仅新增 showInfo）与候选 code 逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页 A 继承 (Inheritance)、B 封装 (Encapsulation)、C 多态 (Polymorphism)、D 链接 (Linking) 与候选 options 内容、顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第2题为 A，0 起始索引 0，候选 answer=0；Car 未定义 move() 却能调用，接口由 public 继承自 Vehicle，属继承性质。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项说明继承/封装/多态/链接，与代码事实（Car 无 move 定义、Vehicle::move 非 virtual）一致，结论 A 成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第3页第6题题干及 15 行 createTree() 代码与候选 question 内嵌代码逐行一致（1 的左右为 2、3，2 的左右为 4、5）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第3页 A 满二叉树、B 完全二叉树、C 二叉排序树、D 其他都不对 与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第6题为 B（索引 1），候选 answer=1；树形 1(2(4,5),3) 第 1、2 层填满、第 3 层从最左连续两个结点，是完全二叉树而非满二叉树。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的树形图正确还原 1(2(4,5),3)；A（第3层未满）、C（1 的左子树含 2、4、5 均大于 1，不满足 BST）、D 的排除均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页题干含变量 n 与 12 行 bfs 代码，候选 question 与之一致；原卷上标 O(n²)、O(2^n) 在候选中记为 n²、2^n，语义不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页 A O(n)、B O(log n)、C O(n²)、D O(2^n)，候选顺序、内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第12题为 A（索引 0），候选 answer=0；BFS 每个结点入队、出队各一次，队列操作 O(1)，总时间 O(n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「每结点恰入队出队一次」的推导与 B（只够一条根到叶路径）、C（不存在重复扫描）、D（指数级高估）的排除均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第5页题干（含原卷「分 别为」空格）与候选 question 一致；题干下 24 行 deleteNode 代码（第19行 TreeNode* temp = ____________;）与候选 code 逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5-6页 A root->left、B root->right、C findMin(root->right)、D findMax(root->left)，候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第14题为 C（索引 2），候选 answer=2；代码随后在右子树递归删除替身，故 temp 须取右子树最小结点（中序后继）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明替身须保持 BST 有序、中序后继/前驱均可，并指出 D 与「到右子树递归删除」的写法不匹配，判断成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          6
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页题干含 n、W、wt[i]、val[i]，候选 question 完整保留；10 行 knapsack 一维 0/1 背包代码（内层 w 从 W 递减）与候选 code 逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第6页 A dp[w]=max(dp[w],dp[w]+val[i]);、B dp[w]=dp[w-wt[i]]+val[i];、C dp[w]=max(dp[w-1],dp[w-wt[i]]+val[i]);、D dp[w]=max(dp[w],dp[w-wt[i]]+val[i]); 与候选内容一致（仅空格排版差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为 D（索引 3），候选 answer=3；转移为「不放 dp[w]」与「放 dp[w-wt[i]]+val[i]」取大。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对 A（未扣重量）、B（丢掉不放分支）、C（dp[w-1] 含义不符）的排除，以及一维数组须倒序枚举容量防重复选取的补充均成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第6页判断题第3题「一个含有 100 个节点的完全二叉树，高度为 8。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第3题为 ×（索引 1），候选 answer=1；h=floor(log2 100)+1=7≠8。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的 2^{h-1}≤n≤2^h−1 与 h=7 推导正确；100 个结点填满 6 层余 37 个落在第 7 层的易错说明成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断题第10题题干与候选 question 一致；题干下 39 行 findSelectedBananas + main 代码（bananas={1,2,3,1}）与候选 code 逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点以正确/错误作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第10题为 √（索引 0），候选 answer=0；dp=[1,2,4,4] 回溯选中下标 0、2（甜度 1+3=4），为不相邻最大和，代码结论正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的 dp[i]=max(dp[i-1],dp[i-2]+bananas[i]) 对应回溯逻辑、i==0 边界与 reverse 恢复顺序均与代码一致，结论「命题正确」成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8-9页题面（题目描述、输入/输出格式、样例1「6/street/2 1 7 4 3 3→13」、样例2「8/blossoms/1 1 2 3 5 8 13 21→8」、数据范围 40%:1≤n≤10³、全部:1≤n≤10⁵、1≤aᵢ≤10⁹）与候选 question/samples 逐项一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的状态定义、转移 dp[i]=max(dp[i],dp[j-1]+a[i-j+1])、遇重复字符 break 与 O(26n) 复杂度均正确；样例1 走查 str+e+e+t=7+2+2+2=13、样例2 得 8。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选以 vis[256] 标记、j 自 i 向左枚举、遇重复 break，dp[0]=0、其余 LLONG_MIN/4，与第9页官方参考程序（位掩码 mask 剪枝）等价。g++ -std=c++17 -O2 编译通过，原样例 13/8 及 n=1、全同字符、无重复整串等边界全部与期望一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n 最小且价值为正",
+            "input": "1\nz\n7\n",
+            "output": "7",
+            "reason": "n=1 只能整串成一段，dp[1]=a1=7，覆盖最小 n。"
+          },
+          {
+            "name": "全部字符相同",
+            "input": "4\naaaa\n1 2 3 4\n",
+            "output": "4",
+            "reason": "任意长度≥2 的子串都含重复 a，只能切成 4 个单字符，4×a1=4；验证重复剪枝。"
+          },
+          {
+            "name": "重复字符迫使切分",
+            "input": "3\naba\n1 100 1\n",
+            "output": "101",
+            "reason": "整串 aba 非法；ab+a=100+1 或 a+ba=1+100 均为 101，验证跨段最优而非贪心取最长。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第9-10页题面、输入/输出格式、样例1「4/1 2 6/1 3 1/3 4 5→18」、样例2「7/1 2 1/2 3 1/3 4 1/7 6 1/6 5 1/5 1 1→9」、数据范围（30%:1≤n≤8；另30%:恰两座度为1；全部:1≤n≤10⁵、1≤uᵢ,vᵢ≤n、1≤lᵢ≤10⁹）与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的 2·sum−mx 推导（返回首都每条边走两次，终点 T 省去根到 T 的回程，取最远点）正确；样例1 sum=12、mx=6→18，样例2 sum=6、mx=3→9。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选邻接表 DFS 求 1 到各点最远距离，输出 2*sum−mx，与第10-11页官方参考程序 s*2−mx 等价；long long 防溢出。编译运行原样例 18/9、n=1→0、单边 10⁹→10⁹、星形 21 均一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n=1 无边",
+            "input": "1\n",
+            "output": "0",
+            "reason": "只有首都，sum=0、mx=0，答案 0，覆盖最小规模。"
+          },
+          {
+            "name": "单条最大边权",
+            "input": "2\n1 2 1000000000\n",
+            "output": "1000000000",
+            "reason": "sum=10⁹、mx=10⁹，2·sum−mx=10⁹，覆盖边权上界且验证不走回头路。"
+          },
+          {
+            "name": "星形取最远分支",
+            "input": "4\n1 2 5\n1 3 7\n1 4 2\n",
+            "output": "21",
+            "reason": "sum=14，终点取最远的 3（距离 7），2×14−7=21，验证终点不必返回。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "9 题逐题对照第 1、3、5-11 页原图：题干、选项、答案表与解析均一致；Q2/Q14/Q15/Q25 已补入的代码与原卷逐行相符；Q26/Q27 参考程序经编译及原样例、边界用例验证通过，候选可直接应用。另注：编程题站点 memoryLimit 统一记为 128 MB，原卷均为 512.0 MB；该字段不属于五维可编辑字段，未纳入本轮修订范围。"
+  }
+}
