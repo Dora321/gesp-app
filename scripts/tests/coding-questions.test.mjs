@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { getPaper, paperIds, paperMeta } from '../../src/data/gesp/index.js';
+import { getDisplayedQuestionIndex, getSavedQuestionIndex } from '../../src/utils/questionHelpers.js';
 import {
   CODING_QUESTION_IDS,
   getLuoguProblemUrl,
@@ -77,6 +78,27 @@ test('embedded coding questions are never overwritten', async () => {
     const kept = questions.find((item) => Number(item.id) === id);
     assert.equal(kept.question, original.question);
   }
+});
+
+test('2024-09 L5 presents the PDF order and preserves existing links and saved positions', async () => {
+  const paperId = '2024-09-l5';
+  const paper = await getPaper(paperId);
+  const questions = withSynthesizedCoding(embeddedQuestions(paper), { paperId });
+  const [weapon, monster] = questions.slice(-2);
+  assert.match(weapon.question, /小杨的武器/);
+  assert.match(monster.question, /挑战怪物/);
+  assert.equal(weapon.memoryLimit, '512 MB');
+  assert.equal(monster.memoryLimit, '512 MB');
+  assert.match(weapon.template, /cin >> n >> m/);
+  assert.match(monster.template, /cin >> t[\s\S]*cin >> h/);
+  assert.equal(getLuoguProblemUrl(paperId, weapon.id), 'https://www.luogu.com.cn/problem/B4051');
+  assert.equal(getLuoguProblemUrl(paperId, monster.id), 'https://www.luogu.com.cn/problem/B4050');
+
+  // 旧版把挑战怪物保存为第 26 个位置，续做时仍应定位到同一道题。
+  assert.equal(questions[getDisplayedQuestionIndex(questions, 25)], monster);
+  assert.equal(questions[getDisplayedQuestionIndex(questions, 26)], weapon);
+  assert.equal(getSavedQuestionIndex(questions, 25), 26);
+  assert.equal(getSavedQuestionIndex(questions, 26), 25);
 });
 
 test('placeholder problem ids do not produce a broken Luogu link', () => {

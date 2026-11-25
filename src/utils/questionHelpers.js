@@ -5,6 +5,25 @@
  */
 export const isProgrammingQuestion = (q) => q?.type === 'programming' || q?.type === 'coding';
 
+// 有原卷顺序覆盖时，仍按旧版的题目 ID 顺序保存位置，兼容此前的存档。
+const questionsInSavedOrder = (questions) => questions.some(q => q.paperOrder !== undefined)
+  ? [...questions].sort((a, b) => Number(a.id) - Number(b.id))
+  : questions;
+
+export function getSavedQuestionIndex(questions, displayIndex) {
+  const savedOrder = questionsInSavedOrder(questions);
+  if (savedOrder === questions) return displayIndex;
+  const index = savedOrder.indexOf(questions[displayIndex]);
+  return index < 0 ? displayIndex : index;
+}
+
+export function getDisplayedQuestionIndex(questions, savedIndex) {
+  const savedOrder = questionsInSavedOrder(questions);
+  if (savedOrder === questions) return savedIndex;
+  const index = questions.indexOf(savedOrder[savedIndex]);
+  return index < 0 ? savedIndex : index;
+}
+
 /**
  * Strip leading number from question text: "1. What is..." → "What is..."
  */

@@ -5,7 +5,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import { getPaper } from '../data/gesp/index';
 import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
 import useLuoguPool from '../hooks/useLuoguPool';
-import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
+import { getDisplayedQuestionIndex, getSavedQuestionIndex, isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
 import { flaggedQuestionIndexes, reviewQuestionIndexes, scoreExam } from '../utils/examScoring';
 import { resolveVerification } from '../data/gesp/verificationModel';
 import { setExamFocus } from '../utils/teacherTools';
@@ -127,15 +127,6 @@ const ExamPaper = ({ paperId }) => {
     return () => setExamFocus(false);
   }, [mode]);
 
-  // Persist exam progress so an accidental refresh / tab close doesn't wipe
-  // answers and the clock mid-paper. Only saves while actively in exam mode,
-  // and only when something real changes (answers / question / submit) —
-  // the clock is a fixed endsAt timestamp, so there is nothing to save per second.
-  useEffect(() => {
-    if (mode !== 'exam' || !paperData || !Number.isFinite(endsAt)) return;
-    saveExamProgress(paperId, { answers, endsAt, currentQuestionIndex, isSubmitted });
-  }, [mode, paperData, paperId, answers, endsAt, currentQuestionIndex, isSubmitted]);
-
   useEffect(() => {
     if (mode !== 'exam' || !Number.isFinite(endsAt)) return;
     saveFlags(paperId, endsAt, isSubmitted ? new Set() : flagged);
@@ -148,6 +139,13 @@ const ExamPaper = ({ paperId }) => {
   // 题数不同（25 vs 27），学生在考试模式练的是半张卷还看不出来。
   const allQuestions = paperData ? withSynthesizedCoding(baseQuestions, { paperId, luoguPool }).filter((q) => !isHiddenFromMockExam(q)) : [];
   const questionCount = allQuestions.length;
+  const savedQuestionIndex = getSavedQuestionIndex(allQuestions, currentQuestionIndex);
+
+  // 保存答案、位置和截止时间，题目显示顺序调整后仍可续做原来的题。
+  useEffect(() => {
+    if (mode !== 'exam' || !paperData || !Number.isFinite(endsAt)) return;
+    saveExamProgress(paperId, { answers, endsAt, currentQuestionIndex: savedQuestionIndex, isSubmitted });
+  }, [mode, paperData, paperId, answers, endsAt, savedQuestionIndex, isSubmitted]);
 
   const currentQ = allQuestions[currentQuestionIndex] || allQuestions[0] || null;
 
@@ -217,7 +215,7 @@ const ExamPaper = ({ paperId }) => {
     if (resume) {
       setAnswers(savedProgress.answers || {});
       setFlagged(savedProgress.flagged);
-      setCurrentQuestionIndex(savedProgress.currentQuestionIndex || 0);
+      setCurrentQuestionIndex(getDisplayedQuestionIndex(allQuestions, savedProgress.currentQuestionIndex || 0));
       setIsSubmitted(Boolean(savedProgress.isSubmitted));
       // 兼容旧存档：只有 timeLeft 时按保存时的剩余秒数从现在起算。
       setEndsAt(resolveEndsAt(savedProgress, timeLimitSeconds));

@@ -12,7 +12,7 @@ export const paperStats = {
   verifiedPaperCount: 48,
   partialPaperCount: 60,
   unverifiedPaperCount: 0,
-  verificationDimensions: {"statement":{"verified":53,"partial":55,"unverified":0},"options":{"verified":76,"partial":32,"unverified":0},"answer":{"verified":66,"partial":42,"unverified":0},"explanation":{"verified":54,"partial":54,"unverified":0},"referenceCode":{"verified":99,"partial":7,"unverified":2}},
+  verificationDimensions: {"statement":{"verified":53,"partial":55,"unverified":0},"options":{"verified":75,"partial":33,"unverified":0},"answer":{"verified":65,"partial":43,"unverified":0},"explanation":{"verified":54,"partial":54,"unverified":0},"referenceCode":{"verified":100,"partial":7,"unverified":1}},
   integrityFlaggedQuestionCount: 19,
   levelCount: 8,
   firstYear: 2023,

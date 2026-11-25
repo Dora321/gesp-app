@@ -3,9 +3,10 @@
 const programmingQuestions = [
     {
       id: 26,
+      paperOrder: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `3
 6
@@ -101,15 +102,16 @@ const programmingQuestions = [
 - **质数判定边界**：注意数字 \`1\` 既不是质数也不是合数，如果剩余血量 \`rem = 1\`，不能作为魔法伤害，\`isPrime(1)\` 必须正确返回 \`false\`。
 - **魔法攻击次数上限**：题干说明魔法攻击“至多一次”，这意味着可以不用（即 \`rem == 0\` 时只需 \`k\` 次物理攻击），也可以用一次，但不可使用两次及以上。`,
       tags: ["编程题", "贪心", "策略"],
-      template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--) {\n        int h;\n        cin >> h;\n        // 在此编写代码\n    }\n    return 0;\n}",
       referenceCode: "#include <iostream>\nusing namespace std;\n\nbool isPrime(long long x) {\n    if (x < 2) return false;\n    for (long long p = 2; p * p <= x; p++) {\n        if (x % p == 0) return false;\n    }\n    return true;\n}\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--) {\n        long long h;\n        cin >> h;\n        int best = -1;\n        for (int k = 0; k <= 60; k++) {\n            long long dealt = (1LL << k) - 1;\n            if (dealt > h) break;\n            long long rem = h - dealt;\n            int attacks = -1;\n            if (rem == 0) attacks = k;\n            else if (isPrime(rem)) attacks = k + 1;\n            if (attacks != -1 && (best == -1 || attacks < best)) best = attacks;\n        }\n        cout << best << \"\\n\";\n    }\n    return 0;\n}",
       answer: '',
     },
     {
       id: 27,
+      paperOrder: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       samples: [
         { input: `2 2
 9 9
@@ -176,7 +178,7 @@ const programmingQuestions = [
 - **漏判 \`n == 1\` 的边界情况**：如果直接贪心过滤所有负数，在 \`n = 1\` 时会忽略无法避开的负数扣减，导致算出的答案偏大。
 - **数据溢出**：熟练度和变化值累加后可能超出 32 位整数 \`int\` 范围，变量及累加和必须使用 \`long long\` 类型。`,
       tags: ["编程题", "模拟", "矩阵"],
-      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<long long> c(n), a(m);\n    for (auto &x : c) cin >> x;\n    for (auto &x : a) cin >> x;\n    long long best = *max_element(c.begin(), c.end());\n    if (n == 1) {\n        for (long long x : a) best += x;\n    } else {\n        // 有替补武器时，负数战斗全部丢给替补，正数全部给最高熟练度的武器\n        for (long long x : a) if (x > 0) best += x;\n    }\n    cout << best << endl;\n    return 0;\n}",
       answer: '',
     }

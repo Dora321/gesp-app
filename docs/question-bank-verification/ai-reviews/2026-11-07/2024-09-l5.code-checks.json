@@ -1,0 +1,130 @@
+{
+  "executedAt": "2026-11-25T08:29:07.147Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "3\n6\n188\n9999",
+          "output": "2\n4\n-1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n4\n-1\n",
+          "passed": true
+        },
+        {
+          "name": "原样例",
+          "input": "3\n6\n188\n9999\n",
+          "output": "2\n4\n-1\n",
+          "reason": "独立推演：6=5(魔法)+1(物理)；188=181(魔法)+7(物理 3 次)；9999 无法表示为 2^k−1 或 2^k−1+素数，输出 -1。",
+          "kind": "boundary",
+          "actual": "2\n4\n-1\n",
+          "passed": true
+        },
+        {
+          "name": "最小 h=1",
+          "input": "1\n1\n",
+          "output": "1\n",
+          "reason": "独立推演：k=1 时 2^1−1=1 恰好归零，1 次物理攻击。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "h=2 可一次魔法",
+          "input": "1\n2\n",
+          "output": "1\n",
+          "reason": "独立推演：k=0 时剩余 2 为质数，仅 1 次魔法攻击。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "h=4 需物理加魔法",
+          "input": "1\n4\n",
+          "output": "2\n",
+          "reason": "独立推演：k=1 剩 3（质数），共 2 次攻击。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "上界 h=100000",
+          "input": "1\n100000\n",
+          "output": "15\n",
+          "reason": "独立枚举：k=14 时 2^14−1=16383，剩余 83617（试除至 √83617≈289 无因子，为素数），1 次魔法+14 次物理共 15 次，为最小。",
+          "kind": "boundary",
+          "actual": "15\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "1802ac1a939ae23c1909efe215bff7f6fc2ce97b600b1faaef7481baf09df152"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2 2\n9 9\n1 -1",
+          "output": "10",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "原样例",
+          "input": "2 2\n9 9\n1 -1\n",
+          "output": "10\n",
+          "reason": "独立推演：+1 加给任一 9 的武器得 10，−1 转嫁给另一武器。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "n=1 负增量也必须承受",
+          "input": "1 3\n5\n-2 0 3\n",
+          "output": "6\n",
+          "reason": "独立推演：唯一武器承受全部增量 5−2+0+3=6。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "n≥2 全部为负",
+          "input": "2 3\n7 9\n-1 -2 -3\n",
+          "output": "9\n",
+          "reason": "独立推演：负增量全部转嫁给另一武器，最大值保持 9。",
+          "kind": "boundary",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "零增量",
+          "input": "2 1\n3 8\n0\n",
+          "output": "8\n",
+          "reason": "独立推演：0 增量不改变最大值。",
+          "kind": "boundary",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "name": "上界值域",
+          "input": "2 2\n10000 10000\n10000 10000\n",
+          "output": "30000\n",
+          "reason": "独立推演：两个 +10^4 全部叠加，10000+20000=30000，验证 c_i/a_i 上界与累加正确。",
+          "kind": "boundary",
+          "actual": "30000\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "57985de2cc4b1b7d26bccf24027e011c82794ae7a966308b5567a2c1d4ad2873"
+    }
+  ]
+}
