@@ -618,362 +618,430 @@
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第6页判断题第1题题干为“C++ 中构造函数可以声明为虚函数，从而实现运行时多态”，与站点 question 语义一致。",
-          "review": "第 6 页判断题第 1 题「C++ 中构造函数可以声明为虚函数，从而实现运行时多态。」与站点 question 一致。"
+          "initial": "第6页判断题第1题「C++ 中构造函数可以声明为虚函数，从而实现运行时多态。」与候选 question 一致。",
+          "review": "第 6 页判断答案表第 1 题为 ×；第 6 页原图判断第 1 题题干与候选一致。独立判断：构造函数不能声明为虚函数（虚表指针在构造期间才建立），命题错误，× 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第1题为 ×；按 0=√/1=× 映射为 1，站点 answer=False（×）。",
-          "review": "第 6 页判断题答案表第 1 题为 ×，0 起始索引 1，站点 answer=false 一致。"
+          "initial": "第6页判断题答案表第1题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "构造函数不能声明为虚函数，vptr 在构造阶段才建立，命题错误。",
-          "review": "站点解析说明虚构造函数不可行的机理及替代方案，无误。"
+          "initial": "候选解析「vptr 在构造过程中才初始化、构造函数不能为虚」与命题判定一致，clone()/工厂函数替代说明正确。",
+          "review": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 17,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第6页判断题第2题题干为“通过指向 Base 的指针删除 Derived 对象时，一定会先调用 Derived 再调用 Base 的析构函数”，与站点 question 语义一致。",
-          "review": "第 6 页判断题第 2 题题干「通过指向 Base 的指针删除 Derived 对象时，一定会先调用 Derived 的析构函数，再调用 Base 的析构函数。」与站点 question 一致；但原卷题干下附 22 行示例程序（#include <iostream> 起，Base/Derived 各自析构打印，main 中 Base* p = new Derived(); delete p;），站点数据缺 code 字段，待按原卷补入。"
+          "initial": "第6-7页判断题第2题题干与候选一致；第7页 22 行 Base/Derived 代码（非虚 ~Base、delete p）与候选 code 逐行一致。",
+          "review": "第 6 页判断答案表第 2 题为 ×；第 6 页原图判断第 2 题与候选一致。独立判断：非虚析构时经基类指针 delete 为未定义行为、通常只调 Base 析构，缺少 virtual 前提命题错误，× 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第2题为 ×；按 0=√/1=× 映射为 1，站点 answer=False（×）。",
-          "review": "第 6 页判断题答案表第 2 题为 ×，0 起始索引 1，站点 answer=false 一致；缺 virtual 前提时命题不成立。"
+          "initial": "第6页判断题答案表第2题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。 集成核验：第 6 页答案表为 ×，第 7 页接续原卷代码。修复答案类型并补回完整代码。",
+          "review": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：第 6 页答案表为 ×，第 7 页接续原卷代码。修复答案类型并补回完整代码。"
         },
         "explanation": {
-          "initial": "只有基类析构为 virtual 才保证先派生后基类；非虚时 delete 基类指针是未定义行为。",
-          "review": "站点解析说明是否先调派生类析构取决于基类析构是否为虚函数，并给出非虚时的 UB 后果与补救，无误。"
+          "initial": "候选解析正确指出缺少 virtual 前提时通过基类指针 delete 属未定义行为、实践通常只调 Base 析构，故命题错误。",
+          "review": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "code",
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "第 6 页答案表为 ×，第 7 页接续原卷代码。修复答案类型并补回完整代码。"
     },
     {
       "id": 18,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
+        6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第7页判断题第3题题干为“STL stack 的 pop() 会返回栈顶元素并将其删除”，与站点 question 语义一致。",
-          "review": "第 7 页判断题第 3 题「在 C++ STL 中，stack 的 pop() 函数会返回栈顶元素并将其删除。」与站点 question 一致。"
+          "initial": "第7页判断题第3题「在 C++ STL 中，stack 的 pop() 函数会返回栈顶元素并将其删除。」与候选 question 一致。",
+          "review": "第 6 页判断答案表第 3 题为 ×；第 7 页原图判断第 3 题与候选一致。独立判断：stack::pop() 返回 void 只删不取，取顶须先 top()，命题错误，× 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第3题为 ×；按 0=√/1=× 映射为 1，站点 answer=False（×）。",
-          "review": "第 7 页判断题答案表第 3 题为 ×，0 起始索引 1，站点 answer=false 一致。"
+          "initial": "第6页判断题答案表第3题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "stack::pop() 返回 void，只删除不返回，命题错误。",
-          "review": "站点解析说明 pop() 返回 void 及访问/删除分离的设计考量，无误。"
+          "initial": "候选解析「stack::pop() 返回 void，只删不取，取值须先 top()」与 STL 语义一致，queue 同风格的补充正确。",
+          "review": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 19,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
+        6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第7页判断题第4题题干为“程序运行后会输出 2”，与站点 question 语义一致。",
-          "review": "第 7 页判断题第 4 题题干「程序运行后会输出 2。」及 9 行 queue 代码（push 1/2/3、pop、输出 front）与站点 question（内嵌代码）一致。"
+          "initial": "第7页判断题第4题「程序运行后会输出 2。」及 9 行 queue 代码（push 1/2/3、pop、front）与候选 question 内嵌代码一致。",
+          "review": "第 6 页判断答案表第 4 题为 √；第 7 页原图判断第 4 题代码（push 1/2/3、pop、cout front）与候选一致。独立走查：FIFO 弹出 1 后队头为 2，输出 2，命题正确，√ 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第4题为 √；按 0=√/1=× 映射为 0，站点 answer=True（√）。",
-          "review": "第 7 页判断题答案表第 4 题为 √，0 起始索引 0，站点 answer=true 一致。"
+          "initial": "第6页判断题答案表第4题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "push 1,2,3 后 pop 队头 1，front 为 2，输出 2，命题正确。",
-          "review": "站点解析按 FIFO 逐步模拟得输出 2，无误。"
+          "initial": "候选解析逐步执行 push 1/2/3、pop 队头 1 后 front()=2，结论「输出 2」成立。",
+          "review": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 20,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
+        6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第7页判断题第5题题干为“下列插入函数能在插入后保持 BST 性质”，与站点 question 语义一致。",
-          "review": "第 7 页判断题第 5 题题干（BST 性质描述、判断该函数能否保持性质）及 20 行 insertNode 代码与站点 question（内嵌代码）一致。"
+          "initial": "第7页判断题第5题题干及 20 行 insertNode 代码（x<val 却递归右子树、否则递归左子树）与候选 question 内嵌代码一致。",
+          "review": "第 6 页判断答案表第 5 题为 ×；第 7 页原图判断第 5 题及 insertNode 代码与候选一致。独立判断：x<val 却递归右子树、x≥val 却递归左子树，分支写反（如插入 10、5 得右孩子 5<10 违反性质），命题错误，× 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第5题为 ×；按 0=√/1=× 映射为 1，站点 answer=False（×）。",
-          "review": "第 7 页判断题答案表第 5 题为 ×，0 起始索引 1，站点 answer=false 一致。"
+          "initial": "第6页判断题答案表第5题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "代码把 x<root->val 的分支插到右子树、else 插到左子树，条件写反，破坏 BST。",
-          "review": "站点解析指出分支条件写反并举 10、5 反例，无误。"
+          "initial": "候选解析指出分支条件写反，并以插入 10、5 得到右孩子 5<10 违反 BST 性质为例，推导成立。",
+          "review": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 21,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
+        6,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页判断题第6题题干为“哈夫曼编码一定唯一，只要字符频率相同，编码也一定完全相同”，与站点 question 语义一致。",
-          "review": "第 8 页判断题第 6 题「哈夫曼编码一定唯一，只要字符频率相同，得到的编码也一定完全相同。」与站点 question 一致。"
+          "initial": "第8页判断题第6题「哈夫曼编码一定唯一，只要字符频率相同，得到的编码也一定完全相同。」与候选 question 一致。",
+          "review": "第 6 页判断答案表第 6 题为 ×；第 8 页原图判断第 6 题与候选一致。独立判断：等权合并次序与左右子树互换均可改变形态，最优 WPL 唯一但编码集不唯一，命题错误，× 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第6题为 ×；按 0=√/1=× 映射为 1，站点 answer=False（×）。",
-          "review": "第 8 页判断题答案表第 6 题为 ×，0 起始索引 1，站点 answer=false 一致。"
+          "initial": "第6页判断题答案表第6题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "哈夫曼编码不唯一：等权合并顺序、左右 0/1 可交换，码字可能不同。",
-          "review": "站点解析说明 WPL 唯一而编码集不唯一的两类来源，无误。"
+          "initial": "候选解析说明哈夫曼树最优但形态不唯一（同权合并顺序、左右子树互换），同频字符编码不必完全相同，结论成立。",
+          "review": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 22,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
+        6,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页判断题第7题题干为“0 起始层序存储完全二叉树，左孩子 2i+1、右孩子 2i+2”，与站点 question 语义一致。",
-          "review": "第 8 页判断题第 7 题题干「若用数组按层序存储完全二叉树，且根节点下标为 0，则下标为 i 的节点左孩子下标为 2 * i + 1，右孩子下标为 2 * i + 2。」与站点 question 一致。"
+          "initial": "第8页判断题第7题「若用数组按层序存储完全二叉树，且根节点下标为 0，则下标为 i 的节点左孩子下标为 2*i+1，右孩子下标为 2*i+2。」与候选 question 一致。",
+          "review": "第 6 页判断答案表第 7 题为 √；第 8 页原图判断第 7 题与候选一致。独立验证：0 起始层序存储下孩子下标 2i+1/2i+2（根 0 的孩子 1、2，结点 1 的孩子 3、4），命题正确，√ 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第7题为 √；按 0=√/1=× 映射为 0，站点 answer=True（√）。",
-          "review": "第 8 页判断题答案表第 7 题为 √，0 起始索引 0，站点 answer=true 一致。"
+          "initial": "第6页判断题答案表第7题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "0 起始层序存储左孩子 2i+1、右孩子 2i+2，命题正确。",
-          "review": "站点解析给出公式与推导验证，无误。"
+          "initial": "候选解析给出 0 起始下标左孩子 2i+1、右孩子 2i+2，并以根 0 的孩子 1、2 与结点 1、2 的孩子验证，正确。",
+          "review": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 23,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
+        6,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页判断题第8题题干为“以下代码可以正确地按层换行输出二叉树的节点值”，与站点 question 语义一致。",
-          "review": "第 8 页判断题第 8 题题干「以下代码可以正确地按层换行输出二叉树的节点值。」及 18 行 printByLevel 代码与站点 question（内嵌代码）一致。"
+          "initial": "第8页判断题第8题「以下代码可以正确地按层换行输出二叉树的节点值。」及 18 行 printByLevel 代码（for 条件为 i<q.size()）与候选 question 内嵌代码一致。",
+          "review": "第 6 页判断答案表第 8 题为 ×；第 8 页原图判断第 8 题及 printByLevel 代码（for 内联 q.size()）与候选一致。独立判断：循环条件 i<q.size() 每轮重求值，本层未固定导致换行错乱（根+左孩子即出错），命题错误，× 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第8题为 ×；按 0=√/1=× 映射为 1，站点 answer=False（×）。",
-          "review": "第 8 页判断题答案表第 8 题为 ×，0 起始索引 1，站点 answer=false 一致。"
+          "initial": "第6页判断题答案表第8题为 ×，对应整型 1；候选 paper.json 仍为布尔 false，需改为 1 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 ×，语义即候选 explanation 的判定结论（候选解析「答案：×/错误」与答案表一致）；但候选 paper.json 的 answer 为布尔值 false，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 1，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "for 条件 i<q.size() 每轮重新求值，队列大小随 pop/push 变化，本层结点数未固定，换行错乱。",
-          "review": "站点解析说明 q.size() 每轮重值的问题并给出先固定 sz 的正确写法，无误。"
+          "initial": "候选解析指出 for 条件每轮重读 q.size()，pop/push 使本层大小未被固定，并给出单左孩子反例与先存 sz 的正确写法，成立。",
+          "review": "候选解析结论「×」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 24,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
+        6,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页判断题第9题题干为“栈非递归前序遍历，为让左先访问，通常先压右孩子再压左孩子”，与站点 question 语义一致。",
-          "review": "第 8 页判断题第 9 题题干「使用栈非递归实现二叉树前序遍历时，若希望先访问左子树，通常应先将右孩子入栈，再将左孩子入栈。」与站点 question 一致。"
+          "initial": "第8页判断题第9题「使用栈非递归实现二叉树前序遍历时，若希望先访问左子树，通常应先将右孩子入栈，再将左孩子入栈。」与候选 question 一致。",
+          "review": "第 6 页判断答案表第 9 题为 √；第 8 页原图判断第 9 题与候选一致。独立判断：栈后进先出，先压右再压左使左孩子先出栈，得根-左-右先序，命题正确，√ 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第9题为 √；按 0=√/1=× 映射为 0，站点 answer=True（√）。",
-          "review": "第 8 页判断题答案表第 9 题为 √，0 起始索引 0，站点 answer=true 一致。"
+          "initial": "第6页判断题答案表第9题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "栈后进先出，为让左先访问应先压右、再压左，命题正确。",
-          "review": "站点解析说明入栈顺序与访问顺序相反的机理，无误。"
+          "initial": "候选解析说明栈后进先出，先压右孩子再压左孩子才能先访问左子树，结论正确。",
+          "review": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 25,
       "resolved": true,
       "dimensions": [
         "statement",
+        "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
+        6,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页判断题第10题题干为“动态规划通常要求最优子结构，并且常常存在重叠子问题”，与站点 question 语义一致。",
-          "review": "第 8 页判断题第 10 题题干「动态规划问题通常要求具有最优子结构，并且常常存在重叠子问题。」与站点 question 一致。"
+          "initial": "第8页判断题第10题「动态规划问题通常要求具有最优子结构，并且常常存在重叠子问题。」与候选 question 一致。",
+          "review": "第 6 页判断答案表第 10 题为 √；第 8 页原图判断第 10 题与候选一致。独立判断：最优子结构与重叠子问题为 DP 两大标志特征，命题正确，√ 正确。"
         },
         "answer": {
-          "initial": "PDF 第6页判断答案表第10题为 √；按 0=√/1=× 映射为 0，站点 answer=True（√）。",
-          "review": "第 8 页判断题答案表第 10 题为 √，0 起始索引 0，站点 answer=true 一致。"
+          "initial": "第6页判断题答案表第10题为 √，对应整型 0；候选 paper.json 仍为布尔 true，需改为 0 以过门禁。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。",
+          "review": "第 6 页判断答案表对应题为 √，语义即候选 explanation 的判定结论（候选解析「答案：√/正确」与答案表一致）；但候选 paper.json 的 answer 为布尔值 true，站点门禁要求整型（0=正确/√、1=错误/×，与本站其余试卷如 2025-09-l6 判断题 answer=1 的整数约定一致）。本轮初核已提案改为 0，语义与原卷完全等价，我已核对第 6 页答案表与候选解析判定，确认采纳。 集成核验：逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
         },
         "explanation": {
-          "initial": "DP 通常要求最优子结构和重叠子问题，命题正确。",
-          "review": "站点解析说明两大特征及记忆化的意义，无误。"
+          "initial": "候选解析列出最优子结构与重叠子问题两大特征，并说明存表避免重复求解，结论正确。",
+          "review": "候选解析结论「√」与第 6 页答案表一致，判定依据经我独立核验成立（见 statement 维证据）。"
         }
       },
-      "unresolved": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "逐格核对第 6 页答案表，将布尔值转换为站点正确=0、错误=1，保留原判定。"
     },
     {
       "id": 26,
@@ -1008,155 +1076,72 @@
           "review": "站点 referenceCode 与原卷第 9 页官方参考程序逐行一致（dp[1010]、正序双重循环、dp[j]=max(dp[j], dp[j-i]+p[i])）。本人实际编译运行：原样例 10/30、n=1（1/7）→7、等价价格（6/2 2 2 2 2 2）→12、单价上界（3/100000 1 1）→300000（三段长度 1），全部与期望一致。"
         }
       },
-      "unresolved": []
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 8
+        }
+      ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         10,
         11,
         12
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "集成阶段核对原卷或实测结果",
+        "C++17 实际编译、原样例与独立边界用例"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第10-11页题面、满二叉树定义、样例、数据范围与站点 description/inputDescription/outputDescription 一致。",
-          "review": "第 10-11 页题面主体（题目描述、输入格式、输出格式、样例 1「4/2 3/4 0/0 0/0 0→2」、样例 2「3/2 3/0 0/0 0→3」、数据范围）与站点 description/inputDescription/outputDescription/samples 一致；但原卷第 10 页定义句后附三棵满二叉树示例图与两段举例（3 节点树 3 个满子树、5 节点树 4 个满子树，明确单叶子与局部满子树计入），站点 description 缺失，待补（转录值见 changes.description，示意图空格为近似还原）；另站点将原卷的结点变量 i/l_i/r_i 转写为 u/l_u/r_u，提案按原卷恢复。"
+          "initial": "第10-12页题面、输入/输出、样例1「4/2 3/4 0/0 0/0 0→2」、样例2「3/2 3/0 0/0 0→3」、数据范围（40%:1≤n≤500；全部:1≤n≤10⁵）与候选主体一致；但「三棵满二叉树」示例的第三棵（7 结点）底层只画了 3 个 ()，原卷第10页该层为 4 个 ()，候选示例图本身不满足满二叉树，已在 changes.description 补足第 4 个叶子。 集成核验：原卷第 10 页的第三棵树底层有四个叶子。修订补全缺失叶子，实际运行三条边界及满树和长链压力用例。",
+          "review": "第 10—11 页原图 3.2.1 题目描述/3.2.2 输入格式（非负整数 lᵢ,rᵢ）/3.2.3 输出格式/3.2.4 样例（样例 1「4 / 2 3 / 4 0 / 0 0 / 0 0」→2、样例 2「3 / 2 3 / 0 0 / 0 0」→3）/3.2.5 数据范围（40% 1≤n≤500；所有 1≤n≤10⁵）与候选 description/inputDescription/outputDescription/samples 逐项一致；但题干「三棵满二叉树」示例的第三棵（7 结点满树）底层原卷画有 4 个 ()，候选 ASCII 示例只画了 3 个 ()，示例图自身不构成满二叉树，属转录缺陷。本轮初核已提案补足第 4 个 ()，我已将提案与第 10 页原卷逐行对照（除该行补足外与候选逐字一致），确认采纳。 集成核验：原卷第 10 页的第三棵树底层有四个叶子。修订补全缺失叶子，实际运行三条边界及满树和长链压力用例。"
         },
         "explanation": {
-          "initial": "后序维护 h[u]（子树高度）与 chk[u]（是否满二叉树）。满二叉树要求左右子树都满且高度相等；空结点 h=0、chk=1，叶子自然满足。样例 1 得 2、样例 2 得 3，复杂度 O(n)。",
-          "review": "站点解析给出 h[u]（子树高度）、chk[u]（是否满二叉树）与转移 chk[u]=chk[l]∧chk[r]∧(h[l]==h[r])、空结点按高度 0 满处理，两样例验证（样例 1 得 2、样例 2 得 3）经按参考程序独立复算成立。"
+          "initial": "候选 h/chk 树形 DP（h=max+1、chk=左右满且等高）与 referenceCode 一致；样例1（结点3、4 计入→2）、样例2（整树加两个叶子→3）走查正确。",
+          "review": "候选解析的树形 DP（h[u]=max(h[l],h[r])+1，chk[u]=chk[l]∧chk[r]∧h[l]=h[r]，空结点高度 0 且视为满）经独立论证正确：满二叉树左右子树均为满且等高，反之满树左右子树必满且等高。样例走查（样例 1 结点 2 单侧孩子非满、答案 2；样例 2 整树满、答案 3）与官方样例输出一致；O(n) 复杂度与递归深度提醒属实。"
         },
         "referenceCode": {
-          "initial": "站点 referenceCode 后序维护 h/chk，chk[u]=chk[l]&&chk[r]&&h[l]==h[r]，与 PDF 第12页参考程序一致；样例、n=1、单右孩子、n=1e5 链均通过。",
-          "review": "站点 referenceCode 与原卷第 12 页官方参考程序逐行一致（h[u]=max(h[l],h[r])+1、chk[u]=chk[l]&&chk[r]&&(h[l]==h[r])、ans 累加）。本人实际编译运行：原样例 2/3、单结点（1/0 0）→1、只有右孩子（2/0 2/0 0）→1、七结点满树 →7、左链三结点（3/2 0/3 0/0 0）→1，全部与期望一致。"
+          "initial": "候选与第12页官方参考程序逐行一致（chk[0]=1、后序 DFS、ans 累加）。编译运行样例 2/3、n=1→1、完全 7 结点→7、含不等高子树的 7 结点→5 均一致。",
+          "review": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例 1→2、样例 2→3，均与第 11 页原图一致。另以 600 棵随机二叉树（n≤9）与「逐子树满树判定（所有内部结点两儿子 + 叶深一致）」的独立暴力对拍，零差异；定向核验：32767 结点满树→32767、n=10⁵ 左链→1（单侧孩子非满），递归深度无栈溢出。与第 12 页原卷参考程序逐行同构（chk 全局初始化 {1} 使空结点 chk=1），语义等价。"
         }
       },
-      "unresolved": [
-        "修改 description 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l6.glm.json"
+      ],
+      "integrationNote": "原卷第 10 页的第三棵树底层有四个叶子。修订补全缺失叶子，实际运行三条边界及满树和长链压力用例。",
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 10
+        }
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 16,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 17,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 18,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 19,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 20,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 21,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 22,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 23,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 24,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "answer"
-      ],
-      "reasons": [
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 description 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l6.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l6.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l6.integration.json"
 }

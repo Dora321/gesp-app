@@ -82,13 +82,15 @@ test('the homepage, paper list and loaded papers use the same generated dimensio
   assert.deepEqual(dimensions, paperStats.verificationDimensions);
 });
 
-test('previously missed audit records appear without pretending all five dimensions are finished', () => {
+test('published progress distinguishes completed reviews from remaining source disputes', () => {
   assert.equal(resolveVerification(paperMeta['2023-09-l2']).dimensions.answer, 'verified');
-  const rebuilt = resolveVerification(paperMeta['2026-03-l8']);
-  assert.equal(rebuilt.dimensions.statement, 'verified');
-  assert.equal(rebuilt.dimensions.answer, 'verified');
-  assert.equal(rebuilt.dimensions.explanation, 'partial');
-  assert.equal(rebuilt.status, 'partial');
+  const completed = resolveVerification(paperMeta['2026-03-l8']);
+  assert.equal(completed.dimensions.explanation, 'verified');
+  assert.equal(completed.status, 'verified');
+  const disputed = resolveVerification(paperMeta['2025-12-l8']);
+  assert.equal(disputed.dimensions.statement, 'partial');
+  assert.equal(disputed.dimensions.referenceCode, 'verified');
+  assert.equal(disputed.status, 'partial');
 });
 
 test('explicit review exclusions override historical blanket verification claims', () => {

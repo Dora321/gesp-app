@@ -1,0 +1,253 @@
+{
+  "paperId": "2024-09-l7",
+  "integratedAt": "2026-11-25T12:13:33.682Z",
+  "accepted": [
+    {
+      "id": 2,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "options",
+        "explanation",
+        "code"
+      ]
+    },
+    {
+      "id": 14,
+      "fields": [
+        "options",
+        "explanation",
+        "question"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 20,
+      "fields": [
+        "question",
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 14,
+      "reasons": [
+        "原卷第 4 页 B 项把 φ 印为 (√5−1)/2；递归增长率用到 (1+√5)/2，官方答案表仍为 B，保留原卷并登记答案维度争议。"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2\n3 3 1\n000\n111\n01?\n3 3 1\n000\n?0?\n01?",
+          "output": "4\n2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n2\n",
+          "passed": true
+        },
+        {
+          "name": "单格矩阵",
+          "input": "1\n1 1 1\n1\n",
+          "output": "1",
+          "reason": "起点即终点且为 1，得 1 分。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "全问号不许改",
+          "input": "1\n2 2 0\n??\n??\n",
+          "output": "0",
+          "reason": "x=0 时 ? 不能改为 1，路径上无 1，得 0 分。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "2×2 对角 1",
+          "input": "1\n2 2 1\n10\n01\n",
+          "output": "2",
+          "reason": "任一路径恰含起终点两个 1，x 未用满也得 2 分。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "2×3 全问号 x=2",
+          "input": "1\n2 3 2\n???\n???\n",
+          "output": "2",
+          "reason": "路径 4 格、至多改 2 个 ?，最多 2 分。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "多组混合",
+          "input": "2\n1 1 1\n1\n2 2 1\n0?\n?0\n",
+          "output": "1\n1",
+          "reason": "多组数据混合：单格得 1；2×2 改一处任一路径至多得 1 分。",
+          "kind": "boundary",
+          "actual": "1\n1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "3fda9d37b73c547e3fc043ee0c3619b70b42ee1124e8bb51affac9440fed95b6"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2\n5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5\n5\n1 1 1 1 1\n1 2\n1 3\n3 4\n3 5",
+          "output": "Yes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "单节点有宝物",
+          "input": "1\n1\n1\n",
+          "output": "Yes",
+          "reason": "起点即宝物节点，无需走边（DeepSeek 版输入缺 a_i 行，已修正为完整格式）。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "三节点星全宝",
+          "input": "1\n3\n1 1 1\n1 2\n1 3\n",
+          "output": "Yes",
+          "reason": "宝物子树为路径 2-1-3，中心度 2。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "四节点星全宝",
+          "input": "1\n4\n1 1 1 1\n1 2\n1 3\n1 4\n",
+          "output": "No",
+          "reason": "中心度 3，一条不重复边的路径无法覆盖三个分支。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "链上分散宝物",
+          "input": "1\n5\n1 0 1 0 1\n1 2\n2 3\n3 4\n4 5\n",
+          "output": "Yes",
+          "reason": "宝物都在同一条链上，可依次取得。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "三宝物分叉",
+          "input": "1\n5\n0 1 0 1 1\n1 2\n1 3\n3 4\n3 5\n",
+          "output": "No",
+          "reason": "宝物 2、4、5 的最小子树为整树，节点 3 度为 3。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "d5843b11511daccf8700752df85c684a5760a783b43b60670c11156795e28c93"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 5
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 7
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 13,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：D（O(n²)）**\n\n**核心解析：**\n题目考查程序的时间复杂度分析。上一题（第 12 题）的代码规模由宏定义常量 `N` 决定（复杂度分析中规模记为 `n`），主体分为两部分：\n1. **单重初始化循环**：\n   - `for (int i = 1; i < N; i++) path[i][0] = i;` 与 `for (int j = 1; j < N; j++) path[0][j] = j;` 各执行 `N - 1` 次赋值。\n   两循环并列执行，单次赋值为 `O(1)`，初始化耗时为 `O(n)`。\n2. **核心双重嵌套循环**：\n```cpp\nfor (int i = 1; i < N; i++)\n    for (int j = 1; j < N; j++)\n        path[i][j] = path[i - 1][j] + path[i][j - 1];\n```\n   - 外层与内层循环均从 1 遍历至 `N - 1`，各执行 `N - 1` 次；\n   - 循环体仅包含一次加法和一次赋值，单次耗时为 `O(1)`；\n   - 双重循环总执行次数为 `(N - 1) * (N - 1) = N² - 2N + 1` 次。\n\n程序总操作次数为 `2(N - 1) + (N - 1)² = N² - 1` 次。在大 O 渐进复杂度分析中，忽略低阶项与常数系数，最高阶为二次项，因此时间复杂度为 **O(n²)**。\n\n**选项逐项分析：**\n- **A $O(1)$**：❌ 错误。程序有与 `N` 相关的初始化和双重循环，操作次数随 `N` 增长，不是常数阶。\n- **B $O(N)$**：❌ 错误。初始化虽是线性的，但核心双重循环执行 `(N - 1)²` 次，整体不是线性阶。\n- **C $O(N\\log N)$**：❌ 错误。两重循环均为步长为 1 的均匀遍历，不存在二分、折半等对数操作。\n- **D $O(N^2)$**：✅ 正确。程序利用双重循环填满大小为 `N × N` 的二维网格，内外层循环次数均为 `N - 1`，内层操作为常数级加法，时间复杂度为 `O(N²)`。\n\n**易错提醒：**\n- **主导项原则**：当代码包含多个并列部分时，时间复杂度由阶数最高的部分主导。单层循环的 `O(N)` 与双重循环的 `O(N²)` 相加，整体仍由二次项主导，为 `O(N²)`。\n- **递推与递归的差异**：相同转移方程若用未记忆化的朴素递归求解，复杂度可能达到指数级；用二维数组递推求解时，每个状态仅计算一次，复杂度降为表格规模对应的 `O(N²)`。\n\n**知识延伸：**\n- 动态规划（DP）的时间复杂度通常遵循通用规律：`时间复杂度 = 状态总数 × 单个状态转移代价`。本题状态总数约为 `N²`，每个状态转移只需相加两个相邻元素（代价为 `O(1)`），故总时间复杂度为 `O(N²)`。"
+      }
+    },
+    {
+      "id": 14,
+      "reasons": [
+        "修改 question 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "answer 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "question": "下面fib函数的时间复杂度为 ( ) 。\n\n```cpp\nint fib_rcd[MAX_N];\nint fib(int n) {\n    if (n <= 1)\n        return 1;\n    if (fib_rcd[n] > 0)\n        return fib_rcd[n];\n    return fib(n - 1) + fib(n - 2);\n}\n```"
+      }
+    },
+    {
+      "id": 20,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：错误**\n\n**解析：**\n题目陈述：`sin(30)` 的结果类型为 double、值约为 0.5。\n\n`sin` 的返回类型确实是 **double**（这点正确）；但 C++ 的 `sin` 参数是**弧度**而非角度，`sin(30)` 计算的是 30 弧度（≈ 30 - 9π）的正弦，值约为 **-0.988**，远不是 0.5。要得到 0.5 应写 `sin(3.1415926/6)`（即 sin(π/6)）。\n\n故“值约为 0.5”错误，命题为假。\n\n**考点**：`<cmath>` 中 `sin` 返回 double、且以弧度为参数。"
+      }
+    }
+  ]
+}

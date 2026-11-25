@@ -67,44 +67,47 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第1页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。",
-          "review": "第 1 页题干「已知小写字母 b 的 ASCII 码为 98，下列 C++ 代码的输出结果是」与代码（char a='b'; a++; cout << a;）与站点 question 一致。"
+          "initial": "第 1 页第 2 题题干「已知 a 为 int 类型变量，下列表达式不符合语法的是（ ）。」与候选一致（候选补空格为「已知a为int类型变量」，语义不变）。",
+          "review": "第 1 页第 2 题题干「已知 a 为 int 类型变量，下列表达式不符合语法的是（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第1页 C 项原文为“a - - 4”（即 a 减负 4），是合法表达式；站点写成“a-- 4”（后缀自减后直接跟 4），把合法项改成了非法项，导致 C、D 两项都“不符合语法”。",
-          "review": "第 1 页 C 项为「a - - 4」（减号间有空格），初核修改与页图逐字一致，采信；A/B/D 与站点一致。"
+          "initial": "第 1 页 A「&a + 3」、B「+a & 3」、C「a - - 4」、D「a++3」，与候选 options 一致。",
+          "review": "第 1 页四个选项为 A. &a + 3、B. +a & 3、C. a - - 4、D. a++3；候选首项「&a+3」仅空格排版差异，C 项「a - - 4」与原卷逐字一致（站点原 C 项误作 a-- 4 已在第一轮纠正）。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第2题为 D；按 0 起始选项索引映射为 3，站点 answer=3。",
-          "review": "第 1 页答案表第 2 题为 D；映射为 3，与站点 answer=3 一致。"
+          "initial": "第 1 页答案表第 2 题为 D，0 起始索引 3，与候选 answer=3 一致；a++3 中后缀 ++ 的结果是右值，后面直接跟 3 而无二元运算符，无法编译。",
+          "review": "第 1 页答案表第 2 题为 D，0 起始索引 3，与候选 answer=3 一致。"
         },
         "explanation": {
-          "initial": "站点解析已察觉“a-- 4 与 a++3 都非法”，却仍按官方答案选 D；按原卷 C 为 a - - 4，只有 D 的 a++3 非法。",
-          "review": "独立推导：&a+3 指针算术合法、+a&3 合法、a - - 4 即 a−(−4) 合法、a++3 无运算符分隔非法，D 正确；解析正确。"
+          "initial": "独立判断：&a+3 为 int* 指针算术；+a&3 为一元正号后按位与；a - - 4 为 a-(-4)；a++3 非法。候选解析正确。",
+          "review": "独立验证：&a+3 为指针算术合法、+a&3 合法、a - - 4 即 a−(−4) 合法，a++3 的后缀 ++ 结果为右值且与 3 之间无运算符、无法通过编译，仅 D 不符合语法，解析正确。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
       ]
     },
     {
@@ -150,44 +153,47 @@
       "id": 4,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第2页第4题题干仅为“下列关于 C++ 类的说法，错误的是 ( ) 。”；站点 question 末尾误粘了第1题代码（#include…1 2 3 4 5 6 7 8），需删除。",
-          "review": "第 1 页末第 4 题题干为「下列关于 C++ 类的说法，错误的是()」，站点误粘代码，初核修改照原卷清理，采信。"
+          "initial": "第 1 页末第 4 题题干「下列关于 C++ 类的说法，错误的是( )。」与候选一致。",
+          "review": "第 1 页末第 4 题题干「下列关于C++类的说法，错误的是( )。」，候选清理后的干净题干与原卷一致（第一轮已清除误粘的第 1 题代码）。"
         },
         "options": {
-          "initial": "PDF 第1、2页 A-D 四项与站点 options 的顺序、取值一致。",
-          "review": "第 2 页 A–D 四项与站点 options 一致。"
+          "initial": "第 2 页 A「将 C++ 类对象通过值传递给函数参数时，会自动调用复制构造函数」、B「将一个类的对象赋值给该类的另一个对象时，不会自动调用构造函数」、C「定义 C++ 类对象时，一定会调用默认构造函数」、D「构造派生类的对象时，一定会调用基类的构造函数」，与候选逐字一致。",
+          "review": "第 2 页 A–D 四项与候选逐字一致：A 值传递调复制构造、B 对象间赋值不调构造函数、C 定义对象一定调默认构造、D 构造派生类必调基类构造。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第4题为 C；按 0 起始选项索引映射为 2，站点 answer=2。",
-          "review": "第 1 页答案表第 4 题为 C；映射为 2，与站点 answer=2 一致。"
+          "initial": "第 1 页答案表第 4 题为 C，0 起始索引 2，与候选 answer=2 一致；定义对象不一定调用默认构造函数，C 错。",
+          "review": "第 1 页答案表第 4 题为 C，索引 2，与候选 answer=2 一致。"
         },
         "explanation": {
-          "initial": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。",
-          "review": "定义对象时若调用有参构造则不调用默认构造，C 错误应选；A（值传递调复制构造）、B（赋值不调构造函数）、D（派生类构造必调基类构造）均正确。"
+          "initial": "独立判断：A 值传参调用复制构造；B 已构造对象赋值调用 operator=，不调用构造；C 可调用带参/复制构造，错误；D 派生类构造必先调用基类构造。候选解析正确。",
+          "review": "独立判断：有参初始化调用带参/复制构造、赋值调用 operator= 不创建新对象，「一定会调用默认构造函数」不成立，C 错误应选；A/B/D 均正确，解析正确。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
       ]
     },
     {
@@ -507,133 +513,154 @@
       "id": 13,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
+        1,
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第3、4页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。",
-          "review": "第 3–4 页第 13 题题干「上题中程序的时间复杂度为」与站点 question 一致。"
+          "initial": "第 3 页第 13 题「上题中程序的时间复杂度为（ ）。」；第 3 页第 12 题代码为 #define N 10、path[N][N]、i/j 从 1 到 N-1 的双重循环，与候选解析所引代码一致。",
+          "review": "第 3 页第 13 题题干「上题中程序的时间复杂度为（ ）。」与候选一致；其依赖的第 12 题程序（#define N 10、path[N][N]、两段初始化循环加双重递推）在第 3 页完整给出，站点 Q12 题面含完整代码且紧邻 Q13，题库按卷内顺序展示时「上题」引用成立，无需把 Q12 代码补入 Q13。"
         },
         "options": {
-          "initial": "PDF 第3—4页第13题选项为 A $O(1)$、B $O(N)$、C $O(N\\log N)$、D $O(N^2)$；站点写成 O(n)、O(n log n)、O(2^n)、O(n²)，A/B/C 三项均与原文不符。",
-          "review": "第 3–4 页选项为 O(1)、O(N)、O(N log N)、O(N²)，初核修改与页图逐字一致，采信。"
+          "initial": "第 3—4 页 A O(1)、B O(N)、C O(N log N)、D O(N²)，与候选 options 逐字一致。",
+          "review": "第 3–4 页选项为 A. O(1)、B. O(N)、C. O(N log N)、D. O(N²)，与候选 options 逐字一致（第一轮已照原卷恢复；站点原 A 项缺 O(1)、C 项误作 O(2ⁿ)）。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第13题为 D；按 0 起始选项索引映射为 3，站点 answer=3。",
-          "review": "第 1 页答案表第 13 题为 D；映射为 3，与站点 answer=3 一致。"
+          "initial": "第 1 页答案表第 13 题为 D，0 起始索引 3，与候选 answer=3 一致；双重循环各执行 N−1 次，总 O(N²)。",
+          "review": "第 1 页答案表第 13 题为 D，索引 3，与候选 answer=3 一致。"
         },
         "explanation": {
-          "initial": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。",
-          "review": "独立推导：i、j 两重循环各 O(N) 量级，总计 Θ(N²)，D 正确；解析正确。"
+          "initial": "候选解析的核心推导（2(N−1)+(N−1)²=N²−1，O(N²)）正确，但选项逐项分析写成 A O(n)、B O(n log n)、C O(2ⁿ)、D O(n²)，与实际 options A O(1)、B O(N)、C O(N log N)、D O(N²) 不对应；需按实际选项重写，答案仍为 D。 集成核验：对照上题原卷代码确认循环次数和 C 项标签，并附同一段 Q12 代码，使单题打开时也能作答。",
+          "review": "独立复核：总操作次数 2(N−1)+(N−1)²=N²−1，复杂度 O(N²)，主体推导正确；但候选解析的选项标签 A O(n)/B O(n log n)/C O(2ⁿ) 系按站点旧选项书写，与恢复后的选项 A O(1)/B O(N)/C O(N log N) 错位，本次修改按第 3–4 页页图选项重排标签（A O(1) 非常数阶、B O(N) 非线性阶、C O(N log N) 无对数操作、D O(N²) 正确），与 DeepSeek 提议一致。 集成核验：对照上题原卷代码确认循环次数和 C 项标签，并附同一段 Q12 代码，使单题打开时也能作答。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation",
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
+      ],
+      "integrationNote": "对照上题原卷代码确认循环次数和 C 项标签，并附同一段 Q12 代码，使单题打开时也能作答。"
     },
     {
       "id": 14,
-      "resolved": true,
+      "resolved": false,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
-        "answer",
         "explanation"
       ],
+      "blockedDimensions": [
+        "answer"
+      ],
       "sourcePages": [
+        1,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。",
-          "review": "第 4 页题干与 fib_rcd 代码（只判 fib_rcd[n]>0 但从不写回）与站点 question 一致。"
+          "initial": "第 4 页第 14 题在题干「下面fib函数的时间复杂度为 ( ) 。」之后、选项之前给出完整函数：int fib_rcd[MAX_N]; int fib(int n){ if(n<=1) return 1; if(fib_rcd[n]>0) return fib_rcd[n]; return fib(n-1)+fib(n-2); }。候选 question 只有一句题干，未带函数代码，单题展示时无法判断记忆化是否写回；应补入原卷代码块，选项与答案不变。 集成核验：按第 4 页和一致转录补回 fib_rcd 代码。答案表和公式符号冲突留在逐题记录。",
+          "review": "第 4 页题干「下面 fib 函数的时间复杂度为( )。」并紧跟 8 行 fib_rcd 代码（int fib_rcd[MAX_N]; / int fib(int n) { / if (n <= 1) / return 1; / if (fib_rcd[n] > 0) / return fib_rcd[n]; / return fib(n - 1) + fib(n - 2); / }），原卷题面代码是题干的必要组成部分；候选与站点的 question 均只有一句、code 字段亦无内容，本次修改把原卷代码逐行补入题面（与第 4 页页图逐字一致），避免应用后代码只出现在解析里。 集成核验：按第 4 页和一致转录补回 fib_rcd 代码。答案表和公式符号冲突留在逐题记录。"
         },
         "options": {
-          "initial": "PDF 第4页第14题选项为 A $O(n)$、B $O(\\varphi^n),\\varphi=\\frac{\\sqrt5-1}{2}$、C $O(2^n)$、D 无法正常结束。；站点把 B 写成 $O(2^n)$、C 写成 $O(n\\log n)$、D 写成 $O(n^2)$，与原文不符。",
-          "review": "第 4 页选项 A O(n)/B O(φⁿ)/C O(2ⁿ)/D 无法正常结束与初核修改逐字一致（站点原 options 有误，已纠正），采信。"
+          "initial": "第 4 页 A O(n)、B O(φ^n), φ=(√5−1)/2、C O(2^n)、D 无法正常结束，与候选 options 一致。",
+          "review": "第 4 页选项 A O(n)、B O(φⁿ)（φ=(√5−1)/2）、C O(2ⁿ)、D 无法正常结束。与候选 options 逐字一致（第一轮已照原卷恢复，站点原四项 O(n)/O(2ⁿ)/O(n log n)/O(n²) 全部有误）。"
         },
         "answer": {
-          "initial": "PDF 答案表题14为 B；但原卷 B 印的是 $\\varphi=(\\sqrt5-1)/2\\approx0.618$，以它为底指数递减，与斐波那契递归的增长阶矛盾。按递推 $T(n)=T(n-1)+T(n-2)$，增长阶应为 $\\varphi^n$（$\\varphi=(1+\\sqrt5)/2\\approx1.618$）。官方选项疑为符号笔误，答案字母与选项内容冲突。",
-          "review": "答案表第 14 题为 B，站点 answer=1 一致；但原卷 B 项 φ=(√5−1)/2<1 与 φⁿ 增长矛盾，系原卷笔误（应为 (√5+1)/2）；站点照录原卷，答案字母与选项内容的冲突需人工裁决。"
+          "initial": "第 1 页答案表第 14 题为 B，0 起始索引 1，与候选 answer=1 一致；递归 T(n)=T(n−1)+T(n−2) 的增长阶为 φ^n，φ=(1+√5)/2；原卷 B 项印成 (√5−1)/2，属源卷符号笔误。",
+          "review": "第 1 页答案表第 14 题为 B，索引 1，与候选 answer=1 一致；但第 4 页 B 项原文印作 O(φⁿ)、φ=(√5−1)/2（≈0.618），与递归增长对应 φ=(1+√5)/2（≈1.618）矛盾，原文照录留证于本条，冲突需人工裁决。"
         },
         "explanation": {
-          "initial": "站点解析只按 $O(2^n)$ 说明，没有处理原卷 B 的 $\\varphi$ 表达式；且这段代码的 $fib\\_rcd$ 只读不写，记忆化确实失效。",
-          "review": "初核重写的解析（记忆化失效、T(n)=T(n−1)+T(n−2)、按官方答案表取 B 并注明 φ 笔误）与原卷答案一致，采信。"
+          "initial": "候选解析正确指出 fib_rcd 只读不写、记忆化失效，T(n)=T(n−1)+T(n−2)，并如实披露原卷 B 项 φ 值印错；数学推导与独立判断一致。",
+          "review": "候选解析（fib_rcd 只判 fib_rcd[n]>0 但从不写回、记忆化失效、调用次数满足 T(n)=T(n−1)+T(n−2)、按官方答案表取 B 并注明原卷 φ 印刷笔误）与独立推导一致，采信。"
         }
       },
       "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+        "原卷第 4 页 B 项把 φ 印为 (√5−1)/2；递归增长率用到 (1+√5)/2，官方答案表仍为 B，保留原卷并登记答案维度争议。"
+      ],
+      "appliedFields": [
+        "options",
+        "explanation",
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
+      ],
+      "integrationNote": "按第 4 页和一致转录补回 fib_rcd 代码。答案表和公式符号冲突留在逐题记录。",
+      "sourceNotes": [
+        "原卷第 4 页 B 项把 φ 印为 (√5−1)/2；递归增长率用到 (1+√5)/2，官方答案表仍为 B，保留原卷并登记答案维度争议。"
       ]
     },
     {
       "id": 15,
       "resolved": true,
       "dimensions": [
-        "options",
-        "answer"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
+        1,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页题干依赖一张 9 结点有向图；站点 question 未给出边表或图，无法逐边复核 BFS 序列。",
-          "review": "第 4 页原图 14 条弧如上，我的修改将弧集文字化并入题面，与原图逐条一致（补齐初核遗漏的缺图问题）。"
+          "initial": "第 4 页第 15 题图含 9 个顶点、14 条弧：2→1、4→2、9→4、1→3、1→5、5→3、3→2、3→4、3→7、9→7、7→5、7→6、6→8、8→9，与候选描述一致。",
+          "review": "第 4 页原图为 9 顶点 14 弧有向图，弧 2→1、4→2、9→4、1→3、1→5、5→3、3→2、3→4、3→7、9→7、7→5、7→6、6→8、8→9 与候选题面弧集逐条一致（第一轮已文字化补图）。"
         },
         "options": {
-          "initial": "PDF 第4页 A-D 四项与站点 options 的顺序、取值一致。",
-          "review": "第 4 页四个选项序列与站点 options 逐字一致。"
+          "initial": "第 4 页 A 1,3,5,7,4,2,6,8,9；B 9,4,2,1,3,7,5,6,8；C 1,3,5,7,6,8,9,4,2；D 9,4,7,2,1,3,5,6,8，与候选 options 一致。",
+          "review": "第 4 页四个选项序列与候选 options 逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第15题为 A；按 0 起始选项索引映射为 0，站点 answer=0。",
-          "review": "第 1 页答案表第 15 题为 A；映射为 0，与站点 answer=0 一致。"
+          "initial": "第 1 页答案表第 15 题为 A，0 起始索引 0，与候选 answer=0 一致；从 1 出发 BFS 第 1 层 3、5，第 2 层 2、4、7，A 只是把同层顺序写成 7、4、2，合法。",
+          "review": "第 1 页答案表第 15 题为 A，索引 0，与候选 answer=0 一致。"
         },
         "explanation": {
-          "initial": "站点解析给出“1→{3,5}→{2,4,7}→{6}→{8}→{9}”的分层，与选项 A 的 1,3,5,7,4,2,6,8,9 相符；但原图未随题面提供，解析未说明各层来自哪些边。",
-          "review": "我的分层推导与初核解析一致：A 合法；C 破坏同层优先；B/D 起点非 1，采信初核解析。"
+          "initial": "独立核验：B/D 从 9 开始时第 1 层应为 4、7，序列不符；C 把第 2 层的 4、2 排到第 5 层 9 之后，破坏 BFS 同层优先；A 合法。候选解析正确。",
+          "review": "独立分层推导：从 1 出发第 1 层 {3,5}、第 2 层 {2,4,7}、第 3 层 6、第 4 层 8、第 5 层 9；A 的同层顺序（3,5→7,4,2→6→8→9）合法，C 在 7 之后先访问 6/8/9 再回到 4/2 破坏同层优先，B/D 起点非 1，解析正确。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
       ]
     },
     {
@@ -776,40 +803,45 @@
       "id": 20,
       "resolved": true,
       "dimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
-        4,
-        5
+        1,
+        4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4—5页第5题题干仅为“使用 math.h 或 cmath 头文件中的正弦函数，表达式 sin(30) 的结果类型为 double、值约为 0.5。”；站点 question 末尾误粘了第14题 fib 代码。",
-          "review": "第 4 页判断题第 5 题题干为 sin(30) 题且无任何代码，站点误粘的 fib 代码系第 14 题残留，初核修改照原卷清理，采信。"
+          "initial": "第 4 页判断第 5 题「使用 math.h 或 cmath 头文件中的正弦函数，表达式 sin(30) 的结果类型为 double、值约为 0.5。」与候选一致。",
+          "review": "第 4 页判断题答案表下方第 5 题为「使用 math.h 或 cmath 头文件中的正弦函数，表达式 sin(30) 的结果类型为 double、值约为 0.5」，题面无任何代码；候选题干与原卷一致（第一轮已清除误粘的 fib_rcd 代码）。"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第5题为“×”；平台 answer=1（错误），映射一致。",
-          "review": "第 4 页判断题答案表第 5 题为 ×；映射为 1，与站点 answer=1 一致。"
+          "initial": "第 4 页判断答案表第 5 题为 ×，映射索引 1，与候选 answer=1 一致；sin 参数为弧度，sin(30)≈−0.988，不是 0.5。",
+          "review": "第 4 页判断题答案表第 5 题为 ×，索引 1，与候选 answer=1 一致。"
         },
         "explanation": {
-          "initial": "解析对命题真假的判断与 PDF 判断题答案表一致，理由成立。",
-          "review": "sin 以弧度为参，sin(30)≈−0.988 而非 0.5，× 正确。"
+          "initial": "候选解析的数学判断正确（sin(30)≈−0.988，类型 double），但末尾夹带「题面中夹杂的 fib_rcd 代码片段为 OCR 串入」的说明；候选 question 中并无 fib_rcd 片段，该注记失实且不属于题解，应删除。 集成核验：按第 4 页复核 sin(30) 的弧度语义，删去题面从未含有的代码说明。",
+          "review": "独立验算：sin 以弧度为参，sin(30 rad)=sin(9π+1.7257)≈−0.988 而非 0.5，命题为假；原解析末尾「题面中夹杂的 fib_rcd 代码片段为 OCR 串入的无关内容」注记在题干清理后已无对应对象，本次删除该注记（与 DeepSeek 提议一致）。 集成核验：按第 4 页复核 sin(30) 的弧度语义，删去题面从未含有的代码说明。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
+      ],
+      "integrationNote": "按第 4 页复核 sin(30) 的弧度语义，删去题面从未含有的代码说明。"
     },
     {
       "id": 21,
@@ -985,261 +1017,121 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement",
-        "explanation"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
-        5,
-        6,
         7,
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第7—8页“矩阵移动”题面含数据规模：$t\\le10$、$n,m\\le500$、$x\\le300$，且 $\\sum n\\times m\\le2.5\\times10^5$；站点 question 未包含。",
-          "review": "第 7–8 页题面各段与站点 question 一致（站点沿洛谷稿修复了原卷「有一个有一个」的重复）；缺「数据范围」由初核修改照第 8 页子任务表补齐，采信。"
+          "initial": "第 7 页 3.2.1—3.2.3：n×m 矩阵只含 01?、从 (1,1) 到 (n,m) 只能下/右、每经过 1 得 1 分（含起终点）、可把不超过 x 个 ? 改成 1、求最大得分；输入 t、每组 n,m,x 与 n 行字符串；输出每组一个整数。第 8 页 3.2.5 数据规模（30% t≤5,n,m≤10,x=1；30% t≤10,n,m≤500,x≤30；全部 1≤t≤10、1≤n,m≤500、1≤x≤300、Σnm≤2.5×10⁵）；样例 2 组输出 4、2，均与候选一致。",
+          "review": "第 7–9 页题面（01? 矩阵、左上到右下、不超过 x 个 ? 改 1、得分含起终点）与候选一致；第 8 页样例（2 组 → 4、2）与候选 samples 一致；子任务表（30%：t≤5、n,m≤10、x=1；30%：t≤10、n,m≤500、x≤30；40%：t≤10、n,m≤500、x≤300）与「全部数据 1≤t≤10、1≤n,m≤500、1≤x≤300、所有测试用例 n×m 总和不超过 2.5×10⁵」与候选题面数据范围线性化逐项相符（第三档约束被 100% 档覆盖，语义无损）；原卷 3.2.1「小杨有一个有一个」的重复，站点沿用洛谷稿修为「有一个」，属合理勘误。"
         },
         "explanation": {
-          "initial": "站点解析讲的是“宝物子树、度数大于2输出No”，属于第27题“小杨寻宝”，与本题矩阵移动完全无关。",
-          "review": "初核换入的矩阵 DP 解析与本题匹配（原站点误挂寻宝题解析），状态设计与复杂度说明正确，样例 4/2 验算一致，采信。"
+          "initial": "独立推导：dp[j][k] 为当前行第 j 列、已用 k 次修改的最大得分；从上方 dp[j][k] 或左方 next[j−1][k] 转移，遇 1 加 1，遇 0 不加，遇 ? 可选择不改或在 k<x 时改成 1 并加 1；终点取 k≤x 最大值。样例 1 走 D,R,D,R 得 1+1+1+1=4；样例 2 改 (1,1) 或 (3,3) 得 2，与候选一致。",
+          "review": "候选矩阵 DP 解析（dp[j][k] 上/左转移、1 加分、? 可改可不改、终点对 k≤x 取 max、O(nmx)/滚动 O(mx)）与第 8–9 页官方参考程序（dp[N][1005] 逐行滚动）语义一致，样例 4/2 验算相符。"
         },
         "referenceCode": {
-          "initial": "站点参考程序即上述滚动数组 DP；样例 1=4,2 通过，另以 1×1 的 1/?、2×2 两角为 1 等四组边界复核。",
-          "review": "站点滚动行 DP 参考程序与官方 dp[N][1005] 代码语义一致；实测原样例与 5 条边界全部一致。"
+          "initial": "clang++ -std=c++17 -O2 编译候选滚动 DP；原样例输出 4、2。另跑独立边界：1 / 1 1 1 / ?→1；1 / 2 2 1 / 10 / 01→2；1 / 2 3 2 / ??? / ???→2；1 / 2 2 3 / 11 / 11→3，全部通过。",
+          "review": "站点参考程序（滚动行 DP）经编译实测：原样例 4/2、单格 1、全 ? 不许改（x=0）0、2×2 对角 1 得 2、2×3 全 ? x=2 得 2、多组混合用例 1/1，全部一致。原卷标注内存限制 512.0 MB 与站点 128 MB 的差异已在 unresolved 记录，待集成统一纠正。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 5
+        }
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement",
-        "explanation"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         5,
         6,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第5—6页“小杨寻宝”题面含数据规模：$t\\le10$、$n\\le10^5$、$a_i\\in\\{0,1\\}$，且至少有一个宝物；站点 question 未包含。",
-          "review": "第 5 页题面各段与站点 question 一致；缺「数据范围」由初核修改照第 6 页 3.1.4 子任务表补齐，采信。"
+          "initial": "第 5 页 3.1.1—3.1.3：n 节点树、部分节点有宝物、任选起点、每条边至多经过一次、经过宝物节点即取得、判断能否取得全部宝物；输入 t、每组 n、a_i、n−1 条边；输出 Yes/No。第 6 页 3.1.4 样例 2 组输出 Yes/No；数据规模 20% t≤10,n≤5；20% t≤10,n≤1000；全部 1≤t≤10、1≤n≤10⁵、0≤a_i≤1 且至少一个宝物，均与候选一致。",
+          "review": "第 5 页题面（树上每条边至多一次、经过后消失、取全部宝物判定）与候选一致；第 6 页样例（2 组 → Yes、No）与候选 samples 一致；子任务表（20%：t≤10、n≤5；20%：t≤10、n≤1000；60%：t≤10、n≤10⁵）与「全部数据 1≤t≤10、1≤n≤10⁵、0≤a_i≤1 且树上至少一个宝物节点」与候选数据范围线性化逐项一致。"
         },
         "explanation": {
-          "initial": "站点解析讲的是“dp[i][j][c] 走到格子、把问号改成1”，属于第26题矩阵移动，与本题寻宝完全无关。",
-          "review": "初核换入的「宝物子树为简单路径（剪叶后最大度 ≤2）」解析与本题匹配（原站点误挂矩阵题解析），与官方从最深宝物点二次验证的做法等价，样例验算一致，采信。"
+          "initial": "独立推导：树上不重复走边的路线必为一条简单路径，故所有宝物节点必须落在同一条简单路径上；反复删除无宝物的叶子，剩余最小子树若所有点度数≤2 即为路径，输出 Yes，否则 No。样例 1 宝物 2、4 在路径 2-1-3-4 上，Yes；样例 2 全宝、节点 3 度为 3，No，与候选一致。",
+          "review": "候选解析（不重复走边的轨迹必为简单路径 → 反复剪无宝物叶子 → 余下子树最大度 ≤2 则 Yes）与第 6–7 页官方参考程序（从最深宝物点出发 dfs2 判 has[x]>1）判定等价，样例 Yes/No 验算相符。"
         },
         "referenceCode": {
-          "initial": "站点参考程序用队列反复剪掉无宝物的叶子，再检查剩余子树最大度是否≤2；样例 1=Yes,No 通过，另以单节点、两点、三黑叶星形三组边界复核。",
-          "review": "站点剪叶+度数检查参考程序与官方代码判定语义一致；实测原样例与 4 条边界全部一致。"
+          "initial": "clang++ -std=c++17 -O2 编译候选剪叶程序；原样例输出 Yes、No。另跑独立边界：1 / 1→Yes；1 / 3 / 1 1 1 / 1 2 / 1 3→Yes（三节点星即路径）；1 / 4 / 1 1 1 1 / 1 2 / 1 3 / 1 4→No（中心度 3）；1 / 5 / 1 0 1 0 1 / 1-2-3-4-5→Yes，全部通过。",
+          "review": "站点参考程序（队列剪叶 + 度数检查）经编译实测：原样例 Yes/No、单节点 Yes、三节点星 Yes、四节点星 No、链上分散宝 Yes、三宝物分叉 No，全部一致。原卷标注内存限制 512.0 MB 与站点 128 MB 的差异已在 unresolved 记录，待集成统一纠正。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-09-l7.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 7
+        }
       ]
     }
   ],
   "unresolved": [
     {
-      "id": 2,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 4,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 13,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 14,
       "dimensions": [
-        "options",
-        "answer",
-        "explanation"
+        "answer"
       ],
       "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 20,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+        "原卷第 4 页 B 项把 φ 印为 (√5−1)/2；递归增长率用到 (1+√5)/2，官方答案表仍为 B，保留原卷并登记答案维度争议。"
       ]
     }
   ],
-  "pendingChanges": [
-    {
-      "id": 2,
-      "changes": {
-        "options": [
-          "&a+3",
-          "+a & 3",
-          "a - - 4",
-          "a++3"
-        ],
-        "explanation": "**答案：D（a++3）**\n\n逐项判断语法：\n\n- A `&a+3`：先取 a 的地址得到 `int*`，再做指针算术 `+3`，合法。\n- B `+a & 3`：一元正号作用于 a 得到 int，再与 3 按位与，合法。\n- C `a - - 4`：两个减号之间有空格，是 `a - (-4)`，合法。\n- D `a++3`：后缀 `++` 的结果是右值，后面直接跟 3，中间没有二元运算符，无法通过编译。\n\n因此不符合语法的只有 D。\n\n**易错提醒**：不要把 `a - - 4` 看成 `a-- 4`；空格和词法分割会改变语义。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 4,
-      "changes": {
-        "question": "下列关于 C++ 类的说法，错误的是 ( ) 。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 13,
-      "changes": {
-        "options": [
-          "$O(1)$",
-          "$O(N)$",
-          "$O(N\\log N)$",
-          "$O(N^2)$"
-        ]
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 14,
-      "changes": {
-        "options": [
-          "$O(n)$",
-          "$O(\\varphi^n),\\varphi=\\frac{\\sqrt5-1}{2}$",
-          "$O(2^n)$",
-          "无法正常结束。"
-        ],
-        "explanation": "**答案：按官方答案表为 B。**\n\n`fib_rcd` 只判断 `fib_rcd[n] > 0`，计算后没有写回数组，因此记忆化失效；调用次数满足 $T(n)=T(n-1)+T(n-2)$，增长阶为 $\\varphi^n$，其中 $\\varphi=(1+\\sqrt5)/2\\approx1.618$。\n\n但原卷选项 B 印成 $\\varphi=(\\sqrt5-1)/2\\approx0.618$，以小于 1 的底做指数会递减，与递归增长矛盾。该选项疑为符号笔误；答案字母 B 与选项内容存在冲突，需人工确认。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 20,
-      "changes": {
-        "question": "使用math.h或cmath头文件中的正弦函数，表达式sin(30)的结果类型为double、值约为0.5。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 26,
-      "changes": {
-        "question": "\n# [GESP202409 七级] 矩阵移动\n\n## 题目描述\n\n小杨有一个 $n \\times m$ 的矩阵，仅包含 `01?` 三种字符。矩阵的行从上到下编号依次为 $1,2,\\dots, n$，列从左到右编号依次为 $1, 2, \\dots, m$。小杨开始在矩阵的左上角 $(1,1)$，小杨只能向下或者向右移动，最终到达右下角 $(n, m)$ 时停止，在移动的过程中每经过一个字符 `1` 得分会增加一分（包括起点和终点），经过其它字符则分数不变。小杨的初始分数为 $0$ 分。\n\n小杨可以将矩阵中不超过 $x$ 个字符 `?` 变为字符 `1`。小杨在修改矩阵后，会以最优的策略从左上角移动到右下角。他想知道自己最多能获得多少分。\n\n## 输入格式\n\n第一行包含一个正整数 $t$，代表测试用例组数，接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n + 1$ 行。\n\n第一行包含三个正整数 $n, m, x$，含义如题面所示。 \n之后 $n$ 行，每行一个长度为 $m$ 的仅含 `01?` 的字符串。\n\n## 输出格式\n\n对于每组测试用例，输出一行一个整数，代表最优策略下小杨的得分最多是多少。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $t \\le 5$、$n,m \\le 10$、$x=1$；对于另外 30% 的测试点，保证 $t \\le 10$、$n,m \\le 500$、$x \\le 30$；对于 100% 的测试点，保证 $1 \\le t \\le 10$、$1 \\le n,m \\le 500$、$1 \\le x \\le 300$，且所有测试用例的 $n \\times m$ 之和不超过 $2.5 \\times 10^5$。\n",
-        "explanation": "**解析**：设 `dp[j][k]` 为到达当前行第 j 列、已用 k 次修改时的最大得分。每个格子只能从上方或左方转移；遇到 `1` 得分加 1，遇到 `0` 不加分，遇到 `?` 可以选择不修改，也可以在 $k<x$ 时改成 `1` 并加 1。最后在终点 $(n,m)$ 的所有 $k\\le x$ 状态中取最大值。时间复杂度 $O(nmx)$，滚动掉行后空间 $O(mx)$。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "question": "\n# [GESP202409 七级] 小杨寻宝\n\n## 题目描述\n\n小杨有一棵包含 $n$ 个节点的树，树上的一些节点放置有宝物。\n\n小杨可以任意选择一个节点作为起点并在树上移动，但是小杨只能经过每条边至多一次，当小杨经过一条边后，这条边就会消失。小杨每经过一个放置有宝物的节点就会取得该宝物。\n\n小杨想请你帮他判断自己能否成功取得所有宝物。\n\n## 输入格式\n\n**本题单个测试点内有多组测试数据**。输入第一行包含一个正整数 $t$，代表测试用例组数。 \n接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n+1$ 行。\n\n第一行包含一个正整数 $n$，代表树的节点数。 \n第二行包含 $n$ 个非负整数 $a_1, a_2, \\dots a_n$，其中如果 $a_i = 1$，则节点 $i$ 放置有宝物；若 $a_i = 0$，则节点 $i$ 没有宝物。 \n之后 $n - 1$ 行，每行包含两个正整数 $x_i, y_i$，代表存在一条连接节点 $x_i$ 和 $y_i$ 的边。\n\n## 输出格式\n\n对于每组测试数据，如果小杨能成功取得所有宝物，输出 Yes，否则输出 No。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $t \\le 10$、$n \\le 5$；对于另外 20% 的测试点，保证 $t \\le 10$、$n \\le 1000$；对于 100% 的测试点，保证 $1 \\le t \\le 10$、$1 \\le n \\le 10^5$、$0 \\le a_i \\le 1$，且树上至少有一个节点放置有宝物。\n",
-        "explanation": "**解析**：每条边至多走一次，所以走过的边集必须是一条简单路径；要取得全部宝物，所有宝物节点必须落在同一条简单路径上。\n\n做法：反复删除“没有宝物”的叶子，剩下的就是包含所有宝物的最小子树。若该子树中所有节点度数都不超过 2，它本身是一条路径，输出 `Yes`；否则存在度数 ≥3 的分叉，无法一次不重复边地走完，输出 `No`。时间复杂度 $O(n)$。"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
+  "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2024-09-l7.code-checks.json",
   "followUpChecks": [
     {
@@ -1257,5 +1149,6 @@
       ],
       "finding": "原题允许从任意顶点出发，候选解析以「起点不是 1」否定 B、D，理由不成立。假定从 9 开始，B 先处理第二层的 2 再处理第一层的 7；D 在 7 出队时 5、6 先于 2 出队时发现的 1 入队，却让 1 先出队。A 唯一可行。"
     }
-  ]
+  ],
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-09-l7.integration.json"
 }

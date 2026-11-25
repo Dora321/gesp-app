@@ -615,380 +615,410 @@
       "id": 16,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 1 题“若一项任务可从两种互斥的方案中选择一种完成，其中，方案 A 有 m 种做法，方案 B 有 n 种做法，则总做法数为 m+n”与站点 question 一致。",
-          "review": "第 4 页判断题第 1 题「若一项任务可从两种互斥的方案中选择一种完成……则总做法数为 m + n」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 1 题“若一项任务可从两种互斥的方案中选择一种完成，其中，方案 A 有 m 种做法，方案 B 有 n 种做法，则总做法数为 m + n。”与候选 question 一致。",
+          "review": "第 4 页判断题第 1 题「若一项任务可从两种互斥的方案中选择一种完成，其中，方案 A 有 m 种做法，方案 B 有 n 种做法，则总做法数为 m + n。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 1 题为 √（正确），站点取值本身正确，但存的是布尔值 true；本题库判断题 answer 约定为 0（√）/1（×）的整数，须改为 0。",
-          "review": "第 4 页判断题答案表第 1 题为 √，映射 0；站点 answer 为布尔 true，语义一致但类型不符本题库 0/1 整型约定（门禁亦按整型校验），changes.answer 改为 0。"
+          "initial": "第 4 页判断题答案表第 1 题为 √，映射 0，候选 answer=0；独立判断：两类方案互斥且都能独立完成任务，符合加法原理，总数为 m+n。",
+          "review": "第 4 页判断题答案表第 1 题为 √，映射 0，候选 answer=0。独立判断：两类方案互斥且各自独立完成任务，符合加法原理，总数 m+n。"
         },
         "explanation": {
-          "initial": "解析说明加法原理（分类、互斥）故总数为 m+n，并用乘加原理的区别作易错提醒，结论正确。",
-          "review": "解析按加法原理（互斥分类）论证 m+n，并提醒与乘法原理的区别，结论成立。"
+          "initial": "候选解析说明加法原理的“分类互斥”前提，并区分乘法原理，结论与 √ 一致。",
+          "review": "候选解析说明加法原理的“分类互斥”前提并区分乘法原理，结论与 √ 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 17,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 2 题“将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n−1)!”与站点 question 一致。",
-          "review": "第 4 页判断题第 2 题「将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n − 1)!」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 2 题“将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n − 1)!。”与候选 question 一致。",
+          "review": "第 4 页判断题第 2 题「将 n 个不同元素围成一圈，若只把旋转视为同一种排法、翻转仍视为不同排法，则方案数为 (n − 1)!。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 2 题为 √，站点存的是布尔 true；取值正确但类型须按约定改为整数 0。",
-          "review": "第 4 页判断题答案表第 2 题为 √，映射 0；站点 answer 为布尔 true，改为 0。独立核算：圆排列数 = n!/n = (n−1)!。"
+          "initial": "第 4 页判断题答案表第 2 题为 √，映射 0，候选 answer=0；独立判断：n 个元素的圆排列数为 n!/n=(n−1)!，翻转另算时不除 2。",
+          "review": "第 4 页判断题答案表第 2 题为 √，映射 0，候选 answer=0。独立判断：每个圆排列对应 n 个线排列，圆排列数 n!/n=(n−1)!；翻转视为不同时不除 2。"
         },
         "explanation": {
-          "initial": "解析用圆排列数 n!/n=(n−1)! 推出结论，并说明翻转视为相同时才需再除以 2，推导正确。",
-          "review": "解析按“拉直消除旋转”论证并提醒翻转约定，结论成立。"
+          "initial": "候选解析按“每个圆排列对应 n 个线排列”得 n!/n=(n−1)!，并说明翻转视为相同时才再除以 2，结论与 √ 一致。",
+          "review": "候选解析给出 n!/n=(n−1)! 与手镯问题的对照说明，结论与 √ 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 18,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 3 题“从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n+k,k)”与站点 question 一致。",
-          "review": "第 4 页判断题第 3 题「从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n + k, k)」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 3 题“从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n + k, k)。”与候选 question 一致。",
+          "review": "第 4 页判断题第 3 题「从 n 个不同元素中可重复地选取 k 个且不考虑顺序，方案数为 C(n + k, k)。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 3 题为 ×（应为 1），站点存布尔 false，取值正确但类型须改为整数 1。",
-          "review": "第 4 页判断题答案表第 3 题为 ×，映射 1；站点 answer 为布尔 false，改为 1。独立判断：正确公式为 C(n+k−1, k)（隔板法）。"
+          "initial": "第 4 页判断题答案表第 3 题为 ×，映射 1，候选 answer=1；独立验证：可重复组合的正确公式为 C(n+k−1,k)；取 n=2、k=1，实际只有 2 种，而 C(3,1)=3，故题面公式错误。",
+          "review": "第 4 页判断题答案表第 3 题为 ×，映射 1，候选 answer=1。独立验证：正确公式为 C(n+k−1,k)；n=2、k=1 时实际 2 种而 C(3,1)=3，题面公式错误。"
         },
         "explanation": {
-          "initial": "解析给出正确公式 C(n+k−1,k)，并用 n=2,k=1 的小例子验证 C(3,1)=3≠2，结论“错误”成立。",
-          "review": "解析以 n=2、k=1 的小反例（2 种 ≠ C(3,1)=3）验证，结论成立。"
+          "initial": "候选解析指出正确公式是 C(n+k−1,k)（隔板法），并用 n=2、k=1 的小例子验证 C(n+k,k) 不成立，结论与 × 一致。",
+          "review": "候选解析给出隔板法与同一反例，结论与 × 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 19,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 4 题“杨辉三角中的组合数满足 C(n,k)=C(n−1,k)+C(n−2,k)”与站点 question 一致。",
-          "review": "第 4 页判断题第 4 题「杨辉三角中的组合数满足 C(n, k) = C(n − 1, k) + C(n − 2, k)」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 4 题“杨辉三角中的组合数满足 C(n, k) = C(n − 1, k) + C(n − 2, k)。”与候选 question 一致。",
+          "review": "第 4 页判断题第 4 题「杨辉三角中的组合数满足 C(n, k) = C(n − 1, k) + C(n − 2, k)。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 4 题为 ×（应为 1），站点存布尔 false，取值正确但类型须改为整数 1。",
-          "review": "第 4 页判断题答案表第 4 题为 ×，映射 1；站点 answer 为布尔 false，改为 1。独立验证：C(4,2)=6 ≠ C(3,2)+C(2,2)=4，而 C(3,2)+C(3,1)=6 成立。"
+          "initial": "第 4 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1；独立验证：帕斯卡恒等式为 C(n,k)=C(n−1,k−1)+C(n−1,k)，取 C(4,2)=6，而 C(3,2)+C(2,2)=3+1=4，题面公式错误。",
+          "review": "第 4 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1。独立验证：C(4,2)=6，而 C(3,2)+C(2,2)=3+1=4，题面公式错误；正确形式为 C(n,k)=C(n−1,k−1)+C(n−1,k)。"
         },
         "explanation": {
-          "initial": "解析给出正确的帕斯卡恒等式 C(n,k)=C(n−1,k−1)+C(n−1,k)，并用 C(4,2)=6 与 3+1=4 反例说明题干错误，推导正确。",
-          "review": "解析给出正确恒等式与数值验证，结论成立。"
+          "initial": "候选解析写出正确形式 C(n,k)=C(n−1,k−1)+C(n−1,k)，并用 C(4,2) 与 C(3,2)+C(2,2) 的反例说明，结论与 × 一致。",
+          "review": "候选解析写出正确恒等式并给出两组数值验证，结论与 × 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 20,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 5 题“快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m”与站点 question 一致。",
-          "review": "第 4 页判断题第 5 题「快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 5 题“快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m。”与候选 question 一致。",
+          "review": "第 4 页判断题第 5 题「快速幂通过二进制拆分指数，可以在 O(log b) 时间内计算 a^b mod m。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 5 题为 √，站点存布尔 true，取值正确但类型须改为整数 0。",
-          "review": "第 4 页判断题答案表第 5 题为 √，映射 0；站点 answer 为布尔 true，改为 0。独立判断：指数每次折半。"
+          "initial": "第 4 页判断题答案表第 5 题为 √，映射 0，候选 answer=0；独立判断：二进制拆分后循环次数为 b 的位数，即 O(log b)。",
+          "review": "第 4 页判断题答案表第 5 题为 √，映射 0，候选 answer=0。独立判断：底数逐轮平方、按 b 的二进制位决定是否乘入，循环次数为 b 的位数 O(log b)。"
         },
         "explanation": {
-          "initial": "解析说明指数按二进制拆分为 a^(b₀·2⁰)·a^(b₁·2¹)…，循环次数为 b 的位数即 O(log b)，结论正确。",
-          "review": "解析按二进制位机理说明，结论成立。"
+          "initial": "候选解析说明底数逐轮平方、按 b 的二进制位决定是否乘入答案，循环次数为 O(log b)，结论与 √ 一致。",
+          "review": "候选解析说明平方与按位乘入的机制，结论与 √ 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 21,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 6 题“只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图”与站点 question 一致。",
-          "review": "第 4 页判断题第 6 题「只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 6 题“只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图。”与候选 question 一致。",
+          "review": "第 4 页判断题第 6 题「只要图中不存在负权环，Dijkstra 算法就一定能正确处理带负权边的图。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 6 题为 ×（应为 1），站点存布尔 false，取值正确但类型须改为整数 1。",
-          "review": "第 4 页判断题答案表第 6 题为 ×，映射 1；站点 answer 为布尔 false，改为 1。独立反例：s→u 权 2、s→v 权 3、v→u 权 −2（无环无负环），Dijkstra 先定 u=2，实际 s→v→u=1 更短。"
+          "initial": "第 4 页判断题答案表第 6 题为 ×，映射 1，候选 answer=1；独立反例：s→u 权 2、s→v 权 3、v→u 权 −2，图无环更无负环；Dijkstra 先确定 dis[u]=2，实际 s→v→u 为 1，已被确定的点无法再改进。",
+          "review": "第 4 页判断题答案表第 6 题为 ×，映射 1，候选 answer=1。独立验证候选反例：图中 s→u(2)、s→v(3)、v→u(−2) 无任何有向环，Dijkstra 按序确定 dis[u]=2 后不再改进，而最短路为 1，标准 Dijkstra 失效。"
         },
         "explanation": {
-          "initial": "解析给出无权环反例 s→u=2、s→v=3、v→u=−2（实际最短路 1，Dijkstra 先确定 u=2 后不回退），说明无负权环仍不够，结论成立（结尾“现已纠正”为编辑注记，不影响正确性）。",
-          "review": "解析给出反例并说明需改用可处理负边的算法，结论成立。"
+          "initial": "候选解析给出上述反例（图无环更无负环，但含负边 v→u=−2；Dijkstra 先确定 dis[u]=2，实际 s→v→u 为 1，已确定的点无法再改进），说明标准 Dijkstra 依赖非负边权，结论与 × 一致。",
+          "review": "候选解析给出该反例并说明“无负权环”不足以支撑带负边场景，结论与 × 一致；末尾对旧例子的更正说明属修订记录性文字，不影响论证正确性。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 22,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 7 题“若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一”与站点 question 一致。",
-          "review": "第 4 页判断题第 7 题「若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 7 题“若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一。”与候选 question 一致。",
+          "review": "第 4 页判断题第 7 题「若一张连通无向图所有边权两两不同，则它的最小生成树一定唯一。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 7 题为 √，站点存布尔 true，取值正确但类型须改为整数 0。",
-          "review": "第 4 页判断题答案表第 7 题为 √，映射 0；站点 answer 为布尔 true，改为 0。独立论证：不同 MST 间做交换会推出权重矛盾。"
+          "initial": "第 4 页判断题答案表第 7 题为 √，映射 0，候选 answer=0；独立判断：若两棵不同 MST 存在，取对称差中权重最小的边做交换会得到更小生成树，矛盾；边权互异时 MST 唯一。",
+          "review": "第 4 页判断题答案表第 7 题为 √，映射 0，候选 answer=0。独立判断：若存在两棵不同 MST，取对称差中权最小的边交换可得更小生成树，矛盾；边权互异时 MST 唯一。"
         },
         "explanation": {
-          "initial": "解析用“取 T₁ 中不在 T₂ 的最小边 e、换掉 T₂ 环上更重的边 f”构造更小生成树的矛盾，证明唯一性，论证成立。",
-          "review": "解析按反证与换边论证，结论成立。"
+          "initial": "候选解析用反证/交换论证说明边权两两不同时 MST 唯一，并指出边权可重复时才可能不唯一，结论与 √ 一致。",
+          "review": "候选解析用反证/交换论证说明唯一性并注明边权可重复时才可能不唯一，结论与 √ 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 23,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 8 题“判断点 (x,y) 是否在以原点为圆心、半径 r 的圆内或圆上时，可以比较 x²+y² 与 r²，不必先开平方”与站点 question 一致。",
-          "review": "第 4 页判断题第 8 题「判断点 (x, y) 是否在以原点为圆心、半径为 r 的圆内或圆上时，可以比较 x² + y² 与 r²，不必先开平方」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 8 题“判断点 (x, y) 是否在以原点为圆心、半径为 r 的圆内或圆上时，可以比较 x² + y² 与 r²，不必先开平方。”与候选 question 一致。",
+          "review": "第 4 页判断题第 8 题「判断点 (x, y) 是否在以原点为圆心、半径为 r 的圆内或圆上时，可以比较 x² + y² 与 r²，不必先开平方。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 8 题为 √，站点存布尔 true，取值正确但类型须改为整数 0。",
-          "review": "第 4 页判断题答案表第 8 题为 √，映射 0；站点 answer 为布尔 true，改为 0。独立判断：非负数平方比较与开方比较等价。"
+          "initial": "第 4 页判断题答案表第 8 题为 √，映射 0，候选 answer=0；独立判断：√(x²+y²)≤r 与 x²+y²≤r² 在两边非负时等价，且比较平方可避免开方误差。",
+          "review": "第 4 页判断题答案表第 8 题为 √，映射 0，候选 answer=0。独立判断：√(x²+y²)≤r 与 x²+y²≤r² 在两边非负时等价，比较平方还可避免开方浮点误差。"
         },
         "explanation": {
-          "initial": "解析说明两边非负时平方是等价变换，且比较整数平方可避免开方误差，结论正确。",
-          "review": "解析说明单调等价与避免浮点误差的优点，结论成立。"
+          "initial": "候选解析说明“圆内或圆上”即 √(x²+y²)≤r，两边非负时平方等价，并指出可避免浮点误差，结论与 √ 一致。",
+          "review": "候选解析说明单调等价变换与精度优点，结论与 √ 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 24,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 9 题“若能写出判定函数 check(x)…即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解”与站点 question 一致。",
-          "review": "第 4 页判断题第 9 题「若能写出判定函数 check(x)……即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 9 题“若能写出判定函数 check(x)，表示‘答案为 x 时是否可行’，即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解。”与候选 question 一致（候选用双引号“答案为 x 时是否可行”复现）。",
+          "review": "第 4 页判断题第 9 题「若能写出判定函数 check(x)，表示“答案为 x 时是否可行”，即使 check(x) 不满足单调性，也一定可以使用二分答案求最优解。」与候选 question（以双引号复现）一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 9 题为 ×（应为 1），站点存布尔 false，取值正确但类型须改为整数 1。",
-          "review": "第 4 页判断题答案表第 9 题为 ×，映射 1；站点 answer 为布尔 false，改为 1。独立判断：非单调时二分收缩会丢弃最优解所在区间。"
+          "initial": "第 4 页判断题答案表第 9 题为 ×，映射 1，候选 answer=1；独立判断：二分答案要求判定函数关于 x 单调，否则收缩时可能丢弃最优解所在区间。",
+          "review": "第 4 页判断题答案表第 9 题为 ×，映射 1，候选 answer=1。独立判断：二分收缩的前提是可行性关于 x 单调，非单调时收缩会丢弃最优解所在区间。"
         },
         "explanation": {
-          "initial": "解析说明二分依赖可行性区间的单调性，非单调时会丢弃含最优解的一半，结论错误成立。",
-          "review": "解析说明单调性为二分答案前提，结论成立。"
+          "initial": "候选解析指出二分答案的前提是 check(x) 单调、非单调时需枚举/DP 等其他方法，结论与 × 一致。",
+          "review": "候选解析指出单调性前提与非单调时的替代方法，结论与 × 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
       "id": 25,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 10 题“归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)”与站点 question 一致。",
-          "review": "第 4 页判断题第 10 题「归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 10 题“归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)。”与候选 question 一致。",
+          "review": "第 4 页判断题第 10 题「归并排序是一种稳定排序算法，常见实现的时间复杂度为 O(n log n)。」与候选 question 一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 10 题为 √，站点存布尔 true，取值正确但类型须改为整数 0。",
-          "review": "第 4 页判断题答案表第 10 题为 √，映射 0；站点 answer 为布尔 true，改为 0。独立判断：合并时左半优先保稳定，递推 T(n)=2T(n/2)+O(n)。"
+          "initial": "第 4 页判断题答案表第 10 题为 √，映射 0，候选 answer=0；独立判断：归并时相等元素优先取左半可保持稳定性，递推 T(n)=2T(n/2)+O(n) 得 O(n log n)。",
+          "review": "第 4 页判断题答案表第 10 题为 √，映射 0，候选 answer=0。独立判断：合并时相等取左半保稳定，T(n)=2T(n/2)+O(n)=O(n log n) 且各情况同阶。"
         },
         "explanation": {
-          "initial": "解析用合并时 `<=` 取左半说明稳定性，并给出 T(n)=2T(n/2)+O(n)=O(n log n)，结论正确。",
-          "review": "解析说明稳定性来源与复杂度递推，结论成立。"
+          "initial": "候选解析说明合并用 <= 优先取左半保证稳定、递推得 O(n log n)，并指出最好/最坏/平均均为该量级，结论与 √ 一致。",
+          "review": "候选解析说明稳定性实现与递推复杂度，结论与 √ 一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
       ]
     },
     {
@@ -1024,264 +1054,72 @@
           "review": "站点代码按 n≤500 枚举点对、整数平方比较建边、Kruskal 并查集选边、t==n−1 判连通；本机 g++ -std=c++17 -O2 实测：两组样例输出 3.41 与 Impossible，三条边界用例（n=1 → 0.00、距离恰等于 l=5 → 5.00、全部超距 → Impossible）全部通过。"
         }
       },
-      "unresolved": []
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 4
+        }
+      ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement",
-        "explanation"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
+        6,
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7 页 3.2.1 描述、样例（3 5 → 6）与站点一致，但第 7 页数据范围表为“2≤m≤100，1≤n≤10^8（数据点 3,4,5）”“2≤m≤10^5，1≤n≤10^8（数据点 6—10）”，站点 description 写成 1≤n≤10^9，两处均放大了一个数量级。",
-          "review": "PDF 第 7 页 3.2.1 描述与样例（3 5 → 6）和站点一致，但数据范围表为「2≤m≤100，1≤n≤10^8（数据点 3,4,5）」「2≤m≤10^5，1≤n≤10^8（数据点 6—10）」，站点 description 写成 1≤n≤10^9，放大查验确认原卷指数为 8；changes.description 已按 10^8 修正。"
+          "initial": "PDF 第 7 页 3.2.1 原文：m 堆石子、a₁=n、aᵢ<aᵢ₋₁、aᵢ≥1、m≥2、n≥1，求方案数对 10⁹+7 取模；候选 description 逐句一致，并补入第 7 页数据范围表（1,2 档 2≤m≤100、1≤n≤100、0≤n−m≤5；3—5 档 2≤m≤100、1≤n≤10⁸；6—10 档 2≤m≤10⁵、1≤n≤10⁸），与页图一致。第 6 页题头标注 1.0 s（内存差异另记）。",
+          "review": "第 7 页 3.2.1 原文：m 堆石子、a₁=n、此后每堆严格小于前一堆、每堆至少 1 个、方案数对 1e9+7 取模、不存在输出 0；候选 description 逐句一致，且已补入第 7 页 3.2.8 数据范围表（数据点 1,2：2≤m≤100、1≤n≤100、0≤n−m≤5；3,4,5：2≤m≤100、1≤n≤1e8；6,7,8,9,10：2≤m≤1e5、1≤n≤1e8），与页图逐字一致。第 6 页题头 1.0 s、内存 512.0 MB（内存差异另记）。"
         },
         "explanation": {
-          "initial": "解析的建模（从 {1..n−1} 中选 m−1 个数、方案数 C(n−1,m−1)、用费马小定理求逆元）正确，但结尾写“n 高达 10⁹”，与原卷 10^8 的上界不一致，需一并订正。",
-          "review": "站点解析的建模（从 {1..n−1} 选 m−1 个数、方案数 C(n−1,m−1)、费马小定理求逆元）正确，但结尾“n 高达 10⁹”与原卷 10^8 上界不符；初核重写的解析已订正并保持其余推导不变，采纳。"
+          "initial": "候选解析把方案对应为从 {1,…,n−1} 中选 m−1 个互不相同的数（选定后严格递减顺序唯一），得 C(n−1,m−1)，n<m 时为 0；并说明 n≤10⁸ 不能预处理阶乘、用逐项乘 + 费马小定理逆元，n−1<MOD 满足条件。样例 m=3,n=5 → C(4,2)=6 复算一致。",
+          "review": "候选解析把方案对应为从 {1,…,n−1} 中选 m−1 个互不相同的数（选定后严格递减顺序唯一），得 C(n−1, m−1)，n<m 时为 0；样例 m=3,n=5 → C(4,2)=6 复算一致；n≤1e8 不能预处理阶乘、逐项乘配合费马小定理逆元（1e9+7 为素数且 n−1<MOD），复杂度 O(m log MOD)，与数据范围匹配。"
         },
         "referenceCode": {
-          "initial": "站点代码输出 C(n−1,m−1) mod 1e9+7，用逐项乘法 + qpow(i+1, MOD−2) 求逆元；原卷 n≤10^8 故 n−1<MOD，费马小定理成立，m≤10^5 时 O(m log MOD) 可过；本地对 m≤5、n≤8 的全部 (m,n) 与暴力枚举比对无差异，大数用例见 tests。",
-          "review": "站点代码（comb(n-1, m-1)：逐项乘 (n−i)、每步乘 qpow(i+1, MOD−2) 求逆元）与原卷第 8 页官方参考程序一致；本机 g++ -std=c++17 -O2 实测：样例输出 6，四条用例（m>n→0、m=2,n=5→4、m=5,n=100000→419375106、m=n=100000→1）全部通过。"
+          "initial": "本机 clang++ -std=c++17 -O2 编译运行候选程序：样例 3 5→6；边界 m=2,n=1→0、m=2,n=10⁸→99999999、m=10⁵,n=99999→0、m=10⁵,n=10⁸→835940359；其中 835940359 与 Python math.comb(99999999,99999) mod 10⁹+7 独立结果一致；m=2..11、n=1..29 的全部小样例与 math.comb 对拍零差异。",
+          "review": "候选参考程序与第 8 页官方程序逐字相同：本机 clang++ -std=c++17 -O2 编译运行，官方样例 3 5→6；自拟边界 m=n=3→1、m=2,n=3→2、m=4,n=7→20、m=2,n=1→0、m=5,n=3→0、m=2,n=1e8→99999999、m=1e5,n=99999→0、m=1e5,n=1e8→835940359（与 math.comb 独立一致）全部通过；另对 m=2..8 × n=1..25 全量与 math.comb 及直接枚举双对拍零差异；m=1e5,n=1e8 压力运行 0.016 s（压力与耗时仅记于此）。"
         }
       },
-      "unresolved": [
-        "修改 description 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l8.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 6
+        }
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 16,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 17,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 18,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 19,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 20,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 21,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 22,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 23,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 24,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 description 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
-  "pendingChanges": [
-    {
-      "id": 16,
-      "changes": {
-        "answer": 0
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 17,
-      "changes": {
-        "answer": 0
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 18,
-      "changes": {
-        "answer": 1
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 19,
-      "changes": {
-        "answer": 1
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 20,
-      "changes": {
-        "answer": 0
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 21,
-      "changes": {
-        "answer": 1
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 22,
-      "changes": {
-        "answer": 0
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 23,
-      "changes": {
-        "answer": 0
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 24,
-      "changes": {
-        "answer": 1
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 25,
-      "changes": {
-        "answer": 0
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "description": "有 m 堆石子，编号为 1, 2, …, m，其石子数量分别记为 a₁, a₂, …, aₘ。\n\n现在要求第 1 堆石子恰有 n 个（即 a₁ = n），并且此后每堆石子的数量严格小于前一堆，即 aᵢ < aᵢ₋₁（2 ≤ i ≤ m）。此外，每堆至少需要有一个石子，即 aᵢ ≥ 1（1 ≤ i ≤ m）。\n\n在总石子数量不设限制的情况下，给定 m ≥ 2, n ≥ 1，有多少个满足要求的石子堆放方案？\n\n两个方案不同，当且仅当，两个方案中至少有一堆石子数量不同。\n\n如果不存在满足要求的方案，输出 0。由于方案数可能很大，请输出方案数对 10⁹ + 7 取模后的结果。\n\n## 数据范围\n\n| 数据点编号 | 数据范围 | 特殊性质 |\n|---|---|---|\n| 1, 2 | 2 ≤ m ≤ 100，1 ≤ n ≤ 100 | 0 ≤ n − m ≤ 5 |\n| 3, 4, 5 | 2 ≤ m ≤ 100，1 ≤ n ≤ 10^8 | 无 |\n| 6, 7, 8, 9, 10 | 2 ≤ m ≤ 10^5，1 ≤ n ≤ 10^8 | 无 |",
-        "explanation": "**解析：**\n\n要求 a₁ = n > a₂ > a₃ > … > aₘ ≥ 1，即从 {1, 2, …, n − 1} 中选出 m − 1 个互不相同的数作为 a₂ … aₘ——**选定集合后排列方式唯一**（只能严格递减）。\n\n所以方案数就是组合数：\n\n$$\\binom{n-1}{m-1}$$\n\n当 n − 1 < m − 1（即 n < m）时无解，输出 0（此时组合数按 0 处理）。\n\n**样例验证：** m = 3, n = 5 → C(4, 2) = **6** ✓，对应 (5,4,3)、(5,4,2)、(5,4,1)、(5,3,2)、(5,3,1)、(5,2,1)。\n\n实现：n 高达 10⁸ 不能预处理阶乘，用**逐项计算组合数** ans = ∏(n−1−i)/(i+1)，除法用费马小定理求逆元（模 10⁹ + 7 为素数，且 n−1 < 10⁸ < MOD，费马小定理条件满足），配合快速幂。复杂度 O(m log MOD)（m ≤ 10⁵）。\n\n**考点：** 组合计数、逆元、快速幂、数论"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l8.code-checks.json"
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l8.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l8.integration.json"
 }

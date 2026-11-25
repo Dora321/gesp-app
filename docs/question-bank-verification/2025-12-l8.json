@@ -25,86 +25,6 @@
   "inputSha256": "15a3b199b33e558dec1f130fbd6944eea87c959cf859c642adce655591800b84",
   "questions": [
     {
-      "id": 26,
-      "resolved": true,
-      "dimensions": [
-        "statement",
-        "explanation",
-        "referenceCode"
-      ],
-      "blockedDimensions": [],
-      "sourcePages": [
-        5,
-        6,
-        7
-      ],
-      "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
-      ],
-      "evidence": {
-        "statement": {
-          "initial": "PDF 第 5 页 3.1.1 题目描述（带权无向连通图、n 点 m 边、结点 i 的奶酪价值 c_i、猫窝 a、老鼠洞 b、结点 u 安全当且仅当存在 u→b 的路径使路径上每个 x 满足“猫到 x 的最短时间严格大于老鼠沿该路径到 x 的时间”）与站点 description 一致；站点把它等价改写为“到老鼠洞的最短路严格短于猫窝到老鼠洞的最短路”，两者等价（若 dist(u,b)<dist(a,b)，则最短路上每个 x 有 dist(a,x) ≥ dist(a,b) − dist(x,b) > dist(u,x)；反之终点 b 处即不满足）。样例 1（5 5 / 1 2 / 1 2 4 8 16 … → 22）与样例 2（6 10 / 3 4 / 1 1 1 1 1 1 … → 3）与站点 samples 一致。",
-          "review": "第 5—6 页 3.1.1 题目描述（猫窝 a、老鼠洞 b、结点 u 安全当且仅当存在 u→b 路径使路径上每个 x 满足猫到 x 的最短时间严格大于老鼠沿该路径到 x 的时间）与站点 description 的简化表述语义等价（等价性证明见本轮 reviewNote）；第 6 页两组样例与站点 samples 逐字一致；数据范围（n,m≤10^5、a≠b、1≤w≤10^9）经独立转录核对。"
-        },
-        "explanation": {
-          "initial": "解析以 b 为源跑一次堆优化 Dijkstra（无向图对称性成立），再统计 d[i] < d[a] 的结点奶酪价值和；样例 1 走查得 d=[4,0,3,4,2]、d[a]=4，安全点为 2、3、5，价值 2+4+16=22，与输出一致。",
-          "review": "解析以 b 为源跑一次堆优化 Dijkstra（无向图边权对称），统计 d[i] < d[a] 的奶酪价值和；样例 1 走查 d=[4,0,3,4,2]、d[a]=4，安全点 2/3/5 价值 2+4+16=22，与输出一致；样例 2 同法得 3，本轮独立复算吻合。"
-        },
-        "referenceCode": {
-          "initial": "站点 referenceCode 与 PDF 第 7 页官方参考程序逻辑一致（以 b 为源 Dijkstra、INF=4e18、ans 用 long long 累加 c[i]），路径压缩与懒惰删除写法正确；边界用例见 tests。",
-          "review": "站点代码（以 b 为源、INF=4e18、懒惰删除堆、累加 c[i]）与原卷第 7 页官方参考程序一致；本机 g++ -std=c++17 -O2 实测：两组样例输出 22 与 3，三条边界用例（n=2 单边只有老鼠洞安全→7、三点链取近端→6、等距结点严格不安全→3）全部通过。"
-        }
-      },
-      "unresolved": []
-    },
-    {
-      "id": 27,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
-        "statement",
-        "explanation",
-        "referenceCode"
-      ],
-      "sourcePages": [
-        7,
-        8,
-        9
-      ],
-      "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
-      ],
-      "evidence": {
-        "statement": {
-          "initial": "PDF 第 8 页 3.2.1 题目描述为“小 A 有一串包含 n 枚宝石的宝石项链……第 n 枚宝石与第 1 枚宝石相邻……小 A 会将项链划分为若干连续段，并且需要保证每段都包含全部 m 种宝石”；站点 description 写成“有一条长度为 n 的项链……划分成若干连续段”，遗漏了“第 n 枚与第 1 枚相邻”这一环形约束，而站点自己的参考程序与解析都按环形处理（枚举起点并绕环闭合），题干与解法不一致。",
-          "review": "PDF 第 8 页 3.2.1 原文「小 A 有一串包含 n 枚宝石的宝石项链……第 n 枚宝石与第 1 枚宝石相邻……需要保证每段都包含全部 m 种宝石」，站点 description 遗漏“第 n 枚与第 1 枚相邻”的环形约束；changes.description 已补回（第 8 页样例 6 2→3、7 3→2 与站点一致）。"
-        },
-        "explanation": {
-          "initial": "解析把“必须刚好遍历完 n 颗宝石且每段都凑齐 m 种”作为合法性条件，忽略了一种情形：最后一段若截断在项链末尾、剩下的一段宝石凑不齐 m 种，应当把它并入上一段（仍含全部 m 种）而不是判该起点无效；按现有解析，像 n=7、m=3、t=[3,3,3,1,1,2,2] 这种“整条项链只能算 1 段”的输入会得到 0。",
-          "review": "站点解析把“必须刚好遍历完 n 颗且每段凑齐 m 种”当作合法性条件，漏掉“尾段并入上一段”的情形（实测 7 3 / 3 3 3 1 1 2 2 应为 1 段而旧逻辑得 0）；初核重写的解析按“最短合法窗口 + 倍增”重写并修正该情形，与本轮独立走查一致，采纳。"
-        },
-        "referenceCode": {
-          "initial": "站点 referenceCode 存在两处问题：① 逻辑错误——要求每段都恰好凑齐并刚好走完 n 颗宝石（ok && pos == n），当尾段凑不齐 m 种时直接放弃该起点，实测 n=7、m=3、t=[3,3,3,1,1,2,2] 时输出 0，而正确答案为 1；② 复杂度过高——对 n 个起点各做一次 O(n) 贪心，n≤10^5 时最坏 10^10 次操作，必然超时，官方参考程序用的是“最短窗口 + 二进制倍增”的 O(n log n) 做法。",
-          "review": "初核重写的实现（倍长数组双指针求 nxt[i]、jump 倍增表按 2^k 个窗口跳跃、枚举起点取最大段数，L=18 覆盖 n≤10^5）与原卷第 9 页官方参考程序同构；本机 g++ -std=c++17 -O2 实测：两组样例输出 3 与 2，三条用例（3、2、1）全部通过，其中第三条正是旧代码输出 0 的缺陷用例。"
-        }
-      },
-      "unresolved": [
-        "修改 description 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "修改 referenceCode 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "referenceCode 尚无一致、完整的原卷核验结论",
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
-      ]
-    },
-    {
       "id": 1,
       "resolved": true,
       "dimensions": [
@@ -343,43 +263,47 @@
       "id": 7,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
+        1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页第 7 题原文为“已知两个点 A(x₁,y₁) 和 B(x₂,y₂) 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间直线距离的是”；站点 question 中的 A(x₁,y₁)、B(x₂,y₂) 被吞成空白，写成“已知两个点 和 在平面直角坐标系中的坐标”，缺失两个点的记号。",
-          "review": "PDF 第 2 页第 7 题原文「已知两个点 A(x₁,y₁) 和 B(x₂,y₂) 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间直线距离的是」，站点 question 中两处点的记号丢失；changes.question 已补回。"
+          "initial": "PDF 第 2 页第 7 题原文“已知两个点 A(x₁, y₁) 和 B(x₂, y₂) 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间直线距离的是（ ）”；候选以 A(x1, y1)、B(x2, y2) 的代码体记法复现，语义与页图一致。",
+          "review": "第 2 页第 7 题原文「已知两个点 A(x₁,y₁) 和 B(x₂,y₂) 在平面直角坐标系中的坐标。下列C++表达式中，能正确计算这两点之间直线距离的是（ ）」；候选 question 以 A(x1, y1)、B(x2, y2) 的代码体记法复现下标记号，语义与页图一致。"
         },
         "options": {
-          "initial": "PDF 第 2 页 A sqrt((x1-x2)^2+(y1-y2)^2)、B sqrt(pow(x1-x2,2)+pow(y1-y2,2))、C pow(...)+pow(...)、D abs(x1-x2)+abs(y1-y2)，与站点 options 一致。",
-          "review": "第 2 页 A sqrt((x1-x2) ^ 2+(y1-y2) ^ 2)、B sqrt(pow(x1-x2, 2)+pow(y1-y2, 2))、C pow(...)+pow(...)、D abs(x1-x2)+abs(y1-y2)，与站点 options 一致。"
+          "initial": "第 2 页四项为 A sqrt((x1-x2)^2+(y1-y2)^2)、B sqrt(pow(x1-x2,2)+pow(y1-y2,2))、C pow(x1-x2,2)+pow(y1-y2,2)、D abs(x1-x2)+abs(y1-y2)，与候选 options 逐项一致（仅空格排版差异）。",
+          "review": "第 2 页 A sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2)、B sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2))、C pow(x1 - x2, 2) + pow(y1 - y2, 2)、D abs(x1 - x2) + abs(y1 - y2)，与候选 options 逐项一致（仅排版空格差异）。"
         },
         "answer": {
-          "initial": "第 1 页答案表第 7 题为 B，索引 1，站点 answer=1；独立判断：C++ 无乘方运算符，^ 是异或，只有 pow+sqrt 写法正确。",
-          "review": "第 1 页答案表第 7 题为 B，索引 1，站点 answer=1。独立判断：C++ 无乘方运算符（^ 在浮点数上不可用），B 的 pow+sqrt 写法正确。"
+          "initial": "第 1 页答案表第 7 题为 B，索引 1，候选 answer=1；独立判断：C++ 的 ^ 是按位异或而非乘方，B 先用 pow 求平方和再 sqrt 开方，正确。",
+          "review": "第 1 页答案表第 7 题为 B，0 起始索引 1，候选 answer=1。独立判断：C++ 的 ^ 是按位异或而非乘方（浮点操作数无法编译），直线距离应为平方和开方，B 的 pow+sqrt 写法正确；C 缺外层 sqrt、D 为曼哈顿距离。"
         },
         "explanation": {
-          "initial": "解析指出 ^ 为按位异或（浮点操作数甚至无法编译）、C 少开方、D 是曼哈顿距离，结论落在 B，推导正确。",
-          "review": "解析逐项指出 ^ 为异或且浮点操作数无法编译、C 未开方、D 为曼哈顿距离，结论 B 成立。"
+          "initial": "候选解析指出 A 的 ^ 为异或（浮点操作数甚至无法编译）、C 缺外层 sqrt、D 是曼哈顿距离，结论落在 B，与独立推导一致。",
+          "review": "候选解析逐项指出 ^ 为异或且浮点操作数无法编译、C 求的是距离平方、D 是曼哈顿距离，结论 B，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l8.glm.json"
       ]
     },
     {
@@ -659,45 +583,50 @@
     },
     {
       "id": 15,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
+        1,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页第 15 题原文为“对连通无向图执行 Kruskal 算法。已按边权从小到大依次扫描到某条边 e = (u,v)。此时在已经构建的部分 MST 结构中，(u,v) 已在同一连通块内。关于边 e 的处理，下列说法正确的是”；站点 question 写成“扫描到某条边 。……部分 MST 结构中， 已在同一连通块内。关于边 的处理”，三处行内记号（e=(u,v) 与两次 (u,v)）全部丢失。",
-          "review": "PDF 第 4 页第 15 题原文「……已按边权从小到大依次扫描到某条边 e = (u,v)。此时在已经构建的部分 MST 结构中，(u,v) 已在同一连通块内。关于边 e 的处理……」，站点 question 三处记号丢失；changes.question 已补回。"
+          "initial": "PDF 第 4 页第 15 题原文“对连通无向图执行 Kruskal 算法。已按边权从小到大依次扫描到某条边 e = (u, v)。此时在已经构建的部分 MST 结构中，(u, v) 已在同一连通块内。关于边 e 的处理，下列说法正确的是（ ）”；候选 question 三处 e/(u,v) 记号完整，与页图一致。",
+          "review": "第 4 页第 15 题原文「对连通无向图执行Kruskal算法。已按边权从小到大依次扫描到某条边 e = (u,v)。此时在已经构建的部分 MST结构中，(u,v) 已在同一连通块内。关于边 e 的处理，下列说法正确的是（ ）」；候选 question 三处 e/(u,v) 记号完整，与页图一致。"
         },
         "options": {
-          "initial": "PDF 第 4 页 C 为“若后续出现更大的边权，可以回溯改选 e。”、D 为“只有当 e 是当前最小边时才能舍弃。”；站点 C 写成“可以回溯改选 。”、D 写成“只有当 是当前最小边时”，两处变量 e 被吞掉，选项不完整。",
-          "review": "第 4 页 A 必须选入 MST 否则可能不连通、B 一定不能选入 MST（在此扫描顺序下）、C 若后续出现更大的边权可以回溯改选 e、D 只有当 e 是当前最小边时才能舍弃，与初核重建的 options 一致（站点 C/D 确缺 e 字）。"
+          "initial": "第 4 页 B 为“一定不能选入 MST（在此扫描顺序下）”，C 为“若后续出现更大的边权，可以回溯改选 e”，D 为“只有当 e 是当前最小边时才能舍弃”，A 为“必须选入 MST，否则可能不连通”，与候选 options 逐项一致。",
+          "review": "第 4 页 A 必须选入MST，否则可能不连通。、B 一定不能选入MST（在此扫描顺序下）。、C 若后续出现更大的边权，可以回溯改选 e。、D 只有当 e 是当前最小边时才能舍弃。，与候选 options 逐项一致（C/D 的 e 字在修订稿已齐）。"
         },
         "answer": {
-          "initial": "第 1 页答案表第 15 题为 B，索引 1，站点 answer=1；独立判断：Kruskal 扫描到两端点已连通的边必然成环，在当前扫描顺序下一定不选。",
-          "review": "第 1 页答案表第 15 题为 B，索引 1，站点 answer=1。独立推导：两端已连通的边加入即成环，Kruskal 在当前顺序下必不选且不回溯。"
+          "initial": "第 1 页答案表第 15 题为 B，索引 1，候选 answer=1；独立判断：两端点已连通的边加入即成环，Kruskal 在当前扫描顺序下必定舍弃且不回溯。",
+          "review": "第 1 页答案表第 15 题为 B，0 起始索引 1，候选 answer=1。独立推导：两端点已在同一连通块内，加入 e 必在部分 MST 上成环，Kruskal 按边权升序单向扫描、舍弃后不回溯，故 B 正确；A 与树无环性矛盾、C 违背贪心不回溯、D 的充要条件是「端点已连通」而非「当前最小边」。"
         },
         "explanation": {
-          "initial": "解析说明该边加入会成环、Kruskal 无回溯、舍弃条件只看连通性而非边权大小，逐项结论与 B 一致（解析文本中变量 e 完整，仅选项缺字）。",
-          "review": "解析说明成环、无回溯、舍弃只看连通性不看边权，结论 B 成立。"
+          "initial": "候选解析说明成环、无回溯、舍弃只看连通性而非边权大小，逐项结论与 B 一致，推导正确。",
+          "review": "候选解析说明成环必舍、无回溯机制、舍弃只看连通性不看是否当前最小边，并附并查集 O(α(V)) 与排序 O(E log E) 的复杂度延伸，逐项结论与 B 一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l8.glm.json"
       ]
     },
     {
@@ -972,7 +901,11 @@
         }
       },
       "unresolved": [
-        "statement 尚无一致、完整的原卷核验结论"
+        "statement 尚无一致、完整的原卷核验结论",
+        "原卷第 5 页印为最坏 O(n log n)，现有题面为 O(N^2)。后半句的“完全避免退化”在两种版本中都不成立，两版判断均为错误。保留既有题面、答案与原卷差异待裁定。"
+      ],
+      "sourceNotes": [
+        "原卷第 5 页印为最坏 O(n log n)，现有题面为 O(N^2)。后半句的“完全避免退化”在两种版本中都不成立，两版判断均为错误。保留既有题面、答案与原卷差异待裁定。"
       ]
     },
     {
@@ -1042,91 +975,119 @@
         }
       },
       "unresolved": []
-    }
-  ],
-  "unresolved": [
+    },
     {
-      "id": 27,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
         "statement",
         "explanation",
         "referenceCode"
       ],
-      "reasons": [
-        "修改 description 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "修改 referenceCode 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "referenceCode 尚无一致、完整的原卷核验结论",
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
-      ]
-    },
-    {
-      "id": 7,
-      "dimensions": [
-        "statement"
+      "blockedDimensions": [],
+      "sourcePages": [
+        5,
+        6,
+        7
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页 3.1.1 题目描述（带权无向连通图、n 点 m 边、结点 i 的奶酪价值 c_i、猫窝 a、老鼠洞 b、结点 u 安全当且仅当存在 u→b 的路径使路径上每个 x 满足“猫到 x 的最短时间严格大于老鼠沿该路径到 x 的时间”）与站点 description 一致；站点把它等价改写为“到老鼠洞的最短路严格短于猫窝到老鼠洞的最短路”，两者等价（若 dist(u,b)<dist(a,b)，则最短路上每个 x 有 dist(a,x) ≥ dist(a,b) − dist(x,b) > dist(u,x)；反之终点 b 处即不满足）。样例 1（5 5 / 1 2 / 1 2 4 8 16 … → 22）与样例 2（6 10 / 3 4 / 1 1 1 1 1 1 … → 3）与站点 samples 一致。",
+          "review": "第 5—6 页 3.1.1 题目描述（猫窝 a、老鼠洞 b、结点 u 安全当且仅当存在 u→b 路径使路径上每个 x 满足猫到 x 的最短时间严格大于老鼠沿该路径到 x 的时间）与站点 description 的简化表述语义等价（等价性证明见本轮 reviewNote）；第 6 页两组样例与站点 samples 逐字一致；数据范围（n,m≤10^5、a≠b、1≤w≤10^9）经独立转录核对。"
+        },
+        "explanation": {
+          "initial": "解析以 b 为源跑一次堆优化 Dijkstra（无向图对称性成立），再统计 d[i] < d[a] 的结点奶酪价值和；样例 1 走查得 d=[4,0,3,4,2]、d[a]=4，安全点为 2、3、5，价值 2+4+16=22，与输出一致。",
+          "review": "解析以 b 为源跑一次堆优化 Dijkstra（无向图边权对称），统计 d[i] < d[a] 的奶酪价值和；样例 1 走查 d=[4,0,3,4,2]、d[a]=4，安全点 2/3/5 价值 2+4+16=22，与输出一致；样例 2 同法得 3，本轮独立复算吻合。"
+        },
+        "referenceCode": {
+          "initial": "站点 referenceCode 与 PDF 第 7 页官方参考程序逻辑一致（以 b 为源 Dijkstra、INF=4e18、ans 用 long long 累加 c[i]），路径压缩与懒惰删除写法正确；边界用例见 tests。",
+          "review": "站点代码（以 b 为源、INF=4e18、懒惰删除堆、累加 c[i]）与原卷第 7 页官方参考程序一致；本机 g++ -std=c++17 -O2 实测：两组样例输出 22 与 3，三条边界用例（n=2 单边只有老鼠洞安全→7、三点链取近端→6、等距结点严格不安全→3）全部通过。"
+        }
+      },
+      "unresolved": [],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 5
+        }
       ]
     },
     {
-      "id": 15,
+      "id": 27,
+      "resolved": true,
       "dimensions": [
         "statement",
-        "options",
-        "answer",
-        "explanation"
+        "explanation",
+        "referenceCode"
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论"
+      "blockedDimensions": [],
+      "sourcePages": [
+        7,
+        8,
+        9
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 8 页 3.2.1 原文“小 A 有一串包含 n 枚宝石的宝石项链……第 n 枚宝石与第 1 枚宝石相邻……小 A 会将项链划分为若干连续段，并且需要保证每段都包含全部 m 种宝石”；候选 description 已补入“第 n 枚与第 1 枚相邻”的环形约束，并保留“连续段 / 全部 m 种 / 最多段数”，与页图一致。第 8 页样例 1（6 2→3）、样例 2（7 3→2）与候选 samples 逐字一致；第 7 页题头标注时间限制 1.0 s（内存字段差异另记）。",
+          "review": "第 8 页 3.2.1 原文「小 A 有一串包含 n 枚宝石的宝石项链……第 n 枚宝石与第 1 枚宝石相邻。项链由 m 种宝石组成，其中第 i 枚宝石种类为 t_i……小 A 会将项链划分为若干连续段，并且需要保证每段都包含全部 m 种宝石……最多可以划分为多少段」；候选 description 为简写转写（站点题库惯例），但五项关键约束齐备：长度 n、共 m 种、t_i、环形邻接「第 n 枚宝石与第 1 枚宝石相邻」、连续段各含全部 m 种并求最多段数，与页图语义一致。第 8 页样例 1（6 2 / 1 2 1 2 1 2 → 3）、样例 2（7 3 / 3 1 3 1 2 1 2 → 2）与候选 samples 逐字一致；输入/输出描述与 3.2.2/3.2.3 一致；第 8 页数据范围（40%：n ≤ 1000；全部：2 ≤ n ≤ 10^5、2 ≤ m ≤ n、1 ≤ t_i ≤ m、保证 1,2,…,m 均出现）与候选解析「n ≤ 10^5、输入恒有解」的前提一致。"
+        },
+        "explanation": {
+          "initial": "独立推导：项链首尾相接，划分等价于在环上选切点；对固定起点反复取“包含全部 m 种的最短窗口”，由前缀归纳可知第 i 个贪心窗口的右端不晚于任何合法划分第 i 段的右端，因此能切出的完整窗口数最大；剩余尾段凑不齐 m 种时并入最后一段仍然合法。候选解析的“最短窗口 + 二进制倍增”与第 9 页官方参考程序同构，样例 1（3）、样例 2（2）复算正确。",
+          "review": "独立推导：① 环上划分等价于选切点集，段数 ≤ ⌊n/m⌋；② 对固定起点，由交换论证「第 i 个最短合法窗口的右端不晚于任何合法划分第 i 段的右端」，故贪心完整窗口数最大；③ 尾段（n − used 长的剩余弧）与最后一段连续，并入后仍含全部 m 种、段数不变——本轮 1774 组保证合法输入对独立暴力（枚举全部切点集）零差异，其中恰含大量「贪心链长 < n、靠尾段并入取到答案」的用例；④ 倍增 jump[k][i] = 前 2^k 个贪心窗口总长、按高位到低位在 ≤ n 内整块跳跃，二进制分解对「正权前缀和 ≤ n」的极大段数精确（逐位归纳：第 i 位当且仅当 S_{j+2^i} ≤ n）。样例 1 复算 3、样例 2 复算 2（第 6 枚起窗口值 [1,2,3] 长 3 + [1,3,1,2] 长 4 = 7 ≤ 7），与候选解析一致。"
+        },
+        "referenceCode": {
+          "initial": "本机 clang++ -std=c++17 -O2 编译运行候选程序：官方样例 1/2 输出 3、2；边界 2 2 / 1 2 输出 1；回归用例 7 3 / 3 3 3 1 1 2 2 输出 1——同一用例下站点旧参考程序实测输出 0（要求每段恰好凑齐且刚好走完 n，尾段无法并入），缺陷确已修复；另对 n≤6 的 940 组输入与“枚举全部切点集合”的独立暴力对拍零差异，n=10^5 随机数据耗时约 0.08 s。",
+          "review": "本人独立用 clang++ -std=c++17 -O2 编译候选程序并三方对拍：① 两组官方样例输出 3、2；② 边界用例 2 2 / 1 2 → 1（n 最小，两段各 1 枚不可能）、7 3 / 3 3 3 1 1 2 2 → 1（旧程序同用例实测输出 0，缺陷复现）、6 2 / 1 2 1 1 1 2 → 2（贪心链 [2,1]+[1,1,2] 共 5 < 6，尾段并入）、9 3 / 1 2 3 1 2 3 1 2 3 → 3（恰好 ⌊n/m⌋ 完美平铺）、4 4 / 1 2 3 4 → 1（m=n 全异），全部与独立暴力一致；③ 1774 组 n ≤ 11 保证合法随机/结构化用例与「枚举全部切点集」暴力及第 9 页官方参考程序（独立转录编译）三方零差异，另 60 组 n 至 10^5 大数据候选与官方程序零差异；④ n 上界核查：双指针 r ≤ i+n−1 索引 ≤ 2n−1 < MAXN=200005，t[i+n] 写至 200000 越界安全；段数上界 ⌊n/m⌋ ≤ 5×10^4 < 2^17，L=18（jump_[19][MAXN]）从 k=18 起降位覆盖充分（注释写「2^17 > 1e5」推理口径略粗但取值保守正确）；饱和 min(…,1e9) 保证「≤ n 的 jump 值必为精确真值、真值 > n 者存储必 > n」，`i-1+jump_` ≤ 1e9+1e5 无 int 溢出；⑤ 实测 n=10^5 最坏结构（交替/半半/随机）耗时约 70 ms，远低于 1.0 s。脱离原卷数据范围保证的非法输入（如 3 3 / 1 2 1 缺种类 3）候选输出 1、官方程序输出 0，该类输入被「保证 1,2,…,m 均出现」排除，不构成缺陷。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "explanation",
+        "referenceCode",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l8.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 7
+        }
       ]
-    },
+    }
+  ],
+  "unresolved": [
     {
       "id": 23,
       "dimensions": [
         "statement"
       ],
       "reasons": [
-        "statement 尚无一致、完整的原卷核验结论"
+        "statement 尚无一致、完整的原卷核验结论",
+        "原卷第 5 页印为最坏 O(n log n)，现有题面为 O(N^2)。后半句的“完全避免退化”在两种版本中都不成立，两版判断均为错误。保留既有题面、答案与原卷差异待裁定。"
       ]
     }
   ],
-  "pendingChanges": [
-    {
-      "id": 27,
-      "changes": {
-        "description": "有一条长度为 n 的宝石项链，宝石共有 m 种，第 i 枚宝石的种类为 t_i。特别地，第 n 枚宝石与第 1 枚宝石相邻。需要把项链划分为若干连续段，每一段都包含全部 m 种宝石。求最多能划分成多少段。",
-        "explanation": "**解析：**\n\n### 1. 模型转化\n项链首尾相接，划分等价于在环上选一组切点，把环切成若干段，每段都必须包含全部 m 种宝石。\n\n- 每一段至少含 m 枚宝石，所以段数 ≤ ⌊n/m⌋；\n- 对某个固定起点，**每一段取得尽可能短**一定最优（多留宝石给后面）；\n- 最后一段若在末尾“凑不齐 m 种”，可以把它并进上一段——并进去仍然含全部 m 种，段数不变，因此只需关心“前面能切出多少段完整的窗口”。\n\n### 2. 预处理最短合法窗口\n把序列复制一份接在后面（长度 2n），用双指针求出 `nxt[i]`：从 i 开始、恰好包含全部 m 种宝石的最短窗口长度。i 递增时右端点 r 单调不减，总复杂度 O(n)。\n\n### 3. 二进制倍增\n从 i 起连续走 2^k 个 greedy 窗口的总长度：\n\n```\njump[0][i] = nxt[i]\ntar        = (i - 1 + jump[k-1][i]) % n + 1\njump[k][i] = min(jump[k-1][i] + jump[k-1][tar], INF)\n```\n\n对每个起点 i，从高位到低位尝试：若 `已用长度 + jump[k][i] ≤ n` 就整块跳过去并累加段数，这样得到的就是以 i 为起点、总长不超过 n 的最多段数。对所有起点取最大值即为答案。\n\n### 4. 复杂度\n双指针 O(n)，倍增表 O(n log n)，枚举起点 O(n log n)，总时间 O(n log n)，空间 O(n log n)，可通过 n ≤ 10^5。\n\n### 5. 样例走查\n- 样例 1：`n=6, m=2, t=[1,2,1,2,1,2]`。每个窗口长 2，共 6/2=3 段，输出 3。\n- 样例 2：`n=7, m=3, t=[3,1,3,1,2,1,2]`。从第 6 枚（值为 1）开始：窗口 [1,2,3] 长 3、窗口 [1,3,1,2] 长 4，合计 7 ≤ 7，得 2 段；其他起点最多 2 段，输出 2。\n\n### 6. 易错提醒\n- 不要漏掉“第 n 枚与第 1 枚相邻”，必须绕环取窗口（把数组复制一倍）；\n- 最后一段凑不齐 m 种时不要判该起点无效，直接并入上一段即可；\n- 逐起点暴力贪心是 O(n²)，n=10^5 会超时，必须倍增。",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int L = 18;        // 2^17 = 131072 > 1e5\nconst int MAXN = 200005;\n\nint n, m;\nint t[MAXN];             // 1..2n 的倍长数组\nint nxt[MAXN];           // nxt[i]: 从 i 开始包含全部 m 种宝石的最短长度\nint jump_[19][MAXN];     // jump_[k][i]: 从 i 起连续走 2^k 个 greedy 窗口的总长度\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    cin >> n >> m;\n    for (int i = 1; i <= n; ++i) {\n        cin >> t[i];\n        t[i + n] = t[i];\n    }\n\n    // 双指针求 nxt[i]\n    vector<int> cnt(m + 1, 0);\n    int kinds = 0, r = 1;\n    for (int i = 1; i <= n; ++i) {\n        while (r <= i + n - 1 && kinds < m) {\n            if (++cnt[t[r]] == 1) ++kinds;\n            ++r;\n        }\n        nxt[i] = r - i;              // 窗口为 [i, r-1]\n        if (--cnt[t[i]] == 0) --kinds;\n    }\n\n    for (int i = 1; i <= n; ++i) jump_[0][i] = nxt[i];\n    for (int k = 1; k <= L; ++k)\n        for (int i = 1; i <= n; ++i) {\n            int tar = (i - 1 + jump_[k - 1][i]) % n + 1;\n            long long v = (long long)jump_[k - 1][i] + jump_[k - 1][tar];\n            jump_[k][i] = (int)min(v, (long long)1e9);\n        }\n\n    int ans = 0;\n    for (int s = 1; s <= n; ++s) {\n        int cur = s, used = 0, got = 0;\n        for (int k = L; k >= 0; --k) {\n            if (used + jump_[k][cur] <= n) {\n                used += jump_[k][cur];\n                got += 1 << k;\n                cur = (cur - 1 + jump_[k][cur]) % n + 1;\n            }\n        }\n        ans = max(ans, got);\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 7,
-      "changes": {
-        "question": "已知两个点 A(x1, y1) 和 B(x2, y2) 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间直线距离的是（ ）。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 15,
-      "changes": {
-        "question": "对连通无向图执行 Kruskal 算法。已按边权从小到大依次扫描到某条边 e = (u, v)。此时在已经构建的部分 MST 结构中，(u, v) 已在同一连通块内。关于边 e 的处理，下列说法正确的是（ ）。",
-        "options": [
-          "必须选入 MST，否则可能不连通。",
-          "一定不能选入 MST（在此扫描顺序下）。",
-          "若后续出现更大的边权，可以回溯改选 e。",
-          "只有当 e 是当前最小边时才能舍弃。"
-        ]
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-12-l8.code-checks.json"
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2025-12-l8.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-12-l8.integration.json"
 }

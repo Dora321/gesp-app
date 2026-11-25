@@ -43,14 +43,17 @@ const programmingQuestions = [
 对于所有测试点，保证 $2 \\le n \\le 10^5$，$0 \\le a_i \\le 10^9$，$0 \\le b_i \\le n$。
 `,
       score: 25,
-      explanation: `**答案的全局统计**：
-   最优选数方案的最后一个元素不一定落在下标 \`n\`，可能在中间某个数就结束了。因此每步都要用 \`f[i] + a[i]\` 动态更新全局答案 \`ans\`。`,
+      explanation: "**解析：**\n\n设 `f[i]` 表示考虑前 `i-1` 个位置、且当前可以选第 `i` 个位置时，已选元素的最大和（即最后一个被选下标 `p` 满足 `p + b[p] <= i` 的最优值）。初始 `f[1] = 0`。\n\n对每个位置 `i`：\n- 若选 `i`，得到 `f[i] + a[i]`，用它更新全局答案 `ans`；\n- 选完 `i` 后，下一个可选位置至少是 `i + b[i]`，因此用 `f[i] + a[i]` 更新 `f[i + b[i]]`（若不超过 `n`）；\n- 若不选 `i`，则 `f[i+1] = max(f[i+1], f[i])`。\n\n由于 `b[i]` 可能为 0，`i + b[i] = i`，代码先计算 `ans` 再更新 `f[i]`，不会把 `a[i]` 重复计入；同时 `f[i+1]` 的传递保证了“跳过若干位置”的情况也被覆盖。\n\n样例 1 中选下标 3、4：`p_2=4 >= 3+b[3]=4`，和为 `3+4=7`；样例 2 中选 1、2、4、6，和为 `1+1+5+4=11`。\n\n**复杂度：** 时间 O(n)，空间 O(n)。",
       tags: ["编程题", "动态规划", "线性DP"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\n\nusing namespace std;\n\nconst int N = 1e5 + 5;\n\nint n;\nint a[N], b[N];\nlong long f[N], ans;\n\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++)\n        scanf(\"%d\", &a[i]);\n    for (int i = 1; i <= n; i++)\n        scanf(\"%d\", &b[i]);\n    for (int i = 1; i <= n; i++) {\n        ans = max(ans, f[i] + a[i]);\n        if (i + b[i] <= n)\n            f[i + b[i]] = max(f[i + b[i]], f[i] + a[i]);\n        f[i + 1] = max(f[i + 1], f[i]);\n    }\n    printf(\"%lld\\n\", ans);\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
@@ -67,33 +70,7 @@ const programmingQuestions = [
 4 0
 0 0`, output: `3` }
       ],
-      question: `
-# [GESP202603 六级] 完全二叉树
-
-## 题目描述
-
-给定一棵包含 $n$ 个结点的有根二叉树，结点依次以 $1, 2, \\ldots, n$ 编号，根结点编号为 $1$。
-
-对于结点 $i$，其左儿子的编号记为 $l_i$，右儿子编号记为 $r_i$。特别地，如果左儿子不存在则 $l_i = 0$，如果右儿子不存在则 $r_i = 0$。
-
-树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 $n$ 棵子树中，有多少棵子树是完全二叉树。
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示根二叉树结点数量。
-
-接下来 $n$ 行，每行两个正整数 $l_i, r_i$，表示结点 $i$ 的左儿子编号和右儿子编号。
-
-## 输出格式
-
-输出一行，一个整数，表示所有子树中完全二叉树的数量。
-
-## 数据范围
-
-对于 40% 的测试点，保证 $1 \\le n \\le 500$。
-
-对于所有测试点，保证 $1 \\le n \\le 10^6$。
-`,
+      question: "\n# [GESP202603 六级] 完全二叉树\n\n## 题目描述\n\n给定一棵包含 $n$ 个结点的有根二叉树，结点依次以 $1, 2, \\ldots, n$ 编号，根结点编号为 $1$。\n\n对于结点 $i$，其左儿子的编号记为 $l_i$，右儿子编号记为 $r_i$。特别地，如果左儿子不存在则 $l_i = 0$，如果右儿子不存在则 $r_i = 0$。\n\n树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 $n$ 棵子树中，有多少棵子树是完全二叉树。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示根二叉树结点数量。\n\n接下来 $n$ 行，每行两个正整数 $l_i, r_i$，表示结点 $i$ 的左儿子编号和右儿子编号。\n\n## 输出格式\n\n输出一行，一个整数，表示所有子树中完全二叉树的数量。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le n \\le 500$。\n\n对于所有测试点，保证 $1 \\le n \\le 10^5$。\n",
       score: 25,
       explanation: `**解析：**
       树形 DFS（后序）自底向上判定。对每个结点 u 维护三个量：mn[u]（u 子树中叶子的最小深度）、mx[u]（最大深度）、chk[u]（u 的子树是否为完全二叉树）。空结点按"完全"处理（mn = mx = 0）。u 的子树是完全二叉树，当且仅当：
@@ -108,10 +85,14 @@ const programmingQuestions = [
       `,
       tags: ["编程题", "树与二叉树", "DFS"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\n\nusing namespace std;\n\nconst int N = 1e5 + 5;\n\nint n;\nint l[N], r[N];\nint mn[N], mx[N], chk[N];\nint ans;\n\nvoid dfs(int u) {\n    chk[u] = 1;\n    if (!u)\n        return;\n    dfs(l[u]);\n    dfs(r[u]);\n    chk[u] &= chk[l[u]] & chk[r[u]];\n    mn[u] = 1 + min(mn[l[u]], mn[r[u]]);\n    mx[u] = 1 + max(mx[l[u]], mx[r[u]]);\n    chk[u] &= mn[l[u]] >= mx[r[u]];\n    chk[u] &= mn[u] >= mx[u] - 1;\n    ans += chk[u];\n}\n\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++)\n        scanf(\"%d%d\", &l[i], &r[i]);\n    dfs(1);\n    printf(\"%d\\n\", ans);\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 
@@ -226,28 +207,7 @@ int main() {
         {
             id: 3,
             type: "single",
-            question: `下面的代码在 main() 中有一行会导致编译错误，请找出来。
-
-\`\`\`cpp
-class Pet {
-public:
-    Pet(string n, int a) : name(n), age(a) {}
-    string getName() { return name; }
-    void   birthday() { age++; }
-private:
-    string name;
-    int    age;
-};
-
-int main() {
-    Pet cat("奶茶", 2);
-    cat.getName();          // ①
-    cat.birthday();         // ②
-    cat.name = "大嘴";      // ③
-    cout << cat.getName();  // ④
-    return 0;
-}
-\`\`\``,
+            question: "下面的代码在 main() 中有一行会导致编译错误，请找出来。",
             options: [
                 "第①行",
                 "第②行",
@@ -256,44 +216,17 @@ int main() {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C（第③行会导致编译错误）**
-
-**核心解析：**
-在 C++ 面向对象编程中，类（class）通过访问修饰符实现对成员的封装与保护：
-- \`public\`（公有）：修饰的成员（变量或函数）既可以在类内部使用，也可以在类外部被直接访问。
-- \`private\`（私有）：修饰的成员只能在类自身的成员函数内部使用，类外部（例如 \`main()\` 函数等全局作用域）无法直接通过对象名点号 \`cat.xxx\` 访问。
-
-在本题的 \`Pet\` 类中：
-1. 构造函数 \`Pet(...)\`、成员函数 \`getName()\` 与 \`birthday()\` 位于 \`public:\` 区域，属于公有成员。
-2. 成员变量 \`name\` 与 \`age\` 位于 \`private:\` 区域，属于私有成员。
-
-第③行代码 \`cat.name = "大嘴";\` 试图在类外部的 \`main()\` 函数中直接对私有成员变量 \`name\` 进行赋值，这破坏了类的封装性，编译器会提示类似 \`'string Pet::name' is private within this context\` 的错误。因此第③行会导致编译错误。
-
-**选项逐项分析：**
-- **A 第①行**：❌ 不会报错。\`getName()\` 是声明在 \`public:\` 下的公有成员函数，类外的对象 \`cat\` 有权直接调用该函数读取名字。
-- **B 第②行**：❌ 不会报错。\`birthday()\` 是公有成员函数，类外可以合法调用。虽然其函数体内部修改了私有变量 \`age\`（执行 \`age++\`），但这属于类内部的成员函数操作自己的成员，完全符合访问权限规则。
-- **C 第③行**：✅ 会导致编译错误。变量 \`name\` 是声明在 \`private:\` 下的私有成员变量，类外代码不能直接通过 \`cat.name\` 读取或修改，直接赋值必然引发编译错误。
-- **D 第④行**：❌ 不会报错。\`cat.getName()\` 调用公有成员函数返回字符串，再通过 \`cout\` 打印输出，属于标准合法的流输出语句。
-
-**易错提醒：**
-- **分清“谁在访问私有成员”**：很多同学容易误选第②行，认为 \`age\` 是私有的，所以 \`cat.birthday()\` 不能改。实际上，外部调用的只是公有接口 \`birthday()\`，真正去改 \`age\` 的是类内部的代码，这是完全合法的。
-- **类与结构体的默认权限**：C++ 中 \`class\` 若未声明访问控制标签，内部成员默认全为 \`private\`；而 \`struct\` 默认全为 \`public\`。做题时要注意分段标签的位置。
-
-**知识延伸：**
-在面向对象编程中，如果类外确实需要修改私有变量 \`name\`，规范做法是在 \`public\` 区提供专用的设置接口（Setter 函数），例如：
-\`\`\`cpp
-void setName(string n) {
-    name = n;
-}
-\`\`\`
-通过调用 \`cat.setName("大嘴");\` 完成修改，这样可以在函数内部加入数据校验逻辑，保证对象状态的安全与可控。`,
+            explanation: "**答案：C（第③行）**\n\n`Pet::name` 与 `Pet::age` 是私有成员。`main()` 没有访问权限，因此第③行 `cat.name = \"大橘\";` 无法编译。\n\n第①、④行调用公有的 `getName()` 读取名字，第②行调用公有的 `birthday()`。`birthday()` 可以在类内更新私有成员 `age`，这三行都能编译。",
             tags: [
                 "客观题",
                 "单选题",
                 "GESP6级",
                 "面向对象",
                 "类",
-            ]
+            ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt"]
         },
         {
             id: 4,

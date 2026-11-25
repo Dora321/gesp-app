@@ -11,23 +11,7 @@ const programmingQuestions = [
         { input: `20`, output: `2^2 * 5` },
         { input: `23`, output: `23` }
       ],
-      question: `
-# [GESP202309 五级] 因数分解
-
-## 题目描述
-
-每个正整数都可以分解成素数的乘积，例如： $6=2\\times 3$，$20=2^2\\times5$。
-
-现在，给定一个正整数，请按要求输出它的因数分解式。
-
-## 输入格式
-
-输入第一行，包含一个正整数 $N$。约定 $2 \\le N \\le 10^{12}$。
-
-## 输出格式
-
-输出一行，为的因数分解式。要求按质因数由小到大排列，乘号用星号 \`*\` 表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头 \`^\` 表示，且左右不空格。
-`,
+      question: "\n# [GESP202309 五级] 因数分解\n\n## 题目描述\n\n每个正整数都可以分解成素数的乘积，例如： $6=2\\times 3$，$20=2^2\\times5$。\n\n现在，给定一个正整数 $N$，请按要求输出它的因数分解式。\n\n## 输入格式\n\n输入第一行，包含一个正整数 $N$。约定 $2 \\le N \\le 10^{12}$。\n\n## 输出格式\n\n输出一行，为 $N$ 的因数分解式。要求按质因数由小到大排列，乘号用星号 `*` 表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头 `^` 表示，且左右不空格。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -112,6 +96,10 @@ const programmingQuestions = [
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    long long N = 0;\n    cin >> N;\n    bool first = true;\n    for (long long p = 2; p * p <= N; p++) {\n        if (N % p != 0) continue;\n        int cnt = 0;\n        while (N % p == 0) {\n            cnt++;\n            N /= p;\n        }\n        if (first) first = false;\n        else cout << \" * \";\n        cout << p;\n        if (cnt > 1) cout << \"^\" << cnt;\n    }\n    if (N > 1) {\n        if (!first) cout << \" * \";\n        cout << N;\n    }\n    cout << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -306,7 +294,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `如果变量a 和b 分别为double类型 and int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的 计算结果为（ ）。`,
+            question: "如果变量a 和b 分别为double类型和int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的计算结果为（ ）。",
             options: [
                 "6",
                 "21",
@@ -328,6 +316,9 @@ export const paperData = {
             **考点：** C++基础
             `,
             tags: ["客观题", "单选题", "GESP5级", "表达式", "算术运算"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt"],
         },
         {
             id: 4,
@@ -723,69 +714,7 @@ int main() {
         {
             id: 12,
             type: "single",
-            question: `下面代码用于归并排序，其中merge()函数被调用次数为（ ）。
-
-\`\`\`cpp
-#include <iostream>
-using namespace std;
-
-void merge(int * listData, int start, int middle, int end);
-void mergeSort(int * listData, int start, int middle, int end);
-
-void mergeSort(int * listData, int start, int end) {
-    if (start >= end)
-        return;
-    int middle = (start + end) / 2;
-    mergeSort(listData, start, middle);
-    mergeSort(listData, middle + 1, end);
-    merge(listData, start, middle, end);
-}
-void merge(int * listData, int start, int middle, int end) {
-    int leftSize = middle - start + 1;
-    int rightSize = end - middle;
-    int * left = new int[leftSize];
-    int * right = new int[rightSize];
-    for (int i = 0; i < leftSize; i++)
-        left[i] = listData[start + i];
-    for (int j = 0; j < rightSize; j++)
-        right[j] = listData[middle + 1 + j];
-    int i = 0, j = 0, k = start;
-    while (i < leftSize && j < rightSize) {
-        if (left[i] <= right[j]) {
-            listData[k] = left[i];
-            i++;
-        } else {
-            listData[k] = right[j];
-            j++;
-        }
-        k++;
-    }
-    while (i < leftSize) {
-        listData[k] = left[i];
-        i++;
-        k++;
-    }
-    while (j < rightSize) {
-        listData[k] = right[j];
-        j++;
-        k++;
-    }
-    delete[] left;
-    delete[] right;
-}
-int main() {
-    int lstA[] = {1, 3, 2, 7, 11, 5, 3};
-    int size = sizeof(lstA) / sizeof(lstA[0]);
-
-    mergeSort(lstA, 0, size - 1);  // 对lstA执行归并排序
-
-    for (int i = 0; i < size; i++)
-        cout << lstA[i] << " ";
-    cout << endl;
-    return 0;
-}
-\`\`\`
-`,
+            question: "下面代码用于归并排序，其中merge()函数被调用次数为（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nvoid merge(int * listData, int start, int middle, int end);\nvoid mergeSort(int * listData, int start, int end);\n\nvoid mergeSort(int * listData, int start, int end) {\n    if (start >= end)\n        return;\n    int middle = (start + end) / 2;\n    mergeSort(listData, start, middle);\n    mergeSort(listData, middle + 1, end);\n    merge(listData, start, middle, end);\n}\nvoid merge(int * listData, int start, int middle, int end) {\n    int leftSize = middle - start + 1;\n    int rightSize = end - middle;\n    int * left = new int[leftSize];\n    int * right = new int[rightSize];\n    for (int i = 0; i < leftSize; i++)\n        left[i] = listData[start + i];\n    for (int j = 0; j < rightSize; j++)\n        right[j] = listData[middle + 1 + j];\n    int i = 0, j = 0, k = start;\n    while (i < leftSize && j < rightSize) {\n        if (left[i] <= right[j]) {\n            listData[k] = left[i];\n            i++;\n        } else {\n            listData[k] = right[j];\n            j++;\n        }\n        k++;\n    }\n    while (i < leftSize) {\n        listData[k] = left[i];\n        i++;\n        k++;\n    }\n    while (j < rightSize) {\n        listData[k] = right[j];\n        j++;\n        k++;\n    }\n    delete[] left;\n    delete[] right;\n}\nint main() {\n    int lstA[] = {1, 3, 2, 7, 11, 5, 3};\n    int size = sizeof(lstA) / sizeof(lstA[0]);\n\n    mergeSort(lstA, 0, size - 1);  // 对lstA执行归并排序\n\n    for (int i = 0; i < size; i++)\n        cout << lstA[i] << \" \";\n    cout << endl;\n    return 0;\n}\n```\n",
             options: [
                 "0",
                 "1",
@@ -808,6 +737,10 @@ int main() {
             **验证：** 题面代码为官方 PDF 原卷转写，插入 mergeCount 计数器后编译运行，输出 merge calls: 6。
             `,
             tags: ["客观题", "单选题", "GESP5级", "归并排序", "分治", "递归"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
@@ -846,19 +779,12 @@ int main() {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-            **解析：**
-            归并排序的基本思想是分而治之，先分后合。
-
-            - **A 将数组分成两个子数组，分别排序后再合并。**：正确答案。
-            - **B 随机选择一个元素作为枢轴，将数组划分为两个部分。**：错误。数组下标从 0 开始，请仔细验证下标范围。
-            - **C 从数组的最后一个元素开始，依次与前一个元素比较并交换位置。**：错误。数组下标从 0 开始，请仔细验证下标范围。
-            - **D 比较相邻的两个元素，如果顺序错误就交换位置。**：错误。
-
-            **考点：** 归并排序
-            `,
+            explanation: "**答案：A**\n\n**解析：** 归并排序采用分治思想：先把数组分成两个子数组，分别递归排序，再把两个有序子数组合并成一个有序数组。\n\n- **A 将数组分成两个子数组，分别排序后再合并。**：正确，完整描述归并排序的分解与合并。\n- **B 随机选择一个元素作为枢轴，将数组划分为两个部分。**：这是快速排序的划分思路，不是归并排序。\n- **C 从数组的最后一个元素开始，依次与前一个元素比较并交换位置。**：这是相邻交换类排序（冒泡排序的一种写法），不是归并排序。\n- **D 比较相邻的两个元素，如果顺序错误就交换位置。**：这是冒泡排序，不是归并排序。\n\n**考点：** 归并排序",
             tags: ["客观题", "单选题", "GESP5级", "归并排序", "分治"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 9,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 15,

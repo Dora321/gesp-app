@@ -549,20 +549,24 @@ int knapsack(int W, vector<int>& wt, vector<int>& val) {
       type: 'judge',
       question: `C++ 中构造函数可以声明为虚函数，从而实现运行时多态。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
 **解析：**
 构造函数不能是虚函数。虚函数的动态绑定依赖对象的虚表指针 vptr，而 vptr 恰恰是在构造函数执行过程中才被初始化的——对象还没构造完成时，无法通过虚表机制"动态决定"调用哪个构造函数。实现"按实际类型创建对象"需求通常用虚函数 clone() 或工厂函数代替。`,
       tags: ['面向对象', '虚函数'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 17,
       type: 'judge',
       question: `通过指向 Base 的指针删除 Derived 对象时，一定会先调用 Derived 的析构函数，再调用 Base 的析构函数。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -576,19 +580,28 @@ delete p;   // 输出只有 "Base destructor"
 
 只有把 Base 的析构函数声明为 virtual，才"一定先 Derived 后 Base"。题干缺少这个前提，说法错误。`,
       tags: ['面向对象', '虚函数', '析构函数'],
+      "code": "#include <iostream>\nusing namespace std;\n\nclass Base {\npublic:\n    ~Base() {\n        cout << \"Base destructor\" << endl;\n    }\n};\n\nclass Derived : public Base {\npublic:\n    ~Derived() {\n        cout << \"Derived destructor\" << endl;\n    }\n};\n\nint main() {\n    Base* p = new Derived();\n    delete p;\n    return 0;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["code","answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 18,
       type: 'judge',
       question: `在 C++ STL 中，stack 的 pop() 函数会返回栈顶元素并将其删除。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
 **解析：**
 STL 的 stack::pop() 返回类型是 **void**，只负责删除栈顶元素，不返回任何值。这是刻意设计：引用返回栈顶存在悬空引用风险（弹出后引用失效），且将"访问"与"删除"分离（top() 取值、pop() 删除）更安全。取栈顶应先用 top()，再 pop()。queue 的 pop() 同样不返回元素。`,
       tags: ['栈', 'STL'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 19,
@@ -606,7 +619,7 @@ int main() {
 }
 \`\`\``,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：正确**
 
@@ -630,6 +643,10 @@ int main() {
 - **返回值陷阱**：C++ STL 中 \`q.pop()\` 的返回值是 \`void\`，仅负责删除队头，不会返回被删除的元素值；若想获取队头元素，必须通过 \`q.front()\`。
 - **与栈混淆**：若误将队列当成栈（后进先出 LIFO），容易误以为 \`pop()\` 弹出的是最后加入的 3 而导致推导错误。访问队头使用 \`front()\`，访问队尾使用 \`back()\`，而栈访问栈顶使用 \`top()\`。`,
       tags: ['队列', 'STL'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 20,
@@ -649,7 +666,7 @@ TreeNode* insertNode(TreeNode* root, int x) {
 }
 \`\`\``,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -658,13 +675,17 @@ TreeNode* insertNode(TreeNode* root, int x) {
 
 例如依次插入 10、5：5 < 10，被挂到 10 的**右**子树上，得到右孩子 5 < 父 10，直接违反"右子树 ≥ 结点值"的性质。因此该函数不能保持二叉搜索树性质。`,
       tags: ['二叉搜索树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 21,
       type: 'judge',
       question: `哈夫曼编码一定唯一，只要字符频率相同，得到的编码也一定完全相同。`,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -675,13 +696,17 @@ TreeNode* insertNode(TreeNode* root, int x) {
 
 因此相同频率可能得到多棵不同形态的哈夫曼树，编码集不唯一（虽然各字符的**编码长度**可以一致）。说"一定完全相同"是错误的。`,
       tags: ['哈夫曼树', '编码'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 22,
       type: 'judge',
       question: `若用数组按层序存储完全二叉树，且根节点下标为 0，则下标为 i 的节点左孩子下标为 2 * i + 1，右孩子下标为 2 * i + 2。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
@@ -690,6 +715,10 @@ TreeNode* insertNode(TreeNode* root, int x) {
 
 推导验证：根 0 的孩子是 1、2（2×0+1, 2×0+2）✓；结点 1 的孩子是 3、4，结点 2 的孩子是 5、6 ✓——正好是层序铺开的下标。（若根下标为 1，公式才变为 2i 与 2i+1。）`,
       tags: ['二叉树', '完全二叉树', '数组'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 23,
@@ -713,7 +742,7 @@ void printByLevel(TreeNode* root) {
 }
 \`\`\``,
       options: ['正确', '错误'],
-      answer: false,
+      answer: 1,
       score: 2,
       explanation: `**答案：×**
 
@@ -722,13 +751,17 @@ void printByLevel(TreeNode* root) {
 
 例如只有根和一个左孩子时：第一轮 sz 起始为 1，i=0 输出根并 push 左孩子，队列变 2，此时 i=1 < 2 继续执行——本该换行却继续输出下一层，换行位置错乱。正确写法是先 \`int sz = q.size();\` 把本层大小固定下来，再 \`for (int i = 0; i < sz; ++i)\`。`,
       tags: ['二叉树', 'BFS'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 24,
       type: 'judge',
       question: `使用栈非递归实现二叉树前序遍历时，若希望先访问左子树，通常应先将右孩子入栈，再将左孩子入栈。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
@@ -737,13 +770,17 @@ void printByLevel(TreeNode* root) {
 
 若顺序颠倒（先左后右），下一轮会先处理右子树，得到"根-右-左"的错误顺序。`,
       tags: ['二叉树', '栈', '遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 25,
       type: 'judge',
       question: `动态规划问题通常要求具有最优子结构，并且常常存在重叠子问题。`,
       options: ['正确', '错误'],
-      answer: true,
+      answer: 0,
       score: 2,
       explanation: `**答案：√**
 
@@ -754,6 +791,10 @@ void printByLevel(TreeNode* root) {
 
 0/1 背包、打家劫舍（本题单选 Q14）都是典型例子。`,
       tags: ['动态规划'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["answer","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 26,
@@ -865,26 +906,15 @@ $1 \\leq n \\leq 10^3$，$1 \\leq p_i \\leq 10^5$。`,
       referenceCode: '#include <iostream>\nusing namespace std;\nint dp[1010], p[1010];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; ++i)\n        cin >> p[i];\n    for (int i = 1; i <= n; ++i) {\n        for (int j = i; j <= n; ++j) {\n            dp[j] = max(dp[j], dp[j - i] + p[i]);\n        }\n    }\n    cout << dp[n] << endl;\n    return 0;\n}',
       tags: ['动态规划', '背包'],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
+      "reviewedFields": ["memoryLimit"],
     },
     {
       id: 27,
       type: 'programming',
       title: '满二叉树',
       score: 25,
-      description: `给定一棵包含 n 个结点的有根二叉树，结点依次以 1, 2, …, n 编号，根结点编号为 1。
-
-对于结点 u，其左儿子的编号记为 l_u，右儿子编号记为 r_u。特别地，如果左儿子不存在则 l_u = 0，如果右儿子不存在则 r_u = 0。
-
-树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 n 棵子树中，有多少棵子树是满二叉树。
-
-满二叉树是指所有叶子深度均相同，且除叶子外均有两个儿子的二叉树。
-
-## 数据范围
-
-对于 40% 的测试点，保证 $1 \\leq n \\leq 500$。
-
-对于所有测试点，保证 $1 \\leq n \\leq 10^5$。`,
+      description: "给定一棵包含 n 个结点的有根二叉树，结点依次以 1, 2, …, n 编号，根结点编号为 1。\n\n对于结点 i，其左儿子的编号记为 l_i，右儿子编号记为 r_i。特别地，如果左儿子不存在则 l_i = 0，如果右儿子不存在则 r_i = 0。\n\n树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 n 棵子树中，有多少棵子树是满二叉树。\n\n满二叉树是指所有叶子深度均相同，且除叶子外均有两个儿子的二叉树，例如以下三棵二叉树均是满二叉树：\n\n```text\n()      ()        ()\n       / \\       / \\\n      () ()     () ()\n               / \\ / \\\n              () () () ()\n```\n\n例如，\n\n```text\n   ()\n  /  \\\n ()    ()\n```\n\n在上面这棵有 3 个节点的二叉树中，有 3 个子树是满二叉树（包括整个树本身，及所有的单个叶子节点）；\n\n又例如，\n\n```text\n    (1)\n   /  \\\n (2)   (3)\n      /  \\\n    (4)   (5)\n```\n\n在上面这棵有 5 个节点的二叉树中，有 4 个子树是满二叉树（包括节点 3 的子树，以及所有单个叶子节点）。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\leq n \\leq 500$。\n\n对于所有测试点，保证 $1 \\leq n \\leq 10^5$。",
       inputDescription: `第一行，一个正整数 n，表示有根二叉树结点数量。
 
 接下来 n 行，每行两个非负整数 l_i, r_i，表示结点 i 的左儿子编号和右儿子编号，整数之间以空格分隔。`,
@@ -929,7 +959,11 @@ $$chk[u] = chk[l_u] \\land chk[r_u] \\land (h[l_u] == h[r_u])$$
       referenceCode: '#include <iostream>\n#include <algorithm>\nusing namespace std;\nint n;\nint l[100010], r[100010];\nint h[100010], chk[100010] = {1};\nint ans;\nvoid dfs(int u) {\n    if (!u)\n        return;\n    dfs(l[u]);\n    dfs(r[u]);\n    h[u] = max(h[l[u]], h[r[u]]) + 1;\n    chk[u] = chk[l[u]] && chk[r[u]] && (h[l[u]] == h[r[u]]);\n    ans += chk[u];\n}\nint main() {\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        cin >> l[i] >> r[i];\n    ans = 0;\n    dfs(1);\n    cout << ans << endl;\n    return 0;\n}',
       tags: ['二叉树', '递推与递归', '动态规划'],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["description","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
   ],
 };

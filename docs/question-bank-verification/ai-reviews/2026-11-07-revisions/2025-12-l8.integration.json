@@ -1,0 +1,149 @@
+{
+  "paperId": "2025-12-l8",
+  "integratedAt": "2026-11-25T12:12:35.011Z",
+  "accepted": [
+    {
+      "id": 7,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 15,
+      "fields": [
+        "question",
+        "options"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "description",
+        "explanation",
+        "referenceCode",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": 23,
+      "reasons": [
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "原卷第 5 页印为最坏 O(n log n)，现有题面为 O(N^2)。后半句的“完全避免退化”在两种版本中都不成立，两版判断均为错误。保留既有题面、答案与原卷差异待裁定。"
+      ],
+      "furtherChanges": {}
+    }
+  ],
+  "codeChecks": [
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "6 2\n1 2 1 2 1 2",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "input": "7 3\n3 1 3 1 2 1 2",
+          "output": "2",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "尾段并入回归用例（站点旧参考程序同用例输出 0）",
+          "input": "7 3\n3 3 3 1 1 2 2\n",
+          "output": "1",
+          "reason": "全串含 1、2、3 三种，至少 1 段；但任一最短合法窗口（长 5 或 6）后剩余不足 3 种且无法精确平铺，任何起点都切不出 2 段，答案为 1。本人独立编译站点旧参考程序实测同用例输出 0（其要求每段恰好凑齐 m 种且 pos==n 精确收口，且从不计「0 个切点整环一段」的划分），缺陷确凿；候选程序输出 1，与独立暴力一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=2（两段各 1 枚不可能）",
+          "input": "2 2\n1 2\n",
+          "output": "1",
+          "reason": "若切 2 段每段仅 1 枚，无法同时含 1、2 两种；整环作 1 段合法。枚举全部切点集合（含空集）亦仅整段一种方案，候选程序实测输出 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两完整窗口 + 尾段并入（旧程序在此类可精确平铺用例上侥幸正确，作对照）",
+          "input": "6 2\n1 2 1 1 1 2\n",
+          "output": "2",
+          "reason": "从第 2 枚起窗口 [2,1] 长 2 + [1,1,2] 长 3，合计 5 < 6，剩余第 1 枚（值 1）并入第二段；3 段需 3 个完整窗口但 3×2=6 的精确平铺不存在（枚举切点集验证），答案 2；候选、官方参考程序、独立暴力三方一致。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "完美平铺上界用例",
+          "input": "9 3\n1 2 3 1 2 3 1 2 3\n",
+          "output": "3",
+          "reason": "每段最短 3 枚，⌊9/3⌋=3 且每个 [1,2,3] 窗口恰好收口，取得理论上界，候选程序实测输出 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "m=n 全异宝石",
+          "input": "4 4\n1 2 3 4\n",
+          "output": "1",
+          "reason": "每段须含全部 4 种即至少 4 枚，仅整环 1 段；候选程序实测输出 1，与独立暴力一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "3d0f9e9b5376888756ec109840c07df8a3ae95aa2f22b0ec5c9e1583db474e01",
+      "stressTests": [
+        {
+          "name": "10 万种宝石各一枚，整环只能成一段",
+          "inputBytes": 588909,
+          "inputSha256": "0efc169ac4c7181d682500721384f799a88d74a4ae5f9c733e5860a9fb75c677",
+          "output": "1",
+          "outputSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "elapsedMs": 126,
+          "passed": true
+        }
+      ],
+      "regression": {
+        "input": "7 3\n3 3 3 1 1 2 2\n",
+        "expected": "1",
+        "before": "0",
+        "after": "1",
+        "beforeCodeSha256": "911788c8c1cd20244ac201c710baa3469370cf88dcff99630f14722c8f29e75d"
+      }
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 5
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 7
+    }
+  ]
+}

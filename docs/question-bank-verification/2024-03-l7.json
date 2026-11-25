@@ -67,42 +67,46 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第1页的题干、内嵌代码/表格与站点 question 逐段对照，语义和结构一致；未发现影响作答的遗漏或改动。",
-          "review": "第 1 页题干与八皇后递归代码（pos[n]=i、同列/副对角线/主对角线冲突判断、n==7 返回、否则 queen(n+1)）逐行一致。"
+          "initial": "第 1 页第 2 题题干「下面的程序属于哪种算法( )。」及代码块与候选逐行一致（pos[8]、queen(n)、i=0..7、pos[n]=i、j=0..n-1 检查同列/两对角线、n==7 返回、否则递归 queen(n+1)）。",
+          "review": "第 1 页第 2 题题干「下面的程序属于哪种算法( )。」与候选一致；代码块逐行一致：int pos[8]、queen(n)、for i=0..7 内 pos[n]=i、j=0..n−1 检查 pos[n]==pos[j] || pos[n]+n==pos[j]+j || pos[n]-n==pos[j]-j、attacked 则 continue、n==7 返回、否则 queen(n+1)。"
         },
         "options": {
-          "initial": "PDF 第1页第2题 D 项仅为“广度优先搜索”；站点 options[3] 末尾误粘了第1题代码（int pos[8]…1 2 3 4 5 6 7），需删除。",
-          "review": "第 2 页选项 A 贪心算法 / B 动态规划 / C 深度优先搜索 / D 广度优先搜索 与站点 options 一致；站点当前 D 项误粘了题干代码片段，初核修改将其恢复为「广度优先搜索」，与页图逐字一致，采信。"
+          "initial": "第 1 页 A 贪心算法、B 动态规划、C 深度优先搜索、D 广度优先搜索，与候选 options 逐字一致。",
+          "review": "第 1 页 A 贪心算法、B 动态规划、C 深度优先搜索、D 广度优先搜索，与候选 options 逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第2题为 C；按 0 起始选项索引映射为 2，站点 answer=2。",
-          "review": "第 1 页答案表第 2 题为 C；映射为 2，与站点 answer=2 一致。"
+          "initial": "第 1 页答案表第 2 题为 C，0 起始索引 2，与候选 answer=2 一致；程序逐列尝试并递归深入、冲突回退，属 DFS/回溯。",
+          "review": "第 1 页答案表 1—15 为 B C D C D B A B A C C B C A B，第 2 题为 C，0 起始索引 2，与候选 answer=2 一致；程序逐列尝试并递归深入、冲突回退，属 DFS/回溯（八皇后）。"
         },
         "explanation": {
-          "initial": "解析独立推导出的结论与 PDF 答案表一致，关键计算/概念说明未发现错误。",
-          "review": "独立推导：递归逐列尝试并回溯属深度优先搜索，答案 C；解析对三个干扰项的辨析正确。"
+          "initial": "独立判断：递归 queen(n+1) 沿一条分支深入，冲突 continue 回溯，未使用队列/层次扩展，不是 BFS；无最优子结构和记忆表，不是 DP；会撤销尝试，不是贪心。候选逐项分析正确。",
+          "review": "独立判断：递归 queen(n+1) 沿一条分支深入，冲突 continue 回溯，无队列/层次扩展，不是 BFS；无最优子结构与记忆表，不是 DP；会撤销尝试，不是贪心。候选逐项分析与同列/两条对角线的判据说明均正确。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l7.glm.json"
       ]
     },
     {
@@ -956,120 +960,90 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         6,
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第6页输入描述在样例前明确写有“题目保证输入合法，即交流一定是跨校开展的”，第7页给出 $N\\le10^5,M\\le2\\times10^5$ 等数据规模；站点 question 两处均缺失。",
-          "review": "第 6 页题面（A/B 两校 n 名同学、m 次交流、仅跨校交流、求 B 校最少/最多人数）与站点 question 一致；站点缺原卷「题目保证输入合法」一句及「数据规模」一节，我的修改按第 6–7 页原卷结构补齐：保证句归位输入格式末段，数据范围三档照 3.1.9 数据规模补入。"
+          "initial": "第 6 页 3.1.1—3.1.3：A/B 两校 n 名同学、m 次跨校交流、求 B 校人数最小/最大；输入 n,m 及 m 行 u_i,v_i、保证跨校；输出两个整数。候选 question 与之一致（仅将「2 所学校 A 校、B 校」简写为「两所学校 A、B」，并把 N/M 记作 n/m，语义不变）。第 7 页 3.1.9 数据规模 30% N≤17,M≤50；60% N≤500,M≤2000；100% N≤10⁵,M≤2×10⁵，与候选「数据范围」一致；第 6—7 页样例 1「1 3」、样例 2「2 5」与候选 samples 一致。",
+          "review": "第 6 页 3.1.1—3.1.3：来自 2 所学校 A 校、B 校的 N 名同学从 1 至 N 编号、M 次跨校交流、同校不交流、求 B 校至少/至多几名；输入第一行 N,M、接下来 M 行 u_i,v_i、「题目保证输入合法，即交流一定是跨校开展的。」位于输入描述末段（与候选一致，系上一轮归位修正）；输出一行两个整数。候选将「2 所学校 A 校、B 校」简写为「两所学校 A、B」，语义不变。第 7 页 3.1.9 数据规模（30% N≤17,M≤50；60% N≤500,M≤2000；100% N≤10⁵,M≤2×10⁵）与候选「数据范围」一致（原卷漏印 % 号，候选按惯例补全）。第 6—7 页样例 1「4 3 / 1 2 / 2 3 / 4 2」→「1 3」、样例 2「7 5 / 1 2 / 2 3 / 4 2 / 5 6 / 6 7」→「2 5」与候选 samples 一致。"
         },
         "explanation": {
-          "initial": "解析的状态定义、转移与复杂度说明成立，且与参考程序、样例结果一致。",
-          "review": "解析「二分图逐块染色，贡献 min(x,y)/max(x,y) 求和」与样例 1（1 3：块内两侧 1/3）、样例 2（2 5：1/3 块 + 1/2 块求和）独立验算一致。"
+          "initial": "独立推导：跨校交流图必为二分图；每个连通块二染色后两侧 x,y，因两校标签可整体互换，对 B 校人数贡献为 min(x,y)..max(x,y)，各块独立相加。样例 1 连通块 3+1→1..3；样例 2 两块 3+1、2+1→2..5，与候选解析一致。",
+          "review": "独立推导：交流图必为二分图；每连通块二染色得两侧 x,y，因两校标签可整体互换，块对 B 校人数贡献为 min(x,y)..max(x,y)，各块独立相加。样例 1 一块 3+1→1..3；样例 2 两块 3+1、2+1→2..5。与候选解析一致；原卷 3.1.10 参考程序以 N−Σmin 求最大值，与 Σmax 恒等。"
         },
         "referenceCode": {
-          "initial": "站点参考程序对每个连通块二染色，累加 $\\min(x,y)$ 与 $\\max(x,y)$；样例 1=1 3、样例 2=2 5 均通过，另以孤立点、三元链、两个分量三组边界复核。补入“输入合法”保证后，代码未处理奇环是合理的。",
-          "review": "站点参考程序 BFS 二染色逐连通块统计两侧人数并取 min/max 累加，与官方 DFS 染色代码语义一致；实测样例 1→1 3、样例 2→2 5，另验证星形 1 3、两分量 2 4、m=0 得 0 3 等边界全部一致。"
+          "initial": "clang++ -std=c++17 -O2 编译候选 BFS 染色程序；原样例 1/2 输出 1 3、2 5。另跑独立边界：2 1 / 1 2→1 1；4 1 / 1 2→1 3（两个孤立点各可归 B）；6 4 / 1 2 / 2 3 / 4 5 / 5 6→2 4，全部通过。",
+          "review": "g++ -std=c++17 -O2 编译候选 BFS 染色程序；原样例 1/2 实测输出 1 3、2 5。另跑独立边界：「2 1 / 1 2」→1 1；「4 1 / 1 2」→1 3（两个孤立点各可归 B）；「6 4 / 1 2 / 2 3 / 4 5 / 5 6」→2 4；「3 0」→0 3，全部通过。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l7.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "explanation"
-      ],
-      "blockedDimensions": [
         "statement",
+        "explanation",
         "referenceCode"
       ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9,
         10
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第9页给出数据规模：30% $n,m\\le20$ 且 $\\max a_{ij}\\le400$，另有 30% 为 $1\\times x$ 或 $x\\times1$ 形状，100% $n,m\\le500$、$a_{ij}\\le500^2$；站点 question 未包含。",
-          "review": "第 8 页题面（n×m 网格、四连通同色块构成俄罗斯方块、平移重合为同种、颜色不影响种类）与站点 question 一致；站点输出格式与原卷「输出一个非负整数，表示俄罗斯方块的种类数。」有出入且缺「数据范围」，我的修改照第 8–9 页原卷补齐。"
+          "initial": "第 8 页 3.2.1—3.2.3：n×m 网格、四连通同色块、按平移判定同种、颜色不同仍可同种、输入 n,m 与 a_ij、输出种类数，均与候选一致；第 8 页示例图（方块1/2/3）与候选所引 Luogu 图一致。第 9 页 3.2.6 数据范围：30% n,m≤20、max a_ij≤400 且块≤5×5；另 30% n,m≤500 且形状为 1×x/x×1；全部 1≤n,m≤500、0≤a_ij≤500²，与候选一致。第 8 页样例 5×6→7 与候选 samples 一致。另核旧 GLM 用例「1 5 / 1 2 3 3 1」：旧稿把相邻两个 3 当作两个孤立单格、输出 1，按原卷四连通定义两个 3 相连构成横向双格，正确形状为单格（1、2、1）与横向双格（3-3）两种，输出应为 2；本轮已用该 1×5 数据重新核定边界用例，未因此修改参考程序。",
+          "review": "第 8 页 3.2.1—3.2.3：n×m 网格、四连通同色块、按平移判定同种、颜色不同仍可同种、输入 n,m 与 a_ij、输出非负整数种类数，均与候选一致；示例图（方块 1/2 同种、方块 1 与 3 不同种）与候选所引 Luogu 图语义一致。第 9 页 3.2.6 数据范围表：30% n,m≤20、max a_ij≤400 且方块≤5×5；30% n,m≤500 且形状 1×x/x×1；40% n,m≤500；全部 1≤n,m≤500、0≤a_ij≤500²，与候选「数据范围」一致。第 8 页样例 5×6→7 与候选 samples 一致。另核旧 GLM 用例「1 5 / 1 2 3 3 1」：旧稿把相邻两个 3 当作孤立单格、输出 1，按原卷四连通定义两个 3 相连构成横向双格，正确形状为单格（1、2、1）与横向双格（3-3）两种，输出应为 2；本轮用候选参考程序实测该数据输出 2，已在本轮 tests 中以同数据保留并纠正，未因此修改参考程序。"
         },
         "explanation": {
-          "initial": "解析的状态定义、转移与复杂度说明成立，且与参考程序、样例结果一致。",
-          "review": "解析「flood fill 提取连通块、平移到左上角规范化、集合去重」思路正确，样例 7 类方块验算一致。"
+          "initial": "独立推导：先按颜色 flood fill 取连通块，块内坐标减去最小行列得到平移规范形，颜色不参与形状键；用集合去重。样例 7 种形状复算为 7，与候选一致。",
+          "review": "独立推导：先按颜色 flood fill 取连通块，块内坐标减去最小行列得平移规范形，颜色不参与形状键，用集合去重。样例 5×6 的 7 种形状复算为 7，与候选解析一致；原卷 3.2.7 参考程序（flood fill + trie 逐格哈希）与该思路等价。"
         },
         "referenceCode": {
-          "initial": "站点参考程序用 BFS 提取同色连通块，减去最小行列坐标后排序去重；样例 1=7 通过，另以单格、2×2 同色、L 形加单格三组边界复核。",
-          "review": "站点参考程序按颜色四连通提取并规范化去重，与官方按外轮廓哈希的代码语义等价；实测样例 1→7，另验证同形异色 1 种、异色横条 1 种、同色断开 2 种、S 形 2 种等边界全部一致。"
+          "initial": "clang++ -std=c++17 -O2 编译候选 BFS+规范化程序；原样例输出 7。另跑独立边界：1 1 / 5→1；2 4 / 1 1 2 2 / 0 0 0 0→2（异色同形横条只算一种，0 色长条另一种）；2 3 / 1 1 0 / 1 0 0→2（两个互为镜像的 L 形，平移不能重合，故算两种），全部通过。",
+          "review": "g++ -std=c++17 -O2 编译候选 BFS+规范化程序；原样例实测输出 7。另跑独立边界：「1 1 / 5」→1；「2 4 / 1 1 2 2 / 0 0 0 0」→2（异色同形横条只算一种，0 色长条另计）；「2 3 / 1 1 0 / 1 0 0」→2（两个互为镜像的 L 形，平移不能重合）；「1 5 / 1 2 3 3 1」→2（相邻 3-3 为横向双格），全部通过。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-03-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-03-l7.glm.json"
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 2,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement",
-        "referenceCode"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [
     {
       "id": 2,
@@ -1084,5 +1058,6 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-03-l7.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2024-03-l7.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-03-l7.integration.json"
 }

@@ -25,77 +25,6 @@
   "inputSha256": "795c47d77b7f4f25c262e2e6b92b24eaac5cc252329d5e35067a37ac0e317f82",
   "questions": [
     {
-      "id": 26,
-      "resolved": true,
-      "dimensions": [
-        "statement",
-        "explanation",
-        "referenceCode"
-      ],
-      "blockedDimensions": [],
-      "sourcePages": [
-        5,
-        6,
-        7
-      ],
-      "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
-      ],
-      "evidence": {
-        "statement": {
-          "initial": "PDF 第 5 页 3.1.1 题目描述（n 条消息按发送时间编号、r_i 表示引用关系、定位工具只能移动到 i−1 或 r_i、q 次询问求 x_k 到 y_k 的最少操作数）与站点 description 一致；第 6 页样例 1（6 3 / 0 0 1 2 2 5 → 2 2 3）与样例 2（5 5 / 0 0 0 1 3 → 1 2 2 2 1）、数据范围 n,q≤10^5、0≤r_i<i、至多 1000 条引用消息，与站点 inputDescription/samples 对应。",
-          "review": "第 5—6 页 3.1.1—3.1.3（消息可引用更小编号或下移一位、任意次操作、q 组询问求 x→y 最少操作数、至多 1000 条引用消息）与站点 description/inputDescription/outputDescription 一致；两组样例与站点 samples 逐字一致；数据范围（40% n,q≤2000、全部 n,q≤10^5、0≤r_i<i）经独立转录核对。"
-        },
-        "explanation": {
-          "initial": "站点解析按“标记被引用/引用结点 → 在标记点上做 DP（相邻标记点走 p[j]−p[j−1]、引用跳转 1 步）→ 查询用 pre[x]/suf[y] 拼接”推导，与官方参考程序第 28—58 行逐步对应，复杂度 O(C²+q)（C≤2000）符合数据范围。",
-          "review": "站点解析的“只有标记消息参与跳跃、区间内无标记消息时答案为 x−y、否则经 pre[x]→跳跃→suf[y]”的分解与官方程序一致；样例走查（4→2→1、6→5→2、6→5→4→3）独立复核吻合。"
-        },
-        "referenceCode": {
-          "initial": "站点 referenceCode 与 PDF 第 7 页官方参考程序逐行一致（N=1e5+5、C=2e3+5、d[i][j] 的向下 DP、pre/suf 查询式），本地编译后两组样例输出 2/2/3 与 1/2/2/2/1 均与官方一致，另用随机小数据与 Dijkstra 暴力对拍 300 组无差异；边界用例见 tests。",
-          "review": "站点代码与本轮独立推导一致；本机 g++ -std=c++17 -O2 实测：两组样例输出 2/2/3 与 1/2/2/2/1，三条边界用例（无引用相邻→1、引用跳转优于下移→2、原样例复跑→2/2/3）全部通过。"
-        }
-      },
-      "unresolved": []
-    },
-    {
-      "id": 27,
-      "resolved": true,
-      "dimensions": [
-        "statement",
-        "explanation",
-        "referenceCode"
-      ],
-      "blockedDimensions": [],
-      "sourcePages": [
-        8,
-        9
-      ],
-      "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
-      ],
-      "evidence": {
-        "statement": {
-          "initial": "PDF 第 8 页 3.2.1 题目描述（保留编号在 [ℓ,r] 内的结点构成的子图 G(ℓ,r)、不连通记距离 0、求 Σ d(ℓ,r,u,v) 对 10^9 取模）与站点 description 一致（站点用 l 代替特殊字形 ℓ）；第 8—9 页样例 1（3 2 / 1 2 1 / 2 3 2 → 9）与样例 2（4 6 … → 784）、数据范围 n≤100、m≤n(n−1)/2、w≤10^6、允许重边，与站点 samples 对应。",
-          "review": "第 8 页 3.2.1 题目描述（带权无向图 G、子图 G(l,r) 保留编号 [l,r] 的结点、不连通记 d=0、求 Σd 对 10^9 取模）与站点 description 一致；两组样例与站点 samples 逐字一致；数据范围（n≤100、m≤n(n−1)/2 与本题实现相符）经独立转录核对。"
-        },
-        "explanation": {
-          "initial": "站点解析的“枚举 l，令 g 从原图直边矩阵出发，逐个把 r 作为中转点做 Floyd 增量松弛，再累加 [l,r] 内的 g[i][j]”与官方程序完全一致；用 mod=10^9 表示不可达使贡献恰为 0 的技巧也成立（w≤10^6、n≤100，真实最短路 ≤ 9.9×10^7 < 10^9，不会与 INF 混淆）。",
-          "review": "站点解析的“固定 l 增量加点、新点 r 松弛后累加 [l,r] 内点对距离”与官方程序一致；样例 1（[1,2]=1、[2,3]=2、[1,3]=1+2+3=6，合计 9）独立复算吻合。"
-        },
-        "referenceCode": {
-          "initial": "站点 referenceCode 与 PDF 第 9 页官方参考程序逐行一致（N=105、mod=1e9、f/g 双矩阵、l/r 双层枚举），本地编译后样例输出 9 与 784 均与官方一致，另与“逐个子图独立 Floyd”的暴力对拍 200 组无差异；边界用例见 tests。",
-          "review": "站点代码的双向取 min 建边、每个 l 复制 g、按 r 递增用 g[i][r]+g[r][j] 松弛并对 [l,r] 内 i≤j 累加，与官方实现等价；本机 g++ -std=c++17 -O2 实测：两组样例输出 9 与 784，三条边界用例（n=2 单边→5、三角丢直边→6、原样例→9）全部通过。"
-        }
-      },
-      "unresolved": []
-    },
-    {
       "id": 1,
       "resolved": true,
       "dimensions": [
@@ -790,37 +719,40 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页判断题第 4 题“若一个无向图的最小生成树唯一，则图中所有边权必定各不相同”与站点 question 一致。",
-          "review": "第 4 页判断题第 4 题「若一个无向图的最小生成树唯一，则图中所有边权必定各不相同」与站点 question 一致。"
+          "initial": "PDF 第 4 页判断题第 4 题原文“若一个无向图的最小生成树唯一，则图中所有边权必定各不相同。（）”与候选 question 逐字一致。",
+          "review": "第 4 页判断题第 4 题原文「若一个无向图的最小生成树唯一，则图中所有边权必定各不相同。（ ）」与候选 question 逐字一致。"
         },
         "answer": {
-          "initial": "第 4 页判断题答案表第 4 题为 ×，映射 1（错误），站点 answer=1；独立构造反例：三角形三边 1、1、2 时 MST 只能取两条权 1 的边，MST 唯一但有相同边权。",
-          "review": "第 4 页判断题答案表第 4 题为 ×，映射 1，站点 answer=1。独立判断：三角形边权 1,1,2 的 MST（两条权 1 边）唯一但边权有重复，逆命题不成立。"
+          "initial": "第 4 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1；独立判断：3 顶点三角形边权 1、1、2 的 MST 必须取两条权 1 的边，MST 唯一但边权有重复，故“MST 唯一 ⇒ 边权全异”不成立。",
+          "review": "第 4 页判断题答案表第 4 题为 ×，0 起始映射 1，候选 answer=1。独立复核反例 1：三角形三边权 1、1、2 的三棵生成树权和为 2、3、3，MST 唯一（两条权 1 边），但边权有重复——「MST 唯一 ⇒ 边权全异」不成立；反例 2：3 顶点 2 条边 1-2(1)、2-3(1)，图本身即树，生成树唯一而边权相同。反向定理「边权互异 ⇒ MST 唯一」成立（Kruskal 中互异权使每步选择唯一），条件关系确为单向，命题为假。"
         },
         "explanation": {
-          "initial": "解析结论（错误）正确，但反例句子残缺走样：“三角形三边权为 1、1、2，MST 必须选两条权 1 的边和权 2 的边之外的两条……”语义不通，随后又换成另一个例子，读者无法从中读出“相同边权仍可唯一”的完整论证。",
-          "review": "初核重写的解析给出“所有边权互异 ⇒ MST 唯一”的单向性与两个完整反例，删除残缺句子，独立复核成立。"
+          "initial": "候选解析指出“所有边权互异 ⇒ MST 唯一”成立、逆命题不成立，并给出两个反例：① 三角形 1、1、2 的 MST 唯一但边权重复；② 3 顶点两条边 1-2(1)、2-3(1) 的图本身即树、生成树唯一而边权相同。论证与 × 一致。",
+          "review": "候选解析先说明单向性（互异 ⇒ 唯一成立、逆不成立），再给三角形 1、1,2 与双边树两个反例，末尾点出「充分不必要」考点；两个反例经独立枚举生成树验算成立，与 × 答案一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l8.glm.json"
       ]
     },
     {
@@ -1026,20 +958,80 @@
         }
       },
       "unresolved": []
-    }
-  ],
-  "unresolved": [
+    },
     {
-      "id": 19,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
+      "blockedDimensions": [],
+      "sourcePages": [
+        5,
+        6,
+        7
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页 3.1.1 题目描述（n 条消息按发送时间编号、r_i 表示引用关系、定位工具只能移动到 i−1 或 r_i、q 次询问求 x_k 到 y_k 的最少操作数）与站点 description 一致；第 6 页样例 1（6 3 / 0 0 1 2 2 5 → 2 2 3）与样例 2（5 5 / 0 0 0 1 3 → 1 2 2 2 1）、数据范围 n,q≤10^5、0≤r_i<i、至多 1000 条引用消息，与站点 inputDescription/samples 对应。",
+          "review": "第 5—6 页 3.1.1—3.1.3（消息可引用更小编号或下移一位、任意次操作、q 组询问求 x→y 最少操作数、至多 1000 条引用消息）与站点 description/inputDescription/outputDescription 一致；两组样例与站点 samples 逐字一致；数据范围（40% n,q≤2000、全部 n,q≤10^5、0≤r_i<i）经独立转录核对。"
+        },
+        "explanation": {
+          "initial": "站点解析按“标记被引用/引用结点 → 在标记点上做 DP（相邻标记点走 p[j]−p[j−1]、引用跳转 1 步）→ 查询用 pre[x]/suf[y] 拼接”推导，与官方参考程序第 28—58 行逐步对应，复杂度 O(C²+q)（C≤2000）符合数据范围。",
+          "review": "站点解析的“只有标记消息参与跳跃、区间内无标记消息时答案为 x−y、否则经 pre[x]→跳跃→suf[y]”的分解与官方程序一致；样例走查（4→2→1、6→5→2、6→5→4→3）独立复核吻合。"
+        },
+        "referenceCode": {
+          "initial": "站点 referenceCode 与 PDF 第 7 页官方参考程序逐行一致（N=1e5+5、C=2e3+5、d[i][j] 的向下 DP、pre/suf 查询式），本地编译后两组样例输出 2/2/3 与 1/2/2/2/1 均与官方一致，另用随机小数据与 Dijkstra 暴力对拍 300 组无差异；边界用例见 tests。",
+          "review": "站点代码与本轮独立推导一致；本机 g++ -std=c++17 -O2 实测：两组样例输出 2/2/3 与 1/2/2/2/1，三条边界用例（无引用相邻→1、引用跳转优于下移→2、原样例复跑→2/2/3）全部通过。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        8,
+        9
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 8 页 3.2.1 题目描述（保留编号在 [ℓ,r] 内的结点构成的子图 G(ℓ,r)、不连通记距离 0、求 Σ d(ℓ,r,u,v) 对 10^9 取模）与站点 description 一致（站点用 l 代替特殊字形 ℓ）；第 8—9 页样例 1（3 2 / 1 2 1 / 2 3 2 → 9）与样例 2（4 6 … → 784）、数据范围 n≤100、m≤n(n−1)/2、w≤10^6、允许重边，与站点 samples 对应。",
+          "review": "第 8 页 3.2.1 题目描述（带权无向图 G、子图 G(l,r) 保留编号 [l,r] 的结点、不连通记 d=0、求 Σd 对 10^9 取模）与站点 description 一致；两组样例与站点 samples 逐字一致；数据范围（n≤100、m≤n(n−1)/2 与本题实现相符）经独立转录核对。"
+        },
+        "explanation": {
+          "initial": "站点解析的“枚举 l，令 g 从原图直边矩阵出发，逐个把 r 作为中转点做 Floyd 增量松弛，再累加 [l,r] 内的 g[i][j]”与官方程序完全一致；用 mod=10^9 表示不可达使贡献恰为 0 的技巧也成立（w≤10^6、n≤100，真实最短路 ≤ 9.9×10^7 < 10^9，不会与 INF 混淆）。",
+          "review": "站点解析的“固定 l 增量加点、新点 r 松弛后累加 [l,r] 内点对距离”与官方程序一致；样例 1（[1,2]=1、[2,3]=2、[1,3]=1+2+3=6，合计 9）独立复算吻合。"
+        },
+        "referenceCode": {
+          "initial": "站点 referenceCode 与 PDF 第 9 页官方参考程序逐行一致（N=105、mod=1e9、f/g 双矩阵、l/r 双层枚举），本地编译后样例输出 9 与 784 均与官方一致，另与“逐个子图独立 Floyd”的暴力对拍 200 组无差异；边界用例见 tests。",
+          "review": "站点代码的双向取 min 建边、每个 l 复制 g、按 r 递增用 g[i][r]+g[r][j] 松弛并对 [l,r] 内 i≤j 累加，与官方实现等价；本机 g++ -std=c++17 -O2 实测：两组样例输出 9 与 784，三条边界用例（n=2 单边→5、三角丢直边→6、原样例→9）全部通过。"
+        }
+      },
+      "unresolved": []
     }
   ],
+  "unresolved": [],
   "pendingChanges": [
     {
       "id": 19,
@@ -1049,5 +1041,6 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l8.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l8.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-03-l8.integration.json"
 }

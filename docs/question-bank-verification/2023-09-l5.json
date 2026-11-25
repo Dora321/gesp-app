@@ -106,43 +106,46 @@
       "id": 3,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页原文为“变量 a 和 b 分别为 double 类型和 int 类型”，站点写成“double类型 and int类型”，混入英文 and，属转写错误，需改为“和”。",
-          "review": "PDF 第 1 页原文“如果变量 a 和 b 分别为 double 类型和 int 类型，则表达式(a = 6, b = 3 * (7 + 8) / 2, b += a)的计算结果为”。网站误写作“double类型 and int类型”（英文 and 混入）且“的 计算结果”中间多一个空格，属转写错误。"
+          "initial": "第1页第3题原文「如果变量 a 和 b 分别为 double 类型和 int 类型，则表达式 (a = 6, b = 3 * (7 + 8) / 2, b += a) 的计算结果为（ ）。」候选作「如果变量a 和b 分别为double类型和int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的计算结果为（ ）。」，仅中英文间距差异；变量类型、逗号表达式三项与设问完整，原「double类型 and int类型」的英文 and 误转已修复。",
+          "review": "第 1 页第 3 题原文「如果变量 a 和 b 分别为 double 类型和 int 类型，则表达式 (a = 6, b = 3 * (7 + 8) / 2, b += a) 的计算结果为（ ）。」，候选「如果变量a 和b 分别为double类型和int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的计算结果为（ ）。」仅中英文间距差异；原「double类型 and int类型」的英文 and 误转与「的 计算结果」多余空格均已按原卷修复，修复后题面与原卷一致。"
         },
         "options": {
-          "initial": "PDF 第 1 页 A 6、B 21、C 28、D 不确定 与站点选项一致。",
-          "review": "PDF 第 1 页 A 6/B 21/C 28/D 不确定，与网站 options 一致。"
+          "initial": "第1页 A 6、B 21、C 28、D 不确定，与候选四项逐字一致。",
+          "review": "第 1 页选项 A 6、B 21、C 28、D 不确定，与候选 options 逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 3 题为 C；0 起始映射为 2，站点 answer=2。",
-          "review": "PDF 第 1 页答案表第 3 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+          "initial": "第1页答案表第3题标 C，0 起始索引 2。独立编译求值（g++ -O2）：a=6.0；b=3*15/2=22（int 截断）；b+=a 得 28；逗号表达式取最后一项的值 28，与 C 一致。",
+          "review": "第 1 页答案表第 3 格为 C，0 起始索引 2，与候选 answer=2 一致。独立求值：a=6（double 6.0）；b=3*(7+8)/2=45/2=22（int 截断）；b+=a 即 22+6=28，逗号表达式取最后一项的值 28，与 C 一致。"
         },
         "explanation": {
-          "initial": "逗号表达式依次执行 a=6.0；b=3*(7+8)/2，两个 int 相除 45/2=22；b+=a 后 b=28，结果为 28，解析正确。",
-          "review": "独立推导：逗号表达式从左到右求值 a=6；b=3*(7+8)/2=45/2=22（int 截断）；b+=a 得 28，表达式值取最后一项 28。解析与答案 C 吻合。"
+          "initial": "候选解析「a=6; b=3*15/2=22; b+=6 => 28」与独立求值一致，并指出 A/B 数值不符、D 不确定不成立。",
+          "review": "候选解析「逗号表达式依次计算：a=6; b=3*15/2=22; b+=6 => 28」与独立求值一致（b 为 int，b+=a 即 22+6=28）；A/B 数值不符、C 正确、D「不确定」不成立的逐项判断无误。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.glm.json"
       ]
     },
     {
@@ -466,45 +469,49 @@
       "id": 12,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
+        1,
         7,
         8,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页函数声明为 `void mergeSort(int * listData, int start, int end);`（3 个参数），站点 question 内嵌代码误写成 `int start, int middle, int end`（4 个参数），与定义冲突且无法编译，需还原。",
-          "review": "PDF 第 8 页代码前两行声明为 void mergeSort(int * listData, int start, int end); 与 void merge(int * listData, int start, int middle, int end);。网站题面把 mergeSort 的声明误写成 void mergeSort(int * listData, int start, int middle, int end);（4 参数），与后文 3 参数定义冲突且无法编译，属转写错误。"
+          "initial": "第8页代码与候选逐字对照：mergeSort 定义、merge 定义、main 中 lstA={1, 3, 2, 7, 11, 5, 3} 与 mergeSort(lstA, 0, size - 1) 均一致。原卷第4–5行声明顺序为 mergeSort 在前、merge 在后，候选把两条独立前置声明对调；两条声明的内容与参数个数（mergeSort 3 参数、merge 4 参数）均与原卷一致，不影响编译与调用。",
+          "review": "第 7 页题干「下面代码用于归并排序，其中 merge() 函数被调用次数为（ ）。」与候选一致。第 8 页代码逐行对照：前置声明 mergeSort(int * listData, int start, int end)（3 参数）、merge(int * listData, int start, int middle, int end)（4 参数）与候选一致，候选已修复原网站把 mergeSort 误写成 4 参数、与定义冲突而无法编译的转写错误（修复后我以 g++ 实际编译通过）；mergeSort/merge 定义体、main 中 lstA={1, 3, 2, 7, 11, 5, 3}、mergeSort(lstA, 0, size - 1) 及输出循环均与原卷一致。原卷第 4–5 行两条前置声明顺序为 mergeSort 在前，候选保持站点原有的对调顺序，两条声明相互独立、对调不影响编译与调用，属无语义影响的排版差异，予以记录并接受。"
         },
         "options": {
-          "initial": "PDF 第 9 页 A 0、B 1、C 6、D 7 与站点 options 一致。",
-          "review": "PDF 第 9 页 A 0/B 1/C 6/D 7，与网站 options 一致。"
+          "initial": "第9页 A 0、B 1、C 6、D 7，与候选一致。",
+          "review": "第 9 页选项 A 0、B 1、C 6、D 7，与候选 options 逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 12 题为 C；0 起始映射为 2，站点 answer=2。",
-          "review": "PDF 第 1 页答案表第 12 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+          "initial": "第1页答案表第12题标 C，0 起始索引 2。独立插桩编译运行候选代码，输出 merge calls: 6；区间 [0,6]→[0,3]/[4,6]→[0,1]/[2,3]/[4,5] 共 6 个内部结点，各调用 merge 一次。",
+          "review": "第 1 页答案表第 12 格为 C，0 起始索引 2，与候选 answer=2 一致。独立推导：归并排序递归树是 n 个叶子的满二叉树，内部结点数即 merge() 调用数 n−1=6；将候选代码插入调用计数器实测（g++ 编译运行）输出 merge calls: 6，且排序输出 1 2 3 3 5 7 11 正确。"
         },
         "explanation": {
-          "initial": "长度 7 的归并递归树有 6 个非叶区间，每个调用一次 merge，共 6 次；解析的区间拆分正确。",
-          "review": "独立推导：merge() 在每次有效拆分后调用一次，次数=递归树内部结点数。区间 [0,6]→[0,3]、[4,6]→[0,1]、[2,3]、[4,5]（[6,6]、长度 1 区间返回），共 [0,6]、[0,3]、[4,6]、[0,1]、[2,3]、[4,5] 6 次。解析与答案 C 吻合。"
+          "initial": "候选解析按递归树非叶区间计数，列出 [0,6]、[0,3]、[4,6]、[0,1]、[2,3]、[4,5] 共 6 个，与插桩实测 6 次一致。",
+          "review": "候选解析按递归树非叶区间计数（[0,6]、[0,3]、[4,6]、[0,1]、[2,3]、[4,5] 共 6 个），与理论值 n−1=6 及我的插桩实测一致；解析「验证」段宣称的计数器运行结果（merge calls: 6）经我独立插桩复现属实，A/B/D 排除理由无误。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.glm.json"
       ]
     },
     {
@@ -552,41 +559,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
+        1,
         9
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 9 页第 14 题题干“归并排序算法的基本思想是”与站点一致。",
-          "review": "PDF 第 9 页第 14 题题干“归并排序算法的基本思想是（ ）”与网站一致。"
+          "initial": "第9页第14题题干「归并排序算法的基本思想是（ ）。」与候选一致。",
+          "review": "第 9 页第 14 题题干「归并排序算法的基本思想是（ ）。」与候选逐字一致。"
         },
         "options": {
-          "initial": "PDF 第 9 页 A 分成两个子数组分别排序后合并、B 随机枢轴划分、C 从末尾逐个比较交换、D 相邻元素比较交换 与站点 options 一致。",
-          "review": "PDF 第 9 页 A 将数组分成两个子数组，分别排序后再合并/B 随机选择枢轴划分/C 从最后一个元素依次与前一个比较交换/D 比较相邻元素错误就交换，与网站 options 一致。"
+          "initial": "第9页 A 将数组分成两个子数组，分别排序后再合并；B 随机选择一个元素作为枢轴，将数组划分为两个部分；C 从数组的最后一个元素开始，依次与前一个元素比较并交换位置；D 比较相邻的两个元素，如果顺序错误就交换位置；与候选四项一致。",
+          "review": "第 9 页 A 将数组分成两个子数组，分别排序后再合并。/B 随机选择一个元素作为枢轴，将数组划分为两个部分。/C 从数组的最后一个元素开始，依次与前一个元素比较并交换位置。/D 比较相邻的两个元素，如果顺序错误就交换位置。与候选 options 逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 14 题为 A；0 起始映射为 0，站点 answer=0。",
-          "review": "PDF 第 1 页答案表第 14 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+          "initial": "第1页答案表第14题标 A，0 起始索引 0。独立判断：A 是归并排序的分解+合并；B 是快速排序枢轴划分；C 是相邻交换类排序；D 是冒泡排序。",
+          "review": "第 1 页答案表第 14 格为 A，0 起始索引 0，与候选 answer=0 一致。独立判定：A 即归并排序分解+分别排序+合并的基本思想；B 是快速排序的枢轴划分；C/D 是相邻交换类排序（冒泡排序思路），均非归并排序。"
         },
         "explanation": {
-          "initial": "站点解析对 B/C 使用“数组下标从 0 开始，请仔细验证下标范围”作为理由，与选项内容无关且错误；应改为：B 描述快速排序的枢轴划分，C 描述相邻交换类排序，D 描述冒泡排序，只有 A 是归并排序。",
-          "review": "网站解析对选项 B、C 的否定理由均为“数组下标从 0 开始，请仔细验证下标范围”，与快速排序枢轴划分、相邻交换等概念完全无关，属错误理由；需按各选项实际算法归属改写。"
+          "initial": "候选逐项给出算法归属（B 快速排序、C 相邻交换、D 冒泡），结论 A 与官方一致；原解析对 B/C 使用「数组下标从 0 开始」的错误理由已消除。",
+          "review": "修复后核验通过。候选逐项给出算法归属（B 快速排序划分、C 相邻交换类、D 冒泡排序），结论与答案 A 一致；原解析对 B/C 使用「数组下标从 0 开始，请仔细验证下标范围」的答非所问错误理由已彻底消除，改写后的事实判定准确。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.glm.json"
       ]
     },
     {
@@ -972,40 +983,43 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         10,
         11,
         12
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 10-11 页第 26 题题干、样例与数据范围（2≤N≤10^12）与站点一致，但原卷两处写作“给定一个正整数 N”“为 N 的因数分解式”，站点均漏掉变量 N，需补回。",
-          "review": "PDF 第 11 页原文两处含变量 N：“给定一个正整数 N，请按要求输出它的因数分解式”“输出一行，为 N 的因数分解式”。网站题面两处均漏掉 N（“给定一个正整数，请按要求输出”“为的因数分解式”），语句不通，属转写缺字。"
+          "initial": "第11页 3.1.1 原文「每个正整数都可以分解成素数的乘积，例如：6=2×3、20=2^2×5」「现在，给定一个正整数N，请按要求输出它的因数分解式」；3.1.2「输入第一行，包含一个正整数N。约定2≤N≤10^12」；3.1.3「输出一行，为N的因数分解式。要求按质因数由小到大排列，乘号用星号*表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头^表示，且左右不空格」。候选两处均含 N，句意完整；举例分隔符由「、」写作「，」、乘方用 LaTeX，属排版差异。第10页 3.1 的试题编号/时限与「特别提醒（不要输出提示信息）」属卷面通用说明，未纳入题面不影响设问。样例 6→2 * 3、20→2^2 * 5、23→23 与第11页逐行一致。",
+          "review": "修复后核验通过。第 11 页 3.1.1「现在，给定一个正整数 N，请按要求输出它的因数分解式」与 3.1.3「输出一行，为 N 的因数分解式…」两处变量 N 已补回，与原卷句意逐字一致（举例分隔符「、」写作「，」、星号/上箭头以代码标记、乘方用 LaTeX 属排版等价转换）；3.1.2「输入第一行，包含一个正整数 N。约定 2 ≤ N ≤ 10^12」一致。第 10 页编程题 1 编号 2023-09-23-05-C-01、试题名称 因数分解、时间限制 1.0 s、内存限制 128.0 MB，与候选 timeLimit/memoryLimit 一致（本卷原卷即为 128.0 MB，非 512 MB）；样例 6→2 * 3、20→2^2 * 5、23→23 与第 11 页逐行一致。"
         },
         "explanation": {
-          "initial": "解析按试除法说明只需枚举 p*p<=N、最后处理剩余 N>1，并给出 6、20、23 走查，推导与格式要求一致。",
-          "review": "独立推导：试除法对每个 p 先除尽并计数，cnt>1 时输出 p^cnt 否则输出 p，剩余 N>1 时输出自身；分隔符“ * ”、指数“^”两侧无空格，与题面输出格式及三个样例（6→2 * 3、20→2^2 * 5、23→23）吻合；p*p<=N 用 long long 防溢出，N≤10^12 时循环至 10^6，1.0 s 内可行。"
+          "initial": "独立推导试除法：p 从 2 枚举到 p*p<=N，除尽并计 cnt，cnt>1 输出 p^cnt 否则输出 p，循环后 N>1 输出自身；分隔符「 * 」与指数「^」符合题面。候选解析的算法步骤、6/20/23 样例走查与溢出/末因子提醒均与独立推导一致。",
+          "review": "独立推导与候选解析一致：试除法 p 从 2 枚举至 p*p<=N，除尽并计 cnt，cnt>1 时输出 p^cnt 否则输出 p，循环后 N>1 时输出剩余因子；「 * 」两侧空格、^ 两侧不空格与题面格式一致；溢出提醒（N、p 须 long long，p*p 可达 10^12）与末因子提醒均正确；最坏大素数输入实测约 4 ms，解析「10 毫秒内」的量级判断属实。"
         },
         "referenceCode": {
-          "initial": "参考程序用 long long 存储 N 与 p，p*p<=N 不溢出；对 2、4、6、20、1260、10^12 编译运行输出分别为 2、2^2、2*3、2^2*5、2^2*3^2*5*7、2^12*5^12，符合题目格式。",
-          "review": "独立验证：本地 g++ 编译参考程序，原样例 3 组全部通过；另实测 N=2→“2”（最小输入，循环不执行走 N>1 分支）、N=4→“2^2”（cnt>1 指数分支）、N=999999999989→“999999999989”（区间内大素数，约 10^6 次试除后走末尾分支）、N=1000000000000→“2^12 * 5^12”（上界值）、N=999999999999→“3^3 * 7 * 11 * 13 * 37 * 101 * 9901”（=10^12-1=(10^6-1)(10^6+1) 的独立分解），算法正确、无溢出、复杂度满足约束。"
+          "initial": "本地 g++ -O2 -std=c++17 编译候选参考程序：原样例 6→2 * 3、20→2^2 * 5、23→23 全部通过；边界 N=2→2、N=65536→2^16、N=10^12→2^12 * 5^12、N=999999999999→3^3 * 7 * 11 * 13 * 37 * 101 * 9901、N=999999999989（10^12 内素数）→自身，均与独立分解一致；大素数最坏约 10^6 次试除，实测 0.008 s，1.0 s 时限余量充足。",
+          "review": "本地 g++ -O2 实际编译候选参考程序：原样例 3 组（6→2 * 3、20→2^2 * 5、23→23）全部通过；另执行 6 条独立边界用例（N=2→2、N=4→2^2、N=65536→2^16、N=10^12→2^12 * 5^12、N=999999999999→3^3 * 7 * 11 * 13 * 37 * 101 * 9901、N=999999999989→自身）全部与独立分解/判素结果一致，期望输出均先独立推演再实测比对；大素数最坏约 10^6 次试除实测 3.7 ms，1.0 s 时限余量充足。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2023-09-l5.glm.json"
       ]
     },
     {
@@ -1044,48 +1058,7 @@
       "unresolved": []
     }
   ],
-  "unresolved": [
-    {
-      "id": 3,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [
     {
       "id": 3,
@@ -1116,5 +1089,6 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2023-09-l5.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2023-09-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-09-l5.integration.json"
 }
