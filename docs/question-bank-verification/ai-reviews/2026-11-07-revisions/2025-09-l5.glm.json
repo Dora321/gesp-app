@@ -1,0 +1,221 @@
+{
+  "paperId": "2025-09-l5",
+  "phase": "glm",
+  "questionIds": [
+    17,
+    18,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T12:35:00.000Z",
+  "completedAt": "2026-11-25T12:50:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "b133c3f9fdb287bc2cebbc17dc1b7286ecf1e0a3913fee5953bc84ec646a76ef",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1704013600915488.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++5级.pdf",
+    "mirrorSha": "b3473fc3d25bc5196961b041c72417f5dcd74cdc",
+    "mirrorBytes": 1352594,
+    "shaVerified": true,
+    "sha256": "502a87c1e6e63f3b6558f2a6e214096ad8f3c3d224fc578d35bfeb3d747dfc83"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-09-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为“CCF 编程能力等级认证 GESP / C++ 五级 / 2025 年 09 月”，与 paperId 2025-09-l5 一致；第 8 页判断题答案表 1–10 为 √××√√√××√×（本题组判断第 2/3 题即 Q17/Q18 均为 ×，索引 1），第 9/10 页与第 10/11 页两道编程题时间限制均 1.0 s、内存限制均 512.0 MB；缓存 source.pdf sha256 复算与清单一致。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 8 页判断题第 2 题题干「假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 findMusicalPattern(4, 6) 函数返回2。」及代码框 5 行（void findMusicalPattern(int rhythm1, int rhythm2){ int commonDivisor = gcd(rhythm1, rhythm2); int patternLength = (rhythm1 * rhythm2) / commonDivisor; return patternLength; }）与候选 question 一致；站点原「findMusicalPattern(4 ， 6)」全角逗号排版混杂已由候选规范化，代码块已按原卷补入（原卷 void 声明配 return 值的编译缺陷逐字保留，见 unresolved）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项「正确」「错误」（judge 语义 0=√、1=×）与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 2 题为 ×（索引 1），候选 answer=1。独立推导：gcd(4,6)=2，patternLength=(4×6)/2=12≠2，命题「返回 2」错误；且 (a×b)/gcd 为最小公倍数而非最大公约数，2 是 gcd、12 是 lcm，题干混淆二者。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析代入 4/6 算出 12、指出 gcd 与 lcm 混淆，与独立推导一致；易错提醒表述准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷判断题第 2 题代码声明为 void findMusicalPattern(...)，函数体内却 return patternLength;，原卷本身存在返回类型与 return 语句不一致的编译缺陷；候选逐字保留原卷，未擅改，需人工确认是否加注。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "候选补入的代码与第 8 页页图逐行一致（含原卷 void/return 缺陷原样保留并记录），答案 × 与判断答案表及独立推导（lcm=12≠2）一致，approve。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 8 页判断题第 3 题题干「下面递归实现的斐波那契数列的时间复杂度为 O(2^n)。」及 fib_memo 带 memo 记忆化的 14 行代码（含 main 中 n=40、memo[100] fill_n(-1)）与候选 question 一致；站点原把 O(2^n) 改写为「指数级」且缺代码块，候选已按原卷恢复。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题选项「正确」「错误」与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 3 题为 ×（索引 1），候选 answer=1。独立推导：memo[n]!=-1 命中缓存，每个 fib_memo(i)（0≤i≤n）只真正计算一次，总计算量 O(n) 而非 O(2^n)，命题错误；指数级是朴素双分支递归（同子问题反复求解）的行为。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析区分记忆化递归（每状态一次，O(n)）与朴素递归（指数级），并提醒先看有无备忘录，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "候选按原卷恢复 O(2^n) 表述与 fib_memo 代码，与第 8 页页图逐行核对无误，答案 × 与判断答案表及独立推导（记忆化 O(n)）一致，approve。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 9 页题面（两两互质、最大化数量、n=9 选 1,5,7,8,9 共 5 个）与输入输出格式、第 10 页样例 6→4、9→5 与数据范围（40% 1≤n≤1000；所有测试点 1≤n≤10^5）与候选 question 一致；站点缺失的数据范围已由候选补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：每个大于 1 的选中数至少占用一个互不相同的质因子，故个数 ≤ π(n)；取 1 与全部 ≤n 质数即达 1+π(n)，n=6 时 1+3=4、n=9 时 1+4=5 与样例一致；候选解析对该上界论证与「8 占用 2、9 占用 3」的样例说明均正确，并指明线性筛统计 cnt 后输出 1+cnt 与页图官方程序一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 10 页官方参考程序（同一线性筛 + printf 1+cnt）对拍：原样例 6→4、9→5 一致；独立用例 1→1、2→2、10→5、10^5→9593（π(10^5)=9592）均一致；与两两互质子集暴力（n=1..16 全 2^n 枚举）零差异；压力说明：n=10^5 实测 0.003 s，远低于 1.0 s。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小输入 n=1",
+            "input": "1\n",
+            "output": "1",
+            "reason": "只有 {1}，两两互质集合最大为 1；1+π(1)=1。实测通过。"
+          },
+          {
+            "name": "n=10（四个质数）",
+            "input": "10\n",
+            "output": "5",
+            "reason": "取 1 与 2,3,5,7 共 5 个；1+π(10)=5。实测通过。"
+          },
+          {
+            "name": "上界 n=10^5",
+            "input": "100000\n",
+            "output": "9593",
+            "reason": "π(10^5)=9592，答案 1+9592=9593。实测通过。"
+          }
+        ],
+        "unresolved": [
+          "站点 memoryLimit=128 MB，原卷第 9 页编程题 1 标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "候选补入的数据范围与第 10 页页图逐字核对无误；参考程序经原样例与 4 条独立用例实测、并与官方程序及 n=1..16 全子集暴力对拍零差异，压力实测 0.003 s，approve。memoryLimit 差异保留待人工同步。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 11 页题面（二进制奇数个 1、7=(111)₂ 有趣、9=(1001)₂ 不有趣、统计 l≤n≤r 之和）、输入输出格式、样例 3 8→19、65 36248→328505490、数据范围（40% 1≤l≤r≤10^4；另外 30% l=1 且 r=2^k−1，k 为大于 1 的正整数；所有测试点 1≤l≤r≤10^9）与提示「由于本题的数据范围较大，整数类型请使用 long long」均与候选 question 一致；站点缺失的数据范围与 long long 提示已由候选补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立用 Python 位统计数位推导复核：满块 [0,2^k−1] 中奇/偶 popcount 各 2^(k−1) 个、k≥2 时奇偶两组之和相等（各半），即 count=(n+1)/2、sum=n(n+1)/4（n=2^k−1），与 cal2 公式一致；高段 [x,n] 奇偶反转（1−p）且数值加 x×个数，与候选解析分治流程一致；样例 f(8)=22、f(2)=3，差 19，4+7+8=19 与解析逐数验算一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 11–12 页官方参考程序（cal2 满块公式 + cal 最高位分治 + 前缀作差）对拍：原样例 3 8→19、65 36248→328505490 一致；独立用例 1 1→1、3 3→0、1 10→22、1 10^9→250000000750000000、536870911→536870911（2^29−1 自身 popcount 为奇）与官方一致；与独立 Python 数位递推在 ≤5000 暴力全对拍及 40 组 10^9 级随机区间上零差异；压力说明：1 10^9 实测 0.002 s，远低于 1.0 s。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单点 l=r=1",
+            "input": "1 1\n",
+            "output": "1",
+            "reason": "1 的二进制 (1)₂ 含 1 个 1，是有趣的，和为 1。实测通过。"
+          },
+          {
+            "name": "单点非有趣 l=r=3",
+            "input": "3 3\n",
+            "output": "0",
+            "reason": "3=(11)₂ 含 2 个 1，不有趣，和为 0。实测通过。"
+          },
+          {
+            "name": "手算区间 1..10",
+            "input": "1 10\n",
+            "output": "22",
+            "reason": "有趣的为 1,2,4,7,8，和 1+2+4+7+8=22。实测通过。"
+          }
+        ],
+        "unresolved": [
+          "站点 memoryLimit=128 MB，原卷第 10 页编程题 2 标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "候选补入的数据范围与 long long 提示与第 11 页页图逐字核对无误；参考程序经两个原样例与 5 条独立用例实测、并与官方程序及独立数位递推（小规模暴力全对拍 + 40 组 10^9 级随机区间）双重对拍零差异，压力实测 0.002 s，approve。memoryLimit 差异保留待人工同步。"
+      }
+    ],
+    "summary": "对照原卷 12 页页图与 PDF 文本层，先独立复核第一轮修订候选 4 题（Q17/Q18 判断 + Q26/Q27 编程），后对照 DeepSeek 报告并复算 4 条基线 previousQuestionSha256 全部匹配。四题全部通过：Q17 按原卷恢复 findMusicalPattern 代码（原卷 void/return 编译缺陷原样保留并记录），(4×6)/gcd=12≠2 判 ×；Q18 恢复 O(2^n) 表述与 fib_memo 代码，记忆化 O(n) 判 ×；两者均与第 8 页判断答案表 ×× 一致。Q26 数据范围补齐（40% n≤1000、全部 n≤10^5），1+π(n) 上界论证核验无误，参考程序实测原样例 4/5 + 独立边界（1→1、10→5、10^5→9593）与 n=1..16 全子集暴力对拍零差异，压力 0.003 s。Q27 数据范围与 long long 提示补齐，满块公式 count=(n+1)/2、sum=n(n+1)/4 经独立 Python 数位递推复核，参考程序实测原样例 19/328505490 + 独立边界与 40 组 10^9 级随机区间对拍零差异，压力 0.002 s。两道编程题站点 memoryLimit 128 MB vs 原卷 512.0 MB 差异保留待人工同步。"
+  },
+  "requests": []
+}
