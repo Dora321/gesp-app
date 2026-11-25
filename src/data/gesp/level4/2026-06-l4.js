@@ -911,6 +911,8 @@ $3 \\leq n, m \\leq 500$，$1 \\leq q \\leq n \\cdot m$。
 输入的雷区必定在地图内且不重复，注意行号和列号均从 1 开始。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       answer: '',
       explanation: `**解析：**
 本题属于二维数组的模拟与边界遍历题。核心任务是在一个 \`n * m\` 的网格中，根据输入的坐标标记 \`q\` 个雷区，然后对每一个非雷区格子，统计其周围 8 个相邻格子中雷的数量。
@@ -1042,6 +1044,8 @@ const int dy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
 $1 \\leq n \\leq 1000$，$10 \\leq w_i \\leq 100$，$0.8 \\leq h_i \\leq 1.9$，$h_i$ 均恰有两位小数。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       answer: '',
       explanation: `**解析：**
 

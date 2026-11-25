@@ -52,6 +52,8 @@ No` }
 对于全部数据，保证 $1 \\leq t \\leq 10$，$1 \\leq n, m \\leq 100$。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: `**解析：**
 
 本题是一道典型的二维网格暴力枚举与模式匹配问题。题目要求我们在一个 \`n\` 行 \`m\` 列的 \`01\` 网格中，寻找是否存在一个特定的 \`4 * 4\` 子矩形。
@@ -161,6 +163,8 @@ No` }
 对于全部数据，保证 $1 \\leq n \\leq 100$，$1 \\leq a_i \\leq 100$，$1 \\leq q \\leq 100$，$1 \\leq l_i \\leq r_i \\leq n$。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: `**解析：**
 
 本题是一道典型的数组模拟题，主要考查对数组（或 \`vector\`）的区间操作以及标准库函数 \`sort\` 的熟练应用。
@@ -304,7 +308,7 @@ export const paperData = {
             sourcePage: 1,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "函数", "基础语法"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -341,7 +345,7 @@ GESP 二级曾考察过"形参命名可与实参相同"的概念，说明形参�
             sourcePage: 1,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "参数传递", "函数"]
         },
         {
             id: 3,
@@ -379,7 +383,7 @@ int main() {
             sourcePage: 1,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "作用域"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -422,7 +426,7 @@ C++ 中 \`a[i]\` 等价于 \`*(a + i)\`，这条等价关系解释了为什么�
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "指针", "数组"]
         },
         {
             id: 5,
@@ -466,7 +470,7 @@ p = q;
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "指针"]
         },
         {
             id: 6,
@@ -505,7 +509,7 @@ C++ 中 \`struct\` 与 \`class\` 的唯一区别是默认访问权限：\`struct
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "结构体"]
         },
         {
             id: 7,
@@ -541,7 +545,7 @@ int arr[3][4];   // 3 行 4 列，共 12 个 int
             sourcePage: 2,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "二维数组"],
       "reviewedFields": ["sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -578,7 +582,7 @@ int arr[3][4];   // 3 行 4 列，共 12 个 int
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "二维数组", "sizeof"]
         },
         {
             id: 9,
@@ -601,7 +605,7 @@ int factorial(int n) {
             sourcePage: 3,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "递推", "循环"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -638,7 +642,7 @@ int factorial(int n) {
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "稳定性", "排序算法"]
         },
         {
             id: 11,
@@ -696,7 +700,7 @@ int bubble_sort(vector<int> &arr) {
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "冒泡排序", "数组"]
         },
         {
             id: 12,
@@ -733,7 +737,7 @@ int bubble_sort(vector<int> &arr) {
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "冒泡排序", "复杂度分析"]
         },
         {
             id: 13,
@@ -785,7 +789,7 @@ void insertion_sort(vector<int> &nums) {
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "插入排序", "数组"]
         },
         {
             id: 14,
@@ -837,7 +841,7 @@ int main() {
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "文件操作", "输入输出"]
         },
         {
             id: 15,
@@ -900,7 +904,7 @@ int main() {
             sourcePage: 5,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "异常处理"],
       "code": "#include <iostream>\nusing namespace std;\n\nint divide(int a, int b) {\n    if (b == 0) {\n        throw runtime_error(\"division by zero error \");\n    }\n    return a / b;\n}\n\nint main() {\n\nint x = 10;\n    int y = 0;  // 设为 0 会导致除零错误\n\ntry {\n        int result = divide(x, y);\n        cout << \"result: \" << result << endl;\n    } catch (const runtime_error& e) {\n        cout << \"caught an exception: \" << e.what() << endl;\n    }\n\nreturn 0;\n\n}",
       "reviewedFields": ["code","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -924,7 +928,7 @@ int main() {
 指针必须与所指向对象的类型匹配：整型指针只能存储整型变量的地址，字符指针只能存储字符变量的地址，这是 C++ 类型系统对指针的基本约束。
 
 **考点：** 指针的定义、初始化与取地址运算符 \`&\`。`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "指针", "变量初始化"]
         },
         {
             id: 17,
@@ -946,7 +950,7 @@ int main() {
 在 C++ 中，除了引用传递和值传递，还有指针传递（\`int*\`）方式。三者均可实现函数内外数据交换，但语义和使用场景不同：引用传递适合需要修改实参且不希望操作指针的场合。
 
 **考点：** C++ 引用传递的机制与实参修改。`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "参数传递"]
         },
         {
             id: 18,
@@ -968,7 +972,7 @@ int main() {
 可以用 \`sizeof\` 运算符验证：在同一系统下执行 \`sizeof(char*)\`、\`sizeof(int*)\`、\`sizeof(double*)\`，结果必然相同。
 
 **考点：** 指针的物理大小与系统架构的关系。`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "指针", "sizeof"]
         },
         {
             id: 19,
@@ -990,7 +994,7 @@ C++ 中的静态二维数组（如 \`int arr[3][4]\`）在定义时，**所有�
 在 GESP 四级涉及的多维数组场景中，通常使用静态二维数组。若题目要求“行列动态变化”，必须选择 \`vector\` 等容器类型。
 
 **考点：** 静态数组的内存空间分配与维度限制。`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "二维数组", "数组内存"]
         },
         {
             id: 20,
@@ -1012,7 +1016,7 @@ C++ 中的静态二维数组（如 \`int arr[3][4]\`）在定义时，**所有�
 斐波那契数列是递推的经典例子：已知 f(1)=1, f(2)=1，状态转移方程为 f(n)=f(n-1)+f(n-2)（n≥3）。通过递推可高效计算 f(n)，而递归（无记忆化）会导致指数级时间复杂度。
 
 **考点：** 递推算法的状态转移逻辑。`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "递推"]
         },
         {
             id: 21,
@@ -1036,7 +1040,7 @@ C++ 中的静态二维数组（如 \`int arr[3][4]\`）在定义时，**所有�
 稳定排序有冒泡排序、插入排序、归并排序；不稳定排序有选择排序、快速排序、堆排序。GESP 4 级常考察稳定性的判断及其原因。
 
 **考点：** 排序算法的稳定性及其反例`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "选择排序", "稳定性"]
         },
         {
             id: 22,
@@ -1064,7 +1068,7 @@ C++ 中的静态二维数组（如 \`int arr[3][4]\`）在定义时，**所有�
 同属于 $O(N^2)$ 的排序算法还有选择排序。它们的实际运行效率受数据分布影响，选择排序则不存在最好情况优化，始终为 $O(N^2)$。
 
 **考点：** 常见排序算法的复杂度对比与最好情况分析`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "插入排序", "冒泡排序", "复杂度分析"]
         },
         {
             id: 23,
@@ -1097,7 +1101,7 @@ int main() {
 可以使用 \`std::set_terminate()\` 自定义异常未捕获时的行为，但这属于进阶内容，GESP 4 级只需理解默认终止机制。
 
 **考点：** C++ 异常传播机制与未捕获异常的处理`,
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "异常处理"]
         },
         {
             id: 24,
@@ -1153,7 +1157,7 @@ int fib(int n) {
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "递推", "复杂度分析", "斐波那契"]
         },
         {
             id: 25,
@@ -1199,7 +1203,7 @@ int main() {
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "指针", "参数传递", "函数"]
         },
         ...programmingQuestions
     ]

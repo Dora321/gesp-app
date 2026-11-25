@@ -55,6 +55,8 @@ C++ 中若希望在子函数中修改主函数变量的值，应使用引用传�
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "参数传递",
+                "函数",
             ]
         },
         {
@@ -83,6 +85,9 @@ cout<<strArr[arr[1]]<<endl;`,
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "数组",
+                "字符串",
+                "变量初始化",
             ],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -120,6 +125,9 @@ int main()
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "指针",
+                "运算符",
+                "数组",
             ],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -149,6 +157,8 @@ for(int i=0;i<3;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "二维数组",
+                "嵌套循环",
             ],
       "reviewedFields": ["options","explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -210,6 +220,7 @@ cout << *p;    // 解引用输出 2
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "指针",
             ]
         },
         {
@@ -257,6 +268,7 @@ C++ 中 \`p + n\` 的实际地址偏移量为 \`(char*)p + n * sizeof(*p)\` 字�
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "指针",
             ]
         },
         {
@@ -294,6 +306,9 @@ int main()
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "指针",
+                "参数传递",
+                "函数",
             ],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -338,6 +353,9 @@ GESP 四级常结合考查逻辑运算符（\`&&\`、\`||\`、\`!\`）的短路�
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "逻辑运算",
+                "运算符",
+                "进制转换",
             ]
         },
         {
@@ -389,6 +407,9 @@ for(int i=0;i<26;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "数组",
+                "字符与ASCII",
+                "变量初始化",
             ],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -431,6 +452,7 @@ for(int i=1;i<=10;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "文件操作",
             ],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -480,6 +502,8 @@ for(int i=0;i<strlen;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "字符串",
+                "字符与ASCII",
             ]
         },
         {
@@ -544,6 +568,8 @@ for(int i=1;i<=n;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "算术运算",
+                "循环",
             ]
         },
         {
@@ -585,6 +611,8 @@ for(int i=1;i<=n;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "计算机基础",
+                "人工智能",
             ]
         },
         {
@@ -626,6 +654,8 @@ for(int i=1;i<=n;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "计算机历史",
+                "计算机基础",
             ]
         },
         {
@@ -641,6 +671,9 @@ for(int i=1;i<=n;i++)
                 "客观题",
                 "单选题",
                 "GESP4级",
+                "循环",
+                "边界分析",
+                "算术运算",
             ],
       "sourcePage": 1,
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
@@ -688,6 +721,8 @@ void sort(RandomIt first, RandomIt last);
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "排序算法",
+                "STL容器",
             ],
       "sourcePage": 5,
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
@@ -720,6 +755,8 @@ void sort(RandomIt first, RandomIt last);
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "递归",
+                "复杂度分析",
             ]
         },
         {
@@ -755,6 +792,8 @@ void sort(RandomIt first, RandomIt last);
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "运算符",
+                "表达式",
             ]
         },
         {
@@ -799,6 +838,7 @@ fileout<<"hello";`,
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "文件操作",
             ]
         },
         {
@@ -841,6 +881,8 @@ cout<<buff<<endl;`,
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "文件操作",
+                "字符串",
             ]
         },
         {
@@ -858,6 +900,8 @@ cout<<buff<<endl;`,
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "逻辑运算",
+                "输入输出",
             ],
       "sourcePage": 5,
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
@@ -889,6 +933,8 @@ cout<<name<<endl;`,
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "字符串",
+                "运算符",
             ],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -922,6 +968,8 @@ cout<<name<<endl;`,
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "排序算法",
+                "STL容器",
             ]
         },
         {
@@ -939,6 +987,8 @@ cout<<name<<endl;`,
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "计算机基础",
+                "编程环境",
             ],
       "sourcePage": 5,
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
@@ -960,6 +1010,8 @@ cout<<name<<endl;`,
                 "客观题",
                 "判断题",
                 "GESP4级",
+                "循环",
+                "等价变换",
             ],
       "sourcePage": 5,
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
@@ -976,6 +1028,8 @@ const programmingQuestions = [
       samples: [{"input":"2\nabc a\nd def\nabc.d.d.abc.abcd.","output":"a.def.def.a.UNK."},{"input":"3\nabc a\nd def\nabcd xxxx\nabc,(d)d!-abc?abcd","output":"a,(def)def!-a?xxxx"},{"input":"1\nabcdefghij klmnopqrst\n!()-[]{}\\|;:'\",./?<>abcdefghijklmnopqrstuvwxyz","output":"!()-[]{}\\|;:'\",./?<>UNK"}],
       question: "\n# [GESP202312 四级] 小杨的字典\n\n## 题目描述\n\n在遥远的星球，有两个国家 A 国和 B 国，他们使用着不同的语言：A 语言和 B 语言。小杨是 B 国的翻译官，他的工作是将 A 语言的文章翻译成 B 语言的文章。\n\n为了顺利完成工作，小杨制作了一本字典，里面记录了 $N$ 个 A 语言单词对应的 B 语言单词，巧合的是，这些单词都由地球上的 26 个小写英文字母组成。\n\n小杨希望你写一个程序，帮助他根据这本字典翻译一段 A 语言文章。这段文章由标点符号 `!()-[]{}\\|;:'\",./?<>` 和一些 A 语言单词构成，每个单词之间必定由至少一个标点符号分割，你的程序需要把这段话中的所有 A 语言单词替换成它的 B 语言翻译。特别地，如果遇到不在字典中的单词，请使用大写 UNK 来替换它。\n\n例如，小杨的字典中包含 $2$ 个 A 语言单词 `abc` 和 `d`，它们的 B 语言翻译分别为 `a` 和 `def`，那么我们可以把 A 语言文章 `abc.d.d.abc.abcd.` 翻译成 B 语言文章 `a.def.def.a.UNK.` 其中，单词 `abcd` 不在词典内，因此我们需要使用 UNK 来替换它。\n\n## 输入格式\n\n第一行一个整数 $N$，表示词典中的条目数。保证 $N \\le 100$。\n\n接下来 $N$ 行，每行两个用单个空格隔开的字符串 $A$， $B$ ,分别表示字典中的一个 A 语言单词以及它对应的 B 语言翻译。保证所有 $A$ 不重复；保证 $A$ 和 $B$ 的长度不超过 $10$。\n\n最后一行一个字符串 $S$ ，表示需要翻译的 A 语言文章。保证字符串 $S$ 的长度不超过 $1000$，保证字符串 $S$ 只包含小写字母以及标点符号 `!()-[]{}\\|;:'\",./?<>` 。\n\n## 输出格式\n\n输出一行，表示翻译后的结果。\n",
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: "**解析：**\n\n本题考察字符串模拟与映射（字典）查找。题目要求我们将文章中的所有 A 语言单词翻译成 B 语言单词，未知单词替换为 `UNK`，而标点符号保持原样输出。\n\n### 完整算法步骤\n\n1. **建立字典映射**：\n   - 读入词典条目数 `N`。\n   - 使用 C++ 标准库中的 `std::map<string, string>` 存储 A 语言单词到 B 语言单词的键值对。由于 `N <= 100`，`map` 的单次查找时间复杂度为 `O(L * log N)`（`L` 为单词长度），查询效率完全满足要求。\n\n2. **扫描文章与动态分词**：\n   - 维护一个临时字符串 `word`，用于累加当前正在提取的单词；维护一个结果字符串 `result`（或直接边处理边输出）。\n   - 从头到尾遍历文章字符串 `S` 的每个字符 `c`：\n     - **情况 1：如果是小写字母**（`c >= 'a' && c <= 'z'`），说明它属于某个单词的一部分，执行 `word += c`。\n     - **情况 2：如果是标点符号**，说明前一个单词已经结束：\n       - 如果 `word` 非空，先对该单词进行字典查找：若在字典中能找到该单词，则将翻译词追加到 `result`；若找不到，则将大写 `UNK` 追加到 `result`。随后将 `word` 清空。\n       - 将当前标点符号原样追加到 `result`。\n\n3. **收尾边界处理**：\n   - 遍历完整个字符串后，文章末尾可能直接以字母结尾（没有标点）。因此必须检查 `word` 是否非空，若非空，同样需要查词翻译并追加到 `result` 中。\n\n---\n\n### 样例走查\n\n以样例 1 为例：\n- 字典条目数：`N = 2`\n- 字典映射：`abc -> a`，`d -> def`\n- 待翻译文章：`abc.d.d.abc.abcd.`\n\n逐字符扫描过程如下：\n\n| 当前字符 `c` | 类型 | 临时单词 `word` | 触发操作 | 累积输出 `result` |\n| :--- | :--- | :--- | :--- | :--- |\n| `a`, `b`, `c` | 字母 | `\"abc\"` | 累加字母 | `\"\"` |\n| `.` | 标点 | `\"abc\"` -> `\"\"` | `abc` 存在于字典，翻译为 `a`；输出 `.` | `\"a.\"` |\n| `d` | 字母 | `\"d\"` | 累加字母 | `\"a.\"` |\n| `.` | 标点 | `\"d\"` -> `\"\"` | `d` 存在于字典，翻译为 `def`；输出 `.` | `\"a.def.\"` |\n| `d` | 字母 | `\"d\"` | 累加字母 | `\"a.def.\"` |\n| `.` | 标点 | `\"d\"` -> `\"\"` | `d` 存在于字典，翻译为 `def`；输出 `.` | `\"a.def.def.\"` |\n| `a`, `b`, `c` | 字母 | `\"abc\"` | 累加字母 | `\"a.def.def.\"` |\n| `.` | 标点 | `\"abc\"` -> `\"\"` | `abc` 存在于字典，翻译为 `a`；输出 `.` | `\"a.def.def.a.\"` |\n| `a`, `b`, `c`, `d` | 字母 | `\"abcd\"` | 累加字母 | `\"a.def.def.a.\"` |\n| `.` | 标点 | `\"abcd\"` -> `\"\"` | `abcd` 不在字典中，替换为 `UNK`；输出 `.` | `\"a.def.def.a.UNK.\"` |\n\n最终输出：`a.def.def.a.UNK.`，与样例输出完全一致。\n\n---\n\n### 参考代码实现\n\n```cpp\n#include <iostream>\n#include <string>\n#include <map>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n\n    map<string, string> dict;\n    for (int i = 0; i < n; i++) {\n        string a, b;\n        cin >> a >> b;\n        dict[a] = b;\n    }\n\n    string s;\n    cin >> s;\n\n    string result = \"\";\n    string word = \"\";\n\n    for (char c : s) {\n        if (c >= 'a' && c <= 'z') {\n            word += c; // 遇到小写字母，累积单词\n        } else {\n            // 遇到标点符号，若之前有单词，先翻译该单词\n            if (!word.empty()) {\n                if (dict.count(word)) {\n                    result += dict[word];\n                } else {\n                    result += \"UNK\";\n                }\n                word.clear();\n            }\n            result += c; // 标点符号原样输出\n        }\n    }\n\n    // 处理末尾可能残留的单词\n    if (!word.empty()) {\n        if (dict.count(word)) {\n            result += dict[word];\n        } else {\n            result += \"UNK\";\n        }\n    }\n\n    cout << result << endl;\n    return 0;\n}\n```\n\n**易错提醒：**\n- **末尾单词的处理**：若文章末尾没有标点符号（例如样例 2 的结尾 `abcd`），循环结束后必须单独补一次查词与输出；而样例 1 以句点结尾，末尾的 `abcd` 由最后的句点触发翻译，句点本身随后原样输出。\n- **连续标点的处理**：当遇到连续两个标点（如 `!?`）时，处理第一个标点后 `word` 已经被清空，处理第二个标点时 `word` 为空，此时切记不可触发查词，直接输出标点即可。\n- **未识别单词替换**：题干明确要求使用大写的 `UNK`，注意不要拼错或写成小写 `unk`。\n- **整体匹配**：查字典必须以完整单词匹配，`abcd` 不能因其前缀 `abc` 在字典中就被翻译为 `a`。",
       tags: ["编程题", "哈希", "集合"],
       template: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
@@ -1018,6 +1072,8 @@ const programmingQuestions = [
 输出一行，表示你最多能获胜几轮。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: `**解析：**
 
 本题是一道非常典型的**贪心算法**题目。虽然题目背景借用了“田忌赛马”的故事，但与要求“总分最高（输局扣分）”的经典赛马问题不同，本题的目标是**最大化我方的获胜轮数**，并且双方所有马匹的速度两两不同（不存在平局，输局也不会扣分）。
