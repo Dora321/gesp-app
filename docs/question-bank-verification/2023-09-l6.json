@@ -590,41 +590,44 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "options"
-      ],
-      "blockedDimensions": [
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
+        1,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第7页题干“关于C++语言，以下说法不正确的是（ ）。”及四个选项文字均与当前数据一致。",
-          "review": "PDF第7页题干“关于C++语言，以下说法不正确的是（ ）。”与网站一致。"
+          "initial": "PDF第7页题干「第15题 关于C++语言，以下说法不正确的是（ ）。」与候选一致。",
+          "review": "第7页题干「第15题 关于C++语言，以下说法不正确的是（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF四个选项与当前options逐项一致。",
-          "review": "PDF第7页四项（const常对象只能调用const成员函数／所有常量静态变量只能在类外初始化／类A对象a为类B静态成员应在main之前初始化／静态全局对象、常量全局对象main之前初始化、main执行完后析构）文字与顺序和网站一致。"
+          "initial": "PDF第7页A–D四项文字、顺序与候选一致：A 常对象只能调用 const 成员函数；B 所有常量静态变量都只能在类外初始化；C 类 A 的对象 a 作为类 B 静态成员应在 main 前初始化；D 静态全局对象、常量全局对象在 main 前初始化、执行完 main 后被析构。",
+          "review": "第7页四项与候选文字、顺序一致：A. 若对象被定义为常量，则它只能调用以 const 修饰的成员函数。／B. 所有的常量静态变量都只能在类外进行初始化。／C. 若类 A 的对象 a 是类 B 的静态成员变量，则 a 在 main() 函数调用之前应被初始化。／D. 静态全局对象、常量全局对象都是在 main 函数调用之前完成初始化，执行完 main 函数后被析构。"
         },
         "answer": {
-          "initial": "PDF答案表第15题标D（索引3），当前answer=3；但严格按现代C++，B项“所有常量静态变量只能在类外初始化”存在static const int/constexpr/inline static等类内初始化反例，而D项对具有非平凡析构函数的静态/全局类对象通常成立，题目存在多解争议，故保留官方D不擅自改answer。",
-          "review": "第1页答案表第15题为D（索引3），网站answer=3，与官方键完全一致——本维度核对的是网站stored answer与官方答案表的对应关系，通过。学理备注：B项在现代C++中存在反例（static const整型/constexpr/inline static可类内初始化），D项对基本类型常量全局对象“被析构”表述不严谨，题源本身欠严谨，但官方指定答案唯一为D，网站解析已披露B项例外并按考试口径维持官方答案，争议已留痕，不改answer。"
+          "initial": "PDF第1页答案表第15题为D（索引3），候选 answer=3 一致。独立判断：A 为 const 正确性规则；C 静态成员具静态存储期、在 main 前初始化；D 把「内存回收」等同于「执行析构函数」，对基本类型全局常量不成立，故 D 为官方错误项。B 项严格语义存在反例，见 unresolved，但不改变官方答案 D。",
+          "review": "第1页答案表第15题为D（0起始索引3），候选 answer=3 与官方键一致。我的独立判断：A（const 对象仅可调 const 成员函数）、C（静态存储期对象 main 前初始化）正确；D 把基本类型全局常量的「内存回收」说成「被析构」，不成立，D 为官方错误项。B 项存在 static const 整型/枚举成员类内初始化的 ISO C++ 特例，属题源欠严谨，不构成与官方键的冲突，仅备案。"
         },
         "explanation": {
-          "initial": "当前解析将B断定为正确、将D仅以“基本类型无析构函数”断定为错误，未充分标注B项在现代C++中的反例与题目争议，需改为保留官方答案并说明争议。",
-          "review": "网站解析以“基本类型常量全局对象无析构函数，谈不上被析构”判D不确认（区分内存回收与执行析构），并明确注明B项在现代C++的类内赋初值特例、按考试基准口径予以排除——立场与官方一致且已披露争议点，事实性无误，无需重写；answer与解析口径匹配。"
+          "initial": "候选解析以「基本类型全局常量无析构函数」判定 D 不严谨，逐项说明 A、B、C，并区分「内存回收」与「析构」，与官方答案 D 自洽；未发现与答案冲突的事实错误。B 项的现代 C++ 特例已在 unresolved 备案。",
+          "review": "候选解析以「基本类型全局常量无析构函数」判定 D 不严谨，逐项说明 A、B、C，区分「内存回收」与「执行析构」，与官方答案 D 自洽；对 B 项特例已按考试口径披露，未隐瞒争议。与我的独立重推无冲突，未发现需改写的技术错误。"
         }
       },
-      "unresolved": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-4/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-4/2023-09-l6.glm.json"
       ]
     },
     {
@@ -903,38 +906,40 @@
       "id": 24,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
+        1,
         7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第7页判断题第9题原文为“如果节点数为 N，广度搜索算法的最差时间复杂度为 O(N)。”；站内写作“广度优先搜索”，属等价术语，无实质差异。",
-          "review": "PDF 第 7 页判断题第 9 题原文（图中 N、O(N) 为数学符号，文本层缺失但页面图可辨）“如果节点数为N，广度搜索算法的最差时间复杂度为O(N)。”；站内写作“广度优先搜索”，为等价补全，无实质差异。"
+          "initial": "PDF第7页判断题第9题原文「如果节点数为N，广度搜索算法的最差时间复杂度为O(N）。」（N 与 O(N) 为斜体）；候选写作「广度优先搜索算法」为同义补全，不影响判定与作答。",
+          "review": "我对第7页判断题第9题原图做了高倍裁剪复核：原图原文为「第9题 如果节点数为N，广度搜索算法的最差时间复杂度为O(N)。」（N、O(N) 为斜体数学符号）——图上并无「优先」二字，此前轮次「图即为『广度优先』」的记录有误，本轮予以修正。候选写作「广度优先搜索算法」是对「广度搜索」的标准全称补全，属同义表述，不改变所考查的算法与判定，不影响作答；候选无漏项、无歧义。"
         },
         "answer": {
-          "initial": "PDF第7页判断题答案表第9题符号为×，对应officialAnswer=1（错误）；站内answer=0（正确）与官方答案表相反。",
-          "review": "PDF 第 7 页判断题答案表第 9 题符号为 √（整行 √ × × √ √ √ × × √ √），按正确=0 映射，officialAnswer=0；站内 answer=0 一致。初核草稿声称第 9 题为 × 并提议改为 answer=1，与官方答案表不符（× 位于第 2、3、7、8 题），否决其修改。"
+          "initial": "PDF第7页判断题答案表整行为 √ × × √ √ √ × × √ √，第9格为 √；按「正确=0」映射，候选 answer=0 一致。独立判断：BFS 每个节点至多入队、出队各一次，遍历 N 个节点为 O(N)（连同边计为 O(N+E)）。",
+          "review": "第7页判断题答案表整行为 √ × × √ √ √ × × √ √，判断第9题为√，按正确=0映射 officialAnswer=0，候选 answer=0 一致。我的独立判断：以节点数 N 计量、每节点至多入队出队一次的口径下，BFS 最差遍历全部 N 个节点为 O(N)，判√自洽；一般图连同边计为 O(N+E) 属量纲口径之争，不构成对官方√判定的冲突。"
         },
         "explanation": {
-          "initial": "现有解析以“每个节点入队、出队各一次”断言O(N)，忽略BFS通常为O(V+E)；题目仅给节点数N而未限制边数，稠密图中E可达O(N²)，不能笼统断言最差为O(N)。",
-          "review": "独立推导：BFS 中每个节点至多入队、出队一次，以节点数 N 为计量规模时最差遍历全部节点得 O(N)；站内解析同时注明“连同边计为图的 O(N+E)”，与官方 √ 口径自洽且覆盖边数因素，无需改写。"
+          "initial": "候选解析以队列与「每节点入队、出队各一次」推得 O(N)，并注明图论中按边计为 O(N+E)；与官方 √ 及 answer=0 自洽，未发现事实错误。稠密图 O(N²) 属另一口径，不构成本题源映射冲突。",
+          "review": "候选解析在节点计数口径下推得 O(N)，并注明「若连同边一起计，图为 O(N+E)」，覆盖边数因素后解析在任何口径下均无矛盾性陈述；与官方√及 answer=0 自洽，未发现事实错误。"
         }
       },
-      "unresolved": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-4/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-4/2023-09-l6.glm.json"
       ]
     },
     {
@@ -1092,32 +1097,9 @@
         "修改 explanation 未获得两模型一致批准，待回流",
         "explanation 尚无一致、完整的原卷核验结论"
       ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 24,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
     }
   ],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2023-09-l6.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2023-09-l6.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-4/2023-09-l6.integration.json"
 }

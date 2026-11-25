@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-25T06:29:41.565Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 3\n1 2\n1 3\n2 3",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "input": "4 4\n1 2\n2 3\n3 4\n2 4",
+          "output": "2",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "两城市一条路",
+          "input": "2 1\n1 2\n",
+          "output": "1",
+          "reason": "两城离心率均为1，取编号最小的1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "3 点链",
+          "input": "3 2\n1 2\n2 3\n",
+          "output": "2",
+          "reason": "3的离心率为1，1和2为2，故取3。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "5 点链",
+          "input": "5 4\n1 2\n2 3\n3 4\n4 5\n",
+          "output": "3",
+          "reason": "链的中心是3，最大距离2；1和5为4，2和4为3，故取3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "de61525ea6269f97fecb59c2d03cd6657c214ba05e7d1256db0c0c491e4349bf"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n2 1 3 2\n1 5 6 3",
+          "output": "12",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "12\n",
+          "passed": true
+        },
+        {
+          "input": "8\n1 3 2 4 3 5 4 6\n0 2 5 6 4 3 3 4",
+          "output": "21",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "21\n",
+          "passed": true
+        },
+        {
+          "name": "单名同学",
+          "input": "1\n0\n5\n",
+          "output": "5",
+          "reason": "单元素组贡献a1=5，无max-min项。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "极值配对优于连续分组",
+          "input": "3\n1 3 5\n3 20 18\n",
+          "output": "27",
+          "reason": "分组{1,5}与{3}：20+(5-1)+3=27，优于连续分组[1,3]+[5]的25。",
+          "kind": "boundary",
+          "actual": "27\n",
+          "passed": true
+        },
+        {
+          "name": "两人一组",
+          "input": "2\n1 10\n0 0\n",
+          "output": "9",
+          "reason": "两人同组贡献a2+(10-1)=9，分成两组为0。",
+          "kind": "boundary",
+          "actual": "9\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "ebeb9293ca263ac472758116e327440b25dadcd947c80840a95fa9be32705f57"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "executedAt": "2026-11-25T06:29:33.027Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "6\nstreet\n2 1 7 4 3 3",
+          "output": "13",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "13\n",
+          "passed": true
+        },
+        {
+          "input": "8\nblossoms\n1 1 2 3 5 8 13 21",
+          "output": "8",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1",
+          "input": "1\nz\n7\n",
+          "output": "7",
+          "reason": "单字符只能作为长度 1 的子串，dp[1]=a[1]=7，验证循环下界与 dp[0]=0 初值。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "全同字符只能逐单字符切分",
+          "input": "4\naaaa\n1 2 3 4\n",
+          "output": "4",
+          "reason": "任何长度 ≥2 的段都含重复 a 不合法，最优为 4 个单字符共 4×a[1]=4，验证 vis 重复剪枝与 break 分支。",
+          "kind": "boundary",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "name": "重复字符剪枝与高价值长段取舍",
+          "input": "3\naba\n1 100 1\n",
+          "output": "101",
+          "reason": "「aba」含重复 a 不合法；「a」+「ba」或「ab」+「a」= 1+100 = 101 优于其他切分，验证跨重复点的转移。",
+          "kind": "boundary",
+          "actual": "101\n",
+          "passed": true
+        },
+        {
+          "name": "整串无重复时按价值择优",
+          "input": "5\nabcde\n5 4 3 2 1\n",
+          "output": "25",
+          "reason": "五段单字符 5×5=25 优于整段 a[5]=1 及其他组合，验证多段转移取最大。",
+          "kind": "boundary",
+          "actual": "25\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "243dc8cddfa7b898bb5c6203a444348cb7a111b0b7a4d114ad5cd829261246b2"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n1 2 6\n1 3 1\n3 4 5",
+          "output": "18",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "18\n",
+          "passed": true
+        },
+        {
+          "input": "7\n1 2 1\n2 3 1\n3 4 1\n7 6 1\n6 5 1\n5 1 1",
+          "output": "9",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模 n=1（无道路）",
+          "input": "1\n",
+          "output": "0",
+          "reason": "没有边时 sum=0、mx=0，答案 2*0-0=0，验证空图与 DFS 入口边界。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "单条最大边权",
+          "input": "2\n1 2 1000000000\n",
+          "output": "1000000000",
+          "reason": "sum=1e9、mx=1e9，2*1e9-1e9=1e9，验证 long long 在 2×10⁹ 量级不溢出。",
+          "kind": "boundary",
+          "actual": "1000000000\n",
+          "passed": true
+        },
+        {
+          "name": "星形树取最长分支为终点",
+          "input": "4\n1 2 5\n1 3 7\n1 4 2\n",
+          "output": "21",
+          "reason": "sum=14、距根最远为 7（城市 3），答案 2*14-7=21，验证多分支下 mx 的选取。",
+          "kind": "boundary",
+          "actual": "21\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "8e5ac05c25c5da2c987b40ea742399f23486c6af857af79ac9008b6da602d0f0"
+    }
+  ]
+}

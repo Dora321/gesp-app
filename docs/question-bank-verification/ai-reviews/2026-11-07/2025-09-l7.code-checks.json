@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-25T06:29:39.955Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4 4\n1 2\n2 3\n3 1\n1 4",
+          "output": "0",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "input": "6 4\n1 2\n2 3\n3 1\n6 5",
+          "output": "2",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "单点自环",
+          "input": "1 1\n1 1\n",
+          "output": "0",
+          "reason": "只有一个连通块（自环不改变连通性），需加0条边。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "一条边连接两点",
+          "input": "3 1\n1 2\n",
+          "output": "1",
+          "reason": "连通块为{1,2}与{3}，需1条边。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "自环与重边",
+          "input": "3 3\n1 1\n2 2\n1 2\n",
+          "output": "1",
+          "reason": "自环不影响连通性，1和2合并后与3共2个连通块，需1条边。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "45f090a452c901597aba94b5d646c554580255b9109e77a4652c78100dcb2149"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n1 6\n3 7\n2 4",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "4\n1 1\n2 2\n1 3\n2 4",
+          "output": "3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "最小坐标时刻",
+          "input": "1\n1 1\n",
+          "output": "1",
+          "reason": "t=x=1，可从(0,0)右移到(1,1)收集。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "时刻早于坐标",
+          "input": "1\n5 3\n",
+          "output": "0",
+          "reason": "3个时刻最多右移3格，到不了x=5。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "同一坐标连续时刻",
+          "input": "3\n1 1\n1 2\n2 2\n",
+          "output": "2",
+          "reason": "先在t=1收集(1,1)，停留到t=2再收集(1,2)，最多2枚。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "bed66a3ce523d5f2c4bbebba7c4f88e377a012573bf605553e65be6fa5429f7a"
+    }
+  ]
+}

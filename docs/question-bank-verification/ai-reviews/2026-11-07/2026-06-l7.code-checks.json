@@ -1,0 +1,102 @@
+{
+  "executedAt": "2026-11-25T06:29:44.746Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n6\n1 6\n2 1\n3 2\n4 3\n5 4\n6 5\n6\n1 3\n3 5\n5 1\n2 4\n4 6\n6 2\n3\n1 2\n2 3\n3 1\n5\n1 4\n2 5\n3 1\n4 2\n5 3",
+          "output": "2\n3\n3\n3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n3\n3\n3\n",
+          "passed": true
+        },
+        {
+          "name": "三角形",
+          "input": "1\n3\n1 2\n2 3\n3 1\n",
+          "output": "3",
+          "reason": "奇环需3色。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "偶环",
+          "input": "1\n4\n1 2\n2 3\n3 4\n4 1\n",
+          "output": "2",
+          "reason": "偶环2色交替即可。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "两个奇环",
+          "input": "1\n6\n1 2\n2 3\n3 1\n4 5\n5 6\n6 4\n",
+          "output": "3",
+          "reason": "存在奇环时至少3色，两个三角形均可3色。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "995024cfebf96c1e1a440eb3842197af401c71849f3b65eecb96fd16852a8965"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "6\n1 6 3 2 9 1",
+          "output": "55",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "55\n",
+          "passed": true
+        },
+        {
+          "input": "5\n3 1415 926 53 58",
+          "output": "5771",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "5771\n",
+          "passed": true
+        },
+        {
+          "name": "单元素",
+          "input": "1\n5\n",
+          "output": "0",
+          "reason": "删除唯一元素时两侧邻居不存在，计0分。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "两元素",
+          "input": "2\n1 2\n",
+          "output": "2",
+          "reason": "先删1获得2，再删2获得0，共2；反向只得1。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "三元素",
+          "input": "3\n1 2 3\n",
+          "output": "7",
+          "reason": "先删2得1+3=4，再删1得3，最后删3得0，共7。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6183e3197187eeab76cbfae5d5730a3e1a7d7a965dcca0c1ecc9e9c9a54a9a0f"
+    }
+  ]
+}

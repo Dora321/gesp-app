@@ -671,6 +671,10 @@ D 的编码：从根出发每一步取分支值：1.00→0.60（右，1）→ 0.
             score: 2,
             explanation: "**答案：D**\n\n**核心解析：** 静态存储期对象在 main() 之前完成初始化，但“执行完 main() 后都被析构”说法错误。整型、浮点型等基本类型的全局常量属于平凡类型，没有析构函数，进程结束时只是回收内存；只有含非平凡析构函数的类对象，才会在 main() 返回后按构造的逆序执行析构。\n\n**选项分析：**\n- A 正确：const 对象只能调用 const 成员函数，否则可能修改其状态。\n- B 正确：类的静态成员在类内只是声明，需在类外定义并初始化。\n- C 正确：静态成员具有静态存储期，在 main() 前完成初始化。\n- D 错误：把“内存回收”和“执行析构函数”混为一谈，基本类型常量根本没有析构过程。\n\n**考点：** 静态成员、对象生命周期。\n\n**易错点：** 判断析构相关说法时，先确认对象是不是类类型、有没有非平凡析构函数；操作系统回收内存并不等于执行析构函数，基本类型常量更不存在析构过程。",
             tags: ['静态成员', '类'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 16,
@@ -859,6 +863,10 @@ DFS 是 Depth-First Search（深度优先搜索）的英文缩写，沿一条路
 **考点：** 时间复杂度
             `,
             tags: ['广度优先搜索', '复杂度分析'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 25,

@@ -1,425 +1,1098 @@
 {
   "paperId": "2026-03-l6",
-  "reviewedAt": "2026-10-31",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2026-03-l6"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "Grok CLI（调度）+ 本机机械队列（资料、自动校验与发布）"
   },
   "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1738426015547424.pdf",
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++6级.pdf",
     "mirrorSha": "440d30834c0e6bdec700375405ca7f7094c60505",
+    "mirrorBytes": 1111135,
     "shaVerified": true,
-    "fetchedAt": "2026-10-24",
-    "pages": {
-      "单选题": "pp.1-6（Q1-Q15，p.1 含官方单选答案表）",
-      "判断题": "pp.6-8（Q1-Q10，p.6 含官方判断答案表）",
-      "编程题": "pp.8-12（3.1 选数、3.2 完全二叉树，各含参考程序）"
-    }
+    "sha256": "491e4ed33ac381a30936ab82a567f146684d920e3afd295948a99dfe760c6a87",
+    "pages": 12
   },
-  "rebuild": {
-    "executedAt": "2026-10-24",
-    "method": "官方 PDF 逐页转写整卷重建",
-    "summary": "旧版题库存在严重串卷污染：Q6/Q7/Q10/Q16/Q18 共 5 题在官方原卷中不存在（系 2025-12-l6 同号题串入，其中 Q7/Q16/Q18 答案还与串入源相反），编程题 2 道（路径覆盖/道具商店）实为 2025-12-l6 的题目，原卷真实题目大量缺失。本次以 git-blob SHA 校验通过的官方 PDF（tmp/2026-03-l6.pdf，SHA1=440d30834c0e6bdec700375405ca7f7094c60505）渲染页 tmp/pages/2026-03-l6/p01.png ~ p12.png 为唯一依据，整卷重建 src/data/gesp/level6/2026-03-l6.js：单选 15 题 + 判断 10 题 + 编程 2 题，共 27 题，全部按原卷转写；每题答案与 p.1/p.6 官方答案表逐题核对一致；编程题采用原卷 3.1.6/3.2.6 参考程序，已用 g++ 编译并通过全部 4 个官方样例（输出 7/11/4/3）。本卷无图形题（判断第 3 题的树形为字符画，以 ASCII 代码块呈现，无需裁图）。重建后不再保留 sourceIntegrity/integrityNote 标记。"
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2026-03-l6.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2026-03-l6.glm.json",
+    "previous": "ai-reviews/2026-11-07/2026-03-l6.previous-evidence.json"
   },
+  "inputSha256": "f69a71dfa03625acb3335ca53d3d7a69cc34c3260e10825c51854a93942e890c",
   "questions": [
     {
       "id": 1,
-      "type": "single",
-      "answer": "A",
-      "sourcePage": 1,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（隐式默认构造函数规则）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第1页第1题题干为“下列关于 C++ 类的描述，正确的是”，与站点 question 语义一致。",
+          "review": "第 1 页第 1 题题干「下列关于 C++ 类的描述，正确的是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第1页 A-D 四项与站点 options 顺序和内容一致；A 项为“如果类没有用户声明的构造函数，那么编译器会隐式声明一个默认构造函数”",
+          "review": "第 1 页 A-D 与站点 options 逐项一致（A 隐式默认构造函数、B 析构可重载、C 所有成员必须 public、D 类和结构体无区别含默认访问权限）。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第1题为 A；按 0 起始映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表题 1 为 A，0 起始索引 0，站点 answer=0；A 为唯一正确描述。"
+        },
+        "explanation": {
+          "initial": "未声明构造函数时编译器隐式生成默认构造；析构不能重载、成员不必 public、class/struct 默认访问权限不同，B/C/D 错。",
+          "review": "站点解析确认 A 并逐项排除 B（析构不能重载）/C（默认 private）/D（默认访问权限正是区别），无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 2,
-      "type": "single",
-      "answer": "B",
-      "sourcePage": 1,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        1,
+        2
+      ],
       "method": [
-        "原卷转写（代码 p.2）",
-        "答案表核对（p.1）",
-        "独立推导一致（虚函数动态绑定）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第1页第2题题干为“s1->draw() 和 s2->draw() 输出不同结果的主要原因”，与站点 question 语义一致。",
+          "review": "第 1 页第 2 题题干「下列代码中，s1->draw(); 和 s2->draw(); 输出不同结果的主要原因是（ ）。」与站点 question 一致；站点 question 内嵌代码与 code 字段为原卷第 2 页 34 行代码的等价排版（virtual draw、override、main 中经基类指针调用）。"
+        },
+        "options": {
+          "initial": "PDF 第2页 A-D 四项与站点 options 顺序和内容一致；B 项为“Shape 中的 draw() 被声明为虚函数”",
+          "review": "第 2 页 A draw() 是普通成员函数、B Shape 中的 draw() 被声明为虚函数、C Circle 和 Rectangle 中使用了 public 继承、D 指针变量名不同 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第2题为 B；按 0 起始映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表题 2 为 B，0 起始索引 1，站点 answer=1；virtual 声明使基类指针调用按实际类型动态绑定。"
+        },
+        "explanation": {
+          "initial": "基类 draw() 为 virtual，派生类 override，基类指针调用发生动态绑定。",
+          "review": "站点解析说明运行时多态机理并逐项排除 A（静态类型调用）/C（public 继承只影响访问权限）/D，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 3,
-      "type": "single",
-      "answer": "C",
-      "sourcePage": 2,
-      "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（类外访问 private 成员编译错误）",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
+      "resolved": true,
       "dimensions": [
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q3 explanation 升级；答案未改"
+      "blockedDimensions": [
+        "statement"
+      ],
+      "official": 2,
+      "sourcePages": [
+        2,
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第2页第3题题干为“下面的代码在 main() 中有一行会导致编译错误，请找出来”，题干文字与站点一致，但站点 question 内代码块与 PDF 第2页不一致（①的位置及“大嘴/大橘”），已按原卷修正；code 字段正确。",
+          "review": "修复后核验通过：原卷第 2 页 17 行 Pet 类代码为「cout << cat.getName(); // ① / cat.birthday(); // ② / cat.name = \"大橘\"; // ③ / cout << cat.getName(); // ④」且 main 末尾无 return 0;；站点原 question 内嵌副本 ① 丢失 cout、③ 误作「大嘴」，替换值修正为与原卷及站点 code 字段一致（并保留站点原有的 return 0;，属良性规范）；code 字段本身与原卷一致（仅空格排版差异），无需改动。"
+        },
+        "options": {
+          "initial": "PDF 第3页 A-D 四项与站点 options 顺序和内容一致；C 项为“第③行”",
+          "review": "第 2-3 页 A 第①行、B 第②行、C 第③行、D 第④行 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第3题为 C；按 0 起始映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表题 3 为 C，0 起始索引 2，站点 answer=2；name/age 为 private，main 中 cat.name 赋值（③）越权访问导致编译错误，①②④ 均调用公有成员合法。"
+        },
+        "explanation": {
+          "initial": "name/score 在 private 区，main 中 cat.name 直接访问私有成员导致编译错误；①②④均调用公有函数。**说明：站点原 question 的代码块把①放在 cat.getName() 且写成“大嘴”，与 PDF 第2页的 cout<<...//① 和“大橘”不符，已按原卷修正；code 字段本身正确。**",
+          "review": "站点解析说明 public/private 访问规则、指出③在类外直接赋值私有成员报错，并逐项排除①②④（②在成员函数内改 age 合法），无误。"
+        }
+      },
+      "unresolved": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 4,
-      "type": "single",
-      "answer": "A",
-      "sourcePage": 3,
-      "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（循环队列手动模拟：满，rear=1）",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
+      "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        3
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第3页第4题题干为“游乐园过山车用容量 MAX=5 的循环队列管理排队”，与站点 question 语义一致。",
+          "review": "第 3 页第 4 题题干「游乐园的过山车每次限坐 4 人，用循环队列管理排队（容量 MAX=5，空一格判满）。下面代码执行后，循环队列是否已满？rear 的值是多少？」及 19 行 enqueue/dequeue 代码与站点 question（内嵌代码）一致。"
+        },
+        "options": {
+          "initial": "PDF 第3页 A-D 四项与站点 options 顺序和内容一致；A 项为“已满，rear = 1”",
+          "review": "第 3 页 A 已满，rear = 1、B 未满，rear = 1、C 已满，rear = 2、D 未满，rear = 4 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第4题为 A；按 0 起始映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表题 4 为 A，0 起始索引 0，站点 answer=0；独立模拟最终 front=2、rear=1 且 (rear+1)%5==front 判满。"
+        },
+        "explanation": {
+          "initial": "入队 1~4 后 rear=4，出队两次 front=2，入队 5 时 rear=0，入队 6 时 rear=1；(rear+1)%5=2=front，队列已满。",
+          "review": "站点解析逐步给出 front/rear 变化并强调空一格判满的有效容量与判满条件，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 5,
-      "type": "single",
-      "answer": "D",
-      "sourcePage": 3,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        3
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（生产者消费者环形缓冲区）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第3页第5题题干为“最适合使用循环队列的计算机系统场景”，与站点 question 语义一致。",
+          "review": "第 3 页第 5 题题干「在以下计算机系统应用场景中，最适合使用循环队列的是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第3页 A-D 四项与站点 options 顺序和内容一致；D 项为“生产者和消费者问题中的共享缓冲区”",
+          "review": "第 3 页 A 函数调用保存局部变量和返回地址、B 表达式求值运算符优先级处理、C 进程优先级调度、D 生产者和消费者问题中的共享缓冲区 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第5题为 D；按 0 起始映射为 3，站点 answer=3。",
+          "review": "第 1 页答案表题 5 为 D，0 起始索引 3，站点 answer=3。"
+        },
+        "explanation": {
+          "initial": "循环队列适合 FIFO 缓冲；A/B 用栈，C 用优先队列。",
+          "review": "站点解析说明环形缓冲区的 FIFO 复用特性并逐项排除（栈/栈/优先队列），无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 6,
-      "type": "single",
-      "answer": "B",
-      "sourcePage": 3,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        3
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（根 3，右子树 {4,5} 只能父子）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第3页第6题题干为“BST 中序为 [1,2,3,4,5]、先序首元素为 3，下列说法正确的是”，与站点 question 语义一致。",
+          "review": "第 3 页第 6 题题干「在二叉搜索树（BST）中，若中序遍历的序列为{1, 2, 3, 4, 5}，且先序遍历的第一个序列元素为3，则下列说法正确的是（ ）。」与站点 question 一致（括号风格差异）。"
+        },
+        "options": {
+          "initial": "PDF 第3页 A-D 四项与站点 options 顺序和内容一致；B 项为“元素 4 和 5 不可能是兄弟节点”",
+          "review": "第 3 页 A 该树一定是一棵完全二叉树、B 元素4和5不可能是兄弟节点、C 元素1所在节点的深度可能大于3、D 元素2一定是元素1的父节点 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第6题为 B；按 0 起始映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表题 6 为 B，0 起始索引 1，站点 answer=1；右子树仅 {4,5} 两结点必为父子关系。"
+        },
+        "explanation": {
+          "initial": "根为 3，右子树 {4,5} 只有两个结点，只能父子不能兄弟；A 不一定是完全二叉树，C 深度≤3，D 2 不一定是 1 的父。",
+          "review": "站点解析按 BST 性质切分子树并给出 B 的论证与 A/C/D 反例，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 7,
-      "type": "single",
-      "answer": "A",
-      "sourcePage": 3,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        3,
+        4
+      ],
       "method": [
-        "原卷转写（中序含字母 I，低分辨率下易误读为数字 1，已放大核对为 H D I B E A F J C G）",
-        "答案表核对（p.1）",
-        "独立推导一致（后序 H I D E B J F G C A）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第3页第7题题干为“先序 A B D H I E C F J G、中序 H D I B E A F J C G，求后序”，与站点 question 语义一致。",
+          "review": "第 3 页第 7 题题干「某二叉树共有10个结点，记为A~J，已知它的先序遍历序列为：A B D H I E C F J G，中序遍历序列为：H D I B E A F J C G，则该二叉树的后序遍历序列是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第4页 A-D 四项与站点 options 顺序和内容一致；A 项为“H I D E B J F G C A”",
+          "review": "第 3-4 页 A HIDEBJFGCA（即 H I D E B J F G C A）、B HIDBEJFGCA、C IHDEBJFGCA、D HIDEBFJGCA 与站点 options 内容一致（空格排版差异）。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第7题为 A；按 0 起始映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表题 7 为 A，0 起始索引 0，站点 answer=0；独立重建得后序 H I D E B J F G C A。"
+        },
+        "explanation": {
+          "initial": "先序/中序重建：A 左 {H,D,I,B,E}、右 {F,J,C,G}；左子树 B 的左 D(H,I)、右 E；右子树 C 左 F(右J)、右 G；后序 H I D E B J F G C A。",
+          "review": "站点解析按先序定根、中序切分递归重建并拼接后序，步骤完整，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 8,
-      "type": "single",
-      "answer": "C",
-      "sourcePage": 4,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（先序+中序唯一重建）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页第8题题干为“下列关于树的遍历的说法中，正确的一项是”，与站点 question 语义一致。",
+          "review": "第 4 页第 8 题题干「下列关于树的遍历的说法中，正确的一项是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第4页 A-D 四项与站点 options 顺序和内容一致；C 项为“已知先序和中序可以唯一确定二叉树”",
+          "review": "第 4 页 A 深度优先遍历序列一定唯一、B 先序+后序可唯一确定、C 先序+中序可唯一确定、D 仅先序可唯一确定 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第8题为 C；按 0 起始映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表题 8 为 C，0 起始索引 2，站点 answer=2。"
+        },
+        "explanation": {
+          "initial": "先序定根、中序分左右；先序+后序无法区分单孩子左右，单先序/任意树 DFS 都不唯一。",
+          "review": "站点解析说明先序定根、中序分左右的唯一重建机理并逐项排除，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 9,
-      "type": "single",
-      "answer": "D",
-      "sourcePage": 4,
-      "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（合并权值和 5+7+11+15+26=64）",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
+      "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q9 explanation 升级；答案未改"
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页第9题题干为“频率 {2,3,3,4,6,8} 的哈夫曼编码 WPL”，与站点 question 语义一致。",
+          "review": "第 4 页第 9 题题干「有 6 个字符，它们出现的次数分别为：{2, 3, 3, 4, 6, 8}。现在用哈夫曼编码为这些字符编码，最小加权和路径长度WPL（每个字符的出现次数 × 它的编码长度，再把每个字符结果加起来）的值为（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第4页 A-D 四项与站点 options 顺序和内容一致；D 项为“64”",
+          "review": "第 4 页 A 58、B 60、C 62、D 64 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第9题为 D；按 0 起始映射为 3，站点 answer=3。",
+          "review": "第 1 页答案表题 9 为 D，0 起始索引 3，站点 answer=3；独立构造得 WPL=64。"
+        },
+        "explanation": {
+          "initial": "合并 2+3=5、3+4=7、5+6=11、7+8=15、11+15=26，WPL=5+7+11+15+26=64；按码长 (6+8)*2+(2+3+3+4)*3=64。",
+          "review": "站点解析给出合并序列、非叶权值求和法与定义法双重验证，并提醒合并后重新选最小，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 10,
-      "type": "single",
-      "answer": "B",
-      "sourcePage": 4,
-      "method": [
-        "官方PDF对照",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
+      "resolved": true,
       "dimensions": [
         "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "findings": "假阴性说明：官方题干「对 个不同符号的符号进行哈夫曼编码。若生成的哈夫曼树共有 个结点，则 的值是」中 n、115 均为公式/数字字符，文本层丢失。题库语义正确（哈夫曼树 2n-1=115 → n=58）。",
-      "fix": "无需修复。官方答案行 Q10=B，题库 ans=1 一致。",
-      "resolved": true,
-      "reviewedAt": "2026-10-31",
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q10 explanation 升级；答案未改"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页第10题题干为“哈夫曼树共有 115 个结点，求 n”，与站点 question 语义一致。",
+          "review": "第 4 页第 10 题题干「对 n 个不同符号的符号进行哈夫曼编码。若生成的哈夫曼树共有 115 个结点，则 n 的值是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第4页 A-D 四项与站点 options 顺序和内容一致；B 项为“58”",
+          "review": "第 4 页 A 60、B 58、C 57、D 56 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第10题为 B；按 0 起始映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表题 10 为 B，0 起始索引 1，站点 answer=1；2n−1=115 得 n=58。"
+        },
+        "explanation": {
+          "initial": "哈夫曼树无度 1 结点，总结点 2n-1；2n-1=115 → n=58。",
+          "review": "站点解析从 n0=n2+1 与 n−1 次合并两个角度推导 2n−1 并代入求解，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 11,
-      "type": "single",
-      "answer": "B",
-      "sourcePage": 4,
-      "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（格雷码相邻码距为 1）",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
+      "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q11 explanation 升级；答案未改"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页第11题题干为“关于格雷编码，下列说法正确的是”，与站点 question 语义一致。",
+          "review": "第 4 页第 11 题题干「关于格雷编码（Gray Code），下列说法正确的是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第4页 A-D 四项与站点 options 顺序和内容一致；B 项为“相邻两个编码的二进制位恰好有一位不同”",
+          "review": "第 4 页 A 编码位数越多相邻变化位数越多、B 相邻两个编码的二进制位恰好有一位不同、C 普通二进制按位取反、D 不能用于数字电路和状态转换 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第11题为 B；按 0 起始映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表题 11 为 B，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "格雷码相邻只变一位；位数增加不改变性质，取反/不能用于状态转换均错。",
+          "review": "站点解析以两位反射格雷码验证「相邻仅一位变化」并逐项排除，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 12,
-      "type": "single",
-      "answer": "B",
-      "sourcePage": 4,
-      "method": [
-        "原卷转写（代码 p.5）",
-        "答案表核对（p.1）",
-        "独立推导一致（子结点深度 depth+1，循环含 max_depth）",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
+      "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q12 explanation 升级；答案未改"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        4,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第4页第12题题干为“BFS 返回右视图，三处横线应填写”，与站点 question 语义一致。",
+          "review": "第 4 页第 12 题题干（右视图定义）与站点 question 一致；第 5 页 39 行双队列 BFS 代码（三处横线）与站点 question 内嵌代码一致。"
+        },
+        "options": {
+          "initial": "PDF 第5页 A-D 四项与站点 options 顺序和内容一致；B 项为“depth+1、depth+1、depth<=max_depth”",
+          "review": "第 5 页 A-D 为三行填空块（A depth/depth/depth < max_depth、B depth + 1/depth + 1/depth <= max_depth、C depth + 1/depth + 1/depth < max_depth、D depth/depth/depth <= max_depth），站点 options 将其扩写为等价的完整语句，逐项对应一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第12题为 B；按 0 起始映射为 1，站点 answer=1。",
+          "review": "第 1 页答案表题 12 为 B，0 起始索引 1，站点 answer=1；子节点深度 depth+1，收集结果需遍历 0..max_depth。"
+        },
+        "explanation": {
+          "initial": "子结点深度为父+1；右视图需取 0..max_depth 所有层，闭区间；前两空不+1 会把所有深度记成 0，第三空用 < 会漏最后一层。",
+          "review": "站点解析说明双队列同步、同层从左到右覆盖写哈希表保留最右值、循环边界含等号的理由，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 13,
-      "type": "single",
-      "answer": "C",
-      "sourcePage": 6,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        6
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（DFS 借助递归或栈）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第6页第13题题干为“下列关于树的深度优先搜索（DFS）的说法中，正确的是”，与站点 question 语义一致。",
+          "review": "第 6 页第 13 题题干「下列关于树的深度优先搜索（DFS）的说法中，正确的是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第6页 A-D 四项与站点 options 顺序和内容一致；C 项为“对一棵树进行 DFS 时，常借助递归或栈实现”",
+          "review": "第 6 页 A 按层从上到下访问、B 遍历序列唯一、C 常借助递归或栈实现、D 只能用于二叉树 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第13题为 C；按 0 起始映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表题 13 为 C，0 起始索引 2，站点 answer=2。"
+        },
+        "explanation": {
+          "initial": "DFS 沿分支到底，递归/显式栈均可；A 是 BFS，B 序列不唯一，D 可用于普通树。",
+          "review": "站点解析逐项排除并说明 DFS 适用范围，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 14,
-      "type": "single",
-      "answer": "C",
-      "sourcePage": 6,
-      "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（打家劫舍转移方程）",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
+      "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q14 explanation 升级；答案未改"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        6
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第6页第14题题干为“不能进入相邻两家的最大糖果数，横线填空”，与站点 question 语义一致。",
+          "review": "第 6 页第 14 题题干「小朋友们去邻里拜年……不能连续进入两个相邻的房子……以下是代码实现，请补全横线。」及 18 行 visit 代码与站点 question（内嵌代码）一致。"
+        },
+        "options": {
+          "initial": "PDF 第6页 A-D 四项与站点 options 顺序和内容一致；C 项为“max(dp[i-1], dp[i-2]+nums[i])”",
+          "review": "第 6 页 A dp[i] = dp[i - 1] + nums[i];、B dp[i] = max(dp[i - 1], dp[i - 2] * nums[i]);、C dp[i] = max(dp[i - 1], dp[i - 2] + nums[i]);、D dp[i] = dp[i - 2] + nums[i]; 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第14题为 C；按 0 起始映射为 2，站点 answer=2。",
+          "review": "第 1 页答案表题 14 为 C，0 起始索引 2，站点 answer=2；不选 i 得 dp[i-1]、选 i 得 dp[i-2]+nums[i]。"
+        },
+        "explanation": {
+          "initial": "不选 i 得 dp[i-1]，选 i 则 i-1 不能选，得 dp[i-2]+nums[i]，取大。",
+          "review": "站点解析给出状态定义、初始值与两类互斥决策的转移推导，并逐项排除，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 15,
-      "type": "single",
-      "answer": "A",
-      "sourcePage": 6,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.1）",
-        "独立推导一致（爬楼梯计数 DP）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第6页第15题题干为“dp[i]=dp[i-1]+dp[i-2]，dp[i] 的含义”，与站点 question 语义一致。",
+          "review": "第 6 页第 15 题题干「元宵节晚上……每次可向前走 1 块或 2 块石板。动态规划定义如下：dp[i] = dp[i - 1] + dp[i - 2]，下面关于 dp[i] 的含义最合适的是（ ）。」与站点 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第6页 A-D 四项与站点 options 顺序和内容一致；A 项为“走到第 i 块石板的不同走法数量”",
+          "review": "第 6 页 A 走到第 i 块石板的不同走法数量、B 已经走过的石板总数、C 走回起点的最少步数、D 走回起点的最大步数 与站点 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第1页单选答案表第15题为 A；按 0 起始映射为 0，站点 answer=0。",
+          "review": "第 1 页答案表题 15 为 A，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "最后一步来自 i-1 或 i-2，两类方案相加，dp[i] 是走法数。",
+          "review": "站点解析说明最后一步两类来源互斥完备故方案数相加，并逐项排除，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 16,
-      "type": "judge",
-      "answer": "×",
-      "sourcePage": 6,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        6,
+        7
+      ],
       "method": [
-        "原卷转写（代码 p.7）",
-        "答案表核对（p.6）",
-        "独立推导一致（有参构造函数抑制默认构造生成）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第6页判断题第1题题干为“Point 类带参构造后，Point b; 会调用默认构造并把 x、y 初始化为 0.0”，与站点 question 语义一致。",
+          "review": "第 6 页判断题第 1 题题干（Point 类、第②行 Point b; 会调用默认构造并将 b.x/b.y 初始化为 0.0）与站点 question 一致；第 7 页 14 行 Point 代码与站点内嵌代码一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第1题为 ×；按 0=√/1=× 映射为 1，站点 answer=1。",
+          "review": "第 6 页判断题答案表第 1 题为 ×，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "定义了带参构造后编译器不再生成默认构造，Point b; 编译错误，不会把 x/y 初始化为 0。",
+          "review": "站点解析说明定义构造函数后默认构造不再生成，并给出补救写法（Point() = default 等），无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 17,
-      "type": "judge",
-      "answer": "√",
-      "sourcePage": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        7
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.6）",
-        "独立推导一致"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页判断题第2题题干为“C++ 继承支持单继承和多继承，但子类无法直接访问父类私有成员”，与站点 question 语义一致。",
+          "review": "第 7 页判断题第 2 题「C++ 中的继承支持单继承和多继承，但子类无法直接访问父类的私有成员。」与站点 question 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第2题为 √；按 0=√/1=× 映射为 0，站点 answer=0。",
+          "review": "第 7 页判断题答案表第 2 题为 √，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "C++ 支持单/多继承，private 成员子类不能直接访问。",
+          "review": "站点解析说明 private 的访问范围与 protected 的定位，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 18,
-      "type": "judge",
-      "answer": "×",
-      "sourcePage": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        7
+      ],
       "method": [
-        "原卷转写（树形放大核对：4、5 是结点 2 的孩子）",
-        "答案表核对（p.6）",
-        "独立推导一致（栈模拟输出 1 2 4 5 3）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页判断题第3题题干为“对给定树执行 travel 函数，输出结果是 1 2 3 4 5”，与站点 question 语义一致。",
+          "review": "第 7 页判断题第 3 题题干「对如下结构的树，执行 travel 函数，输出结果是 1 2 3 4 5。」及树形图与 19 行 travel 代码与站点 question（内嵌代码）一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第3题为 ×；按 0=√/1=× 映射为 1，站点 answer=1。",
+          "review": "第 7 页判断题答案表第 3 题为 ×，0 起始索引 1，站点 answer=1；独立模拟得 1 2 4 5 3。"
+        },
+        "explanation": {
+          "initial": "栈先压右再压左，输出 1 2 4 5 3，不是 1 2 3 4 5。",
+          "review": "站点解析给出栈模拟过程（弹 1 压 3,2；弹 2 压 5,4；弹 4,5,3）与易错点说明，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 19,
-      "type": "judge",
-      "answer": "×",
-      "sourcePage": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        7
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.6）",
-        "与答案表一致（等频哈夫曼树接近平衡但不保证完全二叉树结构）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页判断题第4题题干为“若所有字符出现频率相同，则哈夫曼编码一定会得到完全二叉树”，与站点 question 语义一致。",
+          "review": "第 7 页判断题第 4 题「若所有字符出现频率相同，则哈夫曼编码一定会得到完全二叉树。」与站点 question 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第4题为 ×；按 0=√/1=× 映射为 1，站点 answer=1。",
+          "review": "第 7 页判断题答案表第 4 题为 ×，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "等频哈夫曼树只保证叶子深度差≤1，不保证完全二叉树；如 5 个等频字符的哈夫曼树最深层不连续。",
+          "review": "站点解析说明「接近平衡」≠「完全」并给出等频合并的具体形态，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 20,
-      "type": "judge",
-      "answer": "√",
-      "sourcePage": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        7
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.6）",
-        "独立推导一致（前缀码性质）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页判断题第5题题干为“哈夫曼编码解码不需要分隔符，因为任一字符叶子不会成为另一字符结点的祖先”，与站点 question 语义一致。",
+          "review": "第 7 页判断题第 5 题题干「哈夫曼编码是一种变长的前缀编码……任何一个字符的叶子结点都不会成为另一个字符结点的祖先。」与站点 question 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第5题为 √；按 0=√/1=× 映射为 0，站点 answer=0。",
+          "review": "第 7 页判断题答案表第 5 题为 √，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "字符只在叶子上，叶子不可能是另一叶子祖先，故无前缀关系，解码无需分隔符。",
+          "review": "站点解析按前缀性质论证无歧义解码，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 21,
-      "type": "judge",
-      "answer": "√",
-      "sourcePage": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        7
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.6）",
-        "独立推导一致（0 起始下标右孩子 2i+2）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页判断题第6题题干为“0 起始层序存储完全二叉树，右孩子位于 2*i+2”，与站点 question 语义一致。",
+          "review": "第 7 页判断题第 6 题题干「在 C++ 中使用一维数组 vector<int> tree 存储……右孩子（如果存在）必然位于 tree[2 * i + 2]。」与站点 question 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第6题为 √；按 0=√/1=× 映射为 0，站点 answer=0。",
+          "review": "第 7 页判断题答案表第 6 题为 √，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "0 起始层序存储，左 2i+1、右 2i+2，对完全二叉树所有非空结点成立。",
+          "review": "站点解析给出 0 起始下标公式并与 1 起始区分，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 22,
-      "type": "judge",
-      "answer": "×",
-      "sourcePage": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        7
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.6）",
-        "独立推导一致（应先压右孩子再压左孩子）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页判断题第7题题干为“栈非递归前序遍历，应先压左孩子再压右孩子”，与站点 question 语义一致。",
+          "review": "第 7 页判断题第 7 题题干「在 C++ 中使用栈来非递归地实现二叉树的前序遍历时……应该先将该结点的左孩子压入栈中，然后再将右孩子压入栈中。」与站点 question 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第7题为 ×；按 0=√/1=× 映射为 1，站点 answer=1。",
+          "review": "第 7 页判断题答案表第 7 题为 ×，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "栈后进先出，要让左先访问应先压右、再压左；先左后右会变成根-右-左。",
+          "review": "站点解析说明入栈顺序与访问顺序相反的机理，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 23,
-      "type": "judge",
-      "answer": "√",
-      "sourcePage": 7,
-      "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
-      ],
-      "dimensions": [
-        "statement"
-      ],
-      "findings": "假阴性说明：官方 judge8（=题库 Q23，无错位）「设二叉树共有 个结点…时间复杂度为 ，空间复杂度为 」中 n、O(n) 为公式字符，文本层丢失（p.7 渲染图确认符号实际存在）。题库语义正确。",
-      "fix": "无需修复。官方答案表（p.6 渲染图）× √ × × √ √ × √ × √，judge8=√，题库 ans=0 一致（递归访问每结点一次 O(n) 时间、递归栈 O(n) 空间）。",
-      "evidence": "tmp/verify/2026-03-l6/answer-table2.png",
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        7,
+        8
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第7页判断题第8题题干为“preorderTraversal 的时间复杂度 O(n)、空间复杂度 O(n)”，与站点 question 语义一致。",
+          "review": "第 7 页判断题第 8 题题干「设二叉树共有 n 个结点。函数 preorderTraversal 以下代码的时间复杂度为O(n)、空间复杂度为O(n)。」及第 8 页 21 行代码与站点 question（内嵌代码）一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第8题为 √；按 0=√/1=× 映射为 0，站点 answer=0。",
+          "review": "第 7 页判断题答案表第 8 题为 √，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "每个结点访问一次，时间 O(n)；递归栈最坏 O(n)，加输出数组 O(n)，空间 O(n)。",
+          "review": "站点解析按访问次数与递归栈深度（最坏链状 O(n)）分析，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 24,
-      "type": "judge",
-      "answer": "×",
-      "sourcePage": 8,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        8
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.6）",
-        "独立推导一致（正序退化为完全背包）"
-      ]
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第8页判断题第9题题干为“0-1 背包内层改成正序仍能得到正确答案”，与站点 question 语义一致。",
+          "review": "第 8 页判断题第 9 题题干（内层改正序仍能得到正确答案？）及 14 行一维 0-1 背包代码与站点 question（内嵌代码）一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第9题为 ×；按 0=√/1=× 映射为 1，站点 answer=1。",
+          "review": "第 8 页判断题答案表第 9 题为 ×，0 起始索引 1，站点 answer=1。"
+        },
+        "explanation": {
+          "initial": "逆序保证 dp[j-w] 是上一轮值；正序会让当前物品被重复选取，变成完全背包。",
+          "review": "站点解析说明逆序保证 dp[j-w[i]] 为上一轮值、正序重复选取，无误。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 25,
-      "type": "judge",
-      "answer": "√",
-      "sourcePage": 8,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        8
+      ],
       "method": [
-        "原卷转写",
-        "答案表核对（p.6）",
-        "独立推导一致"
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第8页判断题第10题题干为“状态空间相同且无重复计算时，递推与记忆化搜索时间复杂度通常相同”，与站点 question 语义一致。",
+          "review": "第 8 页判断题第 10 题题干「在动态规划问题中，状态空间相同且没有重复计算的情况下，『状态转移方程+递推』与『递归+记忆化搜索』的时间复杂度通常相同。」与站点 question 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第6页判断答案表第10题为 √；按 0=√/1=× 映射为 0，站点 answer=0。",
+          "review": "第 8 页判断题答案表第 10 题为 √，0 起始索引 0，站点 answer=0。"
+        },
+        "explanation": {
+          "initial": "状态空间相同且无重复计算时，递推与记忆化搜索的状态数和转移代价相同，时间复杂度同阶。",
+          "review": "站点解析说明两种实现只是遍历顺序不同、常数与栈开销有别，无误。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "referenceCode"
+      ],
+      "blockedDimensions": [
+        "explanation"
+      ],
+      "sourcePages": [
+        9,
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第8-9页题面、样例、数据范围与站点 question 一致；仅解析残缺，已重写。",
+          "review": "第 8-9 页题面（题目描述、输入格式三行、输出格式、样例 1「4/1 2 3 4/3 3 1 1→7」、样例 2「6/1 1 4 5 1 4/1 2 3 2 1 0→11」、数据范围 40%: 2≤n≤10³；全部: 2≤n≤10⁵、0≤aᵢ≤10⁹、0≤bᵢ≤n）与站点 question/samples 逐句一致。"
+        },
+        "explanation": {
+          "initial": "设 f[i] 为“最后一个被选下标 p 满足 p+b[p]≤i”时已选元素的最大和。对每个 i：选 i 得 f[i]+a[i]，更新 ans；选后下一个可选位置至少 i+b[i]，更新 f[i+b[i]]；不选 i 则 f[i+1]=max(f[i+1],f[i])。b[i] 可为 0，代码先算 ans 再更新 f[i]，不会重复计入 a[i]。样例 1 得 7、样例 2 得 11。**说明：站点原解析只有一句“答案的全局统计”，缺少状态定义与转移推导，已重写。**",
+          "review": "修复后核验通过：站点原解析仅剩「答案的全局统计」残段（缺损状态定义与转移推导），重写稿补全 f[i] 状态定义、三类转移（ans 更新、f[i+b[i]]、f[i+1] 传递）、b[i]=0 的先后顺序细节与两样例走查（7/11），全部经我按参考程序独立复算成立。"
+        },
+        "referenceCode": {
+          "initial": "站点 referenceCode 与 PDF 第10页参考程序逐行一致；f[i] 表示可开始选 i 时的最大和，选 i 更新 ans 与 f[i+b[i]]，跳过则 f[i+1]=max(...)。样例与边界用例通过。",
+          "review": "站点 referenceCode 与原卷第 10 页官方参考程序逐行一致（f[i]+a[i] 更新 ans、f[i+b[i]]、f[i+1] 传递，long long 防溢出）。本人实际编译运行：原样例 7/11、全零（2/0 0/0 0）→0、b 全零连选（3/10 1 10/0 0 0）→21、跳段选择（5/1 100 1 1 100/1 2 1 1 1）→202（选 1,2,4,5），全部与期望一致。"
+        }
+      },
+      "unresolved": [
+        "修改 explanation 已获一致批准，尚未应用",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [
+        "statement"
+      ],
+      "sourcePages": [
+        10,
+        11,
+        12
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第10-11页题面、样例与站点一致；站点数据范围写成 $1 \\le n \\le 10^6$，PDF 第11页为 $1 \\le n \\le 10^5$，已改。",
+          "review": "修复后核验通过：第 10-11 页题面（题目描述、输入格式、输出格式、样例 1「4/2 3/4 0/0 0/0 0→4」、样例 2「4/2 3/0 0/4 0/0 0→3」）与站点 question/samples 逐句一致；数据范围原卷为 40%: 1≤n≤500、全部: 1≤n≤10⁵，站点原误作 10⁶，替换值已改正。"
+        },
+        "explanation": {
+          "initial": "后序维护 mn[u]（子树中最浅空孩子深度）、mx[u]（最深空孩子深度）、chk[u]。u 是完全二叉树当且仅当左右都完满、mn[l]≥mx[r]、mn[u]≥mx[u]-1；样例 1 得 4、样例 2 得 3。已用 n≤12 的全部二叉树形态与暴力判定对拍，全部一致。",
+          "review": "站点解析的三条件判定（左右均完全、mn[l]≥mx[r]、mn[u]≥mx[u]−1）与参考程序实现一一对应，空结点按完全处理（mn=mx=0），样例 2 中结点 1 因左浅右深不计入、答案 3，经独立复核成立。"
+        },
+        "referenceCode": {
+          "initial": "站点 referenceCode 与 PDF 第12页参考程序逐行一致；后序维护 mn/mx/chk，条件 mn[l]≥mx[r] 且 mn[u]≥mx[u]-1。已用 n≤12 全部二叉树形态与暴力判定对拍，并测 n=1e5 链，均一致。",
+          "review": "站点 referenceCode 与原卷第 12 页官方参考程序逐行一致（后序 DFS 维护 mn/mx/chk，ans 累加 chk）。本人实际编译运行：原样例 4/3、单结点（1/0 0）→1、只有右孩子（2/0 2/0 0）→1、三结点满树（3/2 3/0 0/0 0）→3、左链三结点（3/2 0/3 0/0 0）→2（结点 2、3 的子树完全而结点 1 不完全），全部与期望一致。"
+        }
+      },
+      "unresolved": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": 3,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
       ]
     },
     {
       "id": 26,
-      "type": "programming",
-      "answer": "样例输出 7 / 11",
-      "title": "选数",
-      "sourcePage": "8-10",
-      "method": [
-        "原卷转写题面/输入输出/数据范围/样例",
-        "官方参考程序（p.10）逐字转写",
-        "g++ 编译运行通过全部样例（7、11）",
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
-      ],
       "dimensions": [
         "explanation"
       ],
-      "resolved": true,
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "reasons": [
+        "修改 explanation 已获一致批准，尚未应用",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 27,
-      "type": "programming",
-      "answer": "样例输出 4 / 3",
-      "title": "完全二叉树",
-      "sourcePage": "10-12",
-      "method": [
-        "原卷转写题面/输入输出/数据范围/样例（样例 2 输入放大核对为 2 3 / 0 0 / 4 0 / 0 0）",
-        "官方参考程序（p.12）逐字转写",
-        "g++ 编译运行通过全部样例（4、3）"
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
       ]
     }
   ],
-  "unresolved": [],
-  "answerKey": "单选答案串 A B C A D B A C D B B B C C A，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× √ × × √ √ × √ × √ 与题库 10/10 一致。"
+  "pendingChanges": [
+    {
+      "id": 3,
+      "changes": {
+        "question": "下面的代码在 main() 中有一行会导致编译错误，请找出来。\n\n```cpp\nclass Pet {\npublic:\n    Pet(string n, int a) : name(n), age(a) {}\n    string getName() { return name; }\n    void   birthday() { age++; }\nprivate:\n    string name;\n    int    age;\n};\n\nint main() {\n    Pet cat(\"奶茶\", 2);\n    cout << cat.getName();  // ①\n    cat.birthday();         // ②\n    cat.name = \"大橘\";      // ③\n    cout << cat.getName();  // ④\n    return 0;\n}\n```"
+      },
+      "status": "approved-not-applied"
+    },
+    {
+      "id": 26,
+      "changes": {
+        "explanation": "**解析：**\n\n设 `f[i]` 表示考虑前 `i-1` 个位置、且当前可以选第 `i` 个位置时，已选元素的最大和（即最后一个被选下标 `p` 满足 `p + b[p] <= i` 的最优值）。初始 `f[1] = 0`。\n\n对每个位置 `i`：\n- 若选 `i`，得到 `f[i] + a[i]`，用它更新全局答案 `ans`；\n- 选完 `i` 后，下一个可选位置至少是 `i + b[i]`，因此用 `f[i] + a[i]` 更新 `f[i + b[i]]`（若不超过 `n`）；\n- 若不选 `i`，则 `f[i+1] = max(f[i+1], f[i])`。\n\n由于 `b[i]` 可能为 0，`i + b[i] = i`，代码先计算 `ans` 再更新 `f[i]`，不会把 `a[i]` 重复计入；同时 `f[i+1]` 的传递保证了“跳过若干位置”的情况也被覆盖。\n\n样例 1 中选下标 3、4：`p_2=4 >= 3+b[3]=4`，和为 `3+4=7`；样例 2 中选 1、2、4、6，和为 `1+1+5+4=11`。\n\n**复杂度：** 时间 O(n)，空间 O(n)。"
+      },
+      "status": "approved-not-applied"
+    },
+    {
+      "id": 27,
+      "changes": {
+        "question": "\n# [GESP202603 六级] 完全二叉树\n\n## 题目描述\n\n给定一棵包含 $n$ 个结点的有根二叉树，结点依次以 $1, 2, \\ldots, n$ 编号，根结点编号为 $1$。\n\n对于结点 $i$，其左儿子的编号记为 $l_i$，右儿子编号记为 $r_i$。特别地，如果左儿子不存在则 $l_i = 0$，如果右儿子不存在则 $r_i = 0$。\n\n树中每个结点都对应一棵以其为根的子树。请你求出给定有根树的所有 $n$ 棵子树中，有多少棵子树是完全二叉树。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示根二叉树结点数量。\n\n接下来 $n$ 行，每行两个正整数 $l_i, r_i$，表示结点 $i$ 的左儿子编号和右儿子编号。\n\n## 输出格式\n\n输出一行，一个整数，表示所有子树中完全二叉树的数量。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le n \\le 500$。\n\n对于所有测试点，保证 $1 \\le n \\le 10^5$。\n"
+      },
+      "status": "approved-not-applied"
+    }
+  ],
+  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l6.code-checks.json"
 }

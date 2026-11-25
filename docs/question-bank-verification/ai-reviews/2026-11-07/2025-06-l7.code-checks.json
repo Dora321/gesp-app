@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-25T06:29:38.302Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5 4\n1 2\n2 3\n3 1\n4 5",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "input": "5 10\n1 2\n1 3\n1 4\n1 5\n2 3\n2 4\n2 5\n3 4\n3 5\n4 5",
+          "output": "30",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "30\n",
+          "passed": true
+        },
+        {
+          "name": "最小边数单边图",
+          "input": "2 1\n1 2\n",
+          "output": "0",
+          "reason": "两个端点度数均为1，ΣC(deg,2)=0，线图没有边。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "4 个点的链",
+          "input": "4 3\n1 2\n2 3\n3 4\n",
+          "output": "2",
+          "reason": "度数为1,2,2,1，ΣC(deg,2)=C(2,2)×2=2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "5 阶星形图",
+          "input": "5 4\n1 2\n1 3\n1 4\n1 5\n",
+          "output": "6",
+          "reason": "中心度数4，其余为1，ΣC(deg,2)=C(4,2)=6。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6a7751eef55ba1b693ad1a7554afa06c4974efcaf327db31a00df1f77088652f"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n1 2\n2 4\n3 2",
+          "output": "8",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "8\n",
+          "passed": true
+        },
+        {
+          "input": "5\n1 1\n2 3\n6 1\n8 2\n5 7",
+          "output": "2",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "单食材平衡",
+          "input": "1\n500 500\n",
+          "output": "1000",
+          "reason": "选该食材 A=B=500，和为1000。",
+          "kind": "boundary",
+          "actual": "1000\n",
+          "passed": true
+        },
+        {
+          "name": "单食材不平衡",
+          "input": "1\n1 2\n",
+          "output": "0",
+          "reason": "无法选出 A=B 的非空子集，空集 A=B=0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "两食材互补",
+          "input": "2\n1 2\n2 1\n",
+          "output": "6",
+          "reason": "两食材全选 A=3,B=3，和为6；单独选均不平衡。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "2c03a358f5a2fd8c0b3ddb9116d22244fc51e61581f8a87ac62ca50dbdb88ce6"
+    }
+  ]
+}
