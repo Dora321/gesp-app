@@ -1,0 +1,165 @@
+{
+  "paperId": "2024-03-l6",
+  "reviewedAt": "2026-10-31",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-03-l6"
+  },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorSha": "5e0d648726a396dbde60a40d4ad987dccbb07494",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": {
+      "Q15": "p.5"
+    }
+  },
+  "questions": [
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q12 explanation 升级；答案未改"
+    },
+    {
+      "id": 15,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
+      "findings": "题面缺失 reverseLinkedList 代码（原卷为图片）。原卷代码共 11 行，其中第 6 行为 current->next = next;（即题干所指的待修改处）。解析为占位模板。",
+      "fix": "按原卷 p.5 逐行转写 reverseLinkedList 代码（保持原缩进与 nullptr 写法），以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析重写为具体推导（核心修改行 + 逐选项错误原因），并附编译运行证据。",
+      "evidence": "g++ 编译运行转写代码并把第 6 行按选项 A 修复为 current->next = prev;，输入 1→2→3 输出 3 2 1，反转成功，与答案 A（该修改才正确）一致。tmp/verify/2024-l6/q15_reverse.cpp",
+      "resolved": true
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
+    }
+  ],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy 子代理",
+    "method": "回官方 PDF 判断题答案表（p.5 表头『题号 1..10 / 答案』）逐列 4 倍放大核对（tmp/crop-2024-03-l6-judge.png），洛谷仅作线索（A=√、B=×）。",
+    "officialSequence": "Q16→Q25 = √ √ √ × × √ × × √ ×（对应表内第 1..10 列）；题库原为 10 题全部 √，与官方仅 5 题相同，证实此前 integrityNote 的『整卷同值=答案未录入』判断",
+    "items": [
+      {
+        "qid": 19,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "officialLocation": "p.5 判断题答案表第 4 列（第4题：完全二叉树的任意一层都可以不满）",
+        "derivation": "完全二叉树要求除最后一层外各层必须排满、最后一层结点从左到右连续；只有最后一层允许不满。命题『任意一层都可以不满』错。",
+        "changed": true,
+        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote（恢复计分）；解析重写为定义辨析 + 反例。"
+      },
+      {
+        "qid": 20,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "officialLocation": "p.5 判断题答案表第 5 列（第5题：删除单向链表中的节点，只需知道待删除节点的地址即可，无需访问前一个节点）",
+        "derivation": "单链表删除需把前驱的 next 指向 p->next，必须访问前驱（O(n) 找）。『复制后继数据再删后继』的技巧要求 p 非尾结点且删除的实为后继，不能支撑题述一般结论。命题错。",
+        "changed": true,
+        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote；解析重写为前驱依赖 + 常见误解辨析。"
+      },
+      {
+        "qid": 22,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "officialLocation": "p.5 判断题答案表第 7 列（第7题：哈夫曼编码的主要应用领域是有损数据压缩）",
+        "derivation": "哈夫曼编码是前缀码，比特流可逐位精确还原，属无损压缩。命题错。",
+        "changed": true,
+        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote；解析重写为前缀码可逆性说明，并解释 JPEG 借用哈夫曼做熵编码的混淆来源。"
+      },
+      {
+        "qid": 25,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "officialLocation": "p.5 判断题答案表第 10 列（第10题：两个字符频率差异最大，则它们的编码可能出现相同的前缀）",
+        "derivation": "前缀码中任一编码都不是另一编码的前缀；哈夫曼树中每个字符对应叶子，两个叶子不可能在同一条根到叶路径上。频率差异与是否互为前缀无关，故命题错。",
+        "changed": true,
+        "changeDetail": "answer 0→1；移除 sourceIntegrity/integrityNote；解析重写为『叶子/前缀』结构论证；顺带修正题干 OCR 断行残留『前 缀』→『前缀』。"
+      }
+    ],
+    "outOfScopeFindings": [
+      "Q23（表内第 8 列）官方为 ×，题库为 √，洛谷为 ×；但该题题干已被污染（串入 Q14/Q15 的代码片段，sourceIntegrity=missing-formula），不属本次 11 题裁决清单，未改数据、未移除标记。",
+      "Q16/Q17/Q18/Q21/Q24 官方分别为 √ √ √ √ √，与题库当前值一致；但其解析仍是占位模板且保留 sourceIntegrity=answer-key-suspect，不在本次清单内，未处理。"
+    ]
+  },
+  "unresolved": [],
+  "lastUpdated": "2026-10-30",
+  "answerCorrection": {
+    "question": "judge-8(题库id23)",
+    "official": "×",
+    "was": "√",
+    "now": "×",
+    "evidence": "官方 p.4 判断题答案表 400dpi 渲染复核：√√√××√××√×，J8=×（普通 BST 最坏退化 O(n)，说法不严谨）"
+  },
+  "explanationUpgrade": {
+    "date": "2026-10-30",
+    "scope": "19题模板解析替换+5题题干结构修复(Q4/Q5/Q7/Q8/J23 恢复官方代码块/树图/清页码污染)"
+  }
+}

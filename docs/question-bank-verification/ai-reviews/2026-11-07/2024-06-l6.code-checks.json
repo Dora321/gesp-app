@@ -1,0 +1,103 @@
+{
+  "executedAt": "2026-11-25T06:46:51.932Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n3 1 2\n13\ndabcabcabcabz",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模",
+          "input": "1\n7\n3\nabc\n",
+          "output": "7",
+          "reason": "n=1、m=3，只能取 k=1，得 a1=7。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "连续块整体计分",
+          "input": "2\n1 100\n6\nabcabc\n",
+          "output": "100",
+          "reason": "连续两个 abc 整体取 k=2 得 100，优于拆成两个 k=1 得 2。",
+          "kind": "boundary",
+          "actual": "100\n",
+          "passed": true
+        },
+        {
+          "name": "k 超过 n 时不可取",
+          "input": "1\n5\n6\nabcabc\n",
+          "output": "10",
+          "reason": "n=1，k=2 不允许，只能拆成两个 k=1，得 5+5=10。",
+          "kind": "boundary",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "无 abc",
+          "input": "1\n5\n5\nababa\n",
+          "output": "0",
+          "reason": "字符串中不存在可计分的 abc 子串。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "279d36915a67ad48399db316e4a4a732670bb788df50da623cb5a1f2e359a876"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "6\n3 1 1 3 4\n100101\n3\n1\n3\n2",
+          "output": "010000",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "010000\n",
+          "passed": true
+        },
+        {
+          "name": "最小规模单次翻转",
+          "input": "1\n0\n1\n1\n",
+          "output": "1",
+          "reason": "n=1 仅根节点，q=1 翻转后 0 变 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "同一节点两次翻转抵消",
+          "input": "1\n1\n2\n1\n1\n",
+          "output": "1",
+          "reason": "同一节点操作两次异或抵消，最终仍为 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "链式树祖先与后代叠加",
+          "input": "5\n1 2 3 4\n00000\n2\n2\n4\n",
+          "output": "01100",
+          "reason": "链 1-2-3-4-5，翻转 2 的子树再翻转 4 的子树；节点 2、3 各翻一次，节点 4、5 各翻两次，得到 01100。",
+          "kind": "boundary",
+          "actual": "01100\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "55c8a082dcfa26d6065c4027547411d249ce925a648f681328dc459658167327"
+    }
+  ]
+}

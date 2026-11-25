@@ -1,0 +1,119 @@
+{
+  "executedAt": "2026-11-25T06:46:55.397Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3\n1 3\n2 3",
+          "output": "2 2 1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2 2 1\n",
+          "passed": true
+        },
+        {
+          "input": "4\n1 3\n3 2\n4 3",
+          "output": "3 3 1 3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3 3 1 3\n",
+          "passed": true
+        },
+        {
+          "name": "单结点",
+          "input": "1\n",
+          "output": "1",
+          "reason": "0 步可停在自身，同色结点只有 1 个。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两结点",
+          "input": "2\n1 2\n",
+          "output": "1 1",
+          "reason": "两结点异色，各自同色结点仅自身，各得 1（已实测站点参考程序）。",
+          "kind": "boundary",
+          "actual": "1 1\n",
+          "passed": true
+        },
+        {
+          "name": "三结点链",
+          "input": "3\n1 2\n2 3\n",
+          "output": "2 1 2",
+          "reason": "链 1-2-3 二染色为 0,1,0；结点 1、3 同色 2 个，结点 2 同色 1 个。",
+          "kind": "boundary",
+          "actual": "2 1 2\n",
+          "passed": true
+        },
+        {
+          "name": "五结点星形",
+          "input": "5\n1 2\n1 3\n1 4\n1 5\n",
+          "output": "1 4 4 4 4",
+          "reason": "中心 1 为色 0，四个叶子为色 1；中心只能到自身，叶子可到其余 3 个叶子及自身，共 4 个。",
+          "kind": "boundary",
+          "actual": "1 4 4 4 4\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0d8db3520cf8729b2b6529c7f7587ec23f1dcd65d1bccd3d24307739aad0bdea"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n-1 2 3 0",
+          "output": "5",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "input": "5\n-3 4 -5 1 3",
+          "output": "5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "单站负值",
+          "input": "1\n-5\n",
+          "output": "-5",
+          "reason": "至少经过一个车站，只能选 -5。",
+          "kind": "boundary",
+          "actual": "-5\n",
+          "passed": true
+        },
+        {
+          "name": "全负取最大单站",
+          "input": "3\n-1 -2 -3\n",
+          "output": "-1",
+          "reason": "不能空行程，最大单站为 -1。",
+          "kind": "boundary",
+          "actual": "-1\n",
+          "passed": true
+        },
+        {
+          "name": "跨端点环形段",
+          "input": "4\n5 -10 5 1\n",
+          "output": "11",
+          "reason": "跨环选取车站 3→4→1 得 5+1+5=11（已实测站点参考程序），验证破环成链后跨数组端点的滑动窗口实现；不选含 -10 的区间。",
+          "kind": "boundary",
+          "actual": "11\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f5d4ba918cfe9c4a50fb66fa62af9311e4403290e92bddd364ed3719fadee1ef"
+    }
+  ]
+}
