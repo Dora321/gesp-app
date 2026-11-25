@@ -77,29 +77,86 @@ const CPP_KEYWORDS = new Set([
   'throw', 'try', 'typedef', 'typeid', 'typename', 'union', 'using', 'virtual',
   'volatile', 'while',
   'true', 'false', 'nullptr', 'NULL',
+  // C++11/14/17 contextual keywords used in modern GESP / contest code.
+  'override', 'final', 'concept', 'requires', 'co_await', 'co_return',
+  'co_yield',
 ]);
 
 const CPP_TYPES = new Set([
   'auto', 'bool', 'char', 'char8_t', 'char16_t', 'char32_t', 'double', 'float',
   'int', 'long', 'short', 'signed', 'unsigned', 'void', 'wchar_t',
   'size_t', 'ssize_t', 'ptrdiff_t', 'int8_t', 'int16_t', 'int32_t', 'int64_t',
-  'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t',
-  'string', 'wstring', 'vector', 'array', 'deque', 'list', 'map', 'multimap',
-  'set', 'multiset', 'unordered_map', 'unordered_set', 'pair', 'tuple',
-  'queue', 'priority_queue', 'stack', 'bitset',
+  'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t', 'intptr_t', 'uintptr_t',
+  'intmax_t', 'uintmax_t', 'time_t', 'clock_t', 'FILE',
+  'string', 'wstring', 'string_view', 'vector', 'array', 'deque', 'list',
+  'forward_list', 'map', 'multimap', 'set', 'multiset', 'unordered_map',
+  'unordered_set', 'unordered_multimap', 'unordered_multiset', 'pair', 'tuple',
+  'queue', 'priority_queue', 'stack', 'bitset', 'optional', 'variant',
+  'iterator', 'const_iterator', 'reverse_iterator', 'initializer_list',
+  'istream', 'ostream', 'iostream', 'ifstream', 'ofstream', 'fstream',
+  'stringstream', 'istringstream', 'ostringstream', 'stringbuf', 'streambuf',
+  'shared_ptr', 'unique_ptr', 'function',
 ]);
 
 const CPP_BUILTINS = new Set([
-  'std', 'cin', 'cout', 'cerr', 'clog', 'endl', 'flush', 'fixed',
-  'setprecision', 'setw', 'setfill', 'hex', 'dec', 'oct',
+  // Streams and formatting.
+  'std', 'cin', 'cout', 'cerr', 'clog', 'endl', 'flush', 'fixed', 'boolalpha',
+  'noboolalpha', 'showpoint', 'noshowpoint', 'scientific', 'hexfloat',
+  'defaultfloat', 'setprecision', 'setw', 'setfill', 'setbase', 'setiosflags',
+  'resetiosflags', 'hex', 'dec', 'oct', 'ios', 'sync_with_stdio', 'tie',
+  'ws', 'get', 'peek', 'ignore', 'unget', 'read', 'write', 'seekg', 'seekp',
+  'tellg', 'tellp', 'eof', 'fail', 'good', 'bad',
+  // C stdio.
   'printf', 'scanf', 'puts', 'gets', 'getline', 'getchar', 'putchar',
-  'malloc', 'calloc', 'realloc', 'free', 'memset', 'memcpy', 'strlen',
-  'strcmp', 'strcpy', 'strcat', 'sort', 'stable_sort', 'reverse', 'swap',
-  'max', 'min', 'abs', 'sqrt', 'pow', 'floor', 'ceil', 'round', 'log', 'log2',
-  'log10', 'sin', 'cos', 'tan', 'fabs', 'toupper', 'tolower', 'isdigit',
-  'isalpha', 'to_string', 'stoi', 'stol', 'stoll', 'stof', 'stod',
-  'begin', 'end', 'push_back', 'pop_back', 'size', 'empty', 'find', 'insert',
-  'erase', 'clear', 'substr', 'length', 'front', 'back',
+  'freopen', 'fclose', 'fopen', 'fprintf', 'fscanf', 'sscanf', 'sprintf',
+  'snprintf', 'fgets', 'fputs', 'fread', 'fwrite', 'perror',
+  'stdin', 'stdout', 'stderr',
+  // C string / memory / conversion.
+  'malloc', 'calloc', 'realloc', 'free', 'memset', 'memcpy', 'memmove',
+  'memcmp', 'strlen', 'strcmp', 'strncmp', 'strcpy', 'strncpy', 'strcat',
+  'strchr', 'strstr', 'strtok', 'atoi', 'atol', 'atoll', 'atof',
+  'toupper', 'tolower', 'isdigit', 'isalpha', 'isalnum', 'islower', 'isupper',
+  'isspace', 'iscntrl', 'isgraph', 'isprint', 'ispunct', 'isxdigit',
+  'to_string', 'stoi', 'stol', 'stoll', 'stof', 'stod',
+  // Sorting and algorithms.
+  'sort', 'stable_sort', 'reverse', 'swap', 'iter_swap', 'max', 'min',
+  'max_element', 'min_element', 'minmax', 'minmax_element', 'lower_bound',
+  'upper_bound', 'equal_range', 'binary_search', 'nth_element',
+  'next_permutation', 'prev_permutation', 'unique', 'unique_copy', 'fill',
+  'fill_n', 'iota', 'accumulate', 'partial_sum', 'count', 'count_if',
+  'for_each', 'transform', 'copy', 'copy_if', 'copy_n', 'copy_backward',
+  'move', 'move_backward', 'remove', 'remove_if', 'remove_copy',
+  'remove_copy_if', 'replace', 'replace_if', 'reverse_copy', 'rotate',
+  'shuffle', 'random_shuffle', 'sample', 'all_of', 'any_of', 'none_of',
+  'adjacent_find', 'distance', 'advance', 'set_union', 'set_intersection',
+  'set_difference', 'set_symmetric_difference', 'includes', 'partition',
+  'stable_partition', 'is_sorted', 'is_sorted_until', 'mismatch', 'equal',
+  'lexicographical_compare', 'generate', 'generate_n', 'back_inserter',
+  'front_inserter', 'inserter',
+  // Sequence / associative container members.
+  'begin', 'end', 'push', 'push_back', 'push_front', 'pop', 'pop_back',
+  'pop_front', 'emplace', 'emplace_back', 'emplace_front', 'emplace_hint',
+  'insert', 'insert_or_assign', 'try_emplace', 'erase', 'clear', 'size',
+  'empty', 'find', 'at', 'assign', 'append', 'compare', 'substr', 'length',
+  'front', 'back', 'top', 'resize', 'reserve', 'capacity', 'c_str', 'data',
+  'rfind', 'find_first_of', 'find_last_of', 'find_first_not_of',
+  'find_last_not_of', 'merge', 'splice',
+  // pair / tuple helpers.
+  'make_pair', 'make_tuple', 'forward_as_tuple', 'tuple_cat', 'apply',
+  // Math.
+  'abs', 'sqrt', 'cbrt', 'pow', 'exp', 'exp2', 'expm1', 'log', 'log2',
+  'log10', 'log1p', 'floor', 'ceil', 'round', 'trunc', 'nearbyint', 'rint',
+  'fabs', 'fmod', 'modf', 'hypot', 'atan', 'atan2', 'asin', 'acos', 'sin',
+  'cos', 'tan', 'sinh', 'cosh', 'tanh', 'asinh', 'acosh', 'atanh', 'copysign',
+  'erf', 'tgamma', 'lgamma', 'fma', 'fdim', 'fmax', 'fmin', 'isnan', 'isinf',
+  'isfinite', 'signbit',
+  'gcd', 'lcm', '__gcd',
+  // Random / time.
+  'rand', 'srand', 'time', 'clock', 'CLOCKS_PER_SEC', 'RAND_MAX', 'M_PI',
+  // Limits, macros and sentinels.
+  'INT_MAX', 'INT_MIN', 'UINT_MAX', 'LONG_MAX', 'LONG_MIN', 'ULONG_MAX',
+  'LLONG_MAX', 'LLONG_MIN', 'ULLONG_MAX', 'SIZE_MAX', 'CHAR_BIT', 'DBL_MAX',
+  'DBL_MIN', 'FLT_MAX', 'FLT_MIN', 'EOF', 'npos',
 ]);
 
 const PYTHON_KEYWORDS = new Set([
@@ -121,11 +178,19 @@ const PYTHON_TYPES = new Set([
 
 const PYTHON_BUILTINS = new Set([
   'print', 'input', 'len', 'range', 'open', 'enumerate', 'zip', 'sum', 'min',
-  'max', 'abs', 'round', 'sorted', 'reversed', 'isinstance', 'issubclass',
-  'hasattr', 'getattr', 'setattr', 'delattr', 'type', 'id', 'map', 'filter',
-  'any', 'all', 'ord', 'chr', 'bin', 'hex', 'oct', 'divmod', 'eval', 'exec',
-  'format', 'repr', 'hash', 'iter', 'next', 'super', 'vars', 'dir',
+  'max', 'abs', 'round', 'pow', 'divmod', 'sorted', 'reversed', 'isinstance',
+  'issubclass', 'hasattr', 'getattr', 'setattr', 'delattr', 'type', 'id',
+  'map', 'filter', 'any', 'all', 'ord', 'chr', 'bin', 'hex', 'oct', 'ascii',
+  'eval', 'exec', 'compile', 'format', 'repr', 'hash', 'iter', 'next',
+  'super', 'vars', 'dir', 'globals', 'locals', 'callable', 'property',
+  'staticmethod', 'classmethod', 'help', 'breakpoint',
   'self', 'cls',
+  // Sequence / string / dict methods that GESP Python lessons use daily.
+  'append', 'extend', 'insert', 'remove', 'pop', 'index', 'count', 'sort',
+  'reverse', 'copy', 'keys', 'values', 'items', 'get', 'update', 'split',
+  'rsplit', 'join', 'strip', 'lstrip', 'rstrip', 'replace', 'startswith',
+  'endswith', 'lower', 'upper', 'find', 'rfind', 'isdigit', 'isalpha',
+  'isalnum', 'isspace', 'islower', 'isupper',
 ]);
 
 const CPP_PUNCTUATION = new Set(['{', '}', '(', ')', '[', ']', ';', ',', '#']);
