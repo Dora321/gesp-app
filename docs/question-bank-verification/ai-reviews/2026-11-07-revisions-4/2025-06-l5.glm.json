@@ -1,0 +1,116 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "glm",
+  "questionIds": [
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:05:00.000Z",
+  "completedAt": "2026-11-25T05:36:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "5a928ac1a8caa1ccabbea676be93d193778ed7cd33f9a65902ad6be0626ff22b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 13 页页图卷头为 2025 年 6 月 C++ 五级编程题 3.1『奖品兑换』（时间限制 1.0 s、内存限制 512.0 MB），第 14 页为 3.1.5 数据范围与 3.1.6 参考程序，与 2025-06-l5 的 Q26 对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 13 页 3.1 节（试题名称『奖品兑换』、时间限制 1.0 s、内存限制 512.0 MB）、3.1.1 题目描述、3.1.2 输入格式、3.1.3 输出格式、3.1.4 两组样例（8 8/2 1→5；314159 2653589/27 1828→1599）均与候选一致。但第 14 页 3.1.5 数据范围（60% 测试点 1≤a,b≤100、1≤n,m≤500；全部测试点 1≤a,b≤10^4、1≤n,m≤10^9）在候选 question 中完全缺失，该段直接决定是否需要用 long long 以及二分上界，属实质缺漏；changes.question 按原卷补齐『## 数据范围』两段后核验通过。另站内 memoryLimit 统一写作 128 MB（全站 level5 试卷同一写法，非本卷特有），与页图 512.0 MB 不同；该字段不在可修订字段集合内，仅在此记录。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，原卷第 13–14 页 3.1 节亦无选项，该维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不出现在第 1 页单选题答案表与判断题答案表中，officialAnswer=null 与候选 answer 空串一致（以 referenceCode 与样例承载判定），该维度不适用。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析经独立复核：答案关于份数单调；规范化 n≤m、a≤b 后方式一为课堂券最小/作业券最大组合，取最小调整数 t=ceil((v*b-m)/(b-a)) 后同判两约束为充要；t>v 时 x=v*a+t*d>v*b>m≥n 必判假；a==b 特判输出 n/a；r=n 为二分上界。样例 1 二分轨迹 4→6→5 输出 5；样例 2 check(1599) 为真（x=1599×27=43173，y=2922972>2653589，d=1801，t=150，y'=2652822≤2653589，x'=313323≤314159）、check(1600) 为假（t=151，x'=315151>314159），数值独立重算一致。易错提醒（v*b 最大约 10^13 必须 long long、上取整公式 (y-m+d-1)/d、l=mid 分支中点须写 (l+r+1)/2 防死循环）均成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与第 14 页 3.1.6 参考程序逐行一致（仅 if (n>m) swap(n,m) 的换行与空格差异）。本复核独立执行：g++ -std=c++17 -O2 编译通过；原样例 1、2 分别输出 5、1599；初核 5 条边界用例（最小规模、a==b 不足一份、两种方式混用、调整数超过总份数、10^9 量级防溢出）全部通过且与独立枚举器（不规范化，直接枚举 v 与方式二份数 t）逐一同值，另以 300 组随机小数据对拍 0 处不一致；数据范围内二分中点 mid 可达 5×10^8、mid*b≈5×10^12 远超 int 上限，1ll 必要，mid=(l+r+1)>>1 的 l+r+1≤2×10^9+1 不溢出 int。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202506 五级] 奖品兑换\n\n## 题目描述\n\n班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 $a$ 张课堂优秀券和 $b$ 张作业优秀券兑换一份奖品，或者使用 $b$ 张课堂优秀券和 $a$ 张作业优秀券兑换一份奖品。\n\n现在小 A 有 $n$ 张课堂优秀券和 $m$ 张作业优秀券，他最多能兑换多少份奖品呢？\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，分别表示小 A 持有的课堂优秀券和作业优秀券的数量。\n\n第二行，两个正整数 $a,b$，表示兑换一份奖品所需的两种券的数量。\n\n## 输出格式\n\n输出共一行，一个整数，表示最多能兑换的奖品份数。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 \\le a,b \\le 100$，$1 \\le n,m \\le 500$。\n\n对于所有测试点，保证 $1 \\le a,b \\le 10^4$，$1 \\le n,m \\le 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "a=b=1 走 a==b 特判输出 n/a=1。独立推演：1 份需两种券各 1 张，恰好够；2 份需各 2 张，不够。独立枚举器同值。"
+          },
+          {
+            "name": "a==b 且不足一份",
+            "input": "3 100\n5 5",
+            "output": "0",
+            "reason": "a=b=5 特判输出 n/a=3/5=0。独立推演：1 份即需 5 张课堂券，n=3 不足。独立枚举器同值。"
+          },
+          {
+            "name": "两种方式混用",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "2 份取方式一(2,3)+方式二(3,2)，两券各耗 5 张可行；3 份课堂券至少 3×2=6>5 不可行。独立枚举器同值。"
+          },
+          {
+            "name": "需调整份数超过总份数",
+            "input": "5 5\n3 4",
+            "output": "1",
+            "reason": "check(2)：x=6>5、y=8>5，t=(8-5)/1=3>v=2，调整后 x=9>5 判假；check(1)：x=3、y=4≤5 可行。独立枚举器同值。"
+          },
+          {
+            "name": "10^9 量级防溢出",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份恒耗 a+b=10001 张，两券合计 2×10^9，故 v≤199980；v=199980 时 t=99990，两券各耗 999999990≤10^9；v=199981 时 t=99991，课堂券需 1000009990>10^9。二分上界 r=n=10^9，搜索中途 mid 可达 5×10^8，mid*b≈5×10^12 远超 int 上限，印证 1ll 必要。实测参考程序输出 199980，独立枚举器同值。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "初核对 statement 判 needs_fix 经第 14 页页图独立复核属实：原卷 3.1.5 数据范围（60% 测试点与全部测试点两段约束）在候选题面完全缺失，属影响 long long 与二分上界判断的实质缺漏；changes.question 补齐后与原图逐字一致，采纳并保留完整字段值写入 changes。explanation、referenceCode 初核判 verified 经本复核独立验证接受：解析中两组样例走查与 check(1599)/check(1600) 数值独立重算一致；参考程序本地 g++ -std=c++17 -O2 编译通过，原样例、5 条边界用例全部通过，另以独立枚举器 300 组随机小数据对拍 0 处不一致（初核 600 组亦 0 不一致），本复核对初核第 5 条用例 reason 中『v*b≈2×10^9 超 int 上限』的表述按二分中途 mid*b≈5×10^12 作了精确化改写，输入输出与实测结果不变。memoryLimit 128 MB 与页图 512.0 MB 的差异属全站字段约定且不在可修订字段集合，仅在证据中记录。应用 changes.question 后题面即为原卷原貌，故 verdict=revise。"
+      }
+    ],
+    "summary": "仅 1 道候选（Q26）。题面遗漏第 14 页 3.1.5 数据范围（含 1e9 上界），初核补齐经独立复核采纳；解析与参考程序经独立编译、原样例、5 条边界用例（输入输出全部实测通过）及独立枚举器对拍验证通过；memoryLimit 站内约定差异仅记录。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        26
+      ],
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "startedAt": "2026-11-25T05:05:00.000Z",
+      "completedAt": "2026-11-25T05:36:00.000Z"
+    }
+  ]
+}
