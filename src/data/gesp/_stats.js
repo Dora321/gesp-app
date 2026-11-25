@@ -8,7 +8,7 @@ export const paperStats = {
   questionCount: 2916,
   practicePaperCount: 1,
   practiceQuestionCount: 25,
-  reviewPaperCount: 0,
+  reviewPaperCount: 4,
   verifiedPaperCount: 35,
   partialPaperCount: 73,
   unverifiedPaperCount: 0,
