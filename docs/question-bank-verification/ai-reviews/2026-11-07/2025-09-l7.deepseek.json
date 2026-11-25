@@ -1,0 +1,1021 @@
+{
+  "paperId": "2025-09-l7",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-07T13:00:00.000Z",
+  "completedAt": "2026-11-07T13:40:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "c4f1ffbe47d11bbe72a8bdde7a05a5ed03676272eb9d264a32379c87c5102c2a",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703973098618912.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++7级.pdf",
+    "mirrorSha": "3b54ec0ed94378d186c603b352363d7ee3d5c423",
+    "mirrorBytes": 893134,
+    "shaVerified": true,
+    "sha256": "f7897b83cddc2a1a85d388580a311ee36455043c6c701a7ceaf6253197be28c1"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2025-09-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为“C++ 七级 / 2025 年 09 月”，与 paperId 2025-09-l7（2025年9月C++七级）一致；第1页单选题答案表与第4页判断题答案表清晰可读，27 题齐全。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第1题题干与站点 question 一致，考查字符加 1 与 ASCII。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A-D 四项与站点 options 的顺序和内容一致（字符加 1 与 ASCII）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第1题为 B，按 0 起始索引映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“字符加 1 与 ASCII”的推导为：'b'+1=99，输出字符 c；结论与官方答案 B 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第2题题干与站点 question 一致，考查指针乘法表达式。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A-D 四项与站点 options 的顺序和内容一致（指针乘法表达式）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第2题为 B，按 0 起始索引映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“指针乘法表达式”的推导为：指针不能相乘，p*p 非法；结论与官方答案 B 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第3题题干与站点 question 一致，考查抽象类与成员变量。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页 A-D 四项与站点 options 的顺序和内容一致（抽象类与成员变量）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第3题为 A，按 0 起始索引映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“抽象类与成员变量”的推导为：抽象类可以包含成员变量，A 错；结论与官方答案 A 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第1页第4题题干与站点 question 一致，考查数组部分初始化。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页 D 项只到“语句 a[13]=0; 不会产生编译错误，但会导致难以预测的运行结果。”；站点 option D 末尾误粘了第 1 题代码块，已删除。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第4题为 B，按 0 起始索引映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“数组部分初始化”的推导为：只显式初始化 a[0]=-1，其余元素为 0，B 错；结论与官方答案 B 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "数组a至少占用10个int大小的内存，一般为40个字节。",
+            "数组a的所有元素均被初始化为-1。",
+            "语句a[-1] = 0;不会产生编译错误，但会导致难以预测的运行结果。",
+            "语句a[13] = 0;不会产生编译错误，但会导致难以预测的运行结果。"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第5题题干与站点 question 一致，考查完全二叉树叶子数。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 四项与站点 options 的顺序和内容一致（完全二叉树叶子数）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第5题为 C，按 0 起始索引映射为 2，站点 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“完全二叉树叶子数”的推导为：165-⌊165/2⌋=83；结论与官方答案 C 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第6题题干与站点 question 一致，考查二叉排序树高度。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第2页 C 项为“n 个元素的二叉排序树，其高一定为 ⌊log2 n⌋。”；站点 option C 丢失 n 与公式，已按原卷补全。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第6题为 C，按 0 起始索引映射为 2，站点 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“二叉排序树高度”的推导为：BST 高度取决于插入顺序，不固定为 ⌊log2 n⌋；结论与官方答案 C 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "二叉排序树的中序遍历顺序与元素排序的顺序是相同的。",
+            "自平衡二叉查找树（AVL树）是一种二叉排序树。",
+            "n 个元素的二叉排序树，其高一定为 ⌊log₂ n⌋。",
+            "任意的森林，都可以映射为一颗二叉树进行表达和存储。"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第7题题干与站点 question 一致，考查树、图与生成树。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 四项与站点 options 的顺序和内容一致（树、图与生成树）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第7题为 D，按 0 起始索引映射为 3，站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“树、图与生成树”的推导为：有生成树只保证弱连通，不保证强连通；结论与官方答案 D 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第2页题干为“对一个包含 V 个顶点、E 条边的图”，站点 question 只剩“包含 个顶点、 条边”，变量名丢失。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第2页选项为 O(V+E)、O(V)、O(E)、O(V²)；站点改成了 n/m 且题干变量名丢失，已恢复官方 V/E 表述。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第8题为 A，按 0 起始索引映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析用 n、m 叙述；题干与选项恢复 V、E 后，已同步改写为 O(V+E) 与 O(V²)。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "对一个包含 V 个顶点、E 条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。",
+          "options": [
+            "O(V+E)",
+            "O(V)",
+            "O(E)",
+            "O(V²)"
+          ],
+          "explanation": "**答案：A（O(V+E)）**\n\n按邻接表存储，BFS 中每个顶点入队、出队一次，耗时 O(V)；每条边在起点出队时被查看常数次，耗时 O(E)，合计 O(V+E)。若用邻接矩阵，则需扫描每个顶点的整行，复杂度为 O(V²)，不是最优。\n\n**易错提醒：** 问“最优”时应取邻接表，复杂度必须同时包含顶点与边。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第9题题干与站点 question 一致，考查哈希冲突方案。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 四项与站点 options 的顺序和内容一致（哈希冲突方案）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第9题为 A，按 0 起始索引映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“哈希冲突方案”的推导为：覆盖冲突项会丢数据，A 不能；结论与官方答案 A 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第2页第10题题干与站点 question 一致，考查贪心与动态规划。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第2页 A-D 四项与站点 options 的顺序和内容一致（贪心与动态规划）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第10题为 D，按 0 起始索引映射为 3，站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“贪心与动态规划”的推导为：动态规划不保证多项式时间，D 错；结论与官方答案 D 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第11题题干与站点 question 一致，考查缺少递归出口的斐波那契。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 四项与站点 options 的顺序和内容一致（缺少递归出口的斐波那契）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第11题为 D，按 0 起始索引映射为 3，站点 answer=3，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“缺少递归出口的斐波那契”的推导为：只有 n==0 出口，fib(1) 继续递归，无法正常结束；结论与官方答案 D 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3页第12题题干与站点 question 一致，考查伪记忆化斐波那契复杂度。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3页 A-D 四项与站点 options 的顺序和内容一致（伪记忆化斐波那契复杂度）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第12题为 A，按 0 起始索引映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“伪记忆化斐波那契复杂度”的推导为：结果未写回缓存，退化为 O(φ^n)；结论与官方答案 A 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3、4页第13题题干与站点 question 一致，考查init_sieve 复杂度。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "PDF 第3页选项顺序为 A O(n)、B O(n log log n)、C O(n log n)、D O(n²)；站点把 B 改成 O(n²)、D 改成 O(log n)，已恢复官方选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第13题为 C，按 0 起始索引映射为 2，站点 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析按站点旧选项 B=O(n²)、D=O(log n) 排除；选项恢复官方顺序后，已重写为 A O(n)、B O(n log log n)、C O(n log n)、D O(n²) 的对应分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "options": [
+            "O(n)",
+            "O(n log log n)",
+            "O(n log n)",
+            "O(n²)"
+          ],
+          "explanation": "**答案：C（O(n log n)）**\n\n第一重循环执行 n 次，O(n)。第二重对每个 i 执行 n/i 次，总次数为 n(1/2+1/3+…+1/n)=O(n log n)。两部分相加仍为 O(n log n)。\n\n- A O(n)：漏掉调和级数。\n- B O(n log log n)：这是标准埃氏筛（只对素数做内层）的复杂度；本题每个 i 都进入内层。\n- D O(n²)：把内层步长误当成 1。\n\n**考点：** 调和级数求和与筛法复杂度。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第3、4页第14题题干与站点 question 一致，考查count_triple 复杂度。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第3、4页 A-D 四项与站点 options 的顺序和内容一致（count_triple 复杂度）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第14题为 C，按 0 起始索引映射为 2，站点 answer=2，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“count_triple 复杂度”的推导为：循环约 O(n) 次，每次 gcd 为 O(log n)；结论与官方答案 C 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4页第15题题干与站点 question 一致，考查有向图 DFS 序列。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第4页 A-D 四项与站点 options 的顺序和内容一致（有向图 DFS 序列）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表第15题为 B，按 0 起始索引映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“有向图 DFS 序列”的推导为：B 在 2 尚未完成子树时跳到 4，违反 DFS；结论与官方答案 B 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第1题题干与站点 question 一致，考查逻辑与 9&&12。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第1题为“×”，映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“逻辑与 9&&12”的推导为：9&&12 为 bool 值 true；结论与官方答案 × 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第2题题干与站点 question 一致，考查数组负下标。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第2题为“×”，映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“数组负下标”的推导为：a[-1] 是运行期未定义行为，不是编译错误；结论与官方答案 × 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第3题题干与站点 question 一致，考查选择排序稳定性。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第3题为“√”，映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“选择排序稳定性”的推导为：选择排序跨位交换会破坏相等元素次序；结论与官方答案 √ 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第4题题干与站点 question 一致，考查float 与 int 可表示值数量。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第4题为“×”，映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“float 与 int 可表示值数量”的推导为：float 含 NaN、±0 等特殊编码，可表示值少于 int；结论与官方答案 × 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第5题题干与站点 question 一致，考查log(256) 的值。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第5题为“×”，映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“log(256) 的值”的推导为：log 是自然对数，ln256≈5.545，不是 8.0；结论与官方答案 × 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第6题题干与站点 question 一致，考查完全二叉树深度公式。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第6题为“√”，映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "原解析公式被写成“tags:^{h-1} ≤ N ≤ 2^h-1”，记号损坏；已改为 2^{h-1} ≤ N ≤ 2^h-1。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：正确**\n\n完全二叉树的深度 h 与结点数 N 满足 2^{h-1} ≤ N ≤ 2^h - 1，因此 h-1 ≤ log₂N < h，即 h = ⌊log₂ N⌋ + 1。N=1 时 h=1，N=8 时 h=4，均与公式一致，命题正确。\n\n**考点：** 完全二叉树深度公式。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第7题题干与站点 question 一致，考查邻接表与邻接矩阵复杂度。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第7题为“×”，映射为 1，站点 answer=1，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“邻接表与邻接矩阵复杂度”的推导为：复杂度取决于具体操作，不能笼统断言邻接表更低；结论与官方答案 × 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第8题题干与站点 question 一致，考查私有构造函数。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第8题为“√”，映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“私有构造函数”的推导为：构造函数可以声明为 private；结论与官方答案 √ 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5页判断题第9题原文到“一般使用广度优先搜索实现”结束；站点 question 末尾误粘了第14题的 count_triple 代码块。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第9题为“√”，映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“泛洪递归实现”的推导为：递归深度大时会栈溢出；结论与官方答案 √ 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {
+          "question": "泛洪算法的递归实现容易造成溢出，因此大的二维地图算法中，一般使用广度优先搜索实现。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第4、5页第判断题第10题题干与站点 question 一致，考查技能依赖关系。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 选项，站点 options 为“正确/错误”两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第4页判断题答案表第10题为“√”，映射为 0，站点 answer=0，一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析对“技能依赖关系”的推导为：多前驱依赖构成 DAG，不一定是树；结论与官方答案 √ 一致，未发现事实或计算错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第5—6页题面、输入输出、两组样例与站点 question 一致；但站点缺少“数据范围”，已补入 40% n,m≤100、100% n,m≤10⁵。PDF 内存限制 512.0 MB，站点 128 MB，记入 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析把最少加边数化为连通块数减 1；样例 1 已连通得 0，样例 2 有 {1,2,3}、{4}、{5,6} 三块得 2，独立推导成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第6页参考程序用并查集统计连通块；站点用带路径压缩与按大小合并的 DSU，算法等价。已编译并对随机含自环/重边的图对拍，结果一致。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202509 七级] 连通图\n\n## 题目描述\n\n给定一张包含 $n$ 个结点与 $m$ 条边的无向图，结点依次以 $1,2,\\ldots,n$ 编号，第 $i$ 条边（$1\\le i\\le m$）连接结点 $u_i$ 与结点 $v_i$。如果从一个结点经过若干条边可以到达另一个结点，则称这两个结点是连通的。\n\n你需要向图中加入若干条边，使得图中任意两个结点都是连通的。请你求出最少需要加入的边的条数。\n\n注意给出的图中可能包含重边与自环。\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，表示图的点数与边数。\n\n接下来 $m$ 行，每行两个正整数 $u_i,v_i$，表示图中一条连接结点 $u_i$ 与结点 $v_i$ 的边。\n\n## 输出格式\n\n输出一行，一个整数，表示使得图中任意两个结点连通所需加入的边的最少数量。\n\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 100$，$1\\le m\\le 100$。\n\n对于所有测试点，保证 $1\\le n\\le 10^5$，$1\\le m\\le 10^5$。"
+        },
+        "tests": [
+          {
+            "name": "单点自环",
+            "input": "1 1\n1 1\n",
+            "output": "0",
+            "reason": "只有一个连通块（自环不改变连通性），需加0条边。"
+          },
+          {
+            "name": "一条边连接两点",
+            "input": "3 1\n1 2\n",
+            "output": "1",
+            "reason": "连通块为{1,2}与{3}，需1条边。"
+          },
+          {
+            "name": "自环与重边",
+            "input": "3 3\n1 1\n2 2\n1 2\n",
+            "output": "1",
+            "reason": "自环不影响连通性，1和2合并后与3共2个连通块，需1条边。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第5页内存限制为 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第6—8页题面、输入输出、两组样例与站点 question 一致；但站点缺少“数据范围”，已补入 40% n≤8、另 30% n≤100 且 x_i,t_i≤100、100% n≤10⁵ 且 x_i,t_i≤10⁹。PDF 内存限制 512.0 MB，站点 128 MB，记入 unresolved。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观题答案，officialAnswer 为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析把可行收集序列化为先按 x 排序后对 t−x 求最长不下降子序列；样例 1 得 2，样例 2 得 3，独立推导成立。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "PDF 第7—8页参考程序按 x 排序后对 t−x 做 LIS；站点用 upper_bound 维护 LIS，并先过滤 t<x 的金币，算法等价。已编译并对随机数据与 O(n²) DP 暴力对拍，结果一致。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202509 七级] 金币收集\n\n## 题目描述\n\n小 A 正在游玩收集金币的游戏。具体来说，在数轴上将会出现 $n$ 枚金币，其中第 $i$ 枚（$1\\le i\\le n$）金币将会在时刻 $t_i$ 出现在数轴上坐标为 $x_i$ 的位置。小 A 必须在时刻 $t_i$ 恰好位于坐标 $x_i$，才可以获得第 $i$ 枚金币。\n\n游戏开始时为时刻 $0$，此时小 A 的坐标为 $0$。正常来说，小 A 可以按游戏机的按键在数轴上左右移动，但不幸的是游戏机的左方向键失灵了。小 A 每个时刻只能选择保持不动，或是向右移动一个单位。换言之，如果小 A 在时刻 $t$ 的坐标为 $x$，那么他在时刻 $t+1$ 的坐标只能是 $x$ 或是 $x+1$ 二者之一，分别对应保持不动和向右移动。\n\n小 A 想知道他最多能收集多少枚金币。你能帮他收集最多的金币吗？\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示金币的数量。\n\n接下来 $n$ 行，每行两个正整数 $x_i,t_i$，分别表示金币出现的坐标与时刻。\n\n## 输出格式\n\n输出一行，一个整数，表示小 A 最多能收集的金币数量。\n\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 8$。\n\n对于另外 30% 的测试点，保证 $1\\le n\\le 100$，$1\\le x_i\\le 100$，$1\\le t_i\\le 100$。\n\n对于所有测试点，保证 $1\\le n\\le 10^5$，$1\\le x_i\\le 10^9$，$1\\le t_i\\le 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "最小坐标时刻",
+            "input": "1\n1 1\n",
+            "output": "1",
+            "reason": "t=x=1，可从(0,0)右移到(1,1)收集。"
+          },
+          {
+            "name": "时刻早于坐标",
+            "input": "1\n5 3\n",
+            "output": "0",
+            "reason": "3个时刻最多右移3格，到不了x=5。"
+          },
+          {
+            "name": "同一坐标连续时刻",
+            "input": "3\n1 1\n1 2\n2 2\n",
+            "output": "2",
+            "reason": "先在t=1收集(1,1)，停留到t=2再收集(1,2)，最多2枚。"
+          }
+        ],
+        "unresolved": [
+          "PDF 第6页内存限制为 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动。"
+        ]
+      }
+    ],
+    "summary": "已完成 27 题五维核验：verified 85 项、needs_fix 11 项、unresolved 0 项、not_applicable 39 项；另有 2 题在 unresolved 数组中记录了内存限制等未改动项。"
+  },
+  "requests": []
+}
