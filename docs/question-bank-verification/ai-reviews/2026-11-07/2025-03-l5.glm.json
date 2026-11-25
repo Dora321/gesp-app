@@ -1,0 +1,1036 @@
+{
+  "paperId": "2025-03-l5",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T06:48:03.532Z",
+  "completedAt": "2026-11-25T06:48:03.532Z",
+  "finishReason": "stop",
+  "inputSha256": "85ea9a613def59f84ff66362a86ae1c54c9dfa369f4cdf5e5a988c5287dec78d",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1684804529553440.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++5级.pdf",
+    "mirrorSha": "f03dad621e5f613829e8aefc49865ea00ead7212",
+    "mirrorBytes": 1639595,
+    "shaVerified": true,
+    "sha256": "1ab80eaa00981a81c74d45c5797e08e5d3b37cd08cedb5f41c50bdd4a669d285"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 五级 / 2025 年 03 月」，与 paperId 2025-03-l5（2025 年 3 月 GESP C++ 五级）的年份、月份、等级一致；第 1 页单选题答案表 1-15 为 A A B B D C A D A B C A A D B，第 8 页判断题答案表 1-10 为 √ × √ × √ × √ × × √，均清晰可读，本轮全部核验以此为答案基准。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 1 页页图题干、四项与答案表第 1 题 A（索引 0）独立核对一致；链表不具备随机访问能力的判定成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 1 题题干「链表不具备的特点是（ ）。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页页图 A 可随机访问任何一个元素、B 插入删除操作不需要移动元素、C 无需事先估计存储空间大小、D 所需存储空间与存储元素个数成正比，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 A，0 起始索引 0，站点 answer=0。独立推导：链表只能沿指针顺序访问，随机访问是数组特性，A 为不具备的特点。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析逐项区分链表/数组特性，结论 A 与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 1 页页图四段删除代码与答案表第 2 题 A（索引 0）独立核对一致；A 两句均自指成环的逐步代入分析成立，C/D 链式写法的正确性亦经独立验证。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页页图第 2 题题干「双向链表中每个结点有两个指针域 prev 和 next……要删除结点 p，下述语句中错误的是（ ）。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页页图 A p->next->prev=p->next; p->prev->next=p->prev;、B 标准写法、C 先改后继 prev 再经 p->next->prev->next 接回、D 先改前驱 next 再经 p->prev->next->prev 接回，四段与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 A，0 起始索引 0，站点 answer=0。独立推导：A 的两句分别让后继 prev 指向自身、前驱 next 指向自身，未实现绕行，链表断裂，为错误项；B/C/D 均能正确删除（C/D 第二句沿新连接访问）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对 C、D 链式访问的逐步代入分析与独立推导一致，易错提醒到位。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 3,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 2 页页图 ListNode/LinkedList/InitLinkedList 代码与四个选项核对一致，答案表第 3 题 B（索引 1）。原卷 B 项未设 head->prev 与 tail->next 的严格循环定义瑕疵保留在 unresolved；以官方答案表为准维持 B。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页页图题干（含头尾哨兵的空双向循环链表初始化）及模板结点、构造函数、两行 new 与横线的代码与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页页图 A head->prev=head; tail->prev=head;、B head->next=tail; tail->prev=head;、C head->next=tail; tail->next=head;、D head->next=tail; tail->next=nullptr; 与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 B，0 起始索引 1，站点 answer=1。独立推导：空表骨架需前向 head->next=tail 与后向 tail->prev=head 两条关键指针，B 唯一同时建立；A 前向断裂、C 后向 prev 链断裂、D 破坏循环性。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析逐项排除与独立推导一致，考点为哨兵初始化的指针设置。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "原卷第 3 题 B 项只设置 head->next=tail 与 tail->prev=head，未设置 head->prev 与 tail->next；按严格“双向循环链表”定义四条指针应互连。官方答案表为 B，站点 answer=1 与官方一致，记录原卷设问瑕疵。"
+        ]
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "采纳 DeepSeek 初核修改：站点 question 缺辗转相除 gcd 代码块。经独立对照第 2-3 页页图，原卷第 3 页给出 big/small 判断与递归代码，changes.code 逐字采用初核恢复稿与页图一致；答案表第 4 题 B（索引 1），第二步计算 60 和 24 的推导独立成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 2 页末题干「用以下辗转相除法（欧几里得算法）求 gcd(84, 60) 的步骤中，第二步计算的数是（ ）。」及第 3 页 gcd 代码（big/small 归一、big%small==0 返回、否则递归）与 changes.code 一致；站点 question 原缺失该代码块，已按原卷补齐。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图 A「84 和 60」、B「60 和 24」、C「24 和 12」、D「12 和 0」与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 B，0 起始索引 1，站点 answer=1。独立推导：第一步 84%60=24 得数对 (60,24)，第二步计算 60 和 24（60%24=12 得 (24,12)），B 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析按 (a,b)→(b,a%b) 逐步展开并逐项排除，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "code": "int gcd(int a, int b) {\n    int big = a > b ? a : b;\n    int small = a < b ? a : b;\n    if (big % small == 0) {\n        return small;\n    }\n    return gcd(small, big % small);\n}"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 3 页页图题干、四个分解式与答案表第 5 题 D（索引 3）独立核对一致；唯一分解须全为质数因子，仅 30=2×3×5 满足。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页页图题干「根据唯一分解定理，下面整数的唯一分解是正确的（ ）。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页页图 A 18=3×6、B 28=4×7、C 36=2×3×6、D 30=2×3×5，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 D，0 起始索引 3，站点 answer=3。独立推导：A 的 6、B 的 4、C 的 6 均为合数，只有 D 全为质数。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析逐项指出合数因子的正确分解（18=2×3²、28=2²×7、36=2²×3²），与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 3-4 页页图线性筛代码与四个选项核对一致，答案表第 6 题 C（索引 2）；内层须同时防 primes 越界与 i*primes[j]>n 越界写，C 正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页末题干及第 4 页 sieve_linear 代码（n<2 返回、置 0/1、外层到 n/2、内层横线在 for 条件、break 机制、收尾补素数）与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图 A j<primes.size()、B i*primes[j]<=n、C 两者同时满足、D j<=n，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 C，0 起始索引 2，站点 answer=2。独立推导：j 是 primes 下标须防越界，i*primes[j] 须落在 [2,n] 内防越界写；只取 A 或 B 都会越界，C 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对两个边界缺一不可的分析与独立推导一致，并指出 break 与最小质因子的关系。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 4 页页图题干与四个选项核对一致，答案表第 7 题 A（索引 0）；函数调用使用调用栈、递归过深爆栈的判定成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页页图题干「在程序运行过程中，如果递归调用的层数过多，会因为（ ）引发错误。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图 A 栈空间溢出、B 堆空间溢出、C 队列空间溢出、D 链表空间溢出，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 A，0 起始索引 0，站点 answer=0。独立推导：函数调用依赖 LIFO 调用栈，栈容量小，递归过深耗尽栈空间。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对栈/堆分工与爆栈机制的说明与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 4 页页图 factorialA/factorialB 代码与四个选项核对一致，答案表第 8 题 D（索引 3）；factorialB 为循环迭代非递归的判定成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页页图题干及 factorialA（递归）与 factorialB（for 累乘）代码与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图 A 功能相同、B 时间复杂度均为 O(N)、C factorialA 采用递归方式、D factorialB 采用递归方式，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题为 D，0 起始索引 3，站点 answer=3。独立推导：factorialB 未调用自身，是迭代实现，D 说法错误；A/B/C 均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析含递归与迭代的空间复杂度对比，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 4 页页图题干与四个选项核对一致，答案表第 9 题 A（索引 0）；选择排序远距离交换破坏稳定性的反例分析成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页页图题干「下算法中，（ ）是不稳定的排序。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页页图 A 选择排序、B 插入排序、C 归并排序、D 冒泡排序，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题为 A，0 起始索引 0，站点 answer=0。独立推导：选择排序每轮最小元素与当前位置远距离交换（如 [5a,5b,2]→[2,5b,5a]），不稳定；插入/归并/冒泡稳定。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析含具体反例与三种稳定排序的机理说明，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 4-5 页页图 partition/quickSort 代码与四个选项核对一致，答案表第 10 题 B（索引 1）；「小于 pivot 划到左侧」须 if(arr[j]<pivot){i++;swap;} 的推导成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页末题干及第 5 页以 arr[high] 为基准的 partition（横线在循环体内）与 quickSort 代码与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页页图 A 条件 >pivot、B if(arr[j]<pivot){i++;swap(arr[i],arr[j]);}、C 交换但无 i++、D 条件 ==pivot，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 B，0 起始索引 1，站点 answer=1。独立推导：i 维护小于区右边界，遇小于 pivot 元素先扩区再交换，循环结束后 swap(arr[i+1],arr[high]) 归位基准；A 方向反、C 区不扩张、D 条件错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析逐项归因与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 5 页页图题干与四个选项核对一致，答案表第 11 题 C（索引 2）；2^6=64<100≤128=2^7 得最坏 7 次的推导成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页页图题干「若用二分法在[1,100]内猜数，最多需要猜（ ）次。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页页图 A 100、B 10、C 7、D 5，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 C，0 起始索引 2，站点 answer=2。独立推导：每猜一次候选数减半，50→25→12→6→3→1→命中，最坏 7 次；猜 k 次至多区分 2^k 个数，2^6=64<100≤128。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析含逐轮减半表与向上取整提醒，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 5-6 页页图 binarySearch 代码与四个选项核对一致，答案表第 12 题 A（索引 0）；防溢出写法为「最佳代码」的判定成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页末题干及第 6 页 while(left<=right) 循环内横线求 mid 的代码与站点 question 及 code 字段一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页页图 A left+(right-left)/2、B mid=left、C (left+right)/2、D mid=right，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 A，0 起始索引 0，站点 answer=0。独立推导：left+(right-left)/2 与 (left+right)/2 数学等价但避免 left+right 溢出，题问「最佳」故 A；B/D 退化顺序查找，C 不防溢出。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对溢出机理与退化行为的说明与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 6 页页图题干与四个选项核对一致，答案表第 13 题 A（索引 0）；「每步选当前最优、不回头」为贪心核心特征的判定成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页页图题干「贪心算法的核心特征是（ ）。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页页图 A 总是选择当前最优解、B 回溯尝试所有可能、C 分阶段解决子问题、D 总能找到最优解，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 A，0 起始索引 0，站点 answer=0。独立推导：贪心=局部最优不回溯，A 正确；B 是回溯、C 近分治/DP、D 过于绝对。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析含 0-1 背包反例，与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 6-7 页页图 findMax 四个实现选项核对一致，答案表第 14 题 D（索引 3）；D 的基例、区间划分与合并取 max 均正确，A/B/C 的错误归因成立。站点题干将 PDF 原句「计算数组中最大元素，其中数组 arr 从索引 low 到 high」整理为「计算数组从索引 low 到 high 范围内的最大元素」，属等价改写不改题意。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页末题干（findMax 求区间最大元素）与第 7 页四个代码选项和站点 question 一致；站点题干文字为 PDF 原句的等价整理，设问与代码无差异。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页页图 A 返回 arr[mid] 无递归、B 两半最大值相加、C 基例 low>high 返回 0 且合并用乘积、D 基例 low==high、[low,mid]/[mid+1,high] 划分、返回较大值，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 D，0 起始索引 3，站点 answer=3。独立推导：D 不重不漏划分并取 max 合并，正确；A 非最大值、B 求和、C 语义全错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对区间划分不重不漏的提醒与逐项归因与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 7 页页图 multiply 代码与四个选项核对一致，答案表第 15 题 B（索引 1）；temp=c[k]+carry 后本位取模、进位整除的分析独立成立。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页页图题干及 c[i+j]+=a[i]*b[j] 累加、进位循环横线、c[k]=temp%10、carry=temp/10、高位去零的代码与站点 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页页图 A temp=c[k]、B temp=c[k]+carry、C temp=c[k]-carry、D temp=c[k]*carry，与站点 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 B，0 起始索引 1，站点 answer=1。独立推导：每位总量=本位累加值+低位进位，先进位再加、处理完重算，B 正确；A 丢进位、C 减法无据、D 相乘错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "站点解析对 carry 顺序的易错提醒与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 16,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，复制后继数据与 next 后删后继，等价于删除 p 且 O(1)，命题正确，与答案表 √ 一致。页图判断答案表第 1 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 1 题原文「要删除单链表中某个结点 p（非尾结点），但不知道头结点，可行的操作是将 p->next 的数据拷贝到 p 的数据部分，将 p->next 设置为 p->next->next，然后删除 p->next。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 1 题符号与站点 answer=0 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "复制后继数据与 next 后删后继，等价于删除 p 且 O(1)，命题正确，与答案表 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，链表结点靠指针链接、物理可离散，命题错误，与答案表 × 一致。页图判断答案表第 2 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 2 题原文「链表存储线性表时要求内存中可用存储单元地址是连续的。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 2 题符号与站点 answer=1 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "链表结点靠指针链接、物理可离散，命题错误，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，break 保证最小质因子唯一标记，复杂度 O(n) 优于埃氏筛，命题正确，与答案表 √ 一致。页图判断答案表第 3 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 3 题原文「线性筛相对于埃拉托斯特尼筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 3 题符号与站点 answer=0 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "break 保证最小质因子唯一标记，复杂度 O(n) 优于埃氏筛，命题正确，与答案表 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，贪心不保证全局最优（0-1 背包、找零反例），命题错误，与答案表 × 一致。页图判断答案表第 4 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 4 题原文「贪心算法通过每一步选择当前最优解，从而一定能获得全局最优解。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 4 题符号与站点 answer=1 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "贪心不保证全局最优（0-1 背包、找零反例），命题错误，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，缺终止条件将无限递归爆栈，命题正确，与答案表 √ 一致。页图判断答案表第 5 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 5 题原文「递归函数必须具有一个终止条件，以防止无限递归。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 5 题符号与站点 answer=0 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "缺终止条件将无限递归爆栈，命题正确，与答案表 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，有序输入+端点基准退化 O(n²)，命题错误，与答案表 × 一致。页图判断答案表第 6 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 6 题原文「快速排序算法的时间复杂度与输入是否有序无关，始终稳定为 O(n log n)。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 6 题符号与站点 answer=1 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "有序输入+端点基准退化 O(n²)，命题错误，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，划分层数固定、每层合并 O(n)，与输入无关，命题正确，与答案表 √ 一致。页图判断答案表第 7 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 7 题原文「归并排序算法的时间复杂度与输入是否有序无关，始终稳定在 O(n log n)。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 7 题符号与站点 answer=0 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "划分层数固定、每层合并 O(n)，与输入无关，命题正确，与答案表 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，无序数组无法判定目标在哪一半，命题错误，与答案表 × 一致。页图判断答案表第 8 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 8 题原文「二分查找适用于对无序数组和有序数组的查找。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 8 题符号与站点 answer=1 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "无序数组无法判定目标在哪一半，命题错误，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，每步买最便宜是贪心策略，无分解-合并过程，命题错误，与答案表 × 一致。页图判断答案表第 9 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 9 题原文「小杨有 100 元去超市买东西……每次优先买价格最低的商品，这体现的是分治思想。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 9 题符号与站点 answer=1 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "每步买最便宜是贪心策略，无分解-合并过程，命题错误，与答案表 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 25,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "接受 DeepSeek 初核：第 8 页页图判断题原文与答案表独立核对一致，归并完整呈现分-治-合，命题正确，与答案表 √ 一致。页图判断答案表第 10 题符号、站点 answer 与映射（正确=0/错误=1）三方吻合，无需要修改的字段。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页页图判断题第 10 题原文「归并排序算法体现了分治算法，每次将大的待排序数组分成大小大致相等的两个小数组，然后分别对两个小数组进行排序，最后对排好序的两个小数组合并成有序数组。」与站点 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A-D 单选选项，站点 options 为「正确/错误」两态。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断答案表第 10 题符号与站点 answer=0 映射一致（√=0/×=1）。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "归并完整呈现分-治-合，命题正确，与答案表 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "采纳 DeepSeek 初核修改：站点 question 缺数据范围，changes.question 按第 9 页数据表补齐（20% 1≤n≤8、20% 0≤b_i,c_i≤1、全部 1≤n≤10^5、0≤b_i,c_i≤10^9），逐字采用。参考程序与页图实现一致，本轮以 g++ -std=c++17 -O2 实际编译站点参考代码，原样例 3→36、2→35 及三条边界用例（n=1→13、全 0→0、大差值→13）全部实测通过。memoryLimit 差异已记录待人工同步。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 8-10 页页图「平均分配」题意、输入输出、两组样例 3→36、2→35 与站点一致；changes.question 补入第 9 页数据范围，与页图逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：全部先卖给 B 得 sum(b)，改卖 C 的增量为 c_i-b_i，恰选 n 件取增量最大者；样例 1 六个差值均为 1、sum(b)=33，加 3 得 36；样例 2 同法得 35，与样例一致；站点解析的差值贪心与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序与第 9-10 页官方程序一致（排序差值取最大 n 个），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（3→36、2→35）与全部复核边界用例（1/5 6/7 8→13、1/0 0/0 0→0、2/10 1 1 1/1 1 1 1→13），输出逐字符一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 五级] 平均分配\n\n## 题目描述\n\n小 A 有 $2n$ 件物品，小 B 和小 C 想从小 A 手上买走这些物品。对于第 $i$ 件物品，小 B 会以 $b_i$ 的价格购买，而小 C 会以 $c_i$ 的价格购买。为了平均分配这 $2n$ 件物品，小 A 决定小 B 和小 C 各自只能买走恰好 $n$ 件物品。你能帮小 A 求出他卖出这 $2n$ 件物品所能获得的最大收入吗？\n\n## 输入格式\n\n第一行，一个正整数 $n$。\n\n第二行，$2n$ 个整数 $b_1,b_2,\\dots,b_{2n}$。\n\n第三行，$2n$ 个整数 $c_1,c_2,\\dots,c_{2n}$。\n\n## 输出格式\n\n一行，一个整数，表示答案。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $1 \\le n \\le 8$；对于另外 20% 的测试点，保证 $0 \\le b_i \\le 1$，$0 \\le c_i \\le 1$；对于所有测试点，保证 $1 \\le n \\le 10^5$，$0 \\le b_i,c_i \\le 10^9$。"
+        },
+        "tests": [
+          {
+            "name": "n=1 两件物品",
+            "input": "1\n5 6\n7 8\n",
+            "output": "13",
+            "reason": "2n=2 件，B、C 各买 1 件；两种分配分别为 5+8=13、6+7=13，最大 13。"
+          },
+          {
+            "name": "全部差值为 0",
+            "input": "1\n0 0\n0 0\n",
+            "output": "0",
+            "reason": "价格全为 0，任选 1 件给 C，总收入 0。"
+          },
+          {
+            "name": "大差值优先",
+            "input": "2\n10 1 1 1\n1 1 1 1\n",
+            "output": "13",
+            "reason": "sum(b)=13，差值 c-b 为 -9,0,0,0；选最大的 2 个差值 0、0，收入 13。"
+          }
+        ],
+        "unresolved": [
+          "站点 memoryLimit=128 MB，原卷第 8 页标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "采纳 DeepSeek 初核修改：站点 question 缺原根定义的后两条条件、任务句与数据范围，且 LaTeX 写成「$1 le g < p$」。经独立对照第 10-11 页页图，原卷给出三条原根条件、样例 3 组输出 Yes/Yes/No 及数据范围；changes.question 逐字采用初核恢复稿与页图一致。参考程序经实测，原样例与三条边界用例（2 3→Yes、4 5→No、3 7/2 7→Yes/No）全部通过。memoryLimit 差异已记录待人工同步。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过：第 10 页页图原根三条条件（1<g<p、g^(p-1) mod p=1、任意 1≤i<p-1 有 g^i mod p≠1）、任务句、输入输出与样例 3/3 998244353→Yes、5 998244353→Yes、7 998244353→No 及第 11 页数据范围（40% 3≤p≤10^3、全部 1≤T≤20、3≤p≤10^9、1<a<p、p 为质数）与 changes.question 一致；站点原题仅存第一条条件且 LaTeX 转义缺失，已按原卷恢复。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无 PDF 客观题答案表项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：a 是 p 的原根当且仅当对 p-1 的每个不同质因子 q 都有 a^((p-1)/q) mod p≠1；998244353-1=2^23×7×17，3 与 5 通过全部检验、7 在指数 (p-1)/2 处幂为 1，输出 Yes/Yes/No，与样例一致；站点解析的质因子检验法与该推导一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "站点参考程序与第 11 页官方程序一致（快速幂逐个检验 (p-1)/q），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（Yes/Yes/No）与全部复核边界用例（2 3→Yes、4 5→No、3 7+2 7→Yes/No），输出逐字符一致。"
+          }
+        },
+        "changes": {
+          "question": "# [GESP202503 五级] 原根判断\n\n## 题目描述\n\n小 A 知道，对于质数 $p$ 而言，$p$ 的原根 $g$ 是满足以下条件的正整数：\n\n- $1 < g < p$；\n- $g^{p-1} \\bmod p = 1$；\n- 对于任意 $1 \\le i < p-1$ 均有 $g^i \\bmod p \\ne 1$。\n\n其中 $a \\bmod p$ 表示 $a$ 除以 $p$ 的余数。\n\n小 A 现在有一个整数 $a$，请你帮他判断 $a$ 是不是 $p$ 的原根。\n\n## 输入格式\n\n第一行，一个正整数 $T$，表示测试数据组数。\n\n每组测试数据包含一行，两个正整数 $a,p$。\n\n## 输出格式\n\n对于每组测试数据，输出一行，如果 $a$ 是 $p$ 的原根则输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $3 \\le p \\le 10^3$；对于所有测试点，保证 $1 \\le T \\le 20$，$3 \\le p \\le 10^9$，$1 < a < p$，$p$ 为质数。"
+        },
+        "tests": [
+          {
+            "name": "最小质数 p=3，a=2",
+            "input": "1\n2 3\n",
+            "output": "Yes",
+            "reason": "p-1=2，唯一质因子 q=2，2^(2/2)=2 mod 3 ≠ 1，故 2 是原根。"
+          },
+          {
+            "name": "p=5，a=4（阶为 2）",
+            "input": "1\n4 5\n",
+            "output": "No",
+            "reason": "p-1=4，q=2，4^2=16 mod 5=1，存在 (p-1)/q 使幂为 1，故 4 不是原根。"
+          },
+          {
+            "name": "p=7，两组对照",
+            "input": "2\n3 7\n2 7\n",
+            "output": "Yes\nNo",
+            "reason": "p-1=6，3^3 mod 7=6、3^2 mod 7=2，均不为 1，3 是原根；2^3=8 mod 7=1，2 不是原根。"
+          }
+        ],
+        "unresolved": [
+          "站点 memoryLimit=128 MB，原卷第 10 页标注内存限制 512.0 MB；memoryLimit 不在本次允许修改字段内，需人工同步。"
+        ]
+      }
+    ],
+    "summary": "已逐页对照 11 页原卷完成 27 题五维独立复核。确认 DeepSeek 初核修改：第 4 题缺 gcd 代码块、第 26/27 题缺数据范围或题面不完整，全部逐字采纳并在 changes 中；编程题参考代码经 g++ 实际编译与样例、边界用例实测通过；判断题与全部答案表经页图独立核对一致；第 3 题原卷选项 B 的严格循环定义瑕疵保留记录。"
+  }
+}
