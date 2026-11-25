@@ -1,0 +1,230 @@
+{
+  "paperId": "2025-12-l6",
+  "integratedAt": "2026-11-25T08:59:10.055Z",
+  "accepted": [
+    {
+      "id": 1,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 8,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 13,
+      "fields": [
+        "options",
+        "explanation",
+        "code"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question",
+        "explanation",
+        "referenceCode",
+        "memoryLimit"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4\n1 2 3\n5 6 2 3",
+          "output": "2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "input": "7\n1 1 2 2 3 3\n64 16 15 4 3 2 1",
+          "output": "10",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "10\n",
+          "passed": true
+        },
+        {
+          "name": "n 最小两结点",
+          "input": "2\n1\n5 7\n",
+          "output": "5",
+          "reason": "唯一叶子 2 的代价 7，根可选 5，min(5,7)=5；覆盖 n=2 最小规模。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "全链且代价相同",
+          "input": "3\n1 2\n1000000000 1000000000 1000000000\n",
+          "output": "1000000000",
+          "reason": "链 1-2-3 上任选一个结点即可覆盖，取最小代价 10⁹，验证 long long 与深度 3。",
+          "kind": "boundary",
+          "actual": "1000000000\n",
+          "passed": true
+        },
+        {
+          "name": "星形根更便宜",
+          "input": "4\n1 1 1\n1 10 10 10\n",
+          "output": "1",
+          "reason": "三个叶子各需覆盖，根染黑代价 1 小于子代价和 30，dp[1]=min(1,30)=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0441fd445fb36e25fdae6f4529ee972629ef3c27eaa4a0f1c0e12104017de560",
+      "stressTests": [
+        {
+          "name": "10 万结点星形树，染根最优",
+          "inputSha256": "af9ca2589f40b252586defa9506304100b3c3609bd597363fe9db5dcf83fdfad",
+          "inputBytes": 1299996,
+          "output": "1",
+          "outputSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "passed": true
+        },
+        {
+          "name": "10 万结点链，染色代价交替",
+          "inputSha256": "71b20f2adc7cd97636c068686a9d114ff96f3c8c7232790bdda47adf5755956a",
+          "inputBytes": 1238895,
+          "output": "1",
+          "outputSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "3 5\n99 1\n33 2\n11 3",
+          "output": "132",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "132\n",
+          "passed": true
+        },
+        {
+          "input": "4 100\n10 1\n20 11\n40 33\n100 99",
+          "output": "110",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "110\n",
+          "passed": true
+        },
+        {
+          "name": "预算上界且只能购买一件",
+          "input": "2 1000000000\n500 1000000000\n500 1000000000\n",
+          "output": "500",
+          "kind": "boundary",
+          "actual": "500\n",
+          "passed": true
+        },
+        {
+          "name": "预算上界只够购买便宜件",
+          "input": "2 1000000000\n1 1000000000\n500 1\n",
+          "output": "500",
+          "kind": "boundary",
+          "actual": "500\n",
+          "passed": true
+        },
+        {
+          "name": "买不起任何道具",
+          "input": "3 1\n1 1000000000\n1 1000000000\n1 1000000000\n",
+          "output": "0",
+          "reason": "k=1 小于任一道具价格，答案 0，覆盖最小 k。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "小规模最优组合",
+          "input": "2 3\n5 2\n4 1\n",
+          "output": "9",
+          "reason": "两件总价 3 恰为 k，全买得 9，验证 0/1 背包可同时选取多件。",
+          "kind": "boundary",
+          "actual": "9\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "57a3a5c3e48f76f3275e0db2b5d881540e96c2dbbac79610a29160a2a6671205",
+      "stressTests": [
+        {
+          "name": "500 件、预算和费用均取上界",
+          "inputSha256": "b7f058c24a1e04a3c152f37f786845e71347805da11a42e009b459abc1e588f6",
+          "inputBytes": 7515,
+          "output": "500",
+          "outputSha256": "792376c209f338959be4cf00c54dbf82662b90516082e23106faec4c43c69e49",
+          "passed": true
+        }
+      ],
+      "regression": {
+        "beforeCodeSha256": "ed539afee7202f5d793ba1630a9c0cb834e75d733ab562b7026a78d42fe8ab3b",
+        "input": "2 1000000000\n500 1000000000\n500 1000000000\n",
+        "expected": "500",
+        "before": "1000",
+        "after": "500"
+      }
+    }
+  ],
+  "initialDeferred": [
+    {
+      "id": 13,
+      "reasons": [
+        "修改 code 未获得两模型一致批准，待回流",
+        "statement 尚无一致、完整的原卷核验结论",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "code": "bool find(Node* root, int x) {\n    while (root) {\n        if (root->val == x) return true;\n        root = (x < root->val) ? root->left : root->right;\n    }\n    return false;\n}"
+      }
+    },
+    {
+      "id": 26,
+      "reasons": [
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例"
+      ],
+      "furtherChanges": {}
+    },
+    {
+      "id": 27,
+      "reasons": [
+        "修改 explanation 未获得两模型一致批准，待回流",
+        "修改 referenceCode 未获得两模型一致批准，待回流",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "referenceCode 尚无一致、完整的原卷核验结论",
+        "参考程序尚未通过实际编译、原样例和至少两条复核后的边界用例",
+        "复核未明确批准候选",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**解析：**\n\n本题属于经典的 **0/1 背包问题**，但采用了非常巧妙的**“价值与代价维度互换（反向背包）”**技巧。\n\n### 一、算法思路与步骤\n\n1. **常规思路与瓶颈**\n   - 常规 0/1 背包中，通常以“金币花费”作为背包容量，定义 `dp[w]` 表示花费 `w` 金币能获得的最大攻击力。\n   - 但是，如果题目中拥有的金币上限 `k` 非常大（例如达到 `10^9`），开大小为 `k` 的数组会直接导致内存超限（MLE）或时间超限（TLE）。\n   - 观察发现：所有道具能提升的总攻击力上限往往相对较小。因此我们可以“颠倒维度”——把**攻击力作为状态维度**，求解**达到该攻击力所需花费的最小金币数**。\n\n2. **状态定义**\n   - 先累加所有道具的攻击力总和，记为 `sumAtk`。\n   - 定义一维数组 `dp[j]` 表示：**累计提升攻击力恰好为 `j` 时，所需要花费的最少金币数量**。\n\n3. **初始化**\n   - `dp[0] = 0`：获得 0 点攻击力不需要花费任何金币。\n   - 其余 `dp[j] = INF`（`INF` 须大于 k 的上界 10^9，取 `1e9+10`）：表示在初始状态下，其他攻击力数值均无法达成。\n\n4. **状态转移过程**\n   - 遍历每一件道具（提供攻击力 `a`，消耗金币 `c`）：\n     - 维护当前已处理道具的总攻击力 `cur`。\n     - 为了保证每件道具只能购买一次，内层循环必须**从大到小逆序枚举**目标攻击力 `j`（从 `cur` 递减到 `a`）：\n       `dp[j] = min(dp[j], dp[j - a] + c)`\n     - 含义是：要达到攻击力 `j`，可以选择不买当前道具（保持 `dp[j]`），或者选择购买当前道具（由攻击力 `j - a` 加上金币 `c` 转移而来），取二者的较小值。\n\n5. **统计并输出答案**\n   - 当所有道具处理完毕后，从 `j = 0` 到 `sumAtk` 遍历所有可能的攻击力数值：\n     - 若 `dp[j] <= k`，说明可以用不超过 `k` 枚金币达成攻击力 `j`。\n     - 满足条件的最大 `j` 即为最终答案。\n\n---\n\n### 二、样例走查\n\n以**样例 1** 为例：\n- 输入：`n = 3, k = 5`（共有 3 件道具，手头有 5 枚金币）。\n- 道具 1：攻击力 `99`，花费 `1` 金币。\n- 道具 2：攻击力 `33`，花费 `2` 金币。\n- 道具 3：攻击力 `11`，花费 `3` 金币。\n- 所有道具总攻击力 `sumAtk = 99 + 33 + 11 = 143`。\n\n**1. 初始化阶段**\n- `dp[0] = 0`，其余 `dp[1...143] = INF`。累计攻击力 `cur = 0`。\n\n**2. 逐件道具动态规划更新**\n\n- **处理道具 1（a = 99, c = 1）**：\n  - `cur = 0 + 99 = 99`。\n  - 逆序枚举 `j` 从 99 递减到 99：\n    - `j = 99`：`dp[99] = min(dp[99], dp[0] + 1) = 1`。\n\n- **处理道具 2（a = 33, c = 2）**：\n  - `cur = 99 + 33 = 132`。\n  - 逆序枚举 `j` 从 132 递减到 33，主要有效转移如下：\n    - `j = 132`：`dp[132] = min(INF, dp[132 - 33] + 2) = dp[99] + 2 = 1 + 2 = 3`。\n    - `j = 99`：`dp[99] = min(1, dp[66] + 2) = 1`。\n    - `j = 33`：`dp[33] = min(INF, dp[0] + 2) = 0 + 2 = 2`。\n\n- **处理道具 3（a = 11, c = 3）**：\n  - `cur = 132 + 11 = 143`。\n  - 逆序枚举 `j` 从 143 递减到 11，主要有效转移如下：\n    - `j = 143`：`dp[143] = min(INF, dp[132] + 3) = 3 + 3 = 6`。\n    - `j = 132`：`dp[132] = min(3, dp[121] + 3) = 3`。\n    - `j = 110`：`dp[110] = min(INF, dp[99] + 3) = 1 + 3 = 4`。\n    - `j = 44`：`dp[44] = min(INF, dp[33] + 3) = 2 + 3 = 5`。\n    - `j = 33`：`dp[33] = min(2, dp[22] + 3) = 2`。\n    - `j = 11`：`dp[11] = min(INF, dp[0] + 3) = 0 + 3 = 3`。\n\n**3. 最终统计**\n- 当前拥有的金币上限为 `k = 5`。\n- 检查各个攻击力所需要的最小金币花费：\n  - 攻击力 `0`：花费 `0 <= 5`（合法）\n  - 攻击力 `11`：花费 `3 <= 5`（合法）\n  - 攻击力 `33`：花费 `2 <= 5`（合法）\n  - 攻击力 `44`：花费 `5 <= 5`（合法）\n  - 攻击力 `99`：花费 `1 <= 5`（合法）\n  - 攻击力 `110`：花费 `4 <= 5`（合法）\n  - 攻击力 `132`：花费 `3 <= 5`（合法，选择道具 1 和道具 2）\n  - 攻击力 `143`：花费 `6 > 5`（金币不足，不可行）\n- 花费不超过 5 的所有攻击力中，最大值为 `132`。\n- 输出结果为 `132`，与样例输出完全一致。\n\n---\n\n### 三、易错提醒\n\n1. **逆序枚举防止重复选取**：内层循环更新 `dp` 数组时，攻击力 `j` 必须从大到小逆序倒推，若正序更新会导致同一件道具被多次累加选入（退化为完全背包）。\n2. **状态维度转换的时机**：遇到背包容积上限极大、无法直接作为数组下标的题目时，优先思考将“代价”与“收益”交换维度的反向求解策略。",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9 + 10;\n    vector<int> dp(sumAtk+1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            dp[j] = min(dp[j], dp[j-a]+c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if (dp[j] <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+      }
+    }
+  ],
+  "followUp": "Q13 补回原卷查找函数。Q26 使用可执行边界输入和实际生成的 10 万结点压力用例。Q27 留存原缺陷反例、修正前后输出和实际规模用例。编程题内存均按原卷校正。"
+}

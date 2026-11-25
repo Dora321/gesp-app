@@ -30,41 +30,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第1页第1题题干为“在面向对象编程中，下列关于虚函数（virtual function）的描述中，错误的是”，与站点 question 语义一致。",
-          "review": "第 1 页第 1 题题干「在面向对象编程中，下列关于 虚函数 的描述中，错误的是（ ）。」与站点 question 一致（站点在「虚函数」后加了括注「（virtual function）」，属注释性扩写，语义无损）。"
+          "initial": "第1页第1题题干（含「（virtual function）」括注）与候选 question 一致。",
+          "review": "第 1 页原图第 1 题题干「在面向对象编程中，下列关于 虚函数 的描述中，错误的是（ ）。」与候选一致（候选括注 virtual function 为排版等价补充）。"
         },
         "options": {
-          "initial": "PDF 第1页 A-D 四项与站点 options 顺序和内容一致；C 项为“构造函数可以声明为虚函数以支持多态”",
-          "review": "第 1 页 A 虚函数用于支持运行时多态、B 通过基类指针调用虚函数时，会根据对象实际类型决定调用版本、C 构造函数可以声明为虚函数以支持多态、D 基类析构函数常声明为虚函数以避免资源泄漏，与站点 options 一致。"
+          "initial": "第1页 A 虚函数用于支持运行时多态、B 通过基类指针按实际类型分派、C 构造函数可以声明为虚函数、D 基类析构函数常为虚，候选 options 逐项一致。",
+          "review": "第 1 页原图四项为 A. 虚函数用于支持运行时多态、B. 通过基类指针调用虚函数时，会根据对象实际类型决定调用版本、C. 构造函数可以声明为虚函数以支持多态、D. 基类析构函数常声明为虚函数以避免资源泄漏，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选答案表第1题为 C；按 0 起始映射为 2，站点 answer=2。",
-          "review": "第 1 页答案表题 1 为 C，0 起始索引 2，站点 answer=2；独立判断：构造函数不能为虚函数（虚表指针尚未建立），C 为错误说法，应选 C。"
+          "initial": "第1页答案表第1题为 C（索引 2），候选 answer=2；构造函数不能声明为虚函数，C 为错误项。",
+          "review": "第 1 页答案表第 1 题为 C（索引 2），候选 answer=2 一致；独立判断：C++ 构造函数不能声明为虚函数（虚表指针在构造期间才建立），C 为错误项、应选。"
         },
         "explanation": {
-          "initial": "构造函数不能为虚函数：虚函数机制依赖虚表指针，而虚表指针在构造阶段才建立；析构函数应声明为虚函数，A/B/D 均为正确描述，C 错误。**说明：站点原解析逐项标注错乱且把“虚函数”写成“虚位”，已重写。**",
-          "review": "修复后核验通过：站点原解析「析构函数则建议声明为虚位」为错别字（应为「虚函数」）且逐项标注错乱，修复稿改写为规范逐项分析（A/B/D 正确、C 错误并说明虚函数依赖虚表指针的机理），内容经我独立复核成立。"
+          "initial": "候选解析给出 A/B/D 正确、C 错误，并说明动态绑定依赖 vptr、构造函数无法经虚表分派，结论成立。",
+          "review": "候选解析的「虚表指针要到构造函数执行阶段才建立」机理与析构函数虚化的必要性说明均经独立核验成立；A/B/D 三项正确性判断无误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.glm.json"
       ]
     },
     {
@@ -308,46 +311,50 @@
       "id": 8,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
+        1,
         4,
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第8题题干为“下面代码实现了哈夫曼编码，横线处应填写”，与站点 question 语义一致。",
-          "review": "第 4 页第 8 题题干「下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。」与站点 question 一致；站点 code 为原卷第 5-6 页 94 行代码的去注释紧凑版，struct Symbol / struct Node / PopMinNode / DFSBuildCodes / BuildHuffmanCodes 及横线位置（int z = (int)nodes.size(); 之后）逐行语义等价。"
+          "initial": "第4页第8题题干「下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。」与候选 question 一致；第5-6页 94 行代码为去注释紧凑版，变量 x/y/z、leafIdx/internalIdx、PopMinNode 与第85行横线位置均与候选 code 对应。",
+          "review": "第 4—6 页原图第 8 题题干「下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。」及 94 行双队列建树代码（Symbol/Node 结构、PopMinNode 双指针取最小、DFSBuildCodes 左 0 右 1、leafIdx 排序、第 85 行横线）与候选内嵌代码一致。"
         },
         "options": {
-          "initial": "PDF 第6页 A-D 与站点原 options 完全不同（PDF 为建内部结点后分别加入 internalIdx/leafIdx，以及 sym=x+y 的错误写法）；已按原卷恢复。",
-          "review": "修复后核验通过：原卷第 6 页 A-D 为两行代码块（A nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, -1)); internalIdx.push_back(z); 等），站点原 options 与原卷完全不同且与站点自身代码变量脱节，替换值按原卷逐行恢复，比对一致。"
+          "initial": "第6页 A-D 四个两行代码块与候选 options 逐行一致（A 建内部结点并 internalIdx.push_back(z)；B 误登 leafIdx；C/D 的 sym 写成 x+y）。",
+          "review": "第 6 页原图四项（均为两行代码块）为 A. nodes.push_back(Node(nodes[x].w+nodes[y].w, x, y, -1)); internalIdx.push_back(z);、B. 同上但 leafIdx.push_back(z);、C. internalIdx.push_back(z); nodes.push_back(Node(…, x+y));、D. nodes.push_back(Node(…, x+y)); leafIdx.push_back(z);，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选答案表第8题为 A；按 0 起始映射为 0，站点 answer=0。",
-          "review": "第 1 页答案表题 8 为 A，0 起始索引 0，站点 answer=0；独立判定：横线处应新建权值和内部结点（sym=-1）并登记到 internalIdx，A 正确。"
+          "initial": "第1页答案表第8题为 A（索引 0），候选 answer=0；横线需新建 sym=-1 的内部结点并登记 internalIdx。",
+          "review": "第 1 页答案表第 8 题为 A（索引 0），候选 answer=0 一致；独立判断：横线处需以 x、y 为孩子、权值相加、sym=-1（内部结点）新建结点并把 z 登记进 internalIdx（新内部结点权值非降，PopMinNode 的双指针前提成立），A 正确。"
         },
         "explanation": {
-          "initial": "横线处需要新建内部结点并登记到 internalIdx：x、y 为左右孩子，权值为两者之和，sym=-1 表示内部结点，再把新结点下标 z 加入 internalIdx。A 完全符合；B 把 z 加入 leafIdx，C 的 sym=x+y 会让 DFSBuildCodes 把内部结点误认成叶子，D 同时写错 sym 且加入 leafIdx。**说明：站点原 options 与 PDF 第6页 A-D 完全不同，已按原卷恢复。**",
-          "review": "修复后核验通过：站点原解析按与原卷不符的旧选项展开，修复稿改按恢复后的选项逐项分析（B 误入 leafIdx、C 的 sym=x+y 使 DFSBuildCodes 误认叶子、D 双重错误），双指针取最小两结点的机理与 O(n) 建树说明经独立复核成立。"
+          "initial": "候选解析对双指针 PopMinNode 机理、A 正确及 B（后续把内部结点当叶子）、C（DFSBuildCodes 误认叶子）、D（双重错误）的排除与代码一致。",
+          "review": "候选解析的双队列两指针机理（叶序已排、内部结点天然按合并序非降、每次比较两队列首）与逐项排除（B 把内部结点当叶、C 的 sym=x+y 会被 DFSBuildCodes 误认为叶子、D 双重错误）均经独立核验成立。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.glm.json"
       ]
     },
     {
@@ -510,47 +517,53 @@
     },
     {
       "id": 13,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
+        "statement",
         "options",
         "answer",
-        "explanation",
-        "statement"
+        "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
+        1,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "DeepSeek V4.1 Flash max 核验候选",
+        "GLM 5.3 Flash max 独立复核",
+        "原卷或可执行用例集成核验"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第8页第13题题干为“BST 查找函数，以下说法一定正确的是”，与站点 question 语义一致。",
-          "review": "第 8 页第 13 题题干「在二叉排序树（Binary Search Tree, BST）中，假设节点值互不相同。给定如下搜索函数，以下说法一定正确的是（ ）。」与站点 question 一致；但「如下搜索函数」指向的 7 行 find 代码（bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; }）站点缺 code 字段，待按原卷补入。"
+          "initial": "第8页第13题题干与候选 question 一致，但题干「给定如下搜索函数」下原卷附 7 行 bool find(Node* root, int x) 代码，候选缺 code 字段，指代对象缺失；已在 changes.code 补入原图代码。 集成核验：直接对照原卷第 8 页，完整补回两模型逐字一致的 7 行 find 函数，并确认页面渲染只显示一次。",
+          "review": "第 8 页原图第 13 题题干「在二叉排序树（Binary Search Tree, BST）中，假设节点值互不相同。给定如下搜索函数，以下说法一定正确的是（ ）。」与候选 question 一致，但题干「给定如下搜索函数」下原卷附 7 行 bool find(Node* root, int x) 代码，候选缺 code 字段，指代对象缺失；本轮初核已提案补入 changes.code，我已将该提案与第 8 页原图逐行对照，完全一致（while 循环、命中 return true、按大小走向孩子、return false），确认采纳。 集成核验：直接对照原卷第 8 页，完整补回两模型逐字一致的 7 行 find 函数，并确认页面渲染只显示一次。"
         },
         "options": {
-          "initial": "PDF 第8页 A-D 为 O(log n)、O(n)、不超过树高一半、一定比普通二叉树快；站点原 A=O(N)、B=O(h)，与 PDF 不符，已按原卷恢复。",
-          "review": "修复后核验通过：原卷第 8 页 A-D 为 O(log n)、O(n)、无论如何访问结点数都不超过树高的一半、一定比在普通二叉树中搜索快；站点原 A=O(N)、B=O(h) 与原卷不符，替换值按原卷恢复，逐项比对一致。"
+          "initial": "第8页 A O(log n)、B O(n)、C 无论如何不超过树高的一半、D 一定比在普通二叉树中搜索快，候选一致。",
+          "review": "第 8 页原图四项为 A. 最坏情况下，访问结点数是 O(log n)、B. 最坏情况下，访问结点数是 O(n)、C. 无论如何，访问结点数都不超过树高的一半、D. 一定比在普通二叉树中搜索快，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选答案表第13题为 B；按 0 起始映射为 1，站点 answer=1。",
-          "review": "第 1 页答案表题 13 为 B，0 起始索引 1，站点 answer=1；独立判断：BST 查找每步下行不回头，访问数 ≤ 树高；退化成链时 h=n，最坏 O(n)，恢复原卷选项后 B 为唯一一定正确的说法。"
+          "initial": "第1页答案表第13题为 B（索引 1），候选 answer=1；BST 可退化成链，最坏访问结点数为 O(n)。",
+          "review": "第 1 页答案表第 13 题为 B（索引 1），候选 answer=1 一致；独立判断：find 沿 BST 单向下行绝不回头，访问结点数 ≤ 树高+1；BST 可退化成链（h=n），最坏 O(n)，B 正确；A 仅平衡时成立、C 查最深叶要走满树高、D 退化时不成立。"
         },
         "explanation": {
-          "initial": "查找每比较一次就下降到左/右孩子，最多访问 h+1 个结点；BST 可能退化成链（h=n），最坏 O(n) 是对任意 BST 都成立的上界。A 的 O(log n) 只在平衡时成立；C 错，查最深叶子会走完整条高度；D 错，退化 BST 并不比普通二叉树快。**说明：站点原 options 把 A 写成 O(N)、B 写成 O(h)，与 PDF 第8页 A=O(log n)、B=O(n) 不符，已按原卷恢复。**",
-          "review": "修复后核验通过：站点原解析为自圆站点错误选项而作（称 A=O(N)「不算错但非最紧」，致使两选项同时为真、题面失去唯一解）；修复稿按原卷选项重写（B 最坏 O(n) 为对任意 BST 成立的上界、A 仅平衡时成立、C/D 错误），推导经我独立复核成立。"
+          "initial": "候选解析按新选项逐项说明 A 仅平衡时成立、C 最深叶子走满树高、D 退化链不比普通二叉树快，成立。",
+          "review": "候选解析的「最多走根到最深叶路径、退化链 h=n 最坏 O(n)」论证与逐项排除均经独立核验成立。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "options",
+        "explanation",
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.glm.json"
+      ],
+      "integrationNote": "直接对照原卷第 8 页，完整补回两模型逐字一致的 7 行 find 函数，并确认页面渲染只显示一次。"
     },
     {
       "id": 14,
@@ -975,179 +988,96 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         10,
         11
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
+        "DeepSeek V4.1 Flash max 核验候选",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "原卷或可执行用例集成核验",
+        "C++17 编译、原样例、独立边界及压力用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第10-11页题面、样例、数据范围与站点主体一致；站点输入格式漏掉第三行 c_i，且缺数据范围，已补。",
-          "review": "修复后核验通过：第 10-11 页题面（题目描述、输入格式、输出格式、样例 1「4/1 2 3/5 6 2 3→2」、样例 2「7/1 1 2 2 3 3/64 16 15 4 3 2 1→10」）与站点 question/samples 主体一致；站点原 question 缺输入格式第三行（代价数组 c）与「数据范围」（40%: 2≤n≤16；另 20%: f_i=i−1；全部: 2≤n≤10⁵、1≤cᵢ≤10⁹），替换值按原卷补齐，逐项比对一致。"
+          "initial": "第10-11页题面、输入格式（f₂…fₙ 与 c₁…cₙ 两行）、样例1「4/1 2 3/5 6 2 3→2」、样例2「7/1 1 2 2 3 3/64 16 15 4 3 2 1→10」、数据范围（40%:2≤n≤16；另20%:fᵢ=i−1；全部:2≤n≤10⁵、1≤cᵢ≤10⁹）与候选一致。",
+          "review": "第 10—11 页原图 3.1.1 题目描述/3.1.2 输入格式/3.1.3 输出格式/3.1.4 样例/3.1.5 数据范围与候选题面逐项对照一致：叶子到根路径至少一个黑结点、代价 cᵢ 最小化；样例 1「4 / 1 2 3 / 5 6 2 3」→2、样例 2「7 / 1 1 2 2 3 3 / 64 16 15 4 3 2 1」→10；数据范围（40% 2≤n≤16；另外 20% fᵢ=i−1；所有 2≤n≤10⁵、1≤cᵢ≤10⁹）与候选一致。"
         },
         "explanation": {
-          "initial": "以子树为单位：u 染黑则覆盖其所有叶子到根路径，代价 c[u]；不染黑则每个孩子子树各自覆盖，代价 sum(dp[v])；叶子必须染黑，故 dp[u]=c[u]（叶）、dp[u]=min(c[u],sum)（非叶）。样例 1 得 2、样例 2 得 10，推导成立。",
-          "review": "站点解析的状态定义与转移 dp[u]=min(c[u],Σdp[v])、叶子特判、样例 1（链 1→2→3→4，dp[4]=3、dp[3]=2、dp[2]=2、dp[1]=2）与样例 2（dp[2]=7、dp[3]=3、dp[1]=10）走查及 long long 溢出提醒经独立复核成立，未声称编造的运行输出。"
+          "initial": "候选解析 dp[u]=min(c[u], Σdp[v])、叶子 dp=c 的树形 DP 与样例1（2）、样例2（10）走查正确，long long 防溢出说明成立。",
+          "review": "候选解析的树形 DP（dp[u]=min(c[u], Σdp[v])，叶子 dp=c）经独立推导成立：u 染黑则其子树内所有叶路径必经 u 被覆盖；u 不染黑则各子树独立由后代覆盖。两样例走查逐步复算（样例 1 链上 dp[3]=min(2,3)=2、dp[1]=2；样例 2 dp[2]=min(16,7)=7、dp[3]=min(15,3)=3、dp[1]=min(64,10)=10）与官方样例输出一致；long long 与叶子特判两条易错提醒属实；O(n) 复杂度正确。"
         },
         "referenceCode": {
-          "initial": "站点 referenceCode 后序 DFS，dp[u]=min(c[u],sum dp[v])，叶子 dp=c；与 PDF 第11页参考程序等价，long long 防溢出。样例与边界用例通过。",
-          "review": "站点 referenceCode 为树形 DP：DFS 后序累加子结点 dp，dp[u]=min(c[u],sum)，与原卷第 11 页官方参考程序（自底向上 ans[f[i]]+=ans[i] 后取 min）语义一致；long long 防溢出。本人实际编译运行：原样例 2/10、n=2 单边（1e9,1e9）→1e9、根更便宜（3/1 1/5 100 3）→5、链 4 结点全 1→1、星形 5 结点（根 10，四叶各 1）→4，全部与期望一致。"
+          "initial": "候选 DFS 后序实现 dp[u]=min(c[u], sum dp[child])，与第11页官方自底向上数组实现（ans[f[i]] += ans[i]）等价。编译运行原样例 2/10、n=2→5、三节点全 10⁹→10⁹、星形根代价 1→1，以及 10⁵ 结点链均正确。",
+          "review": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例 1→2、样例 2→10，均与第 10—11 页原图一致。另以 400 棵随机树（n≤10）与记忆化穷举 DP 对拍，零差异；大规模实测：n=10⁵ 链形（偶层 10⁹、奇层 1）输出 1、星形（根 1、叶全 10⁹）输出 1（染根最优），递归深度与 long long 均无问题。与第 11 页原卷参考程序（按 fᵢ<i 自叶向根递推 ans[i]=min(c[i], Σans[child])）同一 DP，语义等价。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.glm.json"
+      ],
+      "integrationNote": "按原卷第 10 页校正内存，并实际生成 10 万结点的星形树和长链。两条均输出 1，另通过两道原样例及三条可执行边界用例。"
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         11,
         12,
         13
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
+        "DeepSeek V4.1 Flash max 核验候选",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "原卷或可执行用例集成核验",
+        "C++17 编译、原样例、独立边界及压力用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第11-12页题面、样例与站点一致；缺第12页数据范围（60% k≤500、c_i≤500；全部 n≤500、k≤10^9、a_i≤500、c_i≤10^9），已补。",
-          "review": "修复后核验通过：第 11-12 页题面（题目描述、输入格式、输出格式、样例 1「3 5/99 1/33 2/11 3→132」、样例 2「4 100/10 1/20 11/40 33/100 99→110」）与站点 question/samples 主体一致；站点原 question 缺「数据范围」（60%: 1≤k≤500、1≤cᵢ≤500；全部: 1≤n≤500、1≤k≤10⁹、1≤aᵢ≤500、1≤cᵢ≤10⁹），替换值按原卷补齐，逐项比对一致。"
+          "initial": "第11-13页题面、输入/输出格式、样例1「3 5/99 1/33 2/11 3→132」、样例2「4 100/10 1/20 11/40 33/100 99→110」、数据范围（60%:1≤k≤500、1≤cᵢ≤500；全部:1≤n≤500、1≤k≤10⁹、1≤aᵢ≤500、1≤cᵢ≤10⁹）与候选一致；原卷「60 的测试点」漏印 %，候选补为 60% 不改语义。",
+          "review": "第 11—12 页原图 3.2.1 题目描述/3.2.2 输入格式/3.2.3 输出格式/3.2.4 样例/3.2.5 数据范围与候选题面逐项对照一致：n 件道具各提升 aᵢ、花费 cᵢ、k 枚金币、每件限购一次、最大化攻击力；样例 1「3 5 / 99 1 / 33 2 / 11 3」→132、样例 2「4 100 / 10 1 / 20 11 / 40 33 / 100 99」→110；数据范围（60% 1≤k≤500、1≤cᵢ≤500；所有 1≤n≤500、1≤k≤10⁹、1≤aᵢ≤500、1≤cᵢ≤10⁹）与候选一致。"
         },
         "explanation": {
-          "initial": "以攻击力为状态做 0/1 背包：dp[j] 为达到 j 攻击力的最小金币，内层 j 逆序保证每件道具只买一次，最后取 dp[j]≤k 的最大 j；样例 1 得 132、样例 2 得 110，推导成立。",
-          "review": "站点解析的常规背包维度爆炸分析、反向状态定义 dp[j]=达到攻击力 j 的最少金币、逆序枚举防重复、样例 1 逐步转移（dp[99]=1、dp[132]=3、dp[143]=6>5 不可行）与易错提醒经独立复核成立，未声称编造的运行输出。"
+          "initial": "反向背包思路（dp[j] 为达到攻击力 j 的最小金币、逆序防重复）正确，但初始化建议「INF 取 1e9」存在边界缺陷：k 上界恰为 10^9，不可达状态的 1e9 ≤ k 会被误判为可达。已改为大于 k 上界的 1e9+10。 集成核验：采用两模型逐字一致的哨兵和解析修订。预算 10^9、两件均耗资 10^9 的反例由 1000 修正为 500。两条原样例、四条边界用例和 500 件上限压力通过。内存按第 11 页校正。",
+          "review": "反向背包（以攻击力为状态、dp[j] 为恰好达到 j 的最小金币、逆序防重复）思路正确，样例 1 走查（dp[132]=3 可行、dp[143]=6>5，输出 132）经独立复算成立；但候选初始化写「INF 取一个极大值如 1e9」存在边界缺陷：k 上界恰为 10⁹，不可达状态的 dp=1e9 ≤ k 会被统计循环误判为可达。本轮初核已提案将初始化改为「INF 须大于 k 的上界 10⁹，取 1e9+10」，我已独立核验该修正正确并复现原缺陷（见 referenceCode 维），确认采纳提案全文。 集成核验：采用两模型逐字一致的哨兵和解析修订。预算 10^9、两件均耗资 10^9 的反例由 1000 修正为 500。两条原样例、四条边界用例和 500 件上限压力通过。内存按第 11 页校正。"
         },
         "referenceCode": {
-          "initial": "站点 referenceCode 以攻击力为容量做 0/1 背包，dp[j] 为达到 j 攻击力的最小金币，最后取 dp[j]≤k 的最大 j；与 PDF 第13页参考程序等价，INF=1e9 可防溢出。样例与边界用例通过。",
-          "review": "站点 referenceCode 为反向 0/1 背包：dp[j]=min 金币达到攻击力 j，sumAtk 为数组上界，输出满足 dp[j]≤m 的最大 j，与原卷第 13 页官方参考程序（f[N*N] 同思路）语义一致；INF=1e9 且 dp[j-a]+c ≤ 2e9 不溢 int。本人实际编译运行：原样例 132/110、k=0 → 0、两件等价道具 k=1 → 1、预算恰好（2 3/5 2/7 3）→ 7、金币充裕全买 → 1500，全部与期望一致。"
+          "initial": "候选 referenceCode 用 const int INF=1e9，且 dp[j]=min(dp[j],dp[j-a]+c) 使不可达状态停留于 1e9；当 k=10^9 时 dp[j]<=k 把不可达状态全部计入。实测 n=500、k=10^9、每件 (a,c)=(500,10^9) 输出 250000，正确应为 500（只能买一件）；n=2 同参数输出 1000（应为 500）。第13页官方参考程序用 oo=1e9+10 规避。已按官方思路改为 1e9+10。 集成核验：采用两模型逐字一致的哨兵和解析修订。预算 10^9、两件均耗资 10^9 的反例由 1000 修正为 500。两条原样例、四条边界用例和 500 件上限压力通过。内存按第 11 页校正。",
+          "review": "实测复现缺陷：候选代码 const int INF=1e9，不可达状态停留于 1e9，当 k=10⁹ 时 dp[j]≤k 把不可达状态全部计入——以 g++ 编译运行：n=2、k=10⁹、两件 (500,10⁹) 输出 1000（正确 500）；n=500、k=10⁹、全件 (500,10⁹) 输出 250000（正确 500）；在 400 组 k=10⁹ 边界随机用例中 297 组输出错误。第 13 页官方参考程序用 oo=1e9+10 规避该问题。本轮初核提案将 INF 改为 1e9+10，我已独立实测修复稿：两组官方样例（132、110）、上述边界用例（500、500、k=10⁹−1 时 0）及 800 组随机用例（含 k=10⁹ 边界、cᵢ∈{1,10⁹} 的混合）与子集穷举最优对拍零差异，确认采纳提案。 集成核验：采用两模型逐字一致的哨兵和解析修订。预算 10^9、两件均耗资 10^9 的反例由 1000 修正为 500。两条原样例、四条边界用例和 500 件上限压力通过。内存按第 11 页校正。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
-  "unresolved": [
-    {
-      "id": 1,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 8,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 13,
-      "dimensions": [
-        "options",
-        "answer",
+      "unresolved": [],
+      "appliedFields": [
+        "question",
         "explanation",
-        "statement"
+        "referenceCode",
+        "memoryLimit"
       ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l6.glm.json"
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "integrationNote": "采用两模型逐字一致的哨兵和解析修订。预算 10^9、两件均耗资 10^9 的反例由 1000 修正为 500。两条原样例、四条边界用例和 500 件上限压力通过。内存按第 11 页校正。"
     }
   ],
-  "pendingChanges": [
-    {
-      "id": 1,
-      "changes": {
-        "explanation": "**答案：C**\n\n**解析：**\nC++ 中构造函数不能声明为虚函数：虚函数的动态绑定依赖对象的虚表指针，而虚表指针要到构造函数执行阶段才建立，构造函数本身无法通过虚表动态分派。析构函数则应声明为虚函数，以便通过基类指针 delete 派生类对象时先调用派生类析构、再调用基类析构，避免资源泄漏。选项 C 说“构造函数可以声明为虚函数”，因此错误。\n\n- **A 正确**：虚函数用于支持运行时多态。\n- **B 正确**：通过基类指针/引用调用虚函数时按对象实际类型分派。\n- **C 错误，本题选它**：构造函数不能是虚函数。\n- **D 正确**：基类析构函数常声明为虚函数以避免资源泄漏。\n\n**考点：** C++ 基础、虚函数、构造/析构"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 8,
-      "changes": {
-        "options": [
-          "nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, -1));\ninternalIdx.push_back(z);",
-          "nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, -1));\nleafIdx.push_back(z);",
-          "internalIdx.push_back(z);\nnodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, x + y));",
-          "nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, x + y));\nleafIdx.push_back(z);"
-        ],
-        "explanation": "**答案：A**\n\n**这段代码在做什么：** 标准哈夫曼建树需要每次取出权值最小的两个节点。常规做法是用优先队列（堆），而这份实现用了**双指针法**：先把叶子节点按权值排好序放进 `leafIdx`，新合成的内部节点天然按权值递增放进 `internalIdx`，于是每次只需比较两个序列的队首谁更小——这正是 `PopMinNode()` 做的事，时间复杂度 O(n log n) 用在排序上，建树本身是 O(n)。\n\n**为什么选 A：** 横线处需要新建内部结点并登记到 `internalIdx`：先以 x、y 为左右孩子，权值为两者之和，`sym` 设为 -1 表示内部结点，再把新结点下标 z 加入 `internalIdx`。\n\n**逐项分析：**\n- **A**：正确。\n- **B**：把 z 加入 `leafIdx`，后续会把内部结点当叶子处理，错误。\n- **C**：`sym` 写成 `x+y`，`DFSBuildCodes` 会把它误认成叶子，错误。\n- **D**：`sym` 写成 `x+y` 且把 z 加入 `leafIdx`，双重错误。\n\n**考点：** 哈夫曼编码、贪心"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 26,
-      "changes": {
-        "question": "\n# [GESP202512 六级] 路径覆盖\n\n## 题目描述\n\n给定一棵有 $n$ 结点的有根树 $T$，结点依次以 $1,2,\\ldots,n$ 编号，根结点编号为 $1$。方便起见，编号为 $i$ 的结点称为结点 $i$。\n\n初始时 $T$ 中的结点均为白色。你需要将 $T$ 中的若干个结点染为黑色，使得所有叶子到根的路径上至少有一个黑色结点。将结点 $i$ 染为黑色需要代价 $c_i$，你需要在满足以上条件的情况下，最小化染色代价之和。\n\n叶子是指 $T$ 中没有子结点的结点。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示结点数量。\n\n第二行，$n-1$ 个正整数 $f_2,f_3,\\ldots,f_n$，其中 $f_i$ 表示结点 $i$ 的父结点的编号，保证 $f_i < i$。\n\n第三行，$n$ 个正整数 $c_1,c_2,\\ldots,c_n$，其中 $c_i$ 表示将结点 $i$ 染为黑色所需的代价。\n\n## 输出格式\n\n一行，一个整数，表示在满足所有叶子到根的路径上至少有一个黑色结点的前提下，染色代价之和的最小值。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $2 \\le n \\le 16$。\n\n对于另外 20% 的测试点，保证 $f_i = i-1$。\n\n对于所有测试点，保证 $2 \\le n \\le 10^5$，$1 \\le c_i \\le 10^9$。\n"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "question": "\n# [GESP202512 六级] 道具商店\n\n## 题目描述\n\n道具商店里有 $n$ 件道具可供挑选。第 $i$ 件道具可为玩家提升 $a_i$ 点攻击力，需要 $c_i$ 枚金币才能购买，每件道具只能购买一次。现在你有 $k$ 枚金币，请问你最多可以提升多少点攻击力？\n\n## 输入格式\n\n第一行，两个正整数 $n,k$，表示道具数量以及你所拥有的金币数量。\n\n接下来 $n$ 行，每行两个正整数 $a_i,c_i$，表示道具所提升的攻击力点数，以及购买所需的金币数量。\n\n## 输出格式\n\n输出一行，一个整数，表示最多可以提升的攻击力点数。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 \\le k \\le 500$，$1 \\le c_i \\le 500$。\n\n对于所有测试点，保证 $1 \\le n \\le 500$，$1 \\le k \\le 10^9$，$1 \\le a_i \\le 500$，$1 \\le c_i \\le 10^9$。\n"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-12-l6.code-checks.json"
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2025-12-l6.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-12-l6.integration.json"
 }
