@@ -1,0 +1,382 @@
+{
+  "paperId": "2024-09-l7",
+  "phase": "deepseek",
+  "questionIds": [
+    2,
+    4,
+    13,
+    14,
+    15,
+    20,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:36:00.000Z",
+  "completedAt": "2026-11-25T08:36:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "5146adb087fba6b0ea611cae70dbc4c00153ca6b7404792770dae390075a8842",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1633836324618272.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++7级.pdf",
+    "mirrorSha": "fb9aaf5c1549f08c3b42ce0379571f587dcd1a0a",
+    "mirrorBytes": 1064888,
+    "shaVerified": true,
+    "sha256": "56048c5834075abe7093ec709bd168a2e87738ed8ffb6e2c756983e08744f98e"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-09-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「CCF 编程能力等级认证 C++ 七级 2024 年 09 月」，单选答案表 1—15 题、判断答案表 1—10 题齐全；第 7—9 页为编程题 26，第 5—7 页为编程题 27，页图共 9 页，与 paperId 2024-09-l7 一致。"
+    },
+    "questions": [
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题题干「已知 a 为 int 类型变量，下列表达式不符合语法的是（ ）。」与候选一致（候选补空格为「已知a为int类型变量」，语义不变）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A「&a + 3」、B「+a & 3」、C「a - - 4」、D「a++3」，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 D，0 起始索引 3，与候选 answer=3 一致；a++3 中后缀 ++ 的结果是右值，后面直接跟 3 而无二元运算符，无法编译。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：&a+3 为 int* 指针算术；+a&3 为一元正号后按位与；a - - 4 为 a-(-4)；a++3 非法。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页末第 4 题题干「下列关于 C++ 类的说法，错误的是( )。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A「将 C++ 类对象通过值传递给函数参数时，会自动调用复制构造函数」、B「将一个类的对象赋值给该类的另一个对象时，不会自动调用构造函数」、C「定义 C++ 类对象时，一定会调用默认构造函数」、D「构造派生类的对象时，一定会调用基类的构造函数」，与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 C，0 起始索引 2，与候选 answer=2 一致；定义对象不一定调用默认构造函数，C 错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：A 值传参调用复制构造；B 已构造对象赋值调用 operator=，不调用构造；C 可调用带参/复制构造，错误；D 派生类构造必先调用基类构造。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 13 题「上题中程序的时间复杂度为（ ）。」；第 3 页第 12 题代码为 #define N 10、path[N][N]、i/j 从 1 到 N-1 的双重循环，与候选解析所引代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3—4 页 A O(1)、B O(N)、C O(N log N)、D O(N²)，与候选 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 D，0 起始索引 3，与候选 answer=3 一致；双重循环各执行 N−1 次，总 O(N²)。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的核心推导（2(N−1)+(N−1)²=N²−1，O(N²)）正确，但选项逐项分析写成 A O(n)、B O(n log n)、C O(2ⁿ)、D O(n²)，与实际 options A O(1)、B O(N)、C O(N log N)、D O(N²) 不对应；需按实际选项重写，答案仍为 D。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（O(n²)）**\n\n**核心解析：**\n题目考查程序的时间复杂度分析。上一题（第 12 题）的代码规模由宏定义常量 `N` 决定（复杂度分析中规模记为 `n`），主体分为两部分：\n1. **单重初始化循环**：\n   - `for (int i = 1; i < N; i++) path[i][0] = i;` 与 `for (int j = 1; j < N; j++) path[0][j] = j;` 各执行 `N - 1` 次赋值。\n   两循环并列执行，单次赋值为 `O(1)`，初始化耗时为 `O(n)`。\n2. **核心双重嵌套循环**：\n```cpp\nfor (int i = 1; i < N; i++)\n    for (int j = 1; j < N; j++)\n        path[i][j] = path[i - 1][j] + path[i][j - 1];\n```\n   - 外层与内层循环均从 1 遍历至 `N - 1`，各执行 `N - 1` 次；\n   - 循环体仅包含一次加法和一次赋值，单次耗时为 `O(1)`；\n   - 双重循环总执行次数为 `(N - 1) * (N - 1) = N² - 2N + 1` 次。\n\n程序总操作次数为 `2(N - 1) + (N - 1)² = N² - 1` 次。在大 O 渐进复杂度分析中，忽略低阶项与常数系数，最高阶为二次项，因此时间复杂度为 **O(n²)**。\n\n**选项逐项分析：**\n- **A $O(1)$**：❌ 错误。程序有与 `N` 相关的初始化和双重循环，操作次数随 `N` 增长，不是常数阶。\n- **B $O(N)$**：❌ 错误。初始化虽是线性的，但核心双重循环执行 `(N - 1)²` 次，整体不是线性阶。\n- **C $O(N\\log N)$**：❌ 错误。两重循环均为步长为 1 的均匀遍历，不存在二分、折半等对数操作。\n- **D $O(N^2)$**：✅ 正确。程序利用双重循环填满大小为 `N × N` 的二维网格，内外层循环次数均为 `N - 1`，内层操作为常数级加法，时间复杂度为 `O(N²)`。\n\n**易错提醒：**\n- **主导项原则**：当代码包含多个并列部分时，时间复杂度由阶数最高的部分主导。单层循环的 `O(N)` 与双重循环的 `O(N²)` 相加，整体仍由二次项主导，为 `O(N²)`。\n- **递推与递归的差异**：相同转移方程若用未记忆化的朴素递归求解，复杂度可能达到指数级；用二维数组递推求解时，每个状态仅计算一次，复杂度降为表格规模对应的 `O(N²)`。\n\n**知识延伸：**\n- 动态规划（DP）的时间复杂度通常遵循通用规律：`时间复杂度 = 状态总数 × 单个状态转移代价`。本题状态总数约为 `N²`，每个状态转移只需相加两个相邻元素（代价为 `O(1)`），故总时间复杂度为 `O(N²)`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 14 题 fib 函数与候选一致：int fib_rcd[MAX_N]; int fib(int n){ if (n <= 1) return 1; if (fib_rcd[n] > 0) return fib_rcd[n]; return fib(n - 1) + fib(n - 2); }。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A O(n)、B O(φ^n), φ=(√5−1)/2、C O(2^n)、D 无法正常结束，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 B，0 起始索引 1，与候选 answer=1 一致；递归 T(n)=T(n−1)+T(n−2) 的增长阶为 φ^n，φ=(1+√5)/2；原卷 B 项印成 (√5−1)/2，属源卷符号笔误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确指出 fib_rcd 只读不写、记忆化失效，T(n)=T(n−1)+T(n−2)，并如实披露原卷 B 项 φ 值印错；数学推导与独立判断一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第 4 页选项 B 印作 O(φ^n), φ=(√5−1)/2≈0.618，与递归增长阶 φ=(1+√5)/2≈1.618 矛盾；官方答案表仍为 B。候选保持原卷选项并按 B 作答，已在解析注明，建议人工确认是否加注/勘误。"
+        ]
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 15 题图含 9 个顶点、14 条弧：2→1、4→2、9→4、1→3、1→5、5→3、3→2、3→4、3→7、9→7、7→5、7→6、6→8、8→9，与候选描述一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A 1,3,5,7,4,2,6,8,9；B 9,4,2,1,3,7,5,6,8；C 1,3,5,7,6,8,9,4,2；D 9,4,7,2,1,3,5,6,8，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 A，0 起始索引 0，与候选 answer=0 一致；从 1 出发 BFS 第 1 层 3、5，第 2 层 2、4、7，A 只是把同层顺序写成 7、4、2，合法。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：B/D 从 9 开始时第 1 层应为 4、7，序列不符；C 把第 2 层的 4、2 排到第 5 层 9 之后，破坏 BFS 同层优先；A 合法。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 5 题「使用 math.h 或 cmath 头文件中的正弦函数，表达式 sin(30) 的结果类型为 double、值约为 0.5。」与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有「正确/错误」两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断答案表第 5 题为 ×，映射索引 1，与候选 answer=1 一致；sin 参数为弧度，sin(30)≈−0.988，不是 0.5。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的数学判断正确（sin(30)≈−0.988，类型 double），但末尾夹带「题面中夹杂的 fib_rcd 代码片段为 OCR 串入」的说明；候选 question 中并无 fib_rcd 片段，该注记失实且不属于题解，应删除。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：错误**\n\n**解析：**\n题目陈述：`sin(30)` 的结果类型为 double、值约为 0.5。\n\n`sin` 的返回类型确实是 **double**（这点正确）；但 C++ 的 `sin` 参数是**弧度**而非角度，`sin(30)` 计算的是 30 弧度（≈ 30 - 9π）的正弦，值约为 **-0.988**，远不是 0.5。要得到 0.5 应写 `sin(3.1415926/6)`（即 sin(π/6)）。\n\n故“值约为 0.5”错误，命题为假。\n\n**考点**：`<cmath>` 中 `sin` 返回 double、且以弧度为参数。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页 3.2.1—3.2.3：n×m 矩阵只含 01?、从 (1,1) 到 (n,m) 只能下/右、每经过 1 得 1 分（含起终点）、可把不超过 x 个 ? 改成 1、求最大得分；输入 t、每组 n,m,x 与 n 行字符串；输出每组一个整数。第 8 页 3.2.5 数据规模（30% t≤5,n,m≤10,x=1；30% t≤10,n,m≤500,x≤30；全部 1≤t≤10、1≤n,m≤500、1≤x≤300、Σnm≤2.5×10⁵）；样例 2 组输出 4、2，均与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：dp[j][k] 为当前行第 j 列、已用 k 次修改的最大得分；从上方 dp[j][k] 或左方 next[j−1][k] 转移，遇 1 加 1，遇 0 不加，遇 ? 可选择不改或在 k<x 时改成 1 并加 1；终点取 k≤x 最大值。样例 1 走 D,R,D,R 得 1+1+1+1=4；样例 2 改 (1,1) 或 (3,3) 得 2，与候选一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "clang++ -std=c++17 -O2 编译候选滚动 DP；原样例输出 4、2。另跑独立边界：1 / 1 1 1 / ?→1；1 / 2 2 1 / 10 / 01→2；1 / 2 3 2 / ??? / ???→2；1 / 2 2 3 / 11 / 11→3，全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "1×1 问号",
+            "input": "1\n1 1 1\n?\n",
+            "output": "1",
+            "reason": "起点即终点，把唯一的 ? 改成 1 得 1 分。"
+          },
+          {
+            "name": "2×2 对角 1",
+            "input": "1\n2 2 1\n10\n01\n",
+            "output": "2",
+            "reason": "两条路径 1→0→1 都经过两个 1，起终点各计 1 分，共 2；x 未使用。"
+          },
+          {
+            "name": "2×3 全问号 x=2",
+            "input": "1\n2 3 2\n???\n???\n",
+            "output": "2",
+            "reason": "路径共 n+m−1=4 格，最多改 2 个 ?，故最多 2 分。"
+          },
+          {
+            "name": "2×2 全 1",
+            "input": "1\n2 2 3\n11\n11\n",
+            "output": "3",
+            "reason": "路径 3 格全为 1，得 3 分；x=3 但无 ? 可改。"
+          }
+        ],
+        "unresolved": [
+          "原卷标注编程题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页 3.1.1—3.1.3：n 节点树、部分节点有宝物、任选起点、每条边至多经过一次、经过宝物节点即取得、判断能否取得全部宝物；输入 t、每组 n、a_i、n−1 条边；输出 Yes/No。第 6 页 3.1.4 样例 2 组输出 Yes/No；数据规模 20% t≤10,n≤5；20% t≤10,n≤1000；全部 1≤t≤10、1≤n≤10⁵、0≤a_i≤1 且至少一个宝物，均与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：树上不重复走边的路线必为一条简单路径，故所有宝物节点必须落在同一条简单路径上；反复删除无宝物的叶子，剩余最小子树若所有点度数≤2 即为路径，输出 Yes，否则 No。样例 1 宝物 2、4 在路径 2-1-3-4 上，Yes；样例 2 全宝、节点 3 度为 3，No，与候选一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "clang++ -std=c++17 -O2 编译候选剪叶程序；原样例输出 Yes、No。另跑独立边界：1 / 1→Yes；1 / 3 / 1 1 1 / 1 2 / 1 3→Yes（三节点星即路径）；1 / 4 / 1 1 1 1 / 1 2 / 1 3 / 1 4→No（中心度 3）；1 / 5 / 1 0 1 0 1 / 1-2-3-4-5→Yes，全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单节点有宝",
+            "input": "1\n1\n",
+            "output": "Yes",
+            "reason": "只有一个节点且放置宝物，起点即取得。"
+          },
+          {
+            "name": "三节点星全宝",
+            "input": "1\n3\n1 1 1\n1 2\n1 3\n",
+            "output": "Yes",
+            "reason": "三节点星的中心度为 2，整棵树就是路径 2-1-3。"
+          },
+          {
+            "name": "四节点星全宝",
+            "input": "1\n4\n1 1 1 1\n1 2\n1 3\n1 4\n",
+            "output": "No",
+            "reason": "中心度 3，最小子树有分叉，不能在不重复边的情况下一笔走完。"
+          },
+          {
+            "name": "路径上分散宝物",
+            "input": "1\n5\n1 0 1 0 1\n1 2\n2 3\n3 4\n4 5\n",
+            "output": "Yes",
+            "reason": "所有宝物都在同一条链上，可从 1 走到 5 依次取得。"
+          }
+        ],
+        "unresolved": [
+          "原卷标注编程题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      }
+    ],
+    "summary": "8 个候选中，Q2/Q4/Q14/Q15/Q26/Q27 五维通过；Q13 解析的选项标签与实际 A O(1)、B O(N)、C O(N log N)、D O(N²) 不对应，已重写；Q20 解析夹带无关的 fib_rcd OCR 说明，已删除；Q14 原卷 B 项 φ 值印错，保留官方答案 B 并记录争议。Q26/Q27 原卷内存限制 512 MB、题库记 128 MB，已在 unresolved 记录。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        2,
+        4,
+        13,
+        14,
+        15,
+        20,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T08:36:00.000Z",
+      "completedAt": "2026-11-25T08:36:00.000Z"
+    }
+  ]
+}
