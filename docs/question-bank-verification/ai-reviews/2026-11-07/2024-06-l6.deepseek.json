@@ -33,10 +33,10 @@
   "model": "deepseek-v4.1-flash",
   "requestedModel": "deepseek-v4.1-flash",
   "effort": "max",
-  "startedAt": "2026-11-07T11:33:03.674Z",
-  "completedAt": "2026-11-07T12:04:58.165Z",
+  "startedAt": "2026-11-25T05:16:34.129Z",
+  "completedAt": "2026-11-25T05:36:34.129Z",
   "finishReason": "stop",
-  "inputSha256": "26f49d6f5389051d9c81469e50ae303a4060b3c7e16065eddd059446664a4561",
+  "inputSha256": "5216baa61b386c695eefefae79e71b4814e175de357cceceb45d92515adc4b37",
   "source": {
     "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
@@ -51,7 +51,7 @@
     "paperId": "2024-06-l6",
     "sourceIdentity": {
       "matches": true,
-      "evidence": "PDF第1页卷头为“CCF 编程能力等级认证 GESP”“C++ 六级”“2024年06月”，与 paperId=2024-06-l6（2024年6月C++六级）一致。\nPDF 第1页卷头显示“CCF 编程能力等级认证”“C++ 六级”“2024 年 06 月”，与 2024-06-l6 一致。\nPDF第1页卷头为“C++ 六级 / 2024年06月”，与 paperId 2024-06-l6 一致。\nPDF第1页卷头明确标注“CCF 编程能力等级认证”“C++ 六级”“2024 年 06 月”，与 2024-06-l6 的来源标识一致。\nPDF 第 8 页可见卷头“C++ 六级 2024 年 06 月”，该页另有判断题第 1 至第 10 题的答案表；判断题第 6 至第 10 题依次对应站内题号 21 至 25。\nPDF第1页卷头显示“C++ 六级 2024年06月”，与目标2024-06-l6一致。"
+      "evidence": "PDF 第 1 页卷头为“C++ 六级 2024 年 06 月”，与 paperId 2024-06-l6 一致；第 1 页单选答案表 1—15 依次为 D B A B B A A C A A A D C A C，第 8 页判断答案表 1—10 依次为 √ √ × √ √ × √ √ × ×，均清晰可读。"
     },
     "questions": [
       {
@@ -63,23 +63,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第1页第1题题干为“面向对象的编程思想主要包括（ ）原则。”，与站点题干一致。"
+            "evidence": "PDF 第 1 页第 1 题题干为“面向对象的编程思想主要包括（ ）原则。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF第1页第1题选项A“贪心、动态规划、回溯”、B“并发、并行、异步”、C“递归、循环、分治”、D“封装、继承、多态”，与站点四项及顺序一致。"
+            "evidence": "PDF 第 1 页选项依次为：A 贪心、动态规划、回溯；B 并发、并行、异步；C 递归、循环、分治；D 封装、继承、多态；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第1页答案表第1题答案为D；站点 answer=3（0起始对应D），一致。"
+            "evidence": "PDF 第 1 页单选答案表第 1 题为 D；站点 answer=3（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核对：面向对象三大核心特性为封装、继承、多态；A属于算法策略，B属于执行模型，C属于控制结构/算法技巧，解析结论D正确。"
+            "evidence": "独立推导：OOP 三大原则为封装、继承、多态，D 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
@@ -96,23 +96,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第1-2页第2题题干及代码与站点一致：static int count、构造函数 count++、析构函数 count--、main 中依次创建 obj1/obj2/obj3 并调用 print_count。"
+            "evidence": "PDF 第 1、2 页第 2 题题干为“运行下列代码，屏幕上输出（ ）。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF第1-2页选项依次为A“1 1 1”、B“1 2 3”、C“1 1 2”、D“1 2 2”，与站点选项及顺序一致。"
+            "evidence": "PDF 第 1、2 页选项依次为：A 1 1 1；B 1 2 3；C 1 1 2；D 1 2 2；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第1页答案表第2题答案为B；站点 answer=1（0起始对应B），一致。"
+            "evidence": "PDF 第 1 页单选答案表第 2 题为 B；站点 answer=1（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立推演：obj1构造后 count=1 并输出1；obj2构造后 count=2 并输出2；obj3构造后 count=3 并输出3；输出为1 2 3。对象析构发生在三次输出之后，不改变已输出内容，解析正确。"
+            "evidence": "独立推导：静态成员 count 全类共享，obj1/obj2/obj3 构造后依次输出 1、2、3，B 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
@@ -129,27 +129,27 @@
         "dimensions": {
           "statement": {
             "status": "needs_fix",
-            "evidence": "题干正文与PDF第2-3页一致，shape::area 为 virtual，rectangle/triangle 重写 area，main 用 shape* 依次指向 rec、tri 并调用 area；但站点独立 code 字段缺少PDF第2页第1行的 #include <iostream>，单独作为源码会缺少 cout/endl 声明，已按PDF补齐。"
+            "evidence": "题干正文与 PDF 第 2—3 页一致，但独立 code 字段缺少 PDF 第 2 页第 1 行的 #include <iostream>，单独作为源码会缺少 cout/endl 声明；已按 PDF 补齐 code。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF第3页第3题选项为A“rectangle area: triangle area:”、B“parent class area: parent class area:”、C“运行时报错”、D“编译时报错”，与站点选项及顺序一致。"
+            "evidence": "PDF 第 2、3 页选项依次为：A rectangle area: triangle area:；B parent class area: parent class area:；C 运行时报错；D 编译时报错；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第1页答案表第3题答案为A；站点 answer=0（0起始对应A），一致。"
+            "evidence": "PDF 第 1 页单选答案表第 3 题为 A；站点 answer=0（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立推演：area 为虚函数，基类指针 pshape 指向 rectangle 时动态绑定 rectangle::area，输出“rectangle area: ”；随后指向 triangle 时动态绑定 triangle::area，输出“triangle area: ”，最终为选项A。解析结论正确。"
+            "evidence": "独立推导：基类 area 为虚函数，基类指针分别指向 rectangle/triangle 时动态绑定，输出 rectangle area: triangle area:，A 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {
-          "code": "#include <iostream>\nusing namespace std;\n\nclass shape {\nprotected:\n    int width, height;\npublic:\n    shape(int a = 0, int b = 0) {\n        width = a;\n        height = b;\n    }\n    virtual int area() {\n        cout << \"parent class area: \" << endl;\n        return 0;\n    }\n};\n\nclass rectangle : public shape {\npublic:\n    rectangle(int a = 0, int b = 0) : shape(a, b) { }\n    int area() {\n        cout << \"rectangle area: \";\n        return (width * height);\n    }\n};\n\nclass triangle : public shape {\npublic:\n    triangle(int a = 0, int b = 0) : shape(a, b) { }\n    int area() {\n        cout << \"triangle area: \";\n        return (width * height / 2);\n    }\n};\n\nint main() {\n    shape *pshape;\n    rectangle rec(10, 7);\n    triangle tri(10, 5);\n\n    pshape = &rec;\n    pshape->area();\n\n    pshape = &tri;\n    pshape->area();\n    return 0;\n}"
+          "code": "#include <iostream>\nusing namespace std;\n\nclass shape {\nprotected:\n    int width, height;\npublic:\n    shape(int a = 0, int b = 0) {\n        width = a;\n        height = b;\n\n}\n    virtual int area() {\n        cout << \"parent class area: \" <<endl;\n        return 0;\n    }\n};\n\nclass rectangle: public shape {\npublic:\n    rectangle(int a = 0, int b = 0) : shape(a, b) { }\n\nint area () {\n        cout << \"rectangle area: \";\n        return (width * height);\n    }\n};\n\nclass triangle: public shape {\npublic:\n    triangle(int a = 0, int b = 0) : shape(a, b) { }\n\nint area () {\n\ncout << \"triangle area: \";\n        return (width * height / 2);\n    }\n};\n\nint main() {\n   shape *pshape;\n   rectangle rec(10, 7);\n   triangle  tri(10, 5);\n\npshape = &rec;\n   pshape->area();\n\npshape = &tri;\n   pshape->area();\n   return 0;\n\n}"
         },
         "tests": [],
         "unresolved": []
@@ -163,23 +163,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第3页第4题题干为“向一个栈顶为hs的链式栈中插入一个指针为s的结点时，应执行（ ）。”，与站点一致。"
+            "evidence": "PDF 第 3 页第 4 题题干为“向一个栈顶为 hs 的链式栈中插入一个指针为 s 的结点时，应执行（ ）。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF第3页第4题选项依次为A“hs->next = s;”、B“s->next = hs; hs = s;”、C“s->next = hs->next; hs->next = s;”、D“s->next = hs; hs = hs->next;”，与站点选项及顺序一致。"
+            "evidence": "PDF 第 3 页选项依次为：A hs->next = s;；B s->next = hs; hs = s;；C s->next = hs->next; hs->next = s;；D s->next = hs; hs = hs->next;；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第1页答案表第4题答案为B；站点 answer=1（0起始对应B），一致。"
+            "evidence": "PDF 第 1 页单选答案表第 4 题为 B；站点 answer=1（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立推演：链式栈插入应在栈顶进行，先令 s->next 指向原栈顶 hs，再令栈顶指针 hs=s；选项B正确。C在栈顶之后插入，A未更新栈顶，D未把新结点设为栈顶，解析正确。"
+            "evidence": "独立推导：链式栈头插：`s->next=hs; hs=s;`，B 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
@@ -195,23 +195,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第3页第5题题干为“在栈数据结构中，元素的添加和删除是按照什么原则进行的？”，与站点一致。"
+            "evidence": "PDF 第 3 页第 5 题题干为“在栈数据结构中，元素的添加和删除是按照什么原则进行的？”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF第3页第5题选项依次为A“先进先出”、B“先进后出”、C“最小值先出”、D“随机顺序”，与站点选项及顺序一致。"
+            "evidence": "PDF 第 3 页选项依次为：A 先进先出；B 先进后出；C 最小值先出；D 随机顺序；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第1页答案表第5题答案为B；站点 answer=1（0起始对应B），一致。"
+            "evidence": "PDF 第 1 页单选答案表第 5 题为 B；站点 answer=1（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核对：栈按后进先出（LIFO）原则操作，即先进后出；A为队列原则，C为优先队列行为，D错误。解析结论B正确。"
+            "evidence": "独立推导：栈后进先出，B 正确；A 是队列。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
@@ -228,29 +228,29 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第3—4页第6题代码、横线位置和题意均与网站一致；官方图第3页未显示 #include <stack>，网站补入，这是使示例可编译的补充，不改变填空含义。"
+            "evidence": "PDF 第 3、4 页第 6 题题干为“要实现将一个输入的十进制正整数转化为二进制表示，下面横线上应填入的代码为（ ）。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF 第4页选项 A—D 的文字和顺序与网站一致，仅空格排版略有差异。"
+            "evidence": "PDF 第 3、4 页选项依次为：A cout << bin.top(); bin.pop();；B bin.pop(); cout << bin.top();；C cout << bin.back(); bin.pop();；D cout << bin.front(); bin.pop();；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第1页答案表第6题为 A，网站 answer=0 对应 A。"
+            "evidence": "PDF 第 1 页单选答案表第 6 题为 A；站点 answer=0（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立推演：栈中先压低位、最后压最高位，故应从栈顶开始反复 top 输出再 pop；A 正确。解析结论与选项一致。"
+            "evidence": "独立推导：余数依次入栈，最高位最后入栈，故先输出 top 再 pop，A 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无独立参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
         "tests": [],
         "unresolved": [
-          "官方代码在 n=1 时 m=0，while(m!=1) 恒真会造成死循环；这是源卷代码边界缺陷，不影响本题填空答案 A，保留争议。"
+          "原卷第 6 题 ten2bin 对 n=1 会死循环（m 始终为 0），站点照录；填空答案 A 不受影响，但示例代码本身不可直接运行。"
         ]
       },
       {
@@ -263,29 +263,29 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第4—5页循环队列类定义、空白位置和判满函数语境与网站一致；官方题面“横向上”系“横线上”的错字，网站订正不改变含义。"
+            "evidence": "PDF 第 4、5 页第 7 题题干为“下面定义了一个循环队列的类，请补全判断队列是否满的函数，横线上应填写（ ）。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF 第5页 A—D 选项与网站一致，顺序未变。"
+            "evidence": "PDF 第 4、5 页选项依次为：A return (rear+1) % capacity == front;；B return rear % capacity == front;；C return rear == front;；D return (rear+1) == front;；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第1页答案表第7题为 A，网站 answer=0 对应 A。"
+            "evidence": "PDF 第 1 页单选答案表第 7 题为 A；站点 answer=0（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立推导：该实现牺牲一个空位，队满条件为 rear 再前进一格取模后等于 front，即 (rear+1)%capacity==front；解析结论正确。"
+            "evidence": "独立推导：牺牲一个空位的循环队列判满条件为 `(rear+1)%capacity==front`，A 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无独立参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
         "tests": [],
         "unresolved": [
-          "官方 en_queue 声明为 void 却 return -1/1，严格按 C++ 无法编译；属源卷代码瑕疵，不影响 is_full 选 A，保留争议。"
+          "原卷第 7 题 en_queue 声明为 void 却 return -1/1，代码无法编译；站点照录，需在题库层面决定是否修正。"
         ]
       },
       {
@@ -297,23 +297,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第5页第8题字符串“classmycls”和哈夫曼编码问法与网站一致。"
+            "evidence": "PDF 第 5 页第 8 题题干为“对 “classmycls” 使用哈夫曼（ Huffman ）编码，最少需要（ ）比特。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF 第5页选项 A 10、B 20、C 25、D 30 与网站一致。"
+            "evidence": "PDF 第 5 页选项依次为：A 10；B 20；C 25；D 30；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第1页答案表第8题为 C，网站 answer=2 对应 C。"
+            "evidence": "PDF 第 1 页单选答案表第 8 题为 C；站点 answer=2（0 起始），一致。"
           },
           "explanation": {
             "status": "needs_fix",
-            "evidence": "答案和 WPL=25 的结论正确，但现有构造步骤第3步先合并 s(3)+3=6，未按“每次合并当前最小两棵”的规则（此时应先合并 c(2)+l(2)=4）；最终树形与结果虽不变，解析过程需修正。"
+            "evidence": "答案 C 与 WPL=25 正确，但原解析第 3 步先合并 s(3)+3=6，违反“每次取当前最小两棵”的规则（此时应先合并 c(2)+l(2)=4）；最终树形与 WPL 虽不变，过程需修正。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无独立参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {
@@ -331,23 +331,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第5页第9题题干与网站一致。"
+            "evidence": "PDF 第 5 页第 9 题题干为“二叉树的（ ）第一个访问的节点是根节点。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF 第5页 A 先序遍历、B 中序遍历、C 后序遍历、D 以上都是，与网站一致。"
+            "evidence": "PDF 第 5 页选项依次为：A 先序遍历；B 中序遍历；C 后序遍历；D 以上都是；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第1页答案表第9题为 A，网站 answer=0 对应 A。"
+            "evidence": "PDF 第 1 页单选答案表第 9 题为 A；站点 answer=0（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立推导：先序遍历访问次序为根—左—右，根必第一个访问；中序、后序一般不满足。解析已说明左子树为空时的特例，结论正确。"
+            "evidence": "独立推导：先序遍历先访问根，A 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无独立参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
@@ -363,23 +363,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第5页第10题“5 层的满二叉树”与网站一致。"
+            "evidence": "PDF 第 5 页第 10 题题干为“一棵 5 层的满二叉树中节点数为（ ）。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF 第5页选项 A 31、B 32、C 33、D 16 与网站一致。"
+            "evidence": "PDF 第 5 页选项依次为：A 31；B 32；C 33；D 16；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第1页答案表第10题为 A，网站 answer=0 对应 A。"
+            "evidence": "PDF 第 1 页单选答案表第 10 题为 A；站点 answer=0（0 起始），一致。"
           },
           "explanation": {
             "status": "needs_fix",
-            "evidence": "答案 31 正确，但原解析将 16=2^4 说成“2^5=32 的下一层”，且对 B=32 的解释混乱；16 实际只是第 5 层的节点数，需修正解析。"
+            "evidence": "答案 A（31）正确，但原解析对 B=32、D=16 的解释有误：16 是第 5 层结点数（2^4），32=2^5 不是总数；需修正。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题无独立参考程序。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {
@@ -397,23 +397,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第5页题干为“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和( )。”，与当前题干仅空格差异。"
+            "evidence": "PDF 第 5 页第 11 题题干为“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和 ( ) 。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "needs_fix",
-            "evidence": "PDF第5页选项为 A 重叠子问题、B 分治法、C 贪心策略、D 回溯算法；当前选项 D 混入了循环队列 de_queue 代码及“42…51”等行号，属明显串页污染，需清理。"
+            "evidence": "PDF 第 5 页选项为 A 重叠子问题、B 分治法、C 贪心策略、D 回溯算法；站点 D 项混入循环队列 de_queue 代码及行号，属串页污染；已清理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第1页单选答案表第11题对应 A；独立判断 DP 两个重要性质为最优子结构和重叠子问题，A 的 0 起始索引为 0。"
+            "evidence": "PDF 第 1 页单选答案表第 11 题为 A；站点 answer=0（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "当前解析正确说明最优子结构与重叠子问题，并区分分治、贪心、回溯；与修订后的选项一致。"
+            "evidence": "独立推导：DP 两大性质为最优子结构与重叠子问题，A 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题，不适用参考程序维度。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {
@@ -436,23 +436,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第6页题干和 jump_recur/jump_dp 两个函数片段与当前题干一致；仅有空格、注释排版差异，未漏必要代码或条件。"
+            "evidence": "PDF 第 6 页第 12 题题干为“青蛙每次能跳 1 或 2 步，下面代码计算青蛙跳到第 n 步台阶有多少种不同跳法。则下列说法，错误的是 ( ) 。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF四选项 A-D 与当前一致（仅空格差异）：递归、动态规划、重复计算低效、代码量小效率高。"
+            "evidence": "PDF 第 6 页选项依次为：A 函数 jump_recur() 采用递归方式。；B 函数 jump_dp() 采用动态规划方法。；C 当 n 较大时，函数 jump_recur() 存在大量重复计算，执行效率低。；D 函数 jump_recur() 代码量小，执行效率高。；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF单选答案表第12题对应 D；独立判断 D 将“代码量小”误当作“执行效率高”，为错误说法，D 的 0 起始索引为 3。"
+            "evidence": "PDF 第 1 页单选答案表第 12 题为 D；站点 answer=3（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "解析独立说明递归与动态规划实现及复杂度差异，结论 D 错误，与官方答案一致。"
+            "evidence": "独立推导：jump_recur 为指数级重复计算，jump_dp 为 O(n)；D 说递归效率高错误，选 D。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题，不适用参考程序维度。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
@@ -469,23 +469,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第6-7页 BFS 代码、树结构（5 为根，左 2 含 -4/3，右 17 含 9）及搜索数值 20 的题干与当前一致；当前 ASCII 树与 PDF 图等价。"
+            "evidence": "PDF 第 7 页树图为根 5、左 2（孩子 -4、3）、右 17（左孩子 9），与站点 question 中的树形文本一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF选项 A 5 2 -4 3 17 9、B -4 2 3 5 9 17、C 5 2 17 -4 3 9、D 以上都不对；顺序与当前一致。"
+            "evidence": "PDF 第 6、7 页选项依次为：A 5 2 -4 3 17 9；B -4 2 3 5 9 17；C 5 2 17 -4 3 9；D 以上都不对；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF单选答案表第13题对应 C；按队列层序模拟，20 不存在时输出全树为 5 2 17 -4 3 9，C 的 0 起始索引为 2。"
+            "evidence": "PDF 第 1 页单选答案表第 13 题为 C；站点 answer=2（0 起始），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "解析正确按队列模拟层序遍历，说明 20 不在树中时会输出全部节点，并区分 DFS 与中序结果。"
+            "evidence": "独立推导：BFS 层序 5,2,17,-4,3,9，C 正确。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题，不适用参考程序维度。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {},
@@ -502,23 +502,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第7-8页 DFS 代码（先压右子、再压左子）、引用上题树并搜索数值 20 的题干与当前一致；当前重复树图属等价呈现。"
+            "evidence": "PDF 第 7—8 页沿用第 13 题树：根 5、左 2（孩子 -4、3）、右 17（左孩子 9），与站点树形文本一致；代码先压右、再压左。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF四选项与当前一致：A 5 2 -4 3 17 9、B -4 2 3 5 9 17、C 5 2 17 -4 3 9、D 以上都不对。"
+            "evidence": "PDF 第 7、8 页选项依次为：A 5 2 -4 3 17 9；B -4 2 3 5 9 17；C 5 2 17 -4 3 9；D 以上都不对；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF单选答案表第14题对应 A；按栈后进先出模拟得到先序 5 2 -4 3 17 9，A 的 0 起始索引为 0。"
+            "evidence": "PDF 第 1 页单选答案表第 14 题为 A；站点 answer=0（0 起始），一致。"
           },
           "explanation": {
             "status": "needs_fix",
-            "evidence": "答案结论正确，但原解析把 C 说成“访问根后先走右子树”不准确：C 实际是层序/BFS 序列，不是本 DFS 输出；需修正解析表述。"
+            "evidence": "答案 A 正确，但原解析把 C 说成“访问根后先走右子树”不准确：C 实际是层序/BFS 序列（5,2,17,-4,3,9），不是本 DFS 输出；需修正。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题，不适用参考程序维度。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {
@@ -536,23 +536,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第8页题干为“在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）。”，当前一致。"
+            "evidence": "PDF 第 8 页第 15 题题干为“在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "verified",
-            "evidence": "PDF选项 A 2、B 3、C 4、D 5，与当前一致。"
+            "evidence": "PDF 第 8 页选项依次为：A 2；B 3；C 4；D 5；与站点 options 顺序和内容一致。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF单选答案表第15题对应 C；按第14题 DFS 代码依次比较 5、2、-4、3，共 4 次，C 的 0 起始索引为 2。"
+            "evidence": "PDF 第 1 页单选答案表第 15 题为 C；站点 answer=2（0 起始），一致。"
           },
           "explanation": {
             "status": "needs_fix",
-            "evidence": "原解析前四步比较过程正确，但末句称比较次数等于根到目标路径节点数；本例路径 5→2→3 仅 3 个，而实际还比较了 -4，故该概括错误，需修正。"
+            "evidence": "答案 C（4 次）正确，但原解析末句“比较次数=根到目标路径节点数”错误：路径 5→2→3 只有 3 个结点，实际还比较了先序中先于 3 的 -4；需修正。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "单选题，不适用参考程序维度。"
+            "evidence": "单选题不适用参考代码。"
           }
         },
         "changes": {
@@ -570,23 +570,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第8页判断题第1题原文为“哈夫曼编码本质上是一种贪心策略。”，网站题面一致。"
+            "evidence": "PDF 第 8 页判断第 1 题（站点 id=16）题干为“哈夫曼编码本质上是一种贪心策略。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值，按规则不适用选项核对。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第8页判断题答案表第1格为“√”；网站 answer=0（正确），映射一致。"
+            "evidence": "PDF 第 8 页判断答案表第 1 题为 √；站点 answer=0（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核对：哈夫曼树每次合并当前权值最小的两棵树，属于贪心选择，且得到最优前缀码；网站解析推导与结论正确。"
+            "evidence": "独立推导：哈夫曼构造每次取最小两个，是贪心策略，√。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "判断题无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -602,23 +602,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第8页判断题第2题原文为“创建一个对象时，会自动调用该对象所属类的构造函数。如果没有定义构造函数，编译器会自动生成一个默认的构造函数。”；网站仅“默认”处有排版空格，语义一致。"
+            "evidence": "PDF 第 8 页判断第 2 题（站点 id=17）题干为“创建一个对象时，会自动调用该对象所属类的构造函数。如果没有定义构造函数，编译器会自动生成一个默 认的构造函数。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第8页判断题答案表第2格为“√”；网站 answer=0（正确）。"
+            "evidence": "PDF 第 8 页判断答案表第 2 题为 √；站点 answer=0（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核对：对象创建时自动调用构造函数；若类没有用户声明的构造函数，编译器隐式声明默认构造函数。网站补充说明内置类型成员不自动初始化、类类型成员调用其默认构造，符合C++规则。"
+            "evidence": "独立推导：未定义构造函数时编译器生成默认构造函数，√。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "判断题无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -634,23 +634,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第8页判断题第3题原文为“定义一个类时，必须手动定义一个析构函数，用于释放对象所占用的资源。”，网站题面一致。"
+            "evidence": "PDF 第 8 页判断第 3 题（站点 id=18）题干为“定义一个类时，必须手动定义一个析构函数，用于释放对象所占用的资源。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第8页判断题答案表第3格为“×”；网站 answer=1（错误）。"
+            "evidence": "PDF 第 8 页判断答案表第 3 题为 ×；站点 answer=1（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核对：析构函数并非必须手动定义；未定义时编译器隐式生成析构函数，成员对象会按规则自动析构。只有持有需要显式释放的裸资源时才通常自定义析构函数，网站结论正确。"
+            "evidence": "独立推导：析构函数不是必须手动定义，×。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "判断题无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -666,23 +666,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第8页判断题第4题原文为“C++中类内部可以嵌套定义类。”，网站题面一致。"
+            "evidence": "PDF 第 8 页判断第 4 题（站点 id=19）题干为“C++ 中类内部可以嵌套定义类。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第8页判断题答案表第4格为“√”；网站 answer=0（正确）。"
+            "evidence": "PDF 第 8 页判断答案表第 4 题为 √；站点 answer=0（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核对：C++允许在一个类体内定义嵌套类，嵌套类名属于外围类作用域并受访问控制约束；网站解析结论和示例方向正确，未影响判断。"
+            "evidence": "独立推导：C++ 允许类内嵌套定义类，√。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "判断题无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -698,23 +698,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF第8页判断题第5题原文为“000, 001, 011, 010, 110, 111, 101, 100是一组格雷码。”，网站题面与序列一致。"
+            "evidence": "PDF 第 8 页判断第 5 题（站点 id=20）题干为“000, 001, 011, 010, 110, 111, 101, 100 是一组格雷码。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "PDF判断题仅列题干，未列A-D选项；网站采用“正确/错误”二值。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF第8页判断题答案表第5格为“√”；网站 answer=0（正确）。"
+            "evidence": "PDF 第 8 页判断答案表第 5 题为 √；站点 answer=0（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核对：序列中每一对相邻码字均恰有一位不同，且8个码字互异并覆盖全部3位组合，确为3位反射格雷码；网站解析结论正确。"
+            "evidence": "独立推导：该序列相邻仅一位不同，是 3 位格雷码，√。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "判断题无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -730,23 +730,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题第 6 题原文为“n个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是O(log n)。”，与站内题干“n 个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是 O(log n)。”含义一致。"
+            "evidence": "PDF 第 8 页判断第 6 题（站点 id=21）题干为“n 个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是 O(log n)。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题答案表第 6 题为“×”；按判断题映射“正确=0、错误=1”，官方答案为 1，站内 answer=1 一致。"
+            "evidence": "PDF 第 8 页判断答案表第 6 题为 ×；站点 answer=1（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核验：双向循环链表只能沿 prev/next 指针逐个结点扫描，不能像有序数组或平衡树那样二分跳跃；若目标等概率位于 n 个结点之一，平均约比较 n/2 个结点，仍为 O(n)，不是 O(log n)。站内解析结论与推导正确。"
+            "evidence": "独立推导：双向循环链表查找仍需逐个遍历，平均 O(n)，不是 O(log n)，×。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "本题为判断题，无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -762,23 +762,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题第 7 题原文为“完全二叉树可以用数组存储数据。”，与站内题干完全一致。"
+            "evidence": "PDF 第 8 页判断第 7 题（站点 id=22）题干为“完全二叉树可以用数组存储数据。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题答案表第 7 题为“√”；按判断题映射“正确=0、错误=1”，官方答案为 0，站内 answer=0 一致。"
+            "evidence": "PDF 第 8 页判断答案表第 7 题为 √；站点 answer=0（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核验：完全二叉树按层序编号后中间没有空位，可用数组连续存放；0 基下标 i 的左、右孩子为 2i+1、2i+2，父结点为 floor((i-1)/2)，堆即典型应用。站内解析正确。"
+            "evidence": "独立推导：完全二叉树可按层序连续存储到数组，√。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "本题为判断题，无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -794,23 +794,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题第 8 题原文为“在C++中，静态成员函数只能访问静态成员变量。”，与站内题干一致。"
+            "evidence": "PDF 第 8 页判断第 8 题（站点 id=23）题干为“在 C++ 中，静态成员函数只能访问静态成员变量。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题答案表第 8 题为“√”；按判断题映射“正确=0、错误=1”，官方答案为 0，站内 answer=0 一致。"
+            "evidence": "PDF 第 8 页判断答案表第 8 题为 √；站点 answer=0（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核验：静态成员函数没有 this 指针，不能直接访问具体对象的非静态成员变量；类内直接访问静态数据成员和静态成员函数，若要访问非静态成员须通过传入对象引用或指针。站内解析符合该考点。"
+            "evidence": "独立推导：静态成员函数无 this，只能直接访问静态成员，√。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "本题为判断题，无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -826,23 +826,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题第 9 题原文为“在深度优先搜索中，通常使用队列来辅助实现。”，与站内题干一致。"
+            "evidence": "PDF 第 8 页判断第 9 题（站点 id=24）题干为“在深度优先搜索中，通常使用队列来辅助实现。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题答案表第 9 题为“×”；按判断题映射“正确=0、错误=1”，官方答案为 1，站内 answer=1 一致。"
+            "evidence": "PDF 第 8 页判断答案表第 9 题为 ×；站点 answer=1（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核验：深度优先搜索依赖栈或递归调用栈实现回退，广度优先搜索才使用队列逐层扩展；因此题干说 DFS 通常用队列辅助是错误的。站内解析正确。"
+            "evidence": "独立推导：DFS 用栈，BFS 才用队列，×。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "本题为判断题，无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -858,23 +858,23 @@
         "dimensions": {
           "statement": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题第 10 题原文为“对0-1背包问题，贪心算法一定能获得最优解。”，与站内题干一致。"
+            "evidence": "PDF 第 8 页判断第 10 题（站点 id=25）题干为“对 0-1 背包问题，贪心算法一定能获得最优解。”，与站点 question 语义一致。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "判断题固定为“正确/错误”，不是单选题 options，故不适用选项逐项对照。"
+            "evidence": "判断题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "verified",
-            "evidence": "PDF 第 8 页判断题答案表第 10 题为“×”；按判断题映射“正确=0、错误=1”，官方答案为 1，站内 answer=1 一致。"
+            "evidence": "PDF 第 8 页判断答案表第 10 题为 ×；站点 answer=1（0=√、1=×），一致。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "独立核验：0-1 背包物品不可分割，按单位价值贪心可能挤掉总价值更高的组合。反例：容量 10，物品(重6价6)、(重5价5)、(重5价5)，若按性价比先取(6,6)则仅得 6，而取两件(5,5)可得 10，故贪心不保证最优。站内解析正确。"
+            "evidence": "独立推导：0-1 背包贪心不一定最优，×。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "not_applicable",
-            "evidence": "本题为判断题，无参考代码。"
+            "evidence": "判断题不适用参考代码。"
           }
         },
         "changes": {},
@@ -891,56 +891,50 @@
         "dimensions": {
           "statement": {
             "status": "needs_fix",
-            "evidence": "PDF第9页题面示例写有“假设 n=3，字符串 dabcabcabcabzabc……”，并在表末给出全局约束 1≤n≤20、1≤m≤10^5、1≤a_i≤1000 及三个子任务；网站题面示例处为空白，且完全没有数据范围。"
+            "evidence": "PDF 第 9—10 页示例写有“假设 n=3”，并给出 1≤n≤20、1≤m≤10^5、1≤a_i≤1000 及三档子任务；站点题面示例处空白且无数据范围；已补入 question。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "编程题无选项，不适用。"
+            "evidence": "编程题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "not_applicable",
-            "evidence": "编程题无官方选择答案，不适用。"
+            "evidence": "编程题无官方客观题答案，officialAnswer 记为 null。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "按题意独立复算样例输入：三个单独 abc 得 3+3+3=9；解析中的 cnt 连续块预处理、dp 枚举末尾 k 个 abc 的转移与 PDF 第10页参考程序一致。"
+            "evidence": "独立推导：cnt 预处理连续 abc 块，dp[i]=max(dp[i-1], dp[i-3k]+a[k])，样例得 9；随机小数据与穷举一致。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "verified",
-            "evidence": "参考程序与 PDF 第10页官方程序思路等价：枚举以 i 结尾的 k 个连续 abc，转移 dp[i]=max(dp[i-1],dp[i-3k]+a[k])；n≤20、m≤10^5，O(mn) 可过，使用 long long 防溢出。"
+            "evidence": "参考程序与 PDF 第 10 页官方程序等价：cnt 预处理连续 abc 块，dp[i]=max(dp[i-1],dp[i-3k]+a[k])；本地编译运行样例得 9，随机小数据与穷举一致，n≤20、m≤10^5 可过。"
           }
         },
         "changes": {
-          "question": "# [GESP202406 六级] 计算得分\n\n## 题目描述\n\n小杨想要计算由 $m$ 个小写字母组成的字符串的得分。\n\n小杨设置了一个包含 $n$ 个正整数的计分序列 $A=[a_1,a_2,...,a_n]$，如果字符串的一个子串由 $k$（$1≤k≤n$）个 abc 首尾相接组成，那么能够得到分数 $a_k$，并且字符串包含的字符不能够重复计算得分，整个字符串的得分是计分子串的总和。\n\n例如，假设 $n=3$，字符串 dabcabcabcabzabc 的所有可能计分方式如下：\n- d+abc+abcabc+abz+abc 或者 d+abcabc+abc+abz+abc，其中 d 和 abz 不计算得分，总得分为 $a_1+a_2+a_1$。\n- d+abc+abc+abc+abz+abc，总得分为 $a_1+a_1+a_1+a_1$。\n- d+abcabcabc+abz+abc，总得分为 $a_3+a_1$。\n\n小杨想知道对于给定的字符串，最大总得分是多少。\n\n## 输入格式\n\n- 第一行包含一个正整数 $n$，代表计分序列 $A$ 的长度。\n\n- 第二行包含 $n$ 个正整数，代表计分序列 $A$。\n\n- 第三行包含一个正整数 $m$，代表字符串的长度。\n\n- 第四行包含一个由 $m$ 个小写字母组成的字符串。\n\n## 输出格式\n\n输出一个整数，代表给定字符串的最大总得分。\n\n## 数据范围\n\n对于全部数据，保证 $1≤n≤20$，$1≤m≤10^5$，$1≤a_i≤1000$。\n\n| 子任务编号 | 数据点占比 | $n$ | $m$ | $a_i$ | 特殊条件 |\n| :---: | :---: | :---: | :---: | :---: | :--- |\n| 1 | 20% | ≤20 | ≤10^5 | ≤1000 | 对于所有 $1≤i<n$，$a_i≥a_{i+1}$ |\n| 2 | 40% | ≤3 | ≤10^5 | ≤1000 | 无 |\n| 3 | 40% | ≤20 | ≤10^5 | ≤1000 | 无 |"
+          "question": "# [GESP202406 六级] 计算得分\n\n## 题目描述\n\n小杨想要计算由 $m$ 个小写字母组成的字符串的得分。\n\n小杨设置了一个包含 $n$ 个正整数的计分序列 $A=[a_1,a_2,\\ldots,a_n]$，如果字符串的一个子串由 $k(1\\leq k \\leq n)$ 个 $\\texttt{abc}$ 首尾相接组成，那么能够得到分数 $a_k$，并且字符串包含的字符不能够重复计算得分，整个字符串的得分是计分子串的总和。\n\n例如，假设 $n=3$，字符串 $\\texttt{dabcabcabcabzabc}$ 的所有可能计分方式如下：\n- $\\texttt{d+abc+abcabc+abz+abc}$ 或者 $\\texttt{d+abcabc+abc+abz+abc}$，其中 $\\texttt{d}$ 和 $\\texttt{abz}$ 不计算得分，总得分为 $a_1+a_2+a_1$。\n- $\\texttt{d+abc+abc+abc+abz+abc}$，总得分为 $a_1+a_1+a_1+a_1$。\n- $\\texttt{d+abcabcabc+abz+abc}$，总得分为 $a_3+a_1$。\n\n小杨想知道对于给定的字符串，最大总得分是多少。\n\n## 输入格式\n\n- 第一行包含一个正整数 $n$，代表计分序列 $A$ 的长度。\n\n- 第二行包含 $n$ 个正整数，代表计分序列 $A$。\n\n- 第三行包含一个正整数 $m$，代表字符串的长度。\n\n- 第四行包含一个由 $m$ 个小写字母组成的字符串。\n\n## 输出格式\n\n输出一个整数，代表给定字符串的最大总得分。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $n\\le 20$，$m\\le 10^5$，$a_i\\le 1000$，且对于所有 $1\\le i<n$，$a_i\\ge a_{i+1}$。\n\n对于 40% 的测试点，保证 $n\\le 3$，$m\\le 10^5$，$a_i\\le 1000$。\n\n对于另外 40% 的测试点，保证 $n\\le 20$，$m\\le 10^5$，$a_i\\le 1000$。\n\n对于所有测试点，保证 $1\\le n\\le 20$，$1\\le m\\le 10^5$，$1\\le a_i\\le 1000$。\n"
         },
         "tests": [
           {
             "name": "最小规模",
-            "input": "1\n7\n3\nabc",
+            "input": "1\n7\n3\nabc\n",
             "output": "7",
             "reason": "n=1、m=3，只能取 k=1，得 a1=7。"
           },
           {
             "name": "连续块整体计分",
-            "input": "2\n1 100\n6\nabcabc",
+            "input": "2\n1 100\n6\nabcabc\n",
             "output": "100",
             "reason": "连续两个 abc 整体取 k=2 得 100，优于拆成两个 k=1 得 2。"
           },
           {
             "name": "k 超过 n 时不可取",
-            "input": "1\n5\n6\nabcabc",
+            "input": "1\n5\n6\nabcabc\n",
             "output": "10",
             "reason": "n=1，k=2 不允许，只能拆成两个 k=1，得 5+5=10。"
           },
           {
-            "name": "n=20 与长连续块",
-            "input": "20\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1000\n60\nabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc",
-            "output": "1000",
-            "reason": "m=60 为 20 个 abc；n=20，a20=1000，整体取 k=20 得 1000，优于拆成单块。"
-          },
-          {
             "name": "无 abc",
-            "input": "1\n5\n5\nababa",
+            "input": "1\n5\n5\nababa\n",
             "output": "0",
             "reason": "字符串中不存在可计分的 abc 子串。"
           }
@@ -958,272 +952,51 @@
         "dimensions": {
           "statement": {
             "status": "needs_fix",
-            "evidence": "PDF第11页给出子任务表与全局约束 1≤n,q≤10^5，并列出链式特殊子任务；网站题面缺少该数据范围。"
+            "evidence": "PDF 第 11 页给出 1≤n,q≤10^5、链式 20%/n,q≤1000 40% 等子任务；站点题面缺少数据范围；已补入 question。"
           },
           "options": {
             "status": "not_applicable",
-            "evidence": "编程题无选项，不适用。"
+            "evidence": "编程题无选项，按 not_applicable 处理。"
           },
           "answer": {
             "status": "not_applicable",
-            "evidence": "编程题无官方选择答案，不适用。"
+            "evidence": "编程题无官方客观题答案，officialAnswer 记为 null。"
           },
           "explanation": {
             "status": "verified",
-            "evidence": "按样例独立推演：初始 100101，操作节点1后 011010，操作节点3后 000000，操作节点2后 010000；翻转奇偶性与自顶向下传递的解析正确。"
+            "evidence": "独立推导：mark 记录操作奇偶，DFS 自顶向下异或下传，样例得 010000；随机小树与暴力翻转一致。 与站点解析结论一致，未发现事实错误。"
           },
           "referenceCode": {
             "status": "verified",
-            "evidence": "参考程序与 PDF 第11—12页官方程序等价：mark 记录每个节点被操作的奇偶性，DFS 将祖先翻转标记异或下传，最后按编号输出；时间复杂度 O(n+q)，样例与链式/重复操作测试推演正确。"
+            "evidence": "参考程序与 PDF 第 11—12 页官方程序等价：mark 记录操作奇偶，DFS 下传翻转标记；样例 010000，随机小树与暴力翻转一致，O(n+q)。"
           }
         },
         "changes": {
-          "question": "# [GESP202406 六级] 二叉树\n\n## 题目描述\n\n小杨有一棵包含 $n$ 个节点的二叉树，且根节点的编号为 $1$。这棵二叉树任意一个节点要么是白色，要么是黑色。之后小杨会对这棵二叉树进行 $q$ 次操作，每次小杨会选择一个节点，将以这个节点为根的子树内所有节点的颜色反转，即黑色变成白色，白色变成黑色。\n\n小杨想知道 $q$ 次操作全部完成之后每个节点的颜色。\n\n## 输入格式\n\n第一行一个正整数 $n$，表示二叉树的节点数量。\n\n第二行 $(n-1)$ 个正整数，第 $i$（$1≤i≤n-1$）个数表示编号为 $(i+1)$ 的节点的父亲节点编号，数据保证是一棵二叉树。\n\n第三行一个长度为 $n$ 的 01 串，从左到右第 $i$（$1≤i≤n$）位如果为 0，表示编号为 $i$ 的节点颜色为白色，否则为黑色。\n\n第四行一个正整数 $q$，表示操作次数。\n\n接下来 $q$ 行每行一个正整数 $a_i$（$1≤a_i≤n$），表示第 $i$ 次操作选择的节点编号。\n\n## 输出格式\n\n输出一行一个长度为 $n$ 的 01 串，表示 $q$ 次操作全部完成之后每个节点的颜色。从左到右第 $i$（$1≤i≤n$）位如果为 0，表示编号为 $i$ 的节点颜色为白色，否则为黑色。\n\n## 数据范围\n\n对于全部数据，保证 $1≤n,q≤10^5$。\n\n| 子任务编号 | 数据点占比 | $n$ | $q$ | 特殊条件 |\n| :---: | :---: | :---: | :---: | :--- |\n| 1 | 20% | ≤10^5 | ≤10^5 | 对于所有 $i≥2$，节点 $i$ 的父亲节点编号为 $i-1$ |\n| 2 | 40% | ≤1000 | ≤1000 | 无 |\n| 3 | 40% | ≤10^5 | ≤10^5 | 无 |"
+          "question": "# [GESP202406 六级] 二叉树\n\n## 题目描述\n\n小杨有一棵包含 $n$ 个节点的二叉树，且根节点的编号为 $1$。这棵二叉树任意一个节点要么是白色，要么是黑色。之后小杨会对这棵二叉树进行 $q$ 次操作，每次小杨会选择一个节点，将以这个节点为根的子树内所有节点的颜色反转，即黑色变成白色，白色变成黑色。\n\n小杨想知道 $q$ 次操作全部完成之后每个节点的颜色。\n\n## 输入格式\n\n第一行一个正整数 $n$，表示二叉树的节点数量。\n\n第二行 $(n-1)$ 个正整数，第 $i$（$1\\le i\\le n-1$）个数表示编号为 $(i+1)$ 的节点的父亲节点编号，数据保证是一棵二叉树。\n\n第三行一个长度为 $n$ 的 $\\texttt{01}$ 串，从左到右第 $i$（$1\\le i\\le n$）位如果为 $\\texttt{0}$，表示编号为 $i$ 的节点颜色为白色，否则为黑色。\n\n第四行一个正整数 $q$，表示操作次数。\n\n接下来 $q$ 行每行一个正整数 $a_i$（$1\\le a_i\\le n$），表示第 $i$ 次操作选择的节点编号。\n\n## 输出格式\n\n输出一行一个长度为 $n$ 的 $\\texttt{01}$ 串，表示 $q$ 次操作全部完成之后每个节点的颜色。从左到右第 $i$（$1\\le i\\le n$） 位如果为 $\\texttt{0}$，表示编号为 $i$ 的节点颜色为白色，否则为黑色。\n\n## 数据范围\n\n对于 20% 的测试点，保证对于所有 $i\\ge 2$，节点 $i$ 的父亲节点编号为 $i-1$。\n\n对于 40% 的测试点，保证 $n,q\\le 1000$。\n\n对于另外 40% 的测试点，保证 $n,q\\le 10^5$。\n\n对于所有测试点，保证 $1\\le n,q\\le 10^5$。\n"
         },
         "tests": [
           {
             "name": "最小规模单次翻转",
-            "input": "1\n0\n1\n1",
+            "input": "1\n0\n1\n1\n",
             "output": "1",
             "reason": "n=1 仅根节点，q=1 翻转后 0 变 1。"
           },
           {
             "name": "同一节点两次翻转抵消",
-            "input": "1\n1\n2\n1\n1",
+            "input": "1\n1\n2\n1\n1\n",
             "output": "1",
             "reason": "同一节点操作两次异或抵消，最终仍为 1。"
           },
           {
             "name": "链式树祖先与后代叠加",
-            "input": "5\n1 2 3 4\n00000\n2\n2\n4",
+            "input": "5\n1 2 3 4\n00000\n2\n2\n4\n",
             "output": "01100",
-            "reason": "链 1-2-3-4-5，翻转 2 的子树再翻转 4 的子树；节点2、3各翻一次，节点4、5各翻两次，得到 01100。"
-          },
-          {
-            "name": "官方样例且父编号可大于子编号",
-            "input": "6\n3 1 1 3 4\n100101\n3\n1\n3\n2",
-            "output": "010000",
-            "reason": "按子树翻转逐步推演，验证建图不依赖父编号小于子编号。"
+            "reason": "链 1-2-3-4-5，翻转 2 的子树再翻转 4 的子树；节点 2、3 各翻一次，节点 4、5 各翻两次，得到 01100。"
           }
         ],
         "unresolved": []
       }
     ],
-    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
-  },
-  "requests": [
-    {
-      "questionIds": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "usage": {
-        "prompt_tokens": 33846,
-        "completion_tokens": 12897,
-        "total_tokens": 46743,
-        "prompt_tokens_details": {
-          "cached_tokens": 0
-        },
-        "completion_tokens_details": {
-          "reasoning_tokens": 10685
-        },
-        "cost": 0,
-        "opencode": {
-          "billing_source": "go",
-          "list_cost": 0.0128151,
-          "allowance": 0.00768906,
-          "tokens": {
-            "input": 33846,
-            "output": 12897,
-            "reasoning": 10685,
-            "cache_read": 0,
-            "cache_write_5m": 0,
-            "cache_write_1h": 0
-          }
-        }
-      },
-      "startedAt": "2026-11-07T11:33:03.674Z",
-      "completedAt": "2026-11-07T11:37:15.782Z"
-    },
-    {
-      "questionIds": [
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "usage": {
-        "prompt_tokens": 33846,
-        "completion_tokens": 14430,
-        "total_tokens": 48276,
-        "prompt_tokens_details": {
-          "cached_tokens": 33792
-        },
-        "completion_tokens_details": {
-          "reasoning_tokens": 12532
-        },
-        "cost": 0,
-        "opencode": {
-          "billing_source": "go",
-          "list_cost": 0.00876748,
-          "allowance": 0.00526049,
-          "tokens": {
-            "input": 54,
-            "output": 14430,
-            "reasoning": 12532,
-            "cache_read": 33792,
-            "cache_write_5m": 0,
-            "cache_write_1h": 0
-          }
-        }
-      },
-      "startedAt": "2026-11-07T11:39:53.094Z",
-      "completedAt": "2026-11-07T11:42:34.916Z"
-    },
-    {
-      "questionIds": [
-        11,
-        12,
-        13,
-        14,
-        15
-      ],
-      "usage": {
-        "prompt_tokens": 33846,
-        "completion_tokens": 13320,
-        "total_tokens": 47166,
-        "prompt_tokens_details": {
-          "cached_tokens": 33792
-        },
-        "completion_tokens_details": {
-          "reasoning_tokens": 11073
-        },
-        "cost": 0,
-        "opencode": {
-          "billing_source": "go",
-          "list_cost": 0.00810148,
-          "allowance": 0.00486089,
-          "tokens": {
-            "input": 54,
-            "output": 13320,
-            "reasoning": 11073,
-            "cache_read": 33792,
-            "cache_write_5m": 0,
-            "cache_write_1h": 0
-          }
-        }
-      },
-      "startedAt": "2026-11-07T11:46:09.256Z",
-      "completedAt": "2026-11-07T11:48:36.616Z"
-    },
-    {
-      "questionIds": [
-        16,
-        17,
-        18,
-        19,
-        20
-      ],
-      "usage": {
-        "prompt_tokens": 33846,
-        "completion_tokens": 4599,
-        "total_tokens": 38445,
-        "prompt_tokens_details": {
-          "cached_tokens": 33792
-        },
-        "completion_tokens_details": {
-          "reasoning_tokens": 3349
-        },
-        "cost": 0,
-        "opencode": {
-          "billing_source": "go",
-          "list_cost": 0.00286888,
-          "allowance": 0.00172133,
-          "tokens": {
-            "input": 54,
-            "output": 4599,
-            "reasoning": 3349,
-            "cache_read": 33792,
-            "cache_write_5m": 0,
-            "cache_write_1h": 0
-          }
-        }
-      },
-      "startedAt": "2026-11-07T11:53:57.447Z",
-      "completedAt": "2026-11-07T11:55:04.399Z"
-    },
-    {
-      "questionIds": [
-        21,
-        22,
-        23,
-        24,
-        25
-      ],
-      "usage": {
-        "prompt_tokens": 33846,
-        "completion_tokens": 4961,
-        "total_tokens": 38807,
-        "prompt_tokens_details": {
-          "cached_tokens": 33792
-        },
-        "completion_tokens_details": {
-          "reasoning_tokens": 3428
-        },
-        "cost": 0,
-        "opencode": {
-          "billing_source": "go",
-          "list_cost": 0.00308608,
-          "allowance": 0.00185165,
-          "tokens": {
-            "input": 54,
-            "output": 4961,
-            "reasoning": 3428,
-            "cache_read": 33792,
-            "cache_write_5m": 0,
-            "cache_write_1h": 0
-          }
-        }
-      },
-      "startedAt": "2026-11-07T11:57:11.803Z",
-      "completedAt": "2026-11-07T11:58:19.238Z"
-    },
-    {
-      "questionIds": [
-        26,
-        27
-      ],
-      "usage": {
-        "prompt_tokens": 33840,
-        "completion_tokens": 26215,
-        "total_tokens": 60055,
-        "prompt_tokens_details": {
-          "cached_tokens": 33792
-        },
-        "completion_tokens_details": {
-          "reasoning_tokens": 23846
-        },
-        "cost": 0,
-        "opencode": {
-          "billing_source": "go",
-          "list_cost": 0.01583758,
-          "allowance": 0.00950255,
-          "tokens": {
-            "input": 48,
-            "output": 26215,
-            "reasoning": 23846,
-            "cache_read": 33792,
-            "cache_write_5m": 0,
-            "cache_write_1h": 0
-          }
-        }
-      },
-      "startedAt": "2026-11-07T12:00:27.437Z",
-      "completedAt": "2026-11-07T12:04:58.165Z"
-    }
-  ]
+    "summary": "五维初核完成 27 题；verified 88 项，needs_fix 8 项，unresolved 维度 0 项，not_applicable 39 项。需修正：第3题（code 缺 include）、第8/10/14/15题（解析错误）、第11题（options 串页污染）、第26/27题（题面缺数据范围）。原卷缺陷：第6/7题（unresolved）。 needs_fix 题号：3、8、10、11、14、15、26、27。 unresolved/原卷缺陷备注题号：6、7。"
+  }
 }
