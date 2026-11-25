@@ -1,0 +1,66 @@
+{
+  "paperId": "2024-06-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    17
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:12:00.000Z",
+  "completedAt": "2026-11-25T09:20:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "0b9eccd8d72bcf2fd31d8d22e251f53de207bbe52f2ab13ee51e1399355f3263",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071528722464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++4级.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "mirrorBytes": 1329406,
+    "shaVerified": true,
+    "sha256": "a130df3d14655e9c97bd62783bb8b3690df1018896b73856eb9c5741c6b3f1a5"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第8页为判断题答案表（第2格为 √）与第2题完整代码（含第7行 ra=&a;），与 2024-06-l4 第17题（15 道单选之后的判断题第2题）对应。"
+    },
+    "questions": [
+      {
+        "id": 17,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题第2题题干「以下代码不能够正确执行。」与其后代码共 9 行：1 #include<iostream>、2 using namespace std;、3 int main()、4 {、5 int a=20;、6 int& ra;、7 ra=&a;、8 cout<<ra<<endl;、9 }。候选 question 内嵌代码与之一一对应，第 7 行已为 ra=&a;（上一轮误写的 ra=a; 已修正），与候选 code 字段一致。独立 code 字段由站内叠加层给出，按该层既有写法省略首行 #include<iostream>（同层多数条目同样处理），仅少了头文件、不改变「引用未初始化」与「int* 赋给 int」两条语句语义；题面（question）本身完整，故 statement 判 verified，并在此记录该辅助字段的排版差异。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题以 ×/√ 作答，不设 A–D 选项；站内二元选项「正确/错误」按 正确=0、错误=1 映射，与原卷呈现方式等价，该维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第8页判断题答案表「× √ √ √ × √ √ √ √ √」第2格为 √（正确），候选 answer=0 一致。独立验证（本地 g++ 实编译）：第6行 int& ra; 报「declaration of reference variable 'ra' requires an initializer」（GCC 对应报 'ra' declared as reference but not initialized），引用未初始化即编译失败；把第6行改为 int& ra = a; 后，第7行 ra = &a; 仍报「incompatible pointer to integer conversion assigning to 'int' from 'int *'」。两处错误相互独立，代码确不能够正确执行，应判「正确」。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐条复核成立：(1) 第6行引用未初始化直接编译失败；(2) 第7行 &a 为 int*，既不能绑定到 int& 也不能赋给 ra 引用的 int 对象，即使补上初始化仍无法编译——两点均经本地 g++ 实编译复现；(3) 正确写法 int& ra = a; 的示例成立；(4) 引用必须定义即绑定、终身不能改绑、指针可为 nullptr 的对比正确；(5) ra = ... 表示给被引用对象赋值而非改绑的说明正确。未出现虚构运行结果，结论「正确」与官方 √ 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无官方参考程序，该维度不适用；题面内嵌代码已在 statement 维度按第8页页图逐行核对，并已本地编译验证关键报错。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅 1 道候选（Q17）。第 4 轮批准的题面修复（第7行恢复为 ra=&a;）与解析重写均已真实落入 paper.json：题面 9 行代码与第8页逐行一致，解析同时覆盖「引用未初始化」与「int* 赋给 int」两处独立错误，本地 g++ 实编译复现两处报错；answer=0（√）与答案表一致。独立 code 字段按站内叠加层约定省略首行 #include<iostream>，属辅助字段的既有排版惯例，不改变题面语义。五维全部 verified，changes 为空。"
+  }
+}
