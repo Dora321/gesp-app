@@ -1,0 +1,558 @@
+{
+  "paperId": "2025-03-l8",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27,
+    2,
+    4,
+    6,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    23
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T17:35:00.000Z",
+  "completedAt": "2026-11-25T19:50:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "8cb44103bd45d68bdfd40dc9c6c156477f66d00d3f42c3058196bb3cd3942b20",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1669257026863136.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++8级.pdf",
+    "mirrorSha": "8f5d01465ac2988b05d4f77afb81679809539f91",
+    "mirrorBytes": 1473687,
+    "shaVerified": true,
+    "sha256": "5b0d1e6c898fa8484e210eae712e2f01ae2368a59a63d155a53442af4dee45ca"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2025-03-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为「CCF 编程能力等级认证 GESP / C++ 八级 / 2025 年 03 月」，与 paperId 2025-03-l8 一致；共 12 页，含单选 15 题、判断 10 题、编程 2 题。第 1 页单选题答案表 1—15 依次为 B C B A D D D B A D C A C B C，第 7 页判断题答案表 1—10 依次为 × √ √ √ × × × √ √ ×，两张答案表放大核验均清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：description 恢复的题意与数据范围对照第 8—9 页逐项一致（20% q=1；20% n,m≤500；全局 n,m,q≤2×10⁵、l≤10⁶、图连通）；referenceCode 为与官方程序同构的等价实现，编译、官方样例、3 组边界及 300 组 Floyd 对拍全部通过。原卷内存限制 512.0 MB 与题库 128 MB 的差异按既有约定记入 unresolved，不在本轮修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8—9 页 3.1.1—3.1.6：C 城 n 结点 m 边无向图、边长 lᵢ、学校在 s、q 位同学家 hᵢ、每秒 1 米、求各人到校最短时间；候选 description 为压缩表述但保留全部规则；输入/输出格式与站内字段一致；样例（5 5 3 3 / 边 / 5,1,4 → 4,3,1）与站内 samples 一致。数据范围对照第 9 页 3.1.6：20% q=1；20% 1≤n≤500、1≤m≤500；所有测试点 1≤n≤2×10⁵、1≤m≤2×10⁵、1≤q≤2×10⁵、1≤uᵢ,vᵢ,s,hᵢ≤n、1≤lᵢ≤10⁶、图连通——候选 description 逐项一致。第 8 页题头时间限制 1.0 s（一致）、内存限制 512.0 MB（差异记入 unresolved）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与官方思路一致（Dijkstra 最短路后逐个查询）；样例 4/3/1 复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 clang++ -std=c++17 -O2 编译通过。候选程序与原卷官方程序（第 9—10 页共 56 行，链式邻接表 + priority_queue Dijkstra）算法同构（非逐字拷贝，站内为 vector 邻接表等价重写）：同为非负权最短路、逐查询输出。官方样例输出 4/3/1 一致；3 组边界用例（n=1、重边取最短等）全部正确；另与 Floyd-Warshall 全源最短路对拍 300 组随机连通图（n≤9、含重边、逐结点查询）零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原卷样例",
+            "input": "5 5 3 3\n1 2 3\n2 3 2\n3 4 1\n4 5 3\n1 4 2\n5\n1\n4\n",
+            "output": "4\n3\n1",
+            "reason": "结点最短路：5→4→3 长 4；1→4→3 长 3；4→3 长 1。"
+          },
+          {
+            "name": "单结点",
+            "input": "1 0 1 2\n1\n1\n",
+            "output": "0\n0",
+            "reason": "n=1 下界，家即学校，时间为 0。"
+          },
+          {
+            "name": "重边取最短",
+            "input": "2 3 1 2\n1 2 9\n1 2 3\n1 2 7\n2\n2\n1\n",
+            "output": "3\n0",
+            "reason": "三条重边取最小 3，验证邻接表存重边不出错。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 8 页内存限制 512.0 MB，题库 memoryLimit 为 128 MB；按既有约定（题库统一 128 MB）不随本轮修订修改，仅留证。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "verdict": "revise",
+        "reviewNote": "采纳初核对输入描述的修复：候选 inputDescription 把好点对数量写成 k（「第一行两个正整数 n、k」「再接 k 行好点对」），k 在题面中未定义；原卷第 10 页 3.2.9 及题面均用 a（官方参考程序内部恰以 int n, k 命名，站内误随程序变量名）。已按原卷统一为 n、a 并随 revise 提交。另两项限额差异按既有约定记入 unresolved：原卷时间限制 4.0 s（题库统一 1.0 s，参照 2023-12-l8 Q27 原卷 2.0 s 同样被题库统一为 1.0 s 的先例，判定为平台级统一值而非转录字段）；原卷内存限制 512.0 MB（题库统一 128 MB）。referenceCode 与官方程序同构，编译、官方样例、5 组边界及 300 组暴力对拍全部通过。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 10—11 页题面、样例与数据范围均与候选主体一致：a 个好点对、1 个坏点对、删除条件（好点对仍连通、坏点对不连通、点对任一端点被删视为不连通）、数据范围（20% n≤10、a=0；20% n≤100、a≤100；60% n≤10⁶、a≤10⁵；全局 1≤n≤10⁶、0≤a≤10⁵、uᵢ≠vᵢ、bᵤ≠bᵥ）；样例（输出 2）与站内 samples 一致。但候选 inputDescription 把好点对数量写成未定义的 k（「第一行两个正整数 n、k」「再接 k 行好点对」），与题面及原卷第 10 页 3.2.9 输入格式「第一行包含两个正整数 n,a」「之后 a 行」不符（原卷官方程序内部恰以 k 命名该数量，站内误随程序变量名），已在 changes 提交统一为 n、a。第 10 页题头时间限制 4.0 s、内存限制 512.0 MB（两项差异记入 unresolved）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与官方思路等价：好点对路径与坏点对路径在树上做路径标记（差分），结点可删当且仅当位于坏路径上且不在任何好路径上；样例输出 2 复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 clang++ -std=c++17 -O2 编译通过。候选程序与原卷官方程序（第 11—12 页共 73 行，倍增 LCA + 路径差分）算法同构（非逐字拷贝，站内为迭代 DFS + LCA 差分等价重写）：同为「坏路径经过且不经过任何好路径的结点数」，端点被删视为不连通的语义与官方一致。官方样例输出 2 一致；5 组边界用例全部正确；另与「逐点删除后 BFS 重判连通」暴力对拍 300 组随机小树（n≤9、随机好点对与坏点对）零差异。"
+          }
+        },
+        "changes": {
+          "inputDescription": "第一行包含两个正整数 n、a。之后 n−1 行，每行包含两个正整数 x_i、y_i，表示一条连接节点 x_i 和 y_i 的边。之后 a 行，每行包含两个正整数 u_i、v_i，表示一个好点对。最后一行包含两个正整数 b_u、b_v，表示坏点对。"
+        },
+        "tests": [
+          {
+            "name": "原卷样例",
+            "input": "6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6\n",
+            "output": "2",
+            "reason": "坏路径 2-3-5-4 上的结点中，仅 2、4 不在任何好路径上（3、5 在好路径 5-3 上），可删除 2 个。"
+          },
+          {
+            "name": "a=0 端点可删",
+            "input": "2 0\n1 2\n1 2\n",
+            "output": "2",
+            "reason": "无好点对；删除坏点对任一端点均视为不连通，两端点均可删。"
+          },
+          {
+            "name": "好点对端点不可删",
+            "input": "2 1\n1 2\n1 2\n1 2\n",
+            "output": "0",
+            "reason": "删除好点对端点视为好点对不连通，两结点均不可删。"
+          },
+          {
+            "name": "好路径经过点不可删",
+            "input": "3 1\n1 2\n2 3\n1 3\n1 3\n2 3\n",
+            "output": "0",
+            "reason": "结点 2 在好路径 1-3 上，端点 1、3 又是好点对端点，均不可删。"
+          },
+          {
+            "name": "坏路径中点可删（含端点语义）",
+            "input": "3 0\n1 2\n2 3\n1 3\n",
+            "output": "3",
+            "reason": "a=0 时坏路径上全部结点（含两端点，端点被删视为不连通）均可删，与官方程序语义一致输出 3。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 10 页时间限制 4.0 s，题库 timeLimit 为 1.0 s；全站 102 道编程题 timeLimit 均统一为 1.0 s（含 2023-12-l8 Q27 原卷 2.0 s 亦作 1.0 s），判定为平台级统一约定而非转录字段，不随本轮修订修改，仅留证。",
+          "原卷第 10 页内存限制 512.0 MB，题库 memoryLimit 为 128 MB；按既有约定（题库统一 128 MB）不随本轮修订修改，仅留证。"
+        ]
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的题干与第 1 页一致（卷面插图以文字描述等价转写：3 排 6 列，红座为第 1 排 3、4 列，第 2 排 4 列，第 3 排 4、5、6 列，与页图逐格核对一致），答案 C（0 起始索引 2）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题：两组、每组两人同排相邻、两组间至少一对座位前后相邻，求购票方案数；插图文字转写与页图红色座位逐格一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A 495、B 96、C 7、D 4，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 2 格为 C（0 起始索引 2），站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立枚举红座约束下可选相邻对并计数，结果与 C 一致；站内解析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的四个选项与第 2 页逐字一致（C 含 N、N−1，D 含 N+1、N），答案 A（0 起始索引 0）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 4 题「下列关于树和图的说法，错误的是（ ）」，与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A 树是有向无环图且 DAG 都是树、B 树视作有向图（父指向子）为弱连通图、C N 个顶点连通无向图最小生成树含 N−1 条边、D N+1 个顶点 N 条边的有向图一定不是强连通的，与站内恢复后的 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 4 格为 A（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "A 的后半句「有向无环图都是一棵树」错误（DAG 不一定是树），B/C/D 均正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的题干与第 2 页一致（卷面圆图以文字描述等价转写），答案 D（0 起始索引 3）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 6 题：double 型 r 与 theta 表示圆半径与圆心角，求弦长 s 的表达式；插图文字转写（半径 r、圆心角 θ、所对弦 s）与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A r*cos(theta)、B r*cos(theta/2)*2、C r*sin(theta)、D r*sin(theta/2)*2，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 6 格为 D（0 起始索引 3），站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "弦长 s=2r·sin(θ/2)，D 正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的题干与选项与第 2 页一致（A ⌊log₂ N⌋、B ⌈log₂ N⌉、C ⌊log₂ N⌋+1、D 无法确定，取整符号经放大页图逐个核验），答案 D（0 起始索引 3）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 7 题：N 个节点的平衡二叉树的高为（ ）。与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A ⌊log₂ N⌋、B ⌈log₂ N⌉、C ⌊log₂ N⌋+1、D 无法确定，与站内恢复后的 options 一致（⌊⌋/⌈⌉ 已放大核验，站内顺序无误）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 7 格为 D（0 起始索引 3），站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "平衡二叉树的高随形态在 ⌊log₂ N⌋+1 与 ⌈log₂ N⌉ 之间变化（且「高」按边数或点数计亦有歧义），无法由 N 唯一确定，D 正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "恢复的代码、选项与答案均与原卷一致，但一处文字与原卷不符：原卷第 2 页题干为「小杨决定写个程序找找小于N的正整数……」（「找找」叠字，已放大核验），候选 question 误作「找出」。已按原卷改为「找找」并随 revise 提交；选项、答案与解析不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "除「找出/找找」一字外，题干与第 2—3 页 count_miracle 代码 18 行逐行一致（空缺在第 13 行 if 条件处，原卷无分号），见 changes。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A nl+nr==n、B nl+nr==n2、C (nl+nr)*(nl+nr)==n、D (nl+nr)^2==n2，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 9 格为 A（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "神奇数条件：n² 拆成两段后 nl+nr==n（如 20+25=45=n），A 正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "采纳初核对设问句的修复并补一处漏改：原卷第 3 页第 10 题与第 9 题共用 count_miracle 程序，设问为「该函数的时间复杂度为（ ）。」，候选误作第 9 题的「下面程序横线处应填入的是（ ）。」；初核的重写已更正设问句但沿袭了「找出」——原卷实为「找找」（放大核验）。已按原卷同时修正设问句与「找找」，随 revise 提交；代码、选项、答案与解析不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "原卷第 3 页第 10 题设问为「该函数的时间复杂度为（ ）。」且题干用「找找」；候选误作填空设问句与「找出」，已在 changes 提交按原卷修正的完整题干（代码部分与原卷逐行一致）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A O(N log N)、B O(N^(1/2))、C O(N^(1/2) log N)、D O(N^(1/2)(log N)²)，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 10 格为 D（0 起始索引 3），站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "外层枚举 n 至 √N，内层对 n² 的十进制串做拆分与转换，量级 O(N^(1/2)(log N)²)，D 正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。该函数的时间复杂度为（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的欧氏筛代码（两处空缺）与第 4 页逐行一致，恢复的四个组合选项与页图一致，重写的解析正确，答案 C（0 起始索引 2）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页欧氏筛代码 13 行逐行核对（primes 数组、第一空缺在 i<num && 处、第二空缺在 break 前的 if 条件处），与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A「n*primes[i]<MAXN；n%primes[i]==0」、B「<MAXN；primes[i]>n」、C「<=MAXN；n%primes[i]==0」、D「<=MAXN；primes[i]>n」，与站内恢复后的 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 11 格为 C（0 起始索引 2），站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "欧氏筛线性性质要求 n*primes[i]≤MAXN 且 n%primes[i]==0 时 break，C 正确；重写的解析逐项分析无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的 Floyd 代码与第 4—5 页逐行一致（第 26 行空缺为松弛更新语句，原卷即带分号，与 2024-09 卷「if 条件空缺」位置不同），恢复的四个选项与第 5 页一致，答案 A（0 起始索引 0）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4—5 页 Floyd 代码 34 行逐行核对（本题空缺在第 26 行 if(map[i][j]>map[i][k]+map[k][j]) 之后的更新语句处），与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页 A map[i][j]=map[i][k]+map[k][j]、B map[i][k]=map[i][j]−map[k][j]、C map[i][j]=map[i][k]−map[k][j]、D map[k][j]=map[i][j]−map[i][k]，与站内恢复后的 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 12 格为 A（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "松弛更新 map[i][j]=map[i][k]+map[k][j]，A 正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的题干「下面 Floyd 算法程序的时间复杂度为（ ）。」与第 5 页一致（代码与第 12 题同源、完整重复收录），恢复的选项与第 6 页一致，答案 C（0 起始索引 2）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5—6 页第 13 题题干与重复收录的 Floyd 代码 34 行，与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页 A O(N)、B O(N²)、C O(N³)、D O(N² log N)，与站内恢复后的 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 13 格为 C（0 起始索引 2），站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "Floyd 三重循环 O(N³)，C 正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的一维数组杨辉三角代码与第 6 页逐行一致（第 11 行空缺为更新语句，原卷即带分号），恢复的四个选项与第 6—7 页一致，答案 B（0 起始索引 1）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页第 14 题代码 17 行逐行核对（int a[N] 一维数组、a[i]=1、倒序 for(j=i−1;j>0;j−−) 内空缺），与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6—7 页 A a[j]+=a[j+1]、B a[j]+=a[j−1]、C a[j−1]+=a[j]、D a[j+1]+=a[j]，与站内恢复后的 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 14 格为 B（0 起始索引 1），站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "倒序更新 a[j]+=a[j−1] 即就地递推杨辉三角（模拟验证 i=2,3 行分别得 1 2 1、1 3 3 1），B 正确；站内解析与此一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 23,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：题干与第 8 页判断题第 8 题一致，答案更正为 √（0 起始索引 0）与判断题答案表一致，重写的解析（配方求顶点、-a/2.0 浮点除法）正确。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 8 题：定义 int 类型变量 a 和 b，求 y=x²+ax+b 取最小值时 x 的值，可通过表达式 -a / 2.0 求得。与站内 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅含「正确/错误」两项，不适用选项维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 7 页判断题答案表第 8 格为 √（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "重写的解析正确：顶点 x=−a/2；-a/2.0 中 2.0 为 double，整数 a 提升为 double 后相除，得 −a/2，命题正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "13 题独立复核完成：先逐页对照原卷页图与文本层，再对照 DeepSeek 初核结论。10 题 approve 且 changes 为空（Q2/4/6/7/11/12/13/14/23/26）：Q2/Q6 的卷面插图以文字描述等价转写并逐格核对，Q7 的 ⌊log₂ N⌋/⌈log₂ N⌉ 选项经放大页图逐个核验与站内顺序一致；Q10 确认初核发现成立——设问句应为「该函数的时间复杂度为（ ）。」而非第 9 题的填空问法；Q27 确认初核发现成立——候选 inputDescription 的 k 未定义，原卷输入格式用 n、a（官方程序内部以 k 命名致误），已采纳统一为 n、a 的修正。3 题 revise：Q10（设问句修正 + 初核漏改的「找出」应按原卷作「找找」）、Q9（同此「找找」一字，初核与候选均漏检）、Q27（inputDescription 改用 n、a）。编程题 Q26（上学）/Q27（割裂）referenceCode 为与官方程序同构的等价实现，clang++ -std=c++17 -O2 实际编译通过，官方样例（4/3/1；2）与共 8 组自拟边界用例全部正确，Q26 与 Floyd-Warshall 对拍 300 组随机连通图、Q27 与逐点删除重判连通暴力对拍 300 组随机小树均零差异。限额按既有约定记入 unresolved：两题原卷内存限制 512.0 MB（题库统一 128 MB）；Q27 原卷时间限制 4.0 s（题库统一 1.0 s，参照 2023-12-l8 Q27 原卷 2.0 s 同样统一为 1.0 s 的先例，判定为平台级统一值而非转录字段）。"
+  }
+}

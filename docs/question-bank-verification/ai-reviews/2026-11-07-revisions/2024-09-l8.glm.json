@@ -1,0 +1,629 @@
+{
+  "paperId": "2024-09-l8",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27,
+    2,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15,
+    24
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T13:10:00.000Z",
+  "completedAt": "2026-11-25T15:20:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "d068199cd4ea4c8394fd8f87e3c87946f6b5d8ce16d124d860f4dc24560468e4",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1633836360269856.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2024年9月-C++8级.pdf",
+    "mirrorSha": "dfea37a6f9f6f8662bade0682410d1175a10e5d9",
+    "mirrorBytes": 1283020,
+    "shaVerified": true,
+    "sha256": "631e3b0a1b855d6c35aff6fe0c97d79fc7de149099e57937ee83bbea289fd34f"
+  },
+  "pageCount": 13,
+  "report": {
+    "paperId": "2024-09-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为「CCF 编程能力等级认证 GESP / C++ 八级 / 2024 年 09 月」，与 paperId 2024-09-l8 一致；共 13 页，含单选 15 题、判断 10 题、编程 2 题。第 1 页单选题答案表 1—15 依次为 D B C D A A C A A C D B B A B，第 8 页判断题答案表 1—10 依次为 × × × √ × √ × √ √ √，两张答案表均放大核验清晰可读。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：description 数据范围恢复与原卷子任务表一致（子任务 3 的边界被候选写入的全局约束完全覆盖，不构成信息缺失）；referenceCode 为与官方程序同构的等价实现，编译、样例、7 组边界及 300 组暴力对拍全部通过。原卷内存限制 512.0 MB 与题库 128 MB 的差异按既有约定记入 unresolved，不在本轮修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9 页 3.1.1—3.1.4：n 对不同手套、每对左右各一只、取 m 只恰含 k 对、两种方案不同当且仅当取出的手套存在不同（同一对左右手也视为不同）；候选 description 为压缩表述但保留全部计数规则，并补入「答案对 1e9+7 取模」（原卷 3.1.3）。数据范围对照第 9 页子任务表：子任务 1（30%：t≤5、n≤1000、m≤3、k=1）、子任务 2（30%：t≤5、n≤5、m≤10、k≤5）逐字一致；子任务 3（40%：t≤10⁵、n≤1000、m≤2000、k≤2000）未单列，但其边界被候选已写入的全局约束 m≤2n≤2000、k≤n≤1000 完全覆盖，不构成信息缺失。第 9 页题头时间限制 1.0 s、内存限制 512.0 MB（内存差异记入 unresolved）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的计数原理与原卷参考程序一致：先选 k 双完整配对 C(n,k)，再从剩余 n−k 双中选 m−2k 只单只 C(n−k,m−2k)，每只再选左右手 2^(m−2k)；不合法判定（m<2k 或 m−2k>n−k 输出 0）与参考程序第 25 行一致；官方样例 120、0 复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 clang++ -std=c++17 -O2 编译通过。候选程序与原卷官方程序（第 9—10 页共 33 行）算法同构（站内为等价重写风格，非逐字拷贝）：同预处理组合数与 2 的幂，同 m<2k‖m−2k>n−k 输出 0，同公式 C(n,k)·C(n−k,m−2k)·2^(m−2k)。官方样例输出 120、0 一致；6 组边界用例全部正确；另与「枚举 2n 只手套取 m 只全部组合数恰 k 整双」的暴力计数对拍 300 组随机小数据零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原卷样例",
+            "input": "2\n5 6 2\n5 1 5\n",
+            "output": "120\n0",
+            "reason": "5 双取 6 只恰含 2 整双：C(5,2)·C(3,2)·2²=10·3·4=120；5 双取 1 只要 1 整双不可能，输出 0。"
+          },
+          {
+            "name": "m<2k 不可能",
+            "input": "1\n1 1 1\n",
+            "output": "0",
+            "reason": "1 只手套凑不成 1 整双，触发参考程序 m<2*k 判定。"
+          },
+          {
+            "name": "恰好取一整双",
+            "input": "1\n1 2 1\n",
+            "output": "1",
+            "reason": "唯一的一双必须左右手都取，方案数 1。"
+          },
+          {
+            "name": "全取且全成双",
+            "input": "1\n2 4 2\n",
+            "output": "1",
+            "reason": "2 双全取即 2 整双，唯一方案。"
+          },
+          {
+            "name": "恰 1 双其余单只",
+            "input": "1\n2 3 1\n",
+            "output": "4",
+            "reason": "C(2,1)·C(1,1)·2¹=2·1·2=4。"
+          },
+          {
+            "name": "上限规模",
+            "input": "1\n1000 2000 1000\n",
+            "output": "1",
+            "reason": "n=1000 全部 2n 只取尽、k=n，唯一方案，同时覆盖子任务 3 规模上限。"
+          },
+          {
+            "name": "取 1 只无成双",
+            "input": "1\n1000 1 1\n",
+            "output": "0",
+            "reason": "m<2k，不合法。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 9 页内存限制 512.0 MB，题库 memoryLimit 为 128 MB；按既有约定（题库统一 128 MB）不随本轮修订修改，仅留证。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：description/outputDescription 恢复（含长度口径）与原卷第 10—12 页一致；referenceCode 为与官方程序同构的等价实现，编译、两组官方样例、7 组边界及 300 组随机小树暴力对拍全部通过。原卷内存限制 512.0 MB 与题库 128 MB 的差异按既有约定记入 unresolved，不在本轮修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 10—11 页：题面（节点 1 到 n 编号、白/黑、相邻异色的简单路径为美丽路径）、长度口径（第 11 页「长度是路径包含节点的数量」）均与候选 description 一致；候选补入长度口径并舍弃依赖卷面插图的举例句（图片无法入站，不影响题意）。输入/输出格式、样例 1（输出 4）、样例 2（输出 1）与站内 samples 一致；第 12 页数据范围三档子任务（30% n≤1000 链、30% n≤1000、40% n≤10⁵）及全局 1≤n≤10⁵、0≤cᵢ≤1、构成一棵树，候选 description 完整对应。第 10 页题头时间限制 1.0 s、内存限制 512.0 MB（内存差异记入 unresolved）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与原卷思路等价：删去同色边后得到森林，美丽路径即森林中某棵树的直径（按节点数计）；官方样例 4、1 复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 clang++ -std=c++17 -O2 编译通过。候选程序与原卷官方程序（第 12—13 页共 44 行）算法同构（非逐字拷贝）：官方在 DFS 中跳过同色子结点并按 dep 合并最长两条链，候选在建图时过滤同色边后对森林每棵树两遍 DFS 求直径，语义等价。官方两组样例输出 4、1 一致；7 组边界用例全部正确；另与「全枚举简单路径逐条判美丽」的暴力对拍 300 组随机小树（n≤8、随机颜色）零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原卷样例 1",
+            "input": "5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3\n",
+            "output": "4",
+            "reason": "路径 2-1-3-4 颜色 0/1/0/1 相邻异色，长度 4。"
+          },
+          {
+            "name": "原卷样例 2",
+            "input": "5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5\n",
+            "output": "1",
+            "reason": "全同色，任何长度≥2 的路径都含同色相邻点，最长美丽路径为单结点。"
+          },
+          {
+            "name": "单结点",
+            "input": "1\n0\n",
+            "output": "1",
+            "reason": "n=1 下界。"
+          },
+          {
+            "name": "两结点同色",
+            "input": "2\n0 0\n1 2\n",
+            "output": "1",
+            "reason": "唯一一条边同色不可走，答案为单结点。"
+          },
+          {
+            "name": "链 0-0-1",
+            "input": "3\n0 0 1\n1 2\n2 3\n",
+            "output": "2",
+            "reason": "1-2 同色不可同路径，最长为 2-3，长度 2。"
+          },
+          {
+            "name": "星形中心黑三叶白",
+            "input": "4\n1 0 0 0\n1 2\n1 3\n1 4\n",
+            "output": "3",
+            "reason": "任两叶经中心构成 0-1-0 美丽路径，长度 3。"
+          },
+          {
+            "name": "两结点异色",
+            "input": "2\n0 1\n1 2\n",
+            "output": "2",
+            "reason": "整条边构成美丽路径。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 10 页内存限制 512.0 MB，题库 memoryLimit 为 128 MB；按既有约定（题库统一 128 MB）不随本轮修订修改，仅留证。"
+        ]
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：重写后的解析与第 1 页实际选项逐项对应，答案 B（0 起始索引 1）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题：n 个顶点的无向图采用邻接矩阵表示，矩阵大小为（ ）。与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A n×(n/2)、B n×n、C (n−1)×(n−1)、D (n+1)×(n+1)，与站内 options 顺序和内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 2 格为 B（0 起始索引 1），站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "重写后的解析按实际选项逐项分析（n² 正确，n/2、(n−1)²、(n+1)² 错误），与页图一致，消除了原解析选项错配问题。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：题干补回的「n 个结点」、选项 B 恢复为 O(n log n) 均与第 2 页一致，解析随选项重写，答案 A（0 起始索引 0）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 5 题：「n 个结点的二叉树，执行释放全部结点操作的时间复杂度是（ ）」，变量 n 在站内已恢复。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A O(n)、B O(n log n)、C O(log n)、D O(2ⁿ)，与站内恢复后的 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 5 格为 A（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "重写后的解析逐项分析与页图选项一致；释放 n 个结点需遍历每个结点一次，O(n) 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复后的选项 A n/2^(n-1)、B 1/n^2、C 1/n、D 1/2^n 与第 2 页一致，解析按恢复后的选项重写，答案 A（0 起始索引 0）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 6 题：单位圆上随机分布 n 个点，能被一个单位半圆周全部覆盖的概率，与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A n/2^(n−1)、B 1/n²、C 1/n、D 1/2ⁿ，与站内恢复后的 options 一致（此前的 B/D 错序已纠正）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 6 格为 A（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "重写后的解析给出标准推导：固定端点后其余 n−1 点落入半圆概率 (1/2)^(n−1)，乘 n 个端点选择得 n/2^(n−1)，逐项分析与页图选项一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 2,
+        "verdict": "revise",
+        "reviewNote": "恢复的代码块、四个代码选项与解析均与原卷一致，但发现一处与原卷不符的细节：原卷第 2 页代码第 16 行空缺处为「________  // 在此处填入选项」，其后没有分号（分号由各选项自带的 swap(...); 等提供），候选 question 误作「________;」——填入任一选项将出现双分号。已按原卷去掉空缺后的分号并随 revise 提交；答案与解析不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "除空缺处分号外，题干与第 2—3 页 pailie 代码逐行一致（含 swap、pailie 函数与第 16 行空缺），分号问题见 reviewNote 与 changes。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2—3 页四个代码选项逐字核对：A swap(a[begin+1],…)、B pailie(begin,…) 不缩区间、C 交换 a[begin] 与 a[i] 后递归 begin+1 并回溯、D a[begin]+1 无回溯，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 7 格为 C（0 起始索引 2），站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按 C 项讲解回溯交换，逻辑正确，与页图选项一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 pailie 函数是一个实现排列的程序，横线处可以填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\nint sum = 0;\nvoid swap(int & a, int & b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\nvoid pailie(int begin, int end, int a[]) {\n    if (begin == end) {\n        for (int i = 0; i < end; i++)\n            cout << a[i];\n        cout << endl;\n    }\n    for (int i = begin; i < end; i++) {\n        ________ // 在此处填入选项\n    }\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：补入的 main 代码与第 3 页一致，选项与答案 A（0 起始索引 0）与页图及答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 8 题附 main 代码（int a[5]={1,2,3,4,5}; pailie(0,5,a);），与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A 120、B 60、C 240、D 180，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 8 格为 A（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "5 个不同元素全排列 5!=120，复算与解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "恢复的代码、四个选项与解析均与原卷一致，但与 Q7 同样的问题：原卷第 3 页代码第 13 行空缺处为「________  // 在此处填入选项」，其后没有分号（分号由选项自带的 a[i][j]=…; 提供），候选 question 误作「________;」。已按原卷去掉空缺后的分号并随 revise 提交；答案与解析不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "除空缺处分号外，题干与第 3 页杨辉三角代码逐行一致（含 #define N 35、边界置 1、输出部分），分号问题见 reviewNote 与 changes。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3—4 页 A a[i][j]=a[i−1][j−1]+a[i−1][j]、B a[i][j]=a[i][j−1]+a[i−1][j]、C a[i][j]=a[i−1][j]+a[i−1][j]、D a[i][j]=a[i−1][j−1]+a[i][j]，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 9 格为 A（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按杨辉三角内部项 a[i−1][j−1]+a[i−1][j] 讲解，逻辑正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 35\nint a[N][N];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        for (int j = 1; j <= i; j++) {\n            if (j == 1 || j == i)\n                a[i][j] = 1;\n            else\n                ________ // 在此处填入选项\n        }\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++)\n            cout << a[i][j];\n        cout << endl;\n    }\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的 Kruskal 代码（含第 25 行空行、第 29 行空缺）与第 4 页一致，选项、答案 C（0 起始索引 2）与解析均与页图及答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页 Kruskal 代码 34 行逐行核对（struct Edge、findParent 路径压缩、sort、空缺在合并判断处），与站内 question 一致，原卷第 25 行空行已保留。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A uParent==vParent、B uParent>=vParent、C uParent!=vParent、D uParent<=vParent，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 10 格为 C（0 起始索引 2），站内 answer=2 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按并查集「两端点不同集合才合并」讲解，逻辑正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "恢复的 Prim 代码整体与原卷第 4—5 页一致（PDF 第 23 行跨行显示的 cout 已正确合并为一行），但字符串字面量与原卷不符：原卷为 \"Edge: \"、\" - \"、\" Weight: \"（连字符两侧各一空格），候选误作 \"-\"。已按原卷恢复为 \" - \" 并随 revise 提交；输出文本随之恢复原卷样式，答案与解析不受影响。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "除 \"-\" 缺空格外，题干与第 4—5 页 Prim 代码 42 行逐行一致（key/parent、min_element 选点、空缺在松弛判断处、main 读边对称赋值），见 changes。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页 A graph[u][v]>=0 && key[v]>graph[u][v]、B <=0 版本、C ==0 版本、D !=0 && key[v]>graph[u][v]，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 11 格为 D（0 起始索引 3），站内 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按「有边且新边更小才松弛」讲解，D 正确，逻辑无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 Prim 算法程序中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint prim(vector<vector<int>> & graph, int n) {\n    vector<int> key(n, INT_MAX);\n    vector<int> parent(n, -1);\n    key[0] = 0;\n    for (int i = 0; i < n; i++) {\n        int u = min_element(key.begin(), key.end()) - key.begin();\n        if (key[u] == INT_MAX)\n            break;\n        for (int v = 0; v < n; v++) {\n            if (__________) { // 在此处填入选项\n                key[v] = graph[u][v];\n                parent[v] = u;\n            }\n        }\n    }\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        if (parent[i] != -1) {\n            cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl;\n            sum += key[i];\n        }\n    }\n    return sum;\n}\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> graph(n, vector<int>(n, 0));\n    for (int i = 0; i < m; i++) {\n        int u, v, w;\n        cin >> u >> v >> w;\n        graph[u][v] = w;\n        graph[v][u] = w;\n    }\n    int result = prim(graph, n);\n    cout << \"Total weight of the minimum spanning tree: \" << result << endl;\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的 Dijkstra 代码与第 5—6 页一致，选项、答案 B（0 起始索引 1）与解析均与页图及答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5—6 页 Dijkstra 代码 38 行逐行核对（inf=0x7fffff、dis/cheak/graph、空缺在选最小 dis[j] 处），与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页 A dis[j]>minn && cheak[j]==0、B dis[j]<minn && cheak[j]==0、C >= 版本、D cheak[j]!=0 版本，与站内 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 12 格为 B（0 起始索引 1），站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析按「未确定点中选 dis[j] 最小」讲解，B 正确，逻辑无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "verdict": "revise",
+        "reviewNote": "否决候选「站内现数据与原卷一致，无需修改」的判断：候选 question 字段确为脏数据——开头一句 Floyd 引导语后混入了第 12 题 Dijkstra 的 main 代码、PDF 行号序列（10—38、1—16）以及一段截断的 Floyd 代码，与原卷第 6—7 页不符；初核提交的重写文本经本复核对照第 6—7 页 34 行代码逐行独立核验成立（含第 3 行空行、空缺位于三重循环内层 if(____) 处、下一行为 map[i][j]=map[i][k]+map[k][j];），予以采纳，仅按站内惯例去除代码块后的尾随换行。options、answer、explanation 经独立核对均与原卷一致，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "原卷第 6—7 页第 13 题为 Floyd 填空题（34 行完整代码），候选 question 却混入第 12 题 Dijkstra main 代码与 PDF 行号、且 Floyd 代码截断，已在 changes 提交按原卷逐行重写的完整题干。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 7 页 A map[i][j]<map[i][k]+map[k][j]、B map[i][j]>map[i][k]+map[k][j]、C > 但用减法、D < 且用减法，与站内 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 13 格为 B（0 起始索引 1），站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 Floyd 松弛（map[i][j]>map[i][k]+map[k][j] 时更新）讲解并逐项分析四个选项，结论 B 正确，与原卷一致，无需修改。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "question": "下面 Floyd 算法中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n\n#define N 21\n#define INF 99999999\nint map[N][N];\nint main() {\n    int n, m, t1, t2, t3;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (i == j)\n                map[i][j] = 0;\n            else\n                map[i][j] = INF;\n        }\n    }\n    for (int i = 1; i <= m; i++) {\n        cin >> t1 >> t2 >> t3;\n        map[t1][t2] = t3;\n    }\n    for (int k = 1; k <= n; k++)\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                if (__________) // 在此处填入选项\n                    map[i][j] = map[i][k] + map[k][j];\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            cout.width(4);\n            cout << map[i][j];\n        }\n        cout << endl;\n    }\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：恢复的 fibonacci 代码与第 8 页一致；重点核验了 φ 异常——原卷 B 项确实印作「O(φⁿ)，φ=(√5−1)/2」（约 0.618，实为 φ 的倒数，属原卷笔误），候选逐字保留选项原文并仅在解析中说明笔误、结论仍取 B，处理正确。答案 B（0 起始索引 1）与答案表一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页第 15 题附 fibonacci 递归代码（n<=1 返回 n，否则返回两段递归之和），与站内 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 8 页 A O(1)、B O(φⁿ) φ=(√5−1)/2、C O(n)、D O(n log n)，与站内 options 一致；B 项的 φ 写法系原卷原文（笔误），保留正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 15 格为 B（0 起始索引 1），站内 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "解析给出 T(n)=T(n−1)+T(n−2) 的增长阶 φⁿ，指明黄金比应为 (1+√5)/2≈1.618 并说明原卷把 φ 写成其倒数属笔误、B 仍为唯一指数级选项；与页图事实一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 0,
+        "verdict": "approve",
+        "reviewNote": "独立复核通过，changes 为空：题干与第 8 页判断题第 9 题一致，重写后的解析删除了原解析夹带的「程序代码未完整收录」疑注（判断题本无代码），结论「正确」与判断题答案表第 9 格 √ 一致。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页判断题第 9 题：等差数列通项 aₙ=a₁+(n−1)·d，前 n 项和 Sₙ=n·(a₁+aₙ)/2，用该式计算 Sₙ 的时间复杂度是 O(1)。与站内 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题仅含「正确/错误」两项，不适用选项维度核验。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 8 页判断题答案表第 9 格为 √（0 起始索引 0），站内 answer=0 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "重写后的解析给出闭式 Sₙ=n(a₁+aₙ)/2 常数次运算即得，O(1)，题干正确；不再含无关疑注。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "14 题独立复核完成：先逐页对照原卷页图与文本层，再对照 DeepSeek 初核结论。10 题 approve 且 changes 为空（Q2/5/6/8/10/12/15/24 及编程题 Q26/27）：恢复的题干、选项、答案、解析均与原卷逐字一致；Q15 原卷 B 项确印作 φ=(√5−1)/2（笔误），候选保留原文并在解析说明，处理正确；Q26/Q27 数据范围按子任务表核验（Q26 子任务 3 的边界被全局约束覆盖，不构成缺失），两题 referenceCode 为与官方程序同构的等价实现，clang++ -std=c++17 -O2 实际编译通过，官方样例（120/0；4/1）与共 13 组自拟边界用例全部正确，Q26 与组合枚举暴力对拍 300 组、Q27 与全路径枚举暴力对拍 300 组均零差异；原卷内存限制 512.0 MB 与题库 128 MB 的差异按既有约定记入 unresolved。4 题 revise：Q13 的 question 字段确为脏数据（混入第 12 题 Dijkstra 代码与 PDF 行号、Floyd 代码截断），初核的重写经逐行核验成立并已采纳；Q7/Q9 恢复的代码在空缺处多了原卷没有的分号（选项自带分号，填入将成双分号）；Q11 字符串字面量 \"-\" 应为原卷的 \" - \"（连字符两侧空格）。以上 4 处均已随 changes 提交具体改值，答案与解析均不受影响。"
+  }
+}
