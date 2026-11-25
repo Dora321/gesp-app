@@ -1,0 +1,543 @@
+{
+  "paperId": "2024-06-l7",
+  "phase": "glm",
+  "questionIds": [
+    1,
+    2,
+    4,
+    6,
+    10,
+    11,
+    12,
+    15,
+    18,
+    20,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:05:00.000Z",
+  "completedAt": "2026-11-25T09:55:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "54828ea10b71edd69737b0e9476f86e2405000411b0cd570b28906596e7469b9",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071620997152.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++7级.pdf",
+    "mirrorSha": "047a7cc0e239607506b06057396e76c78b6c21de",
+    "mirrorBytes": 1299038,
+    "shaVerified": true,
+    "sha256": "a651a04cb612c1175ecc542bcf5501765d21404199388421ab7fbaa2f20ec9a3"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2024-06-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「CCF 编程能力等级认证 C++ 七级 2024 年 06 月」，单选答案表 1—15 题齐全（B D A D D A A C D B C A B B C），第 6 页判断答案表 1—10 题齐全（× √ × √ × × × √ √ √）；第 7—10 页为编程题 26（黑白翻转）、27（区间乘积），页图共 10 页，与 paperId 2024-06-l7 一致。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 1 题题干「下列C++代码的输出结果是（ ）。」及代码块（#include <iostream>、#include <cmath>、cout << sin(3.1415926 / 2)、return 0）与候选逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A 0、B 1、C 0.5、D 0.7071，与候选 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 1 题为 B，0 起始索引 1，与候选 answer=1 一致；sin 以弧度为单位，sin(3.1415926/2)≈sin(π/2)=1，cout 默认 6 位有效数字输出 1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：3.1415926/2=1.5707963，sin 值略小于 1，默认格式化输出 1；A 对应 sin(0)/sin(π)，C 对应 sin(π/6)，D 对应 sin(π/4)，候选逐项分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照第 1 页：代码、选项、答案表 B（索引 1）均与候选一致；解析对弧度制、π 近似与默认输出格式的说明独立成立，无需修改。"
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 2 题图为三结点二叉树：1 为根，2 为 1 的右孩子，3 为 2 的左孩子；候选在题干括号中补出该结构，与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A「先序遍历是 132」、B「中序遍历是 123」、C「后序遍历是 312」、D「先序遍历和后序遍历正好是相反的」，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 2 题为 D，0 起始索引 3，与候选 answer=3 一致；独立遍历：先序 1,2,3，中序 1,3,2，后序 3,2,1，先序与后序正好相反。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：A 的 132、B 的 123、C 的 312 均不等于对应遍历结果；D 正确，且注明该结论仅对单链形态成立。候选解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立对照第 1 页树图并独立写出三种遍历：先序 123、中序 132、后序 321，D 成立；候选题干括注与页图一致，答案与解析无误，无需修改。"
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 4 题题干「关于序列 {2,7,1,5,6,4,3,8,9}，以下说法错误的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A {2,5,6,8,9}、B {1,5,6,8,9}、C {7,5,4,3}、D「{1,5,6,8,9} 是它的唯一最长上升子序列」，与候选 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 D，0 起始索引 3，与候选 answer=3 一致；独立计算 LIS 长度为 5，{2,5,6,8,9} 与 {1,5,6,8,9} 两条并存，故 D「唯一」错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：{2,7,1,5,6,4,3} 的 LIS 为 3，接 8、9 得 5，不存在长度 6；最长下降子序列为 4（{7,5,4,3} 或 {7,6,4,3}），C 正确。候选逐项分析与易错提醒均正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复算 LIS/LDS：LIS=5 且恰有 A、B 两条，LDS=4；答案 D（索引 3）与候选解析一致，无需修改。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 6 题图：A 为根，B/C 为左右孩子；B 的左/右孩子为 D/E；C 的左/右孩子为 F/G；D 的左孩子为 H；G 的左孩子为 I。候选括号描述与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A「HDEBFIGCA 不是它的后序遍历序列」、B「ABCDEFGHI 是它的广度优先遍历序列」、C「ABDHECFGI 是它的深度优先遍历序列」、D「ABDHECFGI 是它的先序遍历序列」，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 A，0 起始索引 0，与候选 answer=0 一致；独立遍历后序为 H D E B F I G C A，A 的否定句错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：层序 ABCDEFGHI；先序 ABDHECFGI（优先向左的 DFS）；后序 HDEBFIGCA。故 A 错、B/C/D 对，候选解析（含还原树的 ASCII 图）与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立按页图写出层序/先序/后序并与候选一致，A 的否定句为错误项；候选解析正确，无需修改。"
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          1,
+          3
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 10 题题干「图的存储和遍历算法，下面说法错误的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A/B/C/D 与候选 options 逐字一致；D 项「顶点v_i对应链表中的边结点数目正好是顶点v_i的度」在页图中 v_i 为斜体下标排版，候选保留同义文本。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 B，0 起始索引 1，与候选 answer=1 一致；B 称 DFS 与二叉树先序「道理不一样」，实际二者同为深度优先，B 错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：A 对有向/无向图均适用；C 的 DFS 递归（隐式栈）或显式栈均需栈结构；D 按无向图邻接表口径边结点数等于度（延伸段已注明有向图语境为出度）；B 错误。候选解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立判断 A/C/D 为正确陈述、B 为错误项，与答案表 B（索引 1）一致；候选解析逻辑严密且无内部话术，无需修改。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 11 题邻接表（行 0 V1→3,1；行 1 V2→4,2,0；行 2 V3→4,3,1；行 3 V4→2,0；行 4 V5→2,1）与候选描述一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "逐图核对第 3—4 页：图 A 含底边 V4-V5 共 7 条（V1-V2、V1-V4、V4-V5、V2-V5、V3-V2、V3-V4、V3-V5）；图 B 无 V2-V5、含 V4-V5 共 6 条；图 C 为 V1-V2、V1-V4、V2-V3、V2-V5、V3-V4、V3-V5 共 6 条；图 D 仅 V1-V2、V1-V4、V2-V5、V3-V5 共 4 条；与候选 options 逐条一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 C，0 起始索引 2，与候选 answer=2 一致；邻接表去重后边集 {V1-V4, V1-V2, V2-V5, V2-V3, V3-V5, V3-V4} 恰为图 C 的 6 条边。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析对图 C 的判断正确，但末尾夹带「初核所称「邻接表对应图 A、答案表标 C 存在冲突」系漏看图 A 底边 V4-V5 所致（图 A 实有 7 条边），予以纠正。」的内部复核话术，不属于题解内容，不应发布在题面解析中；应删除该句，仅保留「故邻接表对应图 C，与官方答案表一致。」"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n邻接表 5 行（下标 0~4 对应 V1~V5），链中数字为邻接顶点下标：V1 连 4、2；V2 连 5、3、1；V3 连 5、4、2；V4 连 3、1；V5 连 3、2。无向边去重后边集为 V1-V2、V1-V4、V2-V3、V2-V5、V3-V4、V3-V5，共 6 条。\n\n- 图 A：还含底边 V4-V5，共 7 条边，不符。\n- 图 B：无 V2-V5、含 V4-V5，不符。\n- 图 C：边集恰为上述 6 条，相符 ✅。\n- 图 D：仅 4 条边，不符。\n\n故邻接表对应图 C，与官方答案表一致。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "独立逐条核对第 3—4 页四幅图与邻接表：去重边集恰为图 C 的 6 条边，答案 C（索引 2）正确；候选解析的唯一问题是末句为内部复核话术（描述初核纠错过程，非题解内容），删除该句即可，其余解析文字与候选完全一致，采纳该修订。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 12 题矩阵 5×5，候选代码块逐项一致：0 行 inf inf 12 30 inf；1 行全 inf；2 行 inf inf inf inf 32；3 行 inf 5 inf inf inf；4 行 50 inf inf inf inf。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "逐图核对第 4—5 页：A 为有向图 0→2(12)、0→3(30)、2→4(32)、4→0(50)、3→1(5)；B 为有向图，同 A 但以 4→1(5) 代替 3→1(5)；C 为无向图 0-2、0-3、0-4、2-4、3-1；D 为无向图 0-2、0-3、0-4、2-4、4-1；与候选 options 逐条一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 A，0 起始索引 0，与候选 answer=0 一致；矩阵不对称（M[0][2]=12 而 M[2][0]=inf）且带权，A 的五条有向边与矩阵逐项一致。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析把 B 说成「无向图的邻接矩阵必须对称，本题不对称」，把 C 说成「无权图只记是否有边」，把 D 说成「图与上面列出的有向边不一致」，与其自身 options 矛盾：候选 B 明确是「带权有向图」，C/D 明确是「带权无向图」。按第 4—5 页原图独立核对：B 的实际差异是用 4→1(5) 代替矩阵中的 3→1(5)（M[4][1]=inf）；C/D 的实际差异是无向化与矩阵不符（如 0-4(50) 要求 M[0][4]=M[4][0]=50，而 M[0][4]=inf），且 D 还把 3→1(5) 换成 4-1(5)。需按真实差异重写选项分析。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（与该邻接矩阵对应的图）**\n\n**核心解析：**\n原卷矩阵是 5 行 5 列，顶点下标 `0~4`。`inf` 表示没有这条边，其它数字是权值：\n- `0→2` 权 12，`0→3` 权 30\n- `2→4` 权 32\n- `3→1` 权 5\n- `4→0` 权 50\n- 顶点 1 没有出边\n\n`M[0][2]=12` 而 `M[2][0]=inf`，矩阵不对称，所以是有向图；边上是具体权值，所以带权。这是 5 个顶点的带权有向图。\n\n**选项逐项分析：**\n- **A**：✅ 有向边 0→2(12)、0→3(30)、2→4(32)、4→0(50)、3→1(5)，与矩阵逐项一致。\n- **B**：❌ 把 3→1(5) 换成了 4→1(5)；矩阵中 `M[3][1]=5`、`M[4][1]=inf`，不符。\n- **C**：❌ 标为无向图，但矩阵不对称（如 `M[0][2]=12` 而 `M[2][0]=inf`）；且无向边 0-4(50) 会要求 `M[0][4]=M[4][0]=50`，与矩阵不符。\n- **D**：❌ 同样是无向图，且用 4-1(5) 代替了矩阵中的 3→1(5)，不符。\n\n**易错提醒：**\n- 行数就是顶点数，这里是 5 不是 4。\n- 先看矩阵是否对称判断有向/无向，再逐条核对起点、终点和权值，不要只看权值集合。"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "revise",
+        "reviewNote": "独立逐图核对第 4—5 页四幅图：矩阵不对称带权，A 的五条有向边逐项吻合，答案 A（索引 0）正确；候选解析的 B/C/D 分析与自身 options 矛盾（把带权有向图 B 说成无向对称性问题、把带权无向图 C 说成无权图），已按原图真实差异重写选项分析，答案不变，采纳该修订。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          6
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页第 15 题图含 9 个顶点、14 条弧：2→1、4→2、9→4、1→3、1→5、5→3、3→2、3→4、3→7、9→7、7→5、7→6、6→8、8→9，逐条与候选描述一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 6 页 A 1,3,7,5,4,2,6,8,9；B 9,4,2,1,3,5,7,6,8；C 1,3,4,2,7,6,8,9,5；D 9,7,6,8,4,2,1,5,3，与候选 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 C，0 起始索引 2，与候选 answer=2 一致；独立模拟：1→3→4→2，2 无未访问出边回溯 3，3→7→6→8→9，9 无未访问出边回溯 7，7→5，得 1,3,4,2,7,6,8,9,5。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：A 在 5 之后接 4，但 5 无未访问出边且 7 还有 6 未走；B 在 3 之后接 5，图中无 3→5 弧；D 跳过了 7 的未访问出边 5；C 合法。候选逐项分析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立按第 6 页原图逐弧核对并模拟 DFS：仅 C 合法，与答案表 C（索引 2）一致；候选对 A/B/D 违例点的定位准确，无需修改。"
+      },
+      {
+        "id": 18,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断第 3 题「唯一分解定理（算术基本定理）指出，每个大于1的自然数都可以唯一地分解成若干个素数的乘积。因此，我们可以很容易的对给定的自然数 n 进行质因数分解，时间复杂度仅为 O(log(n))。」与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有「正确/错误」两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表（× √ × √ × × × √ √ √）第 3 题为 ×，映射索引 1，与候选 answer=1 一致；试除法需枚举到 √n，不是 O(log n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：算术基本定理成立，但质因数分解常用试除法 O(√n)（逐个试除 O(n)），「仅为 O(log n)」错误。候选解析与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认判断答案表第 3 题为 ×（索引 1），命题错在复杂度断言；候选解析正确，无需修改。"
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页判断第 5 题「使用 math.h 或 cmath 头文件中的对数函数，表达式 log(128) 的结果类型为 double、值约为 7.0。」与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有「正确/错误」两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断答案表第 5 题为 ×，映射索引 1，与候选 answer=1 一致；cmath 的 log 是自然对数，ln128≈4.852，不是 7。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立计算：log(128)=ln128≈4.852，类型 double；log2(128)=7 才是 7。命题「值约为 7.0」错误，候选解析与纠错说明一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立确认判断答案表第 5 题为 ×（索引 1），log 为自然对数 ≈4.852；候选解析正确（题干与答案表分属第 7、6 页），无需修改。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页 3.1.1—3.1.4：n 节点树、黑白染色、删除白点后剩余仍为树即美丽树、每次把一个白点染黑、求最少操作；输入 n、a_i（a_i=0 为白）、n−1 条边；输出操作数，均与候选一致。第 8 页 3.1.6 数据范围表（子任务 1：30%、n≤10⁵、树的形态为一条链；子任务 2：30%、只有两个节点颜色为黑色；子任务 3：40%；全部 1≤n≤10⁵、0≤a_i≤1）与候选「数据范围」一致。第 7—8 页样例（5 / 0 1 0 1 0 / 1 2 / 1 3 / 3 4 / 3 5 → 2）与候选 samples 一致，3.1.5 样例解释（染黑节点 1、3，删白点 5）与候选解析口径一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：最终黑点集必须是包含原黑点的连通子树，最小方案即原黑点最小连通子树（Steiner 子树）中的所有白点染黑，答案为该子树白点数。样例 1 黑点 2、4 的最小连通子树为 2-1-3-4，白点 1、3 共 2 个，与候选一致；原卷 3.1.7 参考程序（子树黑点计数 + 白点计入判定）与该思路语义一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "g++ -std=c++17 -O2 编译候选迭代建树+子树黑点计数程序（显式栈避免 1e5 链递归爆栈）；原样例实测输出 2。另跑独立边界：「1 / 1」→0；「3 / 1 0 1 / 1 2 / 2 3」→1；「5 / 1 0 0 0 1 / 1 2 / 2 3 / 3 4 / 4 5」→3；「4 / 0 1 1 0 / 1 2 / 1 3 / 1 4」→1，全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单个黑点",
+            "input": "1\n1\n",
+            "output": "0",
+            "reason": "只有一个黑点，删除所有白点后仅剩该点，已经是树，无需操作。"
+          },
+          {
+            "name": "三节点路径两端黑",
+            "input": "3\n1 0 1\n1 2\n2 3\n",
+            "output": "1",
+            "reason": "黑点 1、3 的最小连通子树为 1-2-3，白点 2 必须染黑，操作 1 次。"
+          },
+          {
+            "name": "五节点路径两端黑",
+            "input": "5\n1 0 0 0 1\n1 2\n2 3\n3 4\n4 5\n",
+            "output": "3",
+            "reason": "黑点 1、5 的最小连通子树覆盖全链，白点 2、3、4 共 3 个。"
+          },
+          {
+            "name": "星形两黑叶",
+            "input": "4\n0 1 1 0\n1 2\n1 3\n1 4\n",
+            "output": "1",
+            "reason": "黑点 2、3 经白心 1 连通，最小子树 2-1-3 只需把中心 1 染黑。"
+          }
+        ],
+        "unresolved": [
+          "原卷 3.1 节内存限制标注 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，证据留此，待集成环节再校正。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立对照第 7—9 页：题面、数据范围三档、样例 2 与候选一致；候选参考程序（显式栈建树 + 子树黑点计数）与原卷 3.1.7 思路等价，实测原样例与 4 条独立边界全部通过，题面字段无需修改。原卷内存限制 512.0 MB 与题库 128 MB 的差异已保留证据在 unresolved，待集成环节校正。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9 页 3.2.1—3.2.3：n 个正整数序列、求区间乘积为完全平方数的 <l,r> 对数、完全平方数定义、输入 n 与 a_i、输出对数，均与候选一致。第 9 页 3.2.6 数据范围表（子任务 1：20%、n≤10⁵、1≤a_i≤2；子任务 2：40%、n≤100、1≤a_i≤30；子任务 3：40%、n≤10⁵、1≤a_i≤30；全部 1≤n≤10⁵、1≤a_i≤30）与候选「数据范围」一致。第 9 页样例（5 / 3 2 4 3 2 → 2）与候选 samples 一致，3.2.5 样例解释（<3,3> 与 <1,5>）与候选解析一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：分解每个 a_i 的质因数只保留指数奇偶性得 bitmask，区间乘积为完全平方数当且仅当前缀异或状态相等；用 map 统计相同前缀状态对数，初始 mp[0]=1。样例中 <3,3>（单元素 4）与 <1,5>（3·2·4·3·2=144=12²）两组，答案 2，与候选一致；原卷 3.2.7 参考程序（calc 逐质数 res^=1<<(i-1)、前缀异或配对计数）与候选程序语义等价。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "g++ -std=c++17 -O2 编译候选质因数奇偶 bitmask+前缀异或程序；原样例实测输出 2。另跑独立边界：「1 / 4」→1；「2 / 1 1」→3；「3 / 2 2 2」→2；「4 / 2 8 2 8」→4，全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单元素平方",
+            "input": "1\n4\n",
+            "output": "1",
+            "reason": "唯一区间 [1,1] 乘积为 4=2²，是完全平方数。"
+          },
+          {
+            "name": "两个 1",
+            "input": "2\n1 1\n",
+            "output": "3",
+            "reason": "[1,1]、[2,2]、[1,2] 的乘积都是 1，共 3 对。"
+          },
+          {
+            "name": "三个 2",
+            "input": "3\n2 2 2\n",
+            "output": "2",
+            "reason": "相邻两数乘积 4 为平方，得 [1,2]、[2,3] 两对；单元素 2 与整段 8 均非平方。"
+          },
+          {
+            "name": "交替 2 与 8",
+            "input": "4\n2 8 2 8\n",
+            "output": "4",
+            "reason": "相邻乘积 16 的三对 [1,2]、[2,3]、[3,4]，加整段 2·8·2·8=256，共 4 对。"
+          }
+        ],
+        "unresolved": [
+          "原卷 3.2 节内存限制标注 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，证据留此，待集成环节再校正。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立对照第 9—10 页：题面、数据范围三档、样例 2 与候选一致；候选参考程序与原卷 3.2.7 语义等价，实测原样例与 4 条独立边界全部通过，题面字段无需修改。原卷内存限制 512.0 MB 与题库 128 MB 的差异已保留证据在 unresolved，待集成环节校正。"
+      }
+    ],
+    "summary": "12 个候选中，Q1/Q2/Q4/Q6/Q10/Q15/Q18/Q20/Q26/Q27 五维独立核验通过，approve；Q11 解析末尾夹带内部复核话术，删除该句，revise；Q12 解析的 B/C/D 选项分析与候选自身 options 矛盾，已按第 4—5 页原图真实差异重写（答案 A 不变），revise；未改动任何答案。Q26/Q27 原卷内存限制为 512.0 MB、题库记 128 MB，已在 unresolved 保留证据，待集成环节再校正。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        4,
+        6,
+        10,
+        11,
+        12,
+        15,
+        18,
+        20,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T09:05:00.000Z",
+      "completedAt": "2026-11-25T09:55:00.000Z"
+    }
+  ]
+}
