@@ -753,6 +753,8 @@ printf("%2d%2d\\n", tnt, i);
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [{ input: '150\n165\n135\n133', output: '135' }],
       question: `
 # [GESP202603 一级] 交朋友
@@ -858,6 +860,8 @@ Alice 的身高是 \`H1\`，其余三个小朋友的身高分别是 \`H2\`、\`H
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: '8459045', output: '8859085' },
         { input: '123', output: '123' },

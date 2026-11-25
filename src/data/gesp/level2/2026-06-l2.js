@@ -861,6 +861,8 @@ n=5，i=1..5，每行结构：左侧 (n-i) 个 0 + 中间"1..i..1"山形（宽 2
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: '1\n21', output: '4' },
       ],
@@ -978,6 +980,8 @@ $1 \\leq l \\leq r \\leq 2000$。
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: '4', output: '...+...\n..+.+..\n.+...+.\n+.....+\n.+...+.\n..+.+..\n...+...' },
       ],

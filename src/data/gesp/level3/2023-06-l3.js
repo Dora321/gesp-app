@@ -738,6 +738,8 @@ C++ 中字符类型（char）是有符号或无符号的整数类型，其取值
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       score: 25,
       title: '春游',
@@ -789,6 +791,8 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       score: 25,
       title: '密码合规检测',

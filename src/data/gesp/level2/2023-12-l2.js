@@ -46,7 +46,7 @@ C++ 里以下划线开头的标识符虽然合法，但**双下划线**或「下
             sourcePage: 1,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "变量与标识符"],
         },
         {
             id: 2,
@@ -135,7 +135,7 @@ for (________)
             sourcePage: 1,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "算术运算"],
         },
         {
             id: 4,
@@ -183,7 +183,7 @@ if(newNum == N)
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "回文数", "循环"],
         },
         {
             id: 5,
@@ -207,7 +207,7 @@ if(i >= N/2)
             sourcePage: 2,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP2级"],
+            tags: ["客观题", "单选题", "GESP2级", "质数判定", "循环", "边界分析"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -232,7 +232,7 @@ cout << "0";
             sourcePage: 2,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP2级"],
+            tags: ["客观题", "单选题", "GESP2级", "嵌套循环", "程序分析"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -258,7 +258,7 @@ cout << cnt ;
             sourcePage: 3,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP2级"],
+            tags: ["客观题", "单选题", "GESP2级", "嵌套循环", "程序分析"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -312,7 +312,7 @@ cout << N;
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "程序分析"],
         },
         {
             id: 9,
@@ -367,7 +367,7 @@ cout << x;
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "程序分析"],
         },
         {
             id: 10,
@@ -415,7 +415,7 @@ cout << cnt;
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "嵌套循环", "程序分析"],
         },
         {
             id: 11,
@@ -495,7 +495,7 @@ cout << cnt;
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "嵌套循环", "程序分析"],
         },
         {
             id: 13,
@@ -579,7 +579,7 @@ cout << cnt;
             sourcePage: 5,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP2级"],
+            tags: ["客观题", "单选题", "GESP2级", "循环", "算术运算"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -604,7 +604,7 @@ cout << cnt;
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "算术运算"],
         },
         {
             id: 17,
@@ -630,7 +630,7 @@ cout << cnt;
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "字符与ASCII", "类型转换"],
         },
         {
             id: 18,
@@ -654,7 +654,7 @@ cout << cnt;
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "逻辑运算", "运算符"],
         },
         {
             id: 19,
@@ -668,7 +668,7 @@ cout << cnt;
             sourcePage: 5,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP2级"],
+            tags: ["客观题", "判断题", "GESP2级", "数学函数"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -695,7 +695,7 @@ C++ 的条件表达式接受任何能转换成 \`bool\` 的算术类型：非零
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "循环", "逻辑判断"],
         },
         {
             id: 21,
@@ -709,7 +709,7 @@ C++ 的条件表达式接受任何能转换成 \`bool\` 的算术类型：非零
             sourcePage: 5,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP2级"],
+            tags: ["客观题", "判断题", "GESP2级", "循环", "算术运算"],
       "code": "Sum = 0;\nfor (i = -500; i < 500; i++)\n    Sum += i;\ncout << Sum;",
       "reviewedFields": ["question","code","explanation","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -737,7 +737,7 @@ C++ 允许不同类型直接参与运算，编译器会按「类型提升与算�
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "类型转换", "运算符"],
         },
         {
             id: 23,
@@ -761,7 +761,7 @@ C++ 允许不同类型直接参与运算，编译器会按「类型提升与算�
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "赋值", "类型转换"],
         },
         {
             id: 24,
@@ -784,7 +784,7 @@ Dev C++ 是运行在操作系统之上的**集成开发环境（IDE）**，它�
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "计算机基础", "编程环境"],
         },
         {
             id: 25,
@@ -807,11 +807,13 @@ Dev C++ 是运行在操作系统之上的**集成开发环境（IDE）**，它�
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "循环", "等价变换"],
         },
         {
             id: 26,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "小杨做题",
             samples: [
                 {
@@ -837,6 +839,8 @@ Dev C++ 是运行在操作系统之上的**集成开发环境（IDE）**，它�
         {
             id: 27,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "小杨的 H 字矩阵",
             samples: [
                 {

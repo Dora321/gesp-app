@@ -764,6 +764,8 @@ C++ 标准规定条件运算符返回的是纯右值（在某些情况下可以�
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `3
 2 3 4`, output: `7` },
@@ -837,6 +839,8 @@ C++ 标准规定条件运算符返回的是纯右值（在某些情况下可以�
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `9`, output: `MON TUE WED THU FRI SAT SUN
   1   2   3   4   5   6   7

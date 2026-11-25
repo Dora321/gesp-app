@@ -682,6 +682,8 @@ GESP 一级要求掌握的关键字约 20 余个，可分为数据类型关键�
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `100.4
 300.2
@@ -817,6 +819,8 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `5
 10

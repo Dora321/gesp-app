@@ -560,6 +560,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       question: "# [GESP202406 一级] 休息时间\n\n## 题目描述\n\n小杨计划在某个时刻开始学习，并决定在学习 $k$ 秒后开始休息。小杨想知道自己开始休息的时刻是多少。\n\n## 输入格式\n\n前三行每行包含一个整数，分别表示小杨开始学习时刻的时 $h$、分 $m$、秒 $s$。第四行包含一个整数 $k$，表示小杨学习的总秒数。\n\n## 输出格式\n\n输出一行，包含三个整数，分别表示小杨开始休息时刻的时、分、秒。\n\n## 数据范围\n\n对于全部数据，保证有 1 ≤ h ≤ 12，0 ≤ m ≤ 59，0 ≤ s ≤ 59，1 ≤ k ≤ 3600。",
       samples: [
         { input: `12\n59\n59\n10`, output: `13 0 9` },
@@ -679,6 +681,8 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       question: "# [GESP202406 一级] 立方数\n\n## 题目描述\n\n小杨有一个正整数 $n$，他想知道 $n$ 是否是一个立方数。一个正整数是立方数，当且仅当存在一个正整数 $x$ 满足 $x \\times x \\times x = n$。\n\n## 输入格式\n\n第一行包含一个正整数 $n$。\n\n## 输出格式\n\n如果正整数 $n$ 是一个立方数，输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于全部数据，保证有 1 ≤ n ≤ 1000。",
       samples: [
         { input: `8`, output: `Yes` },

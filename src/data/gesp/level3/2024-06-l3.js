@@ -678,6 +678,8 @@ C++ 中数值字面量的前缀规则：前导 \`0\` 表示八进制（如 \`011
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `3`, output: `DEFGHIJKLMNOPQRSTUVWXYZABC` }
       ],
@@ -730,6 +732,8 @@ C++ 中数值字面量的前缀规则：前导 \`0\` 表示八进制（如 \`011
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2
 3

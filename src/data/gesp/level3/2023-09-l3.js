@@ -594,6 +594,8 @@ C++ 中常用的进制前缀：\`0x\`（十六进制）、\`0\`（八进制，�
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2 3
 0 1 0`, output: `4 2` },
@@ -734,6 +736,8 @@ int main() {
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2
 15A6F

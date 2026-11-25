@@ -851,6 +851,8 @@ while (x < 4) {
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: '999\n105\n699\n588', output: '693' },
         { input: '9\n3\n8\n7', output: '9' },
@@ -993,6 +995,8 @@ while (x < 4) {
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: '932.0\n1634.3\n1790.4\n2172.9\n378.1\n283.4\n2761.9\n3583.5\n10.1\n2324.9\n1111.6\n3812.3', output: '2584.76' },
       ],

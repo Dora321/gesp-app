@@ -271,7 +271,7 @@ printf("5*%d+2*%d+1*%d", M5, M2, M1);
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "贪心", "算术运算"],
         },
         {
             id: 9,
@@ -348,7 +348,7 @@ cout << loopCount;
             sourcePage: 4,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP2级"],
+            tags: ["客观题", "单选题", "GESP2级", "嵌套循环", "程序分析"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -439,7 +439,7 @@ else
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "质数判定", "边界分析"],
         },
         {
             id: 13,
@@ -495,7 +495,7 @@ for (int i = 1; i < 6; i++){ // L1
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "嵌套循环", "程序分析"],
         },
         {
             id: 14,
@@ -545,7 +545,7 @@ cout << cnt1 << " " << cnt2;
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "程序分析"],
         },
         {
             id: 15,
@@ -742,7 +742,7 @@ C++ 标准库提供了大量函数（如 I/O 库、字符串库、数学库等�
             sourcePage: 6,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP2级"],
+            tags: ["客观题", "判断题", "GESP2级", "循环"],
       "reviewedFields": ["question","explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -851,13 +851,15 @@ GESP 共分 1~8 级，1~4 级侧重语言基础与简单算法，5~8 级逐步�
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "科技常识"],
         },
     ],
     programmingQuestions: [
         {
             id: 26,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '512 MB',
             title: "平方之和",
             samples: [
                 {
@@ -945,6 +947,8 @@ GESP 共分 1~8 级，1~4 级侧重语言基础与简单算法，5~8 级逐步�
         {
             id: 27,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '512 MB',
             title: "计数",
             samples: [
                 {
