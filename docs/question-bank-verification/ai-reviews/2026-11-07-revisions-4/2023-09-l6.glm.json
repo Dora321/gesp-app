@@ -1,0 +1,183 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "glm",
+  "questionIds": [
+    8,
+    9,
+    15,
+    24
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:50:00.000Z",
+  "completedAt": "2026-11-25T06:40:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "9848aeb0060c01fdc1f7837107acf6ace1494c2d30e857521b5c6839c7744f76",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "我独立核对第1页页图：卷头为「CCF编程能力等级认证 GESP / C++ 六级 / 2023年9月」，与 2023-09-l6 的 year/month/level 完全一致；同页单选答案表「A D D D A D D B B B B C C B D」给出第8题B、第9题B、第15题D；第7页判断题答案表「√ × × √ √ √ × × √ √」给出判断第9题√。全部键位与候选 answer 映射一致。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "我对第3–4页原图独立逐行比对：题8题头在第3页末「第8题 有关下面C++代码的说法，错误的是（ ）。」，第4页为 MoreData 完整32行代码（第5行 int * __data;、第13行 MoreData & push(int val) {、第14行 __data[tail++] = val;、第15行 return *this;、第18行 return __data[head++];、第25行 auto myData = MoreData(100);、第29行 myData.push(11).push(12).push(13);、第30行 cout << myData.pop() << endl;）。候选 question 内嵌代码与原图逐行一致；但候选独立 code 字段仍挂着第7题的 ManyData 源码（class ManyData、void push(int val)、return __data[--tail];、myData.push(100); 等特征，我在原图第3页确认其属于第7题），与题面及第4页原图不符，属上题代码串入的真实硬伤。DeepSeek 修改值经我与第4页原图逐行独立比对完全一致（仅空行缩进排版差异），修复后核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第4页四项与候选文字、顺序一致：A. MoreData 类可用于构造队列（Queue）数据结构。／B. 代码第29行，连续push()的用法将导致编译错误。／C. __data是MoreData类的私有成员，只能在类内访问。／D. 以上说法均没有错误。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第8题为B（0起始索引1），候选 answer=1 一致。我的独立重推：push 在 tail 端入、pop 在 head 端出构成 FIFO，A 为真；push 返回 MoreData& 且 return *this，第29行链式调用编译合法，B 为假；__data 声明于 public: 之前，class 默认 private，C 为真；因 B 为事实错误，D 不成立。错误项为 B，与官方键一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以「返回 MoreData& + return *this」解释链式调用，A（FIFO）、B（合法编译）、C（class 默认 private）逐项判断与我的独立重推一致，D 按「B 错误故不成立」处理；易错提醒（返回 void 断链、按值返回作用副本）与 cin/cout 级联延伸均符合 C++ 语义。修复 code 字段后解析与题面代码逐行对应，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程参考代码；code 字段属题面组成，已在 statement 维度核对。"
+          }
+        },
+        "changes": {
+          "code": "#include <iostream>\nusing namespace std;\n\nclass MoreData {\n    int * __data;\n    int head, tail, capacity;\npublic:\n    MoreData(int cap) {\n        capacity = cap;\n        __data = new int[capacity];\n        head = tail = 0;\n    }\n    MoreData & push(int val) {\n        __data[tail++] = val;\n        return *this;\n    }\n    int pop() {\n        return __data[head++];\n    }\n    int size() {\n        return tail - head;\n    }\n};\nint main() {\n    auto myData = MoreData(100);\n    myData.push(1);\n    myData.push(2);\n    myData.push(3);\n    myData.push(11).push(12).push(13);\n    cout << myData.pop() << endl;\n    return 0;\n}"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：第4页原图代码为 MoreData（我逐行比对），候选 code 字段确系第7题 ManyData 串入的真实硬伤；DeepSeek 修改值与我按原图逐行核验的结果完全一致，予以采纳并写入 changes（与初核逐字相同，构成双模型一致批准）。答案 B、选项、解析均经独立推导确认。verdict=approve 指对「候选＋该修改值」的批准：修改后 code 字段与原卷逐行一致，无残留问题。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第4页末题干概率 0.40、0.30、0.15、0.05、0.04、0.03、0.03 依次对应 A–G；我对第5页哈夫曼树图独立逐节点读图：根1.00左叶A(0.40)、右0.60；0.60左0.30、右叶B(0.30)；0.30左0.15、右叶C(0.15)；0.15左0.06（左叶G 0.03、右叶F 0.03）、右0.09（左叶E 0.04、右叶D 0.05），G在前F在后、E在前D在后，与候选文字化描述逐节点一致；概率总和恰为1.00；「左0右1」约定与锚点B=11自洽。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第5页选项 A. 10010／B. 10011／C. 10111／D. 10001，与候选完全一致，顺序无差异。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第9题为B（索引1），候选 answer=1 一致。我按图独立读码（左0右1）：叶D为0.09右孩子、0.09为0.15右孩子、0.15为0.30左孩子、0.30为0.60左孩子、0.60为根右孩子，路径1→0→0→1→1得D=10011即选项B；B为连续右分支编码11与题干锚点吻合；全叶码表无前缀冲突。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对D的读码路径（1.00→0.60右→0.30左→0.15左→0.09右→D右）正确、答案10011正确，但「验证自洽性」句的叶码表写作「C = 10；G = 0000、F = 0001、E = 0010」，与我按第5页树独立重推不符（漏了根到0.60的起始位1），且与同句D=10011自相矛盾（若C=10，则D=10011以10开头即与C构成前缀冲突），G=0000亦以A=0为前缀，属真实内容硬伤。DeepSeek 修改后的叶码表 A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011 经我按图逐叶独立重推完全一致，满足前缀码性质且码长与频率成反比，修复后核验通过。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无编程参考代码；树结构与编码推导已在 statement、answer 维度核对。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**解析：**\n按官方哈夫曼树（左 0 右 1）：根 1.00 → 右 0.60 → 左 0.30 → 左 0.15 → 右 0.09 → 右叶 D(0.05)。\n\nD 的编码：从根出发每一步取分支值：1.00→0.60（右，1）→ 0.30（左，0）→ 0.15（左，0）→ 0.09（右，1）→ D（右，1），得 **10011**。\n\n验证自洽性：B 的路径 1.00→0.60（右，1）→ B（右，1）= **11**，与题干「B 的编码为 11」一致 ✓；按同一约定逐叶读码：A = 0、B = 11、C = 101、G = 10000、F = 10001、E = 10010、D = 10011。任一编码都不是其他编码的前缀，且码长与频率成反比（A 0.40 最短、D 0.05 最长），符合哈夫曼编码性质。答案 B。\n\n**易错点：** 哈夫曼树的左右分支约定决定编码值；本题给了「B = 11」这个锚点反推出「左 0 右 1」的约定，再沿树读 D 的路径。读码时不要漏掉根到 0.60 的第一个 1，也不要把 C 误读成 10。\n\n**考点：** 哈夫曼编码、哈夫曼树"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：我从第5页图独立重推全部叶编码，候选解析自洽性段的叶码表确与树不符且自相矛盾（C=10 与 D=10011 前缀冲突），DeepSeek 修改值（C=101、G=10000、F=10001、E=10010、D=10011）与我的独立重推逐项相同，予以采纳并写入 changes（与初核逐字相同，构成双模型一致批准）。答案 B、题干树形描述、选项均独立确认无误。"
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          7
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页题干「第15题 关于C++语言，以下说法不正确的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第7页四项与候选文字、顺序一致：A. 若对象被定义为常量，则它只能调用以 const 修饰的成员函数。／B. 所有的常量静态变量都只能在类外进行初始化。／C. 若类 A 的对象 a 是类 B 的静态成员变量，则 a 在 main() 函数调用之前应被初始化。／D. 静态全局对象、常量全局对象都是在 main 函数调用之前完成初始化，执行完 main 函数后被析构。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第15题为D（0起始索引3），候选 answer=3 与官方键一致。我的独立判断：A（const 对象仅可调 const 成员函数）、C（静态存储期对象 main 前初始化）正确；D 把基本类型全局常量的「内存回收」说成「被析构」，不成立，D 为官方错误项。B 项存在 static const 整型/枚举成员类内初始化的 ISO C++ 特例，属题源欠严谨，不构成与官方键的冲突，仅备案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以「基本类型全局常量无析构函数」判定 D 不严谨，逐项说明 A、B、C，区分「内存回收」与「执行析构」，与官方答案 D 自洽；对 B 项特例已按考试口径披露，未隐瞒争议。与我的独立重推无冲突，未发现需改写的技术错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "源卷B项「所有的常量静态变量都只能在类外进行初始化」按严格 ISO C++ 存在反例（static const 整型/枚举成员可在类内初始化，C++11 起 static constexpr 亦然）；官方答案表取 D，候选解析按考试口径处理并已披露特例，仅备案，不修改 answer。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立复核：候选 answer=3 与第1页答案表第15题D一致，我逐项重推确认 D 为官方错误项；B 项特例属题源学理张力，候选解析已披露并按官方口径维持，不构成答案键冲突。候选各字段与原卷一致且准确，无需再改，approve。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          1,
+          7
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "我对第7页判断题第9题原图做了高倍裁剪复核：原图原文为「第9题 如果节点数为N，广度搜索算法的最差时间复杂度为O(N)。」（N、O(N) 为斜体数学符号）——图上并无「优先」二字，此前轮次「图即为『广度优先』」的记录有误，本轮予以修正。候选写作「广度优先搜索算法」是对「广度搜索」的标准全称补全，属同义表述，不改变所考查的算法与判定，不影响作答；候选无漏项、无歧义。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A–D 选项，官方以答案表√/×呈现；站点以[正确,错误]两选项呈现为站点惯例，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第7页判断题答案表整行为 √ × × √ √ √ × × √ √，判断第9题为√，按正确=0映射 officialAnswer=0，候选 answer=0 一致。我的独立判断：以节点数 N 计量、每节点至多入队出队一次的口径下，BFS 最差遍历全部 N 个节点为 O(N)，判√自洽；一般图连同边计为 O(N+E) 属量纲口径之争，不构成对官方√判定的冲突。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析在节点计数口径下推得 O(N)，并注明「若连同边一起计，图为 O(N+E)」，覆盖边数因素后解析在任何口径下均无矛盾性陈述；与官方√及 answer=0 自洽，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无参考代码。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核：我以高倍裁剪确认第7页图原文为「广度搜索算法」，候选的「广度优先搜索」为同义全称补全（同时修正上一轮「图即为广度优先」的错误记录），不影响判定与作答；answer=0 与第7页答案表第9格√一致，解析口径组合自洽。此前要求按 O(N²) 口径重写解析的提案属口径之争而非源卷错误，维持否决。候选完整准确，无需再改，approve。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  }
+}
