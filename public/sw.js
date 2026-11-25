@@ -54,6 +54,19 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET' || url.origin !== self.location.origin || !url.pathname.startsWith(APP_ROOT)) return;
 
   const isNavigation = request.mode === 'navigate';
+  // Vite 产出的 /assets/ 文件名带内容 hash，同一个 URL 的字节永远不变。
+  // 因此走 Cache-First：命中缓存直接返回，不再多发一次注定拿到同样内容的网络请求。
+  const isHashedAsset = url.pathname.startsWith(`${APP_ROOT}assets/`);
+  if (isHashedAsset) {
+    event.respondWith(
+      caches.match(request).then(cached => cached || fetch(request).then(response => {
+        event.waitUntil(putInCache(ASSET_CACHE, MAX_ASSET_ENTRIES, request, response));
+        return response;
+      }))
+    );
+    return;
+  }
+
   const network = fetch(request);
   // 这个 then 先于下面 respondWith 的链注册，所以 clone 一定发生在页面读 body 之前；
   // waitUntil 同步调用，保证 SW 在写完缓存前不被回收。
@@ -72,6 +85,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // 静态资源：有缓存先给缓存（后台刷新），没有就走网络。
+  // 其余静态资源（课件 HTML、图片等）文件名不带 hash：缓存优先但后台更新，
+  // 既保证课堂断网可用，也让老师改完课件后下一次访问能拿到新版本。
   event.respondWith(caches.match(request).then(cached => cached || network));
 });
