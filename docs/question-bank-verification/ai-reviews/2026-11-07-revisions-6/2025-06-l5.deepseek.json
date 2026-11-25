@@ -1,0 +1,99 @@
+{
+  "paperId": "2025-06-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    26
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T06:20:00.000Z",
+  "completedAt": "2026-11-25T06:47:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "d787e8381e85b146fabac945ac9ce61b756ab87978dbe231d7aa81d777ddb4bc",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++5级.pdf",
+    "mirrorSha": "155fd02c9b1c0d3ac6364eefea3e23ef01647c75",
+    "mirrorBytes": 2151713,
+    "shaVerified": true,
+    "sha256": "33593b9fd3cdc03ba8f814e136ec2602df35bdba1315d18cf476b05288e50c59"
+  },
+  "pageCount": 16,
+  "report": {
+    "paperId": "2025-06-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第13页 3.1 节『奖品兑换』（时间限制 1.0 s、内存限制 512.0 MB）、3.1.1 题目描述、3.1.2 输入格式、3.1.3 输出格式、3.1.4 两组样例，与第14页 3.1.5 数据范围、3.1.6 参考程序连续排版，与 2025-06-l5 第26题逐一对应。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          13,
+          14
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第13页 3.1 节标题『奖品兑换』、时间限制 1.0 s、内存限制 512.0 MB，3.1.1 题目描述、3.1.2 输入格式、3.1.3 输出格式、3.1.4 两组样例（8 8 / 2 1 → 5；314159 2653589 / 27 1828 → 1599）与候选一致；第14页 3.1.5 数据范围两段（60% 测试点 1≤a,b≤100、1≤n,m≤500；全部测试点 1≤a,b≤10^4、1≤n,m≤10^9）已由第4轮 changes 补入 paper.json，本轮逐字核对一致。站内 memoryLimit 统一写作 128 MB（全站 level5 同一约定），与页图 512.0 MB 不同；该字段不在可修订字段集合内，仅此记录，不影响题面与判定。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，原卷第13–14页 3.1 节亦无选项，该维度不适用。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题不出现在第1页单选题答案表与第6页判断题答案表中，officialAnswer=null 与候选 answer 空串一致（以 referenceCode 与样例承载判定），该维度不适用。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "第5轮批准的解析修订已逐字落入本轮 paper.json，旧版首个 mid 误写为 5、缺样例2 走查的问题已消失。逐条核算：答案关于份数单调可二分；规范化 n≤m、a≤b 后方式一为课堂券最小/作业券最大组合，check 以最小调整数 t=ceil((y-m)/d) 同时判断 x'=x+t*d≤n 与 y'=y-t*d≤m 为充要；t>v 时 x'>v*b>m≥n，必然判假；a==b 特判输出 n/a；r=n 上界与中点 (l+r+1)/2 正确。样例1 的二分轨迹经插桩重演为 4→6→5（check(4) 真、check(6) 因 x'=10>8 假、check(5) 真），输出 5；样例2 的 check(1599)（x=43173、y=2922972、d=1801、t=150、x'=313323≤314159、y'=2652822≤2653589）为真，check(1600)（t=151、x'=315151>314159）为假，收敛于 1599。易错提醒（v*b 最大约 10^13 必须 long long、上取整公式、l=mid 分支中点写法）均正确，未虚构实测。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与第14页 3.1.6 参考程序逐行一致（仅 if (n > m) swap(n, m); / if (a > b) swap(a, b); 的换行与空格差异）。本轮独立执行：g++ -std=c++17 -O2 编译通过；原样例1、2 分别输出 5、1599；5 条独立边界用例（1 1/1 1→1、3 100/5 5→0、5 5/2 3→2、5 5/3 4→1、1000000000 1000000000/1 10000→199980）全部通过；另以不规范化、直接枚举份数与方式二份数的独立暴力枚举器对拍 1024 组穷举小数据（n,m≤8，a,b≤4）与 2000 组随机数据（n,m≤60，a,b≤10），共 3024 组 0 处不一致。数据范围内 v*b 最大约 10^13，必须用 long long；mid=(l+r+1)>>1 中 l+r+1≤2×10^9+1<2^31-1 不溢出 int。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小规模",
+            "input": "1 1\n1 1",
+            "output": "1",
+            "reason": "a=b=1 走 a==b 特判输出 n/a=1。独立推演：1 份需两种券各 1 张，恰好够；2 份需各 2 张，不够。参考程序实测输出 1，独立枚举器同值。"
+          },
+          {
+            "name": "a==b 且不足一份",
+            "input": "3 100\n5 5",
+            "output": "0",
+            "reason": "a=b=5 特判输出 n/a=3/5=0。独立推演：1 份即需 5 张课堂券，n=3 不足。参考程序实测输出 0，独立枚举器同值。"
+          },
+          {
+            "name": "两种方式混用",
+            "input": "5 5\n2 3",
+            "output": "2",
+            "reason": "2 份取方式一(2,3)+方式二(3,2)，两券各耗 5 张可行；3 份课堂券至少 3×2=6>5 不可行。参考程序实测输出 2，独立枚举器同值。"
+          },
+          {
+            "name": "需调整份数超过总份数",
+            "input": "5 5\n3 4",
+            "output": "1",
+            "reason": "check(2)：x=6>5、y=8>5，t=(8-5+0)/1=3>v=2，调整后 x=6+3=9>5 判假；check(1)：x=3、y=4≤5 可行。参考程序实测输出 1，独立枚举器同值。"
+          },
+          {
+            "name": "10^9 量级防溢出",
+            "input": "1000000000 1000000000\n1 10000",
+            "output": "199980",
+            "reason": "每份恒耗 a+b=10001 张，两券合计 2×10^9，故 v≤199980；v=199980 时 t=99990，两券各耗 999999990≤10^9；v=199981 时 t=99991，课堂券需 1000009990>10^9。二分上界 r=n=10^9，搜索中途 mid 可达 5×10^8，mid*b≈5×10^12 远超 int 上限，印证 1ll 必要。参考程序实测输出 199980，独立枚举器同值。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve"
+      }
+    ],
+    "summary": "仅 1 道候选（Q26）。第4轮数据范围补入与第5轮解析修订均已真实落入 paper.json：题面（含 3.1.5 两段数据范围）与第13–14页逐字一致，样例与页图一致；解析的单调性、check(v) 充分性、t>v 边界、两组样例走查与溢出提醒均经独立重算无误。参考程序本地编译通过，原样例与 5 条边界用例全部通过，并以独立暴力枚举器 3024 组对拍 0 处不一致。选项/答案维度对编程题不适用，其余三项均无实质缺陷，changes 为空，verdict=approve，可直接进入门禁应用。"
+  }
+}
