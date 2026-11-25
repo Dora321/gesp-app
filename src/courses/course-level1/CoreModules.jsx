@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Book, Calculator, Code, Play, ChevronRight, Star, Zap, Trophy, MousePointerClick, Clock } from 'lucide-react';
 import { CaseCard } from './PracticeModules';
+import { paperStats } from '../../data/gesp/_stats';
 
 export const OverviewSection = ({ changeTab }) => (
   <div className="space-y-8 animate-fade-in">
-    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white shadow-lg">
+    <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-8 text-white">
       <h2 className="text-3xl font-bold mb-4">GESP C++ 一级冲刺指南</h2>
-      <p className="text-indigo-100 max-w-2xl mb-6">
-        基于历年真题（2023-2025）分析，主要考察基本数据类型、算术运算、if-else 逻辑判断及基础循环的综合运用。
+      <p className="mb-6 max-w-2xl text-[var(--mw-on-night-2)]">
+        覆盖 {paperStats.firstYear}–{paperStats.latestYear} 年真题考点，主要考察基本数据类型、算术运算、if-else 逻辑判断及基础循环的综合运用。
       </p>
       <button
         onClick={() => changeTab('topics')}
-        className="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-indigo-50 transition-colors flex items-center gap-2"
+        className="flex min-h-[44px] items-center gap-2 rounded-full bg-[var(--mw-on-night)] px-6 py-2 font-semibold text-[var(--mw-night)] transition-colors hover:bg-white"
       >
         开始学习 <ChevronRight size={18} />
       </button>
@@ -102,7 +103,7 @@ export const OverviewSection = ({ changeTab }) => (
         ].map((item, idx) => (
           <div
             key={idx}
-            className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-lg border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer group"
+            className="bg-slate-50 p-4 rounded-lg border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="text-2xl mb-2">{item.icon}</div>
             <div className="font-medium text-slate-700 text-sm group-hover:text-indigo-600">{item.skill}</div>

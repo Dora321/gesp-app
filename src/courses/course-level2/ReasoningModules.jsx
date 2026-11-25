@@ -396,11 +396,11 @@ export const CodeTraceModule = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl p-6 text-white shadow-lg">
+      <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-6 text-white">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-3">
           <Eye /> 代码跟踪模拟器
         </h2>
-        <p className="text-cyan-100">
+        <p className="text-[var(--mw-on-night-2)]">
           GESP二级重点考察嵌套循环和流程控制，通过模拟器看清每一步是如何执行的。
         </p>
       </div>

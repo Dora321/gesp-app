@@ -258,11 +258,11 @@ export const CodeTraceModule = () => {
 
     return (
         <div className="space-y-6">
-            <div className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+            <div className="rounded-xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-6 text-white">
                 <h2 className="text-2xl font-bold mb-2 flex items-center gap-3">
                     <Eye /> 代码跟踪模拟器
                 </h2>
-                <p className="text-cyan-100">
+                <p className="text-[var(--mw-on-night-2)]">
                     通过单步执行，直观理解字符串遍历和数组算法的执行过程。
                 </p>
             </div>

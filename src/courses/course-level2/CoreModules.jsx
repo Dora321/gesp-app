@@ -4,14 +4,14 @@ import { CodeBlock, InteractiveCode } from './Shared';
 
 export const OverviewModule = ({ onStart }) => (
   <div className="space-y-6 animate-fade-in">
-    <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white shadow-xl">
+    <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-8 text-white">
       <h1 className="text-3xl font-bold mb-4">GESP C++ 二级冲刺指南</h1>
-      <p className="text-blue-100 text-lg mb-6">
+      <p className="text-lg mb-6 text-[var(--mw-on-night-2)]">
         基于历年真题归纳，掌握多层循环、数学逻辑与基本算法思维。
       </p>
       <button
         onClick={() => onStart('patterns')}
-        className="bg-white text-blue-700 px-6 py-2 rounded-full font-bold hover:bg-blue-50 transition flex items-center gap-2"
+        className="flex min-h-[44px] items-center gap-2 rounded-full bg-[var(--mw-on-night)] px-6 py-2 font-bold text-[var(--mw-night)] transition-colors hover:bg-white"
       >
         开始学习 <ArrowRight size={18} />
       </button>
@@ -93,7 +93,7 @@ export const OverviewModule = ({ onStart }) => (
         ].map((item, idx) => (
           <div
             key={idx}
-            className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group"
+            className="bg-slate-50 p-4 rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="text-2xl mb-2">{item.icon}</div>
             <div className="font-medium text-slate-700 text-sm group-hover:text-blue-600">{item.skill}</div>
