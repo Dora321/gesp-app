@@ -1,0 +1,75 @@
+{
+  "paperId": "2026-03-l8",
+  "phase": "deepseek",
+  "questionIds": [
+    19
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:32:56.268Z",
+  "completedAt": "2026-11-25T08:32:56.268Z",
+  "finishReason": "stop",
+  "inputSha256": "f35d9266802081a1da8d2c3f53c499de93dee31d41b91abbf09cefda378d2981",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++8级.pdf",
+    "mirrorSha": "d8f9823da8c6bd363e900a039a9f0baa05b88add",
+    "mirrorBytes": 970894,
+    "shaVerified": true,
+    "sha256": "4b4098ce5ece3bef5c3d3e3ab96377705ed7c9575df81d8fa565c47ab15362c4"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为“CCF 编程能力等级认证 / C++ 八级 / 2026 年 03 月”，与 paperId 2026-03-l8 一致；第 1 页单选答案表 1—15 为 D B B C B C B B B C C B A C A，第 4 页判断答案表 1—10 为 × √ √ × × × √ √ √ ×；本题为第 4 页判断题第 4 题。"
+    },
+    "questions": [
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页判断题第 4 题原文“若一个无向图的最小生成树唯一，则图中所有边权必定各不相同。（）”与候选 question 逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1；独立判断：3 顶点三角形边权 1、1、2 的 MST 必须取两条权 1 的边，MST 唯一但边权有重复，故“MST 唯一 ⇒ 边权全异”不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出“所有边权互异 ⇒ MST 唯一”成立、逆命题不成立，并给出两个反例：① 三角形 1、1、2 的 MST 唯一但边权重复；② 3 顶点两条边 1-2(1)、2-3(1) 的图本身即树、生成树唯一而边权相同。论证与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "唯一在册题 Q19 的题干、判断答案（×→1）与解析均与原卷第 4 页一致；解析给出的“三角形 1,1,2”与“双边树”两个反例独立复核成立，changes 为空。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        19
+      ],
+      "startedAt": "2026-11-25T08:32:56.268Z",
+      "completedAt": "2026-11-25T08:32:56.268Z"
+    }
+  ]
+}
