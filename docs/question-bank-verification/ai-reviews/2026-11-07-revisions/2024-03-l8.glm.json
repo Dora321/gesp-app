@@ -1,0 +1,381 @@
+{
+  "paperId": "2024-03-l8",
+  "phase": "glm",
+  "questionIds": [
+    5,
+    6,
+    9,
+    11,
+    22,
+    24,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:40:00Z",
+  "completedAt": "2026-11-25T12:45:00Z",
+  "finishReason": "stop",
+  "inputSha256": "2d800a7c651d794a69ffdf0cb1f8e77c1c73dc85d83d05953e3033512000a35b",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++8级.pdf",
+    "mirrorSha": "eb96c448a8376d1ddd37ea152f1e62cd51977e82",
+    "mirrorBytes": 1452803,
+    "shaVerified": true,
+    "sha256": "33d21f12bfc191514a8c296c357736d0f00546668057a0efaf52a93130b47251"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP、C++ 八级、2024 年 03 月』，与 paperId 2024-03-l8 一致；共 9 页，含单选 15 题（答案表 D C B A C D D A D B C A C B C）、判断 10 题（答案表 ××√×××√√√√）、编程 2 题（公倍数问题、接竹竿）。候选 questionIds [5,6,9,11,22,24,26,27] 与原卷题号、页位逐一对应（Q5/Q6→p2、Q9→p2-3、Q11→p3、Q22/Q24→p5、Q26→p6-7、Q27→p7-9）；原卷编程题部分未印刷时间/内存限制，候选 timeLimit=1.0 s、memoryLimit=128 MB 无原卷对应条目、不构成冲突。"
+    },
+    "questions": [
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 5 题题干为『使用邻接表表达一个无向简单图，图中包含 v 个顶点、e 条边，则该表中边节点的个数为（ ）。』；候选 question 语义与页图逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 v×(v−1)、v×v、2×e、e；候选 options 内容与顺序一致，上一轮批准的选项修复已真实落入候选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 5 格为 C（0 起始索引 2），候选 answer=2 一致；独立推导：无向简单图每条边在其两个端点的邻接链表中各挂一个边结点，共 2e 个。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项辨析 A（有向完全图弧数 v(v−1)）、B（邻接矩阵元素数 v²）、C（2e 正确）、D（有向图出边表结点数 e），独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题干、选项、答案表映射与解析独立核对无误，上一轮修复已真实落入候选。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干为『关于生成树的说法，错误的是（ ）。』；候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为『一个无向连通图可以有多个生成树。』『一个无向图，只要连通，就一定有生成树。』『n 个顶点的无向完全图，有 n^{n−2} 棵生成树。』『n 个顶点的无向图，生成树包含 n-1 条边。』；候选内容与顺序一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 6 格为 D（0 起始索引 3），候选 answer=3 一致；独立推导：A 正确（去环上不同边得不同生成树）；B 正确（DFS/BFS 必得 n−1 条边的生成树）；C 为凯莱公式 n^{n−2}（n=3 时 3、n=4 时 16）；D 漏掉『连通』前提，不连通时不存在覆盖全部顶点的生成树，故 D 为错误项。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项分析与独立推导一致，含生成森林 n−k 边数的补充说明，无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "四维独立核对无误。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 9 题题干『如下图所示，半径为 r、圆心角为 t（弧度）的扇形，下面哪个表达式能够求出顶部阴影部分的面积？（ ）。』并配扇形图；页图阴影为弦与弧围成的顶部弓形（r 标在右侧半径、t 标在圆心角处），候选以文字注明『阴影为扇形顶部由弦与弧围成的弓形，即扇形面积减去两条半径与弦构成的三角形面积』，与图意一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A–D 依次为 r*r*sin(t)/2、r*r*t/2、r*r*(t−sin(t))、r*r*(t−sin(t))/2；候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 9 格为 D（0 起始索引 3），候选 answer=3 一致；独立推导：扇形面积 r²t/2 − 三角形面积 r²sin(t)/2 = r²(t−sin(t))/2，对应 D。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按扇形减三角形推导并化简至 D，逐项排除 A/B/C（C 少除以 2），独立复算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题干含图的文字化转写与页图核对一致，答案推导独立成立。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题程序为无记忆化的 choose(n,m) 帕斯卡递归；候选 question 代码块与之逐行一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A–D 依次为 O(2^n)、O(2^m × (n−m))、O(C(n,m))、O(m × (n−m))；候选一致。注意本题与 2023-12-l8 第 11 题共用同一组选项但程序不同：本题无记忆化、答案为 C，2023-12-l8 为带记忆化、答案为 D，两卷候选各自映射正确。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 11 格为 C（0 起始索引 2），候选 answer=2 一致；独立推导：无记忆化递归树中每个叶结点对应一个边界项（m==0 或 m==n），共 C(n,m) 个叶、每个内部结点恰分裂为两个子结点，总调用数 2C(n,m)−1 = O(C(n,m))，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按叶结点计数推导 O(C(n,m))，并说明 D 为记忆化版本的状态数不适用于本题；独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "无记忆化帕斯卡递归的调用计数独立推导与候选解析一致，答案 C 映射无误。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 7 题题干为『已知 int 类型的变量 a、b 和 c 中分别存储着一个三角形的三条边长，则这个三角形的面积可以通过表达式 sqrt((a + b + c) * (b + c - a) * (a + c - b) * (a + b - c)) / 4 求得。』；候选与页图一致（原卷『表达 式』为换行排版残空格，候选照录）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题仅含『正确/错误』两项。PDF 第 5 页判断第 7 题选项为『正确/错误』两项，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 7 格为 √（0 起始索引 0），候选 answer=0 一致；独立推导：海伦公式 S=sqrt(s(s−a)(s−b)(s−c))，s=(a+b+c)/2，代入展开恰为题述表达式，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的海伦公式代入展开推导独立复算无误。注句『int 类型只影响数值精度』表述偏宽（大边长时乘积可整型溢出，超出精度范畴），但该注不承载判分内容、上一轮复核最终以 changes 为空通过，本轮按『表述瑕疵、不影响答案与核心推导』不再另改，仅在此记录；上一轮复核证据中『现按溢出风险重写解析』与其实际空 changes 存在记录不一致，已向整合环节说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "判断题答案 √ 经答案表页图与独立公式推导双重确认；解析核心推导无误，int 注句的表述瑕疵留档不影响应用。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 24,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页判断第 9 题题干为『在 N 个元素的二叉排序树中查找一个元素，平均情况的时间复杂度是 O(logN)。』；候选一致。注意本题限定『平均情况』，与 2023-12-l8 第 24 题『最好情况』版本不同：本题按平均口径命题为真，答案 √ 无争议（2024-03-l8 的争议题为第 19/21 题，不在本轮候选）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "判断题仅含『正确/错误』两项。PDF 第 5 页判断第 9 题选项为『正确/错误』两项，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 5 页判断题答案表第 9 格为 √（0 起始索引 0），候选 answer=0 一致；独立推导：随机形态二叉排序树平均查找长度为 O(log n)，最差（退化为链）为 O(n)；题干限定平均情况，命题正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按平均/最差口径区分论证，独立推导一致；上一轮批准的解析修订已真实落入候选。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "答案表 √ 与平均口径推导双重确认无误。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6 页题面、输入/输出描述与样例（2 5 2→9、100 100 100→185233 及样例解释 1×1+2×4=9）和候选 question 一致；原卷『则它同可以时满足』为印刷字序错误，候选规范为『则它同时可以满足』；数据规模原卷印『对于 30/60/100 的测试点』（百分号排版丢失），候选规范为 30%/60%/所有测试点，约束 N,M,K≤10 / ≤500 / N,M≤10^5、K≤10^6 未变。上一轮补入的数据规模已真实落入候选。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：位置 (i,j) 能取 x 当且仅当 i|x 且 j|x，故 ans_x=(#{i≤N:i|x})×(#{j≤M:j|x})，答案为 Σx·ans_x；候选解析与参考程序均按此统计，样例 9、185233 经独立逐 x 约数枚举复算吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与 PDF 第 7 页参考程序（3.1.11 节）逐行等价（仅 iostream/vector 头换 bits/stdc++，变量与逻辑一致）：同为 count_divisors 倍增筛约数计数 + Σk·s_N[k]·s_M[k]。本轮以 clang++ -std=c++17 -O2 真实编译运行：官方样例 9、185233 输出逐字节一致；边界 1 1 1→1、2 3 5→36、1000 1000 10000→5601564957（结果超 2^31，由独立逐 x 约数枚举而非筛法复算同为 5601564957）全部通过；另以 80 组 1≤N,M≤30、1≤K≤60 随机数据与独立暴力对拍零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原样例1",
+            "input": "2 5 2\n",
+            "output": "9",
+            "reason": "PDF 3.1.5/3.1.6 原样例，实测一致。"
+          },
+          {
+            "name": "原样例2",
+            "input": "100 100 100\n",
+            "output": "185233",
+            "reason": "PDF 3.1.8/3.1.9 原样例，实测一致。"
+          },
+          {
+            "name": "边界:最小规模",
+            "input": "1 1 1\n",
+            "output": "1",
+            "reason": "唯一位置 (1,1) 只能取 1，ans_1=1。"
+          },
+          {
+            "name": "边界:非平凡计数",
+            "input": "2 3 5\n",
+            "output": "36",
+            "reason": "ans=(1,4,2,4,1)，Σk·ans=1+8+6+16+5=36，独立逐 x 约数枚举核对。"
+          },
+          {
+            "name": "边界:long long 上界",
+            "input": "1000 1000 10000\n",
+            "output": "5601564957",
+            "reason": "结果超过 32 位整型；独立逐 x 约数枚举复算同为 5601564957。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面与样例经页图独立核对（含原卷印刷字序/百分号排版的规范转写说明）；参考程序真实编译，原样例、三条独立边界与 80 组随机对拍全部通过。五维无缺陷，changes 为空，verdict=approve。与 DeepSeek 本轮报告结论一致。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 7—8 页题面、输入/输出格式、样例（1 / 6 / 1 2 2 3 1 3 / 4 组询问 → 1/1/0/2）与数据范围表（子任务1 30%、T≤5、n≤100、q≤100、maxA≤13；子任务2 30% 且所有询问右端点等于 n；子任务3 40%；全部 1≤T≤5、1≤n≤1.5×10^4、1≤q≤1.5×10^4、1≤A_i≤13）与候选 question 一致；样例解释的队列变化 {}→{1}→{1,2}→{1,2,2}→{1}→{1,3}→{1,3,1}→{}→{3} 与游戏规则核对无误。上一轮补入的数据范围表已真实落入候选。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：预处理每位置下一次同点数出现的位置 nxt 与倍增表，询问时先统计不可消去的单张牌、再用倍增成段跳过可整体消去的区间；样例 1/1/0/2 经逐询问队列模拟独立复算吻合（[1,6] 消去 1,2,2,3,1 五张剩 3 号一张等）。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 与 PDF 第 8—9 页参考程序（3.2.7 节）结构逐行对应，仅第 20 行不同：候选为 nxt[i][0]=n+1，原卷印作 nxt[a[i]][0]=n+1（下标为点数值而非位置）。已放大页图核实原卷确为 nxt[a[i]][0]。独立分析：原卷写法在『某点数值 v 的最右出现位于 i<v≤n 且位置 v 已先处理』时会把已算好的 nxt[v][0] 破坏为 n+1。以合法数据 n=14、A=[1,10,2,5,1,2,3,4,1,5,2,5,3,4]、询问 [10,12] 双版本实测：候选输出 0（a[10..12]=5,2,5 两张 5 消尽，独立队列模拟同为 0），忠实转录原卷程序的版本输出 3（错误），证实原卷该行存在缺陷而候选为正确写法；官方样例与 n≤9 的一般数据不触发该缺陷，与 DeepSeek『n≤9 对拍零差异』的记录相容。候选其余部分（pos 数组跨组 memset 重置、倍增转移 nxt[i][j]=nxt[nxt[i][j−1]+1][j−1]、询问双循环与输出）与原卷一致。本轮另以 120 组多组随机数据与直接队列模拟对拍零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原样例1",
+            "input": "1\n6\n1 2 2 3 1 3\n4\n1 3\n1 6\n1 5\n5 6\n",
+            "output": "1\n1\n0\n2",
+            "reason": "PDF 3.2.4 原样例，实测一致。"
+          },
+          {
+            "name": "边界:单张牌",
+            "input": "1\n1\n5\n1\n1 1\n",
+            "output": "1",
+            "reason": "区间只有一张牌，无法消去。"
+          },
+          {
+            "name": "边界:连续同值消去",
+            "input": "1\n4\n1 1 1 1\n3\n1 4\n2 4\n2 3\n",
+            "output": "0\n1\n0",
+            "reason": "[1,4] 两两消尽；[2,4] 剩一张；[2,3] 消尽。"
+          },
+          {
+            "name": "边界:多组数据重置",
+            "input": "2\n1\n7\n1\n1 1\n3\n4 4 5\n2\n1 3\n2 3\n",
+            "output": "1\n1\n2",
+            "reason": "第二组 [1,3]=4,4,5 消 4,4 剩 5 →1；[2,3]=4,5 不消 →2；验证 pos 数组跨组重置。"
+          },
+          {
+            "name": "边界:原卷程序缺陷对拍（候选正确值）",
+            "input": "1\n14\n1 10 2 5 1 2 3 4 1 5 2 5 3 4\n1\n10 12\n",
+            "output": "0",
+            "reason": "a[10..12]=5,2,5 两张 5 消尽剩 0 张，独立队列模拟同为 0；原卷写法同输入实测输出 3（错误），见 referenceCode 与 unresolved。"
+          }
+        ],
+        "unresolved": [
+          "原卷参考程序（3.2.7 节）第 20 行印作 nxt[a[i]][0]=n+1，下标为点数值而非位置；经合法数据 n=14 反例双版本实测（候选 0 / 原卷程序 3），原卷写法会输出错误结果，站内候选写法 nxt[i][0]=n+1 为正确实现，予以保留。该缺陷属原卷源缺陷性质，仅记录留证，不改候选。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "题面、样例、数据范围经页图独立核对；参考程序真实编译，原样例、四条独立边界与 120 组随机对拍全部通过。DeepSeek 本轮报告称候选与原卷参考程序『语义一致』，未发现第 20 行写法差异；本轮以页图放大与双版本实测更正该结论：原卷写法在合法数据上可输出错误结果，候选为正确实现，其余部分与原卷一致；上一轮『站内 referenceCode 与原卷参考程序逐行比对一致』的记录与页图不符，一并更正留档。缺陷仅记录，不改候选内容，verdict=approve。"
+      }
+    ],
+    "summary": "8 道候选（Q5、Q6、Q9、Q11、Q22、Q24、Q26、Q27）的题干、选项、答案表映射、解析与参考程序均经原卷页图与文本层独立核对；判断题两题的 √ 经答案表页图与独立公式/复杂度推导双重确认。Q26/Q27 参考程序以 clang++ -std=c++17 -O2 真实编译运行，原样例、独立边界（含超 2^31 的约数和上界、多组数据重置、原卷缺陷对拍）与随机对拍全部通过。本轮新发现并留证：原卷 Q27 参考程序第 20 行 nxt[a[i]][0]=n+1（下标为点数值）在合法数据上输出错误结果（实测候选 0 / 原卷 3），候选 nxt[i][0] 为正确实现，予以保留；上一轮『逐行比对一致』的记录与页图不符，已更正。无其他待修项，八题 verdict=approve、changes 为空，候选可原样进入门禁。"
+  }
+}

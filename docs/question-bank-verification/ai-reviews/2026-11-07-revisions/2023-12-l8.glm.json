@@ -1,0 +1,313 @@
+{
+  "paperId": "2023-12-l8",
+  "phase": "glm",
+  "questionIds": [
+    4,
+    6,
+    8,
+    11,
+    26,
+    27
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:35:00Z",
+  "completedAt": "2026-11-25T12:40:00Z",
+  "finishReason": "stop",
+  "inputSha256": "d7f2b13d9d3beac250773915647bf60751a7b6a7574cecc0c7df10e816c34c64",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++8级.pdf",
+    "mirrorSha": "660ecc3145534eb96284fb9af099591e239f82c2",
+    "mirrorBytes": 2113648,
+    "shaVerified": true,
+    "sha256": "17316ebcb8543990cc59e49592a201e870bfd271eeaa642f19e37f24be7b7421"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2023-12-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为『CCF 编程能力等级认证 GESP、C++ 八级、2023 年 12 月』，与 paperId 2023-12-l8 一致；共 11 页，含单选 15 题（答案表 C A D B C D A C A C D B B A C）、判断 10 题（答案表 ×√√×√√×××√）、编程 2 题（奖品分配、大量的工作沟通）。候选 questionIds [4,6,8,11,26,27] 与原卷题号、页位逐一对应（Q4→p1、Q6/Q8→p2、Q11→p3、Q26→p6-9、Q27→p9-11）。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 4 题题干为『使用邻接矩阵表达 n 个顶点的有向图，则该矩阵的大小为（ ）。』（n 为斜体变量、两侧留空格）；候选 question 的去空格转录与页图逐字对应。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A–D 依次为 n×(n+1)、n×n、n×(n−1)、n×(n−1)/2；候选 options 内容与顺序一致，上一轮批准的原卷选项恢复已真实落入候选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 4 格为 B（0 起始索引 1），候选 answer=1 一致；独立推导：n 个顶点有向图的邻接矩阵为 n 行 n 列方阵，共 n² 个元素。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按 n×n 方阵说明并逐项排除 A/C/D，对 n×(n−1)/2 为无向完全图无序边对数的辨析无误；独立推导与结论一致，未虚构内容。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：上一轮批准的 options/explanation 修复已真实落入本轮候选且与原卷页图一致；答案表第 4 格 B 与 answer=1 映射无误。五个维度均无实质缺陷，changes 为空，verdict=approve。与 DeepSeek 本轮报告结论一致。"
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干为『一个无向图包含 n 个顶点，则其最小生成树包含多少条边？（ ）。』；候选 question 语义与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 n−1、n、n+1、最小生成树可能不存在。；候选转录为『n-1 条边/n 条边/n+1 条边/最小生成树可能不存在』，A–C 按题干问法补『条边』，内容与顺序和页图一致，上一轮恢复的原卷 A/B 顺序已真实落入候选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 6 格为 D（0 起始索引 3），候选 answer=3 一致；独立推导：连通无向图生成树恰含 n−1 条边，题面未保证连通，图不连通时最小生成树不存在，故 D 最严谨。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按『未保证连通』论证 D 并逐项辨析 A/B/C，独立复算无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "选项、答案映射与解析均独立核对无误，上一轮修复已真实落入候选。五维无缺陷，changes 为空，verdict=approve。"
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 8 题题干『对有 n 个元素的二叉排序树进行中序遍历，其时间复杂度是（ ）。』与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A–D 依次为 O(1)、O(log(n))、O(n)、O(n²)；候选一致，上一轮恢复的 A/B 已真实落入候选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 8 格为 C（0 起始索引 2），候选 answer=2 一致；独立推导：中序遍历按『左-根-右』访问每结点恰好一次，与树形是否平衡无关，为 O(n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项分析 A/B/C/D 与独立推导一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立核对通过，上一轮修复已真实落入候选。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页第 11 题程序为带 record_choose[MAXN][MAXM] 记忆化的 choose(n,m) 递归；候选 question 代码块与之逐行一致（仅排版空白差异）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A–D 依次为 O(2^n)、O(2^m × (n−m))、O(C(n,m))、O(m × (n−m))；候选 options[1] 已按原卷修正为 O(2^m × (n-m))，上一轮的 B 项修复真实落入候选。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 11 格为 D（0 起始索引 3），候选 answer=3 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：记忆化后可达状态满足 0≤j≤m 且 0≤i−j≤n−m，构成 m 行 × (n−m+1) 列带状区域，共 O(m(n−m)) 个状态、每状态 O(1) 转移，与 D 一致；解析中 B 项表述已随选项同步修正，无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "非编程题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认 B 项选项修复已真实落入候选且与原卷页图一致；答案 D 的记忆化状态数推导独立成立。changes 为空，verdict=approve。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 6—8 页题面、输入/输出描述与候选 question 逐字对应（去空格排版等价）：N 名同学学号 0..N−1、M 类奖品 a_i、N≤Σa_i≤N+1、方案数对 1e9+7 取模、T 组班级；数据规模 30% N≤10、另外 30% M=2、全部 N≤1000、T≤1000、M≤1001 与 3.1.10 节一致，上一轮补入的数据规模已真实落入候选。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析『按奖品种类依次分配，剩 sum 件中选 a_i 个位置，方案数 ∏C(sum,a_i)』与独立推导一致（多重集排列计数）；样例 3/4/20 与 1/1/125970/895031741/307187590 经 Python math.comb 独立复算全部吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 为 PDF 第 8—9 页参考程序（3.1.11 节）的等价压缩：同为杨辉三角预处理组合数 + 逐类 C[sum][a_i] 相乘 + sum 递减，scanf 换 cin 不改变语义。本轮以 clang++ -std=c++17 -O2（本机无 bits/stdc++ 头，经标准头聚合 shim 等价编译）真实编译运行：两组官方样例输出逐字节一致；边界 N=M=1→1、N=2 a=[2,1]（sum=N+1 两类选择）→3、N=1000 a=[500,501]（sum=N+1 上限规模）→728534264（C(1001,500) mod 1e9+7，Python math.comb 独立计算）全部通过；另以 120 组 T≤4、n≤12、a_i≤6 随机数据与多重集排列公式对拍零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原样例1",
+            "input": "3\n3 2 1 2\n3 2 1 3\n5 3 3 1 1\n",
+            "output": "3\n4\n20",
+            "reason": "PDF 3.1.5/3.1.6 原样例，实测一致。"
+          },
+          {
+            "name": "原样例2",
+            "input": "5\n100 1 100\n100 1 101\n20 2 12 8\n123 4 80 20 21 3\n999 5 101 234 499 66 99\n",
+            "output": "1\n1\n125970\n895031741\n307187590",
+            "reason": "PDF 3.1.8/3.1.9 原样例，实测一致。"
+          },
+          {
+            "name": "边界:最小规模 N=M=1",
+            "input": "1\n1 1 1\n",
+            "output": "1",
+            "reason": "1 名同学、0 号奖品 1 个，唯一方案。"
+          },
+          {
+            "name": "边界:剩余1件两类选择 sum=N+1",
+            "input": "1\n2 2 2 1\n",
+            "output": "3",
+            "reason": "2 名同学分 2 个 0 号、1 个 1 号：(0,0)/(0,1)/(1,0) 共 3 种，手算核对。"
+          },
+          {
+            "name": "边界:上限规模 sum=N+1",
+            "input": "1\n1000 2 500 501\n",
+            "output": "728534264",
+            "reason": "方案数 = C(1001,500) mod 1e9+7，Python math.comb 独立计算同为 728534264。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面、样例、数据规模经页图独立核对；参考程序真实编译，原样例、三条独立边界与 120 组随机对拍全部通过；原卷 3.1 节时间限制 1.0 s、内存 128.0 MB 与候选 timeLimit/memoryLimit 一致，无元数据争议。五维无缺陷，changes 为空，verdict=approve。与 DeepSeek 本轮报告结论一致。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 9—10 页题面、输入/输出描述与候选 question 逐字对应：0 号员工为老板、『x 可以管理 y 当且仅当 x=y，或 x=f_y，或 x 可以管理 f_y』、找编号最大的可管理所有参与者的员工；数据规模 25% N≤50、50% N≤300、全部 3≤N≤10^5、Q≤100、m≤10^4 与 3.2.10 节一致，上一轮补入的数据规模已真实落入候选。输入格式第二行『N−1 个用空格隔开的正整数』为原卷原文，候选原样保留（其与样例 f_1=0 的矛盾见 unresolved）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题在原卷答案表中无条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析『公共管理者 = 参与者的最近公共祖先，答案 = 根到 LCA 路径上的最大编号 mxId[LCA]』与独立推导一致（能管理 y 的员工恰为 y 到根路径上的点，含 y 自身）；两组样例输出 2/2/0 与 2/1/1/1/0 经独立复算吻合，样例解释（员工 3,4 共同领导 2 等）核对无误。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选 referenceCode 为 PDF 第 10—11 页参考程序（3.2.11 节）的等价压缩：同为链式前向星建树、dfs 求 mxId 与重儿子、gettp 求剖分、lca 查询、输入 ++fa[i] 把 0 起始编号转 1 起始、输出 mxId[x]−1。本轮以 clang++ -std=c++17 -O2 真实编译运行：两组官方样例输出逐字节一致；边界 N=3 合法链（f=0 1）三人查询→0、{1,2}→1、最大编号不在 LCA 路径的树（f=2 0 1 1）→2/0、星形（f=0 0 0）m=N→0 全部通过；另以 120 组 3≤n≤9 的合法随机树与『逐员工向上收集管理者集合取交集取最大编号』暴力对拍零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原样例1",
+            "input": "5\n0 0 2 2\n3\n2 3 4\n3 2 3 4\n2 1 4\n",
+            "output": "2\n2\n0",
+            "reason": "PDF 3.2.5/3.2.6 原样例，实测一致。"
+          },
+          {
+            "name": "原样例2",
+            "input": "7\n0 1 0 2 1 2\n5\n2 4 6\n2 4 5\n3 4 5 6\n4 2 4 5 6\n2 3 4\n",
+            "output": "2\n1\n1\n1\n0",
+            "reason": "PDF 3.2.8/3.2.9 原样例，实测一致。"
+          },
+          {
+            "name": "边界:最小 N=3 合法链",
+            "input": "3\n0 1\n2\n3 0 1 2\n2 1 2\n",
+            "output": "0\n1",
+            "reason": "链 0←1←2：三人共同管理者仅 0 号老板；1、2 的共同管理者最大编号 1。"
+          },
+          {
+            "name": "边界:最大编号不在 LCA 路径",
+            "input": "5\n2 0 1 1\n2\n2 3 4\n2 0 4\n",
+            "output": "2\n0",
+            "reason": "树 0←2←1，1←3、1←4：3、4 的共同管理者 {1,2,0} 最大编号 2；含 0 号的查询答案 0。"
+          },
+          {
+            "name": "边界:星形 m=N",
+            "input": "4\n0 0 0\n1\n3 1 2 3\n",
+            "output": "0",
+            "reason": "三个叶子只能由 0 号老板管理，m 取最大值 N=4 中的 3 人。"
+          }
+        ],
+        "unresolved": [
+          "原卷输入格式第二行写『N−1 个用空格隔开的正整数』，而第 10 页样例 1 第二行为『0 0 2 2』（f_1=0），原卷『正整数』表述与其自身样例不符（按编号 0 起始应为非负整数）；候选保持原卷原文未擅自改写，争议留证待人工定案。",
+          "原卷 3.2 节印刷时间限制为 2.0 s（内存 128.0 MB），候选 timeLimit 字段为 1.0 s；该元数据字段不在本轮五维可改范围，记录待处理。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "题面、样例、数据规模经页图独立核对；参考程序真实编译，原样例、三条独立边界与 120 组合法随机树对拍全部通过。DeepSeek 本轮报告的两项 unresolved（『正整数』表述与样例 f_1=0 矛盾、原卷 2.0 s 与候选 1.0 s 的元数据差异）经我独立对照页图与文本层确认属实，按要求一并留证；其余五维无缺陷，changes 为空，verdict=approve。"
+      }
+    ],
+    "summary": "6 道候选（Q4、Q6、Q8、Q11、Q26、Q27）的题干、选项、答案表映射、解析与参考程序均经原卷页图与文本层独立核对；Q26/Q27 参考程序以 clang++ -std=c++17 -O2 真实编译运行，原样例、独立边界（含 sum=N+1 上限规模的 C(1001,500) 取模、合法最小链/星形/最大编号不在 LCA 路径的树）与随机对拍全部通过；上一轮批准的全部修改已确认真实落入候选。Q27 的原卷『正整数』表述与样例 f_1=0 的矛盾、原卷时间限制 2.0 s 与候选 timeLimit=1.0 s 的元数据差异按要求留证（unresolved），不影响应用。除两项留证外无待修项，六题 verdict=approve、changes 为空，候选可原样进入门禁。"
+  }
+}
