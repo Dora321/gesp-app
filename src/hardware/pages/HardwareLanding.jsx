@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Box, CircuitBoard, Cpu, Lightbulb, Trophy } from 'lucide-react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import { scienceCourses } from '../../data/innovationCourseCatalog';
+import { getLessonStatus, LESSON_STATUS_META, readLessonProgress } from '../../utils/lessonProgress';
+import { LEARNING_DATA_EVENT } from '../../utils/learningData';
 
 const advancedStages = [
     { title: '第一阶段 · 读懂 AI', range: '第 1–5 课', start: 1, end: 5 },
@@ -24,6 +26,20 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
     const course = scienceCourses[courseId];
     const advanced = courseId === 'advanced';
     const Icon = courseIcons[courseId] || Lightbulb;
+    const [progress, setProgress] = useState(() => readLessonProgress());
+    // 学生可能刚从某一课点完「标记已过关」返回，这里随学习数据变化刷新卡片状态。
+    useEffect(() => {
+        const refresh = () => setProgress(readLessonProgress());
+        refresh();
+        window.addEventListener(LEARNING_DATA_EVENT, refresh);
+        window.addEventListener('storage', refresh);
+        window.addEventListener('focus', refresh);
+        return () => {
+            window.removeEventListener(LEARNING_DATA_EVENT, refresh);
+            window.removeEventListener('storage', refresh);
+            window.removeEventListener('focus', refresh);
+        };
+    }, []);
     const lessonGroups = advanced
         ? advancedStages.map((stage) => ({ ...stage, lessons: course.lessons.filter((lesson) => lesson.id >= stage.start && lesson.id <= stage.end) }))
         : [{ title: null, lessons: course.lessons }];
@@ -50,7 +66,7 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                     <aside className="mt-6 rounded-2xl border border-amber-300 bg-amber-50 p-6" aria-labelledby="arduino-3d-title">
                         <h2 id="arduino-3d-title" className="flex items-center gap-2 text-xl font-bold"><Box size={24} aria-hidden="true" />Arduino 3D 互动课程</h2>
                         <p className="mt-3 text-sm leading-7 text-stone-600">在 3D 电路板上连接 LED、按键、传感器和电机，运行代码观察效果。16 节入门课程，适合配合下面的网页课件动手练习。</p>
-                        <a href="https://dora321.github.io/gesp-app/courseware/arduino/3d-course/" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-stone-950 px-5 py-3 font-bold text-amber-100 hover:bg-stone-800">进入 3D 互动课程<ArrowRight size={18} aria-hidden="true" /></a>
+                        <a href={`${import.meta.env.BASE_URL}courseware/arduino/3d-course/`} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-stone-950 px-5 py-3 font-bold text-amber-100 hover:bg-stone-800">进入 3D 互动课程<ArrowRight size={18} aria-hidden="true" /></a>
                         <p className="mt-3 text-xs text-stone-500">作者 Dilum Sanjaya（<a href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">x.com/DilumSanjaya</a>），原站 <a href="https://learn-arduino-red.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">learn-arduino-red.vercel.app</a>；离线镜像供课堂使用，感谢原作者。</p>
                     </aside>
                 )}
@@ -69,12 +85,29 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                         <div key={group.title || courseId} className="mb-9">
                             {group.title && <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-stone-300 pb-3"><h3 className="text-lg font-bold">{group.title}</h3><span className="text-sm text-stone-600">{group.range}</span></div>}
                             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                                {group.lessons.map((lesson) => (
-                                    <Link key={lesson.id} to={lesson.path} className="group flex min-h-32 items-center gap-4 rounded-2xl border border-stone-300 bg-[#fffdf8] p-5 transition hover:border-amber-700 hover:shadow-md">
-                                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-base font-black text-stone-800">{String(lesson.id).padStart(2, '0')}</span>
-                                        <span className="flex-1"><span className="block text-xs font-bold text-stone-500">{lesson.label || `第 ${lesson.id} 课`}</span><span className="mt-1 block text-lg font-bold">{lesson.title}</span><span className="mt-2 block text-sm text-amber-800">打开网页课件 →</span></span>
-                                    </Link>
-                                ))}
+                                {group.lessons.map((lesson) => {
+                                    const status = getLessonStatus(lesson.path, progress);
+                                    // 未学的课不显示标签：目录本身已经很长，无信息的「未学」只会增加噪音。
+                                    const statusMeta = status === 'unseen' ? null : LESSON_STATUS_META[status];
+                                    return (
+                                        <Link key={lesson.id} to={lesson.path} className="group flex min-h-32 items-center gap-4 rounded-2xl border border-stone-300 bg-[#fffdf8] p-5 transition hover:border-amber-700 hover:shadow-md">
+                                            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-base font-black text-stone-800">{String(lesson.id).padStart(2, '0')}</span>
+                                            <span className="flex-1">
+                                                <span className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                                                    <span className="block text-xs font-bold text-stone-500">{lesson.label || `第 ${lesson.id} 课`}</span>
+                                                    {statusMeta && (
+                                                        <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-bold ring-1 ${statusMeta.chip}`}>
+                                                            <span className={`h-1.5 w-1.5 rounded-full ${statusMeta.dot}`} aria-hidden="true" />
+                                                            {statusMeta.label}
+                                                        </span>
+                                                    )}
+                                                </span>
+                                                <span className="mt-1 block text-lg font-bold">{lesson.title}</span>
+                                                <span className="mt-2 block text-sm text-amber-800">打开网页课件 →</span>
+                                            </span>
+                                        </Link>
+                                    );
+                                })}
                             </div>
                         </div>
                     ))}

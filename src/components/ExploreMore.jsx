@@ -37,7 +37,7 @@ const items = [
         title: 'Arduino 3D 互动课程',
         desc: '在 3D Arduino 电路板上连接 LED、按键、传感器和电机，运行代码观察效果，跟着 16 节入门课程动手练习。',
         action: '进入 3D 互动课程',
-        href: 'https://dora321.github.io/gesp-app/courseware/arduino/3d-course/',
+        href: `${import.meta.env.BASE_URL}courseware/arduino/3d-course/`,
         icon: Box,
     },
     {
