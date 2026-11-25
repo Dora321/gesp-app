@@ -1,0 +1,68 @@
+{
+  "paperId": "2026-03-l8",
+  "phase": "glm",
+  "questionIds": [
+    19
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:35:00.000Z",
+  "completedAt": "2026-11-25T09:02:30.000Z",
+  "finishReason": "stop",
+  "inputSha256": "f35d9266802081a1da8d2c3f53c499de93dee31d41b91abbf09cefda378d2981",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++8级.pdf",
+    "mirrorSha": "d8f9823da8c6bd363e900a039a9f0baa05b88add",
+    "mirrorBytes": 970894,
+    "shaVerified": true,
+    "sha256": "4b4098ce5ece3bef5c3d3e3ab96377705ed7c9575df81d8fa565c47ab15362c4"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2026-03-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为「CCF 编程能力等级认证 GESP / C++ 八级 / 2026 年 03 月」，与 paperId 2026-03-l8 一致；第 4 页含单选答案表 1—15（D B B C B C B B B C C B A C A）与判断题答案表 1—10（× √ √ × × × √ √ √ ×），本题为第 4 页判断题第 4 题，与 DeepSeek 初核一致。"
+    },
+    "questions": [
+      {
+        "id": 19,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断题第 4 题原文「若一个无向图的最小生成树唯一，则图中所有边权必定各不相同。（ ）」与候选 question 逐字一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断题答案表第 4 题为 ×，0 起始映射 1，候选 answer=1。独立复核反例 1：三角形三边权 1、1、2 的三棵生成树权和为 2、3、3，MST 唯一（两条权 1 边），但边权有重复——「MST 唯一 ⇒ 边权全异」不成立；反例 2：3 顶点 2 条边 1-2(1)、2-3(1)，图本身即树，生成树唯一而边权相同。反向定理「边权互异 ⇒ MST 唯一」成立（Kruskal 中互异权使每步选择唯一），条件关系确为单向，命题为假。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析先说明单向性（互异 ⇒ 唯一成立、逆不成立），再给三角形 1、1,2 与双边树两个反例，末尾点出「充分不必要」考点；两个反例经独立枚举生成树验算成立，与 × 答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面与第 4 页判断第 4 题逐字一致；答案表「×」映射 1 独立复核成立——三角形 1、1、2 三棵生成树权和 2/3/3 故 MST 唯一但边权重复，双边树 1-2(1)、2-3(1) 生成树唯一且边权相同，两反例均成立，「互异 ⇒ 唯一」单向性表述正确；上一轮重写的解析完整自洽。候选正确，changes 为空，批准套用。"
+      }
+    ],
+    "summary": "唯一在册题 Q19 逐项独立复核：题面与第 4 页判断第 4 题逐字一致，判断答案表第 4 题 ×（映射 1）与候选 answer=1 一致，解析两个反例（三角形 1、1、2 的 MST 唯一；双边树生成树唯一而边权相同）与「互异 ⇒ 唯一」单向性均经独立验算成立，changes 为空，approve。"
+  }
+}
