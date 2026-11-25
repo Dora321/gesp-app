@@ -1,0 +1,189 @@
+{
+  "paperId": "2026-03-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T14:40:00.000Z",
+  "completedAt": "2026-11-25T15:26:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "bbf51277c93d2cd6d9b7693d32ca3578caeb6f5c36be979ff29d7d7f78d18974",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1738426015547424.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2026年3月-C++6级.pdf",
+    "mirrorSha": "440d30834c0e6bdec700375405ca7f7094c60505",
+    "mirrorBytes": 1111135,
+    "shaVerified": true,
+    "sha256": "491e4ed33ac381a30936ab82a567f146684d920e3afd295948a99dfe760c6a87"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2026-03-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为「CCF 编程能力等级认证 C++ 六级 2026年03月」，与 2026-03-l6 一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第2页第3题题干与候选 question 一致；题干下 17 行 Pet 代码（第14行 cout << cat.getName(); // ①，第15行 大橘 // ③）与候选 question 内嵌副本一致，code 字段为同一程序的规范排版版本；候选保留原卷没有的 return 0;，为 main 隐式返回的等价写法，不改变唯一编译错误行。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第2页 A 第①行、B 第②行、C 第③行、D 第④行 与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表第3题为 C（索引 2），候选 answer=2；name 为 private，类外 cat.name 赋值是唯一编译错误行。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析判定与逐项分析正确，但第③行引用写作 `cat.name = \"大嘴\";`（文末 setter 示例亦为「大嘴」），与题干/代码第③行的「大橘」不一致，属改题后残留，已在 changes.explanation 中同步为「大橘」。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C（第③行会导致编译错误）**\n\n**核心解析：**\n在 C++ 面向对象编程中，类（class）通过访问修饰符实现对成员的封装与保护：\n- `public`（公有）：修饰的成员（变量或函数）既可以在类内部使用，也可以在类外部被直接访问。\n- `private`（私有）：修饰的成员只能在类自身的成员函数内部使用，类外部（例如 `main()` 函数等全局作用域）无法直接通过对象名点号 `cat.xxx` 访问。\n\n在本题的 `Pet` 类中：\n1. 构造函数 `Pet(...)`、成员函数 `getName()` 与 `birthday()` 位于 `public:` 区域，属于公有成员。\n2. 成员变量 `name` 与 `age` 位于 `private:` 区域，属于私有成员。\n\n第③行代码 `cat.name = \"大橘\";` 试图在类外部的 `main()` 函数中直接对私有成员变量 `name` 进行赋值，这破坏了类的封装性，编译器会提示类似 `'string Pet::name' is private within this context` 的错误。因此第③行会导致编译错误。\n\n**选项逐项分析：**\n- **A 第①行**：❌ 不会报错。`getName()` 是声明在 `public:` 下的公有成员函数，类外的对象 `cat` 有权直接调用该函数读取名字。\n- **B 第②行**：❌ 不会报错。`birthday()` 是公有成员函数，类外可以合法调用。虽然其函数体内部修改了私有变量 `age`（执行 `age++`），但这属于类内部的成员函数操作自己的成员，完全符合访问权限规则。\n- **C 第③行**：✅ 会导致编译错误。变量 `name` 是声明在 `private:` 下的私有成员变量，类外代码不能直接通过 `cat.name` 读取或修改，直接赋值必然引发编译错误。\n- **D 第④行**：❌ 不会报错。`cat.getName()` 调用公有成员函数返回字符串，再通过 `cout` 打印输出，属于标准合法的流输出语句。\n\n**易错提醒：**\n- **分清“谁在访问私有成员”**：很多同学容易误选第②行，认为 `age` 是私有的，所以 `cat.birthday()` 不能改。实际上，外部调用的只是公有接口 `birthday()`，真正去改 `age` 的是类内部的代码，这是完全合法的。\n- **类与结构体的默认权限**：C++ 中 `class` 若未声明访问控制标签，内部成员默认全为 `private`；而 `struct` 默认全为 `public`。做题时要注意分段标签的位置。\n\n**知识延伸：**\n在面向对象编程中，如果类外确实需要修改私有变量 `name`，规范做法是在 `public` 区提供专用的设置接口（Setter 函数），例如：\n```cpp\nvoid setName(string n) {\n    name = n;\n}\n```\n通过调用 `cat.setName(\"大橘\");` 完成修改，这样可以在函数内部加入数据校验逻辑，保证对象状态的安全与可控。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第8-10页题面、输入/输出格式、样例1「4/1 2 3 4/3 3 1 1→7」、样例2「6/1 1 4 5 1 4/1 2 3 2 1 0→11」、数据范围（40%:2≤n≤10³；全部:2≤n≤10⁵、0≤aᵢ≤10⁹、0≤bᵢ≤n）与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选对 f[i] 的定义（最后一个被选下标 p 满足 p+b[p]≤i）、选 i 更新 ans 与 f[i+b[i]]、跳过则 f[i+1] 传递、b[i]=0 时先算 ans 再更新 f[i] 的说明与代码一致；样例1 选 3、4 得 7，样例2 选 1、2、4、6 得 11。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选与第10页官方参考程序逐行一致（全局 f[N]、ans，i 递增转移）。编译运行样例 7/11、n=2 全 0→0、a=[10⁹,0]→10⁹、b 全 0 时 1+2+3=6、b=[2,0] 时 max(5,6)=6 均一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n 最小全零",
+            "input": "2\n0 0\n0 0\n",
+            "output": "0",
+            "reason": "a 全 0 时任何合法选择收益均为 0，dp[1]=0，覆盖 n=2 与 aᵢ=0 下界。"
+          },
+          {
+            "name": "a 取上界且 b=1",
+            "input": "2\n1000000000 0\n1 0\n",
+            "output": "1000000000",
+            "reason": "选 1 后 p2≥1+1=2，仍可选 2（a2=0）；最大值 10⁹，覆盖 aᵢ 上界。"
+          },
+          {
+            "name": "b 全 0 可选全部",
+            "input": "3\n1 2 3\n0 0 0\n",
+            "output": "6",
+            "reason": "bᵢ=0 时不限制后续下标，1+2+3=6；验证 b=0 时不会重复计入同一元素。"
+          },
+          {
+            "name": "b 阻断相邻选择",
+            "input": "2\n5 6\n2 0\n",
+            "output": "6",
+            "reason": "选 1 后下一可选下标≥3>2，与选 2 互斥；取 max(5,6)=6。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第10-12页题面、输入/输出格式、样例1「4/2 3/4 0/0 0/0 0→4」、样例2「4/2 3/0 0/4 0/0 0→3」、数据范围（40%:1≤n≤500；全部:1≤n≤10⁵）与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无客观答案。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选 mn/mx/chk 三条件判定（左右均完全、mn[l]≥mx[r]、mn[u]≥mx[u]−1）与 referenceCode 一致；样例2 中结点1左深1、右深2 违反条件2，不计入，答案 3 正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "候选与第12页官方参考程序逐行一致（后序 DFS、chk/mn/mx、全局 ans）。编译运行样例 4/3、n=1→1、三结点→3、四结点左链→2、五结点完全树→5 均一致。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "n=1 单结点",
+            "input": "1\n0 0\n",
+            "output": "1",
+            "reason": "单结点本身是满二叉树，答案 1，覆盖最小 n。"
+          },
+          {
+            "name": "三结点满树",
+            "input": "3\n2 3\n0 0\n0 0\n",
+            "output": "3",
+            "reason": "整树与两个叶子均为满二叉树，计数 3；与样例2 相同结构。"
+          },
+          {
+            "name": "左链非满",
+            "input": "4\n2 0\n3 0\n4 0\n0 0\n",
+            "output": "2",
+            "reason": "4 个结点的单左链只有末两个结点构成的子树满（叶子 4 与 3-4），根与 2 的子树高度不齐，计数 2。"
+          },
+          {
+            "name": "完全但非满的 5 结点树",
+            "input": "5\n2 3\n4 5\n0 0\n0 0\n0 0\n",
+            "output": "5",
+            "reason": "根为完全二叉树、左子树 2(4,5) 满；计数为 4、5、2、3、1 共 5，验证“完全”而非仅“满”的判定。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "3 题对照第 1-2、8-12 页：Q3 题面已按原卷修正，但解析两处仍引用旧示例「大嘴」，已提同步修订；Q26/Q27 题面、样例、解析与参考程序均通过（含边界用例）。另注：编程题站点 memoryLimit 统一记为 128 MB，原卷均为 512.0 MB；该字段不属于五维可编辑字段，未纳入本轮修订范围。"
+  }
+}
