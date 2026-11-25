@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-25T06:55:30.588Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "6",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "9",
+          "output": "5",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "最小输入 n=1",
+          "input": "1\n",
+          "output": "1",
+          "reason": "1~1 只有数字 1，集合 {1} 两两互质，最大数量 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "n=10（π(10)=4）",
+          "input": "10\n",
+          "output": "5",
+          "reason": "不超过 10 的素数为 2,3,5,7，加上 1，共 5 个；任意合数都会与某个已选素数冲突。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "上界 n=10^5（π=9592）",
+          "input": "100000\n",
+          "output": "9593",
+          "reason": "不超过 10^5 的素数共 9592 个，加上数字 1，最大数量 9593。",
+          "kind": "boundary",
+          "actual": "9593\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "3c3b16c4e953b0430d53e01b28724e50839c0a5ca989a42ed7caa8d81602e562"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3 8",
+          "output": "19",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "19\n",
+          "passed": true
+        },
+        {
+          "input": "65 36248",
+          "output": "328505490",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "328505490\n",
+          "passed": true
+        },
+        {
+          "name": "单点 l=r=1",
+          "input": "1 1\n",
+          "output": "1",
+          "reason": "1=(1)₂ 含奇数个 1，区间和就是 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "单点 l=r=3（偶数个 1）",
+          "input": "3 3\n",
+          "output": "0",
+          "reason": "3=(11)₂ 含 2 个 1，不是有趣的数，区间和为 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "小前缀 l=1,r=10",
+          "input": "1 10\n",
+          "output": "22",
+          "reason": "满足条件的是 1、2、4、7、8，二进制 1 的个数分别为 1、1、1、3、1，和为 22。",
+          "kind": "boundary",
+          "actual": "22\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "6174d6640df262304fc07259d1f3b4e461bc2d714a82cfbdb2270a58abe06ccd"
+    }
+  ]
+}

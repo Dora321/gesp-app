@@ -1,0 +1,102 @@
+{
+  "executedAt": "2026-11-25T06:55:29.671Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n1 3 5 6 8 10\n2 4 6 7 9 11",
+          "output": "36",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "36\n",
+          "passed": true
+        },
+        {
+          "input": "2\n6 7 9 9\n1 2 10 12",
+          "output": "35",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "35\n",
+          "passed": true
+        },
+        {
+          "name": "n=1 两件物品",
+          "input": "1\n5 6\n7 8\n",
+          "output": "13",
+          "reason": "2n=2 件，B、C 各买 1 件；两种分配分别为 5+8=13、6+7=13，最大 13。",
+          "kind": "boundary",
+          "actual": "13\n",
+          "passed": true
+        },
+        {
+          "name": "全部差值为 0",
+          "input": "1\n0 0\n0 0\n",
+          "output": "0",
+          "reason": "价格全为 0，任选 1 件给 C，总收入 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "大差值优先",
+          "input": "2\n10 1 1 1\n1 1 1 1\n",
+          "output": "13",
+          "reason": "sum(b)=13，差值 c-b 为 -9,0,0,0；选最大的 2 个差值 0、0，收入 13。",
+          "kind": "boundary",
+          "actual": "13\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "e2ca23b746ccb18eeee5590f17bc648bed4c55460de019b9a4509ea33de03acb"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n3 998244353\n5 998244353\n7 998244353",
+          "output": "Yes\nYes\nNo",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "Yes\nYes\nNo\n",
+          "passed": true
+        },
+        {
+          "name": "最小质数 p=3，a=2",
+          "input": "1\n2 3\n",
+          "output": "Yes",
+          "reason": "p-1=2，唯一质因子 q=2，2^(2/2)=2 mod 3 ≠ 1，故 2 是原根。",
+          "kind": "boundary",
+          "actual": "Yes\n",
+          "passed": true
+        },
+        {
+          "name": "p=5，a=4（阶为 2）",
+          "input": "1\n4 5\n",
+          "output": "No",
+          "reason": "p-1=4，q=2，4^2=16 mod 5=1，存在 (p-1)/q 使幂为 1，故 4 不是原根。",
+          "kind": "boundary",
+          "actual": "No\n",
+          "passed": true
+        },
+        {
+          "name": "p=7，两组对照",
+          "input": "2\n3 7\n2 7\n",
+          "output": "Yes\nNo",
+          "reason": "p-1=6，3^3 mod 7=6、3^2 mod 7=2，均不为 1，3 是原根；2^3=8 mod 7=1，2 不是原根。",
+          "kind": "boundary",
+          "actual": "Yes\nNo\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "f94bf8e9a07116daefbe939d31e2992c0becc2526296eec21e65cfbdd70ab757"
+    }
+  ]
+}
