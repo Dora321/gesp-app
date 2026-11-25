@@ -62,9 +62,9 @@ while (n > 0) {
 
 export const ExamTipsModule = () => (
   <div className="space-y-6 animate-fade-in">
-    <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
+    <div className="rounded-2xl border-t-4 border-[var(--mw-line)] bg-[var(--mw-night)] p-6 text-white">
       <h2 className="text-2xl font-bold mb-2 flex items-center gap-3"><Lightbulb /> 考场秘籍</h2>
-      <p className="text-amber-100">GESP 二级考试策略与注意事项，助你稳定发挥。</p>
+      <p className="text-[var(--mw-on-night-2)]">GESP 二级考试策略与注意事项，助你稳定发挥。</p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -5,6 +5,8 @@ import CppLevelSupport from '../components/CppLevelSupport';
 import { OverviewModule, StringModule, ArrayModule } from './course-level3/CoreModules';
 import { BitModule, MathModule, CheckListModule, CodeTraceModule } from './course-level3/ReasoningModules';
 import { TemplatesModule, ExamTipsModule, PracticeModule } from './course-level3/ReviewModules';
+import { paperStats } from '../data/gesp/_stats';
+import { PrintCheatSheetButton } from './CourseLevelUI';
 
 export default function CourseLevel3() {
     const [activeTab, setActiveTab] = useState('overview');
@@ -26,9 +28,9 @@ export default function CourseLevel3() {
     const activeTabInfo = menuItems.find(item => item.id === activeTab);
 
     return (
-        <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900">
+        <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900 print:h-auto print:overflow-visible">
             {/* Mobile Menu Button - Fixed Top */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm print:hidden">
                 <h1 className="text-lg font-bold text-slate-800 flex items-center gap-2">
                     <Link to="/" className="hover:opacity-80 transition-opacity">
                         <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
@@ -51,14 +53,14 @@ export default function CourseLevel3() {
             {/* Sidebar Overlay (Mobile) */}
             {isMobileMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                    className="fixed inset-0 bg-black/50 z-40 md:hidden print:hidden"
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
             )}
 
             {/* Sidebar */}
             <aside className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-transform duration-300
+                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-transform duration-300 print:hidden
                 md:relative md:translate-x-0
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
@@ -71,7 +73,7 @@ export default function CourseLevel3() {
                         </Link>
                         <h1 className="text-xl font-bold text-slate-800">GESP 三级</h1>
                     </div>
-                    <p className="text-xs text-slate-500">实战强化 2026版</p>
+                    <p className="text-xs text-slate-500">实战强化 {paperStats.latestYear} 版</p>
                 </div>
 
                 <nav className="flex-1 overflow-y-auto p-4 space-y-2">
@@ -95,14 +97,15 @@ export default function CourseLevel3() {
                     ))}
                 </nav>
 
-                <div className="p-4 border-t border-slate-100 text-center">
-                    <p className="text-xs text-slate-400">© 2026 GESP 备考互动课件</p>
+                <div className="p-4 border-t border-slate-100 text-center print:hidden">
+                  <PrintCheatSheetButton level={3} className="mb-3" />
+                  <p className="text-xs text-slate-400">© {paperStats.latestYear} GESP 备考互动课件</p>
                 </div>
             </aside>
 
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col min-w-0 pt-16 md:pt-0">
-                <header className="h-16 bg-white border-b border-slate-200 flex items-center px-8 justify-between shrink-0">
+                <header className="h-16 bg-white border-b border-slate-200 flex items-center px-8 justify-between shrink-0 print:hidden">
                     <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
                         {activeTabInfo?.icon && <activeTabInfo.icon className="text-blue-600" size={24} />}
                         {activeTabInfo?.label}
@@ -110,7 +113,7 @@ export default function CourseLevel3() {
                     <span className="text-xs font-medium px-2 py-1 bg-green-100 text-green-700 rounded-full">Level 3</span>
                 </header>
 
-                <main className="flex-1 overflow-y-auto p-8">
+                <main className="flex-1 overflow-y-auto p-8 print:h-auto print:overflow-visible">
                     <div className="max-w-5xl mx-auto">
                         {activeTab === 'overview' && <CppLevelSupport level={3} />}
                         {activeTab === 'overview' && <OverviewModule onStart={setActiveTab} />}

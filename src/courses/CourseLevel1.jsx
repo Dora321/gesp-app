@@ -4,6 +4,8 @@ import { Book, Code, AlertTriangle, Info, Trophy, Lightbulb, Eye, Menu, X } from
 import CppLevelSupport from '../components/CppLevelSupport';
 import CppLessonDirectory from '../components/CppLessonDirectory';
 import { cppL1Lessons } from '../data/cppL1CourseFlow';
+import { paperStats } from '../data/gesp/_stats';
+import { PrintCheatSheetButton } from './CourseLevelUI';
 import { OverviewSection, TopicSection } from './course-level1/CoreModules';
 import { CodeTraceSection, PitfallsSection, TemplatesSection, ExamTipsSection, PracticeSection } from './course-level1/PracticeModules';
 
@@ -38,10 +40,10 @@ const GESPCourseware = () => {
   };
 
   return (
-    <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 text-slate-800 font-sans">
+    <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 text-slate-800 font-sans print:h-auto print:overflow-visible">
       {/* Sidebar */}
       {/* Mobile Menu Button - Fixed Top */}
-      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm print:hidden">
         <h1 className="text-lg font-bold text-indigo-600 flex items-center gap-2">
           <Link to="/" className="hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
@@ -64,14 +66,14 @@ const GESPCourseware = () => {
       {/* Sidebar Overlay (Mobile) */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 z-40 md:hidden print:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 print:hidden
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
@@ -105,14 +107,15 @@ const GESPCourseware = () => {
             </button>
           ))}
         </nav>
-        <div className="p-4 bg-slate-50 text-xs text-slate-400 text-center">
-          针对 2023.03 - 2025.09 真题分析
+        <div className="p-4 border-t border-slate-100 print:hidden">
+          <p className="text-xs text-slate-400 text-center mb-3">覆盖 {paperStats.firstYear}–{paperStats.latestYear} 年真题考点</p>
+          <PrintCheatSheetButton level={1} />
         </div>
       </div>
 
       {/* Main Content */}
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto pt-16 md:pt-0">
+      <main className="flex-1 overflow-y-auto pt-16 md:pt-0 print:h-auto print:overflow-visible">
         <div className="max-w-5xl mx-auto p-4 md:p-8">
           {activeTab === 'overview' && <CppLevelSupport level={1} />}
           {activeTab === 'overview' && (
