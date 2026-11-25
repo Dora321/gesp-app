@@ -101,6 +101,8 @@ dabcabcabcabz`, output: `9` }
 - **下标与长度对应关系：** \`k\` 个 \`abc\` 的总长度是 \`3 * k\`，对应的转移前状态是 \`dp[i - 3 * k]\`，不要误写成 \`dp[i - k]\`。
 - **数据范围：** 字符串较长且得分可能较大，\`dp\` 数组及分值累加建议使用 \`long long\` 防止整型溢出。`,
       tags: ["编程题", "动态规划", "字符串"],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n+1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    int m;\n    string s;\n    cin >> m >> s;\n    s = \" \"+s;\n\n    vector<int> cnt(m+1, 0);\n    for (int i = 3; i <= m; ++i) {\n        if (s[i-2] == 'a' && s[i-1] == 'b' && s[i] == 'c') {\n            cnt[i] = 1;\n            if (i >= 6) cnt[i] += cnt[i-3];\n        }\n    }\n\n    vector<long long> dp(m+1, 0);\n    for (int i = 1; i <= m; ++i) {\n        dp[i] = dp[i-1];\n        for (int k = 1; k <= cnt[i] && k <= n; ++k) {\n            dp[i] = max(dp[i], dp[i-3 * k]+a[k]);\n        }\n    }\n\n    cout << dp[m] << '\\n';\n    return 0;\n}",
       answer: '',
@@ -252,6 +254,8 @@ dabcabcabcabz`, output: `9` }
 - **下标对应关系**：题目输入的父节点从编号 2 开始（第 \`i\` 个数对应节点 \`i + 1\` 的父节点），而初始颜色字符串下标通常为 \`0\` 到 \`n - 1\`，处理节点 \`u\` 时要注意对应的字符位置是 \`s[u - 1]\`。
 - **标记更新顺序**：在 DFS 递归时，必须先将当前节点的 \`mark[u]\` 合并到累积标记 \`flip\` 中，再使用更新后的 \`flip\` 去计算当前颜色和递归子节点，切忌使用未计入自身的旧标记。`,
       tags: ["编程题", "树", "DFS"],
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n\n    string s;\n    cin >> s;\n    s = \" \"+s;\n\n    int q;\n    cin >> q;\n    vector<int> mark(n+1, 0);\n    while (q--) {\n        int x;\n        cin >> x;\n        mark[x] ^= 1;\n    }\n\n    string ans(n, '0');\n    function<void(int,int)> dfs = [&](int u, int flip) {\n        flip ^= mark[u];\n        int color = s[u]-'0';\n        if (flip) color ^= 1;\n        ans[u-1] = char('0'+color);\n        for (int v : g[u]) dfs(v, flip);\n    };\n    dfs(1, 0);\n    cout << ans << '\\n';\n    return 0;\n}",
       answer: '',
@@ -299,11 +303,7 @@ export const paperData = {
 
 **考点：** 面向对象基本思想
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 2,
@@ -341,11 +341,7 @@ export const paperData = {
 
 **知识延伸：**
 静态成员变量必须在类外显式定义并初始化（类内只作声明）。它的生命周期贯穿整个程序运行期，哪怕没有任何对象被创建，静态成员变量也已经存在于静态存储区中。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['静态成员', '类'],
         },
         {
             id: 3,
@@ -381,11 +377,7 @@ export const paperData = {
 
 **考点：** 虚函数与多态、动态绑定
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['面向对象', '类'],
         },
         {
             id: 4,
@@ -419,11 +411,7 @@ export const paperData = {
 
 **考点：** 链式栈的插入操作
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['栈', '链表'],
         },
         {
             id: 5,
@@ -453,11 +441,7 @@ export const paperData = {
 
 **考点：** 栈的特性
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['栈'],
         },
         {
             id: 6,
@@ -489,11 +473,7 @@ export const paperData = {
 
 **考点：** 栈的应用（进制转换）、std::stack 接口
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['栈', '进制转换'],
         },
         {
             id: 7,
@@ -528,11 +508,7 @@ export const paperData = {
 
 **考点：** 循环队列的判满条件
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['队列'],
         },
         {
             id: 8,
@@ -573,11 +549,7 @@ export const paperData = {
 
 **考点：** 哈夫曼树与哈夫曼编码
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['哈夫曼编码'],
         },
         {
             id: 9,
@@ -610,11 +582,7 @@ export const paperData = {
 
 **考点：** 二叉树的三种遍历次序
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '遍历'],
         },
         {
             id: 10,
@@ -648,11 +616,7 @@ export const paperData = {
 
 **考点：** 满二叉树的节点数公式
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树'],
         },
         {
             id: 11,
@@ -684,11 +648,7 @@ export const paperData = {
 
 **考点：** 动态规划的两个基本性质
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['动态规划'],
         },
         {
             id: 12,
@@ -722,11 +682,7 @@ export const paperData = {
 **易错提醒：**
 - **不要混淆“代码简洁”与“运行高效”**：代码量小通常只是编码直观、语法紧凑，算法的高效与否取决于其**时间复杂度**与**空间复杂度**。
 - **识别重叠子问题**：遇到多重分支递归时，应主动画出递归树观察是否存在大量重复求解的子节点。若存在重叠子问题，往往需要采用记忆化搜索或自底向上的动态规划来“用空间换时间”。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['递归', '动态规划', '复杂度分析'],
         },
         {
             id: 13,
@@ -764,11 +720,7 @@ BFS 用**队列**实现：出队访问节点时，若未命中目标，就把其
 
 **考点：** 二叉树的广度优先搜索（层序遍历）
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['广度优先搜索', '队列'],
         },
         {
             id: 14,
@@ -836,11 +788,7 @@ B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺�
 **易错点：** “先压入右孩子”并不等于“先访问右孩子”；由于栈的后进先出性质，后压入的左孩子会先弹出。
 
 **考点：** 二叉树、非递归深度优先搜索、栈、先序遍历。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['深度优先搜索', '栈'],
         },
         {
             id: 15,
@@ -878,11 +826,7 @@ DFS 用**栈**实现：出栈时先与目标值比较，然后「先压右子、
 
 **考点：** 二叉树的深度优先搜索（非递归栈实现）
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP6级",
-            ]
+            tags: ['深度优先搜索'],
         },
         {
             id: 16,
@@ -901,11 +845,7 @@ DFS 用**栈**实现：出栈时先与目标值比较，然后「先压右子、
 
 **考点：** 贪心、哈夫曼编码
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['哈夫曼编码', '贪心'],
         },
         {
             id: 17,
@@ -924,11 +864,7 @@ DFS 用**栈**实现：出栈时先与目标值比较，然后「先压右子、
 
 **考点：** 面向对象
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['面向对象', '类'],
         },
         {
             id: 18,
@@ -947,11 +883,7 @@ DFS 用**栈**实现：出栈时先与目标值比较，然后「先压右子、
 
 **考点：** 面向对象、析构函数
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['面向对象'],
         },
         {
             id: 19,
@@ -970,11 +902,7 @@ C++ 允许在类内部定义嵌套类（nested class），如 class A { class B 
 
 **考点：** 面向对象、嵌套类
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['类'],
         },
         {
             id: 20,
@@ -993,11 +921,7 @@ C++ 允许在类内部定义嵌套类（nested class），如 class A { class B 
 
 **考点：** 格雷编码
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['格雷编码'],
         },
         {
             id: 21,
@@ -1016,11 +940,7 @@ C++ 允许在类内部定义嵌套类（nested class），如 class A { class B 
 
 **考点：** 时间复杂度、链表
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['双向链表', '复杂度分析'],
         },
         {
             id: 22,
@@ -1039,11 +959,7 @@ C++ 允许在类内部定义嵌套类（nested class），如 class A { class B 
 
 **考点：** 树与二叉树、数组
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['树与二叉树', '数组'],
         },
         {
             id: 23,
@@ -1062,11 +978,7 @@ C++ 允许在类内部定义嵌套类（nested class），如 class A { class B 
 
 **考点：** 面向对象、静态成员
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['静态成员'],
         },
         {
             id: 24,
@@ -1085,11 +997,7 @@ C++ 允许在类内部定义嵌套类（nested class），如 class A { class B 
 
 **考点：** 深度优先搜索、栈与队列
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['深度优先搜索', '栈'],
         },
         {
             id: 25,
@@ -1108,11 +1016,7 @@ C++ 允许在类内部定义嵌套类（nested class），如 class A { class B 
 
 **考点：** 动态规划、贪心
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP6级",
-            ]
+            tags: ['动态规划', '贪心'],
         },
         ...programmingQuestions
     ]
