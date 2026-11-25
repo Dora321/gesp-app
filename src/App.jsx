@@ -1,16 +1,17 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 // Eagerly loaded: global components needed on every page
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import RouteSeo from './components/RouteSeo';
-import { normalizePathname } from './seo/routeMeta';
+import { normalizePathname, PLACEMENT_PATH } from './seo/routeMeta';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
 const InnovationLesson = lazy(() => import('./pages/InnovationLesson'));
 const Home = lazy(() => import('./Home'));
 const ComputingMuseum = lazy(() => import('./pages/ComputingMuseum'));
+const PlacementQuiz = lazy(() => import('./pages/PlacementQuiz'));
 const QuestionBankHome = lazy(() => import('./pages/QuestionBankHome'));
 const ExamPaper = lazy(() => import('./pages/ExamPaper'));
 const TopicPractice = lazy(() => import('./pages/question-bank/TopicPracticePage'));
@@ -69,6 +70,9 @@ const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
 const LearningStorageNotice = lazy(() => import('./components/LearningStorageNotice'));
 const AIChat = lazy(() => import('./components/AIChat'));
 const PageAnnotations = lazy(() => import('./components/PageAnnotations'));
+const SiteSearchOverlay = lazy(() => import('./components/Navigation').then(
+  module => ({ default: module.SiteSearchOverlay }),
+));
 import { useExamFocus, useTeacherTools } from './utils/teacherTools';
 
 // Loading fallback
@@ -93,9 +97,30 @@ const GlobalWidgets = () => {
       >
         <ClassroomPoints mobileDocked={!usesHeaderActions} />
       </div>
-      <div className={usesHeaderActions ? 'hidden md:contents' : 'contents'}><AIChat /></div>
+      <div className={usesHeaderActions ? 'hidden md:contents' : 'contents'}><AIChat desktopOnly={usesHeaderActions} /></div>
     </Suspense>
   );
+};
+
+// 有些课程和真题页面使用独立页眉，快捷键仍由路由外壳统一处理。
+const GlobalSearch = () => {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const show = () => setOpen(true);
+    const shortcut = event => {
+      if ((event.metaKey || event.ctrlKey) && !event.altKey && !event.shiftKey && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        show();
+      }
+    };
+    window.addEventListener('gesp:open-search', show);
+    window.addEventListener('keydown', shortcut);
+    return () => {
+      window.removeEventListener('gesp:open-search', show);
+      window.removeEventListener('keydown', shortcut);
+    };
+  }, []);
+  return open ? <Suspense fallback={null}><SiteSearchOverlay onClose={() => setOpen(false)} /></Suspense> : null;
 };
 
 // 页面标注是老师投屏用的，默认不给学生显示（?teacher=1 打开），考试模式不挂载。
@@ -140,6 +165,7 @@ function App() {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/museum" element={<ComputingMuseum />} />
+            <Route path={PLACEMENT_PATH} element={<PlacementQuiz />} />
             <Route path="/question-bank" element={<QuestionBankHome />} />
             <Route path="/question-bank/review" element={<QuestionBankReview />} />
             <Route path="/question-bank/topics/:level" element={<TopicPractice />} />
@@ -211,6 +237,7 @@ function App() {
         </Suspense>
         <Suspense fallback={null}><LearningStorageNotice /></Suspense>
         <GlobalWidgets />
+        <GlobalSearch />
         <TeacherWidgets />
         </TrailingSlashGuard>
       </ErrorBoundary>

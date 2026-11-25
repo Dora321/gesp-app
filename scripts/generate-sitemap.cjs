@@ -7,7 +7,7 @@ const outputPath = path.join(root, 'public', 'sitemap.xml');
 const origin = 'https://Dora321.github.io/gesp-app';
 
 const coreRoutes = [
-  '/', '/museum', '/question-bank',
+  '/', '/museum', '/placement', '/question-bank',
   ...Array.from({ length: 8 }, (_, index) => `/level${index + 1}`),
   ...Array.from({ length: 8 }, (_, index) => `/question-bank/topics/${index + 1}`),
   '/hardware', '/hardware/esp32-curriculum', '/hardware/arduino', '/hardware/esp32-contest', '/innovation-foundation',

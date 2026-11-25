@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Code2, Download, ExternalLink } from 'lucide-react';
 import { cppProgrammingBridges, cppProgrammingExercises, getCppProgrammingExercise } from '../data/cppProgrammingPractice';
-import HighlightedCode from './HighlightedCode';
-
 import { LEARNING_DATA_EVENT, readLearningData, updateLearningData, hasLearningStorageError } from '../utils/learningData';
+
+const CodingDraftEditor = lazy(() => import('./CodingProblemView').then(
+  module => ({ default: module.CodingDraftEditor }),
+));
 
 const checks = ['已在本机编译并运行程序', '已逐组核对题目样例', '已补测边界，并能解释解题思路'];
 
@@ -85,11 +87,14 @@ function PracticeCard({ exercise }) {
         </div>
         <p className="mt-2 text-xs text-slate-600" aria-live="polite">自查 {completed.filter(Boolean).length}/{checks.length} · {storageError ? '当前浏览器无法保存，刷新后记录可能丢失。' : '记录保存在当前浏览器，不代表评测通过或考级达标。'}</p>
       </div>
-      <details className="mt-4 rounded-lg border border-slate-200 p-3">
-        <summary className="cursor-pointer py-1 font-bold">完成尝试后对照：参考实现（C++11）</summary>
-        <p className="mt-2 text-sm text-slate-600">先保留自己的代码，比较思路与边界处理；能够重新独立写出才算掌握。</p>
-        <pre tabIndex={0} className="mt-3 max-h-96 overflow-auto rounded-lg bg-slate-900 p-4 text-xs leading-relaxed text-slate-100"><HighlightedCode code={exercise.referenceCode} language="cpp" /></pre>
-      </details>
+      <Suspense fallback={<p role="status" className="mt-4 text-sm">正在加载代码草稿…</p>}>
+        <CodingDraftEditor
+          problemKey={`lesson:${exercise.id}`}
+          title={exercise.title}
+          requirement={`${exercise.statement}\n输入：${exercise.input}\n输出：${exercise.output}`}
+          referenceCode={exercise.referenceCode}
+        />
+      </Suspense>
       <div className="mt-5 rounded-lg border border-indigo-100 bg-indigo-50 p-4">
         <h3 className="font-bold text-indigo-900">学完后迁移到 GESP 真题</h3>
         <p className="mt-2 text-sm leading-relaxed">{bridge.focus} {bridge.after}</p>

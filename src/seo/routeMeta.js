@@ -1,5 +1,6 @@
 import { arduinoLessons, contestLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog.js';
 
+export const PLACEMENT_PATH = '/placement';
 export const SITE_NAME = '魔丸聚集地';
 export const SITE_ORIGIN = 'https://Dora321.github.io/gesp-app';
 export const DEFAULT_DESCRIPTION = 'GESP C++/Python 历年真题题库、互动课程讲解、ESP32 硬件项目与内置 AI 编程助教。';
@@ -47,6 +48,7 @@ export const routeMeta = (rawPathname) => {
   if (pathname === '/') return { title: 'GESP 编程备考与编程课堂', description: DEFAULT_DESCRIPTION };
   if (pathname === '/question-bank') return { title: 'GESP C++ 真题题库', description: '按等级和年份练习 GESP C++ 真题，支持考试模式、逐题解析和错题复盘。' };
   if (pathname === '/museum') return { title: '计算机博物馆', description: '通过互动展品认识计算机发展史、硬件组成和编程世界。' };
+  if (pathname === PLACEMENT_PATH) return { title: 'GESP C++ 起点定级诊断', description: '用约 3 分钟自测，找到适合的 GESP C++ 起步等级、优先补练的互动课和首套练手真题。' };
   // 内容全部来自本机学习记录，不进 sitemap；这里只是给标签页一个准确的标题。
   if (pathname === '/question-bank/review') return { title: '错题本与成绩历史', description: '回看历次交卷成绩、仍未订正的错题，以及按考点汇总的薄弱环节。' };
 

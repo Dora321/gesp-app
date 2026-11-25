@@ -5,6 +5,7 @@ import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 import { cppLessonIndex } from '../data/cppLessonIndex';
 import { foundationLessons } from '../data/innovationCourseCatalog';
+import { PLACEMENT_PATH } from '../seo/routeMeta';
 
 const cppStart = getCppLevelCatalogItem(1);
 
@@ -74,10 +75,12 @@ export default function LearningPaths() {
                         <h2 id="home-paths-title">先选一条线路</h2>
                         <p>按兴趣和目标挑起点。每条线都写清了适合谁、沿途学什么、学完去哪。</p>
                     </div>
-                    <a href="#lesson-catalog" className="mw-text-link">
-                        浏览完整课程
-                        <ArrowRight size={17} aria-hidden="true" />
-                    </a>
+                    <div className="flex flex-wrap items-center gap-4">
+                        <Link to={PLACEMENT_PATH} className="mw-button mw-button--secondary">
+                            3 分钟定级自测 <ArrowRight size={17} aria-hidden="true" />
+                        </Link>
+                        <a href="#lesson-catalog" className="mw-text-link">浏览完整课程</a>
+                    </div>
                 </div>
 
                 <ul className="home-routes">

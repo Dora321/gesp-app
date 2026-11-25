@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   ArrowDownToLine,
   ArrowUpFromLine,
@@ -22,6 +23,7 @@ import {
 import MarkdownRenderer from './MarkdownRenderer';
 import HighlightedCode from './HighlightedCode';
 import { parseCodingProblem } from '../utils/codingProblemSections';
+import { clearCodingDraft, MAX_CODING_DRAFT_LENGTH, readCodingDraft, saveCodingDraft } from '../utils/codingDrafts';
 
 const SECTION_ICONS = {
   background: Sparkles,
@@ -132,6 +134,110 @@ const InfoChip = ({ icon: Icon, children }) => (
   </span>
 );
 
+const draftButtonClass = 'mw-button mw-button--secondary mw-button--small min-h-11';
+
+export function CodingDraftEditor({ problemKey, title, requirement, referenceCode, compareOnly = false }) {
+  const [code, setCode] = useState(() => readCodingDraft(problemKey));
+  const [saved, setSaved] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [showReference, setShowReference] = useState(false);
+  const allowTabExit = useRef(false);
+  const editorId = useId();
+  const referenceId = useId();
+  const hasCode = Boolean(code.trim());
+  const canOpenReference = Boolean(referenceCode) && (!compareOnly || hasCode);
+  const referenceVisible = canOpenReference && showReference;
+
+  const updateCode = value => {
+    setCode(value);
+    setSaved(saveCodingDraft(problemKey, value));
+  };
+
+  const indent = event => {
+    const allowExit = allowTabExit.current;
+    allowTabExit.current = event.key === 'Escape';
+    if (allowExit || event.nativeEvent.isComposing) return;
+    if (event.key !== 'Tab' || event.shiftKey || event.altKey || event.metaKey || event.ctrlKey) return;
+    event.preventDefault();
+    const editor = event.currentTarget;
+    const start = editor.selectionStart;
+    const next = code.slice(0, start) + '    ' + code.slice(editor.selectionEnd);
+    if (next.length > MAX_CODING_DRAFT_LENGTH) return;
+    updateCode(next);
+    requestAnimationFrame(() => editor.setSelectionRange(start + 4, start + 4));
+  };
+
+  const askForReview = () => {
+    const intro = `请帮我检查这道题的边界情况与解题思路。请先给一个可验证的提示，不要直接给完整解答。\n\n题目：${title.slice(0, 150)}\n题目要求：${requirement.slice(0, 650)}\n\n我的 C++ 草稿：\n`;
+    const notice = '\n（草稿较长，已截取开头。可在发送前换成需要排查的片段。）';
+    // 课堂服务单条消息上限 4000 字符，为学生补充问题留一点空间。
+    const available = 3800 - intro.length;
+    const excerpt = code.length <= available ? code : code.slice(0, available - notice.length) + notice;
+    window.dispatchEvent(new CustomEvent('gesp:ask-ai', { detail: { prompt: intro + excerpt } }));
+  };
+
+  return (
+    <section aria-label="代码草稿与对照" className="mt-4 min-w-0 space-y-3 rounded-[var(--mw-radius-m)] border border-[var(--mw-rule)] bg-[var(--mw-surface)] p-3 text-[var(--mw-ink)] sm:p-4">
+      <div className="flex flex-wrap gap-2">
+        <button type="button" aria-expanded={editing} aria-controls={editorId} onClick={() => setEditing(!editing)} className={draftButtonClass}>
+          我的代码草稿 <ChevronDown size={16} aria-hidden="true" />
+        </button>
+        {canOpenReference && (
+          <button type="button" aria-expanded={referenceVisible} aria-controls={referenceId} className={draftButtonClass} onClick={() => {
+            setShowReference(!showReference);
+            if (!showReference && hasCode) setEditing(true);
+          }}>
+            {hasCode ? '左右对照参考代码' : '展开参考代码'}
+          </button>
+        )}
+      </div>
+      <p className="text-sm leading-6 text-[var(--mw-ink-2)]">草稿仅保存在本机浏览器。请在本机 IDE 编译运行，本站不提供在线评测。</p>
+      <div className={editing && referenceVisible ? 'grid min-w-0 gap-3 md:grid-cols-2' : 'min-w-0'}>
+        <div hidden={!editing} className="min-w-0 space-y-2">
+          <label htmlFor={editorId} className="block text-sm font-bold">我的 C++ 草稿</label>
+          <textarea
+            id={editorId}
+            value={code}
+            maxLength={MAX_CODING_DRAFT_LENGTH}
+            onChange={event => updateCode(event.target.value)}
+            onKeyDown={indent}
+            rows={10}
+            wrap="off"
+            spellCheck={false}
+            className="mw-code min-h-60 w-full resize-y overflow-auto p-3! text-sm"
+          />
+          <p className="text-xs text-[var(--mw-ink-2)]">Tab 缩进，按 Esc 后再按 Tab 可离开编辑框。{code.length} / {MAX_CODING_DRAFT_LENGTH} 字符</p>
+          <div className="flex flex-wrap items-center gap-2">
+            {code && <>
+              <CopyTextButton text={code} label="复制草稿" className={draftButtonClass} />
+              <button type="button" className={draftButtonClass} onClick={() => {
+                const cleared = clearCodingDraft(problemKey);
+                if (cleared) setCode('');
+                setSaved(cleared);
+              }}>清空草稿</button>
+            </>}
+            {hasCode && <button type="button" className={draftButtonClass} onClick={askForReview}>让 AI 帮我查边界与思路</button>}
+          </div>
+          <p role="status" className="text-xs text-[var(--mw-ink-2)]">
+            {saved ? (code ? '已保存到本机' : '暂无草稿') : '本机存储操作未成功，请复制草稿留存。'}
+          </p>
+        </div>
+        <div id={referenceId} hidden={!referenceVisible} className="min-w-0 space-y-2">
+          {referenceVisible && (
+            <>
+              <p className="text-sm font-bold">参考代码</p>
+              <pre tabIndex={0} role="region" aria-label="参考代码" className="mw-code max-h-96 min-h-60 overflow-auto p-3! text-sm">
+                <HighlightedCode code={referenceCode} language="cpp" />
+              </pre>
+              <CopyTextButton text={referenceCode} label="复制参考代码" className={draftButtonClass} />
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function CodingProblemView({
   q,
   questionNumber,
@@ -140,6 +246,7 @@ export default function CodingProblemView({
   variant = 'practice',
   actions = null,
 }) {
+  const { pathname } = useLocation();
   const parsed = useMemo(() => parseCodingProblem(q), [q]);
   const { title, sections, samples, extraNotes } = parsed;
 
@@ -166,6 +273,18 @@ export default function CodingProblemView({
   const PRE_KEYS = ['background', 'description', 'input', 'output'];
   const preSections = sections.filter((section) => PRE_KEYS.includes(section.key));
   const postSections = sections.filter((section) => !PRE_KEYS.includes(section.key));
+  const draftKey = `paper:${pathname}:${q?.id ?? questionNumber}`;
+  const draftEditor = !isExam && (
+    <CodingDraftEditor
+      key={draftKey}
+      problemKey={draftKey}
+      title={title}
+      requirement={sections.filter(section => ['description', 'input', 'output', 'constraints'].includes(section.key))
+        .map(section => `${section.label}：${section.markdown}`).join('\n') || title}
+      referenceCode={isReview ? q?.referenceCode : undefined}
+      compareOnly
+    />
+  );
 
   // 题面是主角：只有一层白底（由外层页面提供），小节用「标题 + 1px 分隔线」，
   // 不再一节一张卡；只有样例代码框保留边框。正文列限宽 720px，约 36 字/行。
@@ -332,24 +451,27 @@ export default function CodingProblemView({
 
   if (isReview) {
     return (
-      <details className="group rounded-xl border border-slate-200 bg-white">
-        <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2.5 px-4 py-3 text-sm font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-500 md:px-5 [&::-webkit-details-marker]:hidden">
-          <span
-            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-700"
-            aria-hidden="true"
-          >
-            <BookOpen size={16} />
-          </span>
-          <span className="min-w-0 flex-1 truncate">
-            题面回顾{title ? <span className="font-normal text-slate-600"> · {title}</span> : null}
-          </span>
-          <span className="shrink-0 text-xs font-normal text-slate-600 group-open:hidden">点开再看一遍</span>
-          <ChevronDown size={16} className="shrink-0 text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true" />
-        </summary>
-        <div className="border-t border-slate-100 p-4 md:p-6">{body}</div>
-      </details>
+      <>
+        <details className="group rounded-xl border border-slate-200 bg-white">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2.5 px-4 py-3 text-sm font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-500 md:px-5 [&::-webkit-details-marker]:hidden">
+            <span
+              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-700"
+              aria-hidden="true"
+            >
+              <BookOpen size={16} />
+            </span>
+            <span className="min-w-0 flex-1 truncate">
+              题面回顾{title ? <span className="font-normal text-slate-600"> · {title}</span> : null}
+            </span>
+            <span className="shrink-0 text-xs font-normal text-slate-600 group-open:hidden">点开再看一遍</span>
+            <ChevronDown size={16} className="shrink-0 text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true" />
+          </summary>
+          <div className="border-t border-slate-100 p-4 md:p-6">{body}</div>
+        </details>
+        {draftEditor}
+      </>
     );
   }
 
-  return body;
+  return <>{body}{draftEditor}</>;
 }
