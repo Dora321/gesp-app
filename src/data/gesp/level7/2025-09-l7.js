@@ -16,27 +16,7 @@ const programmingQuestions = [
 3 1
 6 5`, output: `2` }
       ],
-      question: `
-# [GESP202509 七级] 连通图
-
-## 题目描述
-
-给定一张包含 $n$ 个结点与 $m$ 条边的无向图，结点依次以 $1,2,\\ldots,n$ 编号，第 $i$ 条边（$1\\le i\\le m$）连接结点 $u_i$ 与结点 $v_i$。如果从一个结点经过若干条边可以到达另一个结点，则称这两个结点是连通的。
-
-你需要向图中加入若干条边，使得图中任意两个结点都是连通的。请你求出最少需要加入的边的条数。
-
-注意给出的图中可能包含重边与自环。
-
-## 输入格式
-
-第一行，两个正整数 $n,m$，表示图的点数与边数。
-
-接下来 $m$ 行，每行两个正整数 $u_i,v_i$，表示图中一条连接结点 $u_i$ 与结点 $v_i$ 的边。
-
-## 输出格式
-
-输出一行，一个整数，表示使得图中任意两个结点连通所需加入的边的最少数量。
-`,
+      question: "\n# [GESP202509 七级] 连通图\n\n## 题目描述\n\n给定一张包含 $n$ 个结点与 $m$ 条边的无向图，结点依次以 $1,2,\\ldots,n$ 编号，第 $i$ 条边（$1\\le i\\le m$）连接结点 $u_i$ 与结点 $v_i$。如果从一个结点经过若干条边可以到达另一个结点，则称这两个结点是连通的。\n\n你需要向图中加入若干条边，使得图中任意两个结点都是连通的。请你求出最少需要加入的边的条数。\n\n注意给出的图中可能包含重边与自环。\n\n## 输入格式\n\n第一行，两个正整数 $n,m$，表示图的点数与边数。\n\n接下来 $m$ 行，每行两个正整数 $u_i,v_i$，表示图中一条连接结点 $u_i$ 与结点 $v_i$ 的边。\n\n## 输出格式\n\n输出一行，一个整数，表示使得图中任意两个结点连通所需加入的边的最少数量。\n\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 100$，$1\\le m\\le 100$。\n\n对于所有测试点，保证 $1\\le n\\le 10^5$，$1\\le m\\le 10^5$。",
       explanation: "若图中共有 c 个连通块，那么至少需要 c-1 条边才能把它们全部连成一个连通块；同时任选一个连通块作为中心，把其余连通块各接一条边过来，也恰好能用 c-1 条边完成，因此答案就是连通块数量减 1。用并查集或 DFS/BFS 统计连通块即可。自环不会改变连通性，重边也只会重复合并同一对点。",
       tags: ["编程题", "图论", "并查集", "连通块"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
@@ -45,6 +25,10 @@ const programmingQuestions = [
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -60,27 +44,7 @@ const programmingQuestions = [
 1 3
 2 4`, output: `3` }
       ],
-      question: `
-# [GESP202509 七级] 金币收集
-
-## 题目描述
-
-小 A 正在游玩收集金币的游戏。具体来说，在数轴上将会出现 $n$ 枚金币，其中第 $i$ 枚（$1\\le i\\le n$）金币将会在时刻 $t_i$ 出现在数轴上坐标为 $x_i$ 的位置。小 A 必须在时刻 $t_i$ 恰好位于坐标 $x_i$，才可以获得第 $i$ 枚金币。
-
-游戏开始时为时刻 $0$，此时小 A 的坐标为 $0$。正常来说，小 A 可以按游戏机的按键在数轴上左右移动，但不幸的是游戏机的左方向键失灵了。小 A 每个时刻只能选择保持不动，或是向右移动一个单位。换言之，如果小 A 在时刻 $t$ 的坐标为 $x$，那么他在时刻 $t+1$ 的坐标只能是 $x$ 或是 $x+1$ 二者之一，分别对应保持不动和向右移动。
-
-小 A 想知道他最多能收集多少枚金币。你能帮他收集最多的金币吗？
-
-## 输入格式
-
-第一行，一个正整数 $n$，表示金币的数量。
-
-接下来 $n$ 行，每行两个正整数 $x_i,t_i$，分别表示金币出现的坐标与时刻。
-
-## 输出格式
-
-输出一行，一个整数，表示小 A 最多能收集的金币数量。
-`,
+      question: "\n# [GESP202509 七级] 金币收集\n\n## 题目描述\n\n小 A 正在游玩收集金币的游戏。具体来说，在数轴上将会出现 $n$ 枚金币，其中第 $i$ 枚（$1\\le i\\le n$）金币将会在时刻 $t_i$ 出现在数轴上坐标为 $x_i$ 的位置。小 A 必须在时刻 $t_i$ 恰好位于坐标 $x_i$，才可以获得第 $i$ 枚金币。\n\n游戏开始时为时刻 $0$，此时小 A 的坐标为 $0$。正常来说，小 A 可以按游戏机的按键在数轴上左右移动，但不幸的是游戏机的左方向键失灵了。小 A 每个时刻只能选择保持不动，或是向右移动一个单位。换言之，如果小 A 在时刻 $t$ 的坐标为 $x$，那么他在时刻 $t+1$ 的坐标只能是 $x$ 或是 $x+1$ 二者之一，分别对应保持不动和向右移动。\n\n小 A 想知道他最多能收集多少枚金币。你能帮他收集最多的金币吗？\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示金币的数量。\n\n接下来 $n$ 行，每行两个正整数 $x_i,t_i$，分别表示金币出现的坐标与时刻。\n\n## 输出格式\n\n输出一行，一个整数，表示小 A 最多能收集的金币数量。\n\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1\\le n\\le 8$。\n\n对于另外 30% 的测试点，保证 $1\\le n\\le 100$，$1\\le x_i\\le 100$，$1\\le t_i\\le 100$。\n\n对于所有测试点，保证 $1\\le n\\le 10^5$，$1\\le x_i\\le 10^9$，$1\\le t_i\\le 10^9$。",
       explanation: "若先收集金币 i 再收集金币 j，则必须满足 x_i≤x_j，且从 (x_i,t_i) 走到 (x_j,t_j) 来得及，即 t_j-t_i≥x_j-x_i。把式子改写为 t_j-x_j≥t_i-x_i。于是问题等价于：在所有满足 x_i≤t_i 的金币中，先按 x_i 从小到大排序（x 相同再按 t 排序），再在序列 v_i=t_i-x_i 上求最长不下降子序列长度。因为路径上位置不能后退，这正好刻画了一条可行收集序列。",
       tags: ["编程题", "贪心", "最长不下降子序列", "排序"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
@@ -89,6 +53,10 @@ const programmingQuestions = [
       timeLimit: '1.0 s',
       memoryLimit: '128 MB',
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -180,12 +148,7 @@ export const paperData = {
             id: 4,
             type: "single",
             question: `已知数组a的定义int a[10] = {-1};，下列说法不正确的是（ ）。`,
-            options: [
-                "数组a至少占用10个int大小的内存，一般为40个字节。",
-                "数组a的所有元素均被初始化为-1。",
-                "语句a[-1] = 0;不会产生编译错误，但会导致难以预测的运行结果。",
-                "语句a[13] = 0;不会产生编译错误，但会导致难以预测的运行结果。 #include <iostream> using namespace std; int main() { char a = 'b'+1; cout << a; return 0; } 1 2 3 4 5 6 7",
-            ],
+            options: ["数组a至少占用10个int大小的内存，一般为40个字节。","数组a的所有元素均被初始化为-1。","语句a[-1] = 0;不会产生编译错误，但会导致难以预测的运行结果。","语句a[13] = 0;不会产生编译错误，但会导致难以预测的运行结果。"],
             answer: 1,
             score: 2,
             explanation: `**答案：B**
@@ -198,7 +161,10 @@ export const paperData = {
 - **D（a[13]=0 同理）**：正确，越界访问。
 
 **考点**：数组的部分初始化（其余元素补 0）与下标越界。`,
-            tags: ['数组', '变量初始化']
+            tags: ['数组', '变量初始化'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","reviewedBy","reviewedAt"]
         },
         {
             id: 5,
@@ -233,12 +199,7 @@ export const paperData = {
             id: 6,
             type: "single",
             question: `下列关于二叉树的说法，错误的是（ ）。`,
-            options: [
-                "二叉排序树的中序遍历顺序与元素排序的顺序是相同的。",
-                "自平衡二叉查找树（ AVL 树）是一种二叉排序树。",
-                "个元素的二叉排序树，其高一定为 。",
-                "任意的森林，都可以映射为一颗二叉树进行表达和存储。",
-            ],
+            options: ["二叉排序树的中序遍历顺序与元素排序的顺序是相同的。","自平衡二叉查找树（AVL树）是一种二叉排序树。","n 个元素的二叉排序树，其高一定为 ⌊log₂ n⌋。","任意的森林，都可以映射为一颗二叉树进行表达和存储。"],
             answer: 2,
             score: 2,
             explanation: `**答案：不正确的是 C（n 个元素的二叉排序树，其高并不固定）**
@@ -254,7 +215,11 @@ export const paperData = {
 
 **易错提醒：**
 普通二叉排序树没有平衡限制，高度不是完全二叉树或 AVL 树那种固定范围。本题要选错误的说法。`,
-            tags: ['树与二叉树']
+            tags: ['树与二叉树'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 7,
@@ -286,29 +251,16 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: `对一个包含 个顶点、 条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。`,
-            options: [
-                "O(n+m)",
-                "O(n)",
-                "O(n²)",
-                "O(m)",
-],
+            question: "对一个包含 V 个顶点、E 条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。",
+            options: ["O(V+E)","O(V)","O(E)","O(V²)"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（\`O(n+m)\`）**
-
-**核心解析：**
-题干问最优时间复杂度，按邻接表计算。每个顶点最多入队、出队一次，是 \`O(n)\`；每条边只在起点出队时查看常数次，有向图共 m 条边，无向图在邻接表里约记 2m 次，都是 \`O(m)\`。合计 \`O(n+m)\`。改用邻接矩阵时，每个顶点都要扫描一行 n 个数，成为 \`O(n²)\`，不是最优。
-
-**选项逐项分析：**
-- **A \`O(n+m)\`**：正确，邻接表上 BFS 的时间。
-- **B \`O(n)\`**：漏了扫边。边很多时，边的开销不能省略。
-- **C \`O(n²)\`**：这是邻接矩阵的复杂度，稀疏图上偏慢，不是最优。
-- **D \`O(m)\`**：漏了顶点入队出队。点多边少时，\`O(n)\` 不能丢掉。
-
-**易错提醒：**
-图遍历的复杂度由存储方式决定。问最优时用邻接表，顶点数和边数都要写进表达式。`,
-            tags: ['广度优先搜索', '复杂度分析']
+            explanation: "**答案：A（O(V+E)）**\n\n按邻接表存储，BFS 中每个顶点入队、出队一次，耗时 O(V)；每条边在起点出队时被查看常数次，耗时 O(E)，合计 O(V+E)。若用邻接矩阵，则需扫描每个顶点的整行，复杂度为 O(V²)，不是最优。\n\n**易错提醒：** 问“最优”时应取邻接表，复杂度必须同时包含顶点与边。",
+            tags: ['广度优先搜索', '复杂度分析'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 9,
@@ -449,36 +401,16 @@ int fib(int n) {
         {
             id: 13,
             type: "single",
-            question: `下面init_sieve函数的时间复杂度为 ( ) 。`,
-            options: [
-                "O(n)",
-                "O(n²)",
-                "O(n log n)",
-                "O(log n)",
-],
+            question: "下面init_sieve函数的时间复杂度为 ( ) 。\n\n```cpp\nint sieve[MAX_N];\nvoid init_sieve(int n) {\n    for (int i = 1; i <= n; i++)\n        sieve[i] = i;\n    for (int i = 2; i <= n; i++)\n        for (int j = i; j <= n; j += i)\n            sieve[j]--;\n}\n```",
+            options: ["O(n)","O(n log log n)","O(n log n)","O(n²)"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C（\`O(n log n)\`）**
-
-**核心解析：**
-\`\`\`cpp
-void init_sieve(int n) {
-    for (int i = 1; i <= n; i++) sieve[i] = i;
-    for (int i = 2; i <= n; i++)
-        for (int j = i; j <= n; j += i) sieve[j]--;
-}
-\`\`\`
-第一重循环执行 n 次，是 \`O(n)\`。第二重里，固定 \`i\` 时 \`j\` 从 \`i\` 起每次加 \`i\`，次数为 \`n/i\`（整除）。\`i\` 从 2 到 n，总次数是 \`n/2+n/3+...+n/n\`，即 n 乘调和级数的一段。\`1/2+1/3+...+1/n\` 与 \`ln n\` 同阶，所以是 \`O(n log n)\`。两部分合起来仍是 \`O(n log n)\`。
-
-**选项逐项分析：**
-- **A \`O(n)\`**：只看到外层，漏了调和级数带来的 \`log n\`。
-- **B \`O(n²)\`**：把内层步长误当成 1。步长是 \`i\`，每个 \`i\` 只走 \`n/i\` 次。
-- **C \`O(n log n)\`**：正确。
-- **D \`O(log n)\`**：外层就要走 n 次，不可能只有对数。
-
-**易错提醒：**
-标准埃氏筛只在 \`i\` 为质数时做内层，才是 \`O(n log log n)\`。本题每个 \`i\` 都进入内层，没有质数判断，是 \`O(n log n)\`。`,
-            tags: ['复杂度分析', '筛法']
+            explanation: "**答案：C（O(n log n)）**\n\n第一重循环执行 n 次，O(n)。第二重对每个 i 执行 n/i 次，总次数为 n(1/2+1/3+…+1/n)=O(n log n)。两部分相加仍为 O(n log n)。\n\n- A O(n)：漏掉调和级数。\n- B O(n log log n)：这是标准埃氏筛（只对素数做内层）的复杂度；本题每个 i 都进入内层。\n- D O(n²)：把内层步长误当成 1。\n\n**考点：** 调和级数求和与筛法复杂度。",
+            tags: ['复杂度分析', '筛法'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 14,
@@ -672,31 +604,13 @@ C++ 中 \`log\` 是以 **e 为底的自然对数**（非以 2 或 10 为底）�
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
-
-**判定依据：**
-
-完全二叉树的高度与结点数的关系：结点数 $N$ 满足 tags:^{h-1} \\le N \\le 2^{h}-1$，反解得
-
-$h = \\lfloor \\log_2 N \\rfloor + 1$
-
-验证：
-
-- N=1：$\\lfloor 0 \\rfloor + 1 = 1$（只有根）
-- N=4：$\\lfloor 2 \\rfloor + 1 = 3$（3 层，第 3 层 2 个结点）
-- N=7：$\\lfloor \\log_2 7 \\rfloor + 1 = 2+1 = 3$（满二叉树 3 层）
-- N=8：$\\lfloor 3 \\rfloor + 1 = 4$（满二叉树 4 层）
-
-与题干公式一致，命题正确。
-
-**易错提醒：** 该公式只在根算第 1 层时成立；若把根的高度记作 0，公式变为 $\\lfloor \\log_2 N \\rfloor$。做题先确认题目对"深度/高度"的定义。
-
-**考点：** 完全二叉树的深度公式。`,
+            explanation: "**答案：正确**\n\n完全二叉树的深度 h 与结点数 N 满足 2^{h-1} ≤ N ≤ 2^h - 1，因此 h-1 ≤ log₂N < h，即 h = ⌊log₂ N⌋ + 1。N=1 时 h=1，N=8 时 h=4，均与公式一致，命题正确。\n\n**考点：** 完全二叉树深度公式。",
             sourceVerified: true,
             sourcePage: 4,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
-            tags: ['树与二叉树']
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
+            tags: ['树与二叉树'],
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"]
         },
         {
             id: 22,
@@ -759,7 +673,7 @@ $h = \\lfloor \\log_2 N \\rfloor + 1$
         {
             id: 24,
             type: "judge",
-            question: `泛洪算法的递归实现容易造成溢出，因此大的二维地图算法中，一般使用广度优先搜索实现。 int cnt = 0; for (int v = 1; v * v * 4 <= n; v++) for (int u = v+1; u * (u+v) * 2 <= n; u += 2) if (gcd(u, v) == 1) { int a = u * u-v * v; int b = u * v * 2; int c = u * u+v * v; cnt += n / (a+b+c); } return cnt; } 6 7 8 9 10 11 12 13 14 15 16`,
+            question: "泛洪算法的递归实现容易造成溢出，因此大的二维地图算法中，一般使用广度优先搜索实现。",
             options: [
                 "正确",
                 "错误",
@@ -771,7 +685,11 @@ $h = \\lfloor \\log_2 N \\rfloor + 1$
 递归实现的泛洪（Flood Fill）递归深度等于连通区域大小，遇到大的二维地图容易栈溢出；因此实践中大地图通常用队列实现的 BFS（或显式栈）来替代递归，更稳妥。
 
 **考点**：Flood Fill 的实现方式（递归 vs BFS）。`,
-            tags: ['泛洪', '广度优先搜索']
+            tags: ['泛洪', '广度优先搜索'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 25,
