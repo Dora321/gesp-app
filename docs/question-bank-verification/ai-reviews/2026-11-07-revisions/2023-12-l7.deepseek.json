@@ -1,0 +1,193 @@
+{
+  "paperId": "2023-12-l7",
+  "phase": "deepseek",
+  "questionIds": [
+    8,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:24:00.000Z",
+  "completedAt": "2026-11-25T08:24:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "d5ca20c4c175176387486cff0bd85cb7d1627ef1b4f770e60e0e49c41c08ca47",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++7级.pdf",
+    "mirrorSha": "e1902f47973b200a76de0078d308c6eec55e7c05",
+    "mirrorBytes": 2065093,
+    "shaVerified": true,
+    "sha256": "ac104b6d5ab07248c642584706ca6f243e1c133cc9d44eb8d9011d3658b6097c"
+  },
+  "pageCount": 13,
+  "report": {
+    "paperId": "2023-12-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「C++ 七级 2023 年 12 月」，单选答案表 1—15 题齐全；第 8 页起为编程题 26、27，页图共 13 页，与 paperId 2023-12-l7 一致。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 8 题题干逐字为「下面代码段可以求两个字符串 s1 和 s2 的最长公共子串（LCS），下列相关描述不正确的是（ ）。」；候选 question 的代码块与页图逐行一致（while (cin >> s1 >> s2)、memset、n1/n2、dp[i][j] 转移、cout << dp[n1][n2]）。原卷把「最长公共子序列」写作「最长公共子串（LCS）」，候选按原卷照录；此属源卷术语问题，另见 unresolved。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A「代码的时间复杂度为 O(n²)」、B「代码的空间复杂度为 O(n²)」、C「空间复杂度已经最优」、D「采用了动态规划求解」，与候选 options 逐字一致（候选以 O(n²) 记 n²，语义相同）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选答案表第 8 题为 C，0 起始索引 2，与候选 answer=2 一致；C 项「空间复杂度已经最优」错误，因为 dp 只依赖上一行/当前行，滚动数组可把空间降到 O(n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立复核：双层循环 n1×n2 次，时间 O(n²)；二维 dp 表空间 O(n1·n2)=O(n²)，并非最优，滚动数组可降到 O(n)；代码是标准 DP。因此不正确的是 C，候选解析逐项判断与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [
+          "第 4 页题干写「最长公共子串（LCS）」，但 else 分支 dp[i][j]=max(dp[i-1][j], dp[i][j-1]) 实际求的是最长公共子序列；属原卷术语与代码不一致，候选按原卷照录，未擅改，建议人工确认是否加注。"
+        ]
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页 3.1.1—3.1.3 逐段对照：N 种商品、M 个商人、用第 x_j 种换第 y_j 种、每次 1 元手续费、求 a→b 最小花费（可为负）、输入 0≤a,b<N、a≠b、1≤v_i≤10^9、0≤x_j,y_j<N、x_j≠y_j、输出 No solution，均与候选一致。第 8 页原卷交易规则把两处下标印反（v_x>v_y 时写「付给你 v_y−v_x」），与第 9 页样例解释「赚 100−4=96」矛盾；候选按样例口径校正为 v_x−v_y / v_y−v_x，属必要勘误。第 9 页 3.1.13 数据规模（30% N≤10,M≤20；70% N≤10³,M≤10⁴；100% N≤10⁵,M≤2×10⁵）与候选新增「数据范围」逐项一致。三组样例见第 8—9 页，候选 samples 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：边权 w(x→y)=1+v_y−v_x，任一路径总花费=边数+v_b−v_a，v_b−v_a 固定，故最小花费等价于最少交易次数；任意有向环权和=环长>0，无负环，SPFA 适用。样例 1 复算 5；样例 2 直达 0→2 得 −95，绕行 0→1→2 得 −94，取 −95；样例 3 从 3 只能到 2/3、不可达 0，均与候选解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "clang++ -std=c++17 -O2（补 bits/stdc++.h 兼容头）编译候选 SPFA 程序；原样例 1/2/3 输出 5、−95、No solution，与页图一致。另跑独立边界：2 1 0 1 / 1 7 / 0 1→7；3 2 0 2 / 10 1 2 / 0 1 / 1 2→−6（边权 −8 与 2 累加）；3 3 0 2 / 1 100 1 / 0 2 / 0 1 / 1 2→1（直达 1 优于两跳 2），全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单边最小差价",
+            "input": "2 1 0 1\n1 7\n0 1\n",
+            "output": "7",
+            "reason": "只此一条边，手续费 1 加差价 7−1=6，共 7。"
+          },
+          {
+            "name": "两段负权路径",
+            "input": "3 2 0 2\n10 1 2\n0 1\n1 2\n",
+            "output": "-6",
+            "reason": "0→1 边权 1+1−10=−8，1→2 边权 1+2−1=2，路径唯一，合计 −6。"
+          },
+          {
+            "name": "直达优于两跳",
+            "input": "3 3 0 2\n1 100 1\n0 2\n0 1\n1 2\n",
+            "output": "1",
+            "reason": "直达 1+1−1=1；两跳 100+(−98)=2，验证按总花费而非跳数取最优。"
+          }
+        ],
+        "unresolved": [
+          "第 8 页原卷交易规则的两处下标与第 9 页样例解释相反（v_x>v_y 时原卷写「付给你 v_y−v_x」），候选已按样例口径校正；此为源卷笔误，保留记录。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 11 页 3.2.1—3.2.2 逐段对照：3 张牌 0/1/2、1 胜 0/2 胜 1/0 胜 2、胜者 2a_i、平局各 a_i、从第 2 轮起继续或换牌、换 t 次扣 b_1+…+b_t、输入 N/a/b/c 与数据范围（30% N≤15；60% N≤100；全部 N≤1000、0≤a_i,b_i≤10⁶）均与候选一致；两组样例 219、56 见第 11—12 页。候选第 11 页 c_i 约束写成 `$c\\n_i\\in{0,1,2}$`，在 c 与下标之间夹了换行且未转义集合花括号，渲染会断行/丢花括号；应改为 `$c_i \\in \\{0,1,2\\}$`。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：dp[轮][换牌次数][当前牌] 记未扣罚分得分，转移时同牌不加次数、异牌 +1，最后减 b 的前缀和；与候选解析的 dp[k][j] 口径一致。样例 1 复算 219（第 1 轮 0 平得 1，第 2/3 轮保持 0 得 0+20，第 4 轮换 1 胜得 200，扣 1）；样例 2 复算 56，均吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "clang++ -std=c++17 -O2 编译候选程序；原样例 1/2 输出 219、56。另跑独立边界：N=1、a=5、c=0→10（出 2 克 0）；N=2、a=1 1、b=100、c=0 0→4（两轮出 2 均克 0，不换牌避罚）；N=3、a=1 1 1、b=0 0、c=0 1 2→6（2→2→0，换一次罚 0），全部通过。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202312 七级] 纸牌游戏\n\n## 题目描述\n\n你和小杨在玩一个纸牌游戏。\n\n你和小杨各有 $3$ 张牌，分别是 $0、1、2$。你们要进行 $N$ 轮游戏，每轮游戏双方都要出一张牌，并按 $1$ 战胜 $0$，$2$ 战胜 $1$，$0$ 战胜 $2$ 的规则决出胜负。第 $i$ 轮的胜者可以获得 $2 \\times a_i$ 分，败者不得分，如果双方出牌相同，则算平局，二人都可获得 $a_i$ 分 $(i=1,2,\\cdots,N)$。\n\n玩了一会后，你们觉得这样太过于单调，于是双方给自己制定了不同的新规则。小杨会在整局游戏开始前确定自己全部 $n$ 轮的出牌，并将他的全部计划告诉你；而你从第 $2$ 轮开始，要么继续出上一轮出的牌，要么记一次“换牌”。游戏结束时，你换了 $t$ 次牌，就要额外扣 $b_1+\\cdots+b_t$ 分。\n\n请计算出你最多能获得多少分。\n\n## 输入格式\n\n第一行一个整数 $N$，表示游戏轮数。\n\n第二行 $N$ 个用单个空格隔开的非负整数 $a_1,\\cdots,a_N$，意义见题目描述。\n\n第三行 $N-1$ 个用单个空格隔开的非负整数 $b_1,\\cdots,b_{N-1}$，表示换牌的罚分，具体含义见题目描述。由于游戏进行 $N$ 轮，所以你至多可以换 $N-1$ 次牌。\n\n第四行 $N$ 个用单个空格隔开的整数 $c_1,\\cdots,c_N$，依次表示小杨从第 $1$ 轮至第 $N$ 轮出的牌。保证 $c_i \\in \\{0,1,2\\}$。\n\n## 输出格式\n\n一行一个整数，表示你最多获得的分数。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $N \\le 15$。\n\n对于 60% 的测试点，保证 $N \\le 100$。\n\n对于所有测试点，保证 $N \\le 1000$，$0 \\le a_i,b_i \\le 10^6$。\n"
+        },
+        "tests": [
+          {
+            "name": "N=1 选克制牌",
+            "input": "1\n5\n0\n",
+            "output": "10",
+            "reason": "只有一轮，小杨出 0，出 2 克 0，得 2×5=10；无换牌罚分。"
+          },
+          {
+            "name": "高罚分不换牌",
+            "input": "2\n1 1\n100\n0 0\n",
+            "output": "4",
+            "reason": "两轮都出 2，均克 0，各得 2 分，共 4；换牌要扣 100，不换最优。"
+          },
+          {
+            "name": "零罚分换牌",
+            "input": "3\n1 1 1\n0 0\n0 1 2\n",
+            "output": "6",
+            "reason": "出牌 2→2→0：前两轮 2 分别克 0、克 1 各得 2，第三轮 0 克 2 得 2，换一次罚 0，共 6。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "Q8 题面/选项/答案/解析均与原卷一致，但原卷把「子序列」写作「子串（LCS）」，按原文保留并记录；Q26 五维通过，原卷交易规则下标印反，候选按样例口径校正并已在证据中记录；Q27 仅修正 c_i 约束中夹换行、集合花括号未转义的排版缺陷，其余通过。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        8,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T08:24:00.000Z",
+      "completedAt": "2026-11-25T08:24:00.000Z"
+    }
+  ]
+}
