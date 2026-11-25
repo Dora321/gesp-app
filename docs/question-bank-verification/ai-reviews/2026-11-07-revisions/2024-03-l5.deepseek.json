@@ -1,0 +1,551 @@
+{
+  "paperId": "2024-03-l5",
+  "phase": "deepseek",
+  "questionIds": [
+    1,
+    2,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:10:00.000Z",
+  "completedAt": "2026-11-25T09:10:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "51a364f94115e5f02044f46a7fc6135a6b9ad18cdc18d72315b82b321a35c877",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1602047172411424.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2024年3月-C++5级.pdf",
+    "mirrorSha": "5d22494b019d813c0b57b88a6a85c52d997ca413",
+    "mirrorBytes": 1288560,
+    "shaVerified": true,
+    "sha256": "cfb9dc1a9f353d30540abd82c8c0989305664b4cc2400a2607e018edb50897f5"
+  },
+  "pageCount": 9,
+  "report": {
+    "paperId": "2024-03-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头为 CCF 编程能力等级认证、C++ 五级、2024 年 03 月，与 paperId 2024-03-l5 一致；第 1–5 页为单选题 1–15，第 6–9 页为编程题 26、27 的题面、样例、数据范围与参考程序。"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页第 1 题题干“唯一分解定理描述的内容是（ ）？”与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A 任意整数都可以分解为素数的乘积 / B 每个合数都可以唯一分解为一系列素数的乘积 / C 两个不同的整数可以分解为相同的素数乘积 / D 以上都不对，与候选四项逐字一致（此前网站整题错置已在候选中还原）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 1 题标 B，0 起索引为 1，与候选 answer=1 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：A 对 0、1 和负整数不成立；B 即算术基本定理（不计素数顺序）；C 与分解唯一性矛盾；D 因 B 正确而不成立。候选解析逐项结论与之一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 2,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页题干“贪心算法的核心思想是（ ）？”与候选一致；候选按站点体例把句末问号写成句号，语义不变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页 A 在每一步选择中都做当前状态下的最优选择 / B 在每一步选择中都选择局部最优解 / C 在每一步选择中都选择全局最优解 / D 以上都对，与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 2 题标 A，索引 0，候选 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "贪心每步取当前状态下的局部最优；全局最优无法逐步直接选取，C 错、D 不成立；B 只是 A 的近似表述，官方取 A。候选解析结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页第 6 题题干与 fibonacci() 递归代码（n<=1 返回 n，否则两项相加）与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 2 页 A O(1) / B O(n) / C O(2^n) / D O(log n)，与候选逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 6 题标 C，索引 2，候选 answer=2。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的选项标签仍按还原前的顺序书写：“B $O(log n)$”“D $O(N)$”，而候选/原卷选项为 B $O(n)$、D $O(log n)$，B、D 两项复杂度被互换；段落还残留整段缩进。需按现选项重写。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：C**\n\n**解析：** 朴素递归的 fibonacci(n) 每次都分裂成 fibonacci(n-1) 与 fibonacci(n-2) 两个调用，递归树近似满二叉树，调用次数随 n 指数增长，时间复杂度记为 $O(2^n)$（更精确的渐进界为 $O(\\varphi^n)$，$\\varphi\\approx1.618$，教材统一写作 $O(2^n)$）。\n\n- **A $O(1)$**：错误，需要指数级的函数调用。\n- **B $O(n)$**：错误，$O(n)$ 是循环迭代（递推）写法的时间复杂度。\n- **C $O(2^n)$**：正确，重复子问题导致指数级调用。\n- **D $O(\\log n)$**：错误，递归深度为 $O(n)$，调用次数更是指数级。\n\n**考点：** 递归、时间复杂度分析"
+        },
+        "tests": [],
+        "unresolved": [
+          "解析 B/D 标签仍按旧选项顺序，已提出完整替换值待回流。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "题干、选项、答案均与原卷一致；仅解析标签未随选项还原同步。"
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干“将两个高精度整数进行相加…填入（ ）”与 add() 代码（第 10 行横线、carry=sum/10）与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A result = to_string(sum % 10) + result; / B to_string(carry % 10) / C to_string(sum / 10) / D to_string(sum % 10 + carry)，与候选一致（仅空格差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 7 题标 A，索引 0，候选 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "本位应存 sum%10、进位为 sum/10；B 存的是进位，C 丢掉本位，D 把进位重复加回。候选解析逐项对应正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页题干“给定序列：1，3，6，9，17，31，39，52，61，79，81，90，96。使用以下代码进行二分查找查找元素 82 时，需要循环多少次，即最后输出的 times 值为（ ）。”候选压缩为“使用给定代码二分查找元素 82 时，最后输出的 times 值”，信息等价、所求未变。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 3 页 A 2 / B 5 / C 3 / D 4，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 8 题标 D，索引 3，候选 answer=3。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：mid=6→arr[6]=39、mid=9→79、mid=11→90、mid=10→81，四次比较后 left=11>right=10 退出，times=4。候选解析一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页题干与 sieveOfEratosthenes() 代码（第 4 行横线、第 12 行由 sqrt(n)+1 起补收）与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页 A i=2..n / B i=1..n-1 / C i=2..√n / D i=1..√n，与候选一致（候选以 $sqrt{n}$ 表示根号）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 10 题标 C，索引 2，候选 answer=2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：内层从 i*i 起筛，外层只需枚举到 √n；大于 √n 的素数由后半段循环补收。外层取 2..n 会使 primes 重复收录（A 错）；B/D 起点含 1 会把 1 当素数（错）。候选解析与 C 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 4 页末第 11 题题干“素数的线性筛法时间复杂度为（ ）。”与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 4–5 页 A O(n) / B O(n log log n) / C O(n log n) / D O(n²)，与候选逐项一致；此前网站 B、C 互换已在候选中还原为原卷顺序。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 11 题标 A，索引 0，候选 answer=0；线性筛 O(N) 位于 A。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的 B、C 标签仍按还原前的互换顺序书写：“B $O(n log n)$”“C O(N log log N)”，而现选项 B=$O(N\\log\\log N)$、C=$O(N\\log N)$，逐项说明与选项错位。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**解析：** 线性筛（欧拉筛）保证每个合数只被它的最小质因子筛掉一次，标记总次数与 n 成正比，时间复杂度为 $O(N)$。\n\n- **A $O(N)$**：正确。\n- **B $O(N\\log\\log N)$**：错误，这是埃拉托斯特尼筛法的复杂度。\n- **C $O(N\\log N)$**：错误，线性筛不会对每个质数都遍历其全部倍数。\n- **D $O(N^2)$**：错误，线性筛的标记总次数是线性的。\n\n**考点：** 线性筛法"
+        },
+        "tests": [],
+        "unresolved": [
+          "选项已还原为原卷顺序，但解析 B/C 标签未同步，已提出完整替换值待回流。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立对照 PDF 第 4–5 页确认选项 B/C 顺序与原卷一致（A O(n)、B O(n log log n)、C O(n log n)、D O(n²)），答案索引 0 不变；缺陷在解析标签。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页第 12 题题干“归并排序的基本思想是（ ）。”与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A 动态规划 / B 分治 / C 贪心算法 / D 回溯算法，与候选逐字一致（此前网站 D 项作“搜索”已在候选中还原）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 12 题标 B，索引 1，候选 answer=1。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析末项仍写“D 搜索：错误”，而现选项 D 为“回溯算法”；标签未随选项还原同步。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B**\n\n**解析：** 归并排序把序列不断二分，分别递归排序，再把两个有序子序列合并，是“分解—解决—合并”的分治算法。\n\n- **A 动态规划**：错误，归并排序没有重叠子问题与状态转移。\n- **B 分治**：正确。\n- **C 贪心算法**：错误，归并排序不做逐步局部最优选择。\n- **D 回溯算法**：错误，归并排序不搜索解空间，也没有回退过程。\n\n**考点：** 归并排序、分治"
+        },
+        "tests": [],
+        "unresolved": [
+          "选项 D 已还原为“回溯算法”，但解析仍写“D 搜索”，已提出完整替换值待回流。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "独立对照 PDF 第 5 页确认 D 项确为“回溯算法”，答案 B 索引 1 不变；缺陷在解析末项标签。"
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干“在快速排序中，选择的主元素（pivot）会影响算法的（ ）。”与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A 不影响 / B 时间复杂度 / C 空间复杂度 / D 时间复杂度和空间复杂度，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 13 题标 B，索引 1，候选 answer=1。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：pivot 决定划分是否均衡，最坏（已排序取端点）退化为 O(n²)，平均/最好为 O(n log n)，主要影响时间复杂度，官方答案 B；候选解析与答案一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干“递归函数在调用自身时，必须满足（ ），以避免无限递归？”与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A 有终止条件 / B 函数参数递减（或递增） / C 函数返回值固定 / D 以上都对，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 14 题标 A，索引 0，候选 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "递归必须有终止条件才能结束；参数递减只是常见收敛方式（区间二分等并不递减），返回值固定更非必要，D 不成立。答案 A 正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页题干含链表 1→3→5→7→nullptr 与 searchValue() 代码，候选完整保留链表内容与代码。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第 5 页 A 返回 1 / B 返回 0 / C 死循环，无法返回 / D 返回 -1，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第 1 页答案表第 15 题标 A，索引 0，候选 answer=0。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推演：依次比较 1≠5、3≠5、5==5，命中即 return 1；7 之后为 nullptr，不会死循环，函数也不返回 -1。答案 A。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          6,
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第 6 页 3.1.1–3.1.3 与候选题面一致；第 7 页 3.1.7 数据规模（30% N≤100 且总分各不相同；全部 2≤N≤10^4）已在候选中补入。但第 6 页输入描述末句“保证 0 ≤ c_i, m_i, e_i ≤ 150。”在候选题面中缺失，需补回。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 未提供编程题答案索引，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按（总分, 语数总分, 语数最高分）三元组降序排序，三元组全等者并列，名次取排序后位置 i+1 并自动跳过并列占位；与官方样例 1/3/4/4/2/6 逐项吻合。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译候选参考程序：官方样例输出 1/3/4/4/2/6；另测三人全同→1/1/1、并列后跳名次→1/1/3、总分同按语数总分→2/1、300 组随机 N≤40 与 O(N²) 定义式排名对拍零差异、N=10^4 随机数据 0.03 s 通过。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202403 五级] 成绩排序\n\n## 题目描述\n\n有 $n$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：\n\n1. 比较总分，高者靠前；\n2. 如果总分相同，则比较语文和数学两科的总分，高者靠前；\n3. 如果仍相同，则比较语文和数学两科的最高分，高者靠前；\n4. 如果仍相同，则二人并列。\n\n你需要输出每位同学的排名，如遇 $x$ 人并列，则他们排名相同，并留空后面的 $x - 1$ 个名次。例如，有 $3$ 名同学并列第 $1$，则后一名同学自动成为第 $4$ 名。\n\n## 输入格式\n\n第一行一个整数 $N$，表示同学的人数。 \n接下来 $N$ 行，每行三个非负整数 $c_i, m_i, e_i$ 分别表示该名同学的语文、数学、英语成绩。\n\n保证 $0 \\le c_i, m_i, e_i \\le 150$。\n\n## 输出格式\n\n输出 $N$ 行，按输入同学的顺序，输出他们的排名。 \n**注意：请不要按排名输出同学的序号，而是按同学的顺序输出他们各自的排名。**\n\n\n## 数据规模\n\n对于 30% 的测试点，保证 $N \\le 100$，且所有同学的总分各不相同。\n\n对于所有测试点，保证 $2 \\le N \\le 10^4$。\n"
+        },
+        "tests": [
+          {
+            "name": "三人全部并列",
+            "input": "3\n5 5 5\n5 5 5\n5 5 5\n",
+            "output": "1\n1\n1\n",
+            "reason": "三项指标全等，三人并列第 1，覆盖并列上界。"
+          },
+          {
+            "name": "并列后名次留空",
+            "input": "3\n5 5 5\n5 5 5\n1 1 1\n",
+            "output": "1\n1\n3\n",
+            "reason": "两人并列第 1，第 3 人自动为第 3 名，验证“留空 x-1 个名次”。"
+          },
+          {
+            "name": "总分相同按语数总分",
+            "input": "2\n100 80 20\n90 110 0\n",
+            "output": "2\n1\n",
+            "reason": "总分同为 200，语数总分 180<200，后者在前，验证第二关键字。"
+          }
+        ],
+        "unresolved": [
+          "输入描述缺原卷“保证 0≤c_i,m_i,e_i≤150”，已提出完整 question 替换值待回流。"
+        ],
+        "verdict": "approve",
+        "reviewNote": "数据规模补全正确、参考程序实测通过；题面仍缺成绩上界这一句。"
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第 8 页 3.2.1–3.2.5 与第 8 页 3.2.6 数据范围表（30%: n≤1000、1≤B≤1000；30%: n≤10^6、√n≤B≤10^6；40%: n≤10^6、1≤B≤10^6；全部 1≤n,B≤10^6）与候选逐项一致，样例 10 3→7 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 未提供编程题答案索引，officialAnswer 记 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：按 p 递增埃氏筛，对 p 的所有倍数无条件覆盖 largest[x]=p，循环结束时 largest[x] 即最大质因子；1 无质因子、largest[1]=0≤B 恒计入。样例 10 3 得 1,2,3,4,6,8,9 共 7，与候选解析一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译：官方样例输出 7；边界 n=1,B=1→1、n=10,B=2→4、n=10^6,B=1→1、n=10^6,B=10^6→1000000；与官方线性筛参考程序在 B=1,2,3,100,999,1000,5000,10^6 全部一致；n≤119 全枚举 × 8 个 B 与暴力质因数分解对拍零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小 n 与最小 B",
+            "input": "1 1\n",
+            "output": "1\n",
+            "reason": "只有 1 一个数，1 无质因子视为满足，答案 1。"
+          },
+          {
+            "name": "B 小于全部大于 1 的质因子",
+            "input": "10 2\n",
+            "output": "4\n",
+            "reason": "2-smooth 数为 1,2,4,8 共 4 个，验证重复质因子不重复限制。"
+          },
+          {
+            "name": "值域上界与 B 下界",
+            "input": "1000000 1\n",
+            "output": "1\n",
+            "reason": "B=1 时只有 1 满足，n 取上界 10^6，验证计数边界。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "题面、数据范围与参考程序均与原卷一致，实测通过。"
+      }
+    ],
+    "summary": "独立复核 13 道修订候选（PDF 第 1–9 页页图 + source.txt）：逐题确认题干、选项、答案与解析。重点确认 Q11 选项顺序与原卷第 4–5 页一致（A O(N)、B O(N log log N)、C O(N log N)、D O(N²)，此前网站 B/C 互换已还原）、Q12 D 项确为“回溯算法”。另发现 Q6/Q11/Q12 三题解析仍沿用还原前的选项序号（把复杂度或算法名标到错误选项），Q26 输入描述漏掉原卷“保证 0≤c_i,m_i,e_i≤150”，均给出完整替换字段待回流；其余 9 题 changes={}。Q26/Q27 参考程序经 g++ 实际编译，原样例、独立暴力对拍与边界用例全部通过。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T09:10:00.000Z",
+      "completedAt": "2026-11-25T09:10:00.000Z"
+    }
+  ]
+}
