@@ -1,0 +1,71 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "glm",
+  "questionIds": [
+    23
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:50:00.000Z",
+  "completedAt": "2026-11-25T06:40:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "6199b8d5dff977d8b8522eb0e0b63ffadd443113241c479870c5fdd1cf549b17",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "我独立核对第1页页图：卷头为「CCF编程能力等级认证 C++ 六级 / 2025年06月」，与 2025-06-l6 一致；第6页判断题答案表为「× × √ √ × √ × × √ √」，判断第8题为×，与候选 answer=1 映射一致。"
+    },
+    "questions": [
+      {
+        "id": 23,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第7页判断第8题题干「下列代码中的 tree 向量，表示的是一棵完全二叉树 ( -1 代表空节点)按照层序遍历的结果。」与候选文字一致；其下两行代码（1 #include <vector>；2 std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};）我在第7页原图逐字确认。候选此前完全缺失题面所引用的 tree 代码（无 code 字段），作答者看不到被判定对象，属真实硬伤；DeepSeek 修改值补入的两行代码与原图逐字一致，修复后核验通过。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题无 A–D 选项，官方以答案表√/×呈现；站点 [正确,错误] 为呈现惯例。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第6页判断题答案表第8格为×（错误=1），候选 answer=1 一致。我的独立还原：层序数组下标0..6为 1,2,3,4,-1,6,7，节点1的孩子是2、3，节点2的孩子是4与空（-1），节点3的孩子是6、7；下标4为空位而其后下标5、6仍有节点6、7，违反完全二叉树「空位之后不得再有节点」的定义，判「错误」成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按层序还原（1的孩子2/3；2的孩子4与空；3的孩子6/7），以「遇到第一个空位之后必须全为空」判定非完全二叉树并给出扫描技巧，与官方×及我的独立还原一致，未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无编程参考代码；题面代码已在 statement 维度核对。"
+          }
+        },
+        "changes": {
+          "code": "#include <vector>\nstd::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};"
+        },
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：题面引用的 tree 代码在候选中完全缺失，属真实硬伤；DeepSeek 修改值（#include <vector> 与 std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};）经我与第7页原图逐字比对一致，予以采纳并写入 changes（与初核逐字相同，构成双模型一致批准）。答案「错误」（answer=1）与解析经我独立还原确认无误。"
+      }
+    ],
+    "summary": "分组逐题初核及独立复核，详见各分组原始结论。"
+  }
+}
