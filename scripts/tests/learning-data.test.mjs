@@ -6,6 +6,7 @@ import {
   LEARNING_DATA_VERSION,
   createLearningDataExport,
   importLearningData,
+  mergeLearningData,
   readLearningData,
   resetLearningData,
   summarizeLearningData,
@@ -437,4 +438,132 @@ test('wrong-question practice paper keeps source ids and paper verification fiel
   assert.equal(practice.programmingQuestions, undefined);
   assert.deepEqual(practice.questions.map((q) => [q.id, q.sourcePaperId, q.sourceQuestionId]), [[1, '2025-03-l3', 7]]);
   assert.equal(buildMistakePracticePaper(paper, []), null);
+});
+
+test('merge reconciles every version 4 field without mutating either backup', () => {
+  const local = {
+    updatedAt: 10,
+    lessons: {
+      local: { status: 'learning', visitedAt: 2 },
+      shared: { status: 'mastered', visitedAt: 9, masteredAt: 40 },
+      newerMastery: { status: 'mastered', visitedAt: 2, masteredAt: 5 },
+    },
+    practice: { shared: [true, false, false], local: [false, true, false] },
+    exams: { shared: { answers: { 1: 1 }, savedAt: 4 }, local: { answers: { 1: 0 } } },
+    attempts: { shared: [{ at: 5, score: 2, total: 5, wrongIds: [3], correct: 1 }], local: [{ at: 3 }] },
+    analysis: { shared: { answers: { 1: 0 }, signature: 'current', savedAt: 7 }, local: { revealed: { 1: true } } },
+    mistakes: { shared: { 1: 5, 2: 7 }, local: { 4: 1 } },
+    hardware: { esp32Ai: { activeNum: 3, viewed: [1, 2, 3] } },
+    museum: { collected: ['a', 'b'] },
+  };
+  const incoming = {
+    updatedAt: 11,
+    lessons: {
+      incoming: { status: 'mastered', masteredAt: 6 },
+      shared: { status: 'learning', visitedAt: 6 },
+      newerMastery: { status: 'mastered', visitedAt: 3, masteredAt: 8 },
+    },
+    practice: { shared: [false, true, true], incoming: [true, false, false] },
+    exams: { shared: { answers: { 1: 3 }, savedAt: 8, endsAt: 25 }, incoming: { timeLeft: 8 } },
+    attempts: {
+      shared: [{ at: 5, score: 2, total: 5, wrongIds: [3], wrong: 1 }, { at: 6 }, { at: 5, score: 2, total: 5, wrongIds: [4] }],
+      incoming: [{ at: 4 }],
+    },
+    analysis: { shared: { answers: { 1: 3 }, signature: 'older', savedAt: 5 }, incoming: { answers: { 1: 1 } } },
+    mistakes: { shared: { 1: 9, 3: 2 }, incoming: { 5: 1 } },
+    hardware: { esp32Ai: { activeNum: 4, viewed: [3, 4] } },
+    museum: { collected: ['b', 'c'] },
+  };
+  const originals = structuredClone([local, incoming]);
+  const merged = mergeLearningData(local, incoming);
+
+  assert.deepEqual([local, incoming], originals);
+  assert.deepEqual(Object.keys(merged).sort(), Object.keys(readLearningData()).sort());
+  assert.equal(merged.version, LEARNING_DATA_VERSION);
+  assert.equal(merged.updatedAt, 11);
+  assert.deepEqual(merged.lessons, {
+    local: local.lessons.local,
+    shared: { status: 'mastered', visitedAt: 6, masteredAt: 40 },
+    newerMastery: { status: 'mastered', visitedAt: 2, masteredAt: 8 },
+    incoming: incoming.lessons.incoming,
+  });
+  assert.deepEqual(merged.practice, { shared: [true, true, true], local: [false, true, false], incoming: [true, false, false] });
+  assert.deepEqual(merged.exams.shared.answers, { 1: 3 });
+  assert.equal(merged.exams.shared.endsAt, 25);
+  assert.deepEqual(Object.keys(merged.exams), ['shared', 'local', 'incoming']);
+  assert.deepEqual(merged.attempts, {
+    shared: [
+      { at: 6, wrongIds: [] },
+      { at: 5, score: 2, total: 5, wrongIds: [3], correct: 1, wrong: 1 },
+      { at: 5, score: 2, total: 5, wrongIds: [4] },
+    ],
+    local: [{ at: 3, wrongIds: [] }],
+    incoming: [{ at: 4, wrongIds: [] }],
+  });
+  assert.equal(merged.analysis.shared.signature, 'current');
+  assert.deepEqual(Object.keys(merged.analysis), ['shared', 'local', 'incoming']);
+  assert.deepEqual(merged.mistakes, { shared: { 1: 9, 2: 7, 3: 2 }, local: { 4: 1 }, incoming: { 5: 1 } });
+  assert.deepEqual(merged.hardware, { esp32Ai: { activeNum: 4, viewed: [1, 2, 3, 4] } });
+  assert.deepEqual(merged.museum, { collected: ['a', 'b', 'c'] });
+  assert.deepEqual(mergeLearningData(merged, incoming), merged);
+});
+
+test('merge import deduplicates attempts before applying the cap and reads current progress at import', () => {
+  installStorage();
+  recordLessonVisit('/python/f1');
+  const attempt = { at: 100, score: 1, total: 2, wrongIds: [1] };
+  const attempts = { paper: [
+    ...Array.from({ length: MAX_ATTEMPTS_PER_PAPER + 2 }, () => ({ ...attempt })),
+    ...Array.from({ length: MAX_ATTEMPTS_PER_PAPER + 2 }, (_, index) => ({ ...attempt, at: index })),
+  ] };
+  const payload = {
+    schema: LEARNING_DATA_SCHEMA,
+    version: LEARNING_DATA_VERSION,
+    data: { attempts, lessons: { '/python/f2': { status: 'learning' } } },
+  };
+  const merged = importLearningData(JSON.stringify(payload), { mode: 'merge' });
+  assert.deepEqual(Object.keys(merged.lessons), ['/python/f1', '/python/f2']);
+  assert.equal(merged.attempts.paper.length, MAX_ATTEMPTS_PER_PAPER);
+  assert.equal(merged.attempts.paper[0].at, 100);
+  assert.equal(merged.attempts.paper[1].at, MAX_ATTEMPTS_PER_PAPER + 1);
+  assert.deepEqual(readLearningData().attempts, merged.attempts);
+  importLearningData(payload);
+  assert.deepEqual(Object.keys(readLearningData().lessons), ['/python/f2']);
+});
+
+test('merge import migrates a v1 backup and protects both newer payloads and newer on-disk documents', () => {
+  const storage = installStorage();
+  const payload = {
+    schema: LEARNING_DATA_SCHEMA,
+    version: 1,
+    data: { lessonProgress: { '/python/f2': { status: 'mastered' } } },
+  };
+  recordLessonVisit('/python/f1');
+  assert.deepEqual(Object.keys(importLearningData(payload, { mode: 'merge' }).lessons), ['/python/f1', '/python/f2']);
+  const before = storage.getItem(LEARNING_DATA_STORAGE_KEY);
+
+  assert.throws(() => importLearningData({ ...payload, version: LEARNING_DATA_VERSION + 1 }, { mode: 'merge' }), /不支持的学习数据版本/);
+  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), before);
+  const future = JSON.stringify({ version: LEARNING_DATA_VERSION + 1, futureField: ['keep'] });
+  storage.setItem(LEARNING_DATA_STORAGE_KEY, future);
+  assert.throws(() => importLearningData(payload, { mode: 'merge' }), /无法保存学习数据/);
+  assert.throws(() => importLearningData(payload, { mode: 'replace' }), /无法保存学习数据/);
+  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), future);
+});
+
+test('hardware lesson count covers all four maker routes and excludes nearby paths', () => {
+  installStorage();
+  for (const path of [
+    '/hardware/esp32/1',
+    '/hardware/arduino/2',
+    '/hardware/esp32-contest/3',
+    '/innovation-foundation/4',
+    '/hardware/esp32',
+    '/hardware/esp32-ai/1',
+    '/innovation-foundation',
+    '/lesson/4/1',
+  ]) recordLessonVisit(path);
+
+  assert.equal(summarizeLearningData().hardwareLessons, 4);
+  assert.equal(summarizeLearningData().lessons, 8);
 });

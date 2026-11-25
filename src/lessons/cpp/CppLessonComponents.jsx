@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CheckCircle2, Flag, HelpCircle, PlayCircle, Repeat2, RotateCcw, SkipForward } from 'lucide-react';
+import useMasteryChecks from '../../hooks/useMasteryChecks';
+import { tokenizeLines } from '../../utils/syntaxHighlight';
 import { recordLessonMastered } from '../../utils/lessonProgress';
 import {
     getLessonEvidenceStage,
@@ -10,57 +12,8 @@ import {
     requiresFallbackEvidence,
 } from '../../utils/lessonEvidence';
 
-const cppTypes = new Set([
-    'bool',
-    'char',
-    'double',
-    'float',
-    'int',
-    'long',
-    'short',
-    'signed',
-    'string',
-    'unsigned',
-    'void',
-]);
-
-const cppKeywords = new Set([
-    'break',
-    'case',
-    'class',
-    'const',
-    'continue',
-    'default',
-    'do',
-    'else',
-    'false',
-    'for',
-    'if',
-    'namespace',
-    'return',
-    'sizeof',
-    'struct',
-    'switch',
-    'true',
-    'using',
-    'while',
-]);
-
-const cppBuiltins = new Set([
-    'cin',
-    'cout',
-    'endl',
-    'main',
-    'max',
-    'min',
-    'sort',
-    'swap',
-    'vector',
-]);
-
 const tokenClassMap = {
     comment: 'text-emerald-400/80 italic',
-    directive: 'text-fuchsia-300',
     string: 'text-amber-300',
     number: 'text-orange-300',
     type: 'text-sky-300',
@@ -68,105 +21,16 @@ const tokenClassMap = {
     builtin: 'text-cyan-300',
     function: 'text-yellow-200',
     operator: 'text-rose-300',
+    punct: 'text-rose-300',
     plain: 'text-slate-100',
 };
 
-const pushToken = (tokens, text, type = 'plain') => {
-    if (!text) return;
-    tokens.push({ text, type });
-};
-
-const readQuotedToken = (line, start) => {
-    const quote = line[start];
-    let index = start + 1;
-
-    while (index < line.length) {
-        if (line[index] === '\\') {
-            index += 2;
-            continue;
-        }
-
-        if (line[index] === quote) {
-            index += 1;
-            break;
-        }
-
-        index += 1;
-    }
-
-    return line.slice(start, index);
-};
-
-const tokenizeCppLine = (line) => {
-    const tokens = [];
-    let index = 0;
-
-    while (index < line.length) {
-        const rest = line.slice(index);
-
-        if (rest.startsWith('//')) {
-            pushToken(tokens, rest, 'comment');
-            break;
-        }
-
-        if (line[index] === '#') {
-            pushToken(tokens, rest, 'directive');
-            break;
-        }
-
-        if (line[index] === '"' || line[index] === "'") {
-            const quoted = readQuotedToken(line, index);
-            pushToken(tokens, quoted, 'string');
-            index += quoted.length;
-            continue;
-        }
-
-        const numberMatch = rest.match(/^\d+(?:\.\d+)?/);
-        if (numberMatch) {
-            pushToken(tokens, numberMatch[0], 'number');
-            index += numberMatch[0].length;
-            continue;
-        }
-
-        const wordMatch = rest.match(/^[A-Za-z_]\w*/);
-        if (wordMatch) {
-            const word = wordMatch[0];
-            const afterWord = line.slice(index + word.length);
-            const tokenType = cppTypes.has(word)
-                ? 'type'
-                : cppKeywords.has(word)
-                    ? 'keyword'
-                    : cppBuiltins.has(word)
-                        ? 'builtin'
-                        : /^\s*\(/.test(afterWord)
-                            ? 'function'
-                            : 'plain';
-
-            pushToken(tokens, word, tokenType);
-            index += word.length;
-            continue;
-        }
-
-        const operatorMatch = rest.match(/^(==|!=|<=|>=|\+\+|--|&&|\|\||<<|>>|[+\-*/%=<>!&|?:;,.[\]{}()])/);
-        if (operatorMatch) {
-            pushToken(tokens, operatorMatch[0], 'operator');
-            index += operatorMatch[0].length;
-            continue;
-        }
-
-        pushToken(tokens, line[index], 'plain');
-        index += 1;
-    }
-
-    return tokens;
-};
+const tokenizeCpp = (code) => tokenizeLines(String(code ?? '').replace(/\n$/, ''), 'cpp');
 
 const highlightCppCode = (code) => {
-    const normalizedCode = String(code ?? '').replace(/\n$/, '');
-
-    return normalizedCode.split('\n').map((line, lineIndex) => (
+    return tokenizeCpp(code).map((tokens, lineIndex) => (
         <span key={`line-${lineIndex}`} className="block min-h-7">
-            {tokenizeCppLine(line).map((token, tokenIndex) => (
+            {tokens.map((token, tokenIndex) => (
                 <span key={`${lineIndex}-${tokenIndex}`} className={tokenClassMap[token.type]}>
                     {token.text}
                 </span>
@@ -554,14 +418,19 @@ export function TransferCheck({
     );
 }
 
-export function MasteryCheck({
+export function MasteryCheck(props) {
+    const location = useLocation();
+    return <LessonMasteryCheck key={location.pathname} location={location} {...props} />;
+}
+
+function LessonMasteryCheck({
+    location,
     title = '离开前过关检查',
     description = '不要急着点下一课。先确认自己能预测、能改错、能换一个例子再做。',
     items = [],
     className = '',
 }) {
-    const location = useLocation();
-    const [checked, setChecked] = useState(() => new Set());
+    const { checked, toggle, reset } = useMasteryChecks(location.pathname, items.length);
     const [artifact, setArtifact] = useState('');
     const isPriorityLevel = /^\/lesson\/[1-3]\//.test(location.pathname);
     const [evidenceStage, setEvidenceStage] = useState(() => getLessonEvidenceStage(location.pathname));
@@ -593,20 +462,6 @@ export function MasteryCheck({
         }
     }, [location.pathname, ready]);
 
-    const toggle = (index) => {
-        setChecked((current) => {
-            const next = new Set(current);
-            if (next.has(index)) {
-                next.delete(index);
-            } else {
-                next.add(index);
-            }
-            return next;
-        });
-    };
-
-    const reset = () => setChecked(new Set());
-
     const submitArtifact = () => {
         if (artifact.trim().length < 12) return;
         recordLessonEvidence(location.pathname, 'exitArtifact');
@@ -633,7 +488,7 @@ export function MasteryCheck({
                         <button
                             type="button"
                             onClick={reset}
-                            className="inline-flex items-center gap-1 rounded-md bg-slate-50 px-2.5 py-1 text-xs font-black text-slate-500 ring-1 ring-slate-200 transition hover:bg-slate-100"
+                            className="inline-flex min-h-11 items-center gap-1 rounded-md bg-slate-50 px-2.5 py-1 text-xs font-black text-slate-500 ring-1 ring-slate-200 transition hover:bg-slate-100"
                         >
                             <RotateCcw size={13} />
                             重置
@@ -789,7 +644,7 @@ function TracerCode({ lines, activeLines }) {
  */
 export function CodeTracer({ title = '执行追踪器', code, varOrder = [], columns = [], steps = [], hint }) {
     const lines = useMemo(
-        () => String(code ?? '').replace(/\n$/, '').split('\n').map(tokenizeCppLine),
+        () => tokenizeCpp(code),
         [code],
     );
     const [step, setStep] = useState(0);
