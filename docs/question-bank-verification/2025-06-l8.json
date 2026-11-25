@@ -1027,21 +1027,46 @@
     },
     {
       "id": 25,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "原卷页图和判断答案表逐格核对",
+        "独立推导"
       ],
-      "unresolved": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
-      ]
+      "unresolved": [],
+      "official": 0,
+      "sourcePages": [
+        6
+      ],
+      "appliedFields": [
+        "answer",
+        "explanation",
+        "sourceIntegrity",
+        "integrityNote"
+      ],
+      "evidence": {
+        "statement": {
+          "review": "核对原卷第 6 页"
+        },
+        "answer": {
+          "review": "核对原卷第 6 页答案格。答案表第 10 格为 √。先选班长与学习委员各有 28、27 种，再选其余两职务各有 30、29 种，共 657720，等于 P(30,4)。"
+        },
+        "explanation": {
+          "review": "答案表第 10 格为 √。先选班长与学习委员各有 28、27 种，再选其余两职务各有 30、29 种，共 657720，等于 P(30,4)。"
+        }
+      },
+      "integrationNote": "站点录入或旧争议标记与原卷及独立推导不一致，已按原卷纠正。",
+      "priorSiteRecord": {
+        "answer": 0,
+        "sourceIntegrity": "answer-key-conflict",
+        "integrityNote": "ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。"
+      },
+      "sourceReviewFile": "ADJUDICATION-L5-L8-2026-11-25.md"
     },
     {
       "id": 26,
@@ -1148,19 +1173,7 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 25,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2025-06-l8.code-checks.json",
   "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-06-l8.integration.json"

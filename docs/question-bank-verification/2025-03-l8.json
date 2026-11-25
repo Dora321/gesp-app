@@ -916,7 +916,11 @@
         "GLM 5.3 Flash max 独立复核"
       ],
       "unresolved": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
+        "保留原有争议/待审标记，模型结论不能自动解除",
+        "原卷第 7 页答案表判 ×，第 8 页题干写「平衡二叉树」。若含二叉搜索树有序性，最坏查找可为 Θ(log N)；若只保证树高平衡而不保证键有序，最坏需 Θ(N)。保留术语歧义。"
+      ],
+      "sourceNotes": [
+        "原卷第 7 页答案表判 ×，第 8 页题干写「平衡二叉树」。若含二叉搜索树有序性，最坏查找可为 Θ(log N)；若只保证树高平衡而不保证键有序，最坏需 Θ(N)。保留术语歧义。"
       ]
     },
     {
@@ -998,21 +1002,47 @@
     },
     {
       "id": 25,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "原卷页图和判断答案表逐格核对",
+        "独立推导"
       ],
-      "unresolved": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
-      ]
+      "unresolved": [],
+      "official": 1,
+      "sourcePages": [
+        7,
+        8
+      ],
+      "appliedFields": [
+        "answer",
+        "explanation",
+        "sourceIntegrity",
+        "integrityNote"
+      ],
+      "evidence": {
+        "statement": {
+          "review": "核对原卷第 8 页"
+        },
+        "answer": {
+          "review": "核对原卷第 7 页答案格。四个职务互异，四人选出后仍有 4! 种分工，排列数为 863040。"
+        },
+        "explanation": {
+          "review": "四个职务互异，四人选出后仍有 4! 种分工，排列数为 863040。"
+        }
+      },
+      "integrationNote": "站点录入或旧争议标记与原卷及独立推导不一致，已按原卷纠正。",
+      "priorSiteRecord": {
+        "answer": 0,
+        "sourceIntegrity": "answer-key-conflict",
+        "integrityNote": "ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。"
+      },
+      "sourceReviewFile": "ADJUDICATION-L5-L8-2026-11-25.md"
     },
     {
       "id": 26,
@@ -1142,18 +1172,8 @@
         "explanation"
       ],
       "reasons": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
+        "保留原有争议/待审标记，模型结论不能自动解除",
+        "原卷第 7 页答案表判 ×，第 8 页题干写「平衡二叉树」。若含二叉搜索树有序性，最坏查找可为 Θ(log N)；若只保证树高平衡而不保证键有序，最坏需 Θ(N)。保留术语歧义。"
       ]
     }
   ],

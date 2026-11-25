@@ -695,15 +695,13 @@ DFS 的遍历过程主要由两部分耗时构成：
         },
         {
             id: 25,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第6页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 6 页答案表和第 6 页题面。答案表第 10 格为 √。先选班长与学习委员各有 28、27 种，再选其余两职务各有 30、29 种，共 657720，等于 P(30,4)。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 6,
             sourcePages: [6],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `从32名学生中选出4人分别担任班长、副班长、学习委员和组织委员，老师要求班级综合成绩排名最后的4名学生不得参选班长或学习委员（仍可以参选副班长和组织委员），则共有 P(30,4) 种不同的选法。`,
             options: [
@@ -712,12 +710,11 @@ DFS 的遍历过程主要由两部分耗时构成：
             ],
             answer: 0,
             score: 2,
-            explanation: `原卷答案表为错误。先安排班长和学习委员，两人须从合资格的28人中依次选择，共28×27种。再安排副班长和组织委员，从剩下30人中依次选，共30×29种。总数为28×27×30×29=657720，与原题P(30,4)=30×29×28×27巧合相等，形成官方答案与实际计算的额外争议。
-
-题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
+            explanation: "**答案：正确**\n\n先选受限制的两个职务。班长有 28 种选法，学习委员从剩下符合条件的人中选，有 27 种。其余两个职务不受成绩限制，依次有 30、29 种选法。乘积为 $28\\times27\\times30\\times29=657720=P(30,4)$。",
             tags: [
                 "排列组合",
             ],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"],
         }
     ]
 };

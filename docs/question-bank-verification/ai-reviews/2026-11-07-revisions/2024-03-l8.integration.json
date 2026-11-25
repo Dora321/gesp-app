@@ -1,0 +1,196 @@
+{
+  "paperId": "2024-03-l8",
+  "integratedAt": "2026-11-25T12:42:54.617Z",
+  "accepted": [
+    {
+      "id": 5,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 6,
+      "fields": [
+        "options"
+      ]
+    },
+    {
+      "id": 9,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 11,
+      "fields": [
+        "options",
+        "explanation"
+      ]
+    },
+    {
+      "id": 22,
+      "fields": []
+    },
+    {
+      "id": 24,
+      "fields": [
+        "explanation"
+      ]
+    },
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "2 5 2",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "input": "100 100 100",
+          "output": "185233",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "185233\n",
+          "passed": true
+        },
+        {
+          "name": "原样例1",
+          "input": "2 5 2\n",
+          "output": "9",
+          "reason": "PDF 3.1.5/3.1.6 原样例，实测一致。",
+          "kind": "boundary",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "name": "原样例2",
+          "input": "100 100 100\n",
+          "output": "185233",
+          "reason": "PDF 3.1.8/3.1.9 原样例，实测一致。",
+          "kind": "boundary",
+          "actual": "185233\n",
+          "passed": true
+        },
+        {
+          "name": "边界:最小规模",
+          "input": "1 1 1\n",
+          "output": "1",
+          "reason": "唯一位置 (1,1) 只能取 1，ans_1=1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "边界:非平凡计数",
+          "input": "2 3 5\n",
+          "output": "36",
+          "reason": "ans=(1,4,2,4,1)，Σk·ans=1+8+6+16+5=36，独立逐 x 约数枚举核对。",
+          "kind": "boundary",
+          "actual": "36\n",
+          "passed": true
+        },
+        {
+          "name": "边界:long long 上界",
+          "input": "1000 1000 10000\n",
+          "output": "5601564957",
+          "reason": "结果超过 32 位整型；独立逐 x 约数枚举复算同为 5601564957。",
+          "kind": "boundary",
+          "actual": "5601564957\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "837b821aec61ae73605ccbf1c812b6688221803b449f072100fed2d4d84997e8"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 5,
+      "tests": [
+        {
+          "input": "1\n6\n1 2 2 3 1 3\n4\n1 3\n1 6\n1 5\n5 6",
+          "output": "1\n1\n0\n2",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n1\n0\n2\n",
+          "passed": true
+        },
+        {
+          "name": "原样例1",
+          "input": "1\n6\n1 2 2 3 1 3\n4\n1 3\n1 6\n1 5\n5 6\n",
+          "output": "1\n1\n0\n2",
+          "reason": "PDF 3.2.4 原样例，实测一致。",
+          "kind": "boundary",
+          "actual": "1\n1\n0\n2\n",
+          "passed": true
+        },
+        {
+          "name": "边界:单张牌",
+          "input": "1\n1\n5\n1\n1 1\n",
+          "output": "1",
+          "reason": "区间只有一张牌，无法消去。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "边界:连续同值消去",
+          "input": "1\n4\n1 1 1 1\n3\n1 4\n2 4\n2 3\n",
+          "output": "0\n1\n0",
+          "reason": "[1,4] 两两消尽；[2,4] 剩一张；[2,3] 消尽。",
+          "kind": "boundary",
+          "actual": "0\n1\n0\n",
+          "passed": true
+        },
+        {
+          "name": "边界:多组数据重置",
+          "input": "2\n1\n7\n1\n1 1\n3\n4 4 5\n2\n1 3\n2 3\n",
+          "output": "1\n1\n2",
+          "reason": "第二组 [1,3]=4,4,5 消 4,4 剩 5 →1；[2,3]=4,5 不消 →2；验证 pos 数组跨组重置。",
+          "kind": "boundary",
+          "actual": "1\n1\n2\n",
+          "passed": true
+        },
+        {
+          "name": "边界:原卷程序缺陷对拍（候选正确值）",
+          "input": "1\n14\n1 10 2 5 1 2 3 4 1 5 2 5 3 4\n1\n10 12\n",
+          "output": "0",
+          "reason": "a[10..12]=5,2,5 两张 5 消尽剩 0 张，独立队列模拟同为 0；原卷写法同输入实测输出 3（错误），见 referenceCode 与 unresolved。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "c6cbd3ee51f5c8fbd1c259684799af99933bcc46db3c9a545d6f98aa4eadc155",
+      "sourceDefectRegression": {
+        "input": "1\n14\n1 10 2 5 1 2 3 4 1 5 2 5 3 4\n1\n10 12\n",
+        "expected": "0",
+        "withOfficialLine20": "3",
+        "corrected": "0",
+        "variantSha256": "b021e92003a12bf401a62cf3ef94da3acae61d887bc61c7cedb509a46a9f689b"
+      }
+    }
+  ]
+}

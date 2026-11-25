@@ -701,21 +701,46 @@
     },
     {
       "id": 18,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "原卷页图和判断答案表逐格核对",
+        "独立推导"
       ],
-      "unresolved": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
-      ]
+      "unresolved": [],
+      "official": 1,
+      "sourcePages": [
+        5
+      ],
+      "appliedFields": [
+        "answer",
+        "explanation",
+        "sourceIntegrity",
+        "integrityNote"
+      ],
+      "evidence": {
+        "statement": {
+          "review": "核对原卷第 5 页"
+        },
+        "answer": {
+          "review": "核对原卷第 5 页答案格。首元素作枢轴时，升序输入每次只减少一个元素，比较次数为 n(n−1)/2，最坏量级为 Θ(n²)。"
+        },
+        "explanation": {
+          "review": "首元素作枢轴时，升序输入每次只减少一个元素，比较次数为 n(n−1)/2，最坏量级为 Θ(n²)。"
+        }
+      },
+      "integrationNote": "站点录入或旧争议标记与原卷及独立推导不一致，已按原卷纠正。",
+      "priorSiteRecord": {
+        "answer": 0,
+        "sourceIntegrity": "answer-key-conflict",
+        "integrityNote": "ANSWER-DOUBT：原卷判断第3题为O(n log n)，原卷答案表标×，题库answer原值0。按TASK红线保留answer，记录题库与原卷不一致，暂停计分。"
+      },
+      "sourceReviewFile": "ADJUDICATION-L5-L8-2026-11-25.md"
     },
     {
       "id": 19,
@@ -1060,19 +1085,7 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 18,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "保留原有争议/待审标记，模型结论不能自动解除"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [
     {
       "id": 7,

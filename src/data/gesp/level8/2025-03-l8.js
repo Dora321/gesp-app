@@ -781,29 +781,26 @@ int main() {
         },
         {
             id: 25,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf 第7,8页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 7 页答案表和第 8 页题面。四个职务互异，四人选出后仍有 4! 种分工，排列数为 863040。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 7,
             sourcePages: [7, 8],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：按PDF恢复原题后，原卷答案表为×，题库原answer=0。保留原answer，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `从32名学生中选出4人分别担任班长、副班长、学习委员和组织委员，共有 C(32,4) 种不同的选法。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `原卷答案表为错误。四个职务不同，先选出4人后还要分配4个职务，方案数为C(32,4)×4!=32×31×30×29。组合数C(32,4)只计算选人，没有计算不同职务的分配。
-
-题库原answer与原卷答案表不一致，按TASK红线保留字段并标记ANSWER-DOUBT，等待裁定。`,
+            explanation: "**答案：错误**\n\n班长、副班长、学习委员和组织委员是四个不同职务。依次选人有 $32\\times31\\times30\\times29=863040$ 种方案。$\\binom{32}{4}$ 只计算选出的四个人。每组人选还有 $4!$ 种任职安排。",
             tags: [
                 "排列组合",
             ],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"],
         }
     ]
 };

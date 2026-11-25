@@ -694,29 +694,24 @@ int main() {
         },
         {
             id: 18,
-            verificationNote: `AI-Codex 对照CCF原卷镜像 https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf 第5页文本及渲染图核对。`,
+            verificationNote: "核对原卷第 5 页答案表和第 5 页题面。首元素作枢轴时，升序输入每次只减少一个元素，比较次数为 n(n−1)/2，最坏量级为 Θ(n²)。",
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf`,
             sourcePage: 5,
             sourcePages: [5],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-25",
+            reviewedBy: "AI-Codex",
             sourceVerified: true,
-            integrityNote: `ANSWER-DOUBT：原卷判断第3题为O(n log n)，原卷答案表标×，题库answer原值0。按TASK红线保留answer，记录题库与原卷不一致，暂停计分。`,
-            sourceIntegrity: `answer-key-conflict`,
             type: "judge",
             question: `对 n 个元素的数组进行快速排序，最差情况的时间复杂度为 O(n log n)。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**原卷答案表为错误，当前题库答案存在ANSWER-DOUBT。**
-
-原卷写的是最差O(n log n)，并非原解析补写的O(n²)。快速排序每次划分极端失衡时，工作量为n+(n-1)+…+1，最坏紧确量级为Θ(n²)，所以原卷表中的×符合这一分析。
-
-题库原answer为0，依照本轮红线保留该字段并标记争议，等待单独裁定。不能把缺失的公式补成O(n²)来配合既有答案。`,
-            tags: ['排序算法', '复杂度分析']
+            explanation: "**答案：错误**\n\n若每次划分都选到最小或最大的元素，下一次还要处理其余 $n-1$ 个元素。比较次数为 $(n-1)+(n-2)+\\cdots+1=n(n-1)/2$，最坏时间复杂度为 $\\Theta(n^2)$。",
+            tags: ['排序算法', '复杂度分析'],
+      "reviewedFields": ["answer","explanation","reviewedBy","reviewedAt","verificationNote"]
         },
         {
             id: 19,

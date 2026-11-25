@@ -5,6 +5,7 @@ import path from 'node:path';
 import { paperIds } from '../../src/data/gesp/_generated.js';
 import { getPaper } from '../../src/data/gesp/index.js';
 import { getQuestionContent } from '../../src/utils/questionHelpers.js';
+import { isScoringExcluded } from '../../src/utils/sourceIntegrity.js';
 import { paperData as rawL6September2024 } from '../../src/data/gesp/level6/2024-09-l6.js';
 import { paperData as rawL8December2024 } from '../../src/data/gesp/level8/2024-12-l8.js';
 import { paperData as rawL8March2026 } from '../../src/data/gesp/level8/2026-03-l8.js';
@@ -84,6 +85,22 @@ test('December 2023 L6 keeps code on the original question without duplication',
   assert.match(getQuestionContent(question(9)), /int Depth\(BiTree T\)/);
   assert.equal(getQuestionContent(question(10)), question(10).question);
   assert.equal(question(10).sourcePage, 5);
+});
+
+test('corrected site answer records follow the original key and participate in scoring', async () => {
+  const cases = [
+    ['2025-06-l7', 18, 1],
+    ['2023-12-l8', 19, 1],
+    ['2024-03-l8', 19, 1],
+    ['2025-03-l8', 25, 1],
+    ['2025-06-l8', 25, 0],
+  ];
+  for (const [paperId, id, expected] of cases) {
+    const paper = await getPaper(paperId);
+    const question = paper.questions.find(item => item.id === id);
+    assert.equal(question?.answer, expected, `${paperId}:Q${id}`);
+    assert.equal(isScoringExcluded(question), false, `${paperId}:Q${id}`);
+  }
 });
 
 test('L8 topic tags keep knowledge domains distinct (no generic catch-all)', () => {
