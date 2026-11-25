@@ -438,43 +438,48 @@
       "resolved": true,
       "dimensions": [
         "statement",
-        "options"
+        "options",
+        "answer",
+        "explanation"
       ],
-      "blockedDimensions": [
-        "explanation",
-        "answer"
-      ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
+        1,
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第4页题干、Student 结构体及 selectTopK() 代码与网站一致；网站省略了括注“不需要对所有学生完全排序，只需要找出前 k 名”，但不影响代码任务。",
-          "review": "PDF 第 4 页题干与 selectTopK() 代码（含 struct Student 定义）与网站一致；网站省略括注“（不需要对所有学生完全排序，只需要找出前 k 名）”及 struct Student 定义，均为辅助性说明，不改变“为内层循环填边界”的题意与作答。"
+          "initial": "PDF 第4页第11题题干为「下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。」，候选 question 逐字一致（含括注与全角逗号）；内嵌代码 21 行（struct Student 三行成员、空行、selectTopK 签名、外层 for、int maxIdx = i;、内层填空行带「在此处填入代码」注释、if (students[j].score > students[maxIdx].score)、maxIdx = j;、空行、maxIdx != i 的三行交换、两层右花括号）与第4页第1–21行逐行对应，仅换行与缩进规范化。第 4 轮批准的括注补入与代码规范化已真实落入 paper.json。",
+          "review": "第 4 页第 11 题题干为『下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。』，候选 question 逐字一致（含括注与全角逗号）；内嵌代码 21 行（struct Student 三行成员、空行、selectTopK 签名、外层 for、int maxIdx = i;、内层填空行带『在此处填入代码』注释、if 比较、maxIdx = j;、空行、maxIdx != i 的三行交换、两层右花括号）与第 4 页逐行对应，仅换行与缩进规范化，第 4 轮批准的括注补入已真实落入 paper.json。"
         },
         "options": {
-          "initial": "PDF第5页 A-D 选项与网站四项文字、顺序一致，无缺项。",
-          "review": "PDF 第 5 页 A–D 依次为 int j = 0; j < n; j++ / int j = i + 1; j < n; j++ / int j = i; j < n; j++ / int j = 1; j <= n; j++，与网站四项文字、顺序一致。"
+          "initial": "PDF 第5页选项依次为 A. int j = 0; j < n; j++、B. int j = i + 1; j < n; j++、C. int j = i; j < n; j++、D. int j = 1; j <= n; j++，与候选四项文字与顺序一一对应（B 仅 i+1 与 i + 1 的空格差异）。",
+          "review": "第 5 页页图选项依次为 A. int j = 0; j < n; j++、B. int j = i + 1; j < n; j++、C. int j = i; j < n; j++、D. int j = 1; j <= n; j++，与候选四项文字、顺序一一对应（B 的 i+1 与 i + 1 仅空格差异）。"
         },
         "answer": {
-          "initial": "PDF第1页答案表第11题为 B，网站 answer=1 对应 B；但选项 C（j=i）也会正确选出前 k 名，单选题存在非唯一答案，故保留争议而不改 answer。",
-          "review": "PDF 第 1 页答案表第 11 题为 B，网站 answer=1 对应 B。B（j=i+1）为标准正确写法；但独立推演确认选项 C（j=i）在 j=i 时自比较条件必假、不触发交换，与 B 执行结果等价，官方单选存在不唯一性。answer 维持官方值不改，争议记入 unresolved。"
+          "initial": "PDF 第1页答案表「C C B D B A C A B B B A B D B」第11格为 B（0 起始索引 1），候选 answer=1 一致。独立推导：B 从 i+1 起扫描未排序区剩余元素、maxIdx 初值 i，k 轮后下标 0..k-1 即前 k 名。注意 C（j=i）在 j=i 时自比较恒假、无副作用，其后与 B 完全相同，功能等价（原卷单选唯一性缺陷，见 unresolved），本站按官方答案表取 B。",
+          "review": "第 1 页答案表『C C B D B A C A B B B A B D B』第 11 格为 B（0 起始索引 1），候选 answer=1 一致。独立推导：B 从 i+1 起扫描未排序区剩余元素、maxIdx 初值为 i，k 轮后下标 0..k-1 即前 k 名；C（j=i）在 j=i 时自比较恒假、无副作用，其后过程与 B 完全相同，功能等价（本复核以 20000 组随机数组对跑 B 与 C，输出 0 处不一致，属原卷单选唯一性缺陷，见 unresolved），本站按官方答案表取 B。"
         },
         "explanation": {
-          "initial": "现解析称 C“交换后 temp 被覆盖会丢失数据”，与代码不符：j=i 时只比较自身，maxIdx 初值也是 i，不会发生交换或丢数据；C 与 B 的结果等价。",
-          "review": "现解析称 C“交换后 temp 被覆盖会丢失数据”与代码不符：j=i 时 students[i].score > students[maxIdx].score 因 maxIdx 初值同为 i 而必为假，交换分支根本不执行，不存在丢数据；C 与 B 结果等价，仅多一次无意义比较，该否定理由错误，需修正。"
+          "initial": "候选解析（第 4 轮修订稿）逐条复核成立：(1) A 的反例 {100,10,90,80}、k=2 经独立重演：第1轮不交换，第2轮 j=0 时 100>10 使 maxIdx=0，此后 90、80 均无法更新，交换后为 {10,100,90,80}，前两名漏掉 90——成立；(2) B 正确、亦为官方答案；(3) C 与 B 功能等价：j=i 时 students[i].score > students[i].score 恒假、maxIdx 不更新、不触发交换，temp 是交换块内局部变量与 j 无关，解析对原「temp 被覆盖丢数据」的否定理由纠正如实；我另以 20000 组随机数组（n≤7、k 取 0..n）对跑 B 与 C，输出 0 处不一致，与解析所称 4000 组的结论一致；(4) D 的 j<=n 在 j=n 时访问 students[n] 越界，固定起点 1 在 i≥2 时把已就位前缀重新纳入比较，均成立；(5) 复杂度「k 轮 × 每轮 O(n) = O(kn)，k=n 时退化为 O(n²)」正确。解析如实记录原卷唯一性缺陷且不擅改官方答案，未虚构运行结果。",
+          "review": "候选解析（第 4 轮修订稿）逐条独立复核成立：(1) A 的反例 {100,10,90,80}、k=2 经本地程序重演：第 2 轮 j=0 时 100>10 使 maxIdx=0，此后 90、80 均无法更新，交换后为 {10,100,90,80}，前两名漏掉 90；(2) B 正确且为官方答案；(3) C 与 B 功能等价：j=i 时 students[i].score > students[i].score 恒假、maxIdx 不更新、不触发交换，temp 是交换块内局部变量与 j 无关，本复核以 20000 组随机数组（n≤7、k 取 0..n）对跑 B 与 C，输出 0 处不一致，与解析所称 4000 组的结论一致；(4) D 的 j<=n 在 j=n 时访问 students[n] 越界、固定起点 1 在 i≥2 时把已就位前缀重新纳入比较，均成立；(5) 复杂度 k 轮×每轮 O(n)=O(kn)、k=n 时退化为 O(n²) 正确。解析如实记录原卷唯一性缺陷且不擅改官方答案，未虚构运行结果，无需修改。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-5/2025-12-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-5/2025-12-l4.glm.json"
       ]
     },
     {
@@ -1091,21 +1096,8 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 11,
-      "dimensions": [
-        "explanation",
-        "answer"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2025-12-l4.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-12-l4.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-5/2025-12-l4.integration.json"
 }

@@ -407,7 +407,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: `下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金，则横线上应填写（ ）。\n\`\`\`cpp\nstruct Student { string name; int score; };\nvoid selectTopK(Student students[], int n, int k) {\n for (int i = 0; i < k; i++) {\n int maxIdx = i;\n for (____________________) { // 在此处填入代码\n if (students[j].score > students[maxIdx].score) {\n maxIdx = j;\n }\n }\n if (maxIdx != i) {\n Student temp = students[i];\n students[i] = students[maxIdx];\n students[maxIdx] = temp;\n }\n }\n}\n\`\`\``,
+            question: "下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金（不需要对所有学生完全排序，只需要找出前 k 名），则横线上应填写（ ）。\n```cpp\nstruct Student {\n    string name;\n    int score;\n};\n\nvoid selectTopK(Student students[], int n, int k) {\n    for (int i = 0; i < k; i++) {\n        int maxIdx = i;\n        for (____________________) {    // 在此处填入代码\n            if (students[j].score > students[maxIdx].score) {\n                maxIdx = j;\n            }\n        }\n\n        if (maxIdx != i) {\n            Student temp = students[i];\n            students[i] = students[maxIdx];\n            students[maxIdx] = temp;\n        }\n    }\n}\n```",
             options: [
                 "int j = 0; j < n; j++",
                 "int j = i+1; j < n; j++",
@@ -416,30 +416,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B (int j = i+1; j < n; j++)**
-
-**核心解析：**
-1. 该函数实现的是**选择排序思想的局部应用**：在每一轮外层循环中，从剩余未排序的元素中找出最大值，交换到当前位置。
-2. 外层循环 \`for (int i = 0; i < k; i++)\` 表示当前要确定的排名位置 \`i\`（0 到 k-1）。
-3. 内层循环需要从未排序区域寻找最大值的下标 \`maxIdx\`。当前确定的位置是 \`i\`，其右侧 \`[i+1, n-1]\` 才是"剩余未排序"的元素范围。
-4. 因此内层循环应填写 \`int j = i+1; j < n; j++\`，从 \`i\` 的下一个位置开始遍历到数组末尾。
-5. 若 \`maxIdx != i\`，则交换两者，将当前最高分学生换到位置 \`i\`。
-
-**选项逐项分析：**
-- **A (int j = 0; j < n; j++)**：❌ 错误。从 0 开始遍历会重复比较已确定的前 i 个元素，导致逻辑错误且效率降低。
-- **B (int j = i+1; j < n; j++)**：✅ 正确。从未排序区域 \`[i+1, n-1]\` 寻找最大值下标。
-- **C (int j = i; j < n; j++)**：❌ 错误。从 \`i\` 开始包含自身，交换后 \`temp\` 被覆盖会丢失数据。
-- **D (int j = 1; j <= n; j++)**：❌ 错误。从固定值 1 开始且上界为 \`<= n\`（访问 \`arr[n]\` 会越界），且不能动态适配当前轮次。
-
-**易错提醒：**
-- 选择排序的内层循环必须从 \`i+1\` 开始，不能从 \`i\` 开始（否则自身交换会丢失数据）。
-- 不能从固定值如 0 或 1 开始，必须相对于当前外层循环变量 \`i\` 进行调整。
-
-**知识延伸：**
-选择排序的时间复杂度为 O(n²)，本函数只执行 k 轮，适用于"找出前 k 名"的部分排序场景，比完整排序更高效。
-
-**考点：** 选择排序（Selection Sort）的内层循环边界控制。`,
-            tags: ["客观题", "单选题", "GESP4级", "选择排序", "结构体"]
+            explanation: "**答案：B（官方答案表；`int j = i + 1; j < n; j++`）**\n\n**核心解析：**\n`selectTopK()` 是选择排序的局部应用：第 i 轮在未排序区间 `[i, n-1]` 中找出最大值的下标 `maxIdx`（初值为 i），再把 `students[maxIdx]` 交换到位置 i。外层只循环 k 轮，因此前 k 名就位后即停止，不要求把 n 个学生全部排好。\n\n内层循环从 `i + 1` 开始、到 `n - 1` 结束，恰好扫描未排序区间中除 `students[i]` 自身以外的全部元素；`students[i]` 已经作为 `maxIdx` 的初值参与比较，不需要重复扫描。\n\n**选项逐项分析：**\n- **A (`int j = 0; j < n; j++`)**：❌ 错误。j 从 0 开始会把已经就位的前 i 名也纳入比较。前 i 名是整个数组中最大的 i 个元素，`maxIdx` 一旦被改到前缀（例如 0），后续元素就更不可能超过它，最后会拿一个已经就位的大元素与位置 i 交换，把前缀打乱。反例：`{100, 10, 90, 80}`、k=2 —— 第 1 轮不交换；第 2 轮 j=0 时 `100 > 10` 使 `maxIdx = 0`，此后 90、80 都小于 100 而无法再更新，交换后数组为 `{10, 100, 90, 80}`，前两名成了 {10, 100}，漏掉真正的第二名 90。\n- **B (`int j = i + 1; j < n; j++`)**：✅ 正确，也是官方答案。\n- **C (`int j = i; j < n; j++`)**：⚠️ 不是错误实现。j=i 时只是多比较一次 `students[i].score > students[i].score`，该比较恒为假，`maxIdx` 不会更新，也不会触发交换；之后 j = i+1 … n-1 的过程与 B 完全相同（`temp` 是交换块内的局部变量，与 j 无关，不存在“被覆盖”的问题）。因此 C 与 B 功能等价，同样能正确选出前 k 名。本题因此存在两个功能正确选项的唯一性缺陷，见下方“原卷瑕疵说明”；官方答案表取 B，站内仍按 B 计分。\n- **D (`int j = 1; j <= n; j++`)**：❌ 错误。上界 `j <= n` 使 j 取到 n 时访问 `students[n]`，越界（未定义行为）；起点固定为 1 也无法适配轮次，i ≥ 2 时会把已就位的前缀重新纳入比较，与 A 属同类错误。\n\n**原卷瑕疵说明：**\n按官方答案表本题为单选 B，但独立推演表明 C（`j = i`）与 B 完全等价（自比较恒假、无任何副作用），同为正确实现；独立模拟 4000 组随机数组（n ≤ 7、k 取 0 到 n）下 B、C 的输出逐一相同。这是原卷单选题的唯一性缺陷，本站保留官方答案 B 与计分不变，在此如实记录。\n\n**易错提醒：**\n- 内层起点写成 `i` 不会出错（自比较恒假），写成 `i + 1` 更规范；真正会出错的是从 0 或固定 1 开始。\n- 上界必须是 `j < n`，写成 `j <= n` 会越界访问 `students[n]`。\n- `maxIdx` 必须初始化为 `i`，否则 `students[i]` 无法参与本轮比较。\n\n**知识延伸：**\n完整执行 k = n 轮时，选择排序的时间复杂度为 O(n²)；本函数只执行 k 轮，每轮扫描 O(n)，总计 O(kn)，k 较小时比完整排序更高效。\n\n**考点：** 选择排序（Selection Sort）的内层循环边界控制。",
+            tags: ["客观题", "单选题", "GESP4级", "选择排序", "结构体"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 12,

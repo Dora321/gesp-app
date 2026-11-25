@@ -1,0 +1,19 @@
+{
+  "paperId": "2025-09-l4",
+  "integratedAt": "2026-11-25T06:42:09.566Z",
+  "accepted": [],
+  "deferred": [
+    {
+      "id": 24,
+      "reasons": [
+        "修改 explanation 已获一致批准，尚未应用",
+        "explanation 尚无一致、完整的原卷核验结论",
+        "模型仍提出追加修改，候选不能直接应用"
+      ],
+      "furtherChanges": {
+        "explanation": "**答案：错误**\n\n**判定依据：**\nC++ 的 `catch(...)` 语法是**全捕获（catch-all handler）**，其设计目的就是捕获**任意类型**的异常。\n\n```cpp\ntry {\n    throw 10;          // 抛出 int\n    // throw \"error\";  // 也可以抛出 const char*\n    // throw std::string(\"msg\"); // 或抛出类对象\n} catch(...) {\n    // 这里可以捕获上述所有类型的异常\n}\n```\n\n题干声称“只能捕获 `int` 类型异常”，这与 `catch(...)` 的语义完全矛盾。`catch(...)` 正是为了在不知道异常具体类型时仍能统一处理而设计的。本题代码中 `throw 42;` 抛出的虽然是 `int`，但这只是本题实际抛出的类型，并不代表 `catch(...)` 只能捕获 `int`；若在 `try` 中抛出其他类型（如字符串、类对象），同样会进入 `catch(...)` 被捕获。\n\n**易错提醒：**\n- 准确区分三种 catch 形式：\n  - `catch(const std::exception& e)`：仅捕获 `std::exception` 及其派生类\n  - `catch(int i)`：仅捕获 `int` 类型异常\n  - `catch(...)`：捕获所有异常\n- 使用 `catch(...)` 时，异常对象不可访问（因为不知道具体类型），常用于资源清理（如关闭文件、释放锁）后用 `throw;` 重新抛出异常。\n\n**知识延伸：**\nC++ 异常处理的匹配规则是**按类型匹配**，且各处理器**按书写顺序依次尝试**，命中第一个匹配的处理器后即停止；并不存在“自动优先匹配最具体类型”的规则。因此 `catch(...)` 通常写在所有具体类型处理器之后；若 `catch(...)` 写在 `catch(int)` 之前，`int` 异常会先被 `catch(...)` 截获，其后的 `catch(int)` 将永远不会被匹配。\n\n**考点：** C++ 异常处理机制中的全捕获语法 `catch(...)`。"
+      }
+    }
+  ],
+  "codeChecks": []
+}
