@@ -1,0 +1,110 @@
+{
+  "executedAt": "2026-11-25T07:00:05.494Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5 5\n1 2\n1 2 4 8 16\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8",
+          "output": "22",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "22\n",
+          "passed": true
+        },
+        {
+          "input": "6 10\n3 4\n1 1 1 1 1 1\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6",
+          "output": "3",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "n=2 单边，只有老鼠洞安全",
+          "input": "2 1\n1 2\n5 7\n1 2 3\n",
+          "output": "7",
+          "reason": "以 b=2 为源：d[2]=0、d[1]=3，d[a]=d[1]=3；仅 d[2]=0<3 满足，累加 c[2]=7。",
+          "kind": "boundary",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "三点链，取两端的近端",
+          "input": "3 2\n1 3\n1 2 4\n1 2 1\n2 3 1\n",
+          "output": "6",
+          "reason": "以 b=3 为源：d[3]=0、d[2]=1、d[1]=2，d[a]=d[1]=2；安全点 3、2，价值 4+2=6（结点 1 与猫同点起跑，不安全）。",
+          "kind": "boundary",
+          "actual": "6\n",
+          "passed": true
+        },
+        {
+          "name": "等距结点不安全（严格小于）",
+          "input": "4 3\n4 1\n1 1 1 1\n1 2 2\n2 3 2\n3 4 2\n",
+          "output": "3",
+          "reason": "以 b=1 为源：d[1]=0、d[2]=2、d[3]=4、d[4]=6，d[a]=d[4]=6；安全点为 1、2、3，价值 1+1+1=3；结点 4 自身 d[4]=6 不满足严格小于。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "440435c029c5f5074dbda654427dfe9275dcd3044a2fdf75b15df74d6e28a4f3"
+    },
+    {
+      "id": 27,
+      "passed": false,
+      "sampleCount": 2,
+      "boundaryCount": 2,
+      "tests": [
+        {
+          "input": "6 2\n1 2 1 2 1 2",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "input": "7 3\n3 1 3 1 2 1 2",
+          "output": "2",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 1（交替序列）",
+          "input": "6 2\n1 2 1 2 1 2\n",
+          "output": "3",
+          "reason": "每个最短窗口长 2，6 颗宝石正好切成 [1,2]、[1,2]、[1,2] 三段，每段都含 1、2 两种。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "原卷样例 2（环形切分）",
+          "input": "7 3\n3 1 3 1 2 1 2\n",
+          "output": "2",
+          "reason": "从第 6 枚（值 1）切开：窗口 [1,2,3] 长 3、剩余 [1,3,1,2] 长 4 且含全部 3 种，合计 7 颗得 2 段；线性的 [3,1,3,1,2,1,2] 无法切成 2 段，说明必须按环处理。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "整条项链只有 1 段（旧代码会输出 0）",
+          "input": "7 3\n3 3 3 1 1 2 2\n",
+          "output": "1",
+          "reason": "全串含 1、2、3 三种宝石，最少也要 1 段；但任何起点都无法在不留尾段的情况下切成 2 段，答案只能是 1。旧实现要求“每段都恰好凑齐且刚好走完 n”，会对该输入输出 0。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": false
+        }
+      ],
+      "codeSha256": "911788c8c1cd20244ac201c710baa3469370cf88dcff99630f14722c8f29e75d"
+    }
+  ]
+}
