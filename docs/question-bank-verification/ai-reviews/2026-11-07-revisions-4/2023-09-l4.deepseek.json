@@ -1,0 +1,69 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    3
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:30:00.000Z",
+  "completedAt": "2026-11-25T05:31:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "172ff499f5513ec78634c16db0ddf833e48197fdaec6d912a29790be3c45b403",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF GESP C++ 四级、2023 年 9 月；第1页答案表第3题为 C，与 2023-09-l4 第3题对应；第2页续排 B/C/D 三个选项。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第1页页图第3题题干止于「对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。」，其后页末只剩被页边界裁切的选项 A 起始行；候选 question 末尾多出孤立的「 A」（跨页裁切残字），且「包含n」缺少原卷的空格。除此之外文字与原卷逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第1页页末可见被裁切的选项 A（内容为 O(n)），第2页页图自上而下为 B.O(n log n)、C.O(n²)、D.以上都不正确；候选 options 依次为 O(n)、O(n log n)、O(n²)、以上都不正确，内容与顺序一致，answer 的 0 起始索引映射未变。原卷选项 A 被页边界裁切属排版问题，不影响选项内容判定。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表 B A C D D B A B B C C A A D C 第3格为 C，即 0 起始索引 2，候选 answer=2 一致。独立推导：按固定轮数执行的冒泡排序总比较次数为 (n-1)+(n-2)+…+1=n(n-1)/2=Θ(n²)，与输入无关；交换次数等于逆序对数，均匀随机排列每对逆序概率 1/2，期望交换 n(n-1)/4，仍为 Θ(n²)。故平均时间复杂度为 O(n²)，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐条复核成立：比较次数 n(n-1)/2 与输入无关；最坏（逆序）交换 n(n-1)/2；共 n(n-1)/2 对元素、每对逆序概率 1/2，故随机排列期望交换 n(n-1)/4；已有序时基本版冒泡仍需 Θ(n²) 次比较，只有「本轮无交换则提前结束」的优化才使最好情况降为 O(n)；A、B、D 的错误说明与知识延伸（比较/非比较排序复杂度归类）均无误，未出现虚构运行结果。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，不适用该维度。"
+          }
+        },
+        "changes": {
+          "question": "对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅 1 道候选（Q3）。题干已由上一轮删去页末残字，但候选实际仍保留跨页裁切残字「 A」，本轮据第1页页图判 statement=needs_fix 并在 changes 给出清理后的题干；选项、答案、解析与原卷及独立推导一致。"
+  }
+}

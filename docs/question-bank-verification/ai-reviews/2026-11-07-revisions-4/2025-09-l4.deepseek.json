@@ -1,0 +1,69 @@
+{
+  "paperId": "2025-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    24
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T05:30:00.000Z",
+  "completedAt": "2026-11-25T05:39:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "dfa0cb709c0a94ac6929100f57fdbf9478a24c0b80c09c5160b2d47156660244",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1703973044092960.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2025年9月-C++4级.pdf",
+    "mirrorSha": "b4d8200dd65bccec72ef33d8e4f41a30ecf6eae2",
+    "mirrorBytes": 1103585,
+    "shaVerified": true,
+    "sha256": "8424f8c3ce4105ce2dae9bd6464107bf0c21e3342c80b4f1df3cef91625f7594"
+  },
+  "pageCount": 10,
+  "report": {
+    "paperId": "2025-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第6页答案表为 2025 年 9 月 C++ 四级判断题答案表，第9格为 ×；第7页第9题题号与代码内容与 2025-09-l4 的 Q24 对应。"
+    },
+    "questions": [
+      {
+        "id": 24,
+        "sourcePages": [
+          6,
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "PDF 第7页判断题第9题题干为「以下代码只能捕获 int 类型异常。」，代码为 8 行完整程序：1 int main() {、2 try {、3 throw 42;、4 } catch (...) {、5 cout << \"Caught\" << endl;、6 }、7 return 0;、8 }。候选 question 把整段程序替换成两行占位块 try { /* codes */ } 与 catch (...) { /* codes */ }，丢失 throw 42、输出语句与 return 0；而候选解析仍在引用「本题代码中 throw 42;」，题面与解析脱节。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "原卷判断题不设 A–D 选项；站内二元选项「正确/错误」按 正确=0、错误=1 映射，与原卷 ×/√ 等价（本题 × 即错误）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表 × × √ √ × √ √ × × × 第9格为 ×（错误），映射 officialAnswer=1，候选 answer=1 一致。独立推导：catch(...) 是全捕获处理器，可匹配任意类型的异常，题干「只能捕获 int 类型异常」不成立，答案应为「错误」。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析结论与论证经复核成立：catch(...) 捕获任意类型异常；catch(const std::exception&)、catch(int)、catch(...) 三种形式的区分正确；处理器按书写顺序依次尝试、命中第一个匹配即停止，不存在「自动优先匹配最具体类型」，故 catch(...) 写在 catch(int) 之前会使后者永不匹配；catch(...) 无法访问异常对象、常用 throw; 重抛。题面恢复 throw 42 后，解析对该行的引用自洽。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序，该维度不适用。"
+          }
+        },
+        "changes": {
+          "question": "以下代码只能捕获 `int` 类型异常。\n```cpp\nint main() {\n    try {\n        throw 42;\n    } catch (...) {\n        cout << \"Caught\" << endl;\n    }\n    return 0;\n}\n```"
+        },
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅 1 道候选（Q24）。解析已按 C++ 标准语义改写（verified），答案 ×（错误，索引1）与原卷答案表一致；但题面把原卷 8 行程序压成两行占位块并丢失 throw 42 等关键代码，本轮据第7页页图恢复完整程序。"
+  }
+}
