@@ -36,3 +36,10 @@ test('public URLs use the trailing-slash form GitHub Pages serves with 200', () 
   assert.equal(absoluteUrl('/question-bank'), 'https://Dora321.github.io/gesp-app/question-bank/');
   assert.equal(getRouteSeo('/').canonicalUrl, 'https://Dora321.github.io/gesp-app/');
 });
+
+test('placement is a published route with dedicated metadata', () => {
+  const seo = getRouteSeo('/placement/');
+  assert.equal(seo.title, 'GESP C++ 起点定级诊断');
+  assert.match(seo.description, /3 分钟自测/);
+  assert.equal(seo.canonicalUrl, 'https://Dora321.github.io/gesp-app/placement/');
+});

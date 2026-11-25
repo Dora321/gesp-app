@@ -16,6 +16,18 @@ const equal = (a, b) => typeof a === 'string' && typeof b === 'string' && timing
 const token = () => randomBytes(32).toString('base64url');
 const error = (status, message) => Object.assign(new Error(message), { status });
 
+function validatePageContext(context) {
+  if (context === undefined) return undefined;
+  if (typeof context !== 'object' || context === null || Object.getPrototypeOf(context) !== Object.prototype
+      || Object.keys(context).some(key => key !== 'title' && key !== 'path')
+      || typeof context.title !== 'string' || context.title.length > 160
+      || typeof context.path !== 'string' || context.path.length > 160
+      || !context.path.startsWith('/') || context.path.startsWith('//') || /[?#\\\s]/.test(context.path)) {
+    throw error(400, '页面位置仅支持标题和站内路径。');
+  }
+  return { title: context.title, path: context.path };
+}
+
 const providers = {
   deepseek: {
     name: 'DeepSeek',
@@ -434,6 +446,7 @@ export function createClassroomServer({
           const data = await body(req, CHAT_BODY_LIMIT);
           const { messages } = data || {};
           if (!Array.isArray(messages) || !messages.length || messages.length > 32 || messages.some(m => !m || !['user', 'assistant'].includes(m.role) || typeof m.content !== 'string' || m.content.length > 4000) || messages.reduce((n, m) => n + m.content.length, 0) > 24000 || messages.at(-1).role !== 'user') throw error(400, '对话过长或格式不正确，请新建对话并缩短问题。');
+          const pageContext = validatePageContext(data.pageContext);
           const withImages = messages.filter(message => message.image !== undefined);
           if (withImages.length > CHAT_IMAGE_HISTORY_LIMIT || withImages.some(message => message.role !== 'user' || !isChatImage(message.image))) {
             throw error(400, '图片过大或格式不正确，请重新添加图片。');
@@ -506,7 +519,7 @@ export function createClassroomServer({
               headers,
               body: JSON.stringify({
                 model: provider.model,
-                messages: [{ role: 'system', content: buildClassroomPrompt(persona) }, ...toModelMessages(messages)],
+                messages: [{ role: 'system', content: buildClassroomPrompt(persona, pageContext) }, ...toModelMessages(messages)],
                 stream: true,
                 reasoning_effort: deepSeekReasoningEffort(reasoningLevel),
                 max_tokens: reasoningLevel === 'medium' ? 2400 : 1200,

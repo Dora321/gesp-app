@@ -31,3 +31,11 @@ test('classroom guidance stays present for custom roles and context is optional'
   assert.ok(!prompt.includes('private-answer') && !prompt.includes('private-key'));
   assert.ok(!buildClassroomPrompt('使用简短语言', null).includes('/python/f3'));
 });
+
+test('page context in the system prompt quotes only the allowed fields and bounds their length', () => {
+  const context = { title: '题目\n"标题"'.repeat(30), path: '/' + 'x'.repeat(200), privateData: 'PRIVATE' };
+  const prompt = buildClassroomPrompt('默认角色', context);
+  const parsed = JSON.parse(prompt.slice(prompt.lastIndexOf('\n') + 1).split('）：')[1]);
+  assert.deepEqual(parsed, { title: context.title.slice(0, 160), path: context.path.slice(0, 160) });
+  assert.doesNotMatch(prompt, /PRIVATE/);
+});
