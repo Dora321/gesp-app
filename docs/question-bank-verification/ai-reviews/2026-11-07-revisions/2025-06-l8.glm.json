@@ -1,0 +1,649 @@
+{
+  "paperId": "2025-06-l8",
+  "phase": "glm",
+  "questionIds": [
+    26,
+    27,
+    4,
+    5,
+    6,
+    7,
+    9,
+    11,
+    12,
+    13,
+    14,
+    17,
+    19,
+    20,
+    21
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:05:00.000Z",
+  "completedAt": "2026-11-25T11:40:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "d73d548c8c460ab03314d836f680f7ce2f563589f3c0de5e2056f33834c42c29",
+  "source": {
+    "officialUrl": null,
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++8级.pdf",
+    "mirrorSha": "4477359aebb1b58a6544e845f33cad05c340b8d7",
+    "mirrorBytes": 1692128,
+    "shaVerified": true,
+    "sha256": "74a38f814139d2d2ce9aabe40ab330b66619a57cc7c47cce9f468cd3ed86958b"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l8",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页页图卷头为「CCF 编程能力等级认证 GESP / C++ 八级 / 2025 年 06 月」，与 paperId 2025-06-l8 一致；第 1 页单选题答案表 1—15 依次为 A B D D C B C B A A C D D C A，第 6 页判断题答案表 1—10 依次为 √ × √ × × × √ × √ √，两张答案表放大核验下均清晰可读；第 7—11 页为编程题 26「树上旅行」、27「遍历计数」的题头、题面、样例、数据范围与参考程序。本轮复核以页图为准。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核对参考代码的替换并独立复核通过：候选倍增（up 父链 / down 最小儿子）实现与第 8—9 页官方程序同构，两组官方样例、4 组自拟边界用例全部通过，另与逐步模拟暴力对拍 300 组随机小树/随机操作零差异。原卷 512 MB 与题库 128 MB 的内存差异按约定记录于 unresolved，不在本轮修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页 3.1.1—3.1.4 原文：以 1 为根的有根树、移动一为走向父结点（根处不动）、移动二为走向编号最小的子结点（叶处不动）、a_ij>0 表第一种 a_ij 次、<0 表第二种 −a_ij 次、求每次旅行终点；候选 description/inputDescription/outputDescription 为压缩表述但保留全部判定规则，与页图一致。第 6 页题头时间限制 1.0 s、内存 512.0 MB（内存差异记录于 unresolved）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出建树 + minChild 预处理 + 倍增 up/down 的正解，复杂度 O((n+Σk)log n)；样例 1 四组查询（3→1→2→4、2→1→2→1→2→1、5→2→1→1→2→4、5→5→5→2）复算与输出 4/1/4/2 一致；官方数据范围 1≤|a_ij|≤n≤1e5，L=18 覆盖全部步数。末尾“建议用 long long 接收操作数”在 |a_ij|≤n 下非必需，但无害。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 clang++ -std=c++17 -O2 编译运行候选程序：官方样例 1 输出 4/1/4/2、样例 2 输出 1/7/1 全对；自拟边界 n=1（±1 均停留）、5 结点链 |a|=n 端点停留、分叉取最小儿子、多级最小儿子链穿插共 4 组全部通过；另与逐步模拟暴力对拍 300 组随机小树/随机操作零差异；n=1e5 链、q=2e4、Σk=1e5 压力运行 0.37 s（压力与耗时仅记于此与维度证据，不写入 tests）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原卷样例 1（多组查询）",
+            "input": "5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1\n",
+            "output": "4\n1\n4\n2",
+            "reason": "树为 1-2、1-3、2-4、2-5；四组查询分别 3→1→2→4、2→1→2→1→2→1、5→2→1→1→2→4、5→5→5→2，与输出一致。"
+          },
+          {
+            "name": "原卷样例 2（环回与停留）",
+            "input": "8 3\n5 4 2 1 3 6 6\n8 1\n8\n8 2\n8 -8\n8 3\n8 -8 8\n",
+            "output": "1\n7\n1",
+            "reason": "树为 1-5、5-2、2-4、4-3、3-6、6-7、6-8；8 向上 8 步停在根 1，向下 8 步沿最小儿子链停在叶 7，再向上 8 步回根 1，验证到端点后停留。"
+          },
+          {
+            "name": "单结点 n=1，±1 均停留",
+            "input": "1 2\n\n1 2\n1 -1\n1 1\n-1\n",
+            "output": "1\n1",
+            "reason": "n=1 时第二行父结点序列为空；向上无父、向下无子，两次查询都停在 1，同时验证读入 0 个父结点不越界。"
+          },
+          {
+            "name": "5 结点链上 |a|=n 的端点停留",
+            "input": "5 2\n1 2 3 4\n5 2\n5 5\n1 2\n-5 -5\n",
+            "output": "1\n5",
+            "reason": "链 1-2-3-4-5；从 5 向上 5 步（树高仅 4）到根后停留得 1，从 1 向下 5 步到叶后停留得 5，在官方数据范围 |a|≤n 内验证端点停留。"
+          },
+          {
+            "name": "分叉取编号最小儿子",
+            "input": "4 2\n1 2 2\n1 2\n-1 -1\n4 4\n-1 1 -1 -1\n",
+            "output": "3\n3",
+            "reason": "结点 2 的儿子为 {3,4}，最小编号 3；从 1 连续向下两次到 3，可区分“取最小”与“取末位/最大”；从 4 出发 -1（叶停留）、+1 回 2、-1 到 3、-1 停留，仍为 3。"
+          },
+          {
+            "name": "多级最小儿子链上下穿插",
+            "input": "6 2\n1 1 2 2 4\n3 6\n-1 1 -1 -1 -1 -1\n6 4\n1 1 1 -1\n",
+            "output": "6\n2",
+            "reason": "minChild：1→2、2→4、4→6，叶为 3、5、6；从 3 出发 -1 停留、+1 回 1、再连续向下 3 步沿 2→4→6 后停留得 6；从 6 连续向上 3 步回根 1 再向下 1 步得 2。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 6 页标注本题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          9,
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "verdict": "approve",
+        "reviewNote": "接受初核对参考代码的替换并独立复核通过：候选前后缀积实现与第 10—11 页官方程序同构，并新增 n==1 早退修复官方代码 fac[-1] 的越界缺陷。两组官方样例、4 组自拟边界用例全部通过，并与“原始 DFS 游走全枚举”对拍 150 组随机树零差异（该枚举与闭式公式互证亦零差异）。内存差异按约定记录于 unresolved。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9 页 3.2.1—3.2.3 原文：n 个结点的树、起点任选、相邻未访问结点遍历顺序任意、按首次访问顺序记录、求不同 DFS 序数量对 1e9 取模；候选 description 与输入/输出描述同页图一致；第 10 页数据范围 40% n≤8、另 20% 为链、全部 1≤n≤1e5，候选未写入 description 但解析与代码按 n≤1e5 处理。第 9 页题头 1.0 s、内存 512.0 MB（差异另记）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷答案表项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以 ways(r)=deg[r]!·∏_{u≠r}(deg[u]-1)! 建模，说明模 1e9 非质数不能求逆元、改用前后缀积；样例 1（4 结点链）1+2+2+1=6、样例 2（8 结点）3×24+5×8=112 复算一致；末尾 ans=P·2(n-1) 的化简与上式等价（P=∏(deg-1)!，∑deg=2(n-1)）。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 clang++ -std=c++17 -O2 编译运行候选程序：官方样例输出 6、112 全对；边界 n=1→1（早退保护避免 fac[-1] UB）、n=2→2、4 结点星形→12、5 结点链→8=2(n-1) 全部通过；另以“每步任选未访问邻居、按回溯链继续”的原始 DFS 游走全枚举对拍 150 组 n≤7 随机树零差异，该枚举与闭式公式互证亦零差异；n=1e5 链输出 2(n-1)=199998、0.21 s（压力与耗时仅记于此）。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "原卷样例 1（4 结点链）",
+            "input": "4\n1 2\n2 3\n3 4\n",
+            "output": "6",
+            "reason": "链上以两端为根各 1 种、中间两点各 2 种，1+2+2+1=6。"
+          },
+          {
+            "name": "原卷样例 2（8 结点树）",
+            "input": "8\n1 2\n1 3\n1 4\n2 5\n2 6\n3 7\n3 8\n",
+            "output": "112",
+            "reason": "1、2、3 的度为 3，5 个叶度为 1；以 1/2/3 为根各 3!×(2!)²=24，以叶为根各 1!×(2!)³=8，3×24+5×8=112。"
+          },
+          {
+            "name": "单结点树 n=1",
+            "input": "1\n",
+            "output": "1",
+            "reason": "DFS 序唯一为 [1]；官方参考程序此时会访问 fac[deg[1]-1]=fac[-1]（越界 UB），候选 n==1 早退输出 1，修正真实缺陷。"
+          },
+          {
+            "name": "两结点单边",
+            "input": "2\n1 2\n",
+            "output": "2",
+            "reason": "以 1 为根 [1,2]、以 2 为根 [2,1]，共 2 种；公式 1!·(0!)=1 与 0!·(1!)=1 之和。"
+          },
+          {
+            "name": "4 结点星形（重复度计数）",
+            "input": "4\n1 2\n1 3\n1 4\n",
+            "output": "12",
+            "reason": "中心为根 3!=6，每个叶为根 1!×2!=2，3×2=6，合计 12。"
+          },
+          {
+            "name": "5 结点链（闭式 2(n-1)）",
+            "input": "5\n1 2\n2 3\n3 4\n4 5\n",
+            "output": "8",
+            "reason": "链上所有 (deg-1)! 皆为 1，答案 = 度数和 = 2(n-1) = 8，验证解析末尾的化简式。"
+          }
+        ],
+        "unresolved": [
+          "原卷第 9 页标注本题（编程题 2 遍历计数）内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      },
+      {
+        "id": 4,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 3,
+        "verdict": "approve",
+        "reviewNote": "候选四个选项为第一轮按原卷页图重建的结果，本轮独立复核：第 1 页题干、四选项与答案表 D（索引 3）逐字一致；“三角形加孤立点”反例（4 顶点 3 边，既不连通又含环）成立，D 确为错误项，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 4 题题干「关于生成树的说法，错误的是（ ）。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页 A「一个无向连通图，一定有生成树。」、B「n 个顶点的无向图，其生成树要么不存在，要么一定包含 n−1 条边。」、C「n 个顶点、n−1 条边的无向图，不可能有多颗生成树。」、D「n 个顶点、n−1 条边的无向图，它本身就是自己的生成树。」与候选 options 逐字一致（“多颗”为原卷用字）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 D，0 起始索引 3，候选 answer=3。独立判断：1、2、3 构成三角形、4 孤立的 4 顶点图边数为 3=n−1，但既不连通又含环，不是生成树，D 说法不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐项给出 A/B/C 正确、D 反例的论证，与独立推导一致；对被吞行内公式的同步修复与 options 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回题干与选项，本轮独立复核：第 2 页题干、四个选项与第 1 页答案表 C（索引 2）一致；2/4=1/2 的推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 5 题题干「一对夫妻生男生女的概率相同。这对夫妻希望儿女双全。请问这对夫妻生下两个孩子时，实现儿女双全的概 率是多少？（ ）。」与候选一致（“概 率”间空格为原卷排版残留，候选保留）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A 2/3、B 1/3、C 1/2、D 1/4，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 C，索引 2，候选 answer=2。独立核算：{男男, 男女, 女男, 女女} 等可能，一男一女占 2/4=1/2。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按四种等可能结果得 1/2，并逐项排除 2/3、1/3、1/4，推导正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 6,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回方程 x²+ax+b=0，本轮独立复核：第 2 页题干、四选项与答案表 B（索引 1）一致；判别式 a²−4b≥0 ⟺ 4b≤a*a 的推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 6 题题干「已定义变量 double a, b;，下列哪个表达式可以用来判断一元二次方程 x²+ax+b=0 是否有实根？（ ）。」与候选一致，方程已完整补回。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A 4*b - a*a < 0、B 4*b <= a*a、C a*a - 4*b、D b*4 - a*a，与候选 options 逐项一致（仅空格排版差异）。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 6 题为 B，索引 1，候选 answer=1。独立推导：Δ=a²−4b，有实根 ⟺ Δ≥0 ⟺ 4b≤a²。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明 A 漏掉 Δ=0 的重根、C/D 为算术表达式不能作条件判断，与 B 的结论一致，推理正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          2
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回变量 n，本轮独立复核：第 2 页题干、四选项与答案表 C（索引 2）一致；BFS 每结点入队出队各一次得 O(n) 的推导成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 7 题题干「n 个结点的二叉树，执行广度优先搜索的平均时间复杂度是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A O(log n)、B O(n log n)、C O(n)、D O(2^n)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 C，索引 2，候选 answer=2。独立推导：每结点入队、出队各一次并枚举至多两个孩子，总代价 O(n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析得 O(n) 并逐项排除其余三项，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "verdict": "revise",
+        "reviewNote": "候选选项与原卷一致、答案 A 正确，但解析逐项分析的 C/D 标签仍按站点旧选项顺序书写：现选项 C 为 O(log n)、D 为 O(n²)，解析却写成“C O(n²)”“D O(log n)”，与修复后的 options 直接矛盾。已按现选项顺序给出完整修正文本（A/B 两条与现选项一致，保留）。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2—3 页第 9 题题干与 count_digit/sum_digit 代码逐行对照一致（to_string、逐字符比较、外层 1..n 累加），候选已去除 PDF 行号串并改为代码块。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页 A O(n log n)、B O(n)、C O(log n)、D O(n²)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题为 A，索引 0，候选 answer=0。独立推导：外层 n 次、每次 count_digit 扫描 O(log₁₀ i) 位，合计 ΣO(log i)=O(n log n)。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体“外层 n 次 × 内层位数级 O(log i) = O(n log n)”正确，但逐项分析的 C/D 标签与现选项相反（候选解析 C 写 O(n²)、D 写 O(log n)，而现选项 C=O(log n)、D=O(n²)）。已按现选项顺序改写 C/D 两条，A/B 保持不变。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A**\n\n**解析：**\n`count_digit(i, d)` 把 i 转成字符串后逐字符扫描，耗时 O(位数) = O(log₁₀ i)；`sum_digit` 对 i = 1…n 各调用一次，总时间为 Σ_{i=1}^{n} O(log i) = O(n log n)。\n\n- **A O(n log n)**：正确。外层 n 次、内层平均 O(log i)，累计 O(n log n)。\n- **B O(n)**：错误。忽略了对每个数做字符串扫描的 O(log n) 代价。\n- **C O(log n)**：错误。单次数位统计是 O(log n)，但外层循环 n 次，整体不是 O(log n)。\n- **D O(n²)**：错误。没有平方级嵌套，不是 O(n²)。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回代码与选项，本轮独立复核：第 3—4 页题干、代码与四选项逐行一致，答案表 C（索引 2）；v≤√n/2、u=O(√n) 使枚举总量为 O(n)，乘 gcd 的 O(log n) 得 O(n log n)，解析成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3—4 页第 11 题题干「下面 count_triple 函数的时间复杂度为（ ）。」与候选一致；gcd/count_triple 代码（4v²≤n、2u(u+v)≤n、u+=2、cnt += n/(a+b+c)）逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3—4 页 A O(n)、B O(n²)、C O(n log n)、D O(n² log n)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 C，索引 2，候选 answer=2。独立推导：Σ_{v≤√n/2} O(√n−v) = O(n) 次枚举 × 每次 Euclid gcd O(log n) = O(n log n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按枚举总量与 gcd 代价相乘得 O(n log n)，并逐项排除 A/B/D，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "候选题干代码已按原卷补回、答案 D 正确，但解析存在两处确凿问题：其一，B 项分析写成“swap(a[l], a[i]); return j; 交换对象错误”，与现选项 B（swap(a[l], a[j]); return i;）不符，且与 C 项文字重复；B 的真实错误在返回 i（左递归区间仍含枢轴，会重复划分乃至无限递归）。其二，末尾“原题所引程序代码未完整收录”的注记在代码补回后已过时。已给出整字段修正文本。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 12 题题干与 swap/partition/quick_sort 代码（i=l+1、a[j]>=pivot 时 j--、a[i]<=pivot 时 i++、i<j 时交换、末尾两处横线）逐行对照一致，候选已补回完整代码块。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A swap(a[l], a[i]) / i、B swap(a[l], a[j]) / i、C swap(a[l], a[i]) / j、D swap(a[l], a[j]) / j，候选以“swap(...); return ...”单行形式复现，顺序与内容一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 题为 D，索引 3，候选 answer=3。独立推演：以 [3,1,2] 为例，循环结束时 i=3、j=2，应 swap(a[0], a[2]) 并返回 2；对全等、有序、逆序数组逐一验证，返回 j 均使枢轴就位。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析主体“j 指向最后一个不大于枢轴的元素，swap(a[l], a[j]) 后返回 j”正确；但 B 项复述与现选项不符且与 C 项重复（现选项 B 是 swap(a[l], a[j]); return i;，错误在 return i），末尾“代码未完整收录”注记过时。已按现选项逐项重写并删除过时注记。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**解析：**\n该 partition 以 a[l] 为枢轴，循环结束后 j 指向最后一个不大于枢轴的元素位置，应将枢轴归位到 j 处并以其为分界返回。因此第一空执行 `swap(a[l], a[j])`，第二空返回 `j`。\n\n- **A swap(a[l], a[i]); return i;**：错误。i 已越过分界点，用 i 交换并作为返回位置会把枢轴放到错误一侧。\n- **B swap(a[l], a[j]); return i;**：错误。交换对象虽是 a[j]，但返回 i 会把非枢轴位置当作分界；枢轴实际在 j，i 通常为 j+1，左递归区间仍包含枢轴甚至与原区间相同，会重复划分乃至无限递归。\n- **C swap(a[l], a[i]); return j;**：错误。交换对象应为 a[j] 而非 a[i]，否则枢轴没有归位到分界点。\n- **D swap(a[l], a[j]); return j;**：正确。将枢轴 a[l] 与 a[j] 交换使枢轴就位，并返回枢轴下标 j。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 3,
+        "verdict": "revise",
+        "reviewNote": "候选题干代码已剔除误拼的第 12 题代码与 PDF 行号、答案 D 正确，但解析的 A/B/C 逐项分析复述的是站点旧选项（如 A 写成 dp[i]=dp[j]+1、B 写成 dp[i]=max(dp[j],dp[i]+1)、C 写成 dp[j]=max(dp[j],dp[i]+1)），与原卷/候选的 A dp[j]=max(dp[j]+1,dp[i])、B dp[j]=max(dp[j],dp[i]+1)、C dp[i]=max(dp[i]+1,dp[j]) 不符。已按现选项逐项重写 A/B/C 的错误说明，结论 D 不变。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4—5 页第 13 题题干与 max + LIS 基础 DP 代码（dp 初始 1、j<i、nums[j]<nums[i] 时填空、maxLen 更新）逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页 A dp[j] = max(dp[j] + 1, dp[i])、B dp[j] = max(dp[j], dp[i] + 1)、C dp[i] = max(dp[i] + 1, dp[j])、D dp[i] = max(dp[i], dp[j] + 1)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 D，索引 3，候选 answer=3。独立推导：dp[i] 为以 i 结尾的 LIS 长度，j<i 且 nums[j]<nums[i] 时 dp[i]=max(dp[i],dp[j]+1)。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "解析结论 D 正确，但 A/B/C 复述站点旧选项文本，与原卷/候选 options 不符。已按现选项逐项重写三条错误说明。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D**\n\n**解析：**\nLIS 的 DP 解法是 `dp[i]` 表示以第 i 个元素结尾的最长上升子序列长度，初始为 1；对 `j < i` 且 `nums[j] < nums[i]` 时，用 `dp[j]+1` 更新 `dp[i]`。因此状态转移应为 `dp[i] = max(dp[i], dp[j] + 1)`。\n\n- **A dp[j] = max(dp[j] + 1, dp[i]);**：错误。更新对象写成了 `dp[j]`，应为 `dp[i]`；候选值也写反了，不应用 `dp[i]` 去刷新 `dp[j]`。\n- **B dp[j] = max(dp[j], dp[i] + 1);**：错误。更新对象应为 `dp[i]`，候选值应来自 `dp[j] + 1`；写成 `dp[j] = max(dp[j], dp[i] + 1)` 无法把第 j 个元素接到第 i 个元素之前。\n- **C dp[i] = max(dp[i] + 1, dp[j]);**：错误。候选值写成了 `dp[i] + 1`（自增）与 `dp[j]`，没有使用 `dp[j] + 1`，会丢失“接在 j 之后”的转移。\n- **D dp[i] = max(dp[i], dp[j] + 1);**：正确。以 `dp[j] + 1` 刷新 `dp[i]` 的最大值。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "verdict": "approve",
+        "reviewNote": "候选第一轮已补回代码与选项，本轮独立复核：第 5 页题干、tail+二分代码与四选项逐行一致，答案表 C（索引 2）；外层 n 次 × 每次 O(log n) 二分得 O(n log n)，解析成立，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 14 题题干「下面 LIS 函数试图求出最长上升子序列的长度，其时间复杂度为（ ）。」与候选一致；#define INT_MIN (-1000)、tail 哨兵、while(l<r) 二分、push_back 或 tail[r]=x、返回 tail.size()-1 逐行对照一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页 A O(log n)、B O(n)、C O(n log n)、D O(n²)，与候选 options 逐项一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 C，索引 2，候选 answer=2。独立推导：n 个元素各做一次 O(log n) 二分，合计 O(n log n)。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析说明贪心+二分的实现与 O(n²) 基础 DP 的区别，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题不适用参考代码维度。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 17,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 2 题：第 6 页题干与答案表 ×（索引 1）核对一致；原生数组越界属 UB、不保证异常退出的判断独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 2 题「C++ 语言中，访问数据发生下标越界时，总是会产生运行时错误，从而使程序异常退出。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 2 题为 ×，映射 1，候选 answer=1。独立判断：原生数组/指针越界为未定义行为，可能读到脏数据而不崩溃，“总是异常退出”不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析区分“不做运行时检查的 UB”与“vector::at 等保证抛 out_of_range”，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 19,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 4 题：第 6 页题干与答案表 ×（索引 1）核对一致；“两侧相邻”读法 1 种、“左右区域”读法 C(7,3)=35 种，均非 15，命题错误成立，解析完整，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 4 题「5 个相同的红球和 4 个相同的蓝球排成一排，要求每个蓝球的两侧都必须至少有一个红球，则一共有 15 种排列方案。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 4 题为 ×，映射 1，候选 answer=1。独立计数：按“两侧相邻”唯 RBRBRBRBR 1 种；按“左右区域各须有红球”首尾固定为红、中间 7 位放 3 红 4 蓝，C(7,3)=35 种；均非 15。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析同时交代两种读法并指出 15=C(6,4) 属“蓝球不相邻”的弱约束，论证完整。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 5 题：第 6 页题干与答案表 ×（索引 1）核对一致；log 为自然对数、ln8≈2.079≠3 的判断独立成立，解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 5 题「使用 math.h 或 cmath 头文件中的函数，表达式 log(8) 的结果类型为 double、值约为 3。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 5 题为 ×，映射 1，候选 answer=1。独立计算：cmath 的 log 为自然对数，ln 8≈2.079（log₂8 才等于 3），“值约为 3”错误。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析指出类型虽为 double 但取值错误、整个命题为假，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 21,
+        "sourcePages": [
+          6
+        ],
+        "officialAnswer": 1,
+        "verdict": "approve",
+        "reviewNote": "判断题第 6 题：第 6 页题干与答案表 ×（索引 1）核对一致；“语言不原生支持”与“无法模拟实现”的区别论证成立（结构体嵌套 + 函数指针表），解析无误，无需修改。",
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 6 页判断题第 6 题「C++ 是一种面向对象编程语言，C 则不是。继承是面向对象三大特性之一，因此，使用 C 语言无法实现继承。」与候选 question 一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有“正确/错误”两态，原卷无 A-D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 6 页判断题答案表第 6 题为 ×，映射 1，候选 answer=1。独立判断：C 无语言级继承语法，但可以结构体嵌套（父结构体作首成员）+ 函数指针表模拟继承与多态，“无法实现”不成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析给出模拟方式与工程实例，结论与 × 一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "15 题独立复核完成：先逐页对照原卷再核 DeepSeek 结论。13 题（Q4/5/6/7/11/14/17/19/20/21/26/27 及源卷面）与原卷页图、答案表逐字一致，approve 且 changes 为空；Q9/Q12/Q13 确认初核发现成立——第一轮只重建了选项/题干而未同步解析，现解析与修复后选项矛盾（Q9 的 C/D 标签、Q12 的 B 项复述与过时注记、Q13 的 A/B/C 复述旧选项），已采纳经独立验证的整字段修正文本，verdict=revise。Q26/Q27 参考程序经本机编译：官方样例、共 10 组自拟边界用例全部通过，Q26 与 300 组随机小树模拟对拍、Q27 与原始 DFS 游走全枚举 150 组对拍均零差异，并覆盖 n=1、|a|=n 端点停留、最小儿子取编号、n==1 早退防 fac[-1] 等边界；n=1e5 满档压力运行 0.37 s/0.21 s（压力仅记于证据不入 tests）。原卷 512 MB 与题库 128 MB 的内存差异按约定记录于 unresolved，留待本机集成校正。"
+  }
+}
