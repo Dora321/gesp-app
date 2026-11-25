@@ -50,27 +50,19 @@ export const paperData = {
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 1,
             sourcePages: [1],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-07",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             sourceVerified: true,
             type: "single",
             question: `对于一个具有n个顶点的无向图，若采用邻接矩阵表示，则该矩阵的大小为（ ）。`,
             options: ["n×(n/2)", "n×n", "(n-1)×(n-1)", "(n+1)×(n+1)"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-**解析：**
-邻接矩阵用一个 n×n 的二维数组表示 n 个顶点的无向图，无论边数多少都固定占用 n² 个存储单元。
-
-- **A n**：错误。这是顶点数，不是矩阵大小。
-- **B n²**：正确。n×n 矩阵共 n² 个元素。
-- **C 2n**：错误。与矩阵实际规模不符。
-- **D n(n-1)/2**：错误。这是完全图边数，或仅存上三角时的优化规模，并非标准邻接矩阵大小。
-`,
+            explanation: "**答案：B**\n\n**解析：**\nn 个顶点的邻接矩阵是 n×n 的二维数组，共 n² 个元素，与边数无关。A 的 n×(n/2) 不是矩阵规模；C 的 (n−1)×(n−1) 少一个顶点；D 的 (n+1)×(n+1) 多一个顶点。故选 B。\n\n**考点：** 邻接矩阵的存储规模。",
             tags: [
                 "C++综合",
             ],
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 3,
@@ -169,84 +161,55 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: `个结点的二叉树，执行释放全部结点操作的时间复杂度是（ ）。`,
-            options: [
-                "O(n)",
-                "O(n²)",
-                "O(log n)",
-                "O(2ⁿ)",
-],
+            question: "n 个结点的二叉树，执行释放全部结点操作的时间复杂度是（ ）。",
+            options: ["O(n)","O(n log n)","O(log n)","O(2ⁿ)"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-**解析：**
-释放一棵含 n 个结点的二叉树，需要遍历每个结点恰好一次并 delete，因此时间复杂度为 O(n)。
-
-- **A O(n)**：正确。每个结点仅访问一次。
-- **B O(n²)**：错误。无需双重遍历。
-- **C O(log n)**：错误。那是树高的量级，而非遍历全部结点。
-- **D O(2ⁿ)**：错误。指数级复杂度与此操作无关。
-`,
+            explanation: "**答案：A**\n\n**解析：**\n释放一棵含 n 个结点的二叉树，需要遍历每个结点恰好一次并释放，时间复杂度 O(n)。\n\n- A O(n)：正确；\n- B O(n log n)：错误，无需按层或排序；\n- C O(log n)：错误，这是树高的量级；\n- D O(2ⁿ)：错误，与遍历全部结点无关。\n\n**考点：** 二叉树遍历的线性复杂度。",
             tags: [
                 "树与二叉树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 6,
             type: "single",
-            question: `在一个单位圆上，随机分布 个点，求这 个点能被一个单位半圆周全部覆盖的概率（ ）。`,
-            options: [
-                "n/2^(n-1)",
-                "1/2^n",
-                "1/n",
-                "(n-1)/2^n",
-],
+            question: "在一个单位圆上，随机分布 n 个点，求这 n 个点能被一个单位半圆周全部覆盖的概率（ ）。",
+            options: ["n/2^(n-1)","1/n^2","1/n","1/2^n"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
-
-**解析：**
-经典几何概率结论——单位圆上随机分布 n 个点，它们能被某个单位半圆周全部覆盖的概率为 n/2^(n−1)。
-
-- **A n/2^(n-1)**：正确。固定某点为最左点，其余 n−1 个点都落入其顺时针 180° 半圆内的概率为 (1/2)^(n−1)，再乘 n 种选择得 n/2^(n−1)。
-- **B 1/2^n**：错误。指数与底数均不正确。
-- **C 1/n**：错误。与半圆覆盖模型不符。
-- **D (n-1)/2^n**：错误。形式错误。
-`,
+            explanation: "**答案：A**\n\n**解析：**\n经典几何概率结论——单位圆上随机分布 n 个点，它们能被某个单位半圆周全部覆盖的概率为 n/2^(n−1)。\n\n- **A n/2^(n-1)**：正确。固定某点为半圆的顺时针端点，其余 n−1 个点都落入其顺时针 180° 半圆内的概率为 (1/2)^(n−1)，再乘 n 种选择得 n/2^(n−1)。\n- **B 1/n²**：错误。与半圆覆盖模型不符。\n- **C 1/n**：错误。与半圆覆盖模型不符。\n- **D 1/2^n**：错误。缺少因子 n（未计入 n 个可能的端点选择）。\n\n**考点：** 几何概率与半圆覆盖模型。",
             tags: [
                 "概率与期望",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
             type: "single",
-            question: `下面pailie函数是一个实现排列的程序，横线处可以填入的是（ ）。`,
-            options: [
-                "swap(a[i], a[j]); pailie(a, i+1); swap(a[i], a[j]);",
-                "swap(a[i], a[t]); pailie(a, t+1); swap(a[i], a[t]);",
-                "swap(a[i], a[t]); pailie(a, i+1); swap(a[i], a[t]);",
-                "pailie(a, i+1);",
-],
+            question: "下面 pailie 函数是一个实现排列的程序，横线处可以填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\nint sum = 0;\nvoid swap(int & a, int & b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\nvoid pailie(int begin, int end, int a[]) {\n    if (begin == end) {\n        for (int i = 0; i < end; i++)\n            cout << a[i];\n        cout << endl;\n    }\n    for (int i = begin; i < end; i++) {\n        ________ // 在此处填入选项\n    }\n}\n```",
+            options: ["```cpp\nswap(a[begin + 1], a[i]);\npailie(begin + 1, end, a);\nswap(a[i], a[begin]);\n```","```cpp\nswap(a[begin], a[i]);\npailie(begin, end, a);\nswap(a[i], a[begin]);\n```","```cpp\nswap(a[begin], a[i]);\npailie(begin + 1, end, a);\nswap(a[i], a[begin]);\n```","```cpp\nswap(a[begin] + 1, a[i]);\npailie(begin + 1, end, a);\nswap(a[i], a[begin + 1]);\n```"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-**解析：**
-\`pailie\` 是递归生成全排列的典型回溯程序：在位置 \`i\` 处依次把 \`a[i]\` 与 \`a[t]\`（循环变量 \`t\` 从 \`i\` 到末尾）交换，再递归处理下一位置 \`i+1\`，最后换回以恢复现场。只有 C 选项完整呈现了“交换—递归—回溯”的结构。
-
-- **A \`swap(a[i], a[j]); pailie(a, i+1); swap(a[i], a[j]);\`**：错误。交换使用的是 \`a[j]\` 而非循环的当前位置 \`a[t]\`，无法遍历所有排列。
-- **B \`swap(a[i], a[t]); pailie(a, t+1); swap(a[i], a[t]);\`**：错误。递归应在 \`i+1\`（处理下一个待固定位置），而非 \`t+1\`。
-- **C \`swap(a[i], a[t]); pailie(a, i+1); swap(a[i], a[t]);\`**：正确。交换循环位置、递归下一位置、再换回，是标准的全排列回溯写法。
-- **D \`pailie(a, i+1);\`**：错误。缺少交换与回溯，只能生成原序列本身，无法得到全部排列。`,
+            explanation: "**答案：C**\n\n**解析：**\n程序在位置 begin 处依次把 a[begin] 与 a[i]（i 从 begin 到 end−1）交换，递归处理 begin+1，返回后再交换恢复现场。C 项正是 `swap(a[begin],a[i]); pailie(begin+1,end,a); swap(a[i],a[begin]);`。\n\n- A 项交换 begin+1 且回溯不完整；\n- B 项递归仍在 begin，未缩小问题；\n- D 项没有交换与回溯，只能输出原序列。\n\n**考点：** 全排列回溯。",
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 8,
             type: "single",
-            question: `上一题中，如果主函数为如下的程序，则最后的排列数是多少个？（ ）。`,
+            question: "上一题中，如果主函数为如下的程序，则最后的排列数是多少个？（ ）。\n\n```cpp\nint main() {\n    int a[5] = {1, 2, 3, 4, 5};\n    pailie(0, 5, a);\n    return 0;\n}\n```",
             options: [
                 "120",
                 "60",
@@ -286,11 +249,15 @@ export const paperData = {
             tags: [
                 "排列组合",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 9,
             type: "single",
-            question: `下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。`,
+            question: "下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。",
             options: [
                 "a[i][j] = a[i-1][j-1]+a[i-1][j];",
                 "a[i][j] = a[i][j-1]+a[i-1][j];",
@@ -326,11 +293,15 @@ export const paperData = {
             tags: [
                 "C++综合",
             ],
+      "code": "#include <iostream>\nusing namespace std;\n#define N 35\nint a[N][N];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 1; i <= n; i++)\n        for (int j = 1; j <= i; j++) {\n            if (j == 1 || j == i)\n                a[i][j] = 1;\n            else\n                ________ // 在此处填入选项\n        }\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++)\n            cout << a[i][j];\n        cout << endl;\n    }\n    return 0;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","code","reviewedBy","reviewedAt"],
         },
         {
             id: 10,
             type: "single",
-            question: `下面最小生成树的 Kruskal 算法程序中，横线处应该填入的是（ ）。`,
+            question: "下面最小生成树的 Kruskal 算法程序中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nstruct Edge {\n    int u, v, weight;\n    bool operator <(const Edge & other) const {\n        return weight < other.weight;\n    }\n};\nint findParent(int vertex, vector<int> & parent) {\n    if (parent[vertex] == -1)\n        return vertex;\n    return parent[vertex] = findParent(parent[vertex], parent);\n}\nint main() {\n    int n, m;\n    cin >> n >> m; // n: 顶点数, m: 边数\n    vector<Edge> edges(m);\n    vector<int> parent(n, -1);\n    int totalWeight = 0;\n    for (int i = 0; i < m; i++)\n        cin >> edges[i].u >> edges[i].v >> edges[i].weight;\n    sort(edges.begin(), edges.end());\n\n    for (const auto & edge : edges) {\n        int uParent = findParent(edge.u, parent);\n        int vParent = findParent(edge.v, parent);\n        if (__________) { // 在此处填入选项\n            parent[uParent] = vParent;\n            totalWeight += edge.weight;\n        }\n    }\n}\n```",
             options: [
                 "uParent == vParent",
                 "uParent >= vParent",
@@ -366,11 +337,15 @@ Kruskal 算法是求解无向连通网最小生成树的经典贪心算法，其
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 11,
             type: "single",
-            question: `下面 Prim 算法程序中，横线处应该填入的是（ ）。 #include <iostream> #include <vector> #include <algorithm> using namespace std; struct Edge { int u, v, weight; bool operator <(const Edge & other) const { return weight < other.weight; } }; int findParent(int vertex, vector<int> & parent) { if (parent[vertex] == -1) return vertex; return parent[vertex] = findParent(parent[vertex], parent); } int main() { int n, m; cin >> n >> m; // n: 顶点数 , m: 边数 vector<Edge> edges(m); vector<int> parent(n, -1); int totalWeight = 0; for (int i = 0; i < m; i++) cin >> edges[i].u >> edges[i].v >> edges[i].weight; sort(edges.begin(), edges.end()); for (const auto & edge : edges) { int uParent = findParent(edge.u, parent); int vParent = findParent(edge.v, parent); if (__________) { // 在此处填入选项 parent[uParent] = vParent; totalWeight += edge.weight; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 #include <iostream> #include <vector> #include <algorithm> using namespace std; int prim(vector<vector<int>> & graph, int n) { vector<int> key(n, INT_MAX); vector<int> parent(n, -1); 1 2 3 4 5 6 7`,
+            question: "下面 Prim 算法程序中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint prim(vector<vector<int>> & graph, int n) {\n    vector<int> key(n, INT_MAX);\n    vector<int> parent(n, -1);\n    key[0] = 0;\n    for (int i = 0; i < n; i++) {\n        int u = min_element(key.begin(), key.end()) - key.begin();\n        if (key[u] == INT_MAX)\n            break;\n        for (int v = 0; v < n; v++) {\n            if (__________) { // 在此处填入选项\n                key[v] = graph[u][v];\n                parent[v] = u;\n            }\n        }\n    }\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        if (parent[i] != -1) {\n            cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl;\n            sum += key[i];\n        }\n    }\n    return sum;\n}\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> graph(n, vector<int>(n, 0));\n    for (int i = 0; i < m; i++) {\n        int u, v, w;\n        cin >> u >> v >> w;\n        graph[u][v] = w;\n        graph[v][u] = w;\n    }\n    int result = prim(graph, n);\n    cout << \"Total weight of the minimum spanning tree: \" << result << endl;\n    return 0;\n}\n```",
             options: [
                 "graph[u][v] >= 0 && key[v] > graph[u][v]",
                 "graph[u][v] <= 0 && key[v] > graph[u][v]",
@@ -399,11 +374,15 @@ Kruskal 算法是求解无向连通网最小生成树的经典贪心算法，其
             tags: [
                 "最小生成树",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
             type: "single",
-            question: `下列 Dijkstra 算法中，横线处应该填入的是（ ）。 key[0] = 0; for (int i = 0; i < n; i++) { int u = min_element(key.begin(), key.end())-key.begin(); if (key[u] == INT_MAX) break; for (int v = 0; v < n; v++) { if (__________) { // 在此处填入选项 key[v] = graph[u][v]; parent[v] = u; } } } int sum = 0; for (int i = 0; i < n; i++) { if (parent[i] != -1) { cout << "Edge: " << parent[i] << "-" << i << " Weight: " << key[i] << endl; sum += key[i]; } } return sum; } int main() { int n, m; cin >> n >> m; vector<vector<int>> graph(n, vector<int>(n, 0)); for (int i = 0; i < m; i++) { int u, v, w; cin >> u >> v >> w; graph[u][v] = w; graph[v][u] = w; } int result = prim(graph, n); cout << "Total weight of the minimum spanning tree: " << result << endl; return 0; } 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 #include <iostream> using namespace std; #define N 100 int n, e, s; const int inf = 0x7fffff; int dis[$N+1$]; int cheak[$N+1$]; int graph[$N+1$][$N+1$]; 1 2 3 4 5 6 7 8 9`,
+            question: "下列 Dijkstra 算法中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 100\nint n, e, s;\nconst int inf = 0x7fffff;\nint dis[N + 1];\nint cheak[N + 1];\nint graph[N + 1][N + 1];\nint main() {\n    for (int i = 1; i <= N; i++)\n        dis[i] = inf;\n    cin >> n >> e;\n    for (int i = 1; i <= e; i++) {\n        int a, b, c;\n        cin >> a >> b >> c;\n        graph[a][b] = c;\n    }\n    cin >> s;\n    dis[s] = 0;\n    for (int i = 1; i <= n; i++) {\n        int minn = inf, minx;\n        for (int j = 1; j <= n; j++) {\n            if (__________) { // 在此处填入选项\n                minn = dis[j];\n                minx = j;\n            }\n        }\n        cheak[minx] = 1;\n        for (int j = 1; j <= n; j++) {\n            if (graph[minx][j] > 0) {\n                if (minn + graph[minx][j] < dis[j]) {\n                    dis[j] = minn + graph[minx][j];\n                }\n            }\n        }\n    }\n}\n```",
             options: [
                 "dis[j] > minn && cheak[j] == 0",
                 "dis[j] < minn && cheak[j] == 0",
@@ -432,11 +411,15 @@ Kruskal 算法是求解无向连通网最小生成树的经典贪心算法，其
             tags: [
                 "最短路",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 13,
             type: "single",
-            question: `下面 Floyd 算法中，横线处应该填入的是（ ）。 int main() { for (int i = 1; i <= N; i++) dis[i] = inf; cin >> n >> e; for (int i = 1; i <= e; i++) { int a, b, c; cin >> a >> b >> c; graph[a][b] = c; } cin >> s; dis[s] = 0; for (int i = 1; i <= n; i++) { int minn = inf, minx; for (int j = 1; j <= n; j++) { if (__________) { // 在此处填入选项 minn = dis[j]; minx = j; } } cheak[minx] = 1; for (int j = 1; j <= n; j++) { if (graph[minx][j] > 0) { if (minn+graph[minx][j] < dis[j]) { dis[j] = minn+graph[minx][j]; } } } } } 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 #include <iostream> using namespace std; #define N 21 #define INF 99999999 int map[N][N]; int main() { int n, m, t1, t2, t3; cin >> n >> m; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { if (i == j) map[i][j] = 0; else map[i][j] = INF; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16`,
+            question: "下面 Floyd 算法中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n\n#define N 21\n#define INF 99999999\nint map[N][N];\nint main() {\n    int n, m, t1, t2, t3;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (i == j)\n                map[i][j] = 0;\n            else\n                map[i][j] = INF;\n        }\n    }\n    for (int i = 1; i <= m; i++) {\n        cin >> t1 >> t2 >> t3;\n        map[t1][t2] = t3;\n    }\n    for (int k = 1; k <= n; k++)\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                if (__________) // 在此处填入选项\n                    map[i][j] = map[i][k] + map[k][j];\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            cout.width(4);\n            cout << map[i][j];\n        }\n        cout << endl;\n    }\n}\n```",
             options: [
                 "map[i][j] < map[i][k]+map[k][j]",
                 "map[i][j] > map[i][k]+map[k][j]",
@@ -471,6 +454,10 @@ Floyd 是三重循环，时间约 \`O(n*n*n)\`。可以处理负权边，但不�
             tags: [
                 "STL容器",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 14,
@@ -541,27 +528,18 @@ void Merge_Sort(int a[], int left, int right) {
         {
             id: 15,
             type: "single",
-            question: `下面fibonacci函数的时间复杂度为（ ）。`,
-            options: [
-                "O(n)",
-                "O(2ⁿ)",
-                "O(log n)",
-                "O(n²)",
-],
+            question: "下面 fibonacci 函数的时间复杂度为（ ）。\n\n```cpp\nint fibonacci(int n) {\n    if (n <= 1)\n        return n;\n    else\n        return fibonacci(n - 1) + fibonacci(n - 2);\n}\n```",
+            options: ["O(1)","O(φⁿ)，其中 φ = (√5−1)/2","O(n)","O(n log n)"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-**解析：**
-朴素递归 \`fibonacci(n)\` 通过 \`f(n)=f(n-1)+f(n-2)\` 计算，存在大量重复子问题，其调用树近似为二叉结构，时间复杂度为指数级 O(φⁿ)≈O(1.618ⁿ)，通常取其上界 O(2ⁿ)。
-
-- **A \`O(n)\`**：错误。仅当用迭代或记忆化（动态规划）时才可能达到线性。
-- **B \`O(2ⁿ)\`**：正确。朴素递归斐波那契的指数级时间复杂度上界。
-- **C \`O(log n)\`**：错误。与递归结构完全不符。
-- **D \`O(n²)\`**：错误。远低于实际指数级开销。`,
+            explanation: "**官方答案：B**\n\n设 $C(n)$ 为递归调用次数。$C(0)=C(1)=1$，对 $n\\ge 2$ 有 $C(n)=1+C(n-1)+C(n-2)$，因此 $C(n)=2F_{n+1}-1$。每次调用的额外工作是常数，故时间复杂度为 $\\Theta(\\varphi^n)$，其中 $\\varphi=(1+\\sqrt{5})/2$。\n\n原卷 B 项所写的 $(\\sqrt{5}-1)/2$ 小于 1。按原卷公式逐字理解，B 的表达式无法描述指数增长。官方答案表为 B。",
             tags: [
                 "复杂度分析",
             ],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 16,
@@ -761,8 +739,8 @@ void Merge_Sort(int a[], int left, int right) {
             sourceUrl: `https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf`,
             sourcePage: 8,
             sourcePages: [8],
-            reviewedAt: `2026-11-06`,
-            reviewedBy: `AI-Codex`,
+            reviewedAt: "2026-11-07",
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             sourceVerified: true,
             type: "judge",
             question: `已知等差数列的通项公式 aₙ=a₁+(n-1)·d，则前n项和的求和公式为 Sₙ=n·(a₁+aₙ)/2。使用这一公式计算Sₙ的时间复杂度是 O(1)。`,
@@ -772,15 +750,11 @@ void Merge_Sort(int a[], int left, int right) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
-
-**解析：**
-等差数列前 n 项和可用闭式公式 Sₙ = n(a₁+aₙ)/2 直接计算，无需循环逐项累加。因此“使用闭式求和公式计算前 n 项和的时间复杂度为 O(1)”这一结论成立，命题为真。
-
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+            explanation: "**答案：正确**\n\n**解析：**\n等差数列前 n 项和可由闭式 Sₙ=n(a₁+aₙ)/2 直接计算，只需常数次算术运算，时间复杂度 O(1)。题干正确。\n\n**考点：** 闭式公式的复杂度。",
             tags: [
                 "复杂度分析",
             ],
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 25,

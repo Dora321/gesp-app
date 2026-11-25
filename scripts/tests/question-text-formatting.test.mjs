@@ -75,7 +75,7 @@ test('every \\ne / \\neq in the question bank survives line-break normalization'
     }
   }
 
-  // 全库基线：5 处 \neq + 11 处 \ne（luoguCodingByLevel.js 是聚合重复，不计）。
+  // 全库基线：5 处 \neq + 15 处 \ne（luoguCodingByLevel.js 是聚合重复，不计）。
   // 题库新增此类写法时同步这里的数字。
-  assert.deepEqual(counts, { neq: 5, ne: 11 });
+  assert.deepEqual(counts, { neq: 5, ne: 15 });
 });

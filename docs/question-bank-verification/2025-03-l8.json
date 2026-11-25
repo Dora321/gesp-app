@@ -25,86 +25,6 @@
   "inputSha256": "a3907413bee835adc9b3d94b2caf82da57a26ee2027ce87ed268ed831006b47e",
   "questions": [
     {
-      "id": 26,
-      "resolved": true,
-      "dimensions": [
-        "explanation",
-        "referenceCode"
-      ],
-      "blockedDimensions": [
-        "statement"
-      ],
-      "sourcePages": [
-        8,
-        9,
-        10
-      ],
-      "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
-      ],
-      "evidence": {
-        "statement": {
-          "initial": "PDF 第 8—9 页题面、输入输出与样例一致；站内缺少数据范围（q=1、n,m≤500、全部 2×10^5），已补入。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 8—9 页题面、输入输出与样例一致；站内缺少数据范围（q=1、n,m≤500、全部 2×10^5），已补入。"
-        },
-        "explanation": {
-          "initial": "以学校 s 为源点跑一次堆优化 Dijkstra，预处理到所有结点的最短路，q 次询问 O(1) 输出；样例 4/3/1 与解析一致。",
-          "review": "复核独立对照页图，认同初核证据：以学校 s 为源点跑一次堆优化 Dijkstra，预处理到所有结点的最短路，q 次询问 O(1) 输出；样例 4/3/1 与解析一致。"
-        },
-        "referenceCode": {
-          "initial": "参考程序为前向星 + 优先队列 Dijkstra，距离用 long long；本地编译运行样例输出 4、3、1，与 PDF 一致。",
-          "review": "复核将站内 referenceCode 与原卷参考程序逐行比对一致；并以 g++ -std=c++17 -O2 实际编译运行，原样例与复核边界用例输出全部一致。参考程序为前向星 + 优先队列 Dijkstra，距离用 long long；本地编译运行样例输出 4、3、1，与 PDF 一致。"
-        }
-      },
-      "unresolved": [
-        "修改 description 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "resolved": true,
-      "dimensions": [
-        "explanation",
-        "referenceCode"
-      ],
-      "blockedDimensions": [
-        "statement"
-      ],
-      "sourcePages": [
-        10,
-        11,
-        12
-      ],
-      "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
-      ],
-      "evidence": {
-        "statement": {
-          "initial": "PDF 第 10 页明确“点对中任意一个节点被删除则视为不连通”；站内 description 未写该规则，已按原卷补入，并补数据范围。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 10 页明确“点对中任意一个节点被删除则视为不连通”；站内 description 未写该规则，已按原卷补入，并补数据范围。"
-        },
-        "explanation": {
-          "initial": "删点 u 后好点对保持连通要求 u 不在任一好点对路径上，坏点对断开要求 u 在坏点对路径上；用 LCA+树上差分统计路径覆盖，样例答案为 2。",
-          "review": "复核独立对照页图，认同初核证据：删点 u 后好点对保持连通要求 u 不在任一好点对路径上，坏点对断开要求 u 在坏点对路径上；用 LCA+树上差分统计路径覆盖，样例答案为 2。"
-        },
-        "referenceCode": {
-          "initial": "参考程序用倍增 LCA 与树上差分统计坏路径上未被好路径覆盖的结点；本地编译运行样例输出 2，与 PDF 一致。",
-          "review": "复核将站内 referenceCode 与原卷参考程序逐行比对一致；并以 g++ -std=c++17 -O2 实际编译运行，原样例与复核边界用例输出全部一致。参考程序用倍增 LCA 与树上差分统计坏路径上未被好路径覆盖的结点；本地编译运行样例输出 2，与 PDF 一致。"
-        }
-      },
-      "unresolved": [
-        "修改 description 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
       "id": 1,
       "resolved": true,
       "dimensions": [
@@ -147,43 +67,46 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1 页第 2 题配有 3×6 座位图（红色为已售）；站内题面引用“图中每个方框”但未附图片，已用文字列出已售座位。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 1 页第 2 题配有 3×6 座位图（红色为已售）；站内题面引用“图中每个方框”但未附图片，已用文字列出已售座位。"
+          "initial": "PDF 第 1 页第 2 题题干为“小杨和 3 位朋友约好一起去看电影‘哪吒 2’……决定分为两组，每组两人在同一排的相邻两个座位，且两组之间至少有一对座位是前后相邻的。请问共有多少种购票方案？”并配 3×6 座位图；候选 question 用文字列出已售座位（第 1 排 3、4，列第 2 排 4 列，第 3 排 4、5、6 列），与图一致。",
+          "review": "第 1 页第 2 题：两组、每组两人同排相邻、两组间至少一对座位前后相邻，求购票方案数；插图文字转写与页图红色座位逐格一致。"
         },
         "options": {
-          "initial": "PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。",
-          "review": "复核独立对照页图，认同初核证据：PDF 第1页 A–D 四项与站内 options 的顺序和含义一致。"
+          "initial": "PDF 第 1 页 A–D 依次为 495、96、7、4，与候选 options 一致。",
+          "review": "第 1 页 A 495、B 96、C 7、D 4，与站内 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第2题为 C；按 0 起始索引映射为 2，站内 answer=2，一致。",
-          "review": "第 1 页单选题答案表第 2 格为「C」，0 起始索引为 2；站内 answer=2 一致。"
+          "initial": "PDF 第 1 页单选答案表第 2 格为 C（0 起始索引 2），与候选 answer=2 一致。",
+          "review": "第 1 页单选答案表第 2 格为 C（0 起始索引 2），站内 answer=2 一致。"
         },
         "explanation": {
-          "initial": "独立推导：逐排枚举相邻双人座并按前后对齐配对，第 1–2 排 3 种、第 2–3 排 4 种，共 7；结论与 C 一致，解析未发现事实错误。",
-          "review": "复核独立对照页图，认同初核证据：独立推导：逐排枚举相邻双人座并按前后对齐配对，第 1–2 排 3 种、第 2–3 排 4 种，共 7；结论与 C 一致，解析未发现事实错误。"
+          "initial": "独立枚举：第 1–2 排可配 3 种（1-2 配 1-2/2-3，5-6 配 5-6），第 2–3 排可配 4 种（1-2、2-3 各配 1-2、2-3），共 7；495 为任意选 4 个空座，96 多乘了 4!，4 只算完全对齐。候选解析正确。",
+          "review": "独立枚举红座约束下可选相邻对并计数，结果与 C 一致；站内解析无误。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ]
     },
     {
@@ -227,45 +150,49 @@
     },
     {
       "id": 4,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
+        "statement",
         "options",
         "answer",
-        "explanation",
-        "statement"
+        "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
+        1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页 C、D 项含 N、N−1、N+1；站内 C/D 的变量和数字全部丢失，只剩“个顶点……个条边”，已按原卷补全。",
-          "review": "复核独立对照原卷页图：站内题干与原卷一致（初核的替换性修改已否决，见 reviewNote）。"
+          "initial": "PDF 第 1—2 页第 4 题题干为“下列关于树和图的说法，错误的是（ ）。”，与候选 question 一致。",
+          "review": "第 1 页第 4 题「下列关于树和图的说法，错误的是（ ）」，与站内 question 一致。"
         },
         "options": {
-          "initial": "PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。",
-          "review": "原卷第 2 页第 4 题 C/D 项含 N、N−1、N+1 等数学式，站内 options 缺失，已在 changes 提交修正。"
+          "initial": "PDF 第 2 页 A–D 与候选 options 逐字一致：A 树是 DAG 且 DAG 都是树；B 树按父→子定向后弱连通；C N 个顶点连通无向图的最小生成树含 N−1 条边；D N+1 顶点 N 条边的有向图一定不是强连通的。",
+          "review": "第 2 页 A 树是有向无环图且 DAG 都是树、B 树视作有向图（父指向子）为弱连通图、C N 个顶点连通无向图最小生成树含 N−1 条边、D N+1 个顶点 N 条边的有向图一定不是强连通的，与站内恢复后的 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第4题为 A；按 0 起始索引映射为 0，站内 answer=0，一致。",
-          "review": "第 1 页单选题答案表第 4 格为「A」，0 起始索引为 0；站内 answer=0 一致。"
+          "initial": "PDF 第 1 页单选答案表第 4 格为 A（0 起始索引 0），与候选 answer=0 一致。",
+          "review": "第 1 页单选答案表第 4 格为 A（0 起始索引 0），站内 answer=0 一致。"
         },
         "explanation": {
-          "initial": "原解析按站内丢失变量的旧题面把 D 说成“n 个顶点、n−1 条边”；恢复原卷 N+1/N 后已重写。",
-          "review": "复核独立推导：站内解析结论正确（初核的替换性修改已否决，见 reviewNote）。"
+          "initial": "独立判断：A 前半句正确、后半句错误（DAG 可有多个入度 0 点、汇聚点或不连通），故 A 是错误项；B/C/D 均正确。候选解析正确。解析中 C/D 的加粗引文丢失了 N、N−1 等数学符号，但紧随其后的“原意为……”已完整还原，属排版瑕疵，不单独改动。",
+          "review": "A 的后半句「有向无环图都是一棵树」错误（DAG 不一定是树），B/C/D 均正确；站内解析与此一致。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ]
     },
     {
@@ -311,88 +238,94 @@
       "id": 6,
       "resolved": true,
       "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "blockedDimensions": [
-        "statement"
-      ],
-      "official": 3,
-      "sourcePages": [
-        2
-      ],
-      "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
-      ],
-      "evidence": {
-        "statement": {
-          "initial": "PDF 第 2 页第 6 题配有圆、半径 r、圆心角 θ 与弦 s 的示意图；站内题面无图片，已用文字说明图示关系。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 2 页第 6 题配有圆、半径 r、圆心角 θ 与弦 s 的示意图；站内题面无图片，已用文字说明图示关系。"
-        },
-        "options": {
-          "initial": "PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。",
-          "review": "复核独立对照页图，认同初核证据：PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。"
-        },
-        "answer": {
-          "initial": "PDF 第1页单选题答案表第6题为 D；按 0 起始索引映射为 3，站内 answer=3，一致。",
-          "review": "第 1 页单选题答案表第 6 格为「D」，0 起始索引为 3；站内 answer=3 一致。"
-        },
-        "explanation": {
-          "initial": "独立推导：弦长 s=2r sin(θ/2)；结论与 D 一致，解析未发现事实错误。",
-          "review": "复核独立对照页图，认同初核证据：独立推导：弦长 s=2r sin(θ/2)；结论与 D 一致，解析未发现事实错误。"
-        }
-      },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 7,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2 页第 7 题为“N 个节点的平衡二叉树”；站内丢了变量 N，只剩“个节点的平衡二叉树”，已补回。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 2 页第 7 题为“N 个节点的平衡二叉树”；站内丢了变量 N，只剩“个节点的平衡二叉树”，已补回。"
+          "initial": "PDF 第 2 页第 6 题题干为“已定义 double 类型的变量 r 和 theta，分别表示图中圆半径和圆心角。下列表达式中可以求出弦长 s 的是（ ）。”并配圆图，与候选 question 一致。",
+          "review": "第 2 页第 6 题：double 型 r 与 theta 表示圆半径与圆心角，求弦长 s 的表达式；插图文字转写（半径 r、圆心角 θ、所对弦 s）与页图一致。"
         },
         "options": {
-          "initial": "PDF 第 2 页 A 为 ⌊log₂N⌋、B 为 ⌈log₂N⌉、C 为 ⌊log₂N⌋+1、D 为“无法确定”；站内误作 O(n)/O(n²)/O(√n)/O(log n)，已按原卷恢复。",
-          "review": "初核 needs_fix 的选项修复（随 changes 提交）已对照原卷页图逐项核实：PDF 第 2 页 A 为 ⌊log₂N⌋、B 为 ⌈log₂N⌉、C 为 ⌊log₂N⌋+1、D 为“无法确定”；站内误作 O(n)/O(n²)/O(√n)/O(log n)，已按原卷恢复。"
+          "initial": "PDF 第 2 页 A–D 依次为 r*cos(theta)、r*cos(theta/2)*2、r*sin(theta)、r*sin(theta/2)*2，与候选 options 一致。",
+          "review": "第 2 页 A r*cos(theta)、B r*cos(theta/2)*2、C r*sin(theta)、D r*sin(theta/2)*2，与站内 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第7题为 D；按 0 起始索引映射为 3，站内 answer=3，一致。",
-          "review": "第 1 页单选题答案表第 7 格为「D」，0 起始索引为 3；站内 answer=3 一致。"
+          "initial": "PDF 第 1 页单选答案表第 6 格为 D（0 起始索引 3），与候选 answer=3 一致。",
+          "review": "第 1 页单选答案表第 6 格为 D（0 起始索引 3），站内 answer=3 一致。"
         },
         "explanation": {
-          "initial": "原解析按 O(log n) 讲解 D，与恢复后的 D“无法确定”不符；已按高度定义与树形不确定性重写。",
-          "review": "初核 needs_fix 的解析修复（随 changes 提交）已对照原卷页图核实：原解析按 O(log n) 讲解 D，与恢复后的 D“无法确定”不符；已按高度定义与树形不确定性重写。"
+          "initial": "独立推导：弦长 s=2r sin(θ/2)，即 D；A/C 缺少 1/2 或 2 的因子，B 用 cos 得到的是弦心距方向的 2 倍投影。候选解析正确。",
+          "review": "弦长 s=2r·sin(θ/2)，D 正确；站内解析与此一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
+      ]
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        2
+      ],
+      "method": [
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 7 题题干为“N 个节点的平衡二叉树的高为（ ）。”，与候选 question 一致。",
+          "review": "第 2 页第 7 题：N 个节点的平衡二叉树的高为（ ）。与站内 question 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A–D 依次为 ⌊log₂N⌋、⌈log₂N⌉、⌊log₂N⌋+1、无法确定，与候选 options 一致。",
+          "review": "第 2 页 A ⌊log₂ N⌋、B ⌈log₂ N⌉、C ⌊log₂ N⌋+1、D 无法确定，与站内恢复后的 options 一致（⌊⌋/⌈⌉ 已放大核验，站内顺序无误）。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 7 格为 D（0 起始索引 3），与候选 answer=3 一致。",
+          "review": "第 1 页单选答案表第 7 格为 D（0 起始索引 3），站内 answer=3 一致。"
+        },
+        "explanation": {
+          "initial": "独立判断：“平衡二叉树”只限制左右子树高度差，N 个结点的具体高度随形态在 Θ(log N) 内变化，且高度的层数口径不唯一，仅凭 N 无法确定；候选解析正确。",
+          "review": "平衡二叉树的高随形态在 ⌊log₂ N⌋+1 与 ⌈log₂ N⌉ 之间变化（且「高」按边数或点数计亦有歧义），无法由 N 唯一确定，D 正确；站内解析与此一致。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ]
     },
     {
@@ -438,268 +371,291 @@
       "id": 9,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         2,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2—3 页第 9 题附有完整 count_miracle 程序；站内 question 代码被截断在 std::sto 处，已按原卷补全。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 2—3 页第 9 题附有完整 count_miracle 程序；站内 question 代码被截断在 std::sto 处，已按原卷补全。"
+          "initial": "PDF 第 2—3 页第 9 题题干、count_miracle 程序与候选 question 的代码逐行一致；候选取完整程序，未截断。 集成核验：原卷写作「找找」。保留第 9 题的程序填空设问。",
+          "review": "除「找出/找找」一字外，题干与第 2—3 页 count_miracle 代码 18 行逐行一致（空缺在第 13 行 if 条件处，原卷无分号），见 changes。 集成核验：原卷写作「找找」。保留第 9 题的程序填空设问。"
         },
         "options": {
-          "initial": "PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。",
-          "review": "复核独立对照页图，认同初核证据：PDF 第2页 A–D 四项与站内 options 的顺序和含义一致。"
+          "initial": "PDF 第 3 页 A–D 依次为 nl+nr==n、nl+nr==n2、(nl+nr)*(nl+nr)==n、(nl+nr)^2==n2，与候选 options 一致。",
+          "review": "第 3 页 A nl+nr==n、B nl+nr==n2、C (nl+nr)*(nl+nr)==n、D (nl+nr)^2==n2，与站内 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第9题为 A；按 0 起始索引映射为 0，站内 answer=0，一致。",
-          "review": "第 1 页单选题答案表第 9 格为「A」，0 起始索引为 0；站内 answer=0 一致。"
+          "initial": "PDF 第 1 页单选答案表第 9 格为 A（0 起始索引 0），与候选 answer=0 一致。",
+          "review": "第 1 页单选答案表第 9 格为 A（0 起始索引 0），站内 answer=0 一致。"
         },
         "explanation": {
-          "initial": "独立推导：拼接后两段之和等于原数 n，即 nl+nr==n；结论与 A 一致，解析未发现事实错误。",
-          "review": "复核独立对照页图，认同初核证据：独立推导：拼接后两段之和等于原数 n，即 nl+nr==n；结论与 A 一致，解析未发现事实错误。"
+          "initial": "独立推导：n2 由 nl、nr 拼接，神奇数要求 nl+nr=n；B 用 n2、C 用平方后等于 n、D 用按位异或且等于 n2，均不成立。候选解析正确。",
+          "review": "神奇数条件：n² 拆成两段后 nl+nr==n（如 20+25=45=n），A 正确；站内解析与此一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
+      ],
+      "integrationNote": "原卷写作「找找」。保留第 9 题的程序填空设问。"
     },
     {
       "id": 10,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 3,
       "sourcePages": [
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 3 页第 10 题与第 9 题共用同一段 count_miracle 程序；站内 question 代码被截断，已按原卷补全。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 3 页第 10 题与第 9 题共用同一段 count_miracle 程序；站内 question 代码被截断，已按原卷补全。"
+          "initial": "PDF 第 3 页第 10 题题干与第 9 题共用 count_miracle 程序，但设问为“该函数的时间复杂度为（ ）。”；候选 question 误把设问写成“下面程序横线处应填入的是（ ）。”，与第 9 题重复。已按原卷只改设问句为“该函数的时间复杂度为（ ）。”，代码与其余文字保留，见 changes.question。 集成核验：原卷写作「找找」。第 10 题考查同一程序的时间复杂度，已恢复其正确设问。",
+          "review": "原卷第 3 页第 10 题设问为「该函数的时间复杂度为（ ）。」且题干用「找找」；候选误作填空设问句与「找出」，已在 changes 提交按原卷修正的完整题干（代码部分与原卷逐行一致）。 集成核验：原卷写作「找找」。第 10 题考查同一程序的时间复杂度，已恢复其正确设问。"
         },
         "options": {
-          "initial": "PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。",
-          "review": "复核独立对照页图，认同初核证据：PDF 第3页 A–D 四项与站内 options 的顺序和含义一致。"
+          "initial": "PDF 第 4 页 A–D 依次为 O(N log N)、O(N^{1/2})、O(N^{1/2} log N)、O(N^{1/2}(log N)^2)，与候选 options 一致。",
+          "review": "第 3 页 A O(N log N)、B O(N^(1/2))、C O(N^(1/2) log N)、D O(N^(1/2)(log N)²)，与站内 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第10题为 D；按 0 起始索引映射为 3，站内 answer=3，一致。",
-          "review": "第 1 页单选题答案表第 10 格为「D」，0 起始索引为 3；站内 answer=3 一致。"
+          "initial": "PDF 第 1 页单选答案表第 10 格为 D（0 起始索引 3），与候选 answer=3 一致。",
+          "review": "第 1 页单选答案表第 10 格为 D（0 起始索引 3），站内 answer=3 一致。"
         },
         "explanation": {
-          "initial": "独立推导：外层 √N、内层 log N 个拆分、每次字符串操作 log N，共 O(√N log²N)；结论与 D 一致，解析未发现事实错误。",
-          "review": "复核独立对照页图，认同初核证据：独立推导：外层 √N、内层 log N 个拆分、每次字符串操作 log N，共 O(√N log²N)；结论与 D 一致，解析未发现事实错误。"
+          "initial": "独立推导：外层 n 到 √N，共 O(√N) 次；每次拆分为 O(log N) 个位置，每个位置 substr/stoi 为 O(log N)，总计 O(√N log²N)；候选解析正确。",
+          "review": "外层枚举 n 至 √N，内层对 n² 的十进制串做拆分与转换，量级 O(N^(1/2)(log N)²)，D 正确；站内解析与此一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
+      ],
+      "integrationNote": "原卷写作「找找」。第 10 题考查同一程序的时间复杂度，已恢复其正确设问。"
     },
     {
       "id": 11,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4 页第 11 题附有欧拉筛程序；站内 question 无代码块，已按原卷补入。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 4 页第 11 题附有欧拉筛程序；站内 question 无代码块，已按原卷补入。"
+          "initial": "PDF 第 4 页第 11 题题干与欧拉筛程序、候选 question 的代码一致，两处横线位置正确。",
+          "review": "第 4 页欧氏筛代码 13 行逐行核对（primes 数组、第一空缺在 i<num && 处、第二空缺在 break 前的 if 条件处），与站内 question 一致。"
         },
         "options": {
-          "initial": "站内 options 误作“i<=n; j+=i”等埃氏筛片段；PDF 第 4 页 A–D 均为“乘积边界 + break 条件”的两行组合，已按原卷恢复，C 仍正确。",
-          "review": "初核 needs_fix 的选项修复（随 changes 提交）已对照原卷页图逐项核实：站内 options 误作“i<=n; j+=i”等埃氏筛片段；PDF 第 4 页 A–D 均为“乘积边界 + break 条件”的两行组合，已按原卷恢复，C 仍正确。"
+          "initial": "PDF 第 4 页 A–D 依次为 “< MAXN; n%primes[i]==0”“< MAXN; primes[i]>n”“<= MAXN; n%primes[i]==0”“<= MAXN; primes[i]>n”，与候选 options 一致。",
+          "review": "第 4 页 A「n*primes[i]<MAXN；n%primes[i]==0」、B「<MAXN；primes[i]>n」、C「<=MAXN；n%primes[i]==0」、D「<=MAXN；primes[i]>n」，与站内恢复后的 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第11题为 C；按 0 起始索引映射为 2，站内 answer=2，一致。",
-          "review": "第 1 页单选题答案表第 11 格为「C」，0 起始索引为 2；站内 answer=2 一致。"
+          "initial": "PDF 第 1 页单选答案表第 11 格为 C（0 起始索引 2），与候选 answer=2 一致。",
+          "review": "第 1 页单选答案表第 11 格为 C（0 起始索引 2），站内 answer=2 一致。"
         },
         "explanation": {
-          "initial": "原解析按埃氏筛 i*i<=n、j+=i 讲解，与恢复后的欧拉筛选项完全不符；已按 n*primes[i]<=MAXN 与 n%primes[i]==0 重写。",
-          "review": "初核 needs_fix 的解析修复（随 changes 提交）已对照原卷页图核实：原解析按埃氏筛 i*i<=n、j+=i 讲解，与恢复后的欧拉筛选项完全不符；已按 n*primes[i]<=MAXN 与 n%primes[i]==0 重写。"
+          "initial": "独立推导：数组上界为 MAXN，乘积必须 ≤MAXN；当 primes[i] 整除 n 时 break，保证每个合数只被最小质因子筛一次。A/B 用 < 会漏 MAXN，B/D 的 primes[i]>n 破坏线性。候选解析正确。",
+          "review": "欧氏筛线性性质要求 n*primes[i]≤MAXN 且 n%primes[i]==0 时 break，C 正确；重写的解析逐项分析无误。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ]
     },
     {
       "id": 12,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 4—5 页第 12 题为 Floyd 程序；站内 question 误写成“欧拉筛程序”，并沿用筛法选项，已整题重写。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 4—5 页第 12 题为 Floyd 程序；站内 question 误写成“欧拉筛程序”，并沿用筛法选项，已整题重写。"
+          "initial": "PDF 第 4—5 页第 12 题题干与 Floyd 程序、候选 question 的代码逐行一致。",
+          "review": "第 4—5 页 Floyd 代码 34 行逐行核对（本题空缺在第 26 行 if(map[i][j]>map[i][k]+map[k][j]) 之后的更新语句处），与站内 question 一致。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A–D 均为 map 松弛语句；站内误作 n*primes[i] 筛法选项，已按原卷恢复。",
-          "review": "初核 needs_fix 的选项修复（随 changes 提交）已对照原卷页图逐项核实：PDF 第 5 页 A–D 均为 map 松弛语句；站内误作 n*primes[i] 筛法选项，已按原卷恢复。"
+          "initial": "PDF 第 5 页 A–D 依次为 map[i][j]=map[i][k]+map[k][j]、map[i][k]=map[i][j]−map[k][j]、map[i][j]=map[i][k]−map[k][j]、map[k][j]=map[i][j]−map[i][k]，与候选 options 一致。",
+          "review": "第 5 页 A map[i][j]=map[i][k]+map[k][j]、B map[i][k]=map[i][j]−map[k][j]、C map[i][j]=map[i][k]−map[k][j]、D map[k][j]=map[i][j]−map[i][k]，与站内恢复后的 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第12题为 A；按 0 起始索引映射为 0，站内 answer=0，一致。",
-          "review": "第 1 页单选题答案表第 12 格为「A」，0 起始索引为 0；站内 answer=0 一致。"
+          "initial": "PDF 第 1 页单选答案表第 12 格为 A（0 起始索引 0），与候选 answer=0 一致。",
+          "review": "第 1 页单选答案表第 12 格为 A（0 起始索引 0），站内 answer=0 一致。"
         },
         "explanation": {
-          "initial": "原解析按欧拉筛讲解，与恢复后的 Floyd 题不符；已改写为 Floyd 松弛推导。",
-          "review": "初核 needs_fix 的解析修复（随 changes 提交）已对照原卷页图核实：原解析按欧拉筛讲解，与恢复后的 Floyd 题不符；已改写为 Floyd 松弛推导。"
+          "initial": "独立推导：Floyd 松弛条件已由 if 给出，空处应赋 map[i][j]=map[i][k]+map[k][j]；B/C/D 或减法或更新错误下标。候选解析正确。",
+          "review": "松弛更新 map[i][j]=map[i][k]+map[k][j]，A 正确；站内解析与此一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ]
     },
     {
       "id": 13,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 6 页第 13 题附有完整 Floyd 程序（与第 12 题同一段代码）；站内 question 只有一句“下面 Floyd 算法程序的时间复杂度为”，代码块丢失，已按原卷补入。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 6 页第 13 题附有完整 Floyd 程序（与第 12 题同一段代码）；站内 question 只有一句“下面 Floyd 算法程序的时间复杂度为”，代码块丢失，已按原卷补入。"
+          "initial": "PDF 第 5—6 页第 13 题题干为“下面 Floyd 算法程序的时间复杂度为（ ）。”，并附完整程序，与候选 question 一致。",
+          "review": "第 5—6 页第 13 题题干与重复收录的 Floyd 代码 34 行，与站内 question 一致。"
         },
         "options": {
-          "initial": "PDF 第 6 页第 13 题 A O(N)、B O(N²)、C O(N³)、D O(N² log N)；站内 B/D 误作 O(n log n)、O(n²)，已按原卷恢复，C 与 answer=2 不变。",
-          "review": "初核 needs_fix 的选项修复（随 changes 提交）已对照原卷页图逐项核实：PDF 第 6 页第 13 题 A O(N)、B O(N²)、C O(N³)、D O(N² log N)；站内 B/D 误作 O(n log n)、O(n²)，已按原卷恢复，C 与 answer=2 不变。"
+          "initial": "PDF 第 6 页 A–D 依次为 O(N)、O(N²)、O(N³)、O(N² log N)，与候选 options 一致。",
+          "review": "第 6 页 A O(N)、B O(N²)、C O(N³)、D O(N² log N)，与站内恢复后的 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第13题为 C；按 0 起始索引映射为 2，站内 answer=2，一致。",
-          "review": "第 1 页单选题答案表第 13 格为「C」，0 起始索引为 2；站内 answer=2 一致。"
+          "initial": "PDF 第 1 页单选答案表第 13 格为 C（0 起始索引 2），与候选 answer=2 一致。",
+          "review": "第 1 页单选答案表第 13 格为 C（0 起始索引 2），站内 answer=2 一致。"
         },
         "explanation": {
-          "initial": "原解析的 B 条按旧选项 O(n log n) 讲解，恢复为 O(N²) 后已重写。",
-          "review": "初核 needs_fix 的解析修复（随 changes 提交）已对照原卷页图核实：原解析的 B 条按旧选项 O(n log n) 讲解，恢复为 O(N²) 后已重写。"
+          "initial": "独立推导：Floyd 三重循环 k/i/j 各 N 次，复杂度 O(N³)；候选逐项排除 A/B/D，正确。",
+          "review": "Floyd 三重循环 O(N³)，C 正确；站内解析与此一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ]
     },
     {
       "id": 14,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
-        6
+        6,
+        7
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 6 页第 14 题附有一维数组杨辉三角程序；站内 question 只有一句引导语，代码块丢失，已按原卷补入。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 6 页第 14 题附有一维数组杨辉三角程序；站内 question 只有一句引导语，代码块丢失，已按原卷补入。"
+          "initial": "PDF 第 6 页第 14 题题干与一维数组杨辉三角程序、候选 question 的代码一致。",
+          "review": "第 6 页第 14 题代码 17 行逐行核对（int a[N] 一维数组、a[i]=1、倒序 for(j=i−1;j>0;j−−) 内空缺），与站内 question 一致。"
         },
         "options": {
-          "initial": "PDF 第6页 A–D 四项与站内 options 的顺序和含义一致。",
-          "review": "复核独立对照页图，认同初核证据：PDF 第6页 A–D 四项与站内 options 的顺序和含义一致。"
+          "initial": "PDF 第 6—7 页 A–D 依次为 a[j]+=a[j+1]、a[j]+=a[j−1]、a[j−1]+=a[j]、a[j+1]+=a[j]，与候选 options 一致。",
+          "review": "第 6—7 页 A a[j]+=a[j+1]、B a[j]+=a[j−1]、C a[j−1]+=a[j]、D a[j+1]+=a[j]，与站内恢复后的 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页单选题答案表第14题为 B；按 0 起始索引映射为 1，站内 answer=1，一致。",
-          "review": "第 1 页单选题答案表第 14 格为「B」，0 起始索引为 1；站内 answer=1 一致。"
+          "initial": "PDF 第 1 页单选答案表第 14 格为 B（0 起始索引 1），与候选 answer=1 一致。",
+          "review": "第 1 页单选答案表第 14 格为 B（0 起始索引 1），站内 answer=1 一致。"
         },
         "explanation": {
-          "initial": "独立推导：一维杨辉从右向左更新 a[j]+=a[j−1]；结论与 B 一致，解析未发现事实错误。",
-          "review": "复核独立对照页图，认同初核证据：独立推导：一维杨辉从右向左更新 a[j]+=a[j−1]；结论与 B 一致，解析未发现事实错误。"
+          "initial": "独立推导：i 从 0 递增，内层 j 从 i−1 递减到 1，a[j] 的新值为原 a[j]+原 a[j−1]；从右向左保证 a[j−1] 尚未被本轮覆盖，故填 a[j]+=a[j−1]。候选解析正确。",
+          "review": "倒序更新 a[j]+=a[j−1] 即就地递推杨辉三角（模拟验证 i=2,3 行分别得 1 2 1、1 3 3 1），B 正确；站内解析与此一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
+      ],
+      "integrationNote": "将两模型核验过的题干代码保存为一份独立代码字段，清除旧版重复显示。"
     },
     {
       "id": 15,
@@ -965,43 +921,45 @@
     },
     {
       "id": 23,
-      "resolved": false,
-      "dimensions": [],
-      "blockedDimensions": [
+      "resolved": true,
+      "dimensions": [
+        "statement",
         "answer",
-        "explanation",
-        "statement"
+        "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页第 8 题给出 $y=x^2+ax+b$；站内 question 中函数表达式整段丢失，只剩“求二次函数 取最小值时”，已按原卷补入。",
-          "review": "初核 needs_fix 的修复（随 changes 提交）已对照原卷页图逐字核实：PDF 第 8 页第 8 题给出 $y=x^2+ax+b$；站内 question 中函数表达式整段丢失，只剩“求二次函数 取最小值时”，已按原卷补入。"
+          "initial": "PDF 第 8 页判断第 8 题题干为“定义 int 类型的变量 a 和 b，求二次函数 y=x²+ax+b 取最小值时 x 的值，可以通过表达式 -a / 2.0 求得。”，与候选 question 一致。",
+          "review": "第 8 页判断题第 8 题：定义 int 类型变量 a 和 b，求 y=x²+ax+b 取最小值时 x 的值，可通过表达式 -a / 2.0 求得。与站内 question 一致。"
         },
         "answer": {
-          "initial": "PDF 第 7 页判断题答案表第 8 格为“√”，映射为 officialAnswer=0；站内 answer=1 与官方冲突，已改为 0。",
-          "review": "第 7 页判断题答案表第 8 格为「√」，0 起始索引为 0；初核 needs_fix 的答案修复（随 changes 提交）已对照页图核实：PDF 第 7 页判断题答案表第 8 格为“√”，映射为 officialAnswer=0；站内 answer=1 与官方冲突，已改为 0。"
+          "initial": "PDF 第 7 页判断题答案表第 8 格为 √，0 起始索引 0，与候选 answer=0 一致。",
+          "review": "第 7 页判断题答案表第 8 格为 √（0 起始索引 0），站内 answer=0 一致。"
         },
         "explanation": {
-          "initial": "原解析套用一般式 ax²+bx+c，误判“-a/2.0”不对应本题；本题二次项系数为 1，最小值点正是 −a/2，已重写为正确推导。",
-          "review": "初核 needs_fix 的解析修复（随 changes 提交）已对照原卷页图核实：原解析套用一般式 ax²+bx+c，误判“-a/2.0”不对应本题；本题二次项系数为 1，最小值点正是 −a/2，已重写为正确推导。"
+          "initial": "独立推导：配方得 y=(x+a/2)²+b−a²/4，最小值在 x=−a/2；`-a / 2.0` 中 a 先转 double，结果为 −a/2，命题正确。候选解析一致。",
+          "review": "重写的解析正确：顶点 x=−a/2；-a/2.0 中 2.0 为 double，整数 a 提升为 double 后相除，得 −a/2，命题正确。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer",
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ]
     },
     {
@@ -1055,162 +1013,127 @@
       "unresolved": [
         "保留原有争议/待审标记，模型结论不能自动解除"
       ]
-    }
-  ],
-  "unresolved": [
+    },
     {
       "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "statement",
+        "explanation",
+        "referenceCode"
       ],
-      "reasons": [
-        "修改 description 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "blockedDimensions": [],
+      "sourcePages": [
+        8,
+        9,
+        10
+      ],
+      "method": [
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果",
+        "C++17 实际编译、原样例与独立边界用例"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 8 页题面、输入/输出与样例，第 9 页数据范围和参考程序，均与候选 description/inputDescription/outputDescription 语义一致：无向带权连通图、学校结点 s、q 位同学、每秒 1 米；20% q=1、另 20% n,m≤500、全部 n,m,q≤2e5、边权≤1e6。候选输入格式把原卷 h_i 写作 p，语义相同，数据范围仍保留 h_i 记号。",
+          "review": "第 8—9 页 3.1.1—3.1.6：C 城 n 结点 m 边无向图、边长 lᵢ、学校在 s、q 位同学家 hᵢ、每秒 1 米、求各人到校最短时间；候选 description 为压缩表述但保留全部规则；输入/输出格式与站内字段一致；样例（5 5 3 3 / 边 / 5,1,4 → 4,3,1）与站内 samples 一致。数据范围对照第 9 页 3.1.6：20% q=1；20% 1≤n≤500、1≤m≤500；所有测试点 1≤n≤2×10⁵、1≤m≤2×10⁵、1≤q≤2×10⁵、1≤uᵢ,vᵢ,s,hᵢ≤n、1≤lᵢ≤10⁶、图连通——候选 description 逐项一致。第 8 页题头时间限制 1.0 s（一致）、内存限制 512.0 MB（差异记入 unresolved）。"
+        },
+        "explanation": {
+          "initial": "独立推导：所有询问源点固定为 s，只需一次堆优化 Dijkstra 求出 s 到各点最短路，再 O(1) 回答；样例 s=3 时 d[1..5]=3,2,0,1,4，询问 5/1/4 输出 4/3/1。候选解析正确。",
+          "review": "候选解析与官方思路一致（Dijkstra 最短路后逐个查询）；样例 4/3/1 复算吻合。"
+        },
+        "referenceCode": {
+          "initial": "本机 g++ -std=c++17 -O2 编译运行候选参考程序：官方样例输出 4、3、1；边界 s 即询问点→0、单边权 1e6→1000000、平行边取短 1/0/7、链式 0/1/2/3 均通过。程序用邻接表+优先队列，距离 long long、INF=4e18，无溢出。",
+          "review": "本机 clang++ -std=c++17 -O2 编译通过。候选程序与原卷官方程序（第 9—10 页共 56 行，链式邻接表 + priority_queue Dijkstra）算法同构（非逐字拷贝，站内为 vector 邻接表等价重写）：同为非负权最短路、逐查询输出。官方样例输出 4/3/1 一致；3 组边界用例（n=1、重边取最短等）全部正确；另与 Floyd-Warshall 全源最短路对拍 300 组随机连通图（n≤9、含重边、逐结点查询）零差异。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
+      ],
+      "integrationNote": "复核记录中的 q=2 后多了一行重复查询，程序按协议读前两条自然会输出两次 3。删除多出的查询行后实测 3、0，参考程序和题面均通过。",
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 8
+        }
       ]
     },
     {
       "id": 27,
+      "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 description 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 2,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 4,
-      "dimensions": [
-        "options",
-        "answer",
+        "statement",
         "explanation",
-        "statement"
+        "referenceCode"
       ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 6,
-      "dimensions": [
-        "statement"
+      "blockedDimensions": [],
+      "sourcePages": [
+        10,
+        11,
+        12
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 7,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
+      "method": [
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果",
+        "C++17 实际编译、原样例与独立边界用例"
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 9,
-      "dimensions": [
-        "statement"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页题面、输入/输出与数据范围，第 11 页样例与数据表，第 12 页参考程序均与候选主体一致；但候选 description 使用“a 个好点对”，inputDescription 却写“n、k”“k 行好点对”，k 未定义，与原卷输入格式“第一行 n, a”“之后 a 行”不符，已按原卷将输入描述统一为 n、a，见 changes.inputDescription。 集成核验：原卷第 10 页的变量名是 n 与 a。数据范围允许 a=0，样例之外的覆盖用例可使答案为 0。按原卷数据范围和实际运算复核输入输出描述，校正正式时限。",
+          "review": "第 10—11 页题面、样例与数据范围均与候选主体一致：a 个好点对、1 个坏点对、删除条件（好点对仍连通、坏点对不连通、点对任一端点被删视为不连通）、数据范围（20% n≤10、a=0；20% n≤100、a≤100；60% n≤10⁶、a≤10⁵；全局 1≤n≤10⁶、0≤a≤10⁵、uᵢ≠vᵢ、bᵤ≠bᵥ）；样例（输出 2）与站内 samples 一致。但候选 inputDescription 把好点对数量写成未定义的 k（「第一行两个正整数 n、k」「再接 k 行好点对」），与题面及原卷第 10 页 3.2.9 输入格式「第一行包含两个正整数 n,a」「之后 a 行」不符（原卷官方程序内部恰以 k 命名该数量，站内误随程序变量名），已在 changes 提交统一为 n、a。第 10 页题头时间限制 4.0 s、内存限制 512.0 MB（两项差异记入 unresolved）。 集成核验：原卷第 10 页的变量名是 n 与 a。数据范围允许 a=0，样例之外的覆盖用例可使答案为 0。按原卷数据范围和实际运算复核输入输出描述，校正正式时限。"
+        },
+        "explanation": {
+          "initial": "独立推导：删去 u 后好点对仍连通 ⇔ u 不在任何好点对路径上；坏点对断开 ⇔ u 在坏点对路径上。用 LCA + 树上差分统计路径覆盖，答案=bad>0 且 good==0 的结点数；样例坏路径 2-3-6、好路径 5-4 与 5-1-3，剩 2、6，共 2。候选解析正确。",
+          "review": "候选解析与官方思路等价：好点对路径与坏点对路径在树上做路径标记（差分），结点可删当且仅当位于坏路径上且不在任何好路径上；样例输出 2 复算吻合。"
+        },
+        "referenceCode": {
+          "initial": "本机 g++ -std=c++17 -O2 编译运行候选参考程序：官方样例输出 2；边界 无好点对坏路径 1-4→4、好点对覆盖整条坏路径→0、好点对只覆盖 1-2 而坏路径 1-3→1 均通过；另与 150 组 n≤9 逐点删点暴力对拍零差异。程序用迭代 DFS、倍增 LCA、树上差分，O((n+a)log n)。",
+          "review": "本机 clang++ -std=c++17 -O2 编译通过。候选程序与原卷官方程序（第 11—12 页共 73 行，倍增 LCA + 路径差分）算法同构（非逐字拷贝，站内为迭代 DFS + LCA 差分等价重写）：同为「坏路径经过且不经过任何好路径的结点数」，端点被删视为不连通的语义与官方一致。官方样例输出 2 一致；5 组边界用例全部正确；另与「逐点删除后 BFS 重判连通」暴力对拍 300 组随机小树（n≤9、随机好点对与坏点对）零差异。"
+        }
+      },
+      "unresolved": [],
+      "appliedFields": [
+        "description",
+        "inputDescription",
+        "outputDescription",
+        "timeLimit",
+        "memoryLimit"
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "statement"
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l8.glm.json"
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 11,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
+      "integrationNote": "原卷第 10 页的变量名是 n 与 a。数据范围允许 a=0，样例之外的覆盖用例可使答案为 0。按原卷数据范围和实际运算复核输入输出描述，校正正式时限。",
+      "sourceNotes": [
+        "原卷输入格式称 n、a 均为正整数，但数据范围和子任务允许 a=0。输出格式称结果为正整数，但好点对覆盖坏点对的全部路径时为 0。"
       ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 10
+        },
+        {
+          "id": 27,
+          "field": "timeLimit",
+          "value": "4.0 s",
+          "sourcePage": 10
+        }
       ]
-    },
-    {
-      "id": 12,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 13,
-      "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "修改 options 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "options 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
+    }
+  ],
+  "unresolved": [
     {
       "id": 22,
       "dimensions": [
@@ -1220,23 +1143,6 @@
       ],
       "reasons": [
         "保留原有争议/待审标记，模型结论不能自动解除"
-      ]
-    },
-    {
-      "id": 23,
-      "dimensions": [
-        "answer",
-        "explanation",
-        "statement"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "修改 question 已获一致批准，尚未应用",
-        "修改 explanation 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论",
-        "answer 尚无一致、完整的原卷核验结论",
-        "explanation 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
       ]
     },
     {
@@ -1251,121 +1157,7 @@
       ]
     }
   ],
-  "pendingChanges": [
-    {
-      "id": 26,
-      "changes": {
-        "description": "C 城是一张无向带权连通图，学校位于固定结点 s。给出 q 位同学家的结点位置，每位同学每秒走 1 米，问每位同学从家到学校的最短时间。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $q=1$。\n\n对于另外 20% 的测试点，保证 $1\\le n\\le 500$，$1\\le m\\le 500$。\n\n对于所有测试点，保证 $1\\le n\\le 2\\times 10^5$，$1\\le m\\le 2\\times 10^5$，$1\\le q\\le 2\\times 10^5$，$1\\le u_i,v_i,s,h_i\\le n$，$1\\le l_i\\le 10^6$。保证给定的图连通。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "description": "小杨有一棵包含 $n$ 个节点的树，其中节点的编号从 $1$ 到 $n$。\n\n小杨设置了 $a$ 个好点对 $\\{<u_1,v_1>,<u_2,v_2>,\\dots,<u_a,v_a>\\}$ 和 $1$ 个坏点对 $<b_u,b_v>$。一个节点能够被删除，当且仅当：\n\n- 删除该节点后对于所有的 $i(1\\le i\\le a)$，好点对 $u_i$ 和 $v_i$ 仍然连通；\n- 删除该节点后坏点对 $b_u$ 和 $b_v$ 不连通。\n\n如果点对中的任意一个节点被删除，其视为不连通。\n\n小杨想知道，有多少个节点能够被删除。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $n\\le 10$，$a=0$；对于 20% 的测试点，保证 $n\\le 100$，$a\\le 100$；对于所有测试点，保证 $1\\le n\\le 10^6$，$0\\le a\\le 10^5$，$u_i\\ne v_i$，$b_u\\ne b_v$。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 2,
-      "changes": {
-        "question": "小杨和 3 位朋友约好一起去看电影“哪吒 2”。打开购票软件，他们发现，已经没有同一排连续的四个座位了。朋友们商量了一下，决定分为两组，每组两人在同一排的相邻两个座位，且两组之间至少有一对座位是前后相邻的。请问共有多少种购票方案？\n\n（图示：影厅共 3 排 6 列；已售红色座位为第 1 排第 3、4 列，第 2 排第 4 列，第 3 排第 4、5、6 列，其余为空座。）"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 6,
-      "changes": {
-        "question": "已定义 double 类型的变量 r 和 theta，分别表示图中圆半径和圆心角。下列表达式中可以求出弦长 s 的是（ ）。\n\n（图示：圆半径为 r，圆心角为 θ，s 为该圆心角所对的弦。）"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 7,
-      "changes": {
-        "question": "N 个节点的平衡二叉树的高为（ ）。",
-        "options": [
-          "⌊log₂ N⌋",
-          "⌈log₂ N⌉",
-          "⌊log₂ N⌋+1",
-          "无法确定。"
-        ],
-        "explanation": "**答案：D**\n\n**解析：**\n“平衡二叉树”只要求每个结点左右子树高度差受限（如 AVL），并没有唯一确定树形。N 个结点的平衡树高度会随具体形态在 Θ(log N) 范围内变化；若再区分“高度是否计根层”“是否要求完全平衡”，结果又会落在 ⌊log₂N⌋、⌈log₂N⌉ 或 ⌊log₂N⌋+1 等不同值。因此仅凭 N 无法确定唯一高度，选 D。\n\n**考点：** 平衡二叉树高度的定义与不确定性。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 9,
-      "changes": {
-        "question": "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找出小于 N 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 10,
-      "changes": {
-        "question": "2025 是个神奇的数字，因为它是由两个数 20 和 25 拼接而成，而且 2025 = (20 + 25)²。小杨决定写个程序找出小于 N 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。\n\n```cpp\n#include <string>\nint count_miracle(int N) {\n    int cnt = 0;\n    for (int n = 1; n * n < N; n++) {\n        int n2 = n * n;\n        std::string s = std::to_string(n2);\n        for (int i = 1; i < s.length(); i++) {\n            if (s[i] != '0') {\n                std::string sl = s.substr(0, i);\n                std::string sr = s.substr(i);\n                int nl = std::stoi(sl);\n                int nr = std::stoi(sr);\n                if (________) // 在此处填入选项\n                    cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 11,
-      "changes": {
-        "question": "下面的欧氏筛法程序中，两个横线处应填入的分别是（ ）。\n\n```cpp\nint primes[MAXP], num = 0;\nbool isPrime[MAXN + 1] = {false};\nvoid sieve() {\n    for (int n = 2; n <= MAXN; n++) {\n        if (!isPrime[n])\n            primes[num++] = n;\n        for (int i = 0; i < num && ________; i++) { // 在此处填入选项\n            isPrime[n * primes[i]] = true;\n            if (________) // 在此处填入选项\n                break;\n        }\n    }\n}\n```",
-        "options": [
-          "n * primes[i] < MAXN\nn % primes[i] == 0",
-          "n * primes[i] < MAXN\nprimes[i] > n",
-          "n * primes[i] <= MAXN\nn % primes[i] == 0",
-          "n * primes[i] <= MAXN\nprimes[i] > n"
-        ],
-        "explanation": "**答案：C**\n\n**解析：**\n这是欧拉筛：外层枚举 n，内层用已求出的素数 primes[i] 标记 n*primes[i]。第一个空要保证乘积不越界，且 MAXN 是数组最大下标，应填 `n * primes[i] <= MAXN`；第二个空当 `n % primes[i] == 0` 时 break，保证每个合数只被最小质因子标记一次。故 C。A/B 用 `< MAXN` 会漏掉边界；B/D 的 `primes[i] > n` 不能保证线性。\n\n**考点：** 欧拉筛（线性筛）。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 12,
-      "changes": {
-        "question": "下面 Floyd 算法中，横线处应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 21\n#define INF 99999999\nint map[N][N];\nint main() {\n    int n, m, t1, t2, t3;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (i == j)\n                map[i][j] = 0;\n            else\n                map[i][j] = INF;\n        }\n    }\n    for (int i = 1; i <= m; i++) {\n        cin >> t1 >> t2 >> t3;\n        map[t1][t2] = t3;\n    }\n    for (int k = 1; k <= n; k++)\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                if (map[i][j] > map[i][k] + map[k][j])\n                    ________; // 在此处填入选项\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            cout.width(4);\n            cout << map[i][j];\n        }\n        cout << endl;\n    }\n}\n```",
-        "options": [
-          "map[i][j] = map[i][k] + map[k][j]",
-          "map[i][k] = map[i][j] - map[k][j]",
-          "map[i][j] = map[i][k] - map[k][j]",
-          "map[k][j] = map[i][j] - map[i][k]"
-        ],
-        "explanation": "**答案：A**\n\n**解析：**\nFloyd 的三重循环以 k 为中转点，当 `map[i][j] > map[i][k] + map[k][j]` 时用更短的 `map[i][k]+map[k][j]` 更新 `map[i][j]`。因此横线应填 `map[i][j] = map[i][k] + map[k][j]`，即 A。B、C、D 或是减法、或更新了错误的下标，均不成立。\n\n**考点：** Floyd–Warshall 松弛。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 13,
-      "changes": {
-        "question": "下面 Floyd 算法程序的时间复杂度为（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 21\n#define INF 99999999\nint map[N][N];\nint main() {\n    int n, m, t1, t2, t3;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (i == j)\n                map[i][j] = 0;\n            else\n                map[i][j] = INF;\n        }\n    }\n    for (int i = 1; i <= m; i++) {\n        cin >> t1 >> t2 >> t3;\n        map[t1][t2] = t3;\n    }\n    for (int k = 1; k <= n; k++)\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                if (map[i][j] > map[i][k] + map[k][j])\n                    ________; // 在此处填入选项\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++) {\n            cout.width(4);\n            cout << map[i][j];\n        }\n        cout << endl;\n    }\n}\n```",
-        "options": [
-          "O(N)",
-          "O(N²)",
-          "O(N³)",
-          "O(N² log N)"
-        ],
-        "explanation": "**答案：C**\n\n**解析：**\nFloyd–Warshall 算法对每个中转点 k、起点 i、终点 j 做三重循环松弛，三层循环各约 N 次，因此时间复杂度为 O(N³)。\n\n- A O(N)：错误，忽略了三重循环；\n- B O(N²)：错误，只算了两层；\n- C O(N³)：正确；\n- D O(N² log N)：错误，Floyd 没有对数因子。\n\n**考点：** Floyd 算法复杂度。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 14,
-      "changes": {
-        "question": "下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n#define N 35\nint a[N];\nint main() {\n    int n;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        a[i] = 1;\n        for (int j = i - 1; j > 0; j--)\n            ________; // 在此处填入选项\n        for (int j = 0; j <= i; j++)\n            cout << a[j] << \" \";\n        cout << endl;\n    }\n    return 0;\n}\n```"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 23,
-      "changes": {
-        "answer": 0,
-        "question": "定义 int 类型的变量 a 和 b，求二次函数 $y=x^2+ax+b$ 取最小值时 $x$ 的值，可以通过表达式 -a / 2.0 求得。",
-        "explanation": "**答案：正确**\n\n**解析：**\n对 y=x²+ax+b 配方得 y=(x+a/2)²+b−a²/4，故当 x=−a/2 时取最小值。表达式 `-a / 2.0` 中 2.0 为 double，a 先转换为 double 再做除法，得到 −a/2 的浮点值，正确。\n\n**考点：** 二次函数最值与浮点除法。"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-03-l8.code-checks.json"
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2025-03-l8.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-03-l8.integration.json"
 }

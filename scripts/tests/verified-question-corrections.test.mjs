@@ -62,11 +62,14 @@ test('verified corrections restore the official code and options for damaged que
   const l8q12 = l8.questions.find(question => question.id === 12);
   const l8q14 = l8.questions.find(question => question.id === 14);
   assert.match(l8q7.question, /\$\(x\+y\)\^6\$/);
-  assert.match(l8q12.code, /Edge\* e = graph\[minv\]/);
+  assert.match(l8q12.code, /Edge\s*\* e = graph\[minv\]/);
   assert.match(l8q12.options[1], /min \+ e->len/);
   assert.match(l8q14.code, /void quick_sort\(int a\[\], int n\)/);
   assert.equal(l8q14.options[0], 'l < r; a + pivot + 1, n - pivot - 1');
   assert.deepEqual(l8q14.tags, ['排序算法']);
+  for (const question of [l8q12, l8q14]) {
+    assert.equal(getQuestionContent(question).match(/```/g)?.length, 2, `Q${question.id} 应只显示一份代码`);
+  }
 });
 
 test('December 2023 L6 keeps code on the original question without duplication', async () => {
