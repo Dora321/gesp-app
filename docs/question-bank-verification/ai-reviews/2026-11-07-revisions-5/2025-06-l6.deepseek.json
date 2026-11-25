@@ -1,0 +1,66 @@
+{
+  "paperId": "2025-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    23
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T06:14:00.000Z",
+  "completedAt": "2026-11-25T06:34:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "1e575ac3ad80c42a45cda9f9f7efe5b4afc1e424ecd4949ba1530ae38d729f40",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年6月-C++6级.pdf",
+    "mirrorSha": "cc231e0e8cafeb3ec4d9e219d44e1955f745bf4e",
+    "mirrorBytes": 1559133,
+    "shaVerified": true,
+    "sha256": "07876940042715cb0e33e06bfe749dc7106d3895eab6d2eb7dc4afc1cc3b1ffe"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第6页下方为判断题答案表（题号 1–10，答案 × × √ √ × √ √ × × √）与第15题代码，第7页第8题「下列代码中的 tree 向量，表示的是一棵完全二叉树 ( -1 代表空节点)按照层序遍历的结果。」及其两行 tree 代码与当前 Q23（判断题第8题）对应；卷头为 C++ 六级、2025 年 6 月，与 2025-06-l6 完全对应。"
+    },
+    "questions": [
+      {
+        "id": 23,
+        "sourcePages": [
+          7
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第7页第8题（判断题）题干「下列代码中的 tree 向量，表示的是一棵完全二叉树 ( -1 代表空节点)按照层序遍历的结果。」，其下为两行代码：1 #include <vector>、2 std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};。候选 question 与页图逐字一致（含空格），独立 code 字段为上述两行代码（去行号），第 4 轮批准的 code 修复已真实落入 paper.json；Q23 的 question 不含该代码，站内 getQuestionContent 会将其追加展示，题干与代码均完整，无缺失或他题代码串入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题不设 A–D 选项，官方以第6页判断题答案表 √/× 呈现；站点以 [正确, 错误] 两项呈现为惯例，本维度不适用。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第6页判断题答案表 1–10 格为 × × √ √ × √ √ × × √，第8格为 ×；按「正确=0、错误=1」映射 officialAnswer=1，候选 answer=1 一致。独立还原：层序 {1, 2, 3, 4, -1, 6, 7} 中 -1 位于下标 4（0 起始），其后仍有 6、7，空位之后出现非空节点，不满足完全二叉树的定义，判「错误」成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按层序还原：节点 1 的孩子为 2、3；节点 2 的孩子为 4 与空（-1）；节点 3 的孩子为 6、7；指出 -1 之后仍有 6、7，空位后继续出现节点即非完全二叉树，判定「错误」与第6页答案表 × 一致。「空节点只能出现在层序序列末尾」的判据与「层序扫描遇到首个空位后必须全空」的判定技巧均正确；解析为本站现行文本（早前轮次已核验通过），未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题，无编程题参考程序；题内展示的 tree 代码属题面组成，已在 statement 维度逐行核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      }
+    ],
+    "summary": "仅 1 道候选（Q23）。第 4 轮批准的 code 修复（补回第7页 tree 代码 #include <vector> / std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7};）已真实落入 paper.json，题干与第7页逐字一致、代码与页图逐行一致；answer=1（错误）与第6页判断题答案表第8格 × 一致；解析按层序还原与完全二叉树定义独立复核成立。五维全部 verified/not_applicable，changes 为空，未发现修改被回退。"
+  }
+}
