@@ -1,0 +1,507 @@
+{
+  "paperId": "2024-12-l7",
+  "phase": "deepseek",
+  "questionIds": [
+    4,
+    5,
+    7,
+    9,
+    13,
+    14,
+    15,
+    20,
+    22,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:41:00.000Z",
+  "completedAt": "2026-11-25T08:41:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "b6a362dda1ced9975c0faee118aa4950e8fa742dddb5856621bfdcde14fb255b",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650239779897376.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++7级.pdf",
+    "mirrorSha": "aae095353c3673f6500fe504d5309c6ae7f1f1bd",
+    "mirrorBytes": 1054588,
+    "shaVerified": true,
+    "sha256": "296aa5b9c180c7626ddb83153360dde1142b0434af995305216c866412fbc7b8"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2024-12-l7",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「CCF 编程能力等级认证 C++ 七级 2024 年 12 月」，单选答案表 1—15 题、判断答案表 1—10 题齐全；第 5—8 页为编程题 26、27，页图共 8 页，与 paperId 2024-12-l7 一致。"
+    },
+    "questions": [
+      {
+        "id": 4,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页末第 4 题题干「下列关于 C++ 类的说法，错误的是( )。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A「构造函数不能声明为虚函数，但析构函数可以」、B「函数参数如声明为类的引用类型，调用时不会调用该类的复制构造函数」、C「静态方法属于类、不属于对象，因此不能使用对象.方法(...)的形式调用静态方法」、D「析构派生类的对象时，一定会调用基类的析构函数」，与候选逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 4 题为 C，0 起始索引 2，与候选 answer=2 一致；静态成员函数可以用对象点语法调用，C 错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：A 构造函数不能为虚、析构可以为虚；B 引用传参不复制；C 静态方法可用 obj.f() 调用，错误；D 派生类析构会调用基类析构。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 5,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 5 题题干「下列关于有向图的说法，错误的是( )。」与候选一致。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "第 2 页 A「n 个顶点的弱连通有向图，最少有 n−1 条边」、B「n 个顶点的强连通有向图，最少有 n 条边」、C「n 个顶点的有向图，最多有 n×(n−1) 条边」、D「n 个顶点的有向完全图，有 n×(n−1) 条边」；候选 options 把 n、n−1、n×(n−1) 全部漏成空格，只剩「个顶点的……有 条边」，无法作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 5 题为 C，0 起始索引 2，与候选 answer=2 一致；未限定简单图时，允许自环可有 n² 条边，C 的 n(n−1) 上限不成立；A/B/D 在通常 n≥2 的简单图口径下正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：弱连通最少 n−1 条；强连通最少 n 条（有向环）；有向完全图 n(n−1) 条；C 未排除自环，n 个自环可再加 n 条，故 C 错。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "$n$ 个顶点的弱连通有向图，最少有 $n-1$ 条边。",
+            "$n$ 个顶点的强连通有向图，最少有 $n$ 条边。",
+            "$n$ 个顶点的有向图，最多有 $n \\times (n-1)$ 条边。",
+            "$n$ 个顶点的有向完全图，有 $n \\times (n-1)$ 条边。"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 7,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2 页第 7 题题干「下列关于二叉树的说法，错误的是（ ）。」与候选一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 2 页 A「二叉排序树的中序遍历顺序与元素排序的顺序是相同的」、B「n 个元素的二叉排序树，其高一定为 ⌊log₂ n⌋」、C「自平衡二叉查找树（AVL 树）是一种二叉排序树」、D「任意的森林，都可以映射为一颗二叉树进行表达和存储」，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 7 题为 B，0 起始索引 1，与候选 answer=1 一致；升序插入会退化为链，高为 n，B 错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：A 中序有序；B 高度取决于插入顺序，最坏 n；C AVL 是 BST；D 左孩子右兄弟可转。候选解析以 O(log n) 概括 B 项，反例成立，结论正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          1,
+          2,
+          3
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2—3 页第 9 题题干与候选一致：n 个位置 0~n−1、每个位置最多一个元素、只有插入和查询、无删除/修改。"
+          },
+          "options": {
+            "status": "needs_fix",
+            "evidence": "第 2—3 页 A 的查询最差 O(n)、B 的 O(1)、C 的 O(n−m)；候选 options 把三处复杂度全部漏成空格（「最差时间复杂 度为 。」），只剩 D 完整，无法作答。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 9 题为 D，0 起始索引 3，与候选 answer=3 一致；无删除且插入不跳过空位，h(x) 为空时 x 不可能在表中，D 错。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：A 线性探测最坏扫 n 个位置 O(n)；B 只探 h 与 h+1，O(1)；C 溢出区长度 n−m，O(n−m)；D 错误。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "options": [
+            "如果哈希函数取值范围为 $0 \\sim (n-1)$，且当发生哈希函数碰撞时循环向后寻找空位，则查询操作的最差时间复杂度为 $O(n)$。（“循环向后”指：0 向后一位为 1，1 向后一位为 2，……，$(n-2)$ 向后一位为 $(n-1)$，$(n-1)$ 向后一位为 0）",
+            "如果哈希函数取值范围为 $0 \\sim (n-1)$，且当发生哈希函数碰撞时仅循环向后一个位置寻找空位，则查询操作的最差时间复杂度为 $O(1)$。",
+            "如果哈希函数取值范围为 $0 \\sim (m-1)$（$m<n$），且当发生哈希函数碰撞时仅在 $m \\sim (n-1)$ 的范围内寻找空位，则查询操作的最差时间复杂度为 $O(n-m)$。",
+            "查询操作时，如果发现查询元素经哈希函数对应的位置为空位，该查询元素仍可能出现在哈希表内。"
+          ]
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          3,
+          4
+        ],
+        "officialAnswer": 3,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页第 13 题「上题中程序的时间复杂度为（ ）。」；第 3 页第 12 题代码为 #define N 10、h[N]、h[0]=h[1]=1、i=2..N-1、j=0..i-1 的卡特兰递推，与候选解析所引代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3—4 页 A O(N)、B O(N log N)、C O(N^{3/2})、D O(N²)，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 13 题为 D，0 起始索引 3，与候选 answer=3 一致；内层总步数 2+3+…+n=O(N²)。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的等差数列求和与 O(N²) 结论正确，但 C 项写成 O(log n)，而实际选项 C 为 O(N^{3/2})；需改正 C 项标签与理由。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：D（O(n²)）**\n\n**核心解析：**\n上题程序是通过定义式递推计算卡特兰数（Catalan number）。程序的核心逻辑由两层嵌套循环构成：\n```cpp\nfor (int i = 2; i <= n; i++) {\n    for (int j = 0; j < i; j++) {\n        h[i] += h[j] * h[i - j - 1];\n    }\n}\n```\n分析循环的执行总次数：\n- 外层循环变量 `i` 从 `2` 递增到 `n`；\n- 当外层循环取值为 `i` 时，内层循环 `j` 从 `0` 遍历到 `i - 1`，内层循环体执行 `i` 次；\n- 将每一轮外层循环中内层的执行次数累加，总执行次数为等差数列求和：\n  `2 + 3 + 4 + ... + n = (2 + n) * (n - 1) / 2 = (n² + n - 2) / 2`\n\n根据大 O 渐进复杂度的表示规则，忽略常数系数（`1/2`）与低阶项（`n` 和常数 `-2`），只保留最高阶项 `n²`。因此，该程序的时间复杂度为 `O(n²)`。\n\n**选项逐项分析：**\n- **A O(n)**：❌ 错误。单层循环线性递推（如利用卡特兰数通项递推公式计算）的复杂度为 `O(n)`；本题通过二重循环完成两两乘积累加，运算量与 `n²` 呈正比，不是线性级别。\n- **B O(n log n)**：❌ 错误。`O(n log n)` 常见于归并排序、快速排序、基于二分思想的分治算法或优先队列操作；本题代码是纯粹的逐项累加循环，不存在对数分割过程。\n- **C $O(N^{3/2})$**：❌ 错误。该复杂度常见于分块、枚举约数等算法；本题内层循环总步数为 `2 + 3 + ... + n = (n² + n - 2) / 2`，是二次阶，不是 `N^{3/2}`。\n- **D O(n²)**：✅ 正确。外层循环执行约 `n` 次，内层执行次数随外层变量线性增加，求和总步数为 `(n² + n - 2) / 2`，由大 O 记号的渐进分析法则可得时间复杂度为 `O(n²)`。\n\n**易错提醒：**\n- 嵌套循环的内层循环上限由外层循环变量 `i` 控制，属于典型的「变量控制型二重循环」。分析此类结构时，不要想当然地直接用外层最多次数乘以内层最多次数，而应把各轮次数加起来（本题是 `2 + 3 + ... + n`），通过等差数列求和推导精确规模。\n\n**知识延伸：**\n卡特兰数有两种常见的递推计算路径：\n1. **卷积递推**：`h[n] = h[0]*h[n-1] + h[1]*h[n-2] + ... + h[n-1]*h[0]`，需要两层循环累加，时间复杂度为 `O(n²)`（本题考查的模型）。\n2. **通项递推**：`h[n] = h[n-1] * (4*n - 2) / (n + 1)`，仅需单层循环依次递推求解，时间复杂度可优化至 `O(n)`。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 14 题 init_sieve 函数与候选一致：sieve[MAX_N]，i=1..n 赋值，i=2..n、j=i..n、j+=i 自减。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A O(n)、B O(n log n)、C O(n²)、D 无法正常结束，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 B，0 起始索引 1，与候选 answer=1 一致；Σ_{i=2..n}⌊n/i⌋=O(n log n)。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析的复杂度推导正确，但末尾「选项文本 OCR 缺失，按官方答案选 B」失实——第 4 页四个选项完整可读；应删除该注记并把标题改为 B（O(n log n)）。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：B（O(n log n)）**\n\n`init_sieve` 函数为：\n```cpp\nfor (int i = 1; i <= n; i++) sieve[i] = i;\nfor (int i = 2; i <= n; i++)\n  for (int j = i; j <= n; j += i) sieve[j]--;\n```\n第一遍 O(n)。第二、三层的迭代次数为 Σ_{i=2}^{n} ⌊n/i⌋，约为 n(ln n − 1) = O(n log n)。因此 `init_sieve` 的时间复杂度为 O(n log n)。\n\n**考点**：埃氏筛类双重循环的复杂度（调和级数求和 ≈ O(n log n)）。"
+        },
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          1,
+          4
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页第 15 题图含 9 个顶点、13 条弧：1→2、2→3、1→4、1→5、3→5、3→6、4→7、5→7、6→9、6→8、8→5、7→8、8→9，与候选描述一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A 1,2,3,5,7,8,6,9,4；B 1,4,7,8,9,5,2,3,6；C 1,5,7,8,9,4,2,3,6；D 1,2,3,6,9,8,5,7,4，与候选 options 一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 A，0 起始索引 0，与候选 answer=0 一致；A 在 8 处必须走 9，不能在 9 前插入 6，故不可能。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立核验：8 的出边只有 5（已访问）与 9，A 却在 8 后接 6，6 只能由 3→6 到达，需先回溯到 3，故 A 不可能；B/C/D 均可构造合法 DFS，候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 20,
+        "sourcePages": [
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页判断第 5 题「使用 math.h 或 cmath 头文件中的函数，表达式 log2(32) 的结果为 5、类型为 int。」与候选一致；候选以 $\\log_2$(32) 表示 log2(32)，语义相同。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有「正确/错误」两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断答案表第 5 题为 ×，映射索引 1，与候选 answer=1 一致；log2 返回 double，不是 int。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：log2(32)=5.0，类型 double；题称 int，错误。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 22,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页判断第 7 题「邻接表和邻接矩阵都是图的存储形式。邻接表在遍历单个顶点的所有边时，时间复杂度更低；邻接矩阵在判断两个顶点之间是否有边时，时间复杂度更低。」与候选一致（仅「判断」中间有 OCR 空格）。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "判断题只有「正确/错误」两态，原卷无 A/B/C/D 选项。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 4 页判断答案表第 7 题为 √，映射索引 0，与候选 answer=0 一致；邻接表遍历边 O(deg)，邻接矩阵判边 O(1)，两句均正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立判断：邻接表沿边链表 O(deg)；邻接矩阵查 matrix[u][v] O(1)；命题正确。候选解析正确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "判断题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          5,
+          6
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页 3.1.1—3.1.4：n 件武器、强度 p_i、花费 c_i、选一些使总强度≥P、总花费≤Q、求最小花费或 −1；输入 t、每组 n,P,Q 与 n 行 p_i,c_i；第 6 页 3.1.5 数据规模（20% n≤10,p_i=c_i=1,P,Q≤10；20% n≤100,c_i=1,P≤5×10⁴,Q=2；全部 1≤t≤10、1≤n≤100、1≤p_i,c_i,P,Q≤5×10⁴）；样例输出 3、−1、−1，均与候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：0/1 背包，dp[c] 为总花费恰为 c 时的最大强度，初始 dp[0]=0、其余 −∞；倒序枚举花费转移；最后从 0 到 Q 扫描第一个 dp[c]≥P。样例 1 买第 3 件（强度 2、花费 3）得 3；样例 2 无方案；样例 3 强度不足，均与候选一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "clang++ -std=c++17 -O2 编译候选 0/1 背包；原样例输出 3、−1、−1。另跑独立边界：1 / 1 5 3 / 5 3→3；1 / 1 5 2 / 5 3→−1；1 / 3 6 10 / 4 5 / 4 6 / 2 1→6；1 / 3 10 5 / 10 5 / 6 2 / 4 3→5，全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单件可买",
+            "input": "1\n1 5 3\n5 3\n",
+            "output": "3",
+            "reason": "唯一武器强度 5、花费 3，满足 P=5、Q=3，最小花费 3。"
+          },
+          {
+            "name": "单件超预算",
+            "input": "1\n1 5 2\n5 3\n",
+            "output": "-1",
+            "reason": "武器花费 3 超过 Q=2，无法购买，输出 −1。"
+          },
+          {
+            "name": "两件凑满强度",
+            "input": "1\n3 6 10\n4 5\n4 6\n2 1\n",
+            "output": "6",
+            "reason": "选 4+2 两件，强度 6、花费 5+1=6；4+4 花费 11 超预算，故最小 6。"
+          },
+          {
+            "name": "六加四恰好十",
+            "input": "1\n3 10 5\n10 5\n6 2\n4 3\n",
+            "output": "5",
+            "reason": "选强度 6（花费 2）与 4（花费 3），总强度 10、总花费 5，恰满足上限。"
+          }
+        ],
+        "unresolved": [
+          "原卷标注编程题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "needs_fix",
+            "evidence": "第 7 页 3.2.1—3.2.4：n 节点树、节点权值 a_i、任选初始节点引燃、每个燃烧节点引燃相邻且权值严格小于自身的节点、火焰扩散直到无新节点、求最多燃烧节点数；输入 n、a_i、n−1 条边；输出个数；第 8 页 3.2.5 数据规模（20% n≤10；20% n≤100；全部 1≤n≤10⁵、1≤a_i≤10⁶）；样例 5 / 6 2 3 4 5 / 1 2 / 2 3 / 2 5 / 1 4→3，均与候选一致。候选第二段写成「每个燃烧的节点会将其相邻节点中权值严格小于自身权值的在节点间扩散直到不会有新的节点被引燃」，漏掉「节点也引燃，火焰会」，句子不成立；应补全。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无原卷客观题答案表条目，officialAnswer=null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导：把每条边按权值从大指向小，等权边不能传火；原图是树，从 u 沿不同相邻边向更小权值扩散时各子树互不重叠，故 dp[u]=1+Σ dp[v]（a_v<a_u），记忆化取最大。样例 1 从 1（6）可烧 1、2、4，共 3；从 2（2）只能烧 2；从 5（5）烧 5、2，共 2，最大 3，与候选一致。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "clang++ -std=c++17 -O2 编译候选记忆化 DFS；原样例输出 3。另跑独立边界：1 / 5→1；2 / 5 5 / 1 2→1（等权不传火）；3 / 3 1 2 / 1 2 / 2 3→2；4 / 4 3 2 1 / 1-2-3-4→4；4 / 1 5 5 5 / 1 2 / 1 3 / 1 4→2；另以 n=10⁵ 严格递减链压测，输出 100000，未爆栈。"
+          }
+        },
+        "changes": {
+          "question": "\n# [GESP202412 七级] 燃烧\n\n## 题目描述\n\n小杨有一棵包含 $n$ 个节点的树，其中节点的编号从 $1$ 到 $n$。节点 $i$ 的权值为 $a_i$。\n\n小杨可以选择一个初始节点引燃，每个燃烧的节点会将其相邻节点中权值**严格小于**自身权值的节点也引燃，火焰会在节点间扩散直到不会有新的节点被引燃。\n\n小杨想知道在合理选择初始节点的情况下，最多可以燃烧多少个节点。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，表示节点数量。\n\n第二行包含 $n$ 个正整数 $a_1,a_2,\\dots,a_n$，代表节点权值。\n\n之后 $n-1$ 行，每行包含两个正整数 $u_i,v_i$，代表存在一条连接节点 $u_i$ 和 $v_i$ 的边。\n\n## 输出格式\n\n输出一个正整数，代表最多燃烧的节点个数。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $n \\le 10$；对于另外 20% 的测试点，保证 $n \\le 100$；对于 100% 的测试点，保证 $1 \\le n \\le 10^5$、$1 \\le a_i \\le 10^6$。\n"
+        },
+        "tests": [
+          {
+            "name": "单节点",
+            "input": "1\n5\n",
+            "output": "1",
+            "reason": "只有一个节点，引燃它即可烧 1 个。"
+          },
+          {
+            "name": "等权相邻",
+            "input": "2\n5 5\n1 2\n",
+            "output": "1",
+            "reason": "两端权值相等，火焰不能从任一端传到另一端，最多烧 1 个。"
+          },
+          {
+            "name": "三节点混合",
+            "input": "3\n3 1 2\n1 2\n2 3\n",
+            "output": "2",
+            "reason": "从 1（3）可烧 2（1），但 2 不能反向烧 3（2>1）；从 3（2）可烧 2（1），最多 2 个。"
+          },
+          {
+            "name": "严格递减链",
+            "input": "4\n4 3 2 1\n1 2\n2 3\n3 4\n",
+            "output": "4",
+            "reason": "从 1 出发 4→3→2→1 严格递减，可烧完整条链。"
+          },
+          {
+            "name": "高叶入低心",
+            "input": "4\n1 5 5 5\n1 2\n1 3\n1 4\n",
+            "output": "2",
+            "reason": "从叶 2（5）可烧中心 1（1），中心不能再烧其余权值 5 的叶子，最多 2 个。"
+          }
+        ],
+        "unresolved": [
+          "原卷标注编程题内存限制 512.0 MB，题库 memoryLimit 为 128 MB；memoryLimit 不在本轮允许修改字段内，未改动，留待发布流程处理。"
+        ]
+      }
+    ],
+    "summary": "11 个候选中，Q4/Q7/Q15/Q20/Q22/Q26 五维通过；Q5、Q9 选项公式被 OCR 漏空，已补回；Q13 解析 C 项写成 O(log n) 而选项为 O(N^{3/2})，已改正；Q14 解析误称选项 OCR 缺失，已删除该注记；Q27 题面漏「节点也引燃，火焰会」，已补全。Q26/Q27 原卷内存限制 512 MB、题库记 128 MB，已在 unresolved 记录。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        4,
+        5,
+        7,
+        9,
+        13,
+        14,
+        15,
+        20,
+        22,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T08:41:00.000Z",
+      "completedAt": "2026-11-25T08:41:00.000Z"
+    }
+  ]
+}
