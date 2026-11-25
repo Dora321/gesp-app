@@ -1,0 +1,228 @@
+{
+  "paperId": "2023-09-l5",
+  "phase": "glm",
+  "questionIds": [
+    3,
+    12,
+    14,
+    26
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T08:55:00.000Z",
+  "completedAt": "2026-11-25T09:30:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "0344c680d32689065ef37f40c4c07f74aa49523013ff92b064760f75832d6f49",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611325304864.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++5级.pdf",
+    "mirrorSha": "7d1cb9e5cd39d721f9b483e377e54be55733be21",
+    "mirrorBytes": 1870596,
+    "shaVerified": true,
+    "sha256": "89534b84ef130115c0f3d0096b0930cc796d1b0b7933cb57b5a0f151f5ae0828"
+  },
+  "pageCount": 13,
+  "requests": [
+    {
+      "questionIds": [
+        3,
+        12,
+        14,
+        26
+      ],
+      "startedAt": "2026-11-25T08:55:00.000Z",
+      "completedAt": "2026-11-25T09:30:00.000Z"
+    }
+  ],
+  "report": {
+    "paperId": "2023-09-l5",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "第 1 页卷头为「CCF 编程能力等级认证 GESP / C++ 五级 / 2023 年 9 月」，结构为单选题 15 题（每题 2 分，共 30 分）、判断题 10 题（每题 2 分，共 20 分）、编程题 2 题（每题 25 分，共 50 分），答案表题号 1–15 完整；第 10 页编程题 1 编号 2023-09-23-05-C-01「因数分解」（时限 1.0 s、内存 128.0 MB），第 12 页编程题 2 编号 2023-09-23-05-C-02「巧夺大奖」，与 paperId 2023-09-l5（2023 年 9 月 C++ 五级）一致。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 1 页第 3 题原文「如果变量 a 和 b 分别为 double 类型和 int 类型，则表达式 (a = 6, b = 3 * (7 + 8) / 2, b += a) 的计算结果为（ ）。」，候选「如果变量a 和b 分别为double类型和int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的计算结果为（ ）。」仅中英文间距差异；原「double类型 and int类型」的英文 and 误转与「的 计算结果」多余空格均已按原卷修复，修复后题面与原卷一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 1 页选项 A 6、B 21、C 28、D 不确定，与候选 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 格为 C，0 起始索引 2，与候选 answer=2 一致。独立求值：a=6（double 6.0）；b=3*(7+8)/2=45/2=22（int 截断）；b+=a 即 22+6=28，逗号表达式取最后一项的值 28，与 C 一致。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析「逗号表达式依次计算：a=6; b=3*15/2=22; b+=6 => 28」与独立求值一致（b 为 int，b+=a 即 22+6=28）；A/B 数值不符、C 正确、D「不确定」不成立的逐项判断无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受本轮候选并定案：独立对照第 1 页页图确认题面英文 and 误转与多余空格已按原卷逐字修复，选项 A 6/B 21/C 28/D 不确定、答案 C（索引 2）与解析的独立求值全部吻合；无新增问题，changes 为空。"
+      },
+      {
+        "id": 12,
+        "sourcePages": [
+          1,
+          7,
+          8,
+          9
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7 页题干「下面代码用于归并排序，其中 merge() 函数被调用次数为（ ）。」与候选一致。第 8 页代码逐行对照：前置声明 mergeSort(int * listData, int start, int end)（3 参数）、merge(int * listData, int start, int middle, int end)（4 参数）与候选一致，候选已修复原网站把 mergeSort 误写成 4 参数、与定义冲突而无法编译的转写错误（修复后我以 g++ 实际编译通过）；mergeSort/merge 定义体、main 中 lstA={1, 3, 2, 7, 11, 5, 3}、mergeSort(lstA, 0, size - 1) 及输出循环均与原卷一致。原卷第 4–5 行两条前置声明顺序为 mergeSort 在前，候选保持站点原有的对调顺序，两条声明相互独立、对调不影响编译与调用，属无语义影响的排版差异，予以记录并接受。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 9 页选项 A 0、B 1、C 6、D 7，与候选 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 12 格为 C，0 起始索引 2，与候选 answer=2 一致。独立推导：归并排序递归树是 n 个叶子的满二叉树，内部结点数即 merge() 调用数 n−1=6；将候选代码插入调用计数器实测（g++ 编译运行）输出 merge calls: 6，且排序输出 1 2 3 3 5 7 11 正确。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析按递归树非叶区间计数（[0,6]、[0,3]、[4,6]、[0,1]、[2,3]、[4,5] 共 6 个），与理论值 n−1=6 及我的插桩实测一致；解析「验证」段宣称的计数器运行结果（merge calls: 6）经我独立插桩复现属实，A/B/D 排除理由无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受本轮候选并定案：独立对照第 7–9 页页图确认 mergeSort 前置声明已按原卷修复为 3 参数（修复后代码可编译），merge() 调用次数以插桩实测 6 次与解析、答案 C 互证；两条独立前置声明的顺序对调属无语义影响的排版差异，已在证据中记录；无新增问题，changes 为空。"
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          1,
+          9
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9 页第 14 题题干「归并排序算法的基本思想是（ ）。」与候选逐字一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 9 页 A 将数组分成两个子数组，分别排序后再合并。/B 随机选择一个元素作为枢轴，将数组划分为两个部分。/C 从数组的最后一个元素开始，依次与前一个元素比较并交换位置。/D 比较相邻的两个元素，如果顺序错误就交换位置。与候选 options 逐字一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 格为 A，0 起始索引 0，与候选 answer=0 一致。独立判定：A 即归并排序分解+分别排序+合并的基本思想；B 是快速排序的枢轴划分；C/D 是相邻交换类排序（冒泡排序思路），均非归并排序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "修复后核验通过。候选逐项给出算法归属（B 快速排序划分、C 相邻交换类、D 冒泡排序），结论与答案 A 一致；原解析对 B/C 使用「数组下标从 0 开始，请仔细验证下标范围」的答非所问错误理由已彻底消除，改写后的事实判定准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受本轮解析改写并定案：独立确认四个选项的算法归属判定正确且与答案 A 一致，原错误理由已消除；题面、选项、答案均与第 1、9 页页图一致；无新增问题，changes 为空。"
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "修复后核验通过。第 11 页 3.1.1「现在，给定一个正整数 N，请按要求输出它的因数分解式」与 3.1.3「输出一行，为 N 的因数分解式…」两处变量 N 已补回，与原卷句意逐字一致（举例分隔符「、」写作「，」、星号/上箭头以代码标记、乘方用 LaTeX 属排版等价转换）；3.1.2「输入第一行，包含一个正整数 N。约定 2 ≤ N ≤ 10^12」一致。第 10 页编程题 1 编号 2023-09-23-05-C-01、试题名称 因数分解、时间限制 1.0 s、内存限制 128.0 MB，与候选 timeLimit/memoryLimit 一致（本卷原卷即为 128.0 MB，非 512 MB）；样例 6→2 * 3、20→2^2 * 5、23→23 与第 11 页逐行一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项，原卷第 10–12 页 3.1 节亦无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "PDF 未提供编程题答案索引，仅第 11–12 页附参考程序；officialAnswer 记 null，与候选 answer 空串一致，正确性由样例与参考程序承载。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "独立推导与候选解析一致：试除法 p 从 2 枚举至 p*p<=N，除尽并计 cnt，cnt>1 时输出 p^cnt 否则输出 p，循环后 N>1 时输出剩余因子；「 * 」两侧空格、^ 两侧不空格与题面格式一致；溢出提醒（N、p 须 long long，p*p 可达 10^12）与末因子提醒均正确；最坏大素数输入实测约 4 ms，解析「10 毫秒内」的量级判断属实。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本地 g++ -O2 实际编译候选参考程序：原样例 3 组（6→2 * 3、20→2^2 * 5、23→23）全部通过；另执行 6 条独立边界用例（N=2→2、N=4→2^2、N=65536→2^16、N=10^12→2^12 * 5^12、N=999999999999→3^3 * 7 * 11 * 13 * 37 * 101 * 9901、N=999999999989→自身）全部与独立分解/判素结果一致，期望输出均先独立推演再实测比对；大素数最坏约 10^6 次试除实测 3.7 ms，1.0 s 时限余量充足。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "最小输入 N=2",
+            "input": "2\n",
+            "output": "2\n",
+            "reason": "独立推演：2*2>2 循环不执行，N>1 分支直接输出 2，验证最小边界与素数单因子路径。"
+          },
+          {
+            "name": "完全平方 N=4",
+            "input": "4\n",
+            "output": "2^2\n",
+            "reason": "独立推演：p=2 连除两次 cnt=2，输出 2^2 后 N=1，验证指数合并路径。"
+          },
+          {
+            "name": "指数两位的纯幂 N=65536",
+            "input": "65536\n",
+            "output": "2^16\n",
+            "reason": "独立推演：65536=2^16，验证同一质因子高次幂的指数输出。"
+          },
+          {
+            "name": "上界 N=10^12",
+            "input": "1000000000000\n",
+            "output": "2^12 * 5^12\n",
+            "reason": "独立推演：10^12=2^12×5^12，验证 long long 读入、p*p<=N 上界不溢出与多因子「 * 」拼接。"
+          },
+          {
+            "name": "10^12-1 多因子",
+            "input": "999999999999\n",
+            "output": "3^3 * 7 * 11 * 13 * 37 * 101 * 9901\n",
+            "reason": "独立推演：10^12-1=(10^6-1)(10^6+1)=999999×1000001，999999=3^3·7·11·13·37、1000001=101·9901，按质因数升序验证混合指数/单因子格式。"
+          },
+          {
+            "name": "区间大素数 N=999999999989",
+            "input": "999999999989\n",
+            "output": "999999999989\n",
+            "reason": "独立判素（试除至 sqrt(999999999989)≈10^6 无因子）确认其为 10^12 内素数，走末尾 N>1 分支输出自身，验证最坏试除规模与时限余量（实测约 4 ms）。"
+          }
+        ],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "接受本轮候选并定案：独立对照第 10–12 页页图确认题面两处变量 N 已按原卷补回，时限 1.0 s/内存 128 MB 与原卷卷面一致（本卷原卷即为 128.0 MB）；参考程序经我实际编译，原样例与 6 条独立边界用例（含上界 10^12、10^12−1 多因子与区间大素数）全部通过，期望输出均独立推演。无新增问题，changes 为空。"
+      }
+    ],
+    "summary": "4 题全部 approve：Q3/Q12/Q14 的题面、选项、答案与解析均与原卷页图逐字/逐项一致（Q12 修复后的 3 参数声明使代码可编译，插桩实测 merge 调用 6 次与解析及答案 C 一致；候选两条前置声明顺序与原卷对调，属无语义影响的排版差异，已记录）；Q26 题面补回两处变量 N，时限 1.0 s 与内存 128 MB 与原卷第 10 页一致（原卷即为 128.0 MB），参考程序 g++ 实测原样例 3 组与 6 条独立边界用例全过，最坏大素数约 4 ms。无新增缺陷，changes 均为空。"
+  }
+}
