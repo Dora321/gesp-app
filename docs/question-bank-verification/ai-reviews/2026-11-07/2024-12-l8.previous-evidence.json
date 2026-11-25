@@ -1,0 +1,266 @@
+{
+  "paperId": "2024-12-l8",
+  "reviewedAt": "2026-10-31",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-12-l8"
+  },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorSha": "8c3dba1614884661d4c1f4008962c4fb1c8891f6",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": {
+      "Q10": "p.3"
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q1 explanation 升级；答案未改"
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q3 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "findings": "假阴性说明：官方 PDF 中二项式 (x+y)^6、x^3y^3 均为公式图片，文本层为「二项式 的展开式中 项的系数是」，题库 LaTeX 语义正确。",
+      "fix": "无需修复。官方答案行 Q7=C，题库 ans=2(C) 一致（C(6,3)=20）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-31",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
+    },
+    {
+      "id": 10,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
+      "findings": "题面缺失非降三元组计数三重循环代码。",
+      "fix": "按原卷 p.3 转写代码回填；移除标记；解析重写为枚举结构说明（x ≤ y ≤ z 且 x+y+z ≤ 15）。",
+      "evidence": "g++ 编译运行转写代码，输出 174，与答案 A（174）一致。tmp/verify/2024-12-l8/q10.cpp",
+      "resolved": true
+    },
+    {
+      "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q12 explanation 升级；答案未改"
+    },
+    {
+      "id": 13,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "findings": "假阴性说明：官方选项为公式图片（p.5 渲染图读出 A.O(e) / B.O(v²) / C.O(v log v + e) / D.O((v+e) log v)），与题库四选项完全一致；题干「假设图graph中顶点数v、边数e」的 v/e 也是公式字符。",
+      "fix": "无需修复。官方答案行 Q13=B，题库 ans=1(B) 一致（邻接矩阵 Dijkstra O(v²)）。",
+      "evidence": "tmp/verify/2024-12-l8/pg-05.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-31",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "note": "Q13 explanation 升级；答案未改"
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q14 explanation 升级；答案未改"
+    },
+    {
+      "id": 17,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q17 explanation 升级；答案未改"
+    },
+    {
+      "id": 23,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方 judge8（=题库 Q23，无错位）中 n、m、(a+b)^n、a^{n-m}b^m 均为公式图片，题库 LaTeX 语义正确。官方命题用「第 m 项」计数约定与题库一致。",
+      "fix": "无需修复。官方答案表（p.6 渲染图）× √ √ × × √ × × √ ×，judge8=×，题库 ans=1 一致。",
+      "evidence": "tmp/verify/2024-12-l8/mid.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q24 explanation 升级；答案未改"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-31",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
+    }
+  ],
+  "unresolved": [],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy",
+    "method": "下载官方 PDF（mirrorUrl）后用 pypdfium2 提取文本层定位判断题答案表页，按「题号/答案」表头文本坐标裁剪该页并 4 倍渲染读图（√/× 为矢量图形，文本层只有表头）。题面顺序经 PDF 判断题 10 段题面与题库 dice 相似度校验，对角线最优（offdiag=0）后才按 qid=15+i 套用。洛谷答案仅作疑点雷达，不作为答案来源。",
+    "officialSequence": "判断题第1-10题 = × √ √ × × √ × × √ ×（对应题库 Q16-Q25）",
+    "items": [
+      {
+        "qid": 19,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "derivation": "二维数组整体连续、行间也连续；不连续的是指针数组/vector<vector>",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      },
+      {
+        "qid": 23,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "—",
+        "officialAnswer": "×",
+        "derivation": "第n行第m项=C(n-1,m-1)，而 (a+b)^n 中 a^(n-m)b^m 系数=C(n,m)，行项错位一位",
+        "changed": true,
+        "verdict": "题库错，官方表为准，已改"
+      }
+    ]
+  },
+  "answerKey": "单选答案串 B A D D C C C B D A C B B A D，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× √ √ × × √ × × √ × 与题库 10/10 一致。"
+}

@@ -1,0 +1,94 @@
+{
+  "executedAt": "2026-11-25T07:44:28.440Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5",
+          "output": "3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "两个异色结点",
+          "input": "2\n0 1\n1 2\n",
+          "output": "1",
+          "reason": "只有一条边，异色点对距离为 1。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "链上两端异色",
+          "input": "5\n0 1 1 1 0\n1 2\n2 3\n3 4\n4 5\n",
+          "output": "3",
+          "reason": "两端都是 0，最远异色对为结点 1（0）到结点 4（1）或结点 2（1）到结点 5（0），距离均为 3。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "星形树异色叶对",
+          "input": "6\n0 1 1 0 1 1\n1 2\n1 3\n1 4\n1 5\n1 6\n",
+          "output": "2",
+          "reason": "中心结点 1 为 0，叶子 2/3/5/6 为 1、叶子 4 为 0；异色叶对 2 与 4 经过中心，距离为 2。",
+          "kind": "boundary",
+          "actual": "2\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "089a956f5249cd31c34fc2e0e95f4797496c790b9e3545853a3ea85828e72505"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "3\n3 1\n5 6 3\n3 5 6\n1 4 100000",
+          "output": "100001",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "100001\n",
+          "passed": true
+        },
+        {
+          "name": "起点即终点",
+          "input": "1\n1 1\n1 10 123\n",
+          "output": "0",
+          "reason": "从挡板 1 左端点出发，目标就是挡板 1，无需移动。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "直接下落到目标",
+          "input": "2\n1 2\n1 1 10\n1 1 5\n",
+          "output": "5",
+          "reason": "在挡板 1 上无需水平移动，从高度 10 落到高度 5，耗时 5。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        },
+        {
+          "name": "无法到达",
+          "input": "2\n1 2\n1 2 10\n5 6 5\n",
+          "output": "-1",
+          "reason": "挡板 2 位于 x∈[5,6]，从挡板 1 的端点 x=1 或 2 下落都接不住，无法到达。",
+          "kind": "boundary",
+          "actual": "-1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "db916d3945fa4ac4717a86526d82b7020f24b3eeca41ddffef9bd45c86c41303"
+    }
+  ]
+}
