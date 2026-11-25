@@ -34,7 +34,7 @@ const programmingQuestions = [
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题是一道关于网格图枚举与二维前缀和的经典问题。我们需要在给定的黑白网格中，找到一个面积最大且黑白格子数量相等的子矩形。
@@ -157,7 +157,7 @@ const programmingQuestions = [
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题要求从 \`n\` 个宝箱中选出一部分，在满足所选宝箱中“最大价值与最小价值之差不超过 \`k\`”（即 \`x - y <= k\`）的前提下，使得选出宝箱的总价值之和最大。

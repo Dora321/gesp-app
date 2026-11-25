@@ -34,7 +34,7 @@ const programmingQuestions = [
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题是一道结合了递推模拟、集合查重与排序的综合编程题。题目要求按照特定规则生成 Recamán 数列的前 \`n\` 项，并将这 \`n\` 个数从小到大排序后输出。
@@ -150,7 +150,7 @@ gesp`, output: `1
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 ### 1. 题意理解

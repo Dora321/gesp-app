@@ -53,7 +53,7 @@ No` }
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题是一道典型的二维网格暴力枚举与模式匹配问题。题目要求我们在一个 \`n\` 行 \`m\` 列的 \`01\` 网格中，寻找是否存在一个特定的 \`4 * 4\` 子矩形。
@@ -164,7 +164,7 @@ No` }
 `,
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题是一道典型的数组模拟题，主要考查对数组（或 \`vector\`）的区间操作以及标准库函数 \`sort\` 的熟练应用。

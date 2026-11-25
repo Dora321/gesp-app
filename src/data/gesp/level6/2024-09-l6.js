@@ -7,23 +7,7 @@ const programmingQuestions = [
       samples: [
         { input: `18`, output: `2` }
       ],
-      question: `
-# [GESP202409 六级] 小杨和整数拆分
-
-## 题目描述
-
-小杨有一个正整数 $n$，小杨想将它拆分成若干完全平方数的和，同时小杨希望拆分的数量越少越好。
-
-编程计算总和为 $n$ 的完全平方数的最小数量。
-
-## 输入格式
-
-输入只有一行一个正整数 $n$。
-
-## 输出格式
-
-输出一行一个整数表示答案。
-`,
+      question: "# [GESP202409 六级] 小杨和整数拆分\n\n## 题目描述\n\n小杨有一个正整数 $n$，小杨想将它拆分成若干完全平方数的和，同时小杨希望拆分的数量越少越好。\n\n编程计算总和为 $n$ 的完全平方数的最小数量。\n\n## 输入格式\n\n输入只有一行一个正整数 $n$。\n\n## 输出格式\n\n输出一行一个整数表示答案。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $1\\le n\\le 20$。\n\n对于 40% 的测试点，保证 $1\\le n\\le 1000$。\n\n对于另外 40% 的测试点，保证 $1\\le n\\le 10^5$。\n\n对于所有测试点，保证 $1\\le n\\le 10^5$。\n",
       score: 25,
       explanation: `**答案为 1**：如果 \`n\` 本身就是一个完全平方数，显然只需 \`1\` 个数。
 - **答案为 4**：先将 \`n\` 中所有的因子 \`4\` 全部除掉，若此时 \`n % 8 == 7\`，则必须用 \`4\` 个数。
@@ -71,10 +55,14 @@ const programmingQuestions = [
 本题是经典的“四平方和问题”。正是由于拉格朗日四平方和定理保证了任何数最多只需要 \`4\` 个完全平方数相加，我们在排除了 \`1\`、\`2\`、\`4\` 之后，无需再去耗时遍历验证三个数的情况，即可直接断定答案是 \`3\`。整体时间复杂度仅为 \`O(sqrt(n))\`，能轻松应对超大规模的数据。`,
       tags: ["编程题", "动态规划"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstatic bool isSquare(long long x) {\n    long long r = sqrtl((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    if (isSquare(n)) {\n        cout << 1 << '\\n';\n        return 0;\n    }\n    for (long long i = 1; i * i <= n; ++i) {\n        if (isSquare(n-i * i)) {\n            cout << 2 << '\\n';\n            return 0;\n        }\n    }\n    long long x = n;\n    while (x % 4 == 0) x /= 4;\n    if (x % 8 == 7) cout << 4 << '\\n';\n    else cout << 3 << '\\n';\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 9,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -87,27 +75,7 @@ const programmingQuestions = [
 1 1 1 2
 1 2 7 10`, output: `-1` }
       ],
-      question: `
-# [GESP202409 六级] 算法学习
-
-## 题目描述
-
-小杨计划学习 $m$ 种算法，为此他找了 $n$ 道题目来帮助自己学习，每道题目最多学习一次。
-
-小杨对于 $m$ 种算法的初始掌握程度均为 $0$。第 $i$ 道题目有对应的知识点 $a_i$，即学习第 $i$ 道题目可以令小杨对第 $a_i$ 种算法的掌握程度提高 $b_i$。小杨的学习目标是对于 $m$ 种算法的掌握程度均至少为 $k$。
-
-小杨认为连续学习两道相同知识点的题目是不好的，小杨想请你编写程序帮他计算出他最少需要学习多少道题目才能使得他在完成学习目标的同时避免连续学习两道相同知识点的题目。
-
-## 输入格式
-
-第一行三个正整数 $m, n, k$，代表算法种类数，题目数和目标掌握程度。 
-第二行 $n$ 个正整数 $a_1, a_2, ..., a_n$，代表每道题目的知识点。 
-第三行 $n$ 个正整数 $b_1, b_2, ..., b_n$，代表每道题目提升的掌握程度。
-
-## 输出格式
-
-输出一个整数，代表小杨最少需要学习题目的数量，如果不存在满足条件的方案，输出 -1。
-`,
+      question: "# [GESP202409 六级] 算法学习\n\n## 题目描述\n\n小杨计划学习 $m$ 种算法，为此他找了 $n$ 道题目来帮助自己学习，每道题目最多学习一次。\n\n小杨对于 $m$ 种算法的初始掌握程度均为 $0$。第 $i$ 道题目有对应的知识点 $a_i$，即学习第 $i$ 道题目可以令小杨对第 $a_i$ 种算法的掌握程度提高 $b_i$。小杨的学习目标是对于 $m$ 种算法的掌握程度均至少为 $k$。\n\n小杨认为连续学习两道相同知识点的题目是不好的，小杨想请你编写程序帮他计算出他最少需要学习多少道题目才能使得他在完成学习目标的同时避免连续学习两道相同知识点的题目。\n\n## 输入格式\n\n第一行三个正整数 $m, n, k$，代表算法种类数，题目数和目标掌握程度。 \n第二行 $n$ 个正整数 $a_1, a_2, ..., a_n$，代表每道题目的知识点。 \n第三行 $n$ 个正整数 $b_1, b_2, ..., b_n$，代表每道题目提升的掌握程度。\n\n## 输出格式\n\n输出一个整数，代表小杨最少需要学习题目的数量，如果不存在满足条件的方案，输出 -1。\n\n## 数据范围\n\n对于 30% 的测试点，保证 $m=2$，$n\\le 9$，$b_i\\le 10$，$k\\le 10$。\n\n对于 30% 的测试点，保证 $m\\le 9$，$n\\le 9$，$b_i\\le 10$，$k\\le 10$。\n\n对于另外 40% 的测试点，保证 $m,n\\le 10^5$，$b_i,k\\le 10^5$。\n\n对于所有测试点，保证 $1\\le m,n\\le 10^5$，$1\\le b_i,k\\le 10^5$，$1\\le a_i\\le m$。\n",
       score: 25,
       explanation: `**解析：**
 本题要求在所有算法掌握程度均达到目标值的前提下，选出最少数量的题目，并保证能排成“任意相邻两道题所属算法不同”的学习序列。这是一道结合了**贪心排序**与**隔板插空（鸽巢原理）**的综合算法题，解题过程可以分为以下三个核心步骤：
@@ -181,10 +149,14 @@ const programmingQuestions = [
 3. **单算法特殊情况**：当 \`m = 1\` 时，若达成目标需要 \`>= 2\` 道题，此时 \`others = 0\`，\`mx > 1\` 必定无法通过相邻不重复检查且无其他算法可借调，算法会正确识别并输出 \`-1\`。`,
       tags: ["编程题", "贪心", "排序"],
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m, n;\n    long long k;\n    cin >> m >> n >> k;\n    vector<int> c(n);\n    for (int i = 0; i < n; ++i) cin >> c[i];\n    vector<long long> v(n);\n    for (int i = 0; i < n; ++i) cin >> v[i];\n\n    vector<vector<long long>> groups(m+1);\n    for (int i = 0; i < n; ++i) groups[c[i]].push_back(v[i]);\n\n    vector<int> need(m+1, 0), extra(m+1, 0);\n    long long total = 0;\n    int mx = 0, who = -1;\n    for (int i = 1; i <= m; ++i) {\n        auto &g = groups[i];\n        sort(g.begin(), g.end(), greater<long long>());\n        long long sum = 0;\n        while (need[i] < (int)g.size() && sum < k) {\n            sum += g[need[i]];\n            ++need[i];\n        }\n        if (sum < k) {\n            cout << -1 << '\\n';\n            return 0;\n        }\n        extra[i] = (int)g.size()-need[i];\n        total += need[i];\n        if (need[i] > mx) {\n            mx = need[i];\n            who = i;\n        }\n    }\n\n    long long others = total-mx;\n    long long needMore = max(0LL, 2LL * mx-others-1-mx); // extra items needed outside dominant color\n    long long available = 0;\n    for (int i = 1; i <= m; ++i) if (i != who) available += extra[i];\n    if (needMore > available) {\n        cout << -1 << '\\n';\n        return 0;\n    }\n    cout << total+needMore << '\\n';\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 
@@ -380,32 +352,12 @@ q.pop();                      // 再删除
             ],
             answer: 1,
             score: 2,
-            explanation: `
-**答案：B**
-
-**解析：**
-频率：a=10，b=15，c=30，d=16，e=29。哈夫曼构建（每次取最小两个合并）：
-
-1. 10+15=25（a、b）
-2. 16+25=41（d、25）
-3. 29+30=59（e、c）
-4. 41+59=100（根）
-
-编码长度 = 字符在树中的深度（边数）：a=3，b=3，c=2，d=2，e=2 → **3, 3, 2, 2, 2**，选 B。
-
-逐项分析：
-- **A 4,4,1,3,2**：错误，c 的频率最大（30），不可能编到 4 位而更短的是别的字符。
-- **B 3,3,2,2,2**：正确。
-- **C 3,3,1,2,1**：错误，若 c、e 深度只有 1，根的两个孩子直接是叶子，其余节点无处挂靠。
-- **D 4,4,1,2,2**：错误。
-
-验证 WPL = 10×3+15×3+30×2+16×2+29×2 = 225，恰好等于所有**合并产生的中间权值之和**（25+41+59+100=225）✓。
-
-**易错点：** 编码长度是「根到叶子的边数」：根深度为 0，根的孩子深度 1；自检方法——Σ(频率×长度) 必须等于各次合并的中间权值之和，不等说明深度数错了。
-
-**考点：** 哈夫曼编码长度计算
-        `,
+            explanation: "**答案：B**\n\n**解析：**\n频率：a=10，b=15，c=30，d=16，e=29。哈夫曼构建（每次取最小两个合并）：\n\n1. 10+15=25（a、b）\n2. 16+25=41（d、25）\n3. 29+30=59（e、c）\n4. 41+59=100（根）\n\n编码长度 = 字符在树中的深度（边数）：a=3，b=3，c=2，d=2，e=2 → **3, 3, 2, 2, 2**，选 B。\n\n逐项分析：\n- **A 4,4,1,3,2**：虽满足前缀码的 Kraft 条件，但 WPL=10×4+15×4+30×1+16×3+29×2=236，大于最优值 225，不是哈夫曼编码。\n- **B 3,3,2,2,2**：正确。\n- **C 3,3,1,2,1**：Kraft 和为 1/8+1/8+1/2+1/4+1/2>1，不存在这样的前缀码。\n- **D 4,4,1,2,2**：Kraft 和为 1/16+1/16+1/2+1/4+1/4>1，不存在这样的前缀码。\n\n验证 WPL = 10×3+15×3+30×2+16×2+29×2 = 225，恰好等于所有**合并产生的中间权值之和**（25+41+59+100=225）✓。\n\n**易错点：** 编码长度是「根到叶子的边数」：根深度为 0，根的孩子深度 1；可先用 Kraft 不等式排除不可能的长度组合，再核对 WPL。\n\n**考点：** 哈夫曼编码长度计算",
             tags: ['哈夫曼编码'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 7,
@@ -455,29 +407,12 @@ graycode_list[j] = "0" + graycode_list[j];
             ],
             answer: 0,
             score: 2,
-            explanation: `
-**答案：A**
-
-**解析：**
-前序 ABDECFG 定根；中序 DEBACFG 分左右：
-
-1. 根 **A**；中序左 \`DEB\`、右 \`CFG\`。
-2. 左子树：前序 \`BDE\` → 根 **B**；中序 \`D|B|E\` → D 左、E 右。
-3. 右子树：前序 \`CFG\` → 根 **C**；中序 \`F|C|G\` → F 左、G 右。
-
-后序（左右根）：**D, E, B, F, G, C, A** = EDBGFCA，选 A。
-
-逐项分析：
-- **A EDBGFCA**：正确。
-- **B EDGBFCA**：错误，F、G 顺序颠倒（F 是 C 的左孩子，后序应先于 G）。
-- **C DEBGFCA**：错误，B 的左孩子是 D（D 先于 E）。
-- **D DBEGFCA**：错误，同上。
-
-**易错点：** 重建时逐层递归，别把「前序第二位是左子树根」当成固定规律——它只是本例巧合；标准做法是切中序。
-
-**考点：** 由前序+中序求后序
-        `,
+            explanation: "**答案：A**\n\n**解析：**\n前序 ABDECFG 定根，中序 DEBACFG 划分左右：\n\n1. 根 **A**；中序左侧 **D,E,B**，右侧 **C,F,G**。\n2. 左子树前序 **B,D,E**：根 **B**；中序 D,E,B 中 B 在最后，故 D、E 都在 B 的左子树。前序接下来是 D,E，根 **D**；中序 D,E 中 D 在最前，故 E 是 D 的右孩子。\n3. 右子树前序 **C,F,G**：根 **C**；中序 C,F,G 中 C 在最前，故 F、G 都在 C 的右子树。前序 F,G，根 **F**；中序 F,G 中 F 在最前，故 G 是 F 的右孩子。\n\n后序（左-右-根）：左子树 E,D,B；右子树 G,F,C；最后根 A，得到 **E,D,B,G,F,C,A**，选 A。\n\n逐项分析：\n- **A EDBGFCA**：正确。\n- **B EDGBFCA**：把右子树写成 G 在 F 前，错误。\n- **C DEBGFCA**：把左子树写成 D,E,B，错误。\n- **D DBEGFCA**：左右子树顺序均有误。\n\n**易错点：** 必须用中序确定左右子树范围；本题左子树是一条向右下延伸的链 B-D-E，右子树是 C-F-G。\n\n**考点：** 由前序+中序求后序",
             tags: ['树与二叉树', '遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 9,
@@ -555,29 +490,11 @@ return max(left_depth, right_depth) + 1;
             ],
             answer: 0,
             score: 2,
-            explanation: `
-**答案：A**
-
-**解析：**
-BFS 求深度用**按层计数**：每轮 while 处理一整层——先记录当前层节点数 \`level_size = q.size()\`，处理完这层后 \`depth++\`。
-
-\`\`\`cpp
-int level_size = q.size(); depth++;
-\`\`\`
-
-横线后面紧跟 \`for (int i = 0; i < level_size; ++i)\` 逐个出队，变量 level_size 必须在循环前定义。
-
-逐项分析：
-- **A \`int level_size = q.size(); depth++;\`**：正确。
-- **B \`int level_size = 2; depth++;\`**：错误，每层节点数不一定为 2。
-- **C \`depth += level_size;\`**：错误，把节点数累加进深度，语义全错（且 level_size 未定义）。
-- **D \`int level_size = 2; depth += level_size;\`**：错误，双重错误。
-
-**易错点：** q.size() 必须在 for 循环**之前**存入 level_size——循环内 push 会改变 q.size()，直接在条件里用 q.size() 会越处理越多。
-
-**考点：** BFS 按层计数求深度
-        `,
+            explanation: "**答案：A**\n\n**解析：**\nBFS 求深度用**按层计数**：每轮 while 处理一整层——先记录当前层节点数 `level_size = q.size()`，处理完这层后 `depth++`。\n\n```cpp\nint level_size = q.size(); depth++;\n```\n\n横线后面紧跟 `for (int i = 0; i < level_size; ++i)` 逐个出队，变量 level_size 必须在循环前定义。\n\n逐项分析：\n- **A `int level_size = q.size(); depth++;`**：正确。\n- **B `int level_size = 2; depth++;`**：错误，每层节点数不一定为 2。\n- **C `depth += level_size;`**：错误，把当前层节点数累加进深度，语义完全错误。\n- **D `int level_size = 2; depth += level_size;`**：错误，双重错误。\n\n**易错点：** q.size() 必须在 for 循环**之前**存入 level_size——循环内 push 会改变 q.size()。\n\n**考点：** BFS 按层计数求深度",
             tags: ['树与二叉树', '广度优先搜索', '队列'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 12,
@@ -606,34 +523,11 @@ int level_size = q.size(); depth++;
             ],
             answer: 1,
             score: 2,
-            explanation: `
-**答案：B**
-
-**解析：**
-输入 [5,3,7,2,4,6,8] 依次插入构建 BST：
-
-\`\`\`text
-        5
-       / \
-      3   7
-     / \ / \
-    2  4 6  8
-\`\`\`
-
-traversal 代码是**中序遍历**（左→根→右），BST 的中序遍历输出**升序序列**：
-
-\`2 3 4 5 6 7 8\`，选 B。
-
-逐项分析：
-- **A 5 3 7 2 4 6 8**：错误，这是按输入顺序输出（前序恰好与输入同序，但代码是中序）。
-- **B 2 3 4 5 6 7 8**：正确。
-- **C/D**：错误，都不是中序结果。
-
-**易错点：** 「BST + 中序 = 有序序列」是必考结论；判断遍历类型看 \`cout\` 与递归调用的相对位置：前（前序）、中（中序）、后（后序）。
-
-**考点：** BST 构建与中序遍历
-        `,
+            explanation: "**答案：B**\n\n**解析：**\n输入 [5,3,7,2,4,6,8] 依次插入构建 BST：\n\n```text\n        5\n       / \\\n      3   7\n     / \\ / \\\n    2  4 6  8\n```\n\ntraversal 代码是**中序遍历**（左→根→右），BST 的中序遍历输出**升序序列**：\n\n`2 3 4 5 6 7 8`，选 B。\n\n逐项分析：\n- **A 5 3 7 2 4 6 8**：错误，这是按输入顺序输出（前序恰好与输入同序，但代码是中序）。\n- **B 2 3 4 5 6 7 8**：正确，BST 中序遍历为升序。\n- **C 2 4 3 6 8 7 5**：错误，这是后序序列。\n- **D 2 4 3 5 6 7 8**：错误，不是中序结果。\n\n**易错点：** 「BST + 中序 = 有序序列」是必考结论；判断遍历类型看 `cout` 与递归调用的相对位置：前（前序）、中（中序）、后（后序）。\n\n**考点：** BST 构建与中序遍历",
             tags: ['树与二叉树', '遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt"],
         },
         {
             id: 14,

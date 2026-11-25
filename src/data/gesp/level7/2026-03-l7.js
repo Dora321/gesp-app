@@ -8,7 +8,7 @@ const programmingQuestions = [
       problemNumber: 'P15802',
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       description: `小 A 想将正整数 $n$ 拆分成若干个正整数之和，并最大化拆分后的正整数之积。小 A 希望你帮他计算出拆分后正整数之积的最大值。由于答案可能很大，你只需要求出答案对 $10^9$ 取模的结果。
 
 形式化地，$n$ 的拆分是满足 $a_1+\\cdots+a_k=n$ 的若干个正整数 $a_1,\\ldots,a_k$，其中 $1\\le k\\le n$。你需要求出 $n$ 的所有拆分中 $a_1\\times\\cdots\\times a_k$ 的最大值对 $10^9$ 取模的结果。
@@ -135,7 +135,7 @@ int main() {
       problemNumber: 'P15803',
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       description: `一个物流网络由 $n$ 个城市和 $m$ 条双向公路组成。每条公路都有两个属性：
 
 - 运输费用 $w_i$
