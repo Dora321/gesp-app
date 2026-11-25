@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `6
 140 140 150
@@ -133,6 +135,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `10 3`, output: `7` }
       ],
@@ -255,7 +259,7 @@ export const paperData = {
 
             **考点：** 筛法
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论"],
         },
         {
             id: 2,
@@ -281,7 +285,7 @@ export const paperData = {
 
             **考点：** C++基础
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "贪心"],
         },
         {
             id: 3,
@@ -307,7 +311,7 @@ export const paperData = {
 
             **考点：** 递归
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递归"],
         },
         {
             id: 4,
@@ -341,7 +345,7 @@ export const paperData = {
 
 **易错提醒：**
 - 双向链表删除节点需要同时维护两处指针关系：前驱节点的 \`next\` 和后继节点的 \`prev\`。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "双向链表", "链表", "指针"],
         },
         {
             id: 5,
@@ -362,7 +366,7 @@ export const paperData = {
 
             **考点：** 数论
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论"],
         },
         {
             id: 6,
@@ -394,7 +398,7 @@ int fibonacci(int n) {
 
             **考点：** 递归
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递归", "斐波那契", "复杂度分析"],
         },
         {
             id: 7,
@@ -420,7 +424,7 @@ int fibonacci(int n) {
 
             **考点：** 高精度
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "高精度", "字符串"],
         },
         {
             id: 8,
@@ -441,7 +445,7 @@ int fibonacci(int n) {
 
             **考点：** 二分查找
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "二分查找"],
         },
         {
             id: 9,
@@ -482,7 +486,7 @@ bool isPrime(int num) {
 
             **考点：** 素数试除、边界条件
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "质数判定", "边界分析"],
         },
         {
             id: 10,
@@ -508,7 +512,7 @@ bool isPrime(int num) {
 
             **考点：** 筛法
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "筛法"],
         },
         {
             id: 11,
@@ -529,7 +533,7 @@ bool isPrime(int num) {
 
             **考点：** 筛法
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "线性筛", "复杂度分析"],
         },
         {
             id: 12,
@@ -550,7 +554,7 @@ bool isPrime(int num) {
 
             **考点：** 归并排序
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "归并排序", "分治"],
         },
         {
             id: 13,
@@ -576,7 +580,7 @@ bool isPrime(int num) {
 
             **考点：** 快速排序
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "快速排序", "复杂度分析"],
         },
         {
             id: 14,
@@ -602,7 +606,7 @@ bool isPrime(int num) {
 
             **考点：** 递归
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递归"],
         },
         {
             id: 15,
@@ -628,7 +632,7 @@ bool isPrime(int num) {
 
             **考点：** 链表
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "链表", "顺序查找"],
         },
         {
             id: 16,
@@ -651,7 +655,7 @@ bool isPrime(int num) {
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "数论"],
         },
         {
             id: 17,
@@ -676,7 +680,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "插入排序", "复杂度分析"],
         },
         {
             id: 18,
@@ -699,7 +703,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "二分查找"],
         },
         {
             id: 19,
@@ -724,7 +728,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "贪心"],
         },
         {
             id: 20,
@@ -747,7 +751,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "分治"],
         },
         {
             id: 21,
@@ -771,7 +775,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "分治", "归并排序", "复杂度分析"],
         },
         {
             id: 22,
@@ -798,7 +802,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-28',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "筛法", "线性筛", "复杂度分析"],
         },
         {
             id: 23,
@@ -821,7 +825,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "贪心"],
         },
         {
             id: 24,
@@ -844,7 +848,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "链表", "双向链表", "复杂度分析"],
         },
         {
             id: 25,
@@ -867,7 +871,7 @@ $O(N \\log N)$ 是归并与堆排序的任何情况、以及快速排序的平�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "递归", "栈"],
         },
         ...programmingQuestions
     ]

@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `4 5 5
 00000
@@ -128,6 +130,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `3
 7
@@ -287,7 +291,7 @@ int fibo(int n) {
             - **D 递归算法**：不是本题答案。
             **考点：** C++基础
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递推", "斐波那契", "循环"],
         },
         {
             id: 2,
@@ -336,7 +340,7 @@ int main() {
 
             **考点：** C++基础
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "贪心"],
         },
         {
             id: 3,
@@ -415,7 +419,7 @@ dl_node* search(dl_node* head, string my_song) {
 
             **考点：** 排序算法
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "复杂度分析"],
         },
         {
             id: 5,
@@ -461,7 +465,7 @@ int gcd(int a, int b) {
             sourcePage: 3,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论", "循环"],
         },
         {
             id: 6,
@@ -492,7 +496,7 @@ int gcd(int a, int b) {
 **易错提醒：**
 - **审清反向设问**：题干问的是「错误的是」，看到 A、B、C 说法正确时切勿误选，应重点寻找违背事实的选项。
 - **破除递归误区**：不可误认为「代码简短就代表运行效率更高」。递归的核心优势在于逻辑清晰、自相似结构表达自然，但在底层机器指令和内存消耗上，往往会付出函数调用栈的额外代价。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论", "递归", "复杂度分析"],
         },
         {
             id: 7,
@@ -549,7 +553,7 @@ vector<int> linear_sieve(int n) {
             sourcePage: 4,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "线性筛", "筛法"],
         },
         {
             id: 8,
@@ -657,7 +661,7 @@ void qsort(vector<int>& arr, int left, int right) {
 **易错点**：C 和 D 只差一个等号。快排划分必须让 \`i == j\` 这一格也参与比较，否则会漏掉一个元素。
 
 **考点**：快速排序划分阶段的指针交错条件`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "快速排序", "双指针"],
         },
         {
             id: 10,
@@ -693,7 +697,7 @@ void qsort(vector<int>& arr, int left, int right) {
 - 归并排序 / 快速排序（平均）：\`O(n log n)\`
 - 大整数乘法（Karatsuba 算法）：约 \`O(n^1.585)\`
 - 汉诺塔问题：\`O(2^n)\``,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "分治"],
         },
         {
             id: 11,
@@ -714,7 +718,7 @@ void qsort(vector<int>& arr, int left, int right) {
 
             **考点：** 数论
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论"],
         },
         {
             id: 12,
@@ -735,7 +739,7 @@ void qsort(vector<int>& arr, int left, int right) {
 
             **考点：** 快速排序
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "快速排序"],
         },
         {
             id: 13,
@@ -771,7 +775,7 @@ void qsort(vector<int>& arr, int left, int right) {
             sourcePage: 6,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "归并排序", "分治", "复杂度分析"],
         },
         {
             id: 14,
@@ -825,7 +829,7 @@ int fun(int n) {
             sourcePage: 6,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递归", "递推"],
         },
         {
             id: 15,
@@ -865,7 +869,7 @@ int fun(int n) {
 **易错点：** 输出发生在函数入口，而不是函数返回时；同一个参数可能在不同递归分支中多次出现。严格按 C++ 语言标准，减号两侧操作数的求值先后并未保证，本题答案采用官方试卷预期的左侧调用先求值。
 
 **考点：** 递归调用顺序、递归树、表达式求值。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递归", "递归树"],
         },
         {
             id: 16,
@@ -883,7 +887,7 @@ int fun(int n) {
 
             **考点：** 链表
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "双向链表", "链表"],
         },
         {
             id: 17,
@@ -903,7 +907,7 @@ int fun(int n) {
 
             **考点：** 链表
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "链表", "线性表", "顺序查找"],
         },
         {
             id: 18,
@@ -921,7 +925,7 @@ int fun(int n) {
 
             **考点：** 链表
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "链表", "内存管理"],
         },
         {
             id: 19,
@@ -941,7 +945,7 @@ int fun(int n) {
 
             **考点：** 筛法
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "筛法", "线性筛", "复杂度分析"],
         },
         {
             id: 20,
@@ -959,7 +963,7 @@ int fun(int n) {
 
             **考点：** 数论
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "数论"],
         },
         {
             id: 21,
@@ -977,7 +981,7 @@ int fun(int n) {
 
             **考点：** C++基础
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "贪心"],
         },
         {
             id: 22,
@@ -997,7 +1001,7 @@ int fun(int n) {
 
             **考点：** 递归
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "归并排序", "快速排序", "稳定性"],
         },
         {
             id: 23,
@@ -1015,7 +1019,7 @@ int fun(int n) {
 
             **考点：** 快速排序
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "插入排序", "快速排序", "复杂度分析"],
         },
         {
             id: 24,
@@ -1033,7 +1037,7 @@ int fun(int n) {
 
             **考点：** 分治
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "分治"],
         },
         {
             id: 25,
@@ -1070,7 +1074,7 @@ cout << *ptr << endl;
             sourcePage: 7,
             reviewedBy: 'AI对照官方PDF校订',
             reviewedAt: '2026-10-27',
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "指针", "内存管理", "未定义行为"],
         },
         ...programmingQuestions
     ]

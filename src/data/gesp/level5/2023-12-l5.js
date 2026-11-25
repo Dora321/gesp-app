@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2 4 
 1 
@@ -113,6 +115,8 @@ lucky` }
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `3
 1 2 3`, output: `2` },
@@ -304,11 +308,7 @@ int fiboB(int N)
 
 **知识延伸：**
 若想同时保留递归代码直观的结构并达到与循环相当的效率，可以使用**记忆化搜索**（用数组保存计算过的子问题答案），将递归的时间复杂度同样降至 \`O(N)\`。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "递归", "递推", "斐波那契"],
         },
         {
             id: 2,
@@ -339,11 +339,7 @@ int fiboB(int N)
 - **D mergeSort(SList, T2, s, m-1,len), mergeSort(SList, T2, m-1,t,len)**：❌ 错误。左半区间遗漏了元素 \`m\`，右半区间左端点误写为 \`m-1\`，区间边界混乱错误。
 
 **易错提醒：**`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "归并排序", "分治", "递归"],
         },
         {
             id: 3,
@@ -369,11 +365,7 @@ int fiboB(int N)
 
             **考点：** 递归
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "递归", "变量追踪"],
         },
         {
             id: 4,
@@ -475,11 +467,7 @@ void sortA(int lstA[], int n)
 
 **易错提醒：**
 - **头节点与首元节点的区别**：\`pHead\` 只是辅助性质的哨兵头节点，\`pHead->next\` 才是存放有效数据的首元节点。判断链表是否有数据应看 \`pHead->next\` 是否非空，而非看 \`pHead\`。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "双向链表", "链表", "指针"],
         },
         {
             id: 6,
@@ -504,11 +492,7 @@ void sortA(int lstA[], int n)
             - **D foo能够求出 x 和 y 的最小公倍数**：不是本题答案。
             **考点：** 递归
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "递归", "程序分析"],
         },
         {
             id: 7,
@@ -545,11 +529,7 @@ void sortA(int lstA[], int n)
 
 **知识延伸：**
 若要用向量字面量表达「单个基准」，常见写法是构造只含一个元素的容器（例如 \`vector<int>{pivot}\`），再与左右两段拼接；不要误用 C 风格强制转换。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "快速排序", "分治", "递归"],
         },
         {
             id: 8,
@@ -574,11 +554,7 @@ void sortA(int lstA[], int n)
             - **D isPrimeA()优于 isPrimeB()**：不是本题答案。
             **考点：** 筛法
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "质数判定", "复杂度分析"],
         },
         {
             id: 9,
@@ -604,11 +580,7 @@ void sortA(int lstA[], int n)
 
             **考点：** 二分查找
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "二分查找", "分治"],
         },
         {
             id: 10,
@@ -634,11 +606,7 @@ void sortA(int lstA[], int n)
 
             **考点：** 二分查找
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "二分查找", "复杂度分析"],
         },
         {
             id: 11,
@@ -680,11 +648,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 高精度
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "高精度", "数组"],
         },
         {
             id: 12,
@@ -709,11 +673,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
             - **D 上述代码构成指针链表**：不是本题答案。
             **考点：** 链表
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "双向链表", "链表"],
         },
         {
             id: 13,
@@ -739,11 +699,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** C++基础
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "网络基础"],
         },
         {
             id: 14,
@@ -769,11 +725,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 二分查找
             `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "质数判定", "筛法", "二分答案"],
         },
         {
             id: 15,
@@ -815,11 +767,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 - 每趟能确定一个**全局极值**并归位的：选择排序、冒泡排序、堆排序；
 - 每趟能确定一个**元素最终位置**但不保证是极值的：快速排序（基准值归位）；
 - 仅保证**局部前缀有序**、既不确定最终位置也不选出极值的：直接插入排序。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "快速排序", "排序算法"],
         },
         {
             id: 16,
@@ -840,11 +788,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 归并排序
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "归并排序", "复杂度分析"],
         },
         {
             id: 17,
@@ -865,11 +809,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 二分查找
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "二分答案", "二分查找"],
         },
         {
             id: 18,
@@ -892,11 +832,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 递归
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "递归", "斐波那契"],
         },
         {
             id: 19,
@@ -917,11 +853,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** C++基础
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "贪心"],
         },
         {
             id: 20,
@@ -942,11 +874,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 筛法
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "数论", "质数判定"],
         },
         {
             id: 21,
@@ -967,11 +895,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 快速排序
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "插入排序", "快速排序", "复杂度分析"],
         },
         {
             id: 22,
@@ -994,11 +918,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** C++基础
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "进制转换"],
         },
         {
             id: 23,
@@ -1019,11 +939,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 排序算法
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "排序算法"],
         },
         {
             id: 24,
@@ -1044,11 +960,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** C++基础
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "数论", "枚举"],
         },
         {
             id: 25,
@@ -1069,11 +981,7 @@ vector<int> operator + (vector<int> a, vector<int> b)
 
             **考点：** 链表
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "链表", "冒泡排序", "复杂度分析"],
         },
         ...programmingQuestions
     ]
