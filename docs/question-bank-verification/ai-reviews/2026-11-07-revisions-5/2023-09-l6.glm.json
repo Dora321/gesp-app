@@ -1,0 +1,105 @@
+{
+  "paperId": "2023-09-l6",
+  "phase": "glm",
+  "questionIds": [
+    8,
+    9
+  ],
+  "model": "glm-5.3-flash",
+  "requestedModel": "glm-5.3-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T07:10:00.000Z",
+  "completedAt": "2026-11-25T07:48:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "9ce24c9c124e40372ab931c03a4e8aa30ac5299b728af6172335313689d3f190",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++6级.pdf",
+    "mirrorSha": "727adf84d0bd0bc69ec016e88219d5c51d17c80c",
+    "mirrorBytes": 2068015,
+    "shaVerified": true,
+    "sha256": "dd196d775a55d41278086d41f603fcbd03216164f2a4e78f91248f54c5e33f5c"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2023-09-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 / C++ 六级 / 2023 年 9 月』，单选题答案表 15 格经本复核放大裁切核对为 A D D D A D D B B B B C C B D（第 8、9 格均为 B）。第3页页末第8题题干与第4页 MoreData 完整代码（第1–32行）对应当前 Q8，第4页页末第9题题干与第5页哈夫曼树图对应当前 Q9；题号、题型（15 道单选）与 2023-09-l6 完全对应。注：初核证据将答案表第 10–15 格转录为『B C C A A D C』，与本复核放大读图『B B C C B D』不一致，属初核转录小误，不影响第 8、9 格（均为 B）及本题判定，如实记录。"
+    },
+    "questions": [
+      {
+        "id": 8,
+        "sourcePages": [
+          3,
+          4
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 3 页页末为第 8 题题干『有关下面C++代码的说法，错误的是（ ）。』，第 4 页为 MoreData 完整代码（第 1–32 行）。候选 question 内嵌代码与第 4 页逐行一致：第 5 行 int * __data;、第 13 行 MoreData & push(int val)、第 14 行 __data[tail++] = val;、第 15 行 return *this;、第 18 行 return __data[head++];、第 25 行 auto myData = MoreData(100);、第 29 行 myData.push(11).push(12).push(13);、第 30 行 cout << myData.pop() << endl;。独立 code 字段与 question 内嵌代码及第 4 页原图逐字一致，且与第 4 轮批准值逐字节相同（脚本比较确认），第 4 轮批准的 code 修复已真实落入本轮 paper.json：第 3 页上方的 ManyData 代码（class ManyData、void push、return __data[--tail];，属第 7 题）未被串入 Q8，第 3 轮起的『清除 ManyData 串入』修复方向保持，未回退。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 4 页 A–D 四项与候选文字、顺序一致：A. MoreData 类可用于构造队列（Queue）数据结构；B. 代码第29行，连续 push() 的用法将导致编译错误；C. __data 是 MoreData 类的私有成员，只能在类内访问；D. 以上说法均没有错误。候选仅作空格规范化，无文字增删。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页单选题答案表（放大核对）第 8 格为 B，即 0 起始索引 1，候选 answer=1 一致。独立推导：push 在 tail 端写入并 tail++、pop 从 head 端读出并 head++，构成先进先出队列，A 为真；push 返回 MoreData& 且函数体 return *this，第 29 行链式调用语法合法，B 为假（正是题干所问的错误项）；__data 声明于 public: 之前，class 默认访问为 private，C 为真；因 B 为假，D『以上说法均没有错误』不成立。故错误项为 B。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析以返回类型 MoreData& 与 return *this 解释链式调用，逐项判定 A（FIFO 队列）真、B（链式调用合法、不会编译错误）假、C（class 默认 private）真、D 因 B 为假而不成立；易错提醒区分返回 void（调用链断裂、无法继续调用）与按值返回（后续修改落在副本）两种写法的后果，cin/cout 级联输入输出作为同类机制延伸，均与 C++ 语义及第 4 页代码逐行对应；未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序；题内展示的 MoreData 代码属题面组成，已在 statement 维度逐行核对（与第 4 页一致）。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：第 4 轮批准的 code 修复（第 4 页 MoreData 完整代码）已真实落入本轮 paper.json，与批准值逐字节相同，第 7 题 ManyData 代码无串入、累计修订未回退。题干与第 3 页页末一致，选项与第 4 页一致，答案表第 8 格 B 对应 answer=1，解析的 FIFO 判定、链式调用合法性、class 默认 private 与 D 项排除经独立推导逐条无误。五个维度均无实质缺陷，changes 为空，verdict=approve，可直接进入门禁应用。"
+      },
+      {
+        "id": 9,
+        "sourcePages": [
+          4,
+          5
+        ],
+        "officialAnswer": 1,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 4 页页末为第 9 题题干『某内容仅会出现 ABCDEFG，其对应的出现概率为0.40、0.30、0.15、0.05、0.04、0.03、0.03，如下图所示。按照哈夫曼编码规则，假设 B 的编码为 11，则 D 的编码为（ ）。』，第 5 页为哈夫曼树图。候选保留原题干并补出树形文字描述（站点无插图）：根 1.00 左叶 A(0.40)、右子 0.60；0.60 左子 0.30、右叶 B(0.30)；0.30 左子 0.15、右叶 C(0.15)；0.15 左子 0.06（左叶 G 0.03、右叶 F 0.03）、右子 0.09（左叶 E 0.04、右叶 D 0.05），与第 5 页图逐节点一致；概率总和恰为 1.00，且该合并序（0.03+0.03=0.06、0.04+0.05=0.09、0.06+0.09=0.15、0.15+0.15=0.30、0.30+0.30=0.60、0.40+0.60=1.00）符合『每次取最小两权』的哈夫曼构造；『左分支 0、右分支 1』与题设锚点 B=11 自洽。该文字描述在前轮已核验通过，本轮未变，未回退。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页选项为 A. 10010、B. 10011、C. 10111、D. 10001，与候选四项文字、顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表（放大核对）第 9 格为 B（索引 1），候选 answer=1 一致。独立按图推导（左 0 右 1）：D 的路径 1.00→(右1)0.60→(左0)0.30→(左0)0.15→(右1)0.09→(右1)叶 D，编码 10011，对应 B；锚点 B 的路径 1.00→(右1)0.60→(右1)叶 B = 11，与题设『B 的编码为 11』吻合。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析与第 4 轮批准的修复文本逐字节一致（与 manifest 批准值脚本比较确认落入）：D 的读码路径 1.00→0.60(右1)→0.30(左0)→0.15(左0)→0.09(右1)→D(右1)=10011 正确；自洽性段的叶码表 A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011 与第 5 页树逐叶一致，且经我独立逐叶重推逐一相同，任一码都不是其他码的前缀，码长与频率成反比（A 0.40 最短、D 0.05 最长）；B=11 与题干锚点吻合；易错点（不要漏掉根到 0.60 的首位 1、不要把 C 误读成 10）正确。未发现事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无编程题参考程序；哈夫曼树结构与编码推导已在 statement、answer 维度按第 5 页图核对。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve",
+        "reviewNote": "独立复核确认：第 4 轮批准的解析修复（自洽叶码表 A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011）已真实落入本轮 paper.json，与批准值逐字节相同、未回退；该叶码表与我对第 5 页树的独立逐叶重推完全一致且满足前缀码性质。题干树形文字描述与第 5 页图逐节点一致，选项、答案（B，索引 1）一致。五个维度均无实质缺陷，changes 为空，verdict=approve，可直接进入门禁应用。"
+      }
+    ],
+    "summary": "2 道候选（Q8、Q9）。Q8：第 4 轮批准的 code 修复（第 4 页 MoreData 完整代码）已真实落入且与批准值逐字节相同，第 7 题 ManyData 代码未串入、未回退；题干、选项、答案（B，索引 1）、解析均与原卷及独立推导一致。Q9：第 4 轮批准的解析修复（自洽叶码表）已落入且逐字节相同、未回退，题干树形描述与第 5 页图逐节点一致，选项、答案（B，索引 1）一致。两题五维全部 verified/not_applicable，changes 为空，未发现累计修订回退，可直接进入门禁应用。另：初核对单选答案表第 10–15 格的转录与本复核放大读图存在小差异（不影响第 8、9 格均为 B 的判定），已在 sourceIdentity 证据中如实记录。"
+  }
+}
