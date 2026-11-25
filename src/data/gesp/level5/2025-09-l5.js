@@ -5,28 +5,12 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `6`, output: `4` },
         { input: `9`, output: `5` }
       ],
-      question: `
-# [GESP202509 五级] 数字选取
-
-## 题目描述
-
-给定正整数 $n$，现在有 $1,2,\\ldots,n$ 共计 $n$ 个整数。你需要从这 $n$ 个整数中选取一些整数，使得所选取的整数中任意两个不同的整数均互质（也就是说，这两个整数的最大公因数为 $1$）。请你最大化所选取整数的数量。
-
-例如，当 $n=9$ 时，可以选择 $1,5,7,8,9$ 共计 $5$ 个整数。可以验证不存在数量更多的选取整数的方案。
-
-## 输入格式
-
-一行，一个正整数 $n$，表示给定的正整数。
-
-## 输出格式
-
-一行，一个正整数，表示所选取整数的最大数量。
-`,
+      question: "# [GESP202509 五级] 数字选取\n\n## 题目描述\n\n给定正整数 $n$，现在有 $1,2,\\ldots,n$ 共计 $n$ 个整数。你需要从这 $n$ 个整数中选取一些整数，使得所选取的整数中任意两个不同的整数均互质（也就是说，这两个整数的最大公因数为 $1$）。请你最大化所选取整数的数量。\n\n例如，当 $n=9$ 时，可以选择 $1,5,7,8,9$ 共计 $5$ 个整数。可以验证不存在数量更多的选取整数的方案。\n\n## 输入格式\n\n一行，一个正整数 $n$，表示给定的正整数。\n\n## 输出格式\n\n一行，一个正整数，表示所选取整数的最大数量。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le n \\le 1000$；对于所有测试点，保证 $1 \\le n \\le 10^5$。",
       score: 25,
       explanation: `**解析：**
 
@@ -96,35 +80,21 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nconst int N = 1e5+5;\nint n, p[N], cnt;\nbool np[N];\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 2; i <= n; i++) {\n        if (!np[i]) p[++cnt] = i;\n        for (int j = 1; j <= cnt && i * p[j] <= n; j++) {\n            np[i * p[j]] = 1;\n            if (i % p[j] == 0) break;\n        }\n    }\n    printf(\"%d\\n\", 1+cnt);\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 9,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `3 8`, output: `19` },
         { input: `65 36248`, output: `328505490` }
       ],
-      question: `
-# [GESP202509 五级] 有趣的数字和
-
-## 题目描述
-
-如果一个正整数的二进制表示包含奇数个 $1$，那么小 A 就会认为这个正整数是有趣的。
-
-例如，$7$ 的二进制表示为 $(111)_2$，包含 $1$ 的个数为 $3$ 个，所以 $7$ 是有趣的。但是 $9=(1001)_2$ 包含 $2$ 个 $1$，所以 $9$ 不是有趣的。
-
-给定正整数 $l,r$，请你统计满足 $l\\le n\\le r$ 的有趣的整数 $n$ 之和。
-
-## 输入格式
-
-一行，两个正整数 $l,r$，表示给定的正整数。
-
-## 输出格式
-
-一行，一个正整数，表示 $l,r$ 之间有趣的整数之和。
-`,
+      question: "# [GESP202509 五级] 有趣的数字和\n\n## 题目描述\n\n如果一个正整数的二进制表示包含奇数个 $1$，那么小 A 就会认为这个正整数是有趣的。\n\n例如，$7$ 的二进制表示为 $(111)_2$，包含 $1$ 的个数为 $3$ 个，所以 $7$ 是有趣的。但是 $9=(1001)_2$ 包含 $2$ 个 $1$，所以 $9$ 不是有趣的。\n\n给定正整数 $l,r$，请你统计满足 $l\\le n\\le r$ 的有趣的整数 $n$ 之和。\n\n## 输入格式\n\n一行，两个正整数 $l,r$，表示给定的正整数。\n\n## 输出格式\n\n一行，一个正整数，表示 $l,r$ 之间有趣的整数之和。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le l \\le r \\le 10^4$；对于另外 30% 的测试点，保证 $l=1$ 且 $r=2^k-1$，其中 $k$ 是大于 1 的正整数；对于所有测试点，保证 $1 \\le l \\le r \\le 10^9$。\n\n由于本题的数据范围较大，整数类型请使用 `long long`。",
       score: 25,
       explanation: `**解析：**
 
@@ -189,6 +159,10 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int l, r;\n    cin >> l >> r;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint l, r;\nlong long ans;\npair<int, long long> cal2(int n, int p) {\n    if (n == 0) return {1-p, 0};\n    if (n == 1) return {1, p};\n    return {(n+1) / 2, 1ll * n * (n+1) / 4};\n}\npair<int, long long> cal(int n, int p) {\n    if (n <= 1) return cal2(n, p);\n    long long x = 1ll << (31-__builtin_clz(n));\n    auto l = cal2(x-1, p);\n    auto r = cal(n-x, 1-p);\n    return {l.first+r.first, l.second+r.second+x * r.first};\n}\nint main() {\n    scanf(\"%d%d\", &l, &r);\n    ans -= cal(l-1, 1).second;\n    ans += cal(r, 1).second;\n    printf(\"%lld\\n\", ans);\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 
@@ -707,45 +681,25 @@ Floyd 判圈：slow 每次走 1 步，fast 每次走 2 步，两者速度差为 
         {
             id: 17,
             type: "judge",
-            question: `假设函数gcd()能正确求两个正整数的最大公约数，则下面的findMusicalPattern(4 ， 6)函数返回 2 。`,
+            question: "假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 findMusicalPattern(4, 6) 函数返回 2。\n\n```cpp\nvoid findMusicalPattern(int rhythm1, int rhythm2) {\n    int commonDivisor = gcd(rhythm1, rhythm2);\n    int patternLength = (rhythm1 * rhythm2) / commonDivisor;\n    return patternLength;\n}\n```",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
-
-**判定依据：**
-
-\`\`\`cpp
-void findMusicalPattern(int rhythm1, int rhythm2) {
-    int commonDivisor = gcd(rhythm1, rhythm2);
-    int patternLength = (rhythm1 * rhythm2) / commonDivisor;
-    return patternLength;
-}
-\`\`\`
-
-代入 rhythm1=4、rhythm2=6：
-
-- \`gcd(4,6) = 2\`
-- \`patternLength = (4*6)/2 = 12\`
-
-函数返回 12，不是题干说的 2。题干把最大公约数与最小公倍数混淆了——\`(a*b)/gcd(a,b)\` 求的是最小公倍数。
-
-**易错提醒：** \`gcd\` 求最大公约数，\`a*b/gcd\` 求最小公倍数。本题 2 是 gcd，12 是 lcm。
-
-**考点：** 最大公约数与最小公倍数的关系、函数返回值推导。`,
+            explanation: "**答案：错误**\n\n原卷把 `findMusicalPattern` 声明为 `void`，却写了 `return patternLength;`。按原样编译时，编译器会拒绝从 `void` 函数返回一个整数。\n\n单独按函数体中的公式计算，`gcd(4, 6)` 为 2，`patternLength` 等于 `4 × 6 ÷ 2 = 12`。这一公式求的是最小公倍数。",
             sourceVerified: true,
             sourcePage: 8,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ["客观题", "判断题", "GESP5级", "数论", "算术运算"],
+      "reviewedFields": ["question","reviewedBy","reviewedAt","explanation"],
         },
         {
             id: 18,
             type: "judge",
-            question: `下面递归实现的斐波那契数列的时间复杂度为指数级。`,
+            question: "下面递归实现的斐波那契数列的时间复杂度为 $O(2^n)$。\n\n```cpp\nlong long fib_memo(int n, long long memo[]) {\n    if (n <= 1) return n;\n    if (memo[n] != -1) return memo[n];\n    memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo);\n    return memo[n];\n}\n\nint main() {\n    int n = 40;\n    long long memo[100];\n    fill_n(memo, 100, -1);\n    long long result2 = fib_memo(n, memo);\n    return 0;\n}\n```",
             options: [
                 "正确",
                 "错误",
@@ -774,9 +728,10 @@ long long fib_memo(int n, long long memo[]) {
 **考点：** 递归、记忆化搜索与时间复杂度分析。`,
             sourceVerified: true,
             sourcePage: 8,
-            reviewedBy: '本站校订',
-            reviewedAt: '2026-10-25',
+            reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+            reviewedAt: "2026-11-07",
             tags: ["客观题", "判断题", "GESP5级", "递归", "动态规划", "复杂度分析"],
+      "reviewedFields": ["question","reviewedBy","reviewedAt"],
         },
         {
             id: 19,

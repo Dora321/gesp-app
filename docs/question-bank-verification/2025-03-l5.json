@@ -145,44 +145,50 @@
       "id": 4,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         2,
-        3
+        3,
+        1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 2-3 页第 4 题给出辗转相除 gcd 代码，题干问 gcd(84,60) 的第二步计算的数；站点 question 只有题干，缺少该代码块。",
-          "review": "修复后核验通过：第 2 页末题干「用以下辗转相除法（欧几里得算法）求 gcd(84, 60) 的步骤中，第二步计算的数是（ ）。」及第 3 页 gcd 代码（big/small 归一、big%small==0 返回、否则递归）与 changes.code 一致；站点 question 原缺失该代码块，已按原卷补齐。"
+          "initial": "第 2 页题干「用以下辗转相除法（欧几里得算法）求gcd(84, 60)的步骤中，第二步计算的数是（ ）。」与候选 question 一致；第 3 页给出 gcd 的 big/small 判断与递归代码，与候选 code 逐字一致。",
+          "review": "修复后核验通过：第 2 页末题干「用以下辗转相除法（欧几里得算法）求gcd(84, 60)的步骤中，第二步计算的数是（ ）。」及第 3 页 gcd 代码（big/small 三目判断、big%small==0 返回 small、否则 return gcd(small, big%small)，共 8 行）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
         },
         "options": {
-          "initial": "PDF 第 3 页 A-D 四项为“84 和 60 / 60 和 24 / 24 和 12 / 12 和 0”，与站点一致。",
-          "review": "第 3 页页图 A「84 和 60」、B「60 和 24」、C「24 和 12」、D「12 和 0」与站点 options 一致。"
+          "initial": "第 3 页 A 84和60、B 60和24、C 24和12、D 12和0，与候选 options 一致。",
+          "review": "第 3 页页图 A「84和60」B「60和24」C「24和12」D「12和0」与站点 options 一致（候选未改，无需修改）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 4 题为 B；按 0 起始索引映射为 1，站点 answer=1。",
-          "review": "第 1 页答案表第 4 题为 B，0 起始索引 1，站点 answer=1。独立推导：第一步 84%60=24 得数对 (60,24)，第二步计算 60 和 24（60%24=12 得 (24,12)），B 正确。"
+          "initial": "第 1 页答案表第 4 题为 B（索引 1），候选 answer=1。独立推导：gcd(84,60) 首次 big=84、small=60，84%60=24≠0，第二次调用 gcd(60,24)，故第二步的数为 60 和 24。",
+          "review": "第 1 页答案表第 4 题为 B，0 起始索引 1，候选 answer=1。独立跟踪：gcd(84,60) 中 big=84、small=60，84%60=24≠0，第二步计算 60 和 24（60%24=12≠0 进入第三步 24 和 12，24%12=0 终止），B 正确；A 是第一步，C 是第三步，D 是终止判断时的数对。"
         },
         "explanation": {
-          "initial": "独立推导：第一步 84%60=24，得到数对 (60,24)；第二步计算 60%24=12，因此第二步的数是 60 和 24，B 正确。",
-          "review": "站点解析按 (a,b)→(b,a%b) 逐步展开并逐项排除，与独立推导一致。"
+          "initial": "候选解析逐步跟踪 84÷60=1 余 24、60÷24=2 余 12、24÷12=2 余 0，并据此排除 A/C/D，结论 B 正确。",
+          "review": "站点解析三步推导（84÷60 余 24、60÷24 余 12、24÷12 余 0）与页图代码行为及独立跟踪一致，A/C/D 的排除归因正确。"
         }
       },
-      "unresolved": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l5.glm.json"
+      ],
+      "integrationNote": "GLM 重复列出候选已含的代码。逐字比较一致，初核也已核验同一候选；按原卷第 3 页落入 gcd 函数。"
     },
     {
       "id": 5,
@@ -961,138 +967,112 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         8,
         9,
         10
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "集成阶段核对原卷或实测结果",
+        "C++17 实际编译、原样例与独立边界用例"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8-10 页题名“平均分配”、题意、输入输出、两组样例 3→36、2→35 均与站点一致；PDF 第 9 页数据范围给出 20% n≤8、20% 0≤b_i,c_i≤1、全部 1≤n≤10^5、0≤b_i,c_i≤10^9，站点 question 未包含数据范围。",
-          "review": "修复后核验通过：第 8-10 页页图「平均分配」题意、输入输出、两组样例 3→36、2→35 与站点一致；changes.question 补入第 9 页数据范围，与页图逐字一致。"
+          "initial": "第 8–9 页题面、输入输出、样例 1（3 / 1 3 5 6 8 10 / 2 4 6 7 9 11 → 36）、样例 2（2 / 6 7 9 9 / 1 2 10 12 → 35）及数据范围（20% 1≤n≤8；20% 0≤b_i,c_i≤1；全部 1≤n≤10^5、0≤b_i,c_i≤10^9）与候选 question 一致。",
+          "review": "修复后核验通过：第 8 页「平均分配」题面（2n 件物品、b_i/c_i 价格、各恰好 n 件）与输入格式、第 9 页输出格式（一行一个整数）、样例 1（3 / 1 3 5 6 8 10 / 2 4 6 7 9 11 → 36）、样例 2（2 / 6 7 9 9 / 1 2 10 12 → 35）与数据范围（20% 1≤n≤8；另外 20% 0≤b_i≤1、0≤c_i≤1；所有测试点 1≤n≤10^5、0≤b_i≤10^9、0≤c_i≤10^9）与候选 question 一致；站点缺失的数据范围已由候选补入（末条两个 10^9 合写为 $0 \\le b_i,c_i \\le 10^9$，语义一致）。"
         },
         "explanation": {
-          "initial": "独立推导：先假设全部卖给 B，收入 sum(b)；把第 i 件改卖给 C 的增量为 c_i-b_i，需恰好选 n 件改卖，取增量最大的 n 个即可；样例 1 的六个差值均为 1，sum(b)=33，加 3 得 36，与样例一致。",
-          "review": "独立推导：全部先卖给 B 得 sum(b)，改卖 C 的增量为 c_i-b_i，恰选 n 件取增量最大者；样例 1 六个差值均为 1、sum(b)=33，加 3 得 36；样例 2 同法得 35，与样例一致；站点解析的差值贪心与该推导一致。"
+          "initial": "候选解析的差值贪心（基础全卖给 B，选 c_i-b_i 最大的 n 件改卖 C）正确，样例复算 36/35 一致；但「2n 最大可达到 4*10^5」与数据范围 1≤n≤10^5 矛盾（2n≤2*10^5），changes.explanation 已改为 2*10^5。 集成核验：原卷 n≤10⁵，所以 2n≤2×10⁵。实跑参考程序的原样例及独立边界。",
+          "review": "站点解析主体（差值贪心 d[i]=c[i]−b[i]、全卖小 B 基础收入 + 差值最大的 n 件、两个样例走查 36/35、排序区间 sort(d+1, d+2n+1) 取下标 n+1..2n）经独立推导与实测均正确；但「易错提醒」称「物品总数 2n 最大可达到 4 * 10^5（或 2 * 10^5 规模）」——数据范围为 1≤n≤10^5，2n 最大为 2×10^5，4×10^5 数值错误且括注含糊。changes.explanation 将该句改为「物品总数 2n 最大为 2 * 10^5」，其余主体核验无误后保留。 集成核验：原卷 n≤10⁵，所以 2n≤2×10⁵。实跑参考程序的原样例及独立边界。"
         },
         "referenceCode": {
-          "initial": "站点参考程序与 PDF 第 9-10 页程序一致（省略 assert），排序差值后取最大的 n 个；已用 n=1、n=2、样例 1 复核，输出 13、13、36。",
-          "review": "站点参考程序与第 9-10 页官方程序一致（排序差值取最大 n 个），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（3→36、2→35）与全部复核边界用例（1/5 6/7 8→13、1/0 0/0 0→0、2/10 1 1 1/1 1 1 1→13），输出逐字符一致。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：原样例 36/35；边界 n=1、b={5,6}、c={1,9}→14，n=1、b={1,2}、c={3,4}→5，n=1、b={10,1}、c={0,0}→10 全部通过；并与 n≤4 的随机全组合暴力对拍 160 组，零差异。",
+          "review": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 9–10 页官方参考程序（读入累加 b、d[i]=c[i]−b[i]、sort(d+1,d+2n+1) 后累加末 n 项）对拍：原样例 3→36、2→35 一致；独立用例 1/13/6→13（n=1 取 max）、全 0→0、1/10^9/0→10^9（极值不溢出）、2/5 5 5 5/9 9 0 0→28（sum b=20 + 4+4）均与官方一致；与子集枚举暴力（C(2n,n) 全组合，150 组 n≤6 随机）零差异；压力说明：n=10^5（2×10^5 件、价格 10^9 级）实测 0.035 s，远低于 1.0 s。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l5.glm.json"
+      ],
+      "integrationNote": "原卷 n≤10⁵，所以 2n≤2×10⁵。实跑参考程序的原样例及独立边界。",
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 8
+        }
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         10,
         11
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "集成阶段核对原卷或实测结果",
+        "C++17 实际编译、原样例与独立边界用例"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 10 页题面给出原根的三条条件（1<g<p、g^(p-1) mod p=1、任意 1≤i<p-1 有 g^i mod p≠1）以及“判断 a 是否为 p 的原根”；站点 question 只剩第一条且 LaTeX 写成“$1 le g < p$”，后两条条件、任务句与数据范围均缺失。",
-          "review": "修复后核验通过：第 10 页页图原根三条条件（1<g<p、g^(p-1) mod p=1、任意 1≤i<p-1 有 g^i mod p≠1）、任务句、输入输出与样例 3/3 998244353→Yes、5 998244353→Yes、7 998244353→No 及第 11 页数据范围（40% 3≤p≤10^3、全部 1≤T≤20、3≤p≤10^9、1<a<p、p 为质数）与 changes.question 一致；站点原题仅存第一条条件且 LaTeX 转义缺失，已按原卷恢复。"
+          "initial": "第 10–11 页题面、输入输出、样例 3 / 3 998244353 / 5 998244353 / 7 998244353 → Yes/Yes/No 及数据范围（40% 3≤p≤10^3；全部 1≤T≤20、3≤p≤10^9、1<a<p、p 为质数）与候选 question 一致。",
+          "review": "修复后核验通过：第 10 页题面（原根三条条件 1<g<p、g^(p−1) mod p=1、任意 1≤i<p−1 均有 g^i mod p≠1；「其中 a mod p 表示 a 除以 p 的余数」；任务句「小 A 现在有一个整数 a，请你帮他判断 a 是不是 p 的原根」）、输入/输出格式、样例（3 组 (3/5/7, 998244353) → Yes/Yes/No）与第 11 页数据范围（40% 3≤p≤10^3；所有测试点 1≤T≤20、3≤p≤10^9、1<a<p、p 为质数）与候选 question 一致；站点原缺后两条条件、任务句与数据范围且 LaTeX 误写「$1 le g < p$」，候选已按原卷补齐修正。"
         },
         "explanation": {
-          "initial": "独立推导：a 是 p 的原根当且仅当对 p-1 的每个不同质因子 q，都有 a^((p-1)/q) mod p ≠ 1；样例 p=998244353，p-1=2^23×7×17，3、5 均通过，7 在指数 (p-1)/2 处得到 1，故输出 Yes/Yes/No，与样例一致。",
-          "review": "独立推导：a 是 p 的原根当且仅当对 p-1 的每个不同质因子 q 都有 a^((p-1)/q) mod p≠1；998244353-1=2^23×7×17，3 与 5 通过全部检验、7 在指数 (p-1)/2 处幂为 1，输出 Yes/Yes/No，与样例一致；站点解析的质因子检验法与该推导一致。"
+          "initial": "候选解析的原根判定原理与快速幂流程正确，答案 Yes/Yes/No 正确；但样例走查中的模幂余数有误：3^142606336 mod 998244353 应为 779057549（非 332964243）、3^58720256 应为 337827833（非 458299863）、5^142606336/5^58720256 应为 296273185/147524579（非 445585521/289381745）。changes.explanation 已改正四个余数。 集成核验：独立以整数快速幂复算四个模幂余数。一条复核记录把两次独立运行粘在同一个输入中，按原卷 T=2 重组后实测输出 No、Yes。",
+          "review": "站点解析主体（原根判定充要条件：对 p−1 每个质因数 q 验证 a^((p−1)/q)≠1；质因数分解试除、快速幂 1ll 防溢出）经独立推导正确；但样例走查中四个模幂余数数值有误：3^142606336 应为 779057549（原写 332964243）、3^58720256 应为 337827833（原写 458299863）、5^142606336 应为 296273185（原写 445585521）、5^58720256 应为 147524579（原写 289381745）。以上 8 个数值均用 Python pow 独立复算核实（3^499122176≡5^499122176≡998244352≡−1 与 7^499122176≡1 亦复核，7 组首指数为 1 故 No），p−1=998244352=2^23×7×17 复核无误。changes.explanation 仅修正这四个余数，其余主体核验无误后保留。 集成核验：独立以整数快速幂复算四个模幂余数。一条复核记录把两次独立运行粘在同一个输入中，按原卷 T=2 重组后实测输出 No、Yes。"
         },
         "referenceCode": {
-          "initial": "站点参考程序与 PDF 第 11 页程序一致（省略 assert），用快速幂逐个检验 (p-1)/q；已用 p=3、5、7 与样例复核，输出正确。",
-          "review": "站点参考程序与第 11 页官方程序一致（快速幂逐个检验 (p-1)/q），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（Yes/Yes/No）与全部复核边界用例（2 3→Yes、4 5→No、3 7+2 7→Yes/No），输出逐字符一致。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：原样例 Yes/Yes/No；对 3≤p≤300 的所有质数与 1<a<p 共 8151 组，用阶的定义暴力计算对拍，零差异；边界 2 3→Yes、4 5→No、3 7→Yes、2 7→No 通过。",
+          "review": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 11 页官方参考程序（fpw 递归快速幂 + check(phi/i) + r>1 收尾检验）对拍：原样例 (3/5/7, 998244353)→Yes/Yes/No 一致；独立用例 2 3→Yes（2^2≡1 且 2^1≠1）、4 5→No（4^2≡16≡1）、2 7→No（2^3≡1）、3 7→Yes（3 的幂序 3,2,6,4,5,1）、5 999999937→No、5 998244353→Yes 与官方一致；并与按定义直接枚举 a 的全部幂（1533 组：29 个质数 p≤113 的全部 1<a<p）零差异；压力说明：T=20 组 p≈10^9 实测 0.003 s，远低于 1.0 s。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-03-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-03-l5.glm.json"
+      ],
+      "integrationNote": "独立以整数快速幂复算四个模幂余数。一条复核记录把两次独立运行粘在同一个输入中，按原卷 T=2 重组后实测输出 No、Yes。",
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 10
+        }
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 4,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
-  "pendingChanges": [
-    {
-      "id": 4,
-      "changes": {
-        "code": "int gcd(int a, int b) {\n    int big = a > b ? a : b;\n    int small = a < b ? a : b;\n    if (big % small == 0) {\n        return small;\n    }\n    return gcd(small, big % small);\n}"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 26,
-      "changes": {
-        "question": "# [GESP202503 五级] 平均分配\n\n## 题目描述\n\n小 A 有 $2n$ 件物品，小 B 和小 C 想从小 A 手上买走这些物品。对于第 $i$ 件物品，小 B 会以 $b_i$ 的价格购买，而小 C 会以 $c_i$ 的价格购买。为了平均分配这 $2n$ 件物品，小 A 决定小 B 和小 C 各自只能买走恰好 $n$ 件物品。你能帮小 A 求出他卖出这 $2n$ 件物品所能获得的最大收入吗？\n\n## 输入格式\n\n第一行，一个正整数 $n$。\n\n第二行，$2n$ 个整数 $b_1,b_2,\\dots,b_{2n}$。\n\n第三行，$2n$ 个整数 $c_1,c_2,\\dots,c_{2n}$。\n\n## 输出格式\n\n一行，一个整数，表示答案。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $1 \\le n \\le 8$；对于另外 20% 的测试点，保证 $0 \\le b_i \\le 1$，$0 \\le c_i \\le 1$；对于所有测试点，保证 $1 \\le n \\le 10^5$，$0 \\le b_i,c_i \\le 10^9$。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "question": "# [GESP202503 五级] 原根判断\n\n## 题目描述\n\n小 A 知道，对于质数 $p$ 而言，$p$ 的原根 $g$ 是满足以下条件的正整数：\n\n- $1 < g < p$；\n- $g^{p-1} \\bmod p = 1$；\n- 对于任意 $1 \\le i < p-1$ 均有 $g^i \\bmod p \\ne 1$。\n\n其中 $a \\bmod p$ 表示 $a$ 除以 $p$ 的余数。\n\n小 A 现在有一个整数 $a$，请你帮他判断 $a$ 是不是 $p$ 的原根。\n\n## 输入格式\n\n第一行，一个正整数 $T$，表示测试数据组数。\n\n每组测试数据包含一行，两个正整数 $a,p$。\n\n## 输出格式\n\n对于每组测试数据，输出一行，如果 $a$ 是 $p$ 的原根则输出 `Yes`，否则输出 `No`。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $3 \\le p \\le 10^3$；对于所有测试点，保证 $1 \\le T \\le 20$，$3 \\le p \\le 10^9$，$1 < a < p$，$p$ 为质数。"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-03-l5.code-checks.json"
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2025-03-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-03-l5.integration.json"
 }

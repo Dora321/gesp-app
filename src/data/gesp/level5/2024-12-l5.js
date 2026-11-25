@@ -5,31 +5,11 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `128`, output: `3` }
       ],
-      question: `
-# [GESP202412 五级] 奇妙数字
-
-## 题目描述
-
-小杨认为一个数字 $x$ 是奇妙数字当且仅当 $x=p^a$，其中 $p$ 为任意质数且 $a$ 为正整数。例如，$8=2^3$，所以 $8$ 是奇妙的，而 $6$ 不是。
-
-对于一个正整数 $n$，小杨想要构建一个包含 $m$ 个奇妙数字的集合 $\\{x_1,x_2,\\cdots,x_m\\}$，使其满足以下条件：
-- 集合中不包含相同的数字。
-- $x_1\\times x_2\\times \\cdots\\times x_m$ 是 $n$ 的因子（即 $x_1,x_2,\\cdots,x_m$ 这 $m$ 个数字的乘积是 $n$ 的因子）。
-
-小杨希望集合包含的奇妙数字尽可能多，请你帮他计算出满足条件的集合最多包含多少个奇妙数字。
-
-## 输入格式
-
-第一行包含一个正整数 $n$，含义如题面所示。
-
-## 输出格式
-
-输出一个正整数，代表满足条件的集合最多包含的奇妙数字个数。
-`,
+      question: "# [GESP202412 五级] 奇妙数字\n\n## 题目描述\n\n小杨认为一个数字 $x$ 是奇妙数字当且仅当 $x=p^a$，其中 $p$ 为任意质数且 $a$ 为正整数。例如，$8=2^3$，所以 $8$ 是奇妙的，而 $6$ 不是。\n\n对于一个正整数 $n$，小杨想要构建一个包含 $m$ 个奇妙数字的集合 $\\{x_1,x_2,\\cdots,x_m\\}$，使其满足以下条件：\n- 集合中不包含相同的数字。\n- $x_1\\times x_2\\times \\cdots\\times x_m$ 是 $n$ 的因子（即 $x_1,x_2,\\cdots,x_m$ 这 $m$ 个数字的乘积是 $n$ 的因子）。\n\n小杨希望集合包含的奇妙数字尽可能多，请你帮他计算出满足条件的集合最多包含多少个奇妙数字。\n\n## 输入格式\n\n第一行包含一个正整数 $n$，含义如题面所示。\n\n## 输出格式\n\n输出一个正整数，代表满足条件的集合最多包含的奇妙数字个数。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $n \\le 10$；对于另外 20% 的测试点，保证 $n \\le 1000$；对于所有测试点，保证 $2 \\le n \\le 10^{12}$。",
       score: 25,
       explanation: `**解析：**
 
@@ -100,12 +80,16 @@ const programmingQuestions = [
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    int total = 0;\n    for (long long i = 2; i * i <= n; i++) {\n        if (n % i == 0) {\n            int e = 0;\n            while (n % i == 0) { e++; n /= i; }\n            // 将 e 分解为 1, 2, 3... 尽量多的项\n            int count = 0, k = 1;\n            while (e >= k) { e -= k; k++; count++; }\n            total += count;\n        }\n    }\n    if (n > 1) total += 1;\n    cout << total << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 8,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `4 4
 1 1
@@ -113,25 +97,7 @@ const programmingQuestions = [
 3 1
 3 2`, output: `1` }
       ],
-      question: `
-# [GESP202412 五级] 武器强化
-
-## 题目描述
-
-小杨有 $n$ 种武器和 $m$ 种强化材料。第 $i$ 种强化材料会适配第 $p_i$ 种武器，小杨可以花费 $c_i$ 金币将该材料对应的适配武器修改为任意武器。
-
-小杨最喜欢第 $1$ 种武器，因此他希望适配该武器的强化材料种类数**严格大于**其他的武器，请你帮小杨计算为了满足该条件最少需要花费多少金币。
-
-## 输入格式
-
-第一行包含两个正整数 $n,m$，含义如题面所示。
-
-之后 $m$ 行，每行包含两个正整数 $p_i,c_i$，代表第 $i	$ 种强化材料的适配武器和修改花费。
-
-## 输出格式
-
-输出一个整数，代表能够使适配第 $1$ 种武器的强化材料种类数**严格大于**其他的武器最少需要花费的金币。
-`,
+      question: "# [GESP202412 五级] 武器强化\n\n## 题目描述\n\n小杨有 $n$ 种武器和 $m$ 种强化材料。第 $i$ 种强化材料会适配第 $p_i$ 种武器，小杨可以花费 $c_i$ 金币将该材料对应的适配武器修改为任意武器。\n\n小杨最喜欢第 $1$ 种武器，因此他希望适配该武器的强化材料种类数**严格大于**其他的武器，请你帮小杨计算为了满足该条件最少需要花费多少金币。\n\n## 输入格式\n\n第一行包含两个正整数 $n,m$，含义如题面所示。\n\n之后 $m$ 行，每行包含两个正整数 $p_i,c_i$，代表第 $i$ 种强化材料的适配武器和修改花费。\n\n## 输出格式\n\n输出一个整数，代表能够使适配第 $1$ 种武器的强化材料种类数**严格大于**其他的武器最少需要花费的金币。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $n=2$，$m \\le 1000$；对于另外 20% 的测试点，保证 $n \\le 1000$，$m=2$；对于所有测试点，保证 $1 \\le n,m \\le 1000$，$1 \\le p_i \\le n$，$1 \\le c_i \\le 10^9$。",
       score: 25,
       explanation: `**解析：**
 
@@ -230,6 +196,10 @@ const programmingQuestions = [
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<long long>> byWeapon(n + 1);\n    int cnt1 = 0;\n    for (int i = 0; i < m; i++) {\n        int p;\n        long long cost;\n        cin >> p >> cost;\n        if (p == 1) cnt1++;\n        else byWeapon[p].push_back(cost);\n    }\n    for (auto &v : byWeapon) sort(v.begin(), v.end());\n    long long best = -1;\n    // 枚举其他武器允许的最大材料数 cap，超出的强制移给 1 号武器\n    for (int cap = 0; cap <= m; cap++) {\n        long long cost = 0;\n        int moved = 0;\n        vector<long long> leftovers;\n        for (int w = 2; w <= n; w++) {\n            const auto &v = byWeapon[w];\n            int excess = (int)v.size() - cap;\n            for (int i = 0; i < (int)v.size(); i++) {\n                if (i < excess) { cost += v[i]; moved++; }\n                else leftovers.push_back(v[i]);\n            }\n        }\n        int final1 = cnt1 + moved;\n        if (final1 <= cap) {\n            int extra = cap + 1 - final1;\n            if (extra > (int)leftovers.size()) continue;\n            sort(leftovers.begin(), leftovers.end());\n            for (int i = 0; i < extra; i++) cost += leftovers[i];\n            final1 += extra;\n        }\n        if (best == -1 || cost < best) best = cost;\n    }\n    cout << best << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 10,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 
@@ -340,52 +310,30 @@ void removeElements(LinkedNode* head, int val) {
             id: 4,
             type: "single",
             question: `对下面两个函数，说法错误的是（ ）。`,
-            options: ["两个函数的实现的功能相同。", "fibA 采用递推方式。", "fibB 采用的是递归方式。", "fibA 时间复杂度为 ， fibB 的时间复杂度为 。"],
+            options: ["两个函数的实现的功能相同。","fibA 采用递推方式。","fibB 采用的是递归方式。","fibA 时间复杂度为 $O(n)$，fibB 的时间复杂度为 $O(n^2)$。"],
             answer: 3,
             score: 2,
-            explanation: `**答案：不正确的是 D（fibA 与 fibB 的时间复杂度表述错误）**
-
-**核心解析：**
-题干考查斐波那契数列（Fibonacci sequence）的两种不同实现方式及其性能差异：
-- **函数 \`fibA\`（递推/循环实现）**：从已知的基础项 \`f1 = 0, f2 = 1\` 开始，通过单层 \`for\` 循环从 \`2\` 步进到 \`n\`，每轮循环只做常数次加法与变量赋值。循环体总共执行约 \`n\` 次，因此其时间复杂度为线性阶 \`O(n)\`，空间复杂度为常数阶 \`O(1)\`。
-- **函数 \`fibB\`（朴素递归实现）**：在函数体内部直接调用自身 \`fibB(n - 1) + fibB(n - 2)\`。这种双分支递归展开后会形成一棵高度为 \`n\` 的递归调用树，且存在严重的重叠子问题与重复计算（例如计算 \`fibB(5)\` 时，\`fibB(3)\` 会被重复计算 2 次，\`fibB(2)\` 会被重复计算 3 次）。整棵二叉树的调用节点总数随 \`n\` 呈指数级增长，时间复杂度高达 \`O(2^n)\`。
-
-选项 D 将两者的复杂度颠倒混淆，将递推的 \`fibA\` 误记为指数级、将朴素递归的 \`fibB\` 误记为线性级，因此说法错误，符合题目要求选出的错误项。
-
-**选项逐项分析：**
-- **A 两个函数的实现的功能相同。**：✅ 说法正确。两者的核心功能都是求解斐波那契数列第 \`n\` 项的值（当 \`n <= 1\` 时直接返回 \`n\`，当 \`n > 1\` 时计算前两项之和），对相同的有效输入 \`n\`，两者的计算返回值完全相同。
-- **B fibA 采用递推方式。**：✅ 说法正确。\`fibA\` 内部没有自我调用，而是从初始边界状态出发，使用循环由前往后逐项推导后续各项，属于经典的递推（迭代）算法。
-- **C fibB 采用的是递归方式。**：✅ 说法正确。\`fibB\` 在函数执行体内调用自身（\`fibB(n - 1)\` 与 \`fibB(n - 2)\`），并包含明确的基准终止条件 \`if (n <= 1) return n;\`，符合递归算法的定义与特征。
-- **D fibA 时间复杂度为 ， fibB 的时间复杂度为 。**：❌ 说法错误。原选项将两者的复杂度颠倒混淆。真实情况下，\`fibA\` 仅含单层计数循环，时间复杂度为 \`O(n)\`；而 \`fibB\` 未采用记忆化保存中间结果，分支调用裂变导致大量冗余重复计算，时间复杂度为 \`O(2^n)\`。
-
-**易错提醒：**
-- 同学们容易凭代码行数“直觉”判断效率，认为递归代码简短优雅因而运行更快。实际上，朴素双分支递归会带来指数级的冗余计算，当 \`n = 45\` 时递归调用次数可达数十亿次，极易超时或导致调用栈溢出；而递推循环只需执行 40 余次加法，瞬间即可得出答案。
-- 分析递归函数的时间复杂度时，建议在草稿纸上画出递归调用树：每个父节点分裂出 2 个子节点，深度为 \`n\`，调用节点总数约为 \`2^n - 1\`，从而快速推导其指数级复杂度。
-
-**知识延伸：**
-如果希望保留递归写法的简洁直观，同时达到 \`O(n)\` 的线性执行效率，可以在递归的基础上引入一个数组记录已算出的值，这种技巧称为**记忆化搜索**，也是后续学习动态规划（DP）的核心基石。`,
+            explanation: "**答案：不正确的是 D（fibA 为 O(n)，fibB 为 O(2^n)，选项把 fibB 写成 O(n²)）**\n\n**核心解析：**\n- `fibA` 用单层循环从 2 递推到 n，循环体只做常数次加法与赋值，时间复杂度 O(n)，空间复杂度 O(1)。\n- `fibB` 为朴素双分支递归，T(n)=T(n-1)+T(n-2)+O(1)，调用次数随 n 指数增长，时间复杂度 O(2^n)，空间复杂度 O(n)（递归栈）。\n- 选项 D 写“fibA O(n)、fibB O(n²)”：fibA 的 O(n) 正确，但 fibB 不是多项式级，O(n²) 低估了其增长，因此 D 说法错误。\n\n**选项逐项分析：**\n- A 两个函数都返回第 n 项斐波那契数，功能相同，正确。\n- B fibA 用循环由前向后递推，正确。\n- C fibB 在函数体内调用自身，是递归，正确。\n- D 对 fibB 复杂度的表述错误，符合“选错误项”的要求。",
             tags: ["客观题", "单选题", "GESP5级", "递推", "递归", "复杂度分析"],
+      "code": "int fibA(int n) {\n    if (n <= 1) return n;\n\n    int f1 = 0, f2 = 1;\n    for (int i = 2; i <= n; ++i) {\n        int temp = f2;\n        f2 = f1 + f2;\n        f1 = temp;\n    }\n    return f2;\n}\n\nint fibB(int n) {\n    if (n <= 1) return n;\n    return fibB(n - 1) + fibB(n - 2);\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["options","explanation","code","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 5,
             type: "single",
-            question: `下列关于栈的描述，正确的是（ ）。`,
-            options: ["先进先出", "支持下标访问", "后进先出", "动态增加长度"],
+            question: "两块长方形土地的长宽分别为 24 和 36 米，要将它们分成正方形的小块，使得正方形的尺寸尽可能大。小杨采用如下的辗转相除函数 gcd(24, 36) 来求正方形分块的边长，则函数 gcd 调用顺序为（ ）。\n\n```cpp\nint gcd(int a, int b) {\n    int big = a > b ? a : b;\n    int small = a < b ? a : b;\n    if (big % small == 0) {\n        return small;\n    }\n    return gcd(small, big % small);\n}\n```",
+            options: ["gcd(24, 36)、gcd(24, 12)、gcd(12, 0)","gcd(24, 36)、gcd(12, 24)、gcd(0, 12)","gcd(24, 36)、gcd(24, 12)","gcd(24, 36)、gcd(12, 24)"],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
-
-            **解析：**
-            栈（Stack）是 LIFO 数据结构。
-
-            - **A 先进先出**：错误。
-            - **B 支持下标访问**：错误。数组下标从 0 开始，请仔细验证下标范围。
-            - **C 后进先出**：正确答案。
-            - **D 动态增加长度**：错误。
-
-            **考点：** C++基础
-            `,
-            tags: ["客观题", "单选题", "GESP5级", "栈"],
+            explanation: "**答案：C（gcd(24, 36)、gcd(24, 12)）**\n\n**核心解析：**\n函数先令 big 为较大值、small 为较小值；若 big % small == 0 直接返回 small，否则递归调用 gcd(small, big % small)。\n\n- 初始调用 gcd(24, 36)：big=36，small=24，36 % 24 = 12 ≠ 0，递归调用 gcd(24, 12)；\n- gcd(24, 12)：big=24，small=12，24 % 12 = 0，直接返回 12，不再产生新的调用。\n\n因此调用序列只有 gcd(24, 36)、gcd(24, 12)，共两次，选 C。\n\nA、B、D 都多写了不存在的 gcd(12, 0)、gcd(0, 12)，或把第二次调用写成 gcd(12, 24)，均不符合函数实际执行过程。",
+            tags: ["客观题","单选题","GESP5级","数论","最大公约数"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 2,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage","tags"],
         },
         {
             id: 6,
@@ -478,32 +426,8 @@ vector<int> sieve_Eratosthenes(int n) {
         {
             id: 8,
             type: "single",
-            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数。下面说法正确的是（　）。
-
-\`\`\`cpp
-vector<int> sieve_linear(int n) {
-    vector<bool> is_prime(n +1, true);
-    vector<int> primes;
-    for (int i = 2; i <= n/2; i++) {
-        if (is_prime[i])
-            primes.push_back(i);
-        for (int j = 0; j < primes.size() && i * primes[j] <= n; j++) {
-            is_prime[ i * primes[j] ] = 0;
-            if (i % primes[j] == 0)
-                break;
-        }
-    }
-    for (int i = n/2 +1; i <= n; i++) {
-        if (is_prime[i])
-            primes.push_back(i);
-    }
-    return primes;
-\`\`\`
-
-> ⚠️ 原卷该代码在官方 PDF 中跨栏排版，末尾若干行未能完整提取，其余部分与原卷一致。
-
-> ⚠️ 本题部分选项中的数学式（如复杂度表达式）在原卷中为公式图片，官方 PDF 文本层未包含，本站选项文字因此缺少该部分符号。答案与解析依据官方答案表。`,
-            options: ["线性筛的时间复杂度是 。", "每个合数会被其所有的质因子标记一次。", "线性筛和埃拉托色尼筛的实现思路完全相同。", "以上都不对"],
+            question: "下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数。下面说法正确的是（　）。\n\n```cpp\nvector<int> sieve_linear(int n) {\n    vector<bool> is_prime(n +1, true);\n    vector<int> primes;\n    for (int i = 2; i <= n/2; i++) {\n        if (is_prime[i])\n            primes.push_back(i);\n        for (int j = 0; j < primes.size() && i * primes[j] <= n; j++) {\n            is_prime[ i * primes[j] ] = 0;\n            if (i % primes[j] == 0)\n                break;\n        }\n    }\n    for (int i = n/2 +1; i <= n; i++) {\n        if (is_prime[i])\n            primes.push_back(i);\n    }\n    return primes;\n}\n```",
+            options: ["线性筛的时间复杂度是 $O(n)$。","每个合数会被其所有的质因子标记一次。","线性筛和埃拉托色尼筛的实现思路完全相同。","以上都不对"],
             answer: 0,
             score: 2,
             explanation: `**答案：A（线性筛的时间复杂度是 O(n)）**
@@ -526,6 +450,10 @@ if (i % primes[j] == 0)
 
 **考点**：线性筛的时间复杂度及其与埃氏筛的区别`,
             tags: ["客观题", "单选题", "GESP5级", "线性筛", "复杂度分析"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["options","question","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 9,
@@ -590,81 +518,30 @@ void quickSort(vector<int>& arr, int left, int right) {
         {
             id: 10,
             type: "single",
-            question: `唯一分解定理描述的是（ ）。`,
-            options: [
-                "一个合数可以分解为多个整数的乘积",
-                "每个大于1的自然数均可唯一地写成质数的幂的乘积",
-                "任意正整数都可以被分解",
-                "一个数可以被分解成多个因子之和"
-            ],
+            question: "下面关于归并排序，描述正确的是（ ）。",
+            options: ["归并排序是一个不稳定的排序算法。","归并排序的时间复杂度在最优、最差和平均情况下都是 $O(n\\log n)$。","归并排序需要额外的 $O(1)$ 空间。","对于输入数组 $\\{12, 11, 13, 5, 6, 7\\}$，代码输出结果为：7 6 5 13 12 11。"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-            **解析：**
-            算术基本定理的精确表述。
-
-            - **A 可以直接**：错误。
-            - **B 可以通过友元函数**：正确答案。
-            - **C 不能**：错误。
-            - **D 只有在多重继承时可以**：错误。
-
-            **考点：** C++基础
-            `,
-            tags: ["客观题", "单选题", "GESP5级", "数论"],
+            explanation: "**答案：B**\n\n经典归并排序递归划分序列，再合并有序子序列。划分到单元素需要 $O(\\log n)$ 层，每层合并共处理 $O(n)$ 个元素，最好、最坏和平均的时间均为 $O(n\\log n)$。\n\n合并时遇到相等元素优先取左侧可以保持稳定性，A 不成立。常见的数组实现需要 $O(n)$ 辅助空间，C 不成立。D 引用的代码未在原题给出，它列出的序列既非升序也非降序。",
+            tags: ["客观题","单选题","GESP5级","排序算法","归并排序"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage","tags"],
         },
         {
             id: 11,
             type: "single",
-            question: `给定一个长度为 的有序数组nums，其中所有元素都是唯一的。下面的函数返回数组中元素target的索
-引。
-}22
-int partition(vector<int>& arr, int left, int right) {
- int pivot = arr[right]; // 基准值
- int i = left - 1;
- for (int j = left; j < right; j++) {
- if (arr[j] < pivot) {
- i++;
- swap(arr[i], arr[j]);
- }
- }
- swap(arr[i + 1], arr[right]);
- return i + 1;
-}
-// 快速排序
-void quickSort(vector<int>& arr, int left, int right) {
- if (left < right) {
- int pi = partition(arr, left, right);
- quickSort(arr, left, pi - 1);
- quickSort(arr, pi + 1, right);
- }
-}
-关于上述函数，描述不正确的是（ ）。`,
-            options: ["函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。", "函数采用递归求解，每次问题的规模减小一半。", "递归的终止条件是中间元素的值等于target，若数组中不包含该元素，递归不会终止。", "算法的复杂度为 ."],
+            question: "给定一个长度为 n 的有序数组 nums，其中所有元素都是唯一的。下面的函数返回数组中元素 target 的索引。\n\n```cpp\nint binarySearch(vector<int>&nums, int target, int left, int right) {\n    if (left > right) {\n        return -1;\n    }\n\n    int middle = left + ((right - left) / 2);\n    if (nums[middle] == target) {\n        return middle;\n    }\n    else if (nums[middle] < target) {\n        return binarySearch(nums, target, middle + 1, right);\n    }\n    else\n        return binarySearch(nums, target, left, middle - 1);\n}\n\nint Find(vector<int>&nums, int target) {\n    int n = nums.size();\n    return binarySearch(nums, target, 0, n - 1);\n}\n```\n\n关于上述函数，描述不正确的是（ ）。",
+            options: ["函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。","函数采用递归求解，每次问题的规模减小一半。","递归的终止条件是中间元素的值等于 target，若数组中不包含该元素，递归不会终止。","算法的复杂度为 $O(\\log n)$。"],
             answer: 2,
             score: 2,
-            explanation: `**答案：不正确的是 C（递归的终止条件不仅包含找到目标元素，若数组中不含该元素，搜索区间为空时递归也会正常终止）**
-
-**核心解析：**
-题干描述为在元素互不相同的有序数组 \`nums\` 中查找目标值 \`target\` 的索引。结合各选项可知，本题重点考查**递归二分查找**的核心机制（题干所附快排代码片段为排版混入的无关代码，考题考查的核心是围绕在有序数组中检索目标的二分递归逻辑）。
-
-二分查找借助数组的单调性，采用“分而治之”的思想，每次取搜索区间的中点元素 \`nums[mid]\` 与目标值 \`target\` 进行比较：
-1. **规模减半**：若 \`target < nums[mid]\`，说明目标只可能在左半区间，转为在 \`[left, mid - 1]\` 中查找；若 \`target > nums[mid]\`，则转为在 \`[mid + 1, right]\` 中查找。每次递归都排除了包含中点在内的一半区间，问题规模严格缩减一半。
-2. **递归终止条件（出口）**：任何递归算法都必须具备完备的终止条件。递归二分查找包含两个出口：
-   - **查找成功**：当 \`nums[mid] == target\` 时，命中目标，直接返回当前索引 \`mid\`，递归正常终止；
-   - **查找失败**：当目标元素不存在于数组中时，搜索区间不断缩小，直至出现 \`left > right\`（即搜索区间为空），此时触发递归基，函数返回 \`-1\`（表示未找到），**递归同样正常终止**。
-
-因此，若数组中不包含 \`target\`，递归也会在区间收缩为空时结束，绝不会出现“递归不会终止”的死循环。C 选项的说法错误。
-
-**选项逐项分析：**
-- **A 函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。**：✅ 说法正确。这正是二分查找的基本原理。利用数组的单调有序性，比较目标值与中点 \`nums[mid]\` 的大小后，可直接排除不可能包含目标的一半区间（左半或右半），只在剩下的一半区间内继续搜索。
-- **B 函数采用递归求解，每次问题的规模减小一半。**：✅ 说法正确。在递归实现的二分查找中，每一次递归调用仅进入左子区间或右子区间中的一个，待搜索区间的元素个数从 \`n\` 缩减为约 \`n / 2\`，问题规模严格减半。
-- **C 递归的终止条件是中间元素的值等于target，若数组中不包含该元素，递归不会终止。**：❌ 说法错误，符合题意。递归的终止条件除命中目标元素外，还必须包含“区间为空”的退出边界（如 \`left > right\`）。当数组中不存在 \`target\` 时，递归会在区间耗尽时终止并返回 \`-1\`，因此“若数组中不包含该元素，递归不会终止”是不符合算法事实的。
-- **D 算法的复杂度为 .**：✅ 说法正确。选项中公式由于排版转写缺损，原题对应为 \`O(log n)\`。由于问题规模每次折半（\`n -> n/2 -> n/4 -> ... -> 1\`），递归的最大深度为 \`log2(n)\` 层，每一层递归仅执行一次中点计算与常数级比较，因此该算法的时间复杂度为 \`O(log n)\`。
-
-**易错提醒：**
-- **审清反向设问**：题目设问为“描述不正确的是”，要求找出叙述有误的选项，切忌误选正确叙述。`,
+            explanation: "**答案：不正确的是 C（递归的终止条件不仅包含找到目标元素，若数组中不含该元素，搜索区间为空时递归也会正常终止）**\n\n**核心解析：**\n题干描述为在元素互不相同的有序数组 `nums` 中查找目标值 `target` 的索引。结合各选项可知，本题重点考查**递归二分查找**的核心机制（题干已给出完整的 `binarySearch` 与 `Find` 函数，本题围绕有序数组中的递归二分查找展开）。\n\n二分查找借助数组的单调性，采用“分而治之”的思想，每次取搜索区间的中点元素 `nums[mid]` 与目标值 `target` 进行比较：\n1. **规模减半**：若 `target < nums[mid]`，说明目标只可能在左半区间，转为在 `[left, mid - 1]` 中查找；若 `target > nums[mid]`，则转为在 `[mid + 1, right]` 中查找。每次递归都排除了包含中点在内的一半区间，问题规模严格缩减一半。\n2. **递归终止条件（出口）**：任何递归算法都必须具备完备的终止条件。递归二分查找包含两个出口：\n   - **查找成功**：当 `nums[mid] == target` 时，命中目标，直接返回当前索引 `mid`，递归正常终止；\n   - **查找失败**：当目标元素不存在于数组中时，搜索区间不断缩小，直至出现 `left > right`（即搜索区间为空），此时触发递归基，函数返回 `-1`（表示未找到），**递归同样正常终止**。\n\n因此，若数组中不包含 `target`，递归也会在区间收缩为空时结束，绝不会出现“递归不会终止”的死循环。C 选项的说法错误。\n\n**选项逐项分析：**\n- **A 函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。**：✅ 说法正确。这正是二分查找的基本原理。利用数组的单调有序性，比较目标值与中点 `nums[mid]` 的大小后，可直接排除不可能包含目标的一半区间（左半或右半），只在剩下的一半区间内继续搜索。\n- **B 函数采用递归求解，每次问题的规模减小一半。**：✅ 说法正确。在递归实现的二分查找中，每一次递归调用仅进入左子区间或右子区间中的一个，待搜索区间的元素个数从 `n` 缩减为约 `n / 2`，问题规模严格减半。\n- **C 递归的终止条件是中间元素的值等于target，若数组中不包含该元素，递归不会终止。**：❌ 说法错误，符合题意。递归的终止条件除命中目标元素外，还必须包含“区间为空”的退出边界（如 `left > right`）。当数组中不存在 `target` 时，递归会在区间耗尽时终止并返回 `-1`，因此“若数组中不包含该元素，递归不会终止”是不符合算法事实的。\n- **D 算法的复杂度为 $O(\\log n)$。**：✅ 说法正确。由于问题规模每次折半（`n -> n/2 -> n/4 -> ... -> 1`），递归的最大深度为 `log2(n)` 层，每一层递归仅执行一次中点计算与常数级比较，因此该算法的时间复杂度为 `O(log n)`。\n\n**易错提醒：**\n- **审清反向设问**：题目设问为“描述不正确的是”，要求找出叙述有误的选项，切忌误选正确叙述。",
             tags: ["客观题", "单选题", "GESP5级", "二分查找", "递归"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 5,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 12,
@@ -823,23 +700,16 @@ int cooki4children(vector<int>& g, vector<int>& s) {
         {
             id: 15,
             type: "single",
-            question: `贪心算法的核心是（ ）。`,
-            options: ["全局搜索", "局部最优选择", "回溯", "并行计算"],
+            question: "小杨编写了一个如下的高精度减法函数：\n\n```cpp\nvector<int> highPrecisionSubtract(vector<int> a, vector<int> b) {\n    vector<int> result;\n    int borrow = 0;\n\n    for (int i = 0; i < a.size(); ++i) {\n        int digitA = a[i];\n        int digitB = i < b.size() ? b[i] : 0;\n\n        int diff = digitA - digitB - borrow;\n        if (diff < 0) {\n            diff += 10;\n            borrow = 1;\n        }\n        else {\n            borrow = 0;\n        }\n        result.push_back(diff);\n    }\n\n    while (result.size() > 1 && result.back() == 0) {\n        result.pop_back();\n    }\n\n    return result;\n}\n```\n\n下面说法，正确的是（ ）。",
+            options: ["如果数组 a 表示的整数小于 b 表示的整数，代码会正确返回二者的差为负数。","代码假设输入数字是以倒序存储的，例如 500 存储为 {0, 0, 5}。","代码的时间复杂度为 $O(a.size() + b.size())$。","当减法结果为 0 时，结果数组仍然会存储很多个元素 0。"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-
-            **解析：**
-            贪心算法的基础策略。
-
-            - **A 全局搜索**：错误。
-            - **B 局部最优选择**：正确答案。
-            - **C 回溯**：错误。
-            - **D 并行计算**：错误。
-
-            **考点：** C++基础
-            `,
-            tags: ["客观题", "单选题", "GESP5级", "贪心"],
+            explanation: "**官方答案：B**\n\n代码先处理个位，再逐位向高位借位，因此 500 存为 `{0, 0, 5}`。函数没有处理负号和最后的借位，A 不成立。末尾会删去多余的高位零，零值只保留一位，D 不成立。\n\n**原卷争议** 设两个数组长度为 $m$ 和 $n$，函数内部逐位处理 $m$ 个元素。两个 `vector` 以值传递，普通左值调用还需复制两组参数，总时间为 $O(m+n)$。C 作为时间上界也成立，原卷答案表给出 B。",
+            tags: ["客观题","单选题","GESP5级","高精度","模拟"],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","options","explanation","reviewedBy","reviewedAt","sourcePage","tags"],
         },
         {
             id: 16,

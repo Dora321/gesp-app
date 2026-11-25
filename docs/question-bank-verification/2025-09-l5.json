@@ -653,76 +653,87 @@
       "id": 17,
       "resolved": true,
       "dimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 2 题原文为“假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 findMusicalPattern(4, 6) 函数返回 2。”并附函数代码；站点 question 只有句子，缺少该代码块。",
-          "review": "修复后核验通过：第 8 页判断题第 2 题原文含 findMusicalPattern 代码块（void 返回类型、gcd 求公因子、(rhythm1*rhythm2)/commonDivisor），与 changes.question 恢复稿逐字一致；站点原 question 缺该代码块，已按原卷补齐。"
+          "initial": "第 8 页判断题第 2 题题干与代码与候选 question 一致：代码以 `void findMusicalPattern(int rhythm1, int rhythm2)` 声明，函数体内却 `return patternLength;`（原卷即如此）。",
+          "review": "修复后核验通过：第 8 页判断题第 2 题题干「假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 findMusicalPattern(4, 6) 函数返回2。」及代码框 5 行（void findMusicalPattern(int rhythm1, int rhythm2){ int commonDivisor = gcd(rhythm1, rhythm2); int patternLength = (rhythm1 * rhythm2) / commonDivisor; return patternLength; }）与候选 question 一致；站点原「findMusicalPattern(4 ， 6)」全角逗号排版混杂已由候选规范化，代码块已按原卷补入（原卷 void 声明配 return 值的编译缺陷逐字保留，见 unresolved）。"
         },
         "answer": {
-          "initial": "PDF 第 8 页判断答案表第 2 题为 ×；平台 answer=1，映射一致。",
-          "review": "第 8 页判断答案表第 2 题符号与站点 answer=1 映射一致（√=0/×=1）。"
+          "initial": "第 8 页判断答案表第 2 题为 ×（索引 1），候选 answer=1。独立推导：gcd(4,6)=2，(4*6)/2=12，函数返回 12 而非 2，命题错误。",
+          "review": "第 8 页判断答案表第 2 题为 ×（索引 1），候选 answer=1。独立推导：gcd(4,6)=2，patternLength=(4×6)/2=12≠2，命题「返回 2」错误；且 (a×b)/gcd 为最小公倍数而非最大公约数，2 是 gcd、12 是 lcm，题干混淆二者。"
         },
         "explanation": {
-          "initial": "独立推导：函数声明为 void 却 return patternLength，本身不能通过编译；即使忽略返回类型，(4×6)/gcd(4,6)=24/2=12，不是 2，命题错误。",
-          "review": "(4×6)/gcd(4,6)=24/2=12，返回 12 不是 2，命题错误，与答案表 × 一致。"
+          "initial": "候选解析正确指出 (a*b)/gcd 为最小公倍数，4 和 6 的 lcm 为 12，题干把 gcd 与 lcm 混淆。",
+          "review": "候选解析代入 4/6 算出 12、指出 gcd 与 lcm 混淆，与独立推导一致；易错提醒表述准确。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.glm.json"
+      ],
+      "sourceNotes": [
+        "原卷将 findMusicalPattern 声明为 void，函数体写了 return patternLength;。逐字转录后 C++17 编译报错，原卷缺陷随题保留。"
+      ],
+      "integrationNote": "原卷将 findMusicalPattern 声明为 void，函数体写了 return patternLength;。逐字转录后 C++17 编译报错，原卷缺陷随题保留。"
     },
     {
       "id": 18,
       "resolved": true,
       "dimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页判断题第 3 题原文为“下面递归实现的斐波那契数列的时间复杂度为 O(2^n)。”并附 fib_memo 代码；站点 question 写成“指数级”且缺少代码块。",
-          "review": "修复后核验通过：第 8 页判断题第 3 题原文为「……时间复杂度为 O(2^n)。」并附 fib_memo 记忆化递归与 main（n=40、memo[100]、fill_n 初值 -1），与 changes.question 恢复稿逐字一致；站点原「指数级」表述及代码缺失已按原卷恢复。"
+          "initial": "第 8 页判断题第 3 题题干「下面递归实现的斐波那契数列的时间复杂度为 O(2^n)。」及带记忆化的 fib_memo 代码与候选 question 一致。",
+          "review": "修复后核验通过：第 8 页判断题第 3 题题干「下面递归实现的斐波那契数列的时间复杂度为 O(2^n)。」及 fib_memo 带 memo 记忆化的 14 行代码（含 main 中 n=40、memo[100] fill_n(-1)）与候选 question 一致；站点原把 O(2^n) 改写为「指数级」且缺代码块，候选已按原卷恢复。"
         },
         "answer": {
-          "initial": "PDF 第 8 页判断答案表第 3 题为 ×；平台 answer=1，映射一致。",
-          "review": "第 8 页判断答案表第 3 题符号与站点 answer=1 映射一致（√=0/×=1）。"
+          "initial": "第 8 页判断答案表第 3 题为 ×（索引 1），候选 answer=1。独立推导：memo 使每个状态只计算一次，总计算量 O(n)，不是 O(2^n)，命题错误。",
+          "review": "第 8 页判断答案表第 3 题为 ×（索引 1），候选 answer=1。独立推导：memo[n]!=-1 命中缓存，每个 fib_memo(i)（0≤i≤n）只真正计算一次，总计算量 O(n) 而非 O(2^n)，命题错误；指数级是朴素双分支递归（同子问题反复求解）的行为。"
         },
         "explanation": {
-          "initial": "独立推导：代码带 memo 记忆化，每个状态只计算一次，时间复杂度 O(n)，不是指数级；无论表述为 O(2^n) 还是“指数级”，命题均为错误。",
-          "review": "代码带 memo 记忆化，每状态只算一次为 O(n)，非指数级，命题错误，与答案表 × 一致。"
+          "initial": "候选解析正确区分记忆化递归与朴素双分支递归，指出记忆化后复杂度为 O(n)。",
+          "review": "候选解析区分记忆化递归（每状态一次，O(n)）与朴素递归（指数级），并提醒先看有无备忘录，与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.glm.json"
       ]
     },
     {
@@ -968,152 +979,108 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         9,
         10
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 9-10 页题名“数字选取”、题意、输入输出与两组样例 6→4、9→5 均与站点一致；PDF 第 10 页数据范围给出 40% 1≤n≤1000、全部 1≤n≤10^5，站点 question 未包含数据范围。",
-          "review": "修复后核验通过：第 9-10 页页图「数字选取」题意、输入输出、样例 6→4、9→5 与站点一致；changes.question 补入第 10 页数据范围，与页图逐字一致。"
+          "initial": "第 9–10 页题面、输入输出、样例 6→4、9→5 与数据范围（40% 1≤n≤1000；全部 1≤n≤10^5）与候选 question 一致。",
+          "review": "修复后核验通过：第 9 页题面（两两互质、最大化数量、n=9 选 1,5,7,8,9 共 5 个）与输入输出格式、第 10 页样例 6→4、9→5 与数据范围（40% 1≤n≤1000；所有测试点 1≤n≤10^5）与候选 question 一致；站点缺失的数据范围已由候选补入。"
         },
         "explanation": {
-          "initial": "独立推导：1 与所有数互质，必选；大于 1 的数每个至少占用一个不同质因子，最多选 π(n) 个，构造“1 + 所有不超过 n 的素数”可达到 π(n)+1，故答案为 1+素数个数；n=9 时素数 2,3,5,7 共 4 个，加 1 得 5，与样例一致。",
-          "review": "独立推导：1 与一切互质必选；大于 1 的数各占用至少一个互不相同的质因子，集合中大于 1 的数不超过 π(n)，构造「1+全部素数」可达 π(n)+1；n=9 时 π=4 得 5，与样例一致；站点解析的素数计数本质与该推导一致。"
+          "initial": "独立推导：选 1 与所有 ≤n 的质数，共 1+π(n) 个；任意 >1 的选中数消耗一个不同质因子，故上界也是 π(n)。n=6 时 1+3=4，n=9 时 1+4=5，与样例一致，候选解析正确。",
+          "review": "独立推导：每个大于 1 的选中数至少占用一个互不相同的质因子，故个数 ≤ π(n)；取 1 与全部 ≤n 质数即达 1+π(n)，n=6 时 1+3=4、n=9 时 1+4=5 与样例一致；候选解析对该上界论证与「8 占用 2、9 占用 3」的样例说明均正确，并指明线性筛统计 cnt 后输出 1+cnt 与页图官方程序一致。"
         },
         "referenceCode": {
-          "initial": "站点参考程序与 PDF 第 10 页程序一致，用线性筛统计不超过 n 的素数个数并输出 1+cnt；已用 n=1、2、10、10^5 复核，输出 1、2、5、9593。",
-          "review": "站点参考程序与第 10 页官方程序一致（线性筛统计素数个数输出 1+cnt），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（6→4、9→5）与全部复核边界用例（1→1、10→5、100000→9593），输出逐字符一致。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：原样例 4/5；边界 1→1、4→3、10→5 通过；n=1..1000 与独立筛法 1+π(n) 全量对拍，零差异；n=10^5 运行正常。",
+          "review": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 10 页官方参考程序（同一线性筛 + printf 1+cnt）对拍：原样例 6→4、9→5 一致；独立用例 1→1、2→2、10→5、10^5→9593（π(10^5)=9592）均一致；与两两互质子集暴力（n=1..16 全 2^n 枚举）零差异；压力说明：n=10^5 实测 0.003 s，远低于 1.0 s。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 9
+        }
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
+        10,
         11,
         12
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 11-12 页题名“有趣的数字和”、题意、输入输出与两组样例 3 8→19、65 36248→328505490 均与站点一致；PDF 第 11 页数据范围给出 40% 1≤l≤r≤10^4、30% l=1 且 r=2^k-1、全部 1≤l≤r≤10^9，站点 question 未包含数据范围。",
-          "review": "修复后核验通过：第 11-12 页页图「有趣的数字和」题意、输入输出、样例 3 8→19、65 36248→328505490、数据范围（40% 1≤l≤r≤10^4、30% l=1 且 r=2^k-1（k>1）、全部 1≤l≤r≤10^9）与 long long 提示与 changes.question 一致。"
+          "initial": "第 11–12 页题面、输入输出、样例 3 8→19、65 36248→328505490 与数据范围（40% l≤r≤10^4；30% l=1,r=2^k-1；全部 1≤l≤r≤10^9）及 long long 提示与候选 question 一致。",
+          "review": "修复后核验通过：第 11 页题面（二进制奇数个 1、7=(111)₂ 有趣、9=(1001)₂ 不有趣、统计 l≤n≤r 之和）、输入输出格式、样例 3 8→19、65 36248→328505490、数据范围（40% 1≤l≤r≤10^4；另外 30% l=1 且 r=2^k−1，k 为大于 1 的正整数；所有测试点 1≤l≤r≤10^9）与提示「由于本题的数据范围较大，整数类型请使用 long long」均与候选 question 一致；站点缺失的数据范围与 long long 提示已由候选补入。"
         },
         "explanation": {
-          "initial": "独立推导：设 f(n) 为 [0,n] 中二进制含奇数个 1 的数之和，答案 f(r)-f(l-1)；满块 [0,2^k-1] 内奇偶各半、和也各半，可用 cal2 常数时间求出，再按最高位分治；样例 3~8 中 4、7、8 满足，和 19，与样例一致。",
-          "review": "独立推导：设 f(n) 为 [0,n] 中二进制含奇数个 1 的数之和，答案 f(r)-f(l-1)；满块 [0,2^k-1] 内奇偶个数与单位和各半，cal2 常数求解后按最高位分治翻转奇偶性；样例 3~8 中 4、7、8 满足条件和 19，与样例一致；站点解析的分治流程与该推导一致。"
+          "initial": "独立推导：f(n) 为 [0,n] 中奇数 popcount 数之和，按最高位 2^k 分治，低段满块用 2^(k-1) 个数、n(n+1)/4 之和，高段翻转奇偶性并加 2^k×个数；样例 3..8 得 4+7+8=19，与候选解析一致。",
+          "review": "独立用 Python 位统计数位推导复核：满块 [0,2^k−1] 中奇/偶 popcount 各 2^(k−1) 个、k≥2 时奇偶两组之和相等（各半），即 count=(n+1)/2、sum=n(n+1)/4（n=2^k−1），与 cal2 公式一致；高段 [x,n] 奇偶反转（1−p）且数值加 x×个数，与候选解析分治流程一致；样例 f(8)=22、f(2)=3，差 19，4+7+8=19 与解析逐数验算一致。"
         },
         "referenceCode": {
-          "initial": "站点参考程序与 PDF 第 12 页程序一致，cal2 处理满块、cal 按最高位拆分；已用 1 1、2 2、3 3、1 10 与样例 2 复核，输出 1、2、0、22、328505490。",
-          "review": "站点参考程序与第 12 页官方程序一致（cal2 满块公式 + cal 最高位拆分递归），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（3 8→19、65 36248→328505490）与全部复核边界用例（1 1→1、3 3→0、1 10→22），输出逐字符一致。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：原样例 19/328505490；边界 1 1→1、3 3→0、1 10→22、1 10^9→250000000750000000 通过；另用独立二进制数位 DP 对 l,r≤1000 的随机区间及 1..10^9、1..2^30-1 等大区间对拍，零差异。",
+          "review": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 11–12 页官方参考程序（cal2 满块公式 + cal 最高位分治 + 前缀作差）对拍：原样例 3 8→19、65 36248→328505490 一致；独立用例 1 1→1、3 3→0、1 10→22、1 10^9→250000000750000000、536870911→536870911（2^29−1 自身 popcount 为奇）与官方一致；与独立 Python 数位递推在 ≤5000 暴力全对拍及 40 组 10^9 级随机区间上零差异；压力说明：1 10^9 实测 0.002 s，远低于 1.0 s。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-09-l5.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 10
+        }
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 17,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 18,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
-  "pendingChanges": [
-    {
-      "id": 17,
-      "changes": {
-        "question": "假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 findMusicalPattern(4, 6) 函数返回 2。\n\n```cpp\nvoid findMusicalPattern(int rhythm1, int rhythm2) {\n    int commonDivisor = gcd(rhythm1, rhythm2);\n    int patternLength = (rhythm1 * rhythm2) / commonDivisor;\n    return patternLength;\n}\n```"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 18,
-      "changes": {
-        "question": "下面递归实现的斐波那契数列的时间复杂度为 $O(2^n)$。\n\n```cpp\nlong long fib_memo(int n, long long memo[]) {\n    if (n <= 1) return n;\n    if (memo[n] != -1) return memo[n];\n    memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo);\n    return memo[n];\n}\n\nint main() {\n    int n = 40;\n    long long memo[100];\n    fill_n(memo, 100, -1);\n    long long result2 = fib_memo(n, memo);\n    return 0;\n}\n```"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 26,
-      "changes": {
-        "question": "# [GESP202509 五级] 数字选取\n\n## 题目描述\n\n给定正整数 $n$，现在有 $1,2,\\ldots,n$ 共计 $n$ 个整数。你需要从这 $n$ 个整数中选取一些整数，使得所选取的整数中任意两个不同的整数均互质（也就是说，这两个整数的最大公因数为 $1$）。请你最大化所选取整数的数量。\n\n例如，当 $n=9$ 时，可以选择 $1,5,7,8,9$ 共计 $5$ 个整数。可以验证不存在数量更多的选取整数的方案。\n\n## 输入格式\n\n一行，一个正整数 $n$，表示给定的正整数。\n\n## 输出格式\n\n一行，一个正整数，表示所选取整数的最大数量。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le n \\le 1000$；对于所有测试点，保证 $1 \\le n \\le 10^5$。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "question": "# [GESP202509 五级] 有趣的数字和\n\n## 题目描述\n\n如果一个正整数的二进制表示包含奇数个 $1$，那么小 A 就会认为这个正整数是有趣的。\n\n例如，$7$ 的二进制表示为 $(111)_2$，包含 $1$ 的个数为 $3$ 个，所以 $7$ 是有趣的。但是 $9=(1001)_2$ 包含 $2$ 个 $1$，所以 $9$ 不是有趣的。\n\n给定正整数 $l,r$，请你统计满足 $l\\le n\\le r$ 的有趣的整数 $n$ 之和。\n\n## 输入格式\n\n一行，两个正整数 $l,r$，表示给定的正整数。\n\n## 输出格式\n\n一行，一个正整数，表示 $l,r$ 之间有趣的整数之和。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le l \\le r \\le 10^4$；对于另外 30% 的测试点，保证 $l=1$ 且 $r=2^k-1$，其中 $k$ 是大于 1 的正整数；对于所有测试点，保证 $1 \\le l \\le r \\le 10^9$。\n\n由于本题的数据范围较大，整数类型请使用 `long long`。"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l5.code-checks.json"
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2025-09-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-09-l5.integration.json"
 }

@@ -28,43 +28,47 @@
       "id": 1,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
         1,
         2
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 1-2 页第 1 题给出循环单链表 Node/createList/insertTail/printList 完整代码，横线位于 printList 遍历处；站点 question 只有题干，缺少该代码块。",
-          "review": "修复后核验通过：第 1 页题干「对如下定义的循环单链表，横线处填写（ ）。」及第 1-2 页 Node 结点、createList、insertTail、printList（横线在遍历处）代码与 changes.code 一致；站点 question 原缺该代码块，已按原卷补齐。"
+          "initial": "第 1–2 页给出循环单链表结构、createList/insertTail/printList 代码与横线，候选 question 与 code 一致。",
+          "review": "修复后核验通过：第 1 页题干「对如下定义的循环单链表，横线处填写（ ）。」及 1–34 行代码（Node 结点、createList、insertTail、printList 中 p=head 后横线 //在此处填入代码、cout << endl;）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
         },
         "options": {
-          "initial": "PDF 第 2 页 A-D 四段遍历代码与站点 options 顺序和内容一致，C 为 do{...}while(p!=head);。",
-          "review": "第 1-2 页页图 A while(p!=nullptr)、B while(p->next!=nullptr)、C do{...}while(p!=head)、D for(;p;p=p->next) 四段遍历代码与站点 options 一致。"
+          "initial": "第 1–2 页 A `while (p != nullptr)`、B `while (p->next != nullptr)`、C `do {...} while (p != head)`、D `for (; p; p = p->next)` 与候选 options 一致。",
+          "review": "第 1–2 页页图 A「while (p != nullptr){ cout << p->data << \" \"; p = p->next; }」B「while (p->next != nullptr){ … }」C「do { cout << p->data << \" \"; p = p->next; } while (p != head);」D「for(; p; p=p->next){ … }」与站点 options 一致（候选未改，无需修改）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 1 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
-          "review": "第 1 页答案表第 1 题为 C，0 起始索引 2，站点 answer=2。独立推导：循环链表无 nullptr 终点，A/B/D 条件恒真死循环；C 先输出当前结点再后移，回到 head 恰走一圈。"
+          "initial": "第 1 页答案表第 1 题为 C（索引 2），候选 answer=2。独立推导：循环链表无 nullptr，A/B/D 均死循环；do-while 先输出后移到 head 停止，正确。",
+          "review": "第 1 页答案表第 1 题为 C，0 起始索引 2，候选 answer=2。独立推导：循环单链表无 nullptr 终点，A/B/D 的循环条件永不为假（p 与 p->next 恒非空），均死循环；C 先输出再前进，回到 head 即停，恰好输出全部结点一次，C 正确。"
         },
         "explanation": {
-          "initial": "独立推导：循环链表尾结点 next 回指 head，链上不存在 nullptr，必须用 do-while 先输出再前进，走到 p==head 停止，故 C 正确；A/B/D 都会死循环。",
-          "review": "站点解析逐项死循环归因与独立推导一致。"
+          "initial": "候选解析对四种遍历的死循环/正确性分析正确。",
+          "review": "站点解析对四种遍历的死循环/正确性分析与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.glm.json"
       ]
     },
     {
@@ -111,42 +115,53 @@
       "id": 3,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
-        3
+        3,
+        1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "GLM 5.3 Flash max 独立复核",
+        "集成阶段核对原卷或实测结果"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 3 页第 3 题给出 DNode/deleteNode/SNode/deleteSNode 代码，要求比较单链表与双链表删除指定结点的复杂度；站点 question 只有题干，缺少该代码块。",
-          "review": "修复后核验通过：第 3 页题干「下面关于单链表和双链表的描述中，正确的是（ ）。」及 DNode/deleteNode（前后指针重接）与 SNode/deleteSNode（从头找前驱）代码与 changes.code 一致；站点 question 原缺该代码块，已按原卷补齐。"
+          "initial": "第 3 页题干「下面关于单链表和双链表的描述中，正确的是（ ）。」与候选 question 一致；双链表 deleteNode 与单链表 deleteSNode 代码与候选 code 一致。",
+          "review": "第 3 页题干「下面关于单链表和双链表的描述中，正确的是（ ）。」与候选 question 一致；DNode/deleteNode（prev/next 重接后 delete）与 SNode/deleteSNode（从头 while(prev->next != node) 找前驱再重接）代码（1–31 行）与候选 code 一致，站点原缺代码块问题已由候选补齐。"
         },
         "options": {
-          "initial": "PDF 第 3 页 A-D 四项与站点 options 顺序和含义一致，C 为“双链表删除指定结点是 O(1)，单链表是 O(N)”。",
-          "review": "第 3 页页图 A 双 O(1) 单 O(1)、B 双 O(n) 单 O(1)、C 双 O(1) 单 O(n)、D 双 O(n) 单 O(n)（站点作「通常是 O(N)」等价表述）与站点 options 语义一致。"
+          "initial": "第 3 页原选项为 A 双链表 O(1)、单链表 O(1)；B 双链表 O(n)、单链表 O(1)；C 双链表 O(1)、单链表 O(n)；D 双链表 O(n)、单链表 O(n)。候选 options 把 D 改写为「单链表若已知前驱则是 O(1)」，该说法本身为真，导致 C、D 同时成立；changes.options 已恢复原卷表述。 集成核验：第 3 页写作「节点」，两模型给出的四种复杂度组合一致。采用原卷文字和选项顺序，并保留题面两段示例程序。",
+          "review": "第 3 页页图四个选项为复杂度四组合：A「双链表删除指定节点是O(1)，单链表是O(1)」B「双链表删除指定节点是O(n)，单链表是O(1)」C「双链表删除指定节点是O(1)，单链表是O(n)」D「双链表删除指定节点是O(n)，单链表是O(n)」。站点 options 把四项改写为「通常是 O(N)」等表述并将组合换位（站点 A=双O(N)/单O(N)、B=双O(1)/单O(1)、D=双O(N)/单链表若已知前驱则是O(1)），与原卷 A/B/D 三项均不一致；2026-11-07 初轮报告所称「等价表述」不成立（如站点 A 的双链表 O(N) 与原卷 A 的 O(1) 相反）。changes.options 按原卷逐字恢复。 集成核验：第 3 页写作「节点」，两模型给出的四种复杂度组合一致。采用原卷文字和选项顺序，并保留题面两段示例程序。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 3 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
-          "review": "第 1 页答案表第 3 题为 C，0 起始索引 2，站点 answer=2。独立推导：双链表结点自带 prev，删除指定结点两步重接 O(1)；单链表须从头遍历找前驱 O(N)。"
+          "initial": "第 1 页答案表第 3 题为 C（索引 2），候选 answer=2；恢复原选项后 C 仍唯一正确。",
+          "review": "第 1 页答案表第 3 题为 C，0 起始索引 2，候选 answer=2。独立推导：双链表结点自带 prev，删除指定结点两步重接 O(1)；单链表只有 next，须从头遍历找前驱 O(n)。恢复原选项后 C 仍唯一正确。"
         },
         "explanation": {
-          "initial": "独立推导：双链表结点自带 prev/next，删除指定结点可直接改前后指针 O(1)；单链表只有 next，删除指定结点需从头找前驱 O(N)，故 C 正确。",
-          "review": "站点解析强调「是否已知前驱」前提并区分按值删除，与独立推导一致。"
+          "initial": "候选解析按改写后的 D 讲「把两者复杂度说反了」，与恢复后的 D 不符；changes.explanation 已按原卷选项重写。 集成核验：第 3 页写作「节点」，两模型给出的四种复杂度组合一致。采用原卷文字和选项顺序，并保留题面两段示例程序。",
+          "review": "站点解析按站点改写版选项逐项作答（如「D 错误：把两者的复杂度恰好说反了」），与恢复后的原卷选项不对应；changes.explanation 按原卷四组合重写逐项判断，并保留「按值删除整体 O(n)」的易错点。 集成核验：第 3 页写作「节点」，两模型给出的四种复杂度组合一致。采用原卷文字和选项顺序，并保留题面两段示例程序。"
         }
       },
-      "unresolved": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code",
+        "options",
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.glm.json"
+      ],
+      "integrationNote": "第 3 页写作「节点」，两模型给出的四种复杂度组合一致。采用原卷文字和选项顺序，并保留题面两段示例程序。",
+      "sourceNotes": [
+        "题给两个函数都没有更新外部头指针。原卷比较的是指定节点删除操作的时间复杂度。"
       ]
     },
     {
@@ -388,42 +403,47 @@
       "id": 10,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
-        5
+        5,
+        1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 10 题给出以首元素为基准的 partition/quickSort 代码，问最坏时间复杂度；站点 question 只有题干，缺少该代码块。",
-          "review": "修复后核验通过：第 5 页题干「下述 C++ 代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。」及 partition（首元素基准、双 scanner、swap(arr[i],arr[low])）与 quickSort 代码与 changes.code 一致；站点 question 原缺该代码块，已按原卷补齐。"
+          "initial": "第 5 页给出 partition/quickSort 完整代码与题干「下述C++代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。」，候选 question 与 code 一致。",
+          "review": "修复后核验通过：第 5 页题干「下述C++代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。」及 partition（首元素基准、i/j 双向扫描注释「从右往左查找/从左往右查找」）与 quickSort 代码（共 18 行）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
         },
         "options": {
-          "initial": "PDF 第 5 页 A-D 四项为 O(n)、O(log n)、O(n²)、O(n log n)，与站点一致。",
-          "review": "第 5 页页图 A O(n)、B O(log n)、C O(n²)、D O(n log n)，与站点 options 一致。"
+          "initial": "第 5 页 A O(n)、B O(log n)、C O(n²)、D O(nlogn) 与候选 options 一致。",
+          "review": "第 5 页页图 A「O(n)」B「O(log n)」C「O(n²)」D「O(nlogn)」与站点 options 一致（候选未改，无需修改）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 10 题为 C；按 0 起始索引映射为 2，站点 answer=2。",
-          "review": "第 1 页答案表第 10 题为 C，0 起始索引 2，站点 answer=2。独立推导：已有序/全相等输入每次划分仅移出一个元素，T(n)=T(n-1)+O(n) 得 O(n²)；B 是递归深度而非总时间。"
+          "initial": "第 1 页答案表第 10 题为 C（索引 2），候选 answer=2。独立推导：首元素枢轴在有序/全等输入下每次只分出 0 与 n-1，递归深度 n，最坏 O(n²)。",
+          "review": "第 1 页答案表第 10 题为 C，0 起始索引 2，候选 answer=2。独立推导并实测：pivot 取 arr[low]，对升序有序输入（如 {1,2,3}）第一趟内层 j 一直左扫到越界、partition 返回 low，每趟只分出 0 与 n−1 两段，递归深度 n，最坏 O(n²)，C 正确。"
         },
         "explanation": {
-          "initial": "独立推导：首元素为基准时，已有序或全相等输入会让每次划分只减少一个元素，递归深度 n，总比较 O(n²)，故 C 正确。",
-          "review": "站点解析逐项归因与独立推导一致。"
+          "initial": "候选解析对最坏情况与各选项的说明正确。",
+          "review": "站点解析对最坏情况（有序输入+首元素基准退化）与各选项的说明与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.glm.json"
       ]
     },
     {
@@ -508,85 +528,95 @@
       "id": 13,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
-        7
+        7,
+        1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7 页第 13 题给出 factorial1（递归）与 factorial2（迭代）代码及四个说法；站点 question 只有题干，缺少该代码块。",
-          "review": "修复后核验通过：第 7 页题干「下面给出了阶乘计算的两种方式。以下说法正确的是（ ）。」及 factorial1（递归）与 factorial2（while 累乘）代码与 changes.code 一致；站点 question 原缺该代码块，已按原卷补齐。"
+          "initial": "第 7 页给出 factorial1/factorial2 代码与题干「下面给出了阶乘计算的两种方式。以下说法正确的是（ ）。」，候选 question 与 code 一致。",
+          "review": "修复后核验通过：第 7 页题干「下面给出了阶乘计算的两种方式。以下说法正确的是（ ）。」及 factorial1（单分支递归）与 factorial2（while 累乘迭代）代码（共 13 行）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
         },
         "options": {
-          "initial": "PDF 第 7 页 A-D 四项与站点 options 一致，A 为“两种实现时间复杂度相同，都为 O(n)”。",
-          "review": "第 7 页页图 A 时间相同均 O(n)、B 空间相同均 O(n)、C 空间相同均 O(1)、D factorial1 O(2^n) 且 factorial2 O(n)，与站点 options 一致。"
+          "initial": "第 7 页 A 时间均为 O(n)、B 空间均为 O(n)、C 空间均为 O(1)、D factorial1 为 O(2^n) 而 factorial2 为 O(n)，与候选 options 一致。",
+          "review": "第 7 页页图 A「上面两种实现方式的时间复杂度相同，都为O(n)」B「空间复杂度相同，都为O(n)」C「空间复杂度相同，都为O(1)」D「函数 factorial1() 的时间复杂度为 O(2^n)，函数 factorial2() 的时间复杂度为 O(n)」与站点 options 一致（候选未改，无需修改）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 13 题为 A；按 0 起始索引映射为 0，站点 answer=0。",
-          "review": "第 1 页答案表第 13 题为 A，0 起始索引 0，站点 answer=0。独立推导：两种实现均做 n 量级乘法时间同阶；递归栈 O(n) 与迭代 O(1) 空间不同；factorial1 单支递归非 O(2^n)。"
+          "initial": "第 1 页答案表第 13 题为 A（索引 0），候选 answer=0。独立推导：两者乘法次数均 O(n)；递归版栈空间 O(n)、迭代版 O(1)，B/C 错；factorial1 单分支递归 O(n) 非 O(2^n)，D 错。",
+          "review": "第 1 页答案表第 13 题为 A，0 起始索引 0，候选 answer=0。独立推导：两者乘法次数均为 n−1 次，时间都是 O(n)，A 正确；factorial1 递归栈 O(n)、factorial2 常数空间 O(1)，B/C 错；factorial1 是单分支递归 O(n) 而非 O(2^n)，D 错。"
         },
         "explanation": {
-          "initial": "独立推导：两种写法都做 n 次乘法，时间复杂度同为 O(n)；递归版空间 O(n)，迭代版 O(1)，故 A 正确，B/C/D 错误。",
-          "review": "站点解析逐项归因与独立推导一致。"
+          "initial": "候选解析对时间/空间复杂度与 D 的对比正确。",
+          "review": "站点解析对时间/空间复杂度与 D 的对比说明与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.glm.json"
       ]
     },
     {
       "id": 14,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         7,
-        8
+        8,
+        1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7-8 页第 14 题给出 Task/sortByProfit/maxProfit 代码，横线位于占用时间槽处；站点 question 只有题干，缺少该代码块。",
-          "review": "修复后核验通过：第 7 页末题干（任务截止时间与利润、贪心按利润从高到低排序尽量安排）及第 8 页 Task 结点、sortByProfit、maxProfit（逆序找空槽、横线、break）代码与 changes.code 一致；站点 question 原缺该代码块，已按原卷补齐。"
+          "initial": "第 7–8 页给出 Task/排序/maxProfit 代码与题干「……按利润从高到低排序，尽量安排，则横线处应填写（ ）。」，候选 question 与 code 一致。",
+          "review": "修复后核验通过：第 7 页末题干「给定有n个任务，每个任务有截止时间和利润……即按利润从高到低排序，尽量安排，则横线处应填写（ ）。」及第 8 页 Task（deadline/profit 注释）、sortByProfit（lambda a.profit > b.profit）、maxProfit（slot 数组、从 task.deadline 倒序找空槽、横线后 break）代码（共 35 行）与候选 question + changes.code 一致；站点 question 原缺代码块，候选已按原卷补入。"
         },
         "options": {
-          "initial": "PDF 第 8 页 A-D 四组为 slot[t]=true/totalProfit+=、false/+=、true/=、false/=，与站点一致。",
-          "review": "第 8 页页图 A slot[t]=true; totalProfit+=task.profit;、B false 并累加、C true 但赋值、D false 并赋值，与站点 options 一致。"
+          "initial": "第 8 页 A `slot[t] = true; totalProfit += task.profit;`、B false 累加、C true 赋值、D false 赋值，与候选 options 一致。",
+          "review": "第 8 页页图 A「slot[t] = true; totalProfit += task.profit;」B「slot[t] = false; totalProfit += task.profit;」C「slot[t] = true; totalProfit = task.profit;」D「slot[t] = false; totalProfit = task.profit;」与站点 options 一致（候选未改，无需修改）。"
         },
         "answer": {
-          "initial": "PDF 第 1 页答案表第 14 题为 A；按 0 起始索引映射为 0，站点 answer=0。",
-          "review": "第 1 页答案表第 14 题为 A，0 起始索引 0，站点 answer=0。独立推导：if(!slot[t]) 已筛出空槽，进入后须标记占用并累加利润，A 正确；B 槽反复可用、C 覆盖之前利润、D 两处皆错。"
+          "initial": "第 1 页答案表第 14 题为 A（索引 0），候选 answer=0。独立推导：slot[t] 记录占用，进入空槽后应标记 true 并累加利润，A 正确。",
+          "review": "第 1 页答案表第 14 题为 A，0 起始索引 0，候选 answer=0。独立推导：进入空槽后必须占用该槽并累加当前任务利润，A 正确；B 不标记槽（可重复占用），C 不累加（覆盖丢失利润），D 既不标记也不累加。"
         },
         "explanation": {
-          "initial": "独立推导：if(!slot[t]) 表示槽 t 空闲，进入后应标记占用 slot[t]=true，并把当前任务利润累加 totalProfit+=task.profit，故 A 正确。",
-          "review": "站点解析逐项归因与独立推导一致。"
+          "initial": "候选解析对 B/C/D 的错误原因说明正确。",
+          "review": "站点解析对 B/C/D 错误原因的说明与独立推导一致。"
         }
       },
-      "unresolved": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.glm.json"
       ]
     },
     {
@@ -974,213 +1004,112 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         10,
         11
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
         "DeepSeek V4.1 Flash max 初核",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "集成阶段核对原卷或实测结果",
+        "C++17 实际编译、原样例与独立边界用例"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 10-11 页题名“数字移动”、题意、输入输出与样例 6 / 1 2 1 3 2 3 → 2 均与站点一致；PDF 第 11 页数据范围给出 40% 1≤N,A_i≤100、全部 1≤N,A_i≤10^5，站点 question 未包含数据范围。",
-          "review": "修复后核验通过：第 10-11 页页图「数字移动」题意、输入输出、样例 6 / 1 2 1 3 2 3→2 与站点一致；changes.question 补入第 11 页数据范围，与页图逐字一致。"
+          "initial": "第 10–11 页题面、输入输出、样例 6 / 1 2 1 3 2 3→2 与数据范围（40% 1≤N,A_i≤100；全部 1≤N,A_i≤10^5）与候选 question 一致。",
+          "review": "修复后核验通过：第 10 页「数字移动」题面（成对保证、移动第 i 个数字花费对应数字体力、最小 x）、输入输出格式、第 11 页样例 6 / 1 2 1 3 2 3 → 2 与数据范围（40% 1≤N,A_i≤100；所有测试点 1≤N,A_i≤10^5）与候选 question 一致；站点缺失的数据范围已由候选补入。"
         },
         "explanation": {
-          "initial": "独立推导：每个数出现恰好两次，若某数 v>x，则它的两次出现都不能移动，必须在原序列中已经相邻；所有 ≤x 的数都可移走并另行配对，因此可行当且仅当过滤掉 ≤x 的数后，剩余序列恰好成对相邻。样例 A={1,2,1,3,2,3}，x=1 时剩余 2,3,2,3 不成对，x=2 时剩余 3,3 成对，故答案为 2。",
-          "review": "独立推导：体力上限 x 下数值 >x 的数不可动，其两次出现必须原序相邻（过滤 ≤x 后成对）；可行性与 x 单调，二分最小 x；样例 x=1 剩 2,3,2,3 不成对、x=2 剩 3,3 成对得 2，与样例一致；站点解析的判定条件与二分框架与该推导一致。"
+          "initial": "候选解析的二分答案判定（提取 >x 的子序列必须两两相邻成对）与样例走查正确；但「数值最大可达 10^6」与题面 1≤A_i≤10^5 不符（参考程序取 1e6 只是保守上界），changes.explanation 已改正。 集成核验：原卷第 11 页的数据范围为 1≤A_i≤10⁵。参考程序取 10⁶ 作为保守二分右界。",
+          "review": "候选解析核心转化（>x 的数不可动、过滤后须原序成对相邻，单调性二分最小 x）经独立推导正确，样例走查 x=1 剩 [2,3,2,3] 不成对、x=2 剩 [3,3] 成对得 2 亦正确；但解析两处称「right = 1000000（原序列数值上限）」「题目中数值最大可达 10^6」——第 11 页数据范围为 1≤A_i≤10^5，1e6 只是官方参考程序二分右界的保守取值，两处均与题面矛盾。changes.explanation 改为「大于题目上限 10^5 的稳妥上界」并同步易错提醒（仅此两处，其余主体核验无误后保留）。 集成核验：原卷第 11 页的数据范围为 1≤A_i≤10⁵。参考程序取 10⁶ 作为保守二分右界。"
         },
         "referenceCode": {
-          "initial": "站点参考程序与 PDF 第 11 页程序一致，二分 x 并过滤 a[i]>x 检查是否成对相邻；已用 4 组小数据和样例复核，输出 1、2、3、2。",
-          "review": "站点参考程序与第 11 页官方程序一致（二分 mid、过滤 a[i]>mid 检查 b[i] 与 b[i+1] 成对），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（→2）与全部复核边界用例（4/1 2 2 1→1、6/3 1 2 3 1 2→2、8/2 4 2 3 4 3 5 5→3），输出逐字符一致。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：原样例 2；边界 4/1 2 1 2→1、6/1 2 3 1 2 3→2、4/1 2 2 1→1 通过；另对 N≤6 的随机合法成对序列用状态 BFS 暴力求最小 x 对拍 24 组，零差异；N=10^5 运行 0.11s。",
+          "review": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 11 页官方参考程序（同一二分答案 + 过滤成对判定）对拍：原样例 6/1 2 1 3 2 3→2 一致；独立用例 4/1 2 2 1→1、6/3 1 2 3 1 2→2、8/2 4 2 3 4 3 5 5→3 均与官方及手推一致；与「最小可行 x 取自序列不同值」的独立暴力（可行性单调、题面保证至少一次操作排除已配对输入）在 289 组随机成对序列上零差异；压力说明：N=10^5（500 对倒序排列）实测 0.108 s，低于 1.0 s。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "explanation",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.glm.json"
+      ],
+      "integrationNote": "原卷第 11 页的数据范围为 1≤A_i≤10⁵。参考程序取 10⁶ 作为保守二分右界。",
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 10
+        }
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         12,
         13
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 12-13 页题名“相等序列”、题意、输入输出与样例 5 / 10 6 35 105 42 → 8 均与站点一致；PDF 第 12 页数据范围给出 60% 1≤N,A_i≤100、全部 1≤N,A_i≤10^5，站点 question 未包含数据范围。",
-          "review": "修复后核验通过：第 12 页页图「相等序列」题意、输入输出、样例 5 / 10 6 35 105 42→8 与站点一致；changes.question 补入第 12 页数据范围，与页图逐字一致。"
+          "initial": "第 12–13 页题面、输入输出、样例 5 / 10 6 35 105 42→8 与数据范围（60% 1≤N,A_i≤100；全部 1≤N,A_i≤10^5）与候选 question 一致。",
+          "review": "修复后核验通过：第 12 页「相等序列」题面（×P 或 /P 各花 1 金币、最少金币令全相同）、输入输出格式、样例 5 / 10 6 35 105 42 → 8 与数据范围（60% 1≤N,A_i≤100；所有测试点 1≤N,A_i≤10^5）与候选 question 一致；站点缺失的数据范围已由候选补入。原卷除法条件写作「要求 $A_i$ 能整除 $P$」（方向与操作 A_i/P 相反，为原卷笔误），候选按操作本义写作「要求 $A_i$ 是 $P$ 的倍数」（与官方参考程序按整除分支一致），该改动已记录见 unresolved。"
         },
         "explanation": {
-          "initial": "独立推导：每次乘/除一个质数相当于在质因子指数向量上加减 1，目标向量按每个质因子的中位数取即可使总绝对差最小；样例各质因子指数中位数均为 1，目标为 210，五个数到 210 的距离之和为 2+2+2+1+1=8，与样例一致。",
-          "review": "独立推导：乘/除质数即在各质因子指数向量上 ±1，各质因子独立取指数中位数使绝对差总和最小；样例各质因子指数中位数均为 1（目标 210），五个数到 210 的距离和 2+2+2+1+1=8，与样例一致；站点解析的中位数贪心与该推导一致。"
+          "initial": "独立推导：按质因子独立，目标指数取各数该质因子指数的中位数时 Σ|e_i-E| 最小；样例四个质因数各贡献 2，总计 8，与候选解析一致。",
+          "review": "独立推导：各操作只改变单个质因子的指数，质数之间独立；目标指数 E 对每个质因子独立取各数指数的中位数时 Σ|e_i−E| 最小。样例 10=2·5、6=2·3、35=5·7、105=3·5·7、42=2·3·7，2 的指数 {1,1,0,0,1} 中位数 1 贡献 2，3 的 {0,1,0,1,1} 贡献 2，5 的 {1,0,1,1,0} 贡献 2，7 的 {0,0,1,1,1} 贡献 2，合计 8，与样例及候选解析一致。"
         },
         "referenceCode": {
-          "initial": "站点参考程序与 PDF 第 13 页程序一致，分解质因数后用 num[p][e] 计数，逐质因子取指数中位数并累加绝对差；已用 N=1、2、3 和样例复核，输出 0、2、2、8。",
-          "review": "站点参考程序与第 13 页官方程序一致（试除分解按 num[p][e] 计数、补 num[p][0]、逐质数取指数中位数累加绝对差），已用 g++ -std=c++17 -O2 实际编译并跑通原样例（→8）与全部复核边界用例（1/7→0、2/2 3→2、3/2 4 8→2），输出逐字符一致。"
+          "initial": "本机 g++ -std=c++17 -O2 编译候选参考程序：原样例 8；边界 1/1→0、2/2 3→2、2/8 2→2 通过；另对 N≤4、A_i≤24 的 100 组随机数据枚举 lcm 的全体目标因子对拍，零差异；N=10^5 运行 0.02s。",
+          "review": "g++ -std=c++17 -O2（Apple clang 21.0.0）编译站点参考程序并与第 13 页官方参考程序（质因子指数直方图 + 按中位数累加 |j−中位数|）对拍：原样例 5/10 6 35 105 42→8 一致；独立用例 1/7→0、2/2 3→2、3/2 4 8→2、2/8 2→2 与官方及手推一致；与有界 BFS 暴力（×P//P 状态图最短路，60 组 N≤3、A_i≤12）及按质因子枚举目标指数 E 的暴力（200 组 N≤5、A_i≤60）零差异；压力说明：N=10^5（全为 99991）实测 0.031 s，低于 1.0 s。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question",
+        "memoryLimit"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2025-12-l5.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 12
+        }
+      ],
+      "sourceNotes": [
+        "原卷写作 A_i 能整除 P。除法操作要求 P 整除 A_i，官方参考程序亦按此方向判断，网站以整除约束的实际含义表述。"
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 1,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 3,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 13,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
-  "pendingChanges": [
-    {
-      "id": 1,
-      "changes": {
-        "code": "// 循环单链表的结点\nstruct Node {\n    int data;       // 数据域\n    Node* next;     // 指针域\n\n    Node(int d) : data(d), next(nullptr) {}\n};\n\n// 创建一个只有一个结点的循环单链表\nNode* createList(int value) {\n    Node* head = new Node(value);\n    head->next = head;\n    return head;\n}\n\n// 在循环单链表尾部插入新结点\nvoid insertTail(Node* head, int value) {\n    Node* p = head;\n    while (p->next != head) {\n        p = p->next;\n    }\n    Node* node = new Node(value);\n    node->next = head;\n    p->next = node;\n}\n\n// 遍历并输出循环单链表\nvoid printList(Node* head) {\n    if (head == nullptr) return;\n\n    Node* p = head;\n    ______________________          //在此处填入代码\n    cout << endl;\n}"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 3,
-      "changes": {
-        "code": "struct DNode {\n    int data;\n    DNode* prev;\n    DNode* next;\n};\n\n// 在双链表中删除指定节点\nvoid deleteNode(DNode* node) {\n    if (node->prev) {\n        node->prev->next = node->next;\n    }\n    if (node->next) {\n        node->next->prev = node->prev;\n    }\n    delete node;\n}\n\nstruct SNode {\n    int data;\n    SNode* next;\n};\n\n// 在单链表中删除指定节点\nvoid deleteSNode(SNode* head, SNode* node) {\n    SNode* prev = head;\n    while (prev->next != node) {\n        prev = prev->next;\n    }\n    prev->next = node->next;\n    delete node;\n}"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 10,
-      "changes": {
-        "code": "int partition(vector<int>& arr, int low, int high) {\n    int i = low, j = high;\n    int pivot = arr[low];                 // 以首元素为基准\n    while (i < j) {\n        while (i < j && arr[j] >= pivot) j--;   //从右往左查找\n        while (i < j && arr[i] <= pivot) i++;   //从左往右查找\n        if (i < j) swap(arr[i], arr[j]);\n    }\n    swap(arr[i], arr[low]);\n    return i;\n}\n\nvoid quickSort(vector<int>& arr, int low, int high) {\n    if (low >= high) return;\n    int p = partition(arr, low, high);\n    quickSort(arr, low, p - 1);\n    quickSort(arr, p + 1, high);\n}"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 13,
-      "changes": {
-        "code": "int factorial1(int n) {\n    if (n <= 1) return 1;\n    return n * factorial1(n - 1);\n}\n\nint factorial2(int n) {\n    int acc = 1;\n    while (n > 1) {\n        acc = n * acc;\n        n = n - 1;\n    }\n    return acc;\n}"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 14,
-      "changes": {
-        "code": "struct Task {\n    int deadline;   //截止时间\n    int profit;     //利润\n};\n\nvoid sortByProfit(vector<Task>& tasks) {\n    sort(tasks.begin(), tasks.end(),\n        [](const Task& a, const Task& b) {\n            return a.profit > b.profit;\n        });\n}\n\nint maxProfit(vector<Task>& tasks) {\n    sortByProfit(tasks);\n\n    int maxTime = 0;\n    for (auto& t : tasks) {\n        maxTime = max(maxTime, t.deadline);\n    }\n\n    vector<bool> slot(maxTime + 1, false);\n    int totalProfit = 0;\n\n    for (auto& task : tasks) {\n        for (int t = task.deadline; t >= 1; t--) {\n            if (!slot[t]) {\n                ______________________  //在此处填入代码\n                break;\n            }\n        }\n    }\n\n    return totalProfit;\n}"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 26,
-      "changes": {
-        "question": "# [GESP202512 五级] 数字移动\n\n## 题目描述\n\n小 A 有一个包含 $N$ 个正整数的序列 $A=\\{A_1,A_2,\\cdots,A_N\\}$，序列 $A$ 恰好包含 $\\frac{N}{2}$ 对不同的正整数。形式化地，对于任意 $1 \\le i \\le N$，存在唯一一个 $j$ 满足 $1\\le j \\le N, i\\neq j, A_i=A_j$。\n\n小 A 希望每对相同的数字在序列中相邻，为了实现这一目的，小 A 每次操作会选择任意 $i(1\\le i\\le N)$，将当前序列的第 $i$ 个数字移动到任意位置，并花费对应数字的体力。\n\n例如，假设序列 $A=\\{1,2,1,3,2,3\\}$，小 A 可以选择 $i=2$，将 $A_2=2$ 移动到 $A_3=1$ 的后面，此时序列变为 $\\{1,1,2,3,2,3\\}$，耗费 $2$ 点体力。小 A 也可以选择 $i=3$，将 $A_3=1$ 移动到 $A_2=2$ 的前面，此时序列变为 $\\{1,1,2,3,2,3\\}$，花费 $1$ 点体力。\n\n小 A 可以执行任意次操作，但他希望自己每次花费的体力尽可能小。小 A 希望你能帮他计算出一个最小的 $x$，使得他能够在每次花费的体力均不超过 $x$ 的情况下令每对相同的数字在序列中相邻。\n\n## 输入格式\n\n第一行一个正整数 $N$，代表序列长度，保证 $N$ 为偶数。\n\n第二行包含 $N$ 个正整数 $A_1,A_2,\\ldots,A_N$，代表序列 $A$。且对于任意 $1\\le i\\le N$，存在唯一一个 $j$ 满足 $1\\le j\\le N,i\\neq j,A_i=A_j$。\n\n数据保证小 A 至少需要执行一次操作。\n\n## 输出格式\n\n输出一行，代表满足要求的 $x$ 的最小值。\n\n## 数据范围\n\n对于 40% 的测试点，保证 $1 \\le N,A_i \\le 100$；对于所有测试点，保证 $1 \\le N,A_i \\le 10^5$。"
-      },
-      "status": "approved-not-applied"
-    },
-    {
-      "id": 27,
-      "changes": {
-        "question": "# [GESP202512 五级] 相等序列\n\n## 题目描述\n\n小 A 有一个包含 $N$ 个正整数的序列 $A=\\{A_1,A_2,\\ldots,A_N\\}$。小 A 每次可以花费 $1$ 个金币执行以下任意一种操作：\n\n- 选择序列中一个正整数 $A_i$（$1\\le i\\le N$），将 $A_i$ 变为 $A_i\\times P$，$P$ 为任意质数；\n- 选择序列中一个正整数 $A_i$（$1\\le i\\le N$），将 $A_i$ 变为 $\\frac{A_i}{P}$，$P$ 为任意质数，要求 $A_i$ 是 $P$ 的倍数。\n\n小 A 想请你帮他计算出令序列中所有整数都相同，最少需要花费多少金币。\n\n## 输入格式\n\n第一行一个正整数 $N$，含义如题面所示。\n\n第二行包含 $N$ 个正整数 $A_1,A_2,\\ldots,A_N$，代表序列 $A$。\n\n## 输出格式\n\n输出一行，代表最少需要花费的金币数量。\n\n## 数据范围\n\n对于 60% 的测试点，保证 $1 \\le N,A_i \\le 100$；对于所有测试点，保证 $1 \\le N,A_i \\le 10^5$。"
-      },
-      "status": "approved-not-applied"
-    }
-  ],
-  "programmingChecks": "ai-reviews/2026-11-07/2025-12-l5.code-checks.json"
+  "unresolved": [],
+  "pendingChanges": [],
+  "programmingChecks": "ai-reviews/2026-11-07/2025-12-l5.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2025-12-l5.integration.json"
 }
