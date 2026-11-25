@@ -1,0 +1,72 @@
+{
+  "paperId": "2024-12-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    13
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T09:20:00.000Z",
+  "completedAt": "2026-11-25T09:32:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "c0eef09e3bf78c56cb90ae12de66aaf2015dff9a6103c0bf2c0b5ec2ba79bb43",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1650239710691360.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2024年12月-C++4级.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "mirrorBytes": 1380115,
+    "shaVerified": true,
+    "sha256": "fbdba36b3e13c125cebb46faee6066cc56135c16cfa32770b6e7787778c49bb4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2024-12-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为 CCF GESP C++ 四级、2024 年 12 月；第1页答案表「A B B B D D D D A C B B A C A」第13格为 A，第5–6页第13题插入排序代码与候选对应。"
+    },
+    "questions": [
+      {
+        "id": 13,
+        "sourcePages": [
+          1,
+          5,
+          6
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "PDF 第5页页末题干「下面代码实现了插入排序函数，则横线上应填写（ ）。」与候选一致。第6页代码共 13 行：第1行 void insertion_sort(vector<int> &nums) {、第2行 for (int i = 1; i < nums.size(); i++) {、第4行填空行带「在此处填入代码」注释、第6行 while (j >= 0 && nums[j] > base) 后原卷未印左花括号、第8行 nums[j + 1] = nums[j];、第9行 j--;、第10行 }（关闭第4行所开块）、第11行 nums[j + 1] = base;、第12–13行两层右花括号。按字面 while 只控制第8行、j-- 落在循环外，四个选项均无法完成插入排序，属原卷排版缺漏。候选 question 已按标准插入排序补足左花括号并与第10行右花括号配平，其余语句与第6页逐行一致；本轮 changes 的 code 字段内容与 question 完全相同（花括号配平、缩进规范），已逐行核对，题面与代码视图不再矛盾。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "PDF 第6页页图选项依次为 A. int base = nums[i], j = i - 1;、B. int base = nums[i], j = i;、C. int base = nums[0], j = i - 1;、D. int base = nums[0], j = i;，与候选 options 的文字和顺序完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "PDF 第1页答案表「A B B B D D D D A C B B A C A」第13格为 A（0 起始索引 0），候选 answer=0 一致（答案表文字层同样读作 13→A）。独立模拟（按补 { 后的结构，对 {5,2,4,6,1,3}）：A 得 1 2 3 4 5 6；B 因 j=i 时 nums[i]>nums[i] 恒假、while 不执行，逐轮把 nums[i] 写到 nums[i+1]，得 5 2 2 2 2 2 且 i 为末位时越界写 nums[size]；C 因 base=nums[0] 且 nums[i-1] 已被上一轮写成 nums[0]，逐轮把 nums[i] 写成 nums[0]，得 5 5 5 5 5 5；D 兼具两错（独立模拟得 5 2 5 5 5 5）。仅 A 成立。"
+          },
+          "explanation": {
+            "status": "needs_fix",
+            "evidence": "候选解析仍是本站旧版，含三处与原卷/事实不符的表述，故判 needs_fix：(1) 首段称「本题官方答案表标为 B，但 B 会导致数组被破坏……本站按技术正确项 A 收录」，但第1页答案表第13格实为 A（本轮放大核对页图并读取文本层「答案 A B B B D D D D A C B B A C A」均为 A），官方答案与本站 answer=0 一致，不存在「官方标 B、本站纠正」的情形；(2) 核心解析称「四个选项都写对了」base 的取值，但 C、D 的 base 为 nums[0]，明显不成立；(3)「实测验证」表格给出运行结果却无任何可复现记录，属未经执行的实测声明。候选 question/options/answer 本身无误，本轮 changes.code 与题面一致；changes.explanation 采用第 3 轮 GLM 版修订稿全文（与 DeepSeek 版措辞不同、技术结论一致；已删除错误的官方答案声明与实测表，保留并补全 B 恒假+覆盖/越界、C/D 取 nums[0] 的错误推导），我按第6页原图与本地模拟逐句复核成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单选题无参考程序，该维度不适用；题面代码已在 statement 维度按第6页页图核对，本轮 changes.code 已与题面同步。"
+          }
+        },
+        "changes": {
+          "explanation": "**答案：A（int base = nums[i], j = i - 1;）**\n\n**说明：** 第6页页图在 `while (j >= 0 && nums[j] > base)` 后没有印出左花括号：严格按字面，`while` 只控制 `nums[j + 1] = nums[j];` 这一句，`j--` 落在循环外——需要左移时循环条件恒成立，程序死循环；不需要左移时 `j--` 之后会把 `base` 写进 `nums[i - 1]`，覆盖前一个元素。因此按字面四个选项都无法实现插入排序，应认定属原卷排版缺漏；按插入排序的常规结构补足花括号后（即本题代码所示结构），A 成立，也与第1页官方答案表第13题的 A（0起始索引 0）一致。\n\n**核心解析：** 插入排序每轮先用 `base = nums[i]` 暂存待插入元素，再从 `j = i - 1` 向左扫描；`while` 中把大于 `base` 的元素逐个右移并执行 `j--`，最后把 `base` 放到 `nums[j + 1]`。\n\n**选项分析：**\n- **A**：正确，标准插入排序写法。对 `{5, 2, 4, 6, 1, 3}` 逐轮手工模拟，结果为 `1 2 3 4 5 6`。\n- **B**：`j = i` 时首次比较就是 `nums[i] > nums[i]`，恒为假，`while` 一次都不执行；随后 `nums[j + 1] = base` 变成 `nums[i + 1] = nums[i]`，覆盖后一个元素，`i` 为末位时还会越界写 `nums[size]`。对 `{5, 2, 4, 6, 1, 3}` 手工推演：前 6 个元素依次变为 `5 2 2 2 2 2`，无法完成排序。\n- **C**：`base = nums[0]`：首轮 `j = 0` 时比较 `nums[0] > nums[0]` 即为假；其后各轮 `j = i - 1` 处的元素已在上一轮被写成 `nums[0]`，条件同样不成立，于是每轮都把 `nums[i]` 写成 `nums[0]`，整个数组被抹成同一个值，无法排序。\n- **D**：同时犯了 C 的取值错误和 B 的起点错误。\n\n**易错提醒：** `base` 必须暂存 `nums[i]`——`while` 一旦执行就会用前面的元素覆盖 `nums[i]`，不暂存就丢数据；`j` 必须从 `i - 1` 开始，否则会写到 `i + 1`。条件中先写 `j >= 0` 可利用 `&&` 的短路特性，避免在 `j = -1` 时访问 `nums[-1]`。\n\n**考点：** 插入排序的变量初始化与边界"
+        },
+        "tests": [],
+        "unresolved": [
+          "原卷第6页第6行 while 后漏印左花括号，按字面 while 只控制 nums[j + 1] = nums[j]; 且 j-- 在循环外，四个选项均无法完成插入排序；属原卷排版缺漏。本站按标准插入排序补足花括号并在解析中说明，官方答案 A（索引 0）不受影响。"
+        ]
+      }
+    ],
+    "summary": "仅 1 道候选（Q13）。第 4 轮批准的 code 修复（补 while 后左花括号，与题面同步）已真实落入 paper.json，代码花括号配平、与第6页逐行对应；题面、选项、答案（A，索引 0）均与原卷及独立模拟一致。但候选解析仍是本站旧版，含三处与原卷/事实不符的表述：误称「官方答案表标为 B」、误称「四个选项都写对了」base 取值、以及无运行证据的「实测验证」表；第 3 轮两模型各自提出、技术结论一致的解析修订稿在本轮候选重建中丢失。故 statement/options/answer 判 verified，explanation 判 needs_fix 并给出修订后的完整文本，等待回流。"
+  }
+}
