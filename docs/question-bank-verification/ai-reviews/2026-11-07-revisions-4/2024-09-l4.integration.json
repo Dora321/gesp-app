@@ -1,0 +1,14 @@
+{
+  "paperId": "2024-09-l4",
+  "integratedAt": "2026-11-25T05:42:48.835Z",
+  "accepted": [
+    {
+      "id": 11,
+      "fields": [
+        "explanation"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": []
+}

@@ -451,42 +451,48 @@
       "id": 11,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 2,
       "sourcePages": [
+        1,
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第3页给出第11题题干及代码第1至11行，PDF第4页续出第12至21行；网站题干、函数声明、外循环、flag与待填空位置均与页图一致。",
-          "review": "修复后核验通过：题面文本与PDF第3页第11题题干及代码第1–11行、第4页第12–21行逐行一致（swap(arr,i,j) 按原卷原样保留）；网站独立 code 字段原缺 PDF 第1行注释，已按 PDF 补全。"
+          "initial": "PDF 第3页第11题题干「下面代码实现了冒泡排序函数，则横线上应填写（ ）。」与候选一致。候选 question 内嵌代码对照第3页第1–11行与第4页第12–21行逐行核对：第1行注释「交换数组arr的第i个元素和第j个元素」、第4行 bool flag = false;、第11行填空行带「在此处填入代码」注释、第14行 swap(arr, i, j);、第18–19行 if (!flag) break; 均如实保留。独立 code 字段为全站通用的辅助副本，本卷同题缺首行注释且两处缩进被压缩，属纯排版漂移（同卷其余代码题同样存在），不改变任何语句语义，故 statement 判 verified，在此记录差异。",
+          "review": "第 3 页页图第 11 题题干『下面代码实现了冒泡排序函数，则横线上应填写（ ）。』与候选一致；代码第 1–11 行（注释『交换数组arr的第i个元素和第j个元素』、swap 函数、bubble_sort 签名、外层 for、bool flag、填空行带『在此处填入代码』注释）与第 4 页第 12–21 行（if 相邻比较、swap(arr, i, j);、flag=true、if(!flag) break;、三层右花括号）逐行对照候选一致，含原卷第 14 行 swap(arr, i, j); 的原样保留。独立 code 字段缺首行注释、两处缩进被压缩，属纯排版漂移，不改变任何语句语义，在此记录。"
         },
         "options": {
-          "initial": "PDF第4页页图四个选项依次为A、B、C、D，文字和顺序与网站一致；C为 for (int j = 0; j < i; j++)。",
-          "review": "PDF第4页页图选项依次为 A for (int j = 0; j < arr.size() - 1; j++)、B for (int j = arr.size() - 1; j > 0; j--)、C for (int j = 0; j < i; j++)、D for (int j = i-1; j <=0; j--)，文字与顺序与网站一致。"
+          "initial": "PDF 第4页页图选项依次为 A. for (int j = 0; j < arr.size() - 1; j++)、B. for (int j = arr.size() - 1; j > 0; j--)、C. for (int j = 0; j < i; j++)、D. for (int j = i-1; j <=0; j--)，与候选 options 的文字和顺序完全一致。",
+          "review": "第 4 页页图选项依次为 A. for (int j = 0; j < arr.size() - 1; j++)、B. for (int j = arr.size() - 1; j > 0; j--)、C. for (int j = 0; j < i; j++)、D. for (int j = i-1; j <=0; j--)，与候选 options 的文字和顺序完全一致。"
         },
         "answer": {
-          "initial": "PDF第1页页图答案表第11题标为C，对应索引2；由待排序区间为[0,i]且需访问arr[j+1]可知必须j<i，独立推导同样选C。",
-          "review": "PDF第1页答案表第11题为C，对应索引2；独立推导：外层 i 自 arr.size()-1 递减、每轮右端有序区扩大，内层需比较 arr[j] 与 arr[j+1] 且须保证 j+1<=i，故应填 for (int j = 0; j < i; j++)，与网站 answer=2 一致。"
+          "initial": "PDF 第1页答案表 A B A B D A B D A B C A A A C 第11格为 C（0 起始索引 2），候选 answer=2 一致。独立推导：外层 i 自 arr.size()-1 递减，第 i 轮待排序区间为 [0,i]，内层须覆盖全部相邻对 (j,j+1) 且 j+1≤i，即 j<i，对应 C；B 首轮即访问 arr[arr.size()] 越界，D 在 i>1 时条件 j<=0 不成立。",
+          "review": "第 1 页答案表第 11 格为 C（0 起始索引 2），候选 answer=2 一致。独立推导：外层 i 自 arr.size()-1 递减，第 i 轮待排序区间为 [0,i]，内层须覆盖全部相邻对 (j,j+1) 且 j+1≤i，即 j<i，对应 C；B 首轮 j=arr.size()-1 即访问 arr[arr.size()] 越界；D 在 i>1 时初值 j=i-1>0 使条件 j<=0 不成立，循环体一次都不执行。"
         },
         "explanation": {
-          "initial": "网站解析从外循环i自n-1递减和每轮右端有序区扩大出发，推出内层j<i；并明确指出原卷swap(arr,i,j)按冒泡语义应为swap(arr,j,j+1)的笔误，未把笔误当作答案依据。",
-          "review": "网站解析由外层收缩区间推出内层上界 j<i，核心解析中承认填 A 时结果仍正确但不符合优化结构；对 B、D 的错误分析成立；并明确指出原卷 swap(arr,i,j) 按冒泡语义应为 swap(arr,j,j+1) 属原卷笔误、不影响作答，未把笔误当作答案依据。"
+          "initial": "候选解析逐条复核成立：(1) C 的边界推导正确；(2) B 首轮 j=arr.size()-1 即访问 arr[arr.size()] 越界；(3) D 在 i>1 时初值 j=i-1>0 使 j<=0 不成立、循环体空转、flag 保持 false 触发 if(!flag) break（n>2 时到不了 i=1），n=2 时 i=1、j=0 执行一次后 j 变负仍满足 j<=0，带负下标死循环；(4) 原码 swap(arr, i, j) 的两处反例复算一致：[4,3,2,1] 配 A 得 [1,4,2,3]（i=3 轮末 [1,4,2,3]，i=2 轮末 [1,2,4,3]，i=1 轮末又回到 [1,4,2,3]），[3,2,1,5,4] 配 C 得 [1,2,4,3,5]；(5) 原函数 int bubble_sort 无 return 的源卷瑕疵已如实标注，未虚构实测结果。",
+          "review": "候选解析逐条独立复核成立：(1) C 的边界推导正确；(2) B 首轮即越界访问 arr[arr.size()]；(3) D 在 i>1 时空转触发 if(!flag) break，n=2 时 j=0 执行一次后变负仍满足 j<=0，带负下标越界；(4) 原码 swap(arr, i, j) 的两处反例经本复核独立逐步重演一致：[4,3,2,1] 配 A 三轮后为 [1,4,2,3]（i=3 轮末 [1,4,2,3]，i=2 轮末 [1,2,4,3]，i=1 轮末回到 [1,4,2,3]），[3,2,1,5,4] 配 C 最终为 [1,2,4,3,5]，均未排好；(5) int bubble_sort 无 return 的源卷瑕疵已如实标注，未虚构实测结果。"
         }
       },
-      "unresolved": [
-        "修改 code 未获得两模型一致批准，待回流"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-4/2024-09-l4.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-4/2024-09-l4.glm.json"
       ]
     },
     {
@@ -1072,20 +1078,8 @@
       ]
     }
   ],
-  "unresolved": [
-    {
-      "id": 11,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 未获得两模型一致批准，待回流"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2024-09-l4.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-09-l4.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-4/2024-09-l4.integration.json"
 }
