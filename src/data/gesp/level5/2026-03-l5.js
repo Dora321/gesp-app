@@ -5,6 +5,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       title: '有限不循环小数',
       problemNumber: 'P15798',
       score: 25,
@@ -68,6 +70,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       title: '找数',
       problemNumber: 'P15799',
       score: 25,

@@ -719,6 +719,8 @@ borrow=1表示上一位向当前位借走了1，因此当前位应计算a[i]-b[i
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
       title: '哥德巴赫猜想',
       score: 25,
       description: `众所周知，哥德巴赫猜想是说，任何大于 2 的偶数都能写成两个质数（素数）之和。例如：
@@ -743,6 +745,7 @@ borrow=1表示上一位向当前位借走了1，因此当前位应计算a[i]-b[i
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['筛法', '数论'],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // TODO: 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <cstdio>\nconst int N = 1000005;\nbool not_prime[N];\nint primes[500000], pcnt;\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    for (int i = 2; i <= n; ++i) {\n        if (!not_prime[i]) {\n            primes[pcnt++] = i;\n            for (long long j = (long long)i * i; j <= n; j += i)\n                not_prime[j] = true;\n        }\n    }\n    int ans = 0;\n    for (int i = 0; i < pcnt && primes[i] <= n / 2; ++i)\n        if (!not_prime[n - primes[i]])\n            ans++;\n    printf(\"%d\\n\", ans);\n    return 0;\n}\n",
       explanation: `**解题思路**
 
@@ -753,6 +756,8 @@ borrow=1表示上一位向当前位借走了1，因此当前位应计算a[i]-b[i
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512.0 MB',
       title: '饮品调制',
       score: 25,
       description: `你想调制一份甜度恰到好处的饮品给你的朋友们品尝。
@@ -774,6 +779,7 @@ borrow=1表示上一位向当前位借走了1，因此当前位应计算a[i]-b[i
 
 时间限制：1.0 s，内存限制：512.0 MB。`,
       tags: ['贪心'],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, t;\n    cin >> n >> t;\n    vector<int> v(n), s(n);\n    for (int i = 0; i < n; ++i) {\n        cin >> v[i] >> s[i];\n    }\n    // TODO: 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 2005;\nint n, t;\nint v[N], s[N], p[N];\ndouble ans;\nbool cmp(int x, int y) {\n    return s[x] < s[y];\n}\nint main() {\n    scanf(\"%d%d\", &n, &t);\n    for (int i = 1; i <= n; i++) {\n        scanf(\"%d%d\", &v[i], &s[i]);\n        p[i] = i;\n    }\n    sort(p + 1, p + n + 1, cmp);\n    int ss = 0, sv = 0;\n    for (int i = 1; i <= n; i++) {\n        int cv = v[p[i]], cs = s[p[i]];\n        if (ss + cs * cv > t * (sv + cv)) {\n            double k = (double)(t * sv - ss) / (cs - t);\n            ans = max(ans, sv + k);\n            break;\n        }\n        ss += cs * cv;\n        sv += cv;\n    }\n    if (ss == sv * t) ans = max(ans, (double)sv);\n    sv = ss = 0;\n    for (int i = n; i >= 1; i--) {\n        int cv = v[p[i]], cs = s[p[i]];\n        if (ss + cs * cv < t * (sv + cv)) {\n            double k = (double)(t * sv - ss) / (cs - t);\n            ans = max(ans, sv + k);\n            break;\n        }\n        ss += cs * cv;\n        sv += cv;\n    }\n    if (ss == sv * t) ans = max(ans, (double)sv);\n    printf(\"%.3lf\\n\", ans);\n    return 0;\n}\n",
       explanation: `**解题思路**
 

@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `6
 1 2 1 3 2 3`, output: `2` }
@@ -93,6 +95,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `5
 10 6 35 105 42`, output: `8` }
@@ -252,7 +256,7 @@ export const paperData = {
             sourcePage: 1,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "链表", "指针"],
         },
         {
             id: 2,
@@ -280,7 +284,7 @@ tail = newBlock->prev;`],
             sourcePage: 2,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "链表", "指针"],
         },
         {
             id: 3,
@@ -307,11 +311,7 @@ tail = newBlock->prev;`],
 
 **考点：** 单链表与双链表、时间复杂度
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "链表", "双向链表", "复杂度分析"],
         },
         {
             id: 4,
@@ -335,7 +335,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
             sourcePage: 3,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论", "算术运算"],
         },
         {
             id: 5,
@@ -371,7 +371,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
             sourcePage: 4,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论", "递归", "复杂度分析"],
         },
         {
             id: 6,
@@ -399,11 +399,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
 
 **考点：** 唯一分解定理、数论基础
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "数论"],
         },
         {
             id: 7,
@@ -438,11 +434,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
 **易错提醒：**
 - \`primes\` 是动态数组容器，初学者常误用从 1 开始枚举下标，导致所有以 2 为最小质因数的偶合数未被及时筛掉。
 - 循环条件中 \`i * primes[j] <= n\` 必不可少，若省略会导致访问 \`is_prime[i * primes[j]]\` 时超出数组大小引发运行时错误（RE）。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "线性筛", "筛法"],
         },
         {
             id: 8,
@@ -469,11 +461,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
 
 **考点：** 排序稳定性、原地排序
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "稳定性", "排序算法", "归并排序"],
         },
         {
             id: 9,
@@ -506,7 +494,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
             sourcePage: 5,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "归并排序", "复杂度分析"],
         },
         {
             id: 10,
@@ -530,7 +518,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
             sourcePage: 5,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "快速排序", "复杂度分析"],
         },
         {
             id: 11,
@@ -564,11 +552,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
 **易错提醒：**
 - 二分查找务必保持「区间定义」从始至终一致：
   - **左闭右开 \`[l, r)\`**：初始 \`r = n\`，循环条件 \`l < r\`，更新时 \`r = mid\`、\`l = mid + 1\`，最终返回 \`l\`。`,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "二分查找"],
         },
         {
             id: 12,
@@ -596,11 +580,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
 
 **考点：** 二分答案、最小可行值、check 函数
         `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "单选题", "GESP5级", "二分答案", "二分查找"],
         },
         {
             id: 13,
@@ -624,7 +604,7 @@ $a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数
             sourcePage: 7,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递归", "循环", "复杂度分析"],
         },
         {
             id: 14,
@@ -652,7 +632,7 @@ totalProfit = task.profit;`],
             sourcePage: 7,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-25",
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "贪心", "排序算法"],
         },
         {
             id: 15,
@@ -683,7 +663,7 @@ carry /= 10;`],
             sourcePage: 8,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-26",
-            tags: ["客观题", "GESP7级"]
+            tags: ["客观题", "GESP7级", "高精度", "数组"],
         },
         {
             id: 16,
@@ -702,11 +682,7 @@ carry /= 10;`],
 
 **考点：** 链表
             `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "链表", "顺序查找"],
         },
         {
             id: 17,
@@ -738,7 +714,7 @@ int lcm(int a, int b) {
             sourcePage: 9,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-26",
-            tags: ["客观题", "GESP7级"]
+            tags: ["客观题", "GESP7级", "数论", "算术运算"],
         },
         {
             id: 18,
@@ -764,7 +740,7 @@ int lcm(int a, int b) {
             sourcePage: 9,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-26",
-            tags: ["客观题", "GESP7级"]
+            tags: ["客观题", "GESP7级", "链表", "指针"],
         },
         {
             id: 19,
@@ -793,7 +769,7 @@ int lcm(int a, int b) {
             sourcePage: 9,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-26",
-            tags: ["客观题", "GESP7级"]
+            tags: ["客观题", "GESP7级", "筛法", "线性筛", "复杂度分析"],
         },
         {
             id: 20,
@@ -819,11 +795,7 @@ int lcm(int a, int b) {
 
 **考点：** 二分查找适用条件、算法权衡
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "二分查找", "复杂度分析"],
         },
         {
             id: 21,
@@ -849,11 +821,7 @@ int lcm(int a, int b) {
 
 **考点：** 快速排序、三数取中、最坏情况分析
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "快速排序"],
         },
         {
             id: 22,
@@ -879,11 +847,7 @@ int lcm(int a, int b) {
 
 **考点：** 贪心算法、分治算法、算法策略比较
         `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "贪心", "分治"],
         },
         {
             id: 23,
@@ -916,7 +880,7 @@ int fib(int n) {
             sourcePage: 10,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-26",
-            tags: ["客观题", "GESP7级"]
+            tags: ["客观题", "GESP7级", "递归", "斐波那契", "复杂度分析"],
         },
         {
             id: 24,
@@ -944,11 +908,7 @@ int fib(int n) {
 **易错提醒：**
 - **递归与循环的区别**：普通 \`while(true)\` 死循环只是不断空转，通常只会导致运行超时（TLE）；而无终止条件的递归会不断申请新的栈空间，造成物理内存耗尽而崩溃（RE）。
 - **边界要能真正到达**：仅写出 \`if\` 终止条件还不够，递推时参数的修改方向必须向着边界收敛（例如由大到小 \`n - 1\`）。如果参数更新方向相反或步长错乱，导致永远踩不中终止条件，同样会引发栈溢出。`,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+            tags: ["客观题", "判断题", "GESP5级", "递归", "栈"],
         },
         {
             id: 25,
@@ -974,7 +934,7 @@ int fib(int n) {
             sourcePage: 10,
             reviewedBy: "AI对照官方PDF校订",
             reviewedAt: "2026-10-26",
-            tags: ["客观题", "GESP7级"]
+            tags: ["客观题", "GESP7级", "贪心"],
         },
         ...programmingQuestions
     ]

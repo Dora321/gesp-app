@@ -780,6 +780,8 @@ O(log n) 远低于 O(2ⁿ)，所以 f1 的复杂度比 f2 **低**，说法相反
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       title: '排排坐',
       score: 25,
       description: `老师正在和小朋友们分糖果。
@@ -829,6 +831,8 @@ $$\\sum_{i=1}^{n} (b_1 + b_2 + \\cdots + b_i) = \\sum_{i=1}^{n} (n - i + 1) \\ti
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       title: '晚宴',
       score: 25,
       description: `小明去参加晚宴。晚宴中有 n 个菜肴，每个菜肴都有一个美味度，第 i 个菜肴的美味度为 v_i。

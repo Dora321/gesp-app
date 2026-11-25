@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `128`, output: `3` }
       ],
@@ -102,6 +104,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `4 4
 1 1
@@ -266,7 +270,7 @@ export const paperData = {
 
 **易错提醒：**
 - **区分「查找位置」与「执行增删」**：部分同学容易误以为链表插入或删除也是 \`O(N)\`，原因是在没有直接拿到位置指针时，需要先花费 \`O(N)\` 的时间从头遍历查找目标位置。但衡量「插入和删除操作本身」的数据结构特性时，核心是指在指定位置完成节点增删动作的代价：链表只需修改常数个指针，开销为 \`O(1)\`；而数组即使已经定位了下标，插入或删除仍然必须挪动后续元素，开销必然是 \`O(N)\`。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数组", "链表", "复杂度分析"],
         },
         {
             id: 2,
@@ -287,7 +291,7 @@ export const paperData = {
 
             **考点：** 链表
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "链表"],
         },
         {
             id: 3,
@@ -330,7 +334,7 @@ void removeElements(LinkedNode* head, int val) {
 - **D**：两处都错。
 
 **考点**：虚拟头节点（dummy head）的作用与遍历指针的起点`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "链表", "指针"],
         },
         {
             id: 4,
@@ -360,7 +364,7 @@ void removeElements(LinkedNode* head, int val) {
 
 **知识延伸：**
 如果希望保留递归写法的简洁直观，同时达到 \`O(n)\` 的线性执行效率，可以在递归的基础上引入一个数组记录已算出的值，这种技巧称为**记忆化搜索**，也是后续学习动态规划（DP）的核心基石。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "递推", "递归", "复杂度分析"],
         },
         {
             id: 5,
@@ -381,7 +385,7 @@ void removeElements(LinkedNode* head, int val) {
 
             **考点：** C++基础
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "栈"],
         },
         {
             id: 6,
@@ -431,7 +435,7 @@ vector<int> get_prime_factors(int n) {
 - **D**：正确，兼顾两点。
 
 **考点**：质因数分解的循环上界与步长优化`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论", "质数判定", "循环"],
         },
         {
             id: 7,
@@ -469,7 +473,7 @@ vector<int> sieve_Eratosthenes(int n) {
             answer: 1,
             score: 2,
             explanation: `答案为B。质数i的小于i²的合数倍数ki中，k<i，已有更小质因数，因而已被前面的筛选标记。从i²开始可减少重复标记。A给出O(n√n)，原算法的常见紧确分析为Θ(n log log n)，前者过于宽松，原卷按复杂度量级口径判定。C把素数与奇数混淆，2是素数而9不是。输入10返回2、3、5、7，D多出了已被3标记的9。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "筛法", "边界分析"],
         },
         {
             id: 8,
@@ -521,7 +525,7 @@ if (i % primes[j] == 0)
 - **D 以上都不对**：A 已正确。
 
 **考点**：线性筛的时间复杂度及其与埃氏筛的区别`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "线性筛", "复杂度分析"],
         },
         {
             id: 9,
@@ -607,7 +611,7 @@ void quickSort(vector<int>& arr, int left, int right) {
 
             **考点：** C++基础
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "数论"],
         },
         {
             id: 11,
@@ -660,7 +664,7 @@ void quickSort(vector<int>& arr, int left, int right) {
 
 **易错提醒：**
 - **审清反向设问**：题目设问为“描述不正确的是”，要求找出叙述有误的选项，切忌误选正确叙述。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "二分查找", "递归"],
         },
         {
             id: 12,
@@ -814,7 +818,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 - **减治/逐步缩小规模**：直接插入排序、折半查找。
 - **暴力/枚举比较**：冒泡排序、选择排序。
 - **堆/树形结构优化**：堆排序。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "分治", "排序算法"],
         },
         {
             id: 15,
@@ -835,7 +839,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** C++基础
             `,
-            tags: ["客观题", "单选题", "GESP5级"]
+            tags: ["客观题", "单选题", "GESP5级", "贪心"],
         },
         {
             id: 16,
@@ -855,7 +859,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 链表
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "链表"],
         },
         {
             id: 17,
@@ -873,7 +877,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 数论
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "线性筛", "筛法"],
         },
         {
             id: 18,
@@ -893,7 +897,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 筛法
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "数论"],
         },
         {
             id: 19,
@@ -913,7 +917,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** C++基础
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "贪心"],
         },
         {
             id: 20,
@@ -931,7 +935,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 递归
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "递归"],
         },
         {
             id: 21,
@@ -951,7 +955,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 归并排序
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "快速排序", "归并排序", "稳定性"],
         },
         {
             id: 22,
@@ -971,7 +975,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 快速排序
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "快速排序", "插入排序", "复杂度分析"],
         },
         {
             id: 23,
@@ -989,7 +993,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 链表
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "二分查找", "链表"],
         },
         {
             id: 24,
@@ -1013,7 +1017,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 - 若用 \`mid = left + (right-left)/2\` 结果相同；但边界更新方式（\`right=mid-1\` 与 \`right=mid\`）会影响比较次数的计算，需与题目约定一致。
 
 **考点：** 二分查找的执行过程与比较次数分析。`,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "二分查找"],
         },
         {
             id: 25,
@@ -1031,7 +1035,7 @@ int cooki4children(vector<int>& g, vector<int>& s) {
 
             **考点：** 递归
             `,
-            tags: ["客观题", "判断题", "GESP5级"]
+            tags: ["客观题", "判断题", "GESP5级", "递归", "内存管理"],
         },
         ...programmingQuestions
     ]
