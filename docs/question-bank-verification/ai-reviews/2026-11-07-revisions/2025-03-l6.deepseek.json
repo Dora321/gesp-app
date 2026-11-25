@@ -1,0 +1,162 @@
+{
+  "paperId": "2025-03-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T07:07:28.827Z",
+  "completedAt": "2026-11-25T07:07:28.827Z",
+  "finishReason": "stop",
+  "inputSha256": "28fdf86c7bd03cc8042299041e36f4a507935e089f4bd726ff56be94bb96f36f",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1669256961851424.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2025年3月-C++6级.pdf",
+    "mirrorSha": "549348b62047e9004972fbb988faed13dd5ecb74",
+    "mirrorBytes": 1458707,
+    "shaVerified": true,
+    "sha256": "43135fac0d7cf99f3b2b592ae77883ee3f404f73b785c53434d8aafb9a034ba4"
+  },
+  "pageCount": 11,
+  "report": {
+    "paperId": "2025-03-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示 CCF 编程能力等级认证、C++ 六级、2025 年 03 月，与 paperId 2025-03-l6 一致；第 8—11 页覆盖 Q26、27 的题面、样例、数据范围与参考程序。"
+    },
+    "questions": [
+      {
+        "id": 26,
+        "sourcePages": [
+          8,
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8—9 页题面、输入输出、样例与数据范围对照：n 个结点的树、偶数步（可为 0）后结束、可重复经过结点；样例 2 2 1 与 3 3 1 3；40% n≤10^3、全部 1≤n≤2×10^5；候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选把树按二分图染色，证明偶数步只能到达同色结点，且同色结点都可通过简单路径加往返（+2 步）到达；因此每个结点答案为所在颜色结点总数。样例 1、2 的染色与计数均复算一致，BFS O(n) 正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行：官方样例 2 2 1、3 3 1 3 通过；边界 n=1→1、2 1 2→1 1、3 1 2/2 3→2 1 2、5 1 2/1 3/1 4/1 5→1 4 4 4 4 全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单结点",
+            "input": "1\n",
+            "output": "1",
+            "reason": "只有自身，0 步可达，答案 1。"
+          },
+          {
+            "name": "两结点",
+            "input": "2\n1 2\n",
+            "output": "1 1",
+            "reason": "两色各 1 个结点，从任一点出发偶数步只能回到自身。"
+          },
+          {
+            "name": "三结点链",
+            "input": "3\n1 2\n2 3\n",
+            "output": "2 1 2",
+            "reason": "链 1-2-3 中 {1,3} 同色、{2} 异色，覆盖非平凡二分。"
+          },
+          {
+            "name": "星形",
+            "input": "5\n1 2\n1 3\n1 4\n1 5\n",
+            "output": "1 4 4 4 4",
+            "reason": "中心 1 单独一色，四个叶子同色，验证计数交换。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 10—11 页题面、输入输出、样例与数据范围对照：环线 n 站、每站快乐值 a_i、至少经过一站且不重复经过；样例 4/-1 2 3 0→5、5/-3 4 -5 1 3→5；20% n≤200、40% n≤2000、全部 n≤2×10^5 且 −10^9≤a_i≤10^9；候选一致。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选破环成链为长度 2n 的数组，限制区间长度≤n，用单调队列维护窗口内最小前缀和；转移 ans=max(pre[i]−min pre[j]) 正确。样例 1 逐步走查得 5，样例 2 得 5；全负时 ans 不能初始化为 0 的提醒正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行：官方样例 5、5 通过；边界 n=1,a=−5→−5、全负 3/−1 −2 −3→−1、跨端点 5/5 −10 5 −10 5→10、全正 4/1 2 3 4→10 全部通过；另以 500 组 n≤8 随机数据与枚举所有环形区间对拍，零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单站负值",
+            "input": "1\n-5\n",
+            "output": "-5",
+            "reason": "必须至少经过一站，不能输出 0，覆盖 ans 初值。"
+          },
+          {
+            "name": "全负取最大单站",
+            "input": "3\n-1 -2 -3\n",
+            "output": "-1",
+            "reason": "所有区间和为负，最优是单站 −1。"
+          },
+          {
+            "name": "跨端点环形区间",
+            "input": "5\n5 -10 5 -10 5\n",
+            "output": "10",
+            "reason": "取站 5 与站 1 得 5+5=10，验证破环成链与长度≤n。"
+          },
+          {
+            "name": "全正取整环",
+            "input": "4\n1 2 3 4\n",
+            "output": "10",
+            "reason": "取全部 4 站，长度恰为 n，验证上界窗口。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "Q26、Q27 均通过原卷页图、解析与参考程序核验，全部适用维度 verified，候选可原样应用。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T07:07:28.827Z",
+      "completedAt": "2026-11-25T07:07:28.827Z"
+    }
+  ]
+}

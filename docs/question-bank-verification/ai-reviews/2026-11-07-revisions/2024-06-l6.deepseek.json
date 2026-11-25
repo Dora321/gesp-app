@@ -1,0 +1,362 @@
+{
+  "paperId": "2024-06-l6",
+  "phase": "deepseek",
+  "questionIds": [
+    3,
+    8,
+    10,
+    11,
+    14,
+    15,
+    26,
+    27
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T07:07:28.827Z",
+  "completedAt": "2026-11-25T07:07:28.827Z",
+  "finishReason": "stop",
+  "inputSha256": "23558d811a7a799ba33ee16d532e075698c21b9f063f6bf285a5524326618a69",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorFile": "2024年6月-C++6级.pdf",
+    "mirrorSha": "9553baf5987ed87e1890a8ee5f234ea580e64354",
+    "mirrorBytes": 1495209,
+    "shaVerified": true,
+    "sha256": "442744a33382913be134ed5aae3bb9a47996a1fba86b1145e85da86af124a263"
+  },
+  "pageCount": 12,
+  "report": {
+    "paperId": "2024-06-l6",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第 1 页卷头显示 CCF 编程能力等级认证、C++ 六级、2024 年 06 月，答案表 1—15 完整；与 paperId 2024-06-l6 一致。第 2—12 页覆盖 Q3、8、10、11、14、15、26、27 的题面、代码与参考程序。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          2,
+          3
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 2—3 页原题代码逐行核对：class shape 含 protected width/height 与 virtual int area()；rectangle/triangle 各自重写 area()；main 中 shape* 指针先指向 rec(10,7) 再指向 tri(10,5)。候选 code 已补回缺失的 #include <iostream>，其余与页图一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 3 页四项与候选逐字一致：A rectangle area: triangle area:；B parent class area: parent class area:；C 运行时报错；D 编译时报错。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 3 题为 A（索引 0）。area() 为虚函数，经基类指针动态绑定到派生类，分别输出两段前缀且不打印返回值，A 成立。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "动态绑定推导正确：rectangle 返回 70、triangle 返回 25 但均未输出；屏幕只出现两个前缀字符串。B 只有在非虚函数时才成立，C/D 不成立；候选解析无事实错误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 8,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 8 题原文为“对‘classmycls’使用哈夫曼（Huffman）编码，最少需要（ ）比特。”候选题干一致（字符串共 10 个字符）。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页四项为 A.10、B.20、C.25、D.30，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 8 题为 C（索引 2）。独立构造：s×3、c×2、l×2、a×1、m×1、y×1；合并 1+1=2、1+2=3、2+2=4、3+3=6、4+6=10，WPL=25。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析的合并顺序与码长正确：s/c/l=2、y=3、a/m=4；WPL=3×2+2×2+2×2+1×3+1×4+1×4=25。A=10 是字符数，B=20 非该树 WPL，D=30 为三位定长编码总位数，逐项判断成立。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 10,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 10 题原文“一棵 5 层的满二叉树中节点数为（ ）”，候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页四项为 A.31、B.32、C.33、D.16，与候选完全一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 10 题为 A（索引 0）。5 层满二叉树节点总数 2^5−1=31。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析正确：第 k 层 2^(k−1) 个，总数 1+2+4+8+16=31；B=32=2^5、D=16=2^4 分别为总数与末层节点数的混淆项，逐项说明无误。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 11,
+        "sourcePages": [
+          5
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 5 页第 11 题原文“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和（ ）”，候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 5 页官方四项为 重叠子问题、分治法、贪心策略、回溯算法；原页 A 项因换行排版拆开，候选已按官方四项恢复，且清除了站点此前混入的串页代码文本。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 11 题为 A（索引 0）。动态规划的两大性质是最优子结构与重叠子问题。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析对四项的判断正确：分治、贪心、回溯均不是与“最优子结构”并列的 DP 必要性质；A 为唯一正确项。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 14,
+        "sourcePages": [
+          7,
+          8
+        ],
+        "officialAnswer": 0,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 7—8 页题面含二叉树（根 5，左 2(-4,3)，右 17(9)）与非递归 DFS 代码：出栈即比较、先打印、先压右子再压左子；要求搜索数值 20 时可能的输出。候选题干与代码一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 8 页四项为 A.5 2 -4 3 17 9、B.-4 2 3 5 9 17、C.5 2 17 -4 3 9、D.以上都不对，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 14 题为 A（索引 0）。20 不在树中，全部节点按先序访问：5,2,-4,3,17,9；C 是层序，B 是中序。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选逐步说明“先压右、再压左”导致左子先出栈，得到先序序列；并正确指出 B 为中序、C 为层序、D 不成立。独立模拟栈过程与该序列一致。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 15,
+        "sourcePages": [
+          8
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 8 页第 15 题原文“在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）”，候选题干一致。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第 8 页四项为 A.2、B.3、C.4、D.5，与候选一致。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第 1 页答案表第 15 题为 C（索引 2）。按第 14 题栈式 DFS，比较序列为 5、2、-4、3，共 4 次。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选解析逐次还原出栈与比较：5≠3、2≠3、-4≠3、3==3 命中返回，共 4 次；并指出 -4 虽不在根到 3 的路径上但先序先访问，解释准确。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "单项选择题无参考程序。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": []
+      },
+      {
+        "id": 26,
+        "sourcePages": [
+          9,
+          10
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 9—10 页题面、输入输出、样例与数据范围逐项对照：计分序列长度 n、子串由 k 个 abc 组成得 a_k、字符不可重复计分；20% n≤20 且 a_i≥a_{i+1}、40% n≤3、另外 40% n≤20、全部 1≤n≤20、1≤m≤10^5、1≤a_i≤1000；候选均已补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选 DP 建模正确：cnt[i] 统计以 i 结尾的连续 abc 块数，dp[i]=max(dp[i−1], dp[i−3k]+a[k])；样例走查 dp[13]=9 与官方样例一致。连续块整体计分与拆开计分的取舍通过枚举 k 覆盖，未使用错误贪心。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行：官方样例 3/3 1 2/13/dabcabcabcabz 输出 9；边界 1/5/3/abc→5、1/4/7/abcxabc→8、2/1 5/6/abcabc→5、2/1 5/9/abcabcabc→6 全部通过；另以 400 组随机串与穷举分段对拍，零差异。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单个 abc",
+            "input": "1\n5\n3\nabc\n",
+            "output": "5",
+            "reason": "最短字符串，恰好一个 abc 块，得分 a1=5。"
+          },
+          {
+            "name": "不相邻两块",
+            "input": "1\n4\n7\nabcxabc\n",
+            "output": "8",
+            "reason": "两个独立 abc 块各计 a1=4，中间 x 不计分。"
+          },
+          {
+            "name": "合并优于拆分",
+            "input": "2\n1 5\n6\nabcabc\n",
+            "output": "5",
+            "reason": "取 k=2 得 a2=5，优于 a1+a1=2，覆盖枚举 k 的必要性。"
+          },
+          {
+            "name": "块数超过 n",
+            "input": "2\n1 5\n9\nabcabcabc\n",
+            "output": "6",
+            "reason": "3 个连续块只能按 k≤2 切分，最优为 a2+a1=6。"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "id": 27,
+        "sourcePages": [
+          10,
+          11,
+          12
+        ],
+        "officialAnswer": null,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第 10—11 页题面、输入输出与数据范围对照：n 个节点、根为 1、父节点给出、01 串表示颜色、q 次子树反转；20% 为链、40% n,q≤1000、另外 40% n,q≤10^5、全部 1≤n,q≤10^5；候选均已补入。"
+          },
+          "options": {
+            "status": "not_applicable",
+            "evidence": "编程题无选项。"
+          },
+          "answer": {
+            "status": "not_applicable",
+            "evidence": "编程题无官方答案表对应项，officialAnswer 记为 null。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "候选以 mark 记录每个节点被直接操作的奇偶性，再 DFS 下传 flip，推导正确：节点最终翻转次数等于根到该节点路径上 mark 的异或和；样例走查 010000 与官方一致；O(n+q) 复杂度正确。"
+          },
+          "referenceCode": {
+            "status": "verified",
+            "evidence": "本机 g++ -std=c++17 -O2 编译运行：官方样例 6/3 1 1 3 4/100101/3/1/3/2 输出 010000；边界 n=1 操作根→1、“3 1 2 / 000 / 2 / 1 / 3”→110（链两端操作）、“3 1 1 / 101 / 1 / 2”→111（叶子子树）全部通过。"
+          }
+        },
+        "changes": {},
+        "tests": [
+          {
+            "name": "单节点",
+            "input": "1\n0\n1\n1\n",
+            "output": "1",
+            "reason": "n=1 时无父节点输入，根被操作一次，0 变 1。"
+          },
+          {
+            "name": "链两端操作",
+            "input": "3\n1 2\n000\n2\n1\n3\n",
+            "output": "110",
+            "reason": "操作根翻转全部为 111，再操作叶 3 翻回 0，得 110。"
+          },
+          {
+            "name": "叶子子树",
+            "input": "3\n1 1\n101\n1\n2\n",
+            "output": "111",
+            "reason": "仅翻转以节点 2 为根的子树，节点 2 由 0 变 1，其余不变。"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "summary": "8 题均通过原卷页图、答案表、解析与参考程序核验，全部适用维度 verified，候选可原样应用。"
+  },
+  "requests": [
+    {
+      "questionIds": [
+        3,
+        8,
+        10,
+        11,
+        14,
+        15,
+        26,
+        27
+      ],
+      "startedAt": "2026-11-25T07:07:28.827Z",
+      "completedAt": "2026-11-25T07:07:28.827Z"
+    }
+  ]
+}
