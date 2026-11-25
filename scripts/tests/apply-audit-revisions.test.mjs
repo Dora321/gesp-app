@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { patchPaperQuestionSources } from '../apply-audit-revisions.mjs';
 import { resolveAppliedSourcePage, isAnswerTablePage, ANSWER_TABLE_PAGE } from '../lib/resolve-applied-source-page.mjs';
 
 test('page 1 is the official answer table and must not be written as sourcePage', () => {
@@ -68,4 +69,21 @@ test('never applies an answer-table page even if it is an accepted field', () =>
         acceptedChanges: { sourcePage: 1 },
         sourcePages: [1],
     }), undefined);
+});
+
+test('applies revisions to inline and shared L8 questions in the selected paper', async () => {
+    const id = '2025-12-l8';
+    const paper = `export const paperData = {questions: [{id: 7, type: 'single', question: '旧题面'}]};`;
+    const programming = `export const l8ProgrammingByPaper = {
+        '2025-12-l8': [{id: 27, type: 'programming', description: '旧描述'}],
+        '2026-03-l8': [{id: 27, type: 'programming', description: '其他试卷'}],
+    };`;
+    const updates = new Map([[7, { question: '新题面' }], [27, { description: '新描述' }]]);
+    const patched = patchPaperQuestionSources(id, paper, programming, updates);
+    const { paperData } = await import(`data:text/javascript,${encodeURIComponent(patched.paper)}`);
+    const { l8ProgrammingByPaper } = await import(`data:text/javascript,${encodeURIComponent(patched.programming)}`);
+    assert.equal(paperData.questions[0].question, '新题面');
+    assert.equal(l8ProgrammingByPaper[id][0].description, '新描述');
+    assert.equal(l8ProgrammingByPaper['2026-03-l8'][0].description, '其他试卷');
+    assert.throws(() => patchPaperQuestionSources(id, paper, undefined, updates), /未在原始数据对象中定位/);
 });
