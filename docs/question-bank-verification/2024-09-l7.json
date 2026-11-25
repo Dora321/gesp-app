@@ -1051,7 +1051,8 @@
       "appliedFields": [
         "question",
         "explanation",
-        "memoryLimit"
+        "memoryLimit",
+        "paperOrder"
       ],
       "revisionReviewFiles": [
         "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
@@ -1062,7 +1063,13 @@
           "id": 26,
           "field": "memoryLimit",
           "value": "512 MB",
-          "sourcePage": 5
+          "sourcePage": 7
+        },
+        {
+          "id": 26,
+          "field": "paperOrder",
+          "value": 27,
+          "sourcePage": 7
         }
       ]
     },
@@ -1104,7 +1111,8 @@
       "appliedFields": [
         "question",
         "explanation",
-        "memoryLimit"
+        "memoryLimit",
+        "paperOrder"
       ],
       "revisionReviewFiles": [
         "ai-reviews/2026-11-07-revisions/2024-09-l7.deepseek.json",
@@ -1115,7 +1123,13 @@
           "id": 27,
           "field": "memoryLimit",
           "value": "512 MB",
-          "sourcePage": 7
+          "sourcePage": 5
+        },
+        {
+          "id": 27,
+          "field": "paperOrder",
+          "value": 26,
+          "sourcePage": 5
         }
       ]
     }

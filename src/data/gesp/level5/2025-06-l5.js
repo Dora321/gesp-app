@@ -5,7 +5,7 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `8 8
 2 1`, output: `5` },
@@ -22,13 +22,13 @@ const programmingQuestions = [
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       "reviewedAt": "2026-11-07",
       "sourcePage": 13,
-      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage"],
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
       type: 'programming',
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       samples: [
         { input: `5 3
 6 9 12 18 30`, output: `1
@@ -144,7 +144,7 @@ const programmingQuestions = [
       "sourcePage": 15,
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       "reviewedAt": "2026-11-07",
-      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt"],
+      "reviewedFields": ["question","sourcePage","reviewedBy","reviewedAt","memoryLimit"],
     }
 ];
 

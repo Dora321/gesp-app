@@ -29,12 +29,12 @@ const programmingQuestions = [
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg(n+1, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i]-1) / 2;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       answer: '',
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       "reviewedAt": "2026-11-07",
       "sourcePage": 5,
-      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     },
     {
       id: 27,
@@ -58,12 +58,12 @@ const programmingQuestions = [
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a-b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2+1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a-b;\n        int val = a+b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if (dp[i] <= NEG / 2) continue;\n            int ni = i+diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], dp[i]+val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: "512 MB",
       answer: '',
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       "reviewedAt": "2026-11-07",
       "sourcePage": 7,
-      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
     }
 ];
 

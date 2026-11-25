@@ -17,13 +17,15 @@
     {
       "id": 26,
       "fields": [
-        "question"
+        "question",
+        "memoryLimit"
       ]
     },
     {
       "id": 27,
       "fields": [
-        "question"
+        "question",
+        "memoryLimit"
       ]
     }
   ],
@@ -175,5 +177,19 @@
       }
     }
   ],
-  "followUp": "对照原卷第 5 页确认 8→5。按 13 条边穷举每个顶点的邻接访问顺序，从 1 出发共得到 6 种 BFS 序列，四个选项中只有 B 无法生成。应用补齐边集的解析，并保留题面原图。"
+  "followUp": "对照原卷第 5 页确认 8→5。按 13 条边穷举每个顶点的邻接访问顺序，从 1 出发共得到 6 种 BFS 序列，四个选项中只有 B 无法生成。应用补齐边集的解析，并保留题面原图。",
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 5
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 7
+    }
+  ]
 }

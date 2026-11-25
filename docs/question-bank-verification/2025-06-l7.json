@@ -991,11 +991,20 @@
       },
       "unresolved": [],
       "appliedFields": [
-        "question"
+        "question",
+        "memoryLimit"
       ],
       "revisionReviewFiles": [
         "ai-reviews/2026-11-07-revisions/2025-06-l7.deepseek.json",
         "ai-reviews/2026-11-07-revisions/2025-06-l7.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 26,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 5
+        }
       ]
     },
     {
@@ -1034,11 +1043,20 @@
       },
       "unresolved": [],
       "appliedFields": [
-        "question"
+        "question",
+        "memoryLimit"
       ],
       "revisionReviewFiles": [
         "ai-reviews/2026-11-07-revisions/2025-06-l7.deepseek.json",
         "ai-reviews/2026-11-07-revisions/2025-06-l7.glm.json"
+      ],
+      "metadataChecks": [
+        {
+          "id": 27,
+          "field": "memoryLimit",
+          "value": "512 MB",
+          "sourcePage": 7
+        }
       ]
     }
   ],

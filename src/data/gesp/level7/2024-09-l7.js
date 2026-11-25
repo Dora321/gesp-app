@@ -28,7 +28,8 @@ const programmingQuestions = [
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       "reviewedAt": "2026-11-07",
       "sourcePage": 7,
-      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit","paperOrder"],
+      "paperOrder": 27,
     },
     {
       id: 27,
@@ -61,7 +62,8 @@ No` }
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       "reviewedAt": "2026-11-07",
       "sourcePage": 5,
-      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit"],
+      "reviewedFields": ["question","explanation","reviewedBy","reviewedAt","sourcePage","memoryLimit","paperOrder"],
+      "paperOrder": 26,
     }
 ];
 

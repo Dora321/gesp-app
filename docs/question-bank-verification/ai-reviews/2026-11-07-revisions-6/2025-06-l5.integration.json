@@ -6,7 +6,14 @@
       "id": 26,
       "fields": [
         "question",
-        "explanation"
+        "explanation",
+        "memoryLimit"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "memoryLimit"
       ]
     }
   ],
@@ -81,6 +88,20 @@
         }
       ],
       "codeSha256": "ed5b9a83bacc9f6c263a9d72eaa35a2733422f068ca25295743e52e9ad6ed0de"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "id": 26,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 13
+    },
+    {
+      "id": 27,
+      "field": "memoryLimit",
+      "value": "512 MB",
+      "sourcePage": 14
     }
   ]
 }
