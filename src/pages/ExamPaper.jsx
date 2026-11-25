@@ -1,12 +1,12 @@
-import React, { Suspense, lazy, useCallback, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Clock, ChevronLeft, ChevronRight, AlertTriangle, FileText, Lightbulb, BookOpen, Menu, RotateCcw } from 'lucide-react';
 import LoadingScreen from '../components/LoadingScreen';
 import { getPaper } from '../data/gesp/index';
 import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
 import useLuoguPool from '../hooks/useLuoguPool';
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
-import { reviewQuestionIndexes, scoreExam } from '../utils/examScoring';
+import { flaggedQuestionIndexes, reviewQuestionIndexes, scoreExam } from '../utils/examScoring';
 import { resolveVerification } from '../data/gesp/verificationModel';
 import { setExamFocus } from '../utils/teacherTools';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
@@ -29,15 +29,39 @@ import ResultDialog from './exam/ResultDialog';
 const EnhancedPaperPage = lazy(() => import('./question-bank/EnhancedPaperPage'));
 const ExamModeView = lazy(() => import('./exam/ExamModeView'));
 
-// ─── State Container ────────────────────────────────────────────────
+const flagStorageKey = (paperId) => `gesp:exam-flags:${paperId}`;
 
-const ExamPaper = () => {
-  const { paperId } = useParams();
+function loadFlags(paperId, endsAt) {
+  if (!Number.isFinite(endsAt)) return new Set();
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(flagStorageKey(paperId)));
+    if (saved?.endsAt === endsAt && Array.isArray(saved.ids)) return new Set(saved.ids.map(String));
+  } catch {
+    // 存储不可用时，本场标记仍保存在内存。
+  }
+  return new Set();
+}
+
+function saveFlags(paperId, endsAt, flagged) {
+  try {
+    if (flagged.size) {
+      sessionStorage.setItem(flagStorageKey(paperId), JSON.stringify({ endsAt, ids: [...flagged] }));
+    } else {
+      sessionStorage.removeItem(flagStorageKey(paperId));
+    }
+  } catch {
+    // 存储不可用时，本场标记仍保存在内存。
+  }
+}
+
+const ExamPaper = ({ paperId }) => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Core state
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [flagged, setFlagged] = useState(() => new Set());
   // 权威时间是截止时间戳；显示由 ExamTimer 现算，本组件不再每秒重渲染。
   const [endsAt, setEndsAt] = useState(null);
   // 交卷那一刻的剩余秒数（定格显示、算用时）；未交卷时为 null。
@@ -47,7 +71,8 @@ const ExamPaper = () => {
   const [showResult, setShowResult] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
-  const [mode, setMode] = useState(null);
+  const [selectedMode, setMode] = useState(null);
+  const mode = searchParams.get('mode') === 'analysis' ? 'analysis' : selectedMode;
   // 交卷后复盘：只在答错/没做的题之间翻页。
   const [reviewWrongOnly, setReviewWrongOnly] = useState(false);
 
@@ -71,7 +96,8 @@ const ExamPaper = () => {
         setEndsAt(null);
         setSubmittedRemaining(null);
         setAutoSubmitted(false);
-        setSavedProgress(loadExamProgress(paperId));
+        const saved = loadExamProgress(paperId);
+        setSavedProgress(saved && { ...saved, flagged: loadFlags(paperId, saved.endsAt) });
       } else {
         setError('在此题库中未找到该试卷 (Registry Lookup Failed)');
       }
@@ -95,18 +121,6 @@ const ExamPaper = () => {
   const luogu = useLuoguPool(paperData?.level, Boolean(paperData) && needsSynthesizedCoding(baseQuestions));
   const luoguPool = luogu.pool;
 
-  // Reset on paperId change
-  useEffect(() => {
-    setCurrentQuestionIndex(0);
-    setAnswers({});
-    setIsSubmitted(false);
-    setShowResult(false);
-    setShowSidebar(false);
-    setShowSubmitConfirm(false);
-    setReviewWrongOnly(false);
-    setMode(null);
-  }, [paperId]);
-
   // 考试模式期间不挂载页面标注等教师工具。
   useEffect(() => {
     setExamFocus(mode === 'exam');
@@ -121,6 +135,11 @@ const ExamPaper = () => {
     if (mode !== 'exam' || !paperData || !Number.isFinite(endsAt)) return;
     saveExamProgress(paperId, { answers, endsAt, currentQuestionIndex, isSubmitted });
   }, [mode, paperData, paperId, answers, endsAt, currentQuestionIndex, isSubmitted]);
+
+  useEffect(() => {
+    if (mode !== 'exam' || !Number.isFinite(endsAt)) return;
+    saveFlags(paperId, endsAt, isSubmitted ? new Set() : flagged);
+  }, [mode, paperId, endsAt, isSubmitted, flagged]);
 
   // ─── Derived Values ────────────────────────────────────────────────
 
@@ -147,6 +166,7 @@ const ExamPaper = () => {
     excludedObjectiveCount,
   } = scoreExam(allQuestions, answers);
   const reviewIndexes = isSubmitted ? reviewQuestionIndexes(allQuestions, answers) : [];
+  const flaggedIndexes = flaggedQuestionIndexes(allQuestions, flagged);
   const wrongOnly = isSubmitted && reviewWrongOnly && reviewIndexes.length > 0;
   const verification = paperData ? resolveVerification(paperData) : null;
 
@@ -160,6 +180,17 @@ const ExamPaper = () => {
   const handleProgrammingMark = () => {
     if (isSubmitted || !currentQ || !isProgrammingQuestion(currentQ)) return;
     setAnswers(prev => ({ ...prev, [currentQ.id]: PROGRAMMING_ACK }));
+  };
+
+  const toggleFlag = () => {
+    if (isSubmitted || !currentQ) return;
+    const id = String(currentQ.id);
+    setFlagged((previous) => {
+      const next = new Set(previous);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   };
 
   // 交卷即落盘一条成绩快照。ResultDialog 关掉之后，这是学生唯一能回看
@@ -185,6 +216,7 @@ const ExamPaper = () => {
   const startExam = ({ resume }) => {
     if (resume) {
       setAnswers(savedProgress.answers || {});
+      setFlagged(savedProgress.flagged);
       setCurrentQuestionIndex(savedProgress.currentQuestionIndex || 0);
       setIsSubmitted(Boolean(savedProgress.isSubmitted));
       // 兼容旧存档：只有 timeLeft 时按保存时的剩余秒数从现在起算。
@@ -193,6 +225,7 @@ const ExamPaper = () => {
       clearExamProgress(paperId);
       setSavedProgress(null);
       setAnswers({});
+      setFlagged(new Set());
       setIsSubmitted(false);
       setCurrentQuestionIndex(0);
       // 空存档 → 按整卷时长新开（now + timeLimit）。
@@ -214,18 +247,17 @@ const ExamPaper = () => {
   };
 
   // Navigation（「只看错题」时只在错题之间跳）
-  const reviewKey = reviewIndexes.join(',');
-  const goToPrevious = useCallback(() => {
+  const goToPrevious = () => {
     if (wrongOnly) {
-      const previous = reviewKey.split(',').map(Number).filter((index) => index < currentQuestionIndex).pop();
+      const previous = reviewIndexes.filter((index) => index < currentQuestionIndex).pop();
       if (previous !== undefined) setCurrentQuestionIndex(previous);
       return;
     }
     setCurrentQuestionIndex(prev => Math.max(0, prev - 1));
-  }, [wrongOnly, reviewKey, currentQuestionIndex]);
-  const goToNext = useCallback(() => {
+  };
+  const goToNext = () => {
     if (wrongOnly) {
-      const next = reviewKey.split(',').map(Number).find((index) => index > currentQuestionIndex);
+      const next = reviewIndexes.find((index) => index > currentQuestionIndex);
       if (next !== undefined) setCurrentQuestionIndex(next);
       else setShowResult(true);
       return;
@@ -236,7 +268,7 @@ const ExamPaper = () => {
       return;
     }
     setCurrentQuestionIndex(currentQuestionIndex + 1);
-  }, [wrongOnly, reviewKey, currentQuestionIndex, questionCount, isSubmitted]);
+  };
 
   useQuestionKeyboardNavigation({
     enabled: mode === 'exam' && !showSubmitConfirm && !showResult,
@@ -288,7 +320,7 @@ const ExamPaper = () => {
             <h1 className="text-3xl font-bold text-white mb-2">{paperData.title}</h1>
             <p className="text-indigo-200">请选择练习模式</p>
           </div>
-          {hasResumableProgress(savedProgress) && (
+          {(hasResumableProgress(savedProgress) || (!savedProgress?.isSubmitted && flaggedQuestionIndexes(allQuestions, savedProgress?.flagged).length > 0)) && (
             <button
               onClick={() => startExam({ resume: true })}
               className="w-full mb-6 flex items-center justify-between gap-4 bg-amber-400/10 border border-amber-300/40 rounded-2xl p-5 text-left hover:bg-amber-400/20 transition-all group"
@@ -406,6 +438,7 @@ const ExamPaper = () => {
           currentQuestionIndex={currentQuestionIndex}
           isSubmitted={isSubmitted}
           reviewIndexes={wrongOnly ? reviewIndexes : null}
+          flaggedIndexes={flaggedIndexes}
           showSidebar={showSidebar}
           answeredCount={answeredCount}
           progress={progress}
@@ -422,6 +455,8 @@ const ExamPaper = () => {
             isSubmitted={isSubmitted}
             paperId={paperId}
             level={paperData.level}
+            flagged={flagged.has(String(currentQ.id))}
+            onToggleFlag={toggleFlag}
             trust={{
               answerVerified: verification?.dimensions.answer === 'verified',
               explanationVerified: verification?.dimensions.explanation === 'verified',
@@ -434,7 +469,12 @@ const ExamPaper = () => {
               setReviewWrongOnly(next);
               if (next && !reviewIndexes.includes(currentQuestionIndex)) setCurrentQuestionIndex(reviewIndexes[0]);
             }}
-            onOpenAnalysisMode={() => { setCurrentQuestionIndex(0); setMode('analysis'); }}
+            onOpenAnalysisMode={() => setSearchParams((params) => {
+              const next = new URLSearchParams(params);
+              next.set('mode', 'analysis');
+              next.set('q', String(currentQ.id));
+              return next;
+            })}
             onShowResult={() => setShowResult(true)}
             onOptionSelect={handleOptionSelect}
             onProgrammingMark={handleProgrammingMark}
@@ -451,6 +491,7 @@ const ExamPaper = () => {
           unansweredCount={unansweredCount}
           programmingMarkedCount={programmingMarkedCount}
           excludedObjectiveCount={excludedObjectiveCount}
+          flaggedCount={flaggedIndexes.length}
           onCancel={() => setShowSubmitConfirm(false)}
           onConfirm={() => handleSubmit()}
         />
@@ -477,4 +518,7 @@ const ExamPaper = () => {
   );
 };
 
-export default ExamPaper;
+export default function ExamPaperRoute() {
+  const { paperId } = useParams();
+  return <ExamPaper key={paperId} paperId={paperId} />;
+}

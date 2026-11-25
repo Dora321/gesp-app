@@ -1,4 +1,5 @@
 import React from 'react';
+import { Flag } from 'lucide-react';
 import useDialogFocus from '../../hooks/useDialogFocus';
 
 /**
@@ -9,6 +10,7 @@ const SubmitConfirmDialog = ({
   unansweredCount,
   programmingMarkedCount,
   excludedObjectiveCount,
+  flaggedCount = 0,
   onCancel,
   onConfirm,
 }) => {
@@ -25,6 +27,13 @@ const SubmitConfirmDialog = ({
           <div className="bg-amber-50 rounded-lg p-3"><div className="text-xs text-amber-700">未答</div><div className="text-2xl font-bold text-amber-700">{unansweredCount}</div></div>
           <div className="bg-orange-50 rounded-lg p-3"><div className="text-xs text-orange-700">不计分题</div><div className="text-2xl font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>
+
+        {flaggedCount > 0 && (
+          <p className="mb-4 flex items-start gap-2 rounded-md bg-[var(--mw-warn-tint)] px-3 py-2 text-sm text-[var(--mw-warn)]">
+            <Flag size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
+            <span>另有 {flaggedCount} 题标了存疑，建议交卷前再核对。</span>
+          </p>
+        )}
 
         <div className="flex gap-3">
           <button onClick={onCancel} className="flex-1 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors">返回继续答题</button>
