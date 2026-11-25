@@ -1,0 +1,68 @@
+{
+  "paperId": "2023-09-l4",
+  "phase": "deepseek",
+  "questionIds": [
+    3
+  ],
+  "model": "deepseek-v4.1-flash",
+  "requestedModel": "deepseek-v4.1-flash",
+  "effort": "max",
+  "startedAt": "2026-11-25T06:20:00.000Z",
+  "completedAt": "2026-11-25T06:47:00.000Z",
+  "finishReason": "stop",
+  "inputSha256": "87b27d4a8f806ff012b7233611bb890985a85d797b057673bf5dcf83c5a04a67",
+  "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf",
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++4级.pdf",
+    "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
+    "mirrorBytes": 1345523,
+    "shaVerified": true,
+    "sha256": "befb5ce3e88280e1eadbf79483544e763f8aef4ccc6be6d580d35b50e2e41b84"
+  },
+  "pageCount": 8,
+  "report": {
+    "paperId": "2023-09-l4",
+    "sourceIdentity": {
+      "matches": true,
+      "evidence": "PDF 第1页卷头为『CCF 编程能力等级认证 / C++ 四级 / 2023 年 9 月』，答案表『B A C D D B A B B C C A A D C』第3格为 C；第3题题干位于第1页页末，选项 B–D 续排于第2页，与 2023-09-l4 第3题逐一对应。"
+    },
+    "questions": [
+      {
+        "id": 3,
+        "sourcePages": [
+          1,
+          2
+        ],
+        "officialAnswer": 2,
+        "dimensions": {
+          "statement": {
+            "status": "verified",
+            "evidence": "第1页第3题题干为『对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为（ ）。』，变量 n 为斜体且两侧留空格；候选 question 逐字一致。第4轮批准的题干修复（清除跨页裁切残字『 A』并补『包含 n』空格）已真实落入本轮 paper.json，核验通过。"
+          },
+          "options": {
+            "status": "verified",
+            "evidence": "第1页页末选项 A 被页边界部分裁切，可辨为『O(n)』；第2页自上而下为 B. O(n log n)、C. O(n²)、D. 以上都不正确。候选 options 内容、顺序与之一致，0 起始索引映射不受跨页排版影响。"
+          },
+          "answer": {
+            "status": "verified",
+            "evidence": "第1页答案表『B A C D D B A B B C C A A D C』第3格为 C，即 0 起始索引 2，候选 answer=2 一致。独立推导：按固定轮数执行的冒泡排序总比较次数为 (n-1)+(n-2)+…+1=n(n-1)/2=Θ(n²)，与输入无关；交换次数等于逆序对数，均匀随机排列每对逆序概率 1/2、共 n(n-1)/2 对，期望交换 n(n-1)/4，仍为 Θ(n²)，故平均时间复杂度为 O(n²)，对应 C。"
+          },
+          "explanation": {
+            "status": "verified",
+            "evidence": "第5轮批准的解析修订已逐字落入本轮 paper.json。逐条核算：未优化版总比较次数 n(n-1)/2 与输入无关；交换次数等于逆序对数，最坏（逆序）n(n-1)/2、最好（已有序）0；均匀随机排列期望交换 n(n-1)/4；带『本轮无交换则提前结束』优化时最好 O(n)、平均与最坏仍 O(n²)；A/B/D 选项分析与复杂度归类（O(n²)：冒泡/选择/插入，O(n log n)：快排/归并/堆排，O(n)：计数/桶/基数排序）均无事实错误，未虚构运行结果。原解析中『平均交换次数 n(n-1)/2』与『最好情况 O(n) 未注明提前退出优化』两处问题已消失。"
+          },
+          "referenceCode": {
+            "status": "not_applicable",
+            "evidence": "本题为单选题，无参考程序，该维度不适用。"
+          }
+        },
+        "changes": {},
+        "tests": [],
+        "unresolved": [],
+        "verdict": "approve"
+      }
+    ],
+    "summary": "仅 1 道候选（Q3）。第4轮题干修复与第5轮解析修订均已真实落入 paper.json：题干与第1页逐字一致（含 n 两侧空格、无跨页残字），选项与第2页一致，答案为 C（索引 2）；解析的比较/交换次数、期望逆序对、提前退出优化与选项分析逐条核算无误。五项维度均无实质缺陷，changes 为空，verdict=approve，可直接进入门禁应用。"
+  }
+}
