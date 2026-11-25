@@ -3,6 +3,8 @@ export const l8ProgrammingByPaper = {
     {
       type: 'programming', id: 26, title: '最远点对', problemNumber: '2024-06-l8-Q26',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       description: '给定一棵 n 个节点的树，每个节点颜色为 0/1。求一对颜色不同的节点之间的最大距离（边数）。保证至少存在一对白黑颜色不同的节点。',
       inputDescription: '第一行一个正整数 n。第二行 n 个整数 c_i，0 表示白色，1 表示黑色。接下来 n-1 行每行两个正整数 u、v，表示树边。',
       outputDescription: '输出一个整数，表示颜色不同的两点间的最大距离。',
@@ -84,6 +86,8 @@ export const l8ProgrammingByPaper = {
     {
       type: 'programming', id: 27, title: '空间跳跃', problemNumber: '2024-06-l8-Q27',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       description: '平面上有 n 个互不重叠的水平挡板。小杨从某个挡板的左端点出发，可以在挡板上水平移动；走到端点外侧会竖直下落到下方第一个能接住该 x 坐标的位置。水平移动和竖直下落都按长度/高度计时。求从起始挡板 s 到目标挡板 t 的最少耗时；若无法到达则输出 -1。',
       inputDescription: '第一行一个正整数 n。第二行两个正整数 s、t。接下来 n 行每行三个正整数 l_i、r_i、h_i，表示一个挡板。',
       outputDescription: '输出一个整数，表示最少耗时；若无法到达输出 -1。',
@@ -176,7 +180,9 @@ export const l8ProgrammingByPaper = {
     }
   ],
   '2024-09-l8': [
-    { type: 'programming', id: 26, score: 25, title: '手套配对', problemNumber: '2024-09-l8-Q26', description: '有 n 对不同的手套，每对由左手和右手各一只组成。现在恰好取出 m 只手套，要求其中恰好包含 k 对完整配对。问不同取法有多少种。答案对 1e9+7 取模。', inputDescription: '第一行一个正整数 T。接下来 T 组数据，每组一行三个正整数 n、m、k。', outputDescription: '每组数据输出一个整数。', samples: [{ input: '2\n5 6 2\n5 1 5', output: '120\n0' }], explanation: `**解析：**
+    { type: 'programming', id: 26, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '手套配对', problemNumber: '2024-09-l8-Q26', description: '有 n 对不同的手套，每对由左手和右手各一只组成。现在恰好取出 m 只手套，要求其中恰好包含 k 对完整配对。问不同取法有多少种。答案对 1e9+7 取模。', inputDescription: '第一行一个正整数 T。接下来 T 组数据，每组一行三个正整数 n、m、k。', outputDescription: '每组数据输出一个整数。', samples: [{ input: '2\n5 6 2\n5 1 5', output: '120\n0' }], explanation: `**解析：**
 
 **题意分析：**
 一共有 \`n\` 双各不相同的手套（共 \`2*n\` 只，每双均包含一只左手手套和一只右手手套）。从中任意选出 \`m\` 只单只手套，要求选出的手套恰好能配成 \`k\` 双完整手套。我们需要求出合法的挑选方案数，并对 \`1000000007\` 取模。
@@ -237,7 +243,9 @@ export const l8ProgrammingByPaper = {
 **易错提醒：**
 - **乘法溢出问题**：计算 \`C[n][k] * C[n - k][m - 2*k] * pw[m - 2*k]\` 时，虽然每个数都已模 \`MOD\`，但三者连续相乘会超过 32 位整型（\`int\`）的表示上限，必须使用 \`long long\` 并在每一次相乘后及时取模。
 - **边界防越界**：务必先判断 \`m < 2*k\` 与 \`m - 2*k > n - k\`，避免因第二维参数出现负数或超过第一维而导致数组越界访问。`, tags: ['编程题', '组合数学', '计数'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){}return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const int N=2005,MOD=1000000007; long long C[N][N],pw[N]; int main(){ios::sync_with_stdio(false);cin.tie(nullptr); pw[0]=1; for(int i=1;i<N;i++) pw[i]=pw[i-1]*2%MOD; for(int i=0;i<N;i++){ C[i][0]=1; for(int j=1;j<=i;j++) C[i][j]=(C[i-1][j]+C[i-1][j-1])%MOD; } int T;cin>>T; while(T--){int n,m,k;cin>>n>>m>>k; if(m<2*k||m-2*k>n-k){cout<<0<<"\\n"; continue;} cout<<C[n][k]*C[n-k][m-2*k]%MOD*pw[m-2*k]%MOD<<"\\n";} return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '美丽路径', problemNumber: '2024-09-l8-Q27', description: '给定一棵 n 个节点的树，每个节点颜色为黑/白。若一条简单路径上任意相邻两个节点颜色都不同，则称这条路径为美丽路径。求最长美丽路径的长度。', inputDescription: '第一行一个正整数 n。第二行 n 个整数 c_i，其中 0 表示白色、1 表示黑色。接下来 n-1 行每行两个正整数 u、v，表示树边。', outputDescription: '输出一个整数。', samples: [{ input: '5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3', output: '4' }, { input: '5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5', output: '1' }], explanation: `**解析：**
+    { type: 'programming', id: 27, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '美丽路径', problemNumber: '2024-09-l8-Q27', description: '给定一棵 n 个节点的树，每个节点颜色为黑/白。若一条简单路径上任意相邻两个节点颜色都不同，则称这条路径为美丽路径。求最长美丽路径的长度。', inputDescription: '第一行一个正整数 n。第二行 n 个整数 c_i，其中 0 表示白色、1 表示黑色。接下来 n-1 行每行两个正整数 u、v，表示树边。', outputDescription: '输出一个整数。', samples: [{ input: '5\n1 0 0 1 0\n1 2\n3 5\n4 3\n1 3', output: '4' }, { input: '5\n0 0 0 0 0\n1 2\n2 3\n3 4\n4 5', output: '1' }], explanation: `**解析：**
 
 **题目大意与核心转化：**
 给定一棵包含 \`n\` 个节点的树，每个节点有一个颜色（\`0\` 或 \`1\`）。定义一条“美丽路径”为：路径上相邻两节点的颜色均不相同（即颜色严格交错）。求美丽路径最多能包含多少个节点。
@@ -311,7 +319,9 @@ export const l8ProgrammingByPaper = {
 - **时间复杂度**：每个节点和每条异色边在标记与两遍 DFS 中最多被常数次遍历，整体时间复杂度为 \`O(n)\`，空间复杂度为 \`O(n)\`，可以高效通过全部测试数据。`, tags: ['编程题', '树形DP', '直径'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n;\nvector<vector<int>> g;\nint farNode, farDist;\n\nvoid dfs(int u, int fa, int d) {\n    if (d > farDist) { farDist = d; farNode = u; }\n    for (int v : g[u]) if (v != fa) dfs(v, u, d + 1);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    g.assign(n + 1, {});\n    vector<pair<int, int>> edges;\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        if (c[u] != c[v]) { // 只保留异色边，美丽路径只能走这些边\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n    }\n    // 森林里逐棵树求直径（按节点数计）\n    vector<bool> vis(n + 1, false);\n    int ans = 1;\n    function<void(int)> mark = [&](int u) {\n        vis[u] = true;\n        for (int v : g[u]) if (!vis[v]) mark(v);\n    };\n    for (int i = 1; i <= n; ++i) {\n        if (vis[i]) continue;\n        mark(i);\n        farDist = -1; dfs(i, 0, 0);\n        int a = farNode;\n        farDist = -1; dfs(a, 0, 0);\n        ans = max(ans, farDist + 1);\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2024-12-l8': [
-    { type: 'programming', id: 26, score: 25, title: '树上移动', problemNumber: '2024-12-l8-Q26', description: '给定一棵 n 个节点的树，每个节点颜色为 0/1，其中 1 表示黑色。任选起点和终点，沿简单路径移动，要求路径上经过的黑色节点数不超过 k。求最多能经过多少个节点。', inputDescription: '第一行两个正整数 n、k。第二行 n 个整数表示各节点颜色。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个正整数。', samples: [{ input: '5 1\n0 0 1 1 1\n1 2\n2 3\n2 5\n1 4', output: '3' }], explanation: `**解析：**
+    { type: 'programming', id: 26, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '树上移动', problemNumber: '2024-12-l8-Q26', description: '给定一棵 n 个节点的树，每个节点颜色为 0/1，其中 1 表示黑色。任选起点和终点，沿简单路径移动，要求路径上经过的黑色节点数不超过 k。求最多能经过多少个节点。', inputDescription: '第一行两个正整数 n、k。第二行 n 个整数表示各节点颜色。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个正整数。', samples: [{ input: '5 1\n0 0 1 1 1\n1 2\n2 3\n2 5\n1 4', output: '3' }], explanation: `**解析：**
 
 **题目大意与模型转化**
 本题给出一棵包含 \`n\` 个节点的树，每个节点有对应的颜色属性（\`0\` 表示白点，\`1\` 表示黑点）。要求在树上寻找一条简单路径，使得该路径上包含的黑点总数不超过 \`k\`，并求出该路径最多可以包含多少个节点（即最长合法路径上的节点数）。
@@ -381,7 +391,9 @@ export const l8ProgrammingByPaper = {
 - **无向边防止死循环**：在无向图上进行 DFS 时，必须传入父节点参数 \`fa\`，并在扩展邻居时跳过 \`v == fa\` 的情况，避免在父子节点间来回往返陷入死循环。
 - **超限及时剪枝**：一旦累加黑点数 \`black > k\`，必须立即返回不再继续向下搜索，避免无效遍历并保证路径合法性。
 - **路径节点计数**：题目求的是简单路径上的节点个数。起点自身占 1 个节点（进入当前点时长度更新为 \`nodes + 1\`），注意不要把节点个数与边的条数混淆。`, tags: ['编程题', '树', 'DFS'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<int> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // 从每个点出发 DFS，维护路径上的黑点数（O(n^2)）\n    int ans = 0;\n    function<void(int, int, int, int)> dfs = [&](int u, int fa, int black, int nodes) {\n        black += c[u];\n        if (black > k) return;\n        ans = max(ans, nodes + 1);\n        for (int v : g[u]) if (v != fa) dfs(v, u, black, nodes + 1);\n    };\n    for (int i = 1; i <= n; ++i) dfs(i, 0, 0, 0);\n    cout << ans << '\\n';\n    return 0;\n}" },
-    { type: 'programming', id: 27, score: 25, title: '排队', problemNumber: '2024-12-l8-Q27', description: '有 n 位同学要排成一列。给出 m 条相邻约束，每条约束要求 a 必须紧挨在 b 前面。问满足全部约束的排队方案数，答案对 1e9+7 取模。', inputDescription: '第一行两个整数 n、m。接下来 m 行每行两个整数 a、b。', outputDescription: '输出一个整数。', samples: [{ input: '4 2\n1 3\n2 4', output: '2' }, { input: '3 0', output: '6' }, { input: '3 2\n1 2\n2 1', output: '0' }], explanation: `**解析：**
+    { type: 'programming', id: 27, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '排队', problemNumber: '2024-12-l8-Q27', description: '有 n 位同学要排成一列。给出 m 条相邻约束，每条约束要求 a 必须紧挨在 b 前面。问满足全部约束的排队方案数，答案对 1e9+7 取模。', inputDescription: '第一行两个整数 n、m。接下来 m 行每行两个整数 a、b。', outputDescription: '输出一个整数。', samples: [{ input: '4 2\n1 3\n2 4', output: '2' }, { input: '3 0', output: '6' }, { input: '3 2\n1 2\n2 1', output: '0' }], explanation: `**解析：**
 
 **题目大意：**
 有 \`n\` 名同学排成一列纵队，给出 \`m\` 个条件，每个条件包含两个整数 \`a\` 和 \`b\`，表示同学 \`a\` 必须紧挨着站在同学 \`b\` 的正前方。求满足所有条件的不同排队方案总数。如果无法排成合法队伍则输出 \`0\`，结果对 \`1000000007\` 取模。
@@ -435,7 +447,9 @@ export const l8ProgrammingByPaper = {
 - **全排列与取模运算**：计算 \`(n - merged)!\` 连乘时，累乘变量必须使用 \`long long\` 类型，且每步都执行模 \`1000000007\` 操作，防止数值溢出。`, tags: ['编程题', '排列计数', '链与环'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1000000007;\n\nint find(vector<int> &f, int x) { return f[x] == x ? x : f[x] = find(f, f[x]); }\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    set<pair<int, int>> constraints;\n    for (int i = 0; i < m; ++i) {\n        int a, b;\n        cin >> a >> b;\n        constraints.insert({a, b});\n    }\n    // a 必须紧挨 b 前面：出度/入度都不能超过 1，且不能成环。\n    vector<int> out(n + 1, 0), in(n + 1, 0), f(n + 1);\n    for (int i = 1; i <= n; ++i) f[i] = i;\n    bool ok = true;\n    int merged = 0;\n    for (auto [a, b] : constraints) {\n        if (++out[a] > 1 || ++in[b] > 1) { ok = false; break; }\n        int ra = find(f, a), rb = find(f, b);\n        if (ra == rb) { ok = false; break; } // 成环\n        f[ra] = rb;\n        merged++;\n    }\n    if (!ok) { cout << 0 << '\\n'; return 0; }\n    // 合法时链和散点共 n - merged 个单元，任意排列\n    long long ans = 1;\n    for (long long i = 2; i <= n - merged; ++i) ans = ans * i % MOD;\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2025-03-l8': [
-    { type: 'programming', id: 26, score: 25, title: '上学', problemNumber: '2025-03-l8-Q26', description: 'C 城是一张无向带权连通图，学校位于固定结点 s。给出 q 位同学家的结点位置，每位同学每秒走 1 米，问每位同学从家到学校的最短时间。', inputDescription: '第一行四个正整数 n、m、s、q。接下来 m 行每行三个正整数 u、v、l。接下来 q 行每行一个正整数 p。', outputDescription: '输出 q 行。', samples: [{ input: '5 5 3 3\n1 2 3\n2 3 2\n3 4 1\n4 5 3\n1 4 2\n5\n1\n4', output: '4\n3\n1' }], explanation: `**解析：**
+    { type: 'programming', id: 26, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '上学', problemNumber: '2025-03-l8-Q26', description: 'C 城是一张无向带权连通图，学校位于固定结点 s。给出 q 位同学家的结点位置，每位同学每秒走 1 米，问每位同学从家到学校的最短时间。', inputDescription: '第一行四个正整数 n、m、s、q。接下来 m 行每行三个正整数 u、v、l。接下来 q 行每行一个正整数 p。', outputDescription: '输出 q 行。', samples: [{ input: '5 5 3 3\n1 2 3\n2 3 2\n3 4 1\n4 5 3\n1 4 2\n5\n1\n4', output: '4\n3\n1' }], explanation: `**解析：**
 
 本题属于经典的**单源最短路径（SSSP）**问题。
 
@@ -535,7 +549,9 @@ export const l8ProgrammingByPaper = {
 
 **知识延伸：**
 - **复杂度分析**：堆优化的 Dijkstra 算法时间复杂度为 \`O((n + m) log n)\`，回答 \`q\` 次询问的耗时为 \`O(q)\`，总时间复杂度为 \`O((n + m) log n + q)\`，空间复杂度为 \`O(n + m)\`，能够高效应对较大规模的图与多询问场景。`, tags: ['编程题', '最短路', 'Dijkstra'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,s,q;cin>>n>>m>>s>>q; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[s]=0; pq.push({0,s}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} while(q--){int p;cin>>p; cout<<d[p]<<"\\n";} return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '割裂', problemNumber: '2025-03-l8-Q27', description: '给定一棵树、k 个好点对和 1 个坏点对。删除某节点后，若所有好点对仍连通而坏点对不连通，则该节点可删除。求可删除节点数。', inputDescription: '第一行两个正整数 n、k。接下来 n-1 行树边；再接 k 行好点对；最后一行一个坏点对。', outputDescription: '输出一个正整数。', samples: [{ input: '6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6', output: '1' }], explanation: `**解析：**
+    { type: 'programming', id: 27, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '割裂', problemNumber: '2025-03-l8-Q27', description: '给定一棵树、k 个好点对和 1 个坏点对。删除某节点后，若所有好点对仍连通而坏点对不连通，则该节点可删除。求可删除节点数。', inputDescription: '第一行两个正整数 n、k。接下来 n-1 行树边；再接 k 行好点对；最后一行一个坏点对。', outputDescription: '输出一个正整数。', samples: [{ input: '6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6', output: '1' }], explanation: `**解析：**
 
 本题考查树上最近公共祖先（LCA）与树上点差分的综合应用。
 
@@ -636,7 +652,9 @@ export const l8ProgrammingByPaper = {
 3. **递归栈溢出风险**：树的规模较大时，深层递归 DFS 极易导致运行时栈溢出（Segmentation Fault），建议使用循环配合栈的非递归方式进行树的遍历。`, tags: ['编程题', '树上差分', 'LCA'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,k;cin>>n>>k;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, k;\n    cin >> n >> k;\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    // BFS 求以 root 为根的父指针，再回溯得到路径\n    auto pathBetween = [&](int a, int b) {\n        vector<int> par(n + 1, 0);\n        queue<int> q;\n        q.push(a);\n        par[a] = a;\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (!par[v]) { par[v] = u; q.push(v); }\n        }\n        vector<int> path;\n        for (int u = b; u != a; u = par[u]) path.push_back(u);\n        path.push_back(a);\n        return path;\n    };\n\n    // goodInner[v]：v 是某个好点对路径的中间节点（删掉会断开这对好点）\n    vector<bool> goodInner(n + 1, false);\n    for (int i = 0; i < k; ++i) {\n        int a, b;\n        cin >> a >> b;\n        auto path = pathBetween(a, b);\n        for (size_t j = 1; j + 1 < path.size(); ++j) goodInner[path[j]] = true;\n    }\n    int ba, bb;\n    cin >> ba >> bb;\n    auto badPath = pathBetween(ba, bb);\n    int ans = 0;\n    for (size_t j = 1; j + 1 < badPath.size(); ++j) {\n        if (!goodInner[badPath[j]]) ans++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}" }
   ],
   '2025-06-l8': [
-    { type: 'programming', id: 26, score: 25, title: '树上旅行', problemNumber: '2025-06-l8-Q26', description: '给定一棵以 1 为根的有根树。正数操作表示向父亲走若干步，负数操作表示反复走向当前节点编号最小的儿子；若无法继续则停在原点。求每次旅行结束所在的节点。', inputDescription: '第一行两个正整数 n、q。第二行给出 2..n 号节点的父节点。接下来 q 组询问：先给起点 s 和序列长度 k，下一行给出 k 个非零整数表示操作。', outputDescription: '输出 q 行。', samples: [{ input: '5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1', output: '4\n1\n4\n2' }], explanation: `**解析：**
+    { type: 'programming', id: 26, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '树上旅行', problemNumber: '2025-06-l8-Q26', description: '给定一棵以 1 为根的有根树。正数操作表示向父亲走若干步，负数操作表示反复走向当前节点编号最小的儿子；若无法继续则停在原点。求每次旅行结束所在的节点。', inputDescription: '第一行两个正整数 n、q。第二行给出 2..n 号节点的父节点。接下来 q 组询问：先给起点 s 和序列长度 k，下一行给出 k 个非零整数表示操作。', outputDescription: '输出 q 行。', samples: [{ input: '5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1', output: '4\n1\n4\n2' }], explanation: `**解析：**
 
 ### 1. 题意理解与模型转化
 题目要求在一棵以节点 1 为根的有根树上模拟移动过程。从指定起点出发，根据给定的步数指令进行两类游走：
@@ -712,7 +730,9 @@ export const l8ProgrammingByPaper = {
 
 **知识延伸：**
 - 该模型是**树上倍增（Binary Lifting）**思想的典型变体。向父节点跳和向最小子节点跳均具备“每个节点有且仅有一个唯一转移目标”的性质。利用类似 LCA（最近公共祖先）的二进制倍增思想，可以在 \`O(n log n)\` 预处理后，将单次移动复杂度降低至 \`O(log n)\`。`, tags: ['编程题', '倍增', '树上跳跃'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, q;\n    cin >> n >> q;\n    vector<int> par(n + 1, 0);\n    vector<vector<int>> children(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        cin >> par[i];\n        children[par[i]].push_back(i);\n    }\n    // 负数操作：反复走向编号最小的儿子，直到叶子\n    vector<int> minChild(n + 1, 0);\n    for (int i = 1; i <= n; ++i) {\n        if (!children[i].empty()) {\n            minChild[i] = *min_element(children[i].begin(), children[i].end());\n        }\n    }\n    while (q--) {\n        int s, k;\n        cin >> s >> k;\n        int cur = s;\n        for (int i = 0; i < k; ++i) {\n            long long op;\n            cin >> op;\n            if (op > 0) {\n                for (long long step = 0; step < op; ++step) {\n                    if (par[cur] == 0) break; // 已在根，停在原点\n                    cur = par[cur];\n                }\n            } else {\n                for (long long step = 0; step < -op; ++step) {\n                    if (minChild[cur] == 0) break; // 已是叶子\n                    cur = minChild[cur];\n                }\n            }\n        }\n        cout << cur << '\\n';\n    }\n    return 0;\n}" },
-    { type: 'programming', id: 27, score: 25, title: '遍历计数', problemNumber: '2025-06-l8-Q27', description: '给定一棵树。深度优先遍历的起点可以任意选，访问相邻未访问结点的顺序也可以任意。问可能得到多少种不同 DFS 序列，答案对 1e9 取模。', inputDescription: '第一行一个整数 n。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个整数。', samples: [{ input: '4\n1 2\n2 3\n3 4', output: '6' }, { input: '8\n1 2\n1 3\n1 4\n2 5\n2 6\n3 7\n3 8', output: '112' }], explanation: `**解析：**
+    { type: 'programming', id: 27, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '遍历计数', problemNumber: '2025-06-l8-Q27', description: '给定一棵树。深度优先遍历的起点可以任意选，访问相邻未访问结点的顺序也可以任意。问可能得到多少种不同 DFS 序列，答案对 1e9 取模。', inputDescription: '第一行一个整数 n。接下来 n-1 行每行两个正整数 u、v。', outputDescription: '输出一个整数。', samples: [{ input: '4\n1 2\n2 3\n3 4', output: '6' }, { input: '8\n1 2\n1 3\n1 4\n2 5\n2 6\n3 7\n3 8', output: '112' }], explanation: `**解析：**
 
 ### 1. 题目大意与数学模型转化
 本题给定一棵包含 \`n\` 个节点的无向树，要求计算以每个节点为根进行树遍历（如深度优先搜索 DFS）时，所有可能遍历顺序的方案数之和，并对 \`1000000000\`（10 的 9 次方）取模。
@@ -829,7 +849,9 @@ export const l8ProgrammingByPaper = {
 因此，答案可直接化简为 \`P * (2 * (n - 1)) % MOD\`。参考代码采用的前后缀积方案是无需依赖这一特定化简的普适算法结构，二者结果完全等价。`, tags: ['编程题', '树计数', '排列'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const int N=100000+5,MOD=1000000000; int deg[N],fac[N],pre[N],suf[N]; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n; fac[0]=1; for(int i=1;i<=n;i++) fac[i]=1LL*fac[i-1]*i%MOD; for(int i=1,u,v;i<n;i++){cin>>u>>v; deg[u]++; deg[v]++;} pre[0]=1; for(int i=1;i<=n;i++) pre[i]=1LL*pre[i-1]*fac[deg[i]-1]%MOD; suf[n+1]=1; for(int i=n;i>=1;i--) suf[i]=1LL*suf[i+1]*fac[deg[i]-1]%MOD; long long ans=0; for(int i=1;i<=n;i++) ans=(ans+1LL*pre[i-1]*fac[deg[i]]%MOD*suf[i+1])%MOD; cout<<ans<<"\\n"; return 0;}' }
   ],
   '2025-09-l8': [
-    { type: 'programming', id: 26, score: 25, title: '最短距离', problemNumber: '2025-09-l8-Q26', description: '构造一张完全图，边权只由两点编号是否互质决定：互质权 p，否则权 q。给出多组询问，求两点最短距离。', inputDescription: '第一行三个正整数 n、p、q，其中 n 为询问组数。接下来 n 行每行两个正整数 a、b。', outputDescription: '输出 n 行。', samples: [{ input: '4 4 3\n1 2\n2 3\n4 2\n3 5', output: '4\n4\n3\n4' }, { input: '5 2 6\n1 2\n2 3\n4 2\n3 5\n6 6', output: '2\n2\n4\n2\n0' }], explanation: `**解析：**
+    { type: 'programming', id: 26, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '最短距离', problemNumber: '2025-09-l8-Q26', description: '构造一张完全图，边权只由两点编号是否互质决定：互质权 p，否则权 q。给出多组询问，求两点最短距离。', inputDescription: '第一行三个正整数 n、p、q，其中 n 为询问组数。接下来 n 行每行两个正整数 a、b。', outputDescription: '输出 n 行。', samples: [{ input: '4 4 3\n1 2\n2 3\n4 2\n3 5', output: '4\n4\n3\n4' }, { input: '5 2 6\n1 2\n2 3\n4 2\n3 5\n6 6', output: '2\n2\n4\n2\n0' }], explanation: `**解析：**
 
 ### 1. 题意概述
 在无向图中，任意两个不同的正整数节点之间按是否互质连边：
@@ -906,7 +928,9 @@ export const l8ProgrammingByPaper = {
 ### 5. 复杂度分析
 - **时间复杂度**：对于每组询问，主要耗时在辗转相除法计算一次最大公约数 \`gcd(a, b)\`，单次复杂度为 \`O(log(min(a, b)))\`。总时间复杂度为 \`O(n * log(max(a, b)))\`。
 - **空间复杂度**：仅需常数级别的局部变量保存状态，空间复杂度为 \`O(1)\`。`, tags: ['编程题', '图论', '最短路'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,p,q;cin>>n>>p>>q;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; int gcd2(int a,int b){return b?gcd2(b,a%b):a;} int main(){ios::sync_with_stdio(false);cin.tie(nullptr); int n,p,q;cin>>n>>p>>q; while(n--){int a,b;cin>>a>>b; int ans; if(a==b) ans=0; else if(a==1||b==1) ans=p; else {ans=min(2*p,2*q); if(gcd2(a,b)==1) ans=min(ans,p); else ans=min(ans,q);} cout<<ans<<"\\n";} return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '最小生成树', problemNumber: '2025-09-l8-Q27', description: '给定一个连通无向带权图。对于每条边，删除它之后分别求剩余图的最小生成树权值和；若最小生成树不存在则输出 -1。', inputDescription: '第一行两个正整数 n、m。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出 m 行。', samples: [{ input: '5 5\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '14\n15\n-1\n-1\n10' }, { input: '6 10\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '15\n16\n17\n-1\n15\n17\n18\n15\n15\n15' }], explanation: `**解析：**
+    { type: 'programming', id: 27, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '最小生成树', problemNumber: '2025-09-l8-Q27', description: '给定一个连通无向带权图。对于每条边，删除它之后分别求剩余图的最小生成树权值和；若最小生成树不存在则输出 -1。', inputDescription: '第一行两个正整数 n、m。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出 m 行。', samples: [{ input: '5 5\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '14\n15\n-1\n-1\n10' }, { input: '6 10\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '15\n16\n17\n-1\n15\n17\n18\n15\n15\n15' }], explanation: `**解析：**
 
 ### 题目大意
 给定一个包含 \`n\` 个顶点、\`m\` 条带权无向边的图。要求依次求解 \`m\` 次独立询问：若将输入的第 \`i\` 条边（\`0 <= i < m\`）从图中删除，剩余的边能否使所有顶点连通并构成一棵生成树？如果能，输出该生成树的最小边权之和；若图不再连通，输出 \`-1\`。
@@ -993,7 +1017,9 @@ export const l8ProgrammingByPaper = {
 - 数据规模较大时，对每条被删边各跑一次 Kruskal，复杂度约为 \`O(m*m*alpha(n))\`，可能超时。更快的做法是：先求出原图的一棵最小生成树，删非树边不改变权值和；删树边时树分成两块，再在非树边里找跨越这个割的最小边替换，可用树链剖分或树上倍增把单次询问降到对数级。`, tags: ['编程题', '最小生成树', 'Kruskal'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct DSU {\n    vector<int> f;\n    explicit DSU(int n) : f(n + 1) { for (int i = 0; i <= n; ++i) f[i] = i; }\n    int find(int x) { return f[x] == x ? x : f[x] = find(f[x]); }\n    bool merge(int a, int b) {\n        a = find(a); b = find(b);\n        if (a == b) return false;\n        f[a] = b;\n        return true;\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<array<long long, 3>> e(m);\n    for (int i = 0; i < m; ++i) cin >> e[i][0] >> e[i][1] >> e[i][2];\n\n    // 直接对每条被删边重跑一次 Kruskal（数据规模允许）\n    vector<int> order(m);\n    iota(order.begin(), order.end(), 0);\n    sort(order.begin(), order.end(), [&](int a, int b) { return e[a][2] < e[b][2]; });\n\n    for (int skip = 0; skip < m; ++skip) {\n        DSU dsu(n);\n        long long total = 0;\n        int used = 0;\n        for (int idx : order) {\n            if (idx == skip) continue;\n            if (dsu.merge((int)e[idx][0], (int)e[idx][1])) {\n                total += e[idx][2];\n                if (++used == n - 1) break;\n            }\n        }\n        cout << (used == n - 1 ? total : -1) << '\\n';\n    }\n    return 0;\n}" }
   ],
   '2025-12-l8': [
-    { type: 'programming', id: 26, score: 25, title: '猫和老鼠', problemNumber: '2025-12-l8-Q26', description: '庄园是一张带权无向连通图，猫从结点 a 出发，老鼠洞在结点 b。若某结点到老鼠洞的最短路长度严格小于猫窝到老鼠洞的最短路长度，则老鼠可安全取得该结点奶酪。求安全结点奶酪总价值。', inputDescription: '第一行两个正整数 n、m。第二行两个正整数 a、b。第三行 n 个正整数 c_i。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出一个整数。', samples: [{ input: '5 5\n1 2\n1 2 4 8 16\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '22' }, { input: '6 10\n3 4\n1 1 1 1 1 1\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '3' }], explanation: `**解析：**
+    { type: 'programming', id: 26, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '猫和老鼠', problemNumber: '2025-12-l8-Q26', description: '庄园是一张带权无向连通图，猫从结点 a 出发，老鼠洞在结点 b。若某结点到老鼠洞的最短路长度严格小于猫窝到老鼠洞的最短路长度，则老鼠可安全取得该结点奶酪。求安全结点奶酪总价值。', inputDescription: '第一行两个正整数 n、m。第二行两个正整数 a、b。第三行 n 个正整数 c_i。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出一个整数。', samples: [{ input: '5 5\n1 2\n1 2 4 8 16\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '22' }, { input: '6 10\n3 4\n1 1 1 1 1 1\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '3' }], explanation: `**解析：**
 
 ### 题目大意
 在一个由 \`n\` 个节点、\`m\` 条无向边组成的正权图中，猫初始在节点 \`a\`，老鼠洞位于节点 \`b\`。每个节点 \`i\` 都存放着价值为 \`c[i]\` 的奶酪。
@@ -1054,7 +1080,9 @@ export const l8ProgrammingByPaper = {
 
 **知识延伸：**
 本题核心考查**堆优化的 Dijkstra 最短路算法**与**反向思维（多源向汇转化为单源汇向全图）**。在处理“多个点前往同一个目标点”的问题时，只要在无向图（或有向图的反向图）中以该目标点作为唯一起点做一次单源最短路，就能在单次遍历中高效得到全部节点的最优解。`, tags: ['编程题', '最短路', '图论'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,a,b;cin>>n>>m>>a>>b; vector<int> c(n+1); for(int i=1;i<=n;i++) cin>>c[i]; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[b]=0; pq.push({0,b}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} long long ans=0; for(int i=1;i<=n;i++) if(d[i]<d[a]) ans+=c[i]; cout<<ans<<"\\n"; return 0;}' },
-    { type: 'programming', id: 27, score: 25, title: '宝石项链', problemNumber: '2025-12-l8-Q27', description: '有一条长度为 n 的项链，宝石种类共有 m 种。需要把项链划分成若干连续段，且每一段都包含全部 m 种宝石。求最多能划分多少段。', inputDescription: '第一行两个正整数 n、m。第二行 n 个正整数 t_i。', outputDescription: '输出一个整数。', samples: [{ input: '6 2\n1 2 1 2 1 2', output: '3' }, { input: '7 3\n3 1 3 1 2 1 2', output: '2' }], explanation: `**解析：**
+    { type: 'programming', id: 27, score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB', title: '宝石项链', problemNumber: '2025-12-l8-Q27', description: '有一条长度为 n 的项链，宝石种类共有 m 种。需要把项链划分成若干连续段，且每一段都包含全部 m 种宝石。求最多能划分多少段。', inputDescription: '第一行两个正整数 n、m。第二行 n 个正整数 t_i。', outputDescription: '输出一个整数。', samples: [{ input: '6 2\n1 2 1 2 1 2', output: '3' }, { input: '7 3\n3 1 3 1 2 1 2', output: '2' }], explanation: `**解析：**
 
 ### 1. 题目大意与切入点
 题目要求处理一条由 \`n\` 颗宝石首尾相接组成的环形项链。每颗宝石具有一个编号（在 \`1\` 到 \`m\` 范围内）。我们需要将这条项链完整划分成若干个互不重叠且首尾相接的连续段，使得：
