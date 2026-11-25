@@ -636,6 +636,8 @@ int main() {
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `4`, output: `2` },
         { input: `6`, output: `2` }
@@ -715,6 +717,8 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2022 1`, output: `31` },
         { input: `2020 2`, output: `29` }

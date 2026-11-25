@@ -870,6 +870,8 @@ double result = sqrt(9.0);  // result 的类型是 double，值为 3.0
         {
             id: 26,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "找素数",
             samples: [{"input":"2\n10","output":"4"},{"input":"98\n100","output":"0"}],
             question: "# [GESP202306 二级] 找素数\n\n## 题目描述\n\n小明刚刚学习了素数的概念：如果一个大于 $1$ 的正整数，除了 $1$ 和它自身外，不能被其他正整数整除，则这个正整数是素数。现在，小明想找到两个正整数 $A$ 和 $B$ 之间（包括 $A$ 和 $B$）有多少个素数。\n\n## 输入格式\n\n输入 2 行，第一行包含正整数 $A$，第二行包含正整数 $B$。约定 $2 \\le A \\le B \\le 1000$。\n\n## 输出格式\n\n输出一行，包含一个整数 $C$，表示找到 $C$ 个素数。\n",
@@ -961,6 +963,8 @@ int main() {
         {
             id: 27,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "自幂数判断",
             samples: [
                 {

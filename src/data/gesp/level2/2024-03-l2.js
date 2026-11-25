@@ -27,7 +27,7 @@ export const paperData = {
             sourcePage: 1,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP2级"],
+            tags: ["客观题", "单选题", "GESP2级", "流程图", "条件判断"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -126,7 +126,7 @@ C++ 中的循环控制语句仅有三种：\`for\` 循环、\`while\` 循环和 
             sourcePage: 1,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "基础语法"],
         },
         {
             id: 5,
@@ -225,7 +225,7 @@ cout << m;
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "程序分析"],
         },
         {
             id: 7,
@@ -333,7 +333,7 @@ cout << ans;
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "程序分析"],
         },
         {
             id: 9,
@@ -393,7 +393,7 @@ cout << days;
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "循环", "算术运算"],
         },
         {
             id: 10,
@@ -424,7 +424,7 @@ else
             sourcePage: 3,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP2级"],
+            tags: ["客观题", "单选题", "GESP2级", "数位处理", "循环"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -475,7 +475,7 @@ else
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "算术运算", "条件判断"],
         },
         {
             id: 12,
@@ -534,7 +534,7 @@ else
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "回文数", "数位处理"],
         },
         {
             id: 13,
@@ -594,7 +594,7 @@ cout << '+';
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "嵌套循环", "图形绘制"],
         },
         {
             id: 14,
@@ -653,7 +653,7 @@ CCF 王选奖设立于 2005 年，奖励在计算机科学与技术领域做出�
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP2级"]
+            tags: ["客观题", "单选题", "GESP2级", "计算机历史"],
         },
         {
             id: 16,
@@ -690,7 +690,7 @@ t = int(s) + 10;
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "类型转换", "数据类型"],
         },
         {
             id: 17,
@@ -854,7 +854,7 @@ C++ 关系运算符的返回类型是布尔值，布尔值到数值的隐式转�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "数学函数"],
         },
         {
             id: 24,
@@ -884,7 +884,7 @@ C++ 关系运算符的返回类型是布尔值，布尔值到数值的隐式转�
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP2级"]
+            tags: ["客观题", "判断题", "GESP2级", "网络基础"],
         },
         {
             id: 25,
@@ -905,6 +905,8 @@ C++ 关系运算符的返回类型是布尔值，布尔值到数值的隐式转�
         {
             id: 26,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "乘法问题",
             samples: [
                 {
@@ -1003,6 +1005,8 @@ C++ 关系运算符的返回类型是布尔值，布尔值到数值的隐式转�
         {
             id: 27,
             type: 'programming',
+            timeLimit: '1.0 s',
+            memoryLimit: '128 MB',
             title: "小杨的日字矩阵",
             samples: [
                 {

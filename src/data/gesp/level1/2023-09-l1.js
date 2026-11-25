@@ -614,6 +614,8 @@ C++ 支持面向对象、泛型编程，用变量、表达式、控制语句等�
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `1
 1
@@ -713,6 +715,8 @@ C++ 支持面向对象、泛型编程，用变量、表达式、控制语句等�
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `7
 1

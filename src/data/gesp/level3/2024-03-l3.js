@@ -698,6 +698,8 @@ C++ 整数进制前缀：\`0x\` / \`0X\` 表示十六进制，\`0\` 表示八进
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `3
 aAc`, output: `-61` }
@@ -770,6 +772,8 @@ aAc
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `5
 1 4 3 3 5`, output: `3` }

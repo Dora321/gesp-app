@@ -669,6 +669,8 @@ C++ 标准规定，枚举类型（无论是枚举类 \`enum class\` 还是普通
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `4
 71 69 83 80`, output: `13 1` },
@@ -763,6 +765,8 @@ C++ 标准规定，枚举类型（无论是枚举类 \`enum class\` 还是普通
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `4
 1 4 3 3`, output: `16` },

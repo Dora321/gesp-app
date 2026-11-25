@@ -719,6 +719,8 @@ k 进制数按权展开：数值 = Σ(第 i 位数字 × kⁱ)。理解"逢 k �
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `1025`, output: `1000` }
       ],
@@ -803,6 +805,8 @@ k 进制数按权展开：数值 = Σ(第 i 位数字 × kⁱ)。理解"逢 k �
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       samples: [
         { input: `6
 Apple

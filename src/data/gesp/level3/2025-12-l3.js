@@ -524,6 +524,8 @@ while 循环同样存在类似问题：\`while (condition);\` 会导致空循环
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `6
 PAs1s2an
@@ -605,6 +607,8 @@ N` }
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2 5
 1 1

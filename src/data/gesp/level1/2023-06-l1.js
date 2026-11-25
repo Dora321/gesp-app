@@ -596,6 +596,8 @@ C++ 中存在两套完全不同的运算符：
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `9
 5
@@ -663,6 +665,8 @@ C++ 中存在两套完全不同的运算符：
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `3`, output: `10` },
         { input: `4`, output: `20` },

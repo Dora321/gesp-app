@@ -46,7 +46,7 @@ export const paperData = {
       sourcePage: 1,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "人工智能"],
     },
     {
       id: 2,
@@ -80,7 +80,7 @@ export const paperData = {
       sourcePage: 1,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "循环", "条件判断"],
     },
     {
       id: 3,
@@ -125,7 +125,7 @@ C++ 标识符（变量名）的命名规则只有四条：
       sourcePage: 1,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "变量与标识符"],
     },
     {
       id: 4,
@@ -177,7 +177,7 @@ cout << a / b << a % a*b;
       sourcePage: 1,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "算术运算", "程序分析"],
     },
     {
       id: 5,
@@ -217,7 +217,7 @@ cout << a / b << a % a*b;
       sourcePage: 2,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "算术运算", "运算符"],
     },
     {
       id: 6,
@@ -258,7 +258,7 @@ printf("{%d}",N+M);
       sourcePage: 2,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "输入输出"],
     },
     {
       id: 7,
@@ -281,7 +281,7 @@ else
       sourcePage: 2,
       reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       reviewedAt: "2026-11-07",
-      tags: ["客观题", "单选题", "GESP1级"],
+      tags: ["客观题", "单选题", "GESP1级", "算术运算", "程序分析"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
     },
     {
@@ -322,7 +322,7 @@ cout << n;
       sourcePage: 2,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "循环", "奇偶判断"],
     },
     {
       id: 9,
@@ -370,7 +370,7 @@ C++（以及 C）中 \`%\` 的符号跟着**被除数**走，\`-7 % 3 == -1\`；
       sourcePage: 2,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "算术运算", "循环"],
     },
     {
       id: 10,
@@ -422,7 +422,7 @@ if(i > 5) printf("END\\n");
       sourcePage: 3,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "循环", "程序分析"],
     },
     {
       id: 11,
@@ -466,7 +466,7 @@ cout << rst << endl;
       sourcePage: 3,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "循环", "赋值"],
     },
     {
       id: 12,
@@ -549,7 +549,7 @@ B、C 的加减法交换不需要临时变量，但两数很大时相加可能�
       sourcePage: 3,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "赋值", "表达式"],
     },
     {
       id: 13,
@@ -572,7 +572,7 @@ cout << (______________);
       sourcePage: 4,
       reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       reviewedAt: "2026-11-07",
-      tags: ["客观题", "单选题", "GESP1级"],
+      tags: ["客观题", "单选题", "GESP1级", "数位处理", "算术运算"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
     },
     {
@@ -627,7 +627,7 @@ while (num <= 5){
       sourcePage: 4,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "循环", "程序分析"],
     },
     {
       id: 15,
@@ -678,7 +678,7 @@ cout << min_num << ' ' << max_num;
       sourcePage: 5,
       reviewedBy: '本站校订',
       reviewedAt: '2026-10-25',
-      tags: ["客观题", "单选题", "GESP1级"]
+      tags: ["客观题", "单选题", "GESP1级", "循环", "程序分析"],
     },
     {
         id: 16,
@@ -986,6 +986,8 @@ for (int j = 0; j < n; j++) {
     {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `8\n7\n9\n10`, output: `3.00` },
         { input: `8\n7\n2\n11`, output: `2.20` }
@@ -1058,6 +1060,8 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2`, output: `5` },
         { input: `5`, output: `55` }

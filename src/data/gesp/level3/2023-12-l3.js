@@ -851,6 +851,8 @@ Dev C++ 是运行在操作系统之上的应用软件，其本身不具备硬件
         {
       id: 26,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2
 1`, output: `7` },
@@ -872,6 +874,8 @@ Dev C++ 是运行在操作系统之上的应用软件，其本身不具备硬件
         {
       id: 27,
       type: 'programming',
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       samples: [
         { input: `2
 1 km = ? mm
