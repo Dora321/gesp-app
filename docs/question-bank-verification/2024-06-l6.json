@@ -107,43 +107,47 @@
       "id": 3,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         2,
         3
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "题干正文与 PDF 第 2—3 页一致，但独立 code 字段缺少 PDF 第 2 页第 1 行的 #include <iostream>，单独作为源码会缺少 cout/endl 声明；已按 PDF 补齐 code。",
-          "review": "第 2 页题干「运行下列代码，屏幕上输出（ ）。」与第 2—3 页 shape/rectangle/triangle 多态代码（virtual int area、pshape 分别指向 rec/tri 并调用 area()）与站点 question 一致。"
+          "initial": "第 2—3 页原题代码逐行核对：class shape 含 protected width/height 与 virtual int area()；rectangle/triangle 各自重写 area()；main 中 shape* 指针先指向 rec(10,7) 再指向 tri(10,5)。候选 code 已补回缺失的 #include <iostream>，其余与页图一致。",
+          "review": "第 2 页原图第 3 题题干「运行下列代码，屏幕上输出（ ）。」及 49 行 C++ 代码（shape/rectangle/triangle 三类、基类 area() 为 virtual、main 中 pshape 依次指向 rec 与 tri 并调用 area()）与候选逐行一致。"
         },
         "options": {
-          "initial": "PDF 第 2、3 页选项依次为：A rectangle area: triangle area:；B parent class area: parent class area:；C 运行时报错；D 编译时报错；与站点 options 顺序和内容一致。",
-          "review": "第 3 页页图选项 A rectangle area: triangle area:；B parent class area: parent class area:；C 运行时报错；D 编译时报错，与站点 options 一致。"
+          "initial": "第 3 页四项与候选逐字一致：A rectangle area: triangle area:；B parent class area: parent class area:；C 运行时报错；D 编译时报错。",
+          "review": "第 3 页原图四项为 A. rectangle area: triangle area:、B. parent class area: parent class area:、C. 运行时报错、D. 编译时报错，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选答案表第 3 题为 A；站点 answer=0（0 起始），一致。",
-          "review": "第 1 页答案表第 3 题为 A，索引 0，站点 answer=0。独立判断：area() 为虚函数，基类指针分别触发 rectangle/triangle 的重写版本，输出两段前缀且不换行，A 正确。"
+          "initial": "第 1 页答案表第 3 题为 A（索引 0）。area() 为虚函数，经基类指针动态绑定到派生类，分别输出两段前缀且不打印返回值，A 成立。",
+          "review": "第 1 页答案表第 3 题为 A（索引 0），候选 answer=0 一致；独立判断：基类 area() 为虚函数，经基类指针调用发生动态绑定，先输出 rectangle area: （返回 70 未使用）再输出 triangle area: （返回 25 未使用），屏幕输出「rectangle area: triangle area: 」，A 正确。"
         },
         "explanation": {
-          "initial": "独立推导：基类 area 为虚函数，基类指针分别指向 rectangle/triangle 时动态绑定，输出 rectangle area: triangle area:，A 正确。 与站点解析结论一致，未发现事实错误。",
-          "review": "站点解析按虚函数动态绑定推导输出，与独立判断一致。"
+          "initial": "动态绑定推导正确：rectangle 返回 70、triangle 返回 25 但均未输出；屏幕只出现两个前缀字符串。B 只有在非虚函数时才成立，C/D 不成立；候选解析无事实错误。",
+          "review": "候选解析的动态绑定机理、两次调用输出顺序、返回值未使用的说明与逐项排除（B 为非虚函数时的静态绑定情形；C/D 虚机制合法）均经独立核验成立；派生类重写隐含 virtual 的易错点提示属实。"
         }
       },
-      "unresolved": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
       ]
     },
     {
@@ -310,41 +314,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 8 题题干为“对 “classmycls” 使用哈夫曼（ Huffman ）编码，最少需要（ ）比特。”，与站点 question 语义一致。",
-          "review": "第 5 页页图题干「对“classmycls”使用哈夫曼（Huffman）编码，最少需要（ ）比特。」与站点一致。"
+          "initial": "第 5 页第 8 题原文为“对‘classmycls’使用哈夫曼（Huffman）编码，最少需要（ ）比特。”候选题干一致（字符串共 10 个字符）。",
+          "review": "第 5 页原图第 8 题题干「对“classmycls”使用哈夫曼（Huffman）编码，最少需要（ ）比特。」与候选一致（空格为排版差异）。"
         },
         "options": {
-          "initial": "PDF 第 5 页选项依次为：A 10；B 20；C 25；D 30；与站点 options 顺序和内容一致。",
-          "review": "页图选项 A 10、B 20、C 25、D 30，与站点 options 一致。"
+          "initial": "第 5 页四项为 A.10、B.20、C.25、D.30，与候选完全一致。",
+          "review": "第 5 页原图四项为 A. 10、B. 20、C. 25、D. 30，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选答案表第 8 题为 C；站点 answer=2（0 起始），一致。",
-          "review": "第 1 页答案表第 8 题为 C，索引 2，站点 answer=2。独立核算：频率 s×3、c×2、l×2、a×1、m×1、y×1，正确合并次序得码长 s=2、c=2、l=2、y=3、a=4、m=4，WPL=3×2+2×2+2×2+1×3+1×4+1×4=25。"
+          "initial": "第 1 页答案表第 8 题为 C（索引 2）。独立构造：s×3、c×2、l×2、a×1、m×1、y×1；合并 1+1=2、1+2=3、2+2=4、3+3=6、4+6=10，WPL=25。",
+          "review": "第 1 页答案表第 8 题为 C（索引 2），候选 answer=2 一致；独立重算：classmycls 共 10 字符，频率 s×3、c×2、l×2、a×1、m×1、y×1，合并 a1+m1=2、y1+2=3、c2+l2=4、s3+3=6、4+6=10，编码长度 s=2、c=2、l=2、y=3、a=4、m=4，WPL=6+4+4+3+4+4=25，C 正确。"
         },
         "explanation": {
-          "initial": "答案 C 与 WPL=25 正确，但原解析第 3 步先合并 s(3)+3=6，违反“每次取当前最小两棵”的规则（此时应先合并 c(2)+l(2)=4）；最终树形与 WPL 虽不变，过程需修正。",
-          "review": "原解析的合并次序把 s(3)+3 提前，违反「每次取当前最小两棵」的规则（彼时应先合并 c(2)+l(2)=4）；最终码长与 WPL=25 虽不变，过程需修正。初核已按正确合并次序重写解析，批准套用。"
+          "initial": "候选解析的合并顺序与码长正确：s/c/l=2、y=3、a/m=4；WPL=3×2+2×2+2×2+1×3+1×4+1×4=25。A=10 是字符数，B=20 非该树 WPL，D=30 为三位定长编码总位数，逐项判断成立。",
+          "review": "候选合并五步、各字符编码长度与 WPL=25 计算均与独立重算一致；对 A（字符总数）、D（3 位定长 10 字符 30 比特）的排除理由成立。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
       ]
     },
     {
@@ -392,83 +399,90 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 10 题题干为“一棵 5 层的满二叉树中节点数为（ ）。”，与站点 question 语义一致。",
-          "review": "第 5 页页图题干「一棵5层的满二叉树中节点数为（ ）。」与站点一致。"
+          "initial": "第 5 页第 10 题原文“一棵 5 层的满二叉树中节点数为（ ）”，候选题干一致。",
+          "review": "第 5 页原图第 10 题题干「一棵5层的满二叉树中节点数为（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 5 页选项依次为：A 31；B 32；C 33；D 16；与站点 options 顺序和内容一致。",
-          "review": "页图选项 A 31、B 32、C 33、D 16，与站点 options 一致。"
+          "initial": "第 5 页四项为 A.31、B.32、C.33、D.16，与候选完全一致。",
+          "review": "第 5 页原图四项为 A. 31、B. 32、C. 33、D. 16，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选答案表第 10 题为 A；站点 answer=0（0 起始），一致。",
-          "review": "第 1 页答案表第 10 题为 A，索引 0，站点 answer=0。独立核算：1+2+4+8+16=31=2^5−1，A 正确。"
+          "initial": "第 1 页答案表第 10 题为 A（索引 0）。5 层满二叉树节点总数 2^5−1=31。",
+          "review": "第 1 页答案表第 10 题为 A（索引 0），候选 answer=0 一致；独立计算：k 层满二叉树节点总数 2^k−1，5 层为 31，A 正确。"
         },
         "explanation": {
-          "initial": "答案 A（31）正确，但原解析对 B=32、D=16 的解释有误：16 是第 5 层结点数（2^4），32=2^5 不是总数；需修正。",
-          "review": "原解析对 B=32、D=16 的解释有误（16 为第 5 层结点数 2^4，32=2^5 不是总数）。初核已重写为正确的逐项分析，批准套用。"
+          "initial": "候选解析正确：第 k 层 2^(k−1) 个，总数 1+2+4+8+16=31；B=32=2^5、D=16=2^4 分别为总数与末层节点数的混淆项，逐项说明无误。",
+          "review": "候选解析 1+2+4+8+16=31 与 2^5−1 公式一致；对 B（2^5）、D（第 5 层节点数 2^4）的辨析属实。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
       ]
     },
     {
       "id": 11,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 5 页第 11 题题干为“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和 ( ) 。”，与站点 question 语义一致。",
-          "review": "第 5 页页图题干「在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和（ ）。」与站点一致。"
+          "initial": "第 5 页第 11 题原文“在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和（ ）”，候选题干一致。",
+          "review": "第 5 页原图第 11 题题干「在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和( )。」与候选一致（原图 A 项跨两行排版，候选合并为一行）。"
         },
         "options": {
-          "initial": "PDF 第 5 页选项为 A 重叠子问题、B 分治法、C 贪心策略、D 回溯算法；站点 D 项混入循环队列 de_queue 代码及行号，属串页污染；已清理。",
-          "review": "第 5 页原卷选项为 A 重叠子问题、B 分治法、C 贪心策略、D 回溯算法；站点 D 项为「回溯算法」后附大段 de_queue 代码与行号「42 43 … 51」，属串页污染。初核已恢复官方四项，批准套用。"
+          "initial": "第 5 页官方四项为 重叠子问题、分治法、贪心策略、回溯算法；原页 A 项因换行排版拆开，候选已按官方四项恢复，且清除了站点此前混入的串页代码文本。",
+          "review": "第 5 页原图四项为 A. 重叠子问题、B. 分治法、C. 贪心策略、D. 回溯算法，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选答案表第 11 题为 A；站点 answer=0（0 起始），一致。",
-          "review": "第 1 页答案表第 11 题为 A，索引 0，站点 answer=0。DP 两大性质为最优子结构与重叠子问题，A 正确。"
+          "initial": "第 1 页答案表第 11 题为 A（索引 0）。动态规划的两大性质是最优子结构与重叠子问题。",
+          "review": "第 1 页答案表第 11 题为 A（索引 0），候选 answer=0 一致；独立判断：DP 两大性质为最优子结构与重叠子问题，A 正确。"
         },
         "explanation": {
-          "initial": "独立推导：DP 两大性质为最优子结构与重叠子问题，A 正确。 与站点解析结论一致，未发现事实错误。",
-          "review": "站点解析解释重叠子问题为 DP 必要性质，与独立判断一致。"
+          "initial": "候选解析对四项的判断正确：分治、贪心、回溯均不是与“最优子结构”并列的 DP 必要性质；A 为唯一正确项。",
+          "review": "候选解析对两大性质的界定与分治/贪心/回溯的辨析（分治子问题独立不重叠）均属实。"
         }
       },
-      "unresolved": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
       ]
     },
     {
@@ -556,42 +570,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         7,
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 7—8 页沿用第 13 题树：根 5、左 2（孩子 -4、3）、右 17（左孩子 9），与站点树形文本一致；代码先压右、再压左。",
-          "review": "第 7 页末题干「同上题中的二叉树，阅读以下二叉树的深度优先搜索代码」及第 7 页 dfs 代码（先压右子、再压左子）与树形图与站点一致。"
+          "initial": "第 7—8 页题面含二叉树（根 5，左 2(-4,3)，右 17(9)）与非递归 DFS 代码：出栈即比较、先打印、先压右子再压左子；要求搜索数值 20 时可能的输出。候选题干与代码一致。",
+          "review": "第 7 页原图第 13 题后给出同一棵树图（根 5，左孩子 2、右孩子 17，2 的孩子 −4/3，17 的左孩子 9），第 14 题题干「同上题中的二叉树，阅读以下二叉树的深度优先搜索代码:」及 25 行非递归 DFS 代码（弹栈先比较 a、输出 node->val、先压右孩子再压左孩子）与候选一致；候选以文字树形内嵌原卷树图（9 为 17 的左孩子）并按站点惯例补「如下」二字，属合理改写。第 8 页原图接排「使用以上算法，在二叉树搜索数值20时，可能的输出是()。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 7、8 页选项依次为：A 5 2 -4 3 17 9；B -4 2 3 5 9 17；C 5 2 17 -4 3 9；D 以上都不对；与站点 options 顺序和内容一致。",
-          "review": "第 8 页页图选项 A 5 2 -4 3 17 9；B -4 2 3 5 9 17；C 5 2 17 -4 3 9；D 以上都不对，与站点 options 一致。"
+          "initial": "第 8 页四项为 A.5 2 -4 3 17 9、B.-4 2 3 5 9 17、C.5 2 17 -4 3 9、D.以上都不对，与候选一致。",
+          "review": "第 8 页原图四项为 A. 5 2 -4 3 17 9、B. -4 2 3 5 9 17、C. 5 2 17 -4 3 9、D. 以上都不对，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选答案表第 14 题为 A；站点 answer=0（0 起始），一致。",
-          "review": "第 1 页答案表第 14 题为 A，索引 0，站点 answer=0。独立模拟：栈实现先压右再压左，弹栈顺序为先序 5→2→-4→3→17→9，20 不在树中输出全部，A 正确。"
+          "initial": "第 1 页答案表第 14 题为 A（索引 0）。20 不在树中，全部节点按先序访问：5,2,-4,3,17,9；C 是层序，B 是中序。",
+          "review": "第 1 页答案表第 14 题为 A（索引 0），候选 answer=0 一致；独立推演：先压右再压左使弹栈顺序为根→左子树→右子树，20 不在树中故全部输出，先序序列 5、2、−4、3、17、9，A 正确。"
         },
         "explanation": {
-          "initial": "答案 A 正确，但原解析把 C 说成“访问根后先走右子树”不准确：C 实际是层序/BFS 序列（5,2,17,-4,3,9），不是本 DFS 输出；需修正。",
-          "review": "原解析把 C 说成「访问根后先走右子树」不准确：C 实为层序/BFS 序列，并非本 DFS 输出。初核已按先序推导重写并逐项分析，批准套用。"
+          "initial": "候选逐步说明“先压右、再压左”导致左子先出栈，得到先序序列；并正确指出 B 为中序、C 为层序、D 不成立。独立模拟栈过程与该序列一致。",
+          "review": "候选解析（栈后进先出、先压右≠先访问右、先序序列推导）与逐项排除（B 为中序、C 为层序）均经独立推演成立；易错点提示属实。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
       ]
     },
     {
@@ -600,41 +617,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 2,
       "sourcePages": [
         8
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 8 页第 15 题题干为“在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）。”，与站点 question 语义一致。",
-          "review": "第 8 页页图题干「在上题的树中搜索数值3时，采用深度优先搜索一共比较的节点数为（ ）。」与站点一致。"
+          "initial": "第 8 页第 15 题原文“在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）”，候选题干一致。",
+          "review": "第 8 页原图第 15 题题干「在上题的树中搜索数值3时，采用深度优先搜索一共比较的节点数为（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第 8 页选项依次为：A 2；B 3；C 4；D 5；与站点 options 顺序和内容一致。",
-          "review": "页图选项 A 2、B 3、C 4、D 5，与站点 options 一致。"
+          "initial": "第 8 页四项为 A.2、B.3、C.4、D.5，与候选一致。",
+          "review": "第 8 页原图四项为 A. 2、B. 3、C. 4、D. 5，与候选完全一致。"
         },
         "answer": {
-          "initial": "PDF 第 1 页单选答案表第 15 题为 C；站点 answer=2（0 起始），一致。",
-          "review": "第 1 页答案表第 15 题为 C，索引 2，站点 answer=2。独立模拟：出栈即比较，顺序 5(≠3)、2(≠3)、-4(≠3)、3(命中)，共 4 次比较，C 正确。"
+          "initial": "第 1 页答案表第 15 题为 C（索引 2）。按第 14 题栈式 DFS，比较序列为 5、2、-4、3，共 4 次。",
+          "review": "第 1 页答案表第 15 题为 C（索引 2），候选 answer=2 一致；独立推演：弹栈次序 5、2、−4、3，各自与 3 比较一次，第 4 次命中返回，共比较 4 个节点，C 正确。"
         },
         "explanation": {
-          "initial": "答案 C（4 次）正确，但原解析末句“比较次数=根到目标路径节点数”错误：路径 5→2→3 只有 3 个结点，实际还比较了先序中先于 3 的 -4；需修正。",
-          "review": "原解析末句「比较次数=根到目标路径节点数」不成立：路径 5→2→3 仅 3 个结点，但先序访问中 -4 先于 3 被比较。初核已重写为逐步比较过程并修正易错点，批准套用。"
+          "initial": "候选解析逐次还原出栈与比较：5≠3、2≠3、-4≠3、3==3 命中返回，共 4 次；并指出 -4 虽不在根到 3 的路径上但先序先访问，解释准确。",
+          "review": "候选解析的逐次比较过程（5≠3、2≠3、−4≠3、3=3）与「命中即返回、17/9 不被比较」「比较次数不等于路径长度（−4 不在路径上也被比较）」的易错点说明均与独立推演一致。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
       ]
     },
     {
@@ -981,168 +1001,91 @@
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         9,
         10
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 9—10 页示例写有“假设 n=3”，并给出 1≤n≤20、1≤m≤10^5、1≤a_i≤1000 及三档子任务；站点题面示例处空白且无数据范围；已补入 question。",
-          "review": "第 9 页示例句为「假设 n = 3. 字符串 dabcabcabcabzabc 的所有可能计分方式如下」，站点示例处「假设 ，」缺失 n=3；第 9 页数据范围表给出三档子任务（20% 且 a_i≥a_{i+1}；40% n≤3；40% n≤20）及全部 1≤n≤20、1≤m≤10^5、1≤a_i≤1000，站点缺失。初核已补全 question，批准套用。"
+          "initial": "第 9—10 页题面、输入输出、样例与数据范围逐项对照：计分序列长度 n、子串由 k 个 abc 组成得 a_k、字符不可重复计分；20% n≤20 且 a_i≥a_{i+1}、40% n≤3、另外 40% n≤20、全部 1≤n≤20、1≤m≤10^5、1≤a_i≤1000；候选均已补入。",
+          "review": "第 9 页原图 3.1.1—3.1.6 与候选题面逐项对照一致：计分序列 A、k 个 abc 首尾相接得分 a_k、字符不可重复计分、示例 dabcabcabcabzabc 的三种计分方式（a1+a2+a1 / a1+a1+a1+a1 / a3+a1）；样例 1「3 / 3 1 2 / 13 / dabcabcabcabz」输出「9」；数据范围子任务表（20% n≤20 且 aᵢ≥aᵢ₊₁；40% n≤3；40% n≤20；全部 1≤n≤20、1≤m≤10⁵、1≤aᵢ≤1000）与候选一致。"
         },
         "explanation": {
-          "initial": "独立推导：cnt 预处理连续 abc 块，dp[i]=max(dp[i-1], dp[i-3k]+a[k])，样例得 9；随机小数据与穷举一致。 与站点解析结论一致，未发现事实错误。",
-          "review": "独立推导：cnt[i] 为以 i 结尾连续 abc 块数，dp[i]=max(dp[i-1], max_k dp[i-3k]+a_k)；样例 dabcabcabcabz 的最优划分为 d+abc+abc+abc+abz 得 a1+a1+a1=9，与站点解析的走查表一致。"
+          "initial": "候选 DP 建模正确：cnt[i] 统计以 i 结尾的连续 abc 块数，dp[i]=max(dp[i−1], dp[i−3k]+a[k])；样例走查 dp[13]=9 与官方样例一致。连续块整体计分与拆开计分的取舍通过枚举 k 覆盖，未使用错误贪心。",
+          "review": "候选解析的 cnt[i]（以 i 结尾的连续 abc 块数）与 dp[i]=max(dp[i−1], dp[i−3k]+a[k]) 经独立推导成立；样例走查表逐格复算（dp[4]=3、dp[7]=6、dp[10]=9、dp[13]=9）与官方样例输出 9 及样例解释「d+abc+abc+abc+abz 共 9 分」一致；不可贪心、3k 长度、long long 提醒属实。"
         },
         "referenceCode": {
-          "initial": "参考程序与 PDF 第 10 页官方程序等价：cnt 预处理连续 abc 块，dp[i]=max(dp[i-1],dp[i-3k]+a[k])；本地编译运行样例得 9，随机小数据与穷举一致，n≤20、m≤10^5 可过。",
-          "review": "本地以 g++ -std=c++17 编译站点参考程序并运行：官方样例输出 9；abc→7、abcabc 整体计 a2=100、k>n 时拆两个 a1=10、无 abc 得 0，四条边界全部正确；连续块的成块校验由 j 从 1 起的 break 逻辑保证，无越界。"
+          "initial": "本机 g++ -std=c++17 -O2 编译运行：官方样例 3/3 1 2/13/dabcabcabcabz 输出 9；边界 1/5/3/abc→5、1/4/7/abcxabc→8、2/1 5/6/abcabc→5、2/1 5/9/abcabcabc→6 全部通过；另以 400 组随机串与穷举分段对拍，零差异。",
+          "review": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例输出 9。独立边界实测：「2 / 1 100 / 6 / abcabc」→100（合并计分优于拆分）、「1 / 7 / 5 / xyztu」→0（无匹配）、「1 / 2 / 9 / abcabcabc」→6（n=1 时逐块计分）、「2 / 1 50 / 9 / abcabcabc」→51（k 受 n 上限约束取 a2+a1）。另以 400 组随机数据（n≤6、m≤24，字符集 abcxyz）与「枚举结尾连续 j 块」的独立暴力 DP 对拍，零差异。与第 10 页原卷参考程序（j 从 1 递增、s.substr(l−1,3)==\"abc\" 否则 break）为同一「结尾连续块」枚举，语义等价。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
       ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         10,
         11,
         12
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
+        "依据上一轮 GLM 复核意见生成候选修订",
+        "DeepSeek V4.1 Flash max 复核",
         "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "本机编译、样例、有效边界和链形树最大规模实测"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第 11 页给出 1≤n,q≤10^5、链式 20%/n,q≤1000 40% 等子任务；站点题面缺少数据范围；已补入 question。",
-          "review": "第 11 页 3.2.6 数据范围表给出三档子任务（20% 链：i≥2 时父结点为 i−1；40% n,q≤1000；40% n,q≤10^5）及全部 1≤n,q≤10^5，站点题面缺失。初核已补入 question，批准套用。"
+          "initial": "第 10—11 页题面、输入输出与数据范围对照：n 个节点、根为 1、父节点给出、01 串表示颜色、q 次子树反转；20% 为链、40% n,q≤1000、另外 40% n,q≤10^5、全部 1≤n,q≤10^5；候选均已补入。",
+          "review": "第 10—11 页原图 3.2.1—3.2.6 与候选题面逐项对照一致：n 节点二叉树根为 1、q 次子树颜色反转、父节点输入自编号 2 起、01 串颜色定义；样例 1「6 / 3 1 1 3 4 / 100101 / 3 / 1 / 3 / 2」输出「010000」；数据范围子任务表（20% 链形父=i−1；40% n,q≤1000；40% n,q≤10⁵；全部 1≤n,q≤10⁵）与候选一致。"
         },
         "explanation": {
-          "initial": "独立推导：mark 记录操作奇偶，DFS 自顶向下异或下传，样例得 010000；随机小树与暴力翻转一致。 与站点解析结论一致，未发现事实错误。",
-          "review": "独立推导：结点最终是否翻转取决于根到该结点路径（含自身）上操作次数的奇偶性；mark[x] 异或计数后一次 DFS 下传即可，O(n+q)。样例 6 结点树按 1、3、2 依次翻转得 010000，与站点解析一致。"
+          "initial": "候选以 mark 记录每个节点被直接操作的奇偶性，再 DFS 下传 flip，推导正确：节点最终翻转次数等于根到该节点路径上 mark 的异或和；样例走查 010000 与官方一致；O(n+q) 复杂度正确。",
+          "review": "候选解析的「翻转奇偶性 + 祖先链传递」原理经独立推导成立：节点 v 最终翻转态 = 根到 v 路径（含自身）被操作次数之和的奇偶性，DFS 一次下传 O(n+q)；样例走查逐步复算（节点 1→0、3→0、2→1、5→0、4→0、6→0，最终 010000）与官方样例输出及样例解释（011010→000000→010000）一致；下标对应与标记更新顺序两条易错提醒属实。"
         },
         "referenceCode": {
-          "initial": "参考程序与 PDF 第 11—12 页官方程序等价：mark 记录操作奇偶，DFS 下传翻转标记；样例 010000，随机小树与暴力翻转一致，O(n+q)。",
-          "review": "本地以 g++ -std=c++17 编译站点参考程序并运行：官方样例输出 010000；单结点翻转 0→1、同结点两次翻转抵消、链式树叠加（01100）三条边界均正确。"
+          "initial": "本机 g++ -std=c++17 -O2 编译运行：官方样例 6/3 1 1 3 4/100101/3/1/3/2 输出 010000；边界 n=1 操作根→1、“3 1 2 / 000 / 2 / 1 / 3”→110（链两端操作）、“3 1 1 / 101 / 1 / 2”→111（叶子子树）全部通过。",
+          "review": "本机 g++ -std=c++17 -O2 编译并实测候选参考程序：官方样例输出 010000。独立边界实测：「3 / 1 1 / 111 / 4 / 1 1 2 2」→111（同节点偶数次操作自抵消）、「3 / 1 1 / 000 / 1 / 1」→111（根子树整体反转）。另以 300 组随机二叉树（n≤9、q≤5，随机操作序列）与逐子树暴力翻转对拍，零差异；再以 n=q=10⁵ 的链形树（子任务 1 形态）压力实测，输出与奇偶前缀和期望串逐位一致，递归 DFS 在最大规模下无栈溢出、性能达标。与第 11—12 页原卷参考程序（son[N][2] 孩子数组 + sum 标记 + dfs 下传 now）同一算法，语义等价。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2024-06-l6.glm.json"
+      ],
+      "integrationNote": "两模型一致批准题面修订。原样例、两条有效边界样例及单独生成的 10 万节点链形树最大规模测试均通过。"
     }
   ],
-  "unresolved": [
-    {
-      "id": 3,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 8,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 10,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 11,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 未获得两模型一致批准，待回流",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 14,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 15,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 27,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-06-l6.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2024-06-l6.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2024-06-l6.integration.json"
 }

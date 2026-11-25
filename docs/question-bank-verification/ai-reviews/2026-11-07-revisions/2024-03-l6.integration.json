@@ -1,0 +1,133 @@
+{
+  "paperId": "2024-03-l6",
+  "integratedAt": "2026-11-25T08:25:47.530Z",
+  "accepted": [
+    {
+      "id": 26,
+      "fields": [
+        "question"
+      ]
+    },
+    {
+      "id": 27,
+      "fields": [
+        "question"
+      ]
+    }
+  ],
+  "deferred": [],
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 3,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "1 1 1 1",
+          "output": "1",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "input": "114 51 4 1",
+          "output": "176",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "176\n",
+          "passed": true
+        },
+        {
+          "input": "114514 191 9 810",
+          "output": "384178446",
+          "name": "原样例 3",
+          "kind": "sample",
+          "actual": "384178446\n",
+          "passed": true
+        },
+        {
+          "name": "n 上界 2×10⁵ 且 a=b=1 的等比数列",
+          "input": "200000 1 1 1\n",
+          "output": "87947641",
+          "reason": "a=b=1,c=1 时 dp[x]=2·dp[x−1]，答案为 2^(n−1) mod 10^9+7；与 Python pow(2,199999,10^9+7) 精确一致，实测通过，覆盖 n 上界与取模正确性。",
+          "kind": "boundary",
+          "actual": "87947641\n",
+          "passed": true
+        },
+        {
+          "name": "n=c 初始即结束",
+          "input": "4 1 2 4\n",
+          "output": "1",
+          "reason": "n≤c 直接输出空序列 1 种，覆盖特判边界的另一侧（此前初核用例为 n<c 的 5 2 3 5）；实测通过。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "减后落点常为负的分支",
+          "input": "10 7 3 2\n",
+          "output": "5",
+          "reason": "x−a 多次为负、必须按 ≤c 计 1；与不取模精确计数 f(10)=5 一致，实测通过。",
+          "kind": "boundary",
+          "actual": "5\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "0e5b7c89a3d9fd402e55ca2469444738028003a32daf56223f9b2c389ecf7039"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "2\n1 2\n1 2",
+          "output": "4",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "4\n",
+          "passed": true
+        },
+        {
+          "input": "3\n1 2 3\n3 2 1",
+          "output": "7",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "7\n",
+          "passed": true
+        },
+        {
+          "name": "n=1 且攻击范围取上界 1000",
+          "input": "1\n1000\n1000\n",
+          "output": "1",
+          "reason": "单头牛无相邻间隔，答案恰为 n=1；覆盖 n 下界与 aᵢ,bᵢ 上界 1000（此前初核用例为 1/5/7），实测通过。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "N=9 上界全 1 范围",
+          "input": "9\n1 1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1 1\n",
+          "output": "17",
+          "reason": "任意顺序相邻间隔均为 max(1,1)=1，答案 9+8=17；覆盖 N 上界 9 与 DP 表满规模（512×9），实测通过。",
+          "kind": "boundary",
+          "actual": "17\n",
+          "passed": true
+        },
+        {
+          "name": "方向性大间隔选序",
+          "input": "2\n1000 1\n1 1000\n",
+          "output": "3",
+          "reason": "顺序 0→1 间隔 max(b0=1,a1=1)=1 得 3；反向 max(b1=1000,a0=1000)=1000 得 1002；取小得 3，验证 max(b[last],a[next]) 方向性；实测通过。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "60e9ad91d26c7b9de4baa2104afeafec5c6b1c6de026793d4496cf653bb56a3f"
+    }
+  ]
+}

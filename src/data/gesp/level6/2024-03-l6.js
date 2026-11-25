@@ -9,27 +9,7 @@ const programmingQuestions = [
         { input: `114 51 4 1`, output: `176` },
         { input: `114514 191 9 810`, output: `384178446` }
       ],
-      question: `
-# [GESP202403 六级] 游戏
-
-## 题目描述
-
-你有四个正整数 $n,a,b,c$，并准备用它们玩一个简单的小游戏。
-
-在一轮游戏操作中，你可以选择将 $n$ 减去 $a$，或是将 $n$ 减去 $b$。游戏将会进行多轮操作，直到当 $n \\leq c$ 时游戏结束。
-
-你想知道游戏结束时有多少种不同的游戏操作序列。两种游戏操作序列不同，当且仅当游戏操作轮数不同，或是某一轮游戏操作中，一种操作序列选择将 $n$ 减去 $a$，而另一种操作序列选择将 $n$ 减去 $b$。如果 $a=b$，也认为将 $n$ 减去 $a$ 与将 $n$ 减去 $b$ 是不同的操作。
-
-由于答案可能很大，你只需要求出答案对 $10^9 + 7$ 取模的结果。
-
-## 输入格式
-
-一行四个整数 $n,a,b,c$。
-
-## 输出格式
-
-输出一行一个整数表示答案。
-`,
+      question: "# [GESP202403 六级] 游戏\n\n## 题目描述\n\n你有四个正整数 $n,a,b,c$，并准备用它们玩一个简单的小游戏。\n\n在一轮游戏操作中，你可以选择将 $n$ 减去 $a$，或是将 $n$ 减去 $b$。游戏将会进行多轮操作，直到当 $n \\leq c$ 时游戏结束。\n\n你想知道游戏结束时有多少种不同的游戏操作序列。两种游戏操作序列不同，当且仅当游戏操作轮数不同，或是某一轮游戏操作中，一种操作序列选择将 $n$ 减去 $a$，而另一种操作序列选择将 $n$ 减去 $b$。如果 $a=b$，也认为将 $n$ 减去 $a$ 与将 $n$ 减去 $b$ 是不同的操作。\n\n由于答案可能很大，你只需要求出答案对 $10^9 + 7$ 取模的结果。\n\n## 输入格式\n\n一行四个整数 $n,a,b,c$。\n\n## 输出格式\n\n输出一行一个整数表示答案。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $a=b=c=1$，$n \\le 30$。\n\n对于 40% 的测试点，保证 $c=1$，$n \\le 10^3$。\n\n对于所有测试点，保证 $1 \\le a,b,c \\le n$，$1 \\le n \\le 2\\times 10^5$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -96,6 +76,10 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nconst long long MOD = 1000000007;\n\nint main() {\n    long long n, a, b, c;\n    cin >> n >> a >> b >> c;\n    if (n <= c) { cout << 1 << endl; return 0; }\n    // ways[x]：血量为 x 时到游戏结束的操作序列数；x <= c 时游戏已结束，只有空序列\n    vector<long long> ways(n + 1, 0);\n    auto get = [&](long long x) { return x <= c ? 1LL : ways[x]; };\n    for (long long x = c + 1; x <= n; x++) {\n        ways[x] = (get(x - a) + get(x - b)) % MOD;\n    }\n    cout << ways[n] << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 6,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     },
     {
       id: 27,
@@ -108,25 +92,7 @@ const programmingQuestions = [
 1 2 3
 3 2 1`, output: `7` }
       ],
-      question: `
-# [GESP202403 六级] 好斗的牛
-
-## 题目描述
-
-你有 $10^9$ 个牛棚，从左到右一字排开。你希望把 $n$ 头牛安置到牛棚里。麻烦的是，你的牛很好斗，如果他们附近有其他的牛，他们就会不安分地去挑事。其中，第 $i$ 头牛的攻击范围是 $(a_i, b_i)$，这意味着，如果他的左边 $a_i$ 个牛棚或者右边 $b_i$ 个牛棚有其他牛，它就会去挑事。
-
-你想留下一段连续的牛棚，并把其他牛棚都卖掉。请问您最少需要留下多少牛棚，才能保证至少存在一种方案能够把所有的 $n$ 头牛都安置进剩余的牛棚里，且没有牛会挑事？
-
-## 输入格式
-
-第一行一个正整数 $n$。 
-第二行 $n$ 个正整数 $a_1, a_2, \\dots a_n$。 
-第三行 $n$ 个正整数 $b_1, b_2, \\dots b_n$。
-
-## 输出格式
-
-输出一行一个整数表示答案。
-`,
+      question: "# [GESP202403 六级] 好斗的牛\n\n## 题目描述\n\n你有 $10^9$ 个牛棚，从左到右一字排开。你希望把 $n$ 头牛安置到牛棚里。麻烦的是，你的牛很好斗，如果他们附近有其他的牛，他们就会不安分地去挑事。其中，第 $i$ 头牛的攻击范围是 $(a_i, b_i)$，这意味着，如果他的左边 $a_i$ 个牛棚或者右边 $b_i$ 个牛棚有其他牛，它就会去挑事。\n\n你想留下一段连续的牛棚，并把其他牛棚都卖掉。请问您最少需要留下多少牛棚，才能保证至少存在一种方案能够把所有的 $n$ 头牛都安置进剩余的牛棚里，且没有牛会挑事？\n\n## 输入格式\n\n第一行一个正整数 $n$。 \n第二行 $n$ 个正整数 $a_1, a_2, \\dots a_n$。 \n第三行 $n$ 个正整数 $b_1, b_2, \\dots b_n$。\n\n## 输出格式\n\n输出一行一个整数表示答案。\n\n## 数据范围\n\n对于 20% 的测试点，保证 $N=2$。\n\n对于另外 20% 的测试点，保证 $N=3$。\n\n对于 80% 的测试点，保证 $N \\le 8$。\n\n对于所有测试点，保证 $N \\le 9$，$a_i,b_i \\le 1000$。\n",
       score: 25,
       explanation: `**解析：**
 
@@ -221,6 +187,10 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<long long> a(n), b(n);\n    for (auto &x : a) cin >> x;\n    for (auto &x : b) cin >> x;\n    // 相邻两头牛 i(左)、j(右) 之间至少空 max(b_i, a_j) 个牛棚。\n    // 用状压 DP 求排列的最小间隔和（官方数据 n 较小）。\n    int full = 1 << n;\n    vector<vector<long long>> dp(full, vector<long long>(n, -1));\n    for (int i = 0; i < n; i++) dp[1 << i][i] = 0;\n    for (int mask = 1; mask < full; mask++) {\n        for (int last = 0; last < n; last++) {\n            if (dp[mask][last] < 0) continue;\n            for (int next = 0; next < n; next++) {\n                if (mask & (1 << next)) continue;\n                int nm = mask | (1 << next);\n                long long cost = dp[mask][last] + max(b[last], a[next]);\n                if (dp[nm][next] < 0 || cost < dp[nm][next]) dp[nm][next] = cost;\n            }\n        }\n    }\n    long long best = -1;\n    for (int last = 0; last < n; last++) {\n        if (dp[full - 1][last] >= 0 && (best < 0 || dp[full - 1][last] < best)) best = dp[full - 1][last];\n    }\n    cout << best + n << endl;\n    return 0;\n}",
       answer: '',
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 7,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"],
     }
 ];
 

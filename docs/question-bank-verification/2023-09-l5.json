@@ -1,201 +1,1120 @@
 {
   "paperId": "2023-09-l5",
-  "reviewedAt": "2026-10-31",
+  "reviewedAt": "2026-11-07",
+  "dimensionScopedUnresolved": true,
   "reviewedBy": {
     "type": "AI",
-    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
-    "session": "verify/explanations-2023-09-l5"
+    "executor": "DeepSeek V4.1 Flash（max）初核 → GLM 5.3 Flash（max）独立复核",
+    "coordinator": "本机任务调度、自动校验与集成"
   },
   "source": {
+    "officialUrl": "https://gesp.ccf.org.cn/101/attach/1570611325304864.pdf",
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorFile": "2023年9月-C++5级.pdf",
     "mirrorSha": "7d1cb9e5cd39d721f9b483e377e54be55733be21",
+    "mirrorBytes": 1870596,
     "shaVerified": true,
-    "fetchedAt": "2026-10-24",
-    "pages": {
-      "Q8": "pp.4-5",
-      "Q11": "pp.6-7",
-      "Q12": "pp.7-8"
-    }
+    "sha256": "89534b84ef130115c0f3d0096b0930cc796d1b0b7933cb57b5a0f151f5ae0828",
+    "pages": 13
   },
+  "reviewFiles": {
+    "initial": "ai-reviews/2026-11-07/2023-09-l5.deepseek.json",
+    "review": "ai-reviews/2026-11-07/2023-09-l5.glm.json",
+    "previous": "ai-reviews/2026-11-07/2023-09-l5.previous-evidence.json"
+  },
+  "inputSha256": "5ca5b16b9906484e48a494fb738afd3e6c3de51fc917862f549f26e6b10ec10d",
   "questions": [
     {
-      "questionId": 13,
-      "issue": "题干简化：官方题干含具体代码引用「mergeSort(listData, start, middle); 和 mergeSort(listData, middle + 1, end);」，题库省略了该引用",
-      "fix": "按官方原卷恢复完整题干；答案B不变",
-      "evidence": "官方文本层第13题题干比对；官方答案表程序化提取 ADC CABACCDCBCBAC，全卷单选15/15对"
+      "id": 1,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 1 题题干为“近年来，线上授课变得普遍……手写板……属于哪类设备”，与站点 question 语义完全一致。",
+          "review": "PDF 第 1 页第 1 题题干“近年来，线上授课变得普遍……其中包括比较常用的手写板，那么它属于哪类设备？”与网站逐字一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A 输入、B 输出、C 控制、D 记录 四项与站点 options 顺序、文字一致。",
+          "review": "PDF 第 1 页 A 输入/B 输出/C 控制/D 记录，与网站 options 顺序、内容一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页单选答案表第 1 题为 A；按 0 起始映射为 0，与站点 answer=0 一致。",
+          "review": "PDF 第 1 页答案表第 1 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "手写板把笔迹转换为计算机可读信号，属于输入设备；解析逐项排除 B/C/D，结论 A 正确。",
+          "review": "独立推导：手写板把手写信息送入计算机，属输入设备；输出设备（打印机等）方向相反，控制/记录非设备分类术语。解析与答案 A 吻合。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页第 2 题题干为“如果 a 和 b 均为 int 类型的变量，且 b 的值不为 0……a 是 b 的 3 倍”，与站点一致（仅空格排版差异）。",
+          "review": "PDF 第 1 页第 2 题题干“如果 a 和 b 均为 int 类型的变量，且 b 的值不为 0……能正确判断“a 是 b 的 3 倍”的表达式是”与网站一致。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A (a >> 3 == b)、B (a - b) % 3 == 0、C (a / b == 3)、D (a == 3 * b) 与站点选项顺序一致。",
+          "review": "PDF 第 1 页 A (a >> 3 == b)/B (a - b) % 3 == 0/C (a / b == 3)/D (a == 3 * b) 与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 2 题为 D；0 起始映射为 3，站点 answer=3。",
+          "review": "PDF 第 1 页答案表第 2 题标 D，0 起始为索引 3，与网站 answer=3 一致。"
+        },
+        "explanation": {
+          "initial": "a 是 b 的 3 倍等价于 a == 3*b；解析用 a=7,b=2 时 7/2==3 说明整除会误判，推导成立。",
+          "review": "独立推导：a==3*b 恒等价于“a 是 b 的 3 倍”；A 误用移位；B 只能说明差被 3 整除（如 a=4,b=1 不满足 3 倍却成立）；C 在 a=7,b=2 时 7/2==3 整除误判。解析与答案 D 吻合。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 3,
+      "resolved": true,
+      "dimensions": [
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [
+        "statement"
+      ],
+      "official": 2,
+      "sourcePages": [
+        1
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1 页原文为“变量 a 和 b 分别为 double 类型和 int 类型”，站点写成“double类型 and int类型”，混入英文 and，属转写错误，需改为“和”。",
+          "review": "PDF 第 1 页原文“如果变量 a 和 b 分别为 double 类型和 int 类型，则表达式(a = 6, b = 3 * (7 + 8) / 2, b += a)的计算结果为”。网站误写作“double类型 and int类型”（英文 and 混入）且“的 计算结果”中间多一个空格，属转写错误。"
+        },
+        "options": {
+          "initial": "PDF 第 1 页 A 6、B 21、C 28、D 不确定 与站点选项一致。",
+          "review": "PDF 第 1 页 A 6/B 21/C 28/D 不确定，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 3 题为 C；0 起始映射为 2，站点 answer=2。",
+          "review": "PDF 第 1 页答案表第 3 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "逗号表达式依次执行 a=6.0；b=3*(7+8)/2，两个 int 相除 45/2=22；b+=a 后 b=28，结果为 28，解析正确。",
+          "review": "独立推导：逗号表达式从左到右求值 a=6；b=3*(7+8)/2=45/2=22（int 截断）；b+=a 得 28，表达式值取最后一项 28。解析与答案 C 吻合。"
+        }
+      },
+      "unresolved": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 4,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        1,
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q4 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 1-2 页第 4 题题干与 sumA/sumB 代码完整，站点 question 未复述代码，但 code 字段与页图逐行一致。",
+          "review": "PDF 第 1 页第 4 题题干“有关下面 C++ 代码说法错误的是”，代码在第 2 页：sumA() 用 for 循环累加、sumB() 递归求和、main 读入 n 输出 sumA(n) 与 sumB(n)，与网站题面代码一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A-D 四项与站点 options 顺序、含义一致。",
+          "review": "PDF 第 2 页 A 循环/递归说法、B 输入 1000 能求和、C 输入 100000 能求和、D sumA() 效率高于 sumB()，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 4 题为 C；0 起始映射为 2，站点 answer=2。",
+          "review": "PDF 第 1 页答案表第 4 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "sumB 递归深度 100000 会溢出默认栈；1 到 100000 之和 5000050000 也超出 int，故 C 的“能实现”说法错误，解析成立。",
+          "review": "独立推导：sumB(100000) 递归深度达 10 万层，默认 1MB 级栈空间必然栈溢出，C 说法不成立；A 对两函数实现描述正确；B 深度 1000 远小于默认栈容量可行；D 递归有额外调用开销，一般 sumA() 更快。解析与答案 C 吻合。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 5,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        2
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q5 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 2 页第 5 题字符串反序代码与站点 code 一致，横线位置相同。",
+          "review": "PDF 第 2 页第 5 题题干“以递归方式实现字符串反序”及 sReverse 代码（length<=1 返回自身，否则 return 横线）与网站一致。"
+        },
+        "options": {
+          "initial": "PDF 第 2 页 A-D 四个表达式与站点 options 一致。",
+          "review": "PDF 第 2 页 A–D 四个拼接式与网站 options 逐字一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 5 题为 A；0 起始映射为 0，站点 answer=0。",
+          "review": "PDF 第 1 页答案表第 5 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "反序可分解为“末字符 + 去掉末字符子串的反序”，即 sIn[len-1] + sReverse(sIn.substr(0,len-1))，解析推导正确。",
+          "review": "独立推导：反序=末字符 sIn[sIn.length()-1] 接前缀 sIn.substr(0, sIn.length()-1) 的反序，即 A；B 取首字符会保留原顺序首部；C/D 把末字符放尾部不符合反序定义。解析与答案 A 吻合。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 6,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        3
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q6 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3 页第 6 题题干与汉诺塔代码、横线位置均与站点一致；站点压缩了 64 片圆盘的传说，但保留三条移动规则，不影响作答条件。",
+          "review": "PDF 第 3 页第 6 题汉诺塔题干及 Hanoi(string A, string B, string C, int N) 代码（N==1 打印 A->C，否则 Hanoi(A,C,B,N-1); 打印 A->C; 横线）与网站一致。"
+        },
+        "options": {
+          "initial": "PDF 第 3 页 A Hanoi(B,C,A,N-2)、B Hanoi(B,A,C,N-1)、C Hanoi(A,B,C,N-2)、D Hanoi(C,B,A,N-1) 与站点选项一致。",
+          "review": "PDF 第 3 页 A Hanoi(B, C, A, N-2)/B Hanoi(B, A, C, N-1)/C Hanoi(A, B, C, N-2)/D Hanoi(C, B, A, N-1) 与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 6 题为 B；0 起始映射为 1，站点 answer=1。",
+          "review": "PDF 第 1 页答案表第 6 题标 B，0 起始为索引 1，与网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "完成 Hanoi(A,C,B,N-1) 与 A->C 后，应把 B 上 N-1 个盘借助 A 移到 C，即 Hanoi(B,A,C,N-1)，解析正确。",
+          "review": "独立推导：形参顺序为源柱/辅助柱/目的柱/层数；完成 A→C 需先把 N-1 层从 B（此时辅助柱）移回目的柱 C，源=B、辅=A，即 Hanoi(B, A, C, N-1)。解析与答案 B 吻合。"
+        }
+      },
+      "unresolved": []
     },
     {
-      "id": 8,
+      "id": 7,
+      "resolved": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "原卷对照（页面渲染人工查看）",
-        "程序执行"
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        3,
+        4
       ],
-      "findings": "题面缺失函数指针代码（原卷为图片）。官方答案 C。",
-      "fix": "按原卷 pp.4-5 逐行转写 checkNum/isEven 代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析中参数 8 修正为 10，并补充逐选项理由。",
-      "evidence": "g++ 编译运行转写代码，实际输出 1，与答案 C（执行后输出1）一致。tmp/verify/2023-09-l5/q8.cpp",
-      "resolved": true
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 3-4 页第 7 题题干、排序/筛奇数代码与两个横线位置与站点一致。",
+          "review": "PDF 第 3 页第 7 题题干“两个横线处应分别填入”，完整代码在 PDF 第 4 页（isOdd/compare 定义、sort(lstA.begin(), lstA.end(), 横线1)、if (横线2) lstB.push_back(lstA[i])），与网站题面一致。"
+        },
+        "options": {
+          "initial": "PDF 第 4 页 A compare 和 isOdd(lstA[i])、B compare(x1,y1) 和 isOdd、C compare 和 isOdd、D compare(x1,y1) 和 isOdd(lstA[i]) 与站点一致。",
+          "review": "PDF 第 4 页 A compare 和 isOdd(lstA[i])/B compare(x1,y1) 和 isOdd/C compare 和 isOdd/D compare(x1,y1) 和 isOdd(lstA[i]) 与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 7 题为 A；0 起始映射为 0，站点 answer=0。",
+          "review": "PDF 第 1 页答案表第 7 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "sort 第三参数应传函数名 compare；if 条件需要调用 isOdd(lstA[i]) 得到 bool，解析正确。",
+          "review": "独立推导：sort 第三参数需传比较函数名（函数指针退化），compare(x1,y1) 是调用表达式类型不符；if 条件需 bool 值必须调用 isOdd(lstA[i])，裸函数名恒真。解析与答案 A 吻合。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 8,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        4,
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页第 8 题函数指针示例代码与站点 question 内嵌代码一致。",
+          "review": "PDF 第 4 页末第 8 题题干“有关下面代码正确的是”，代码在 PDF 第 5 页（isEven、checkNum(bool (*Fx)(int), int N)、main 输出 checkNum(isEven, 10)），与网站题面一致。"
+        },
+        "options": {
+          "initial": "PDF 第 5 页 A checkNum() 函数定义错误、B 将 isEven 作为参数将导致错误、C 执行后输出 1、D 运行时异常 与站点 options 一致。",
+          "review": "PDF 第 5 页 A checkNum() 函数定义错误/B 将 isEven 作为参数将导致错误/C 执行后将输出 1/D 运行时触发异常，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 8 题为 C；0 起始映射为 2，站点 answer=2。",
+          "review": "PDF 第 1 页答案表第 8 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "isEven 签名 bool(int) 与 bool(*)(int) 匹配，checkNum(isEven,10) 返回 true，cout 默认输出 1；解析正确。",
+          "review": "独立推导：isEven 与形参 bool(*)(int) 签名匹配，函数名自动退化为函数指针，定义与传参均合法；isEven(10) 返回 true，cout 默认输出 1，无异常。解析与答案 C 吻合。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        5
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 5 页第 9 题 isOdd/Square/checkNum 代码与站点 question 内嵌代码一致。",
+          "review": "PDF 第 5 页第 9 题题干及代码（isOdd/Square/checkNum 定义，输出行 A 调 checkNum(isOdd,10)，输出行 B 调 checkNum(Square,10)）与网站题面一致。"
+        },
+        "options": {
+          "initial": "PDF 第 5 页 A-D 四项与站点 options 一致。",
+          "review": "PDF 第 5 页 A checkNum() 函数定义错误/B 输出行 A 将导致编译错误/C 输出行 B 将导致编译错误/D 该代码没有编译错误，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 9 题为 C；0 起始映射为 2，站点 answer=2。",
+          "review": "PDF 第 1 页答案表第 9 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "checkNum 要求 bool(*)(int)，Square 是 int(*)(int)，函数指针类型不匹配，输出行 B 编译失败；解析正确。",
+          "review": "独立推导：Square 类型为 int(*)(int)，与形参 bool(*)(int) 返回类型不匹配且函数指针无返回值自动转换，行 B 编译失败；行 A 签名完全匹配。解析与答案 C 吻合。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 10,
       "resolved": true,
       "dimensions": [
+        "statement",
+        "options",
+        "answer",
         "explanation"
       ],
-      "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+      "blockedDimensions": [],
+      "official": 3,
+      "sourcePages": [
+        5,
+        6
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q10 explanation 升级；答案未改"
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6 页第 10 题 jumpFloor 代码与站点 question 内嵌代码一致。",
+          "review": "PDF 第 5 页末第 10 题题干“下面代码执行后的输出是”，代码在 PDF 第 6 页（jumpFloor 先打印 N#，N==1||N==2 返回 N，否则返回 jumpFloor(N-1)+jumpFloor(N-2)；main 调 jumpFloor(4)），与网站题面一致。"
+        },
+        "options": {
+          "initial": "PDF 第 6 页 A 4#3#2#2#4、B 4#3#2#2#1#5、C 4#3#2#1#2#4、D 4#3#2#1#2#5 与站点一致。",
+          "review": "PDF 第 6 页 A 4#3#2#2#4/B 4#3#2#2#1#5/C 4#3#2#1#2#4/D 4#3#2#1#2#5 与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 10 题为 D；0 起始映射为 3，站点 answer=3。",
+          "review": "PDF 第 1 页答案表第 10 题标 D，0 起始为索引 3，与网站 answer=3 一致。"
+        },
+        "explanation": {
+          "initial": "前序展开依次打印 4#3#2#1#2#，返回 5，完整输出 4#3#2#1#2#5；解析逐层展开正确。",
+          "review": "独立推导：前序打印 4#3#2#1#2#（先左后右），jumpFloor(3)=2+1=3、jumpFloor(4)=3+2=5，main 再输出 5，完整输出 4#3#2#1#2#5。解析与答案 D 吻合。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 11,
+      "resolved": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "原卷对照（页面渲染人工查看）",
-        "程序执行",
-        "独立推导"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        6,
+        7
       ],
-      "findings": "题面缺失 isPrimeA/isPrimeB 代码；四个选项均缺原卷末尾从句「isPrimeB()/isPrimeA() 优于 isPrimeA()/isPrimeB()」；解析套话化。",
-      "fix": "按原卷 pp.6-7 转写代码回填；选项按原卷补齐末尾从句（答案仍指向 B 文本）；解析重写为具体推导（试除范围 N-2 vs √N-1），逐选项给出错误原因。",
-      "evidence": "独立推导：isPrimeA 循环 2..N-1 → O(N)；isPrimeB 循环 2..int(sqrt(N)) → O(√N)。g++ 运行 isPrimeA(13)/isPrimeB(13) 均输出 true。tmp/verify/2023-09-l5/q11.cpp",
-      "resolved": true
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 6-7 页第 11 题 isPrimeA/isPrimeB 代码与站点一致。",
+          "review": "PDF 第 6 页第 11 题题干及 isPrimeA（试除至 N-1）/isPrimeB（int(sqrt(N)) 上界）代码与网站题面一致；选项 A–D 跨第 6–7 页，与网站 options 一致。"
+        },
+        "options": {
+          "initial": "PDF 第 7 页 A-D 四项复杂度表述与站点 options 一致。",
+          "review": "PDF 第 6–7 页 A O(N)/O(logN)、B O(N)/O(N^(1/2)) 且 isPrimeB 优于 isPrimeA、C 两者颠倒、D O(logN)/O(N)，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 11 题为 B；0 起始映射为 1，站点 answer=1。",
+          "review": "PDF 第 1 页答案表第 11 题标 B，0 起始为索引 1，与网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "isPrimeA 试除 2..N-1 最坏 O(N)，isPrimeB 试除到 sqrt(N) 最坏 O(√N)，B 正确。",
+          "review": "独立推导：isPrimeA 最坏（N 为素数）做约 N-2 次取模为 O(N)；isPrimeB 只试除到 √N 为 O(√N)，√N 增长远慢于 N，故 isPrimeB 更优。解析与答案 B 吻合。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 12,
+      "resolved": true,
+      "dimensions": [
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [
+        "statement"
+      ],
+      "official": 2,
+      "sourcePages": [
+        7,
+        8,
+        9
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 8 页函数声明为 `void mergeSort(int * listData, int start, int end);`（3 个参数），站点 question 内嵌代码误写成 `int start, int middle, int end`（4 个参数），与定义冲突且无法编译，需还原。",
+          "review": "PDF 第 8 页代码前两行声明为 void mergeSort(int * listData, int start, int end); 与 void merge(int * listData, int start, int middle, int end);。网站题面把 mergeSort 的声明误写成 void mergeSort(int * listData, int start, int middle, int end);（4 参数），与后文 3 参数定义冲突且无法编译，属转写错误。"
+        },
+        "options": {
+          "initial": "PDF 第 9 页 A 0、B 1、C 6、D 7 与站点 options 一致。",
+          "review": "PDF 第 9 页 A 0/B 1/C 6/D 7，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 12 题为 C；0 起始映射为 2，站点 answer=2。",
+          "review": "PDF 第 1 页答案表第 12 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "长度 7 的归并递归树有 6 个非叶区间，每个调用一次 merge，共 6 次；解析的区间拆分正确。",
+          "review": "独立推导：merge() 在每次有效拆分后调用一次，次数=递归树内部结点数。区间 [0,6]→[0,3]、[4,6]→[0,1]、[2,3]、[4,5]（[6,6]、长度 1 区间返回），共 [0,6]、[0,3]、[4,6]、[0,1]、[2,3]、[4,5] 6 次。解析与答案 C 吻合。"
+        }
+      },
+      "unresolved": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 13,
+      "resolved": true,
       "dimensions": [
         "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "method": [
-        "原卷对照（页面渲染人工查看）",
-        "程序执行",
-        "独立推导"
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        9
       ],
-      "findings": "题面缺失归并排序代码；解析为模板套话（「该数值与正确计算结果不符，请重新验算」×3）。",
-      "fix": "按原卷 pp.7-8 转写 mergeSort/merge 代码回填；解析重写为递归树推导（start<end 的区间恰 6 个），并附运行计数证据。",
-      "evidence": "g++ 编译插入 mergeCount 计数器的转写代码，输出 merge calls: 6，与答案 C(6) 一致；排序输出 1 2 3 3 5 7 11。tmp/verify/2023-09-l5/q12.cpp",
-      "resolved": true
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 9 页第 13 题题干引用上题 mergeSort 两次递归调用，与站点一致。",
+          "review": "PDF 第 9 页第 13 题题干“mergeSort(listData, start, middle); 和 mergeSort(listData, middle + 1, end); 涉及到的算法为”与网站一致。"
+        },
+        "options": {
+          "initial": "PDF 第 9 页 A 搜索算法、B 分治算法、C 贪心算法、D 递推算法 与站点一致。",
+          "review": "PDF 第 9 页 A 搜索算法/B 分治算法/C 贪心算法/D 递推算法，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 13 题为 B；0 起始映射为 1，站点 answer=1。",
+          "review": "PDF 第 1 页答案表第 13 题标 B，0 起始为索引 1，与网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "归并排序先分后合，两次递归调用属于分治，解析正确。",
+          "review": "独立推导：两行把区间拆成两个子区间分别排序，是“分而治之”的分解步骤，属分治算法；与搜索/贪心/递推无关。解析与答案 B 吻合。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 14,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "blockedDimensions": [
+        "explanation"
+      ],
+      "official": 0,
+      "sourcePages": [
+        9
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 9 页第 14 题题干“归并排序算法的基本思想是”与站点一致。",
+          "review": "PDF 第 9 页第 14 题题干“归并排序算法的基本思想是（ ）”与网站一致。"
+        },
+        "options": {
+          "initial": "PDF 第 9 页 A 分成两个子数组分别排序后合并、B 随机枢轴划分、C 从末尾逐个比较交换、D 相邻元素比较交换 与站点 options 一致。",
+          "review": "PDF 第 9 页 A 将数组分成两个子数组，分别排序后再合并/B 随机选择枢轴划分/C 从最后一个元素依次与前一个比较交换/D 比较相邻元素错误就交换，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 14 题为 A；0 起始映射为 0，站点 answer=0。",
+          "review": "PDF 第 1 页答案表第 14 题标 A，0 起始为索引 0，与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "站点解析对 B/C 使用“数组下标从 0 开始，请仔细验证下标范围”作为理由，与选项内容无关且错误；应改为：B 描述快速排序的枢轴划分，C 描述相邻交换类排序，D 描述冒泡排序，只有 A 是归并排序。",
+          "review": "网站解析对选项 B、C 的否定理由均为“数组下标从 0 开始，请仔细验证下标范围”，与快速排序枢轴划分、相邻交换等概念完全无关，属错误理由；需按各选项实际算法归属改写。"
+        }
+      },
+      "unresolved": [
+        "修改 explanation 已获一致批准，尚未应用",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 2,
+      "sourcePages": [
+        9
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 9 页第 15 题 Node 类与 main 建链代码与站点 code 一致。",
+          "review": "PDF 第 9 页第 15 题题干“有关下面代码的说法正确的是”及 Node 链表代码（firstNode->Next = new Node(100); firstNode->Next->Next = new Node(111, firstNode)，尾结点 Next 指回 firstNode）与网站一致。"
+        },
+        "options": {
+          "initial": "PDF 第 9 页 A 单向链表、B 双向链表、C 循环链表、D 指针链表 与站点 options 一致。",
+          "review": "PDF 第 9 页 A 单向链表/B 双向链表/C 循环链表/D 指针链表，与网站 options 一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 1 页答案表第 15 题为 C；0 起始映射为 2，站点 answer=2。",
+          "review": "PDF 第 1 页答案表第 15 题标 C，0 起始为索引 2，与网站 answer=2 一致。"
+        },
+        "explanation": {
+          "initial": "第三个结点 Next 指回 firstNode，形成首尾相接的循环链表；解析结论正确。",
+          "review": "独立推导：第三个结点的 Next 指回 firstNode 形成首尾相接的环，为循环链表；单向/双向由结点指针域数量与方向决定，D 非标准术语。解析与答案 C 吻合。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 16,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 1 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 1 题原文“TCP/IP 的传输层的两个不同的协议分别是 UDP 和 TCP 。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 1 题为 √；0 起始映射为 0，与站点 answer=0 一致。",
+          "review": "PDF 第 10 页判断题答案表第 1 题标 √，0 起始为索引 0（正确=0、错误=1），与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "TCP 与 UDP 均为传输层协议，命题正确；答案表第 1 题为 √。",
+          "review": "独立推导：TCP/IP 传输层两大协议即 TCP 与 UDP，判定“正确”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 17,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 2 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 2 题原文“在特殊情况下流程图中可以出现三角框和圆形框。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 2 题为 ×；0 起始映射为 1，与站点 answer=1 一致。",
+          "review": "PDF 第 10 页判断题答案表第 2 题标 ×，0 起始为索引 1（正确=0、错误=1），与网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "标准流程图符号不含三角框，命题错误；答案表第 2 题为 ×。",
+          "review": "独立推导：标准流程图符号为矩形/菱形/平行四边形/圆角矩形（椭圆）等，三角框不是标准符号，判定“错误”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 18,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 3 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 3 题原文“找出自然数N以内的所有质数，常用算法有埃氏筛法和线性筛法，其中埃氏筛法效率更高。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 3 题为 ×；0 起始映射为 1，与站点 answer=1 一致。",
+          "review": "PDF 第 10 页判断题答案表第 3 题标 ×，0 起始为索引 1（正确=0、错误=1），与网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "线性筛 O(N) 优于埃氏筛 O(N log log N)，命题错误；答案表第 3 题为 ×。",
+          "review": "独立推导：线性筛（欧拉筛）O(N) 优于埃氏筛 O(N log log N)，命题说反，判定“错误”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 19,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 4 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 4 题原文“在 C++ 中，可以使用二分法查找链表中的元素。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 4 题为 ×；0 起始映射为 1，与站点 answer=1 一致。",
+          "review": "PDF 第 10 页判断题答案表第 4 题标 ×，0 起始为索引 1（正确=0、错误=1），与网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "链表不支持 O(1) 随机访问，二分查找无法高效进行，命题错误；答案表第 4 题为 ×。",
+          "review": "独立推导：链表不支持随机访问，二分定位中点需 O(n)，无法高效二分，判定“错误”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 20,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 5 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 5 题原文“在 C++ 中，通过恰当的实现，可以将链表首尾相接，形成循环链表。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 5 题为 √；0 起始映射为 0，与站点 answer=0 一致。",
+          "review": "PDF 第 10 页判断题答案表第 5 题标 √，0 起始为索引 0（正确=0、错误=1），与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "尾结点指针指回头结点即可构成循环链表，命题正确；答案表第 5 题为 √。",
+          "review": "独立推导：尾结点 Next 指回头结点即成环，判定“正确”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 21,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 6 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 6 题原文“贪心算法的解可能不是最优解。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 6 题为 √；0 起始映射为 0，与站点 answer=0 一致。",
+          "review": "PDF 第 10 页判断题答案表第 6 题标 √，0 起始为索引 0（正确=0、错误=1），与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "贪心只保证局部最优，可能不是全局最优，命题正确；答案表第 6 题为 √。",
+          "review": "独立推导：贪心取局部最优不保证全局最优（如 0-1 背包），判定“正确”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 22,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 1,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 7 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 7 题原文“一般说来，冒泡排序算法优于归并排序。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 7 题为 ×；0 起始映射为 1，与站点 answer=1 一致。",
+          "review": "PDF 第 10 页判断题答案表第 7 题标 ×，0 起始为索引 1（正确=0、错误=1），与网站 answer=1 一致。"
+        },
+        "explanation": {
+          "initial": "冒泡 O(N^2) 通常劣于归并 O(N log N)，命题错误；答案表第 7 题为 ×。",
+          "review": "独立推导：冒泡平均 O(N²) 劣于归并 O(N log N)，判定“错误”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 23,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 8 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 8 题原文“C++ 语言中的qsort库函数是不稳定排序。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 8 题为 √；0 起始映射为 0，与站点 answer=0 一致。",
+          "review": "PDF 第 10 页判断题答案表第 8 题标 √，0 起始为索引 0（正确=0、错误=1），与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "qsort 不保证稳定性，命题正确；答案表第 8 题为 √。",
+          "review": "独立推导：C 标准对 qsort 不作稳定性要求，主流实现基于快速排序不稳定，判定“正确”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 24,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 9 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 9 题原文“质数的判定和筛法的目的并不相同，质数判定旨在判断特定的正整数是否为质数，而质数筛法意在筛选出范围内的所有质数。”与网站题面一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 9 题为 √；0 起始映射为 0，与站点 answer=0 一致。",
+          "review": "PDF 第 10 页判断题答案表第 9 题标 √，0 起始为索引 0（正确=0、错误=1），与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "判定单个素数与筛出范围内全部素数的目的不同，命题正确；答案表第 9 题为 √。",
+          "review": "独立推导：判定针对单个数、筛法针对区间，目的不同，判定“正确”。网站解析核心判定依据与官方答案一致。"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "id": 25,
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "blockedDimensions": [],
+      "official": 0,
+      "sourcePages": [
+        10
+      ],
+      "method": [
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核"
+      ],
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10 页判断题第 10 题原文与站点 question 一致。",
+          "review": "PDF 第 10 页判断题第 10 题题面“下面的 C++ 代码执行后将输出 0 5 1 6 2 3 4”及 compareModulo5 排序代码与网站逐字一致。"
+        },
+        "answer": {
+          "initial": "PDF 第 10 页判断答案表第 10 题为 √；0 起始映射为 0，与站点 answer=0 一致。",
+          "review": "PDF 第 10 页判断题答案表第 10 题标 √，0 起始为索引 0（正确=0、错误=1），与网站 answer=0 一致。"
+        },
+        "explanation": {
+          "initial": "按 a%5 升序排序，7 个元素下 libstdc++ 走插入排序，同余保持原序，输出 0 5 1 6 2 3 4；答案表第 10 题为 √。",
+          "review": "独立验证：键 a%5 序列为 0 1 2 3 4 0 1，排序后按键分组 {0,5}{1,6}2 3 4；本地 g++ 编译运行该代码实际输出“0 5 1 6 2 3 4”，与题面断言及官方 √ 一致（libstdc++ 对 7 个元素走插入排序，等键元素保持原序）。"
+        }
+      },
+      "unresolved": []
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [
+        "statement"
+      ],
+      "sourcePages": [
+        10,
+        11,
+        12
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q26 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 10-11 页第 26 题题干、样例与数据范围（2≤N≤10^12）与站点一致，但原卷两处写作“给定一个正整数 N”“为 N 的因数分解式”，站点均漏掉变量 N，需补回。",
+          "review": "PDF 第 11 页原文两处含变量 N：“给定一个正整数 N，请按要求输出它的因数分解式”“输出一行，为 N 的因数分解式”。网站题面两处均漏掉 N（“给定一个正整数，请按要求输出”“为的因数分解式”），语句不通，属转写缺字。"
+        },
+        "explanation": {
+          "initial": "解析按试除法说明只需枚举 p*p<=N、最后处理剩余 N>1，并给出 6、20、23 走查，推导与格式要求一致。",
+          "review": "独立推导：试除法对每个 p 先除尽并计数，cnt>1 时输出 p^cnt 否则输出 p，剩余 N>1 时输出自身；分隔符“ * ”、指数“^”两侧无空格，与题面输出格式及三个样例（6→2 * 3、20→2^2 * 5、23→23）吻合；p*p<=N 用 long long 防溢出，N≤10^12 时循环至 10^6，1.0 s 内可行。"
+        },
+        "referenceCode": {
+          "initial": "参考程序用 long long 存储 N 与 p，p*p<=N 不溢出；对 2、4、6、20、1260、10^12 编译运行输出分别为 2、2^2、2*3、2^2*5、2^2*3^2*5*7、2^12*5^12，符合题目格式。",
+          "review": "独立验证：本地 g++ 编译参考程序，原样例 3 组全部通过；另实测 N=2→“2”（最小输入，循环不执行走 N>1 分支）、N=4→“2^2”（cnt>1 指数分支）、N=999999999989→“999999999989”（区间内大素数，约 10^6 次试除后走末尾分支）、N=1000000000000→“2^12 * 5^12”（上界值）、N=999999999999→“3^3 * 7 * 11 * 13 * 37 * 101 * 9901”（=10^12-1=(10^6-1)(10^6+1) 的独立分解），算法正确、无溢出、复杂度满足约束。"
+        }
+      },
+      "unresolved": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
     },
     {
       "id": 27,
       "resolved": true,
       "dimensions": [
-        "explanation"
+        "statement",
+        "explanation",
+        "referenceCode"
+      ],
+      "blockedDimensions": [],
+      "sourcePages": [
+        12,
+        13
       ],
       "method": [
-        "官方答案对照",
-        "解析质量审校",
-        "Gemini 3.8 Flash 草稿校对落地"
+        "原卷 PDF 摘要校验及逐页图片对照",
+        "DeepSeek V4.1 Flash max 初核",
+        "GLM 5.3 Flash max 独立复核",
+        "g++ 编译及原样例、复核边界用例执行"
       ],
-      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
-      "reviewedAt": "2026-10-31",
-      "evidence": "官方答案表/解析审校；答案未改",
-      "note": "Q27 explanation 升级；答案未改"
+      "evidence": {
+        "statement": {
+          "initial": "PDF 第 12-13 页第 27 题题干、输入输出、样例（7 个时段，输出 230）与站点一致。",
+          "review": "PDF 第 12–13 页题面：n 个时间段/n 个小游戏、第 i 个游戏须在第 T_i 个时间段结束前完成得奖励 R_i；输入 n（1≤n≤500）、T_i（1≤T_i≤n）、R_i（1≤R_i≤1000）；输出一行包含一个正整数 C 为最高奖励；样例 7 时段输出 230 及样例解释（40+60+50+70+10=230）与网站题面、样例一致。"
+        },
+        "explanation": {
+          "initial": "解析按奖励降序、同奖励从截止时间向前找空位，样例走查得到 70+60+50+40+10=230，贪心正确性说明成立。",
+          "review": "独立推导：按奖励降序贪心，每个游戏占用 [0, T_i-1] 中最晚的空闲时段（带截止期限的单位任务调度，可调度任务集构成拟阵，交换论证可证该贪心最优）；样例安排得 70+60+50+40+10=230；最坏两重循环 O(n²)=2.5×10^5 步，1.0 s 内可行。"
+        },
+        "referenceCode": {
+          "initial": "参考程序按 R 降序，对每个游戏从 T-1 向前找空位；n≤500 时 O(n^2) 可过；样例输出 230，n=1 输出 5，全部 T=1 时输出 30，均正确。",
+          "review": "独立验证：本地 g++ 编译参考程序，原样例输出 230；另实测 n=1/T=1/R=1000→1000（最小规模）、T 全 1 时仅完成最高奖励者→5（期限饱和）、T 全 4 时全部完成→100（充裕情形）、T=[1,2]/R=[10,10]→20（靠后占位使两任务均可安排）、n=500 全部可完成→500000（上界无溢出），贪心实现正确。"
+        }
+      },
+      "unresolved": []
     }
   ],
-  "judgeAnswerAudit": {
-    "executedAt": "2026-10-25",
-    "executor": "WorkBuddy 子代理",
-    "method": "回官方 PDF 判断题答案表（p.10 表头『题号 1..10 / 答案』）逐列放大核对（4 倍裁剪 tmp/crop-2023-09-l5-judge.png），洛谷仅作线索（A=√、B=×）。",
-    "officialSequence": "Q16→Q25 = √ × × × √ √ × √ √ √（对应表内第 1..10 列）",
-    "items": [
-      {
-        "qid": 25,
-        "bankAnswer": "×",
-        "luoguAnswer": "√（A）",
-        "officialAnswer": "√",
-        "officialLocation": "p.10 判断题答案表第 10 列（第10题：sort 按 compareModulo5 排序后输出 0 5 1 6 2 3 4）",
-        "derivation": "比较函数按 a%5 升序：0..6 的余数为 0 1 2 3 4 0 1，排序后余数不减，只有同余的两对（0/5、1/6）内部次序可变。libstdc++ 对 7 个元素走插入排序（稳定），输出恰为 0 5 1 6 2 3 4。g++ 编译运行实测输出 `0 5 1 6 2 3 4`（tmp/verify/2023-09-l5/q25.cpp），命题正确。",
-        "changed": true,
-        "changeDetail": "answer 1(×) → 0(√)；解析由套话『见原题图，输出与题干不符』重写为取余排序推导 + 实测输出；题面补回原卷第10题代码块（原题仅有『下面的 C++ 代码』一句，代码缺失，导致无法作答）。",
-        "verdict": "题库错，洛谷正确"
-      }
-    ]
-  },
   "unresolved": [
-    "判断题答案为 PDF 图形符号，文本审计不覆盖，本卷判断题答案仍按录入值保留，未对照官方（需渲染答案页逐题核对）。【2026-10-25 已补做】判断题 10 题已按 p.10 答案表逐列核对，仅 Q25 与官方不符并已修正，详见 judgeAnswerAudit。",
-    "官方答案页为「试题+答案」合订版式；本卷单选答案已于 2026-07-19 机器审计通过（audit-answers-2026-07-19），本次对 Q8/Q11/Q12 独立推导与运行结果一致，构成双重印证。"
+    {
+      "id": 3,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 12,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 14,
+      "dimensions": [
+        "explanation"
+      ],
+      "reasons": [
+        "修改 explanation 已获一致批准，尚未应用",
+        "explanation 尚无一致、完整的原卷核验结论"
+      ]
+    },
+    {
+      "id": 26,
+      "dimensions": [
+        "statement"
+      ],
+      "reasons": [
+        "修改 question 已获一致批准，尚未应用",
+        "statement 尚无一致、完整的原卷核验结论"
+      ]
+    }
   ],
-  "lastReviewedAt": "2026-10-28"
+  "pendingChanges": [
+    {
+      "id": 3,
+      "changes": {
+        "question": "如果变量a 和b 分别为double类型和int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的计算结果为（ ）。"
+      },
+      "status": "approved-not-applied"
+    },
+    {
+      "id": 12,
+      "changes": {
+        "question": "下面代码用于归并排序，其中merge()函数被调用次数为（ ）。\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nvoid merge(int * listData, int start, int middle, int end);\nvoid mergeSort(int * listData, int start, int end);\n\nvoid mergeSort(int * listData, int start, int end) {\n    if (start >= end)\n        return;\n    int middle = (start + end) / 2;\n    mergeSort(listData, start, middle);\n    mergeSort(listData, middle + 1, end);\n    merge(listData, start, middle, end);\n}\nvoid merge(int * listData, int start, int middle, int end) {\n    int leftSize = middle - start + 1;\n    int rightSize = end - middle;\n    int * left = new int[leftSize];\n    int * right = new int[rightSize];\n    for (int i = 0; i < leftSize; i++)\n        left[i] = listData[start + i];\n    for (int j = 0; j < rightSize; j++)\n        right[j] = listData[middle + 1 + j];\n    int i = 0, j = 0, k = start;\n    while (i < leftSize && j < rightSize) {\n        if (left[i] <= right[j]) {\n            listData[k] = left[i];\n            i++;\n        } else {\n            listData[k] = right[j];\n            j++;\n        }\n        k++;\n    }\n    while (i < leftSize) {\n        listData[k] = left[i];\n        i++;\n        k++;\n    }\n    while (j < rightSize) {\n        listData[k] = right[j];\n        j++;\n        k++;\n    }\n    delete[] left;\n    delete[] right;\n}\nint main() {\n    int lstA[] = {1, 3, 2, 7, 11, 5, 3};\n    int size = sizeof(lstA) / sizeof(lstA[0]);\n\n    mergeSort(lstA, 0, size - 1);  // 对lstA执行归并排序\n\n    for (int i = 0; i < size; i++)\n        cout << lstA[i] << \" \";\n    cout << endl;\n    return 0;\n}\n```\n"
+      },
+      "status": "approved-not-applied"
+    },
+    {
+      "id": 14,
+      "changes": {
+        "explanation": "**答案：A**\n\n**解析：** 归并排序采用分治思想：先把数组分成两个子数组，分别递归排序，再把两个有序子数组合并成一个有序数组。\n\n- **A 将数组分成两个子数组，分别排序后再合并。**：正确，完整描述归并排序的分解与合并。\n- **B 随机选择一个元素作为枢轴，将数组划分为两个部分。**：这是快速排序的划分思路，不是归并排序。\n- **C 从数组的最后一个元素开始，依次与前一个元素比较并交换位置。**：这是相邻交换类排序（冒泡排序的一种写法），不是归并排序。\n- **D 比较相邻的两个元素，如果顺序错误就交换位置。**：这是冒泡排序，不是归并排序。\n\n**考点：** 归并排序"
+      },
+      "status": "approved-not-applied"
+    },
+    {
+      "id": 26,
+      "changes": {
+        "question": "\n# [GESP202309 五级] 因数分解\n\n## 题目描述\n\n每个正整数都可以分解成素数的乘积，例如： $6=2\\times 3$，$20=2^2\\times5$。\n\n现在，给定一个正整数 $N$，请按要求输出它的因数分解式。\n\n## 输入格式\n\n输入第一行，包含一个正整数 $N$。约定 $2 \\le N \\le 10^{12}$。\n\n## 输出格式\n\n输出一行，为 $N$ 的因数分解式。要求按质因数由小到大排列，乘号用星号 `*` 表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头 `^` 表示，且左右不空格。\n"
+      },
+      "status": "approved-not-applied"
+    }
+  ],
+  "programmingChecks": "ai-reviews/2026-11-07/2023-09-l5.code-checks.json"
 }
