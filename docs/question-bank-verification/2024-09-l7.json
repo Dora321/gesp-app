@@ -1240,5 +1240,22 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-09-l7.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2024-09-l7.code-checks.json",
+  "followUpChecks": [
+    {
+      "id": 14,
+      "sourcePage": 4,
+      "method": "对照原卷页图逐字符核对题干、程序和选项，并核对递归式。",
+      "finding": "原卷在题干和选项之间印有完整 fib 函数，现题干缺失这段程序。原卷 B 的指数底数 (√5−1)/2 小于 1，不能作为增长复杂度的上界。实际为 Θ(((1+√5)/2)^n)，C 的 O(2^n) 是合法但不紧的上界，原卷答案表写 B。两条原卷信息都需保留。"
+    },
+    {
+      "id": 15,
+      "sourcePage": 4,
+      "method": "按页图转写 14 条弧，对 9 个起点和每种邻接访问顺序穷举 BFS，共得到 50 个不同序列。",
+      "validOptions": [
+        "A"
+      ],
+      "finding": "原题允许从任意顶点出发，候选解析以「起点不是 1」否定 B、D，理由不成立。假定从 9 开始，B 先处理第二层的 2 再处理第一层的 7；D 在 7 出队时 5、6 先于 2 出队时发现的 1 入队，却让 1 先出队。A 唯一可行。"
+    }
+  ]
 }

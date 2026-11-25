@@ -1248,5 +1248,24 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2024-12-l7.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2024-12-l7.code-checks.json",
+  "followUpChecks": [
+    {
+      "id": 14,
+      "sourcePage": 4,
+      "method": "对照原卷页图核对程序与题干。",
+      "finding": "选项之前有完整 init_sieve 函数，现题干缺代码。第一个循环 n 次，后两层运行 Σ floor(n/i) 次，因此选 B。"
+    },
+    {
+      "id": 15,
+      "sourcePage": 4,
+      "method": "按页图转写 13 条弧，对 9 个起点和每种邻接访问顺序穷举 DFS，共得到 27 个不同序列。",
+      "validOptions": [
+        "B",
+        "C",
+        "D"
+      ],
+      "finding": "只有 A 无法生成。遍历到节点 8 后必须先访问尚未到达的 9，不能先回到 3 再转去 6。"
+    }
+  ]
 }
