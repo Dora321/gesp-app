@@ -298,7 +298,7 @@ LinkList 节点同时含 \`next\` 与 \`prev\` 两个指针。
 **考点：** 双向链表、链表初始化
         `,
             tags: ['双向链表'],
-      "code": "typedef struct LinkList {\n    int data;\n    LinkList* next;\n    LinkList* prev;\n} LinkList, LinkNode;\n\nbool ListInit(LinkList* &L) {\n    L = new LinkNode;\n    if (!L) return false;\n    L->next = NULL;\n    L->prev = NULL;\n    L->data = -1;\n    return true;\n}",
+      "code": "typedef struct LinkList {\n    int data;\n    LinkList* next;\n    LinkList* prev;\n}LinkList,LinkNode;\n\nbool ListInit(LinkList* &L) {\n\n    L = new LinkNode;\n    if (!L)return false;\n\n    L->next = NULL;\n    L->prev = NULL;\n    L->data = -1;\n\n    return true;\n}",
       "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
       "reviewedAt": "2026-11-07",
       "reviewedFields": ["code","reviewedBy","reviewedAt"],
@@ -315,26 +315,14 @@ LinkList 节点同时含 \`next\` 与 \`prev\` 两个指针。
             ],
             answer: 1,
             score: 2,
-            explanation: `
-**答案：B**
-
-**解析：**
-对 hello world（11 个字符）做哈夫曼编码。字符频率：l=3、o=2，h、e、空格、w、r、d 各 1（共 8 种字符）。
-
-哈夫曼合并过程（每次取最小两个，括号内为该次合并的权和）：
-1+1=2，1+1=2，1+2=3，1+2=3，2+3=5，3+3=6，5+6=11。
-
-WPL（总编码位数）= 2+2+3+3+5+6+11 = **32**。验证：频率高的 l、o 编码短（l=2 位、o=3 位等），六个频率 1 的字符编码较长，总量 32 bit 少于定长编码的 8×11=88 bit。
-
-- **A 4**：4 bit/字符是 8 种字符的定长下界，但哈夫曼变长编码总量不可能是 4 bit。
-- **B 32：** 正确。
-- **C 64：** 无对应计算路径。
-- **D 88：** 这是定长 ASCII（8 bit×11）的位数，哈夫曼的意义正是压到 32。
-
-**易错点：** 别忘了**空格**也是字符（频率 1）；WPL 等于每次合并时「两个最小权之和」的累加，比逐字符算深度更快。
-
-**考点：** 哈夫曼编码、WPL
-        `,
+            code: '',
+            requiresCode: false,
+            sourceVerified: true,
+            sourcePage: 3,
+            reviewedBy: 'AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核 / Codex 集成复查',
+            reviewedAt: '2026-11-25',
+            reviewedFields: ['code', 'explanation', 'sourcePage', 'reviewedBy', 'reviewedAt'],
+            explanation: "**答案：B**\n\n**解析：**\n对 hello world（11 个字符）做哈夫曼编码。字符频率：l=3、o=2，h、e、空格、w、r、d 各 1（共 8 种字符）。\n\n哈夫曼合并过程（每步取权值最小的两棵子树合并，等号右侧为新产生的权和）：\n1+1=2，1+1=2，1+1=2，2+2=4，2+2=4，3+4=7，4+7=11。\n\nWPL（总编码位数）= 各内部节点权值之和 = 2+2+2+4+4+7+11 = **32**。\n\n按该树核对码长：l(3) 与 o(2) 各得 2 位，两个频率为 1 的字符得 3 位，其余四个频率为 1 的字符得 4 位；逐字符累计 3×2 + 2×2 + 1×3×2 + 1×4×4 = 6+4+6+16 = 32 bit，与合并法一致，且少于定长编码的 8×11=88 bit。\n\n- **A 4**：本题有 8 种字符，每种字符的编码至少占 1 位，11 个字符至少需要 11 位。\n- **B 32：** 正确。\n- **C 64：** 无对应的最优构造或定长方案，不选。\n- **D 88：** 这是定长 ASCII（8 bit×11）的位数，哈夫曼编码的意义正是压到 32。\n\n**易错点：** 别忘了**空格**也是字符（频率 1）；WPL 等于每次合并时「两个最小权之和」的累加，比逐字符算深度更快。\n\n**考点：** 哈夫曼编码、WPL",
             tags: ['哈夫曼编码'],
         },
         {

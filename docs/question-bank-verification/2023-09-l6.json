@@ -289,43 +289,47 @@
       "id": 8,
       "resolved": true,
       "dimensions": [
-        "options"
-      ],
-      "blockedDimensions": [
         "statement",
+        "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "题干内嵌的 MoreData 代码与PDF第4页第8题一致；但站点独立 code 字段误用了第7题的 ManyData 代码（void push、pop 中 --tail），与本题 MoreData（返回引用的链式push、pop 中 head++）不符，需更正 code 字段，否则页面重复渲染时会串题。",
-          "review": "题干 question 内嵌代码与 PDF 第 4 页 MoreData 类一致（MoreData & push(int val) 返回 *this、pop 用 __data[head++]、main 第 29 行 myData.push(11).push(12).push(13); 后输出 pop），题干文字正确；但站点独立 code 字段误放了第 7 题的 ManyData 代码（void push、pop 中 --tail），与本题 MoreData 不符，复用该字段渲染会与选项中“代码第29行连续push()”结合后串题；替换后核验通过。"
+          "initial": "PDF 第3页页末为第8题题干「有关下面C++代码的说法，错误的是（ ）。」，第4页为 MoreData 完整代码（行1–32）。候选 question 内嵌代码与第4页逐行一致：第5行 int * __data;、第13行 MoreData & push(int val)、第15行 return *this;、第18行 return __data[head++];、第29行 myData.push(11).push(12).push(13);、第30行 cout << myData.pop() << endl;。独立 code 字段与 question 内嵌代码逐字相同（question 已包含该代码，站内 getQuestionContent 不会重复追加），与第4页逐行一致。第 4 轮批准的 code 修复（把误挂的第7题 ManyData 源码换回第4页 MoreData 源码）已真实落入本轮 paper.json，与批准值逐字节一致；第 3 轮已核验候选 code 为第4页 MoreData 代码（当时记录缩进差异不影响语义），本轮 code 与第4页逐行一致，第 3 轮「清除 ManyData 串入」的修复方向保持，未回退。",
+          "review": "第 3 页页末为第 8 题题干『有关下面C++代码的说法，错误的是（ ）。』，第 4 页为 MoreData 完整代码（第 1–32 行）。候选 question 内嵌代码与第 4 页逐行一致：第 5 行 int * __data;、第 13 行 MoreData & push(int val)、第 14 行 __data[tail++] = val;、第 15 行 return *this;、第 18 行 return __data[head++];、第 25 行 auto myData = MoreData(100);、第 29 行 myData.push(11).push(12).push(13);、第 30 行 cout << myData.pop() << endl;。独立 code 字段与 question 内嵌代码及第 4 页原图逐字一致，且与第 4 轮批准值逐字节相同（脚本比较确认），第 4 轮批准的 code 修复已真实落入本轮 paper.json：第 3 页上方的 ManyData 代码（class ManyData、void push、return __data[--tail];，属第 7 题）未被串入 Q8，第 3 轮起的『清除 ManyData 串入』修复方向保持，未回退。"
         },
         "options": {
-          "initial": "PDF第4页A、B、C、D四项与站点一致：A队列、B连续push导致编译错误、C __data私有、D以上均没有错误。",
-          "review": "PDF 第 4 页 A（MoreData 可构造队列）、B（第 29 行连续 push 将导致编译错误）、C（__data 为私有成员只能在类内访问）、D（以上说法均没有错误）与站点选项一致。"
+          "initial": "PDF 第4页 A–D 四项与候选文字、顺序一致：A. MoreData 类可用于构造队列（Queue）数据结构；B. 代码第29行，连续 push() 的用法将导致编译错误；C. __data 是 MoreData 类的私有成员，只能在类内访问；D. 以上说法均没有错误。候选仅作全角/半角空格与「第 29 行」空白规范化，无文字增删。",
+          "review": "第 4 页 A–D 四项与候选文字、顺序一致：A. MoreData 类可用于构造队列（Queue）数据结构；B. 代码第29行，连续 push() 的用法将导致编译错误；C. __data 是 MoreData 类的私有成员，只能在类内访问；D. 以上说法均没有错误。候选仅作空格规范化，无文字增删。"
         },
         "answer": {
-          "initial": "PDF答案表第8项为B，对应索引1；MoreData 的 push 返回 MoreData& 并 return *this，链式调用合法，B为错误说法。",
-          "review": "PDF 第 1 页答案表第 8 项为 B，对应索引 1。独立复核：push 返回 MoreData& 并 return *this，第 29 行 myData.push(11).push(12).push(13) 为合法链式调用，B 所称“将导致编译错误”不成立，B 为错误说法；A 正确——push 用 tail++ 尾插、pop 用 head++ 从队头取，先进先出构成队列；C 正确——__data 在 class 默认 private 段；D 因 B 错误而自动不成立，兜底项按官方口径单选 B。"
+          "initial": "PDF 第1页单选题答案表 15 格为 A D D D A D D B B B C C A A D C，第8格为 B（0 起始索引 1），候选 answer=1 一致。独立推导：push 在 tail 端写入、pop 从 head 端读出，构成先进先出队列，A 为真；push 返回 MoreData& 且 return *this，第29行链式调用语法合法，B 为假（正是题干的错误项）；__data 声明于 public: 之前，class 默认 private，C 为真；因 B 为假，D「以上说法均没有错误」不成立。故错误项为 B。",
+          "review": "第 1 页单选题答案表（放大核对）第 8 格为 B，即 0 起始索引 1，候选 answer=1 一致。独立推导：push 在 tail 端写入并 tail++、pop 从 head 端读出并 head++，构成先进先出队列，A 为真；push 返回 MoreData& 且函数体 return *this，第 29 行链式调用语法合法，B 为假（正是题干所问的错误项）；__data 声明于 public: 之前，class 默认访问为 private，C 为真；因 B 为假，D『以上说法均没有错误』不成立。故错误项为 B。"
         },
         "explanation": {
-          "initial": "现有解析正确说明 MoreData 为FIFO队列、链式push合法、__data为private、D因B错误而不成立，结论可独立推出。",
-          "review": "站点解析正确解释了 push 返回 MoreData& 与 *this 使链式调用合法、MoreData 为 FIFO 队列、__data 默认 private、D 因 B 错误而不成立，与我的独立推演一致。"
+          "initial": "候选解析以返回类型 MoreData& 与 return *this 解释链式调用，逐项判定 A（FIFO 队列）真、B（链式调用合法、不会编译错误）假、C（class 默认 private）真、D 因 B 为假而不成立；易错提醒区分返回 void（链断、无法继续调用）与按值返回（修改落在副本）两种写法的后果，cin/cout 级联输入输出作为同类机制延伸，均与 C++ 语义及第4页代码一致；未发现事实错误。",
+          "review": "候选解析以返回类型 MoreData& 与 return *this 解释链式调用，逐项判定 A（FIFO 队列）真、B（链式调用合法、不会编译错误）假、C（class 默认 private）真、D 因 B 为假而不成立；易错提醒区分返回 void（调用链断裂、无法继续调用）与按值返回（后续修改落在副本）两种写法的后果，cin/cout 级联输入输出作为同类机制延伸，均与 C++ 语义及第 4 页代码逐行对应；未发现事实错误。"
         }
       },
-      "unresolved": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "code"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-5/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-5/2023-09-l6.glm.json"
       ]
     },
     {
@@ -334,42 +338,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         4,
         5
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF第4页题面及第5页树图显示：A=0.40、B=0.30、C=0.15、D=0.05、E=0.04、F=0.03、G=0.03；0.15左子0.06含G/F，右子0.09含E/D，站点文字化描述与图一致。",
-          "review": "PDF 第 4 页题干文字（概率 0.40、0.30、0.15、0.05、0.04、0.03、0.03 依次对应 A–G，B 的编码为 11）与第 5 页树图（根 1.00：左叶 A 0.40、右 0.60；0.60：左 0.30、右叶 B 0.30；0.30：左 0.15、右叶 C 0.15；0.15：左 0.06（左叶 G 0.03、右叶 F 0.03）、右 0.09（左叶 E 0.04、右叶 D 0.05））与站点文字化题面逐项一致，未改变图意。"
+          "initial": "PDF 第4页页末为第9题题干「某内容仅会出现 ABCDEFG，其对应的出现概率为0.40、0.30、0.15、0.05、0.04、0.03、0.03，如下图所示。按照哈夫曼编码规则，假设 B 的编码为 11，则 D 的编码为（ ）。」，第5页为哈夫曼树图。候选保留原题干并补出树形文字描述（站点无插图）：根 1.00 左叶 A(0.40)、右子 0.60；0.60 左子 0.30、右叶 B(0.30)；0.30 左子 0.15、右叶 C(0.15)；0.15 左子 0.06（左叶 G 0.03、右叶 F 0.03）、右子 0.09（左叶 E 0.04、右叶 D 0.05），与第5页图逐节点一致；「左分支 0、右分支 1」与题设锚点 B=11 自洽。该文字描述在第 3 轮已核验通过，本轮 paper.json 未变，第 3 轮修改未回退。",
+          "review": "第 4 页页末为第 9 题题干『某内容仅会出现 ABCDEFG，其对应的出现概率为0.40、0.30、0.15、0.05、0.04、0.03、0.03，如下图所示。按照哈夫曼编码规则，假设 B 的编码为 11，则 D 的编码为（ ）。』，第 5 页为哈夫曼树图。候选保留原题干并补出树形文字描述（站点无插图）：根 1.00 左叶 A(0.40)、右子 0.60；0.60 左子 0.30、右叶 B(0.30)；0.30 左子 0.15、右叶 C(0.15)；0.15 左子 0.06（左叶 G 0.03、右叶 F 0.03）、右子 0.09（左叶 E 0.04、右叶 D 0.05），与第 5 页图逐节点一致；概率总和恰为 1.00，且该合并序（0.03+0.03=0.06、0.04+0.05=0.09、0.06+0.09=0.15、0.15+0.15=0.30、0.30+0.30=0.60、0.40+0.60=1.00）符合『每次取最小两权』的哈夫曼构造；『左分支 0、右分支 1』与题设锚点 B=11 自洽。该文字描述在前轮已核验通过，本轮未变，未回退。"
         },
         "options": {
-          "initial": "PDF第5页四个选项依次为10010、10011、10111、10001，与站点一致且顺序未变。",
-          "review": "PDF 第 5 页选项依次为 A.10010、B.10011、C.10111、D.10001，与站点一致且顺序未变。"
+          "initial": "PDF 第5页选项为 A. 10010、B. 10011、C. 10111、D. 10001，与候选四项文字、顺序完全一致。",
+          "review": "第 5 页选项为 A. 10010、B. 10011、C. 10111、D. 10001，与候选四项文字、顺序完全一致。"
         },
         "answer": {
-          "initial": "PDF答案表第9项为B，对应索引1；按图左0右1，D路径为根右侧1→0.60左侧0→0.30左侧0→0.15右侧1→0.09右侧1，即10011，对应B。",
-          "review": "PDF 第 1 页答案表第 9 项为 B，对应索引 1。独立复核：约定左 0 右 1，D 的路径为根右(1)→0.60 左(0)→0.30 左(0)→0.15 右(1)→0.09 右(1)=10011，对应选项 B；B 路径为根右(1)→0.60 右叶 B(1)=11，与题干锚点自洽。"
+          "initial": "PDF 第1页答案表第9格为 B（索引 1），候选 answer=1 一致。独立按图推导：D 的路径 1.00→(右1)0.60→(左0)0.30→(左0)0.15→(右1)0.09→(右1)叶 D，编码 10011，对应 B；锚点 B 的路径 1.00→(右1)0.60→(右1)叶 B = 11，与题设「B 的编码为 11」吻合。",
+          "review": "第 1 页答案表（放大核对）第 9 格为 B（索引 1），候选 answer=1 一致。独立按图推导（左 0 右 1）：D 的路径 1.00→(右1)0.60→(左0)0.30→(左0)0.15→(右1)0.09→(右1)叶 D，编码 10011，对应 B；锚点 B 的路径 1.00→(右1)0.60→(右1)叶 B = 11，与题设『B 的编码为 11』吻合。"
         },
         "explanation": {
-          "initial": "现有解析对D路径推导10011正确，但后文自洽性列举错误：C应为101而不是10，G应为10000而不是0000，F应为10001而不是0001，E应为10010而不是0010；需更正解析，答案不变。",
-          "review": "独立核算全部叶编码为 A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011（G/F/E/D 均为 5 位，首位为 1）；站点原解析自洽性段写“C = 10；G = 0000、F = 0001、E = 0010”，漏掉到 0.60 的高位分支 1 且深度不符，属事实错误；D=10011 与结论 B 不变；按修复版解析核验通过。"
+          "initial": "候选解析即第 4 轮批准的修复文本（与批准值逐字节一致）：D 的读码路径 1.00→0.60(右1)→0.30(左0)→0.15(左0)→0.09(右1)→D(右1)=10011；自洽性段的叶码表 A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011 与第5页树逐叶一致，任一码都不是其他码的前缀，满足前缀码性质，D 与 E/F/G 同为最长码（5 位）的表述可接受；B=11 与题干锚点吻合；易错点（不要漏掉根到 0.60 的首位 1、不要把 C 误读成 10）正确。未发现事实错误。",
+          "review": "候选解析与第 4 轮批准的修复文本逐字节一致（与 manifest 批准值脚本比较确认落入）：D 的读码路径 1.00→0.60(右1)→0.30(左0)→0.15(左0)→0.09(右1)→D(右1)=10011 正确；自洽性段的叶码表 A=0、B=11、C=101、G=10000、F=10001、E=10010、D=10011 与第 5 页树逐叶一致，且经我独立逐叶重推逐一相同，任一码都不是其他码的前缀，码长与频率成反比（A 0.40 最短、D 0.05 最长）；B=11 与题干锚点吻合；易错点（不要漏掉根到 0.60 的首位 1、不要把 C 误读成 10）正确。未发现事实错误。"
         }
       },
-      "unresolved": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions-5/2023-09-l6.deepseek.json",
+        "ai-reviews/2026-11-07-revisions-5/2023-09-l6.glm.json"
       ]
     },
     {
@@ -1075,31 +1082,9 @@
       "reasons": [
         "保留原有争议/待审标记，模型结论不能自动解除"
       ]
-    },
-    {
-      "id": 8,
-      "dimensions": [
-        "statement",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 code 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 9,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 未获得两模型一致批准，待回流",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
     }
   ],
   "pendingChanges": [],
   "programmingChecks": "ai-reviews/2026-11-07/2023-09-l6.code-checks.json",
-  "revisionChecks": "ai-reviews/2026-11-07-revisions-4/2023-09-l6.integration.json"
+  "revisionChecks": "ai-reviews/2026-11-07-revisions-5/2023-09-l6.integration.json"
 }

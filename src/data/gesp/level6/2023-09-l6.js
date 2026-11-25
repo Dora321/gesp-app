@@ -493,6 +493,10 @@ friend ostream& operator<<(ostream& os, const MyStr& s) {
 **知识延伸：**
 C++ 标准输入输出流对象 \`cin\` 和 \`cout\` 支持级联输入输出（例如 \`cout << x << y;\`），其本质正是通过重载运算符函数返回流对象的引用（\`ostream&\` 与 \`istream&\` 并返回 \`*this\`）来实现链式调用的。`,
             tags: ['队列'],
+      "code": "#include <iostream>\nusing namespace std;\n\nclass MoreData {\n    int * __data;\n    int head, tail, capacity;\npublic:\n    MoreData(int cap) {\n        capacity = cap;\n        __data = new int[capacity];\n        head = tail = 0;\n    }\n    MoreData & push(int val) {\n        __data[tail++] = val;\n        return *this;\n    }\n    int pop() {\n        return __data[head++];\n    }\n    int size() {\n        return tail - head;\n    }\n};\nint main() {\n    auto myData = MoreData(100);\n    myData.push(1);\n    myData.push(2);\n    myData.push(3);\n    myData.push(11).push(12).push(13);\n    cout << myData.pop() << endl;\n    return 0;\n}",
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["code","reviewedBy","reviewedAt"],
         },
         {
             id: 9,
@@ -506,21 +510,12 @@ C++ 标准输入输出流对象 \`cin\` 和 \`cout\` 支持级联输入输出（
             ],
             answer: 1,
             score: 2,
-            explanation: `
-**答案：B**
-
-**解析：**
-按官方哈夫曼树（左 0 右 1）：根 1.00 → 右 0.60 → 左 0.30 → 左 0.15 → 右 0.09 → 右叶 D(0.05)。
-
-D 的编码：从根出发每一步取分支值：1.00→0.60（右，1）→ 0.30（左，0）→ 0.15（左，0）→ 0.09（右，1）→ D（右，1），得 **10011**。
-
-验证自洽性：B 的路径 1.00→0.60（右，1）→ B（右，1）= **11**，与题干「B 的编码为 11」一致 ✓；A = 0；C = 10；G = 0000、F = 0001、E = 0010、D = 10011。所有编码均前缀互不冲突，符合哈夫曼编码性质。答案 B。
-
-**易错点：** 哈夫曼树的左右分支约定决定编码值；本题给了「B = 11」这个锚点反推出「左 0 右 1」的约定，再沿树读 D 的路径。
-
-**考点：** 哈夫曼编码、哈夫曼树
-        `,
+            explanation: "**答案：B**\n\n**解析：**\n按官方哈夫曼树（左 0 右 1）：根 1.00 → 右 0.60 → 左 0.30 → 左 0.15 → 右 0.09 → 右叶 D(0.05)。\n\nD 的编码：从根出发每一步取分支值：1.00→0.60（右，1）→ 0.30（左，0）→ 0.15（左，0）→ 0.09（右，1）→ D（右，1），得 **10011**。\n\n验证自洽性：B 的路径 1.00→0.60（右，1）→ B（右，1）= **11**，与题干「B 的编码为 11」一致 ✓；按同一约定逐叶读码：A = 0、B = 11、C = 101、G = 10000、F = 10001、E = 10010、D = 10011。任一编码都不是其他编码的前缀，且码长与频率成反比（A 0.40 最短、D 0.05 最长），符合哈夫曼编码性质。答案 B。\n\n**易错点：** 哈夫曼树的左右分支约定决定编码值；本题给了「B = 11」这个锚点反推出「左 0 右 1」的约定，再沿树读 D 的路径。读码时不要漏掉根到 0.60 的第一个 1，也不要把 C 误读成 10。\n\n**考点：** 哈夫曼编码、哈夫曼树",
             tags: ['哈夫曼编码'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"],
         },
         {
             id: 10,

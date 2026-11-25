@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { paperIds } from '../../src/data/gesp/_generated.js';
 import { getPaper } from '../../src/data/gesp/index.js';
+import { getQuestionContent } from '../../src/utils/questionHelpers.js';
 import { paperData as rawL6September2024 } from '../../src/data/gesp/level6/2024-09-l6.js';
 import { paperData as rawL8December2024 } from '../../src/data/gesp/level8/2024-12-l8.js';
 import { paperData as rawL8March2026 } from '../../src/data/gesp/level8/2026-03-l8.js';
@@ -66,6 +67,20 @@ test('verified corrections restore the official code and options for damaged que
   assert.match(l8q14.code, /void quick_sort\(int a\[\], int n\)/);
   assert.equal(l8q14.options[0], 'l < r; a + pivot + 1, n - pivot - 1');
   assert.deepEqual(l8q14.tags, ['排序算法']);
+});
+
+test('December 2023 L6 keeps code on the original question without duplication', async () => {
+  const { questions } = await getPaper('2023-12-l6');
+  const question = id => questions.find(item => item.id === id);
+  assert.match(getQuestionContent(question(5)), /void Order\(/);
+  assert.match(getQuestionContent(question(6)), /bool ListInit\(/);
+  assert.equal(getQuestionContent(question(6)), question(6).question);
+  assert.equal(getQuestionContent(question(7)), question(7).question);
+  assert.equal(question(7).requiresCode, false);
+  assert.equal(question(7).sourcePage, 3);
+  assert.match(getQuestionContent(question(9)), /int Depth\(BiTree T\)/);
+  assert.equal(getQuestionContent(question(10)), question(10).question);
+  assert.equal(question(10).sourcePage, 5);
 });
 
 test('L8 topic tags keep knowledge domains distinct (no generic catch-all)', () => {
