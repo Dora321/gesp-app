@@ -1,6 +1,7 @@
 import CourseScopeNote from '../../components/CourseScopeNote';
 import useLessonPracticeAnchor from '../../hooks/useLessonPracticeAnchor';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import useLessonSectionUrl, { getRequestedLessonSection } from '../../hooks/useLessonSectionUrl';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, Home } from 'lucide-react';
 import LessonMobileHeader from '../../components/LessonMobileHeader';
@@ -44,7 +45,9 @@ export default function CppLessonShell({
 }) {
     const navigate = useNavigate();
     const location = useLocation();
-    const [activeSection, setActiveSection] = useState(sections[0]?.id ?? 1);
+    const activeSection = getRequestedLessonSection(sections, location, true) ?? sections[0]?.id ?? 1;
+    const setActiveSection = useLessonSectionUrl();
+    const selectPracticeSection = useCallback((id) => setActiveSection(id, true), [setActiveSection]);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const scrollRef = useRef(null);
     const color = { ...(accentMap[accent] ?? accentMap.blue), ...courseChrome };
@@ -53,23 +56,21 @@ export default function CppLessonShell({
     const currentSection = sections[currentIndex] || sections[0];
     const isFirst = currentIndex <= 0;
     const isLast = currentIndex === sections.length - 1;
-    const firstSectionId = sections[0]?.id ?? 1;
     const activeContent = useMemo(() => childrenBySection[activeSection], [activeSection, childrenBySection]);
 
     useEffect(() => {
-        setActiveSection(firstSectionId);
         setIsMobileMenuOpen(false);
-    }, [lessonNumber, firstSectionId]);
+    }, [location.pathname]);
 
     useEffect(() => {
         scrollRef.current?.scrollTo({ top: 0 });
-    }, [activeSection]);
+    }, [activeSection, location.pathname]);
 
     useEffect(() => {
         recordLessonVisit(location.pathname);
     }, [location.pathname]);
 
-    useLessonPracticeAnchor(sections, activeSection, setActiveSection);
+    useLessonPracticeAnchor(sections, activeSection, selectPracticeSection);
 
     const goPrev = () => {
         if (!isFirst) {
@@ -123,11 +124,13 @@ export default function CppLessonShell({
                     {sections.map((section) => (
                         <button
                             key={section.id}
+                            type="button"
+                            aria-pressed={activeSection === section.id}
                             onClick={() => {
                                 setActiveSection(section.id);
                                 setIsMobileMenuOpen(false);
                             }}
-                            className={`w-full px-6 py-3 text-left transition-colors ${activeSection === section.id ? `border-r-4 ${color.border} ${color.light} ${color.text}` : 'text-slate-600 hover:bg-slate-50'}`}
+                            className={`min-h-11 w-full px-6 py-3 text-left transition-colors ${activeSection === section.id ? `border-r-4 ${color.border} ${color.light} ${color.text}` : 'text-slate-600 hover:bg-slate-50'}`}
                         >
                             <span className="block text-sm font-black">{section.title}</span>
                             <span className="mt-1 block text-xs font-semibold text-slate-600">{section.category}</span>

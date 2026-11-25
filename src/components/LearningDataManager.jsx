@@ -14,12 +14,15 @@ import {
 const getSummary = () => summarizeLearningData();
 const backupKey = 'gesp_last_export_at';
 const readExportAt = () => { try { return Number(localStorage.getItem(backupKey)) || 0; } catch { return 0; } };
+const importButton = 'min-h-11 max-w-full rounded-[var(--mw-radius-m)] border px-3 py-2 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--mw-on-night-accent)]';
 
 export default function LearningDataManager() {
     const fileInputRef = useRef(null);
+    const fileReadId = useRef(0);
     const [summary, setSummary] = useState(getSummary);
     const [status, setStatus] = useState('');
     const [exportAt, setExportAt] = useState(readExportAt);
+    const [pendingImport, setPendingImport] = useState(null);
     const updatedAt = readLearningData().updatedAt;
 
     useEffect(() => {
@@ -46,19 +49,36 @@ export default function LearningDataManager() {
         setStatus('已生成备份，请确认浏览器已下载文件。');
     };
 
-    const importData = async (event) => {
+    const readImportFile = async (event) => {
         const [file] = event.target.files || [];
         event.target.value = '';
         if (!file) return;
 
+        const readId = ++fileReadId.current;
+        setPendingImport(null);
+        setStatus('正在读取备份文件。');
         try {
             const text = await file.text();
             const preview = previewLearningDataImport(text);
-            const counts = summarizeLearningData(preview);
-            if (!window.confirm(`此备份包含 ${counts.lessons} 条课程记录、${counts.examAttempts} 次交卷记录、${Object.keys(preview.practice).length} 道上机自查。导入将替换当前学习数据，建议先导出备份。是否继续？`)) return;
-            const imported = importLearningData(text);
+            if (readId !== fileReadId.current) return;
+            setPendingImport({
+                text,
+                filename: file.name,
+                counts: summarizeLearningData(preview),
+                practiceCount: Object.keys(preview.practice).length,
+            });
+            setStatus('备份已读取，请选择导入方式。');
+        } catch (error) {
+            if (readId === fileReadId.current) setStatus(error.message || '读取备份失败');
+        }
+    };
+
+    const applyImport = (mode) => {
+        try {
+            const imported = importLearningData(pendingImport.text, { mode });
             setSummary(summarizeLearningData(imported));
-            setStatus('学习数据已导入，下次打开课程时生效');
+            setPendingImport(null);
+            setStatus(mode === 'merge' ? '学习数据已合并。' : '已用备份替换本机学习数据。');
         } catch (error) {
             setStatus(error.message || '导入失败');
         }
@@ -124,14 +144,35 @@ export default function LearningDataManager() {
                         ref={fileInputRef}
                         type="file"
                         accept="application/json,.json"
-                        onChange={importData}
+                        onChange={readImportFile}
                         className="sr-only"
+                        tabIndex={-1}
                         aria-label="选择学习数据文件"
                     />
                 </div>
             </div>
 
-            <dl className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-5">
+            {pendingImport && (
+                <section className="mt-5 rounded-[var(--mw-radius-m)] border border-[var(--mw-night-rule)] bg-[var(--mw-night-2)] p-4 text-[var(--mw-on-night)]" aria-label="确认导入学习数据">
+                    <h4 className="break-all font-bold">{pendingImport.filename}</h4>
+                    <p className="mt-1 text-sm text-[var(--mw-on-night-2)]">
+                        备份包含 {pendingImport.counts.lessons} 条课程记录、{pendingImport.counts.examDrafts} 份试卷草稿、{pendingImport.counts.examAttempts} 次交卷记录、{pendingImport.practiceCount} 道上机自查和 {pendingImport.counts.museumItems} 件博物馆藏品。
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                        <button type="button" className={`${importButton} border-[var(--mw-on-night-accent)] bg-[var(--mw-on-night-accent)] text-[var(--mw-ink)] hover:bg-[var(--mw-surface)]`} onClick={() => applyImport('merge')}>
+                            合并导入（推荐：保留两边记录）
+                        </button>
+                        <button type="button" className={`${importButton} border-[var(--mw-on-night-2)] bg-[var(--mw-surface)] text-[var(--mw-ink)] hover:bg-[var(--mw-surface-sunk)]`} onClick={() => applyImport('replace')}>
+                            覆盖导入（替换本机记录）
+                        </button>
+                        <button type="button" className={`${importButton} border-[var(--mw-on-night-2)] hover:bg-[var(--mw-night)]`} onClick={() => { setPendingImport(null); setStatus('已取消导入。'); }}>
+                            取消导入
+                        </button>
+                    </div>
+                </section>
+            )}
+
+            <dl className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
                 {metrics.map((metric) => (
                     <div key={metric.label} className="rounded-lg bg-slate-950 px-3 py-3 text-center ring-1 ring-slate-800">
                         <dt className="text-xs font-semibold text-slate-400">{metric.label}</dt>

@@ -11,6 +11,8 @@ import {
 } from '../../../utils/lessonEvidence';
 import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, PlayCircle, Repeat2, RotateCcw } from 'lucide-react';
 import LessonMobileHeader from '../../../components/LessonMobileHeader';
+import useLessonSectionUrl, { getRequestedLessonSection } from '../../../hooks/useLessonSectionUrl';
+import useMasteryChecks from '../../../hooks/useMasteryChecks';
 import { courseChrome } from '../../../styles/courseChrome';
 
 // 与 CppLessonShell 共用同一套配色 token，保证 C++ / Python 两套课视觉统一
@@ -174,7 +176,13 @@ export function TransferCheck({
     );
 }
 
-export function MasteryCheck({
+export function MasteryCheck(props) {
+    const location = useLocation();
+    return <LessonMasteryCheck key={location.pathname} location={location} {...props} />;
+}
+
+function LessonMasteryCheck({
+    location,
     title = '离开前过关检查',
     description = '先确认自己能解释规则、能处理错误、能换一个小例子再做。',
     items = [],
@@ -182,10 +190,9 @@ export function MasteryCheck({
     className = '',
     theme = 'light',
 }) {
-    const location = useLocation();
     const color = getAccent(accent);
     const isDark = theme === 'dark';
-    const [checked, setChecked] = useState(() => new Set());
+    const { checked, toggle, reset } = useMasteryChecks(location.pathname, items.length);
     const [artifact, setArtifact] = useState('');
     const [evidenceReady, setEvidenceReady] = useState(() => hasObjectiveLessonEvidence(location.pathname));
     const total = items.length;
@@ -208,20 +215,6 @@ export function MasteryCheck({
             recordLessonMastered(location.pathname);
         }
     }, [location.pathname, ready]);
-
-    const toggle = (index) => {
-        setChecked((current) => {
-            const next = new Set(current);
-            if (next.has(index)) {
-                next.delete(index);
-            } else {
-                next.add(index);
-            }
-            return next;
-        });
-    };
-
-    const reset = () => setChecked(new Set());
 
     const submitArtifact = () => {
         if (artifact.trim().length < 12) return;
@@ -248,7 +241,7 @@ export function MasteryCheck({
                         <button
                             type="button"
                             onClick={reset}
-                            className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-black ring-1 transition ${isDark ? 'bg-slate-800 text-slate-300 ring-slate-700 hover:bg-slate-700' : 'bg-slate-50 text-slate-500 ring-slate-200 hover:bg-slate-100'}`}
+                            className={`inline-flex min-h-11 items-center gap-1 rounded-md px-2.5 py-1 text-xs font-black ring-1 transition ${isDark ? 'bg-slate-800 text-slate-300 ring-slate-700 hover:bg-slate-700' : 'bg-slate-50 text-slate-500 ring-slate-200 hover:bg-slate-100'}`}
                         >
                             <RotateCcw size={13} />
                             重置
@@ -528,7 +521,8 @@ export default function PythonLessonShell({
     const t = CHROME[theme] || CHROME.light;
     const navigate = useNavigate();
     const location = useLocation();
-    const [activeSection, setActiveSection] = useState(sections[0]?.id ?? 1);
+    const activeSection = getRequestedLessonSection(sections, location) ?? sections[0]?.id ?? 1;
+    const setActiveSection = useLessonSectionUrl();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const color = { ...getAccent(accent), ...courseChrome };
     const scrollRef = React.useRef(null);
@@ -541,7 +535,7 @@ export default function PythonLessonShell({
 
     useEffect(() => {
         scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
+    }, [activeSection, location.pathname]);
 
     useEffect(() => {
         recordLessonVisit(location.pathname);
@@ -593,8 +587,10 @@ export default function PythonLessonShell({
                         return (
                             <button
                                 key={section.id}
+                                type="button"
+                                aria-pressed={active}
                                 onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                                className={`flex w-full items-center gap-3 px-6 py-3 text-left transition-colors ${active ? `border-r-4 ${color.border} ${theme === 'dark' ? 'bg-slate-800 text-white' : `${color.light} ${color.text}`}` : t.sectionIdle}`}
+                                className={`flex min-h-11 w-full items-center gap-3 px-6 py-3 text-left transition-colors ${active ? `border-r-4 ${color.border} ${theme === 'dark' ? 'bg-slate-800 text-white' : `${color.light} ${color.text}`}` : t.sectionIdle}`}
                             >
                                 <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black ${active ? `${color.bg} text-white` : t.sectionIconIdle}`}>
                                     {Icon ? <Icon size={15} /> : i + 1}
