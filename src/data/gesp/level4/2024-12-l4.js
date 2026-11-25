@@ -33,6 +33,8 @@ const programmingQuestions = [
 对于所有数据点，保证 $1 \\leq n \\leq 3000$。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: `**解析：**
 
 本题是一道结合了递推模拟、集合查重与排序的综合编程题。题目要求按照特定规则生成 Recamán 数列的前 \`n\` 项，并将这 \`n\` 个数从小到大排序后输出。
@@ -147,6 +149,8 @@ gesp`, output: `1
 对于全部数据，保证 $1 \\leq t, n \\leq 100$，每个字符串的长度不超过 $10$。
 `,
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       explanation: `**解析：**
 
 ### 1. 题意理解
@@ -257,7 +261,7 @@ export const paperData = {
             sourcePage: 1,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "函数", "基础语法"]
         },
         {
             id: 2,
@@ -281,7 +285,7 @@ n_chars(my_char, times);
             sourcePage: 2,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "参数传递"],
       "reviewedFields": ["explanation","reviewedBy","reviewedAt"]
         },
         {
@@ -325,7 +329,7 @@ func(a);
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "参数传递"]
         },
         {
             id: 4,
@@ -384,7 +388,7 @@ p_arr[0]  →  原 p_arr[1]  →  0.5
             sourcePage: 2,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "指针", "内存管理"]
         },
         {
             id: 5,
@@ -432,7 +436,7 @@ C++ 中改用引用 \`void swap(int& a, int& b)\` 更简洁，底层原理完全
             sourcePage: 3,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "指针"],
       "code": "int x = 20;\nint* p = &x;\n*p = *p + 2;",
       "reviewedFields": ["code","sourcePage","reviewedBy","reviewedAt"]
         },
@@ -473,7 +477,7 @@ C++ 中改用引用 \`void swap(int& a, int& b)\` 更简洁，底层原理完全
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "结构体", "数组"]
         },
         {
             id: 7,
@@ -531,7 +535,7 @@ offset = 1 * 3 + 1 = 4 个元素
             sourcePage: 3,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "二维数组", "数组内存"]
         },
         {
             id: 8,
@@ -569,7 +573,7 @@ C++ 定义二维数组时，**只有第一维可以省略**（由初始化列表
             sourcePage: 4,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "二维数组"]
         },
         {
             id: 9,
@@ -597,7 +601,7 @@ int fib(int n) {
             sourcePage: 4,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "递推", "斐波那契"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -632,7 +636,7 @@ int fib(int n) {
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "排序算法", "稳定性", "复杂度分析"]
         },
         {
             id: 11,
@@ -674,7 +678,7 @@ int fib(int n) {
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "冒泡排序"]
         },
         {
             id: 12,
@@ -728,7 +732,7 @@ T(n) = 2T(n-1) + c
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "递归", "复杂度分析"]
         },
         {
             id: 13,
@@ -789,7 +793,7 @@ void insertion_sort(vector<int> &nums) {
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "插入排序", "数组"]
         },
         {
             id: 14,
@@ -803,7 +807,7 @@ void insertion_sort(vector<int> &nums) {
             sourcePage: 6,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "单选题", "GESP4级"],
+            tags: ["客观题", "单选题", "GESP4级", "文件操作", "输入输出"],
       "reviewedFields": ["explanation","sourcePage","reviewedBy","reviewedAt"]
         },
         {
@@ -863,7 +867,7 @@ int main() {
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "单选题", "GESP4级"]
+            tags: ["客观题", "单选题", "GESP4级", "异常处理"]
         },
         {
             id: 16,
@@ -904,7 +908,7 @@ int* ptr = nullptr;  // 明确的空指针
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "指针", "变量初始化"]
         },
         {
             id: 17,
@@ -945,7 +949,7 @@ int func(int x) {     // 定义：完整给出函数体，可以放在后面
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "函数"]
         },
         {
             id: 18,
@@ -979,7 +983,7 @@ C++ 推荐用引用替代指针做"输出参数"，因为引用语法更简洁�
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "参数传递", "函数"]
         },
         {
             id: 19,
@@ -1019,7 +1023,7 @@ int arr[][4] = {{1,2,3,4},{5,6,7,8}};    // 第一维可由初始化列表推导
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "二维数组"]
         },
         {
             id: 20,
@@ -1051,7 +1055,7 @@ int arr[][4] = {{1,2,3,4},{5,6,7,8}};    // 第一维可由初始化列表推导
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "递推"]
         },
         {
             id: 21,
@@ -1089,7 +1093,7 @@ T(n) = T(n-1) + n
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "复杂度分析", "递推"]
         },
         {
             id: 22,
@@ -1118,7 +1122,7 @@ T(n) = T(n-1) + n
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "冒泡排序", "复杂度分析"]
         },
         {
             id: 23,
@@ -1149,7 +1153,7 @@ T(n) = T(n-1) + n
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "冒泡排序", "插入排序", "稳定性"]
         },
         {
             id: 24,
@@ -1181,7 +1185,7 @@ T(n) = T(n-1) + n
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "选择排序", "稳定性"]
         },
         {
             id: 25,
@@ -1224,7 +1228,7 @@ C++ 还有 \`noexcept\` 关键字用来**声明**函数不会抛异常（如 \`v
             sourcePage: 7,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "异常处理"]
         },
         ...programmingQuestions
     ]

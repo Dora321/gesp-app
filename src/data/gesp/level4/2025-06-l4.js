@@ -552,7 +552,7 @@ int add(int, int);
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "函数"]
         },
         {
             id: 17,
@@ -589,7 +589,7 @@ int main() {
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "参数传递", "函数"]
         },
         {
             id: 18,
@@ -629,7 +629,7 @@ C++ 允许结构体嵌套定义，内层结构体成为外层的作用域成员�
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "结构体"]
         },
         {
             id: 19,
@@ -653,7 +653,7 @@ C++ 允许结构体嵌套定义，内层结构体成为外层的作用域成员�
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "参数传递"]
         },
         {
             id: 20,
@@ -681,7 +681,7 @@ int arr[2][3] = {{1, 2}, {3}};
             sourcePage: 5,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "二维数组", "变量初始化"]
         },
         {
             id: 21,
@@ -717,7 +717,7 @@ int factorial(int n) {
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "递推", "循环"]
         },
         {
             id: 22,
@@ -740,7 +740,7 @@ int factorial(int n) {
             sourcePage: 6,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP4级"],
+            tags: ["客观题", "判断题", "GESP4级", "选择排序", "复杂度分析"],
       "reviewedFields": ["question","reviewedBy","reviewedAt"]
         },
         {
@@ -777,7 +777,7 @@ for (int i = 0; i < n - 1; ++i) {
             sourcePage: 6,
             reviewedBy: "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
             reviewedAt: "2026-11-07",
-            tags: ["客观题", "判断题", "GESP4级"],
+            tags: ["客观题", "判断题", "GESP4级", "选择排序"],
       "reviewedFields": ["reviewedBy","reviewedAt"]
         },
         {
@@ -805,7 +805,7 @@ for (int i = 0; i < n - 1; ++i) {
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "异常处理"]
         },
         {
             id: 25,
@@ -835,7 +835,7 @@ out.close();
             sourcePage: 6,
             reviewedBy: '本站校订',
             reviewedAt: '2026-10-25',
-            tags: ["客观题", "判断题", "GESP4级"]
+            tags: ["客观题", "判断题", "GESP4级", "文件操作"]
         },
         {
       id: 26,
@@ -857,6 +857,8 @@ hI` }
       ],
       question: "# [GESP202506 四级] 画布裁剪\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n小 A 在高为 $h$ 宽为 $w$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 $h$ 行 $w$ 列的字符矩阵，其中的字符均为 ASCII 码位于 $33 \\sim 126$ 之间的可见字符，小 A 只保留画布中由第 $x_1$ 行到第 $x_2$ 行、第 $y_1$ 列到第 $y_2$ 列构成的子矩阵。\n\n小 A 将画布交给了你，你能帮他完成画布的裁剪吗？\n\n## 输入格式\n\n第一行，两个正整数 $h, w$，分别表示画布的行数与列数。\n\n第二行，四个正整数 $x_1, x_2, y_1, y_2$，表示保留的行列边界。\n\n接下来 $h$ 行，每行一个长度为 $w$ 的字符串，表示画布内容。\n\n## 输出格式\n\n输出共 $x_2 - x_1 + 1$ 行，每行一个长度为 $y_2 - y_1 + 1$ 的字符串，表示裁剪后的画布。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le h, w \\le 100$，$1 \\le x_1 \\le x_2 \\le h$，$1 \\le y_1 \\le y_2 \\le w$。",
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题属于二维字符矩阵的切片与提取操作，主要考查对二维数组（或字符串数组）的存储、下标索引转换以及双重嵌套循环的控制。
@@ -999,6 +1001,8 @@ for (int i = x1 - 1; i <= x2 - 1; ++i) {
       ],
       question: "# [GESP202506 四级] 排序\n\n**时间限制：1.0 s；内存限制：512.0 MB**\n\n## 题目描述\n\n体育课上有 $n$ 名同学排成一队，从前往后数第 $i$ 位同学的身高为 $h_i$，体重为 $w_i$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。\n\n## 输入格式\n\n第一行，一个正整数 $n$，表示队伍人数。\n\n接下来 $n$ 行，每行两个正整数 $h_i$ 和 $w_i$，分别表示第 $i$ 位同学的身高和体重。\n\n## 输出格式\n\n输出一行，一个整数，表示最少需要的交换次数。\n\n## 数据范围\n\n对于所有测试点，保证 $1 \\le n \\le 3000$，$0 \\le h_i, w_i \\le 10^9$。",
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '512 MB',
       explanation: `**解析：**
 
 本题是一道结合了结构体排序与经典算法特性的题目。要求按照特定规则排队，且规定**只能交换相邻两位同学**，求达到目标顺序所需的最少交换次数。
