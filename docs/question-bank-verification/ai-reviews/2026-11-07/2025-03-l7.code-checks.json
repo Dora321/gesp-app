@@ -1,0 +1,111 @@
+{
+  "executedAt": "2026-11-25T08:22:31.018Z",
+  "compiler": "g++ -std=c++17 -O2",
+  "codeChecks": [
+    {
+      "id": 26,
+      "passed": true,
+      "sampleCount": 1,
+      "boundaryCount": 3,
+      "tests": [
+        {
+          "input": "4 4 3\n1 2\n1 3\n2 3\n3 4",
+          "output": "2 4 4\n2 4 4\n3 3 4\n1 3 3",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "2 4 4\n2 4 4\n3 3 4\n1 3 3\n",
+          "passed": true
+        },
+        {
+          "name": "单点无路",
+          "input": "1 0 1\n",
+          "output": "0",
+          "reason": "只有结点 1 且无边，走 1 步无处可去，输出 0。参考程序实测一致。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "两点往返",
+          "input": "2 1 2\n1 2\n",
+          "output": "1 1\n1 1",
+          "reason": "奇数步在对侧、偶数步回原点，每步可达点数恒为 1。参考程序实测一致。",
+          "kind": "boundary",
+          "actual": "1 1\n1 1\n",
+          "passed": true
+        },
+        {
+          "name": "三角形三步",
+          "input": "3 3 3\n1 2\n2 3\n3 1\n",
+          "output": "2 3 3\n2 3 3\n2 3 3",
+          "reason": "1 步到另外两点，2 步起可到达全部 3 点并饱和。参考程序实测一致。",
+          "kind": "boundary",
+          "actual": "2 3 3\n2 3 3\n2 3 3\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "53e0d4f27124d89ca5b02fd32102fbdfa1e8689b2727ecc3fc22283c7790ffb3"
+    },
+    {
+      "id": 27,
+      "passed": true,
+      "sampleCount": 2,
+      "boundaryCount": 4,
+      "tests": [
+        {
+          "input": "7\naaaaabb",
+          "output": "9",
+          "name": "原样例 1",
+          "kind": "sample",
+          "actual": "9\n",
+          "passed": true
+        },
+        {
+          "input": "9\nbabacabab",
+          "output": "2",
+          "name": "原样例 2",
+          "kind": "sample",
+          "actual": "2\n",
+          "passed": true
+        },
+        {
+          "name": "单字符",
+          "input": "1\na\n",
+          "output": "0",
+          "reason": "长度 1 无法成对删除。参考程序实测一致。",
+          "kind": "boundary",
+          "actual": "0\n",
+          "passed": true
+        },
+        {
+          "name": "两个相同字符",
+          "input": "2\naa\n",
+          "output": "1",
+          "reason": "整串可删空。参考程序实测一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        },
+        {
+          "name": "两段相同字符",
+          "input": "4\naabb\n",
+          "output": "3",
+          "reason": "可消除子串为 aa、bb、aabb 共 3 个。参考程序实测一致。",
+          "kind": "boundary",
+          "actual": "3\n",
+          "passed": true
+        },
+        {
+          "name": "交替串",
+          "input": "4\nabab\n",
+          "output": "1",
+          "reason": "只有整串 a、b 各 2 个可删空。参考程序实测一致。",
+          "kind": "boundary",
+          "actual": "1\n",
+          "passed": true
+        }
+      ],
+      "codeSha256": "47290ce5494cc9d0563b4b85241cb340f17e79f3a5370382ff2cdd79cf35baa9"
+    }
+  ]
+}

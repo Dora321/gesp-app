@@ -69,41 +69,44 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第1页第2题题干与站点 question 一致，考查cmath 数学函数。",
-          "review": "第 1 页题干「下列关于 <cmath> 或 <math.h> 中的数学库函数的说法，正确的是（）」与站点 question 一致。"
+          "initial": "第1页第2题题干「下列关于 <cmath> 或 <math.h> 中的数学库函数的说法，正确的是（ ）」与候选一致。",
+          "review": "第 1 页第 2 题题干「下列关于 <cmath> 或 <math.h> 中的数学库函数的说法，正确的是（ ）。」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第1页 A-D 四项与站点 options 的顺序和内容一致（cmath 数学函数）。",
-          "review": "第 1 页选项 A sqrt(49) 的返回值可以参与浮点运算、B log2(32) 返回类型为 int、C pow(2,5) 返回类型一定为 int、D sin(90) 的参数 90 表示 90 度，与站点 options 一致。"
+          "initial": "第1页选项 A sqrt(49) 的返回值可以参与浮点运算、B log2(32) 的返回值类型为 int、C pow(2, 5) 的返回值类型一定为 int、D sin(90) 的参数 90 表示 90 度，与候选逐字一致。",
+          "review": "第 1 页 A sqrt(49) 的返回值可以参与浮点运算、B log2(32) 的返回值类型为 int、C pow(2, 5) 的返回值类型一定为 int、D sin(90) 的参数 90 表示 90 度，与候选逐字一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第2题为 A，按 0 起始索引映射为 0，站点 answer=0，一致。",
-          "review": "第 1 页答案表第 2 题为 A，0 起始索引 0，站点 answer=0。独立判断：cmath 函数返回 double，sqrt(49)=7.0 可参与浮点运算，A 正确；B/C 返回 double、D 为弧度制。"
+          "initial": "第1页答案表第2题为 A，0 起始索引 0。cmath 中 sqrt/log2/pow 均返回 double：sqrt(49)=7.0，log2(32)=5.0，pow(2,5)=32.0，故 A 正确、B/C 错误；sin 的参数单位为弧度，sin(90) 表示 90 弧度而非 90°，D 错误。",
+          "review": "第 1 页答案表第 2 题为 A，0 起始索引 0，候选 answer=0。独立判断：sqrt(49)=7.0 为 double，A 正确；B/C 返回 double 非 int，D 混淆弧度与角度。"
         },
         "explanation": {
-          "initial": "原解析把 90 弧度写成约 5147°，实际为 90×180/π≈5156.6°；结论（sin(90)≠1）不变，数值已改正。",
-          "review": "修复后核验通过：站点解析将 90 弧度写作约 5147°（正确换算为 90×180/π≈5156.6°）；初核重写后的解析修正该数值并完整分析四个选项，与独立判断一致，予以采纳。"
+          "initial": "候选解析指出 sqrt 返回 double、log2/pow 返回 double，并修正 sin(90) 为 90 弧度（约 90×180/π≈5156.6°），与独立计算一致；原解析的 5147° 确有数值错误，修正必要。",
+          "review": "候选解析逐项分析并给出 5156.6° 的正确换算，与独立计算（90×180/π≈5156.62）一致；原解析 5147° 数值错误已消除。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
@@ -620,420 +623,453 @@
       "id": 16,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第1题题干与站点 question 一致，考查三角函数角度制。",
-          "review": "第 4 页判断第 1 题「使用 cmath 或 math.h 中的三角函数时，角度参数默认采用角度制。」与站点 question 一致。"
+          "initial": "第4页判断第1题「使用 cmath 或 math.h 中的三角函数时，角度参数默认采用角度制。」与候选一致。",
+          "review": "第 4 页判断第 1 题「使用 cmath 或 math.h 中的三角函数时，角度参数默认采用角度制。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第1题为“×”，站点以布尔 false 存储；语义对应 1 但类型不符合 0/1 约定，已改为 1。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 1 题为「×」，映射 1；站点 answer 以布尔 false 存储，语义与「×」一致但类型不符 0/1 整数约定，初核已改为 1，予以采纳。"
+          "initial": "第4页判断题答案表第1题为「×」，映射 1。三角函数参数默认采用弧度制，角度需乘 π/180 转换，故命题错误。",
+          "review": "第 4 页判断题答案表第 1 题为「×」，语义为「错误」=1；候选改为整数 1。独立判断：三角函数默认弧度制，命题为假。"
         },
         "explanation": {
-          "initial": "解析对“三角函数角度制”的推导为：三角函数默认弧度制，命题错；结论与官方答案 × 一致，未发现事实或计算错误。",
-          "review": "解析说明 sin/cos/tan 参数一律为弧度并给出角度转弧度的写法，与独立判断一致。"
+          "initial": "候选解析说明 sin/cos/tan 参数一律为弧度并给出角度转弧度写法，与独立判断一致。",
+          "review": "解析说明默认弧度制并给出角度转弧度写法，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 17,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第2题题干与站点 question 一致，考查pow 返回类型。",
-          "review": "第 4 页判断第 2 题「使用 cmath 或 math.h 中的 pow(2, 10) 计算 2¹⁰ 时，由于参数均为整型 int，返回值类型也为整型 int。」与站点 question 一致。"
+          "initial": "第4页判断第2题「使用 cmath 或 math.h 中的 pow(2, 10) 计算 2¹⁰ 时，由于参数均为整型 int，返回值类型也为整型 int。」与候选一致。",
+          "review": "第 4 页判断第 2 题「使用 cmath 或 math.h 中的 pow(2, 10) 计算 2¹⁰ 时，由于参数均为整型 int，返回值类型也为整型 int。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第2题为“×”，站点以布尔 false 存储，已改为 1。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 2 题为「×」，映射 1；站点 answer 以布尔 false 存储，初核已改为 1，予以采纳。"
+          "initial": "第4页判断题答案表第2题为「×」，映射 1。pow 的原型为 double pow(double, double)，int 参数隐式转换为 double，返回值仍为 double，命题错误。",
+          "review": "第 4 页判断题答案表第 2 题为「×」，映射 1；候选改为整数 1。独立判断：pow 原型 double pow(double,double)，int 实参隐式转换后返回 double，命题为假。"
         },
         "explanation": {
-          "initial": "解析对“pow 返回类型”的推导为：pow 返回 double，命题错；结论与官方答案 × 一致，未发现事实或计算错误。",
-          "review": "解析说明 pow 原型为 double pow(double, double)，int 参数隐式转换为 double、返回 double，与独立判断一致。"
+          "initial": "候选解析说明 pow 的参数与返回类型均为 double，与独立判断一致。",
+          "review": "解析给出原型与隐式转换说明，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 18,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第3题题干与站点 question 一致，考查0/1 背包枚举方向。",
-          "review": "第 4 页判断第 3 题「0/1 背包使用一维数组优化时，容量从小到大枚举也能保证每件物品最多被选一次。」与站点 question 一致。"
+          "initial": "第4页判断第3题「0/1 背包使用一维数组优化时，容量从小到大枚举也能保证每件物品最多被选一次。」与候选一致。",
+          "review": "第 4 页判断第 3 题「0/1 背包使用一维数组优化时，容量从小到大枚举也能保证每件物品最多被选一次。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第3题为“×”，站点以布尔 false 存储，已改为 1。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 3 题为「×」，映射 1；站点 answer 以布尔 false 存储，初核已改为 1，予以采纳。"
+          "initial": "第4页判断题答案表第3题为「×」，映射 1。正序枚举时 dp[c−w[i]] 已包含当前物品的更新，会重复选取同一物品，退化为完全背包；0/1 背包必须倒序枚举容量。",
+          "review": "第 4 页判断题答案表第 3 题为「×」，映射 1；候选改为整数 1。独立判断：正序枚举时 dp[c−w] 已含当前物品，一件物品会被重复选取（退化为完全背包），命题为假。"
         },
         "explanation": {
-          "initial": "解析对“0/1 背包枚举方向”的推导为：正序枚举会重复选同一物品，命题错；结论与官方答案 × 一致，未发现事实或计算错误。",
-          "review": "解析说明正序枚举时 dp[c-w[i]] 已含当前物品、会重复选取，与独立判断一致。"
+          "initial": "候选解析说明正序枚举会重复选取当前物品，与独立判断一致。",
+          "review": "解析说明正序枚举的重复选取后果，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 19,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第4题题干与站点 question 一致，考查开放定址冲突。",
-          "review": "第 4 页判断第 4 题「哈希表采用开放定址法时，即使哈希函数设计合理，也仍然可能发生冲突。」与站点 question 一致。"
+          "initial": "第4页判断第4题「哈希表采用开放定址法时，即使哈希函数设计合理，也仍然可能发生冲突。」与候选一致。",
+          "review": "第 4 页判断第 4 题「哈希表采用开放定址法时，即使哈希函数设计合理，也仍然可能发生冲突。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第4题为“√”，站点以布尔 true 存储，已改为 0。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 4 题为「√」，映射 0；站点 answer 以布尔 true 存储，初核已改为 0，予以采纳。"
+          "initial": "第4页判断题答案表第4题为「√」，映射 0。哈希函数把较大定义域映射到有限槽位，由鸽巢原理冲突不可避免；开放定址只是冲突解决策略，不能杜绝冲突。",
+          "review": "第 4 页判断题答案表第 4 题为「√」，映射 0；候选改为整数 0。独立判断：鸽巢原理决定槽位有限必有冲突可能，命题为真。"
         },
         "explanation": {
-          "initial": "解析对“开放定址冲突”的推导为：开放定址仍可能冲突，命题对；结论与官方答案 √ 一致，未发现事实或计算错误。",
-          "review": "解析按鸽巢原理说明冲突只能降低概率无法杜绝，与独立判断一致。"
+          "initial": "候选解析按鸽巢原理说明冲突只能降低概率、无法杜绝，与独立判断一致。",
+          "review": "解析按鸽巢原理说明冲突只能缓解无法杜绝，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 20,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第5题题干与站点 question 一致，考查DFS 与邻接顺序。",
-          "review": "第 4 页判断第 5 题「同一个图从同一个起点进行深度优先搜索，访问序列一定与邻接点的枚举顺序无关。」与站点 question 一致。"
+          "initial": "第4页判断第5题「同一个图从同一个起点进行深度优先搜索，访问序列一定与邻接点的枚举顺序无关。」与候选一致。",
+          "review": "第 4 页判断第 5 题「同一个图从同一个起点进行深度优先搜索，访问序列一定与邻接点的枚举顺序无关。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第5题为“×”，站点以布尔 false 存储，已改为 1。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 5 题为「×」，映射 1；站点 answer 以布尔 false 存储，初核已改为 1，予以采纳。"
+          "initial": "第4页判断题答案表第5题为「×」，映射 1。DFS 先深入哪个未访问邻接点取决于枚举顺序，顺序不同会得到不同的访问序列，命题错误。",
+          "review": "第 4 页判断题答案表第 5 题为「×」，映射 1；候选改为整数 1。独立判断：邻接点枚举顺序不同，深入分支不同，DFS 序随之不同，命题为假。"
         },
         "explanation": {
-          "initial": "解析对“DFS 与邻接顺序”的推导为：DFS 序列依赖邻接枚举顺序，命题错；结论与官方答案 × 一致，未发现事实或计算错误。",
-          "review": "解析按邻接表顺序不同则先深入不同分支说明序列不同，与独立判断一致。"
+          "initial": "候选解析按邻接表顺序不同则先深入不同分支说明序列不同，与独立判断一致。",
+          "review": "解析以邻接表顺序不同则访问序列不同说明，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 21,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第6题题干与站点 question 一致，考查泛洪递归栈溢出。",
-          "review": "第 4 页判断第 6 题「泛洪算法可以用递归 DFS 实现，但地图很大时可能由于递归层数过深导致调用栈溢出等运行时错误。」与站点 question 一致。"
+          "initial": "第4页判断第6题「泛洪算法可以用递归 DFS 实现，但地图很大时可能由于递归层数过深导致调用栈溢出等运行时错误。」与候选一致。",
+          "review": "第 4 页判断第 6 题「泛洪算法可以用递归 DFS 实现，但地图很大时可能由于递归层数过深导致调用栈溢出等运行时错误。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第6题为“√”，站点以布尔 true 存储，已改为 0。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 6 题为「√」，映射 0；站点 answer 以布尔 true 存储，初核已改为 0，予以采纳。"
+          "initial": "第4页判断题答案表第6题为「√」，映射 0。递归深度等于连通区域规模，大地图（如长蛇形连通块）可能耗尽调用栈；可改用 BFS 或显式栈，命题正确。",
+          "review": "第 4 页判断题答案表第 6 题为「√」，映射 0；候选改为整数 0。独立判断：递归泛洪在大图上有栈溢出风险，命题为真。"
         },
         "explanation": {
-          "initial": "解析对“泛洪递归栈溢出”的推导为：递归深度大导致栈溢出，命题对；结论与官方答案 √ 一致，未发现事实或计算错误。",
-          "review": "解析以大地图蛇形连通块说明递归深度风险并给出 BFS/显式栈替代，与独立判断一致。"
+          "initial": "候选解析以大地图连通块说明递归深度风险并给出 BFS/显式栈替代，与独立判断一致。",
+          "review": "解析以大地图深连通块说明风险并给出显式栈/BFS 替代，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 22,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第7题题干与站点 question 一致，考查哈夫曼树度为 1 的结点。",
-          "review": "第 4 页判断第 7 题「哈夫曼树中不存在度为 1 的结点。」与站点 question 一致。"
+          "initial": "第4页判断第7题「哈夫曼树中不存在度为 1 的结点。」与候选一致。",
+          "review": "第 4 页判断第 7 题「哈夫曼树中不存在度为 1 的结点。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第7题为“√”，站点以布尔 true 存储，已改为 0。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 7 题为「√」，映射 0；站点 answer 以布尔 true 存储，初核已改为 0，予以采纳。"
+          "initial": "第4页判断题答案表第7题为「√」，映射 0。哈夫曼树每次合并两棵子树，内部结点度恒为 2，叶子度 0，不存在度 1 的结点；n 个叶子的哈夫曼树共有 2n−1 个结点。",
+          "review": "第 4 页判断题答案表第 7 题为「√」，映射 0；候选改为整数 0。独立判断：每次合并两棵树，内部结点度恒为 2，结点总数 2n−1，命题为真。"
         },
         "explanation": {
-          "initial": "解析对“哈夫曼树度为 1 的结点”的推导为：哈夫曼内部结点度均为 2，命题对；结论与官方答案 √ 一致，未发现事实或计算错误。",
-          "review": "解析按每次合并两棵树的构建过程说明内部结点度恒为 2，并给出 2n−1 的推论，与独立判断一致。"
+          "initial": "候选解析按每次合并两棵树的构建过程说明内部结点度为 2，并给出 2n−1 的推论，与独立判断一致。",
+          "review": "解析按构建过程说明无度 1 结点，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 23,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第8题题干与站点 question 一致，考查冒泡/选择稳定性。",
-          "review": "第 4 页判断第 8 题「冒泡排序的常见实现是稳定排序，选择排序也是。」与站点 question 一致。"
+          "initial": "第4页判断第8题「冒泡排序的常见实现是稳定排序，选择排序也是。」与候选一致。",
+          "review": "第 4 页判断第 8 题「冒泡排序的常见实现是稳定排序，选择排序也是。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第8题为“×”，站点以布尔 false 存储，已改为 1。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 8 题为「×」，映射 1；站点 answer 以布尔 false 存储，初核已改为 1，予以采纳。"
+          "initial": "第4页判断题答案表第8题为「×」，映射 1。冒泡排序只交换相邻逆序对，相等元素相对次序不变，稳定；选择排序会把远处较小元素换到前面，可能打乱相等元素次序（如 [2a,2b,1]），不稳定，命题错误。",
+          "review": "第 4 页判断题答案表第 8 题为「×」，映射 1；候选改为整数 1。独立判断：冒泡相邻交换稳定；选择排序远距离交换会打乱相等元素次序（如 [2,2,1]），不稳定，命题为假。"
         },
         "explanation": {
-          "initial": "解析对“冒泡/选择稳定性”的推导为：选择排序不稳定，命题错；结论与官方答案 × 一致，未发现事实或计算错误。",
-          "review": "解析说明冒泡相邻交换稳定、选择排序远距离交换打乱相等元素次序（如 [2,2,1]），与独立判断一致。"
+          "initial": "候选解析说明冒泡相邻交换稳定、选择排序远距离交换可能打乱相等元素次序，与独立判断一致。",
+          "review": "解析给出 [2,2,1] 反例，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 24,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第9题题干与站点 question 一致，考查BFS 层数。",
-          "review": "第 4 页判断第 9 题「在无权图中从起点执行 BFS 时，某个顶点第一次被访问到的层数等于起点到该顶点经过的最少边数。」与站点 question 一致。"
+          "initial": "第4页判断第9题「在无权图中从起点执行 BFS 时，某个顶点第一次被访问到的层数等于起点到该顶点经过的最少边数。」与候选一致。",
+          "review": "第 4 页判断第 9 题「在无权图中从起点执行 BFS 时，某个顶点第一次被访问到的层数等于起点到该顶点经过的最少边数。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第9题为“√”，站点以布尔 true 存储，已改为 0。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 9 题为「√」，映射 0；站点 answer 以布尔 true 存储，初核已改为 0，予以采纳。"
+          "initial": "第4页判断题答案表第9题为「√」，映射 0。BFS 按层扩展，首次访问某顶点时经过的边数就是最少边数，命题正确。",
+          "review": "第 4 页判断题答案表第 9 题为「√」，映射 0；候选改为整数 0。独立判断：BFS 按层扩展，首次访问即最短边数，命题为真。"
         },
         "explanation": {
-          "initial": "解析对“BFS 层数”的推导为：BFS 首次访问层数即最少边数，命题对；结论与官方答案 √ 一致，未发现事实或计算错误。",
+          "initial": "候选解析按 BFS 分层扩展原理说明，与独立判断一致。",
           "review": "解析按 BFS 分层扩展原理说明，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 25,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 0,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第判断题第10题题干与站点 question 一致，考查DP 依赖顺序。",
-          "review": "第 4 页判断第 10 题「在二维动态规划中，状态 dp[i][j] 的计算常常依赖其他状态，这些状态的计算必须在完成 dp[i][j] 的计算前完成。」与站点 question 一致。"
+          "initial": "第4页判断第10题「在二维动态规划中，状态 dp[i][j] 的计算常常依赖其他状态，这些状态的计算必须在完成 dp[i][j] 的计算前完成。」与候选一致。",
+          "review": "第 4 页判断第 10 题「在二维动态规划中，状态 dp[i][j] 的计算常常依赖其他状态，这些状态的计算必须在完成 dp[i][j] 的计算前完成。」"
         },
         "answer": {
-          "initial": "PDF 第4页判断题答案表第10题为“√”，站点以布尔 true 存储，已改为 0。",
-          "review": "修复后核验通过：第 4 页判断题答案表第 10 题为「√」，映射 0；站点 answer 以布尔 true 存储，初核已改为 0，予以采纳。"
+          "initial": "第4页判断题答案表第10题为「√」，映射 0。转移引用 dp[i−1][j]、dp[i][j−1] 等依赖状态，必须按其依赖顺序（如 i、j 递增）先算完，命题正确。",
+          "review": "第 4 页判断题答案表第 10 题为「√」，映射 0；候选改为整数 0。独立判断：转移引用 dp[i−1][j]、dp[i][j−1] 等，须先算完（无后效性+计算顺序），命题为真。"
         },
         "explanation": {
-          "initial": "解析对“DP 依赖顺序”的推导为：依赖状态必须先计算，命题对；结论与官方答案 √ 一致，未发现事实或计算错误。",
-          "review": "解析按转移引用 dp[i-1][j]、dp[i][j-1] 说明计算顺序要求，与独立判断一致。"
+          "initial": "候选解析按转移引用 dp[i−1][j]、dp[i][j−1] 说明计算顺序要求，与独立判断一致。",
+          "review": "解析按转移依赖说明计算顺序要求，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
+      "unresolved": [],
+      "appliedFields": [
+        "answer"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
       "id": 26,
       "resolved": true,
       "dimensions": [
+        "statement",
         "explanation",
         "referenceCode"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "sourcePages": [
         4,
         5,
         6
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核",
-        "g++ 编译及原样例、复核边界用例执行"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "g++ 编译、原样例及复核边界用例执行"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4—6页题面、输入输出、样例与站点 description/inputDescription/outputDescription 一致；但数据范围被站点写成 t≤10，原卷为 t≤100，已修正 description。PDF 内存限制 512.0 MB，站点 128 MB，记入 unresolved。",
-          "review": "修复后核验通过：第 4-5 页 3.1.1 题目描述（每点度数均为 2、恰 n 条边、相邻异色、求最少颜色数）、3.1.2 输入格式（多组数据）、3.1.3 输出格式与站点 description/inputDescription/outputDescription 一致；3.1.4-3.1.6 样例（4 组：6 环→2、双三角→3、三角→3、5 环→3）与站点 samples 一致；3.1.7 数据范围站点 t≤10 有误，初核改为 t≤100，与页图一致，修复完成。"
+          "initial": "第4-6页 3.1 题目（每个结点度数均为 2、恰有 n 条边、相邻异色、求最少颜色数；多组数据；每组输入 n 条边；输出每组答案）、3.1.4-3.1.6 四组样例（6 环→2、双三角→3、三角→3、5 环→3）与候选 description/inputDescription/outputDescription/samples 一致；3.1.7 数据范围（40%：Σn≤500；全部：1≤t≤100、3≤n≤10^5、Σn≤10^5、无重边与自环）与候选修正后的 t≤100 等逐字一致。",
+          "review": "第 4—5 页 3.1.1 题目描述（每点度数均为 2、恰 n 条边、相邻异色、求最少颜色数）、3.1.2 输入格式（多组数据，首行 t）、3.1.3 输出格式、3.1.4—3.1.6 样例（4 组：6 偶环→2、双三角→3、三角→3、5 奇环→3）与候选 description/inputDescription/outputDescription/samples 逐段一致；第 6 页 3.1.7 数据范围候选已修正为 t≤100，与页图逐字一致。"
         },
         "explanation": {
-          "initial": "解析由每点度数均为 2 推出图由若干简单环组成，偶环 2 色、奇环 3 色，整图取最大值；样例 2/3/3/3 核对一致。",
-          "review": "独立推导：所有结点度数为 2 的简单无向图是不相交的简单环之并；环染色数为 2（偶）或 3（奇），整图取最大。样例：6 环→2、两个三角形→3、三角形→3、5 环→3，与解析一致；t≤100、Σn≤10^5 下线性可行。"
+          "initial": "独立推导：每个结点度数均为 2 的简单无向图是不相交环之并；偶环需 2 色、奇环需 3 色，整图取最大。四组样例分别得 2、3、3、3，与解析一致；t≤100、Σn≤10^5 时线性可行。",
+          "review": "独立推导：所有点度数为 2 的简单无向图是不相交简单环之并；偶环 2 色、奇环 3 色（最小染色数），整图取最大。样例 4 组（2/3/3/3）与独立推导一致；t≤100、Σn≤10^5 下线性可行。候选解析的环分解与奇环判定说明成立。"
         },
         "referenceCode": {
-          "initial": "PDF 第6页参考程序沿两条邻边遍历每个环并判奇偶；站点实现一致。已编译并用随机多环图（含多个奇/偶环）对拍，结果一致。",
-          "review": "站点 referenceCode 与原卷 3.1.8 写法不同但算法等价（沿后继数组走环计环长，奇环置标志输出 3 否则 2）。已实际编译（g++ -std=c++17 -O2）并运行：原样例输出 2/3/3/3，边界用偶环输出 2、奇环输出 3、两个奇环输出 3，全部正确。"
+          "initial": "候选 referenceCode 与第6页 3.1.8 官方参考程序逐行一致（a/b 存两个邻居、cnt 记环内距离、按环长奇偶置 flag，输出 3 或 2）。已用 g++ -std=c++17 -O2 编译并运行四组样例（2/3/3/3）及边界：单三角形→3；4 环→2；两个三角形→3；8 环→2，全部正确。",
+          "review": "候选 referenceCode 与第 6 页 3.1.8 官方参考程序逐行 diff 一致（仅空行差异）；本人编译（g++ -std=c++17 -O2）运行：原样例输出 2/3/3/3，四组独立边界用例（偶环 2、三角 3、两奇环 3、99998 大偶环 2）全部正确，另 200 组随机环并集与暴力判定对拍 0 处不一致。"
         }
       },
-      "unresolved": [
-        "修改 description 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "description"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-06-l7.glm.json"
       ]
     },
     {
@@ -1072,148 +1108,7 @@
       "unresolved": []
     }
   ],
-  "unresolved": [
-    {
-      "id": 2,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 16,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 17,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 18,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 19,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 20,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 21,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 22,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 23,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 24,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 25,
-      "dimensions": [
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 answer 已获一致批准，尚未应用",
-        "answer 尚无一致、完整的原卷核验结论",
-        "原卷答案未一致读出，或与当前采用答案不同"
-      ]
-    },
-    {
-      "id": 26,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 description 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [
     {
       "id": 2,
@@ -1300,5 +1195,6 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l7.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-06-l7.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-06-l7.integration.json"
 }

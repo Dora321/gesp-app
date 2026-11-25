@@ -67,85 +67,92 @@
       "id": 2,
       "resolved": true,
       "dimensions": [
-        "statement"
-      ],
-      "blockedDimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
+      "official": 3,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第1页第2题题干与站点 question 一致，考查唯一分解定理与筛法。",
-          "review": "第 1 页题干「下面关于“唯一分解定理”和“素数筛法”的说法中，错误的是（）」与站点 question 一致。"
+          "initial": "第1页第2题题干「下面关于“唯一分解定理”和“素数筛法”的说法中，错误的是（ ）」与候选一致。",
+          "review": "第 1 页第 2 题题干「下面关于“唯一分解定理”和“素数筛法”的说法中，错误的是（ ）。」与候选 question 一致。"
         },
         "options": {
-          "initial": "PDF 第1页 A 项含“n”“O(log n)”“质因数分解”，D 项含“O(n log log n)”；站点 A 截断于“质因”、D 缺复杂度，已按原卷补全。",
-          "review": "修复后核验通过：站点 options 第 1 项截断（……完成任意一个不超过 的整数的质因）、第 4 项丢失 O(n log log n)；第 1 页页图 A 项为「如果预处理出 n 以内每个数的最小质因子，那么可以在 O(log n) 时间内完成任意一个不超过 n 的整数的质因数分解。」、D 项为「唯一分解定理是埃氏筛时间复杂度为 O(n log log n) 的根本原因。」，初核补全后与页图逐条一致。"
+          "initial": "第1页 A-D 与候选逐字一致：A 预处理最小质因子后 O(log n) 分解、B 线性筛每合数只被最小质因子筛一次、C 未被不超过平方根的质数筛去则为质数、D 唯一分解定理是埃氏筛 O(n log log n) 的根本原因；A 项已补回 n、O(log n) 与「质因数分解」，D 项已补回 O(n log log n)。",
+          "review": "第 1 页 A-D 与候选逐字一致：A「如果预处理出 n 以内每个数的最小质因子，那么可以在 O(log n) 时间内完成任意一个不超过 n 的整数的质因数分解。」、B「线性筛（欧拉筛）能够保证每个合数只被其最小质因子筛掉一次，这一性质依赖于唯一分解定理。」、C「唯一分解定理保证：若一个数未被任何不超过其平方根的质数筛去，则它一定是质数。」、D「唯一分解定理是埃氏筛时间复杂度为 O(n log log n) 的根本原因。」（本人以高分辨率页图逐项核对，A 项的 n、O(log n) 与 D 项的 O(n log log n) 均在原卷）。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第2题为 D，按 0 起始索引映射为 3，站点 answer=3，一致。",
-          "review": "第 1 页答案表第 2 题为 D，0 起始索引 3，站点 answer=3。独立判断：埃氏筛 O(n log log n) 的量级由调和级数式的求和决定，与唯一分解定理无直接因果关系，D 错误；A/B/C 表述均正确。"
+          "initial": "第1页答案表第2题为 D，0 起始索引 3。埃氏筛的 O(n log log n) 来自对每个素数扫描其倍数的调和级数求和，与唯一分解定理无直接因果关系，D 错误；A/B/C 表述正确。",
+          "review": "第 1 页答案表第 2 题为 D，0 起始索引 3，候选 answer=3。独立判断：D 把埃氏筛复杂度的成因错误归到唯一分解定理，为所求错误项。"
         },
         "explanation": {
-          "initial": "解析对“唯一分解定理与筛法”的推导为：埃氏筛复杂度来自质数倒数和，不是唯一分解定理；结论与官方答案 D 一致，未发现事实或计算错误。",
-          "review": "解析说明最小质因子唯一性与埃氏筛求和量级来源，结论 D，与独立判断一致。"
+          "initial": "候选解析说明最小质因子分解 O(log n)、线性筛与唯一分解定理的关系、试除到平方根的素性判定，并指出 D 归因错误，与独立判断一致。",
+          "review": "候选解析说明最小质因子分解 O(log n)、线性筛每合数只被最小质因子标记一次的机制与 O(N) 复杂度、试除到平方根的素性判定，并指出 D 归因错误，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "options"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.glm.json"
       ]
     },
     {
       "id": 3,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         1
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第1页题干为“若字符串 A 与字符串 B 的最长公共子序列（LCS）长度为 5”，站点 question 丢失 A、B，已补全。",
-          "review": "修复后核验通过：站点 question 写成「若字符串 与字符串 的最长公共子序列（LCS）长度为 5」丢失 A、B；第 1 页页图为「若字符串 A 与字符串 B 的最长公共子序列（LCS）长度为 5，则（ ）。」，初核补全后与页图逐字一致。"
+          "initial": "第1页第3题题干「若字符串 A 与字符串 B 的最长公共子序列（LCS）长度为 5，则（ ）」与候选一致。",
+          "review": "第 1 页第 3 题题干与候选 question 逐字一致。"
         },
         "options": {
-          "initial": "PDF 第1页 A-D 四项与站点 options 的顺序和内容一致（LCS 长度推论）。",
-          "review": "第 1 页选项 A 编辑距离为 5、B 至少有 5 个公共字符、C 最长公共子串长度为 5、D 一定长度相等，与站点 options 一致。"
+          "initial": "第1页 A 编辑距离为 5、B 至少有 5 个公共字符、C 最长公共子串长度为 5、D 一定长度相等，与候选一致。",
+          "review": "第 1 页 A 它们的编辑距离为 5、B 它们至少有 5 个公共字符、C 它们最长公共子串长度为 5、D 它们一定长度相等，与候选 options 一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第3题为 B，按 0 起始索引映射为 1，站点 answer=1，一致。",
-          "review": "第 1 页答案表第 3 题为 B，0 起始索引 1，站点 answer=1。独立判断：LCS 中的每个字符都是两串公共字符，长度 5 推出至少 5 个公共字符（不计位置）；编辑距离、公共子串、长度相等均推不出。"
+          "initial": "第1页答案表第3题为 B，0 起始索引 1。LCS 中每个字符都是两串的公共字符，长度 5 推出至少有 5 个公共字符（不计位置）；编辑距离、最长公共子串长度、两串等长均推不出。",
+          "review": "第 1 页答案表第 3 题为 B，0 起始索引 1，候选 answer=1。独立判断与候选一致。"
         },
         "explanation": {
-          "initial": "解析对“LCS 长度推论”的推导为：LCS=5 说明两串至少有 5 个公共字符；结论与官方答案 B 一致，未发现事实或计算错误。",
-          "review": "解析按子序列不要求连续的语义逐项排除，结论 B，与独立判断一致。"
+          "initial": "候选解析按子序列不要求连续的语义逐项排除，结论 B，与独立判断一致。",
+          "review": "候选解析按子序列不要求连续的语义逐项排除（举 ABCDE 反例说明编辑距离可为 0），结论 B，与独立判断一致。"
         }
       },
-      "unresolved": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.glm.json"
       ]
     },
     {
@@ -351,42 +358,45 @@
       "dimensions": [
         "statement",
         "options",
-        "answer"
-      ],
-      "blockedDimensions": [
+        "answer",
         "explanation"
       ],
+      "blockedDimensions": [],
       "official": 0,
       "sourcePages": [
         3,
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第3、4页第9题题干与站点 question 一致，考查先序+中序重建二叉树。",
-          "review": "第 3 页末题干「某二叉树共有 10 个结点，记为 A~J，已知它的先序遍历序列为：A B D H I E C F J G，中序遍历序列为：H D I B E A F J C G，则该二叉树的后序遍历序列是（）」与站点 question 一致。"
+          "initial": "第3页末第9题题干「某二叉树共有 10 个结点，记为 A~J，已知它的先序遍历序列为：A B D H I E C F J G，中序遍历序列为：H D I B E A F J C G，则该二叉树的后序遍历序列是（ ）」与候选一致。",
+          "review": "第 3 页末第 9 题题干「某二叉树共有 10 个结点，记为 A~J，已知它的先序遍历序列为：A B D H I E C F J G，中序遍历序列为：H D I B E A F J C G，则该二叉树的后序遍历序列是（ ）」与候选一致。"
         },
         "options": {
-          "initial": "PDF 第3、4页 A-D 四项与站点 options 的顺序和内容一致（先序+中序重建二叉树）。",
-          "review": "第 4 页选项 A. H I D E B J F G C A、B. H I D B E J F G C A、C. I H D E B J F G C A、D. H I D E B F J G C A，与站点 options 一致。"
+          "initial": "第4页 A HIDEBJFGCA、B HIDBEJFGCA、C IHDEBJFGCA、D HIDEBFJGCA，与候选一致（候选以空格分隔字母，内容相同）。",
+          "review": "第 4 页 A HIDEBJFGCA、B HIDBEJFGCA、C IHDEBJFGCA、D HIDEBFJGCA，与候选一致（候选以空格分隔字母，内容相同）。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第9题为 A，按 0 起始索引映射为 0，站点 answer=0，一致。",
-          "review": "第 1 页答案表第 9 题为 A，0 起始索引 0，站点 answer=0。独立重建：根 A，左子树 {H D I B E}（根 B，左 D 带 H/I，右 E），右子树 {F J C G}（根 C，左 F 带右孩子 J，右 G），后序 H I D E B J F G C A。"
+          "initial": "第1页答案表第9题为 A，0 起始索引 0。独立重建：根 A；左子树根 B，B 左 D（H、I 为 D 的左右孩子）、右 E；右子树根 C，C 左 F（J 为 F 的右孩子）、右 G；后序 H I D E B J F G C A。",
+          "review": "第 1 页答案表第 9 题为 A，0 起始索引 0，候选 answer=0；本人独立重建后序 H I D E B J F G C A 与选项 A 相同。"
         },
         "explanation": {
-          "initial": "原解析称右子树中序为“J|F”、J 是 F 的左孩子，与实际中序“F J”矛盾（应为 F 为根、J 为右孩子）；后序结果虽仍为 J F，但推导已改正。",
-          "review": "修复后核验通过：站点解析原右子树推导有误（称 J 是 F 的左孩子）；初核重写后的解析按先序+中序逐层重建（B 左 D 右 E、C 左 F（J 为 F 的右孩子）右 G），后序 H I D E B J F G C A，与独立重建一致，予以采纳。"
+          "initial": "候选修正后的解析逐层重建，正确指出 J 是 F 的右孩子，后序结果与独立重建一致；原解析称 J 为 F 的左孩子，确属错误，修正必要。",
+          "review": "候选重写后的解析逐层重建（B 左 D 右 E、C 左 F 且 J 为 F 的右孩子、右 G），后序结果与独立重建一致；原解析「J 是 F 的左孩子」的推导错误已消除。"
         }
       },
-      "unresolved": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
+      "unresolved": [],
+      "appliedFields": [
+        "explanation"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.glm.json"
       ]
     },
     {
@@ -432,44 +442,49 @@
       "id": 11,
       "resolved": true,
       "dimensions": [
+        "statement",
         "options",
         "answer",
         "explanation"
       ],
-      "blockedDimensions": [
-        "statement"
-      ],
+      "blockedDimensions": [],
       "official": 1,
       "sourcePages": [
         4
       ],
       "method": [
-        "原卷 PDF 摘要校验及逐页图片对照",
-        "DeepSeek V4.1 Flash max 初核",
-        "GLM 5.3 Flash max 独立复核"
+        "依据上一轮 GLM 复核意见形成候选修订",
+        "DeepSeek V4.1 Flash max 重新核验候选",
+        "GLM 5.3 Flash max 独立复核修订稿",
+        "从原卷第 4 页恢复题图，并逐点验证互相可达的分量"
       ],
       "evidence": {
         "statement": {
-          "initial": "PDF 第4页第11题题干与站点 question 一致，考查强连通分量。",
-          "review": "修复后核验通过：站点 question 仅剩题干「下面这个有向图的强连通分量的个数是（）」，原卷第 4 页的 16 结点有向图在站点数据中整体缺失，无图片引用亦无文字描述；已按页图把完整边集补入 changes.question，补全后与页图一致。"
+          "initial": "第4页第11题题干及 16 结点有向图；候选补入 24 条边：1→2；3→2、3→4；4→3、4→7；2→6；6→5、6→9；5→1；12→6、12→7、12→13；10→12；9→10；10→11；11→9、11→15；7→8；8→7；13→14；14→16、14→15；16→15；15→13。已放大页图逐条核对，方向与端点均一致。",
+          "review": "第 4 页第 11 题题干「下面这个有向图的强连通分量的个数是（ ）。」与候选一致；候选以文字补入的 16 结点 24 边有向图与页图逐边一致（见 reviewNote）。"
         },
         "options": {
-          "initial": "PDF 第4页 A-D 四项与站点 options 的顺序和内容一致（强连通分量）。",
-          "review": "第 4 页选项 A. 3、B. 4、C. 5、D. 6，与站点 options 一致。"
+          "initial": "第4页选项 A 3、B 4、C 5、D 6，与候选一致。",
+          "review": "第 4 页选项 A 3、B 4、C 5、D 6，与候选一致。"
         },
         "answer": {
-          "initial": "PDF 第1页答案表第11题为 B，按 0 起始索引映射为 1，站点 answer=1，一致。",
-          "review": "第 1 页答案表第 11 题为 B，0 起始索引 1，站点 answer=1。独立划分：{1,2,5,6,9,10,11,12}、{3,4}、{7,8}、{13,14,15,16} 共 4 个分量（{7,8} 虽经 12 可达但 7/8 无边回到 12，不并入）。"
+          "initial": "第1页答案表第11题为 B，0 起始索引 1。独立划分强连通分量：{1,2,5,6,9,10,11,12}（1→2→6→5→1，6→9→10→12→6，10→11→9）、{3,4}、{7,8}、{13,14,15,16}（13→14→15→13，14→16→15），共 4 个。",
+          "review": "第 1 页答案表第 11 题为 B，0 起始索引 1，候选 answer=1；独立划分 4 个分量与 B 相符。"
         },
         "explanation": {
-          "initial": "解析对“强连通分量”的推导为：SCC 为 8+2+2+4 四块；结论与官方答案 B 一致，未发现事实或计算错误。",
-          "review": "站点解析先分 5 个内部互达小组再指出 {1,2,5,6}、12、{9,10,11} 互达合成 8 点分量，最终 4 个分量（8+2+2+4=16），与独立划分完全一致。"
+          "initial": "候选解析先分内部互达小组，再合并 {1,2,5,6}、12、{9,10,11}，最终 8+2+2+4=16 共 4 个，与独立划分一致。",
+          "review": "候选解析先分 5 个内部互达小组再合并 {1,2,5,6}、12、{9,10,11} 为 8 点分量，最终 4 个分量（8+2+2+4=16），与独立划分完全一致。"
         }
       },
-      "unresolved": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
+      "unresolved": [],
+      "appliedFields": [
+        "question"
+      ],
+      "revisionReviewFiles": [
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.deepseek.json",
+        "ai-reviews/2026-11-07-revisions/2026-03-l7.glm.json"
+      ],
+      "integrationNote": "原卷图已恢复为题面图像。完整 24 条边保留在替代文本中。按同一边集独立求得 4 个强连通分量，答案 B。"
     },
     {
       "id": 12,
@@ -1042,50 +1057,7 @@
       "unresolved": []
     }
   ],
-  "unresolved": [
-    {
-      "id": 2,
-      "dimensions": [
-        "options",
-        "answer",
-        "explanation"
-      ],
-      "reasons": [
-        "修改 options 已获一致批准，尚未应用",
-        "options 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 3,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 已获一致批准，尚未应用",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 9,
-      "dimensions": [
-        "explanation"
-      ],
-      "reasons": [
-        "修改 explanation 已获一致批准，尚未应用",
-        "explanation 尚无一致、完整的原卷核验结论"
-      ]
-    },
-    {
-      "id": 11,
-      "dimensions": [
-        "statement"
-      ],
-      "reasons": [
-        "修改 question 未获得两模型一致批准，待回流",
-        "statement 尚无一致、完整的原卷核验结论"
-      ]
-    }
-  ],
+  "unresolved": [],
   "pendingChanges": [
     {
       "id": 2,
@@ -1114,5 +1086,6 @@
       "status": "approved-not-applied"
     }
   ],
-  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l7.code-checks.json"
+  "programmingChecks": "ai-reviews/2026-11-07/2026-03-l7.code-checks.json",
+  "revisionChecks": "ai-reviews/2026-11-07-revisions/2026-03-l7.integration.json"
 }

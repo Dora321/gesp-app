@@ -353,7 +353,7 @@ export const paperData = {
             id: 2,
             type: "single",
             question: `下面关于 “ 唯一分解定理 ” 和 “ 素数筛法 ” 的说法中，错误的是（ ）。`,
-            options: ["如果预处理出 以内每个数的最小质因子，那么可以在 时间内完成任意一个不超过 的整数的质因", "线性筛（欧拉筛）能够保证每个合数只被其最小质因子筛掉一次，这一性质依赖于唯一分解定理。", "唯一分解定理保证：若一个数未被任何不超过其平方根的质数筛去，则它一定是质数。", "唯一分解定理是埃氏筛时间复杂度为 的根本原因。"],
+            options: ["如果预处理出 n 以内每个数的最小质因子，那么可以在 O(log n) 时间内完成任意一个不超过 n 的整数的质因数分解。","线性筛（欧拉筛）能够保证每个合数只被其最小质因子筛掉一次，这一性质依赖于唯一分解定理。","唯一分解定理保证：若一个数未被任何不超过其平方根的质数筛去，则它一定是质数。","唯一分解定理是埃氏筛时间复杂度为 O(n log log n) 的根本原因。"],
             answer: 3,
             score: 2,
             explanation: `**不正确的是 D（唯一分解定理是埃氏筛复杂度 O(N log log N) 的根本原因）**
@@ -373,12 +373,15 @@ export const paperData = {
 
 **易错提醒：**
 埃氏筛会重复标记，复杂度 \`O(N log log N)\`；线性筛每个合数只标记一次，复杂度 \`O(N)\`。`,
-            tags: ['数论', '筛法']
+            tags: ['数论', '筛法'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["options","reviewedBy","reviewedAt"]
         },
         {
             id: 3,
             type: "single",
-            question: `若字符串 与字符串 的最长公共子序列（ LCS ）长度为 5 ，则（ ）。`,
+            question: "若字符串 A 与字符串 B 的最长公共子序列（LCS）长度为 5，则（ ）。",
             options: ["它们的编辑距离为 5", "它们至少有 5 个公共字符", "它们最长公共子串长度为 5", "它们一定长度相等"],
             answer: 1,
             score: 2,
@@ -400,7 +403,10 @@ export const paperData = {
 
 **知识延伸：**
 在动态规划中，设两个字符串分别为 \`s1\`（长度 \`n\`）和 \`s2\`（长度 \`m\`），通常用状态 \`dp[i][j]\` 表示 \`s1[0..i-1]\` 与 \`s2[0..j-1]\` 的 LCS 长度。当 \`s1[i-1] == s2[j-1]\` 时，\`dp[i][j] = dp[i-1][j-1] + 1\`；不相等时，\`dp[i][j] = max(dp[i-1][j], dp[i][j-1])\`，求解的时间复杂度为 \`O(n*m)\`。`,
-            tags: ['动态规划', '字符串']
+            tags: ['动态规划', '字符串'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "reviewedFields": ["question","reviewedBy","reviewedAt"]
         },
         {
             id: 4,
@@ -659,17 +665,12 @@ int main() {
             options: ["H I D E B J F G C A", "H I D B E J F G C A", "I H D E B J F G C A", "H I D E B F J G C A"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（H I D E B J F G C A）**
-
-**解析：** 由先序 + 中序重建二叉树：
-- 先序首结点 A 为根；中序中 A 左侧 \`H D I B E\` 为左子树、右侧 \`F J C G\` 为右子树。
-- 左子树：先序 \`B D H I E\` 首结点 B 为根，中序 \`H D I | B | E\`，故 B 的左子树含 {H,D,I}、右孩子为 E；先序 \`D H I\` 首结点 D 为根，中序 \`H | D | I\`，故 D 左孩子 H、右孩子 I。
-- 右子树：先序 \`C F J G\` 首结点 C 为根，中序 \`F J | C | G\`，故 C 的左子树含 {F,J}、右孩子为 G；先序 \`F J\` 首结点 F 为根，中序 \`J | F\`，故 J 是 F 的左孩子。
-
-树形：A（B（D（H, I）, E）, C（F（J, —）, G））。后序遍历（左右根）：H I D E B ｜ J F G C ｜ A，即 \`H I D E B J F G C A\`。
-
-**考点**：由先序 + 中序序列重建二叉树并求后序遍历。`,
-            tags: ['树与二叉树', '遍历']
+            explanation: "**答案：A（H I D E B J F G C A）**\n\n由先序 A B D H I E C F J G 与中序 H D I B E A F J C G 重建：\n- 根 A；左子树中序 H D I B E、先序 B D H I E，根 B；B 的左子树中序 H D I、先序 D H I，根 D，左 H、右 I；B 的右孩子 E。\n- 右子树中序 F J C G、先序 C F J G，根 C；C 的左子树中序 F J、先序 F J，根 F，J 是 F 的右孩子；C 的右孩子 G。\n\n后序为 H I D E B J F G C A。\n\n**考点：** 先序+中序重建二叉树并求后序。",
+            tags: ['树与二叉树', '遍历'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 3,
+      "reviewedFields": ["explanation","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 10,
@@ -711,7 +712,7 @@ DFS 从某点出发，每次沿一条边访问未访问的邻接点，无路可�
         {
             id: 11,
             type: "single",
-            question: `下面这个有向图的强连通分量的个数是（ ）。`,
+            question: "下面这个有向图的强连通分量的个数是（ ）。\n\n![图中共有 16 个顶点，各有向边为：1→2；3→2、3→4；4→3、4→7；2→6；6→5、6→9；5→1；12→6、12→7、12→13；10→12；9→10；10→11；11→9、11→15；7→8；8→7；13→14；14→16、14→15；16→15；15→13。](/question-assets/2026-03-l7/q11-scc.png)",
             options: ["3", "4", "5", "6"],
             answer: 1,
             score: 2,
@@ -736,7 +737,11 @@ DFS 从某点出发，每次沿一条边访问未访问的邻接点，无路可�
 
 **易错提醒：**
 只有互相走得到的点才能放进同一分量。缩点之后，分量之间构成有向无环图。`,
-            tags: ['图论']
+            tags: ['图论'],
+      "reviewedBy": "AI · DeepSeek V4.1 Flash 初核 / GLM 5.3 Flash 独立复核",
+      "reviewedAt": "2026-11-07",
+      "sourcePage": 4,
+      "reviewedFields": ["question","reviewedBy","reviewedAt","sourcePage"]
         },
         {
             id: 12,

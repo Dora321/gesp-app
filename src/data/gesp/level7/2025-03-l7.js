@@ -37,7 +37,7 @@ const programmingQuestions = [
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 505;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n\n    vector<bitset<MAXN>> adj(n+1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        adj[u].set(v);\n        adj[v].set(u);\n    }\n\n    vector<vector<bitset<MAXN>>> reach(k+1, vector<bitset<MAXN>>(n+1));\n    for (int s = 1; s <= n; ++s) reach[0][s].set(s);\n\n    for (int step = 1; step <= k; ++step) {\n        for (int s = 1; s <= n; ++s) {\n            bitset<MAXN> cur;\n            for (int y = 1; y <= n; ++y) {\n                if (reach[step-1][s].test(y)) cur |= adj[y];\n            }\n            reach[step][s] = cur;\n        }\n    }\n\n    for (int s = 1; s <= n; ++s) {\n        for (int step = 1; step <= k; ++step) {\n            cout << reach[step][s].count() << (step == k ? '\\n' : ' ');\n        }\n    }\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       answer: '',
     },
     {
@@ -78,7 +78,7 @@ babacabab`, output: `2` }
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n\n    unordered_map<int, long long> cnt;\n    cnt.reserve(n * 2+10);\n    cnt.max_load_factor(0.7f);\n\n    long long ans = 0;\n    int mask = 0;\n    cnt[0] = 1;\n    for (char ch : s) {\n        mask ^= 1 << (ch-'a');\n        ans += cnt[mask];\n        cnt[mask]++;\n    }\n\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       timeLimit: '1.0 s',
-      memoryLimit: '128 MB',
+      memoryLimit: '512 MB',
       answer: '',
     }
 ];
