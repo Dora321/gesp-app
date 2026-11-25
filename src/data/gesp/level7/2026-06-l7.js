@@ -602,6 +602,8 @@ DP 的正确性依赖**无后效性**与计算顺序：dp[i][j] 的转移所引�
       type: 'programming',
       title: '染色',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       description: `小杨同学有一张包含 n 个结点的无向图 G，G 中的结点依次以 1, 2, …, n 编号。
 
 小杨同学发现 G 中每个结点的度数都是 2。显然 G 中恰好有 n 条边。
@@ -726,6 +728,8 @@ DP 的正确性依赖**无后效性**与计算顺序：dp[i][j] 的转移所引�
       type: 'programming',
       title: '消消乐',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       description: `给定一个由 n 个整数构成的数组 a = [a₁, …, aₙ]。每次你可以对数组 a 进行以下操作，直到数组 a 变为空：
 
 指定 a 中的一个元素，获得该元素两侧相邻元素之和的分数，并将该元素从 a 中删去。

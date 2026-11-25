@@ -608,6 +608,8 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
       type: 'programming',
       title: '线网建设',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       description: `A 市有 n 座基站需要通过线网互相连接。第 i 座基站位于二维平面上坐标 (x_i, y_i) 处。
 
 第 i 座基站与第 j 座基站之间的距离定义为 $\\sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}$。
@@ -760,6 +762,8 @@ $$C(n, k) = C(n-1, k-1) + C(n-1, k)$$
       type: 'programming',
       title: '堆石子',
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       description: `有 m 堆石子，编号为 1, 2, …, m，其石子数量分别记为 a₁, a₂, …, aₘ。
 
 现在要求第 1 堆石子恰有 n 个（即 a₁ = n），并且此后每堆石子的数量严格小于前一堆，即 a_i < a_{i-1}（2 ≤ i ≤ m）。此外，每堆至少需要有一个石子，即 a_i ≥ 1（1 ≤ i ≤ m）。

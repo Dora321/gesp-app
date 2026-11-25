@@ -52,6 +52,8 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){/* 在这里编写你的代码 */}return 0;}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N=1005,MOD=1000000007;int C[N+5][N+5],a[N+5];void addmod(int &x,int y){x+=y;if(x>=MOD)x-=MOD;}void init(){C[0][0]=1;for(int i=1;i<=N;++i){C[i][0]=C[i][i]=1;for(int j=1;j<i;++j){C[i][j]=C[i-1][j-1];addmod(C[i][j],C[i-1][j]);}}}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);init();int T;cin>>T;while(T--){int n,m,sum=0;cin>>n>>m;for(int i=1;i<=m;++i)cin>>a[i],sum+=a[i];long long ans=1;for(int i=1;i<=m;++i){ans=ans*C[sum][a[i]]%MOD;sum-=a[i];}cout<<ans<<\"\\n\";}return 0;}",
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       answer: '',
     },
     {
@@ -111,6 +113,8 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;/* 在这里编写你的代码 */return 0;}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;const int N=100005;int fa[N],sz[N],dep[N],son[N],tp[N],mxId[N],cnt,fir[N],tar[N],nxt[N];void linkEdge(int a,int b){tar[++cnt]=b;nxt[cnt]=fir[a];fir[a]=cnt;}void dfs(int x,int mxid){int mx=0;sz[x]=1;mxId[x]=max(x,mxid);for(int i=fir[x];i;i=nxt[i]){dep[tar[i]]=dep[x]+1;dfs(tar[i],mxId[x]);sz[x]+=sz[tar[i]];if(mx<sz[tar[i]])mx=sz[son[x]=tar[i]];}}void getTop(int x){tp[x]=x;if(son[fa[x]]==x)tp[x]=tp[fa[x]];for(int i=fir[x];i;i=nxt[i])getTop(tar[i]);}int lca(int x,int y){while(tp[x]!=tp[y])dep[tp[x]]>dep[tp[y]]?x=fa[tp[x]]:y=fa[tp[y]];return dep[x]<dep[y]?x:y;}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;for(int i=2;i<=n;++i){cin>>fa[i];++fa[i];linkEdge(fa[i],i);}dfs(1,1);getTop(1);int q;cin>>q;while(q--){int m,x,y;cin>>m>>x;x++;for(int i=2;i<=m;++i){cin>>y;x=lca(x,y+1);}cout<<mxId[x]-1<<\"\\n\";}return 0;}",
       score: 25,
+      timeLimit: '1.0 s',
+      memoryLimit: '128 MB',
       answer: '',
     }
 ];
@@ -137,99 +141,21 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**解析：**
+            explanation: `**答案：C（5）**
 
-### 一、题意理解与模型转化
+分两类计数。方案 1：A 坐高铁到 C，再从 C 到 B。A 到 C 只有高铁 1 种走法；C 到 B 有高铁、飞机 2 种，共 1×2 = 2 种。方案 2：A 坐船到 D，再从 D 到 B。A 到 D 只有船 1 种；D 到 B 有船、高铁、飞机 3 种，共 1×3 = 3 种。
 
-1. **树形结构建模**：
-   题目中每位员工除 \`0\` 号老板外都有唯一的直接领导 \`f_i\`，且不存在循环从属关系。这构成了以 \`0\` 号员工为根节点的**树形结构**，员工 \`i\` 的直接领导 \`f_i\` 即为节点 \`i\` 的父节点。
-2. **管理关系的本质**：
-   题目规定员工 \`x\` 可以管理 \`y\`，当且仅当 \`x = y\` 或 \`x\` 是 \`y\` 的直接/间接领导。在树结构中，这等价于：**\`x\` 是 \`y\` 的祖先节点（包括 \`y\` 本身）**。
-3. **主持人的选取条件**：
-   - 主持人必须能管理所有参与合作的员工，即主持人必须是所有参与节点的**公共祖先**。
-   - 在树中，一组节点的所有公共祖先，恰好全部位于它们的**最近公共祖先（LCA）到根节点的路径上**。
-   - 若有多个满足条件的公共祖先，选择**编号最大**的员工。
-   - 因此，问题转化为：求出所有参与节点的最近公共祖先 \`L\`，并求出根节点到 \`L\` 的路径上**节点编号的最大值**。
+两类路线互不重叠，按加法原理合计 2 + 3 = 5 种。
 
----
+**选项分析：**
+- A 2：只数了第一种方案。
+- B 3：只数了第二种方案。
+- C 5：两类相加，正确。
+- D 6：把某一段的选择数重复计算了一次。
 
-### 二、完整算法步骤
+**考点：** 分类加法计数原理与分步乘法计数原理。先按中转城市分类，每一类内部把各段走法相乘，最后把各类结果相加。
 
-1. **建树与预处理**：
-   - 为了方便处理，可将员工编号统一加 \`1\`（映射到 \`1\` 至 \`N\`），根节点为 \`1\`。
-   - 使用深度优先搜索（DFS）遍历整棵树：
-     - 计算每个节点的深度 \`dep[x]\` 和子树大小 \`sz[x]\`，并记录重儿子 \`son[x]\`，用于**树链剖分（重链剖分）**快速求 LCA（也可以使用倍增法求 LCA）。
-     - 维护从根节点到当前节点路径上的编号最大值：\`mxId[x] = max(x, mxId[fa[x]])\`。
-   - 执行树链剖分第二遍 DFS，求出每个节点所在重链的顶点 \`tp[x]\`。
-
-2. **处理每场合作查询**：
-   - 每次询问给出 \`m\` 个参与员工的编号。
-   - **多节点 LCA 求解**：树上多个节点的 LCA 满足结合律。先取前两个节点求 LCA，再将结果依次与后续节点求 LCA，即循环执行 \`cur = lca(cur, next_node)\`，最终得到的 \`cur\` 就是所有参与者的最近公共祖先 \`L\`。
-   - **单次 LCA 求解（树链剖分法）**：
-     - 若两节点所在链头不同，将链头深度较深的节点跳至其链头父节点，循环往复直至两节点位于同一条重链。
-     - 最终深度较小的节点即为两者的 LCA。
-
-3. **获取答案与还原编号**：
-   - 查询预处理得到的 \`mxId[L]\`，即为该 LCA 到根节点路径上的最大节点编号。
-   - 若建树时进行了加 \`1\` 偏移，输出时减 \`1\` 还原为原员工编号。
-
----
-
-### 三、样例走查
-
-以**样例 1** 为例展开分析：
-输入：
-\`N = 5\`，\`f_1 = 0, f_2 = 0, f_3 = 2, f_4 = 2\`。
-
-#### 1. 树结构与路径最大编号预处理
-- 树结构关系：
-  - \`0\` 是根节点，其子节点有 \`1\` 和 \`2\`。
-  - \`2\` 的子节点有 \`3\` 和 \`4\`。
-- 根节点 \`0\` 到各节点路径上的员工及最大编号：
-  - 到节点 \`0\`：路径为 \`{0}\`，最大编号为 \`0\`。
-  - 到节点 \`1\`：路径为 \`{0, 1}\`，最大编号为 \`max(0, 1) = 1\`。
-  - 到节点 \`2\`：路径为 \`{0, 2}\`，最大编号为 \`max(0, 2) = 2\`。
-  - 到节点 \`3\`：路径为 \`{0, 2, 3}\`，最大编号为 \`max(0, 2, 3) = 3\`。
-  - 到节点 \`4\`：路径为 \`{0, 2, 4}\`，最大编号为 \`max(0, 2, 4) = 4\`。
-
-#### 2. 各场合作查询走查
-- **第 1 场合作**：参与员工为 \`3, 4\`。
-  - 节点 \`3\` 和 \`4\` 的公共祖先集合为 \`{2, 0}\`，其最近公共祖先为 \`L = 2\`。
-  - 根到 \`2\` 的路径上最大编号为 \`mxId[2] = 2\`。
-  - 候选人中有 \`0\` 和 \`2\`，选择编号最大的 \`2\`，输出 \`2\`。
-- **第 2 场合作**：参与员工为 \`2, 3, 4\`。
-  - 先求 \`lca(2, 3) = 2\`，再求 \`lca(2, 4) = 2\`，全体 LCA 为 \`L = 2\`。
-  - 根到 \`2\` 的路径上最大编号为 \`mxId[2] = 2\`，输出 \`2\`。
-- **第 3 场合作**：参与员工为 \`1, 4\`。
-  - 节点 \`1\` 与 \`4\` 的唯一公共祖先是根节点 \`0\`，其最近公共祖先为 \`L = 0\`。
-  - 根到 \`0\` 的路径上最大编号为 \`mxId[0] = 0\`，输出 \`0\`。
-
-输出结果为：
-\`2\`
-\`2\`
-\`0\`
-与样例输出完全一致。
-
----
-
-### 四、复杂度分析
-
-- **时间复杂度**：
-  - **预处理**：树链剖分两次 DFS 遍历整棵树，时间复杂度为 \`O(N)\`。
-  - **询问**：单次两点 LCA 时间复杂度为 \`O(log N)\`。处理一场合作需要执行 \`m - 1\` 次 LCA 操作，因此单场合作时间为 \`O(m * log N)\`。总时间复杂度为 \`O(N + sum(m) * log N)\`，足以在时限内高效通过。
-- **空间复杂度**：
-  - 存储树结构与树剖链信息需开辟若干长度为 \`N\` 的数组，空间复杂度为 \`O(N)\`。
-
----
-
-### 五、易错提醒
-
-1. **题目要求的是最大编号，不是最近公共祖先本身**：
-   - 主持人是根到 LCA 这条路径上编号最大的员工，不一定等于 LCA 自己的编号。祖先上可能有比 LCA 更大的编号，不能算出 LCA 就直接输出。
-2. **编号从 0 开始的处理**：
-   - 链式前向星或邻接表建树时，节点编号为 \`0\` 可能会与哨兵变量冲突，建议输入后统一将员工编号加 \`1\`，输出时再减 \`1\`。
-3. **输入输出效率**：
-   - 本题输入量较大。参考代码用 \`ios::sync_with_stdio(false)\` 关掉与 C 输入输出的同步，再用 \`cin.tie(nullptr)\` 解开 \`cin\` 和 \`cout\` 的绑定，避免超时。`,
+**易错提醒：** 先判断是分类还是分步：不同中转城市之间用加法，同一路线内各段之间用乘法。若把两类结果 2 和 3 再误加 1，就会得到干扰项 6。`,
             tags: [
                 "C++综合",
             ],
